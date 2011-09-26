@@ -1,0 +1,11 @@
+.project
+.settings
+.DS_Store
+_notes
+_gsdata_
+user.properties
+
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
