@@ -1,0 +1,47 @@
+/**
+ * Interpolataion for inverted
+ *
+ * @authur Mattias Ekendahl (mattias@developedbyme.com)
+ * @version 0.0.01
+ */
+dbm.registerClass("com.developedbyme.utils.math.interpolation.InvertedInterpolation", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
+	
+	var InvertedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
+		
+	/**
+	 * Constructor.
+	 */
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
+		
+		this.interpolationObject;
+		
+		return this;
+	};
+	
+	/**
+	 * Interpolates
+	 */
+	objectFunctions.interpolate = function(aParameter) {
+		return 1-(this.interpolationObject.interpolate(1-aParameter));
+	};
+	
+	/**
+	 * Gets the tangent for a parameter
+	 */
+	objectFunctions.getTangent = function(aParameter) {
+		return -1*(this.interpolationObject.getTangent(1-aParameter));
+	};
+	
+	/**
+	 * Create a new interpolation
+	 */
+	staticFunctions.create = function(aInterpolationObject) {
+		var newInterpolation = (new ClassReference()).init();
+		
+		newInterpolation.interpolationObject = aInterpolationObject;
+		
+		return newInterpolation;
+	};
+});

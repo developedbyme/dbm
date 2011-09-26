@@ -1,0 +1,76 @@
+dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink");
+	
+	var EventLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.EventLink");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::init");
+		
+		this.superCall();
+		
+		this._isActive = false;
+		
+		this._performerObject = null;
+		this._eventDispatcher = null;
+		this._javascriptEventName = null;
+		this._extendedEventName = null;
+		
+		var thisPointer = this;
+		this._eventCallback = function(aEvent) {
+			//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_eventCallback");
+			//console.log(thisPointer._javascriptEventName);
+			if(thisPointer._performerObject == null) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, thisPointer, "_eventCallback", "Performer object is null.");
+				return;
+			}
+			thisPointer._performerObject.perform(thisPointer._extendedEventName, aEvent);
+		}
+		
+		return this;
+	};
+	
+	objectFunctions.setupLink = function(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName) {
+		this._performerObject = aEventPerformer;
+		this._eventDispatcher = aEventDispatcher;
+		this._javascriptEventName = aJavascriptEventName;
+		this._extendedEventName = aExtendedEventName;
+		
+		return this;
+	};
+	
+	objectFunctions.activate = function() {
+		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::activate");
+		if(this._isActive) return this;
+		
+		this._isActive = true;
+		this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, false);
+		
+		return this;
+	};
+	
+	objectFunctions.deactivate = function() {
+		if(!this._isActive) return this;
+		
+		this._isActive = false;
+		this._eventDispatcher.removeEventListener(this._javascriptEventName, this._eventCallback, false);
+		
+		return this;
+	};
+	
+	objectFunctions.performDestroy = function() {
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName) {
+		return (new EventLink()).init().setupLink(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName);
+	};
+	
+});

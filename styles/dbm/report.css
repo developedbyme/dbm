@@ -1,0 +1,56 @@
+.dbmReport {
+	border: 1px solid #000000;
+}
+
+.dbmReport .dbmReportField {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.dbmReport .dbmReportErrorField {
+	background-color: #FFCCCC;
+}
+
+.dbmReport .dbmReportWarningField {
+	background-color: #FFFFCC;
+}
+
+.dbmReport .dbmReportLogField {
+	background-color: #DDDDDD;
+}
+
+.dbmReport .dbmReportErrorField:nth-child(2n) {
+	background-color: #FFDDDD;
+}
+
+.dbmReport .dbmReportWarningField:nth-child(2n) {
+	background-color: #FFFFDD;
+}
+
+.dbmReport .dbmReportLogField:nth-child(2n) {
+	background-color: #EEEEEE;
+}
+
+.dbmReport .dbmReportField .dbmReportType:before {
+	content: "Test";
+}
+
+.dbmReport .dbmReportField .dbmReportLevel{
+	display: none;
+}
+
+.dbmReport .dbmReportField .dbmReportObject {
+	
+}
+
+.dbmReport .dbmReportField .dbmReportFunction {
+	
+}
+
+.dbmReport .dbmReportField .dbmReportData {
+	
+}
+
+.dbmReport .dbmReportField .dbmReportError {
+	
+}

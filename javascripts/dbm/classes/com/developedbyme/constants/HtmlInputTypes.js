@@ -1,0 +1,30 @@
+dbm.registerClass("com.developedbyme.constants.HtmlInputTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.constants.HtmlInputTypes");
+	
+	var HtmlInputTypes = dbm.importClass("com.developedbyme.constants.HtmlInputTypes");
+	
+	staticFunctions.BUTTON = "button";
+	staticFunctions.CHECKBOX = "checkbox";
+	staticFunctions.COLOR = "color";
+	staticFunctions.DATE = "date";
+	staticFunctions.DATETIME = "datetime";
+	staticFunctions.DATETIME_LOCAL = "datetime-local";
+	staticFunctions.EMAIL = "email";
+	staticFunctions.FILE = "file";
+	staticFunctions.HIDDEN = "hidden";
+	staticFunctions.IMAGE = "image";
+	staticFunctions.MONTH = "month";
+	staticFunctions.NUMBER = "number";
+	staticFunctions.PASSWORD = "password";
+	staticFunctions.RADIO = "radio";
+	staticFunctions.RANGE = "range";
+	staticFunctions.RESET = "reset";
+	staticFunctions.SEARCH = "search";
+	staticFunctions.SUBMIT = "submit";
+	staticFunctions.TEL = "tel";
+	staticFunctions.TEXT = "text";
+	staticFunctions.TIME = "time";
+	staticFunctions.URL = "url";
+	staticFunctions.WEEK = "week";
+	
+});

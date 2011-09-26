@@ -1,0 +1,23 @@
+dbm.runTempFunction(function() {
+	
+	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	
+	dbm.addStartFunction(function() {
+		console.log("startFunction");
+		
+		var theButton = BaseButton.create(document.getElementById("testButton"));
+		console.log(theButton);
+		
+		var callbackFunction = function() {
+			console.log("callbackFunction");
+			console.log(this);
+		};
+		
+		var theCommand = CallFunctionCommand.createCommand(theButton, callbackFunction, []);
+		theButton.getExtendedEvent().addCommandToEvent("click", theCommand);
+		theButton.getExtendedEvent().addCommandToEvent("click", CallFunctionCommand.createCommand(theButton, theButton.deactivate, []));
+		
+		theButton.activate();
+	});
+});
