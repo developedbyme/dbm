@@ -9,11 +9,19 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 	
 	var LineIntersection2d = dbm.importClass("com.developedbyme.utils.math.LineIntersection2d");
 	
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");
+	var AngleFunctions = dbm.importClass("com.developedbyme.utils.math.AngleFunctions");
+	
 	staticFunctions.QUALIFY_TYPE_ALL = "all";
 	staticFunctions.QUALIFY_TYPE_ALL_AND_NULL_RESULTS = "allAndNullResults";
 	staticFunctions.QUALIFY_TYPE_ON_LINE = "onLine";
 	staticFunctions.QUALIFY_TYPE_ON_POINT_SET = "onPointSet";
 	staticFunctions.QUALIFY_TYPE_ON_ALL = "onAll";
+	
+	staticFunctions._tempLineIntersection = null;
+	staticFunctions._tempVector = null;
+	
 		
 	/**
 	 * Constructor.
@@ -30,8 +38,8 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 	 * Sets the result to null
 	 */
 	objectFunctions._setAsNullResult = function() {
-		this.xValue = NaN;
-		this.yValue = NaN;
+		this.x = NaN;
+		this.y = NaN;
 		this.parameter1 = NaN;
 		this.parameter2 = NaN;
 		this.theResult = false;
@@ -50,64 +58,64 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 		//console.log("com.developedbyme.Global.Utilities.Math.LineIntersection.findLineIntersection");
 		//console.log(aPoint1, aVector1, aPoint2, aVector2);
 		
-		if(aVector1.xValue == 0) {
-			if(aVector2.xValue == 0) {
+		if(aVector1.x == 0) {
+			if(aVector2.x == 0) {
 				this._setAsNullResult();
 				return false;
 			}
-			if(aVector1.yValue == 0) {
+			if(aVector1.y == 0) {
 				this._setAsNullResult();
 				return false;
 			}
-			this.xValue = aPoint1.xValue;
+			this.x = aPoint1.x;
 			
-			this.parameter2 = (aPoint1.xValue-aPoint2.xValue)/aVector2.xValue;
-			this.yValue = aPoint2.yValue+(aVector2.yValue)*this.parameter2;
-			this.parameter1 = (this.yValue-aPoint1.yValue)/(aVector1.yValue);
+			this.parameter2 = (aPoint1.x-aPoint2.x)/aVector2.x;
+			this.y = aPoint2.y+(aVector2.y)*this.parameter2;
+			this.parameter1 = (this.y-aPoint1.y)/(aVector1.y);
 			
 		}
-		else if(aVector1.yValue == 0) {
-			if(aVector2.yValue == 0) {
+		else if(aVector1.y == 0) {
+			if(aVector2.y == 0) {
 				this._setAsNullResult();
 				return false;
 			}
-			this.yValue = aPoint1.yValue;
+			this.y = aPoint1.y;
 			
-			this.parameter2 = (aPoint1.yValue-aPoint2.yValue)/aVector2.yValue;
-			this.xValue = aPoint2.xValue+(aVector2.xValue)*this.parameter2;
-			this.parameter1 = (this.xValue-aPoint1.xValue)/(aVector1.xValue);
+			this.parameter2 = (aPoint1.y-aPoint2.y)/aVector2.y;
+			this.x = aPoint2.x+(aVector2.x)*this.parameter2;
+			this.parameter1 = (this.x-aPoint1.x)/(aVector1.x);
 			
 		}
-		else if(aVector2.xValue == 0) {
-			if(aVector2.yValue == 0) {
+		else if(aVector2.x == 0) {
+			if(aVector2.y == 0) {
 				this._setAsNullResult();
 				return false;
 			}
-			this.xValue = aPoint2.xValue;
+			this.x = aPoint2.x;
 			
-			this.parameter1 = (aPoint2.xValue-aPoint1.xValue)/aVector1.xValue;
-			this.yValue = aPoint1.yValue+(aVector1.yValue)*this.parameter1;
-			this.parameter2 = (this.yValue-aPoint2.yValue)/(aVector2.yValue);
+			this.parameter1 = (aPoint2.x-aPoint1.x)/aVector1.x;
+			this.y = aPoint1.y+(aVector1.y)*this.parameter1;
+			this.parameter2 = (this.y-aPoint2.y)/(aVector2.y);
 		}
-		else if(aVector2.yValue == 0) {
-			this.yValue = aPoint2.yValue;
+		else if(aVector2.y == 0) {
+			this.y = aPoint2.y;
 			
-			this.parameter1 = (aPoint2.yValue-aPoint1.yValue)/aVector1.yValue;
-			this.xValue = aPoint1.xValue+(aVector1.xValue)*this.parameter1;
-			this.parameter2 = (this.xValue-aPoint2.xValue)/(aVector2.xValue);
+			this.parameter1 = (aPoint2.y-aPoint1.y)/aVector1.y;
+			this.x = aPoint1.x+(aVector1.x)*this.parameter1;
+			this.parameter2 = (this.x-aPoint2.x)/(aVector2.x);
 		}
-		else if((aVector1.xValue/aVector1.yValue) == (aVector2.xValue/aVector2.yValue)) {
+		else if((aVector1.x/aVector1.y) == (aVector2.x/aVector2.y)) {
 			this._setAsNullResult();
 			return false;
 		}
 		else {
-			this.parameter1 = (aVector2.yValue*(aPoint1.xValue-aPoint2.xValue)-aVector2.xValue*(aPoint1.yValue-aPoint2.yValue))/((aVector2.xValue*aVector1.yValue)-(aVector2.yValue*aVector1.xValue));
-			this.xValue = aPoint1.xValue+(aVector1.xValue)*this.parameter1;
-			this.yValue = aPoint1.yValue+(aVector1.yValue)*this.parameter1;
-			this.parameter2 = (this.yValue-aPoint2.yValue)/(aVector2.yValue);
+			this.parameter1 = (aVector2.y*(aPoint1.x-aPoint2.x)-aVector2.x*(aPoint1.y-aPoint2.y))/((aVector2.x*aVector1.y)-(aVector2.y*aVector1.x));
+			this.x = aPoint1.x+(aVector1.x)*this.parameter1;
+			this.y = aPoint1.y+(aVector1.y)*this.parameter1;
+			this.parameter2 = (this.y-aPoint2.y)/(aVector2.y);
 		}
 		return true;
-	}
+	};
 	
 	/**
 	 * Finds all the collisions between a line and a point set.
@@ -170,5 +178,85 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 			}
 		}
 		return aReturnArray;
-	}
+	};
+	
+	/**
+	 * Finds the parameter where a line is closest to a point.
+	 */
+	staticFunctions.findClosestParameterToPoint = function(aLinePoint, aLineVector, aPoint) {
+		
+		var tempLineIntersection = ClassReference.getTempLineIntersection();
+		var tempVector = ClassReference.getTempVector();
+		
+		tempVector.x = aLineVector.y;
+		tempVector.y = aLineVector.x;
+		
+		tempLineIntersection.findLineIntersection(aLinePoint, aLineVector, aPoint, tempVector);
+		
+		return tempLineIntersection.parameter1;
+	};
+	
+	/**
+	 * Finds the parameter where a line is closest to a point in a range.
+	 */
+	staticFunctions.findClosestParameterToPointInRange = function(aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle) {
+		
+		var tempLineIntersection = ClassReference.getTempLineIntersection();
+		var tempVector = ClassReference.getTempVector();
+		
+		tempVector.x = aLineVector.y;
+		tempVector.y = aLineVector.x;
+		
+		tempLineIntersection.findLineIntersection(aLinePoint, aLineVector, aPoint, tempVector);
+		
+		var bestParameter = Math.max(Math.min(tempLineIntersection.parameter1, 1), 0);
+		
+		var hitAngle = VectorFunctions.angleFromVectorValues((aLinePoint.x+bestParameter*aLineVector.x)-aPoint.x, (aLinePoint.y+bestParameter*aLineVector.y)-aPoint.y);
+		
+		if(AngleFunctions.angleIsInNormalizedRange(hitAngle, aMinAngle, aMaxAngle)) {
+			return tempLineIntersection.parameter1;
+		}
+		
+		var minParameter2 = NaN;
+		var returnParameter = NaN;
+		
+		tempVector.x = Math.cos(aMinAngle);
+		tempVector.y = Math.sin(aMinAngle);
+		
+		if(tempLineIntersection.findLineIntersection(aLinePoint, aLineVector, aPoint, tempVector)) {
+			if(tempLineIntersection.parameter2 >= 0 && (tempLineIntersection.parameter1 >= 0 && tempLineIntersection.parameter1 <= 1)) {
+				minParameter2 = tempLineIntersection.parameter2;
+				returnParameter = tempLineIntersection.parameter1;
+			}
+		}
+		
+		tempVector.x = Math.cos(aMaxAngle);
+		tempVector.y = Math.sin(aMaxAngle);
+		
+		if(tempLineIntersection.findLineIntersection(aLinePoint, aLineVector, aPoint, tempVector)) {
+			if(tempLineIntersection.parameter2 >= 0 && (tempLineIntersection.parameter1 >= 0 && tempLineIntersection.parameter1 <= 1)) {
+				if(minParameter2 == NaN || tempLineIntersection.parameter2 < minParameter2) {
+					minParameter2 = tempLineIntersection.parameter2;
+					returnParameter = tempLineIntersection.parameter1;
+				}
+			}
+		}
+		
+		return returnParameter;
+	};
+	
+	staticFunctions.getTempLineIntersection = function() {
+		if(ClassReference._tempLineIntersection == null) {
+			ClassReference._tempLineIntersection = (new LineIntersection2d()).init();
+		}
+		return ClassReference._tempLineIntersection;
+	};
+	
+	staticFunctions.getTempVector = function() {
+		if(ClassReference._tempVector == null) {
+			ClassReference._tempVector = Point.create();
+		}
+		return ClassReference._tempVector;
+	};
+
 });

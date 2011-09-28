@@ -1,0 +1,191 @@
+/**
+ * A tree structure.
+ *
+ * @authur	mattiase
+ * @version	0.0.01
+ */
+dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.data.treestructure.TreeStructure");
+	
+	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::init");
+		
+		this.superCall();
+		
+		this.createMissingItems = true;
+		
+		this._root = TreeStructureItem.create("");
+		this._root._internalFunctionality_setRoot(this);
+		
+		return this;
+	}; //End function TreeStructure
+	
+	/**
+	 * Gets the root of the tree structure.
+	 */
+	public function getRoot() {
+		return this._root;
+	}; //End function getRoot
+	
+	/**
+	 * Adds an item.
+	 */
+	objectFunctions.addItem = function(aItem, aPath, aBaseItem) {
+		//console.log("addItem");
+		
+		aBaseItem = VariableAliases.valueWithDefault(aBaseItem, null);
+		
+		var currentItem = aBaseItem;
+		if(currentItem == null) {
+			currentItem = this._root;
+		}
+		
+		if(aPath == "" && aPath == "/") {
+			aPath = aItem.getName();
+		}
+		else {
+			aPath += "/"+aItem.getName();
+		}
+		
+		var currentArray;
+		if(aPath.charAt(0) == "/") {
+			currentItem = this._root;
+			currentArray = aPath.substring(1, aPath.length).split("/");
+		}
+		else {
+			currentArray = aPath.split("/");
+		}
+		
+		var theLength = currentArray.length;
+		while(theLength > 1) {
+			var currentPathPart = currentArray.shift();
+			theLength--;
+			switch(currentPathPart) {
+				case ".":
+					break;
+				case "..":
+					currentItem = currentItem.getParent();
+					break;
+				default:
+					var newItem = currentItem.getChildByName(currentPathPart);
+					if(newItem == null) {
+						newItem = this.createItem(currentPathPart, currentItem, true);
+						if(newItem == null) {
+							return;
+						}
+					}
+					if(newItem.isLink()) {
+						var newPath = newItem.resolvePath(currentArray.join("/"));
+						this.addItem(aItem, newPath, newItem);
+						return;
+					}
+					currentItem = newItem;
+					break;
+			}
+		}
+		
+		currentItem.addChild(newItem);
+	}; //End function addItem
+	
+	/**
+	 * Creates a new item
+	 */
+	objectFunctions.createItem = function(aName, aParent, aForce) {
+		//console.log("createItem");
+		
+		aForce = VariableAliases.valueWithDefault(aForce, false);
+		
+		if(!this.createMissingItems && !aForce) return null;
+		var newItem = TreeStructureItem.create(aName);
+		aParent.addChild(newItem);
+		return newItem;
+	}; //End function createItem
+	
+	/**
+	 * Gets an item by path.
+	 */
+	objectFunctions.getItemByPath = function(aPath, aBaseItem) {
+		//console.log("getItemByPath");
+		
+		aBaseItem = VariableAliases.valueWithDefault(aBaseItem, null);
+		
+		var currentItem = aBaseItem;
+		if(currentItem == null) {
+			currentItem = this._root;
+		}
+		var currentArray;
+		if(aPath.charAt(0) == "/") {
+			currentItem = this._root;
+			currentArray = aPath.substring(1, aPath.length).split("/");
+		}
+		else {
+			currentArray = aPath.split("/");
+		}
+		
+		var theLength = currentArray.length;
+		while(theLength > 0) {
+			var currentPathPart = currentArray.shift();
+			theLength--;
+			switch(currentPathPart) {
+				case ".":
+					break;
+				case "..":
+					currentItem = currentItem.getParent();
+					break;
+				default:
+					var newItem = currentItem.getChildByName(currentPathPart);
+					if(newItem == null) {
+						newItem = this.createItem(currentPathPart, currentItem);
+						if(newItem == null) {
+							return null;
+						}
+					}
+					if(newItem.isLink()) {
+						var newPath = newItem.resolvePath(currentArray.join("/"));
+						return this.getItemByPath(newPath, newItem);
+					}
+					currentItem = newItem;
+					break;
+			}
+		}
+		return currentItem;
+	}; //End function getItemByPath
+	
+	/**
+	 * Traces out the full structure.
+	 */
+	objectFunctions.debugTraceStructure = function(aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		
+		aResolveLinksLevel = VariableAliases.valueWithDefault(aResolveLinksLevel, 10);
+		
+		this._root.debugTraceStructure("", aResolveLinksLevel);
+	}; //End function debugTraceStructure
+	
+	/**
+	 * Destroys all the data of the object.
+	 */
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this._root);
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Sets all the references to null
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._root = null;
+		
+		this.superCall();
+	};
+}

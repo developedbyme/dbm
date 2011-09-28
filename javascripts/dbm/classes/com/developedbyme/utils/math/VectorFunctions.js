@@ -58,6 +58,10 @@ dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function
 		aOutputPoint.z = (x1*y2)-(y1*x2);
 	};
 	
+	staticFunctions.angleFromVector = function(aVector) {
+		return Math.atan2(aVector.x, aVector.y);
+	};
+	
 	staticFunctions.angleFromVectorValues = function(aX, aY) {
 		return Math.atan2(aX, aY);
 	};
