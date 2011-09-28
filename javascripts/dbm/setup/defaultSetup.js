@@ -27,7 +27,6 @@ dbm.runTempFunction(function() {
 		
 		UpdateManager.getInstance().start();
 		FlowManager.getInstance().start();
-		AnimationManager.getInstance().setDefaultGlobalTimeNode();
 		AnimationManager.getInstance().start();
 		
 		BrowserDetector.getInstance().detectBrowserFromUserAgent();

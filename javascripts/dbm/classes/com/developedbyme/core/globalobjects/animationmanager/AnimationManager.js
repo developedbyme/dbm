@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	var TemporaryTimelineHolder = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder");
 	var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");
+	var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
@@ -25,8 +26,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		
 		this.superCall();
 		
-		this.globalTimeProperty = null;
+		this._globalTimeNode = GlobalTimeNode.create();
+		this._globalTimeNode.start();
+		
+		this._playbackNode = PlaybackNode.create();
+		this._playbackNode.setPropertyInput("inputTime", this._globalTimeNode.getProperty("time"));
+		
+		this.globalTimeProperty = this._playbackNode.getProperty("outputTime");
 		this._isRecording = false;
+		this.autoPlay = true;
 		
 		this._temporaryTimelines = new Array();
 		
@@ -34,6 +42,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		this._dynamicInterpolationCreators = (new NamedArray()).init();
 		
 		return this;
+	};
+	
+	objectFunctions.getPlaybackNode = function() {
+		return this._playbackNode;
 	};
 	
 	objectFunctions.isRecording = function() {
@@ -76,18 +88,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		return null;
 	};
 	
-	objectFunctions.setDefaultGlobalTimeNode = function() {
-		var globalTimeNode = GlobalTimeNode.create();
-		globalTimeNode.start();
-		this.globalTimeProperty = globalTimeNode.getProperty("time");
-	};
-	
 	objectFunctions.start = function() {
 		dbm.singletons.dbmUpdateManager.addUpdater(this, "updateTimelines");
+		if(this.autoPlay) {
+			this._playbackNode.play();
+		}
 	};
 	
 	objectFunctions.stop = function() {
 		dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateTimelines");
+		this._playbackNode.pause();
 	};
 	
 	objectFunctions.startRecording = function() {
