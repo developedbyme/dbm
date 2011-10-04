@@ -1,13 +1,12 @@
-dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	
-	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
+	var StaticImage = dbm.importClass("com.developedbyme.gui.images.StaticImage");
 	
-	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
-	var CssCursorTypes = dbm.importClass("com.developedbyme.constants.CssCursorTypes");
+	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.buttons.BaseButton::init");
+		//console.log("com.developedbyme.gui.images.StaticImage::init");
 		
 		this.superCall();
 		
@@ -22,7 +21,7 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
-		newNode.setElement(htmlCreator.createImage("image", aUrl, aAttributes));
+		newNode.setElement(htmlCreator.createImage(aUrl, aAttributes));
 		newNode.setParent(theParent);
 		if(aAddToParent != false) {
 			newNode.addToDom();

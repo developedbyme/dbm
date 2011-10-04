@@ -40,6 +40,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	objectFunctions.setElementAsPositioned = function() {
 		
 		this._placementNode = PlaceHtmlElementNode.create(this._htmlElement);
+		this.addDestroyableObject(this._placementNode);
 		
 		return this;
 	};
@@ -128,6 +129,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		this._htmlElement = null;
 		this._parentHtmlElement = null;
+		this._placementNode = null;
 		
 		this.superCall();
 	};
