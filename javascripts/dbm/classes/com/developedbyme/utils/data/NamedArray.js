@@ -119,11 +119,19 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		return null;
 	};
 	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("ownsObjects: " + this.ownsObjects);
+		if(this._namesArray != null) {
+			aReturnArray.push("properties: [" + this._namesArray + "]");
+		}
+	}
 	
 	objectFunctions.performDestroy = function() {
 		
 		if(this.ownsObjects) {
-			//METODO: destroy items
+			ClassReference.softDestroyArrayIfExists(this._objectsArray);
 		}
 		
 		this.superCall();

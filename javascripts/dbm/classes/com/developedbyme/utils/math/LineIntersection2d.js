@@ -27,7 +27,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 	 * Constructor.
 	 */
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.Global.Utilities.Math.LineIntersection2d");
+		//console.log("com.developedbyme.Global.Utilities.Math.LineIntersection2d::init");
 		
 		this._setAsNullResult();
 		
@@ -55,7 +55,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 	 * @return	If the operation was successful.
 	 */
 	objectFunctions.findLineIntersection = function(aPoint1, aVector1, aPoint2, aVector2) {
-		//console.log("com.developedbyme.Global.Utilities.Math.LineIntersection.findLineIntersection");
+		//console.log("com.developedbyme.Global.Utilities.Math.LineIntersection::findLineIntersection");
 		//console.log(aPoint1, aVector1, aPoint2, aVector2);
 		
 		if(aVector1.x == 0) {
@@ -200,6 +200,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 	 * Finds the parameter where a line is closest to a point in a range.
 	 */
 	staticFunctions.findClosestParameterToPointInRange = function(aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle) {
+		//console.log("com.developedbyme.Global.Utilities.Math.LineIntersection2d::findClosestParameterToPointInRange");
 		
 		var tempLineIntersection = ClassReference.getTempLineIntersection();
 		var tempVector = ClassReference.getTempVector();
@@ -214,7 +215,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 		var hitAngle = VectorFunctions.angleFromVectorValues((aLinePoint.x+bestParameter*aLineVector.x)-aPoint.x, (aLinePoint.y+bestParameter*aLineVector.y)-aPoint.y);
 		
 		if(AngleFunctions.angleIsInNormalizedRange(hitAngle, aMinAngle, aMaxAngle)) {
-			return tempLineIntersection.parameter1;
+			return bestParameter;
 		}
 		
 		var minParameter2 = NaN;

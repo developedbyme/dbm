@@ -117,14 +117,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setPosition");
 		
 		if(this._x.canBeSet()) {
-			this._x.setValue(aX);
+			this._x.setValue(Math.round(aX));
 		}
 		else {
 			this._x.setAsDirty();
 		}
 		
 		if(this._y.canBeSet()) {
-			this._y.setValue(aY);
+			this._y.setValue(Math.round(aY));
 		}
 		else {
 			this._y.setAsDirty();
@@ -137,17 +137,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	
 	objectFunctions.setSize = function(aWidth, aHeight) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setSize");
-		//console.log(this.name, aWidth, aHeight);
+		//console.log(this.name, aWidth, this._width.getValue(), aHeight, this._height.getValue());
 		
 		if(this._width.canBeSet()) {
-			this._width.setValue(aWidth);
+			this._width.setValue(Math.round(aWidth));
 		}
 		else {
 			this._width.setAsDirty();
 		}
 		
 		if(this._height.canBeSet()) {
-			this._height.setValue(aHeight);
+			this._height.setValue(Math.round(aHeight));
 		}
 		else {
 			this._height.setAsDirty();
@@ -170,6 +170,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		return this._window.document;
 	}
 	
+	objectFunctions.getWindow = function() {
+		if(!this.isOpen()) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "getWindow", "Window isn't open.");
+			return null;
+		}
+		return this._window;
+	}
+	
 	objectFunctions.getHtmlCreator = function() {
 		if(!this.isOpen()) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "getHtmlCreator", "Html creator can't be used for closed windows.");
@@ -182,26 +190,41 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
 		if(this._isOpen) {
 			if(this._hasMargins) {
-				this._window.resizeTo(this._width.getValueWithoutFlow()+this._horizontalMargin, this._height.getValueWithoutFlow()+this._verticalMargin);
+				var newWidth = Math.round(this._width.getValueWithoutFlow());
+				var newHeight = Math.round(this._height.getValueWithoutFlow());
+				if(newWidth != this._window.innerWidth || newHeight != this._window.innerHeight) {
+					//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
+					this._window.resizeTo(newWidth+this._horizontalMargin, newHeight+this._verticalMargin);
+				}
 			}
 		}
 	}
 	
 	objectFunctions._updateFlowPosition = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
 		if(this._isOpen) {
-			this._updatePosition(this._x.getValueWithoutFlow(), this._y.getValueWithoutFlow());
+			var newX = Math.round(this._x.getValueWithoutFlow());
+			var newY = Math.round(this._y.getValueWithoutFlow());
+			if(newX != this._window.screenX || newY != this._window.screenY) {
+				//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
+				//console.log(newX, this._window.screenX, newY, this._window.screenY);
+				this._updatePosition(newX, newY);
+			}
 		}
 	}
 	
 	objectFunctions._updatePosition = function(aX, aY) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updatePosition");
 		this._updatePositionFunction.callFunction(arguments);
 	}
 	
 	objectFunctions._browser_firefox_updatePosition = function(aX, aY) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_firefox_updatePosition");
 		this._window.moveTo(aX, aY);
 	}
 	
 	objectFunctions._browser_default_updatePosition = function(aX, aY) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_default_updatePosition");
 		this._window.moveTo(aX-this._window.screen.availLeft, aY-this._window.screen.availTop);
 	}
 	
@@ -286,8 +309,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::open");
 		if(this._isOpen) return this;
 		
-		this._isOpen = true;
 		this._window = window.open(this._url, this.name, this._getFeaturesString());
+		this._isOpen = true;
 		
 		if(this._x.canBeSet()) {
 			this._x.setValue(this._window.screenX);

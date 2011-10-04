@@ -16,10 +16,14 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		this.superCall();
 		
 		this._objectProperty = (new Property()).init();
+		this._objectProperty = this.__className + "::object(o)";
+		this.addDestroyableObject(this._objectProperty);
 		this._properties = (new NamedArray()).init();
 		this._properties.ownsObjects = true;
+		this.addDestroyableObject(this._properties);
 		this._updateFunctions = (new NamedArray()).init();
 		this._updateFunctions.ownsObjects = true;
+		this.addDestroyableObject(this._updateFunctions);
 		
 		return this;
 	};
@@ -81,14 +85,13 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return this;
 	};
 	
-	objectFunctions.performDestroy = function() {
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
 		
-		ClassReference.softDestroyIfExists(this._objectProperty);
-		ClassReference.softDestroyIfExists(this._properties);
-		ClassReference.softDestroyIfExists(this._updateFunctions);
-		
-		this.superCall();
-	};
+		if(this._properties != null) {
+			aReturnArray.push("properties: [" + this._properties.getNamesArray() + "]");
+		}
+	}
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

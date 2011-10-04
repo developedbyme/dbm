@@ -141,18 +141,28 @@ dbm.runTempFunction(function() {
 	classManager._setupClassInheritanceForClass = function(aName) {
 		//console.log("classManager._setupClassInheritanceForClass");
 		//console.log(aName);
+		
 		var currentClassHolder = this._classes[aName];
 		if(currentClassHolder.prototypeObject == null) {
-			currentClassHolder.prototypeObject = new Object();
+			
 			if(currentClassHolder.extendedClass != null) {
+				
 				var extendedClass = this._setupClassInheritanceForClass(currentClassHolder.extendedClass);
+				currentClassHolder.prototypeObject = new (extendedClass.classFunction)();
+				
 				var extendedMethods = extendedClass.prototypeObject;
 				for(var extendedMethodName in extendedMethods) {
 					currentClassHolder.prototypeObject[extendedMethodName] = extendedMethods[extendedMethodName];
 				}
 				for(var staticMethodName in extendedClass.staticMethods) {
-					currentClassHolder.classFunction[staticMethodName] = extendedClass.staticMethods[staticMethodName];
+					if(currentClassHolder.staticMethods[staticMethodName] == undefined) {
+						currentClassHolder.staticMethods[staticMethodName] = extendedClass.staticMethods[staticMethodName];
+					}
 				}
+				
+			}
+			else {
+				currentClassHolder.prototypeObject = new Object();
 			}
 			
 			for(var objectMethodName in currentClassHolder.objectMethods) {
@@ -165,6 +175,7 @@ dbm.runTempFunction(function() {
 			currentClassHolder.prototypeObject.__className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
 			
 			currentClassHolder.classFunction.prototype = currentClassHolder.prototypeObject;
+			
 			
 			for(var staticMethodName in currentClassHolder.staticMethods) {
 				currentClassHolder.classFunction[staticMethodName] = currentClassHolder.staticMethods[staticMethodName];

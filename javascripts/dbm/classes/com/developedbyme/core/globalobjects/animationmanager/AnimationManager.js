@@ -26,13 +26,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		
 		this.superCall();
 		
-		this._globalTimeNode = GlobalTimeNode.create();
-		this._globalTimeNode.start();
+		this._globalTimeNode = null;
+		this._playbackNode = null;
 		
-		this._playbackNode = PlaybackNode.create();
-		this._playbackNode.setPropertyInput("inputTime", this._globalTimeNode.getProperty("time"));
-		
-		this.globalTimeProperty = this._playbackNode.getProperty("outputTime");
+		this.globalTimeProperty = null;
 		this._isRecording = false;
 		this.autoPlay = true;
 		
@@ -44,12 +41,26 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		return this;
 	};
 	
+	objectFunctions.getGlobalTimeNode = function() {
+		return this._globalTimeNode;
+	};
+	
 	objectFunctions.getPlaybackNode = function() {
 		return this._playbackNode;
 	};
 	
 	objectFunctions.isRecording = function() {
 		return this._isRecording;
+	};
+	
+	objectFunctions.setupDefaultPlayback = function() {
+		this._globalTimeNode = GlobalTimeNode.create();
+		this._globalTimeNode.start();
+		
+		this._playbackNode = PlaybackNode.create();
+		this._playbackNode.setPropertyInput("inputTime", this._globalTimeNode.getProperty("time"));
+		
+		this.globalTimeProperty = this._playbackNode.getProperty("outputTime");
 	};
 	
 	objectFunctions.addInterpolationObject = function(aType, aObject) {
@@ -123,6 +134,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 			//METODO: set this object as controller for property
 		}
 		return newTimeline;
+	};
+	
+	objectFunctions.connectGlobalTimeToTimeline = function(aTimeline) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::connectGlobalTimeToTimeline");
+		aTimeline.getProperty("inputTime").connectInput(this._globalTimeNode.getProperty("time"));
+		return aTimeline;
 	};
 	
 	objectFunctions._getTemporaryTimelineHolder = function(aObject) {

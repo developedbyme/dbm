@@ -223,8 +223,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			return;
 		}
 		
-		this.setValue(this._inputConnection.getValue());
+		var oldInputValue = this._inputConnection.getValue();
 		this._inputConnection = null;
+		this._animationController = null;
+		
+		this.setValue(oldInputValue);
 	};
 	
 	objectFunctions._linkRegistration_removeConnectedOutput = function(aOutputConnection) {
@@ -274,6 +277,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		dbm.singletons.dbmFlowManager.setDependentConnectionsAsDirty(this);
 	};
 	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("name: " + this.name);
+	}
 	
 	objectFunctions.performDestroy = function() {
 		
@@ -299,6 +307,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._value = null;
 		this._objectInputConnection = null;
 		this._inputConnection = null;
+		this._animationController = null;
 		this._inputUpdateFunction = null;
 		this._outputConnections = null;
 		

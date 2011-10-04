@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		var currentArrayLength = currentArray.length;
 		for(var i = 2; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject instanceof HTMLElement) {
+			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
 				newElement.appendChild(currentObject);
 			}
 			else {
@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		var currentArrayLength = currentArray.length;
 		for(var i = 3; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject instanceof HTMLElement) {
+			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
 				newElement.appendChild(currentObject);
 			}
 			else {
@@ -90,7 +90,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		var currentArrayLength = currentArray.length;
 		for(var i = 3; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject instanceof HTMLElement) {
+			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
 				newElement.appendChild(currentObject);
 			}
 			else {

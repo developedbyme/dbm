@@ -24,11 +24,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		
 		this._startValue = null;
 		this._time = this.createProperty("time", 0);
+		this._partChange = this.createGhostProperty("partChange");
 		this._outputValue = this.createProperty("outputValue", null);
 		this._outputTangent = this.createProperty("outputTangent", null);
 		
-		this.createUpdateFunction("value", this._updateValueFlow, [this._time], [this._outputValue]);
-		this.createUpdateFunction("tangent", this._updateValueFlow, [this._time], [this._outputTangent]);
+		this.createUpdateFunction("value", this._updateValueFlow, [this._partChange, this._time], [this._outputValue]);
+		this.createUpdateFunction("tangent", this._updateValueFlow, [this._partChange, this._time], [this._outputTangent]);
 		
 		return this;
 	};
@@ -147,6 +148,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	objectFunctions.setStartValue = function(aStartValue) {
 		this._startValue = aStartValue;
+		this._partChange.setAsDirty();
 		
 		return this;
 	};
@@ -199,6 +201,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	objectFunctions.addPart = function(aPart) {
 		this._stopPartsAt(aPart.startApplyTime);
 		this._parts.push(aPart);
+		this._partChange.setAsDirty();
+	};
+	
+	objectFunctions.clear = function() {
+		this._parts.splice(0, this._parts.length);
+		this._partChange.setAsDirty();
+	};
+	
+	objectFunctions.clearAt = function(aTime) {
+		this._stopPartsAt(aTime);
+		this._partChange.setAsDirty();
 	};
 	
 	staticFunctions.create = function(aStartValue) {

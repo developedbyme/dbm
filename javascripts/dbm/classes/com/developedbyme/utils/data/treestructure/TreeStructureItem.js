@@ -4,12 +4,11 @@
  * @authur	mattiase
  * @version	0.0.01
  */
-dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem", "com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
-	var RetainableDataHolder = dbm.importClass("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder");
 	var TreeStructureItemTypes = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemTypes");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	

@@ -55,7 +55,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 	};
 	
 	objectFunctions.getWindow = function(aName) {
-		console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::getWindow");
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::getWindow");
 		
 		return this._windows.getObject(aName);
 	};

@@ -43,7 +43,8 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	};
 	
 	objectFunctions.destroy = function() {
-		
+		//console.log("com.developedbyme.core.BaseObject::destroy");
+		//console.log(this.toString());
 		this._isDestroyed = true;
 		
 		this.performDestroy();

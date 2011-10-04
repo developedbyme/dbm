@@ -59,10 +59,10 @@ dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function
 	};
 	
 	staticFunctions.angleFromVector = function(aVector) {
-		return Math.atan2(aVector.x, aVector.y);
+		return Math.atan2(aVector.y, aVector.x);
 	};
 	
 	staticFunctions.angleFromVectorValues = function(aX, aY) {
-		return Math.atan2(aX, aY);
+		return Math.atan2(aY, aX);
 	};
 });

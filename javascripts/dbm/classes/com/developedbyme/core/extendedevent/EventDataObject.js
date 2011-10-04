@@ -28,6 +28,16 @@ dbm.registerClass("com.developedbyme.core.extendedevent.EventDataObject", "com.d
 		this.resultsArray.push(aData);
 	}
 	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("ownerObject: " + this.ownerObject);
+		aReturnArray.push("performingObject: " + this.performingObject);
+		aReturnArray.push("data: " + this.data);
+		aReturnArray.push("statusData: " + this.statusData);
+		aReturnArray.push("resultsArray: " + this.resultsArray);
+	}
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.data = null;

@@ -117,6 +117,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		return returnNumber;
 	};
 	
+	objectFunctions._linkRegistration_removeInputConnection = function() {
+		//METODO: implement that the connection is sent through
+	};
+	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("name: " + this.name);
+	}
 	
 	objectFunctions.performDestroy = function() {
 		this.superCall();
@@ -129,6 +138,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		
 		this._inputsArray = null;
 		this._outputsArray = null;
+		this._ghostOutputConnections = null;
 		
 		this.superCall();
 	};
