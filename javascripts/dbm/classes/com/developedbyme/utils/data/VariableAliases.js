@@ -132,7 +132,7 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 			return isNaN(aVariable);
 		}
 		
-		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isNull", "No case for object type for variable " + aVariable);
+		//ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isNull", "No case for object type (" + typeof(aVariable) + ") for variable " + aVariable);
 		return false;
 	}
 	

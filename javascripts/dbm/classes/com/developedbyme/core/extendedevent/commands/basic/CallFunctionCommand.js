@@ -11,6 +11,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 	
 	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
+	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand::init");
@@ -57,10 +58,20 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 	
 	
 	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExist(this.objectReevaluator);
+		ClassReference.softDestroyIfExist(this.functionReevaluator);
+		ClassReference.softDestroyIfExist(this.argumentsArrayReevaluator);
+		
 		this.superCall();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.objectReevaluator = null;
+		this.functionReevaluator = null;
+		this.argumentsArrayReevaluator = null;
+		
 		this.superCall();
 	};
 	
@@ -81,7 +92,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		var hasReevaluatorInArgumentsArray = false;
 		var theLength = aArgumentsArray.length;
 		for(var i = 0; i < theLength; i++) {
-			if(aArgumentsArray[i].reevaluate != undefined) {
+			if(aArgumentsArray[i] instanceof ReevaluationBaseObject) {
 				hasReevaluatorInArgumentsArray = true;
 				break;
 			}
@@ -119,7 +130,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		var hasReevaluatorInArgumentsArray = false;
 		var theLength = aArgumentsArray.length;
 		for(var i = 0; i < theLength; i++) {
-			if(aArgumentsArray[i].reevaluate != undefined) {
+			if(aArgumentsArray[i] instanceof ReevaluationBaseObject) {
 				hasReevaluatorInArgumentsArray = true;
 				break;
 			}

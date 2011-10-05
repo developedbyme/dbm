@@ -317,7 +317,12 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	staticFunctions.create = function(aObjectInput, aValue) {
 		var newProperty = (new Property()).init();
 		//METODO: set object input
-		newProperty.setValue(aValue);
+		if(aValue instanceof Property) {
+			newProperty.connectInput(aValue);
+		}
+		else {
+			newProperty.setValue(aValue);
+		}
 		return newProperty;
 	};
 	

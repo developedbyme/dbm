@@ -152,7 +152,10 @@ dbm.runTempFunction(function() {
 				
 				var extendedMethods = extendedClass.prototypeObject;
 				for(var extendedMethodName in extendedMethods) {
-					currentClassHolder.prototypeObject[extendedMethodName] = extendedMethods[extendedMethodName];
+					//currentClassHolder.prototypeObject[extendedMethodName] = extendedMethods[extendedMethodName];
+					if(currentClassHolder.objectMethods[extendedMethodName] != undefined) {
+						currentClassHolder.objectMethods[extendedMethodName].superFunction = extendedMethods[extendedMethodName];
+					}
 				}
 				for(var staticMethodName in extendedClass.staticMethods) {
 					if(currentClassHolder.staticMethods[staticMethodName] == undefined) {
@@ -166,9 +169,9 @@ dbm.runTempFunction(function() {
 			}
 			
 			for(var objectMethodName in currentClassHolder.objectMethods) {
-				if(currentClassHolder.prototypeObject[objectMethodName] != undefined) {
-					currentClassHolder.objectMethods[objectMethodName].superFunction = currentClassHolder.prototypeObject[objectMethodName];
-				}
+				//if(currentClassHolder.prototypeObject[objectMethodName] != undefined) {
+				//	currentClassHolder.objectMethods[objectMethodName].superFunction = currentClassHolder.prototypeObject[objectMethodName];
+				//}
 				currentClassHolder.prototypeObject[objectMethodName] = currentClassHolder.objectMethods[objectMethodName];
 			}
 			

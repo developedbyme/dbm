@@ -1,8 +1,14 @@
 dbm.registerClass("com.developedbyme.flow.nodes.userinput.MousePositionNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode");
 	
+	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
+	
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::init");
@@ -13,21 +19,22 @@ dbm.registerClass("com.developedbyme.flow.nodes.userinput.MousePositionNode", "c
 		this._y = this.createProperty("y", 0);
 		this._document = this.createProperty("document", document);
 		
-		this.getExtendedEvent().createEvent("mousemove");
-		this.getExtendedEvent().addCommandToEvent("mousemove", CallFunctionCommand.createCommand(this, this._updatePosition, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().createEvent(JavascriptEventIds.MOUSE_MOVE);
+		this.getExtendedEvent().addCommandToEvent(JavascriptEventIds.MOUSE_MOVE, CallFunctionCommand.createCommand(this, this._updatePosition, [GetVariableObject.createSelectDataCommand()]));
 		
 		return this;
 	};
 	
 	objectFunctions.start = function() {
 		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::start");
-		this.getExtendedEvent().linkJavascriptEvent(this._document.getValue(), "mousemove", "mousemove", "mousemove").activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._document.getValue(), JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, true).activate();
 		
 		return this;
 	};
 	
 	objectFunctions.stop = function() {
-		this.getExtendedEvent().deactivateJavascriptLink("mousemove");
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::stop");
+		this.getExtendedEvent().deactivateJavascriptLink(JavascriptEventIds.MOUSE_MOVE);
 		
 		return this;
 	};
@@ -38,13 +45,25 @@ dbm.registerClass("com.developedbyme.flow.nodes.userinput.MousePositionNode", "c
 		
 		this._x.setValue(aEvent.pageX);
 		this._y.setValue(aEvent.pageY);
-	};
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
+		
+		//console.log(this._x, this._y);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._x = null;
+		this._y = null;
+		this._document = null;
+		
 		this.superCall();
+	};
+	
+	staticFunctions.create = function(aElement) {
+		
+		var newMousePositionNode = (new ClassReference()).init();
+		if(!VariableAliases.isNull(aElement)) {
+			newMousePositionNode._document.setValue(aElement);
+		}
+		return newMousePositionNode;
 	};
 });

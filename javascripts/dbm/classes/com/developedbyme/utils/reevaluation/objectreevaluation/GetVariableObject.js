@@ -46,6 +46,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
+		this.propertyNameReevaluator = null;
+		
 		this.superCall();
 	};
 	

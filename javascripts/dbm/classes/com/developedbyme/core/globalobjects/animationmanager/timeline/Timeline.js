@@ -9,6 +9,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::init");
 		
@@ -108,6 +110,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		}
 	};
 	
+	objectFunctions.getValue = function(aTime) {
+		var currentTime = this._time.getValue();
+		return this.getValueAt(currentTime);
+	};
+	
 	objectFunctions.getValueAt = function(aTime) {
 		if(aTime == this.endTime || this.startTime == this.endTime) {
 			return this.getValueByParameter(1);
@@ -173,6 +180,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	objectFunctions.setValue = function(aValue, aDelay) {
 		
+		aDelay = VariableAliases.valueWithDefault(aDelay, 0);
+		
 		var currentTime = this._time.getValue();
 		var newPart = SetValueTimelinePart.create(aValue, currentTime+aDelay, 0);
 		this.addPart(newPart);
@@ -181,6 +190,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	};
 	
 	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
+		
+		aDelay = VariableAliases.valueWithDefault(aDelay, 0);
 		
 		var currentTime = this._time.getValue();
 		var startValue = this.getValueAt(currentTime+aDelay);
@@ -212,6 +223,27 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	objectFunctions.clearAt = function(aTime) {
 		this._stopPartsAt(aTime);
 		this._partChange.setAsDirty();
+	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyArrayIfExist(this._parts);
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._parts = null;
+		this._currentPartIndex = null;
+		
+		this._startValue = null;
+		this._time = null;
+		this._partChange = null;
+		this._outputValue = null;
+		this._outputTangent = null;
+		
+		this.superCall();
 	};
 	
 	staticFunctions.create = function(aStartValue) {

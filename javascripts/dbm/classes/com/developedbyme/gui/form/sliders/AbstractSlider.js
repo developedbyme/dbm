@@ -1,0 +1,185 @@
+dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.gui.form.sliders.AbstractSlider");
+	
+	var AbstractSlider = dbm.importClass("com.developedbyme.gui.form.sliders.AbstractSlider");
+	
+	var BooleanSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode");
+	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
+	var ConditionNode = dbm.importClass("com.developedbyme.flow.nodes.logic.ConditionNode");
+	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var PlaybackExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEventIds");
+	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
+	
+	staticFunctions._ACTIVE = "active";
+	staticFunctions._SCRUB_ENABLED = "scrubEnabled";
+	staticFunctions._SCRUBBING = "scrubbing";
+	
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::init");
+		
+		this.superCall();
+		
+		this._canScrub = true;
+		this._isActive = false;
+		this._clampScrubValue = true;
+		this._isScrubbing = this.createProperty("isScrubbing", false);
+		this._scrubValue = this.createProperty("scrubValue", 0);
+		this._playbackValue = this.createProperty("playbackValue", 0);
+		this._noPlaybackSwitchNode = ConditionNode.create("||", this._isScrubbing, true);
+		this._switchNode = BooleanSwitchedNode.create(this._noPlaybackSwitchNode.getProperty("outputValue"), this._scrubValue, this._playbackValue);
+		this.addDestroyableObject(this._switchNode);
+		this.addDestroyableObject(this._hasPlaybackNodeNode);
+		this._outputValue = this.createProperty("outputValue", 0);
+		this._outputValue.connectInput(this._switchNode.getProperty("outputValue"));
+		this._display = this.createGhostProperty("display");
+		
+		this._minValue = this.createProperty("minValue", 0);
+		this._maxValue = this.createProperty("maxValue", 1);
+		
+		this.createUpdateFunction("display", this._updateFlowDisplay, [this._outputValue, this._minValue, this._maxValue], [this._display]);
+		
+		this._mousePositionNode = null;
+		
+		this.getExtendedEvent().createEventLinkGroup(staticFunctions._ACTIVE);
+		
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.START_SCRUBBING, SetPropertyCommand.createCommand(this._isScrubbing, true));
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.START_SCRUBBING, SetPropertyCommand.createCommand(this._scrubValue, GetVariableObject.createSelectDataCommand()));
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.UPDATE_SCRUBBING, SetPropertyCommand.createCommand(this._scrubValue, GetVariableObject.createSelectDataCommand()));
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.STOP_SCRUBBING, SetPropertyCommand.createCommand(this._isScrubbing, false));
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.STOP_SCRUBBING, SetPropertyCommand.createCommand(this._scrubValue, GetVariableObject.createSelectDataCommand()));
+		
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.PRESS, CallFunctionCommand.createCommand(this, this._startScrubbing, []));
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.RELEASE, CallFunctionCommand.createCommand(this, this._stopScrubbing, []));
+		
+		return this;
+	};
+	
+	objectFunctions.setElement = function(aElement) {
+		
+		this.superCall(aElement);
+		
+		this._mousePositionNode = MousePositionNode.create(aElement.ownerDocument);
+		this._setupLinkedEvents(aElement);
+		
+		return this;
+	};
+	
+	objectFunctions._setupLinkedEvents = function(aElement) {
+		//MENOTE: should be overridden
+	};
+	
+	objectFunctions.connectPlaybackNode = function(aPlaybackNode) {
+		
+		this._noPlaybackSwitchNode.getProperty("inputValue2").setValue(false);
+		this._playbackValue.connectInput(aPlaybackNode.getProperty("outputTime"));
+		
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.START_SCRUBBING, CallFunctionCommand.createCommand(aPlaybackNode, aPlaybackNode.startScrubbing, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.UPDATE_SCRUBBING, CallFunctionCommand.createCommand(aPlaybackNode, aPlaybackNode.updateScrubbing, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.STOP_SCRUBBING, CallFunctionCommand.createCommand(aPlaybackNode, aPlaybackNode.stopScrubbing, [GetVariableObject.createSelectDataCommand()]));
+		
+		var minValue = aPlaybackNode.getProperty("minTime").getValue();
+		if(isFinite(minValue)) {
+			this._minValue.setValue(minValue);
+		}
+		var maxValue = aPlaybackNode.getProperty("maxTime").getValue();
+		if(isFinite(maxValue)) {
+			this._minValue.setValue(maxValue);
+		}
+	};
+	
+	objectFunctions.activate = function() {
+		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::activate");
+		this._isActive = true;
+		
+		this.getExtendedEvent().activateJavascriptEventLink(ClassReference._ACTIVE);
+		this._display.startUpdating();
+		
+		if(this._canScrub) {
+			this.getExtendedEvent().activateJavascriptEventLink(ClassReference._SCRUB_ENABLED);
+			this._mousePositionNode.start();
+		}
+		
+		return this;
+	};
+	
+	objectFunctions.deactivate = function() {
+		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::deactivate");
+		this._isActive = false;
+		
+		this.getExtendedEvent().deactivateJavascriptEventLink(ClassReference._ACTIVE);
+		this._display.stopUpdating();
+		
+		if(this._canScrub) {
+			this.getExtendedEvent().deactivateJavascriptEventLink(ClassReference._SCRUB_ENABLED);
+			this._mousePositionNode.stop();
+		}
+		
+		return this;
+	};
+	
+	objectFunctions._clampCurrentScrubValue = function(aValue, aMinValue, aMaxValue) {
+		if(this._clampScrubValue) {
+			return Math.max(aMinValue, Math.min(aMaxValue, aValue));
+		}
+		return aValue;
+	};
+	
+	objectFunctions._getCurrentScrubValue = function() {
+		//MENOTE: should be overridden
+		return 0;
+	};
+	
+	objectFunctions._startScrubbing = function() {
+		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::_startScrubbing");
+		this.getExtendedEvent().perform(PlaybackExtendedEventIds.START_SCRUBBING, this._getCurrentScrubValue());
+		dbm.singletons.dbmUpdateManager.addUpdater(this, "updateInput");
+		this.getExtendedEvent().activateJavascriptEventLink(ClassReference._SCRUBBING);
+	};
+	
+	objectFunctions._updateScrubbing = function() {
+		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::_updateScrubbing");
+		this.getExtendedEvent().perform(PlaybackExtendedEventIds.UPDATE_SCRUBBING, this._getCurrentScrubValue());
+	};
+	
+	objectFunctions._stopScrubbing = function() {
+		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::_stopScrubbing");
+		dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateInput");
+		this.getExtendedEvent().deactivateJavascriptEventLink(ClassReference._SCRUBBING);
+		this.getExtendedEvent().perform(PlaybackExtendedEventIds.STOP_SCRUBBING, this._getCurrentScrubValue());
+	};
+	
+	objectFunctions.updateTime = function(aTime, aFrame) {
+		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::updateTime");
+		if(this._isScrubbing.getValue()) {
+			this._updateScrubbing();
+		}
+		else {
+			//MENOTE: this case should never happend
+		}
+	};
+	
+	objectFunctions._updateFlowDisplay = function(aFlowUpdateNumber) {
+		//MENOTE: should be overridden
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case PlaybackExtendedEventIds.START_SCRUBBING:
+			case PlaybackExtendedEventIds.UPDATE_SCRUBBING:
+			case PlaybackExtendedEventIds.STOP_SCRUBBING:
+			case ButtonExtendedEventIds.PRESS:
+			case ButtonExtendedEventIds.RELEASE:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	};
+});

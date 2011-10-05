@@ -61,6 +61,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	
 	objectFunctions.getProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
+		//console.log(this, aName);
 		return this._properties.getObject(aName);
 	};
 	

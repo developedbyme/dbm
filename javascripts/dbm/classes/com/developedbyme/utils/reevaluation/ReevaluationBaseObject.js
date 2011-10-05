@@ -1,6 +1,8 @@
 dbm.registerClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	
+	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.utils.reevaluation.ArrayHolder::init");
 		

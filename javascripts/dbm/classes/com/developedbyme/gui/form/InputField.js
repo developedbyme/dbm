@@ -9,7 +9,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	staticFunctions._ACTIVE = "active";
-	staticFunctions._INTERNAL_CHANGE = "active";
+	staticFunctions._INTERNAL_CHANGE = "internalChange";
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.gui.form.InputField::init");

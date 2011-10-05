@@ -23,6 +23,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 		
 		this._lastInputTime = 0;
 		this._lastOutputTime = 0;
+		this._stateBeforeScrubbing = -1;
 		
 		return this;
 	};
@@ -93,6 +94,21 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 			this._outputTime.setValueWithFlow(this._lastOutputTime, aFlowUpdateNumber);
 		}
 		this._lastInputTime = inputTime;
+	};
+	
+	objectFunctions.startScrubbing = function(aValue) {
+		this._stateBeforeScrubbing = this._state.getValue();
+		this._state.setValue(2);
+		this._lastOutputTime = aValue;
+	};
+	
+	objectFunctions.updateScrubbing = function(aValue) {
+		this._lastOutputTime = aValue;
+	};
+	
+	objectFunctions.stopScrubbing = function(aValue) {
+		this._lastOutputTime = aValue;
+		this._state.setValue(this._stateBeforeScrubbing);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
