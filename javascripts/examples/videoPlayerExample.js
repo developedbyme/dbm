@@ -33,10 +33,14 @@ dbm.runTempFunction(function() {
 		
 		
 		var slider = HorizontalScaleSlider.createSimple2ColorSlider(document.body, true, 300, 10, 0xFF0000, 0x666666);
-		slider.getProperty("maxValue").setValue(120);
-		slider.connectPlaybackNode(dbm.singletons.dbmAnimationManager.getPlaybackNode());
+		slider.getProperty("maxValue").setValue(50);
+		slider.connectVideoView(videoView);
 		slider.activate();
 		
-		console.log(slider);
+		var globalSlider = HorizontalScaleSlider.createSimple2ColorSlider(document.body, true, 300, 10, 0x00FF00, 0x666666);
+		globalSlider.getProperty("maxValue").setValue(200);
+		globalSlider.connectPlaybackNode(dbm.singletons.dbmAnimationManager.getPlaybackNode());
+		globalSlider.activate();
+		
 	});
 });

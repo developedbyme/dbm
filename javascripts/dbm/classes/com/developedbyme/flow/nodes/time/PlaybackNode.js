@@ -3,6 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	
 	var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");
 	
+	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::init");
 		
@@ -14,7 +16,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 		this._minTime = this.createProperty("minTime", 0);
 		this._maxTime = this.createProperty("maxTime", Infinity);
 		
-		this._state = this.createProperty("state", 0);
+		this._state = this.createProperty("state", PlaybackStateTypes.PAUSED);
 		this._loop = this.createProperty("loop", false);
 		
 		this._playbackSpeed = this.createProperty("playbackSpeed", 1);
@@ -36,12 +38,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	};
 	
 	objectFunctions.play = function() {
-		this._state.setValue(1);
+		this._state.setValue(PlaybackStateTypes.PLAYING);
 		return this;
 	};
 	
 	objectFunctions.pause = function() {
-		this._state.setValue(0);
+		this._state.setValue(PlaybackStateTypes.PAUSED);
 		return this;
 	};
 	
@@ -53,7 +55,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::_update");
 		var inputTime = this._inputTime.getValueWithoutFlow();
-		if(this._state.getValueWithoutFlow() == 1) {
+		if(this._state.getValueWithoutFlow() == PlaybackStateTypes.PLAYING) {
 			var timeDiff = inputTime-this._lastInputTime;
 			var playbackSpeed = this._playbackSpeed.getValueWithoutFlow();
 			var newTime = this._lastOutputTime+playbackSpeed*timeDiff;
@@ -69,7 +71,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 				else {
 					this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
 					this._lastOutputTime = maxTime;
-					this._state.setValue(0);
+					this._state.setValue(PlaybackStateTypes.PAUSED);
 				}
 			}
 			else if(newTime < minTime) {
@@ -82,7 +84,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 				else {
 					this._outputTime.setValueWithFlow(minTime, aFlowUpdateNumber);
 					this._lastOutputTime = minTime;
-					this._state.setValue(0);
+					this._state.setValue(PlaybackStateTypes.PAUSED);
 				}
 			}
 			else {
@@ -97,16 +99,20 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	};
 	
 	objectFunctions.startScrubbing = function(aValue) {
+		if(this._state.getValue() == PlaybackStateTypes.SCRUBBING) return;
+		
 		this._stateBeforeScrubbing = this._state.getValue();
-		this._state.setValue(2);
+		this._state.setValue(PlaybackStateTypes.SCRUBBING);
 		this._lastOutputTime = aValue;
 	};
 	
 	objectFunctions.updateScrubbing = function(aValue) {
+		if(this._state.getValue() != PlaybackStateTypes.SCRUBBING) return;
 		this._lastOutputTime = aValue;
 	};
 	
 	objectFunctions.stopScrubbing = function(aValue) {
+		if(this._state.getValue() != PlaybackStateTypes.SCRUBBING) return;
 		this._lastOutputTime = aValue;
 		this._state.setValue(this._stateBeforeScrubbing);
 	};

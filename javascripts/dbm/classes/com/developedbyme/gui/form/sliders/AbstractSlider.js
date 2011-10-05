@@ -94,6 +94,17 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 		}
 	};
 	
+	objectFunctions.connectVideoView = function(aVideoView) {
+		
+		this._noPlaybackSwitchNode.getProperty("inputValue2").setValue(false);
+		this._playbackValue.connectInput(aVideoView.getProperty("outputTime"));
+		
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.START_SCRUBBING, CallFunctionCommand.createCommand(aVideoView, aVideoView.startScrubbing, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.UPDATE_SCRUBBING, CallFunctionCommand.createCommand(aVideoView, aVideoView.updateScrubbing, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(PlaybackExtendedEventIds.STOP_SCRUBBING, CallFunctionCommand.createCommand(aVideoView, aVideoView.stopScrubbing, [GetVariableObject.createSelectDataCommand()]));
+		
+	};
+	
 	objectFunctions.activate = function() {
 		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::activate");
 		this._isActive = true;

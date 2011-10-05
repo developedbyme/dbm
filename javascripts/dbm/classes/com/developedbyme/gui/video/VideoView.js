@@ -8,6 +8,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
+	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.gui.video.VideoView::init");
@@ -18,19 +19,21 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._selectedUrl = null;
 		this._maxTimeDifference = 0.5;
 		
-		this._stateTimeline = Timeline.create("paused");
+		this._stateTimeline = Timeline.create(PlaybackStateTypes.PAUSED);
 		this.addDestroyableObject(this._stateTimeline);
 		this._startTimeTimeline = Timeline.create(0);
 		this.addDestroyableObject(this._startTimeTimeline);
 		this._startPositionTimeline = Timeline.create(0);
 		this.addDestroyableObject(this._startPositionTimeline);
 		this._currentTime = this.createProperty("currentTime", 0);
-		this._playbackState = this.createProperty("playbackState", 1);
+		this._playbackState = this.createProperty("playbackState", PlaybackStateTypes.PLAYING);
 		this._playbackSpeed = this.createProperty("playbackSpeed", 1);
+		
+		this._outputTime = this.createProperty("outputTime", 0);
 		
 		this._playback = this.createGhostProperty("playback");
 		
-		this.createUpdateFunction("default", this._updateFlow, [this._stateTimeline.getProperty("outputValue"), this._startTimeTimeline.getProperty("outputValue"), this._startPositionTimeline.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed], [this._playback]);
+		this.createUpdateFunction("default", this._updateFlow, [this._stateTimeline.getProperty("outputValue"), this._startTimeTimeline.getProperty("outputValue"), this._startPositionTimeline.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed], [this._outputTime, this._playback]);
 		
 		return this;
 	};
@@ -58,17 +61,17 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	objectFunctions.play = function() {
 		
 		var currentState = this._stateTimeline.getValue();
-		if(currentState == "playing") {
+		if(currentState == PlaybackStateTypes.PLAYING) {
 			return;
 		}
 		
-		this._stateTimeline.setValue("playing");
+		this._stateTimeline.setValue(PlaybackStateTypes.PLAYING);
 		this._startTimeTimeline.setValue(this._currentTime.getValue());
 		this._startPositionTimeline.setValue(this._htmlElement.currentTime);
 		
 		var playbackState = this._playbackState.getValue();
 		var playbackSpeed = this._playbackSpeed.getValue();
-		if(playbackState == 1 && playbackSpeed == 1 && this._htmlElement.paused) {
+		if(playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1 && this._htmlElement.paused) {
 			this._htmlElement.play();
 		}
 	};
@@ -76,11 +79,11 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	objectFunctions.pause = function() {
 		
 		var currentState = this._stateTimeline.getValue();
-		if(currentState == "paused") {
+		if(currentState == PlaybackStateTypes.PAUSED) {
 			return;
 		}
 		
-		this._stateTimeline.setValue("paused");
+		this._stateTimeline.setValue(PlaybackStateTypes.PAUSED);
 		this._startTimeTimeline.setValue(this._currentTime.getValue());
 		this._startPositionTimeline.setValue(this._htmlElement.currentTime);
 		
@@ -96,6 +99,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._startPositionTimeline.setValue(aTime);
 		
 		this._htmlElement.currentTime = aTime;
+		this._outputTime.setValue(this._htmlElement.currentTime);
 	};
 	
 	objectFunctions._getTypeForUrl = function(aUrl) {
@@ -167,11 +171,26 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		}
 	}
 	
+	objectFunctions.startScrubbing = function(aValue) {
+		this.seek(aValue);
+	};
+	
+	objectFunctions.updateScrubbing = function(aValue) {
+		if(!this._htmlElement.seeking) {
+			this.seek(aValue);
+		}
+	};
+	
+	objectFunctions.stopScrubbing = function(aValue) {
+		this.seek(aValue);
+	};
+	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.gui.video.VideoView::_updateFlow");
 		
 		if(this._htmlElement.seeking) {
 			//MENOTE: do nothing
+			//console.log("seeking");
 		}
 		else {
 		
@@ -188,36 +207,37 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			var isPaused = this._htmlElement.paused;
 			var hasEnded = this._htmlElement.ended;
 			
-			if((!isPaused) && (playbackState != 1 || playbackSpeed != 1 || state == "paused")) {
+			if((!isPaused) && (playbackState != PlaybackStateTypes.PLAYING || playbackSpeed != 1 || state == PlaybackStateTypes.PAUSED)) {
 				this._htmlElement.pause();
 				isPaused = true;
 			}
 			
 			if(isPaused) {
-				if(state == "playing" && playbackState == 1 && playbackSpeed == 1) {
+				if(state == PlaybackStateTypes.PLAYING && playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1) {
 					this._htmlElement.play();
 					this._htmlElement.currentTime = maxTime;
+					this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
 				}
 				else {
-					if(state != "paused") {
+					if(state != PlaybackStateTypes.PAUSED) {
 						if(this._htmlElement.currentTime != maxTime) {
 							this._htmlElement.currentTime = maxTime;
+							this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
 						}
+					}
+					else {
+						this._outputTime.setValueWithFlow(this._htmlElement.currentTime, aFlowUpdateNumber);
 					}
 				}
 			}
 			else {
-				//if(!hasEnded) {
-					var timeDifference = Math.abs(maxTime-this._htmlElement.currentTime);
-					if(timeDifference > this._maxTimeDifference) {
-						this._htmlElement.currentTime = maxTime;
-					}
-				//}
+				var timeDifference = Math.abs(maxTime-this._htmlElement.currentTime);
+				if(timeDifference > this._maxTimeDifference) {
+					//console.log("timeDifference", timeDifference);
+					this._htmlElement.currentTime = maxTime;
+				}
+				this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
 			}
-			
-			//console.log(currentTime-startTime+startPosition, this._htmlElement.currentTime);
-			//console.log((currentTime-startTime+startPosition)-this._htmlElement.currentTime);
-			//console.log(this._htmlElement.seeking, this._htmlElement.paused, this._htmlElement.ended);
 		}
 	};
 	
@@ -225,7 +245,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("url: " + this._selectedUrl);
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
