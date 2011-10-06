@@ -6,7 +6,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode", "com.d
 		
 		this.superCall();
 		
-		this._index = this.createProperty("index", 0);
+		this._index = this.createProperty("index", -1);
 		this._array = this.createProperty("array", new Array());
 		this._outputValue = this.createProperty("outputValue", null);
 		
@@ -19,7 +19,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode", "com.d
 		//console.log("com.developedbyme.flow.nodes.logic.IndexSwitchedNode::_update");
 		
 		var selectionArray = this._array.getValueWithoutFlow();
-		var indexValue = Math.floor(Math.min(selectionArray.length-1, Math.max(0, this._index.getValueWithoutFlow())));
+		var originalIndexValue = this._index.getValueWithoutFlow();
+		if(originalIndexValue == -1) {
+			this._outputValue.setValueWithFlow(selectionArray[indexValue], null);
+			return;
+		}
+		var indexValue = Math.floor(Math.min(selectionArray.length-1, Math.max(0, originalIndexValue)));
 		
 		this._outputValue.setValueWithFlow(selectionArray[indexValue], aFlowUpdateNumber);
 	};

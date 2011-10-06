@@ -45,8 +45,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElementNode", "
 		htmlElement.style.setProperty("-o-transform-origin", transformationOriginString, "");
 		htmlElement.style.setProperty("-webkit-transform-origin", transformationOriginString, "");
 		htmlElement.style.setProperty("transform-origin", transformationOriginString, "");
-		
-		this._display.setValueWithFlow(null, aFlowUpdateNumber);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

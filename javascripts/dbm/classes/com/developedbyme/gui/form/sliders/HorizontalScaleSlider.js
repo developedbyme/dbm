@@ -4,6 +4,7 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 	var HorizontalScaleSlider = dbm.importClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider");
 	
 	var BooleanSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode");
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
@@ -11,6 +12,7 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
+	var PositionFunctions = dbm.importClass("com.developedbyme.utils.htmldom.PositionFunctions");
 	
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEventIds");
@@ -23,6 +25,7 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 		this.superCall();
 		
 		this._scalingElement = null;
+		this._globalPositionPoint = Point.create();
 		
 		return this;
 	};
@@ -66,6 +69,10 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 		
 		var x = this._mousePositionNode.getProperty("x").getValue();
 		var maxX = this._htmlElement.clientWidth;
+		
+		PositionFunctions.getGlobalPositionForNode(this._htmlElement, this._globalPositionPoint);
+		
+		x -= this._globalPositionPoint.x;
 		
 		var scrubValue = (maxValue-minValue)*(x/maxX)+minValue;
 		

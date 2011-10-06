@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	objectFunctions.setValue = function(aValue) {
-		if(this._inputConnection != null) {
+		if(this._inputConnection != null && this._animationController == null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Can't set value when property has input.");
 			return;
 		}
@@ -69,6 +69,18 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 		this._animationController.animateValue(aValue, aTime, aInterpolation, aDelay);
 	};
+	
+	objectFunctions.getAnimationController = function() {
+		if(this._animationController != null) {
+			return this._animationController;
+		}
+		if(this._inputConnection != null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getAnimationController", "Property doesn't have an animation controller as input.");
+			return null;
+		}
+		this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
+		return this._animationController;
+	}
 	
 	objectFunctions.canBeSet = function() {
 		return (this._inputConnection == null || this._animationController != null);

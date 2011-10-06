@@ -227,7 +227,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	objectFunctions.performDestroy = function() {
 		
-		ClassReference.softDestroyArrayIfExist(this._parts);
+		ClassReference.softDestroyArrayIfExists(this._parts);
 		
 		this.superCall();
 	};

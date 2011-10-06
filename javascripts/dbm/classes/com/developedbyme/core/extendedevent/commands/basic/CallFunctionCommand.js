@@ -59,9 +59,9 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 	
 	objectFunctions.performDestroy = function() {
 		
-		ClassReference.softDestroyIfExist(this.objectReevaluator);
-		ClassReference.softDestroyIfExist(this.functionReevaluator);
-		ClassReference.softDestroyIfExist(this.argumentsArrayReevaluator);
+		ClassReference.softDestroyIfExists(this.objectReevaluator);
+		ClassReference.softDestroyIfExists(this.functionReevaluator);
+		ClassReference.softDestroyIfExists(this.argumentsArrayReevaluator);
 		
 		this.superCall();
 	};

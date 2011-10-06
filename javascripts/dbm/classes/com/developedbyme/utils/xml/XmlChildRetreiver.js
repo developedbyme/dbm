@@ -1,11 +1,11 @@
 dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.xml.XmlChildRetreiver");
 	
+	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
+	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
-	
-	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
@@ -65,6 +65,39 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChild", "More than 1 child matches the query, selecting first.");
 		}
 		return returnArray[0];
+	};
+	
+	staticFunctions.getChilds = function(aXml, aChildName) {
+		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChilds (static)");
+		aChildName = VariableAliases.valueWithDefault(aChildName, "*");
+		//console.log(aXml, ChildName);
+		
+		var returnArray = new Array();
+		
+		if(aXml == null) {
+			if(ClassReference.WARN_FOR_NO_XML) {
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChildByAttribute", "Xml is null");
+			}
+			return returnArray;
+		}
+		
+		var currentArray = aXml.childNodes;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentChild = currentArray[i];
+			
+			if((currentChild.nodeType == XmlNodeTypes.ELEMENT_NODE) && ((aChildName == "*") || (currentChild.nodeName == aChildName))) {
+				returnArray.push(currentChild);
+			}
+		}
+		
+		if(returnArray.length == 0) {
+			if(ClassReference.WARN_FOR_NO_RESULT) {
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChildByAttribute", "No result in " + aXml);
+			}
+			return returnArray;
+		}
+		return returnArray;
 	};
 	
 	staticFunctions.getChildByAttribute = function(aXml, aAttributeName, aValue, aChildName) {
