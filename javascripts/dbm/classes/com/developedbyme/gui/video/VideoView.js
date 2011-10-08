@@ -102,6 +102,22 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._outputTime.setValue(this._htmlElement.currentTime);
 	};
 	
+	objectFunctions.setStateAt = function(aState, aOutputTime, aTime) {
+		if(aState == PlaybackStateTypes.PAUSED) {
+			if(this._stateTimeline.getValueAt(aTime) != PlaybackStateTypes.PAUSED) {
+				this._stateTimeline.setValueAt(PlaybackStateTypes.PAUSED, aTime);
+			}
+			this._startPositionTimeline.setValueAt(aOutputTime, aTime);
+		}
+		else {
+			if(this._stateTimeline.getValueAt(aTime) != PlaybackStateTypes.PLAYING) {
+				this._stateTimeline.setValueAt(PlaybackStateTypes.PLAYING, aTime);
+			}
+			this._startTimeTimeline.setValueAt(aTime, aTime);
+			this._startPositionTimeline.setValueAt(aOutputTime, aTime);
+		}
+	};
+	
 	objectFunctions._getTypeForUrl = function(aUrl) {
 		switch(PathFunctions.getFileExtension(aUrl).toLowerCase()) {
 			case "mp4":

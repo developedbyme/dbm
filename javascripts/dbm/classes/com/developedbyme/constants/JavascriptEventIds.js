@@ -3,6 +3,9 @@ dbm.registerClass("com.developedbyme.constants.JavascriptEventIds", null, functi
 	
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	
+	//MENOTE: DOM unspecified
+	staticFunctions.DOM_CONTENT_LOADED = "DOMContentLoaded";
+	
 	//MENOTE: DOM level 3
 	staticFunctions.ABORT = "abort"; //Element > Event
 	staticFunctions.BLUR = "blur"; //Element > FocusEvent

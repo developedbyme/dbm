@@ -293,6 +293,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("name: " + this.name);
+		aReturnArray.push("value: " + this._performGetValue);
 	}
 	
 	objectFunctions.performDestroy = function() {

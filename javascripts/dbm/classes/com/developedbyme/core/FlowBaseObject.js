@@ -51,6 +51,14 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return newProperty;
 	};
 	
+	objectFunctions.addProperty = function(aName, aProperty) {
+		//console.log("com.developedbyme.core.FlowBaseObject::addProperty");
+		//console.log(aName, aProperty);
+		aProperty.name = this.__className + "::" + aName;
+		this._properties.addObject(aName, aProperty);
+		return aProperty;
+	};
+	
 	objectFunctions.createGhostProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createGhostProperty");
 		var newProperty = GhostProperty.create(this._objectProperty);
@@ -62,7 +70,11 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	objectFunctions.getProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
 		//console.log(this, aName);
-		return this._properties.getObject(aName);
+		if(this._properties.select(aName)) {
+			return this._properties.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Property " + aName + " doesn't exist on " + this + ".");
+		return null;
 	};
 	
 	objectFunctions.setPropertyInput = function(aName, aInput) {

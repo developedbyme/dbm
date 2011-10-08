@@ -189,6 +189,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		return this;
 	};
 	
+	objectFunctions.setValueAt = function(aValue, aTime) {
+		
+		var currentTime = this._time.getValue();
+		var newPart = SetValueTimelinePart.create(aValue, aTime, 0);
+		this.addPart(newPart);
+		
+		return this;
+	};
+	
 	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
 		
 		aDelay = VariableAliases.valueWithDefault(aDelay, 0);

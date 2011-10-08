@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.constants.extendedevents.WindowExtendedEven
 	staticFunctions.FOCUS = "focus";
 	staticFunctions.BLUR = "blur";
 	
+	staticFunctions.DOCUMENT_READY = "documentReady";
 	staticFunctions.DOCUMENT_LOADED = "documentLoaded";
 	staticFunctions.DOCUMENT_UNLOADED = "documentUnloaded";
 	
