@@ -1,5 +1,5 @@
 dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.BaseObject");
+	//console.log("com.developedbyme.gui.video.VideoView");
 	
 	var VideoView = dbm.importClass("com.developedbyme.gui.video.VideoView");
 	

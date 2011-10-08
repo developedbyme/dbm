@@ -188,4 +188,10 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		
 		this.superCall();
 	};
+	
+	staticFunctions.create = function() {
+		var newTreeStructure = (new ClassReference()).init();
+		
+		return newTreeStructure;
+	};
 }
