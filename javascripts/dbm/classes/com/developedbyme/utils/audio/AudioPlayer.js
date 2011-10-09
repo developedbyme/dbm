@@ -1,7 +1,7 @@
-dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.gui.video.VideoView");
+dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.audio.AudioPlayer");
 	
-	var VideoView = dbm.importClass("com.developedbyme.gui.video.VideoView");
+	var AudioPlayer = dbm.importClass("com.developedbyme.utils.audio.AudioPlayer");
 	
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
@@ -11,10 +11,10 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
-	var VideoEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.VideoEventIds");
+	var AudioEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.AudioEventIds");
 	
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.video.VideoView::init");
+		//console.log("com.developedbyme.utils.audio.AudioPlayer::init");
 		
 		this.superCall();
 		
@@ -41,8 +41,8 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		
 		this.createUpdateFunction("default", this._updateFlow, [this._stateTimeline.getProperty("outputValue"), this._startTimeTimeline.getProperty("outputValue"), this._startPositionTimeline.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed], [this._outputTime, this._playback]);
 		
-		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGED, SetPropertyAsDirtyCommand.createCommand(this._volume));
-		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGED, SetPropertyAsDirtyCommand.createCommand(this._muted));
+		this.getExtendedEvent().addCommandToEvent(AudioEventIds.VOLUME_CHANGED, SetPropertyAsDirtyCommand.createCommand(this._volume));
+		this.getExtendedEvent().addCommandToEvent(AudioEventIds.VOLUME_CHANGED, SetPropertyAsDirtyCommand.createCommand(this._muted));
 		
 		return this;
 	};
@@ -54,7 +54,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._volume.setupExternalObject(this._htmlElement, "volume");
 		this._muted.setupExternalObject(this._htmlElement, "muted");
 		
-		this.getExtendedEvent().linkJavascriptEvent(aElement, VideoEventIds.VOLUME_CHANGED, VideoEventIds.VOLUME_CHANGED, VideoEventIds.VOLUME_CHANGED, true);
+		this.getExtendedEvent().linkJavascriptEvent(aElement, AudioEventIds.VOLUME_CHANGED, AudioEventIds.VOLUME_CHANGED, AudioEventIds.VOLUME_CHANGED, true);
 		
 		return this;
 	};
@@ -105,7 +105,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	};
 	
 	objectFunctions.seek = function(aTime) {
-		//console.log("com.developedbyme.gui.video.VideoView::seek");
+		//console.log("com.developedbyme.utils.audio.AudioPlayer::seek");
 		
 		this._startTimeTimeline.setValue(this._currentTime.getValue());
 		this._startPositionTimeline.setValue(aTime);
@@ -132,34 +132,38 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	
 	objectFunctions._getTypeForUrl = function(aUrl) {
 		switch(PathFunctions.getFileExtension(aUrl).toLowerCase()) {
+			case "aac":
+				return "audio/aac";
+			case "mp3":
+				return "audio/mp3";
 			case "mp4":
-			case "m4v":
-				return "video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"";
-			case "ogv":
-				return "video/ogg; codecs=\"theora, vorbis\"";
-			case "webm":
-				return "video/webm; codecs=\"vp8, vorbis\"";
+				return "audio/mp4";
+			case "oga":
+				return "audio/ogg; codecs=\"vorbis\"";
 		}
+		
+		//METODO: fix codecs
 		
 		return "unknown";
 	};
 	
 	objectFunctions._getTypeWithoutCodecsForUrl = function(aUrl) {
 		switch(PathFunctions.getFileExtension(aUrl).toLowerCase()) {
+			case "aac":
+				return "audio/aac";
+			case "mp3":
+				return "audio/mp3";
 			case "mp4":
-			case "m4v":
-				return "video/mp4";
-			case "ogv":
-				return "video/ogg";
-			case "webm":
-				return "video/webm";
+				return "audio/mp4";
+			case "oga":
+				return "audio/ogg";
 		}
 		
 		return "unknown";
 	};
 	
 	objectFunctions.setUrls = function(aUrls, aPreload) {
-		//console.log("com.developedbyme.gui.video.VideoView::setUrls");
+		//console.log("com.developedbyme.utils.audio.AudioPlayer::setUrls");
 		this._urls = aUrls;
 		
 		var isSelected = false;
@@ -216,7 +220,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	};
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.gui.video.VideoView::_updateFlow");
+		//console.log("com.developedbyme.utils.audio.AudioPlayer::_updateFlow");
 		
 		if(this._htmlElement.seeking) {
 			//MENOTE: do nothing
@@ -274,7 +278,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
 		switch(aName) {
-			case VideoEventIds.VOLUME_CHANGED:
+			case AudioEventIds.VOLUME_CHANGED:
 				return true;
 		}
 		
