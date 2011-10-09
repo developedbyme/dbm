@@ -33,17 +33,27 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		this._evaluatorsArray.push(aEvaluator);
 	}
 	
-	objectFunctions.getEvaluationFunction = function(aPointSet, aType, aForward) {
+	objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
+		
+		var isForward = (aEndParameter >= aStartParameter);
+		
 		var currentArray = this._evaluatorsArray;
 		var currentArrayLength = currentArray.length;
 		for (var i = 0; ++i < currentArrayLength; i++) {
 			var currentEvaluator = currentArray[i];
-			if(currentEvaluator.canEvaluate(aPointSet, aType, aForward)) {
-				return currentEvaluator.getEvaluationFunction(aPointSet, aType, aForward);
+			if(currentEvaluator.canEvaluate(aPointSet)) {
+				if(isForward) {
+					currentEvaluator.getPartOfCurve(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve);
+				}
+				else {
+					currentEvaluator.getPartOfCurve(aPointSet, aEndParameter, aStartParameter, aExactness, aReturnCurve);
+					aReturnCurve; //METODO: reverse
+				}
+				return;
 			}
 		}
 		//METODO: error message
-		return null;
+		return;
 	}
 	
 	objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {

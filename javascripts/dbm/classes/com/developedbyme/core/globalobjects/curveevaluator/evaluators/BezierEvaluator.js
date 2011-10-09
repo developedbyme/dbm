@@ -1,318 +1,123 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator", "com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
-
-
 	
-	var BaseObject = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject");
-	var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");
-	var Point2d = dbm.importClass("com.developedbyme.core.data.points.Point");
-	var Point3d = dbm.importClass("com.developedbyme.Global.DataObjects.Points.Point3d");
-	var CompactBezierCurve3d = dbm.importClass("com.developedbyme.core.data.curves.CompactBezierCurve");
-	var BezierCurveInterface = dbm.importClass("com.developedbyme.Global.DataObjects.Curves.BezierCurveInterface");
-	var CurveEvaluator = dbm.importClass("com.developedbyme.Global.GlobalObjects.CurveEvaluator");
-	var LineDrawerInterface = dbm.importClass("com.developedbyme.Global.Utilities.LineDrawer.LineDrawerInterface");
-	var LineDrawer = dbm.importClass("com.developedbyme.Global.Utilities.LineDrawer.LineDrawer");
-	var CurveDrawer = dbm.importClass("com.developedbyme.Global.Utilities.LineDrawer.CurveDrawer");
-	var DrawBaseObject = dbm.importClass("com.developedbyme.Global.Utilities.LineDrawer.DrawBaseObject");
-	var MultipleLineDrawer = dbm.importClass("com.developedbyme.Global.Utilities.LineDrawer.MultipleLineDrawer");
-	var LineDrawerPoint = dbm.importClass("com.developedbyme.Global.Utilities.LineDrawer.LineDrawerPoint");
-	var RecyclerGroup = dbm.importClass("com.developedbyme.Global.GlobalObjectParts.DataRecycler.RecyclerGroup");
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::init")
+		
+		this.superCall();
+		
+		this._halfSplitPoints = new Array();
+		
+		return this;
+	};
 	
-		
-		objectFunctions.init = function() {
-			//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator")
-			
-			dbm.singletons.dbmCurveEvaluator.addEvaluator(this);
+	objectFunctions.canEvaluate = function(aPointSet) {
+		if(aPointSet.isSetType("bezierCurve")) {
+			return true;
 		}
-		
-		objectFunctions.canEvaluate = function(aPointSet, aType, aForward) {
-			if(!aPointSet.isSetType("bezierCurve")) return false;
-			var theCurve = com.developedbyme.Global.DataObjects.Curves.BezierCurveInterface(aPointSet);
-			switch(aType) {
-				case "cv":
-					return true;
-				case "evenSpacingByParameter":
-				case "exact":
-					//METODO: check that it is bezier curve
-					return true;
-			}
-			return false;
-		}
-		
-		objectFunctions.getEvaluationFunction = function(aPointSet, aType, aForward) {
-			var theCurve = com.developedbyme.Global.DataObjects.Curves.BezierCurveInterface(aPointSet);
-			switch(aType) {
-				case "cv":
-					if(aForward) {
-						//return evaluate_cv;
-					}
-					return null; //evaluate_cv_backwards; //MEDEBUG: //
-				case "evenSpacingByParameter":
-					if(aForward) {
-						return (theCurve.isCompact() ? evaluate_evenSpacingByParameter : evaluate_evenSpacingByParameter_multipleLineDrawer);
-					}
-					return null; //evaluate_evenSpacingByParameter_backwards; //MEDEBUG: //
-				case "exact":
-					if(aForward) {
-						//MEDEBUG: casting to object
-						if(Object(aPointSet).getCurveDegree() == 2) {
-							return (theCurve.isCompact() ? evaluate_exact2ndDegree : evaluate_exact2ndDegree_multipleLineDrawer);
-						}
-						return null; //MEDEBUG
-					}
-					return null; //evaluate_evenSpacingByParameter_backwards; //MEDEBUG: //
-			}
-			return null;
-		}
-		
-		objectFunctions.toString = function() {
-			return "[com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator]";
-		}
-		
-		staticFunctions.evaluateSegement_cv = function(aPointSet, aSegmentPointsArray, aStartParameter, aEndParameter, aNrOfSegments, aExactness, aPartTypeNr, aLineDrawer) {
-			var nrOfSegments = aNrOfSegments;
-			var i = -1;
-			switch(aPartTypeNr) {
-				case 0:
-					//METODO
-					break;
-				case 1:
-					i = 0;
-					break;
-				case 2:
-					//METODO
-					i = 0;
-					break;
-				case 3:
-					//METODO
-					break;
-			}
-			var recyclerGroup = GlobalLink::globalObjects["dataRecycler"].getRecyclerGroup(com.developedbyme.Global.Utilities.LineDrawer.LineDrawerPoint);
-			for(; ++i < aSegmentPointsArray.length;) {
-				var newPoint = recyclerGroup.getObject();
-				newPoint.x = aSegmentPointsArray[i].xValue;
-				newPoint.y = aSegmentPointsArray[i].yValue;
-				aLineDrawer.addPoint(newPoint);
+		return false;
+	};
+	
+	objectFunctions._ensureSlipPointLength = function(aLength) {
+		var currentArray = this._halfSplitPoints;
+		var currentArrayLength = currentArray.length;
+		for(var i = currentArrayLength; i < aLength; i++) {
+			var newLength = i+1;
+			var newArray = new Array(newLength);
+			currentArray[i] = newArray;
+			for(var j = 0; j < newLength; j++) {
+				newArray[j] = Point.create();
 			}
 		}
+	};
+	
+	objectFunctions._getHalfsOfSegment = function(aSegmentPoints, aFirstHalfPoints, aLastHalfPoints) {
+		var segmentLength = aSegmentPoints.length;
 		
-		staticFunctions.evaluateSegment_evenSpacingByParameter = function(aPointSet, aSegmentPointsArray, aStartParameter, aEndParameter, aNrOfSegments, aExactness, aPartTypeNr, aLineDrawer) {
-			//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator.evaluateSegment_evenSpacingByParameter");
-			//console.log(aPointSet);
-			//console.log(aSegmentPointsArray);
+		this._ensureSlipPointLength(segmentLength-1);
+		
+		aFirstHalfPoints[0] = aSegmentPoints[0].duplicate();
+		aLastHalfPoints[segmentLength-1] = aSegmentPoints[segmentLength-1].duplicate();
+		
+		var currentSplitPointArray = aSegmentPoints;
+		for(var i = 1; i < segmentLength; i++) {
+			var newSplitArray = this._halfSplitPoints[segmentLength-i-1];
+			var newSplitArrayLength = newSplitArray.length;
+			for(var j = 0; j < newSplitArrayLength; j++) {
+				newSplitArray[j].x = 0.5*currentSplitPointArray[j].x+0.5*currentSplitPointArray[j+1].x;
+				newSplitArray[j].y = 0.5*currentSplitPointArray[j].y+0.5*currentSplitPointArray[j+1].y;
+				newSplitArray[j].z = 0.5*currentSplitPointArray[j].z+0.5*currentSplitPointArray[j+1].z;
+			}
 			
-			var nrOfSegments = aNrOfSegments;
-			var i = -1;
-			switch(aPartTypeNr) {
-				case 0:
-					//METODO: recount segments
-					break;
-				case 1:
-					i = 0;
-					break;
-				case 2:
-					//METODO: recount segments
-					i = 0;
-					break;
-				case 3:
-					//METODO: recount segments
-					break;
-			}
-			var recyclerGroup = GlobalLink::globalObjects["dataRecycler"].getRecyclerGroup(com.developedbyme.Global.Utilities.LineDrawer.LineDrawerPoint);
-			var curveEvaluator = dbm.singletons.dbmCurveEvaluator;
-			if(aPointSet.nrOfDimensions == 3) {
-				var tempPoint3d = (new Point3d()).init();
-				for(; ++i < nrOfSegments;) {
-					curveEvaluator.getPointOnBezierSegment3d(aSegmentPointsArray, (i/(nrOfSegments-1))*(aEndParameter-aStartParameter)+aStartParameter, tempPoint3d);
-					var newPoint = recyclerGroup.getObject();
-					newPoint.x = tempPoint3d.xValue;
-					newPoint.y = tempPoint3d.yValue;
-					aLineDrawer.addPoint(newPoint);
-				}
-			}
-			else if(aPointSet.nrOfDimensions == 2) {
-				var tempPoint2d = (new Point2d()).init();
-				for(; ++i < nrOfSegments;) {
-					curveEvaluator.getPointOnBezierSegment2d(aSegmentPointsArray, (i/(nrOfSegments-1))*(aEndParameter-aStartParameter)+aStartParameter, tempPoint2d);
-					var newPoint = recyclerGroup.getObject();
-					newPoint.x = tempPoint2d.xValue;
-					newPoint.y = tempPoint2d.yValue;
-					aLineDrawer.addPoint(newPoint);
-				}
-			}
-			else {
-				//METODO: error message
-			}
+			currentSplitPointArray = newSplitArray;
 		}
 		
-		staticFunctions.evaluateSegment_exact2ndDegree = function(aPointSet, aSegmentPointsArray, aStartParameter, aEndParameter, aNrOfSegments, aExactness, aPartTypeNr, aLineDrawer) {
-			//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator.evaluateSegment_exact2ndDegree");
-			
-			var tempPoint = (new Point3d()).init();
-			var nrOfSegments = aNrOfSegments;
-			var i = -1;
-			switch(aPartTypeNr) {
-				case 0:
-					//METODO
-					break;
-				case 1:
-					i = 0;
-					break;
-				case 2:
-					//METODO
-					i = 0;
-					break;
-				case 3:
-					//METODO
-					break;
-			}
-			var recyclerGroup = GlobalLink::globalObjects["dataRecycler"].getRecyclerGroup(com.developedbyme.Global.Utilities.LineDrawer.LineDrawerPoint);
-			for(; ++i < 3;) {
-				var newPoint = recyclerGroup.getObject();
-				newPoint.x = aSegmentPointsArray[i].xValue;
-				newPoint.y = aSegmentPointsArray[i].yValue;
-				aLineDrawer.addPoint(newPoint);
-			}
+		var middlePoint = this._halfSplitPoints[0][0];
+		aFirstHalfPoints[segmentLength-1] = middlePoint.duplicate();
+		aLastHalfPoints[0] = middlePoint.duplicate();
+		
+		for(var i = 1; i < segmentLength-1; i++) {
+			aFirstHalfPoints[segmentLength-1-i] = this._halfSplitPoints[i][0].duplicate();
+			aLastHalfPoints[i] = this._halfSplitPoints[i][i].duplicate();
+		}
+	};
+	
+	objectFunctions.getPartOfSegment = function(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArray, aStartLoop, aIsCompact) {
+		
+		if(aStartParameter == aEndParameter) {
+			return;
 		}
 		
-		staticFunctions.evaluateSegments = function(aCurve, aStartParameter, aEndParameter, aNrOfSegments, aExactness, aEvaluationFunction, aLineDrawer) {
-			
-			//MEDEBUG: casting to object, use bezier curve interface instead of compact bezier curve
-			var segmentPointsArray = new Array(aCurve.getCurveDegree()+1);
-			
-			var segmentStart = uint(Math.floor(aStartParameter));
-			var segmentEnd = uint(Math.floor(aEndParameter));
-			if((segmentEnd == aEndParameter) && (segmentStart != segmentEnd)) {
-				segmentEnd--;
-			}
-			if(segmentStart == segmentEnd) {
-				aCurve.InternalFunctionality::getSegmentArray(segmentStart, segmentPointsArray);
-				aEvaluationFunction(aCurve, segmentPointsArray, aStartParameter-segmentStart, aEndParameter-segmentEnd, aNrOfSegments, aExactness, 3, aLineDrawer);
-			}
-			else {
-				aCurve.InternalFunctionality::getSegmentArray(segmentStart, segmentPointsArray);
-				aEvaluationFunction(aCurve, segmentPointsArray, aStartParameter-segmentStart, 1, aNrOfSegments, aExactness, 0, aLineDrawer);
-				for(var i = segmentStart; ++i < segmentEnd;) {
-					aCurve.InternalFunctionality::getSegmentArray(i, segmentPointsArray);
-					aEvaluationFunction(aCurve, segmentPointsArray, 0, 1, aNrOfSegments, aExactness, 1, aLineDrawer);
-				}
-				aCurve.InternalFunctionality::getSegmentArray(segmentEnd, segmentPointsArray);
-				aEvaluationFunction(aCurve, segmentPointsArray, 0, aEndParameter-segmentEnd, aNrOfSegments, aExactness, 2, aLineDrawer);
-			}
-		}
+		var isCompact = aReturnCurve.isCompact();
 		
-		staticFunctions.evaluateSegments_multipleLineDrawer = function(aCurve, aStartParameter, aEndParameter, aNrOfSegments, aExactness, aEvaluationFunction, aLineDrawer) {
-			
-			//MEDEBUG: casting to object, use bezier curve interface instead of compact bezier curve
-			var segmentPointsArray = new Array(aCurve.getCurveDegree()+1);
-			
-			var segmentStart = uint(Math.floor(aStartParameter));
-			var segmentEnd = uint(Math.floor(aEndParameter));
-			if((segmentEnd == aEndParameter) && (segmentStart != segmentEnd)) {
-				segmentEnd--;
-			}
-			if(segmentStart == segmentEnd) {
-				aCurve.InternalFunctionality::getSegmentArray(segmentStart, segmentPointsArray);
-				var currentLineDrawer = aLineDrawer.Runtime::createLineDrawer();
-				aEvaluationFunction(aCurve, segmentPointsArray, aStartParameter-segmentStart, aEndParameter-segmentEnd, aNrOfSegments, aExactness, 4, currentLineDrawer);
-			}
-			else {
-				aCurve.InternalFunctionality::getSegmentArray(segmentStart, segmentPointsArray);
-				var currentLineDrawer = aLineDrawer.Runtime::createLineDrawer();
-				aEvaluationFunction(aCurve, segmentPointsArray, aStartParameter-segmentStart, 1, aNrOfSegments, aExactness, 4, currentLineDrawer);
-				for(var i = segmentStart; ++i < segmentEnd;) {
-					aCurve.InternalFunctionality::getSegmentArray(i, segmentPointsArray);
-					var currentLineDrawer = aLineDrawer.Runtime::createLineDrawer();
-					aEvaluationFunction(aCurve, segmentPointsArray, 0, 1, aNrOfSegments, aExactness, 4, currentLineDrawer);
-				}
-				aCurve.InternalFunctionality::getSegmentArray(segmentEnd, segmentPointsArray);
-				var currentLineDrawer = aLineDrawer.Runtime::createLineDrawer();
-				aEvaluationFunction(aCurve, segmentPointsArray, 0, aEndParameter-segmentEnd, aNrOfSegments, aExactness, 4, currentLineDrawer);
+		if(aStartParameter <= aExactness && aEndParameter >= 1-aExactness) {
+			var currentArray = aSegmentPoints;
+			var currentArrayLength = currentArray.length;
+			for(var i = aStartLoop; i < currentArrayLength; i++) {
+				var currentPoint = currentArray[i];
+				var newPoint = Point.create(currentPoint.x, currentPoint.y);
+				aReturnArray.push(newPoint);
 			}
 		}
+		else {
+			var firstHalfArray = new Array(aSegmentPoints.length);
+			var lastHalfArray = new Array(aSegmentPoints.length);
+			this._getHalfsOfSegment(aSegmentPoints, firstHalfArray, lastHalfArray);
+			if(aStartParameter < 0.5) {
+				this.getPartOfSegment(this.getFirstHalfOfSegment(aSegmentPoints), Math.max(0, Math.min(1, 2*aStartParameter), Math.max(0, Math.min(1, 2*aEndParameter), 2*aExactness, aReturnArray, aStartLoop, aIsCompact);
+				aStartLoop = aIsCompact;
+			}
+			if(aEndParameter > 0.5) {
+				this.getPartOfSegment(this.getLastHalfOfSegment(aSegmentPoints), Math.max(0, Math.min(1, 2*(aStartParameter-0.5)), Math.max(0, Math.min(1, 2*(aEndParameter-0.5)), 2*aExactness, aReturnArray, aStartLoop, aIsCompact);
+			}
+		}
+	};
+	
+	objectFunctions.getPartOfCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
+		var segmentPointsArray = new Array(aCurve.getCurveDegree()+1);
 		
-		staticFunctions.evaluate_evenSpacingByParameter = function(aCurve, aStartParameter, aEndParameter, aNrOfSegments = 2, aExactness = 0.1, aLineDrawer = null) {
-			
-			var returnLineDrawer;
-			if(aLineDrawer != null) {
-				returnLineDrawer = com.developedbyme.Global.Utilities.LineDrawer.LineDrawer(aLineDrawer);
-				returnLineDrawer.resetLineDrawer();
-			}
-			else {
-				returnLineDrawer = (new LineDrawer()).init();
-			}
-			returnLineDrawer.setLineDirection(true);
-			var evaluationFunction = evaluateSegment_evenSpacingByParameter;
-			
-			evaluateSegments(aCurve, aStartParameter, aEndParameter, aNrOfSegments, aExactness, evaluationFunction, returnLineDrawer);
-			
-			return returnLineDrawer;
-		}
+		var isCompact = aReturnCurve.isCompact() ? 1 : 0;
 		
-		staticFunctions.evaluate_exact2ndDegree = function(aCurve, aStartParameter, aEndParameter, aNrOfSegments = 2, aExactness = 0.1, aLineDrawer = null) {
-			
-			var returnLineDrawer;
-			if(aLineDrawer != null) {
-				returnLineDrawer = com.developedbyme.Global.Utilities.LineDrawer.CurveDrawer(aLineDrawer);
-				returnLineDrawer.resetLineDrawer();
-			}
-			else {
-				returnLineDrawer = (new CurveDrawer()).init();
-			}
-			returnLineDrawer.setLineDirection(true);
-			var evaluationFunction = evaluateSegment_exact2ndDegree;
-			
-			evaluateSegments(aCurve, aStartParameter, aEndParameter, aNrOfSegments, aExactness, evaluationFunction, returnLineDrawer);
-			
-			return returnLineDrawer;
+		var segmentStart = uint(Math.floor(aStartParameter));
+		var segmentEnd = uint(Math.floor(aEndParameter));
+		if((segmentEnd == aEndParameter) && (segmentStart != segmentEnd)) {
+			segmentEnd--;
 		}
-		
-		staticFunctions.evaluate_evenSpacingByParameter_multipleLineDrawer = function(aCurve, aStartParameter, aEndParameter, aNrOfSegments = 2, aExactness = 0.1, aLineDrawer = null) {
-			
-			var returnLineDrawer;
-			if(aLineDrawer != null) {
-				returnLineDrawer = com.developedbyme.Global.Utilities.LineDrawer.MultipleLineDrawer(aLineDrawer);
-				returnLineDrawer.resetLineDrawer();
-			}
-			else {
-				returnLineDrawer = (new MultipleLineDrawer()).init();
-			}
-			returnLineDrawer.Runtime::createLineDrawer = function() {
-				var newLineDrawer = GlobalLink::globalObjects["dataRecycler"].getObject(com.developedbyme.Global.Utilities.LineDrawer.LineDrawer);
-				this.addLineDrawer(newLineDrawer);
-				newLineDrawer.setLineDirection(this.InternalFunctionality::lineDirectionForward);
-				return newLineDrawer;
-			}
-			returnLineDrawer.setLineDirection(true);
-			var evaluationFunction = evaluateSegment_evenSpacingByParameter;
-			
-			evaluateSegments_multipleLineDrawer(aCurve, aStartParameter, aEndParameter, aNrOfSegments, aExactness, evaluationFunction, returnLineDrawer);
-			
-			return returnLineDrawer;
+		if(segmentStart == segmentEnd) {
+			aCurve._getSegmentArray(segmentStart, segmentPointsArray);
+			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, aEndParameter-segmentEnd, aExactness, aReturnCurve.pontsArray, 0, isCompact);
 		}
-		
-		staticFunctions.evaluate_exact2ndDegree_multipleLineDrawer = function(aCurve, aStartParameter, aEndParameter, aNrOfSegments = 2, aExactness = 0.1, aLineDrawer = null) {
-			
-			var returnLineDrawer;
-			if(aLineDrawer != null) {
-				returnLineDrawer = com.developedbyme.Global.Utilities.LineDrawer.MultipleLineDrawer(aLineDrawer);
-				returnLineDrawer.resetLineDrawer();
+		else {
+			aCurve._getSegmentArray(segmentStart, segmentPointsArray);
+			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, 1, aExactness, aReturnCurve.pontsArray, 0, isCompact);
+			for(var i = segmentStart; ++i < segmentEnd;) {
+				aCurve._getSegmentArray(i, segmentPointsArray);
+				this.getPartOfSegment(segmentPointsArray, 0, 1, aExactness, aReturnCurve.pontsArray, isCompact, isCompact);
 			}
-			else {
-				returnLineDrawer = (new MultipleLineDrawer()).init();
-			}
-			returnLineDrawer.Runtime::createLineDrawer = function() {
-				var newLineDrawer = GlobalLink::globalObjects["dataRecycler"].getObject(com.developedbyme.Global.Utilities.LineDrawer.CurveDrawer);
-				this.addLineDrawer(newLineDrawer);
-				newLineDrawer.setLineDirection(this.InternalFunctionality::lineDirectionForward);
-				return newLineDrawer;
-			}
-			returnLineDrawer.setLineDirection(true);
-			var evaluationFunction = evaluateSegment_exact2ndDegree;
-			
-			evaluateSegments_multipleLineDrawer(aCurve, aStartParameter, aEndParameter, aNrOfSegments, aExactness, evaluationFunction, returnLineDrawer);
-			
-			return returnLineDrawer;
+			aCurve._getSegmentArray(segmentEnd, segmentPointsArray);
+			this.getPartOfSegment(segmentPointsArray, 0, aEndParameter-segmentEnd, aExactness, aReturnCurve.pontsArray, isCompact, isCompact);
 		}
-	});
+	};
+});

@@ -9,6 +9,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	
 	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
 	
+	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
+	
 	/**
 	 * Constructor.
 	 */
@@ -19,11 +21,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._treeStructureItem = null;
 		
-		this._x = this.createProperty("x", 0);
-		this._y = this.createProperty("y", 0);
-		this._rotation = this.createProperty("rotation", 0);
-		this._scaleX = this.createProperty("scaleX", 1);
-		this._scaleY = this.createProperty("scaleY", 1);
+		this._transformationMatrix = this.createProperty("transformationMatrix", Matrix.createIdentity());
+		this._alpha = this.createProperty("alpha", 1);
 		
 		this._mask = null;
 		
@@ -41,7 +40,15 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 	};
 	
-	staticFunctions.create = function(aCanvas) {
+	objectFunctions.setFillStyle = function(aStyle) {
+		
+	};
+	
+	objectFunctions.setStrokeStyle = function(aLineWidth, aStyle, aLineCap, aLineJoin, aMiterLimit) {
+		
+	};
+	
+	staticFunctions.create = function() {
 		var newCanvasLayer2d = (new ClassReference()).init();
 		
 		return newCanvasLayer2d;

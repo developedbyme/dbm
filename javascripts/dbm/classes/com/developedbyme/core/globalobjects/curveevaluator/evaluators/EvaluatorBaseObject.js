@@ -5,14 +5,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 	var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");
 	
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject")
-	}
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject::init")
+		
+		this.superCall();
+		
+		return this;
+	};
 	
-	objectFunctions.canEvaluate = function(aPointSet, aType, aForward) {
+	objectFunctions.canEvaluate = function(aPointSet) {
 		return false;
-	}
+	};
 	
-	objectFunctions.getEvaluationFunction = function(aPointSet, aType, aForward) {
-		return null;
-	}
+	objectFunctions.getPartOfCurve = function(aPointSet, aEndParameter, aStartParameter, aExactness, aReturnCurve) {
+		//MENOTE: should be overridden
+	};
 });

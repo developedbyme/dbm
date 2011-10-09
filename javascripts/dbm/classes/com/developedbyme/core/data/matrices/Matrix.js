@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 		this.valuesArray = null;
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Sets up and creates all the values in the matrix
@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 		var currentArray = new Array(aSizeH*aSizeV);
 		this.valuesArray = currentArray;
 		this.reset();
-	}
+	};
 	
 	/**
 	 * Resets the matrix by setting all values to 0.
@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 		for(var i = -1; ++i < theLength;) {
 			currentArray[i] = 0;
 		}
-	}
+	};
 	
 	/**
 	 * Sets the matrix values to an identity matrix. Only possible when the horisontal size and vertical size are the same.
@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 		for(var i = -1; ++i < theSize;) {
 			currentArray[i*(theSize+1)] = 1;
 		}
-	}
+	};
 	
 	/**
 	 * Sets a value in the matrix.
@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	objectFunctions.setValue = function(aPositionArray, aValue) {
 		var currentArray = this.valuesArray;
 		currentArray[this.sizeH*aPositionArray[1]+aPositionArray[0]] = aValue;
-	}
+	};
 	
 	/**
 	 * Gets a value in the matrix.
@@ -82,7 +82,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	objectFunctions.getValue = function(aPositionArray) {
 		var currentArray = this.valuesArray;
 		return currentArray[this.sizeH*aPositionArray[1]+aPositionArray[0]];
-	}
+	};
 	
 	/**
 	 * Duplicates the matrix.
@@ -91,7 +91,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	 */
 	objectFunctions.duplicate = function() {
 		return ClassReference.duplicateMatrix(this);
-	}
+	};
 	
 	/**
 	 * Duplicates a matrix
@@ -109,7 +109,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 			outputArray[i] = currentArray[i];
 		}
 		return newMatrix;
-	}
+	};
 	
 	/**
 	 * Multiplies two matrices.
@@ -138,5 +138,38 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 				outputValuesArray[loopCount2*i+j] = newValue;
 			}
 		}
-	}
+	};
+	
+	/**
+	 * Creates a new matrix.
+	 *
+	 * @param	aWidth	The width of the matrix.
+	 * @param	aHeight	The height of the matrix.
+	 *
+	 * @return	The new matrix
+	 */
+	staticFunctions.create = function(aWidth, aHeight) {
+		//console.log("com.developedbyme.core.data.matrices.Matrix::create (static)");
+		
+		var newMatrix = (new ClassReference()).init();
+		newMatrix.setupSize(aWidth, aHeight);
+		return newMatrix;
+	};
+	
+	/**
+	 * Creates a new identity matrix.
+	 *
+	 * @param	aWidth	The width of the matrix.
+	 * @param	aHeight	The height of the matrix.
+	 *
+	 * @return	The new matrix
+	 */
+	staticFunctions.createIdentity = function(aWidth, aHeight) {
+		//console.log("com.developedbyme.core.data.matrices.Matrix::createIdentity (static)");
+		
+		var newMatrix = (new ClassReference()).init();
+		newMatrix.setupSize(aWidth, aHeight);
+		newMatrix.setAsIdentityMatrix();
+		return newMatrix;
+	};
 });
