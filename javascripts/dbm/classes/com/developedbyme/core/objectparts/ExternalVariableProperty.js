@@ -17,18 +17,56 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	};
 	
 	objectFunctions._performSetValue = function(aValue) {
+		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performSetValue");
+		//console.log(this, aValue);
+		if(this._externalObject == null) {
+			this._value = aValue;
+			return;
+		}
 		this._externalObject[this._externalVariableName] = aValue;
 	};
 	
 	objectFunctions._performGetValue = function() {
+		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performGetValue");
+		if(this._externalObject == null) {
+			return this._value;
+		}
 		return this._externalObject[this._externalVariableName];
 	};
 	
 	objectFunctions.setupExternalObject = function(aObject, aVariableName) {
+		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::setupExternalObject");
+		
+		if(this._externalObject != null) {
+			//METODO: warning message
+			this.removeExternalObject();
+		}
+		
+		var startValue = this.getValue();
+		
 		this._externalObject = aObject;
 		this._externalVariableName = aVariableName;
 		
-		this.setValue(this._externalObject[this._externalVariableName]);
+		if(startValue != null) {
+			this._performSetValue(startValue);
+		}
+		else {
+			this.setAsDirty();
+		}
+	};
+	
+	objectFunctions.removeExternalObject = function() {
+		
+		if(this._externalObject != null) {
+			this._value = this._externalObject[this._externalVariableName]
+		}
+		else {
+			//METODO: error message
+		}
+		
+		this._externalObject = null;
+		this._externalVariableName = null;
+		
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
@@ -43,6 +81,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
 		//METODO: set object property
 		newExternalVariableProperty.setupExternalObject(aExternalObject, aVariableName);
+		return newExternalVariableProperty;
+	};
+	
+	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
+		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
+		//METODO: set object property
+		if(aValue != null) {
+			newExternalVariableProperty.setValue(aValue);
+		}
 		return newExternalVariableProperty;
 	};
 	

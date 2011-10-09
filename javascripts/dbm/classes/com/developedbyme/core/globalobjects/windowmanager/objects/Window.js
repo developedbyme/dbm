@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var BrowserDependentFunction = dbm.importClass("com.developedbyme.core.objectparts.BrowserDependentFunction");
+	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	
 	var WindowExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.WindowExtendedEventIds");
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
@@ -51,9 +52,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._position = this.createGhostProperty("position");
 		this._display = this.createGhostProperty("display");
 		
+		this._title = this.addProperty("title", ExternalVariableProperty.createWithoutExternalObject(this, null));
+		
 		this.createUpdateFunction("position", this._updateFlowPosition, [this._x, this._y], [this._position]);
 		this.createUpdateFunction("size", this._updateFlowSize, [this._width, this._height], [this._size]);
-		this.createGhostUpdateFunction("display", [this._position, this._size], [this._display]);
+		this.createGhostUpdateFunction("display", [this._position, this._size, this._title], [this._display]);
 		
 		this._verticalMargin = 0;
 		this._horizontalMargin = 0;
@@ -79,6 +82,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.RESIZE, CallFunctionCommand.createCommand(this, this._sizeUpdated, []));
 		
 		this.getExtendedEvent().addCommandToEvent(ClassReference._MOUSE_POSITION_UPDATE, CallFunctionCommand.createCommand(this, this._mousePositionUpdate, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.DOCUMENT_READY, CallFunctionCommand.createCommand(this, this._documentReady, []));
 		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.DOCUMENT_LOADED, CallFunctionCommand.createCommand(this, this._documentLoaded, []));
 		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.DOCUMENT_UNLOADED, CallFunctionCommand.createCommand(this, this._documentUnloaded, []));
 		
@@ -283,6 +287,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		}
 	};
 	
+	objectFunctions._documentReady = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentReady");
+		
+		this._title.setupExternalObject(this._window.document, "title");
+		
+	};
+	
 	objectFunctions._documentLoaded = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentLoaded");
 	};
@@ -330,6 +341,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.MOUSE_MOVE, ClassReference._MOUSE_POSITION_UPDATE, ClassReference._MOUSE_POSITION_UPDATE, true).activate();
 		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.FOCUS, WindowExtendedEventIds.FOCUS, WindowExtendedEventIds.FOCUS, true, true).activate();
 		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.BLUR, WindowExtendedEventIds.BLUR, WindowExtendedEventIds.BLUR, true, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.DOM_CONTENT_LOADED, WindowExtendedEventIds.DOCUMENT_READY, WindowExtendedEventIds.DOCUMENT_READY, true).activate();
 		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.LOAD, WindowExtendedEventIds.DOCUMENT_LOADED, WindowExtendedEventIds.DOCUMENT_LOADED, true).activate();
 		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.UNLOAD, WindowExtendedEventIds.DOCUMENT_UNLOADED, WindowExtendedEventIds.DOCUMENT_UNLOADED, true).activate();
 		
@@ -423,6 +435,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			case WindowExtendedEventIds.MOVE:
 			case WindowExtendedEventIds.FOCUS:
 			case WindowExtendedEventIds.BLUR:
+			case WindowExtendedEventIds.DOCUMENT_READY:
 			case WindowExtendedEventIds.DOCUMENT_LOADED:
 			case WindowExtendedEventIds.DOCUMENT_UNLOADED:
 			case ClassReference._MOUSE_POSITION_UPDATE:

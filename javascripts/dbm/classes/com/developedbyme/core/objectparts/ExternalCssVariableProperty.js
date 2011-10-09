@@ -20,12 +20,21 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	
 	objectFunctions._performSetValue = function(aValue) {
 		
+		if(this._externalObject == null) {
+			this._value = aValue;
+			return;
+		}
+		
 		var newValue = (this._unit == null) ? aValue :  aValue + "" + this._unit;
 		
 		this._externalObject.style.setProperty(this._externalVariableName, newValue, this._priority);
 	};
 	
 	objectFunctions._performGetValue = function() {
+		
+		if(this._externalObject == null) {
+			return this._value;
+		}
 		
 		var cssValue = this._externalObject.style.getPropertyValue(this._externalVariableName);
 		
@@ -42,11 +51,39 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	};
 	
 	objectFunctions.setupExternalObject = function(aObject, aVariableName, aUnit) {
+		
+		if(this._externalObject != null) {
+			//METODO: warning message
+			this.removeExternalObject();
+		}
+		
+		var startValue = this.getValue();
+		
 		this._externalObject = aObject;
 		this._externalVariableName = aVariableName;
 		this._unit = aUnit;
 		
-		var currentValue = this._performGetValue();
+		if(startValue != null) {
+			this._performSetValue(startValue);
+		}
+		else {
+			this.setAsDirty();
+		}
+	};
+	
+	objectFunctions.removeExternalObject = function() {
+		
+		if(this._externalObject != null) {
+			this._value = this._performGetValue();
+		}
+		else {
+			//METODO: error message
+		}
+		
+		this._externalObject = null;
+		this._externalVariableName = null;
+		this._unit = null;
+		
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
@@ -62,6 +99,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
 		//METODO: set object property
 		newExternalCssVariableProperty.setupExternalObject(aExternalObject, aVariableName, aUnit);
+		return newExternalCssVariableProperty;
+	};
+	
+	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
+		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
+		//METODO: set object property
+		if(aValue != null) {
+			newExternalCssVariableProperty.setvalue(aValue);
+		}
 		return newExternalCssVariableProperty;
 	};
 	
