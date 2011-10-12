@@ -25,14 +25,38 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 		return this;
 	};
 	
+	objectFunctions.getLastCurve = function() {
+		if(this._curves.length > 0) {
+			return this._curves[this._curves.length-1];
+		}
+		return null;
+	};
+	
+	objectFunctions.hasCurves = function() {
+		return this._curves.length > 0;
+	};
+	
+	objectFunctions.addCurve = function(aCurve) {
+		this._curves.push(aCurve);
+	};
+	
 	objectFunctions.draw = function(aContext) {
 		
 		var currentArray = this._curves;
 		var currentArrayLength = currentArray.length;
 		if(currentArrayLength > 0) {
-			aContext.moveTo();
+			currentArray[0].getStartPoint(tempPoint);
+			aContext.moveTo(tempPoint.x, tempPoint.y);
 			for(var i = 0; i < currentArrayLength; i++) {
-
+				var currentCurve = currentArray[i];
+				currentCurve.getStartPoint(tempPoint);
+				if(this.moveWhenSwitchingCurves) {
+					aContext.moveTo(tempPoint.x, tempPoint.y);
+				}
+				else {
+					aContext.lineTo(tempPoint.x, tempPoint.y);
+				}
+				currentCurve.draw(aContext);
 			}
 		}
 		

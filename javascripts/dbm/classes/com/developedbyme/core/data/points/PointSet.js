@@ -20,7 +20,6 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		
 		this.pointsArray = new Array();
 		this.setType = "none";
-		this.numberOfDimensions = 2;
 		
 		return this;
 	}
@@ -32,7 +31,7 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 	 * @return	Always false.
 	 */
 	objectFunctions.isSetType = function(aType) {
-		return false;
+		return (aType == this.setType);
 	}
 	
 	objectFunctions.getNumberOfPoints = function() {
@@ -44,23 +43,23 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 	 *
 	 * @param	aArray	The array of values to be set to the points.
 	 */
-	objectFunctions.setupFromArray = function(aArray) {
+	objectFunctions.setupFromArray = function(aArray, aNumberOfDimesions) {
 		//console.log("com.developedbyme.core.data.points.PointSet::setupFromArray");
 		var currentArray = aArray;
 		var theLength = currentArray.length;
-		if((theLength/this.numberOfDimensions) != Math.floor(theLength/this.numberOfDimensions)) {
+		if((theLength/aNumberOfDimesions) != Math.floor(theLength/aNumberOfDimesions)) {
 			//METODO: error message
 			return;
 		}
-		this.pointsArray = new Array(theLength/this.numberOfDimensions);
-		var dataArray = new Array(this.numberOfDimensions);
-		for(var i = 0; i < theLength; i += this.numberOfDimensions) {
-			for(var j = 0; j < this.numberOfDimensions; j++) {
+		this.pointsArray = new Array(theLength/aNumberOfDimesions);
+		var dataArray = new Array(aNumberOfDimesions);
+		for(var i = 0; i < theLength; i += aNumberOfDimesions) {
+			for(var j = 0; j < aNumberOfDimesions; j++) {
 				dataArray[j] = currentArray[i+j];
 			}
 			var newPoint = (new Point()).init();
 			newPoint.setupFromArray(dataArray);
-			this.pointsArray[(i/this.numberOfDimensions)] = newPoint;
+			this.pointsArray[(i/aNumberOfDimesions)] = newPoint;
 		}
 	}
 	
@@ -94,15 +93,15 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		return theObject;
 	}
 	
-	staticFunctions.createWithLength = function(aNumberOfDimensions, aLength) {
+	staticFunctions.createWithLength = function(aLength) {
 		var newSet = (new ClassReference()).init();
 		newSet.fillWithEmptyPoints(aLength);
 		return newSet;
 	};
 	
-	staticFunctions.createWithValues = function(aNumberOfDimensions, aValues) {
+	staticFunctions.createWithValues = function(aValues, aNumberOfDimensions) {
 		var newSet = (new ClassReference()).init();
-		newSet.setupFromArray(aValues);
+		newSet.setupFromArray(aValues, aNumberOfDimensions);
 		return newSet;
 	};
 	
