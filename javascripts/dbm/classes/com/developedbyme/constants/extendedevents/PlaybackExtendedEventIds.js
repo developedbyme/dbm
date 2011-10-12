@@ -7,4 +7,6 @@ dbm.registerClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEv
 	staticFunctions.UPDATE_SCRUBBING = "updateScrubbing";
 	staticFunctions.STOP_SCRUBBING = "stopScrubbing";
 	
+	staticFunctions.META_DATA_LOADED = "metaDataLoaded";
+	
 });

@@ -31,6 +31,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._outputConnections = new Array();
 		this._animationController = null;
 		
+		this._isUpdating = false;
+		
 		return this;
 	};
 	
@@ -129,6 +131,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions.getFlowUpdateNumber = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::getFlowUpdateNumber");
 		return this._flowUpdateNumber;
+	};
+	
+	objectFunctions._linkRegistration_setAsUpdating = function(aIsUpdating) {
+		this._isUpdating = aIsUpdating;
 	};
 	
 	objectFunctions.update = function() {
@@ -298,6 +304,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	
 	objectFunctions.performDestroy = function() {
 		
+		if(this._isUpdating) {
+			dbm.singletons.dbmFlowManager.removeUpdatedProperty(this);
+		}
 		if(this._inputConnection != null) {
 			this.disconnectInput();
 		}

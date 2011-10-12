@@ -136,6 +136,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.addUpdatedProperty = function(aProperty) {
 		this._updatedProperties.push(aProperty);
+		aProperty._linkRegistration_setAsUpdating(true);
+	};
+	
+	objectFunctions.removeUpdatedProperty = function(aProperty) {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::removeUpdatedProperty");
+		//console.log(aProperty);
+		this._updatedProperties.removeItem(aProperty);
+		aProperty._linkRegistration_setAsUpdating(false);
 	};
 	
 	objectFunctions.performDestroy = function() {

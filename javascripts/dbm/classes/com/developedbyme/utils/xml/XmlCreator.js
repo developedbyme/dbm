@@ -1,11 +1,11 @@
 dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.xml.XmlCreator");
 	
+	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
+	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
-	
-	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
 	
 	staticFunctions.createXmlLoader = (function() {
 		var returnLoader;
@@ -49,12 +49,30 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 			xmlLoader.setRequestHeader("Content-length", aParameters.length);
 			xmlLoader.setRequestHeader("Connection", "close");
 			xmlLoader.send(aParameters);
+			//console.log(xmlLoader);
 			returnDocument = xmlLoader.responseXML;
 		}
 		catch(theError) {
 			ErrorManager.getInstance().reportError("[XmlCreator]", "loadXmlFileWithPost", theError);
 			return null;
 		}
+		
+		return returnDocument;
+	});
+	
+	staticFunctions.createEmptyXml = (function() {
+		var returnDocument;
+		if (window.DOMParser) {
+			var parser = new DOMParser();
+			returnDocument = parser.parseFromString("<temp />", "text/xml");
+			returnDocument.removeChild(returnDocument.firstChild);
+		}
+		else {// Internet Explorer
+			returnDocument = new ActiveXObject("Microsoft.XMLDOM");
+			returnDocument.async = "false";
+			returnDocument.loadXML("<temp />");
+			returnDocument.removeChild(returnDocument.firstChild);
+		} 
 		
 		return returnDocument;
 	});
