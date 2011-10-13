@@ -81,4 +81,4 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 		
 		this.superCall();
 	};
-}
+});

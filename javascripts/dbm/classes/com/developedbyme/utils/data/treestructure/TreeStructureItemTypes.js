@@ -12,4 +12,4 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemT
 	staticFunctions.ITEM = "item";
 	staticFunctions.LINK = "link";
 	
-}
+});

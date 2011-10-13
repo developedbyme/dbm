@@ -7,8 +7,13 @@
 dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.points.PointSet");
 	
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
 	/**
 	 * Constructor
@@ -22,7 +27,7 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		this.setType = "none";
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Base function for determin if a set is of a special kind. Should be overridden.
@@ -32,11 +37,11 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 	 */
 	objectFunctions.isSetType = function(aType) {
 		return (aType == this.setType);
-	}
+	};
 	
 	objectFunctions.getNumberOfPoints = function() {
 		return this.pointsArray.length;
-	}
+	};
 	
 	/**
 	 * Sets up the point set from a one 1d array.
@@ -48,7 +53,7 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		var currentArray = aArray;
 		var theLength = currentArray.length;
 		if((theLength/aNumberOfDimesions) != Math.floor(theLength/aNumberOfDimesions)) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setupFromArray", "Length " + (theLength) + " doesn't fit dimensions (" + aNumberOfDimesions + ").");
 			return;
 		}
 		this.pointsArray = new Array(theLength/aNumberOfDimesions);
@@ -61,7 +66,7 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 			newPoint.setupFromArray(dataArray);
 			this.pointsArray[(i/aNumberOfDimesions)] = newPoint;
 		}
-	}
+	};
 	
 	/**
 	 * Fills the point set with "empty" points
@@ -75,7 +80,7 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		for(var i = -1; ++i < aLength;) {
 			this.pointsArray[i] = Point.create();
 		}
-	}
+	};
 	
 	/**
 	 * Duplicates the object without the data flow connections.
@@ -91,7 +96,14 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 			outputArray.push(currentArray[i].duplicate());
 		}
 		return theObject;
-	}
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.pointsArray = null;
+		
+		this.superCall();
+	};
 	
 	staticFunctions.createWithLength = function(aLength) {
 		var newSet = (new ClassReference()).init();

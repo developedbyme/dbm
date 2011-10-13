@@ -2,7 +2,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.Curve", "com.developedbyme
 	//console.log("com.developedbyme.core.data.curves.Curve");
 
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.data.curves.Curve");
+		//console.log("com.developedbyme.core.data.curves.Curve::init");
 		
 		this.superCall();
 		
@@ -19,6 +19,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.Curve", "com.developedbyme
 	};
 	
 	objectFunctions.getPointOnCurve = function(aParameter, aOutputPoint) {
+		//console.log("com.developedbyme.core.data.curves.Curve::getPointOnCurve");
 		//MENOTE: must be overwritten
 		//METODO: error message
 	};

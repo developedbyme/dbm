@@ -3,6 +3,10 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	objectFunctions.init = function() {
@@ -36,7 +40,13 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 		return this._curveDegree;
 	}
 	
+	objectFunctions.getMaxParameter = function() {
+		var compactMoveLength = this._isCompact ? 0 : 1;
+		return (this.pointsArray.length-1+compactMoveLength)/(this._curveDegree+compactMoveLength);
+	}
+	
 	objectFunctions.setAsCompact = function(aIsCompact) {
+		//console.log("com.developedbyme.core.data.curves.BezierCurve::setAsCompact");
 		this._isCompact = !VariableAliases.isFalse(aIsCompact);
 	}
 	
@@ -45,18 +55,19 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	}
 	
 	objectFunctions.setupFromArray = function(aArray, aNumberOfDimensions) {
+		//console.log("com.developedbyme.core.data.curves.BezierCurve::setupFromArray");
 		var currentArray = aArray;
 		var theLength = currentArray.length;
 		var compactMoveLength = this._isCompact ? 0 : 1;
 		if((((theLength/aNumberOfDimensions)-1+compactMoveLength)%(this._curveDegree+compactMoveLength)) != 0) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setupFromArray", "Length " + (theLength/aNumberOfDimensions) + " doesn't fit curve degree (" + this._curveDegree + ").");
 			return;
 		}
-		this.superCall(aArray);
+		this.superCall(aArray, aNumberOfDimensions);
 	}
 	
 	objectFunctions._getSegmentArray = function(aSegementStartParameter, aReturnArray) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve.InternalFunctionality::getSegmentArray");
+		//console.log("com.developedbyme.core.data.curves.BezierCurve._getSegmentArray");
 		//console.log(this._curveDegree);
 		
 		var compactMoveLength = this._isCompact ? 0 : 1;
@@ -68,6 +79,8 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	}
 	
 	objectFunctions.getPointOnCurve = function(aParameter, aOutputPoint) {
+		//console.log("com.developedbyme.core.data.curves.BezierCurve::getPointOnCurve");
+		//console.log(aParameter, aOutputPoint);
 		var segmentStart = Math.floor(aParameter);
 		var localParameter = aParameter-segmentStart;
 		var compactMoveLength = this._isCompact ? 0 : 1;
@@ -117,7 +130,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	
 	objectFunctions.createSameTypeOfCurve = function() {
 		var newCurve = (new ClassReference()).init();
-		newCurve.setType = this.setType();
+		newCurve.setType = this.setType;
 		newCurve.setAsCompact(this._isCompact);
 		newCurve.setCurveDegree(this._curveDegree);
 		return newCurve;
@@ -132,6 +145,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	};
 	
 	staticFunctions.createWithValues = function(aDegree, aIsCompact, aValues, aNumberOfDimensions) {
+		//console.log("com.developedbyme.core.data.curves.BezierCurve::createWithValues");
 		var newSet = (new ClassReference()).init();
 		newSet.setCurveDegree(aDegree);
 		newSet.setAsCompact(aIsCompact);

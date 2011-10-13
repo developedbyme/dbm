@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	/**
 	 * Gets the root of the tree structure.
 	 */
-	public function getRoot() {
+	objectFunctions.getRoot = function() {
 		return this._root;
 	}; //End function getRoot
 	
@@ -194,4 +194,4 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		
 		return newTreeStructure;
 	};
-}
+});

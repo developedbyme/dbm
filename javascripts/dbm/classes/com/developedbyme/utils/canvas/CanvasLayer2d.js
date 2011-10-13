@@ -12,6 +12,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	var CanvasGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasGraphics2d");
 	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
 	
 	/**
 	 * Constructor.
@@ -23,7 +25,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._treeStructureItem = null;
 		
-		this._transformationMatrix = this.createProperty("transformationMatrix", Matrix.createIdentity());
+		this._transformationMatrix = this.createProperty("transformationMatrix", Matrix.createIdentity(3, 3));
 		this._alpha = this.createProperty("alpha", 1);
 		
 		this._mask = null;
@@ -40,6 +42,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	};
 	
 	objectFunctions.draw = function(aContext) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::draw");
 		
 		//METODO: transform
 		//METODO: draw mask
@@ -49,20 +52,22 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentGraphics = currentArray[i];
-			currentGraphics.draw(aGraphics);
+			currentGraphics.draw(aContext);
 		}
 		
 		//METODO: draw children
 	};
 	
 	objectFunctions._getCurrentDrawingLayer = function() {
-		if(this._currentDrawingLayer == null) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_getCurrentDrawingLayer");
+		if(this._currentDrawingLayer != null) {
 			return this._currentDrawingLayer;
 		}
 		return this._createNewDrawingLayer();
 	};
 	
 	objectFunctions._createNewDrawingLayer = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_createNewDrawingLayer");
 		var lastDrawingLayer = this._currentDrawingLayer;
 		this._currentDrawingLayer = CanvasGraphics2d.create();
 		if(lastDrawingLayer != null) {
@@ -81,6 +86,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	};
 	
 	objectFunctions.setStrokeStyle = function(aLineWidth, aStyle, aLineCap, aLineJoin, aMiterLimit) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::setStrokeStyle");
 		var currentDrawingLayer = this._getCurrentDrawingLayer();
 		if(currentDrawingLayer.hasCurves()) {
 			currentDrawingLayer = this._createNewCurrentDrawingLayer();
@@ -101,23 +107,62 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	};
 	
 	objectFunctions.lineTo = function(aX, aY) {
-		
-		//METODO: current curve is a curve drawer not a curve
-		
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::lineTo");
 		var currentDrawingLayer = this._getCurrentDrawingLayer();
 		var currentCurve = currentDrawingLayer.getLastCurve();
-		if(currentCurve == null || currentCurve.getCurveDegree() != 1) {
-			currentCurve = BezierCurve.createWithValues(1, true, [this._currentDrawingPosition.x, this._currentDrawingPosition.y], 2);
+		if(currentCurve == null || currentCurve.getProperty("curve").getValue().getCurveDegree() != 1) {
+			currentCurve = CurveDrawer2d.create(BezierCurve.createWithValues(1, true, [this._currentDrawingPosition.x, this._currentDrawingPosition.y], 2));
 			currentDrawingLayer.addCurve(currentCurve);
 		}
 		
-		currentCurve.pointsArray.push(Point.create(aX, aY));
+		var theCurve = currentCurve.getProperty("curve").getValue();
+		theCurve.pointsArray.push(Point.create(aX, aY));
+		
+		currentCurve.getProperty("endParameter").setValue(currentCurve.getProperty("endParameter").getValue()+1);
+		currentCurve.getProperty("curve").setAsDirty();
 		
 		this._currentDrawingPosition.x = aX;
 		this._currentDrawingPosition.y = aY;
 	};
 	
-	//METODO: curve functions
+	objectFunctions.quadraticCurveTo = function(aControlX, aControlY, aX, aY) {
+		var currentDrawingLayer = this._getCurrentDrawingLayer();
+		var currentCurve = currentDrawingLayer.getLastCurve();
+		if(currentCurve == null || currentCurve.getProperty("curve").getValue().getCurveDegree() != 2) {
+			currentCurve = CurveDrawer2d.create(BezierCurve.createWithValues(2, true, [this._currentDrawingPosition.x, this._currentDrawingPosition.y], 2));
+			currentDrawingLayer.addCurve(currentCurve);
+		}
+		
+		var theCurve = currentCurve.getProperty("curve").getValue();
+		theCurve.pointsArray.push(Point.create(aControlX, aControlY));
+		theCurve.pointsArray.push(Point.create(aX, aY));
+		
+		currentCurve.getProperty("endParameter").setValue(currentCurve.getProperty("endParameter").getValue()+1);
+		currentCurve.getProperty("curve").setAsDirty();
+		
+		this._currentDrawingPosition.x = aX;
+		this._currentDrawingPosition.y = aY;
+	};
+	
+	objectFunctions.bezierCurveTo = function(aControl1X, aControl1Y, aControl2X, aControl2Y, aX, aY) {
+		var currentDrawingLayer = this._getCurrentDrawingLayer();
+		var currentCurve = currentDrawingLayer.getLastCurve();
+		if(currentCurve == null || currentCurve.getProperty("curve").getValue().getCurveDegree() != 3) {
+			currentCurve = CurveDrawer2d.create(BezierCurve.createWithValues(3, true, [this._currentDrawingPosition.x, this._currentDrawingPosition.y], 2));
+			currentDrawingLayer.addCurve(currentCurve);
+		}
+		
+		var theCurve = currentCurve.getProperty("curve").getValue();
+		theCurve.pointsArray.push(Point.create(aControl1X, aControl1Y));
+		theCurve.pointsArray.push(Point.create(aControl2X, aControl2Y));
+		theCurve.pointsArray.push(Point.create(aX, aY));
+		
+		currentCurve.getProperty("endParameter").setValue(currentCurve.getProperty("endParameter").getValue()+1);
+		currentCurve.getProperty("curve").setAsDirty();
+		
+		this._currentDrawingPosition.x = aX;
+		this._currentDrawingPosition.y = aY;
+	};
 	
 	staticFunctions.create = function() {
 		var newCanvasLayer2d = (new ClassReference()).init();

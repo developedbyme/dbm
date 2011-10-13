@@ -64,8 +64,9 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	 * @return	True if the varaible is false.
 	 */
 	staticFunctions.isFalse = function(aVariable) {
+		//console.log("com.developedbyme.utils.data.VariableAliases::isFalse (static)");
 		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_BOOLEAN) {
-			return aVariable;
+			return !aVariable;
 		}
 		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_STRING) {
 			switch(aVariable.toLowerCase()) {

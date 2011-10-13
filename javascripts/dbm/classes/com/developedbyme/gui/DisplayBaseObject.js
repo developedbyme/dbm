@@ -37,6 +37,10 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		return this;
 	};
 	
+	objectFunctions.getElement = function() {
+		return this._htmlElement;
+	};
+	
 	objectFunctions.setElementAsPositioned = function() {
 		
 		this._placementNode = PlaceHtmlElementNode.create(this._htmlElement);

@@ -9,6 +9,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 	
 	var CanvasGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasGraphics2d");
 	
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	
 	/**
 	 * Constructor.
 	 */
@@ -21,6 +23,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 		this.moveWhenSwitchingCurves = false;
 		this.fillStyle = null;
 		this.strokeStyle = null;
+		this.closePath = false;
 		
 		return this;
 	};
@@ -41,12 +44,21 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 	};
 	
 	objectFunctions.draw = function(aContext) {
-		
+		//console.log("com.developedbyme.utils.canvas.CanvasGraphics2d::draw");
+		//console.log(this, this._curves);
 		var currentArray = this._curves;
 		var currentArrayLength = currentArray.length;
 		if(currentArrayLength > 0) {
+			var tempPoint = Point.create();
 			currentArray[0].getStartPoint(tempPoint);
 			aContext.moveTo(tempPoint.x, tempPoint.y);
+			aContext.beginPath();
+			if(this.fillStyle != null) {
+				aContext.fillStyle = this.fillStyle;
+			}
+			if(this.strokeStyle != null) {
+				aContext.strokeStyle = this.strokeStyle;
+			}
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentCurve = currentArray[i];
 				currentCurve.getStartPoint(tempPoint);
@@ -57,6 +69,16 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 					aContext.lineTo(tempPoint.x, tempPoint.y);
 				}
 				currentCurve.draw(aContext);
+			}
+			if(this.closePath) {
+				aContext.closePath();
+			}
+			if(this.fillStyle != null) {
+				aContext.fill();
+			}
+			if(this.strokeStyle != null) {
+				//console.log("stroke");
+				aContext.stroke();
 			}
 		}
 		

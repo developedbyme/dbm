@@ -116,4 +116,4 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 		newItem.link = aLink;
 		return newItem;
 	}; //End function create
-}
+});

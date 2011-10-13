@@ -10,6 +10,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	var CanvasController2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasController2d");
 	
 	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
+	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	/**
@@ -24,12 +25,15 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		this._minScale = 0.001;
 		
 		this._canvas = this.createProperty("canvas", null);
+		this._clearBeforeDrawing = true;
 		this._display = this.createGhostProperty("display");
 		
-		this._hierarchy = TreeStructureItem.create();
+		this._hierarchy = TreeStructure.create();
 		var rootLayer = CanvasLayer2d.create();
 		this._hierarchy.getRoot().data = rootLayer;
 		rootLayer._linkRegistration_setTreeStructureItem(this._hierarchy.getRoot());
+		
+		this.createUpdateFunction("default", this._updateFlow, [this._canvas], [this._display]);
 		
 		return this;
 	};
@@ -48,12 +52,21 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		return currentItem.data;
 	};
 	
-	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
-		var canvas = this._canvas.getValueWithoutFlow();
+	objectFunctions.draw = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
+		var canvas = this._canvas.getValue();
 		var currentContext = canvas.getContext("2d");
 		var currentLayer = this.getRootLayer();
 		
-		//METODO
+		if(this._clearBeforeDrawing) {
+			currentContext.clearRect(currentContext.rect);
+		}
+		currentLayer.draw(currentContext);
+	};
+	
+	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_updateFlow");
+		this.draw();
 	};
 	
 	staticFunctions.create = function(aCanvas) {

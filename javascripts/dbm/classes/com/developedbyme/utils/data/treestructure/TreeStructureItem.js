@@ -139,7 +139,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		//console.log("addChild");
 		aItem.retain();
 		aItem._linkRegistration_setParent(this);
-		var childName = aItem.name;
+		var childName = aItem.getName();
 		if(this._children.select(childName)) {
 			this._children.currentSelectedItem.releaseAndDestroy();
 			this._children.removeObject(childName);
@@ -180,7 +180,10 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 */
 	objectFunctions.getChildByName = function(aName) {
 		//console.log("getChildByName");
-		return this._children.getObject(aName);
+		if(this._children.select(aName)) {
+			return this._children.currentSelectedItem;
+		}
+		return null;
 	} //End function getChildByName
 	
 	/**
@@ -220,8 +223,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 * Gets the parameters for this class. Part of the toString function.
 	 */
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
-		super.toString_getParameters(aReturnArray);
-
+		this.superCall(aReturnArray);
+		
 		aReturnArray.push("type: " + this._type);
 	}
 	
@@ -261,5 +264,5 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		var newItem = (new TreeStructureItem()).init();
 		newItem.setName(aName);
 		return newItem;
-	} //End function create
-}
+	}; //End function create
+});

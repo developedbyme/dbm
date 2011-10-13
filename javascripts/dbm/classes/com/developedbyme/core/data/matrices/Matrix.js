@@ -13,7 +13,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	 * Constructor
 	 */
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.data.matrices.Matrix");
+		//console.log("com.developedbyme.core.data.matrices.Matrix::init");
 		
 		this.superCall();
 		
@@ -28,6 +28,8 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	 * Sets up and creates all the values in the matrix
 	 */
 	objectFunctions.setupSize = function(aSizeH, aSizeV) {
+		//console.log("com.developedbyme.core.data.matrices.Matrix::setupSize");
+		//console.log(aSizeH, aSizeV);
 		this.sizeH = aSizeH;
 		this.sizeV = aSizeV;
 		var currentArray = new Array(aSizeH*aSizeV);
@@ -150,7 +152,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	 */
 	staticFunctions.create = function(aWidth, aHeight) {
 		//console.log("com.developedbyme.core.data.matrices.Matrix::create (static)");
-		
+		//console.log(aWidth, aHeight);
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);
 		return newMatrix;
@@ -166,7 +168,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	 */
 	staticFunctions.createIdentity = function(aWidth, aHeight) {
 		//console.log("com.developedbyme.core.data.matrices.Matrix::createIdentity (static)");
-		
+		//console.log(aWidth, aHeight);
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);
 		newMatrix.setAsIdentityMatrix();
