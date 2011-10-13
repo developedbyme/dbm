@@ -55,7 +55,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.updateProperty = function(aProperty) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperty");
-		//console.log(aProperty);
+		//console.log(aProperty.toString());
+		
+		if(aProperty.isDestroyed()) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperty", "Property " + aProperty.toString() + " is destroyed and can't be updated.");
+			return;
+		}
 		
 		this._flowUpdateNumber++;
 		
@@ -124,6 +129,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	};
 	
 	objectFunctions.updateProperties = function() {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
 		this._updatedProperties.start();
 		while(this._updatedProperties.isActive()) {
 			currentProperty = this._updatedProperties.getNextItem();
@@ -136,6 +142,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.addUpdatedProperty = function(aProperty) {
 		this._updatedProperties.push(aProperty);
+		aProperty._linkRegistration_setAsUpdating(true);
+	};
+	
+	objectFunctions.removeUpdatedProperty = function(aProperty) {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::removeUpdatedProperty");
+		//console.log(aProperty);
+		this._updatedProperties.removeItem(aProperty);
+		aProperty._linkRegistration_setAsUpdating(false);
 	};
 	
 	objectFunctions.performDestroy = function() {

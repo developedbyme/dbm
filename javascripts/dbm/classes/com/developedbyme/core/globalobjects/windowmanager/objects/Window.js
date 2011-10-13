@@ -77,6 +77,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._scrollbars = true;
 		
 		this._updatePositionFunction = BrowserDependentFunction.create(this).setDefaultFunction(this._browser_default_updatePosition);
+		this.addDestroyableObject(this._updatePositionFunction);
 		this._updatePositionFunction.addBrowserSpecificFunction("Firefox", null, this._browser_firefox_updatePosition);
 		
 		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.RESIZE, CallFunctionCommand.createCommand(this, this._sizeUpdated, []));
@@ -444,6 +445,39 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		
 		return this.superCall(aName);
 	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		if(this._isOpen) {
+			this.close();
+		}
+		dbm.singletons.dbmWindowManager._linkRegistration_removeWindow(this);
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._window = null;
+		this._x = null;
+		this._y = null;
+		this._z = null;
+		
+		this._width = null;
+		this._height = null;
+		
+		this._size = null;
+		this._position = null;
+		this._display = null;
+		
+		this._title = null;
+		
+		this._updatePositionFunction = null;
+		
+		this.superCall();
+	};
+	
+	
 	
 	staticFunctions.create = function(aName, aUrl, aWidth, aHeight) {
 		var newWindow = (new Window()).init();

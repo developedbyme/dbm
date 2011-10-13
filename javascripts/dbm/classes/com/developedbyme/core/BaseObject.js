@@ -10,6 +10,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.BaseObject::init");
 		
+		//this._setFunctionSavedThis(this); MENOTE: not implemented yet
 		this._isDestroyed = false;
 		this._destroyableObjects = null;
 		
@@ -42,6 +43,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return aObject;
 	};
 	
+	objectFunctions.isDestroyed = function() {
+		//console.log("com.developedbyme.core.BaseObject::isDestroyed");
+		return this._isDestroyed;
+	};
+	
 	objectFunctions.destroy = function() {
 		//console.log("com.developedbyme.core.BaseObject::destroy");
 		//console.log(this.toString());
@@ -52,6 +58,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	};
 	
 	objectFunctions.performDestroy = function() {
+		//this._setFunctionSavedThis(null); MENOTE: not implemented yet
 		ClassReference.softDestroyArrayIfExists(this._destroyableObjects);
 	};
 	

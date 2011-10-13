@@ -3,15 +3,23 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	
 	var VideoView = dbm.importClass("com.developedbyme.gui.video.VideoView");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
 	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
+	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	var VideoEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.VideoEventIds");
+	var PlaybackExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEventIds");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.gui.video.VideoView::init");
@@ -41,9 +49,12 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		
 		this.createUpdateFunction("default", this._updateFlow, [this._stateTimeline.getProperty("outputValue"), this._startTimeTimeline.getProperty("outputValue"), this._startPositionTimeline.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed], [this._outputTime, this._playback]);
 		
-		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGED, SetPropertyAsDirtyCommand.createCommand(this._volume));
-		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGED, SetPropertyAsDirtyCommand.createCommand(this._muted));
+		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGE, SetPropertyAsDirtyCommand.createCommand(this._volume));
+		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGE, SetPropertyAsDirtyCommand.createCommand(this._muted));
+		this.getExtendedEvent().addCommandToEvent(VideoEventIds.LOADED_META_DATA, CallFunctionCommand.createCommand(this, this._metaDataLoaded, [GetVariableObject.createSelectDataCommand()]));
 		
+		//console.log(this);
+		//console.log("//com.developedbyme.gui.video.VideoView::init");
 		return this;
 	};
 	
@@ -54,7 +65,8 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._volume.setupExternalObject(this._htmlElement, "volume");
 		this._muted.setupExternalObject(this._htmlElement, "muted");
 		
-		this.getExtendedEvent().linkJavascriptEvent(aElement, VideoEventIds.VOLUME_CHANGED, VideoEventIds.VOLUME_CHANGED, VideoEventIds.VOLUME_CHANGED, true);
+		this.getExtendedEvent().linkJavascriptEvent(aElement, VideoEventIds.VOLUME_CHANGE, VideoEventIds.VOLUME_CHANGE, VideoEventIds.VOLUME_CHANGE, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(aElement, VideoEventIds.LOADED_META_DATA, VideoEventIds.LOADED_META_DATA, VideoEventIds.LOADED_META_DATA, true).activate();
 		
 		return this;
 	};
@@ -84,7 +96,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		var playbackState = this._playbackState.getValue();
 		var playbackSpeed = this._playbackSpeed.getValue();
 		if(playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1 && this._htmlElement.paused) {
-			this._htmlElement.play();
+			this._performPlay();
 		}
 	};
 	
@@ -100,7 +112,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._startPositionTimeline.setValue(this._htmlElement.currentTime);
 		
 		if(!this._htmlElement.paused) {
-			this._htmlElement.pause();
+			this._performPause();
 		}
 	};
 	
@@ -110,8 +122,41 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._startTimeTimeline.setValue(this._currentTime.getValue());
 		this._startPositionTimeline.setValue(aTime);
 		
-		this._htmlElement.currentTime = aTime;
+		this._performSeek(aTime);
 		this._outputTime.setValue(this._htmlElement.currentTime);
+	};
+	
+	objectFunctions._performPlay = function() {
+		try {
+			this._htmlElement.play();
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "_perfomSeek", theError);
+		}
+	};
+	
+	objectFunctions._performPause = function() {
+		try {
+			this._htmlElement.pause();
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "_perfomSeek", theError);
+		}
+	};
+	
+	objectFunctions._performSeek = function(aTime) {
+		//console.log("com.developedbyme.gui.video.VideoView::_performSeek");
+		try {
+			if(aTime >= 0 && aTime <= this._htmlElement.duration) {
+				this._htmlElement.currentTime = aTime;
+			}
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "_perfomSeek", theError);
+		}
 	};
 	
 	objectFunctions.setStateAt = function(aState, aOutputTime, aTime) {
@@ -127,6 +172,21 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			}
 			this._startTimeTimeline.setValueAt(aTime, aTime);
 			this._startPositionTimeline.setValueAt(aOutputTime, aTime);
+		}
+	};
+	
+	objectFunctions.resetAllPlayback = function() {
+		this._stateTimeline.clear();
+		this._startPositionTimeline.clear();
+		this._startTimeTimeline.clear();
+	};
+	
+	objectFunctions._metaDataLoaded = function(aEvent) {
+		//console.log("com.developedbyme.gui.video.VideoView::_metaDataLoaded");
+		//console.log(this, this._selectedUrl, this._htmlElement.videoWidth, this._htmlElement.videoHeight);
+		
+		if(this.getExtendedEvent().hasEvent(PlaybackExtendedEventIds.META_DATA_LOADED)) {
+			this.getExtendedEvent().perform(PlaybackExtendedEventIds.META_DATA_LOADED)
 		}
 	};
 	
@@ -221,6 +281,9 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		if(this._htmlElement.seeking) {
 			//MENOTE: do nothing
 			//console.log("seeking");
+			if(this._selectedUrl == "assets/itemVideos/16_cog_push1.mp4") {
+				console.log("seeking");
+			}
 		}
 		else {
 		
@@ -237,34 +300,49 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			var isPaused = this._htmlElement.paused;
 			var hasEnded = this._htmlElement.ended;
 			
+			//console.log(this._selectedUrl, isPaused, hasEnded, maxTime, this._htmlElement.currentTime, state, startTime, startPosition, currentTime, playbackState, playbackSpeed);
+			
 			if((!isPaused) && (playbackState != PlaybackStateTypes.PLAYING || playbackSpeed != 1 || state == PlaybackStateTypes.PAUSED)) {
-				this._htmlElement.pause();
+				this._performPause();
 				isPaused = true;
 			}
 			
 			if(isPaused) {
 				if(state == PlaybackStateTypes.PLAYING && playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1) {
-					this._htmlElement.play();
-					this._htmlElement.currentTime = maxTime;
+					this._performPlay();
+					this._performSeek(maxTime);
+					//console.log("play", this._selectedUrl, maxTime);
 					this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
 				}
 				else {
 					if(state != PlaybackStateTypes.PAUSED) {
 						if(this._htmlElement.currentTime != maxTime) {
-							this._htmlElement.currentTime = maxTime;
+							this._performSeek(maxTime);
+							//console.log("update", this._selectedUrl, maxTime);
 							this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
+						}
+						else {
+							//console.log("else2", this._selectedUrl, this._htmlElement.currentTime);
 						}
 					}
 					else {
+						//console.log("else", this._selectedUrl, this._htmlElement.currentTime);
+						if(this._htmlElement.currentTime != startPosition) {
+							if(this._htmlElement.networkState == this._htmlElement.NETWORK_IDLE || this._htmlElement.networkState == this._htmlElement.NETWORK_LOADING) {
+								//console.log("else", this._selectedUrl, this._htmlElement.currentTime, startPosition);
+								this._performSeek(startPosition);
+							}
+						}
 						this._outputTime.setValueWithFlow(this._htmlElement.currentTime, aFlowUpdateNumber);
 					}
 				}
 			}
 			else {
 				var timeDifference = Math.abs(maxTime-this._htmlElement.currentTime);
-				if(timeDifference > this._maxTimeDifference) {
+				if(timeDifference > this._maxTimeDifference && this._htmlElement.currentTime-timeDifference < this._htmlElement.duration) {
 					//console.log("timeDifference", timeDifference);
-					this._htmlElement.currentTime = maxTime;
+					this._performSeek(maxTime);
+					//console.log("timeDiff", this._selectedUrl, maxTime);
 				}
 				this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
 			}
@@ -274,7 +352,9 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
 		switch(aName) {
-			case VideoEventIds.VOLUME_CHANGED:
+			case VideoEventIds.VOLUME_CHANGE:
+			case VideoEventIds.LOADED_META_DATA:
+			case PlaybackExtendedEventIds.META_DATA_LOADED:
 				return true;
 		}
 		
@@ -288,6 +368,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
+		//console.log("com.developedbyme.gui.video.VideoView::setAllReferencesToNull");
 		
 		this._urls = null;
 		this._selectedUrl = null;
@@ -315,6 +396,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
 		newNode.setElement(htmlCreator.createNode("video", aAttributes));
+		newNode.preload = "none";
 		newNode.setUrls(aUrls, aPreload);
 		newNode.setParent(theParent);
 		if(aAddToParent != false) {

@@ -32,6 +32,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		}
 	}
 	
+	objectFunctions.createText = function(aText) {
+		return this.ownerDocument.createTextNode(aText);
+	};
+	
 	objectFunctions.createNode = function(aTagName, aAttributes /*, ... childs */) {
 		var newElement = this.ownerDocument.createElement(aTagName);
 		this.setAttributesToNode(newElement, aAttributes);

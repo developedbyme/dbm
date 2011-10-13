@@ -56,6 +56,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		//console.log(aName, aProperty);
 		aProperty.name = this.__className + "::" + aName;
 		this._properties.addObject(aName, aProperty);
+		//console.log("//com.developedbyme.core.FlowBaseObject::addProperty");
 		return aProperty;
 	};
 	

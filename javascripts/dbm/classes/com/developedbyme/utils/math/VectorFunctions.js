@@ -65,4 +65,16 @@ dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function
 	staticFunctions.angleFromVectorValues = function(aX, aY) {
 		return Math.atan2(aY, aX);
 	};
+	
+	staticFunctions.lengthFromVector = function(aVector) {
+		return ClassReference.lengthFromVectorValues3d(aVector.x, aVector.y, aVector.z);
+	};
+	
+	staticFunctions.lengthFromVectorValues2d = function(aX, aY) {
+		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2));
+	};
+	
+	staticFunctions.lengthFromVectorValues3d = function(aX, aY, aZ) {
+		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aY, 3));
+	};
 });

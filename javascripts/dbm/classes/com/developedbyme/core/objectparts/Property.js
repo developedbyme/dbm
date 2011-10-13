@@ -31,6 +31,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._outputConnections = new Array();
 		this._animationController = null;
 		
+		this._isUpdating = false;
+		
 		return this;
 	};
 	
@@ -129,6 +131,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions.getFlowUpdateNumber = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::getFlowUpdateNumber");
 		return this._flowUpdateNumber;
+	};
+	
+	objectFunctions._linkRegistration_setAsUpdating = function(aIsUpdating) {
+		this._isUpdating = aIsUpdating;
 	};
 	
 	objectFunctions.update = function() {
@@ -235,11 +241,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			return;
 		}
 		
-		var oldInputValue = this._inputConnection.getValue();
+		var shouldUpdate = !(this._inputConnection.isDestroyed() || this.isDestroyed());
+		
+		var oldInput = this._inputConnection;
 		this._inputConnection = null;
 		this._animationController = null;
 		
-		this.setValue(oldInputValue);
+		if(shouldUpdate) {
+			this.setValue(oldInput.getValue());
+		}
 	};
 	
 	objectFunctions._linkRegistration_removeConnectedOutput = function(aOutputConnection) {
@@ -293,11 +303,14 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("name: " + this.name);
-		aReturnArray.push("value: " + this._performGetValue);
+		aReturnArray.push("value: " + this._performGetValue());
 	}
 	
 	objectFunctions.performDestroy = function() {
 		
+		if(this._isUpdating) {
+			dbm.singletons.dbmFlowManager.removeUpdatedProperty(this);
+		}
 		if(this._inputConnection != null) {
 			this.disconnectInput();
 		}

@@ -1,6 +1,10 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var Window = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.objects.Window");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -72,6 +76,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 		this._updateFlowDepthFunction._linkRegistration_addInputConnection(newWindow.getProperty("z"));
 		
 		return newWindow;
+	};
+	
+	objectFunctions._linkRegistration_removeWindow = function(aWindow) {
+		var windowName = this._windows.identifyObject(aWindow);
+		if(windowName != null) {
+			this._windows.removeObject(windowName);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "_linkRegistration_removeWindow", "Window " + aWindow + " already removed.");
+		}
 	};
 	
 	objectFunctions._setWindowAsHighestDepth = function(aWindow) {
