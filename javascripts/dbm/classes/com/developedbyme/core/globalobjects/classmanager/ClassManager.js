@@ -54,6 +54,7 @@ dbm.runTempFunction(function() {
 		newClassHolder.name = aName;
 		var className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
 		eval("dbm.tempClassFunction = function " + className + "(){};");
+		//eval("dbm.tempClassFunction = function " + className + "(){var functionSavedThis = null; this._setFunctionSavedThis = function(aObject) {functionSavedThis = aObject;}; this._getFunctionSavedThis = function() {return functionSavedThis;};};"); //METODO: implement back reference to this
 		newClassHolder.classFunction = dbm.tempClassFunction;
 		dbm.tempClassFunction = null;
 		

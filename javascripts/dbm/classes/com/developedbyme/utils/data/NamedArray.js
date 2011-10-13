@@ -39,11 +39,11 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	
 	objectFunctions.addObject = function(aName, aObject) {
 		if(aName == null) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null.");
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
 			return;
 		}
 		if(this._objectsObject[aName] != undefined) {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " already exists, replacing.");
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + "(" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
 			this.removeObject(aName);
 		}
 		this._objectsObject[aName] = aObject;
