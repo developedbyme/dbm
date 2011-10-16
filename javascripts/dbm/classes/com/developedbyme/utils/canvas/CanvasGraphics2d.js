@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 		this._curves = new Array();
 		this.moveWhenSwitchingCurves = false;
 		this.fillStyle = null;
+		this.lineWidth = 0;
 		this.strokeStyle = null;
 		this.closePath = false;
 		

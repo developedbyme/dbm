@@ -15,6 +15,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
 	
+	var TransformationTo2dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo2dMatrixNode");
+	
 	/**
 	 * Constructor.
 	 */
@@ -25,8 +27,11 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._treeStructureItem = null;
 		
-		this._transformationMatrix = this.createProperty("transformationMatrix", Matrix.createIdentity(3, 3));
+		this._transformationMatrix = this.createProperty("transformationMatrix", null);
 		this._alpha = this.createProperty("alpha", 1);
+		this._compositionOperation = this.createProperty("compositeOperation", null);
+		
+		this._linkRegistration_setTransformationNode(TransformationTo2dMatrixNode.create(0, 0, 0, 1, 1));
 		
 		this._mask = null;
 		
@@ -37,6 +42,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		return this;
 	};
 	
+	objectFunctions._linkRegistration_setTransformationNode = function(aTransformationNode) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_linkRegistration_setTransformationNode");
+		//console.log(aTransformationNode);
+		this._transformationNode = aTransformationNode;
+		this._transformationMatrix.connectInput(this._transformationNode.getProperty("outputMatrix"));
+	};
+	
 	objectFunctions._linkRegistration_setTreeStructureItem = function(aItem) {
 		this._treeStructureItem = aItem;
 	};
@@ -44,9 +56,29 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	objectFunctions.draw = function(aContext) {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::draw");
 		
-		//METODO: transform
+		aContext.save();
+		
+		var alpha = this._alpha.getValue();
+		var compositionOperation = this._compositionOperation.getValue();
+		
+		aContext.globalAlpha = aContext.globalAlpha*alpha;
+		if(compositionOperation != null) {
+			aContext.globalCompositeOperation = compositionOperation;
+		}
+		
+		var transformationMatrix = this._transformationMatrix.getValue();
+		
+		aContext.transform(transformationMatrix.getValue(0, 0), transformationMatrix.getValue(1, 0), transformationMatrix.getValue(0, 1), transformationMatrix.getValue(1, 1), transformationMatrix.getValue(2, 0), transformationMatrix.getValue(2, 1));
 		//METODO: draw mask
-		//METODO: set global alpha
+		
+		this._drawGraphics(aContext);
+		this._drawChildren(aContext, this._treeStructureItem.getChildren());
+		
+		aContext.restore();
+	};
+	
+	objectFunctions._drawGraphics = function(aContext) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_drawGraphics");
 		
 		var currentArray = this._graphics;
 		var currentArrayLength = currentArray.length;
@@ -54,8 +86,26 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 			var currentGraphics = currentArray[i];
 			currentGraphics.draw(aContext);
 		}
+	};
+	
+	objectFunctions._drawChildren = function(aContext, aChildren) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_drawChildren");
+		//console.log(aChildren);
 		
-		//METODO: draw children
+		var currentArray = aChildren;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentChild = currentArray[i];
+			if(currentChild.isLink()) {
+				currentChild = this._treeStructureItem.getRoot().getItemByPath(currentChild.link, currentChild);
+			}
+			if(currentChild.data != null) {
+				currentChild.data.draw(aContext);
+			}
+			else {
+				this._drawChildren(aContext, currentChild.getChildren());
+			}
+		}
 	};
 	
 	objectFunctions._getCurrentDrawingLayer = function() {
@@ -162,6 +212,25 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._currentDrawingPosition.x = aX;
 		this._currentDrawingPosition.y = aY;
+	};
+	
+	objectFunctions.getProperty = function(aName) {
+		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
+		
+		switch(aName) {
+			case "x":
+			case "y":
+			case "rotate":
+			case "scaleX":
+			case "scaleY":
+				if(this._transformationNode != null) {
+					return this._transformationNode.getProperty(aName);
+				}
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " doesn't have a transform node. Can't get " + aName + ".");
+				return null;
+		}
+		
+		return this.superCall(aName);
 	};
 	
 	staticFunctions.create = function() {

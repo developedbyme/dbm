@@ -89,8 +89,16 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 */
 	objectFunctions.getChildNames = function() {
 		//console.log("getChildNames");
-		return this._children.namesArray;
+		return this._children.getNamesArray();
 	} //End function getChildNames
+	
+	/**
+	 * Gets the children.
+	 */
+	objectFunctions.getChildren = function() {
+		//console.log("getChildren");
+		return this._children.getObjectsArray();
+	} //End function getChildren
 	
 	
 	/**

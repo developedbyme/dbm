@@ -24,12 +24,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.ScaleZNode",
 		this._scale.setValueWithFlow(1/((z-r)*(-1/r)), aFlowUpdateNumber);
 	};
 	
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._z = null;
+		this._focusLength = null;
+		this._scale = null;
+		
 		this.superCall();
 	};
 	

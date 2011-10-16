@@ -67,23 +67,25 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	/**
 	 * Sets a value in the matrix.
 	 *
-	 * @param	aPositionArray	An array containing the position of the value to be set ([h, v]).
-	 * @param	aValue			The value to set at the position
+	 * @param	aX		The x postion of the matrix
+	 * @param	aY		The y position of the matrix
+	 * @param	aValue	The value to set at the position
 	 */
-	objectFunctions.setValue = function(aPositionArray, aValue) {
+	objectFunctions.setValue = function(aX, aY, aValue) {
 		var currentArray = this.valuesArray;
-		currentArray[this.sizeH*aPositionArray[1]+aPositionArray[0]] = aValue;
+		currentArray[this.sizeH*aY+aX] = aValue;
 	};
 	
 	/**
 	 * Gets a value in the matrix.
 	 *
-	 * @param	aPositionArray	An array containing the position of the value to get ([h, v]).
+	 * @param	aX	The x postion of the matrix
+	 * @param	aY	The y position of the matrix
 	 * @return	The value to set at the position
 	 */
-	objectFunctions.getValue = function(aPositionArray) {
+	objectFunctions.getValue = function(aX, aY) {
 		var currentArray = this.valuesArray;
-		return currentArray[this.sizeH*aPositionArray[1]+aPositionArray[0]];
+		return currentArray[this.sizeH*aY+aX];
 	};
 	
 	/**

@@ -133,6 +133,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._flowUpdateNumber;
 	};
 	
+	objectFunctions._internalFunctionality_setFlowUpdateNumber = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.core.objectparts.Property::_internalFunctionality_setFlowUpdateNumber");
+		this._flowUpdateNumber = aFlowUpdateNumber;
+	};
+	
 	objectFunctions._linkRegistration_setAsUpdating = function(aIsUpdating) {
 		this._isUpdating = aIsUpdating;
 	};
