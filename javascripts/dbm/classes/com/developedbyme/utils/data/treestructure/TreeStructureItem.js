@@ -144,8 +144,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 * Adds a child.
 	 */
 	objectFunctions.addChild = function(aItem) {
-		console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::addChild");
-		console.log(aItem);
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::addChild");
+		//console.log(aItem);
 		aItem.retain();
 		aItem._linkRegistration_setParent(this);
 		var childName = aItem.getName();

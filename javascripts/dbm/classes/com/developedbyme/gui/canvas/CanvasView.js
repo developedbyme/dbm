@@ -36,6 +36,12 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		return this._controller;
 	};
 	
+	objectFunctions.update = function() {
+		//console.log("com.developedbyme.gui.canvas.CanvasView::update");
+
+		this._controller.getProperty("display").update();
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._controller = null;
