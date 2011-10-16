@@ -72,4 +72,14 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 		
 		return newPoint;
 	};
+	
+	staticFunctions.getLengthOfVectorValues2d = function(aX, aY) {
+		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues2d (static)");
+		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2));
+	};
+	
+	staticFunctions.getLengthOfVectorValues3d = function(aX, aY, aZ) {
+		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues3d (static)");
+		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aY, 3));
+	};
 });

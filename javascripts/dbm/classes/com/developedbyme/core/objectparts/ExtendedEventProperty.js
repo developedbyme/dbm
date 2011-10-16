@@ -3,6 +3,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 	
 	var ExtendedEventProperty = dbm.importClass("com.developedbyme.core.objectparts.ExtendedEventProperty");
 	
+	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
+	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::init");
 		
@@ -15,9 +18,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 	};
 	
 	objectFunctions._performSetValue = function(aValue) {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
+		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
 		this.superCall(aValue);
 		if(aValue != null) {
-			this._extendedEvent.perform(aValue, null);
+			if(this._extendedEvent.hasEvent(aValue)) {
+				this._extendedEvent.perform(aValue, null);
+			}
 		}
 	};
 	
@@ -36,10 +43,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aObjectInput) {
+	staticFunctions.create = function(aObjectInput, aValue) {
 		var newExtendedEventProperty = (new ExtendedEventProperty()).init();
-		//METODO: set object property
-		newExtendedEventProperty.setupExternalObject(aExternalObject, aVariableName);
+		//METODO: set object input
+		if(aValue instanceof Property) {
+			newExtendedEventProperty.connectInput(aValue);
+		}
+		else {
+			newExtendedEventProperty.setValue(aValue);
+		}
 		return newExtendedEventProperty;
 	};
 	

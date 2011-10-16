@@ -73,7 +73,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._location = false;
 		this._menubar = false;
 		this._directories = false;
-		this._resizable	= false;
+		this._resizable = false;
 		this._scrollbars = true;
 		
 		this._updatePositionFunction = BrowserDependentFunction.create(this).setDefaultFunction(this._browser_default_updatePosition);
@@ -116,6 +116,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._url = aUrl;
 		
 		return this;
+	};
+	
+	objectFunctions.getBrowserWindow = function() {
+		return this._window;
 	};
 	
 	objectFunctions.setPosition = function(aX, aY) {

@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerf
 	objectFunctions.resetCommands = function() {
 		this._commandsArray.stop();
 		this._commandsArray.destroy();
-
+		
 		this._commandsArray = (new CommandsArrayIterator()).init();
 		this._commandsArray.canRemoveItemsWhileActive = true;
 		this._commandsArray.canAddItemsWhileActive = false;

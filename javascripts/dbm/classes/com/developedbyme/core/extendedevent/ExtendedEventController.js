@@ -120,6 +120,16 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	objectFunctions.linkJavascriptEvent = function(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent) {
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::linkJavascriptEvent");
 		//console.log(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent);
+		if(aJavascriptEventName == null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEvent", "Javascript event is null for " + aExtendedEventName + " on " + this._owner + ".");
+			return;
+		}
+		else if(aExtendedEventName == null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEvent", "Extended event event is null for " + aJavascriptEventName + " on " + this._owner + ".");
+			return;
+		}
+		
+		
 		var newEventLink = EventLink.create(this, aEventDispatcher, aJavascriptEventName, aExtendedEventName);
 		
 		this.addEventLink(newEventLink, aGroupName, aDontWarnOnCreation);
@@ -133,6 +143,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	};
 	
 	objectFunctions.activateJavascriptEventLink = function(aName) {
+		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::activateJavascriptEventLink");
+		//console.log(aName);
 		if(aName == null) {
 			aName = this._defaultEventLinkGroupName;
 		}
@@ -146,6 +158,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	};
 	
 	objectFunctions.deactivateJavascriptEventLink = function(aName) {
+		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::deactivateJavascriptEventLink");
+		//console.log(aName);
 		if(this._eventLinkGroups.select(aName)) {
 			this._eventLinkGroups.currentSelectedItem.deactivateAll();
 		}

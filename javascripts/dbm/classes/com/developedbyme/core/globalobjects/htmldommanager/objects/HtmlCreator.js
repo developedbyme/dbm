@@ -54,6 +54,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		return newElement;
 	};
 	
+	objectFunctions.createDiv = function(aAttributes /*, ... childs */) {
+		var newElement = this.ownerDocument.createElement("div");
+		this.setAttributesToNode(newElement, aAttributes);
+		var currentArray = arguments;
+		var currentArrayLength = currentArray.length;
+		for(var i = 1; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
+				newElement.appendChild(currentObject);
+			}
+			else {
+				newElement.appendChild(this.ownerDocument.createTextNode(currentObject));
+			}
+		}
+		
+		return newElement;
+	};
+	
 	objectFunctions.createImage = function(aSrc, aAttributes) {
 		var newElement = this.ownerDocument.createElement("img");
 		newElement.src = aSrc;

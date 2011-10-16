@@ -67,6 +67,8 @@ dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function
 	};
 	
 	staticFunctions.lengthFromVector = function(aVector) {
+		//console.log("com.developedbyme.utils.math.VectorFunctions::lengthFromVector (static)");
+		//console.log(aVector.x, aVector.y, aVector.z);
 		return ClassReference.lengthFromVectorValues3d(aVector.x, aVector.y, aVector.z);
 	};
 	
@@ -75,6 +77,8 @@ dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function
 	};
 	
 	staticFunctions.lengthFromVectorValues3d = function(aX, aY, aZ) {
-		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aY, 3));
+		//console.log("com.developedbyme.utils.math.VectorFunctions::lengthFromVectorValues3d (static)");
+		//console.log(aX, aY, aZ);
+		return Math.sqrt(Math.pow(aX, 2)+Math.pow(Math.sqrt(Math.pow(aY, 2)+Math.pow(aY, 2)), 2));
 	};
 });

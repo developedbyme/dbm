@@ -61,6 +61,17 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._animationController.setValue(aValue);
 	};
 	
+	objectFunctions.setValueWithDelay = function(aValue, aDelay) {
+		if(this._inputConnection != null && this._animationController == null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValueWithDelay", "Can't set value when property has input.");
+			return;
+		}
+		if(this._animationController == null) {
+			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
+		}
+		this._animationController.setValue(aValue, aDelay);
+	};
+	
 	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
 		if(this._animationController == null) {
 			if(this._inputConnection != null) {
@@ -70,6 +81,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
 		}
 		this._animationController.animateValue(aValue, aTime, aInterpolation, aDelay);
+	};
+	
+	objectFunctions.createTimelineControl = function() {
+		if(this._animationController == null) {
+			if(this._inputConnection != null) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "createTimelineControl", "Can't set value when property has input.");
+				return;
+			}
+			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
+		}
 	};
 	
 	objectFunctions.getAnimationController = function() {

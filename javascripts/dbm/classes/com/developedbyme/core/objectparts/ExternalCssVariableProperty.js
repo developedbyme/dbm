@@ -106,7 +106,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
 		//METODO: set object property
 		if(aValue != null) {
-			newExternalCssVariableProperty.setvalue(aValue);
+			newExternalCssVariableProperty.setValue(aValue);
 		}
 		return newExternalCssVariableProperty;
 	};
