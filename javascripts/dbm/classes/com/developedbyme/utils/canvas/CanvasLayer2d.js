@@ -53,8 +53,9 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		this._treeStructureItem = aItem;
 	};
 	
-	objectFunctions.draw = function(aContext) {
+	objectFunctions.draw = function(aContext, aNumberOfLinksToResolve) {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::draw");
+		//console.log(aNumberOfLinksToResolve);
 		
 		aContext.save();
 		
@@ -72,7 +73,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		//METODO: draw mask
 		
 		this._drawGraphics(aContext);
-		this._drawChildren(aContext, this._treeStructureItem.getChildren());
+		this._drawChildren(aContext, this._treeStructureItem.getChildren(), aNumberOfLinksToResolve);
 		
 		aContext.restore();
 	};
@@ -88,7 +89,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		}
 	};
 	
-	objectFunctions._drawChildren = function(aContext, aChildren) {
+	objectFunctions._drawChildren = function(aContext, aChildren, aNumberOfLinksToResolve) {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_drawChildren");
 		//console.log(aChildren);
 		
@@ -96,14 +97,21 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentChild = currentArray[i];
+			var linkCountDown = 0;
 			if(currentChild.isLink()) {
 				currentChild = this._treeStructureItem.getRoot().getItemByPath(currentChild.link, currentChild);
+				if(aNumberOfLinksToResolve == 0) {
+					continue;
+				}
+				else if(aNumberOfLinksToResolve > 0) {
+					linkCountDown = 1;
+				}
 			}
 			if(currentChild.data != null) {
-				currentChild.data.draw(aContext);
+				currentChild.data.draw(aContext, aNumberOfLinksToResolve-linkCountDown);
 			}
 			else {
-				this._drawChildren(aContext, currentChild.getChildren());
+				this._drawChildren(aContext, currentChild.getChildren(), aNumberOfLinksToResolve-linkCountDown);
 			}
 		}
 	};

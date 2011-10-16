@@ -38,7 +38,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	 * Adds an item.
 	 */
 	objectFunctions.addItem = function(aItem, aPath, aBaseItem) {
-		//console.log("addItem");
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::addItem");
+		//sconsole.log(aItem, aPath, aBaseItem);
 		
 		aBaseItem = VariableAliases.valueWithDefault(aBaseItem, null);
 		
@@ -91,7 +92,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 			}
 		}
 		
-		currentItem.addChild(newItem);
+		currentItem.addChild(aItem);
 	}; //End function addItem
 	
 	/**

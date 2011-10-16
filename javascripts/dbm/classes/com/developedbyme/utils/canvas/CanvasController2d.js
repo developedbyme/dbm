@@ -12,6 +12,9 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
 	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	/**
 	 * Constructor.
@@ -52,6 +55,15 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		return currentItem.data;
 	};
 	
+	objectFunctions.createLink = function(aFrom, aTo) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLink");
+		var tempArray = aFrom.split("/");
+		
+		var newLink = TreeStructureItemLink.create(tempArray.pop(), aTo);
+		
+		this._hierarchy.addItem(newLink, tempArray.join("/"));
+	};
+	
 	objectFunctions.draw = function() {
 		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
 		var canvas = this._canvas.getValue();
@@ -61,13 +73,24 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		if(this._clearBeforeDrawing) {
 			currentContext.clearRect(currentContext.rect);
 		}
-		currentLayer.draw(currentContext);
+		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
 	};
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_updateFlow");
 		this.draw();
 	};
+	
+	/**
+	 * Traces out the full structure.
+	 */
+	objectFunctions.debugTraceStructure = function(aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		
+		aResolveLinksLevel = VariableAliases.valueWithDefault(aResolveLinksLevel, 10);
+		
+		this._hierarchy.debugTraceStructure(aResolveLinksLevel);
+	}; //End function debugTraceStructure
 	
 	staticFunctions.create = function(aCanvas) {
 		var newCanvasController2d = (new ClassReference()).init();

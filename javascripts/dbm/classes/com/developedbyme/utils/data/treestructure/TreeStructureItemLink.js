@@ -7,6 +7,8 @@
 dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink", "com.developedbyme.utils.data.treestructure.TreeStructureItem", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	
+	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
+	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var TreeStructureItemTypes = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemTypes");
 	
@@ -80,7 +82,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 		//console.log("debugTraceStructure");
 		console.log(aTabString + this.toString() + "\n");
 		
-		var newTabString = aTabString + "	";
+		var newTabString = aTabString + " ";
 		
 		if(aResolveLinksLevel != 0) {
 			var newLevel;
@@ -101,7 +103,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 	 * Gets the parameters for this class. Part of the toString function.
 	 */
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
-		super.toString_getParameters(aReturnArray);
+		this.superCall(aReturnArray);
 		
 		aReturnArray.push("link: " + this.link);
 	};

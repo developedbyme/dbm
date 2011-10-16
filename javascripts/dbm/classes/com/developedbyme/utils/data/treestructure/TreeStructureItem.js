@@ -144,7 +144,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 * Adds a child.
 	 */
 	objectFunctions.addChild = function(aItem) {
-		//console.log("addChild");
+		console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::addChild");
+		console.log(aItem);
 		aItem.retain();
 		aItem._linkRegistration_setParent(this);
 		var childName = aItem.getName();
@@ -209,9 +210,9 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		//console.log("debugTraceStructure");
 		console.log(aTabString + this.toString() + "\n");
 		
-		var newTabString = aTabString + "	";
+		var newTabString = aTabString + " ";
 		
-		debugTraceChildren(newTabString, aResolveLinksLevel);
+		this.debugTraceChildren(newTabString, aResolveLinksLevel);
 	} //End function debugTraceStructure
 	
 	/**
@@ -219,7 +220,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 */
 	objectFunctions.debugTraceChildren = function(aTabString, aResolveLinksLevel) {
 		
-		var currentArray = this._children.objectsArray;
+		var currentArray = this._children.getObjectsArray();
 		var theLength = currentArray.length;
 		for (var i = 0; i < theLength; i++) {
 			var currentChild = currentArray[i];
@@ -233,6 +234,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
+		aReturnArray.push("name: " + this._name);
 		aReturnArray.push("type: " + this._type);
 	}
 	
