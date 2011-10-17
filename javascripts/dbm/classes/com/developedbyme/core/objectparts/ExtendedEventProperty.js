@@ -38,7 +38,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 	
 	staticFunctions.create = function(aObjectInput) {
 		var newExtendedEventProperty = (new ExtendedEventProperty()).init();
-		//METODO: set object property
+		aObjectInput._linkRegistration_addObjectProperty(newExtendedEventProperty);
+		newExtendedEventProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		newExtendedEventProperty.setupExternalObject(aExternalObject, aVariableName);
 		return newExtendedEventProperty;
 	};

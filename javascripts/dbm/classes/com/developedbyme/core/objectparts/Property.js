@@ -180,9 +180,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	
 	objectFunctions._linkRegistration_setObjectInputConnection = function(aInputConnection) {
 		this._objectInputConnection = aInputConnection;
-		this.setAsDirty();
-		
-		this._flowUpdateNumber = 0;
 	};
 	
 	objectFunctions.connectInput = function(aProperty) {
@@ -276,13 +273,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 				aReturnArray.push(currentObject);
 			}
 		}
+		if(this._objectInputConnection != null && this._objectInputConnection.isOutput() && this._objectInputConnection.getStatus() == FlowStatusTypes.UPDATED) {
+			aReturnArray.push(this._objectInputConnection);
+		}
 	};
 	
 	objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
 		if(this._inputConnection != null && this._inputConnection.getStatus() == FlowStatusTypes.NEEDS_UPDATE) {
 			aReturnArray.push(this._inputConnection);
 		}
-		if(this._objectInputConnection != null && this._objectInputConnection.getStatus() == FlowStatusTypes.NEEDS_UPDATE) {
+		if(this._objectInputConnection != null && !this._objectInputConnection.isOutput() && this._objectInputConnection.getStatus() == FlowStatusTypes.NEEDS_UPDATE) {
 			aReturnArray.push(this._objectInputConnection);
 		}
 		if(this._inputUpdateFunction != null) {
@@ -346,8 +346,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	staticFunctions.create = function(aObjectInput, aValue) {
+		console.log("com.developedbyme.core.objectparts.Property::create");
+		console.log(aObjectInput, aValue);
 		var newProperty = (new Property()).init();
-		//METODO: set object input
+		aObjectInput._linkRegistration_addObjectProperty(newProperty);
+		newProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		if(aValue instanceof Property) {
 			newProperty.connectInput(aValue);
 		}

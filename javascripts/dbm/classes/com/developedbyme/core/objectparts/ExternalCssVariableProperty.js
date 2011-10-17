@@ -97,14 +97,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	
 	staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName, aUnit) {
 		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
-		//METODO: set object property
+		aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
+		newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		newExternalCssVariableProperty.setupExternalObject(aExternalObject, aVariableName, aUnit);
 		return newExternalCssVariableProperty;
 	};
 	
 	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
 		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
-		//METODO: set object property
+		aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
+		newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		if(aValue != null) {
 			newExternalCssVariableProperty.setvalue(aValue);
 		}

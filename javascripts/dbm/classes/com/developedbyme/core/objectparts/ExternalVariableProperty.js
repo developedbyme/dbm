@@ -79,14 +79,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	
 	staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName) {
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
-		//METODO: set object property
+		aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
+		newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		newExternalVariableProperty.setupExternalObject(aExternalObject, aVariableName);
 		return newExternalVariableProperty;
 	};
 	
 	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
-		//METODO: set object property
+		aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
+		newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		if(aValue != null) {
 			newExternalVariableProperty.setValue(aValue);
 		}

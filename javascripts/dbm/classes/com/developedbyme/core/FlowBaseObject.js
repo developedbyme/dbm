@@ -9,13 +9,14 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::init");
 		
 		this.superCall();
 		
-		this._objectProperty = (new Property()).init();
+		this._objectProperty = ObjectProperty.create(this, false);
 		this._objectProperty = this.__className + "::object(o)";
 		this.addDestroyableObject(this._objectProperty);
 		this._properties = (new NamedArray()).init();

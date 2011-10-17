@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		var currentLayer = this.getRootLayer();
 		
 		if(this._clearBeforeDrawing) {
-			currentContext.clearRect(currentContext.rect);
+			currentContext.clearRect(0, 0, currentContext.width, currentContext.height);
 		}
 		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
 	};

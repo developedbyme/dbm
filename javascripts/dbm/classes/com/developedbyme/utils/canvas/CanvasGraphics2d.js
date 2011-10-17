@@ -11,6 +11,9 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 	
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
+	var LineCapTypes = dbm.importClass("com.developedbyme.constants.LineCapTypes");
+	var LineJoinTypes = dbm.importClass("com.developedbyme.constants.LineJoinTypes");
+	
 	/**
 	 * Constructor.
 	 */
@@ -22,9 +25,14 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 		this._curves = new Array();
 		this.moveWhenSwitchingCurves = false;
 		this.fillStyle = null;
-		this.lineWidth = 0;
+		
 		this.strokeStyle = null;
 		this.closePath = false;
+		
+		this.lineWidth = 1;
+		this.lineCap = LineCapTypes.BUTT;
+		this.lineJoin = LineJoinTypes.MITER;
+		this.miterLimit = 10;
 		
 		return this;
 	};
@@ -54,6 +62,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 			currentArray[0].getStartPoint(tempPoint);
 			aContext.moveTo(tempPoint.x, tempPoint.y);
 			aContext.beginPath();
+			aContext.lineWidth = this.lineWidth;
+			aContext.lineCap = this.lineCap;
+			aContext.lineJoin = this.lineJoin;
+			aContext.miterLimit = this.miterLimit;
 			if(this.fillStyle != null) {
 				aContext.fillStyle = this.fillStyle;
 			}
