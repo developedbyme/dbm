@@ -50,7 +50,7 @@ dbm.registerClass("com.developedbyme.gui.text.TextElement", "com.developedbyme.g
 		this.superCall();
 	};
 	
-	staticFunctions.createText = function(aParentOrDocument, aAddToParent, aText) {
+	staticFunctions.create = function(aParentOrDocument, aAddToParent, aText) {
 		var newNode = (new ClassReference()).init();
 		
 		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;

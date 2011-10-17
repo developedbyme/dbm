@@ -61,6 +61,17 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._animationController.setValue(aValue);
 	};
 	
+	objectFunctions.setValueWithDelay = function(aValue, aDelay) {
+		if(this._inputConnection != null && this._animationController == null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValueWithDelay", "Can't set value when property has input.");
+			return;
+		}
+		if(this._animationController == null) {
+			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
+		}
+		this._animationController.setValue(aValue, aDelay);
+	};
+	
 	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
 		if(this._animationController == null) {
 			if(this._inputConnection != null) {
@@ -70,6 +81,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
 		}
 		this._animationController.animateValue(aValue, aTime, aInterpolation, aDelay);
+	};
+	
+	objectFunctions.createTimelineControl = function() {
+		if(this._animationController == null) {
+			if(this._inputConnection != null) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "createTimelineControl", "Can't set value when property has input.");
+				return;
+			}
+			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
+		}
 	};
 	
 	objectFunctions.getAnimationController = function() {
@@ -142,6 +163,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._isUpdating = aIsUpdating;
 	};
 	
+	objectFunctions.isUpdating = function() {
+		return this._isUpdating;
+	};
+	
 	objectFunctions.update = function() {
 		dbm.singletons.dbmFlowManager.updateProperty(this);
 		
@@ -149,12 +174,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	objectFunctions.startUpdating = function() {
+		if(this._isUpdating) return this;
+		
 		dbm.singletons.dbmFlowManager.addUpdatedProperty(this);
 		
 		return this;
 	};
 	
 	objectFunctions.stopUpdating = function() {
+		if(!this._isUpdating) return this;
+		
 		dbm.singletons.dbmFlowManager.removeUpdatedProperty(this);
 		
 		return this;
@@ -346,8 +375,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	staticFunctions.create = function(aObjectInput, aValue) {
-		console.log("com.developedbyme.core.objectparts.Property::create");
-		console.log(aObjectInput, aValue);
+		//console.log("com.developedbyme.core.objectparts.Property::create");
+		//console.log(aObjectInput, aValue);
 		var newProperty = (new Property()).init();
 		aObjectInput._linkRegistration_addObjectProperty(newProperty);
 		newProperty._linkRegistration_setObjectInputConnection(aObjectInput);

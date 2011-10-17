@@ -9,7 +9,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	var PlaceHtmlElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
 	
-	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
+	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::init");
@@ -25,6 +25,11 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.setElement = function(aElement) {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::setElement");
+		if(aElement == null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setElement", "Trying to set element to null. Use removeElement() to remove element.");
+			this.removeElement();
+			return;
+		}
 		this._htmlElement = aElement;
 		if(this._htmlElement.parentNode != null) {
 			this._parentHtmlElement = this._htmlElement.parentNode;
@@ -33,6 +38,31 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		if(dbm.singletons.dbmHtmlDomManager != undefined) {
 			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, this._htmlElement);
 		}
+		
+		return this;
+	};
+	
+	objectFunctions.removeElement = function(aElement) {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::removeElement");
+		if(this._htmlElement == aElement) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeElement", "Element is not set.");
+			return;
+		}
+		
+		if(dbm.singletons.dbmHtmlDomManager != undefined) {
+			dbm.singletons.dbmHtmlDomManager.removeHtmlObject(this, this._htmlElement);
+		}
+		
+		if(this._parentHtmlElement != null) {
+			this.removeFromDom();
+			this._parentHtmlElement = null;
+		}
+		
+		if(this._placementNode != null) {
+			this._placementNode.getProperty("element").disconnectOutput();
+		}
+		
+		this._htmlElement = null;
 		
 		return this;
 	};
@@ -119,6 +149,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 			case "rotate":
 			case "pivotX":
 			case "pivotY":
+			case "display":
 				if(this._placementNode != null) {
 					return this._placementNode.getProperty(aName);
 				}
@@ -127,6 +158,27 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		}
 		
 		return this.superCall(aName);
+	};
+	
+	objectFunctions.getHtmlCreator = function() {
+		//console.log("com.developedbyme.core.FlowBaseObject::getHtmlCreator");
+		if(this._htmlElement != null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(this._htmlElement));
+		}
+		else if(this._parentHtmlElement != null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(this._parentHtmlElement));
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getHtmlCreator", "Element or parent must be set before getting the html creator.");
+		return null;
+	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		if(this._parentHtmlElement != null && this._htmlElement != null) {
+			this.removeFromDom();
+		}
+		
+		this.superCall();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
@@ -141,13 +193,14 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
 		var newNode = (new ClassReference()).init();
 		
-		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
-		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
 		
-		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
 		
 		newNode.setElement(htmlCreator.createNode("div", aAttributes));
-		newNode.setParent(theParent);
+		
 		if(aAddToParent != false) {
 			newNode.addToDom();
 		}

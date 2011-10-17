@@ -5,6 +5,7 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 	
 	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
 	var CssCursorTypes = dbm.importClass("com.developedbyme.constants.CssCursorTypes");
+	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.gui.buttons.BaseButton::init");
@@ -21,7 +22,8 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		
 		this.superCall(aElement);
 		
-		this.getExtendedEvent().linkJavascriptEvent(aElement, "click", ButtonExtendedEventIds.CLICK, ButtonExtendedEventIds.CLICK, true, true);
+		InteractionExtendedEventSetup.addClickEvents(this.getExtendedEvent(), aElement, false);
+		InteractionExtendedEventSetup.addMouseOverEvents(this.getExtendedEvent(), aElement, false);
 		
 		return this;
 	};
@@ -34,6 +36,7 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		}
 		
 		this.getExtendedEvent().activateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
+		this.getExtendedEvent().activateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
 		
 		return this;
 	};
@@ -46,6 +49,7 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		}
 		
 		this.getExtendedEvent().deactivateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
+		this.getExtendedEvent().deactivateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
 		
 		return this;
 	};
@@ -56,6 +60,9 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 			case ButtonExtendedEventIds.CLICK:
 			case ButtonExtendedEventIds.MOUSE_OVER:
 			case ButtonExtendedEventIds.MOUSE_OUT:
+			case ButtonExtendedEventIds.PRESS:
+			case ButtonExtendedEventIds.RELEASE:
+			case ButtonExtendedEventIds.RELEASE_OUTSIDE:
 				return true;
 		}
 		

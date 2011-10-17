@@ -38,6 +38,8 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 	};
 	
 	staticFunctions.getChild = function(aXml, aChildName) {
+		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChild (static)");
+		//console.log(aXml, aChildName);
 		if(aXml == null) {
 			if(ClassReference.WARN_FOR_NO_XML) {
 				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChild", "Xml is null");

@@ -3,6 +3,8 @@ dbm.registerClass("com.developedbyme.utils.css.CssFunctions", null, function(obj
 	
 	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
 	
+	staticFunctions.BROWSER_CSS_PREFIXES = ["-webkit-", "-khtml-", "-moz-", "-o-", "-ms-"];
+	
 	staticFunctions.isLengthProperty = function(aProperty) {
 		switch(aProperty) {
 			case "border-top-width":
@@ -39,6 +41,29 @@ dbm.registerClass("com.developedbyme.utils.css.CssFunctions", null, function(obj
 		}
 		return false;
 	};
+	
+	staticFunctions.getBrowserSpecificCssString = function(aProperty, aValue) {
+		var currentArray = ClassReference.BROWSER_CSS_PREFIXES;
+		var currentArrayLength = currentArray.length;
+		var returnString = aProperty + ": " + aValue + ";";
+		for(var i = 0; i < currentArrayLength; i++) {
+			returnString += " " + currentArray[i]+aProperty + ": " + aValue + ";";
+		}
+		
+		
+		return returnString;
+	};
+	
+	staticFunctions.getBrowserSpecificCssObject = function(aProperty, aValue) {
+		var currentArray = ClassReference.BROWSER_CSS_PREFIXES;
+		var currentArrayLength = currentArray.length;
+		var returnObject = new Object();
+		returnObject[aProperty] = aValue;
+		for(var i = 0; i < currentArrayLength; i++) {
+			returnObject[currentArray[i]+aProperty] = aValue;
+		}
+	};
+	
 });
 
 

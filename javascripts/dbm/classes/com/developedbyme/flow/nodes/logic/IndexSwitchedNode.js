@@ -29,6 +29,18 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode", "com.d
 		this._outputValue.setValueWithFlow(selectionArray[indexValue], aFlowUpdateNumber);
 	};
 	
+	objectFunctions.reset = function() {
+		//console.log("com.developedbyme.flow.nodes.logic.IndexSwitchedNode::reset");
+		
+		var selectionArray = this._array.getValueWithoutFlow();
+		selectionArray.splice(0, selectionArray.length);
+		this._array.setAsDirty();
+		
+		if(this._index.canBeSet()) {
+			this._index.setValue(-1);
+		}
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		this.superCall();
 		

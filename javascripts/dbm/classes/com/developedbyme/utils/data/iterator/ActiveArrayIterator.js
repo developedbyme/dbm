@@ -151,6 +151,8 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	 * Removes an item from the list.
 	 */
 	objectFunctions.removeItem = function(aObject) {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::removeItem");
+		//console.log(aObject);
 		if(!this._isActive || this._canRemoveItemsWhileActive) {
 			this.superCall(aObject);
 		}

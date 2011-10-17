@@ -108,7 +108,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
 		newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		if(aValue != null) {
-			newExternalCssVariableProperty.setvalue(aValue);
+			newExternalCssVariableProperty.setValue(aValue);
 		}
 		return newExternalCssVariableProperty;
 	};

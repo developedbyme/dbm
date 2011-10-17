@@ -53,15 +53,18 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersectionWithCircle2d", n
 	 * Finds the intersections between a line and a circle
 	 */
 	objectFunctions.findIntersection = function(aLinePoint, aLineVector, aCirclePoint, aRadius) {
+		//console.log("com.developedbyme.Global.Utilities.Math.LineIntersectionWithCircle2d::findIntersection");
 		var closestParameter = LineIntersection2d.findClosestParameterToPoint(aLinePoint, aLineVector, aCirclePoint);
-		var closestVector =  ClassReference.getTempPoint();
+		var closestVector =  ClassReference.getTempVector();
 		closestVector.x = (aLinePoint.x+closestParameter*aLineVector.x)-aCirclePoint.x;
 		closestVector.y = (aLinePoint.y+closestParameter*aLineVector.y)-aCirclePoint.y;
 		var lineLength = VectorFunctions.lengthFromVector(aLineVector);
 		
 		var theLength = VectorFunctions.lengthFromVector(closestVector);
 		
-		if(theLength > theLength) {
+		console.log(theLength, lineLength);
+		
+		if(theLength > aRadius) {
 			this._setAsNullResult();
 			return false;
 		}
@@ -86,17 +89,17 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersectionWithCircle2d", n
 		var sideMultiplier = 1; //METODO
 		
 		VectorFunctions.normalizeSelf2d(closestVector);
-		var normalLineVector =  ClassReference.getTempPoint();
+		var normalLineVector =  ClassReference.getTempVector();
 		normalLineVector.x = -1*aLineVector.y;
 		normalLineVector.y = aLineVector.x;
 		VectorFunctions.normalizeSelf2d(normalLineVector);
 		
 		var sideMultiplier = -1*VectorFunctions.dotProduct2d(closestVector, normalLineVector);
 		
-		this.point1.x = aRadius*Math.cos(baseAngle+sideMultiplier*offsetAngle);
-		this.point1.y = aRadius*Math.sin(baseAngle+sideMultiplier*offsetAngle);
-		this.point2.x = aRadius*Math.cos(baseAngle-sideMultiplier*offsetAngle);
-		this.point2.y = aRadius*Math.sin(baseAngle-sideMultiplier*offsetAngle);
+		this.point1.x = aCirclePoint.x+aRadius*Math.cos(baseAngle+sideMultiplier*offsetAngle);
+		this.point1.y = aCirclePoint.y+aRadius*Math.sin(baseAngle+sideMultiplier*offsetAngle);
+		this.point2.x = aCirclePoint.x+aRadius*Math.cos(baseAngle-sideMultiplier*offsetAngle);
+		this.point2.y = aCirclePoint.y+aRadius*Math.sin(baseAngle-sideMultiplier*offsetAngle);
 		
 		this.parameter1 = VectorFunctions.lengthFromVectorValues2d(this.point1.x-aLinePoint.x, this.point1.y-aLinePoint.y)/lineLength;
 		this.parameter2 = VectorFunctions.lengthFromVectorValues2d(this.point2.x-aLinePoint.x, this.point2.y-aLinePoint.y)/lineLength;

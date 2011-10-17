@@ -25,6 +25,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedN
 	};
 	
 	objectFunctions.addItem = function(aItem) {
+		//console.log("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedNode::addItem");
+		//console.log(aItem.toString());
 		var selectionArray = this._array.getValue();
 		var newIndex = selectionArray.length;
 		selectionArray.push(aItem);
@@ -56,6 +58,20 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedN
 		}
 		
 		this._currentVisibleItem.setValueWithFlow(newItem, aFlowUpdateNumber);
+		//console.log("//com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedNode::_update");
+	};
+	
+	objectFunctions.reset = function() {
+		//console.log("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedNode::reset");
+		
+		var selectionArray = this._array.getValueWithoutFlow();
+		selectionArray.splice(0, selectionArray.length);
+		this._array.setAsDirty();
+		
+		if(this._index.canBeSet()) {
+			this._index.setValue(-1);
+		}
+		this._currentVisibleItem.setValue(null);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
