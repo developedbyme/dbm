@@ -158,6 +158,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._isUpdating = aIsUpdating;
 	};
 	
+	objectFunctions.isUpdating = function() {
+		return this._isUpdating;
+	};
+	
 	objectFunctions.update = function() {
 		dbm.singletons.dbmFlowManager.updateProperty(this);
 		
@@ -165,12 +169,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	objectFunctions.startUpdating = function() {
+		if(this._isUpdating) return this;
+		
 		dbm.singletons.dbmFlowManager.addUpdatedProperty(this);
 		
 		return this;
 	};
 	
 	objectFunctions.stopUpdating = function() {
+		if(!this._isUpdating) return this;
+		
 		dbm.singletons.dbmFlowManager.removeUpdatedProperty(this);
 		
 		return this;

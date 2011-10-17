@@ -18,7 +18,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		this._flowUpdateNumber = 1;
 		this._updatedProperties = (new ActiveArrayIterator()).init();
-		this._updatedProperties.setAddRemoveWhileActive(false, false);
+		this._updatedProperties.setAddRemoveWhileActive(true, true);
 		
 		return this;
 	};
@@ -135,19 +135,31 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 			currentProperty = this._updatedProperties.getNextItem();
 			//console.log(currentProperty);
 			if(currentProperty.getStatus() != FlowStatusTypes.UPDATED) {
+				if(currentProperty.isDestroyed()) {
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperties", "Property (" + currentProperty+ ") is destroyed, removing.");
+					this._updatedProperties.removeItem(currentProperty);
+					continue;
+				}
 				this.updateProperty(currentProperty);
 			}
 		}
+		//console.log("//com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
 	};
 	
 	objectFunctions.addUpdatedProperty = function(aProperty) {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::addUpdatedProperty");
+		//console.log(aProperty.toString());
+		if(aProperty.isUpdating()) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NOTICE, this, "addUpdatedProperty", "Property (" + aProperty + ") is already updating.");
+			return;
+		}
 		this._updatedProperties.push(aProperty);
 		aProperty._linkRegistration_setAsUpdating(true);
 	};
 	
 	objectFunctions.removeUpdatedProperty = function(aProperty) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::removeUpdatedProperty");
-		//console.log(aProperty);
+		//console.log(aProperty.toString());
 		this._updatedProperties.removeItem(aProperty);
 		aProperty._linkRegistration_setAsUpdating(false);
 	};
