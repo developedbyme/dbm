@@ -52,7 +52,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._position = this.createGhostProperty("position");
 		this._display = this.createGhostProperty("display");
 		
-		this._title = this.addProperty("title", ExternalVariableProperty.createWithoutExternalObject(this, null));
+		this._title = this.addProperty("title", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
 		
 		this.createUpdateFunction("position", this._updateFlowPosition, [this._x, this._y], [this._position]);
 		this.createUpdateFunction("size", this._updateFlowSize, [this._width, this._height], [this._size]);

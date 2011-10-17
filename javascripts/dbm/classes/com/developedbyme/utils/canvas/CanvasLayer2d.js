@@ -149,8 +149,11 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		if(currentDrawingLayer.hasCurves()) {
 			currentDrawingLayer = this._createNewCurrentDrawingLayer();
 		}
+		currentDrawingLayer.lineWidth = aLineWidth;
 		currentDrawingLayer.strokeStyle = aStyle;
-		//METODO: set other properties
+		currentDrawingLayer.lineCap = aLineCap;
+		currentDrawingLayer.lineJoin = aLineJoin;
+		currentDrawingLayer.miterLimit = aMiterLimit;
 	};
 	
 	objectFunctions.moveTo = function(aX, aY) {

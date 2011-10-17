@@ -40,8 +40,8 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._playbackState = this.createProperty("playbackState", PlaybackStateTypes.PLAYING);
 		this._playbackSpeed = this.createProperty("playbackSpeed", 1);
 		
-		this._volume = this.addProperty("volume", ExternalVariableProperty.createWithoutExternalObject(this, null));
-		this._muted = this.addProperty("muted", ExternalVariableProperty.createWithoutExternalObject(this, false));
+		this._volume = this.addProperty("volume", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._muted = this.addProperty("muted", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, false));
 		
 		this._outputTime = this.createProperty("outputTime", 0);
 		

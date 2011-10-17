@@ -5,6 +5,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	
 	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
 	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	objectFunctions.init = function() {
@@ -56,11 +58,20 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		return this;
 	};
 	
+	objectFunctions.addInputConnection = function(aProperty) {
+		aProperty._linkRegistration_addConnectedOutput(this);
+		this._linkRegistration_addInputConnection(aProperty);
+	};
+	
 	objectFunctions._linkRegistration_addInputConnection = function(aProperty) {
 		this._inputConnections.push(aProperty);
-		aProperty._linkRegistration_addConnectedOutput(this);
 		
 		this._flowUpdateNumber = 0;
+	};
+	
+	objectFunctions.addOutputConnection = function(aProperty) {
+		aProperty._linkRegistration_setInputUpdateFunction(this);
+		this._linkRegistration_addOutputConnection(aProperty);
 	};
 	
 	objectFunctions._linkRegistration_addOutputConnection = function(aProperty) {
@@ -117,18 +128,26 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		return returnNumber;
 	};
 	
-	objectFunctions._linkRegistration_removeInputConnection = function() {
+	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
 		//METODO: implement that the connection is sent through
+		
+		var index = ArrayFunctions.indexOfInArray(this._inputConnections, aProperty);
+		if(index != null) {
+			this._inputConnections.splice(index, 1);
+		}
+		
+		if(aProperty instanceof GhostProperty) {
+			var index = ArrayFunctions.indexOfInArray(this._ghostOutputConnections, aProperty);
+			if(index != null) {
+				this._ghostOutputConnections.splice(index, 1);
+			}
+		}
 	};
 	
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("name: " + this.name);
-	}
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

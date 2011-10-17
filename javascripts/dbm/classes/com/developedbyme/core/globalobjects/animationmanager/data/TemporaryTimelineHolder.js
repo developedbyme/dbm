@@ -23,7 +23,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.data.Te
 		if(this._properties.select(aName)) {
 			return this._properties.currentSelectedItem;
 		}
-		var newProperty = ExternalVariableProperty.create(this, this.theObject, aName);
+		var newProperty = ExternalVariableProperty.create(this._objectProperty, this.theObject, aName);
 		newProperty.setValue(this.theObject[newProperty]);
 		newProperty.name = this.__className + "::" + aName + "(e)";
 		this._properties.addObject(aName, newProperty);
@@ -46,7 +46,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.data.Te
 			theUnit = "px";
 		}
 		
-		var newProperty = ExternalCssVariableProperty.create(this, this.theObject, aName, theUnit);
+		var newProperty = ExternalCssVariableProperty.create(this._objectProperty, this.theObject, aName, theUnit);
 		newProperty.name = this.__className + "::" + aName + "(css)";
 		//METODO: set start value
 		//var cssDeclaration = aHtmlElement.ownerDocument.defaultView.getComputedStyle(aHtmlElement);

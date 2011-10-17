@@ -73,7 +73,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 		newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(this, this._windowClosed, [GetVariableObject.createSelectPerformingObjectCommand()]));
 		this._windows.addObject(aName, newWindow);
 		
-		this._updateFlowDepthFunction._linkRegistration_addInputConnection(newWindow.getProperty("z"));
+		this._updateFlowDepthFunction.addInputConnection(newWindow.getProperty("z"));
 		
 		return newWindow;
 	};

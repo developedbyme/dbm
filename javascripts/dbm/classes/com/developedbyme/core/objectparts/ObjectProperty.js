@@ -3,13 +3,14 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 	
 	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.objectparts.ObjectProperty::init");
 		
 		this.superCall();
-		this._object = null;
 		this._isOutput = true;
 		this._objectProperties = new Array();
 		
@@ -24,9 +25,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 		
 	};
 	
-	objectFunctions.setup = function(aObject, aIsOutput) {
-		this._object = null;
-		this._isOutput = true;
+	objectFunctions.setup = function(aObject) {
+		this._value = aObject;
 		return this;
 	};
 	
@@ -38,6 +38,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 	
 	objectFunctions._linkRegistration_addObjectProperty = function(aProperty) {
 		this._objectProperties.push(aProperty);
+	};
+	
+	objectFunctions._linkRegistration_removeObjectProperty = function(aProperty) {
+		var objectIndex = ArrayFunctions.indexOfInArray(this._objectProperties, aProperty);
+		if(objectIndex != -1) {
+			this._objectProperties.splice(objectIndex, 1);
+		}
 	};
 	
 	objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
@@ -68,9 +75,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 		this.superCall(aReturnArray);
 	};
 	
-	staticFunctions.create = function(aObject, aIsOutput) {
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._objectProperties = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aObject) {
 		var newObjectProperty = (new ObjectProperty()).init();
-		newObjectProperty.setup(aObject, aIsOutput);
+		newObjectProperty.setup(aObject);
 		return newObjectProperty;
 	};
 	

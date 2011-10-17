@@ -27,30 +27,35 @@ dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbym
 		this._updateFunction = IterativeUpdateFunction.create(this, this._update, [this._index, this._length], []);
 		this._updateFunction.name = "IterativeFlowGroup::default";
 		
+		//console.log("//com.developedbyme.flow.IterativeFlowGroup::init");
 		return this;
 	};
 	
 	objectFunctions.createInputProperty = function(aName, aValue) {
 		var newProperty = this.superCall(aName, aValue);
 		//console.log(this, this._updateFunction);
-		this._updateFunction._linkRegistration_addInputConnection(newProperty);
+		this._updateFunction.addInputConnection(newProperty);
 		return newProperty;
 	};
 	
 	objectFunctions.createOutputProperty = function(aName, aValue) {
 		var newProperty = this.superCall(aName, aValue);
-		this._updateFunction._linkRegistration_addInputConnection(newProperty);
+		this._updateFunction.addInputConnection(newProperty);
 		return newProperty;
 	};
 	
 	objectFunctions._createInputPropertyWithoutUpdate = function(aName, aValue) {
+		//console.log("com.developedbyme.flow.IterativeFlowGroup::_createInputPropertyWithoutUpdate");
+		//console.log(this._objectProperty);
 		var newProperty = Property.create(this._objectProperty, aValue);
 		newProperty.name = "input::" + aName;
 		this._inputProperties.addObject(aName, newProperty);
+		//console.log("//com.developedbyme.flow.IterativeFlowGroup::_createInputPropertyWithoutUpdate");
 		return newProperty;
 	};
 	
 	objectFunctions._createOutputPropertyWithoutUpdate = function(aName, aValue) {
+		//console.log("com.developedbyme.flow.IterativeFlowGroup::_createOutputPropertyWithoutUpdate");
 		var newProperty = Property.create(this._objectProperty, aValue);
 		newProperty.name = "output::" + aName;
 		this._outputProperties.addObject(aName, newProperty);
@@ -93,7 +98,7 @@ dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbym
 	
 	objectFunctions.createIterationInputProperty = function(aName, aIteration, aConnectedProperty) {
 		var fullName = "iteration_" + aIteration + "_" + aName;
-		var theProperty = this.createInputPropertyWithoutUpdate(fullName, null);
+		var theProperty = this._createInputPropertyWithoutUpdate(fullName, null);
 		if(!this._inputProperties.select(aName)) {
 			this._createInputPropertyWithoutUpdate(aName, null);
 		}
@@ -107,7 +112,7 @@ dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbym
 		if(!this._outputProperties.select(aName)) {
 			this.createOutputProperty(aName, null);
 		}
-		this._updateFunction._linkRegistration_addOutputConnection(theProperty);
+		this._updateFunction.addOutputConnection(theProperty);
 		dbm.singletons.dbmFlowManager.connectProperties(theProperty, aConnectedProperty);
 		return theProperty;
 	};

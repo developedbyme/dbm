@@ -11,17 +11,8 @@ dbm.registerClass("com.developedbyme.flow.PropertiesHolder", "com.developedbyme.
 		return this;
 	};
 	
-	objectFunctions.performDestroy = function() {
-		
-		this.superCall();
-	};
-	
-	objectFunctions.setAllReferencesToNull = function() {
-		
-		this.superCall();
-	};
-	
 	staticFunctions.create = function(aProperties) {
+		//console.log("com.developedbyme.flow.PropertiesHolder::create");
 		var newNode = (new ClassReference()).init();
 		if(aProperties != null) {
 			for(var objectName in aProperties) {

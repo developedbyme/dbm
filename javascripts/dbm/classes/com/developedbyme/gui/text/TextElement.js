@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.gui.text.TextElement", "com.developedbyme.g
 		
 		this.superCall();
 		
-		this._text = this.addProperty("text", ExternalVariableProperty.createWithoutExternalObject(this, null));
+		this._text = this.addProperty("text", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
 		
 		return this;
 	};

@@ -20,5 +20,7 @@ dbm.runTempFunction(function() {
 		
 		dbm.singletons.dbmFlowManager.updateProperty(printTextNode.getProperty("display"));
 		console.log(additionNode2.getProperty("outputValue").getValue());
+		
+		console.log(additionNode2);
 	});
 });

@@ -120,7 +120,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 			return;
 		}
 		aOutputProperty._linkRegistration_removeConnectedOutput(aInputProperty);
-		aInputProperty._linkRegistration_removeInputConnection();
+		aInputProperty._linkRegistration_removeInputConnection(aOutputProperty);
 	};
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {

@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		
 		this.superCall();
 		
-		this._objectProperty = ObjectProperty.create(this, false);
+		this._objectProperty = ObjectProperty.create(this);
 		this._objectProperty.name = this.__className + "::object(o)";
 		this.addDestroyableObject(this._objectProperty);
 		this._properties = (new NamedArray()).init();

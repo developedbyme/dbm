@@ -264,7 +264,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.setAsDirty();
 	};
 	
-	objectFunctions._linkRegistration_removeInputConnection = function() {
+	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
 		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeInputConnection");
 		//console.log(this.name);
 		if(this._inputConnection == null) {
@@ -344,6 +344,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		
 		if(this._isUpdating) {
 			dbm.singletons.dbmFlowManager.removeUpdatedProperty(this);
+		}
+		if(this._objectInputConnection != null) {
+			this._objectInputConnection._linkRegistration_removeObjectProperty(this);
 		}
 		if(this._inputConnection != null) {
 			this.disconnectInput();

@@ -3,12 +3,12 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 	
 	var FlowGroup = dbm.importClass("com.developedbyme.flow.FlowGroup");
 	
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	
 	/**
@@ -19,11 +19,15 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 		
 		this.superCall();
 		
+		this._objectProperty = ObjectProperty.create(this);
+		this._objectProperty.name = this.__className + "::object(o)";
+		this.addDestroyableObject(this._objectProperty);
 		this._inputProperties = (new NamedArray()).init();
 		this._inputProperties.ownsObjects = true;
 		this._outputProperties = (new NamedArray()).init();
 		this._outputProperties.ownsObjects = true;
 		
+		//console.log("//com.developedbyme.flow.FlowGroup::init");
 		return this;
 	};
 	
