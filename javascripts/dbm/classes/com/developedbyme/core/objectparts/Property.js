@@ -149,6 +149,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._status;
 	};
 	
+	objectFunctions.setAlwaysUpdateFlow = function(aUpdate) {
+		this._alwaysUpdateFlow = aUpdate;
+	};
+	
 	objectFunctions.getFlowUpdateNumber = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::getFlowUpdateNumber");
 		return this._flowUpdateNumber;

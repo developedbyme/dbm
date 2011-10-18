@@ -38,6 +38,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		theMatrix.setValue(2, 1, this._y.getValueWithoutFlow());
 		
 		this._outputMatrix._internalFunctionality_setFlowUpdateNumber(aFlowUpdateNumber);
+		//console.log(aFlowUpdateNumber, this._outputMatrix.getFlowUpdateNumber());
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

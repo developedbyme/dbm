@@ -139,7 +139,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::_updateValueFlow");
 		var currentTime = this._time.getValueWithoutFlow();
 		var newValue = this.getValueAt(currentTime);
-		//console.log(newValue, currentTime, this._parts);
 		this._outputValue.setValueWithFlow(newValue, aFlowUpdateNumber);
 		
 	};

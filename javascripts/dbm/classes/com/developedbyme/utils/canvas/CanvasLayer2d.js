@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	
 	var TransformationTo2dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo2dMatrixNode");
 	
@@ -28,8 +29,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		this._treeStructureItem = null;
 		
 		this._transformationMatrix = this.createProperty("transformationMatrix", null);
+		this._transformationMatrix.setAlwaysUpdateFlow(true);
 		this._alpha = this.createProperty("alpha", 1);
 		this._compositionOperation = this.createProperty("compositeOperation", null);
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate.connectInput(this._transformationMatrix);
+		this._graphicsUpdate.connectInput(this._alpha);
+		this._graphicsUpdate.connectInput(this._compositionOperation);
 		
 		this._linkRegistration_setTransformationNode(TransformationTo2dMatrixNode.create(0, 0, 0, 1, 1));
 		

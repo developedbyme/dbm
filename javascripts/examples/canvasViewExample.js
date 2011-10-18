@@ -7,7 +7,7 @@ dbm.runTempFunction(function() {
 		
 		var canvasView = CanvasView.create(document, true, "2d");
 		
-		canvasView.getController()._numberOfLinksToResolve = 6;
+		canvasView.getController()._numberOfLinksToResolve = 15;
 		
 		var centerLayer = canvasView.getController().getLayer("/center");
 		centerLayer.getProperty("x").setValue(100);
@@ -15,6 +15,7 @@ dbm.runTempFunction(function() {
 		
 		var moveLayer = canvasView.getController().getLayer("/center/move");
 		moveLayer.getProperty("rotate").setValue(2*Math.PI/(canvasView.getController()._numberOfLinksToResolve+1));
+		moveLayer.getProperty("rotate").animateValue(2*Math.PI, 100, "linear");
 		
 		var graphicsLayer = canvasView.getController().getLayer("/center/move/graphics");
 		graphicsLayer.setStrokeStyle(0, "#FF0000");
@@ -24,7 +25,7 @@ dbm.runTempFunction(function() {
 		var graphicsLayer = canvasView.getController().createLink("/center/move/copy", "/center/move");
 		
 		canvasView.getController().debugTraceStructure();
-		canvasView.getController().getProperty("display").update();
-		
+		canvasView.getController().getProperty("display").startUpdating();
+		//console.log(canvasView);
 	});
 });

@@ -13,6 +13,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
@@ -30,13 +31,14 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		this._canvas = this.createProperty("canvas", null);
 		this._clearBeforeDrawing = true;
 		this._display = this.createGhostProperty("display");
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
 		
 		this._hierarchy = TreeStructure.create();
 		var rootLayer = CanvasLayer2d.create();
 		this._hierarchy.getRoot().data = rootLayer;
 		rootLayer._linkRegistration_setTreeStructureItem(this._hierarchy.getRoot());
 		
-		this.createUpdateFunction("default", this._updateFlow, [this._canvas], [this._display]);
+		this.createUpdateFunction("default", this._updateFlow, [this._graphicsUpdate, this._canvas], [this._display]);
 		
 		return this;
 	};
@@ -51,6 +53,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 			var newLayer = CanvasLayer2d.create();
 			currentItem.data = newLayer;
 			newLayer._linkRegistration_setTreeStructureItem(currentItem);
+			this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));
 		}
 		return currentItem.data;
 	};
@@ -71,7 +74,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		var currentLayer = this.getRootLayer();
 		
 		if(this._clearBeforeDrawing) {
-			currentContext.clearRect(0, 0, currentContext.width, currentContext.height);
+			currentContext.clearRect(0, 0, canvas.width, canvas.height);
 		}
 		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
 	};
