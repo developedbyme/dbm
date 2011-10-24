@@ -15,7 +15,7 @@ dbm.runTempFunction(function() {
 		
 		var moveLayer = canvasView.getController().getLayer("/center/move");
 		moveLayer.getProperty("rotate").setValue(2*Math.PI/(canvasView.getController()._numberOfLinksToResolve+1));
-		moveLayer.getProperty("rotate").animateValue(2*Math.PI-0.005, 30, "linear");
+		moveLayer.getProperty("rotate").animateValue(2*Math.PI-0.005, 60, "linear");
 		moveLayer.getProperty("alpha").setValue(0.98);
 		
 		var graphicsLayer = canvasView.getController().getLayer("/center/move/graphics");
