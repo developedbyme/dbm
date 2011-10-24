@@ -81,12 +81,13 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	objectFunctions.getPointOnCurve = function(aParameter, aOutputPoint) {
 		//console.log("com.developedbyme.core.data.curves.BezierCurve::getPointOnCurve");
 		//console.log(aParameter, aOutputPoint);
+		
 		var segmentStart = Math.floor(aParameter);
 		var localParameter = aParameter-segmentStart;
 		var compactMoveLength = this._isCompact ? 0 : 1;
-		var maxParameter = (this.pointsArray.length/(this._curveDegree+compactMoveLength));
+		var maxParameter = (this.pointsArray.length/(this._curveDegree+compactMoveLength))-1;
 		if(aParameter < 0 || segmentStart > maxParameter) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPointOnCurve", "Parameter " + aParameter + " is out of range 0 - " + maxParameter + ".");
 			aOutputPoint.x = NaN;
 			aOutputPoint.y = NaN;
 			aOutputPoint.z = NaN;
@@ -99,6 +100,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 		var segmentPointsArray = new Array(this._curveDegree+1);
 		this._getSegmentArray(segmentStart, segmentPointsArray);
 		dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(segmentPointsArray, localParameter, aOutputPoint);
+		//console.log("//com.developedbyme.core.data.curves.BezierCurve::getPointOnCurve");
 	}
 	
 	objectFunctions.getTangentOnCurve = function(aParameter, aOutputPoint) {
@@ -107,7 +109,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 		var localParameter = aParameter-segmentStart;
 		var maxParameter = (this.pointsArray.length/(this._curveDegree+1));
 		if(aParameter < 0 || segmentStart > maxParameter) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getTangentOnCurve", "Parameter " + aParameter + " is out of range 0 - " + maxParameter + ".");
 			aOutputPoint.x = NaN;
 			aOutputPoint.y = NaN;
 			return;
@@ -137,6 +139,8 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	};
 	
 	staticFunctions.createWithLength = function(aDegree, aIsCompact, aLength) {
+		//console.log("com.developedbyme.core.data.curves.BezierCurve::createWithLength");
+		//console.log(aDegree, aIsCompact, aLength);
 		var newSet = (new ClassReference()).init();
 		newSet.setCurveDegree(aDegree);
 		newSet.setAsCompact(aIsCompact);

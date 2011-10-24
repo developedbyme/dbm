@@ -1,6 +1,8 @@
 dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	
+	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
+	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
@@ -18,6 +20,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	};
 	
 	objectFunctions.addDestroyableObject = function(aObject) {
+		if(!(aObject instanceof BaseObject)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addDestroyableObject", "Object " + aObject + " is not a base object so it can't be destroyed by " + this + ".");
+			return aObject;
+		}
+		
 		if(this._destroyableObjects == null) {
 			this._destroyableObjects = new Array();
 		}
@@ -53,8 +60,20 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		//console.log(this.toString());
 		this._isDestroyed = true;
 		
-		this.performDestroy();
-		this.setAllReferencesToNull();
+		try {
+			this.performDestroy();
+			if(dbm.singletons.dbmDebugManager) {
+				dbm.singletons.dbmDebugManager.checkThatObjectIsDestroyed(this);
+			}
+			this.setAllReferencesToNull();
+			if(dbm.singletons.dbmDebugManager) {
+				dbm.singletons.dbmDebugManager.checkThatObjectHasNoReferences(this);
+			}
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "destroy", "Un error occured while destroying.");
+			ErrorManager.getInstance().reportError(this, "destroy", theError);
+		}
 	};
 	
 	objectFunctions.performDestroy = function() {
@@ -64,6 +83,10 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		this._destroyableObjects = null;
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		return true;
 	};
 	
 	objectFunctions.toString = function() {

@@ -15,6 +15,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		this._canRemoveItemsWhileActive = true;
 			
 		this._commandQueue = (new CommandQueue()).init();
+		this.addDestroyableObject(this._commandQueue);
 		
 		this._commandQueue.createFunctionTypeCommand("push", this, this.push, true);
 		this._commandQueue.createFunctionTypeCommand("pop", this, this.push, false);
@@ -105,7 +106,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		else {
 			this._commandQueue.createQueuedCommand("push", aObject);
 		}
-	}
+	};
 	
 	/**
 	 * Pops an item from the list.
@@ -117,7 +118,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		else {
 			this._commandQueue.createQueuedCommand("pop", null);
 		}
-	}
+	};
 	
 	/**
 	 * Inserts an item in the beginning of the list.
@@ -133,7 +134,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		else {
 			this._commandQueue.createQueuedCommand("unshift", aObject);
 		}
-	}
+	};
 	
 	/**
 	 * Shifts an object from the list.
@@ -145,7 +146,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		else {
 			this._commandQueue.createQueuedCommand("shift", null);
 		}
-	}
+	};
 	
 	/**
 	 * Removes an item from the list.
@@ -159,7 +160,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		else {
 			this._commandQueue.createQueuedCommand("removeItem", aObject);
 		}
-	}
+	};
 	
 	/**
 	 * Removes an object at a specified index.
@@ -171,7 +172,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		else {
 			this._commandQueue.createQueuedCommand("removeItemAt", aIndex);
 		}
-	}
+	};
 	
 	/**
 	 * Adds an item at the specifed index, moving every item after it.
@@ -187,18 +188,11 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		else {
 			this._commandQueue.createQueuedCommand("addItemAt", {"object": aObject, "index": aIndex});
 		}
-	}
-	
-	objectFunctions.performDestroy = function() {
-		
-		
-		
-		this.superCall();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		
+		this._commandQueue = null;
 		
 		this.superCall();
 	};

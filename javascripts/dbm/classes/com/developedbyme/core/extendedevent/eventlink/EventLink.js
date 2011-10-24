@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		var thisPointer = this;
 		this._eventCallback = function(aEvent) {
 			//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_eventCallback");
+			//console.log(aEvent);
 			//console.log(thisPointer._javascriptEventName);
 			if(thisPointer._performerObject == null) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, thisPointer, "_eventCallback", "Performer object is null.");
@@ -35,6 +36,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 	};
 	
 	objectFunctions.setupLink = function(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName) {
+		
 		this._performerObject = aEventPerformer;
 		this._eventDispatcher = aEventDispatcher;
 		this._javascriptEventName = aJavascriptEventName;
@@ -48,7 +50,13 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		if(this._isActive) return this;
 		
 		this._isActive = true;
-		this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, false);
+		try {
+			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, false);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "activate", "Event listener " + this._javascriptEventName + " couldn't be added to.");
+			ErrorManager.getInstance().reportError(this, "activate", theError);
+		}
 		
 		return this;
 	};
@@ -57,7 +65,13 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		if(!this._isActive) return this;
 		
 		this._isActive = false;
-		this._eventDispatcher.removeEventListener(this._javascriptEventName, this._eventCallback, false);
+		try {
+			this._eventDispatcher.removeEventListener(this._javascriptEventName, this._eventCallback, false);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "deactivate", "Event listener " + this._javascriptEventName + " couldn't be removed from.");
+			ErrorManager.getInstance().reportError(this, "deactivate", theError);
+		}
 		
 		return this;
 	};

@@ -9,6 +9,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 	
 	var CurveEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var CreateBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
 	var CreateMultiSegmentBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
 	
@@ -21,7 +25,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 	staticFunctions.DEFAULT_EXACTNESS = 0.01;
 		
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator");
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::init");
 		
 		this._evaluatorsArray = new Array();
 		this._bezierMultipliersArraysArray = new Array();
@@ -30,16 +34,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 	}
 	
 	objectFunctions.addEvaluator = function(aEvaluator) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::addEvaluator");
+		//console.log(aEvaluator);
 		this._evaluatorsArray.push(aEvaluator);
 	}
 	
 	objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPartOfCurve");
+		//console.log(aPointSet, this._evaluatorsArray);
 		
 		var isForward = (aEndParameter >= aStartParameter);
 		
 		var currentArray = this._evaluatorsArray;
 		var currentArrayLength = currentArray.length;
-		for (var i = 0; ++i < currentArrayLength; i++) {
+		for (var i = 0; i < currentArrayLength; i++) {
 			var currentEvaluator = currentArray[i];
 			if(currentEvaluator.canEvaluate(aPointSet)) {
 				if(isForward) {
@@ -52,11 +60,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 				return;
 			}
 		}
-		//METODO: error message
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPartOfCurve", aPointSet + " can't be evaluated.");
 		return;
 	}
 	
 	objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPointOnBezierSegment3d");
+		//console.log(aPointsArray, aParameter, aOutputPoint);
 		var curveDegree = aPointsArray.length-1;
 		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
 		var invertedParameter = (1-aParameter);

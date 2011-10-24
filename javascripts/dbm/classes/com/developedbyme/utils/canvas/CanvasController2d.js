@@ -67,6 +67,16 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		this._hierarchy.addItem(newLink, tempArray.join("/"));
 	};
 	
+	objectFunctions.createPattern = function(aImage, aRepeat) {
+		console.log("com.developedbyme.utils.canvas.CanvasController2d::createPattern");
+		console.log({image: aImage});
+		
+		aRepeat = VariableAliases.valueWithDefault(aRepeat, "repeat");
+		
+		var canvas = this._canvas.getValue();
+		return canvas.getContext("2d").createPattern(aImage, aRepeat);
+	};
+	
 	objectFunctions.draw = function() {
 		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
 		var canvas = this._canvas.getValue();
@@ -77,6 +87,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 			currentContext.clearRect(0, 0, canvas.width, canvas.height);
 		}
 		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
+		//console.log("//com.developedbyme.utils.canvas.CanvasController2d::draw");
 	};
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {

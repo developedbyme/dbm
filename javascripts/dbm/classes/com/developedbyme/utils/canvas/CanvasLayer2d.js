@@ -15,6 +15,9 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var CanvasMask2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasMask2d");
+	var CanvasTextGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d");
 	
 	var TransformationTo2dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo2dMatrixNode");
 	
@@ -32,10 +35,12 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		this._transformationMatrix.setAlwaysUpdateFlow(true);
 		this._alpha = this.createProperty("alpha", 1);
 		this._compositionOperation = this.createProperty("compositeOperation", null);
+		this._useMask = this.createProperty("useMask", false);
 		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
 		this._graphicsUpdate.connectInput(this._transformationMatrix);
 		this._graphicsUpdate.connectInput(this._alpha);
 		this._graphicsUpdate.connectInput(this._compositionOperation);
+		this._graphicsUpdate.connectInput(this._useMask);
 		
 		this._linkRegistration_setTransformationNode(TransformationTo2dMatrixNode.create(0, 0, 0, 1, 1));
 		
@@ -44,6 +49,27 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		this._graphics = new Array();
 		this._currentDrawingLayer = null;
 		this._currentDrawingPosition = Point.create(0, 0);
+		
+		return this;
+	};
+	
+	objectFunctions.getMask = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::getMask");
+		if(this._mask == null) {
+			this._mask = CanvasMask2d.create();
+			this.addDestroyableObject(this._mask);
+			this._graphicsUpdate.connectInput(this._mask.getProperty("graphicsUpdate"));
+		}
+		
+		return this._mask;
+	};
+	
+	objectFunctions.setMaskUsage = function(aUse) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::setMaskUsage");
+		
+		aUse = VariableAliases.valueWithDefault(aUse, true);
+		
+		this._useMask.setValue(aUse);
 		
 		return this;
 	};
@@ -75,8 +101,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		var transformationMatrix = this._transformationMatrix.getValue();
 		
-		aContext.transform(transformationMatrix.getValue(0, 0), transformationMatrix.getValue(1, 0), transformationMatrix.getValue(0, 1), transformationMatrix.getValue(1, 1), transformationMatrix.getValue(2, 0), transformationMatrix.getValue(2, 1));
-		//METODO: draw mask
+		aContext.transform(transformationMatrix.getValue(0, 0), transformationMatrix.getValue(0, 1), transformationMatrix.getValue(1, 0), transformationMatrix.getValue(1, 1), transformationMatrix.getValue(2, 0), transformationMatrix.getValue(2, 1));
+		if(this._mask != null && this._useMask.getValue()) {
+			this._mask.draw(aContext);
+		}
 		
 		this._drawGraphics(aContext);
 		this._drawChildren(aContext, this._treeStructureItem.getChildren(), aNumberOfLinksToResolve);
@@ -86,6 +114,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	
 	objectFunctions._drawGraphics = function(aContext) {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_drawGraphics");
+		//console.log(this._graphics);
 		
 		var currentArray = this._graphics;
 		var currentArrayLength = currentArray.length;
@@ -97,7 +126,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	
 	objectFunctions._drawChildren = function(aContext, aChildren, aNumberOfLinksToResolve) {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_drawChildren");
-		//console.log(aChildren);
+		//console.log(aNumberOfLinksToResolve);
 		
 		var currentArray = aChildren;
 		var currentArrayLength = currentArray.length;
@@ -134,8 +163,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_createNewDrawingLayer");
 		var lastDrawingLayer = this._currentDrawingLayer;
 		this._currentDrawingLayer = CanvasGraphics2d.create();
+		this._graphicsUpdate.connectInput(this._currentDrawingLayer.getProperty("graphicsUpdate"));
 		if(lastDrawingLayer != null) {
-			this._currentDrawingLayer.strokeStyle = lastDrawingLayer.strokeStyle;
+			this._currentDrawingLayer.getProperty("lineWidth").setValue(lastDrawingLayer.getProperty("lineWidth").getValue());
+			this._currentDrawingLayer.getProperty("strokeStyle").setValue(lastDrawingLayer.getProperty("strokeStyle").getValue());
+			this._currentDrawingLayer.getProperty("lineCap").setValue(lastDrawingLayer.getProperty("lineCap").getValue());
+			this._currentDrawingLayer.getProperty("lineJoin").setValue(lastDrawingLayer.getProperty("lineJoin").getValue());
+			this._currentDrawingLayer.getProperty("miterLimit").setValue(lastDrawingLayer.getProperty("miterLimit").getValue());
 		}
 		this._graphics.push(this._currentDrawingLayer);
 		return this._currentDrawingLayer;
@@ -146,7 +180,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		if(currentDrawingLayer.hasCurves()) {
 			currentDrawingLayer = this._createNewCurrentDrawingLayer();
 		}
-		currentDrawingLayer.fillStyle = aStyle;
+		currentDrawingLayer.getProperty("fillStyle").setValue(aStyle);
 	};
 	
 	objectFunctions.setStrokeStyle = function(aLineWidth, aStyle, aLineCap, aLineJoin, aMiterLimit) {
@@ -155,11 +189,11 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		if(currentDrawingLayer.hasCurves()) {
 			currentDrawingLayer = this._createNewCurrentDrawingLayer();
 		}
-		currentDrawingLayer.lineWidth = aLineWidth;
-		currentDrawingLayer.strokeStyle = aStyle;
-		currentDrawingLayer.lineCap = aLineCap;
-		currentDrawingLayer.lineJoin = aLineJoin;
-		currentDrawingLayer.miterLimit = aMiterLimit;
+		currentDrawingLayer.getProperty("lineWidth").setValue(aLineWidth);
+		currentDrawingLayer.getProperty("strokeStyle").setValue(aStyle);
+		currentDrawingLayer.getProperty("lineCap").setValue(aLineCap);
+		currentDrawingLayer.getProperty("lineJoin").setValue(aLineJoin);
+		currentDrawingLayer.getProperty("miterLimit").setValue(aMiterLimit);
 	};
 	
 	objectFunctions.moveTo = function(aX, aY) {
@@ -229,6 +263,76 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._currentDrawingPosition.x = aX;
 		this._currentDrawingPosition.y = aY;
+	};
+	
+	objectFunctions.drawCurve = function(aCurve, aStartParameter, aEndParameter) {
+		
+		var aStartParameter = VariableAliases.valueWithDefault(aStartParameter, 0);
+		var aEndParameter = VariableAliases.valueWithDefault(aEndParameter, aCurve.getMaxParameter());
+		
+		var currentDrawingLayer = this._getCurrentDrawingLayer();
+		
+		var newCurveDrawer = CurveDrawer2d.create(aCurve);
+		
+		currentDrawingLayer.addCurve(newCurveDrawer);
+		
+		newCurveDrawer.getProperty("startParameter").setValue(aStartParameter);
+		newCurveDrawer.getProperty("endParameter").setValue(aEndParameter);
+		
+		newCurveDrawer.getProperty("curve").setAsDirty();
+		
+		aCurve.getPointOnCurve(aEndParameter, this._currentDrawingPosition);
+		
+		return newCurveDrawer;
+	};
+	
+	objectFunctions.maskCurve = function(aCurve, aStartParameter, aEndParameter) {
+		
+		var aStartParameter = VariableAliases.valueWithDefault(aStartParameter, 0);
+		var aEndParameter = VariableAliases.valueWithDefault(aEndParameter, aCurve.getMaxParameter());
+		
+		var currentDrawingLayer = this.getMask();
+		
+		var newCurveDrawer = CurveDrawer2d.create(aCurve);
+		
+		currentDrawingLayer.addCurve(newCurveDrawer);
+		
+		newCurveDrawer.getProperty("startParameter").setValue(aStartParameter);
+		newCurveDrawer.getProperty("endParameter").setValue(aEndParameter);
+		
+		newCurveDrawer.getProperty("curve").setAsDirty();
+		
+		return newCurveDrawer;
+	};
+	
+	objectFunctions.closePath = function() {
+		
+		var currentDrawingLayer = this._getCurrentDrawingLayer();
+		currentDrawingLayer.closePath = true;
+		
+		currentDrawingLayer.getStartPoint(this._currentDrawingPosition);
+		this.stopWorkingOnCurrentPath();
+	};
+	
+	objectFunctions.stopWorkingOnCurrentPath = function() {
+		this._createNewDrawingLayer();
+	};
+	
+	objectFunctions.drawImage = function(aImage) {
+		
+		var newDrawingLayer = CanvasImageGraphics2d.create(aImage);
+		this._graphicsUpdate.connectInput(newDrawingLayer.getProperty("graphicsUpdate"));
+		this._graphics.push(newDrawingLayer);
+		return newDrawingLayer; 
+	};
+	
+	objectFunctions.drawText = function(aText) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::drawText");
+		
+		var newDrawingLayer = CanvasTextGraphics2d.create(aText);
+		this._graphicsUpdate.connectInput(newDrawingLayer.getProperty("graphicsUpdate"));
+		this._graphics.push(newDrawingLayer);
+		return newDrawingLayer; 
 	};
 	
 	objectFunctions.getProperty = function(aName) {

@@ -42,6 +42,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 				aEventDataObject.addResult(theResult);
 			}
 			catch(theError) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "perform", "Error occured in " + theObject + " " + theFunction);
 				ErrorManager.getInstance().reportError(this, "perform", theError);
 				return CommandStatusTypes.ERROR;
 			}

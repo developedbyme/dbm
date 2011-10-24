@@ -91,7 +91,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 				//numberOfSkipped++;
 				continue;
 			}
-			currentConnection.updateFlow();
+			try {
+				currentConnection.updateFlow();
+			}
+			catch(theError) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateProperty", "Un error occured while updating " + currentConnection + " started from " + aProperty + ".");
+				ErrorManager.getInstance().reportError(this, "updateProperty", theError);
+			}
 			//nodeNames.push(currentConnection.name);
 		}
 		
@@ -140,7 +146,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 					this._updatedProperties.removeItem(currentProperty);
 					continue;
 				}
-				this.updateProperty(currentProperty);
+				try {
+					this.updateProperty(currentProperty);
+				}
+				catch(theError) {
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateProperties", "Un error occured while updating " + currentUpdater +".");
+					ErrorManager.getInstance().reportError(this, "updateProperties", theError);
+				}
 			}
 		}
 		//console.log("//com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");

@@ -98,6 +98,8 @@ if(dbm.isCreated != true) {
 		scriptTag.src = aFilePath;
 		scriptTag.async = false;
 		
+		this._currentScriptNode = scriptTag;
+		
 		scriptTag.addEventListener("load", dbm._onFileLoaded, false);
 		scriptTag.addEventListener("error", dbm._onFileLoaded, false);
 		this._document.head.appendChild(scriptTag);

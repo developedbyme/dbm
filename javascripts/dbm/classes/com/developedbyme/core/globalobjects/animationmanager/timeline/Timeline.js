@@ -217,6 +217,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		return this;
 	};
 	
+	objectFunctions.animateValueAt = function(aValue, aTime, aInterpolation, aStartTime) {
+		
+		var startValue = this.getValueAt(aStartTime);
+		
+		if(typeof(aInterpolation) == JavascriptObjectTypes.TYPE_STRING) {
+			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(aInterpolation);
+		}
+		else if(aInterpolation == null) {
+			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(InterpolationTypes.LINEAR);
+		}
+		
+		var newPart = InterpolationTimelinePart.create(startValue, aValue, aInterpolation, aStartTime, aTime);
+		this.addPart(newPart);
+		
+		return this;
+	};
+	
 	objectFunctions.addPart = function(aPart) {
 		this._stopPartsAt(aPart.startApplyTime);
 		this._parts.push(aPart);

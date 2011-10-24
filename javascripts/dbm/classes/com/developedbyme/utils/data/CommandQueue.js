@@ -97,16 +97,10 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 		this._currentPosition = 0;
 	}
 	
-	objectFunctions.performDestroy = function() {
-		
-		
-		
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		
+		this._commandQueueArray = null;
+		this._commandsObject = null;
 		
 		this.superCall();
 	};

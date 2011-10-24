@@ -61,6 +61,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._verticalMargin = 0;
 		this._horizontalMargin = 0;
 		
+		this._isResizing = false;
 		this._hasMargins = false;
 		this._hasSpecificMargins = false;
 		this._marginLeft = 0;
@@ -68,17 +69,26 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._marginRight = 0;
 		this._marginBottom = 0;
 		
+		//MENOTE: MSIE 9 can change screen position of windows while executing code so it must be cached to not git errors.
+		this._cachedScreenX = 0;
+		this._cachedScreenY = 0;
+		
 		this._status = false;
 		this._toolbar = false;
 		this._location = false;
 		this._menubar = false;
 		this._directories = false;
-		this._resizable = false;
+		this._resizable = true;
 		this._scrollbars = true;
 		
 		this._updatePositionFunction = BrowserDependentFunction.create(this).setDefaultFunction(this._browser_default_updatePosition);
 		this.addDestroyableObject(this._updatePositionFunction);
 		this._updatePositionFunction.addBrowserSpecificFunction("Firefox", null, this._browser_firefox_updatePosition);
+		this._updatePositionFunction.addBrowserSpecificFunction("MSIE", null, this._browser_msie_updatePosition);
+		
+		this._windowReadyDirectlyFunction = BrowserDependentFunction.create(this).setDefaultFunction(this._browser_default_windowReadyDirectly);
+		this.addDestroyableObject(this._windowReadyDirectlyFunction);
+		this._windowReadyDirectlyFunction.addBrowserSpecificFunction("MSIE", null, this._browser_msie_windowReadyDirectly);
 		
 		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.RESIZE, CallFunctionCommand.createCommand(this, this._sizeUpdated, []));
 		
@@ -192,7 +202,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "getHtmlCreator", "Html creator can't be used for closed windows.");
 			return null;
 		}
-		return dbm.singletons["dbmHtmlDomManager"].getHtmlCreator(this._window.document);
+		return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(this._window.document);
 	}
 	
 	objectFunctions._updateFlowSize = function(aFlowUpdateNumber) {
@@ -203,7 +213,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 				var newHeight = Math.round(this._height.getValueWithoutFlow());
 				if(newWidth != this._window.innerWidth || newHeight != this._window.innerHeight) {
 					//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
-					this._window.resizeTo(newWidth+this._horizontalMargin, newHeight+this._verticalMargin);
+					this._updateSize(newWidth, newHeight);
 				}
 			}
 		}
@@ -214,12 +224,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		if(this._isOpen) {
 			var newX = Math.round(this._x.getValueWithoutFlow());
 			var newY = Math.round(this._y.getValueWithoutFlow());
-			if(newX != this._window.screenX || newY != this._window.screenY) {
+			this._cachedScreenX, this._cachedScreenY;
+			if(newX != this._cachedScreenX || newY != this._cachedScreenY) {
 				//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
-				//console.log(newX, this._window.screenX, newY, this._window.screenY);
+				//console.log(newX + " " + this._cachedScreenX + " " + newY + " " + this._cachedScreenY);
 				this._updatePosition(newX, newY);
 			}
 		}
+	}
+	
+	objectFunctions._updateSize = function(aWidth, aHeight) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateSize");
+		//console.log(aWidth, aHeight, this._horizontalMargin, this._verticalMargin);
+		this._isResizing = true;
+		this._window.resizeTo(aWidth+this._horizontalMargin, aHeight+this._verticalMargin);
 	}
 	
 	objectFunctions._updatePosition = function(aX, aY) {
@@ -232,39 +250,73 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._window.moveTo(aX, aY);
 	}
 	
+	objectFunctions._browser_msie_updatePosition = function(aX, aY) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_msie_updatePosition");
+		//MENOTE: MSIE doesn't have availLeft or availTop
+		try {
+			this._window.moveTo(aX, aY);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_browser_msie_updatePosition", "Un error occured while moving the window.");
+			ErrorManager.getInstance().reportError(this, "_browser_msie_updatePosition", theError);
+		}
+	}
+	
 	objectFunctions._browser_default_updatePosition = function(aX, aY) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_default_updatePosition");
-		this._window.moveTo(aX-this._window.screen.availLeft, aY-this._window.screen.availTop);
+		try {
+			this._window.moveTo(aX-this._window.screen.availLeft, aY-this._window.screen.availTop);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_browser_default_updatePosition", "Un error occured while moving the window.");
+			ErrorManager.getInstance().reportError(this, "_browser_default_updatePosition", theError);
+		}
 	}
 	
 	objectFunctions._sizeUpdated = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
 		//console.log(this.name);
-		//console.log(this._window.outerWidth, this._window.outerHeight, this._window.innerWidth, this._window.innerHeight, this._horizontalMargin, this._verticalMargin);
+		//console.log(this._hasMargins, this._window.outerWidth, this._window.outerHeight, this._window.innerWidth, this._window.innerHeight, this._horizontalMargin, this._verticalMargin);
 		
-		if(!this._hasMargins) {
-			if((this._window.innerWidth != 0 || this._window.innerHeight != 0) && (this._window.outerWidth-this._window.innerWidth > 0 || this._window.outerHeight-this._window.innerHeight > 0)) {
-				this._horizontalMargin = this._window.outerWidth-this._window.innerWidth;
-				this._verticalMargin = this._window.outerHeight-this._window.innerHeight;
-				this._hasMargins = true;
-				
-				if(this._width.getValue() != this._window.innerWidth || this._height.getValue() != this._window.innerHeight) {
-					this.setSize(this._width.getValue(), this._height.getValue());
+		if(this._isResizing) {
+			if(this._window.innerWidth == this._width.getValue() && this._window.innerHeight == this._height.getValue()) {
+				this._isResizing = false;
+			}
+		}
+		
+		if(!this._isResizing) {
+			if(!this._hasMargins) {
+				if((this._window.innerWidth != 0 || this._window.innerHeight != 0) && (this._window.outerWidth-this._window.innerWidth > 0 || this._window.outerHeight-this._window.innerHeight > 0)) {
+					this._horizontalMargin = this._window.outerWidth-this._window.innerWidth;
+					this._verticalMargin = this._window.outerHeight-this._window.innerHeight;
+					this._hasMargins = true;
+					
+					if(this._width.getValue() != this._window.innerWidth || this._height.getValue() != this._window.innerHeight) {
+						this.setSize(this._width.getValue(), this._height.getValue());
+					}
 				}
+			}
+			else {
+				this.setSize(this._window.innerWidth, this._window.innerHeight);
+				
+				//METODO: reset margins
 			}
 		}
 		else {
-			this.setSize(this._window.innerWidth, this._window.innerHeight);
-			
-			//METODO: reset margins
+			//console.log("resizing");
 		}
+		
+		//console.log("//com.developedbyme.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
 	};
 	
 	objectFunctions._positionUpdated = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_positionUpdated");
-		//console.log(this._window.screenX, this._x.getValue(), this._window.screenY, this._y.getValue());
+		//console.log(this._window.screenX, this._window.screenY);
 		
-		this.setPosition(this._window.screenX, this._window.screenY);
+		this._cachedScreenX = this._window.screenX;
+		this._cachedScreenY = this._window.screenY;
+		
+		this.setPosition(this._cachedScreenX, this._cachedScreenY);
 		
 		if(this.getExtendedEvent().hasEvent(WindowExtendedEventIds.MOVE)) {
 			this.getExtendedEvent().perform(WindowExtendedEventIds.MOVE);
@@ -296,7 +348,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentReady");
 		
 		this._title.setupExternalObject(this._window.document, "title");
-		
 	};
 	
 	objectFunctions._documentLoaded = function() {
@@ -315,7 +366,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._location = aLocation;
 		this._menubar = aMenubar;
 		this._directories = aDirectories;
-		this._resizable	= aResizable;
+		this._resizable = aResizable;
 		this._scrollbars = aScrollbars;
 		
 		return this;
@@ -323,8 +374,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	
 	objectFunctions.open = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::open");
+		//console.log(this._width.getValue(), this._height.getValue());
 		if(this._isOpen) return this;
 		
+		this._cachedScreenX = this._x.getValue();
+		this._cachedScreenY = this._y.getValue();
+		
+		this._isResizing = false;
 		this._window = window.open(this._url, this.name, this._getFeaturesString());
 		this._isOpen = true;
 		
@@ -356,26 +412,46 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			this.getExtendedEvent().perform(WindowExtendedEventIds.OPEN);
 		}
 		
+		this._windowReadyDirectlyFunction.callFunction();
+		
 		//console.log(this._window);
 		
 		return this;
+	};
+	
+	objectFunctions._browser_default_windowReadyDirectly = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_default_windowReadyDirectly");
+		//MENOTE: do nothing
+	};
+	
+	objectFunctions._browser_msie_windowReadyDirectly = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_msie_windowReadyDirectly");
+		this.getExtendedEvent().perform(WindowExtendedEventIds.DOCUMENT_READY);
+		this.getExtendedEvent().perform(WindowExtendedEventIds.DOCUMENT_LOADED);
 	};
 	
 	objectFunctions.close = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::close");
 		if(!this._isOpen) return this;
 		
-		this._isOpen = false;
+		try {
 		
-		this._window.close();
-		this._window = null;
+			this._isOpen = false;
+			this._window.close();
+			
+			this._window = null;
+			
+			dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateInput");
+			
+			if(this.getExtendedEvent().hasEvent(WindowExtendedEventIds.CLOSE)) {
+				this.getExtendedEvent().perform(WindowExtendedEventIds.CLOSE);
+			}
 		
-		dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateInput");
-		
-		if(this.getExtendedEvent().hasEvent(WindowExtendedEventIds.CLOSE)) {
-			this.getExtendedEvent().perform(WindowExtendedEventIds.CLOSE);
 		}
-		
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "close", "Un error occured while closing the window.");
+			ErrorManager.getInstance().reportError(this, "close", theError);
+		}
 		return this;
 	};
 	
@@ -392,6 +468,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	}
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::updateTime");
 		if(this._window.closed) {
 			this._isOpen = false;
 			this._window = null;
@@ -400,10 +477,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 				this.getExtendedEvent().perform(WindowExtendedEventIds.CLOSE);
 			}
 			return;
-		}
-		
-		if(!this._hasMargins) {
-			this._sizeUpdated();
 		}
 		
 		if(this._window.screenX != this._x.getValue() || this._window.screenY != this._y.getValue()) {
@@ -451,7 +524,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	};
 	
 	objectFunctions.performDestroy = function() {
-		
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::performDestroy");
 		if(this._isOpen) {
 			this.close();
 		}
@@ -461,6 +534,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setAllReferencesToNull");
 		
 		this._window = null;
 		this._x = null;
@@ -477,6 +551,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._title = null;
 		
 		this._updatePositionFunction = null;
+		this._windowReadyDirectlyFunction = null;
 		
 		this.superCall();
 	};

@@ -6,6 +6,7 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
 	var CssCursorTypes = dbm.importClass("com.developedbyme.constants.CssCursorTypes");
 	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
+	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.gui.buttons.BaseButton::init");
@@ -71,5 +72,23 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 	
 	staticFunctions.create = function(aElement) {
 		return (new BaseButton()).init().setElement(aElement);
-	}
+	};
+	
+	staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = (new ClassReference()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createNode("div", aAttributes));
+		
+		if(aAddToParent != false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	};
 });

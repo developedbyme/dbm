@@ -11,10 +11,12 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 		var returnLoader;
 		
 		if (window.XMLHttpRequest) {
+			//console.log("standard");
 			returnLoader = new XMLHttpRequest();
 		}
 		else {// for IE 5/6
-  			returnLoader = new ActiveXObject("Microsoft.XMLHTTP");
+			//console.log("ie");
+			returnLoader = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		
 		return returnLoader;
@@ -28,7 +30,8 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 		try {
 			xmlLoader.open("GET", aPath, false);
 			xmlLoader.send();
-			returnDocument = xmlLoader.responseXML;
+			//returnDocument = xmlLoader.responseXML; //MENOTE: ie9 doesn't like this
+			returnDocument = ClassReference.createXmlFromString(xmlLoader.responseText);
 		}
 		catch(theError) {
 			ErrorManager.getInstance().reportError("[XmlCreator]", "loadXmlFile", theError);
@@ -50,7 +53,8 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 			xmlLoader.setRequestHeader("Connection", "close");
 			xmlLoader.send(aParameters);
 			//console.log(xmlLoader);
-			returnDocument = xmlLoader.responseXML;
+			//returnDocument = xmlLoader.responseXML; //MENOTE: ie9 doesn't like this
+			returnDocument = ClassReference.createXmlFromString(xmlLoader.responseText);
 		}
 		catch(theError) {
 			ErrorManager.getInstance().reportError("[XmlCreator]", "loadXmlFileWithPost", theError);
@@ -63,11 +67,13 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 	staticFunctions.createEmptyXml = (function() {
 		var returnDocument;
 		if (window.DOMParser) {
+			//console.log("standard");
 			var parser = new DOMParser();
 			returnDocument = parser.parseFromString("<temp />", "text/xml");
 			returnDocument.removeChild(returnDocument.firstChild);
 		}
 		else {// Internet Explorer
+			//console.log("ie");
 			returnDocument = new ActiveXObject("Microsoft.XMLDOM");
 			returnDocument.async = "false";
 			returnDocument.loadXML("<temp />");
@@ -80,10 +86,12 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 	staticFunctions.createXmlFromString = (function(aText) {
 		var returnDocument;
 		if (window.DOMParser) {
+			//console.log("standard");
 			var parser = new DOMParser();
 			returnDocument = parser.parseFromString(aText, "text/xml");
 		}
 		else {// Internet Explorer
+			//console.log("ie");
 			returnDocument = new ActiveXObject("Microsoft.XMLDOM");
 			returnDocument.async = "false";
 			returnDocument.loadXML(aText);
@@ -94,10 +102,12 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 	
 	staticFunctions.createStringFromXml = (function XMLtoString(aNode){
 		if(window.XMLSerializer) {
+			//console.log("standard");
 			var serializer = new XMLSerializer();
 			return serializer.serializeToString(aNode);
 		}
 		else {
+			//console.log("ie");
 			return aNode.xml;
 		}
 	});

@@ -35,7 +35,7 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 		this._noPlaybackSwitchNode = ConditionNode.create("||", this._isScrubbing, true);
 		this._switchNode = BooleanSwitchedNode.create(this._noPlaybackSwitchNode.getProperty("outputValue"), this._scrubValue, this._playbackValue);
 		this.addDestroyableObject(this._switchNode);
-		this.addDestroyableObject(this._hasPlaybackNodeNode);
+		this.addDestroyableObject(this._noPlaybackSwitchNode);
 		this._outputValue = this.createProperty("outputValue", 0);
 		this._outputValue.connectInput(this._switchNode.getProperty("outputValue"));
 		this._display = this.createGhostProperty("display");
@@ -66,6 +66,7 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 		this.superCall(aElement);
 		
 		this._mousePositionNode = MousePositionNode.create(aElement.ownerDocument);
+		this.addDestroyableObject(this._mousePositionNode);
 		this._setupLinkedEvents(aElement);
 		
 		return this;
@@ -178,6 +179,24 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 	
 	objectFunctions._updateFlowDisplay = function(aFlowUpdateNumber) {
 		//MENOTE: should be overridden
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._isScrubbing = null;
+		this._scrubValue = null;
+		this._playbackValue = null;
+		this._noPlaybackSwitchNode = null;
+		this._switchNode = null;
+		this._outputValue = null;
+		this._display = null;
+		
+		this._minValue =  null;
+		this._maxValue =  null;
+		
+		this._mousePositionNode = null;
+		
+		this.superCall();
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {

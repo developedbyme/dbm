@@ -53,6 +53,20 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	} //End function set name
 	
 	/**
+	 * Gets the path of the item.
+	 */
+	objectFunctions.getPath = function() {
+		//console.log("getPath");
+		var currentItem = this;
+		var returnArray = new Array();
+		while(currentItem != null) {
+			returnArray.unshift(currentItem.getName());
+			currentItem = currentItem.getParent();
+		}
+		return returnArray.join("/");
+	} //End function getPath
+	
+	/**
 	 * Gets the type of the item.
 	 */
 	objectFunctions.getType = function() {

@@ -23,6 +23,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._status = FlowStatusTypes.UPDATED;
 		this._flowUpdateNumber = 0;
 		this._alwaysUpdateFlow = false;
+		this._canSetValueInAnimation = true;
 		
 		this._value = null;
 		this._objectInputConnection = null;
@@ -45,7 +46,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	objectFunctions.setValue = function(aValue) {
-		if(this._inputConnection != null && this._animationController == null) {
+		if(this._inputConnection != null && (this._animationController == null || !this._canSetValueInAnimation)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Can't set value when property has input.");
 			return;
 		}
@@ -106,7 +107,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	}
 	
 	objectFunctions.canBeSet = function() {
-		return (this._inputConnection == null || this._animationController != null);
+		return (this._inputConnection == null || (this._animationController != null && this._canSetValueInAnimation));
 	};
 	
 	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
@@ -215,6 +216,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._objectInputConnection = aInputConnection;
 	};
 	
+	objectFunctions._linkRegistration_removeObjectInputConnection = function() {
+		this._objectInputConnection = null;
+	};
+	
 	objectFunctions.connectInput = function(aProperty) {
 		dbm.singletons.dbmFlowManager.connectProperties(aProperty, this);
 		
@@ -266,6 +271,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions._linkRegistration_setInputUpdateFunction = function(aUpdateFunction) {
 		this._inputUpdateFunction = aUpdateFunction;
 		this.setAsDirty();
+	};
+	
+	objectFunctions._linkRegistration_removeInputUpdateFunction = function() {
+		this._inputUpdateFunction = null;
 	};
 	
 	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
@@ -345,6 +354,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	}
 	
 	objectFunctions.performDestroy = function() {
+		//console.log("com.developedbyme.core.objectparts.Property::performDestroy");
+		//console.log(this.toString());
 		
 		if(this._isUpdating) {
 			dbm.singletons.dbmFlowManager.removeUpdatedProperty(this);
@@ -356,7 +367,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			this.disconnectInput();
 		}
 		if(this._inputUpdateFunction != null) {
-			//MENOTE: do nothing, properties connected to update functions can't be destroyed separatly.
+			this._inputUpdateFunction._linkRegistration_removeOutputConnection(this);
+			this._linkRegistration_removeInputUpdateFunction();
 		}
 		if(this._outputConnections != null) {
 			var currentArray = ArrayFunctions.copyArray(this._outputConnections);
@@ -367,6 +379,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 		
 		this.superCall();
+		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

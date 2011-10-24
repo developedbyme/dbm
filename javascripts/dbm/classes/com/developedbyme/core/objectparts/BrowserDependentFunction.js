@@ -12,7 +12,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.BrowserDependentFunction",
 		
 		this._defaultFunction = null;
 		
-		this._browsers = (new NamedArray()).init();
+		this._browsers = NamedArray.create(true);
+		this.addDestroyableObject(this._browsers);
 		
 		return this;
 	};
@@ -73,6 +74,14 @@ dbm.registerClass("com.developedbyme.core.objectparts.BrowserDependentFunction",
 		}
 		
 		return theFunction.apply(this._owner, aArguments);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._defaultFunction = null;
+		this._browsers = null;
+		
+		this.superCall();
 	};
 	
 	staticFunctions.create = function(aOwner) {

@@ -3,6 +3,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
@@ -41,6 +46,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentProperty = currentArray[i];
+			if(!(currentProperty instanceof Property)) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setup", "Object " + currentProperty + " is not a property. Index " + i + " in input " + currentArray);
+				continue;
+			}
 			currentProperty._linkRegistration_addConnectedOutput(this);
 		}
 		
@@ -48,6 +57,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentProperty = currentArray[i];
+			if(!(currentProperty instanceof Property)) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setup", "Object " + currentProperty + " is not a property. Index " + i + " in output " + currentArray);
+				continue;
+			}
 			currentProperty._linkRegistration_setInputUpdateFunction(this);
 			
 			if(currentProperty instanceof GhostProperty) {
@@ -63,6 +76,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		this._linkRegistration_addInputConnection(aProperty);
 	};
 	
+	objectFunctions.removeInputConnection = function(aProperty) {
+		aProperty._linkRegistration_removeConnectedOutput(this);
+		this._linkRegistration_removeInputConnection(aProperty);
+	};
+	
 	objectFunctions._linkRegistration_addInputConnection = function(aProperty) {
 		this._inputConnections.push(aProperty);
 		
@@ -72,6 +90,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	objectFunctions.addOutputConnection = function(aProperty) {
 		aProperty._linkRegistration_setInputUpdateFunction(this);
 		this._linkRegistration_addOutputConnection(aProperty);
+	};
+	
+	objectFunctions.removeOutputConnection = function(aProperty) {
+		aProperty._linkRegistration_removeInputUpdateFunction(this);
+		this._linkRegistration_removeOutputConnection(aProperty);
 	};
 	
 	objectFunctions._linkRegistration_addOutputConnection = function(aProperty) {
@@ -129,18 +152,23 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	};
 	
 	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
-		//METODO: implement that the connection is sent through
-		
 		var index = ArrayFunctions.indexOfInArray(this._inputConnections, aProperty);
-		if(index != null) {
+		if(index != -1) {
 			this._inputConnections.splice(index, 1);
 		}
 		
 		if(aProperty instanceof GhostProperty) {
 			var index = ArrayFunctions.indexOfInArray(this._ghostOutputConnections, aProperty);
-			if(index != null) {
+			if(index != -1) {
 				this._ghostOutputConnections.splice(index, 1);
 			}
+		}
+	};
+	
+	objectFunctions._linkRegistration_removeOutputConnection = function(aProperty) {
+		var index = ArrayFunctions.indexOfInArray(this._outputConnections, aProperty);
+		if(index != -1) {
+			this._outputConnections.splice(index, 1);
 		}
 	};
 	
@@ -150,13 +178,35 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		aReturnArray.push("name: " + this.name);
 	};
 	
+	objectFunctions.performDestroy = function() {
+		
+		if(this._inputConnections != null) {
+			var currentArray = ArrayFunctions.copyArray(this._inputConnections);
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				this.removeInputConnection(currentArray[i]);
+			}
+		}
+		
+		if(this._outputConnections != null) {
+			var currentArray = ArrayFunctions.copyArray(this._outputConnections);
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				this.removeOutputConnection(currentArray[i]);
+			}
+		}
+		
+		this.superCall();
+		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._updateFunction = null;
 		this._ownerObject = null;
 		
-		this._inputsArray = null;
-		this._outputsArray = null;
+		this._inputConnections = null;
+		this._outputConnections = null;
 		this._ghostOutputConnections = null;
 		
 		this.superCall();

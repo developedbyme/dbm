@@ -1,6 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode");
 	
+	var SimpleSpeedNode = dbm.importClass("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode::init");
 		
@@ -30,12 +32,15 @@ dbm.registerClass("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode",
 		this._outputValue.setValueWithFlow(this._originalPosition.getValueWithoutFlow()+newLength, aFlowUpdateNumber);
 	};
 	
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._originalPosition = null;
+		this._length = null;
+		this._outputValue = null;
+		this._lastTime = null;
+		this._time = null;
+		this._speed = null;
+		
 		this.superCall();
 	};
 	

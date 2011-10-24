@@ -50,6 +50,16 @@ dbm.registerClass("com.developedbyme.core.extendedevent.EventDataObject", "com.d
 		this.superCall();
 	};
 	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "data":
+			case "ownerObject":
+			case "performingObject":
+				return false;
+		}
+		return this.superCall();
+	};
+	
 	staticFunctions.create = function(aData, aOwner, aPerformingObject) {
 		//console.log("com.developedbyme.core.extendedevent.EventDataObject::create (static)");
 		var newData = (new EventDataObject()).init();

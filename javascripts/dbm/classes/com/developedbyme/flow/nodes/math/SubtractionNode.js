@@ -20,12 +20,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.SubtractionNode", "com.deve
 		this._outputValue.setValueWithFlow(this._inputValue1.getValueWithoutFlow()-this._inputValue2.getValueWithoutFlow(), aFlowUpdateNumber);
 	};
 	
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputValue1 = null;
+		this._inputValue2 = null;
+		this._outputValue = null;
+		
 		this.superCall();
 	};
 	

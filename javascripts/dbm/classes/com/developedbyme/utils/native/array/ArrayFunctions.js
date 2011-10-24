@@ -3,7 +3,15 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	staticFunctions.indexOfInArray = function(aArray, aData) {
+		if(aArray == null) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "indexOfInArray", "Array is " + aArray + ". Can't get index of " + aData + ".");
+			return -1;
+		}
 		if(aArray.indexOf) {
 			return aArray.indexOf(aData);
 		}

@@ -41,10 +41,12 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 	};
 	
 	objectFunctions._linkRegistration_removeObjectProperty = function(aProperty) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
 		var objectIndex = ArrayFunctions.indexOfInArray(this._objectProperties, aProperty);
 		if(objectIndex != -1) {
 			this._objectProperties.splice(objectIndex, 1);
 		}
+		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
 	};
 	
 	objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
@@ -73,6 +75,24 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 			}
 		}
 		this.superCall(aReturnArray);
+	};
+	
+	objectFunctions.performDestroy = function() {
+		//console.log("com.developedbyme.core.objectparts.Property::performDestroy");
+		//console.log(this.toString());
+		
+		if(this._objectProperties != null) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				currentObject._linkRegistration_removeObjectInputConnection();
+			}
+			currentArray.splice(0, currentArrayLength);
+		}
+		
+		this.superCall();
+		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

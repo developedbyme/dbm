@@ -26,6 +26,7 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 		
 		this._scalingElement = null;
 		this._globalPositionPoint = Point.create();
+		this.addDestroyableObject(this._globalPositionPoint);
 		
 		return this;
 	};
@@ -98,6 +99,14 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 		//console.log((100*parameter)+"%");
 		//console.log(this._display);
 		this._scalingElement.style.setProperty("width", (100*parameter)+"%", "");
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._scalingElement = null;
+		this._globalPositionPoint = null;
+		
+		this.superCall();
 	};
 	
 	staticFunctions.create = function(aElement, aScalingElement) {

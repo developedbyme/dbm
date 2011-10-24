@@ -95,7 +95,13 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.addToDom = function() {
 		if(this._parentHtmlElement != null) {
-			this._parentHtmlElement.appendChild(this._htmlElement);
+			try{
+				this._parentHtmlElement.appendChild(this._htmlElement);
+			}
+			catch(theError) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addToDom", "Un error occured while adding to dom.");
+				ErrorManager.getInstance().reportError(this, "addToDom", theError);
+			}
 		}
 		else {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addToDom", "Object " + this + " doesn't have a parent.");
@@ -106,12 +112,18 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.removeFromDom = function() {
 		if(this._parentHtmlElement != null) {
-			if(this._htmlElement.parentNode == this._parentHtmlElement) {
-				this._htmlElement.parentNode.removeChild(this._htmlElement);
+			try{
+				if(this._htmlElement.parentNode == this._parentHtmlElement) {
+					this._htmlElement.parentNode.removeChild(this._htmlElement);
+				}
+				else if(this._htmlElement.parentNode != null) {
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeFromDom", "Object " + this + " doesn't have the correct parent.");
+					this._htmlElement.parentNode.removeChild(this._htmlElement);
+				}
 			}
-			else if(this._htmlElement.parentNode != null) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeFromDom", "Object " + this + " doesn't have the correct parent.");
-				this._htmlElement.parentNode.removeChild(this._htmlElement);
+			catch(theError) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeFromDom", "Un error occured while removing dom.");
+				ErrorManager.getInstance().reportError(this, "remvoeFromDom", theError);
 			}
 		}
 		else {
@@ -188,6 +200,14 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this._placementNode = null;
 		
 		this.superCall();
+	};
+	
+	staticFunctions.create = function(aElement) {
+		var newNode = (new ClassReference()).init();
+		
+		newNode.setElement(aElement);
+		
+		return newNode;
 	};
 	
 	staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {

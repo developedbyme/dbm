@@ -238,19 +238,20 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 			this.array.splice(aIndex, 0, aObject);
 		}
 		this._itemAdded(aObject);
-	}
-	
-	objectFunctions.performDestroy = function() {
-		
-		
-		
-		this.superCall();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		
+		this._currentItem = null;
 		
 		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_currentItem":
+				return false;
+		}
+		return this.superCall();
 	};
 });

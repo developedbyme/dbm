@@ -28,23 +28,25 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElementNode", "
 		
 		var htmlElement = this._element.getValueWithoutFlow();
 		
-		var htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.clientWidth;
-		var htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.clientHeight;
-		
-		var transformString = "translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") rotate(" + this._rotate.getValueWithoutFlow() + "deg)";
-		var transformationOriginString = (100*this._pivotX.getValueWithoutFlow()) + "% " + (100*this._pivotY.getValueWithoutFlow()) + "%";
-		
-		htmlElement.style.setProperty("-moz-transform", transformString, "");
-		htmlElement.style.setProperty("-ms-transform", transformString, "");
-		htmlElement.style.setProperty("-o-transform", transformString, "");
-		htmlElement.style.setProperty("-webkit-transform", transformString, "");
-		htmlElement.style.setProperty("transform", transformString, "");
-		
-		htmlElement.style.setProperty("-moz-transform-origin", transformationOriginString, "");
-		htmlElement.style.setProperty("-ms-transform-origin", transformationOriginString, "");
-		htmlElement.style.setProperty("-o-transform-origin", transformationOriginString, "");
-		htmlElement.style.setProperty("-webkit-transform-origin", transformationOriginString, "");
-		htmlElement.style.setProperty("transform-origin", transformationOriginString, "");
+		if(htmlElement != null) {
+			var htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.clientWidth;
+			var htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.clientHeight;
+			
+			var transformString = "translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") rotate(" + this._rotate.getValueWithoutFlow() + "deg)";
+			var transformationOriginString = (100*this._pivotX.getValueWithoutFlow()) + "% " + (100*this._pivotY.getValueWithoutFlow()) + "%";
+			
+			htmlElement.style.setProperty("-moz-transform", transformString, "");
+			htmlElement.style.setProperty("-ms-transform", transformString, "");
+			htmlElement.style.setProperty("-o-transform", transformString, "");
+			htmlElement.style.setProperty("-webkit-transform", transformString, "");
+			htmlElement.style.setProperty("transform", transformString, "");
+			
+			htmlElement.style.setProperty("-moz-transform-origin", transformationOriginString, "");
+			htmlElement.style.setProperty("-ms-transform-origin", transformationOriginString, "");
+			htmlElement.style.setProperty("-o-transform-origin", transformationOriginString, "");
+			htmlElement.style.setProperty("-webkit-transform-origin", transformationOriginString, "");
+			htmlElement.style.setProperty("transform-origin", transformationOriginString, "");
+		}
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

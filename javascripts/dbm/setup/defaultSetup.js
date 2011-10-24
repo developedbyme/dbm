@@ -16,9 +16,14 @@ dbm.runTempFunction(function() {
 	var IdManager = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.IdManager");
 	var AnimationManager = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.AnimationManager");
 	var CurveEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator");
+	var CurveCreator = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
+	var DebugManager = dbm.importClass("com.developedbyme.core.globalobjects.debugmanager.DebugManager");
+	var AssetRepository = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.AssetRepository");
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
+	
+	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
 	dbm.addStartFunction(function() {
 		
@@ -33,6 +38,10 @@ dbm.runTempFunction(function() {
 		BrowserDetector.getInstance().detectBrowserFromUserAgent();
 		
 		WindowManager.getInstance().setMasterWindow(dbm._window);
+		
+		DebugManager.getInstance().setCheckForDeletion(true);
+		
+		CurveEvaluator.getInstance().addEvaluator((new BezierEvaluator()).init());
 		
 	});
 	

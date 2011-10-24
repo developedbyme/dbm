@@ -41,4 +41,19 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject
 	objectFunctions.unlock = function() {
 		this._isLocked = false;
 	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._owner = null;
+		
+		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_owner":
+				return false;
+		}
+		return this.superCall();
+	};
 });

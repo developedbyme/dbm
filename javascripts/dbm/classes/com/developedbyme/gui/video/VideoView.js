@@ -379,6 +379,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._currentTime = null;
 		this._playbackState = null;
 		this._playbackSpeed = null;
+		this._outputTime = null;
 		
 		this._playback = null;
 		this._volume = null;

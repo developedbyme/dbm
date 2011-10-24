@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerf
 		this._commandsArray = (new CommandsArrayIterator()).init();
 		this._commandsArray.canRemoveItemsWhileActive = true;
 		this._commandsArray.canAddItemsWhileActive = false;
+		this.addDestroyableObject(this._commandsArray);
 		
 		this.breakOnError = false;
 		this._isPerforming = false;
@@ -64,14 +65,6 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerf
 		this._commandsArray = (new CommandsArrayIterator()).init();
 		this._commandsArray.canRemoveItemsWhileActive = true;
 		this._commandsArray.canAddItemsWhileActive = false;
-	};
-	
-	
-	objectFunctions.performDestroy = function() {
-		
-		//METODO: destroy
-		
-		this.superCall();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

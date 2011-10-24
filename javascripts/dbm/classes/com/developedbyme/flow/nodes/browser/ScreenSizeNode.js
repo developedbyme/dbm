@@ -58,9 +58,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.ScreenSizeNode", "com.de
 		this._height.setValueWithFlow(theScreen.height, aFlowUpdateNumber);
 		this._availWidth.setValueWithFlow(theScreen.availWidth, aFlowUpdateNumber);
 		this._availHeight.setValueWithFlow(theScreen.availHeight, aFlowUpdateNumber);
-		this._availLeft.setValueWithFlow(theScreen.availLeft, aFlowUpdateNumber);
-		this._availTop.setValueWithFlow(theScreen.availTop, aFlowUpdateNumber);
-		
+		if(theScreen.availLeft != undefined) {
+			this._availLeft.setValueWithFlow(theScreen.availLeft, aFlowUpdateNumber);
+		}
+		if(theScreen.availTop != undefined) {
+			this._availTop.setValueWithFlow(theScreen.availTop, aFlowUpdateNumber);
+		}
 	};
 	
 	objectFunctions.performDestroy = function() {

@@ -8,6 +8,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 	//console.log("com.developedbyme.utils.canvas.CurveDrawer2d");
 	
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	
 	/**
 	 * Constructor.
@@ -20,6 +21,11 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 		this._startParameter = this.createProperty("startParameter", 0);
 		this._endParameter = this.createProperty("endParameter", 0);
 		this._curve = this.createProperty("curve", null);
+		
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate.connectInput(this._startParameter);
+		this._graphicsUpdate.connectInput(this._endParameter);
+		this._graphicsUpdate.connectInput(this._curve);
 		
 		return this;
 	};
@@ -57,16 +63,17 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 	
 	staticFunctions.drawBezierCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
 		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawBezierCurve (static)");
+		
+		
 		var tempCurve = aCurve.createSameTypeOfCurve();
 		dbm.singletons.dbmCurveEvaluator.getPartOfCurve(aCurve, aStartParameter, aEndParameter, aExactness, tempCurve);
 		
-		var currentArray = aCurve.pointsArray;
-		var degree = aCurve.getCurveDegree();
-		var maxParameter = aCurve.getMaxParameter();
+		var currentArray = tempCurve.pointsArray;
+		var degree = tempCurve.getCurveDegree();
+		var maxParameter = tempCurve.getMaxParameter();
 		for(var i = degree; i <= maxParameter*degree; i += degree) {
 			switch(degree) {
 				case 1:
-					//console.log("lineTo", currentArray[i].x, currentArray[i].y);
 					aContext.lineTo(currentArray[i].x, currentArray[i].y);
 					break;
 				case 2:

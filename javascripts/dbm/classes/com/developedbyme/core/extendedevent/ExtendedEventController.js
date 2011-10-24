@@ -20,11 +20,11 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 		
 		this._owner = null;
 		
-		this._eventPerformers = (new NamedArray()).init();
-		this._eventPerformers.ownsObjects = true;
+		this._eventPerformers = NamedArray.create(true);
+		this.addDestroyableObject(this._eventPerformers);
 		
-		this._eventLinkGroups = (new NamedArray()).init();
-		this._eventLinkGroups.ownsObjects = true;
+		this._eventLinkGroups = NamedArray.create(true);
+		this.addDestroyableObject(this._eventLinkGroups);
 		
 		return this;
 	};
@@ -39,6 +39,11 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::perform");
 		//console.log(aEventName, aData);
 		
+		if(this._isDestroyed) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "perform", "Event controller is destroyed, can't perform " + aEventName + ".");
+			return;
+		}
+		
 		var eventDataObject = EventDataObject.create(aData, this._owner, this._owner);
 		
 		if(this._eventPerformers.select(aEventName)) {
@@ -51,6 +56,12 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	};
 	
 	objectFunctions.performFromExternal = function(aEventName, aEventDataObject) {
+		
+		if(this._isDestroyed) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "performFromExternal", "Event controller is destroyed, can't perform " + aEventName + ".");
+			return;
+		}
+		
 		if(this._eventPerformers.select(aEventName)) {
 			this._eventPerformers.currentSelectedItem.perform(aEventDataObject);
 		}
@@ -260,13 +271,21 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 		return currentPerformer.hasCommandWithId(aId);
 	};
 	
-	
-	objectFunctions.performDestroy = function() {
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._owner = null;
+		this._eventPerformers = null;
+		this._eventLinkGroups = null;
+		
 		this.superCall();
 	};
 	
-	objectFunctions.setAllReferencesToNull = function() {
-		this.superCall();
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_owner":
+				return false;
+		}
+		return this.superCall();
 	};
 	
 	staticFunctions.create = function(aOwner) {

@@ -15,7 +15,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 		this._commandQueue.createFunctionTypeCommand("removeItemById", this, this.push, true);
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Verifies that an item can be added
@@ -25,7 +25,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 		//METODO
 		
 		return true;
-	}
+	};
 	
 	/**
 	 * Checks if an item from the list has the id.
@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 			}
 		}
 		return false;
-	}
+	};
 	
 	/**
 	 * Removes an item from the list by id.
@@ -78,14 +78,5 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 		else {
 			this._commandQueue.createQueuedCommand("removeItemById", aId);
 		}
-	}
-	
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
-	objectFunctions.setAllReferencesToNull = function() {
-		this.superCall();
 	};
 });

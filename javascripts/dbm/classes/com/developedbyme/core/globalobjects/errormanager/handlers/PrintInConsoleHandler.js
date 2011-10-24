@@ -15,21 +15,21 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.Pr
 	objectFunctions.report = function(aType, aLevel, aObject, aFunctionName, aData) {
 		switch(aType) {
 			case ReportTypes.ERROR:
-				console.error(aObject, aFunctionName, aData);
+				console.error(aObject, aFunctionName+":", aData);
 				break;
 			case ReportTypes.WARNING:
-				console.warn(aObject, aFunctionName, aData);
+				console.warn(aObject, aFunctionName+":", aData);
 				break;
 			case ReportTypes.LOG:
-				console.log(aObject, aFunctionName, aData);
+				console.log(aObject, aFunctionName+":", aData);
 				break;
 			default:
-				console.log(aType, aObject, aFunctionName, aData);
+				console.log(aType, aObject, aFunctionName+":", aData);
 				break;
 		}
 	};
 	
 	objectFunctions.reportError = function(aObject, aFunctionName, aError) {
-		console.error(aObject, aFunctionName, aError);
+		console.error(aObject, aFunctionName+":", aError);
 	};
 });

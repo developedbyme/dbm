@@ -26,15 +26,19 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.Stati
 		return this.reevaluationData;
 	} //End function reevaluate
 	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.reevaluationData = null;
 		
 		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "reevaluationData":
+				return false;
+		}
+		return this.superCall();
 	};
 	
 	/**

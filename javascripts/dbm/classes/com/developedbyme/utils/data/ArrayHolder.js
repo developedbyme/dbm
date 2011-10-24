@@ -18,7 +18,7 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 	objectFunctions.performDestroy = function() {
 		
 		if(this.ownsObjects) {
-			//METODO: destroy items
+			ClassRefernce.destroyArrayIfExists(this.array);
 		}
 		
 		this.superCall();
@@ -26,9 +26,17 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		
+		this.array = null;
 		
 		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "array":
+				return this.ownsObjects;
+		}
+		return this.superCall();
 	};
 	
 	/**

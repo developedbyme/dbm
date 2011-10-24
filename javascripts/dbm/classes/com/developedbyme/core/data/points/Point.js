@@ -61,6 +61,15 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 		return theObject;
 	};
 	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("x: " + this.x);
+		aReturnArray.push("y: " + this.y);
+		aReturnArray.push("z: " + this.z);
+		
+	}
+	
 	staticFunctions.create = function(aX, aY, aZ, aW) {
 		//console.log("com.developedbyme.core.data.points.Point::create (static)");
 		//console.log(aX, aY, aZ, aW);

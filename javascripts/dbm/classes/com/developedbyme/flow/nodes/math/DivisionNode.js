@@ -20,12 +20,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.DivisionNode", "com.develop
 		this._outputValue.setValueWithFlow(this._inputValue.getValueWithoutFlow()/this._divisor.getValueWithoutFlow(), aFlowUpdateNumber);
 	};
 	
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputValue = null;
+		this._divisor = null;
+		this._outputValue = null;
+		
 		this.superCall();
 	};
 	
