@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 				aElement.setAttribute(objectName, aAttributes[objectName]);
 			}
 		}
-	}
+	};
 	
 	objectFunctions.createText = function(aText) {
 		return this.ownerDocument.createTextNode(aText);

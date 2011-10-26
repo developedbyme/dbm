@@ -116,6 +116,10 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		
 		var returnArray = new Array();
 		var currentArray = aXml.childNodes;
+		if(currentArray == null) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChildByAttribute", "Xml " + aXml + " doesn't seem to be a correct xml. Can't get child (" + aChildName + ") with attribute " + aAttributeName + " set to " + aValue);
+			return null;
+		}
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentChild = currentArray[i];

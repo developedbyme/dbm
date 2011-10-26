@@ -5,6 +5,8 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 	
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	var CanvasController2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasController2d");
+	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
+	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	
@@ -17,6 +19,22 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		this.superCall();
 		
 		this._controller = null;
+		this._sizeOfElementNode = SizeOfElementNode.create();
+		this._width = this.createProperty("width", this._sizeOfElementNode.getProperty("width"));
+		this._height = this.createProperty("height", this._sizeOfElementNode.getProperty("height"));
+		
+		this._display = this.createGhostProperty("display");
+		
+		this.createUpdateFunction("default", this._updateFlow, [this._width, this._height], [this._display]);
+		
+		return this;
+	};
+	objectFunctions.setElement = function(aElement) {
+		//console.log("com.developedbyme.gui.canvas.CanvasView::setElement");
+		this.superCall(aElement);
+		
+		this._sizeOfElementNode.setElement(aElement);
+		this._display.startUpdating();
 		
 		return this;
 	};
@@ -26,6 +44,7 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		
 		this._controller = aController;
 		this._controller.setPropertyInput("canvas", this._htmlElement);
+		this._controller.getProperty("graphicsUpdate").connectInput(this._display);
 		
 		return this;
 	};
@@ -36,9 +55,16 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		return this._controller;
 	};
 	
+	objectFunctions._updateFlow = function() {
+		//console.log("com.developedbyme.gui.canvas.CanvasView::_updateFlow");
+		
+		this._htmlElement.width = this._width.getValueWithoutFlow();
+		this._htmlElement.height = this._height.getValueWithoutFlow();
+	};
+	
 	objectFunctions.update = function() {
 		//console.log("com.developedbyme.gui.canvas.CanvasView::update");
-
+		this._display.update();
 		this._controller.getProperty("display").update();
 	};
 	

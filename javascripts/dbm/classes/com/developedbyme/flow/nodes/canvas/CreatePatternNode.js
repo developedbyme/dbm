@@ -10,7 +10,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.CreatePatternNode", "com.
 		
 		this._image = this.createProperty("image", null);
 		this._image.setAlwaysUpdateFlow(true);
-		this._canvas = this.createProperty("canvas", document.createElement("canvas"));
+		this._canvas = this.createProperty("canvas", dbm.singletons.dbmHtmlDomManager.getTempCanvas());
 		this._repeat = this.createProperty("repeat", "repeat");
 		this._pattern = this.createProperty("pattern", null);
 		this._pattern.setAlwaysUpdateFlow(true);

@@ -1,11 +1,11 @@
 dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.Property");
 	
+	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
-	
-	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
@@ -380,6 +380,14 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		
 		this.superCall();
 		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_value":
+				return false;
+		}
+		return this.superCall();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

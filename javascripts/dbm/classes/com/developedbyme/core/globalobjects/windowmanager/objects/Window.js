@@ -116,8 +116,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._verticalMargin = this._window.outerHeight-this._window.innerHeight;
 		this._hasMargins = true;
 		
-		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.MOUSE_MOVE, ClassReference._MOUSE_POSITION_UPDATE, ClassReference._MOUSE_POSITION_UPDATE, true);
-		this.getExtendedEvent().activateJavascriptEventLink(ClassReference._MOUSE_POSITION_UPDATE);
+		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.RESIZE, WindowExtendedEventIds.RESIZE, WindowExtendedEventIds.RESIZE, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.MOUSE_MOVE, ClassReference._MOUSE_POSITION_UPDATE, ClassReference._MOUSE_POSITION_UPDATE, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.FOCUS, WindowExtendedEventIds.FOCUS, WindowExtendedEventIds.FOCUS, true, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.BLUR, WindowExtendedEventIds.BLUR, WindowExtendedEventIds.BLUR, true, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.DOM_CONTENT_LOADED, WindowExtendedEventIds.DOCUMENT_READY, WindowExtendedEventIds.DOCUMENT_READY, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.LOAD, WindowExtendedEventIds.DOCUMENT_LOADED, WindowExtendedEventIds.DOCUMENT_LOADED, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.UNLOAD, WindowExtendedEventIds.DOCUMENT_UNLOADED, WindowExtendedEventIds.DOCUMENT_UNLOADED, true).activate();
 	}
 	
 	objectFunctions.setUrl = function(aUrl) {
@@ -305,6 +310,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		else {
 			//console.log("resizing");
 		}
+		
+		dbm.singletons.dbmFlowManager.updateProperties();
 		
 		//console.log("//com.developedbyme.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
 	};

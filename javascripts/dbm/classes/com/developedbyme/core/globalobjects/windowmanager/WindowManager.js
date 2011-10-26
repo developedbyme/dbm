@@ -64,6 +64,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 		return this._windows.getObject(aName);
 	};
 	
+	objectFunctions.getWindowForDocument = function(aDocument) {
+		if(this._masterWindow != null && aDocument == this._masterWindow.getDocument()) {
+			return this._masterWindow;
+		}
+		
+		var currentArray = this._windows.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentWindow = currentArray[i];
+			if(currentWindow.isOpen() && aDocument == currentWindow.getDocument()) {
+				return currentWindow;
+			}
+		}
+		
+		return null;
+	};
+	
 	objectFunctions.createWindow = function(aName, aUrl, aWidth, aHeight) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::createWindow");
 		

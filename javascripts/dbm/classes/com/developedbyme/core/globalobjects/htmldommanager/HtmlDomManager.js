@@ -18,6 +18,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		this._displayObjects = new Array();
 		this._htmlCreators = new Array();
 		
+		this._tempCanvas = document.createElement("canvas");
+		
 		return this;
 	};
 	
@@ -70,5 +72,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		var newCreator = HtmlCreator.create(aDocument);
 		this._htmlCreators.push(newCreator);
 		return newCreator;
+	};
+	
+	objectFunctions.getTempCanvas = function() {
+		return this._tempCanvas;
 	};
 });

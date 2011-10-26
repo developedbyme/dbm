@@ -69,12 +69,19 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	
 	objectFunctions.createPattern = function(aImage, aRepeat) {
 		console.log("com.developedbyme.utils.canvas.CanvasController2d::createPattern");
-		console.log({image: aImage});
 		
 		aRepeat = VariableAliases.valueWithDefault(aRepeat, "repeat");
 		
 		var canvas = this._canvas.getValue();
 		return canvas.getContext("2d").createPattern(aImage, aRepeat);
+	};
+	
+	objectFunctions.getWidthOfText = function(aText, aFont) {
+		console.log("com.developedbyme.utils.canvas.CanvasController2d::getWidthOfText");
+		
+		var canvas = this._canvas.getValue();
+		canvas.getContext("2d").font = aFont;
+		return canvas.getContext("2d").measureText(aText).width;
 	};
 	
 	objectFunctions.draw = function() {

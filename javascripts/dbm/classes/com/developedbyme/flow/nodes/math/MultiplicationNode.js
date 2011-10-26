@@ -1,6 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.MultiplicationNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.MultiplicationNode");
 	
+	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.MultiplicationNode::init");
 		

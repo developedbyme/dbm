@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var CanvasMask2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasMask2d");
 	var CanvasTextGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d");
+	var CanvasTextWithCustomSpacingGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d");
 	
 	var TransformationTo2dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo2dMatrixNode");
 	
@@ -330,6 +331,15 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::drawText");
 		
 		var newDrawingLayer = CanvasTextGraphics2d.create(aText);
+		this._graphicsUpdate.connectInput(newDrawingLayer.getProperty("graphicsUpdate"));
+		this._graphics.push(newDrawingLayer);
+		return newDrawingLayer; 
+	};
+	
+	objectFunctions.drawTextWithCustomSpacing = function(aText, aSpacing) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::drawTextWithCustomSpacing");
+		
+		var newDrawingLayer = CanvasTextWithCustomSpacingGraphics2d.create(aText, aSpacing);
 		this._graphicsUpdate.connectInput(newDrawingLayer.getProperty("graphicsUpdate"));
 		this._graphics.push(newDrawingLayer);
 		return newDrawingLayer; 

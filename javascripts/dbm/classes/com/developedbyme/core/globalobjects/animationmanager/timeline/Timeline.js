@@ -60,7 +60,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 			return this._startValue;
 		}
 		while(true) {
+			
 			var currentPart = this._parts[this._currentPartIndex];
+			if(currentPart == null) {
+				return this._startValue;
+			}
 			//console.log(this._currentPartIndex, aParameter >= currentPart.startApplyTime && aParameter < currentPart.endApplyTime, aParameter, currentPart.startApplyTime, currentPart.endApplyTime);
 			if(aParameter >= currentPart.startApplyTime && aParameter < currentPart.endApplyTime) {
 				//console.log(aParameter);
@@ -175,6 +179,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 				break;
 			}
 		}
+		this._currentPartIndex = Math.max(0, Math.min(this._currentPartIndex, currentArray.length-1));
 	};
 	
 	objectFunctions.setValue = function(aValue, aDelay) {
@@ -243,6 +248,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	objectFunctions.clear = function() {
 		this._parts.splice(0, this._parts.length);
 		this._partChange.setAsDirty();
+		this._currentPartIndex = 0;
 	};
 	
 	objectFunctions.clearAt = function(aTime) {

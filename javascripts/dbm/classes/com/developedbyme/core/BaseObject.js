@@ -160,7 +160,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentObject = currentArray[i];
-				if(currentObject.destroy != undefined) {
+				if(currentObject && currentObject.destroy != undefined) {
 					currentObject.destroy();
 				}
 				currentArray[i] = null;

@@ -53,17 +53,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d", "com.de
 		this._graphicsUpdate.connectInput(this._miterLimit);
 		this._graphicsUpdate.connectInput(this._strokeStyle);
 		
-		return this;
-	};
-	
-	objectFunctions.setImage = function(aImage) {
-		
-		this._image.setValue(aImage)
-		
-		this._sourceWidth.setValue(aImage.width);
-		this._sourceHeight.setValue(aImage.height);
-		this._destinationWidth.setValue(aImage.width);
-		this._destinationHeight.setValue(aImage.height);
+		this._textWidth = this.createProperty("textWidth", null);
+		this.createUpdateFunction("textWidth", this._updateTextWidthFlow, [this._font, this._text], [this._textWidth]);
 		
 		return this;
 	};
@@ -123,7 +114,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d", "com.de
 		
 		var text = this._text.getValue();
 		var x = this._x.getValue();
-		var y = this._x.getValue();
+		var y = this._y.getValue();
 		var maxWidth = this._maxWidth.getValue();
 		var strokeStyle = this._strokeStyle.getValue();
 		var fillStyle = this._fillStyle.getValue();
@@ -138,6 +129,16 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d", "com.de
 		}
 		
 		aContext.restore();
+	};
+	
+	objectFunctions._updateTextWidthFlow = function(aFlowUpdateNumber) {
+		
+		canvasContext = dbm.singletons.dbmHtmlDomManager.getTempCanvas().getContext("2d");
+		
+		canvasContext.font = this._font.getValueWithoutFlow();
+		var textWidth = canvasContext.measureText(this._text.getValueWithoutFlow()).width;
+		
+		this._textWidth.setValueWithFlow(textWidth, aFlowUpdateNumber);
 	};
 	
 	staticFunctions.create = function(aText) {

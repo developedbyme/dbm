@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		this.superCall();
 		
 		this._hierarchy = TreeStructure.create();
-		this._basePath = "../";
+		this._basePath = ""; //"../";
 		
 		return this;
 	};

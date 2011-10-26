@@ -22,7 +22,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		this.functionReevaluator = null;
 		this.argumentsArrayReevaluator = null;
 		
-		this._supressErrors = true;
+		//switch to true later
+		this._supressErrors = false;
 		
 		return this;
 	};

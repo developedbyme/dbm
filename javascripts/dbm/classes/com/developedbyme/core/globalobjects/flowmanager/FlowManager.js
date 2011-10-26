@@ -6,6 +6,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var ActiveArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator");
+	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
@@ -111,7 +113,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.connectProperties = function(aOutputProperty, aInputProperty) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::connectProperties");
-		if(aOutputProperty == null || aInputProperty == null) {
+		if(!((aOutputProperty instanceof Property || aOutputProperty instanceof UpdateFunction) && (aInputProperty instanceof Property || aInputProperty instanceof UpdateFunction))) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "connectProperties", "One object is not a property (" + aOutputProperty + ", " + aInputProperty + ").");
 			return;
 		}
@@ -121,7 +123,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.disconnectProperties = function(aOutputProperty, aInputProperty) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::disconnectProperties");
-		if(aOutputProperty == null || aInputProperty == null) {
+		if(!((aOutputProperty instanceof Property || aOutputProperty instanceof UpdateFunction) && (aInputProperty instanceof Property || aInputProperty instanceof UpdateFunction))) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "disconnectProperties", "One object is not a property (" + aOutputProperty + ", " + aInputProperty + ").");
 			return;
 		}

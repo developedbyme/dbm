@@ -39,6 +39,21 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		return (this.endValue-this.startValue)*this.interpolationObject.getTangent(aParameter);
 	};
 	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "interpolationObject":
+				return false;
+		}
+		return this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.interpolationObject = null;
+		
+		this.superCall();
+	};
+	
 	staticFunctions.create = function(aStartValue, aEndValue, aInterpolationObject, aStartTime, aLength) {
 		var newPart = (new ClassReference()).init();
 		
