@@ -65,4 +65,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		
 		return newChannel;
 	};
+	
+	objectFunctions.playSound = function(aId) {
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::createChannel");
+		
+		var audioTag = dbm.singletons.dbmAssetRepository.getAssetData(aId);
+		var newAudioTag = dbm.singletons.dbmPageManager.getDocument().cloneNode(audioTag);
+		newAudioTag.play();
+		return newAudioTag;
+	};
 });

@@ -15,6 +15,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	var ImageAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset");
+	var XmlAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset");
+	var AudioAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset");
+	var VideoAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset");
 	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
@@ -103,6 +106,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		//METODO
 	};
 	
+	objectFunctions.getVideoPath = function(aPath) {
+		return aPath + "." + this.selectedVideoExtension;
+	};
+	
+	objectFunctions.getAudioPath = function(aPath) {
+		return aPath + "." + this.selectedAudioExtension;
+	};
+	
 	objectFunctions._createAsset = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::_createAsset");
 		
@@ -115,23 +126,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 				newAsset = ImageAsset.create(aPath);
 				break;
 			case "xml":
-				//METODO:
-				//break;
+				newAsset = XmlAsset.create(aPath);
+				break;
 			case "mp3":
 			case "oga":
-				//METODO:
-				//break;
+				newAsset = AudioAsset.create(aPath);
+				break;
 			case "mp4":
 			case "ogv":
 			case "webm":
-				//METODO:
-				//break;
-			case "audio":
-				//METODO:
-				//break;
-			case "video":
-				//METODO:
-				//break;
+				newAsset = VideoAsset.create(aPath);
+				break;
 			default:
 				//METODO: error message
 				break;

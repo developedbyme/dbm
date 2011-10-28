@@ -13,6 +13,22 @@ dbm.registerClass("com.developedbyme.utils.file.PathFunctions", null, function(o
 		return currentPath.substring(dotPosition+1, currentPath.length);
 	};
 	
+	staticFunctions.getFileName = function(aPath) {
+		var currentPath = ClassReference.getPathWithoutQueryStringOrAnchor(aPath);
+		var dotPosition = currentPath.lastIndexOf(".");
+		var slashPosition = currentPath.lastIndexOf("/");
+		if(dotPosition == -1 || slashPosition > dotPosition) {
+			return null;
+		}
+		if(slashPosition == -1) {
+			currentPath = currentPath.substring(0, dotPosition);
+		}
+		else {
+			currentPath = currentPath.substring(slashPosition+1, dotPosition);
+		}
+		return currentPath;
+	};
+	
 	staticFunctions.getPathWithoutQueryStringOrAnchor = function(aPath) {
 		var hashTagPosition = aPath.indexOf("#");
 		var questionMarkPosition = aPath.indexOf("?");
