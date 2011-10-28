@@ -397,7 +397,6 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
 		newNode.setElement(htmlCreator.createNode("video", aAttributes));
-		newNode.preload = "none";
 		newNode.setUrls(aUrls, aPreload);
 		newNode.setParent(theParent);
 		if(aAddToParent != false) {

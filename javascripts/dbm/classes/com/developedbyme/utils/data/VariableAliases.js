@@ -155,4 +155,12 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 		}
 		return aValue;
 	};
+	
+	staticFunctions.isSet = function(aValue) {
+		//console.log("com.developedbyme.utils.data.VariableAliases::isSet");
+		if(aValue == null || aValue == undefined) {
+			return false;
+		}
+		return true;
+	};
 });

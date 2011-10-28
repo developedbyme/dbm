@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject");
 	
 	var ExtendedFunctionBaseObject = dbm.importClass("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject");

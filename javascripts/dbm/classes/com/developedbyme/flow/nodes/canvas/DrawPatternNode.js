@@ -13,6 +13,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.DrawPatternNode", "com.de
 		this._image.setAlwaysUpdateFlow(true);
 		this._repeatWidth = this.createProperty("repeatWidth", 0);
 		this._repeatHeight = this.createProperty("repeatHeight", 0);
+		this._scaleX = this.createProperty("scaleX", 1);
+		this._scaleY = this.createProperty("scaleY", 1);
 		this._width = this.createProperty("width", 0);
 		this._height = this.createProperty("height", 0);
 		this._offsetX = this.createProperty("offsetX", 0);
@@ -39,10 +41,13 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.DrawPatternNode", "com.de
 		var imageWidth = this._repeatWidth.getValueWithoutFlow();
 		var imageHeight = this._repeatHeight.getValueWithoutFlow();
 		
+		var outputWidth = Math.round(this._scaleX.getValueWithoutFlow()*imageWidth);
+		var outputHeight = Math.round(this._scaleX.getValueWithoutFlow()*imageHeight);
+		
 		var offsetX = this._offsetX.getValueWithoutFlow();
-		offsetX -= Math.ceil(offsetX/imageWidth)*imageWidth;
+		offsetX -= Math.ceil(offsetX/outputWidth)*outputWidth;
 		var offsetY = this._offsetY.getValueWithoutFlow();
-		offsetY -= Math.ceil(offsetY/imageHeight)*imageHeight;
+		offsetY -= Math.ceil(offsetY/outputHeight)*outputHeight;
 		
 		var canvas = this._canvas.getValueWithoutFlow();
 		
@@ -57,12 +62,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.DrawPatternNode", "com.de
 		canvas.getContext("2d").clearRect(0, 0, renderWidth, renderHeight);
 		canvas.getContext("2d").fillStyle = currentPattern;
 		
-		var timesX = Math.ceil((renderWidth-offsetX)/imageWidth);
-		var timesY = Math.ceil((renderHeight-offsetY)/imageHeight);
+		var timesX = Math.ceil((renderWidth-offsetX)/outputWidth);
+		var timesY = Math.ceil((renderHeight-offsetY)/outputHeight);
 		
 		for(var x = 0; x < timesX; x++) {
 			for(var y = 0; y < timesY; y++) {
-				canvas.getContext("2d").drawImage(this._image.getValueWithoutFlow(), 0, 0, imageWidth, imageHeight, Math.round(offsetX+x*imageWidth), Math.round(offsetY+y*imageHeight), imageWidth, imageHeight);
+				canvas.getContext("2d").drawImage(this._image.getValueWithoutFlow(), 0, 0, imageWidth, imageHeight, Math.round(offsetX+x*outputWidth), Math.round(offsetY+y*outputHeight), outputWidth, outputHeight);
 			}
 		}
 		

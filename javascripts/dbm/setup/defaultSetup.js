@@ -20,6 +20,7 @@ dbm.runTempFunction(function() {
 	var DebugManager = dbm.importClass("com.developedbyme.core.globalobjects.debugmanager.DebugManager");
 	var AssetRepository = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.AssetRepository");
 	var AudioManager = dbm.importClass("com.developedbyme.core.globalobjects.audiomanager.AudioManager");
+	var PageManager = dbm.importClass("com.developedbyme.core.globalobjects.pagemanager.PageManager");
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
@@ -37,6 +38,9 @@ dbm.runTempFunction(function() {
 		AnimationManager.getInstance().start();
 		
 		BrowserDetector.getInstance().detectBrowserFromUserAgent();
+		PageManager.getInstance().setDocument(document);
+		PageManager.getInstance().setupQueryStringParameters();
+		AssetRepository.getInstance().setRoot(PageManager.getInstance().getCurrentFolderPath());
 		
 		WindowManager.getInstance().setMasterWindow(dbm._window);
 		

@@ -8,6 +8,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var PlaceHtmlElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
+	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
 	
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
@@ -20,7 +21,17 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this._parentHtmlElement = null;
 		this._placementNode = null;
 		
+		this._alpha = this.addProperty("alpha", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty));
+		
+		this._display = this.createGhostProperty("display");
+		
+		this.createUpdateFunction("display", this._update, [this._alpha], [this._display]);
+		
 		return this;
+	};
+	
+	objectFunctions._connectObjectToOpacity = function() {
+		this._alpha.setupExternalObject(this._htmlElement, "opacity", null, 1);
 	};
 	
 	objectFunctions.setElement = function(aElement) {
@@ -38,6 +49,8 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		if(dbm.singletons.dbmHtmlDomManager != undefined) {
 			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, this._htmlElement);
 		}
+		
+		this._connectObjectToOpacity();
 		
 		return this;
 	};
@@ -74,6 +87,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	objectFunctions.setElementAsPositioned = function() {
 		
 		this._placementNode = PlaceHtmlElementNode.create(this._htmlElement);
+		this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
 		this.addDestroyableObject(this._placementNode);
 		
 		return this;
@@ -198,6 +212,9 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this._htmlElement = null;
 		this._parentHtmlElement = null;
 		this._placementNode = null;
+		
+		this._alpha = null;
+		this._display = null;
 		
 		this.superCall();
 	};

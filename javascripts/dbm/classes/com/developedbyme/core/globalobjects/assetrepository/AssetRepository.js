@@ -20,6 +20,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
+	var MimeTypeFunctions = dbm.importClass("com.developedbyme.utils.file.MimeTypeFunctions");
+	var FeatureCheck = dbm.importClass("com.developedbyme.utils.browser.FeatureCheck");
 	
 	dbm.setClassAsSingleton("dbmAssetRepository");
 	
@@ -29,15 +31,37 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		this.superCall();
 		
 		this._hierarchy = TreeStructure.create();
-		this._basePath = ""; //"../";
+		this._rootNode = this._hierarchy.getRoot();
+		
+		this.selectedVideoExtension = MimeTypeFunctions.getFileExtensionForMimeType(FeatureCheck.getSupportedVideoFormat());
+		this.selectedAudioExtension = MimeTypeFunctions.getFileExtensionForMimeType(FeatureCheck.getSupportedAudioFormat());
 		
 		return this;
+	};
+	
+	objectFunctions.setRoot = function(aPath) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::setRoot");
+		
+		if(aPath == "") {
+			this._rootNode = this._hierarchy.getRoot();
+		}
+		else {
+			this._rootNode = this._hierarchy.getItemByPath(aPath, this._rootNode);
+		}
+		
+		//this._hierarchy.debugTraceStructure();
+	};
+	
+	objectFunctions.getRootPath = function(aPath) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::getRootPath");
+		
+		return this._rootNode.getPath();
 	};
 	
 	objectFunctions.getAsset = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::getAsset");
 		
-		var currentItem = this._hierarchy.getItemByPath(aPath);
+		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
 		if(currentItem.data == null) {
 			currentItem.data = this._createAsset(currentItem.getPath());
@@ -63,7 +87,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	objectFunctions.addAsset = function(aPath, aAsset) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::addAsset");
 		
-		var currentItem = this._hierarchy.getItemByPath(aPath);
+		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
 		if(currentItem.data != null) {
 			//METODO: warning message
@@ -88,9 +112,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 			case "jpeg":
 			case "gif":
 			case "png":
-				newAsset = ImageAsset.create(this._basePath + PathFunctions.removeInitialSlash(aPath));
+				newAsset = ImageAsset.create(aPath);
 				break;
 			case "xml":
+				//METODO:
+				//break;
+			case "mp3":
+			case "oga":
+				//METODO:
+				//break;
+			case "mp4":
+			case "ogv":
+			case "webm":
+				//METODO:
+				//break;
+			case "audio":
+				//METODO:
+				//break;
+			case "video":
 				//METODO:
 				//break;
 			default:

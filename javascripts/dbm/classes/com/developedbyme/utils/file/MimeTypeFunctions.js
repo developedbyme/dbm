@@ -24,6 +24,10 @@ dbm.registerClass("com.developedbyme.utils.file.MimeTypeFunctions", null, functi
 				return "ogv";
 			case "video/webm":
 				return "webm";
+			case "audio/mpeg":
+				return "mp3";
+			case "audio/ogg":
+				return "oga";
 		}
 		//METODO: error message
 		return null;
@@ -37,6 +41,10 @@ dbm.registerClass("com.developedbyme.utils.file.MimeTypeFunctions", null, functi
 				return "video/ogg";
 			case "webm":
 				return "video/webm";
+			case "mp3":
+				return "audio/mpeg";
+			case "oga":
+				return "audio/ogg";
 		}
 		//METODO: error message
 		return null;

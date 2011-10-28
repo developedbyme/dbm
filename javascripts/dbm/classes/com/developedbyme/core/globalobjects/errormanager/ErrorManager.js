@@ -33,6 +33,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.ErrorManage
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentHandler = currentArray[i];
+			
 			currentHandler.reportError(aObject, aFunctionName, aError);
 		}
 	};

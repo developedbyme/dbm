@@ -48,6 +48,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._width = this.createProperty("width", 640);
 		this._height = this.createProperty("height", 480);
 		
+		this._documentReady = this.createProperty("documentReady", false);
+		
 		this._size = this.createGhostProperty("size");
 		this._position = this.createGhostProperty("position");
 		this._display = this.createGhostProperty("display");
@@ -93,9 +95,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.RESIZE, CallFunctionCommand.createCommand(this, this._sizeUpdated, []));
 		
 		this.getExtendedEvent().addCommandToEvent(ClassReference._MOUSE_POSITION_UPDATE, CallFunctionCommand.createCommand(this, this._mousePositionUpdate, [GetVariableObject.createSelectDataCommand()]));
-		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.DOCUMENT_READY, CallFunctionCommand.createCommand(this, this._documentReady, []));
-		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.DOCUMENT_LOADED, CallFunctionCommand.createCommand(this, this._documentLoaded, []));
-		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.DOCUMENT_UNLOADED, CallFunctionCommand.createCommand(this, this._documentUnloaded, []));
+		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.DOCUMENT_READY, CallFunctionCommand.createCommand(this, this._documentReadyCallback, []));
+		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.DOCUMENT_LOADED, CallFunctionCommand.createCommand(this, this._documentLoadedCallback, []));
+		this.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.DOCUMENT_UNLOADED, CallFunctionCommand.createCommand(this, this._documentUnloadedCallback, []));
 		
 		return this;
 	};
@@ -351,18 +353,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		}
 	};
 	
-	objectFunctions._documentReady = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentReady");
+	objectFunctions._documentReadyCallback = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentReadyCallback");
 		
+		this._documentReady.setValue(true);
 		this._title.setupExternalObject(this._window.document, "title");
 	};
 	
-	objectFunctions._documentLoaded = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentLoaded");
+	objectFunctions._documentLoadedCallback = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentLoadedCallback");
+		this._documentReady.setValue(true);
 	};
 	
-	objectFunctions._documentUnloaded = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentUnloaded");
+	objectFunctions._documentUnloadedCallback = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentUnloadedCallback");
 	};
 	
 	objectFunctions.setFeatures = function(aStatus, aToolbar, aLocation, aMenubar, aDirectories, aResizable, aScrollbars) {
@@ -441,6 +445,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::close");
 		if(!this._isOpen) return this;
 		
+		this._documentReady.setValue(false);
+		
 		try {
 		
 			this._isOpen = false;
@@ -479,6 +485,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		if(this._window.closed) {
 			this._isOpen = false;
 			this._window = null;
+			this._documentReady.setValue(false);
 			dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateInput");
 			if(this.getExtendedEvent().hasEvent(WindowExtendedEventIds.CLOSE)) {
 				this.getExtendedEvent().perform(WindowExtendedEventIds.CLOSE);
@@ -550,6 +557,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		
 		this._width = null;
 		this._height = null;
+		this._documentReady = null;
 		
 		this._size = null;
 		this._position = null;

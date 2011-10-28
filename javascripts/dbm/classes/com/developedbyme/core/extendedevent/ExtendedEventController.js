@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	var EventLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.EventLink");
 	var EventPerformer = dbm.importClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::init");
@@ -232,6 +233,12 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	
 	objectFunctions.addCommandToEvent = function(aEventName, aCommand) {
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::addCommandToEvent");
+		
+		if(!VariableAliases.isSet(aCommand)) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addCommandToEvent", "Command is null.");
+			return null;
+		}
+		
 		if(aCommand.id == null) {
 			aCommand.id = "autoId_" + aEventName;
 		}

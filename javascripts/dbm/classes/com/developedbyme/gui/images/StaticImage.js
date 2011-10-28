@@ -3,12 +3,25 @@ dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme
 	
 	var StaticImage = dbm.importClass("com.developedbyme.gui.images.StaticImage");
 	
+	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.gui.images.StaticImage::init");
 		
 		this.superCall();
+		
+		this._source = this.addProperty("source", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty));
+		this._updateFunctions.getObject("display").addInputConnection(this._source);
+		
+		return this;
+	};
+	
+	objectFunctions.setElement = function(aElement) {
+		
+		this.superCall(aElement);
+		
+		this._source.setupExternalObject(this._htmlElement, "src");
 		
 		return this;
 	};

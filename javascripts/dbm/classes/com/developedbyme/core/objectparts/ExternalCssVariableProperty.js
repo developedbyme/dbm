@@ -3,6 +3,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	
 	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	objectFunctions.init = function() {
@@ -36,7 +40,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 			return this._value;
 		}
 		
-		var cssValue = this._externalObject.style.getPropertyValue(this._externalVariableName);
+		var cssValue;
+		cssValue = this._externalObject.style.getPropertyValue(this._externalVariableName);
 		
 		if(cssValue == null) {
 			return null;
@@ -50,7 +55,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		return cssValue;
 	};
 	
-	objectFunctions.setupExternalObject = function(aObject, aVariableName, aUnit) {
+	objectFunctions.setupExternalObject = function(aObject, aVariableName, aUnit, aDefaultValue) {
 		
 		if(this._externalObject != null) {
 			//METODO: warning message
@@ -67,6 +72,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 			this._performSetValue(startValue);
 		}
 		else {
+			if(this.getValue() == null && aDefaultValue != null) {
+				this._performSetValue(aDefaultValue);
+			}
 			this.setAsDirty();
 		}
 	};

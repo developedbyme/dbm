@@ -3,10 +3,13 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 	
 	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
 	
-	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
-	var CssCursorTypes = dbm.importClass("com.developedbyme.constants.CssCursorTypes");
+	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
+	
 	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
+	
+	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
+	var CssCursorTypes = dbm.importClass("com.developedbyme.constants.CssCursorTypes");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.gui.buttons.BaseButton::init");
@@ -15,6 +18,11 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		
 		this._isActive = false;
 		this._useHandCursor = true;
+		
+		this._rollOverState = this.createProperty("rollOverState", false);
+		
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OVER, SetPropertyCommand.createCommand(this._rollOverState, true));
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OUT, SetPropertyCommand.createCommand(this._rollOverState, false));
 		
 		return this;
 	};
@@ -52,6 +60,8 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		this.getExtendedEvent().deactivateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
 		this.getExtendedEvent().deactivateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
 		
+		this._rollOverState.setValue(false);
+		
 		return this;
 	};
 	
@@ -70,6 +80,13 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		return this.superCall(aName);
 	};
 	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._rollOverState = null;
+		
+		this.superCall();
+	};
+	
 	staticFunctions.create = function(aElement) {
 		return (new BaseButton()).init().setElement(aElement);
 	};
@@ -83,7 +100,7 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		
 		var htmlCreator = newNode.getHtmlCreator();
 		
-		newNode.setElement(htmlCreator.createNode("div", aAttributes));
+		newNode.setElement(htmlCreator.createDiv(aAttributes));
 		
 		if(aAddToParent != false) {
 			newNode.addToDom();

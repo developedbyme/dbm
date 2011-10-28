@@ -13,6 +13,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand::init");
 		
@@ -23,7 +25,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		this.argumentsArrayReevaluator = null;
 		
 		//switch to true later
-		this._supressErrors = false;
+		this._supressErrors = true;
 		
 		return this;
 	};
@@ -39,6 +41,10 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		var theResult;
 		if(this._supressErrors) {
 			try {
+				if(!VariableAliases.isSet(theFunction)) {
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "perform", "Function is null. Can't create call on object " + theObject + " with arguments " + argumentsArray);
+					return CommandStatusTypes.ERROR;
+				}
 				theResult = theFunction.apply(theObject, argumentsArray);
 				aEventDataObject.addResult(theResult);
 			}
@@ -86,6 +92,11 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 	 */
 	staticFunctions.createCommand = function(aObject, aFunction, aArgumentsArray) {
 		var newCommand = (new CallFunctionCommand()).init();
+		
+		if(!VariableAliases.isSet(aFunction)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[CallFunctionCommand]", "createCommand", "Function is null. Can't create call for " + aFunction + " on object " + aObject + " with arguments " + aArgumentsArray);
+			return null;
+		}
 		
 		newCommand.objectReevaluator = StaticVariableObject.createReevaluationObject(aObject);
 		

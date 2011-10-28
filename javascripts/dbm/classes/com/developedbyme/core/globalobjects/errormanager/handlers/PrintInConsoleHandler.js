@@ -30,6 +30,26 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.Pr
 	};
 	
 	objectFunctions.reportError = function(aObject, aFunctionName, aError) {
-		console.error(aObject, aFunctionName+":", aError);
+		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
+		var errorProperties = new Array();
+		if(aError.fileName) {
+			errorProperties.push("fileName: " + aError.fileName);
+		}
+		if(aError.sourceURL) {
+			errorProperties.push("sourceURL: " + aError.sourceURL);
+		}
+		if(aError.lineNumber) {
+			errorProperties.push("lineNumber: " + aError.lineNumber);
+		}
+		if(aError.line) {
+			errorProperties.push("lineNumber: " + aError.line);
+		}
+		if(aError.stack) {
+			errorProperties.push("stack: " + aError.stack);
+		}
+		
+		var errorString = aError.message +" (" + errorProperties.join(", ") + ")";
+		
+		console.error(aObject, aFunctionName+":", aError, errorString);
 	};
 });
