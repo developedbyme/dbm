@@ -3,9 +3,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	
 	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	staticFunctions.DEFAULT_MAX_NUMBER_OF_SIMILTANIOUS_LOADERS = 5;
 	
@@ -16,8 +25,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		
 		this._groupId = dbm.singletons.dbmIdManager.getNewId("loadingSequence");
 		
-		this._time = this._createProperty("time", dbm.singletons.dbmAnimationManager.getGlobalTimeNode().getProperty("time"));
-		this._progress = this._createProperty("progress", 0);
+		this._time = this.createProperty("time", dbm.singletons.dbmAnimationManager.getGlobalTimeNode().getProperty("time"));
+		this._progress = this.createProperty("progress", 0);
 		this._maxNumberOfSimiltaniousLoaders = ClassReference.DEFAULT_MAX_NUMBER_OF_SIMILTANIOUS_LOADERS;
 		this._loaders = new Array();
 		this._loadingLoaders = new Array();
@@ -45,6 +54,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	};
 	
 	objectFunctions.load = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::load");
 		
 		if(this._isLoading) return;
 		
@@ -56,7 +66,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	};
 	
 	objectFunctions.addAsset = function(aAsset) {
-		
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::addAsset");
 		if(ArrayFunctions.indexOfInArray(this._loaders, aAsset) != -1) {
 			return this;
 		}
@@ -95,20 +105,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	
 	objectFunctions._addListenersToLoader = function(aLoader) {
 		
+		
 		aLoader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._loaderLoaded, [aLoader]).setId(this._groupId));
 		aLoader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADING_ERROR, CallFunctionCommand.createCommand(this, this._loaderError, [aLoader]).setId(this._groupId));
 		
 	};
 	
 	objectFunctions._loadLoader = function(aLoader) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_loadLoader");
+		//console.log(this, aLoader);
 		
 		this._status = AssetStatusTypes.LOADING;
 		
-		if(aAsset.getStatus() == AssetStatusTypes.LOADED) {
-			this._loadedLoaders.push(aAsset);
+		if(aLoader.getStatus() == AssetStatusTypes.LOADED) {
+			this._loadedLoaders.push(aLoader);
 		}
-		else if(aAsset.getStatus() == AssetStatusTypes.ERROR) {
-			this._loadedLoaders.push(aAsset);
+		else if(aLoader.getStatus() == AssetStatusTypes.ERROR) {
+			this._loadedLoaders.push(aLoader);
 			if(!this._continueOnError) {
 				this._isLoading = false;
 				this._status = AssetStatusTypes.LOADING_ERROR;
@@ -117,22 +130,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 				}
 			}
 		}
-		else if(aAsset.getStatus() == AssetStatusTypes.LOADING) {
-			this._addListenersToLoader(aAsset);
-			this._loadingLoaders.push(aAsset);
+		else if(aLoader.getStatus() == AssetStatusTypes.LOADING) {
+			this._addListenersToLoader(aLoader);
+			this._loadingLoaders.push(aLoader);
 		}
 		else {
-			this._startLoadingLoader(aAsset);
+			this._startLoadingLoader(aLoader);
 		}
 	};
 	
 	objectFunctions._startLoadingLoader = function(aLoader) {
 		
 		this._addListenersToLoader(aLoader);
+		this._loadingLoaders.push(aLoader);
 		aLoader.load();
 	};
 	
 	objectFunctions._continueLoading = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_continueLoading");
 		
 		while(this._waitingLoaders.length > 0) {
 			var currentLoader = this._waitingLoaders.shift();
@@ -142,29 +157,30 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 			}
 		}
 		
-		if(this._loadingLoaders.length == 0 && this._waitingLoaders == 0) {
+		if(this._loadingLoaders.length == 0 && this._waitingLoaders == 0 && this._status == AssetStatusTypes.LOADING) {
 			this._status = AssetStatusTypes.LOADED;
 			if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.LOADED)) {
-				this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED)
+				this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED);
 			}
 		}
 	};
 	
 	objectFunctions._setLoaderAsLoaded = function(aLoader) {
 		
-		var currentIndex = ArrayFunctions.indexOfInArray(this._loadingLoaders);
+		var currentIndex = ArrayFunctions.indexOfInArray(this._loadingLoaders, aLoader);
 		if(currentIndex != -1) {
 			this._loadingLoaders.splice(currentIndex, 1);
 		}
 		
 		this._loadedLoaders.push(aLoader);
 		
-		aLoader.getExtendedEvent().removeCommandFromEventById(LoadingExtendedEventIds.LOADED, this._groupId);
-		aLoader.getExtendedEvent().removeCommandFromEventById(LoadingExtendedEventIds.LOADING_ERROR, this._groupId);
+		aLoader.getExtendedEvent().removeCommandByIdFromEvent(LoadingExtendedEventIds.LOADED, this._groupId);
+		aLoader.getExtendedEvent().removeCommandByIdFromEvent(LoadingExtendedEventIds.LOADING_ERROR, this._groupId);
 		
 	};
 	
-	objectFunctions._loaderLoader = function(aLoader) {
+	objectFunctions._loaderLoaded = function(aLoader) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_loaderLoaded");
 		
 		this._setLoaderAsLoaded(aLoader);
 		this._continueLoading();

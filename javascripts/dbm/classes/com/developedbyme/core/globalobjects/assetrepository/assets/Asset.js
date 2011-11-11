@@ -13,25 +13,25 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		this.superCall();
 		
 		this._hierarchyItem = null;
-		this._status = AssetStatusTypes.NOT_LOADED;
-		this._data = null;
+		this._status = this.createProperty("status", AssetStatusTypes.NOT_LOADED);
+		this._data = this.createProperty("data", null);
 		this._numberOfRetains = 0;
 		
 		return this;
 	};
 	
 	objectFunctions.getData = function() {
-		return this._data;
+		return this._data.getValue();
 	};
 	
 	objectFunctions.getStatus = function() {
-		return this._status;
+		return this._status.getValue();
 	};
 	
 	objectFunctions._setStatus = function(aStatus) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_setStatus");
 		//console.log(aStatus);
-		this._status = aStatus;
+		this._status.setValue(aStatus);
 	};
 	
 	/**
@@ -86,10 +86,22 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	};
 	
 	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		if(this._status != null) {
+			aReturnArray.push("status: " + this._status.getValue());
+		}
+	}
+	
+	/**
 	 * Sets all the references to null
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
+		this._status = null;
 		this._data = null;
 		
 		this.superCall();

@@ -6,6 +6,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	var FormFieldExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.FormFieldExtendedEventIds");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	staticFunctions._ACTIVE = "active";
@@ -25,7 +26,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 		
 		this.getExtendedEvent().addCommandToEvent(FormFieldExtendedEventIds.FOCUS, CallFunctionCommand.createCommand(this, this._focus, []));
 		this.getExtendedEvent().addCommandToEvent(FormFieldExtendedEventIds.BLUR, CallFunctionCommand.createCommand(this, this._blur, []));
-		this.getExtendedEvent().addCommandToEvent(ClassReference._INTERNAL_CHANGE, CallFunctionCommand.createCommand(this, this._change, []));
+		this.getExtendedEvent().addCommandToEvent(ClassReference._INTERNAL_CHANGE, CallFunctionCommand.createCommand(this, this._change, [GetVariableObject.createSelectDataCommand()]));
 		
 		return this;
 	};
@@ -44,9 +45,9 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	objectFunctions.setDefaultText = function(aText) {
 		//console.log("com.developedbyme.gui.form.InputField::setDefaultText");
 		this._defaultText = aText;
-		if(this._defaultText != null && VariableAliases.isNull(this._htmlElement.value)) {
+		if(this._defaultText != null && VariableAliases.isNull(this.getElement().value)) {
 			this._isChangingDefaultText = true;
-			this._htmlElement.value = this._defaultText;
+			this.getElement().value = this._defaultText;
 			this._isChangingDefaultText = false;
 		}
 		
@@ -54,42 +55,50 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	}
 	
 	objectFunctions.setText = function(aText) {
-		this._htmlElement.value = this._defaultText;
+		this.getElement().value = this._defaultText;
 		
 		return this;
 	}
 	
+	objectFunctions.getValue = function() {
+		return this._value.getValue();
+	}
+	
 	objectFunctions._focus = function() {
 		//console.log("com.developedbyme.gui.form.InputField::_focus");
-		if(this._defaultText != null && this._htmlElement.value == this._defaultText) {
+		if(this._defaultText != null && this.getElement().value == this._defaultText) {
 			this._isChangingDefaultText = true;
-			this._htmlElement.value = "";
+			this.getElement().value = "";
 			this._isChangingDefaultText = false;
 		}
 	}
 	
 	objectFunctions._blur = function() {
 		//console.log("com.developedbyme.gui.form.InputField::_blur");
-		if(this._defaultText != null && VariableAliases.isNull(this._htmlElement.value)) {
+		if(this._defaultText != null && VariableAliases.isNull(this.getElement().value)) {
 			this._isChangingDefaultText = true;
-			this._htmlElement.value = this._defaultText;
+			this.getElement().value = this._defaultText;
 			this._isChangingDefaultText = false;
 		}
 	}
 	
-	objectFunctions._change = function() {
+	objectFunctions._change = function(aEvent) {
 		//console.log("com.developedbyme.gui.form.InputField::_change");
 		if(this._isChangingDefaultText) return;
-		this._value.setValue(this._htmlElement.value);
+		this._value.setValue(this.getElement().value);
 		if(this.getExtendedEvent().hasEvent(FormFieldExtendedEventIds.CHANGE)) {
-			this.getExtendedEvent().perform(FormFieldExtendedEventIds.CHANGE, this._htmlElement.value);
+			this.getExtendedEvent().perform(FormFieldExtendedEventIds.CHANGE, this.getElement().value);
+		}
+		if(aEvent.keyCode == 13) {
+			if(this.getExtendedEvent().hasEvent(FormFieldExtendedEventIds.REQUEST_SUBMIT)) {
+				this.getExtendedEvent().perform(FormFieldExtendedEventIds.REQUEST_SUBMIT, this.getElement().value);
+			}
 		}
 	}
 	
 	objectFunctions._updateFlowText = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.gui.form.InputField::_updateFlowText");
-		this._htmlElement.value = this._value.getValueWithoutFlow();
-		this._display.setValueWithFlow(null, aFlowUpdateNumber);
+		this.getElement().value = this._value.getValueWithoutFlow();
 	}
 	
 	objectFunctions.activate = function() {

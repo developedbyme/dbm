@@ -20,6 +20,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	var VideoEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.VideoEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEventIds");
+	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.gui.video.VideoView::init");
@@ -39,17 +40,27 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._currentTime = this.createProperty("currentTime", 0);
 		this._playbackState = this.createProperty("playbackState", PlaybackStateTypes.PLAYING);
 		this._playbackSpeed = this.createProperty("playbackSpeed", 1);
+		this._hasEnded = this.createProperty("hasEnded", false);
+		this._loop = this.createProperty("loop", false);
+		this._loopPlayback = this.addProperty("loopPlayback", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null)); //MENOTE: since firefox doesn't suppert the loop attribute yet this needs to be linked
+		this._loopPlayback.connectInput(this._loop);
 		
-		this._volume = this.addProperty("volume", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._mixerChannel = dbm.singletons.dbmAudioManager.getMixer("video").createChannel(null, 1);
+		this.addDestroyableObject(this._mixerChannel);
+		
+		this._volume = this.createProperty("volume", 1);
+		this._outputVolume = this.addProperty("outputVolume", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._mixerChannel.setPropertyInput("input", this._volume);
+		this._outputVolume.connectInput(this._mixerChannel.getProperty("output"));
 		this._muted = this.addProperty("muted", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, false));
 		
 		this._outputTime = this.createProperty("outputTime", 0);
 		
 		this._playback = this.createGhostProperty("playback");
+		this._updateFunctions.getObject("display").addInputConnection(this._playback);
 		
-		this.createUpdateFunction("default", this._updateFlow, [this._stateTimeline.getProperty("outputValue"), this._startTimeTimeline.getProperty("outputValue"), this._startPositionTimeline.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed], [this._outputTime, this._playback]);
+		this.createUpdateFunction("default", this._updateFlow, [this._stateTimeline.getProperty("outputValue"), this._startTimeTimeline.getProperty("outputValue"), this._startPositionTimeline.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed, this._outputVolume, this._loop, this._loopPlayback], [this._outputTime, this._playback, this._hasEnded]);
 		
-		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGE, SetPropertyAsDirtyCommand.createCommand(this._volume));
 		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGE, SetPropertyAsDirtyCommand.createCommand(this._muted));
 		this.getExtendedEvent().addCommandToEvent(VideoEventIds.LOADED_META_DATA, CallFunctionCommand.createCommand(this, this._metaDataLoaded, [GetVariableObject.createSelectDataCommand()]));
 		
@@ -62,10 +73,10 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		
 		this.superCall(aElement);
 		
-		this._volume.setupExternalObject(this._htmlElement, "volume");
-		this._muted.setupExternalObject(this._htmlElement, "muted");
+		this._outputVolume.setupExternalObject(this.getElement(), "volume");
+		this._muted.setupExternalObject(this.getElement(), "muted");
+		this._loopPlayback.setupExternalObject(this.getElement(), "loop");
 		
-		this.getExtendedEvent().linkJavascriptEvent(aElement, VideoEventIds.VOLUME_CHANGE, VideoEventIds.VOLUME_CHANGE, VideoEventIds.VOLUME_CHANGE, true).activate();
 		this.getExtendedEvent().linkJavascriptEvent(aElement, VideoEventIds.LOADED_META_DATA, VideoEventIds.LOADED_META_DATA, VideoEventIds.LOADED_META_DATA, true).activate();
 		
 		return this;
@@ -91,12 +102,30 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		
 		this._stateTimeline.setValue(PlaybackStateTypes.PLAYING);
 		this._startTimeTimeline.setValue(this._currentTime.getValue());
-		this._startPositionTimeline.setValue(this._htmlElement.currentTime);
+		this._startPositionTimeline.setValue(this.getElement().currentTime);
 		
 		var playbackState = this._playbackState.getValue();
 		var playbackSpeed = this._playbackSpeed.getValue();
-		if(playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1 && this._htmlElement.paused) {
+		if(playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1 && this.getElement().paused) {
 			this._performPlay();
+		}
+	};
+	
+	objectFunctions.reactivateForNewDocument = function() {
+		//console.log("com.developedbyme.gui.video.VideoView::reactivateForNewDocument");
+		this.superCall();
+		
+		var currentElement = this.getElement();
+		
+		if(currentElement != null) {
+			var asset = dbm.singletons.dbmAssetRepository.getAsset(this._selectedUrl);
+			var videoTag = asset.getData();
+			var newVideoTag = currentElement.ownerDocument.importNode(videoTag, true);
+			newVideoTag.load();
+			dbm.singletons.dbmHtmlDomManager.copyStyle(currentElement, newVideoTag);
+			
+			this.setElement(newVideoTag);
+			//this.getProperty("display").update();
 		}
 	};
 	
@@ -109,9 +138,9 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		
 		this._stateTimeline.setValue(PlaybackStateTypes.PAUSED);
 		this._startTimeTimeline.setValue(this._currentTime.getValue());
-		this._startPositionTimeline.setValue(this._htmlElement.currentTime);
+		this._startPositionTimeline.setValue(this.getElement().currentTime);
 		
-		if(!this._htmlElement.paused) {
+		if(!this.getElement().paused) {
 			this._performPause();
 		}
 	};
@@ -123,12 +152,15 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._startPositionTimeline.setValue(aTime);
 		
 		this._performSeek(aTime);
-		this._outputTime.setValue(this._htmlElement.currentTime);
+		this._outputTime.setValue(this.getElement().currentTime);
 	};
 	
 	objectFunctions._performPlay = function() {
+		//console.log("com.developedbyme.gui.video.VideoView::_performPlay");
 		try {
-			this._htmlElement.play();
+			this._outputVolume.update();
+			this.getElement().play();
+			//console.log(this._outputVolume.getValue(), this.getElement().volume);
 		}
 		catch(theError) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
@@ -138,7 +170,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	
 	objectFunctions._performPause = function() {
 		try {
-			this._htmlElement.pause();
+			this.getElement().pause();
 		}
 		catch(theError) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
@@ -149,8 +181,8 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	objectFunctions._performSeek = function(aTime) {
 		//console.log("com.developedbyme.gui.video.VideoView::_performSeek");
 		try {
-			if(aTime >= 0 && aTime <= this._htmlElement.duration) {
-				this._htmlElement.currentTime = aTime;
+			if(aTime >= 0 && aTime <= this.getElement().duration) {
+				this.getElement().currentTime = aTime;
 			}
 		}
 		catch(theError) {
@@ -160,6 +192,8 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	};
 	
 	objectFunctions.setStateAt = function(aState, aOutputTime, aTime) {
+		//console.log("com.developedbyme.gui.video.VideoView::setStateAt");
+		//console.log(this._selectedUrl, aState, aTime);
 		if(aState == PlaybackStateTypes.PAUSED) {
 			if(this._stateTimeline.getValueAt(aTime) != PlaybackStateTypes.PAUSED) {
 				this._stateTimeline.setValueAt(PlaybackStateTypes.PAUSED, aTime);
@@ -183,7 +217,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	
 	objectFunctions._metaDataLoaded = function(aEvent) {
 		//console.log("com.developedbyme.gui.video.VideoView::_metaDataLoaded");
-		//console.log(this, this._selectedUrl, this._htmlElement.videoWidth, this._htmlElement.videoHeight);
+		//console.log(this, this._selectedUrl, this.getElement().videoWidth, this.getElement().videoHeight);
 		
 		if(this.getExtendedEvent().hasEvent(PlaybackExtendedEventIds.META_DATA_LOADED)) {
 			this.getExtendedEvent().perform(PlaybackExtendedEventIds.META_DATA_LOADED)
@@ -230,10 +264,10 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentUrl = currentArray[i];
 			var currentType = this._getTypeForUrl(currentUrl);
-			var canPlayStatus = this._htmlElement.canPlayType(currentType);
+			var canPlayStatus = this.getElement().canPlayType(currentType);
 			//console.log(currentType, canPlayStatus);
 			if(canPlayStatus == "probably") {
-				this._htmlElement.src = currentUrl;
+				this.getElement().src = currentUrl;
 				this._selectedUrl = currentUrl;
 				isSelected = true;
 				break;
@@ -244,7 +278,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 				}
 				else {
 					var currentTypeWithoutCodecs = this._getTypeWithoutCodecsForUrl(currentUrl);
-					var canPlayStatus = this._htmlElement.canPlayType(currentTypeWithoutCodecs);
+					var canPlayStatus = this.getElement().canPlayType(currentTypeWithoutCodecs);
 					//console.log(currentTypeWithoutCodecs, canPlayStatus);
 					if(canPlayStatus == "probably" || canPlayStatus == "maybe") {
 						maybeUrl = currentUrl;
@@ -253,11 +287,11 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			}
 		}
 		if(!isSelected && maybeUrl != null) {
-			this._htmlElement.src = maybeUrl;
+			this.getElement().src = maybeUrl;
 			this._selectedUrl = maybeUrl;
 		}
 		if(aPreload) {
-			this._htmlElement.load();
+			this.getElement().load();
 		}
 	}
 	
@@ -266,7 +300,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	};
 	
 	objectFunctions.updateScrubbing = function(aValue) {
-		if(!this._htmlElement.seeking) {
+		if(!this.getElement().seeking) {
 			this.seek(aValue);
 		}
 	};
@@ -278,12 +312,9 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.gui.video.VideoView::_updateFlow");
 		
-		if(this._htmlElement.seeking) {
+		if(this.getElement().seeking) {
 			//MENOTE: do nothing
 			//console.log("seeking");
-			if(this._selectedUrl == "assets/itemVideos/16_cog_push1.mp4") {
-				console.log("seeking");
-			}
 		}
 		else {
 		
@@ -293,14 +324,25 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			var currentTime = this._currentTime.getValueWithoutFlow();
 			var playbackState = this._playbackState.getValueWithoutFlow();
 			var playbackSpeed = this._playbackSpeed.getValueWithoutFlow();
+			var loop = this._loop.getValueWithoutFlow();
 			
 			var timeShouldBeAt = (currentTime-startTime+startPosition);
-			var maxTime = Math.max(0, Math.min(this._htmlElement.duration, timeShouldBeAt));
 			
-			var isPaused = this._htmlElement.paused;
-			var hasEnded = this._htmlElement.ended;
+			if(timeShouldBeAt >= this.getElement().duration) {
+				if(loop) {
+					var times = Math.floor(timeShouldBeAt/this.getElement().duration);
+					timeShouldBeAt -= times*this.getElement().duration;
+				}
+			}
 			
-			//console.log(this._selectedUrl, isPaused, hasEnded, maxTime, this._htmlElement.currentTime, state, startTime, startPosition, currentTime, playbackState, playbackSpeed);
+			this._hasEnded.setValueWithFlow(timeShouldBeAt >= this.getElement().duration);
+			
+			var maxTime = Math.max(0, Math.min(this.getElement().duration, timeShouldBeAt));
+			
+			var isPaused = this.getElement().paused;
+			var hasEnded = this.getElement().ended;
+			
+			//console.log(this._selectedUrl, isPaused, hasEnded, maxTime, this.getElement().currentTime, state, startTime, startPosition, currentTime, playbackState, playbackSpeed);
 			
 			if((!isPaused) && (playbackState != PlaybackStateTypes.PLAYING || playbackSpeed != 1 || state == PlaybackStateTypes.PAUSED)) {
 				this._performPause();
@@ -316,30 +358,30 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 				}
 				else {
 					if(state != PlaybackStateTypes.PAUSED) {
-						if(this._htmlElement.currentTime != maxTime) {
+						if(this.getElement().currentTime != maxTime) {
 							this._performSeek(maxTime);
 							//console.log("update", this._selectedUrl, maxTime);
 							this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
 						}
 						else {
-							//console.log("else2", this._selectedUrl, this._htmlElement.currentTime);
+							//console.log("else2", this._selectedUrl, this.getElement().currentTime);
 						}
 					}
 					else {
-						//console.log("else", this._selectedUrl, this._htmlElement.currentTime);
-						if(this._htmlElement.currentTime != startPosition) {
-							if(this._htmlElement.networkState == this._htmlElement.NETWORK_IDLE || this._htmlElement.networkState == this._htmlElement.NETWORK_LOADING) {
-								//console.log("else", this._selectedUrl, this._htmlElement.currentTime, startPosition);
+						//console.log("else", this._selectedUrl, this.getElement().currentTime);
+						if(this.getElement().currentTime != startPosition) {
+							if(this.getElement().networkState == this.getElement().NETWORK_IDLE || this.getElement().networkState == this.getElement().NETWORK_LOADING) {
+								//console.log("else", this._selectedUrl, this.getElement().currentTime, startPosition);
 								this._performSeek(startPosition);
 							}
 						}
-						this._outputTime.setValueWithFlow(this._htmlElement.currentTime, aFlowUpdateNumber);
+						this._outputTime.setValueWithFlow(this.getElement().currentTime, aFlowUpdateNumber);
 					}
 				}
 			}
 			else {
-				var timeDifference = Math.abs(maxTime-this._htmlElement.currentTime);
-				if(timeDifference > this._maxTimeDifference && this._htmlElement.currentTime-timeDifference < this._htmlElement.duration) {
+				var timeDifference = Math.abs(maxTime-this.getElement().currentTime);
+				if(timeDifference > this._maxTimeDifference && this.getElement().currentTime-timeDifference < this.getElement().duration) {
 					//console.log("timeDifference", timeDifference);
 					this._performSeek(maxTime);
 					//console.log("timeDiff", this._selectedUrl, maxTime);
@@ -382,8 +424,13 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._outputTime = null;
 		
 		this._playback = null;
+		this._mixerChannel = null;
+		this._outputVolume = null;
 		this._volume = null;
 		this._muted = null;
+		this._hasEnded = null;
+		this._loop = null;
+		this._loopPlayback = null;
 		
 		this.superCall();
 	};
@@ -398,6 +445,36 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		
 		newNode.setElement(htmlCreator.createNode("video", aAttributes));
 		newNode.setUrls(aUrls, aPreload);
+		newNode.setParent(theParent);
+		if(aAddToParent != false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	};
+	
+	staticFunctions.createFromAsset = function(aParentOrDocument, aAddToParent, aAssetPath, aAttributes) {
+		var newNode = (new ClassReference()).init();
+		
+		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
+		
+		var asset = dbm.singletons.dbmAssetRepository.getAsset(aAssetPath);
+		
+		if(asset.getStatus() == AssetStatusTypes.NOT_LOADED) {
+			asset.load();
+		}
+		
+		var videoTag = asset.getData();
+		var newVideoTag = theDocument.importNode(videoTag, true);
+		newVideoTag.load();
+		
+		dbm.singletons.dbmHtmlDomManager.setAttributesToNode(newVideoTag, aAttributes);
+		
+		newNode.setElement(newVideoTag);
+		newNode.setUrls([aAssetPath], false);
 		newNode.setParent(theParent);
 		if(aAddToParent != false) {
 			newNode.addToDom();

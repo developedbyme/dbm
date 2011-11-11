@@ -278,6 +278,15 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 		return currentPerformer.hasCommandWithId(aId);
 	};
 	
+	objectFunctions.reactivateEventListeners = function() {
+		var currentArray = this._eventLinkGroups.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentGroup = currentArray[i];
+			currentGroup.reactivateAll();
+		}
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._owner = null;

@@ -131,6 +131,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		if(aConnectedOutput != undefined && aConnectedOutput != null) {
 			//console.log(newTimeline.getProperty("outputValue"), aConnectedOutput);
 			dbm.singletons.dbmFlowManager.connectProperties(newTimeline.getProperty("outputValue"), aConnectedOutput);
+			aConnectedOutput._animationController = newTimeline;
 			//METODO: set this object as controller for property
 		}
 		return newTimeline;

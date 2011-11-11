@@ -16,9 +16,14 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		return this;
 	};
 	
+	objectFunctions.getExternalObject = function() {
+		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::getExternalObject");
+		
+		return this._externalObject;
+	};
+	
 	objectFunctions._performSetValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performSetValue");
-		//console.log(this, aValue);
 		if(this._externalObject == null) {
 			this._value = aValue;
 			return;

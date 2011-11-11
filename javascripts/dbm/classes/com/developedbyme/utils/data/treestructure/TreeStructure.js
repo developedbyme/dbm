@@ -20,6 +20,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		this.superCall();
 		
 		this.createMissingItems = true;
+		this.ownsData = false;
 		
 		this._root = TreeStructureItem.create("");
 		this._root._internalFunctionality_setRoot(this);
@@ -42,6 +43,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		//sconsole.log(aItem, aPath, aBaseItem);
 		
 		aBaseItem = VariableAliases.valueWithDefault(aBaseItem, null);
+		
+		aItem.ownsData = this.ownsData;
 		
 		var currentItem = aBaseItem;
 		if(currentItem == null) {

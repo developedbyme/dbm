@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedN
 		if(originalIndexValue == -1) {
 			if(currentItem != null) {
 				currentItem.removeFromDom();
-				this._outputValue.setValueWithFlow(null, aFlowUpdateNumber);
+				this._currentVisibleItem.setValueWithFlow(null, aFlowUpdateNumber);
 			}
 			return;
 		}

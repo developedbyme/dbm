@@ -15,11 +15,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	var Mixer = dbm.importClass("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer");
+	var PlayingAudio = dbm.importClass("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio");
+	var AudioPlayer = dbm.importClass("com.developedbyme.utils.audio.AudioPlayer");
 	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
+	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
 	dbm.setClassAsSingleton("dbmAudioManager");
 	
@@ -33,6 +39,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		
 		this._mixers = NamedArray.create(false);
 		this._mixers.addObject("master", this._mainMixer);
+		
+		var videoMixer = this._mainMixer.createMixer("video");
+		this._mixers.addObject("video", videoMixer);
+		
+		var audioMixer = this._mainMixer.createMixer("audio");
+		this._mixers.addObject("audio", audioMixer);
+		
+		var musicMixer = audioMixer.createMixer("music");
+		this._mixers.addObject("music", musicMixer);
+		
+		var effectsMixer = audioMixer.createMixer("effects");
+		this._mixers.addObject("effects", effectsMixer);
+		
+		this._playingAudio = new Array();
 		
 		return this;
 	};
@@ -66,19 +86,80 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		return newChannel;
 	};
 	
-	objectFunctions.playSound = function(aId) {
-		//console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::createChannel");
+	objectFunctions.playAudio = function(aId, aVolume, aLoop, aMixerName) {
+		console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::playAudio");
 		
-		var audioTag;
+		aVolume = VariableAliases.valueWithDefault(aVolume, 1);
+		aLoop = VariableAliases.valueWithDefault(aLoop, false);
+		aMixerName = VariableAliases.valueWithDefault(aMixerName, "audio");
+		
+		var audioAsset;
 		if(PathFunctions.getFileExtension(aId) == null) {
-			audioTag = dbm.singletons.dbmAssetRepository.getAssetData(dbm.singletons.dbmAssetRepository.getAssetPath(aId));
+			audioAsset = dbm.singletons.dbmAssetRepository.getAsset(dbm.singletons.dbmAssetRepository.getAudioPath(aId));
 		}
 		else {
-			audioTag = dbm.singletons.dbmAssetRepository.getAssetData(aId);
+			audioAsset = dbm.singletons.dbmAssetRepository.getAsset(aId);
 		}
 		
-		var newAudioTag = dbm.singletons.dbmPageManager.getDocument().cloneNode(audioTag);
-		newAudioTag.play();
-		return newAudioTag;
+		if(audioAsset.getStatus() == AssetStatusTypes.NOT_LOADED) {
+			audioAsset.load();
+		}
+		
+		var audioTag = audioAsset.getData();
+		
+		var newAudioTag = audioTag.cloneNode(true);
+		newAudioTag.loop = aLoop;
+		//dbm.singletons.dbmPageManager.getDocument().body.appendChild(audioTag);
+		newAudioTag.load();
+		
+		
+		var mixerChannel = this.getMixer(aMixerName).createChannel(aId, aVolume);
+		var newPlayingAudio = PlayingAudio.create(aId, newAudioTag, mixerChannel);
+		newPlayingAudio.setPropertyInput("volume", aVolume);
+		newPlayingAudio.getProperty("loop").setValue(aLoop);
+		newPlayingAudio.play();
+		
+		this._playingAudio.push(newPlayingAudio);
+		
+		return newPlayingAudio;
 	};
+	
+	objectFunctions.createAudioPlayer = function(aId, aVolume, aLoop) {
+		console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::createAudioPlayer");
+		
+		aVolume = VariableAliases.valueWithDefault(aVolume, 1);
+		aLoop = VariableAliases.valueWithDefault(aLoop, false);
+		
+		var audioAsset;
+		if(PathFunctions.getFileExtension(aId) == null) {
+			audioAsset = dbm.singletons.dbmAssetRepository.getAsset(dbm.singletons.dbmAssetRepository.getAudioPath(aId));
+		}
+		else {
+			audioAsset = dbm.singletons.dbmAssetRepository.getAsset(aId);
+		}
+		
+		if(audioAsset.getStatus() == AssetStatusTypes.NOT_LOADED) {
+			audioAsset.load();
+		}
+		
+		var audioTag = audioAsset.getData();
+		
+		var newAudioTag = audioTag.cloneNode(true);
+		newAudioTag.loop = aLoop;
+		//dbm.singletons.dbmPageManager.getDocument().body.appendChild(audioTag);
+		newAudioTag.load();
+		
+		var newAudioPlayer = AudioPlayer.createWithNode(newAudioTag);
+		newAudioPlayer.setPropertyInput("volume", aVolume);
+		
+		return newAudioPlayer;
+	};
+	
+	objectFunctions._linkRegistration_removePlayingAudio = function(aPlayingAudio) {
+		var index = ArrayFunctions.indexOfInArray(this._playingAudio, aPlayingAudio);
+		
+		if(index != -1) {
+			this._playingAudio.splice(index, 1);
+		}
+	}
 });

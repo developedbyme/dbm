@@ -37,4 +37,15 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 		}
 		return currentArray;
 	};
+	
+	staticFunctions.getPositionInOrder = function(aValue, aArray) {
+		var currentArray = aArray
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			if(aValue < currentArray[i]) {
+				return i;
+			}
+		}
+		return currentArrayLength;
+	};
 });

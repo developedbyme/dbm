@@ -54,15 +54,18 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.ScreenSizeNode", "com.de
 		
 		var theScreen = this._screen.getValueWithoutFlow();
 		
+		//MENOTE: everything taht has to do with the screen might be slow. Properties should only be requested once.
 		this._width.setValueWithFlow(theScreen.width, aFlowUpdateNumber);
 		this._height.setValueWithFlow(theScreen.height, aFlowUpdateNumber);
 		this._availWidth.setValueWithFlow(theScreen.availWidth, aFlowUpdateNumber);
 		this._availHeight.setValueWithFlow(theScreen.availHeight, aFlowUpdateNumber);
-		if(theScreen.availLeft != undefined) {
-			this._availLeft.setValueWithFlow(theScreen.availLeft, aFlowUpdateNumber);
+		var availLeft = theScreen.availLeft;
+		if(availLeft != undefined) {
+			this._availLeft.setValueWithFlow(availLeft, aFlowUpdateNumber);
 		}
-		if(theScreen.availTop != undefined) {
-			this._availTop.setValueWithFlow(theScreen.availTop, aFlowUpdateNumber);
+		var availTop = theScreen.availTop;
+		if(availTop != undefined) {
+			this._availTop.setValueWithFlow(availTop, aFlowUpdateNumber);
 		}
 	};
 	

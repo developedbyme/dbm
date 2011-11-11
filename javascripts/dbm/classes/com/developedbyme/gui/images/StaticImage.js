@@ -21,9 +21,16 @@ dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme
 		
 		this.superCall(aElement);
 		
-		this._source.setupExternalObject(this._htmlElement, "src");
+		this._source.setupExternalObject(this.getElement(), "src");
 		
 		return this;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._source = null;
+		
+		this.superCall();
 	};
 	
 	staticFunctions.create = function(aParentOrDocument, aAddToParent, aUrl, aAttributes) {
@@ -39,6 +46,16 @@ dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme
 		if(aAddToParent != false) {
 			newNode.addToDom();
 		}
+		
+		return newNode;
+	};
+	
+	staticFunctions.createNew = function(aUrl, aAttributes) {
+		var newNode = (new ClassReference()).init();
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createImage(aUrl, aAttributes));
 		
 		return newNode;
 	};

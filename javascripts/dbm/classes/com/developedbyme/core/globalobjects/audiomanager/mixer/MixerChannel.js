@@ -30,6 +30,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer
 	};
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel::_updateFlow");
+		//console.log(this._name, this._input.getValueWithoutFlow(), this._masterInput.getValueWithoutFlow());
 		this._output.setValueWithFlow(this._input.getValueWithoutFlow()*this._masterInput.getValueWithoutFlow(), aFlowUpdateNumber);
 	};
 	

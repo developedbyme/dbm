@@ -66,10 +66,20 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 	 * Destroys all the data of the object.
 	 */
 	objectFunctions.performDestroy = function() {
+		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
+		//console.log(this.ownsData, this.data != null, this.data.destroy);
 		if(this.ownsData && this.data != null && this.data.destroy) {
 			this.data.destroy();
 		}
 		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "data":
+				return this.ownsData;
+		}
+		return this.superCall();
 	};
 	
 	/**

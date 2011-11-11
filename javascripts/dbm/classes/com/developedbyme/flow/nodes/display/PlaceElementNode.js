@@ -29,6 +29,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.PlaceElementNode", "com.
 		//console.log("com.developedbyme.flow.nodes.display.PlaceElementNode::_update");
 		
 		var htmlElement = this._element.getValueWithoutFlow();
+		if(htmlElement == null) {
+			return;
+		}
 		
 		try {
 			htmlElement.style.setProperty("left", Math.round(this._x.getValueWithoutFlow()) + "px", "");
@@ -52,8 +55,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.PlaceElementNode", "com.
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_update", "Un error occured while setting properties.");
 			ErrorManager.getInstance().reportError(this, "_update", theError);
 		}
-		
-		this._display.setValueWithFlow(null, aFlowUpdateNumber);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

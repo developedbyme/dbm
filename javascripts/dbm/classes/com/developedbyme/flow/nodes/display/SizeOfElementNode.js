@@ -3,6 +3,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 	
 	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
 	
+	var WindowForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowForElementNode");
+	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.flow.nodes.display.SizeOfElementNode::init");
 		
@@ -10,26 +13,23 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 		
 		this._width = this.createProperty("width", 0);
 		this._height = this.createProperty("height", 0);
-		this._windowWidth = this.createProperty("windowWidth", 0);
-		this._windowHeight = this.createProperty("windowHeight", 0);
 		this._element = this.createProperty("element", null);
 		
-		this.createUpdateFunction("default", this._update, [this._element, this._windowWidth,this._windowHeight], [this._width, this._height]);
+		this._windowForElementNode = WindowForElementNode.create(this._element);
+		this.addDestroyableObject(this._windowForElementNode);
+		var windowSizeNode = WindowSizeNode.create(this._windowForElementNode.getProperty("window"));
+		this.addDestroyableObject(windowSizeNode);
+		
+		this.createUpdateFunction("default", this._update, [this._element, windowSizeNode.getProperty("width"), windowSizeNode.getProperty("height")], [this._width, this._height]);
 		
 		return this;
 	};
 	
-	objectFunctions.setElement = function(aElement) {
-		//console.log("com.developedbyme.flow.nodes.display.SizeOfElementNode::setElement");
+	objectFunctions.setDocumentInput = function(aProperty) {
 		
-		this._element.setValue(aElement);
+		this._windowForElementNode.setPropertyInput("document", aProperty);
 		
-		var currentWindow = dbm.singletons.dbmWindowManager.getWindowForDocument(aElement.ownerDocument);
-		
-		if(currentWindow != null) {
-			this._windowWidth.connectInput(currentWindow.getProperty("width"));
-			this._windowHeight.connectInput(currentWindow.getProperty("height"));
-		}
+		return this;
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
@@ -48,17 +48,15 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 		this._width = null;
 		this._height = null;
 		this._element = null;
-		this._windowWidth = null;
-		this._windowHeight = null;
+		this._document = null;
+		this._windowForElementNode = null;
 		
 		this.superCall();
 	};
 	
 	staticFunctions.create = function(aElement) {
 		var newNode = (new ClassReference()).init();
-		if(aElement != null) {
-			newNode.setElement();
-		}
+		newNode.setPropertyInput("element", aElement);
 		return newNode;
 	}
 });

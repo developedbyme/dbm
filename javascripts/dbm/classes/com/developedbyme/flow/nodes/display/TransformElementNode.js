@@ -29,10 +29,17 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElementNode", "
 		var htmlElement = this._element.getValueWithoutFlow();
 		
 		if(htmlElement != null) {
-			var htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.clientWidth;
-			var htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.clientHeight;
 			
-			var transformString = "translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") rotate(" + this._rotate.getValueWithoutFlow() + "deg)";
+			if(htmlElement.clientWidth == 0 && htmlElement.width != 0) {
+				var htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.width;
+				var htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.height;
+			}
+			else {
+				var htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.clientWidth;
+				var htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.clientHeight;
+			}
+			
+			var transformString = "translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") rotate(" + (180*this._rotate.getValueWithoutFlow()/Math.PI) + "deg)";
 			var transformationOriginString = (100*this._pivotX.getValueWithoutFlow()) + "% " + (100*this._pivotY.getValueWithoutFlow()) + "%";
 			
 			htmlElement.style.setProperty("-moz-transform", transformString, "");

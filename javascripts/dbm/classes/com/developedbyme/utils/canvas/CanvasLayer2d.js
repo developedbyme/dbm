@@ -43,13 +43,16 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		this._graphicsUpdate.connectInput(this._compositionOperation);
 		this._graphicsUpdate.connectInput(this._useMask);
 		
-		this._linkRegistration_setTransformationNode(TransformationTo2dMatrixNode.create(0, 0, 0, 1, 1));
+		var transformationMatrix = TransformationTo2dMatrixNode.create(0, 0, 0, 1, 1);
+		this.addDestroyableObject(transformationMatrix);
+		this._linkRegistration_setTransformationNode(transformationMatrix);
 		
 		this._mask = null;
 		
 		this._graphics = new Array();
 		this._currentDrawingLayer = null;
 		this._currentDrawingPosition = Point.create(0, 0);
+		this.addDestroyableObject(this._currentDrawingPosition);
 		
 		return this;
 	};
@@ -336,6 +339,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		return newDrawingLayer; 
 	};
 	
+	objectFunctions.addDrawingPart = function(aPart) {
+		
+		this._graphicsUpdate.connectInput(aPart.getProperty("graphicsUpdate"));
+		this._graphics.push(aPart);
+		
+	};
+	
 	objectFunctions.drawTextWithCustomSpacing = function(aText, aSpacing) {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::drawTextWithCustomSpacing");
 		
@@ -362,6 +372,33 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		}
 		
 		return this.superCall(aName);
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_treeStructureItem":
+			case "_transformationNode":
+				return false;
+		}
+		return this.superCall();
+	};
+	
+	/**
+	 * Sets all the references to null
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._treeStructureItem = null;
+		this._transformationMatrix = null;
+		this._alpha = null;
+		this._compositionOperation = null;
+		this._useMask = null;
+		this._graphicsUpdate = null;
+		this._transformationNode = null;
+		this._graphics = null;
+		this._currentDrawingPosition = null;
+		
+		this.superCall();
 	};
 	
 	staticFunctions.create = function() {

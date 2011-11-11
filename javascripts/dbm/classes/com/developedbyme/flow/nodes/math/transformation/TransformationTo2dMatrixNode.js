@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		
 		this._x = null;
 		this._y = null;
-		this._rotation = null;
+		this._rotate = null;
 		this._scaleX = null;
 		this._scaleY = null;
 		this._outputMatrix = null;

@@ -250,6 +250,9 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		
 		aReturnArray.push("name: " + this._name);
 		aReturnArray.push("type: " + this._type);
+		if(this.data != null) {
+			aReturnArray.push("data: " + this.data);
+		}
 	}
 	
 	/**
@@ -263,10 +266,24 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		if(this._children) {
 			ClassReference.releaseAndDestroyArrayIfExists(this._children.objectsArray);
 		}
+		
+		if(this.ownsData) {
+			ClassReference.softDestroyIfExists(this.data)
+		}
+		
 		ClassReference.destroyIfExists(this._children);
 		
 		this.superCall();
 	}
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_root":
+			case "_parent":
+				return false;
+		}
+		return this.superCall();
+	};
 	
 	/**
 	 * Sets all the references to null

@@ -19,12 +19,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		this._htmlCreators = new Array();
 		
 		this._tempCanvas = document.createElement("canvas");
+		this._masterWindowHtmlCreator = HtmlCreator.create(document);
+		this._htmlCreators.push(this._masterWindowHtmlCreator);
 		
 		return this;
 	};
 	
 	objectFunctions.addDisplayObject = function(aController, aHtmlElement) {
 		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::addDisplayObject");
+		//console.log(aController, aHtmlElement.nodeName);
 		this._displayObjects.push(HtmlElementControllerLink.create(aController, aHtmlElement));
 	};
 	
@@ -60,6 +63,36 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		return null;
 	};
 	
+	objectFunctions.reactivateForNewDocument = function(aDocument) {
+		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::reactivateForNewDocument");
+		//console.log(aDocument)
+		
+		var currentArray = this._displayObjects;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentLink = currentArray[i];
+			if(currentLink.htmlElement.ownerDocument == aDocument) {
+				//console.log(currentLink.controller, currentLink.htmlElement.nodeName);
+				currentLink.controller.reactivateForNewDocument();
+			}
+		}
+	}
+	
+	objectFunctions.fullAdopt = function(aFromDocument, aToDocument) {
+		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::fullAdopt");
+		//console.log(aFromDocument, aToDocument)
+		
+		var currentArray = this._displayObjects;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentLink = currentArray[i];
+			if(currentLink.htmlElement.ownerDocument == aFromDocument) {
+				//console.log(currentLink.htmlElement.nodeName);
+				aToDocument.adoptNode(currentLink.htmlElement);
+			}
+		}
+	}
+	
 	objectFunctions.getHtmlCreator = function(aDocument) {
 		var currentArray = this._htmlCreators;
 		var currentArrayLength = currentArray.length;
@@ -73,6 +106,27 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		this._htmlCreators.push(newCreator);
 		return newCreator;
 	};
+	
+	objectFunctions.getMasterHtmlCreator = function() {
+		return this._masterWindowHtmlCreator;
+	};
+	
+	objectFunctions.setAttributesToNode = function(aElement, aAttributes) {
+		if(aAttributes != null) {
+			for(var objectName in aAttributes) {
+				aElement.setAttribute(objectName, aAttributes[objectName]);
+			}
+		}
+	};
+	
+	objectFunctions.copyStyle = function(aFromElement, aToElement) {
+		var currentArray = aFromElement.style;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentName = aFromElement.style[i];
+			aToElement.style.setProperty(currentName, aFromElement.style.getPropertyValue(currentName), aFromElement.style.getPropertyPriority(currentName));
+		}
+	}
 	
 	objectFunctions.getTempCanvas = function() {
 		return this._tempCanvas;

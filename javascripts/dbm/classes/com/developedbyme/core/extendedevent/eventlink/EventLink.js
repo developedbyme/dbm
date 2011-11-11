@@ -76,6 +76,15 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		return this;
 	};
 	
+	objectFunctions.reactivate = function() {
+		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::reactivate");
+		if(this._isActive) {
+			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, false);
+		}
+		
+		return this;
+	};
+	
 	objectFunctions.performDestroy = function() {
 		
 		if(this._isActive) {

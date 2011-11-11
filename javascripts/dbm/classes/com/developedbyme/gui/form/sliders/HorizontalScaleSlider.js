@@ -69,9 +69,9 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 		var maxValue = this._maxValue.getValue();
 		
 		var x = this._mousePositionNode.getProperty("x").getValue();
-		var maxX = this._htmlElement.clientWidth;
+		var maxX = this.getElement().clientWidth;
 		
-		PositionFunctions.getGlobalPositionForNode(this._htmlElement, this._globalPositionPoint);
+		PositionFunctions.getGlobalPositionForNode(this.getElement(), this._globalPositionPoint);
 		
 		x -= this._globalPositionPoint.x;
 		
@@ -81,8 +81,9 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 		return this._clampCurrentScrubValue(scrubValue, minValue, maxValue);
 	};
 	
-	objectFunctions._updateFlowDisplay = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.gui.form.sliders.HorizontalScaleSlider::_updateFlowDisplay");
+	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
+		
+		this.superCall(aFlowUpdateNumber);
 		
 		var outputValue = this._outputValue.getValueWithoutFlow();
 		var minValue = this._minValue.getValueWithoutFlow();

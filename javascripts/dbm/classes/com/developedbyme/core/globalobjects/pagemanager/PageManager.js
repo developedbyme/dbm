@@ -41,9 +41,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 	objectFunctions.getCurrentFolderPath = function() {
 		
 		var currentPath = PathFunctions.getPathWithoutQueryStringOrAnchor(location.href);
-		currentPath = currentPath.substring(0, currentPath.lastIndexOf("/"));
 		currentPath = currentPath.substring(currentPath.indexOf("://")+3, currentPath.length);
-		currentPath = currentPath.substring(currentPath.indexOf("/"), currentPath.length);
+		var slashIndex = currentPath.indexOf("/");
+		if(slashIndex == -1) {
+			return "";
+		}
+		currentPath = currentPath.substring(slashIndex, currentPath.length);
+		
+		var slashIndex = currentPath.lastIndexOf("/");
+		if(slashIndex == -1) {
+			return "";
+		}
+		currentPath = currentPath.substring(0, slashIndex);
 		
 		return currentPath;
 	};

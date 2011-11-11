@@ -37,9 +37,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		return this;
 	};
 	
-	objectFunctions.updateReadyState = function() {
-		console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::updateReadyState");
-		console.log(this._loader.readyState, this._loader.status);
+	objectFunctions._updateReadyState = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::_updateReadyState");
+		//console.log("state:", this._loader.readyState);
 		
 		switch(this._loader.readyState) {
 			case ReadyStateTypes.UNINITIALIZED:
@@ -49,12 +49,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 				//MENOTE: do nothing
 				break;
 			case ReadyStateTypes.DONE:
+				//console.log("status:", this._loader.status);
 				if(this._loader.status < 400) {
-					this.data = this._loader.responseXML;
-					this.perform(LoadingExtendedEventIds.LOADED);
+					this._data.setValue(this._loader.responseXML);
+					this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED);
 				}
 				else {
-					this.perform(LoadingExtendedEventIds.LOADING_ERROR);
+					this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADING_ERROR);
 				}
 				break;
 		}
@@ -63,6 +64,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 	objectFunctions.load = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::load");
 		
+		if(this._status.getValue() != AssetStatusTypes.NOT_LOADED) {
+			return this;
+		}
+		
 		this._setStatus(AssetStatusTypes.LOADING);
 		this._loader = XmlCreator.createXmlLoader();
 		
@@ -70,9 +75,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		this._loader.onreadystatechange = function() {
 			thisPointer._updateReadyState();
 		}
-		this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.LOAD, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
-		this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true);
-		this._loader.open("GET", this._url, false);
+		//this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.LOAD, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
+		//this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true);
+		this._loader.open("GET", this._url, true);
 		this._loader.send(null);
 		
 		return this;

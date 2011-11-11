@@ -63,13 +63,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	
 	objectFunctions.getAsset = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::getAsset");
+		//console.log(aPath);
 		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
 		if(currentItem.data == null) {
+			//console.log("new", currentItem.getPath());
 			currentItem.data = this._createAsset(currentItem.getPath());
 			currentItem.retain();
 		}
+		
+		//this._hierarchy.debugTraceStructure();
 		
 		return currentItem.data;
 	};
@@ -77,7 +81,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	objectFunctions.getAssetData = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::getAssetData");
 		
-		var currentItem = this._hierarchy.getItemByPath(aPath);
+		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
 		if(currentItem.data == null) {
 			currentItem.data = this._createAsset(currentItem.getPath());
@@ -98,6 +102,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		
 		currentItem.data = aAsset;
 		aAsset.retain();
+	};
+	
+	objectFunctions.hasAsset = function(aPath, aAsset) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::hasAsset");
+		
+		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
+		
+		return (currentItem.data != null);
 	};
 	
 	objectFunctions.createFileAsset = function(aPath, aFilePath, aType) {

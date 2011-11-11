@@ -39,6 +39,10 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.TextWidthWithCustomSpacin
 			textWidth += currentCharacterWidth;
 		}
 		
+		if(textWidth == 0) {
+			return;
+		}
+		
 		textWidth += spacing*Math.max(0, (currentArray.length-1));
 		
 		this._width.setValueWithFlow(textWidth, aFlowUpdateNumber);

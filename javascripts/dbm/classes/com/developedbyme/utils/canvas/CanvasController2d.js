@@ -34,6 +34,9 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
 		
 		this._hierarchy = TreeStructure.create();
+		this._hierarchy.ownsData = true;
+		this._hierarchy.getRoot().ownsData = true;
+		this.addDestroyableObject(this._hierarchy);
 		var rootLayer = CanvasLayer2d.create();
 		this._hierarchy.getRoot().data = rootLayer;
 		rootLayer._linkRegistration_setTreeStructureItem(this._hierarchy.getRoot());
@@ -100,6 +103,17 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_updateFlow");
 		this.draw();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._canvas = null;
+		this._display = null;
+		this._graphicsUpdate = null;
+		
+		this._hierarchy = null;
+		
+		this.superCall();
 	};
 	
 	/**

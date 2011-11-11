@@ -5,6 +5,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.I
 	
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
@@ -18,8 +19,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.I
 		this.superCall();
 		
 		this._url = null;
+		var data = new Image();
+		this._data.setValue(data);
 		
 		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._setStatus, [AssetStatusTypes.LOADED]));
+		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, SetPropertyAsDirtyCommand.createCommand(this._data));
 		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADING_ERROR, CallFunctionCommand.createCommand(this, this._setStatus, [AssetStatusTypes.ERROR]));
 		
 		return this;
@@ -37,12 +41,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.I
 	objectFunctions.load = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset::load");
 		
+		if(this._status.getValue() != AssetStatusTypes.NOT_LOADED) {
+			return this;
+		}
+		
 		this._setStatus(AssetStatusTypes.LOADING);
 		
-		this._data = new Image();
-		this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.LOAD, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
-		this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true);
-		this._data.src = this._url;
+		var data = this._data.getValue();
+		
+		this.getExtendedEvent().linkJavascriptEvent(data, JavascriptEventIds.LOAD, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true);
+		data.src = this._url;
 		
 		return this;
 	};

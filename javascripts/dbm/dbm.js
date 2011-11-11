@@ -1,6 +1,11 @@
 if(dbm == undefined) {
 	var dbm = new (function DBM(){})();
+} else
+{
+	
 }
+
+dbm;
 
 if(dbm.isCreated != true) {
 	dbm.init = function() {
@@ -67,7 +72,7 @@ if(dbm.isCreated != true) {
 		return this._classManager.setClassAsSingleton(aName, aClassPath);
 	};
 	
-	dbm.loadClass = function(aClassPath) {
+	dbm.getFileForClass = function(aClassPath) {
 		var classesFolder = this._classesFolder;
 		for(var objectName in this._specificClassesFolders) {
 			if(aClassPath.indexOf(objectName) == 0) {
@@ -77,6 +82,12 @@ if(dbm.isCreated != true) {
 		}
 		
 		var fileName = this._javascriptsFolder + "/" + classesFolder + "/" + aClassPath.split(".").join("/") + ".js";
+		return fileName;
+	};
+	
+	dbm.loadClass = function(aClassPath) {
+		
+		var fileName = this.getFileForClass(aClassPath);
 		this._filesToLoad.push(fileName);
 	};
 	
@@ -102,7 +113,9 @@ if(dbm.isCreated != true) {
 		
 		scriptTag.addEventListener("load", dbm._onFileLoaded, false);
 		scriptTag.addEventListener("error", dbm._onFileLoaded, false);
-		this._document.head.appendChild(scriptTag);
+		
+		var headTags = this._document.getElementsByTagName("head");
+		headTags[0].appendChild(scriptTag);
 	};
 	
 	dbm._onHtmlLoaded = function(aEvent) {

@@ -38,12 +38,13 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 		this.addDestroyableObject(this._noPlaybackSwitchNode);
 		this._outputValue = this.createProperty("outputValue", 0);
 		this._outputValue.connectInput(this._switchNode.getProperty("outputValue"));
-		this._display = this.createGhostProperty("display");
 		
 		this._minValue = this.createProperty("minValue", 0);
 		this._maxValue = this.createProperty("maxValue", 1);
 		
-		this.createUpdateFunction("display", this._updateFlowDisplay, [this._outputValue, this._minValue, this._maxValue], [this._display]);
+		this._updateFunctions.getObject("display").addInputConnection(this._outputValue);
+		this._updateFunctions.getObject("display").addInputConnection(this._minValue);
+		this._updateFunctions.getObject("display").addInputConnection(this._maxValue);
 		
 		this._mousePositionNode = null;
 		
@@ -177,8 +178,9 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 		}
 	};
 	
-	objectFunctions._updateFlowDisplay = function(aFlowUpdateNumber) {
-		//MENOTE: should be overridden
+	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
+		
+		this.superCall(aFlowUpdateNumber);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

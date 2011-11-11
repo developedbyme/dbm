@@ -50,6 +50,20 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		this._objectsArray.push(aObject);
 		this._namesArray.push(aName);
 	};
+
+	objectFunctions.addObjectToBeginning = function(aName, aObject) {
+		if(aName == null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
+			return;
+		}
+		if(this._objectsObject[aName] != undefined) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + "(" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
+			this.removeObject(aName);
+		}
+		this._objectsObject[aName] = aObject;
+		this._objectsArray.unshift(aObject);
+		this._namesArray.unshift(aName);
+	};
 	
 	objectFunctions.select = function(aName) {
 		if(this._objectsObject[aName] == undefined) {
@@ -127,6 +141,17 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 			aReturnArray.push("properties: [" + this._namesArray + "]");
 		}
 	}
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "currentSelectedItem":
+				return false;
+			case "_objectsObject":
+			case "_objectsObject":
+				return this.ownsObjects;
+		}
+		return this.superCall();
+	};
 	
 	objectFunctions.performDestroy = function() {
 		

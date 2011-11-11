@@ -43,11 +43,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer
 			newChannel.setName(aName);
 		}
 		this.addChannel(newChannel);
+		return newChannel;
 	};
 	
-	objectFunctions.createMixer = function() {
+	objectFunctions.createMixer = function(aName) {
 		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer::createMixer");
 		var newMixer = Mixer.create();
+		if(aName != null) {
+			newMixer.getMasterChannel().setName(aName);
+		}
 		this.addChannel(newMixer.getMasterChannel());
 		return newMixer;
 	};
@@ -68,7 +72,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer
 			newMixer.setMasterChannel(aMasterChannel);
 		}
 		else {
-			newMixer.setMasterChannel(MixerChannel.create());
+			newMixer.setMasterChannel(MixerChannel.create(1, 1));
 		}
 		return newMixer;
 	};

@@ -72,7 +72,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	objectFunctions.getProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
 		//console.log(this, aName);
-		if(this._properties.select(aName)) {
+		if(this._properties != null && this._properties.select(aName)) {
 			return this._properties.currentSelectedItem;
 		}
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Property " + aName + " doesn't exist on " + this + ".");

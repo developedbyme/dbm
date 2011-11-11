@@ -108,6 +108,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 			this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
 			this._updateFunction.call(this._ownerObject, this._flowUpdateNumber);
 		}
+		if(this._isDestroyed) {
+			return;
+		}
 		var currentArray = this._ghostOutputConnections;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {

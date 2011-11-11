@@ -51,6 +51,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 			catch(theError) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "perform", "Error occured in " + theObject + " " + theFunction);
 				ErrorManager.getInstance().reportError(this, "perform", theError);
+				aEventDataObject.addResult(null);
 				return CommandStatusTypes.ERROR;
 			}
 		}
@@ -58,8 +59,6 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 			theResult = theFunction.apply(theObject, argumentsArray);
 			aEventDataObject.addResult(theResult);
 		}
-		
-		aEventDataObject.addResult(null);
 		
 		return CommandStatusTypes.CONTINUE;
 	};

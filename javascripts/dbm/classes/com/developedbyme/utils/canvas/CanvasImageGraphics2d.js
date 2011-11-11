@@ -20,6 +20,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d", "com.d
 		this.superCall();
 		
 		this._image = this.createProperty("image", null);
+		this._image.setAlwaysUpdateFlow(true);
 		this._sourceX = this.createProperty("sourceX", 0);
 		this._sourceY = this.createProperty("sourceY", 0);
 		this._destinationX = this.createProperty("destinationX", 0);
@@ -31,6 +32,15 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d", "com.d
 		this._destinationHeight = this.createProperty("destinationHeight", 0);
 		
 		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate.connectInput(this._image);
+		this._graphicsUpdate.connectInput(this._sourceX);
+		this._graphicsUpdate.connectInput(this._sourceY);
+		this._graphicsUpdate.connectInput(this._destinationX);
+		this._graphicsUpdate.connectInput(this._destinationY);
+		this._graphicsUpdate.connectInput(this._sourceWidth);
+		this._graphicsUpdate.connectInput(this._sourceHeight);
+		this._graphicsUpdate.connectInput(this._destinationWidth);
+		this._graphicsUpdate.connectInput(this._destinationHeight);
 		
 		return this;
 	};
@@ -65,16 +75,38 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d", "com.d
 	
 	objectFunctions.draw = function(aContext) {
 		//console.log("com.developedbyme.utils.canvas.CanvasImageGraphics2d::draw");
-		//console.log(this, this._curves, this.strokeStyle);
+		//console.log(this._image.getValue(), this._sourceX.getValue(), this._sourceY.getValue(), this._sourceWidth.getValue(), this._sourceHeight.getValue(), this._destinationX.getValue(), this._destinationY.getValue(), this._destinationWidth.getValue(), this._destinationHeight.getValue());
 		
-		aContext.drawImage(this._image.getValue(), this._sourceX.getValue(), this._sourceY.getValue(), this._sourceWidth.getValue(), this._sourceHeight.getValue(), this._destinationX.getValue(), this._destinationY.getValue(), this._destinationWidth.getValue(), this._destinationHeight.getValue());
+		var image = this._image.getValue();
 		
+		if(image != null) {
+			var sourceX = Math.max(0, this._sourceX.getValue());
+			var sourceY = Math.max(0, this._sourceY.getValue());
+			var sourceWidth = Math.min(image.width, this._sourceWidth.getValue());
+			var sourceHeight = Math.min(image.height, this._sourceHeight.getValue());
+			
+			if(sourceWidth != 0 && sourceHeight != 0) {
+				aContext.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, this._destinationX.getValue(), this._destinationY.getValue(), this._destinationWidth.getValue(), this._destinationHeight.getValue());
+			}
+		}
 	};
 	
 	staticFunctions.create = function(aImage) {
 		var newCanvasImageGraphics2d = (new ClassReference()).init();
 		
 		newCanvasImageGraphics2d.setImage(aImage);
+		
+		return newCanvasImageGraphics2d;
+	};
+	
+	staticFunctions.createConnectedImage = function(aImageProperty, aWidth, aHeight) {
+		var newCanvasImageGraphics2d = (new ClassReference()).init();
+		
+		newCanvasImageGraphics2d.setPropertyInputWithoutNull("image", aImageProperty);
+		newCanvasImageGraphics2d.setPropertyInputWithoutNull("sourceWidth", aWidth);
+		newCanvasImageGraphics2d.setPropertyInputWithoutNull("sourceHeight", aHeight);
+		newCanvasImageGraphics2d.setPropertyInputWithoutNull("destinationWidth", aWidth);
+		newCanvasImageGraphics2d.setPropertyInputWithoutNull("destinationHeight", aHeight);
 		
 		return newCanvasImageGraphics2d;
 	};

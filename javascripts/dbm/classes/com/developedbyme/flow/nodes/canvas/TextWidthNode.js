@@ -26,6 +26,11 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.TextWidthNode", "com.deve
 		canvasContext.font = this._font.getValueWithoutFlow();
 		var textWidth = canvasContext.measureText(this._text.getValueWithoutFlow()).width;
 		
+		if(textWidth == 0) {
+			console.log("++++++");
+			return;
+		}
+		
 		this._width.setValueWithFlow(textWidth, aFlowUpdateNumber);
 	};
 	

@@ -80,8 +80,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.PropertyDependentFunction"
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this._defaultFunction = null;
-		this._browsers = null;
+		this._dependentProperty = null;
+		this._checkForDependentProperty = null;
+		this._function = null;
+		
+		this._storedCalls = null;
 		
 		this.superCall();
 	};

@@ -47,6 +47,17 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup
 		}
 	};
 	
+	objectFunctions.reactivateAll = function() {
+		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::reactivateAll");
+		if(this._isActive) {
+			var currentArray = this.linksArray;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentLink = currentArray[i];
+				currentLink.reactivate();
+			}
+		}
+	};
 	
 	objectFunctions.performDestroy = function() {
 		

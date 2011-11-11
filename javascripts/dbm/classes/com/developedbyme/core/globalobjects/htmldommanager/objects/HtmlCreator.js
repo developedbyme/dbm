@@ -3,6 +3,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 	
 	var HtmlCreator = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator");
 	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	
 	objectFunctions.init = function() {
@@ -158,11 +161,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		return newElement;
 	};
 	
-	objectFunctions.createFromTemplate = function(aHtmlString) {
+	objectFunctions.createFromTemplate = function(aHtmlString, aFragment) {
 		var newElement = this.ownerDocument.createElement("div");
 		newElement.innerHTML = aHtmlString;
-		var documentFragment = this.ownerDocument.createDocumentFragment();
-		var currentArray = newElement.childNodes;
+		var documentFragment;
+		if(VariableAliases.isSet(aFragment)) {
+			documentFragment = aFragment;
+		}
+		else {
+			documentFragment = this.ownerDocument.createDocumentFragment();
+		}
+		var currentArray = ArrayFunctions.copyArray(newElement.childNodes);
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentChild = currentArray[i];

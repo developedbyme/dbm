@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.gui.text.TextElement", "com.developedbyme.g
 	objectFunctions.setElement = function(aElement) {
 		this.superCall(aElement);
 		
-		this._text.setupExternalObject(this._htmlElement, "nodeValue");
+		this._text.setupExternalObject(this.getElement(), "nodeValue");
 		
 		return this;
 	};

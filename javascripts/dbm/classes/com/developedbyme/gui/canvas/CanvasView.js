@@ -20,12 +20,12 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		
 		this._controller = null;
 		this._sizeOfElementNode = SizeOfElementNode.create();
+		this.addDestroyableObject(this._sizeOfElementNode);
 		this._width = this.createProperty("width", this._sizeOfElementNode.getProperty("width"));
 		this._height = this.createProperty("height", this._sizeOfElementNode.getProperty("height"));
 		
-		this._display = this.createGhostProperty("display");
-		
-		this.createUpdateFunction("default", this._updateFlow, [this._width, this._height], [this._display]);
+		this._updateFunctions.getObject("display").addInputConnection(this._width);
+		this._updateFunctions.getObject("display").addInputConnection(this._height);
 		
 		return this;
 	};
@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		//console.log("com.developedbyme.gui.canvas.CanvasView::setElement");
 		this.superCall(aElement);
 		
-		this._sizeOfElementNode.setElement(aElement);
+		this._sizeOfElementNode.getProperty("element").setValue(aElement);
 		this._display.startUpdating();
 		
 		return this;
@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		//console.log("com.developedbyme.gui.canvas.CanvasView::setController");
 		
 		this._controller = aController;
-		this._controller.setPropertyInput("canvas", this._htmlElement);
+		this._controller.setPropertyInput("canvas", this._element);
 		this._controller.getProperty("graphicsUpdate").connectInput(this._display);
 		
 		return this;
@@ -55,11 +55,21 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		return this._controller;
 	};
 	
-	objectFunctions._updateFlow = function() {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::_updateFlow");
+	objectFunctions.setDocumentInput = function(aProperty) {
 		
-		this._htmlElement.width = this._width.getValueWithoutFlow();
-		this._htmlElement.height = this._height.getValueWithoutFlow();
+		this._sizeOfElementNode.setDocumentInput(aProperty);
+		
+		return this;
+	};
+	
+	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
+		
+		this.superCall(aFlowUpdateNumber);
+		
+		var element = this._element.getValueWithoutFlow();
+		
+		element.width = this._width.getValueWithoutFlow();
+		element.height = this._height.getValueWithoutFlow();
 	};
 	
 	objectFunctions.update = function() {
@@ -68,9 +78,21 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		this._controller.getProperty("display").update();
 	};
 	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_controller":
+				return false;
+		}
+		return this.superCall();
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._controller = null;
+		this._sizeOfElementNode = null;
+		this._display = null;
+		this._width = null;
+		this._height = null;
 		
 		this.superCall();
 	};
@@ -86,7 +108,9 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		newView.setElement(htmlCreator.createNode("canvas", aAttributes));
 		switch(aContextType) {
 			case "2d":
-				newView.setController(CanvasController2d.create());
+				var canvasController = CanvasController2d.create();
+				newView.setController(canvasController);
+				newView.addDestroyableObject(canvasController);
 				break;
 			default:
 				//METODO: error message

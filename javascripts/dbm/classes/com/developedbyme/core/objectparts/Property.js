@@ -33,6 +33,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._animationController = null;
 		
 		this._isUpdating = false;
+		this._mustUpdate = true;
 		
 		return this;
 	};
@@ -92,6 +93,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			}
 			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
 		}
+		
+		return this._animationController;
 	};
 	
 	objectFunctions.getAnimationController = function() {
@@ -114,9 +117,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("com.developedbyme.core.objectparts.Property::setValueWithFlow");
 		//console.log(this.name);
 		//console.log(aValue, this._value);
-		if(this._alwaysUpdateFlow || (aValue != this._value)) {
+		if(this._alwaysUpdateFlow || this._mustUpdate || (aValue != this._value)) {
 			this._performSetValue(aValue);
 			this._flowUpdateNumber = aFlowUpdateNumber;
+			this._mustUpdate = false;
 		}
 		this._status = FlowStatusTypes.UPDATED;
 	};
@@ -203,9 +207,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			if(newFlowUpdateNumber > this._flowUpdateNumber) {
 				var newValue = this._inputConnection.getValue();
 				//console.log(newValue, this._value, newValue != this._value);
-				if(this._alwaysUpdateFlow || (newValue != this._performGetValue())) {
+				if(this._alwaysUpdateFlow|| this._mustUpdate || (newValue != this._performGetValue())) {
 					this._performSetValue(newValue);
 					this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+					this._mustUpdate = false;
 				}
 			}
 		}
@@ -404,7 +409,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	
 	staticFunctions.create = function(aObjectInput, aValue) {
 		//console.log("com.developedbyme.core.objectparts.Property::create");
-		//console.log(aObjectInput, aValue);
 		var newProperty = (new Property()).init();
 		aObjectInput._linkRegistration_addObjectProperty(newProperty);
 		newProperty._linkRegistration_setObjectInputConnection(aObjectInput);

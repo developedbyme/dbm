@@ -3,6 +3,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var SetValueTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart");
 	var InterpolationTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
 	
@@ -114,6 +118,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		}
 	};
 	
+	objectFunctions.getTime = function() {
+		return this._time.getValue();
+	};
+	
 	objectFunctions.getValue = function(aTime) {
 		var currentTime = this._time.getValue();
 		return this.getValueAt(currentTime);
@@ -186,6 +194,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		
 		aDelay = VariableAliases.valueWithDefault(aDelay, 0);
 		
+		if(isNaN(aDelay)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Time is NaN, can't animate " + aValue + ", " + aDelay + ".");
+			return this;
+		}
+		
 		var currentTime = this._time.getValue();
 		var newPart = SetValueTimelinePart.create(aValue, currentTime+aDelay, 0);
 		this.addPart(newPart);
@@ -194,6 +207,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	};
 	
 	objectFunctions.setValueAt = function(aValue, aTime) {
+		
+		if(isNaN(aTime)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValueAt", "Time is NaN, can't animate " + aValue + ", " + aTime + ".");
+			return this;
+		}
 		
 		var currentTime = this._time.getValue();
 		var newPart = SetValueTimelinePart.create(aValue, aTime, 0);
@@ -205,6 +223,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
 		
 		aDelay = VariableAliases.valueWithDefault(aDelay, 0);
+		
+		if(isNaN(aTime) || isNaN(aDelay)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValue", "Time is NaN, can't animate " + aValue + ", " + aTime + ", " + aInterpolation + ", " + aDelay + ".");
+			return this;
+		}
 		
 		var currentTime = this._time.getValue();
 		var startValue = this.getValueAt(currentTime+aDelay);
@@ -223,6 +246,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	};
 	
 	objectFunctions.animateValueAt = function(aValue, aTime, aInterpolation, aStartTime) {
+		
+		if(isNaN(aTime) || isNaN(aStartTime)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValueAt", "Time is NaN, can't animate " + aValue + ", " + aTime + ", " + aInterpolation + ", " + aStartTime + ".");
+			return this;
+		}
 		
 		var startValue = this.getValueAt(aStartTime);
 		

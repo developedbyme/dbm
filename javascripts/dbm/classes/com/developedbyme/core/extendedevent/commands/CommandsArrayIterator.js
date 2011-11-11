@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentCommand = currentArray[i];
 				if(aId == currentCommand.id) {
-					this.itemRemoved(currentArray[i]);
+					this._itemRemoved(currentArray[i]);
 					currentArray.splice(i, 1);
 					currentArrayLength--;
 					i--;

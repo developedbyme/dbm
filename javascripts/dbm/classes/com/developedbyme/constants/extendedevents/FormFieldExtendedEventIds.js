@@ -7,4 +7,6 @@ dbm.registerClass("com.developedbyme.constants.extendedevents.FormFieldExtendedE
 	staticFunctions.FOCUS = "focus";
 	staticFunctions.BLUR = "blur";
 	
+	staticFunctions.REQUEST_SUBMIT = "requestSubmit";
+	
 });

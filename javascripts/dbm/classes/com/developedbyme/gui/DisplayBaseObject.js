@@ -17,21 +17,72 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		this.superCall();
 		
-		this._htmlElement = null;
-		this._parentHtmlElement = null;
 		this._placementNode = null;
 		
 		this._alpha = this.addProperty("alpha", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty));
 		
+		this._element = this.createProperty("element", null);
+		this._parentElement = this.createProperty("parentElement", null);
+		this._inDom = this.createProperty("inDom", false);
+		
+		this._inDomUpdate = this.createGhostProperty("inDomUpdate");
 		this._display = this.createGhostProperty("display");
 		
-		this.createUpdateFunction("display", this._update, [this._alpha], [this._display]);
+		this.createUpdateFunction("inDomUpdate", this._updateInDomFlow, [this._element, this._parentElement, this._inDom], [this._inDomUpdate]);
+		this.createUpdateFunction("display", this._updateDisplayFlow, [this._inDomUpdate, this._alpha], [this._display]);
 		
 		return this;
 	};
 	
 	objectFunctions._connectObjectToOpacity = function() {
-		this._alpha.setupExternalObject(this._htmlElement, "opacity", null, 1);
+		this._alpha.setupExternalObject(this._element.getValue(), "opacity", null, 1);
+	};
+	
+	objectFunctions._updateInDomFlow = function(aFlowUpdateNumber) {
+		var element = this._element.getValueWithoutFlow();
+		var parentElement = this._parentElement.getValueWithoutFlow();
+		if(element != null && parentElement != null) {
+			var inDom = this._inDom.getValueWithoutFlow();
+			if(inDom) {
+				if(element.parentNode != parentElement) {
+					if(parentElement.ownerDocument != element.ownerDocument) {
+						try{
+							parentElement.ownerDocument.adoptNode(element);
+						}
+						catch(theError) {
+							ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_updateInDomFlowFlow", "Un error occured while adopting node.");
+							ErrorManager.getInstance().reportError(this, "_updateInDomFlowFlow", theError);
+							return;
+						}
+					}
+					
+					try{
+						parentElement.appendChild(element);
+					}
+					catch(theError) {
+						ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_updateInDomFlowFlow", "Un error occured while adding to dom.");
+						ErrorManager.getInstance().reportError(this, "_updateInDomFlowFlow", theError);
+						return;
+					}
+				}
+			}
+			else {
+				if(element.parentNode != null) {
+					try{
+						element.parentNode.removeChild(element);
+					}
+					catch(theError) {
+						ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_updateInDomFlowFlow", "Un error occured while removing from dom.");
+						ErrorManager.getInstance().reportError(this, "_updateInDomFlowFlow", theError);
+						return;
+					}
+				}
+			}
+		}
+	};
+	
+	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
+		//MENOTE: should be overridden
 	};
 	
 	objectFunctions.setElement = function(aElement) {
@@ -41,61 +92,73 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 			this.removeElement();
 			return;
 		}
-		this._htmlElement = aElement;
-		if(this._htmlElement.parentNode != null) {
-			this._parentHtmlElement = this._htmlElement.parentNode;
+		else if(this._element.getValue() != null) {
+			this.removeElement();
+		}
+		
+		this._element.setValue(aElement);
+		
+		if(aElement.parentNode != null) {
+			this._parentElement.setValue(aElement.parentNode);
+			this._inDom.setValue(true);
+		}
+		else if(this._inDom.getValue() && this._parentElement.getValue() != null) {
+			this._parentElement.getValue().appendChild(aElement);
 		}
 		
 		if(dbm.singletons.dbmHtmlDomManager != undefined) {
-			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, this._htmlElement);
+			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, aElement);
 		}
+		
+		//METODO: reconnect placement node
 		
 		this._connectObjectToOpacity();
 		
 		return this;
 	};
 	
-	objectFunctions.removeElement = function(aElement) {
+	objectFunctions.removeElement = function() {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::removeElement");
-		if(this._htmlElement == aElement) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeElement", "Element is not set.");
-			return;
+		
+		var currentElement = this.getElement();
+		if(currentElement != null && currentElement.parentNode != null) {
+			currentElement.parentNode.removeChild(currentElement);
 		}
 		
 		if(dbm.singletons.dbmHtmlDomManager != undefined) {
-			dbm.singletons.dbmHtmlDomManager.removeHtmlObject(this, this._htmlElement);
+			dbm.singletons.dbmHtmlDomManager.removeHtmlElement(this.getElement());
 		}
 		
-		if(this._parentHtmlElement != null) {
-			this.removeFromDom();
-			this._parentHtmlElement = null;
-		}
+		this._element.setValue(null);
 		
 		if(this._placementNode != null) {
 			this._placementNode.getProperty("element").disconnectOutput();
 		}
 		
-		this._htmlElement = null;
-		
 		return this;
 	};
 	
 	objectFunctions.getElement = function() {
-		return this._htmlElement;
+		return this._element.getValue();
 	};
 	
 	objectFunctions.setElementAsPositioned = function() {
 		
-		this._placementNode = PlaceHtmlElementNode.create(this._htmlElement);
+		this._placementNode = PlaceHtmlElementNode.create(this._element);
 		this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
 		this.addDestroyableObject(this._placementNode);
 		
 		return this;
 	};
 	
-	
 	objectFunctions.setParent = function(aElement) {
-		this._parentHtmlElement = aElement;
+		
+		if(aElement instanceof DisplayBaseObject) {
+			this.setPropertyInput("parentElement", aElement.getProperty("element"));
+		}
+		else {
+			this.setPropertyInput("parentElement", aElement);
+		}
 		
 		return this;
 	}
@@ -108,55 +171,33 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	}
 	
 	objectFunctions.addToDom = function() {
-		if(this._parentHtmlElement != null) {
-			try{
-				this._parentHtmlElement.appendChild(this._htmlElement);
-			}
-			catch(theError) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addToDom", "Un error occured while adding to dom.");
-				ErrorManager.getInstance().reportError(this, "addToDom", theError);
-			}
-		}
-		else {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addToDom", "Object " + this + " doesn't have a parent.");
-		}
+		//console.log("com.developedbyme.core.FlowBaseObject::addToDom");
+		//console.log(this._element.getValue());
+		
+		this._inDom.setValue(true);
+		this._inDomUpdate.update();
 		
 		return this;
 	}
 	
 	objectFunctions.removeFromDom = function() {
-		if(this._parentHtmlElement != null) {
-			try{
-				if(this._htmlElement.parentNode == this._parentHtmlElement) {
-					this._htmlElement.parentNode.removeChild(this._htmlElement);
-				}
-				else if(this._htmlElement.parentNode != null) {
-					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeFromDom", "Object " + this + " doesn't have the correct parent.");
-					this._htmlElement.parentNode.removeChild(this._htmlElement);
-				}
-			}
-			catch(theError) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeFromDom", "Un error occured while removing dom.");
-				ErrorManager.getInstance().reportError(this, "remvoeFromDom", theError);
-			}
-		}
-		else {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeFromDom", "Object " + this + " doesn't have a parent.");
-		}
+		
+		this._inDom.setValue(false);
+		this._inDomUpdate.update();
 		
 		return this;
 	}
 	
 	objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
 		
-		this._htmlElement.style.setProperty(aStyleProperty, aValue, "");
+		this._element.getValue().style.setProperty(aStyleProperty, aValue, "");
 		
 		return this;
 	};
 	
 	objectFunctions.removeStyleProperty = function(aStyleProperty) {
 		
-		this._htmlElement.style.removeProperty(aStyleProperty);
+		this._element.getValue().style.removeProperty(aStyleProperty);
 		
 		return this;
 	};
@@ -175,7 +216,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 			case "rotate":
 			case "pivotX":
 			case "pivotY":
-			case "display":
+			case "cssDisplay":
 				if(this._placementNode != null) {
 					return this._placementNode.getProperty(aName);
 				}
@@ -188,11 +229,13 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.getHtmlCreator = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::getHtmlCreator");
-		if(this._htmlElement != null) {
-			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(this._htmlElement));
+		var element = this._element.getValue();
+		var parentElement = this._parentElement.getValue();
+		if(element != null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(element));
 		}
-		else if(this._parentHtmlElement != null) {
-			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(this._parentHtmlElement));
+		else if(parentElement != null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(parentElement));
 		}
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getHtmlCreator", "Element or parent must be set before getting the html creator.");
 		return null;
@@ -200,7 +243,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.performDestroy = function() {
 		
-		if(this._parentHtmlElement != null && this._htmlElement != null) {
+		if(this._inDom != null && this._inDom.getValue()) {
 			this.removeFromDom();
 		}
 		
@@ -209,11 +252,13 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this._htmlElement = null;
-		this._parentHtmlElement = null;
 		this._placementNode = null;
 		
+		this._element = null;
+		this._parentElement = null;
+		this._inDom = null;
 		this._alpha = null;
+		this._inDomUpdate = null;
 		this._display = null;
 		
 		this.superCall();
@@ -227,6 +272,16 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		return newNode;
 	};
 	
+	staticFunctions.createNewDiv = function(aAttributes) {
+		var newNode = (new ClassReference()).init();
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createDiv(aAttributes));
+		
+		return newNode;
+	};
+	
 	staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
 		var newNode = (new ClassReference()).init();
 		
@@ -236,7 +291,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		var htmlCreator = newNode.getHtmlCreator();
 		
-		newNode.setElement(htmlCreator.createNode("div", aAttributes));
+		newNode.setElement(htmlCreator.createDiv(aAttributes));
 		
 		if(aAddToParent != false) {
 			newNode.addToDom();
