@@ -22,8 +22,15 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 		this._type = "code";
 		this._startsWithScopeRegExp = new RegExp("^[ \t\f\n\r]*[\\{\\(]");
 		this._lastLineIsOpen = false;
+		this._scopeStart = "";
+		this._scopeEnd = "";
 		
 		return this;
+	};
+	
+	objectFunctions.setScope = function(aStart, aEnd) {
+		this._scopeStart = aStart;
+		this._scopeEnd = aEnd;
 	};
 	
 	objectFunctions._addCodeLine = function(aLine, aIsOpen) {
@@ -61,6 +68,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 			
 			while((endLinePosition < scopeStartPosition || scopeStartPosition == -1) && endLinePosition != -1) {
 				var currentLine = this._script.substring(currentStartPosition, endLinePosition);
+				//console.log(currentLine, VariableAliases.isEmptyText(currentLine));
 				if(!VariableAliases.isEmptyText(currentLine)) {
 					this._addCodeLine(currentLine, !(this._script.charAt(endLinePosition) == ";"));
 				}
@@ -104,6 +112,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 		
 		this._isBrokenDown = true;
 	}
+	
+	objectFunctions.compile = function() {
+		return this._scopeStart + this.superCall() + this._scopeEnd;
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

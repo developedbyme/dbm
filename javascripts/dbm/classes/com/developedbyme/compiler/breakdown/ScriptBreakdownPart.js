@@ -73,6 +73,22 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 		this._script = aScript;
 	};
 	
+	objectFunctions.compile = function() {
+		
+		var returnString = ""
+		
+		var currentArray = this._childBreakdowns;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentPart = currentArray[i];
+			if(currentPart.executesDirectly) {
+				returnString += currentPart.compile() + ";";
+			}
+		}
+		
+		return returnString;
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._parent = null;

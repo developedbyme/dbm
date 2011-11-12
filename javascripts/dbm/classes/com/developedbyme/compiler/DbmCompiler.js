@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 			this.addFile(currentArray[i]);
 		}
 		
-		this._loader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this.combineFiles, [])); //MEDEBUG
+		this._loader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this.compileFiles, [])); //MEDEBUG
 		this._loader.load();
 		
 		return this;
@@ -101,6 +101,22 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		returnString += "";
 		
 		//console.log(returnString);
+		
+		return returnString;
+	}
+	
+	objectFunctions.compileFiles = function() {
+		//console.log("com.developedbyme.compiler.DbmCompiler::compileFiles");
+		
+		var returnString = "";
+		
+		var currentArray = this._loadedFilePaths;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			returnString += this._scriptBreakdowns.getObject(currentArray[i]).compile();
+		}
+		
+		console.log(returnString);
 		
 		return returnString;
 	}
