@@ -13,6 +13,8 @@ dbm.runTempFunction(function() {
 	};
 	
 	classManager.registerClass = function(aName, aExtends, aFunction) {
+		//console.log("classManager.registerClass");
+		//console.log(aName, aExtends);
 		
 		this._currentRegistrationClass = aName;
 		
@@ -145,6 +147,8 @@ dbm.runTempFunction(function() {
 		
 		var currentClassHolder = this._classes[aName];
 		if(currentClassHolder.prototypeObject == null) {
+			
+			//console.log(">", currentClassHolder.extendedClass);
 			
 			if(currentClassHolder.extendedClass != null) {
 				
