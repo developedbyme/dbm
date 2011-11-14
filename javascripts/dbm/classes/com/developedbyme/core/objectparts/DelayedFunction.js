@@ -62,6 +62,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.DelayedFunction", "com.dev
 		}
 	};
 	
+	objectFunctions.performDestroy = function() {
+		
+		if(this._hasCall) {
+			dbm.singletons.dbmUpdateManager.removeUpdater(this, "default");
+			this._hasCall = false;
+		}
+		
+		this.superCall();
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._function = null;

@@ -462,16 +462,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	objectFunctions._checkForLastPosition = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_checkForLastPosition");
 		
-		if(this._window.closed) {
-			//MENOTE: do nothing
-		}
-		else {
-			if(this._checkMovement.getValue()) {
-				//MENOTE: this._window.screenX and this._window.screenY are really slow
-				var newX = this._window.screenX;
-				var newY = this._window.screenY;
-				if(newX != this._x.getValue() || newY != this._y.getValue()) {
-					this._positionUpdated(newX, newY);
+		if(this._window != null) {
+			if(this._window.closed) {
+				//MENOTE: do nothing
+			}
+			else {
+				if(this._checkMovement.getValue()) {
+					//MENOTE: this._window.screenX and this._window.screenY are really slow
+					var newX = this._window.screenX;
+					var newY = this._window.screenY;
+					if(newX != this._x.getValue() || newY != this._y.getValue()) {
+						this._positionUpdated(newX, newY);
+					}
 				}
 			}
 		}
@@ -592,6 +594,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	
 	objectFunctions.close = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::close");
+		
 		if(!this._isOpen) return this;
 		
 		this._documentReady.setValue(false);

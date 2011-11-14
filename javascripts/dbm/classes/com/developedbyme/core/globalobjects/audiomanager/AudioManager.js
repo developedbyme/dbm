@@ -107,14 +107,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		
 		var audioTag = audioAsset.getData();
 		
-		var newAudioTag = audioTag.cloneNode(true);
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(dbm.singletons.dbmPageManager.getDocument());
+		var newAudioTag = htmlCreator.createNode("audio", {"preload": "auto"});
+		newAudioTag.src = audioTag.src;
 		newAudioTag.loop = aLoop;
-		//dbm.singletons.dbmPageManager.getDocument().body.appendChild(audioTag);
+		//dbm.singletons.dbmPageManager.getDocument().body.appendChild(newAudioTag);
 		newAudioTag.load();
 		
 		
 		var mixerChannel = this.getMixer(aMixerName).createChannel(aId, aVolume);
 		var newPlayingAudio = PlayingAudio.create(aId, newAudioTag, mixerChannel);
+		//var newPlayingAudio = PlayingAudio.create(aId, audioTag, mixerChannel); //MEDEBUG
 		newPlayingAudio.setPropertyInput("volume", aVolume);
 		newPlayingAudio.getProperty("loop").setValue(aLoop);
 		newPlayingAudio.play();
@@ -144,7 +147,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		
 		var audioTag = audioAsset.getData();
 		
-		var newAudioTag = audioTag.cloneNode(true);
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(dbm.singletons.dbmPageManager.getDocument());
+		var newAudioTag = htmlCreator.createNode("audio", {"preload": "auto"});
+		newAudioTag.src = audioTag.src;
 		newAudioTag.loop = aLoop;
 		//dbm.singletons.dbmPageManager.getDocument().body.appendChild(audioTag);
 		newAudioTag.load();

@@ -27,6 +27,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		
 		this._time = this.createProperty("time", dbm.singletons.dbmAnimationManager.getGlobalTimeNode().getProperty("time"));
 		this._progress = this.createProperty("progress", 0);
+		this._loadedSize = this.createProperty("loadedSize", 0);
+		this._totalSize = this.createProperty("totalSize", 0);
 		this._maxNumberOfSimiltaniousLoaders = ClassReference.DEFAULT_MAX_NUMBER_OF_SIMILTANIOUS_LOADERS;
 		this._loaders = new Array();
 		this._loadingLoaders = new Array();
@@ -37,7 +39,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		this._status = AssetStatusTypes.NOT_LOADED;
 		this._isLoading = false;
 		
-		this.createUpdateFunction("progress", this._updateProgressFlow, [this._time], [this._progress]);
+		this.createUpdateFunction("progress", this._updateProgressFlow, [this._time], [this._progress, this._loadedSize, this._totalSize]);
 		
 		return this;
 	};
@@ -51,6 +53,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	};
 	objectFunctions.getProgress = function() {
 		return this._progress.getValue();
+	};
+	
+	objectFunctions.getLoadedSize = function() {
+		return this._loadedSize.getValue();
+	};
+	
+	objectFunctions.getTotalSize = function() {
+		return this._totalSize.getValue();
 	};
 	
 	objectFunctions.load = function() {
@@ -198,6 +208,43 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 			}
 		}
 	};
+	
+	objectFunctions._updateProgressFlow = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_updateProgressFlow");
+		
+		var loadedSize = 0;
+		var totalLoadSize = 0;
+		
+		var currentArray = this._loadingLoaders;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentLoader = currentArray[i];
+			loadedSize += currentLoader.getLoadedSize();
+			totalLoadSize += currentLoader.getTotalSize();
+		}
+		
+		var currentArray = this._waitingLoaders;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentLoader = currentArray[i];
+			totalLoadSize += currentLoader.getTotalSize();
+		}
+		
+		var currentArray = this._loadedLoaders;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentLoader = currentArray[i];
+			loadedSize += currentLoader.getTotalSize();
+			totalLoadSize += currentLoader.getTotalSize();
+		}
+		
+		var progress = (totalLoadSize == 0) ? 0 : loadedSize/totalLoadSize;
+		//console.log(loadedSize, totalLoadSize, progress);
+		
+		this._loadedSize.setValueWithFlow(loadedSize, aFlowUpdateNumber);
+		this._totalSize.setValueWithFlow(totalLoadSize, aFlowUpdateNumber);
+		this._progress.setValueWithFlow(progress, aFlowUpdateNumber);
+	}
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		

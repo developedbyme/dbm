@@ -5,6 +5,7 @@ dbm.registerClass("com.developedbyme.constants.JavascriptEventIds", null, functi
 	
 	//MENOTE: DOM unspecified
 	staticFunctions.DOM_CONTENT_LOADED = "DOMContentLoaded";
+	staticFunctions.PROGRESS = "progress";
 	
 	//MENOTE: DOM level 3
 	staticFunctions.ABORT = "abort"; //Element > Event

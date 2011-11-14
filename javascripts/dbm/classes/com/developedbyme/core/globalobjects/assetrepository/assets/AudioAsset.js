@@ -11,6 +11,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var AudioEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.AudioEventIds");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
 	objectFunctions.init = function() {
@@ -19,15 +20,19 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		this.superCall();
 		
 		this._url = null;
+		this._loadingSize = 300000;
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(dbm.singletons.dbmPageManager.getDocument());
 		
-		var data = htmlCreator.createNode("audio", {"preload": "none"});
+		var data = htmlCreator.createNode("audio", {"name": "asset", "preload": "none"});
 		this._data.setValue(data);
 		
 		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._setStatus, [AssetStatusTypes.LOADED]));
 		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, SetPropertyAsDirtyCommand.createCommand(this._data));
 		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADING_ERROR, CallFunctionCommand.createCommand(this, this._setStatus, [AssetStatusTypes.ERROR]));
+		
+		this.getExtendedEvent().createEvent(AudioEventIds.PROGRESS);
+		this.getExtendedEvent().addCommandToEvent(AudioEventIds.PROGRESS, CallFunctionCommand.createCommand(this, this._loadProgressCallback, [GetVariableObject.createSelectDataCommand()]));
 		
 		return this;
 	};
@@ -52,15 +57,40 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		
 		var data = this._data.getValue();
 		
-		this.getExtendedEvent().linkJavascriptEvent(data, JavascriptEventIds.LOAD, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
-		this.getExtendedEvent().linkJavascriptEvent(data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true);
+		//MENOTE: load event doesn't seem to be triggered so can play through is good enough
+		//this.getExtendedEvent().linkJavascriptEvent(data, JavascriptEventIds.LOAD, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
+		//this.getExtendedEvent().linkJavascriptEvent(data, AudioEventIds.CAN_PLAY_THROUGH, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(data, AudioEventIds.PROGRESS, AudioEventIds.PROGRESS, AudioEventIds.PROGRESS, true).activate();
 		
 		
 		data.src = this._url;
 		data.load();
+		//MENOTE: download doesn't give any feedback of being downloaded if play is not called
+		data.play();
+		data.pause();
 		
 		return this;
 	};
+	
+	objectFunctions._loadProgressCallback = function(aEvent) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset::_loadProgress");
+		//console.log(aEvent);
+		
+		var maxBuffered = 0;
+		var bufferRanges = this._data.getValue().buffered;
+		var rangesLength = bufferRanges.length;
+		for(var i = 0; i < rangesLength; i++) {
+			maxBuffered = Math.max(maxBuffered, bufferRanges.end(i));
+		}
+		
+		this._loadProgress = maxBuffered/this._data.getValue().duration;
+		
+		if(this._loadProgress == 1) {
+			this.getExtendedEvent().deactivateJavascriptEventLink(AudioEventIds.PROGRESS);
+			this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED);
+		}
+	}
 	
 	staticFunctions.create = function(aUrl) {
 		var newAudioAsset = (new ClassReference()).init();

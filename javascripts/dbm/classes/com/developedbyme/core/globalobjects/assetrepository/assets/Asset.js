@@ -17,6 +17,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		this._data = this.createProperty("data", null);
 		this._numberOfRetains = 0;
 		
+		this._loadingSize = 20000;
+		this._loadProgress = 0;
+		
 		return this;
 	};
 	
@@ -28,9 +31,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		return this._status.getValue();
 	};
 	
+	objectFunctions.getProgress = function() {
+		return this._loadProgress;
+	};
+	
+	objectFunctions.getLoadedSize = function() {
+		return this._loadProgress*this._loadingSize;
+	};
+	
+	objectFunctions.getTotalSize = function() {
+		return this._loadingSize;
+	};
+	
 	objectFunctions._setStatus = function(aStatus) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_setStatus");
 		//console.log(aStatus);
+		if(aStatus == AssetStatusTypes.LOADED || aStatus == AssetStatusTypes.LOADING_ERROR) {
+			this._loadProgress = 1;
+		}
 		this._status.setValue(aStatus);
 	};
 	

@@ -7,6 +7,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 	
 	staticFunctions.scopeStarters = ["(", "{", "[", "\"", "\'", "//", "/*"];
 	staticFunctions.scopeEnders = [")", "}", "]", "\"", "\'", "\n", "*/"];
+	staticFunctions.operatorTypes = [" instanceof ", "===", "<<<=", ">>>=", "!==", "<<<", ">>>", "==", "!=", "<<=", ">>=", "&&", "||", "&=", "|=", "<<", ">>", ">=", "<=", "<", ">", ".", "%", "+", "-", "*", "/", "=", "&", "|", "^", "!", "?", ":"];
 	
 	staticFunctions.getScopeStart = function(aText, aFromPosition, aScopeStarts) {
 		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getScopeStart");
@@ -26,6 +27,64 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 		}
 		
 		return returnPosition;
+	};
+	
+	staticFunctions.splitEvaluation = function(aText, aReturnOperators) {
+		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getTypeOfScopeStart");
+		
+		var returnArray = new Array();
+		
+		var debugCounter = 0;
+		var currentPosition = 0;
+		
+		var scopeStartPosition = ClassReference.getScopeStart(aText, currentPosition);
+		var operatorPosition = ClassReference.getScopeStart(aText, currentPosition, ClassReference.operatorTypes);
+		var textLength = aText.length;
+		
+		var whiteSpaceRegExp = new RegExp("[^\\s]");
+		
+		while(scopeStartPosition != -1 || operatorPosition != -1) {
+			if(debugCounter++ > 10000) {
+				break;
+			}
+			while((operatorPosition < scopeStartPosition || scopeStartPosition == -1) && operatorPosition != -1) {
+				if(debugCounter++ > 10000) {
+					break;
+				}
+				var currentOperator = ClassReference.getTypeOfScopeStart(aText, operatorPosition, ClassReference.operatorTypes);
+				
+				returnArray.push(operatorPosition);
+				aReturnOperators.push(currentOperator);
+				currentPosition = operatorPosition+currentOperator.length;
+				for(var i = currentPosition; i < textLength; i++) {
+					var currentChar = aText.charAt(i);
+					if(currentChar.match(whiteSpaceRegExp)) {
+						break;
+					}
+					currentPosition++;
+				}
+				operatorPosition = ClassReference.getScopeStart(aText, currentPosition, ClassReference.operatorTypes);
+			}
+			
+			if(scopeStartPosition != -1) {
+				var currentScopeStartType = ClassReference.getTypeOfScopeStart(aText, scopeStartPosition);
+				var currentScopeEndType = ClassReference.getTypeOfScopeEndForScopeStart(currentScopeStartType);
+				if(currentPosition != scopeStartPosition || aReturnOperators[aReturnOperators.length-1] == null) {
+					returnArray.push(scopeStartPosition);
+					aReturnOperators.push(null);
+				}
+				var currentScope = ClassReference.getAnyScope(aText, scopeStartPosition, currentScopeStartType, currentScopeEndType);
+				if(currentScope.end == -1) {
+					break;
+				}
+				currentPosition = currentScope.end+currentScopeEndType.length;
+				
+				scopeStartPosition = ClassReference.getScopeStart(aText, currentPosition);
+				operatorPosition = ClassReference.getScopeStart(aText, currentPosition, ClassReference.operatorTypes);
+			}
+		}
+		
+		return returnArray;
 	};
 	
 	staticFunctions.getTypeOfScopeStart = function(aText, aPosition, aScopeStarts) {

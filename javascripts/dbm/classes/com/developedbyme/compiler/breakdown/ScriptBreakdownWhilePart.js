@@ -1,7 +1,7 @@
-dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownConditionPart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownConditionPart");
+dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart");
 	
-	var ScriptBreakdownConditionPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownConditionPart");
+	var ScriptBreakdownWhilePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
@@ -17,61 +17,70 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCondition
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownConditionPart::init");
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart::init");
 		
 		this.superCall();
 		
-		this._type = "condition";
-		this._conditionType = null;
+		this._type = "while";
+		this._whileType = null;
 		this._evaluation = null;
-		this._result = null;
+		this._code = null;
 		
 		return this;
 	};
 	
 	objectFunctions._breakdown = function() {
-		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownConditionPart::_breakdown");
-		if(this._conditionType != "else") {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart::_breakdown");
+		if(this._whileType == "while") {
 			var evaluationIndex = this._script.indexOf("(");
 			var evaluationScope = ScopeFunctions.getScope(this._script, evaluationIndex, "(", ")");
 			this._evaluation = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(evaluationScope.start+1, evaluationScope.end)));
 			var resultString = StringFunctions.trim(this._script.substring(evaluationScope.end+1, this._script.length));
 			if(resultString.charAt(0) == "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end == resultString.length-1) {
-				this._result = ScriptBreakdownCodePart.create(this, resultString.substring(1, resultString.length-1));
-				this._result.setScope("{", "}");
+				this._code = ScriptBreakdownCodePart.create(this, resultString.substring(1, resultString.length-1));
+				this._code.setScope("{", "}");
 			}
 			else {
-				this._result = ScriptBreakdownLinePart.create(this, resultString);
+				this._code = ScriptBreakdownLinePart.create(this, resultString);
 			}
-			this._childBreakdowns.push(this._evaluation);
 		}
 		else {
-			var resultString = StringFunctions.trim(this._script.substring(4, this._script.length));
-			if(resultString.charAt(0) == "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end == resultString.length-1) {
-				this._result = ScriptBreakdownCodePart.create(this, resultString.substring(1, resultString.length-1));
-				this._result.setScope("{", "}");
-			}
-			else {
-				this._result = ScriptBreakdownLinePart.create(this, resultString);
-			}
+			var resultString = StringFunctions.trim(this._script.substring(2, this._script.length));
+			
+			var codeScope = ScopeFunctions.getScope(resultString, 0, "{", "}");
+			
+			this._code = ScriptBreakdownCodePart.create(this, resultString.substring(1, codeScope.end));
+			this._code.setScope("{", "}");
+			
+			var endString = StringFunctions.trim(this._script.substring(codeScope.end+1, this._script.length));
+			this._evaluation = ScriptBreakdownLinePart.create(this, StringFunctions.trim(endString.substring(5, endString.length)));
 		}
-		this._childBreakdowns.push(this._result);
+		this._childBreakdowns.push(this._evaluation);
+		this._childBreakdowns.push(this._code);
 	}
 	
-	objectFunctions.setConditionType = function(aType) {
+	objectFunctions.setWhileType = function(aType) {
 		
-		this._conditionType = aType;
+		this._whileType = aType;
 		
 	};
 	
 	objectFunctions.compile = function() {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart::compile");
+		var returnString = this._whileType;
 		
-		var returnString = this._conditionType;
+		var evaluation = "(" + this._evaluation.compile() + ")";
+		var code = this._code.compile();
 		
-		if(this._evaluation != null) {
-			returnString += "(" + this._evaluation.compile() + ")";
+		if(this._whileType == "while") {
+			returnString += evaluation;
+			returnString += code;
 		}
-		returnString += this._result.compile();
+		else {
+			returnString += code;
+			returnString += "while";
+			returnString += evaluation;
+		}
 		
 		return returnString;
 	};
@@ -79,7 +88,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCondition
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._evaluation = null;
-		this._result = null;
+		this._code = null;
 		
 		this.superCall();
 	};
@@ -87,7 +96,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCondition
 	staticFunctions.create = function(aParent, aType, aScript) {
 		var newScriptBreakDown = (new ClassReference()).init();
 		newScriptBreakDown.setParent(aParent);
-		newScriptBreakDown.setConditionType(aType);
+		newScriptBreakDown.setWhileType(aType);
 		newScriptBreakDown.setScript(aScript);
 		return newScriptBreakDown;
 	};

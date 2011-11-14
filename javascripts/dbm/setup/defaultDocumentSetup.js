@@ -1,0 +1,1 @@
+dbm.setup(window, document, "javascripts", "classes");

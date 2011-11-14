@@ -40,7 +40,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlModifier", null, function(obje
 		else {
 			newNode = ClassReference.getOwnerDocument(aParentNode).createTextNode(aText);
 		}
-		aNode.appendChild(newNode);
-		return aNode;
+		aParentNode.appendChild(newNode);
+		return aParentNode;
 	};
 });

@@ -60,10 +60,12 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup
 	};
 	
 	objectFunctions.performDestroy = function() {
-		
+		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::performDestroy");
 		if(this._isActive) {
 			this.deactivateAll();
 		}
+		
+		ClassReference.softDestroyArrayIfExists(this.linksArray);
 		
 		this.superCall();
 	};

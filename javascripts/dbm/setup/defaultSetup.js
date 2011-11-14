@@ -2,8 +2,8 @@ dbm.runTempFunction(function() {
 	
 	dbm.addSpecificClassesFolder("com.developedbyme", "dbm/classes");
 	
-	dbm.addLibrary("sizzle", "libraries/sizzle/sizzle.js", "Sizzle");
-	dbm.addLibrary("easel", "libraries/easel/easel.js", "window");
+	//dbm.addLibrary("sizzle", "libraries/sizzle/sizzle.js", "Sizzle");
+	//dbm.addLibrary("easel", "libraries/easel/easel.js", "window");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var UpdateManager = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");

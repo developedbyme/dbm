@@ -34,7 +34,8 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 	};
 	
 	objectFunctions._addCodeLine = function(aLine, aIsOpen) {
-		console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::_addCodeLine");
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::_addCodeLine");
+		//console.log(aLine.substring(0, 60));
 		
 		if(aLine.match(this._startsWithScopeRegExp) && this._lastLineIsOpen) {
 			this._childBreakdowns[this._childBreakdowns.length-1].appendScript(StringFunctions.trim(aLine));
@@ -47,7 +48,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 	}
 	
 	objectFunctions._breakdown = function() {
-		console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::_breakdown");
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::_breakdown");
 		
 		if(this._isBrokenDown) {
 			return;
@@ -101,6 +102,16 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 				var currentLine = this._script.substring(currentStartPosition, currentScope.end+currentEndScopeType.length);
 				if(!VariableAliases.isEmptyText(currentLine)) {
 					this._addCodeLine(currentLine, true);
+				}
+				else {
+					this._lastLineIsOpen = false;
+				}
+				currentStartPosition = currentScope.end+currentEndScopeType.length;
+			}
+			else if(currentEndScopeType == "\n") {
+				var currentLine = this._script.substring(currentStartPosition, currentScope.end+currentEndScopeType.length);
+				if(!VariableAliases.isEmptyText(currentLine)) {
+					this._addCodeLine(currentLine, false);
 				}
 				else {
 					this._lastLineIsOpen = false;

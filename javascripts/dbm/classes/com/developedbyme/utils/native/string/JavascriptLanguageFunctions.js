@@ -4,27 +4,28 @@ dbm.registerClass("com.developedbyme.utils.native.string.JavascriptLanguageFunct
 	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	staticFunctions.KEWWORD_REG_EXPS = [
 		new RegExp("^if[\\s]*\\("),
 		new RegExp("^else[\\s]+if[\\s]*\\("),
-		new RegExp("^else[\\s]*\\("),
+		new RegExp("^else[\\s\\{]"),
 		new RegExp("^for[\\s]*\\("),
 		new RegExp("^while[\\s]*\\("),
 		new RegExp("^var[\\s]+"),
-		new RegExp("^function[\\s]+[a-zA-Z0-9]*[\\s]*\\("),
-		new RegExp("^break[\\s]*"),
+		new RegExp("^function([\\s]+[a-zA-Z0-9]*[\\s]*)?\\("),
+		new RegExp("^break[\\s;]*"),
 		new RegExp("^const[\\s]+"),
-		new RegExp("^continue[\\s]*"),
+		new RegExp("^continue[\\s;]*"),
 		new RegExp("^delete[\\s]+"),
-		new RegExp("^do[\\s]*"),
+		new RegExp("^do[\\s]*\\{"),
 		new RegExp("^new[\\s]+"),
-		new RegExp("^return[\\s]*"),
-		new RegExp("^switch[\\s]*"),
-		new RegExp("^throw[\\s]*"),
-		new RegExp("^try[\\s]*"),
-		new RegExp("^catch[\\s]*"),
-		new RegExp("^with[\\s]*"),
+		new RegExp("^return([\\s]+.*)?$"),
+		new RegExp("^switch[\\s]*\\("),
+		new RegExp("^throw[\\s]*\\("),
+		new RegExp("^try[\\s]*\\{"),
+		new RegExp("^catch[\\s]*\\{"),
+		new RegExp("^with[\\s]*\\{"),
 		new RegExp("^case[\\s]+[^:]*:")
 		
 		/*
@@ -74,5 +75,16 @@ dbm.registerClass("com.developedbyme.utils.native.string.JavascriptLanguageFunct
 			}
 		}
 		return null;
+	};
+	
+	staticFunctions.startsWithSpecifiedKeyword = function(aText, aKeyword) {
+		
+		var currentIndex = ArrayFunctions.indexOfInArray(ClassReference.KEWWORD_REG_EXP_NAMES, aKeyword);
+		
+		if(currentIndex == -1) {
+			return false;
+		}
+		
+		return aText.match(ClassReference.KEWWORD_REG_EXPS[currentIndex]);
 	};
 });

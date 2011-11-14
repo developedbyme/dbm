@@ -3,7 +3,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 	
 	var PlayingAudio = dbm.importClass("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio");
 	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
+	
+	var AudioEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.AudioEventIds");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
@@ -21,6 +25,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 		this._loop = this.createProperty("loop", false);
 		
 		this._outputVolume = null;
+		
+		this.getExtendedEvent().createEvent(AudioEventIds.CAN_PLAY);
+		this.getExtendedEvent().addCommandToEvent(AudioEventIds.CAN_PLAY, CallFunctionCommand.createCommand(this, this._performPlay, []));
 		
 		return this;
 	};
@@ -41,7 +48,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 		this._outputVolume.setValue(0);
 		this._outputVolume.connectInput(this._mixerChannel.getProperty("output"));
 		this._outputVolume.startUpdating();
+		
 		this._mixerChannel.setPropertyInput("input", this._volume);
+		
+		this.getExtendedEvent().linkJavascriptEvent(this._element, AudioEventIds.CAN_PLAY, AudioEventIds.CAN_PLAY, AudioEventIds.CAN_PLAY, true);
 		
 		return this;
 	};
@@ -51,12 +61,30 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 		this._isPlaying = true;
 		
 		this._outputVolume.update();
-		this._element.play();
+		
+		if(this._element.readyState != 0) {
+			this._performPlay();
+		}
+		else {
+			this.getExtendedEvent().activateJavascriptEventLink(AudioEventIds.CAN_PLAY);
+		}
 		
 		dbm.singletons.dbmUpdateManager.addUpdater(this, "updateInput");
 		
 		return this;
 	};
+	
+	objectFunctions._performPlay = function() {
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio::_performPlay");
+		if(this._isPlaying) {
+			if(this._element.readyState != 0) {
+				this._element.play();
+			}
+			else {
+				this.getDelayedExtendedEvent().addCommand(CallFunctionCommand.createCommand(this, this._performPlay, []),null, 0.1);
+			}
+		}
+	}
 	
 	objectFunctions.pause = function() {
 		

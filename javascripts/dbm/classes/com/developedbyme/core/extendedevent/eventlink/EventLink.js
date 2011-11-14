@@ -86,6 +86,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 	};
 	
 	objectFunctions.performDestroy = function() {
+		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::performDestroy");
+		//console.log(this._javascriptEventName);
 		
 		if(this._isActive) {
 			this.deactivate();

@@ -56,7 +56,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 	
 	staticFunctions.create = function(aElement) {
 		var newNode = (new ClassReference()).init();
-		newNode.setPropertyInput("element", aElement);
+		newNode.setPropertyInputWithoutNull("element", aElement);
 		return newNode;
 	}
 });

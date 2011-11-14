@@ -1,0 +1,53 @@
+dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart");
+	
+	var ScriptBreakdownVariableReferencePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var ScriptBreakdownLinePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart");
+	var ScriptBreakdownCodePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart");
+	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart::init");
+		
+		this.superCall();
+		
+		this._type = "variableReference";
+		this._variableName = null;
+		
+		return this;
+	};
+	
+	objectFunctions._breakdown = function() {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart::_breakdown");
+		
+		this._variableName = this._script;
+	}
+	
+	objectFunctions.compile = function() {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart::compile");
+		//console.log(this._variableName);
+		return this._variableName;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aParent, aScript) {
+		var newScriptBreakDown = (new ClassReference()).init();
+		newScriptBreakDown.setParent(aParent);
+		newScriptBreakDown.setScript(aScript);
+		return newScriptBreakDown;
+	};
+});

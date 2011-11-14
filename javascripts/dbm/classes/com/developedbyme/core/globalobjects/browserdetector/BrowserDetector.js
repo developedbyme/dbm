@@ -24,6 +24,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 	};
 	
 	objectFunctions.setupApplications = function(aUserAgentString) {
+		//console.log("om.developedbyme.core.globalobjects.browserdetector.BrowserDetector::setupApplications");
+		//console.log(aUserAgentString);
+		
 		var currentStartPosition = 0;
 		
 		while(currentStartPosition < aUserAgentString.length) {
@@ -73,7 +76,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 	};
 	
 	objectFunctions.detectBrowser = function(aUserAgentString) {
-		this.setupApplications(aUserAgentString);		
+		this.setupApplications(aUserAgentString);
 		
 		var firstBrowser = this.getFirstApplicationOf(["Camino", "Chrome", "Firefox", "Mobile Safari", "OmniWeb", "Opera", "Safari"]);
 		var mozillaApplication = this.getApplicationByName("Mozilla");
@@ -136,7 +139,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 					this.browserVersion = commentsArray[1].substring(commentsArray[1].indexOf("MSIE")+5, commentsArray[1].length);
 					this.renderEngine = commentsArray[4];
 				}
-
+				
 				else if(commentsArray[1].indexOf("Konqueror") != -1) {
 					this.browserName = "Konqueror";
 					this.browserVersion = commentsArray[1].substring(commentsArray[1].indexOf("/")+1, commentsArray[1].length);
@@ -145,7 +148,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 		}
 		else {
 			this.browserName = firstBrowser.name;
-			this.browserVersion = firstBrowser.version;
+			if(this.browserName == "Safari") {
+				this.browserVersion = this.getApplicationByName("Version").version;
+			}
+			else {
+				this.browserVersion = firstBrowser.version;
+			}
 		}
 		
 		//METODO: check versions application on safari
