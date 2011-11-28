@@ -27,7 +27,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownStringPar
 		//console.log(this._script);
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		
 		return this._scoop + this._script + this._scoop;
 	};

@@ -35,13 +35,13 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownReturnPar
 		}
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownReturnPart::compile");
 		
 		var returnString = "return";
 		
 		if(this._line != null) {
-			returnString += " " + this._line.compile();
+			returnString += " " + this._line.compile(aCompileData);
 		}
 		
 		return returnString;

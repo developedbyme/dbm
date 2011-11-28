@@ -59,6 +59,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.DrawPatternNode", "com.de
 		canvas.width = renderWidth;
 		canvas.height = renderHeight;
 		
+		canvas.getContext("2d").setTransform(1, 0, 0, 1, 0, 0);
 		canvas.getContext("2d").clearRect(0, 0, renderWidth, renderHeight);
 		canvas.getContext("2d").fillStyle = currentPattern;
 		

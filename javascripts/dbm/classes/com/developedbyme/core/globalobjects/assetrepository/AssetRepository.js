@@ -61,6 +61,32 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		return this._rootNode.getPath();
 	};
 	
+	objectFunctions.linkFolderToServer = function(aPath, aServerPath) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::linkFolderToServer");
+		
+		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
+		currentItem.setAttribute("absolutePath", aServerPath);
+	};
+	
+	objectFunctions._createAssetForTreeStructure = function(aTreeStructureItem) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::_createAssetForTreeStructure");
+		
+		var currentItem = aTreeStructureItem;
+		var returnArray = new Array();
+		while(currentItem != null) {
+			if(currentItem.hasAttribute("absolutePath")) {
+				returnArray.unshift(currentItem.getAttribute("absolutePath"));
+				break;
+			}
+			returnArray.unshift(currentItem.getName());
+			currentItem = currentItem.getParent();
+		}
+		var currentPath = returnArray.join("/");
+		
+		aTreeStructureItem.data = this._createAsset(currentPath);
+		aTreeStructureItem.retain();
+	};
+	
 	objectFunctions.getAsset = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::getAsset");
 		//console.log(aPath);
@@ -69,8 +95,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		
 		if(currentItem.data == null) {
 			//console.log("new", currentItem.getPath());
-			currentItem.data = this._createAsset(currentItem.getPath());
-			currentItem.retain();
+			this._createAssetForTreeStructure(currentItem);
 		}
 		
 		//this._hierarchy.debugTraceStructure();
@@ -84,8 +109,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
 		if(currentItem.data == null) {
-			currentItem.data = this._createAsset(currentItem.getPath());
-			currentItem.retain();
+			this._createAssetForTreeStructure(currentItem);
 		}
 		
 		return currentItem.data.getData();

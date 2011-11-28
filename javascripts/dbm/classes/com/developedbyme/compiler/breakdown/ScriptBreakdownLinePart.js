@@ -19,6 +19,13 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 	var ScriptBreakdownWhilePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart");
 	var ScriptBreakdownLiteralObjectPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralObjectPart");
 	var ScriptBreakdownLiteralArrayPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralArrayPart");
+	var ScriptBreakdownSwitchPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownSwitchPart");
+	var ScriptBreakdownCasePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCasePart");
+	var ScriptBreakdownDefaultPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownDefaultPart");
+	var ScriptBreakdownKeywordPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownKeywordPart");
+	var ScriptBreakdownTryPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownTryPart");
+	var ScriptBreakdownFinallyPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownFinallyPart");
+	var ScriptBreakdownCatchPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCatchPart");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
@@ -95,7 +102,8 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 					this._childBreakdowns.push(ScriptBreakdownForPart.create(this, this._script));
 					break;
 				case "var":
-					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(3, scriptWithoutScoop.length));
+				case "const":
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(keywordType.length, scriptWithoutScoop.length));
 					var currentArray = this._getCommaArray(stringWithoutKeyword);
 					var currentArrayLength = currentArray.length;
 					var currentPosition = 0;
@@ -108,6 +116,17 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 				case "function":
 					this._childBreakdowns.push(ScriptBreakdownFunctionPart.create(this, scriptWithoutScoop));
 					break;
+				case "switch":
+					this._childBreakdowns.push(ScriptBreakdownSwitchPart.create(this, scriptWithoutScoop));
+					break;
+				case "case":
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(4, scriptWithoutScoop.length));
+					this._childBreakdowns.push(ScriptBreakdownCasePart.create(this, stringWithoutKeyword));
+					break;
+				case "default":
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(7, scriptWithoutScoop.length));
+					this._childBreakdowns.push(ScriptBreakdownDefaultPart.create(this, stringWithoutKeyword));
+					break;
 				case "return":
 					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(6, scriptWithoutScoop.length));
 					this._childBreakdowns.push(ScriptBreakdownReturnPart.create(this, stringWithoutKeyword));
@@ -115,6 +134,22 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 				case "delete":
 					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(6, scriptWithoutScoop.length));
 					this._childBreakdowns.push(ScriptBreakdownDeletePart.create(this, stringWithoutKeyword));
+					break;
+				case "continue":
+				case "break":
+					this._childBreakdowns.push(ScriptBreakdownKeywordPart.create(this, scriptWithoutScoop));
+					break;
+				case "try":
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(keywordType.length, scriptWithoutScoop.length));
+					this._childBreakdowns.push(ScriptBreakdownTryPart.create(this, stringWithoutKeyword));
+					break;
+				case "finally":
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(keywordType.length, scriptWithoutScoop.length));
+					this._childBreakdowns.push(ScriptBreakdownFinallyPart.create(this, stringWithoutKeyword));
+					break;
+				case "catch":
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(keywordType.length, scriptWithoutScoop.length));
+					this._childBreakdowns.push(ScriptBreakdownCatchPart.create(this, stringWithoutKeyword));
 					break;
 				default:
 				case "new": //MENOTE: new is broken down in evaluation
@@ -129,8 +164,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 		}
 	}
 	
-	objectFunctions.compile = function() {
-		
+	objectFunctions.compile = function(aCompileData) {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart::compile");
+		//console.log(aCompileData);
 		var returnString = this._debugCompileString + this._scopeStart;
 		
 		var currentArray = this._childBreakdowns;
@@ -138,7 +174,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentPart = currentArray[i];
 			if(currentPart.executesDirectly) {
-				returnString += currentPart.compile();
+				returnString += currentPart.compile(aCompileData);
 			}
 		}
 		

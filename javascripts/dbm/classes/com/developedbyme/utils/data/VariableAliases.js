@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	 * 
 	 * @return	True if the varaible is true.
 	 */
-	staticFunctions.isTrue = function(aVariable) {
+	staticFunctions.isTrue = function isTrue(aVariable) {
 		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_BOOLEAN) {
 			return aVariable;
 		}
@@ -63,7 +63,7 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	 * 
 	 * @return	True if the varaible is false.
 	 */
-	staticFunctions.isFalse = function(aVariable) {
+	staticFunctions.isFalse = function isFalse(aVariable) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::isFalse (static)");
 		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_BOOLEAN) {
 			return !aVariable;
@@ -111,7 +111,7 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	 * 
 	 * @return	True if the varaible is false.
 	 */
-	staticFunctions.isNull = function(aVariable) {
+	staticFunctions.isNull = function isNull(aVariable) {
 		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_BOOLEAN) {
 			return false;
 		}
@@ -140,14 +140,14 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	/**
 	 * Checks if a text is empty.
 	 */
-	 staticFunctions.isEmptyText = function(aString) {
+	 staticFunctions.isEmptyText = function isEmptyText(aString) {
 		//trace("breel.utils.data.VariableAliases.isEmptyText");
 		var regExpString = "^[ \t\f\n\r]*$";
 		var regExp = new RegExp(regExpString);
 		return regExp.test(aString);
 	} //End function isEmptyText
 	
-	staticFunctions.valueWithDefault = function(aValue, aDefaultValue) {
+	staticFunctions.valueWithDefault = function valueWithDefault(aValue, aDefaultValue) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::valueWithDefault");
 		//console.log(aValue, aDefaultValue);
 		if(aValue == null || aValue == undefined) {
@@ -156,7 +156,7 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 		return aValue;
 	};
 	
-	staticFunctions.isSet = function(aValue) {
+	staticFunctions.isSet = function isSet(aValue) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::isSet");
 		if(aValue == null || aValue == undefined) {
 			return false;

@@ -33,10 +33,18 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableR
 		this._variableName = this._script;
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart::compile");
 		//console.log(this._variableName);
-		return this._variableName;
+		var returnReference;
+		if(this.declaresVariables != null) {
+			returnReference = aCompileData.createVariableReference(this._variableName, this.declaresVariables);
+		}
+		else {
+			returnReference = aCompileData.getVariableReference(this._variableName);
+		}
+		
+		return returnReference;
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

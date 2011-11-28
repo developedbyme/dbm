@@ -140,11 +140,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
 		this._updatedProperties.start();
 		while(this._updatedProperties.isActive()) {
-			currentProperty = this._updatedProperties.getNextItem();
+			var currentProperty = this._updatedProperties.getNextItem();
 			//console.log(currentProperty);
 			if(currentProperty.getStatus() != FlowStatusTypes.UPDATED) {
 				if(currentProperty.isDestroyed()) {
-					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperties", "Property (" + currentProperty+ ") is destroyed, removing.");
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperties", "Property (" + currentProperty + ") is destroyed, removing.");
 					this._updatedProperties.removeItem(currentProperty);
 					continue;
 				}
@@ -152,7 +152,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 					this.updateProperty(currentProperty);
 				}
 				catch(theError) {
-					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateProperties", "Un error occured while updating " + currentUpdater +".");
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateProperties", "Un error occured while updating " + currentProperty +".");
 					ErrorManager.getInstance().reportError(this, "updateProperties", theError);
 				}
 			}

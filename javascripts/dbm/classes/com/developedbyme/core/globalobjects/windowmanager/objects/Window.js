@@ -52,6 +52,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._height = this.createProperty("height", 480);
 		
 		this._documentReady = this.createProperty("documentReady", false);
+		this._documentLoaded = this.createProperty("documentLoaded", false);
 		this._bodyNode = this.createProperty("bodyNode", null);
 		var documentForElementNode = DocumentForElementNode.create(this._bodyNode);
 		this.addDestroyableObject(documentForElementNode);
@@ -66,7 +67,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._icon = null;
 		
 		this.createUpdateFunction("position", this._updateFlowPosition, [this._x, this._y], [this._position]);
-		this.createUpdateFunction("size", this._updateFlowSize, [this._width, this._height], [this._size]);
+		this.createUpdateFunction("size", this._updateFlowSize, [this._width, this._height, this._documentReady], [this._size]);
 		this.createGhostUpdateFunction("display", [this._size, this._position, this._title, this._iconDisplay], [this._display]);
 		
 		this._useDefaultMargins = true;
@@ -79,11 +80,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._cachedScreenX = 0;
 		this._cachedScreenY = 0;
 		
+		this._lastResizeWidth = -1;
+		this._lastResizeHeight = -1;
+		
 		this._hasFocus = this.createProperty("hasFocus", false);
 		this._checkMovement = this.createProperty("checkMovement", false);
+		this._checkSize = this.createProperty("checkSize", true);
 		
 		this._lastMovementCheckTime = 0;
 		this._movementCheckInterval = 0.5;
+		this._lastSizeCheckTime = 0;
+		this._sizeCheckInterval = 1;
 		
 		this._status = false;
 		this._toolbar = false;
@@ -232,6 +239,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(this._window.document);
 	};
 	
+	objectFunctions.getAvailableHtmlCreator = function() {
+		if(!this.isOpen()) {
+			return dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		}
+		return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(this._window.document);
+	};
+	
 	objectFunctions.useIcon = function() {
 		this._icon = this.addProperty("icon", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
 		this.createUpdateFunction("icon", this._updateIconFlow, [this._icon], [this._iconDisplay]);
@@ -243,13 +257,29 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	
 	objectFunctions._updateFlowSize = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
-		if(this._isOpen) {
+		
+		var innerWidth;
+		var innerHeight;
+		var outerWidth;
+		var outerHeight;
+		
+		if(this._isOpen && this._documentReady.getValueWithoutFlow()) {
+			if(this._isOpening) {
+				innerWidth = this._window.innerWidth;
+				innerHeight = this._window.innerHeight;
+				outerWidth = this._window.outerWidth;
+				outerHeight = this._window.outerHeight;
+				if((innerWidth > 0 || innerHeight > 0) && (innerWidth != outerWidth || innerHeight != outerHeight)) {
+					this._isOpening = false;
+				}
+				
+			}
 			if(!this._isOpening) {
 				var newWidth = Math.round(this._width.getValueWithoutFlow());
 				var newHeight = Math.round(this._height.getValueWithoutFlow());
 				
-				var innerWidth = this._window.innerWidth;
-				var innerHeight = this._window.innerHeight;
+				innerWidth = this._window.innerWidth;
+				innerHeight = this._window.innerHeight;
 				
 				if(newWidth != innerWidth || newHeight != innerHeight) {
 					//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
@@ -264,7 +294,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		if(this._isOpen) {
 			var newX = Math.round(this._x.getValueWithoutFlow());
 			var newY = Math.round(this._y.getValueWithoutFlow());
-			this._cachedScreenX, this._cachedScreenY;
 			if(newX != this._cachedScreenX || newY != this._cachedScreenY) {
 				//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
 				//console.log(newX + " " + this._cachedScreenX + " " + newY + " " + this._cachedScreenY);
@@ -288,6 +317,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	
 	objectFunctions._updateSize = function(aWidth, aHeight) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateSize");
+		//console.log(this.name);
 		
 		//this._horizontalMargin = this._window.outerWidth-this._window.innerWidth;
 		//this._verticalMargin = this._window.outerHeight-this._window.innerHeight;
@@ -301,6 +331,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			var horizontalMargin = outerWidth-innerWidth;
 			var verticalMargin = outerHeight-innerHeight;
 			
+			var isMarginReady = (horizontalMargin > 0 || verticalMargin > 0) && horizontalMargin < 50 && verticalMargin < 100 && (innerWidth != 0 || innerHeight != 0);
+			
+			if(!isMarginReady) return;
+			
 			if(this._useDefaultMargins) {
 				dbm.singletons.dbmWindowManager.setDefaultMargins(horizontalMargin, verticalMargin);
 				this._margins = dbm.singletons.dbmWindowManager.getDefaultMargins();
@@ -310,7 +344,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			}
 		}
 		
-		this._window.resizeTo(aWidth+this._margins.horizontalMargin, aHeight+this._margins.verticalMargin);
+		this._window.resizeTo(Math.round(aWidth+this._margins.horizontalMargin), Math.round(aHeight+this._margins.verticalMargin));
 	}
 	
 	objectFunctions._updateSizeBy = function(aWidth, aHeight) {
@@ -364,33 +398,38 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		
 		var innerWidth = null;
 		var innerHeight = null;
+		var outerWidth = null;
+		var outerHeight = null;
 		
-		if(this._isOpening) {
-			innerWidth = this._window.innerWidth;
-			innerHeight = this._window.innerHeight;
-			outerWidth = this._window.outerWidth;
-			outerHeight = this._window.outerHeight;
-			if((innerWidth > 0 || innerHeight > 0) && (innerWidth != outerWidth || innerHeight != outerHeight)) {
-				this._isOpening = false;
-				var newWidth = this._width.getValue();
-				var newHeight = this._height.getValue();
-				if(innerWidth != newWidth || innerHeight != newHeight) {
-					this._updateSize(newWidth, newHeight);
-				}
-			}
-			
-		}
-		
-		if(!this._isOpening) {
-			if(innerWidth == null) {
+		if(this._window != null) {
+			if(this._isOpening) {
 				innerWidth = this._window.innerWidth;
 				innerHeight = this._window.innerHeight;
+				outerWidth = this._window.outerWidth;
+				outerHeight = this._window.outerHeight;
+				if((innerWidth > 0 || innerHeight > 0) && (innerWidth != outerWidth || innerHeight != outerHeight)) {
+					this._isOpening = false;
+				}
+				
 			}
-			this.setSize(innerWidth, innerHeight);
+			
+			if(!this._isOpening) {
+				if(innerWidth == null) {
+					innerWidth = this._window.innerWidth;
+					innerHeight = this._window.innerHeight;
+				}
+				if(innerWidth != this._lastResizeWidth && innerHeight != this._lastResizeHeight) {
+					this._lastResizeWidth = innerWidth;
+					this._lastResizeHeight = innerHeight;
+					this.setSize(innerWidth, innerHeight);
+				}
+			}
+			else {
+				//console.log("resizing");
+			}
 		}
-		else {
-			//console.log("resizing");
-		}
+		
+		//console.log(innerWidth, innerHeight);
 		
 		dbm.singletons.dbmFlowManager.updateProperties();
 		
@@ -452,11 +491,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	
 	objectFunctions._documentLoadedCallback = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentLoadedCallback");
+		//console.log(this.name, this);
 		this._documentReady.setValue(true);
 	};
 	
 	objectFunctions._documentUnloadedCallback = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentUnloadedCallback");
+		//console.log(this.name, this);
+		this._documentLoaded.setValue(true);
 	};
 	
 	objectFunctions._checkForLastPosition = function() {
@@ -471,7 +513,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 					//MENOTE: this._window.screenX and this._window.screenY are really slow
 					var newX = this._window.screenX;
 					var newY = this._window.screenY;
-					if(newX != this._x.getValue() || newY != this._y.getValue()) {
+					if((newX != this._x.getValue() || newY != this._y.getValue()) && !(newX == 0 && newY == 0)) {
 						this._positionUpdated(newX, newY);
 					}
 				}
@@ -525,6 +567,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._cachedScreenY = this._y.getValue();
 		
 		this._window = window.open(this._url, this.name, this._getFeaturesString());
+		//console.log(this._getFeaturesString());
 		this._isOpen = true;
 		this._isOpening = true;
 		
@@ -539,7 +582,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		var horizontalMargin = this._window.outerWidth-this._width.getValue();
 		var verticalMargin = this._window.outerHeight-this._height.getValue();
 		
-		var isMarginReady = (horizontalMargin > 0 || verticalMargin > 0) && (this._window.innerWidth != 0 || this._window.innerHeight != 0);
+		var isMarginReady = (horizontalMargin > 0 || verticalMargin > 0) && horizontalMargin < 50 && verticalMargin < 100 && (this._window.innerWidth != 0 || this._window.innerHeight != 0);
 		
 		if(this._useDefaultMargins && dbm.singletons.dbmWindowManager.hasDefaultMargins()) {
 			this._margins = dbm.singletons.dbmWindowManager.getDefaultMargins();
@@ -598,6 +641,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		if(!this._isOpen) return this;
 		
 		this._documentReady.setValue(false);
+		this._documentLoaded.setValue(false);
 		this._bodyNode.setValue(null);
 		
 		try {
@@ -640,6 +684,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			this._isOpen = false;
 			this._window = null;
 			this._documentReady.setValue(false);
+			this._documentLoaded.setValue(false);
+			this._hasFocus.setValue(false);
 			dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateInput");
 			if(this.getExtendedEvent().hasEvent(WindowExtendedEventIds.CLOSE)) {
 				this.getExtendedEvent().perform(WindowExtendedEventIds.CLOSE);
@@ -647,15 +693,42 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			return;
 		}
 		else {
-			//console.log("check position", this.name, this._hasFocus.getValue());
+			//console.log("check position", this.name, this._hasFocus.getValue(), this._checkMovement.getValue());
 			if(this._hasFocus.getValue() && this._checkMovement.getValue() && aTime > this._lastMovementCheckTime+this._movementCheckInterval) {
 				//MENOTE: this._window.screenX and this._window.screenY are really slow
 				var newX = this._window.screenX;
 				var newY = this._window.screenY;
+				
+				//console.log(newX, this._x.getValue(), newY, this._y.getValue());
+				
 				if(newX != this._x.getValue() || newY != this._y.getValue()) {
 					this._positionUpdated(newX, newY);
 				}
 				this._lastMovementCheckTime = aTime;
+			}
+			if(this._checkSize.getValue() && this._documentLoaded.getValue() && (aTime > this._lastSizeCheckTime+this._sizeCheckInterval)) {
+				var newWidth = Math.round(this._width.getValueWithoutFlow());
+				var newHeight = Math.round(this._height.getValueWithoutFlow());
+				
+				var innerWidth = this._window.innerWidth;
+				var innerHeight = this._window.innerHeight;
+				
+				if((innerWidth != 0 && innerHeight != 0) && (newWidth != innerWidth || newHeight != innerHeight) && this._margins != null) {
+					//console.log(newWidth, innerWidth, newHeight, innerHeight, this._margins.horizontalMargin, this._margins.verticalMargin, this._window.outerWidth-innerWidth, this._window.outerHeight-innerHeight);
+					
+					var newHorizontalMargin = this._window.outerWidth-innerWidth;
+					var newVerticalMargin = this._window.outerHeight-innerHeight;
+					
+					var isMarginReady = (newHorizontalMargin > 0 || newVerticalMargin > 0) && newHorizontalMargin < 50 && newVerticalMargin < 100 && (innerWidth != 0 || innerHeight != 0);
+					
+					if(isMarginReady) {
+						this._margins.horizontalMargin = newHorizontalMargin;
+						this._margins.verticalMargin = newVerticalMargin;
+						this._updateSize(newWidth, newHeight);
+					}
+				}
+				
+				this._lastSizeCheckTime = aTime;
 			}
 		}
 	};
@@ -728,6 +801,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._width = null;
 		this._height = null;
 		this._documentReady = null;
+		this._documentLoaded = null;
 		this._bodyNode = null;
 		this._document = null;
 		
@@ -740,6 +814,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._iconDisplay = null;
 		this._hasFocus = null;
 		this._checkMovement = null;
+		this._checkSize = null;
 		this._lastDocument = null;
 		
 		this._margins = null;

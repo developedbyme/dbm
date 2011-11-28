@@ -65,9 +65,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdown", "com.d
 		return returnArray;
 	};
 	
-	objectFunctions.compile = function() {
-		
-		return this._breakdown.compile() + ";";
+	objectFunctions.compile = function(aCompileData) {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdown::compile");
+		//console.log(aCompileData);
+		return this._breakdown.compile(aCompileData) + ";";
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

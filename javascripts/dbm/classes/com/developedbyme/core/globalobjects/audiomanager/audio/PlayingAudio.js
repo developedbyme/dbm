@@ -76,14 +76,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 	
 	objectFunctions._performPlay = function() {
 		//console.log("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio::_performPlay");
+		
 		if(this._isPlaying) {
 			if(this._element.readyState != 0) {
+				this._element.currentTime = 0;
 				this._element.play();
 			}
-			else {
-				this.getDelayedExtendedEvent().addCommand(CallFunctionCommand.createCommand(this, this._performPlay, []),null, 0.1);
-			}
 		}
+		this.getExtendedEvent().deactivateJavascriptEventLink(AudioEventIds.CAN_PLAY);
 	}
 	
 	objectFunctions.pause = function() {
@@ -114,8 +114,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 		
 		var playbackTime = this._element.currentTime;
 		
-		if(playbackTime >= this._element.duration && this._loop.getValue()) {
-			this._element.currentTime = 0;
+		if(playbackTime >= this._element.duration) {
+			if(this._loop.getValue()) {
+				this._element.currentTime = 0;
+			}
+			else {
+				this.stop();
+			}
 		}
 	};
 	

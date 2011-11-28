@@ -48,4 +48,20 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 		}
 		return currentArrayLength;
 	};
+	
+	/**
+	 * Randomizes an array.
+	 */
+	staticFunctions.randomizeArray = function(aArray, aNumberOfTimes) {
+		var currentArray = aArray;
+		var currentArrayLength= currentArray.length;
+		for(var i = 0; i < aNumberOfTimes; i++) {
+			var randomIndex1 = Math.floor(Math.random()*currentArrayLength);
+			var randomIndex2 = (currentArrayLength+Math.floor(Math.random()*(currentArrayLength-1))+1)%currentArrayLength;
+			
+			var tempValue = currentArray[randomIndex1];
+			currentArray[randomIndex1] = currentArray[randomIndex2];
+			currentArray[randomIndex2] = tempValue;
+		}
+	} //End function randomizeArray
 });

@@ -138,11 +138,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		var newElement = this.ownerDocument.createElement("select");
 		newElement.name = aName;
 		
+		var newOption;
+		
 		if(aValues instanceof Array) {
 			var currentArray = aValues;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
-				var newOption = this.ownerDocument.createElement("option");
+				newOption = this.ownerDocument.createElement("option");
 				newOption.text = currentArray[i];
 				newOption.value = currentArray[i];
 				newElement.appendChild(newOption);
@@ -150,7 +152,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		}
 		else if(aValues != null) {
 			for(var objectName in aValues) {
-				var newOption = this.ownerDocument.createElement("option");
+				newOption = this.ownerDocument.createElement("option");
 				newOption.text = aValues[objectName];
 				newOption.value = objectName;
 				newElement.appendChild(newOption);

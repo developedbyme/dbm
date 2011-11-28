@@ -56,15 +56,19 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 		
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart::compile");
+		//console.log(aCompileData);
 		
-		var returnString = "var " + this._variableName;
+		var compiledName = aCompileData.createVariableReference(this._variableName, "variable")
+		
+		var returnString = "var " + compiledName;
 		
 		if(this._set != null) {
-			returnString += " = " + this._set.compile();
+			returnString += "=" + this._set.compile(aCompileData);
 		}
 		else if(this._in != null) {
-			returnString += " in " + this._in.compile();
+			returnString += " in " + this._in.compile(aCompileData);
 		}
 		
 		return returnString;

@@ -21,7 +21,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.TextWidthNode", "com.deve
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.canvas.TextWidthNode::_update");
 		
-		canvasContext = this._canvas.getValueWithoutFlow().getContext("2d");
+		var canvasContext = this._canvas.getValueWithoutFlow().getContext("2d");
 		
 		canvasContext.font = this._font.getValueWithoutFlow();
 		var textWidth = canvasContext.measureText(this._text.getValueWithoutFlow()).width;

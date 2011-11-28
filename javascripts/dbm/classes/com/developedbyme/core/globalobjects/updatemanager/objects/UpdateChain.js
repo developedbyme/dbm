@@ -23,7 +23,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.objects.Up
 		
 		this.start();
 		while(this.isActive()) {
-			currentUpdater = this.getNextItem();
+			var currentUpdater = this.getNextItem();
 			try {
 				currentUpdater.updateTime(aTime, aFrame);
 			}

@@ -124,8 +124,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 		this._isBrokenDown = true;
 	}
 	
-	objectFunctions.compile = function() {
-		return this._scopeStart + this.superCall() + this._scopeEnd;
+	objectFunctions.compile = function(aCompileData) {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::compile");
+		//console.log(aCompileData);
+		return this._scopeStart + this.superCall(aCompileData) + this._scopeEnd;
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

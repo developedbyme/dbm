@@ -21,9 +21,11 @@ dbm.runTempFunction(function() {
 	var AssetRepository = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.AssetRepository");
 	var AudioManager = dbm.importClass("com.developedbyme.core.globalobjects.audiomanager.AudioManager");
 	var PageManager = dbm.importClass("com.developedbyme.core.globalobjects.pagemanager.PageManager");
+	var StatisticsManager = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager");
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
+	var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
@@ -48,6 +50,7 @@ dbm.runTempFunction(function() {
 		
 		CurveEvaluator.getInstance().addEvaluator((new BezierEvaluator()).init());
 		
+		DefaultStatisticsManagerSetup.setup();
 	});
 	
 	dbm.setupLoaderHook();

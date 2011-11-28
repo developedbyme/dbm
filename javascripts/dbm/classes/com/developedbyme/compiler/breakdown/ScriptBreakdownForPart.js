@@ -46,9 +46,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownForPart",
 		this._childBreakdowns.push(this._code);
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		
-		var evaluationString = this._evaluation.compile();
+		var evaluationString = this._evaluation.compile(aCompileData);
 		var isInType = evaluationString.match(new RegExp("^[^;]* in .[^;]*$"));
 		
 		if(!isInType) {
@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownForPart",
 		}
 		
 		var returnString = "for(" + evaluationString + ")";
-		returnString += this._code.compile();
+		returnString += this._code.compile(aCompileData);
 		
 		return returnString;
 	};

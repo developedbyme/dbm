@@ -98,6 +98,13 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		return theObject;
 	};
 	
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.destroyArrayIfExists(this.pointsArray);
+		
+		this.superCall();
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.pointsArray = null;

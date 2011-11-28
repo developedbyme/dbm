@@ -29,6 +29,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		
 		this._evaluatorsArray = new Array();
 		this._bezierMultipliersArraysArray = new Array();
+		this._recyclePointsArray = new Array();
 		
 		return this;
 	}
@@ -204,7 +205,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 					//METODO: error message
 					break;
 				}
-				var currentParameter = (maxParameter-minParameter)*(aEvaluationValue-minValue)/(max-minValue)+minParameter;
+				var currentParameter = (maxParameter-minParameter)*(aEvaluationValue-minValue)/(maxValue-minValue)+minParameter;
 				var currentXValue = (Math.pow(1-currentParameter, 3)*point1.x+3*(Math.pow(1-currentParameter, 2))*(currentParameter)*point2.x+3*(Math.pow(currentParameter, 2))*(1-currentParameter)*point3.x+Math.pow(currentParameter, 3)*point4.x);
 				if(Math.abs(currentXValue-aEvaluationValue) < this.exactness) {
 					break;
@@ -233,7 +234,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		var offset = Math.floor((aParameter-currentArray[0].x)/(curveLength));
 		var evaluationParameter = (aParameter-currentArray[0].x)-(offset*curveLength);
 		if(offset < 0) {
-			switch(preInfinityMethod) {
+			switch(aPreInfinityMethod) {
 				case ExtrapolationTypes.CONSTANT:
 					return currentArray[0].y;
 					break;
@@ -248,7 +249,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 			
 		}
 		else if(offset > 0) {
-			switch(postInfinityMethod) {
+			switch(aPostInfinityMethod) {
 				case ExtrapolationTypes.CONSTANT:
 					return currentArray[currentArray.length-1].y;
 					break;
@@ -266,7 +267,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		var currentSegmentNumber = 0;
 		var outputValueOffset = 0;
 		if(offset < 0) {
-			switch(preInfinityMethod) {
+			switch(aPreInfinityMethod) {
 				case ExtrapolationTypes.CYCLE:
 					//MENOTE: do nothing
 					break;
@@ -279,7 +280,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 			}
 		}
 		if(offset > 0) {
-			switch(postInfinityMethod) {
+			switch(aPostInfinityMethod) {
 				case ExtrapolationTypes.CYCLE:
 					//MENOTE: do nothing
 					break;
@@ -291,6 +292,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 					break;
 			}
 		}
+		var currentSegmentNr = 0;
 		while(true) {
 			if((evaluationParameter >= currentArray[4*currentSegmentNr].x) && (evaluationParameter < currentArray[4*currentSegmentNr+3].x)) {
 				return this._evaluateAnimationCurveSegment(currentSegmentNumber, evaluationParameter, aExactness)+outputValueOffset;
@@ -318,7 +320,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 	objectFunctions.createBezierCurveFromPoints3d = function(aPointsArray, aReturnCurve) {
 		//console.log("createBezierCurveFromPoints3d");
 		var curveDegree = aPointsArray.length-1;
-		var multipliersArray = getBezierMultipliersArray(curveDegree);
+		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
 		
 		var arrayLength = aPointsArray.length-2;
 		
@@ -408,5 +410,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		var curveCreator = (new CreateMultiSegmentBezierCurveFromPoints2d()).init();
 		curveCreator.createCurve(aPointsArray, aReturnCurve, aIsRound);
 		
+	}
+	
+	objectFunctions.recycleCurve = function(aCurve) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::recycleCurve");
+		
+		this._recyclePointsArray.push(aCurve.pointsArray);
 	}
 });

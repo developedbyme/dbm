@@ -18,7 +18,7 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 	objectFunctions.performDestroy = function() {
 		
 		if(this.ownsObjects) {
-			ClassRefernce.destroyArrayIfExists(this.array);
+			ClassReference.destroyArrayIfExists(this.array);
 		}
 		
 		this.superCall();

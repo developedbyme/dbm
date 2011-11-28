@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		
 		this._urls = null;
 		this._selectedUrl = null;
-		this._maxTimeDifference = 0.5;
+		this._maxTimeDifference = 1;
 		
 		this._stateTimeline = Timeline.create(PlaybackStateTypes.PAUSED);
 		this.addDestroyableObject(this._stateTimeline);
@@ -163,18 +163,22 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			//console.log(this._outputVolume.getValue(), this.getElement().volume);
 		}
 		catch(theError) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
-			ErrorManager.getInstance().reportError(this, "_perfomSeek", theError);
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_performPlay", "Video " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "_performPlay", theError);
 		}
 	};
 	
 	objectFunctions._performPause = function() {
 		try {
+			if(this.getElement().ended) {
+				//MENOTE: Get a grip firefox and learn how to pause an ended video
+				this.getElement().currentTime = 0;
+			}
 			this.getElement().pause();
 		}
 		catch(theError) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
-			ErrorManager.getInstance().reportError(this, "_perfomSeek", theError);
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_performPause", "Video " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "_performPause", theError);
 		}
 	};
 	
@@ -213,6 +217,15 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this._stateTimeline.clear();
 		this._startPositionTimeline.clear();
 		this._startTimeTimeline.clear();
+		
+		try {
+			this.getElement().currentTime = 0;
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "resetAllPlayback", "Video " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "resetAllPlayback", theError);
+		}
+		this._performPause();
 	};
 	
 	objectFunctions._metaDataLoaded = function(aEvent) {
@@ -454,6 +467,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	};
 	
 	staticFunctions.createFromAsset = function(aParentOrDocument, aAddToParent, aAssetPath, aAttributes) {
+		//console.log("com.developedbyme.gui.video.VideoView::createFromAsset");
 		var newNode = (new ClassReference()).init();
 		
 		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;

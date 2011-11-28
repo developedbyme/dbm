@@ -9,6 +9,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	
 	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var CanvasGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasGraphics2d");
 	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
@@ -17,6 +21,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var CanvasMask2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasMask2d");
+	var CanvasImageGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d");
 	var CanvasTextGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d");
 	var CanvasTextWithCustomSpacingGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d");
 	
@@ -105,15 +110,24 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		var transformationMatrix = this._transformationMatrix.getValue();
 		
+		if((transformationMatrix.getValue(0, 0) == 0 && transformationMatrix.getValue(1, 0) == 0) || (transformationMatrix.getValue(0, 1) == 0 && transformationMatrix.getValue(1, 1) == 0)) {
+			aContext.restore();
+			return;
+		}
+		
 		aContext.transform(transformationMatrix.getValue(0, 0), transformationMatrix.getValue(0, 1), transformationMatrix.getValue(1, 0), transformationMatrix.getValue(1, 1), transformationMatrix.getValue(2, 0), transformationMatrix.getValue(2, 1));
 		if(this._mask != null && this._useMask.getValue()) {
 			this._mask.draw(aContext);
 		}
 		
-		this._drawGraphics(aContext);
-		this._drawChildren(aContext, this._treeStructureItem.getChildren(), aNumberOfLinksToResolve);
+		this._drawGraphicsAndChildren(aContext, aNumberOfLinksToResolve);
 		
 		aContext.restore();
+	};
+	
+	objectFunctions._drawGraphicsAndChildren = function(aContext, aNumberOfLinksToResolve) {
+		this._drawGraphics(aContext);
+		this._drawChildren(aContext, this._treeStructureItem.getChildren(), aNumberOfLinksToResolve);
 	};
 	
 	objectFunctions._drawGraphics = function(aContext) {

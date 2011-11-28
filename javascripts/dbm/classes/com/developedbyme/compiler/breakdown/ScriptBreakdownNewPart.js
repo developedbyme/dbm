@@ -34,10 +34,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNewPart",
 		this._childBreakdowns.push(this._line);
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownNewPart::compile");
 		
-		var returnString = "new " + this._line.compile();
+		var returnString = "new " + this._line.compile(aCompileData);
 		
 		return returnString;
 	};

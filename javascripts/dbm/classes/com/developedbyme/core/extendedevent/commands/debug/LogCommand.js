@@ -54,7 +54,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.debug.LogComman
 	staticFunctions.createCommand = function(/* ... aArgumentsArray */) {
 		var newCommand = (new LogCommand()).init();
 		
-		aArgumentsArray = arguments;
+		var aArgumentsArray = arguments;
 		
 		var hasReevaluatorInArgumentsArray = false;
 		var theLength = aArgumentsArray.length;

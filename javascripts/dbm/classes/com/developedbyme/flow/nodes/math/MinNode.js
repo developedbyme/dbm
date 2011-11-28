@@ -19,6 +19,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.MinNode", "com.developedbym
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.math.MinNode::_update");
+		//console.log(Math.min(this._inputValue1.getValueWithoutFlow(), this._inputValue2.getValueWithoutFlow()), this._inputValue1.getValueWithoutFlow(), this._inputValue2.getValueWithoutFlow());
 		this._outputValue.setValueWithFlow(Math.min(this._inputValue1.getValueWithoutFlow(), this._inputValue2.getValueWithoutFlow()), aFlowUpdateNumber);
 	};
 	

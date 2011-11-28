@@ -68,8 +68,16 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		
 		var element = this._element.getValueWithoutFlow();
 		
-		element.width = this._width.getValueWithoutFlow();
-		element.height = this._height.getValueWithoutFlow();
+		
+		var newWidth = this._width.getValueWithoutFlow();
+		var newHeight = this._height.getValueWithoutFlow();
+		
+		if(newWidth != 0) {
+			element.width = newWidth;
+		}
+		if(newHeight != 0) {
+			element.height = newHeight;
+		}
 	};
 	
 	objectFunctions.update = function() {

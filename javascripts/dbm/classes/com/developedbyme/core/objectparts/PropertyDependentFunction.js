@@ -36,6 +36,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.PropertyDependentFunction"
 		return this;
 	};
 	
+	objectFunctions.clear = function() {
+		//console.log("com.developedbyme.core.objectparts.PropertyDependentFunction::clear");
+		
+		this._storedCalls.splice(0, this._storedCalls.length);
+		this._checkForDependentProperty.stopUpdating();
+		
+		return this;
+	};
+	
 	objectFunctions.callFunction = function(aArguments) {
 		//console.log("com.developedbyme.core.objectparts.PropertyDependentFunction::callFunction");
 		//console.log(this._canRunFunction(), this._function);

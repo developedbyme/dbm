@@ -43,6 +43,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownFunctionP
 		var argumentsScope = ScopeFunctions.getScope(this._script, argumentsIndex, "(", ")");
 		
 		this._arguments = ScriptBreakdownListPart.create(this, StringFunctions.trim(this._script.substring(argumentsScope.start+1, argumentsScope.end)));
+		this._arguments.declaresVariables = "argument";
 		var codeString = StringFunctions.trim(this._script.substring(argumentsScope.end+1, this._script.length));
 		
 		this._code = ScriptBreakdownCodePart.create(this, codeString.substring(1, codeString.length-1));
@@ -52,16 +53,22 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownFunctionP
 		this._childBreakdowns.push(this._code);
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownFunctionPart::compile");
+		//console.log(aCompileData);
+		
+		aCompileData.createScope();
 		
 		var returnString = "function";
 		
-		if(this._functionName != null) {
-			returnString += " " + this._functionName;
-		}
+		//if(this._functionName != null) {
+		//	returnString += " " + this._functionName;
+		//}
 		
-		returnString += "(" + this._arguments.compile() + ")";
-		returnString += this._code.compile();
+		returnString += "(" + this._arguments.compile(aCompileData) + ")";
+		returnString += this._code.compile(aCompileData);
+		
+		aCompileData.removeLastScope();
 		
 		return returnString;
 	};

@@ -88,6 +88,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 			}
 		}
 		
+		//dbm.singletons.dbmCurveEvaluator.recycleCurve(tempCurve);
+		
 		tempCurve.destroy();
 	};
 });

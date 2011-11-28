@@ -89,9 +89,9 @@ dbm.registerClass("com.developedbyme.core.extendedevent.DelayedExtendedEventCont
 		var insertPosition = this._getInsertPosition(aTime);
 		
 		if(insertPosition != -1) {
-			this._delayedTimesArray.splice(insertPostion, 0, aTime);
-			this._delayedCommands.splice(insertPostion, 0, aEventName);
-			this._delayedUndoCommands.splice(insertPostion, 0, aUndoEventName);
+			this._delayedTimesArray.splice(insertPosition, 0, aTime);
+			this._delayedCommands.splice(insertPosition, 0, aEventName);
+			this._delayedUndoCommands.splice(insertPosition, 0, aUndoEventName);
 			
 			var theLength = this._delayedTimesArray.length;
 			for(var i = insertPosition; i < theLength; i++) {
@@ -117,7 +117,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.DelayedExtendedEventCont
 		var newPosition = this._currentPosition.getValueWithoutFlow();
 		
 		if(newPosition < this._lastPosition) {
-			for(var i = this._lastPosition-1; i >= currentPosition; i--) {
+			for(var i = this._lastPosition-1; i >= newPosition; i--) {
 				var currentEvent = this._delayedUndoCommands[i];
 				if(currentEvent != null) {
 					this._owner.getExtendedEvent().perform(currentEvent);

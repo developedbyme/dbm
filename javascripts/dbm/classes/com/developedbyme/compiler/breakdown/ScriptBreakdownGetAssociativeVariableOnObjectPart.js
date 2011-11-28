@@ -45,9 +45,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownGetAssoci
 		this._childBreakdowns.push(this._object);
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		
-		return this._object.compile() + "[" + this._variableNameLine.compile() + "]";
+		return this._object.compile(aCompileData) + "[" + this._variableNameLine.compile(aCompileData) + "]";
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 	};
 	
 	objectFunctions.playAudio = function(aId, aVolume, aLoop, aMixerName) {
-		console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::playAudio");
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::playAudio");
 		
 		aVolume = VariableAliases.valueWithDefault(aVolume, 1);
 		aLoop = VariableAliases.valueWithDefault(aLoop, false);
@@ -107,17 +107,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		
 		var audioTag = audioAsset.getData();
 		
-		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(dbm.singletons.dbmPageManager.getDocument());
-		var newAudioTag = htmlCreator.createNode("audio", {"preload": "auto"});
-		newAudioTag.src = audioTag.src;
-		newAudioTag.loop = aLoop;
+		//MENOTE: Safari dies when you have duplicates of audio tags
+		//var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(dbm.singletons.dbmPageManager.getDocument());
+		//var newAudioTag = htmlCreator.createNode("audio", {"preload": "auto"});
+		//newAudioTag.src = audioTag.src;
+		//newAudioTag.loop = aLoop;
 		//dbm.singletons.dbmPageManager.getDocument().body.appendChild(newAudioTag);
-		newAudioTag.load();
+		//newAudioTag.load();
 		
 		
 		var mixerChannel = this.getMixer(aMixerName).createChannel(aId, aVolume);
-		var newPlayingAudio = PlayingAudio.create(aId, newAudioTag, mixerChannel);
-		//var newPlayingAudio = PlayingAudio.create(aId, audioTag, mixerChannel); //MEDEBUG
+		//var newPlayingAudio = PlayingAudio.create(aId, newAudioTag, mixerChannel);
+		var newPlayingAudio = PlayingAudio.create(aId, audioTag, mixerChannel);
 		newPlayingAudio.setPropertyInput("volume", aVolume);
 		newPlayingAudio.getProperty("loop").setValue(aLoop);
 		newPlayingAudio.play();
@@ -128,7 +129,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 	};
 	
 	objectFunctions.createAudioPlayer = function(aId, aVolume, aLoop) {
-		console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::createAudioPlayer");
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::createAudioPlayer");
 		
 		aVolume = VariableAliases.valueWithDefault(aVolume, 1);
 		aLoop = VariableAliases.valueWithDefault(aLoop, false);
@@ -147,14 +148,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		
 		var audioTag = audioAsset.getData();
 		
-		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(dbm.singletons.dbmPageManager.getDocument());
-		var newAudioTag = htmlCreator.createNode("audio", {"preload": "auto"});
-		newAudioTag.src = audioTag.src;
-		newAudioTag.loop = aLoop;
-		//dbm.singletons.dbmPageManager.getDocument().body.appendChild(audioTag);
-		newAudioTag.load();
+		//MENOTE: Safari dies when you have duplicates of audio tags
+		//var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(dbm.singletons.dbmPageManager.getDocument());
+		//var newAudioTag = htmlCreator.createNode("audio", {"preload": "auto"});
+		//newAudioTag.src = audioTag.src;
+		//newAudioTag.loop = aLoop;
+		//dbm.singletons.dbmPageManager.getDocument().body.appendChild(audioTag);//MEDEBUG
+		//newAudioTag.load();
 		
-		var newAudioPlayer = AudioPlayer.createWithNode(newAudioTag);
+		//var newAudioPlayer = AudioPlayer.createWithNode(newAudioTag);
+		var newAudioPlayer = AudioPlayer.createWithNode(audioTag);
 		newAudioPlayer.setPropertyInput("volume", aVolume);
 		
 		return newAudioPlayer;

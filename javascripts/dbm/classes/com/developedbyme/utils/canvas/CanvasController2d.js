@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var CanvasRenderLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
@@ -54,6 +55,17 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		var currentItem = this._hierarchy.getItemByPath(aPath);
 		if(currentItem.data == null) {
 			var newLayer = CanvasLayer2d.create();
+			currentItem.data = newLayer;
+			newLayer._linkRegistration_setTreeStructureItem(currentItem);
+			this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));
+		}
+		return currentItem.data;
+	};
+	
+	objectFunctions.createRenderLayer = function(aPath, aOffsetX, aOffsetY, aWidth, aHeight) {
+		var currentItem = this._hierarchy.getItemByPath(aPath);
+		if(currentItem.data == null) {
+			var newLayer = CanvasRenderLayer2d.create(aOffsetX, aOffsetY, aWidth, aHeight);
 			currentItem.data = newLayer;
 			newLayer._linkRegistration_setTreeStructureItem(currentItem);
 			this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));

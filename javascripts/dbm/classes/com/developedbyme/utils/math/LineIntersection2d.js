@@ -139,12 +139,12 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 		var currentIntersectionObject;
 		var currentPoint;
 		var lastPoint;
-		var tempVector = (new Vector2d()).init();
+		var tempVector = (new Point()).init();
 		var currentArray = aPointSet.pointsArray;
 		currentIntersectionObject = (new LineIntersection2d()).init();
 		lastPoint = currentArray[0];
 		var theLength;
-		if(isRound) {
+		if(aIsRound) {
 			theLength = currentArray.length+1;
 		}
 		else {

@@ -30,13 +30,16 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElementNode", "
 		
 		if(htmlElement != null) {
 			
-			if(htmlElement.clientWidth == 0 && htmlElement.width != 0) {
-				var htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.width;
-				var htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.height;
+			var htmlElementWidthOffset;
+			var htmlElementHeightOffset;
+			
+			if(htmlElement.clientWidth == 0 && !isNaN(htmlElement.width) && htmlElement.width != 0) {
+				htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.width;
+				htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.height;
 			}
 			else {
-				var htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.clientWidth;
-				var htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.clientHeight;
+				htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.clientWidth;
+				htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.clientHeight;
 			}
 			
 			var transformString = "translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") rotate(" + (180*this._rotate.getValueWithoutFlow()/Math.PI) + "deg)";

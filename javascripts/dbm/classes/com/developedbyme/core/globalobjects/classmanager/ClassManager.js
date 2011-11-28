@@ -43,6 +43,8 @@ dbm.runTempFunction(function() {
 		
 		this._currentRegistrationClass = null;
 		
+		dbm.classRegistered(aName);
+		
 		return newClassHolder;
 	};
 	
@@ -52,7 +54,7 @@ dbm.runTempFunction(function() {
 			return this._classes[aName].classFunction;
 		}
 		
-		newClassHolder = new Object();
+		var newClassHolder = new Object();
 		newClassHolder.name = aName;
 		var className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
 		eval("dbm.tempClassFunction = function " + className + "(){};");
@@ -181,6 +183,7 @@ dbm.runTempFunction(function() {
 			}
 			
 			currentClassHolder.prototypeObject.__className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
+			currentClassHolder.prototypeObject.__fullClassName = aName;
 			
 			currentClassHolder.classFunction.prototype = currentClassHolder.prototypeObject;
 			

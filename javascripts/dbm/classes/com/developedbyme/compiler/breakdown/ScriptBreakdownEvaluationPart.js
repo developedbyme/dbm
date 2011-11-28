@@ -15,6 +15,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 	var ScriptBreakdownCommentPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCommentPart");
 	var ScriptBreakdownGetAssociativeVariableOnObjectPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownGetAssociativeVariableOnObjectPart");
 	var ScriptBreakdownNewPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNewPart");
+	var ScriptBreakdownNumberPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNumberPart");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
@@ -47,7 +48,12 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 					this._childBreakdowns.push(ScriptBreakdownNewPart.create(this, StringFunctions.trim(this._script.substring(3, this._script.length))));
 				}
 				else {
-					this._childBreakdowns.push(ScriptBreakdownVariableReferencePart.create(this, this._script));
+					if(!isNaN(this._script)) {
+						this._childBreakdowns.push(ScriptBreakdownNumberPart.create(this, this._script));
+					}
+					else {
+						this._childBreakdowns.push(ScriptBreakdownVariableReferencePart.create(this, this._script));
+					}
 				}
 			}
 			else {
@@ -87,7 +93,14 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 						}
 						break;
 					case ".":
-						this._childBreakdowns.push(ScriptBreakdownGetVariableOnObjectPart.create(this, StringFunctions.trim(this._script.substring(0, splitPosition)), StringFunctions.trim(this._script.substring(splitPosition+operators[lowestPresedenceIndex].length))));
+						var firstPart = StringFunctions.trim(this._script.substring(0, splitPosition));
+						var lastPart = StringFunctions.trim(this._script.substring(splitPosition+operators[lowestPresedenceIndex].length));
+						if(!isNaN(firstPart) && !isNaN(lastPart)) {
+							this._childBreakdowns.push(ScriptBreakdownNumberPart.create(this, this._script));
+						}
+						else {
+							this._childBreakdowns.push(ScriptBreakdownGetVariableOnObjectPart.create(this, firstPart, lastPart));
+						}
 						break;
 					default:
 						this._operation = operators[lowestPresedenceIndex];
@@ -183,7 +196,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 		return 14;
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart::compile");
+		//console.log(aCompileData);
 		
 		//MEDEBUG
 		if(this._childBreakdowns.length == 0) {
@@ -191,10 +206,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 		}
 		
 		
-		var returnString = this._childBreakdowns[0].compile();
+		var returnString = this._childBreakdowns[0].compile(aCompileData);
 		if(this._childBreakdowns.length > 1) {
 			returnString += this._operation;
-			returnString += this._childBreakdowns[1].compile();
+			returnString += this._childBreakdowns[1].compile(aCompileData);
 		}
 		
 		

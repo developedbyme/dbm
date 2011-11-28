@@ -155,6 +155,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 		this._windowsOrder.push(aWindow);
 		if(this._currentFocusedWindow != null) {
 			this._currentFocusedWindow.getProperty("hasFocus").setValue(false);
+			this._currentFocusedWindow.getExtendedEvent().perform(WindowExtendedEventIds.BLUR);
+			this._currentFocusedWindow._checkForLastPosition();
 		}
 		this._currentFocusedWindow = aWindow;
 		this._currentFocusedWindow.getProperty("hasFocus").setValue(true);

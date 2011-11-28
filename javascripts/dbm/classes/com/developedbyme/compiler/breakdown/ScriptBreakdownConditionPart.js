@@ -64,14 +64,16 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCondition
 		
 	};
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownConditionPart::compile");
+		//console.log(aCompileData);
 		
 		var returnString = this._conditionType;
 		
 		if(this._evaluation != null) {
-			returnString += "(" + this._evaluation.compile() + ")";
+			returnString += "(" + this._evaluation.compile(aCompileData) + ")";
 		}
-		returnString += this._result.compile();
+		returnString += this._result.compile(aCompileData);
 		
 		return returnString;
 	};

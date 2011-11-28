@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		
 		this._urls = null;
 		this._selectedUrl = null;
-		this._maxTimeDifference = 0.5;
+		this._maxTimeDifference = 1;
 		
 		this._stateTimeline = Timeline.create(PlaybackStateTypes.PAUSED);
 		this.addDestroyableObject(this._stateTimeline);
@@ -146,6 +146,10 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	
 	objectFunctions._performPause = function() {
 		try {
+			if(this.getElement().ended) {
+				//MENOTE: Get a grip firefox and learn how to pause an ended video
+				this.getElement().currentTime = 0;
+			}
 			this.getElement().pause();
 		}
 		catch(theError) {
@@ -189,6 +193,15 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		this._stateTimeline.clear();
 		this._startPositionTimeline.clear();
 		this._startTimeTimeline.clear();
+		
+		try {
+			this.getElement().currentTime = 0;
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "resetAllPlayback", "Video " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "resetAllPlayback", theError);
+		}
+		this._performPause();
 	};
 	
 	objectFunctions._metaDataLoaded = function(aEvent) {

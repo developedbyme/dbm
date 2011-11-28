@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.TextWidthWithCustomSpacin
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.canvas.TextWidthWithCustomSpacingNode::_update");
 		
-		canvasContext = this._canvas.getValueWithoutFlow().getContext("2d");
+		var canvasContext = this._canvas.getValueWithoutFlow().getContext("2d");
 		
 		canvasContext.font = this._font.getValueWithoutFlow();
 		

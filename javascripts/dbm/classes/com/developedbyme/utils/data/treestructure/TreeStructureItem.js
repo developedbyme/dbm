@@ -20,13 +20,13 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		
 		this.superCall();
 		
-		this._children = (new NamedArray()).init();
-		this._children.ownsObjects = false;
+		this._children = NamedArray.create(false);
 		
 		this._type = TreeStructureItemTypes.ITEM;
 		this._name = null;
 		this._parent = null;
 		this._root = null;
+		this._attributes = null;
 		
 		return this;
 	} //End function TreeStructureItem
@@ -51,6 +51,30 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			this._linkRegistration_setName(aName);
 		}
 	} //End function set name
+	
+	objectFunctions.getAttribute = function(aName) {
+		if(this._attributes == null) {
+			//METODO: error message
+			return null;
+		}
+		if(this._attributes.select(aName)) {
+			return this._attributes.currentSelectedItem;
+		}
+		//METODO: error message
+		return null;
+	}
+	
+	objectFunctions.setAttribute = function(aName, aValue) {
+		if(this._attributes == null) {
+			this._attributes = NamedArray.create(false);
+			this.addDestroyableObject(this._attributes);
+		}
+		this._attributes.addObject(aName, aValue);
+	}
+	
+	objectFunctions.hasAttribute = function(aName) {
+		return (this._attributes != null && this._attributes.hasObject(aName));
+	}
 	
 	/**
 	 * Gets the path of the item.

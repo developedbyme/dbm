@@ -56,6 +56,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGra
 			var currentCharacter = currentArray[i];
 			var currentCharacterWidth = aContext.measureText(currentCharacter).width;
 			
+			aContext.save();
 			if(this._strokeOverFill) {
 				this._fillText(aContext, fillStyle, currentCharacter, x, y, maxWidth);
 				this._strokeText(aContext, strokeStyle, currentCharacter, x, y, maxWidth);
@@ -64,6 +65,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGra
 				this._strokeText(aContext, strokeStyle, currentCharacter, x, y, maxWidth);
 				this._fillText(aContext, fillStyle, currentCharacter, x, y, maxWidth);
 			}
+			aContext.restore();
 			
 			x += currentCharacterWidth+spacing;
 		}
@@ -73,7 +75,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGra
 	
 	objectFunctions._updateTextWidthFlow = function(aFlowUpdateNumber) {
 		
-		canvasContext = dbm.singletons.dbmHtmlDomManager.getTempCanvas().getContext("2d");
+		var canvasContext = dbm.singletons.dbmHtmlDomManager.getTempCanvas().getContext("2d");
 		canvasContext.font = this._font.getValueWithoutFlow();
 		
 		var textWidth = 0;

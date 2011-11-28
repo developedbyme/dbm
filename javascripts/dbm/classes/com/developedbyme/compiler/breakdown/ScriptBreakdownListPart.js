@@ -31,14 +31,17 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownListPart"
 		var currentArray = this._getCommaArray(this._script);
 		var currentArrayLength = currentArray.length;
 		var currentPosition = 0;
+		var currentBreakdown;
 		for(var i = 0; i < currentArrayLength; i++) {
-			this._childBreakdowns.push(ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(currentPosition, currentArray[i]))));
+			currentBreakdown = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(currentPosition, currentArray[i])));
+			this._childBreakdowns.push(currentBreakdown);
 			currentPosition = currentArray[i]+1;
 		}
-		this._childBreakdowns.push(ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(currentPosition, this._script.length))));
+		currentBreakdown = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(currentPosition, this._script.length)));
+		this._childBreakdowns.push(currentBreakdown);
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		
 		var argumentsArray = new Array();
 		
@@ -46,7 +49,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownListPart"
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentPart = currentArray[i];
-			argumentsArray.push(currentPart.compile());
+			argumentsArray.push(currentPart.compile(aCompileData));
 		}
 		
 		var returnString = argumentsArray.join(",");

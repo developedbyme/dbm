@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCommentPa
 		
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		
 		return "";
 	};

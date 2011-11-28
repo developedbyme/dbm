@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 		var currentArray = this.array;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			if(aId == CommandInterface(currentArray[i]).id) {
+			if(aId == currentArray[i].id) {
 				return true;
 			}
 		}

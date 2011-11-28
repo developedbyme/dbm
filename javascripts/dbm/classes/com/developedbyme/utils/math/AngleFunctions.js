@@ -8,7 +8,7 @@ dbm.registerClass("com.developedbyme.utils.math.AngleFunctions", null, function(
 	};
 	
 	staticFunctions.radiansToDegrees = function(aRadians) {
-		return 180*aDegrees/Math.PI;
+		return 180*aRadians/Math.PI;
 	};
 	
 	staticFunctions.normalizeAngle = function(aAngle) {

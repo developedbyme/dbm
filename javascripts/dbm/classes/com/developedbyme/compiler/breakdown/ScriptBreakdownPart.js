@@ -25,6 +25,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 		this._executesInitially = false;
 		this._childBreakdowns = new Array();
 		this.executesDirectly = true;
+		this.declaresVariables = null;
 		
 		return this;
 	};
@@ -32,6 +33,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 	objectFunctions.setParent = function(aParent) {
 		
 		this._parent = aParent;
+		if(this._parent != null) {
+			this.declaresVariables = this._parent.declaresVariables;
+		}
 	};
 	
 	objectFunctions.setScript = function(aScript) {
@@ -157,17 +161,18 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 		this._script = aScript;
 	};
 	
-	objectFunctions.compile = function() {
-		
-		var returnString = ""
+	objectFunctions.compile = function(aCompileData) {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::compile");
+		//console.log(aCompileData);
+		var returnString = "";
 		
 		var currentArray = this._childBreakdowns;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentPart = currentArray[i];
 			if(currentPart.executesDirectly) {
-				var newString = currentPart.compile();
-				if(returnString.length != 0 && newString.length != 0 && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "else")) {
+				var newString = currentPart.compile(aCompileData);
+				if(returnString.length != 0 && newString.length != 0 && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "else") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "catch") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "finally")) {
 					returnString += ";";
 				}
 				returnString += newString;

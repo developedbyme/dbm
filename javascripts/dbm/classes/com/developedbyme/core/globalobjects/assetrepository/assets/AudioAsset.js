@@ -84,11 +84,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 			maxBuffered = Math.max(maxBuffered, bufferRanges.end(i));
 		}
 		
-		this._loadProgress = maxBuffered/this._data.getValue().duration;
+		var newProgress = maxBuffered/this._data.getValue().duration;
 		
-		if(this._loadProgress == 1) {
-			this.getExtendedEvent().deactivateJavascriptEventLink(AudioEventIds.PROGRESS);
-			this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED);
+		if(!isNaN(newProgress)) {
+			this._loadProgress = newProgress
+			
+			if(this._loadProgress == 1) {
+				this.getExtendedEvent().deactivateJavascriptEventLink(AudioEventIds.PROGRESS);
+				this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED);
+			}
 		}
 	}
 	

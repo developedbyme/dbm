@@ -119,7 +119,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 			localParameter = 1;
 		}
 		var segmentPointsArray = new Array(this._curveDegree+1);
-		this._getSegmentArray(uint(segmentStart), segmentPointsArray);
+		this._getSegmentArray(segmentStart, segmentPointsArray);
 		dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(segmentPointsArray, localParameter, aOutputPoint);
 	}
 	

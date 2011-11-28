@@ -8,6 +8,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
 	dbm.setClassAsSingleton("dbmDebugManager");
 	
@@ -18,17 +19,51 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 		
 		this._isCheckingForDeletion = false;
 		this._tempArray = new Array();
+		this._objectCount = NamedArray.create(true);
 		
 		return this;
 	};
 	
-	objectFunctions.setCheckForDeletion = function(aCheck) {
+	objectFunctions.objectCreated = function objectCreated(aType) {
+		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::objectCreated");
+		if(!this._objectCount.hasObject(aType)) {
+			this._objectCount.addObject(aType, 0);
+		}
+		this._objectCount.replaceObject(aType, this._objectCount.getObject(aType)+1);
+	};
+	
+	objectFunctions.objectDestroyed = function objectDestroyed(aType) {
+		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::objectDestroyed");
+		if(!this._objectCount.hasObject(aType)) {
+			this._objectCount.addObject(aType, 0);
+		}
+		this._objectCount.replaceObject(aType, this._objectCount.getObject(aType)-1);
+	};
+	
+	objectFunctions.printNumberOfCreatedObjects = function printNumberOfCreatedObjects() {
+		console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::printNumberOfCreatedObjects");
+		
+		var totalNumberOfItems = 0;
+		var itemsString = "";
+		var currentArray = this._objectCount.getNamesArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentNumberOfItems = this._objectCount.getObject(currentArray[i]);
+			itemsString += currentArray[i] + ": " + currentNumberOfItems + "\n";
+			totalNumberOfItems += currentNumberOfItems;
+		}
+		
+		var returnString = "Total: " + totalNumberOfItems + "\n" + itemsString;
+		console.log(returnString);
+	};
+	
+	objectFunctions.setCheckForDeletion = function setCheckForDeletion(aCheck) {
 		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::setCheckForDeletion");
 		
 		this._isCheckingForDeletion = aCheck;
 	};
 	
-	objectFunctions.checkThatObjectIsDestroyed = function(aObject) {
+	objectFunctions.checkThatObjectIsDestroyed = function checkThatObjectIsDestroyed(aObject) {
 		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::checkThatObjectIsDestroyed");
 		//console.log(aObject)
 		
@@ -57,7 +92,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 		}
 	};
 	
-	objectFunctions.checkThatObjectHasNoReferences = function(aObject) {
+	objectFunctions.checkThatObjectHasNoReferences = function checkThatObjectHasNoReferences(aObject) {
 		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::checkThatObjectHasNoReferences");
 		
 		if(this._isCheckingForDeletion) {

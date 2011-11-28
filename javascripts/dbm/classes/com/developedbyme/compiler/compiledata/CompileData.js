@@ -1,0 +1,158 @@
+dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.compiler.compiledata.CompileData");
+	
+	var CompileData = dbm.importClass("com.developedbyme.compiler.compiledata.CompileData");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var CompileScopeData = dbm.importClass("com.developedbyme.compiler.compiledata.CompileScopeData");
+	var CustomBaseIdGroup = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.objects.CustomBaseIdGroup");
+	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
+	
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.compiler.compiledata.CompileData::init");
+		
+		this.superCall();
+		
+		this._scopesData = new Array();
+		this._shortVariables = new Array();
+		this._strings = NamedArray.create(true);
+		
+		this._argumentsIdGroup = CustomBaseIdGroup.createFullAlphabet("a");
+		this._variablesIdGroup = CustomBaseIdGroup.createFullAlphabet("l");
+		this._errorIdGroup = CustomBaseIdGroup.createFullAlphabet("e");
+		this._globalVariablesIdGroup = CustomBaseIdGroup.createFullAlphabet("g");
+		this._stringIdGroup = CustomBaseIdGroup.createFullAlphabet("s");
+		
+		return this;
+	};
+	
+	objectFunctions.addScope = function(aScopeData) {
+		
+		if(this._scopesData.length > 0) {
+			var parentScope = this._scopesData[this._scopesData.length-1];
+			aScopeData.numberOfArguments = parentScope.numberOfArguments;
+			aScopeData.numberOfVariables = parentScope.numberOfVariables;
+		}
+		
+		this._scopesData.push(aScopeData);
+		
+	};
+	
+	objectFunctions.createScope = function() {
+		
+		var newScope = CompileScopeData.create();
+		this.addScope(newScope);
+		
+		return newScope;
+	};
+	
+	objectFunctions.removeLastScope = function() {
+		//console.log("com.developedbyme.compiler.compiledata.CompileData::removeLastScope");
+		
+		var lastScope = this._scopesData.pop();
+		
+		if(this._scopesData.length > 0) {
+			this._scopesData[this._scopesData.length-1].numberOfVariables = lastScope.numberOfVariables;
+		}
+	};
+	
+	objectFunctions.addString = function(aString) {
+		
+		var returnVariable = "stringName";
+		
+		return returnVariable;
+	};
+	
+	objectFunctions.getVariableReference = function(aName) {
+		
+		var currentArray = this._scopesData;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentScope = currentArray[currentArrayLength-1-i];
+			if(currentScope.hasVariableReference(aName)) {
+				return currentScope.getVariableReference(aName)
+			}
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getVariableReference", "Variable " + aName + " isn't declared, declaring it global.");
+		return this._performCreateVariableReference(aName, "globalVariable", this._scopesData[0]);
+	};
+	
+	objectFunctions.createVariableReference = function(aName, aType) {
+		
+		var currentArray = this._scopesData;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentScope = currentArray[currentArrayLength-1-i];
+			if(currentScope.hasVariableReference(aName)) {
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "createVariableReference", "Variable " + aName + " already exists.");
+				return currentScope.getVariableReference(aName)
+			}
+		}
+		return this._performCreateVariableReference(aName, aType, this._scopesData[this._scopesData.length-1]);
+	};
+	
+	objectFunctions._performCreateVariableReference = function(aName, aType, aScopeData) {
+		
+		var compiledName;
+		switch(aType) {
+			case "argument":
+				compiledName = this._argumentsIdGroup.getId(aScopeData.numberOfArguments);
+				aScopeData.numberOfArguments++;
+				break;
+			case "variable":
+				compiledName = this._variablesIdGroup.getId(aScopeData.numberOfVariables);
+				aScopeData.numberOfVariables++;
+				break;
+			case "globalVariable":
+				compiledName = this._globalVariablesIdGroup.getNewId();
+				break;
+			case "error":
+				compiledName = this._errorIdGroup.getNewId();
+				break;
+			default:
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_performCreateVariableReference", "Unknown variable type " + aType + ".");
+				compiledName = dbm.singletons.dbmIdManager.getNewId(aType);
+				break;
+		}
+		
+		aScopeData.addVariableReference(aName, compiledName);
+		
+		return compiledName;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._scopesData = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		var newCompileData = (new ClassReference()).init();
+		var globalScope = ClassReference.getJavascriptDefaultScopeData();
+		globalScope.addVariableReference("dbm", "dbm");
+		globalScope.addVariableReference("_gaq", "_gaq");
+		newCompileData.addScope(globalScope);
+		return newCompileData;
+	}
+	
+	staticFunctions.getJavascriptDefaultScopeData = function() {
+		var newScopeData = CompileScopeData.create();
+		
+		var currentArray = JavascriptLanguageFunctions.GLOBAL_OBJECTS;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			newScopeData.addVariableReference(currentArray[i], currentArray[i]);
+		}
+		
+		return newScopeData
+	}
+});

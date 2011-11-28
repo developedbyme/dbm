@@ -7,7 +7,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.init = function() {
+	objectFunctions.init = function init() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::init");
 		
 		this.superCall();
@@ -20,7 +20,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		this._extendedEventName = null;
 		
 		var thisPointer = this;
-		this._eventCallback = function(aEvent) {
+		this._eventCallback = function _eventCallback(aEvent) {
 			//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_eventCallback");
 			//console.log(aEvent);
 			//console.log(thisPointer._javascriptEventName);
@@ -35,7 +35,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		return this;
 	};
 	
-	objectFunctions.setupLink = function(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName) {
+	objectFunctions.setupLink = function setupLink(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName) {
 		
 		this._performerObject = aEventPerformer;
 		this._eventDispatcher = aEventDispatcher;
@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		return this;
 	};
 	
-	objectFunctions.activate = function() {
+	objectFunctions.activate = function activate() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::activate");
 		if(this._isActive) return this;
 		
@@ -61,7 +61,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		return this;
 	};
 	
-	objectFunctions.deactivate = function() {
+	objectFunctions.deactivate = function deactivate() {
 		if(!this._isActive) return this;
 		
 		this._isActive = false;
@@ -76,27 +76,27 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		return this;
 	};
 	
-	objectFunctions.reactivate = function() {
+	objectFunctions.reactivate = function reactivate() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::reactivate");
-		if(this._isActive) {
+		if(this._isActive && this._eventDispatcher != null) {
 			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, false);
 		}
 		
 		return this;
 	};
 	
-	objectFunctions.performDestroy = function() {
+	objectFunctions.performDestroy = function performDestroy() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::performDestroy");
 		//console.log(this._javascriptEventName);
 		
-		if(this._isActive) {
+		if(this._isActive && this._eventDispatcher != null) {
 			this.deactivate();
 		}
 		
 		this.superCall();
 	};
 	
-	objectFunctions.setAllReferencesToNull = function() {
+	objectFunctions.setAllReferencesToNull = function setAllReferencesToNull() {
 		
 		this._performerObject = null;
 		this._eventDispatcher = null;
@@ -107,7 +107,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName) {
+	staticFunctions.create = function create(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName) {
 		return (new EventLink()).init().setupLink(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName);
 	};
 	

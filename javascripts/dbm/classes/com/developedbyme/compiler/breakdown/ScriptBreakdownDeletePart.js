@@ -35,13 +35,13 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownDeletePar
 		}
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownDeletePart::compile");
 		
 		var returnString = "delete";
 		
 		if(this._line != null) {
-			returnString += " " + this._line.compile();
+			returnString += " " + this._line.compile(aCompileData);
 		}
 		
 		return returnString;

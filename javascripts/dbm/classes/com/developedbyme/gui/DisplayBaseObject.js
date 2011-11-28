@@ -47,6 +47,8 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 				if(element.parentNode != parentElement) {
 					if(parentElement.ownerDocument != element.ownerDocument) {
 						try{
+							//console.log("com.developedbyme.gui.DisplayBaseObject::_updateInDomFlow");
+							//console.log(element);
 							parentElement.ownerDocument.adoptNode(element);
 						}
 						catch(theError) {

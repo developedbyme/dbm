@@ -252,6 +252,6 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 			case "_currentItem":
 				return false;
 		}
-		return this.superCall();
+		return this.superCall(aName);
 	};
 });

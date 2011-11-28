@@ -90,6 +90,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d", "com.de
 	objectFunctions._strokeText = function(aContext, aStyle, aText, aX, aY, aMaxWidth) {
 		if(aStyle != null) {
 			aContext.strokeStyle = aStyle;
+			aContext.fillStyle = aStyle; //MENOTE: Safari 5.0.5 is using  fillStyle when stroking text
 			if(aMaxWidth != null) {
 				aContext.strokeText(aText, aX, aY, aMaxWidth);
 			}
@@ -133,7 +134,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d", "com.de
 	
 	objectFunctions._updateTextWidthFlow = function(aFlowUpdateNumber) {
 		
-		canvasContext = dbm.singletons.dbmHtmlDomManager.getTempCanvas().getContext("2d");
+		var canvasContext = dbm.singletons.dbmHtmlDomManager.getTempCanvas().getContext("2d");
 		
 		canvasContext.font = this._font.getValueWithoutFlow();
 		var textWidth = canvasContext.measureText(this._text.getValueWithoutFlow()).width;

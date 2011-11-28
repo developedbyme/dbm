@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCallFunct
 		this._childBreakdowns.push(ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(currentPosition, this._script.length))));
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		
 		var returnString = "(";
 		
@@ -48,7 +48,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCallFunct
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentPart = currentArray[i];
-			argumentsArray.push(currentPart.compile());
+			argumentsArray.push(currentPart.compile(aCompileData));
 		}
 		
 		returnString += argumentsArray.join(",");

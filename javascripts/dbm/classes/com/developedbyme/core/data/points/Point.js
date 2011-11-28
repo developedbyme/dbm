@@ -14,7 +14,7 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
+	objectFunctions.init = function init() {
 		//console.log("com.developedbyme.core.data.points.Point");
 		
 		this.superCall();
@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 	 *
 	 * @param	aArray	An array containing the x and y value.
 	 */
-	objectFunctions.setupFromArray = function(aArray) {
+	objectFunctions.setupFromArray = function setupFromArray(aArray) {
 		switch(aArray.length) {
 			default:
 			case 4:
@@ -52,7 +52,7 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 	 *
 	 * @return	The newly created object.
 	 */
-	objectFunctions.duplicate = function() {
+	objectFunctions.duplicate = function duplicate() {
 		var theObject = (new ClassReference()).init();
 		theObject.x = this.x;
 		theObject.y = this.y;
@@ -61,7 +61,7 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 		return theObject;
 	};
 	
-	objectFunctions._toString_getAttributes = function(aReturnArray) {
+	objectFunctions._toString_getAttributes = function _toString_getAttributes(aReturnArray) {
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("x: " + this.x);
@@ -70,7 +70,7 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 		
 	}
 	
-	staticFunctions.create = function(aX, aY, aZ, aW) {
+	staticFunctions.create = function create(aX, aY, aZ, aW) {
 		//console.log("com.developedbyme.core.data.points.Point::create (static)");
 		//console.log(aX, aY, aZ, aW);
 		var newPoint = (new Point()).init();
@@ -82,12 +82,12 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 		return newPoint;
 	};
 	
-	staticFunctions.getLengthOfVectorValues2d = function(aX, aY) {
+	staticFunctions.getLengthOfVectorValues2d = function getLengthOfVectorValues2d(aX, aY) {
 		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues2d (static)");
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2));
 	};
 	
-	staticFunctions.getLengthOfVectorValues3d = function(aX, aY, aZ) {
+	staticFunctions.getLengthOfVectorValues3d = function getLengthOfVectorValues3d(aX, aY, aZ) {
 		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues3d (static)");
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aY, 3));
 	};

@@ -13,6 +13,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	var TextAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset");
 	var ScriptBreakdown = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdown");
+	var CompileData = dbm.importClass("com.developedbyme.compiler.compiledata.CompileData");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
@@ -42,7 +43,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		var currentArray = aFiles;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			this.addFile(currentArray[i]);
+			this.addFile(currentArray[i], -1);
 		}
 		
 		this._loader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this.compileFiles, [])); //MEDEBUG
@@ -51,14 +52,19 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		return this;
 	};
 	
-	objectFunctions.addFile = function(aPath) {
+	objectFunctions.addFile = function(aPath, aPosition) {
 		//console.log("com.developedbyme.compiler.DbmCompiler::addFile");
-		//console.log(aPath);
+		//console.log(aPath, aPosition);
 		
 		if(ArrayFunctions.indexOfInArray(this._loadedFilePaths, aPath) != -1) {
 			return;
 		}
-		this._loadedFilePaths.push(aPath);
+		if(aPosition != -1) {
+			this._loadedFilePaths.splice(aPosition+1, 0, aPath);
+		}
+		else {
+			this._loadedFilePaths.push(aPath);
+		}
 		
 		if(!dbm.singletons.dbmAssetRepository.hasAsset(aPath)) {
 			var newAsset = TextAsset.create(aPath);
@@ -76,12 +82,14 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		var currentFile = aAsset.getData();
 		this._loadedScripts.push(currentFile);
 		
+		var insertPosition = ArrayFunctions.indexOfInArray(this._loadedFilePaths, aPath);
+		
 		var newBreakdown = ScriptBreakdown.create(this, currentFile);
 		this._scriptBreakdowns.addObject(aPath, newBreakdown);
 		var currentArray = newBreakdown.getIncludedFiles();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			this.addFile(currentArray[i]);
+			this.addFile(currentArray[i], insertPosition+i);
 		}
 	};
 	
@@ -108,13 +116,21 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	objectFunctions.compileFiles = function() {
 		//console.log("com.developedbyme.compiler.DbmCompiler::compileFiles");
 		
-		var returnString = "";
+		var returnString = "(function(){";
+		
+		var compileData = CompileData.create();
+		
+		var code = "";
 		
 		var currentArray = this._loadedFilePaths;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			returnString += this._scriptBreakdowns.getObject(currentArray[i]).compile();
+			console.log("compile: " + currentArray[i]);
+			code += this._scriptBreakdowns.getObject(currentArray[i]).compile(compileData);
 		}
+		
+		returnString += code;
+		returnString += "})();"
 		
 		console.log(returnString);
 		

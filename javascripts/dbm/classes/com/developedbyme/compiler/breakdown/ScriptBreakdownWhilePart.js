@@ -65,12 +65,12 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart
 		
 	};
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart::compile");
 		var returnString = this._whileType;
 		
-		var evaluation = "(" + this._evaluation.compile() + ")";
-		var code = this._code.compile();
+		var evaluation = "(" + this._evaluation.compile(aCompileData) + ")";
+		var code = this._code.compile(aCompileData);
 		
 		if(this._whileType == "while") {
 			returnString += evaluation;

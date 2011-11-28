@@ -10,6 +10,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 	var ScriptBreakdownLinePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart");
 	var ScriptBreakdownCodePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart");
 	var ScriptBreakdownListPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownListPart");
+	var ScriptBreakdownLiteralNamePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralNamePart");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
@@ -43,7 +44,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 				continue;
 			}
 			else {
-				var namePart = ScriptBreakdownLinePart.create(this, StringFunctions.trim(currentLine.substring(0, colonPosition)));
+				var namePart = ScriptBreakdownLiteralNamePart.create(this, StringFunctions.trim(currentLine.substring(0, colonPosition)));
 				var valuePart = ScriptBreakdownLinePart.create(this, StringFunctions.trim(currentLine.substring(colonPosition+1, currentLine.length)));
 				this._names.push(namePart);
 				this._childBreakdowns.push(namePart);
@@ -56,7 +57,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 		var currentLine =StringFunctions.trim(this._script.substring(currentPosition, this._script.length));
 		var colonPosition = this._getColonPosition(currentLine);
 		if(colonPosition != -1) {
-			var namePart = ScriptBreakdownLinePart.create(this, StringFunctions.trim(currentLine.substring(0, colonPosition)));
+			var namePart = ScriptBreakdownLiteralNamePart.create(this, StringFunctions.trim(currentLine.substring(0, colonPosition)));
 			var valuePart = ScriptBreakdownLinePart.create(this, StringFunctions.trim(currentLine.substring(colonPosition+1, currentLine.length)));
 			this._names.push(namePart);
 			this._childBreakdowns.push(namePart);
@@ -66,7 +67,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 		
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralObjectPart::compile");
 		
 		var argumentsArray = new Array();
@@ -75,7 +76,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentName = currentArray[i];
 			var currentValue = this._values[i];
-			argumentsArray.push(currentName.compile() + ":" + currentValue.compile());
+			argumentsArray.push(currentName.compile(aCompileData) + ":" + currentValue.compile(aCompileData));
 		}
 		
 		returnString = "{" + argumentsArray.join(",") + "}";

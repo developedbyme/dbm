@@ -40,9 +40,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownGetVariab
 		this._childBreakdowns.push(this._object);
 	}
 	
-	objectFunctions.compile = function() {
+	objectFunctions.compile = function(aCompileData) {
 		
-		return this._object.compile() + "." + this._variableName;
+		return this._object.compile(aCompileData) + "." + this._variableName;
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

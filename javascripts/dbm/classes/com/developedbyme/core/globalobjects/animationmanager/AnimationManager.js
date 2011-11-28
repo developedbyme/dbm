@@ -176,7 +176,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 	objectFunctions.setCssVariable = function(aHtmlElement, aVariable, aValue, aDelay) {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::setCssVariable");
 		
-		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aObject);
+		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aHtmlElement);
 		temporaryTimelineHolder.getCssProperty(aVariable).getAnimationController().setValue(aValue, aDelay);
 		
 	};
@@ -184,7 +184,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 	objectFunctions.animateCssVariable = function(aHtmlElement, aVariable, aValue, aTime, aInterpolation, aDelay) {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::animateCssVariable");
 		
-		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aObject);
+		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aHtmlElement);
 		temporaryTimelineHolder.getCssProperty(aVariable).animateValue(aValue, aTime, aInterpolation, aDelay);
 		
 	};
