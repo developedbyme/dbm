@@ -4,12 +4,14 @@
  * @authur	mattiase
  * @version	0.0.01
  */
-dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructure");
 	
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	
 	/**
 	 * Constructor
@@ -109,6 +111,11 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		if(!this.createMissingItems && !aForce) return null;
 		var newItem = TreeStructureItem.create(aName);
 		aParent.addChild(newItem);
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_CREATED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_CREATED, newItem);
+		}
+		
 		return newItem;
 	}; //End function createItem
 	
@@ -161,6 +168,16 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		}
 		return currentItem;
 	}; //End function getItemByPath
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case GenericExtendedEventIds.ITEM_CREATED:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	};
 	
 	/**
 	 * Traces out the full structure.

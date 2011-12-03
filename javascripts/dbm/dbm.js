@@ -12,6 +12,7 @@
 	if(dbm.isCreated != true) {
 		dbm.init = function() {
 			this.singletons = new Object();
+			this.xmlNamespaces = new Object();
 			this._specificClassesFolders = new Object();
 			this._filesToLoad = new Array();
 			this._currentFile = -1;
@@ -34,7 +35,7 @@
 		
 		dbm.addSpecificClassesFolder = function(aClassPathPrefix, aClassesFolder) {
 			this._specificClassesFolders[aClassPathPrefix] = aClassesFolder;
-		}
+		};
 		
 		dbm.setupLoaderHook = function() {
 			this._document.addEventListener("DOMContentLoaded", this._onHtmlLoaded, false);

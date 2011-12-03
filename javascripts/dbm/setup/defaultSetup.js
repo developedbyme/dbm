@@ -22,10 +22,12 @@ dbm.runTempFunction(function() {
 	var AudioManager = dbm.importClass("com.developedbyme.core.globalobjects.audiomanager.AudioManager");
 	var PageManager = dbm.importClass("com.developedbyme.core.globalobjects.pagemanager.PageManager");
 	var StatisticsManager = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager");
+	var DataManager = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.DataManager");
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
 	var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
+	var DefaultBasicParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultBasicParsersSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
@@ -51,6 +53,10 @@ dbm.runTempFunction(function() {
 		CurveEvaluator.getInstance().addEvaluator((new BezierEvaluator()).init());
 		
 		DefaultStatisticsManagerSetup.setup();
+		
+		dbm.xmlNamespaces.dbmData = "http://developedbyme.com/schemas/xml/data/";
+		
+		DefaultBasicParsersSetup.setup();
 	});
 	
 	dbm.setupLoaderHook();
