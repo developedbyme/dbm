@@ -6,6 +6,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
+	
+	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.objects.DataObject::init");
@@ -14,6 +17,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 		
 		this._hierarchyItem = null;
 		this._data = this.createProperty("data", null);
+		this._definitionFilePath = null;
+		this._definitionFileType = null;
 		this._definitionXml = null;
 		this._nodes = ArrayHolder.create(true);
 		this.addDestroyableObject(this._nodes);
@@ -33,11 +38,34 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 		return this._hierarchyItem;
 	};
 	
+	objectFunctions.setDefinitionFile = function(aPath, aType) {
+		this._definitionFilePath = aPath;
+		this._definitionFileType = aType;
+	};
+	
 	objectFunctions.setDefinitionXml = function(aXml) {
 		this._definitionXml = aXml;
 	};
 	
 	objectFunctions.getDefinitionXml = function() {
+		if(this._definitionXml == null && this._definitionFilePath != null) {
+			switch(this._definitionFileType) {
+				case "dbmData":
+					var currentAsset = dbm.singletons.dbmAssetRepository.getAsset(this._definitionFilePath);
+					if(currentAsset.getStatus() != AssetStatusTypes.LOADED) {
+						currentAsset.useAsync = false;
+						currentAsset.load();
+						this.setDefinitionXml(XmlChildRetreiver.getFirstChild(currentAsset.getData()));
+					}
+					dbm.singletons.dbmDataManager.parseLinks(this);
+					break;
+				case "json":
+				case "dictionaryXml":
+				case "xml":
+					//METODO
+					break;
+			}
+		}
 		return this._definitionXml;
 	};
 	
@@ -53,6 +81,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 		
 		if(this._data != null) {
 			aReturnArray.push("data: " + this._data.getValue());
+		}
+		if(this._definitionFilePath != null) {
+			aReturnArray.push("definitionFilePath: " + this._definitionFilePath);
+			aReturnArray.push("definitionFileType: " + this._definitionFileType);
 		}
 	}
 	

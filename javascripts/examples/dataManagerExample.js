@@ -8,12 +8,12 @@ dbm.runTempFunction(function() {
 	
 	dbm.addStartFunction(function() {
 		
-		var startFunction = function(aDataXml) {
+		//var startFunction = function(aDataXml) {
+			//var xmlDefinition = XmlChildRetreiver.getFirstChild(aDataXml.getData());
+			//var basePath = XmlChildRetreiver.getNamespacedAttribute(xmlDefinition, dbm.xmlNamespaces.dbmData, "basePath");
+			//dbm.singletons.dbmDataManager.addXmlDefinition(xmlDefinition, basePath);
 			
-			var xmlDefinition = XmlChildRetreiver.getFirstChild(aDataXml.getData());
-			var basePath = XmlChildRetreiver.getNamespacedAttribute(xmlDefinition, dbm.xmlNamespaces.dbmData, "basePath");
-			
-			dbm.singletons.dbmDataManager.addXmlDefinition(xmlDefinition, basePath);
+			dbm.singletons.dbmDataManager.addDefinitionFile("../xml/testData.xml", "dbmData", "testData");
 			
 			console.log(dbm.singletons.dbmDataManager.getData("testData/testString"));
 			console.log(dbm.singletons.dbmDataManager.getData("testData/testString2"));
@@ -23,12 +23,13 @@ dbm.runTempFunction(function() {
 			console.log(dbm.singletons.dbmDataManager.getData("testData/testFloat2"));
 			console.log(dbm.singletons.dbmDataManager.getData("testData/testLink"));
 			console.log(dbm.singletons.dbmDataManager.getData("testData/linkedString"));
+			console.log(dbm.singletons.dbmDataManager.getData("testData/testFile/testString3"));
 			
 			dbm.singletons.dbmDataManager.debugTraceStructure();
-		};
+		//};
 	
-		var testDataAsset = dbm.singletons.dbmAssetRepository.getAsset("../xml/testData.xml");
-		testDataAsset.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, startFunction, [testDataAsset]));
-		testDataAsset.load();
+		//var testDataAsset = dbm.singletons.dbmAssetRepository.getAsset("../xml/testData.xml");
+		//testDataAsset.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, startFunction, [testDataAsset]));
+		//testDataAsset.load();
 	});
 });

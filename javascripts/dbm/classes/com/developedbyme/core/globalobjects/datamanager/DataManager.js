@@ -59,12 +59,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		return this._rootNode.getPath();
 	};
 	
+	objectFunctions.addDefinitionFile = function(aFilePath, aFileType, aPath) {
+		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
+		currentItem.data.setDefinitionFile(aFilePath, aFileType);
+	}
+	
 	objectFunctions.addXmlDefinition = function(aXml, aPath) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::addXmlDefinition");
 		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		currentItem.data.setDefinitionXml(aXml);
-		this._parseLinks(currentItem.data);
+		this.parseLinks(currentItem.data);
 	};
 	
 	objectFunctions.addParser = function(aName, aParser) {
@@ -74,10 +79,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 	objectFunctions._setupItem = function(aTreeStructureItem) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::_setupItem");
 		
-		var newDataObject = DataObject.create();
-		
-		aTreeStructureItem.data = newDataObject;
-		newDataObject.setHierarchyItem(aTreeStructureItem);
+		var newDataObject = this._createDataObject(aTreeStructureItem);
 		
 		var parentData = aTreeStructureItem.getParent().data;
 		var parentDefinitionXml = parentData.getDefinitionXml();
@@ -94,13 +96,22 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 			
 			if(currentChild != null) {
 				newDataObject.setDefinitionXml(currentChild);
-				this._parseLinks(newDataObject);
+				this.parseLinks(newDataObject);
 				this._parseDataObject(newDataObject);
 			}
 		}
 		
 		//console.log(newDataObject);
 	};
+	
+	objectFunctions._createDataObject = function(aTreeStructureItem) {
+		var newDataObject = DataObject.create();
+		
+		aTreeStructureItem.data = newDataObject;
+		newDataObject.setHierarchyItem(aTreeStructureItem);
+		
+		return newDataObject;
+	}
 	
 	objectFunctions._parseDataObject = function(aDataObject) {
 		
@@ -116,18 +127,33 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		currentParser.parseObject(aDataObject);
 	};
 	
-	objectFunctions._parseLinks = function(aDataObject) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::_parseLinks");
+	objectFunctions.parseLinks = function(aDataObject) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::parseLinks");
 		var parentPath = aDataObject.getHierarchyItem().getPath();
 		var currentArray = XmlChildRetreiver.getChilds(aDataObject.getDefinitionXml());
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentChild = currentArray[i];
 			var dataNamespace = dbm.xmlNamespaces.dbmData;
-			if(currentChild.namespaceURI == dataNamespace && currentChild.localName == "link") {
+			if(currentChild.namespaceURI == dataNamespace) {
 				var linkName = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "name");
-				var linkReference = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "link");
-				this._hierarchy.addItem(TreeStructureItemLink.create(linkName, linkReference), parentPath, aDataObject.getHierarchyItem());
+			 	switch(currentChild.localName) {
+					case "link":
+						var linkReference = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "link");
+						this._hierarchy.addItem(TreeStructureItemLink.create(linkName, linkReference), parentPath, aDataObject.getHierarchyItem());
+						break;
+					case "fileLink":
+						var filePath = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "filePath");
+						var fileType = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "fileType");
+						var fileLinkItem = TreeStructureItem.create(linkName);
+						this._createDataObject(fileLinkItem);
+						fileLinkItem.data.setDefinitionFile(filePath, fileType);
+						this._hierarchy.addItem(fileLinkItem, parentPath, aDataObject.getHierarchyItem());
+						break;
+					case "item":
+						//MENOTE: do nothing
+						break;
+				}
 			}
 		}
 	};
@@ -167,6 +193,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		}
 		
 		return XmlChildRetreiver.getNodeValue(XmlChildRetreiver.getNamespacedChild(aXml, dataNamespace, "nodeValue"));
+	};
+	
+	objectFunctions.getAttribute = function(aXml, aNamespace, aAttribute) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::getAttribute");
+		
+		var dataNamespace = dbm.xmlNamespaces.dbmData;
+		var returnValue = XmlChildRetreiver.getNamespacedAttribute(aXml, aNamespace, aAttribute);
+		if(returnValue != null) {
+			return returnValue;
+		}
+		
+		return XmlChildRetreiver.getNodeValue(XmlChildRetreiver.getNamespacedChild(aXml, aNamespace, aAttribute));
+	};
+	
+	objectFunctions.getFirstChild = function(aXml) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::getFirstChild");
+		
+		//METODO
 	};
 	
 	objectFunctions.debugTraceStructure = function() {

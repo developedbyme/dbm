@@ -324,7 +324,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	/**
 	 * Creates a new item.
 	 */
-	staticFunctions.create= function(aName) {
+	staticFunctions.create = function(aName) {
 		//console.log("create");
 		var newItem = (new TreeStructureItem()).init();
 		newItem.setName(aName);
