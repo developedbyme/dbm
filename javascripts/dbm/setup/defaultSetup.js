@@ -28,6 +28,7 @@ dbm.runTempFunction(function() {
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
 	var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
 	var DefaultBasicParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultBasicParsersSetup");
+	var DefaultTextParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultTextParsersSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
@@ -57,6 +58,7 @@ dbm.runTempFunction(function() {
 		dbm.xmlNamespaces.dbmData = "http://developedbyme.com/schemas/xml/data/";
 		
 		DefaultBasicParsersSetup.setup();
+		DefaultTextParsersSetup.setup();
 	});
 	
 	dbm.setupLoaderHook();

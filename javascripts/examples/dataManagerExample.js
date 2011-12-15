@@ -21,6 +21,10 @@ dbm.runTempFunction(function() {
 			console.log(dbm.singletons.dbmDataManager.getData("testData/testString4"));
 			console.log(dbm.singletons.dbmDataManager.getData("testData/testFloat"));
 			console.log(dbm.singletons.dbmDataManager.getData("testData/testFloat2"));
+			console.log(dbm.singletons.dbmDataManager.getData("testData/testLink"));
+			console.log(dbm.singletons.dbmDataManager.getData("testData/linkedString"));
+			
+			dbm.singletons.dbmDataManager.debugTraceStructure();
 		};
 	
 		var testDataAsset = dbm.singletons.dbmAssetRepository.getAsset("../xml/testData.xml");

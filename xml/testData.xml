@@ -1,7 +1,7 @@
 <data:data data:version="1" data:basePath="testData" xmlns:data="http://developedbyme.com/schemas/xml/data/">
 	<data:item data:name="testString" data:type="string">Test1</data:item>
 	<data:item data:name="testString2" data:type="string" data:nodeValue="Test2" />
-	<data:item data:name="testString3" data:type="string">
+	<data:item data:name="testString3" data:type="upperCaseText">
 		<data:nodeValue>Test3</data:nodeValue>
 	</data:item>
 	<data:item data:name="testString4" data:type="string">
@@ -10,5 +10,13 @@
 	<data:item data:name="testFloat" data:type="float">1</data:item>
 	<data:item data:name="testFloat2" data:type="float">
 		<data:item data:type="string">4</data:item>
+	</data:item>
+	<data:link data:name="testLink" data:link="testFloat2" />
+	<data:item data:name="replacedText">
+		<data:nodeValue>Text to be replaced</data:nodeValue>
+		<data:item data:parentApplyType="replacement"></data:item>
+	</data:item>
+	<data:item data:name="linkedString" data:type="string">
+		<data:link data:name="default" data:link="../testString" />
 	</data:item>
 </data:data>

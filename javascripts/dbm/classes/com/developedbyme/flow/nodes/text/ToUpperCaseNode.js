@@ -1,10 +1,10 @@
-dbm.registerClass("com.developedbyme.flow.nodes.parse.ParseStringNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.parse.ParseStringNode");
+dbm.registerClass("com.developedbyme.flow.nodes.text.ToUpperCaseNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.text.ToUpperCaseNode");
 	
-	var ParseStringNode = dbm.importClass("com.developedbyme.flow.nodes.parse.ParseStringNode");
+	var ToUpperCaseNode = dbm.importClass("com.developedbyme.flow.nodes.text.ToUpperCaseNode");
 	
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.parse.ParseStringNode::init");
+		//console.log("com.developedbyme.flow.nodes.text.ToUpperCaseNode::init");
 		
 		this.superCall();
 		
@@ -17,8 +17,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.parse.ParseStringNode", "com.dev
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.parse.ParseStringNode::_update");
-		this._outputValue.setValueWithFlow(this._inputValue.getValueWithoutFlow().toString(), aFlowUpdateNumber);
+		//console.log("com.developedbyme.flow.nodes.text.ToUpperCaseNode::_update");
+		this._outputValue.setValueWithFlow(this._inputValue.getValueWithoutFlow().toString().toUpperCase(), aFlowUpdateNumber);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

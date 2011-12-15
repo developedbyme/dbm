@@ -93,7 +93,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 				newLevel = aResolveLinksLevel;
 			}
 			
-			var linkedItem =  this._root.getItemByPath(this.link, this);
+			var linkedItem =  this._root.getItemByPath(this.link, this._parent);
 			
 			linkedItem.debugTraceChildren(newTabString, newLevel);
 		}

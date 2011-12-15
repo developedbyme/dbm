@@ -21,6 +21,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		
 		this._loader = null;
 		this._url = null;
+		this.useAsync = true;
 		
 		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._setStatus, [AssetStatusTypes.LOADED]));
 		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADING_ERROR, CallFunctionCommand.createCommand(this, this._setStatus, [AssetStatusTypes.ERROR]));
@@ -77,7 +78,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		}
 		//this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.LOAD, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
 		//this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true);
-		this._loader.open("GET", this._url, true);
+		this._loader.open("GET", this._url, this.useAsync);
 		this._loader.send(null);
 		
 		return this;

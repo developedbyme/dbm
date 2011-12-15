@@ -124,6 +124,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	 */
 	objectFunctions.getItemByPath = function(aPath, aBaseItem) {
 		//console.log("getItemByPath");
+		//console.log(aPath, aBaseItem.getPath());
 		
 		aBaseItem = VariableAliases.valueWithDefault(aBaseItem, null);
 		
@@ -160,7 +161,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 					}
 					if(newItem.isLink()) {
 						var newPath = newItem.resolvePath(currentArray.join("/"));
-						return this.getItemByPath(newPath, newItem);
+						return this.getItemByPath(newPath, currentItem);
 					}
 					currentItem = newItem;
 					break;
