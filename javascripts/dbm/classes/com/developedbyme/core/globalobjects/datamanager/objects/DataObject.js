@@ -41,6 +41,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 	objectFunctions.setDefinitionFile = function(aPath, aType) {
 		this._definitionFilePath = aPath;
 		this._definitionFileType = aType;
+		this._hierarchyItem.setAttribute("filesRelativeTo", aPath);
 	};
 	
 	objectFunctions.setDefinitionXml = function(aXml) {

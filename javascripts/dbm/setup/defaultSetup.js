@@ -56,6 +56,7 @@ dbm.runTempFunction(function() {
 		DefaultStatisticsManagerSetup.setup();
 		
 		dbm.xmlNamespaces.dbmData = "http://developedbyme.com/schemas/xml/data/";
+		dbm.xmlNamespaces.dbmTreeStructureAttribute = "http://developedbyme.com/schemas/xml/tree-structure-attribute/";
 		
 		DefaultBasicParsersSetup.setup();
 		DefaultTextParsersSetup.setup();

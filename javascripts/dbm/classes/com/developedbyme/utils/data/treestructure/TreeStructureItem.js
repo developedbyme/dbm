@@ -76,6 +76,24 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		return (this._attributes != null && this._attributes.hasObject(aName));
 	}
 	
+	objectFunctions.getInheritedAttribute = function(aName) {
+		var currentItem = this;
+		var debugCounter = 0;
+		while(currentItem != null) {
+			if(debugCounter++ > 1000) {
+				//METODO: error message
+				return null;
+			}
+			if(currentItem.hasAttribute(aName)) {
+				return currentItem.getAttribute(aName);
+			}
+			
+			currentItem = currentItem.getParent();
+		}
+		//METODO: warning message
+		return null;
+	}
+	
 	/**
 	 * Gets the path of the item.
 	 */
