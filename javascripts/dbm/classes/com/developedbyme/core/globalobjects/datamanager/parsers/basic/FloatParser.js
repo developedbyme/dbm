@@ -1,12 +1,10 @@
-dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.FloatParser", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.FloatParser", "com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.FloatParser");
 	
 	var FloatParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.FloatParser");
 	
 	var ParseFloatNode = dbm.importClass("com.developedbyme.flow.nodes.parse.ParseFloatNode");
-	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.FloatParser::init");
@@ -16,35 +14,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.basi
 		return this;
 	};
 	
-	objectFunctions.parseObject = function(aDataObject) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.FloatParser::parseObject");
-		var definitionXml = aDataObject.getDefinitionXml();
-		
-		var nodeValue = dbm.singletons.dbmDataManager.getNodeValue(definitionXml);
-		if(nodeValue != null) {
-			aDataObject.getProperty("data").setValue(parseFloat(nodeValue));
-		}
-		else {
-			var dataNamespace = dbm.xmlNamespaces.dbmData;
-			var firstChild = XmlChildRetreiver.getNamespacedChild(definitionXml, dataNamespace, "item");
-			var childName = XmlChildRetreiver.getNamespacedAttribute(firstChild, dataNamespace, "name");
-			if(childName == null) {
-				childName = "default";
-			}
-			var childPath = aDataObject.getHierarchyItem().getPath() + "/" + childName;
-			var inputProperty = dbm.singletons.dbmDataManager.getDataProperty(childPath);
-			var parseNode = ParseFloatNode.create(inputProperty);
-			aDataObject.addNode(parseNode);
-			aDataObject.setPropertyInput("data", parseNode.getProperty("outputValue"));
-		}
+	objectFunctions._createInputLink = function(aInputProperty) {
+		var parseNode = ParseFloatNode.create(aInputProperty);
+		return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
 	};
 	
-	/**
-	 * Sets all the references to null
-	 */
-	objectFunctions.setAllReferencesToNull = function() {
-		
-		this.superCall();
+	objectFunctions._createResult = function(aValue) {
+		return ParserResultDataObject.create(parseFloat(aValue));
 	};
 	
 	staticFunctions.create = function() {

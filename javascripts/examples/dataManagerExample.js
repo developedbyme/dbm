@@ -24,6 +24,7 @@ dbm.runTempFunction(function() {
 			console.log(dbm.singletons.dbmDataManager.getData("testData/testLink"));
 			console.log(dbm.singletons.dbmDataManager.getData("testData/linkedString"));
 			console.log(dbm.singletons.dbmDataManager.getData("testData/testFile/testString3"));
+			console.log(dbm.singletons.dbmDataManager.getData("testData/testAttributeLink"));
 			
 			dbm.singletons.dbmDataManager.debugTraceStructure();
 		//};

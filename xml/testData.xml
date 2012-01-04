@@ -23,4 +23,5 @@
 		<data:link data:name="default" data:link="../testString" />
 	</data:item>
 	<data:fileLink data:name="testFile" data:filePath="../xml/testData2.xml" data:fileType="dbmData" />
+	<data:item data:name="testAttributeLink" data:type="float" data:nodeValue="dbmDataLink:testFloat" />
 </data:data>

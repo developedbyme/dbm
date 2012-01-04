@@ -1,12 +1,10 @@
-dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToLowerCaseParser", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToLowerCaseParser", "com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToLowerCaseParser");
 	
 	var ToLowerCaseParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToLowerCaseParser");
 	
 	var ToLowerCaseNode = dbm.importClass("com.developedbyme.flow.nodes.text.ToLowerCaseNode");
-	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToLowerCaseParser::init");
@@ -16,35 +14,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text
 		return this;
 	};
 	
-	objectFunctions.parseObject = function(aDataObject) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToLowerCaseParser::parseObject");
-		var definitionXml = aDataObject.getDefinitionXml();
-		
-		var nodeValue = dbm.singletons.dbmDataManager.getNodeValue(definitionXml);
-		if(nodeValue != null) {
-			aDataObject.getProperty("data").setValue(nodeValue.toString().toLowerCase());
-		}
-		else {
-			var dataNamespace = dbm.xmlNamespaces.dbmData;
-			var firstChild = XmlChildRetreiver.getNamespacedChild(definitionXml, dataNamespace, "item");
-			var childName = XmlChildRetreiver.getNamespacedAttribute(firstChild, dataNamespace, "name");
-			if(childName == null) {
-				childName = "default";
-			}
-			var childPath = aDataObject.getHierarchyItem().getPath() + "/" + childName;
-			var inputProperty = dbm.singletons.dbmDataManager.getDataProperty(childPath);
-			var parseNode = ToLowerCaseNode.create(inputProperty);
-			aDataObject.addNode(parseNode);
-			aDataObject.setPropertyInput("data", parseNode.getProperty("outputValue"));
-		}
+	objectFunctions._createInputLink = function(aInputProperty) {
+		var parseNode = ToLowerCaseNode.create(aInputProperty);
+		return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
 	};
 	
-	/**
-	 * Sets all the references to null
-	 */
-	objectFunctions.setAllReferencesToNull = function() {
-		
-		this.superCall();
+	objectFunctions._createResult = function(aValue) {
+		return ParserResultDataObject.create(aValue.toString().toLowerCase());
 	};
 	
 	staticFunctions.create = function() {
