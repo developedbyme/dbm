@@ -3,8 +3,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text
 	
 	var TextReplacementParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser");
 	
-	var ToLowerCaseNode = dbm.importClass("com.developedbyme.flow.nodes.text.ToLowerCaseNode");
+	var TextReplacementNode = dbm.importClass("com.developedbyme.flow.nodes.text.TextReplacementNode");
 	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
 	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::init");
@@ -14,16 +16,46 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text
 		return this;
 	};
 	
-	objectFunctions._createInputLink = function(aInputProperty) {
-		var parseNode = ToLowerCaseNode.create(aInputProperty);
+	objectFunctions._setupReplacement = function(aReplacementNode, aXml, aPathReference) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_setupReplacement");
+		var dataNamespace = dbm.xmlNamespaces.dbmData;
+		var currentArray = dbm.singletons.dbmDataManager.getDataChildren(aXml);
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentChild =  currentArray[i];
+			var parentApplyType = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "parentApplyType");
+			if(parentApplyType == "replacement") {
+				var childName = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "name");
+				if(childName == null) {
+					childName = "child[" + i + "]";
+				}
+				var childPath = aPathReference + "/" + childName;
+				var currentKeyValue = dbm.singletons.dbmDataManager.getData(childPath);
+				aReplacementNode.addReplacement(currentKeyValue.keyValue, currentKeyValue.dataValue);
+			}
+		}
+	}
+	
+	objectFunctions._createInputLink = function(aInputProperty, aXml, aPathReference) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createInputLink");
+		var parseNode = TextReplacementNode.create(aInputProperty);
+		
+		this._setupReplacement(parseNode, aXml, aPathReference);
+		
 		return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
 	};
 	
-	objectFunctions._createResult = function(aValue) {
-		return ParserResultDataObject.create(aValue.toString().toLowerCase());
+	objectFunctions._createResult = function(aValue, aXml, aPathReference) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createResult");
+		var parseNode = TextReplacementNode.create(aValue);
+		
+		this._setupReplacement(parseNode, aXml, aPathReference);
+		
+		return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
 	};
 	
 	staticFunctions.create = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::create");
 		var newTextReplacementParser = (new ClassReference()).init();
 		return newTextReplacementParser;
 	};

@@ -15,9 +15,10 @@
 		<data:item data:type="string">4</data:item>
 	</data:item>
 	<data:link data:name="testLink" data:link="testFloat2" />
-	<data:item data:name="replacedText">
-		<data:nodeValue>Text to be replaced</data:nodeValue>
-		<data:item data:parentApplyType="replacement"></data:item>
+	<data:item data:name="replacedText" data:type="textReplacement">
+		<data:nodeValue>Text [to be] replaced</data:nodeValue>
+		<data:item data:parentApplyType="replacement" data:type="keyValue" data:keyValue="[to be]" data:dataValue="is" />
+		<data:item data:parentApplyType="replacement" data:type="keyValue" data:keyValue="Text" data:dataValue="This" />
 	</data:item>
 	<data:item data:name="linkedString" data:type="string">
 		<data:link data:name="default" data:link="../testString" />

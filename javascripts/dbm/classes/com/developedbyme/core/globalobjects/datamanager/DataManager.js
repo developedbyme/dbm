@@ -80,6 +80,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 	
 	objectFunctions._setupItem = function(aTreeStructureItem) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::_setupItem");
+		//console.log(aTreeStructureItem.getPath());
 		
 		var newDataObject = this._createDataObject(aTreeStructureItem);
 		
@@ -89,11 +90,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 			var dataNamespace = dbm.xmlNamespaces.dbmData;
 			var currentChild = XmlChildRetreiver.getNamespacedChildByNamespacedAttribute(parentDefinitionXml, dataNamespace, "name", aTreeStructureItem.getName(), dataNamespace, "item");
 			
-			if(currentChild == null && aTreeStructureItem.getName() == "default") {
-				currentChild = XmlChildRetreiver.getNamespacedChild(parentDefinitionXml, dataNamespace, "item");
-			}
-			if(currentChild == null && !isNaN(aTreeStructureItem.getName())) {
-				//METODO: get the n:th child
+			var currentChildName = aTreeStructureItem.getName();
+			
+			if(currentChild == null && currentChildName.indexOf("child[") == 0) {
+				var children = this.getDataChildren(parentDefinitionXml);
+				var childIndex = parseInt(currentChildName.substring(6, currentChildName.length-1), 10);
+				currentChild = children[childIndex];
 			}
 			
 			if(currentChild != null) {
@@ -236,7 +238,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::_getRelativeDataProperty");
 		
 		aBasePath = VariableAliases.valueWithDefault(aBasePath, "");
-		console.log(aBasePath);
 		var rootItem = this._hierarchy.getItemByPath(aBasePath, this._rootNode).getParent();
 		var currentItem = this._hierarchy.getItemByPath(aPath, rootItem);
 		
@@ -299,7 +300,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		var dataNamespace = dbm.xmlNamespaces.dbmData;
 		var childName = XmlChildRetreiver.getNamespacedAttribute(firstChild, dataNamespace, "name");
 		if(childName == null) {
-			childName = "default";
+			childName = "child[0]";
 		}
 		var childPath = aPathReference + "/" + childName;
 		var inputProperty = dbm.singletons.dbmDataManager.getDataProperty(childPath);
@@ -321,22 +322,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		}
 	}
 	
-	objectFunctions.getAttribute = function(aXml, aNamespace, aAttribute) {
+	objectFunctions.getAttribute = function(aXml, aNamespace, aAttribute, aPathReference) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::getAttribute");
 		
 		var dataNamespace = dbm.xmlNamespaces.dbmData;
 		var returnValue = XmlChildRetreiver.getNamespacedAttribute(aXml, aNamespace, aAttribute);
 		if(returnValue != null) {
-			return returnValue;
+			return this.parseAttribute(returnValue, aPathReference);
 		}
 		
-		return XmlChildRetreiver.getNodeValue(XmlChildRetreiver.getNamespacedChild(aXml, aNamespace, aAttribute));
-	};
-	
-	objectFunctions.getFirstChild = function(aXml) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::getFirstChild");
+		var attributeNode = XmlChildRetreiver.getNamespacedChild(aXml, aNamespace, "attribute");
 		
-		//METODO
+		//METODO: select correct attribute
+		
+		return this._parseNode(attributeNode, aPathReference);
 	};
 	
 	objectFunctions.debugTraceStructure = function() {

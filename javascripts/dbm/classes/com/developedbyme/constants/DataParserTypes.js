@@ -13,4 +13,7 @@ dbm.registerClass("com.developedbyme.constants.DataParserTypes", null, function(
 	staticFunctions.LOWER_CASE_TEXT = "lowerCaseText";
 	staticFunctions.TEXT_REPLACEMENT = "textReplacement";
 	
+	//Complex
+	staticFunctions.KEY_VALUE = "keyValue";
+	
 });

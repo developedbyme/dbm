@@ -19,28 +19,28 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.Pars
 			parseResult = dbm.singletons.dbmDataManager.parseFirstChild(aXml, aPathReference);
 			if(parseResult == null) {
 				//METODO: error message
-				return this._createNullResult();
+				return this._createNullResult(aXml, aPathReference);
 			}
 		}
 		if(parseResult.isLinked) {
-			return this._createInputLink(parseResult.result);
+			return this._createInputLink(parseResult.result, aXml, aPathReference);
 		}
 		else {
-			return this._createResult(parseResult.result);
+			return this._createResult(parseResult.result, aXml, aPathReference);
 		}
 	}
 	
-	objectFunctions._createNullResult = function() {
+	objectFunctions._createNullResult = function(aXml, aPathReference) {
 		//MENOTE: should be overridden
 		return ParserResultDataObject.create(null);
 	};
 	
-	objectFunctions._createInputLink = function(aInputProperty) {
+	objectFunctions._createInputLink = function(aInputProperty, aXml, aPathReference) {
 		//MENOTE: should be overridden
 		return ParserResultDataObject.create(null);
 	};
 	
-	objectFunctions._createResult = function(aValue) {
+	objectFunctions._createResult = function(aValue, aXml, aPathReference) {
 		//MENOTE: should be overridden
 		return ParserResultDataObject.create(aValue);
 	};

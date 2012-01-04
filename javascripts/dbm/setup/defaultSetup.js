@@ -29,6 +29,7 @@ dbm.runTempFunction(function() {
 	var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
 	var DefaultBasicParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultBasicParsersSetup");
 	var DefaultTextParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultTextParsersSetup");
+	var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
@@ -60,6 +61,7 @@ dbm.runTempFunction(function() {
 		
 		DefaultBasicParsersSetup.setup();
 		DefaultTextParsersSetup.setup();
+		DefaultComplexParsersSetup.setup();
 	});
 	
 	dbm.setupLoaderHook();
