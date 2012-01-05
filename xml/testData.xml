@@ -1,6 +1,7 @@
 <data:data data:version="1" data:basePath="testData"
 	xmlns:data="http://developedbyme.com/schemas/xml/data/"
 	xmlns:tsa="http://developedbyme.com/schemas/xml/tree-structure-attribute/"
+	xmlns:property="http://developedbyme.com/schemas/xml/property/"
 >
 	<data:item data:name="testString" data:type="string">Test1</data:item>
 	<data:item data:name="testString2" data:type="string" data:nodeValue="Test2" />
