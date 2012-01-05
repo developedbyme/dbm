@@ -162,6 +162,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 		}
 		
 		if(this._eventLinkGroups.select(aName)) {
+			//console.log("active eventLinkGroup : ", aName);
 			this._eventLinkGroups.currentSelectedItem.activateAll();
 		}
 		else {
@@ -172,6 +173,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	objectFunctions.deactivateJavascriptEventLink = function(aName) {
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::deactivateJavascriptEventLink");
 		//console.log(aName);
+		//console.log("this._eventLinkGroups.select(aName) : ", this._eventLinkGroups.select(aName));
 		if(this._eventLinkGroups.select(aName)) {
 			this._eventLinkGroups.currentSelectedItem.deactivateAll();
 		}

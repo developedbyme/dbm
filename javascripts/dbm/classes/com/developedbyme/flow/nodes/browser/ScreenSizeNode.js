@@ -30,16 +30,16 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.ScreenSizeNode", "com.de
 	};
 	
 	objectFunctions.start = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::start");
+		console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::start");
 		
 		//METODO
-		//this.getExtendedEvent().linkJavascriptEvent(this._window.getValue(), "resize", "resize", "resize", true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._window.getValue(), "resize", "resize", "resize", true, true).activate();
 	};
 	
 	objectFunctions.stop = function() {
 		
 		//METODO
-		//this.getExtendedEvent().deactivateJavascriptLink("resize");
+		this.getExtendedEvent().deactivateJavascriptLink("resize");
 	};
 	
 	objectFunctions._updateSize = function() {

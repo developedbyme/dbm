@@ -280,7 +280,9 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			var canPlayStatus = this.getElement().canPlayType(currentType);
 			//console.log(currentType, canPlayStatus);
 			if(canPlayStatus == "probably") {
-				this.getElement().src = currentUrl;
+				if(this.getElement().src == null) {
+					this.getElement().src = currentUrl;
+				}
 				this._selectedUrl = currentUrl;
 				isSelected = true;
 				break;
@@ -300,7 +302,9 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			}
 		}
 		if(!isSelected && maybeUrl != null) {
-			this.getElement().src = maybeUrl;
+			if(this.getElement().src == null) {
+				this.getElement().src = maybeUrl;
+			}
 			this._selectedUrl = maybeUrl;
 		}
 		if(aPreload) {
@@ -350,7 +354,13 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			
 			this._hasEnded.setValueWithFlow(timeShouldBeAt >= this.getElement().duration);
 			
-			var maxTime = Math.max(0, Math.min(this.getElement().duration, timeShouldBeAt));
+			var maxTime;
+			if(!isNaN(this.getElement().duration)) {
+				maxTime = Math.max(0, Math.min(this.getElement().duration, timeShouldBeAt));
+			}
+			else {
+				maxTime = Math.max(0, timeShouldBeAt);
+			}
 			
 			var isPaused = this.getElement().paused;
 			var hasEnded = this.getElement().ended;
@@ -364,10 +374,16 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 			
 			if(isPaused) {
 				if(state == PlaybackStateTypes.PLAYING && playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1) {
-					this._performPlay();
-					this._performSeek(maxTime);
-					//console.log("play", this._selectedUrl, maxTime);
-					this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
+					if(this.getElement().currentTime != maxTime) {
+						var timeDifference = Math.abs(maxTime-this.getElement().currentTime);
+						if(timeDifference > this._maxTimeDifference && this.getElement().currentTime-timeDifference < this.getElement().duration) {
+							//console.log(this.getElement().currentTime, maxTime, this.getElement().duration, timeShouldBeAt);
+							this._performSeek(maxTime);
+						}
+						this._performPlay();
+						//console.log("play", this._selectedUrl, maxTime);
+						this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
+					}
 				}
 				else {
 					if(state != PlaybackStateTypes.PAUSED) {

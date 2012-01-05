@@ -12,6 +12,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.DelayedExtendedEventCont
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.extendedevent.DelayedExtendedEventController::init");
 		
@@ -76,6 +78,18 @@ dbm.registerClass("com.developedbyme.core.extendedevent.DelayedExtendedEventCont
 		}
 		
 		this.callEventAt(newInternalName, newInternalUndoName, aTime);
+	};
+	
+	objectFunctions.addFunctionCall = function(aObject, aFunction, aArguments, aDelay) {
+		//console.log("com.developedbyme.core.extendedevent.DelayedExtendedEventController::addFunctionCall");
+		
+		this.addCommand(CallFunctionCommand.createCommand(aObject, aFunction, aArguments), null, aDelay);
+	};
+	
+	objectFunctions.addFunctionCallAt = function(aObject, aFunction, aArguments, aTime) {
+		//console.log("com.developedbyme.core.extendedevent.DelayedExtendedEventController::addFunctionCallAt");
+		
+		this.addCommandAt(CallFunctionCommand.createCommand(aObject, aFunction, aArguments), null, aTime);
 	};
 	
 	objectFunctions.callEvent = function(aEventName, aUndoEventName, aDelay) {

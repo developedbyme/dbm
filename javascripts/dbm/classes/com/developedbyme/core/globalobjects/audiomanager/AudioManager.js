@@ -115,6 +115,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		//dbm.singletons.dbmPageManager.getDocument().body.appendChild(newAudioTag);
 		//newAudioTag.load();
 		
+		//MENOTE: playing a new sounds needs to kill the old sound until safari fixes the bug with duplicating audio node.
+		var currentArray = this._playingAudio;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentPlayingAudio = currentArray[i];
+			if(currentPlayingAudio.getElement() == audioTag) {
+				currentPlayingAudio.stop();
+				currentPlayingAudio.destroy();
+				break;
+			}
+		}
 		
 		var mixerChannel = this.getMixer(aMixerName).createChannel(aId, aVolume);
 		//var newPlayingAudio = PlayingAudio.create(aId, newAudioTag, mixerChannel);
@@ -157,6 +168,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		//newAudioTag.load();
 		
 		//var newAudioPlayer = AudioPlayer.createWithNode(newAudioTag);
+		
 		var newAudioPlayer = AudioPlayer.createWithNode(audioTag);
 		newAudioPlayer.setPropertyInput("volume", aVolume);
 		

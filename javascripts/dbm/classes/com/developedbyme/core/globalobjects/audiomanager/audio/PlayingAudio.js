@@ -56,6 +56,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 		return this;
 	};
 	
+	objectFunctions.getElement = function() {
+		return this._element;
+	};
+	
 	objectFunctions.play = function() {
 		
 		this._isPlaying = true;
@@ -87,6 +91,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 	}
 	
 	objectFunctions.pause = function() {
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio::pause");
 		
 		this._isPlaying = false;
 		
@@ -98,6 +103,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 	};
 	
 	objectFunctions.stop = function() {
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio::stop");
 		
 		this._isPlaying = false;
 		
@@ -114,9 +120,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 		
 		var playbackTime = this._element.currentTime;
 		
+		//console.log(playbackTime);
+		
 		if(playbackTime >= this._element.duration) {
 			if(this._loop.getValue()) {
 				this._element.currentTime = 0;
+				if(this._element.paused) {
+					this._element.play();
+				}
 			}
 			else {
 				this.stop();

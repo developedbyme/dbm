@@ -71,6 +71,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		this.currentFrame++;
 		delete newDate;
 		
+		//LIAM: ERROR ON LINE BELOW
 		this._updateChain.updateTime(this.currentTime, this.currentFrame);
 
 		this._isUpdating = false;

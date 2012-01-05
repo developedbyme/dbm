@@ -210,9 +210,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentWindow = currentArray[i];
-			//if(currentWindow != this._windowsOrder[i]) {
+			if(currentWindow != this._windowsOrder[i]) {
 				currentWindow.focus();
-			//}
+			}
 		}
 		
 		this._depth.setValueWithFlow(null, aFlowUpdateNumber);

@@ -63,7 +63,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		this.getExtendedEvent().linkJavascriptEvent(data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true).activate();
 		this.getExtendedEvent().linkJavascriptEvent(data, AudioEventIds.PROGRESS, AudioEventIds.PROGRESS, AudioEventIds.PROGRESS, true).activate();
 		
-		
+		data.preload = "auto";
 		data.src = this._url;
 		data.load();
 		//MENOTE: download doesn't give any feedback of being downloaded if play is not called

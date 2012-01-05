@@ -106,6 +106,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		var newFlowUpdateNumber = this._getInputFlowUpdateNumber();
 		if(newFlowUpdateNumber > this._flowUpdateNumber) {
 			this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+			//LIAM: ERROR ON LINE BELOW
 			this._updateFunction.call(this._ownerObject, this._flowUpdateNumber);
 		}
 		if(this._isDestroyed) {

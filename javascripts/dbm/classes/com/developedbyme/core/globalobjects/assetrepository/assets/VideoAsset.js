@@ -74,7 +74,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.V
 	};
 	
 	objectFunctions._loadProgressCallback = function(aEvent) {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset::_loadProgress");
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset::_loadProgress");
 		//console.log(aEvent);
 		
 		var maxBuffered = 0;
@@ -85,6 +85,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.V
 		}
 		
 		this._loadProgress = maxBuffered/this._data.getValue().duration;
+		
 	}
 	
 	staticFunctions.create = function(aUrl) {

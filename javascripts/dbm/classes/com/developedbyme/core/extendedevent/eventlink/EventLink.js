@@ -50,28 +50,30 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		if(this._isActive) return this;
 		
 		this._isActive = true;
-		//try {
+		try {
 			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, false);
-		//}
-		//catch(theError) {
-		//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "activate", "Event listener " + this._javascriptEventName + " couldn't be added to.");
-		//	ErrorManager.getInstance().reportError(this, "activate", theError);
-		//}
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "activate", "Event listener " + this._javascriptEventName + " couldn't be added to.");
+			ErrorManager.getInstance().reportError(this, "activate", theError);
+		}
 		
 		return this;
 	};
 	
 	objectFunctions.deactivate = function deactivate() {
+		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::deactivate");
 		if(!this._isActive) return this;
 		
 		this._isActive = false;
-		//try {
+		
+		try {
 			this._eventDispatcher.removeEventListener(this._javascriptEventName, this._eventCallback, false);
-		//}
-		//catch(theError) {
-		//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "deactivate", "Event listener " + this._javascriptEventName + " couldn't be removed from.");
-		//	ErrorManager.getInstance().reportError(this, "deactivate", theError);
-		//}
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "deactivate", "Event listener " + this._javascriptEventName + " couldn't be removed from.");
+			ErrorManager.getInstance().reportError(this, "deactivate", theError);
+		}
 		
 		return this;
 	};

@@ -71,9 +71,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLink = currentArray[i];
-			if(currentLink.htmlElement.ownerDocument == aDocument) {
-				//console.log(currentLink.controller, currentLink.htmlElement.nodeName);
-				currentLink.controller.reactivateForNewDocument();
+			try {
+				if(currentLink.htmlElement.ownerDocument == aDocument) {
+					//console.log(currentLink.controller, currentLink.htmlElement.nodeName);
+					currentLink.controller.reactivateForNewDocument();
+				}
+			}
+			catch(theError) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "reactivateForNewDocument", "Error occured while reactivating " + currentLink.controller);
+				ErrorManager.getInstance().reportError(this, "reactivateForNewDocument", theError);
 			}
 		}
 	}
@@ -86,9 +92,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLink = currentArray[i];
-			if(currentLink.htmlElement.ownerDocument == aFromDocument) {
-				//console.log(currentLink.htmlElement.nodeName);
-				aToDocument.adoptNode(currentLink.htmlElement);
+			try {
+				if(currentLink.htmlElement.ownerDocument == aFromDocument) {
+					//console.log(currentLink.htmlElement.nodeName);
+					aToDocument.adoptNode(currentLink.htmlElement);
+				}
+			}
+			catch(theError) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "fullAdopt", "Error occured while adopting " + currentLink.controller);
+				ErrorManager.getInstance().reportError(this, "fullAdopt", theError);
 			}
 		}
 	}

@@ -318,7 +318,13 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 			var playbackSpeed = this._playbackSpeed.getValueWithoutFlow();
 			
 			var timeShouldBeAt = (currentTime-startTime+startPosition);
-			var maxTime = Math.max(0, Math.min(this.getElement().duration, timeShouldBeAt));
+			var maxTime;
+			if(!isNaN(this.getElement().duration)) {
+				maxTime = Math.max(0, Math.min(this.getElement().duration, timeShouldBeAt));
+			}
+			else {
+				maxTime = Math.max(0, timeShouldBeAt);
+			}
 			
 			var isPaused = this.getElement().paused;
 			var hasEnded = this.getElement().ended;
@@ -332,10 +338,16 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 			
 			if(isPaused) {
 				if(state == PlaybackStateTypes.PLAYING && playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1) {
-					this._performPlay();
-					this._performSeek(maxTime);
-					//console.log("play", this._selectedUrl, maxTime);
-					this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
+					if(this.getElement().currentTime != maxTime) {
+						var timeDifference = Math.abs(maxTime-this.getElement().currentTime);
+						if(timeDifference > this._maxTimeDifference && this.getElement().currentTime-timeDifference < this.getElement().duration) {
+							//console.log(this.getElement().currentTime, maxTime, this.getElement().duration, timeShouldBeAt);
+							this._performSeek(maxTime);
+						}
+						this._performPlay();
+						//console.log("play", this._selectedUrl, maxTime);
+						this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
+					}
 				}
 				else {
 					if(state != PlaybackStateTypes.PAUSED) {

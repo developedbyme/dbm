@@ -94,6 +94,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 				continue;
 			}
 			try {
+				//LIAM: ERROR ON LINE BELOW
 				currentConnection.updateFlow();
 			}
 			catch(theError) {
@@ -133,6 +134,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateTime");
+		
 		this.updateProperties();
 	};
 	
@@ -141,7 +143,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		this._updatedProperties.start();
 		while(this._updatedProperties.isActive()) {
 			var currentProperty = this._updatedProperties.getNextItem();
-			//console.log(currentProperty);
+			//console.log(currentProperty, currentProperty.getStatus());
 			if(currentProperty.getStatus() != FlowStatusTypes.UPDATED) {
 				if(currentProperty.isDestroyed()) {
 					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperties", "Property (" + currentProperty + ") is destroyed, removing.");
@@ -149,6 +151,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 					continue;
 				}
 				try {
+					
 					this.updateProperty(currentProperty);
 				}
 				catch(theError) {

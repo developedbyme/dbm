@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowForElementNode", "
 	
 	objectFunctions.start = function() {
 		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::start");
-		this.getExtendedEvent().linkJavascriptEvent(this._element.getValue(), JavascriptEventIds.DOM_NODE_INSERTED_INTO_DOCUMENT, "windowChanged", "windowChanged", true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._element.getValue(), JavascriptEventIds.DOM_NODE_INSERTED_INTO_DOCUMENT, "windowChanged", "windowChanged", true, true).activate();
 	};
 	
 	objectFunctions.stop = function() {

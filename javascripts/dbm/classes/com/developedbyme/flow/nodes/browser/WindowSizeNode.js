@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowSizeNode", "com.de
 		
 		this.getExtendedEvent().createEvent("resize");
 		this.getExtendedEvent().addCommandToEvent("resize", CallFunctionCommand.createCommand(this, this._updateSize, []));
+		this.getExtendedEvent().createEventLinkGroup("resize");
 		
 		this.createUpdateFunction("windowUpdated", this._windowUpdated, [this._window], [this._width, this._height]);
 		
@@ -29,7 +30,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowSizeNode", "com.de
 	};
 	
 	objectFunctions.stop = function() {
-		this.getExtendedEvent().deactivateJavascriptLink("resize");
+		//this.getExtendedEvent("resize").deactivateJavascriptEventLink();
+		this.getExtendedEvent().deactivateJavascriptEventLink("resize");
 	};
 	
 	objectFunctions._windowUpdated = function(aFlowUpdateNumber) {

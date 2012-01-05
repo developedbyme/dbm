@@ -53,7 +53,6 @@ dbm.registerClass("com.developedbyme.flow.data.IterationObject", "com.developedb
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentConnection = currentArray[i];
-			//console.log(currentConnection.inputProperty, currentConnection.outputProperty);
 			currentConnection.outputProperty.setValue(currentConnection.inputProperty.getValue());
 		}
 	}

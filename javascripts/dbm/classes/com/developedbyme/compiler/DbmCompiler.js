@@ -103,12 +103,13 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		var tabReplace = new RegExp("\t*", "g");
 		
 		for(var i = 0; i < currentArrayLength; i++) {
-			returnString += currentArray[i].replace(tabReplace, "") + "\n";
+			//returnString += currentArray[i].replace(tabReplace, "") + "\n";
+			returnString += currentArray[i] + "\n";
 		}
 		
 		returnString += "";
 		
-		//console.log(returnString);
+		console.log(returnString);
 		
 		return returnString;
 	}
