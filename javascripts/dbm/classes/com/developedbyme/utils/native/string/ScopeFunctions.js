@@ -148,7 +148,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 			newChildScope = ClassReference.getScope(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds);
 		}
 		
-		return newChildScope
+		return newChildScope;
 	};
 	
 	staticFunctions.getScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {

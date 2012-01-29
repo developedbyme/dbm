@@ -1,0 +1,19 @@
+.testExclusionContent {
+	-webkit-flow: 'testThread';
+	-webkit-flow-into: testThread;
+}
+
+.testExclusion {
+	-webkit-shape-inside: polygon(300px, 0px 600px, 0px 300px, 400px 0px, 400px 300px, 0px);
+	-webkit-wrap-shape: polygon(300px, 0px 600px, 0px 300px, 400px 0px, 400px 300px, 0px);
+	-webkit-wrap-shape-mode: content;
+	content: -webkit-from-flow('testThread');
+	-webkit-flow-from: testThread;
+	width: 400px;
+	height: 400px;
+	border: 1px solid #FF0000;
+}
+
+.testExclusion .title {
+	font-size: 32px;
+}

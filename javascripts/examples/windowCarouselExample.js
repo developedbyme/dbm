@@ -18,9 +18,12 @@ dbm.runTempFunction(function() {
 	var IterativeFlowGroup = dbm.importClass("com.developedbyme.flow.IterativeFlowGroup");
 	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var PrintTextHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintTextHandler");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
+		
+		//dbm.singletons.dbmErrorManager.addHandler(PrintTextHandler.createWithDiv(document.getElementById("errorLog")));
 		
 		//Items
 		var numberOfItems = 3;
@@ -111,11 +114,8 @@ dbm.runTempFunction(function() {
 		//Update
 		dbm.singletons.dbmFlowManager.addUpdatedProperty(dbm.singletons.dbmWindowManager.getProperty("depth"));
 		for(var i = 0; i < numberOfItems; i++) {
-			dbm.singletons.dbmFlowManager.addUpdatedProperty(windows[i].getProperty("size"));
-			dbm.singletons.dbmFlowManager.addUpdatedProperty(windows[i].getProperty("position"));
+			dbm.singletons.dbmFlowManager.addUpdatedProperty(windows[i].getProperty("display"));
 		}
-		
-		
 		
 		
 		//Buttons

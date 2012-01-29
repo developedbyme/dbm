@@ -11,6 +11,12 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject",
 		return this;
 	};
 	
+	objectFunctions.getDataObject = function() {
+		//MENOTE: should be overridden
+		//METODO: error message
+		return null;
+	};
+	
 	/**
 	 * The function that reevalutes this reference. Should be overridden.
 	 *

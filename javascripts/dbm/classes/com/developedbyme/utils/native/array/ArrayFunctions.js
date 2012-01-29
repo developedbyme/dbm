@@ -2,10 +2,13 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 	//console.log("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	staticFunctions.indexOfInArray = function(aArray, aData) {
 		if(aArray == null) {
@@ -64,4 +67,18 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 			currentArray[randomIndex2] = tempValue;
 		}
 	} //End function randomizeArray
+	
+	staticFunctions.trim = function(aArray, aTrimLeft, aTrimRight) {
+		
+		aTrimLeft = VariableAliases.valueWithDefault(aTrimLeft, true);
+		aTrimRight = VariableAliases.valueWithDefault(aTrimRight, true);
+		
+		var currentArray = aArray
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			currentArray[i] = StringFunctions.trim(currentArray[i], aTrimLeft, aTrimRight);
+		}
+		
+		return aArray;
+	};
 });

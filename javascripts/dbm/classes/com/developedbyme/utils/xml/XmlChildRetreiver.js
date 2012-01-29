@@ -214,4 +214,22 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		}
 		return false;
 	};
+	
+	staticFunctions.getFirstTextNode = function(aXml) {
+		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getTextNode (static)");
+		
+		
+		var currentArray = aXml.childNodes;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentChild = currentArray[i];
+			
+			if(currentChild.nodeType == XmlNodeTypes.TEXT_NODE || currentChild.nodeType == XmlNodeTypes.CDATA_SECTION_NODE) {
+				return currentChild;
+			}
+		}
+		
+		//METODO: error message
+		return null;
+	};
 });

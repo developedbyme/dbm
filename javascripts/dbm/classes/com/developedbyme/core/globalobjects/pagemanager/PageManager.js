@@ -8,6 +8,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
@@ -23,6 +24,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 		this._queryStringParameters = NamedArray.create(false);
 		this._document = null;
 		this._url = null;
+		this._urlResolver = null;
 		
 		return this;
 	};
@@ -39,8 +41,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 		return this._document;
 	};
 	
+	objectFunctions._setUrl = function(aUrl) {
+		this._url = aUrl;
+		this._urlResolver = UrlResolver.createFromFilePath(aUrl);
+	};
+	
 	objectFunctions.getUrl = function() {
 		return this._url;
+	};
+	
+	objectFunctions.getUrlResolver = function() {
+		return this._urlResolver;
 	};
 	
 	objectFunctions.getCurrentFolderPath = function() {
@@ -90,12 +101,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 		var queryStringArray = [];
 		
 		if(queryIndex != -1) {
-			this._url = queryString.substring(0, queryIndex);
+			this._setUrl(queryString.substring(0, queryIndex));
 			queryString = queryString.substring(queryIndex+1, queryString.length);
 			queryStringArray = queryString.split("&");
 		}
 		else {
-			this._url = queryString;
+			this._setUrl(queryString);
 		}
 		for(var i = 0; i < queryStringArray.length; i++) {
 			var tempArray = queryStringArray[i].split("=");

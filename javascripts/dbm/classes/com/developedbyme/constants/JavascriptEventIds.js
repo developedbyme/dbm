@@ -53,4 +53,9 @@ dbm.registerClass("com.developedbyme.constants.JavascriptEventIds", null, functi
 	staticFunctions.CHANGE = "change";
 	staticFunctions.RESET = "reset";
 	staticFunctions.SUBMIT = "submit";
+	
+	//MENOTE: Orientation event
+	staticFunctions.DEVICE_ORIENTATION = "deviceorientation";
+	staticFunctions.COMPASS_NEEDS_CALIBRATION = "compassneedscalibration";
+	staticFunctions.DEVICE_MOTION = "devicemotion";
 });

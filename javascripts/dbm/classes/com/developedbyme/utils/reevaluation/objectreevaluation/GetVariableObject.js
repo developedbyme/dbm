@@ -2,6 +2,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 	//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
 	
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
 	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	var SelectBaseObjectObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject");
 	
@@ -69,6 +70,17 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		else {
 			newCommand.objectReevaluator = StaticVariableObject.createReevaluationObject(aObject);
 		}
+		newCommand.propertyNameReevaluator = StaticVariableObject.createReevaluationObject(aPropertyName);
+		
+		return newCommand;
+	}
+	
+	staticFunctions.createSelectOnBaseObjectCommand = function(aPropertyName) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject::createSelectOnBaseObjectCommand (static)");
+		//console.log(aPropertyName);
+		var newCommand = (new GetVariableObject()).init();
+		
+		newCommand.objectReevaluator = (new SelectBaseObjectObject()).init();
 		newCommand.propertyNameReevaluator = StaticVariableObject.createReevaluationObject(aPropertyName);
 		
 		return newCommand;

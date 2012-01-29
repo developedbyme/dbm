@@ -13,6 +13,10 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.Stati
 		return this;
 	};
 	
+	objectFunctions.getDataObject = function() {
+		return this.reevaluationData;
+	};
+	
 	/**
 	 * The function that reevalutes this reference. Should be overridden.
 	 *

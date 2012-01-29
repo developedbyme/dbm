@@ -83,7 +83,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	};
 	
 	objectFunctions.createPattern = function(aImage, aRepeat) {
-		console.log("com.developedbyme.utils.canvas.CanvasController2d::createPattern");
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createPattern");
 		
 		aRepeat = VariableAliases.valueWithDefault(aRepeat, "repeat");
 		
@@ -92,11 +92,29 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	};
 	
 	objectFunctions.getWidthOfText = function(aText, aFont) {
-		console.log("com.developedbyme.utils.canvas.CanvasController2d::getWidthOfText");
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::getWidthOfText");
 		
 		var canvas = this._canvas.getValue();
 		canvas.getContext("2d").font = aFont;
 		return canvas.getContext("2d").measureText(aText).width;
+	};
+	
+	objectFunctions.createLinearGradient = function(aX1, aY1, aX2, aY2, aGradient) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		
+		var canvas = this._canvas.getValue();
+		var gradient = canvas.getContext("2d").createLinearGradient(aX1, aY1, aX2, aY2);
+		aGradient.addColorStopsToCanvasGradient(gradient);
+		return gradient;
+	};
+	
+	objectFunctions.createRadialGradient = function(aX1, aY1, aRadius1, aX2, aY2, aRadius2, aGradient) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		
+		var canvas = this._canvas.getValue();
+		var gradient = canvas.getContext("2d").createRadialGradient(aX1, aY1, aRadius1, aX2, aY2, aRadius2);
+		aGradient.addColorStopsToCanvasGradient(gradient);
+		return gradient;
 	};
 	
 	objectFunctions.draw = function() {

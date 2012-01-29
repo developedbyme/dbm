@@ -50,7 +50,6 @@ dbm.registerClass("com.developedbyme.utils.css.CssFunctions", null, function(obj
 			returnString += " " + currentArray[i]+aProperty + ": " + aValue + ";";
 		}
 		
-		
 		return returnString;
 	};
 	

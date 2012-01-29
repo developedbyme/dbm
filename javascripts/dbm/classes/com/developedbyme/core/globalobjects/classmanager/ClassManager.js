@@ -69,6 +69,16 @@ dbm.runTempFunction(function() {
 		return newClassHolder.classFunction;
 	};
 	
+	classManager.getClass = function(aName) {
+		
+		if(this._classes[aName] != undefined) {
+			return this._classes[aName].classFunction;
+		}
+		
+		console.error("Class " + aName + " has not been imported.");
+		return null;
+	};
+	
 	classManager.addLibrary = function(aName, aPath, aEvaluationName) {
 		
 		var newLibraryHolder = new Object();

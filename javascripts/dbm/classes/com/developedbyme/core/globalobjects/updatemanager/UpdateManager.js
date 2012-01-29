@@ -1,8 +1,11 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
 	
+	var UpdateManager = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
+	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var UpdateChain = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain");
+	var CallFunctionUpdater = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.CallFunctionUpdater");
 	
 	dbm.setClassAsSingleton("dbmUpdateManager");
 	
@@ -11,7 +14,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		
 		this.superCall();
 		
-		this._intervalNr = -1;
+		this._intervalNumber = -1;
 		this._updateLength = 40;
 		
 		this._startTime = 0;
@@ -33,7 +36,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 	
 	objectFunctions.start = function() {
 		
-		if(this._intervalNr != -1) {
+		if(this._intervalNumber != -1) {
 			//METODO: error mannager
 			return;
 		}
@@ -45,13 +48,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		this.currentTime = 0;
 		this.currentFrame = 0;
 		
-		this._intervalNr = setInterval("dbm.singletons[\"dbmUpdateManager\"].update()", this._updateLength);
+		this._intervalNumber = setInterval("dbm.singletons[\"dbmUpdateManager\"].update()", this._updateLength);
 	}
 	
 	objectFunctions.stop = function() {
-		if(this._intervalNr != -1) {
-			clearInterval(this._intervalNr);
-			this._intervalNr = -1;
+		if(this._intervalNumber != -1) {
+			clearInterval(this._intervalNumber);
+			this._intervalNumber = -1;
 		}
 	}
 	
@@ -71,9 +74,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		this.currentFrame++;
 		delete newDate;
 		
-		//LIAM: ERROR ON LINE BELOW
 		this._updateChain.updateTime(this.currentTime, this.currentFrame);
-
+		
 		this._isUpdating = false;
 	};
 	
@@ -83,5 +85,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 	
 	objectFunctions.removeUpdater = function(aUpdater, aType) {
 		this._updateChains.getObject(aType).removeItem(aUpdater);
+	};
+	
+	objectFunctions.addUpdatedFunction = function(aObject, aFunction, aType) {
+		this._updateChains.getObject(aType).push(CallFunctionUpdater.create(aObject, aFunction));
+	};
+	
+	objectFunctions.removeUpdatedFunction = function(aObject, aFunction, aType) {
+		var currentChain = this._updateChains.getObject(aType)
+		var currentArray = currentChain.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentUpdater = currentArray[i];
+			if(currentUpdater instanceof CallFunctionUpdater && currentUpdater.isUpdaterFor(aObject, aFunction)) {
+				currentChain.removeItem(currentUpdater);
+				currentUpdater.destroy();
+				break;
+			}
+		}
 	};
 });

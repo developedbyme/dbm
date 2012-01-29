@@ -61,6 +61,10 @@
 			return this._classManager.importClass(aClassPath);
 		};
 		
+		dbm.getClass = function(aClassPath) {
+			return this._classManager.getClass(aClassPath);
+		};
+		
 		dbm.addLibrary = function(aName, aPath, aEvaluationName) {
 			this._classManager.addLibrary(aName, aPath, aEvaluationName);
 		};

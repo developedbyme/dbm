@@ -23,9 +23,24 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlModifier", null, function(obje
 		return newNode;
 	};
 	
+	staticFunctions.createNamespacedChild = function(aParentNode, aNamespace, aPrefix, aName) {
+		var newNode = ClassReference.getOwnerDocument(aParentNode).createElementNS(aNamespace, aPrefix + ":" + aName);
+		aParentNode.appendChild(newNode);
+		return newNode;
+	};
+	
 	staticFunctions.createAttribute = function(aNode, aName, aValue) {
 		//console.log("com.developedbyme.utils.xml.XmlModifier::createAttribute");
 		var newAttribute = ClassReference.getOwnerDocument(aNode).createAttribute(aName);
+		newAttribute.nodeValue = aValue;
+		aNode.setAttributeNode(newAttribute);
+		return aNode;
+	};
+	
+	staticFunctions.createNamespacedAttribute = function(aNode, aNamespace, aPrefix, aName, aValue) {
+		//console.log("com.developedbyme.utils.xml.XmlModifier::createNamespacedAttribute");
+		//console.log(aNode, aNamespace, aPrefix, aName, aValue);
+		var newAttribute = ClassReference.getOwnerDocument(aNode).createAttributeNS(aNamespace, aPrefix + ":" + aName);
 		newAttribute.nodeValue = aValue;
 		aNode.setAttributeNode(newAttribute);
 		return aNode;

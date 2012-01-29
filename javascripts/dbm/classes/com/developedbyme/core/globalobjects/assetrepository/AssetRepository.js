@@ -16,8 +16,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	var ImageAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset");
 	var XmlAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset");
+	var TextAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset");
 	var AudioAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset");
 	var VideoAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset");
+	var ArrayBufferAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset");
 	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
@@ -162,7 +164,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 				newAsset = ImageAsset.create(aPath);
 				break;
 			case "xml":
+			case "xsl":
 				newAsset = XmlAsset.create(aPath);
+				break;
+			case "text":
+			case "txt":
+			case "vert":
+			case "frag":
+				newAsset = TextAsset.create(aPath);
 				break;
 			case "mp3":
 			case "oga":
@@ -172,6 +181,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 			case "ogv":
 			case "webm":
 				newAsset = VideoAsset.create(aPath);
+				break;
+			case "wav":
+			case "bin":
+				newAsset = ArrayBufferAsset.create(aPath);
 				break;
 			default:
 				//METODO: error message

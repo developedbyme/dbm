@@ -3,6 +3,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 	
 	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
 	
+	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::init");
 		
@@ -13,6 +15,10 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 		return this;
 	};
 	
+	objectFunctions.getDataObject = function() {
+		return this.originalArray;
+	};
+	
 	objectFunctions.reevaluate = function(aBaseObject) {
 		var currentArray = this.originalArray;
 		var theLength = currentArray.length;
@@ -21,7 +27,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 		
 		for (var i = 0; i < theLength; i++) {
 			var currentData = this.originalArray[i];
-			if(currentData.reevaluate != undefined) {
+			if(currentData instanceof ReevaluationBaseObject) {
 				returnArray[i] = currentData.reevaluate(aBaseObject);
 			}
 			else {
@@ -33,6 +39,9 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 	}
 	
 	objectFunctions.performDestroy = function() {
+		
+		//METODO: destroy child evaluators
+		
 		this.superCall();
 	};
 	
