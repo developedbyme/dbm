@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Canvas view - dbm example</title>
+		<script type="application/javascript" src="../javascripts/dbm/dbm.js"></script>
+		<script type="application/javascript">
+			dbm.setup(window, document, "../javascripts", "classes");
+		</script>
+		<script type="application/javascript" src="../javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/setup/defaultSetup.js"></script>
+		<script type="application/javascript" src="../javascripts/examples/canvasView3dExample.js"></script>
+		<script type="application/javascript" src="../javascripts/libraries/glmatrix/glMatrix-0.9.5.min.js"></script>
+		
+		<script id="shader-fs" type="x-shader/x-fragment">
+		    precision mediump float;
+
+		    void main(void) {
+		        gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+		    }
+		</script>
+
+		<script id="shader-vs" type="x-shader/x-vertex">
+		    attribute vec3 aVertexPosition;
+
+		    uniform mat4 uMVMatrix;
+		    uniform mat4 uPMatrix;
+
+		    void main(void) {
+		        gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+		    }
+		</script>
+		<script type="text/javascript">
+			function getShader(gl, id) {
+		        var shaderScript = document.getElementById(id);
+		        if (!shaderScript) {
+		            return null;
+		        }
+
+		        var str = "";
+		        var k = shaderScript.firstChild;
+		        while (k) {
+		            if (k.nodeType == 3) {
+		                str += k.textContent;
+		            }
+		            k = k.nextSibling;
+		        }
+
+		        var shader;
+		        if (shaderScript.type == "x-shader/x-fragment") {
+		            shader = gl.createShader(gl.FRAGMENT_SHADER);
+		        } else if (shaderScript.type == "x-shader/x-vertex") {
+		            shader = gl.createShader(gl.VERTEX_SHADER);
+		        } else {
+		            return null;
+		        }
+
+		        gl.shaderSource(shader, str);
+		        gl.compileShader(shader);
+
+		        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+		            alert(gl.getShaderInfoLog(shader));
+		            return null;
+		        }
+
+		        return shader;
+		    }
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

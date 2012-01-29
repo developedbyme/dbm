@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	var XmlAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset");
 	var AudioAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset");
 	var VideoAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset");
+	var TextAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset");
 	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
@@ -172,6 +173,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 			case "ogv":
 			case "webm":
 				newAsset = VideoAsset.create(aPath);
+				break;
+			case "text":
+			case "txt":
+			case "vert":
+			case "frag":
+				newAsset = TextAsset.create(aPath);
 				break;
 			default:
 				//METODO: error message

@@ -1,0 +1,153 @@
+dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode");
+	
+	var TransformationTo3dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode");
+	
+	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode::init");
+		
+		this.superCall();
+		
+		this._x = this.createProperty("x", 0);
+		this._y = this.createProperty("y", 0);
+		this._z = this.createProperty("z", 0);
+		this._rotateX = this.createProperty("rotateX", 0);
+		this._rotateY = this.createProperty("rotateY", 0);
+		this._rotateZ = this.createProperty("rotateZ", 0);
+		this._scaleX = this.createProperty("scaleX", 1);
+		this._scaleY = this.createProperty("scaleY", 1);
+		this._scaleZ = this.createProperty("scaleZ", 1);
+		this._rotationOrder = this.createProperty("rotationOrder", "xyz");
+		this._outputMatrix = this.createProperty("outputMatrix", Matrix.createIdentity(4, 4));
+		
+		this._matrixOrder = new Array(3);
+		this._tempMatrices = new Array(2);
+		this._tempMatrices[0] = Matrix.createIdentity(4, 4);
+		this._tempMatrices[1] = Matrix.createIdentity(4, 4);
+		
+		this._scaleMatrix = Matrix.createIdentity(4, 4);
+		this._rotateXMatrix = Matrix.createIdentity(4, 4);
+		this._rotateYMatrix = Matrix.createIdentity(4, 4);
+		this._rotateZMatrix = Matrix.createIdentity(4, 4);
+		
+		this.createUpdateFunction("default", this._update, [this._x, this._y, this._z, this._rotateX, this._rotateY, this._rotateZ, this._scaleX, this._scaleY, this._scaleZ, this._rotationOrder], [this._outputMatrix]);
+		
+		return this;
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode::_update");
+		
+		var rotateX = this._rotateX.getValueWithoutFlow();
+		var rotateY = this._rotateY.getValueWithoutFlow();
+		var rotateZ = this._rotateZ.getValueWithoutFlow();
+		var rotationOrder = this._rotationOrder.getValueWithoutFlow();
+		
+		var theMatrix = this._outputMatrix.getValueWithoutFlow();
+		
+		this._scaleMatrix.setValue(0, 3, this._scaleX.getValueWithoutFlow());
+		this._scaleMatrix.setValue(1, 3, this._scaleY.getValueWithoutFlow());
+		this._scaleMatrix.setValue(2, 3, this._scaleZ.getValueWithoutFlow());
+		
+		this._rotateXMatrix.setValue(1, 1, Math.cos(rotateX));
+		this._rotateXMatrix.setValue(2, 1, -1*Math.sin(rotateX));
+		this._rotateXMatrix.setValue(1, 2, Math.sin(rotateX));
+		this._rotateXMatrix.setValue(2, 2, Math.cos(rotateX));
+		
+		this._rotateYMatrix.setValue(0, 0, Math.cos(rotateY));
+		this._rotateYMatrix.setValue(2, 0, Math.sin(rotateY));
+		this._rotateYMatrix.setValue(0, 2, -1*Math.sin(rotateY));
+		this._rotateYMatrix.setValue(2, 2, Math.cos(rotateY));
+		
+		this._rotateZMatrix.setValue(0, 0, Math.cos(rotateZ));
+		this._rotateZMatrix.setValue(1, 0, -1*Math.sin(rotateZ));
+		this._rotateZMatrix.setValue(0, 1, Math.sin(rotateZ));
+		this._rotateZMatrix.setValue(1, 1, Math.cos(rotateZ));
+		
+		switch(rotationOrder) {
+			default:
+				//METODO: error report
+			case "xyz":
+				this._matrixOrder[0] = this._rotateXMatrix;
+				this._matrixOrder[1] = this._rotateYMatrix;
+				this._matrixOrder[2] = this._rotateZMatrix;
+				break;
+			case "xzy":
+				this._matrixOrder[0] = this._rotateXMatrix;
+				this._matrixOrder[2] = this._rotateYMatrix;
+				this._matrixOrder[1] = this._rotateZMatrix;
+				break;
+			case "yxz":
+				this._matrixOrder[1] = this._rotateXMatrix;
+				this._matrixOrder[0] = this._rotateYMatrix;
+				this._matrixOrder[2] = this._rotateZMatrix;
+				break;
+			case "yzx":
+				this._matrixOrder[2] = this._rotateXMatrix;
+				this._matrixOrder[0] = this._rotateYMatrix;
+				this._matrixOrder[1] = this._rotateZMatrix;
+				break;
+			case "zxy":
+				this._matrixOrder[1] = this._rotateXMatrix;
+				this._matrixOrder[2] = this._rotateYMatrix;
+				this._matrixOrder[0] = this._rotateZMatrix;
+				break;
+			case "zyx":
+				this._matrixOrder[2] = this._rotateXMatrix;
+				this._matrixOrder[1] = this._rotateYMatrix;
+				this._matrixOrder[0] = this._rotateZMatrix;
+				break;
+		}
+		
+		Matrix.multiplyMatrices(this._matrixOrder[0], this._scaleMatrix, this._tempMatrices[0]);
+		Matrix.multiplyMatrices(this._matrixOrder[1], this._tempMatrices[0], this._tempMatrices[1]);
+		Matrix.multiplyMatrices(this._matrixOrder[2], this._tempMatrices[1], theMatrix);
+		
+		theMatrix.setValue(3, 0, this._x.getValueWithoutFlow());
+		theMatrix.setValue(3, 1, this._y.getValueWithoutFlow());
+		theMatrix.setValue(3, 2, this._z.getValueWithoutFlow());
+		
+		this._outputMatrix._internalFunctionality_setFlowUpdateNumber(aFlowUpdateNumber);
+		//console.log(aFlowUpdateNumber, this._outputMatrix.getFlowUpdateNumber());
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._x = null;
+		this._y = null;
+		this._z = null;
+		this._rotateX = null;
+		this._rotateY = null;
+		this._rotateZ = null;
+		this._scaleX = null;
+		this._scaleY = null;
+		this._scaleZ = null;
+		this._rotationOrder = null;
+		this._outputMatrix = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aX, aY, aZ, aRotateX, aRotateY, aRotateZ, aScaleX, aScaleY, aScaleZ, aRotationOrder) {
+		//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode::create");
+		
+		aRotationOrder = VariableAliases.valueWithDefault(aRotationOrder, "xyz");
+		
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("x", aX);
+		newNode.setPropertyInputWithoutNull("y", aY);
+		newNode.setPropertyInputWithoutNull("z", aZ);
+		newNode.setPropertyInputWithoutNull("rotateX", aRotateX);
+		newNode.setPropertyInputWithoutNull("rotateY", aRotateY);
+		newNode.setPropertyInputWithoutNull("rotateZ", aRotateZ);
+		newNode.setPropertyInputWithoutNull("scaleX", aScaleX);
+		newNode.setPropertyInputWithoutNull("scaleY", aScaleY);
+		newNode.setPropertyInputWithoutNull("scaleZ", aScaleZ);
+		newNode.setPropertyInputWithoutNull("rotationOrder", aRotationOrder);
+		return newNode;
+	}
+});

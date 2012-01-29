@@ -1,5 +1,5 @@
 /**
- * A 2d matrix with dynamic size size.
+ * A 2d matrix with dynamic size.
  *
  * @author	Mattias Ekendahl (mattias@developedbyme.com)
  * @version	0.3.01

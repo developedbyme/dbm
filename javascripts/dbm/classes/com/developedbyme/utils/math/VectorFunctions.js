@@ -3,6 +3,16 @@ dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function
 	
 	var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");
 	
+	staticFunctions.add2d = function(aInputPoint1, aInputPoint2, aOutputPoint) {
+		aOutputPoint.x = aInputPoint1.x+aInputPoint2.x;
+		aOutputPoint.y = aInputPoint1.y+aInputPoint2.y;
+	};
+	
+	staticFunctions.multiply2d = function(aMultiplier, aInputPoint, aOutputPoint) {
+		aOutputPoint.x = aMultiplier*aInputPoint.x;
+		aOutputPoint.y = aMultiplier*aInputPoint.y;
+	};
+	
 	staticFunctions.normalize2d = function(aInputPoint, aOutputPoint) {
 		var invertedLength = 1/Math.sqrt(Math.pow(aInputPoint.x, 2)+Math.pow(aInputPoint.y, 2));
 		aOutputPoint.x = invertedLength*aInputPoint.x;
@@ -27,9 +37,23 @@ dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function
 		aOutputPoint.x = 0;
 		aOutputPoint.y = 0;
 		aOutputPoint.z = (x1*y2)-(y1*x2);
-	};	
+	};
+	
+	staticFunctions.add3d = function(aInputPoint1, aInputPoint2, aOutputPoint) {
+		aOutputPoint.x = aInputPoint1.x+aInputPoint2.x;
+		aOutputPoint.y = aInputPoint1.y+aInputPoint2.y;
+		aOutputPoint.z = aInputPoint1.z+aInputPoint2.z;
+	};
+	
+	staticFunctions.multiply3d = function(aMultiplier, aInputPoint, aOutputPoint) {
+		aOutputPoint.x = aMultiplier*aInputPoint.x;
+		aOutputPoint.y = aMultiplier*aInputPoint.y;
+		aOutputPoint.z = aMultiplier*aInputPoint.z;
+	};
 	
 	staticFunctions.normalize3d = function(aInputPoint, aOutputPoint) {
+		console.log("com.developedbyme.utils.math.VectorFunctions::normalize3d");
+		console.log(aInputPoint, aOutputPoint);
 		var invertedLength = 1/Math.sqrt(Math.pow(aInputPoint.x, 2)+Math.pow(aInputPoint.y, 2)+Math.pow(aInputPoint.z, 2));
 		aOutputPoint.x = invertedLength*aInputPoint.x;
 		aOutputPoint.y = invertedLength*aInputPoint.y;
@@ -37,6 +61,7 @@ dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function
 	};
 	
 	staticFunctions.normalizeSelf3d = function(aPoint) {
+		console.log("com.developedbyme.utils.math.VectorFunctions::normalizeSelf3d");
 		ClassReference.normalize3d(aPoint, aPoint);
 	};
 	
