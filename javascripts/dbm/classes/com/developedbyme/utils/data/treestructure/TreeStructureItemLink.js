@@ -6,6 +6,7 @@
  */
 dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink", "com.developedbyme.utils.data.treestructure.TreeStructureItem", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
+	//"use strict";
 	
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	
@@ -15,8 +16,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink::_init");
 		
 		this.superCall();
 		
@@ -24,7 +25,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 		this.link = null;
 		
 		return this;
-	}; //End function TreeStructureItemLink
+	}; //End function _init
 	
 	/**
 	 * Adds a child.

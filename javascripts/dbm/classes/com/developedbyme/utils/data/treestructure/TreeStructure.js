@@ -6,6 +6,7 @@
  */
 dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructure");
+	//"use strict";
 	
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
@@ -16,8 +17,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::_init");
 		
 		this.superCall();
 		
@@ -28,7 +29,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		this._root._internalFunctionality_setRoot(this);
 		
 		return this;
-	}; //End function TreeStructure
+	}; //End function _init
 	
 	/**
 	 * Gets the root of the tree structure.

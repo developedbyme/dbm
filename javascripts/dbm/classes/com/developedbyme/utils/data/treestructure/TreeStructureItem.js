@@ -6,6 +6,7 @@
  */
 dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem", "com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	//"use strict";
 	
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
@@ -15,8 +16,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::_init");
 		
 		this.superCall();
 		
@@ -29,7 +30,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		this._attributes = null;
 		
 		return this;
-	} //End function TreeStructureItem
+	} //End function _init
 	
 	/**
 	 * Gets the name of the item.
@@ -343,7 +344,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 * Creates a new item.
 	 */
 	staticFunctions.create = function(aName) {
-		//console.log("create");
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::create");
 		var newItem = (new TreeStructureItem()).init();
 		newItem.setName(aName);
 		return newItem;
