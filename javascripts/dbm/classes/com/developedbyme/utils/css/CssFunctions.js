@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.css.CssFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.css.CssFunctions");
+	//"use strict";
 	
 	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
 	

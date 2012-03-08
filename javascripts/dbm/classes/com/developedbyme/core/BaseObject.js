@@ -189,6 +189,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 
 dbm.extendClass("com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//MENOTE: this can't be strict since arguments.callee is not available then
+	//MENOTE: no other function can be strict since arguments.callee.caller is not available then
 	
 	objectFunctions.superCall = function superCall() {
 		//console.log("com.developedbyme.core.BaseObject::superCall");

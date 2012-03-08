@@ -1,4 +1,5 @@
 dbm.runTempFunction(function() {
+	//"use strict";
 	
 	var HtmlPanel = dbm.importClass("com.developedbyme.workspace.gui.panels.HtmlPanel");
 	

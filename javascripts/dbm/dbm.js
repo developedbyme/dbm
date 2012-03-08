@@ -45,7 +45,7 @@
 		
 		dbm.addSpecificClassesFolder = function(aClassPathPrefix, aClassesFolder) {
 			this._specificClassesFolders[aClassPathPrefix] = aClassesFolder;
-		}
+		};
 		
 		dbm.setupLoaderHook = function() {
 			this._document.addEventListener("DOMContentLoaded", this._onHtmlLoaded, false);
@@ -198,7 +198,7 @@
 		
 		dbm.externalStart = function() {
 			this._start();
-		}
+		};
 		
 		dbm.init();
 	}
