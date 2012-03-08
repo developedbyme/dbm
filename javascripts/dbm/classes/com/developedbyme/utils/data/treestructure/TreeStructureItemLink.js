@@ -15,8 +15,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 	/**
 	 * Constructor
 	 */
-	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink::_init");
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink::init");
 		
 		this.superCall();
 		
@@ -93,7 +93,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 				newLevel = aResolveLinksLevel;
 			}
 			
-			var linkedItem =  this._root.getItemByPath(this.link, this);
+			var linkedItem =  this._root.getItemByPath(this.link, this._parent);
 			
 			linkedItem.debugTraceChildren(newTabString, newLevel);
 		}

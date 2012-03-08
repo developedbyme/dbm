@@ -15,7 +15,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	/**
 	 * Constructor
 	 */
-	objectFunctions._init = function() {
+	objectFunctions.init = function() {
 		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 		
 		this.superCall();
@@ -74,6 +74,24 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	
 	objectFunctions.hasAttribute = function(aName) {
 		return (this._attributes != null && this._attributes.hasObject(aName));
+	}
+	
+	objectFunctions.getInheritedAttribute = function(aName) {
+		var currentItem = this;
+		var debugCounter = 0;
+		while(currentItem != null) {
+			if(debugCounter++ > 1000) {
+				//METODO: error message
+				return null;
+			}
+			if(currentItem.hasAttribute(aName)) {
+				return currentItem.getAttribute(aName);
+			}
+			
+			currentItem = currentItem.getParent();
+		}
+		//METODO: warning message
+		return null;
 	}
 	
 	/**
@@ -324,7 +342,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	/**
 	 * Creates a new item.
 	 */
-	staticFunctions.create= function(aName) {
+	staticFunctions.create = function(aName) {
 		//console.log("create");
 		var newItem = (new TreeStructureItem()).init();
 		newItem.setName(aName);
