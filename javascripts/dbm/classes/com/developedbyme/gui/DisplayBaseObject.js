@@ -9,6 +9,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	var PlaceHtmlElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
 	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
+	var TransformElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.TransformElementNode");
 	
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
@@ -112,7 +113,17 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, aElement);
 		}
 		
-		//METODO: reconnect placement node
+		if(this._placementNode != null) {
+			this._placementNode.getProperty("element").setValue(this._element);
+			this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
+		}
+		else {
+			//METODO: browser prefixes
+			var transformCssValue = aElement.style.getPropertyValue("transform");
+			if(transformCssValue != null) {
+				//METODO: create transform node
+			}
+		}
 		
 		this._connectObjectToOpacity();
 		
@@ -134,7 +145,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this._element.setValue(null);
 		
 		if(this._placementNode != null) {
-			this._placementNode.getProperty("element").disconnectOutput();
+			this._placementNode.getProperty("display").disconnectOutput();
 		}
 		
 		return this;
@@ -147,6 +158,15 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	objectFunctions.setElementAsPositioned = function() {
 		
 		this._placementNode = PlaceHtmlElementNode.create(this._element);
+		this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
+		this.addDestroyableObject(this._placementNode);
+		
+		return this;
+	};
+	
+	objectFunctions.setElementAsTransformed = function() {
+		
+		this._placementNode = TransformElementNode.create(this._element);
 		this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
 		this.addDestroyableObject(this._placementNode);
 		

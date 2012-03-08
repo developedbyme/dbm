@@ -44,8 +44,9 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceOrientation", "com.devel
 	};
 	
 	objectFunctions._orientationUpdated = function(aEvent) {
-		console.log("com.developedbyme.utils.device.DeviceOrientation::_orientationUpdated");
-		console.log(aEvent);
+		//console.log("com.developedbyme.utils.device.DeviceOrientation::_orientationUpdated");
+		//console.log(aEvent);
+		//console.log(aEvent.gamma);
 		if(aEvent.alpha == null && aEvent.beta == null && aEvent.gamma == null) {
 			if(this.getExtendedEvent().hasEvent(DeviceExtendedEventIds.ORIENTATION_ERROR)) {
 				this.getExtendedEvent().perform(DeviceExtendedEventIds.ORIENTATION_ERROR, aEvent);

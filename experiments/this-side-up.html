@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>DBM Experiment - This side up</title>
+		<script type="application/javascript" src="../javascripts/dbm/dbm.js"></script>
+		<script type="application/javascript">
+			dbm.setup(window, document, "../javascripts", "classes");
+		</script>
+		<script type="application/javascript" src="../javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/setup/defaultSetup.js"></script>
+		<script type="application/javascript" src="../javascripts/experiments/thisSideUp.js"></script>
+	</head>
+	<body style="overflow: hidden">
+		<div id="mainRotation" data-dbm-class="dbm:DisplayBaseObject" style="position: absolute; width: 0px; height: 0px; overflow: visible;">
+			<div data-dbm-name="left" data-dbm-class="dbm:DisplayBaseObject" style="position: absolute; overflow: hidden;">
+				<div data-dbm-name="backRotate" data-dbm-class="dbm:DisplayBaseObject" style="position: absolute; overflow: visible; 0px; height: 0px;">
+					<div data-dbm-name="content" data-dbm-class="dbm:DisplayBaseObject" style="position: absolute; background-color: #FF0000;">
+						Left
+					</div>
+				</div>
+			</div>
+			<div data-dbm-name="right" data-dbm-class="dbm:DisplayBaseObject" style="position: absolute; overflow: hidden;">
+				<div data-dbm-name="backRotate" data-dbm-class="dbm:DisplayBaseObject" style="position: absolute; overflow: visible; width: 0px; height: 0px;">
+					<div data-dbm-name="content" data-dbm-class="dbm:DisplayBaseObject" style="position: absolute; background-color: #00FF00;">
+						Right
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

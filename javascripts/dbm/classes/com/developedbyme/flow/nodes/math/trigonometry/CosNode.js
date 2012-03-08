@@ -1,6 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.trigonometry.CosNode");
 	
+	var CosNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode");
+	
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.trigonometry.CosNode::init");
 		
