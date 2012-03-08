@@ -13,9 +13,9 @@ dbm.runTempFunction(function() {
 		this._classHolderClass = function ClassHolder() {};
 		
 		this._objectMethodsClass = function ObjectFunctions() {};
-		this._objectMethodsClass.prototype.toString = function() {return "[ObjectFunctions]"};
+		//this._objectMethodsClass.prototype.toString = function() {return "[ObjectFunctions]"};
 		this._staticMethodsClass = function StaticFunctions() {};
-		this._staticMethodsClass.prototype.toString = function() {return "[StaticFunctions]"};
+		//this._staticMethodsClass.prototype.toString = function() {return "[StaticFunctions]"};
 		
 		Object.seal(this);
 		
@@ -61,7 +61,7 @@ dbm.runTempFunction(function() {
 		var newClassHolder = this._getClassHolder(aName);
 		
 		if(newClassHolder.isRegistered) {
-			console.log("Class " + aName + " is already registered.");
+			console.error("Class " + aName + " is already registered.");
 			return newClassHolder;
 		}
 		newClassHolder.isRegistered = true;
@@ -211,7 +211,7 @@ dbm.runTempFunction(function() {
 		var currentClassHolder = this._classes[aName];
 		if(currentClassHolder.prototypeObject == null) {
 			if(!currentClassHolder.isRegistered) {
-				console.log("Class " + currentClassHolder.name + " is not registered");
+				console.error("Class " + currentClassHolder.name + " is not registered");
 			}
 			
 			//console.log(">", currentClassHolder.extendedClass);

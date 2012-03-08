@@ -1,12 +1,12 @@
-dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ValuesToRectangleNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.math.geometry.ValuesToRectangleNode");
+dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
 	
-	var ValuesToRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ValuesToRectangleNode");
+	var RectangleFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
 	
 	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.ValuesToRectangleNode::_init");
+		//console.log("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode::_init");
 		
 		this.superCall();
 		
@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ValuesToRectangleN
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.ValuesToRectangleNode::_update");
+		//console.log("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode::_update");
 		
 		var outputRectangle = this._outputRectangle.getValueWithoutFlow();
 		

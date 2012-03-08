@@ -7,6 +7,7 @@ dbm.registerClass("com.developedbyme.workspace.gui.panels.BasePanel", "com.devel
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	

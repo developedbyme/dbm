@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.ArrayHolder");
+	//"use strict";
 	
 	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
 	
@@ -13,7 +14,6 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 		
 		return this;
 	};
-	
 	
 	objectFunctions.performDestroy = function() {
 		

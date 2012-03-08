@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.NamedArray");
+	//"use strict";
 	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	

@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "com.developedbyme.utils.data.ArrayHolder", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.MultidimensionalArrayHolder");
+	//"use strict";
 	
 	var MultidimensionalArrayHolder = dbm.importClass("com.developedbyme.utils.data.MultidimensionalArrayHolder");
 	

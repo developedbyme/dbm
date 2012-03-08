@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
+	//"use strict";
 	
 	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
 	

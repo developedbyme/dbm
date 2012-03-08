@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.CommandQueue");
+	//"use strict";
 	
 	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.CommandQueue");
 	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");

@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.VariableAliases");
+	//"use strict";
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	

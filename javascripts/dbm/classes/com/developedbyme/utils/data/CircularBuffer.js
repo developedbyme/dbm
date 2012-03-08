@@ -6,6 +6,7 @@
  */
 dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.CircularBuffer");
+	//"use strict";
 		
 	/**
 	 * Constructor
