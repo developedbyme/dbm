@@ -12,8 +12,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowForElementNode", "
 	
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_init");
 		
 		this.superCall();
 		

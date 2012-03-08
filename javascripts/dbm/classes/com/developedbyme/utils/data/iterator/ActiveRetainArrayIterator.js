@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator", "com.developedbyme.utils.data.iterator.ActiveArrayIterator", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator::_init");
 		
 		this.superCall();
 		

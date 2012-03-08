@@ -21,8 +21,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 	
 	dbm.setClassAsSingleton("dbmAnimationManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::_init");
 		
 		this.superCall();
 		

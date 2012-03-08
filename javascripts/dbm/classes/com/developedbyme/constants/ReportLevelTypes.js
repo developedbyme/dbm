@@ -9,5 +9,6 @@ dbm.registerClass("com.developedbyme.constants.ReportLevelTypes", null, function
 	staticFunctions.MINOR = 2;
 	staticFunctions.NOTICE = 1;
 	staticFunctions.NONE = 0;
+	staticFunctions.UNKNOWN = -1;
 	
 });

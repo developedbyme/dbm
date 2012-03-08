@@ -19,8 +19,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 	
 	dbm.setClassAsSingleton("dbmWindowManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_init");
 		
 		this.superCall();
 		

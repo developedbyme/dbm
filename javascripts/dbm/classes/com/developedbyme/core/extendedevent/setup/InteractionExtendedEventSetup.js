@@ -15,8 +15,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	var MouseExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.MouseExtendedEventIds");
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::_init");
 		
 		this.superCall();
 		

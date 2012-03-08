@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.ScaleZNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.transformation.ScaleZNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.transformation.ScaleZNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.transformation.ScaleZNode::_init");
 		
 		this.superCall();
 		

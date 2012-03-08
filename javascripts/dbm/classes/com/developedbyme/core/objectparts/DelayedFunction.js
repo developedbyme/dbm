@@ -1,10 +1,11 @@
 dbm.registerClass("com.developedbyme.core.objectparts.DelayedFunction", "com.developedbyme.core.objectparts.ExtendedFunctionBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.DelayedFunction");
+	//"use strict";
 	
 	var DelayedFunction = dbm.importClass("com.developedbyme.core.objectparts.DelayedFunction");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.DelayedFunction::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.DelayedFunction::_init");
 		
 		this.superCall();
 		

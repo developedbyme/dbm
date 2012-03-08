@@ -15,8 +15,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	var ReadyStateTypes = dbm.importClass("com.developedbyme.constants.ReadyStateTypes");
 	var XmlHttpResponseTypes = dbm.importClass("com.developedbyme.constants.XmlHttpResponseTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset::_init");
 		
 		this.superCall();
 		

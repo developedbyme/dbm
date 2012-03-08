@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
+	//"use strict";
 	
 	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
 	
@@ -9,8 +10,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::_init");
 		
 		this.superCall();
 		

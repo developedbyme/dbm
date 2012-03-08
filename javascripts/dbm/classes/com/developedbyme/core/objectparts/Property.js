@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.Property");
+	//"use strict";
 	
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	
@@ -13,8 +14,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
-	objectFunctions.init = function init() {
-		//console.log("com.developedbyme.core.objectparts.Property::init");
+	objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.objectparts.Property::_init");
 		
 		this.superCall();
 		
@@ -125,6 +126,12 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
+	objectFunctions.setFlowAsUpdated =function(aFlowUpdateNumber) {
+		this._flowUpdateNumber = aFlowUpdateNumber;
+		this._mustUpdate = false;
+		this._status = FlowStatusTypes.UPDATED;
+	}
+	
 	objectFunctions.getValue = function getValue() {
 		
 		if(this._status == FlowStatusTypes.NEEDS_UPDATE) {
@@ -155,7 +162,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	objectFunctions.setAlwaysUpdateFlow = function setAlwaysUpdateFlow(aUpdate) {
-		this._alwaysUpdateFlow = aUpdate;
+		this._alwaysUpdateFlow = !VariableAliases.isFalse(aUpdate);
+		
+		return this;
 	};
 	
 	objectFunctions.getFlowUpdateNumber = function getFlowUpdateNumber() {
@@ -330,6 +339,18 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			aReturnArray.push(this._inputConnection);
 		}
 		if(this._objectInputConnection != null && !this._objectInputConnection.isOutput() && this._objectInputConnection.getStatus() == FlowStatusTypes.NEEDS_UPDATE) {
+			aReturnArray.push(this._objectInputConnection);
+		}
+		if(this._inputUpdateFunction != null) {
+			aReturnArray.push(this._inputUpdateFunction);
+		}
+	};
+	
+	objectFunctions.fillWithAllInputConnections = function fillWithInputConnections(aReturnArray) {
+		if(this._inputConnection != null) {
+			aReturnArray.push(this._inputConnection);
+		}
+		if(this._objectInputConnection != null && !this._objectInputConnection.isOutput()) {
 			aReturnArray.push(this._objectInputConnection);
 		}
 		if(this._inputUpdateFunction != null) {

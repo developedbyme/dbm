@@ -11,8 +11,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio::_init");
 		
 		this.superCall();
 		

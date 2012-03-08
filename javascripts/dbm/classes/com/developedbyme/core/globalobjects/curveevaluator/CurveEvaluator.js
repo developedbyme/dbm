@@ -24,8 +24,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 	
 	staticFunctions.DEFAULT_EXACTNESS = 0.01;
 		
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::_init");
 		
 		this._evaluatorsArray = new Array();
 		this._bezierMultipliersArraysArray = new Array();

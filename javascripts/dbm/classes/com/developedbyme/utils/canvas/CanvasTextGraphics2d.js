@@ -17,8 +17,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d", "com.de
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasTextGraphics2d::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasTextGraphics2d::_init");
 		
 		this.superCall();
 		

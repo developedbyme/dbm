@@ -1,11 +1,14 @@
 dbm.registerClass("com.developedbyme.core.ExtendedEventBaseObject", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.ExtendedEventBaseObject");
+	//"use strict";
+	
+	var ExtendedEventBaseObject = dbm.importClass("com.developedbyme.core.ExtendedEventBaseObject");
 	
 	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
 	var DelayedExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.DelayedExtendedEventController");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.ExtendedEventBaseObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.ExtendedEventBaseObject::_init");
 		
 		this.superCall();
 		

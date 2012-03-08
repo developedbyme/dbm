@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.IdManager", "c
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.idmanager.IdManager");
 		
 		this._idGroupsObject = new Object();

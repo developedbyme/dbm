@@ -18,8 +18,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.display.ScrollT
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.display.ScrollToElementCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.display.ScrollToElementCommand::_init");
 		
 		this.superCall();
 		

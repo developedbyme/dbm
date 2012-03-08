@@ -19,6 +19,7 @@ dbm.runTempFunction(function() {
 	var CosNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode");
 	var ScaleZNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.ScaleZNode");
 	var IterativeFlowGroup = dbm.importClass("com.developedbyme.flow.IterativeFlowGroup");
+	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
@@ -45,8 +46,8 @@ dbm.runTempFunction(function() {
 		
 		//Timeline
 		var newTimeline = dbm.singletons.dbmAnimationManager.createTimeline(0, null);
-		newTimeline.animateValue(Math.PI, 0.5*animationTime, "quadric", 0);
-		newTimeline.animateValue(2*Math.PI, 0.5*animationTime, "invertedQuadric", 0.5*animationTime);
+		newTimeline.animateValue(Math.PI, 0.5*animationTime, InterpolationTypes.QUADRATIC, 0);
+		newTimeline.animateValue(2*Math.PI, 0.5*animationTime, InterpolationTypes.INVERTED_QUADRATIC, 0.5*animationTime);
 		
 		//Position
 		var xPosition = SinNode.create(newTimeline.getProperty("outputValue"));

@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.round.CeilNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.round.CeilNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.round.CeilNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.round.CeilNode::_init");
 		
 		this.superCall();
 		

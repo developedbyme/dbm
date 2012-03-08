@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.convertion.DegreesToRadiansNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.convertion.DegreesToRadiansNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.convertion.DegreesToRadiansNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.convertion.DegreesToRadiansNode::_init");
 		
 		this.superCall();
 		

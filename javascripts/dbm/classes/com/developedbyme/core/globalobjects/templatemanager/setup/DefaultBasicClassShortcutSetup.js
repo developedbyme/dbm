@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	
 	var TemplateClassShortcutNames = dbm.importClass("com.developedbyme.constants.TemplateClassShortcutNames");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultBasicClassShortcutSetup::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultBasicClassShortcutSetup::_init");
 		
 		this.superCall();
 		

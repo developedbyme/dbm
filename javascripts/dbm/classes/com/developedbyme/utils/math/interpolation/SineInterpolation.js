@@ -14,7 +14,7 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.SineInterpolation"
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.math.interpolation.SineInterpolation");
 		
 		this.minValue = 0;

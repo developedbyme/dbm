@@ -22,8 +22,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 	staticFunctions.TEXT_NAME_ATTRIBUTE = "data-dbm-text-name";
 	staticFunctions.IGNORE_CHILDREN_ATTRIBUTE = "data-dbm-ignore-children";
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::_init");
 		
 		this.superCall();
 		

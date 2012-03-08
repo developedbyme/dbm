@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.linkmanager.LinkManager"
 	
 	dbm.setClassAsSingleton("dbmLinkManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.linkmanager.LinkManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.linkmanager.LinkManager::_init");
 		
 		this.superCall();
 		

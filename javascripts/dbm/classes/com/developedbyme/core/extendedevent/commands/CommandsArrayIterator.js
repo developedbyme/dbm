@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator::_init");
 		
 		this.superCall();
 		

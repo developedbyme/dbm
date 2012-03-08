@@ -8,8 +8,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.Custom
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.idmanager.objects.CustomBaseIdGroup::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.idmanager.objects.CustomBaseIdGroup::_init");
 		
 		this.superCall();
 		

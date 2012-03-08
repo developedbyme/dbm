@@ -12,8 +12,8 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.matrices.Matrix::_init");
 		
 		this.superCall();
 		
@@ -174,6 +174,19 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);
 		newMatrix.setAsIdentityMatrix();
+		return newMatrix;
+	};
+	
+	staticFunctions.createWithValues = function(aWidth, aHeight, aValues) {
+		//console.log("com.developedbyme.core.data.matrices.Matrix::createWithValues (static)");
+		//console.log(aWidth, aHeight, aValues);
+		var newMatrix = (new ClassReference()).init();
+		newMatrix.setupSize(aWidth, aHeight);
+		var currentArray = aValues;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			newMatrix.valuesArray[i] = currentArray[i];
+		}
 		return newMatrix;
 	};
 });

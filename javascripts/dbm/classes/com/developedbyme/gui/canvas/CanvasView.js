@@ -13,8 +13,8 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.canvas.CanvasView::_init");
 		
 		this.superCall();
 		

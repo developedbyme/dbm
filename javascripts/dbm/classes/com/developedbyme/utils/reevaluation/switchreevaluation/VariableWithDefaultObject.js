@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.switchreevaluation.Varia
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.switchreevaluation.VariableWithDefaultObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.switchreevaluation.VariableWithDefaultObject::_init");
 		
 		this.superCall();
 		

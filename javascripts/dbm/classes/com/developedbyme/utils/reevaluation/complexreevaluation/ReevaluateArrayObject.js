@@ -5,8 +5,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 	
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::_init");
 		
 		this.superCall();
 		

@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator");
+	//"use strict";
 	
 	var HtmlCreator = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator");
 	
@@ -8,8 +9,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 	
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator::_init");
 		
 		this.superCall();
 		

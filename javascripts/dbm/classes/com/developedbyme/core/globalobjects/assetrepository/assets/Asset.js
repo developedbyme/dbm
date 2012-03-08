@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_init");
 		
 		this.superCall();
 		

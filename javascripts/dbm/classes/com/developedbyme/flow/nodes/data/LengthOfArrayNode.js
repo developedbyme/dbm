@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.data.LengthOfArrayNodes", "com.d
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.data.LengthOfArrayNodes::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.data.LengthOfArrayNodes::_init");
 		
 		this.superCall();
 		

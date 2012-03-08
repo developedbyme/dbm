@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.flow.data.IterationConnection", "com.develo
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.data.IterationConnection::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.data.IterationConnection::_init");
 		
 		this.superCall();
 		

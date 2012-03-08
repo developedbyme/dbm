@@ -5,8 +5,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedN
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedNode::_init");
 		
 		this.superCall();
 		

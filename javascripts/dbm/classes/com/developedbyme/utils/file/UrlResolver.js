@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.utils.file.UrlResolver", "com.developedbyme
 	
 	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.file.UrlResolver::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.file.UrlResolver::_init");
 		
 		this.superCall();
 		

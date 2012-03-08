@@ -29,8 +29,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 	
 	dbm.setClassAsSingleton("dbmAudioManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::_init");
 		
 		this.superCall();
 		

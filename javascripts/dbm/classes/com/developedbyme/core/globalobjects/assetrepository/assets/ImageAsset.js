@@ -13,8 +13,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.I
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset::_init");
 		
 		this.superCall();
 		

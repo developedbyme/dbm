@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.NoCha
 	
 	var NoChangeObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject::_init");
 		
 		this.superCall();
 		

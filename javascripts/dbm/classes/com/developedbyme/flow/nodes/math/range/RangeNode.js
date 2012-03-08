@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.range.RangeNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.range.RangeNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.range.RangeNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.range.RangeNode::_init");
 		
 		this.superCall();
 		

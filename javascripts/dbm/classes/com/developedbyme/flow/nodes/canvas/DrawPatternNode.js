@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.DrawPatternNode", "com.de
 	
 	var DrawPatternNode = dbm.importClass("com.developedbyme.flow.nodes.canvas.DrawPatternNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.DrawPatternNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.DrawPatternNode::_init");
 		
 		this.superCall();
 		

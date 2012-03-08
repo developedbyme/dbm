@@ -5,8 +5,8 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::_init");
 		
 		this.superCall();
 		

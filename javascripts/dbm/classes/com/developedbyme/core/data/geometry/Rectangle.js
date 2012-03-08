@@ -8,11 +8,13 @@ dbm.registerClass("com.developedbyme.core.data.geometry.Rectangle", "com.develop
 	//console.log("com.developedbyme.core.data.geometry.Rectangle");
 	
 	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
-
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.data.geometry.Rectangle");
 		
 		this.superCall();
@@ -43,10 +45,10 @@ dbm.registerClass("com.developedbyme.core.data.geometry.Rectangle", "com.develop
 		//console.log("com.developedbyme.core.data.geometry.Rectangle::create (static)");
 		//console.log(aX, aY, aWidth, aHeight);
 		var newRectangle = (new Rectangle()).init();
-		newRectangle.x = aX
-		newRectangle.y = aY
-		newRectangle.width = aWidth;
-		newRectangle.height = aHeight;
+		newRectangle.x = VariableAliases.valueWithDefault(aX, 0);
+		newRectangle.y = VariableAliases.valueWithDefault(aY, 0);
+		newRectangle.width = VariableAliases.valueWithDefault(aWidth, 0);
+		newRectangle.height = VariableAliases.valueWithDefault(aHeight, 0);
 		
 		return newRectangle;
 	};

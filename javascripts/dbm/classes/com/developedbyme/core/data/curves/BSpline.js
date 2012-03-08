@@ -3,7 +3,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BSpline", "com.developedby
 	
 	var BSpline = dbm.importClass("com.developedbyme.core.data.curves.BSpline");
 	
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.data.curves.BSpline");
 		
 		this.setType = "bSpline";

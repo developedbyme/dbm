@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.V
 	var VideoEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.VideoEventIds");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset::_init");
 		
 		this.superCall();
 		

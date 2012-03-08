@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.userinput.MousePositionNode", "c
 	
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::_init");
 		
 		this.superCall();
 		

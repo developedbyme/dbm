@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart::_init");
 		
 		this.superCall();
 		

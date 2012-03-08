@@ -12,8 +12,8 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdown", "com.d
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdown::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdown::_init");
 		
 		this.superCall();
 		

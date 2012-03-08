@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.logic.IndexSwitchedNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.IndexSwitchedNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.logic.IndexSwitchedNode::_init");
 		
 		this.superCall();
 		

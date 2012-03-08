@@ -13,8 +13,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.audio.PlayAudio
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.audio.PlayAudioCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.audio.PlayAudioCommand::_init");
 		
 		this.superCall();
 		

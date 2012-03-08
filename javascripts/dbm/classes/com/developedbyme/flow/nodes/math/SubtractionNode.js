@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.SubtractionNode", "com.deve
 	
 	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.SubtractionNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.SubtractionNode::_init");
 		
 		this.superCall();
 		

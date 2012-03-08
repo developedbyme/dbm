@@ -6,6 +6,7 @@
  */
 dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.points.PointSet");
+	//"use strict";
 	
 	var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");
 	
@@ -18,7 +19,7 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.data.points.PointSet");
 		
 		this.superCall();
@@ -97,6 +98,18 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		}
 		return theObject;
 	};
+	
+	objectFunctions.reverse = function() {
+		this.pointsArray.reverse();
+		
+		return this;
+	};
+	
+	objectFunctions.createPoint = function(aX, aY, aZ, aW) {
+		var newPoint = Point.create(aX, aY, aZ, aW);
+		this.pointsArray.push(newPoint);
+		return newPoint;
+	}
 	
 	objectFunctions.performDestroy = function() {
 		

@@ -1,8 +1,9 @@
 dbm.registerClass("com.developedbyme.core.data.curves.Curve", "com.developedbyme.core.data.points.PointSet", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.curves.Curve");
-
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.data.curves.Curve::init");
+	//"use strict";
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.curves.Curve::_init");
 		
 		this.superCall();
 		
@@ -37,6 +38,17 @@ dbm.registerClass("com.developedbyme.core.data.curves.Curve", "com.developedbyme
 	objectFunctions.createSameTypeOfCurve = function() {
 		var newCurve = (new ClassReference()).init();
 		return newCurve;
+	};
+	
+	objectFunctions.duplicate = function() {
+		var theObject = this.createSameTypeOfCurve();
+		var currentArray = this.pointsArray;
+		var outputArray = theObject.pointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i < theLength; i++) {
+			outputArray.push(currentArray[i].duplicate());
+		}
+		return theObject;
 	};
 	
 	staticFunctions.createWithLength = function(aLength) {

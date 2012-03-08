@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.trigonometry.HypotenuseNode
 	
 	var HypotenuseNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.HypotenuseNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.HypotenuseNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.trigonometry.HypotenuseNode::_init");
 		
 		this.superCall();
 		

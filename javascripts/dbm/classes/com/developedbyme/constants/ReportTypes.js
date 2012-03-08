@@ -7,5 +7,6 @@ dbm.registerClass("com.developedbyme.constants.ReportTypes", null, function(obje
 	staticFunctions.WARNING = "warning";
 	staticFunctions.TRACE = "log";
 	staticFunctions.LOG = "log";
+	staticFunctions.UNKNOWN = "unknown";
 	
 });

@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode", "com.de
 	
 	var NameSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::_init");
 		
 		this.superCall();
 		

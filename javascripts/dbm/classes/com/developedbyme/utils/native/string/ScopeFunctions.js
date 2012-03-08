@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.string.ScopeFunctions");
+	//"use strict";
 	
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
 	

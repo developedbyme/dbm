@@ -1,12 +1,13 @@
 dbm.registerClass("com.developedbyme.core.objectparts.BrowserDependentFunction", "com.developedbyme.core.objectparts.ExtendedFunctionBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction");
+	//"use strict";
 	
 	var BrowserDependentFunction = dbm.importClass("com.developedbyme.core.objectparts.BrowserDependentFunction");
 	var VersionNumber = dbm.importClass("com.developedbyme.utils.native.number.VersionNumber");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::_init");
 		
 		this.superCall();
 		

@@ -1,7 +1,12 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
+	//"use strict";
 	
 	var UpdateManager = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var UpdateChain = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain");
@@ -9,8 +14,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 	
 	dbm.setClassAsSingleton("dbmUpdateManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager::_init");
 		
 		this.superCall();
 		
@@ -31,24 +36,28 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		this._addUpdaterType("default");
 		this._addUpdaterType("updateFlow");
 		
+		var thisPointer = this;
+		this._updateCallback = function _updateCallback() {
+			thisPointer.update();
+		};
+		
 		return this;
 	};
 	
 	objectFunctions.start = function() {
 		
 		if(this._intervalNumber != -1) {
-			//METODO: error mannager
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "start", "Update manager is already started.");
 			return;
 		}
 		
 		var startDate = new Date();
 		this._startTime = startDate.getTime();
-		delete startDate;
-
+		
 		this.currentTime = 0;
 		this.currentFrame = 0;
 		
-		this._intervalNumber = setInterval("dbm.singletons[\"dbmUpdateManager\"].update()", this._updateLength);
+		this._intervalNumber = setInterval(this._updateCallback, this._updateLength);
 	}
 	
 	objectFunctions.stop = function() {
@@ -72,7 +81,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		var newDate = new Date();
 		this.currentTime = 0.001*(newDate.getTime()-this._startTime);
 		this.currentFrame++;
-		delete newDate;
 		
 		this._updateChain.updateTime(this.currentTime, this.currentFrame);
 		

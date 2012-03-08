@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.gui.images.StateImage", "com.developedbyme.
 	
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.images.StateImage::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.images.StateImage::_init");
 		
 		this.superCall();
 		

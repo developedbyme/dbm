@@ -1,4 +1,6 @@
 (function() {
+	//"use strict";
+	
 	var dbm;
 	
 	if(window.dbm == undefined) {
@@ -17,7 +19,16 @@
 			this._currentFile = -1;
 			this._htmlLoaded = false;
 			this._startFunctions = new Array();
+			this._classManager = null;
+			this._window = null;
+			this._document = null;
+			this._javascriptsFolder = null;
+			this._classesFolder = null;
+			this._javascriptVersion = null;
+			this.tempClassFunction = null;
+			this._currentScriptNode = null;
 			this.isCreated = true;
+			Object.seal(this);
 		};
 		
 		dbm.setClassManager = function(aObject) {
@@ -54,7 +65,12 @@
 		};
 		
 		dbm.registerClass = function(aName, aExtends, aFunction) {
+			//console.log("dbm.registerClass");
 			this._classManager.registerClass(aName, aExtends, aFunction);
+		};
+		
+		dbm.extendClass = function(aName, aFunction) {
+			this._classManager.extendClass(aName, aFunction);
 		};
 		
 		dbm.importClass = function(aClassPath) {
@@ -126,7 +142,12 @@
 		
 		dbm._performLoadFile = function(aFilePath) {
 			var scriptTag = document.createElement("script");
-			scriptTag.type = "application/javascript";
+			
+			var scriptType = "application/javascript";
+			if(this._javascriptVersion != null) {
+				scriptType += ";version=" + this._javascriptVersion;
+			}
+			scriptTag.type = scriptType;
 			scriptTag.src = aFilePath;
 			scriptTag.async = false;
 			

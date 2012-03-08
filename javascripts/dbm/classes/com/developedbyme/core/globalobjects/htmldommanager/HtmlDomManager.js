@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager");
+	//"use strict";
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
@@ -7,20 +8,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 	
 	var HtmlElementControllerLink = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink");
 	var HtmlCreator = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator");
+	var SvgCreator = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.objects.SvgCreator");
 	
 	dbm.setClassAsSingleton("dbmHtmlDomManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::_init");
 		
 		this.superCall();
 		
 		this._displayObjects = new Array();
 		this._htmlCreators = new Array();
+		this._svgCreators = new Array();
 		
 		this._tempCanvas = document.createElement("canvas");
 		this._masterWindowHtmlCreator = HtmlCreator.create(document);
 		this._htmlCreators.push(this._masterWindowHtmlCreator);
+		this._masterWindowSvgCreator = SvgCreator.create(document);
+		this._svgCreators.push(this._masterWindowSvgCreator);
 		
 		return this;
 	};
@@ -119,8 +124,26 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		return newCreator;
 	};
 	
+	objectFunctions.getSvgCreator = function(aDocument) {
+		var currentArray = this._svgCreators;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentCreator = currentArray[i];
+			if(currentCreator.ownerDocument = aDocument) {
+				return currentCreator;
+			}
+		}
+		var newCreator = SvgCreator.create(aDocument);
+		this._svgCreators.push(newCreator);
+		return newCreator;
+	};
+	
 	objectFunctions.getMasterHtmlCreator = function() {
 		return this._masterWindowHtmlCreator;
+	};
+	
+	objectFunctions.getMasterSvgCreator = function() {
+		return this._masterWindowSvgCreator;
 	};
 	
 	objectFunctions.setAttributesToNode = function(aElement, aAttributes) {

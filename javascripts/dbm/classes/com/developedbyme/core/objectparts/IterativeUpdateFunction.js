@@ -1,10 +1,11 @@
 dbm.registerClass("com.developedbyme.core.objectparts.IterativeUpdateFunction", "com.developedbyme.core.objectparts.UpdateFunction", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.IterativeUpdateFunction");
+	//"use strict";
 	
 	var IterativeUpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.IterativeUpdateFunction");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.IterativeUpdateFunction::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.IterativeUpdateFunction::_init");
 		
 		this.superCall();
 		

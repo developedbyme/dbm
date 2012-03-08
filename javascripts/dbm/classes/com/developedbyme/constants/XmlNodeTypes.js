@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.constants.XmlNodeTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.constants.XmlNodeTypes");
+	//"use strict";
 	
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	

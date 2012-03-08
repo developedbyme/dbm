@@ -1,13 +1,14 @@
 dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.array.ArrayFunctions");
+	//"use strict";
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
-	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	staticFunctions.indexOfInArray = function(aArray, aData) {
@@ -19,11 +20,33 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 			return aArray.indexOf(aData);
 		}
 		else {
-			//MENOTE: ie doesn't have the indexOf function
+			//MENOTE: MSIE <9 doesn't have the indexOf function
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentData = currentArray[i];
+				if(currentData == aData) {
+					return i;
+				}
+			}
+		}
+		return -1;
+	};
+	
+	staticFunctions.lastIndexOfInArray = function(aArray, aData) {
+		if(aArray == null) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "lastIndexOfInArray", "Array is " + aArray + ". Can't get index of " + aData + ".");
+			return -1;
+		}
+		if(aArray.lastIndexOf) {
+			return aArray.lastIndexOf(aData);
+		}
+		else {
+			//MENOTE: MSIE <9 doesn't have the lastIndexOf function
+			var currentArray = aArray;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentData = currentArray[currentArrayLength-i-1];
 				if(currentData == aData) {
 					return i;
 				}

@@ -13,7 +13,7 @@ dbm.registerClass("com.developedbyme.utils.math.physics.SwingingAcceleration", "
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		this.superCall();
 		
 		this.forceX = 0;

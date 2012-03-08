@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.display.PrintTextNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.display.PrintTextNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.display.PrintTextNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.display.PrintTextNode::_init");
 		
 		this.superCall();
 		

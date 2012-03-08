@@ -33,7 +33,7 @@ dbm.runTempFunction(function() {
 		var curveDrawer = drawLayer.drawCurve(horizontalLines[0]);
 		drawLayer.stopWorkingOnCurrentPath();
 		curveDrawer.getProperty("endParameter").setValue(0);
-		curveDrawer.getProperty("endParameter").animateValue(horizontalLines[0].getMaxParameter(), 0.5, InterpolationTypes.INVERTED_QUADRIC, 0);
+		curveDrawer.getProperty("endParameter").animateValue(horizontalLines[0].getMaxParameter(), 0.5, InterpolationTypes.INVERTED_QUADRATIC, 0);
 		
 		for(var i = 1; i < horizontalLines.length-1; i++) {
 			var curveDrawer = drawLayer.drawCurve(horizontalLines[i]);
@@ -41,22 +41,22 @@ dbm.runTempFunction(function() {
 			var randomStartPoint = Math.random()*horizontalLines[i].getMaxParameter();
 			var randomDelay = 0.4*Math.random()+0.2;
 			curveDrawer.getProperty("startParameter").setValue(randomStartPoint);
-			curveDrawer.getProperty("startParameter").animateValue(0, 0.4, InterpolationTypes.INVERTED_QUADRIC, randomDelay);
+			curveDrawer.getProperty("startParameter").animateValue(0, 0.4, InterpolationTypes.INVERTED_QUADRATIC, randomDelay);
 			curveDrawer.getProperty("endParameter").setValue(randomStartPoint);
-			curveDrawer.getProperty("endParameter").animateValue(horizontalLines[i].getMaxParameter(), 0.4, InterpolationTypes.INVERTED_QUADRIC, randomDelay);
+			curveDrawer.getProperty("endParameter").animateValue(horizontalLines[i].getMaxParameter(), 0.4, InterpolationTypes.INVERTED_QUADRATIC, randomDelay);
 		}
 		
 		var curveDrawer = drawLayer.drawCurve(horizontalLines[horizontalLines.length-1]);
 		drawLayer.stopWorkingOnCurrentPath();
 		curveDrawer.getProperty("startParameter").setValue(horizontalLines[horizontalLines.length-1].getMaxParameter());
-		curveDrawer.getProperty("startParameter").animateValue(0, 0.5, InterpolationTypes.INVERTED_QUADRIC, 0);
+		curveDrawer.getProperty("startParameter").animateValue(0, 0.5, InterpolationTypes.INVERTED_QUADRATIC, 0);
 		
 		
 		
 		var curveDrawer = drawLayer.drawCurve(verticalLines[0]);
 		drawLayer.stopWorkingOnCurrentPath();
 		curveDrawer.getProperty("endParameter").setValue(0);
-		curveDrawer.getProperty("endParameter").animateValue(verticalLines[0].getMaxParameter(), 0.5, InterpolationTypes.INVERTED_QUADRIC, 0);
+		curveDrawer.getProperty("endParameter").animateValue(verticalLines[0].getMaxParameter(), 0.5, InterpolationTypes.INVERTED_QUADRATIC, 0);
 		
 		for(var i = 1; i < verticalLines.length-1; i++) {
 			var curveDrawer = drawLayer.drawCurve(verticalLines[i]);
@@ -64,15 +64,15 @@ dbm.runTempFunction(function() {
 			var randomStartPoint = Math.random()*verticalLines[i].getMaxParameter();
 			var randomDelay = 0.4*Math.random()+0.2;
 			curveDrawer.getProperty("startParameter").setValue(randomStartPoint);
-			curveDrawer.getProperty("startParameter").animateValue(0, 0.4, InterpolationTypes.INVERTED_QUADRIC, randomDelay);
+			curveDrawer.getProperty("startParameter").animateValue(0, 0.4, InterpolationTypes.INVERTED_QUADRATIC, randomDelay);
 			curveDrawer.getProperty("endParameter").setValue(randomStartPoint);
-			curveDrawer.getProperty("endParameter").animateValue(verticalLines[i].getMaxParameter(), 0.4, InterpolationTypes.INVERTED_QUADRIC, randomDelay);
+			curveDrawer.getProperty("endParameter").animateValue(verticalLines[i].getMaxParameter(), 0.4, InterpolationTypes.INVERTED_QUADRATIC, randomDelay);
 		}
 		
 		var curveDrawer = drawLayer.drawCurve(verticalLines[verticalLines.length-1]);
 		drawLayer.stopWorkingOnCurrentPath();
 		curveDrawer.getProperty("startParameter").setValue(verticalLines[verticalLines.length-1].getMaxParameter());
-		curveDrawer.getProperty("startParameter").animateValue(0, 0.5, InterpolationTypes.INVERTED_QUADRIC, 0);
+		curveDrawer.getProperty("startParameter").animateValue(0, 0.5, InterpolationTypes.INVERTED_QUADRATIC, 0);
 		
 		var drawLayer = canvasController.getLayer("main/linked/lines");
 		drawLayer.setStrokeStyle(1, "#CCCCCC");
@@ -81,19 +81,19 @@ dbm.runTempFunction(function() {
 		var curveDrawer = drawLayer.drawCurve(currentLine);
 		drawLayer.stopWorkingOnCurrentPath();
 		curveDrawer.getProperty("endParameter").setValue(0);
-		curveDrawer.getProperty("endParameter").animateValue(currentLine.getMaxParameter(), 0.8, InterpolationTypes.INVERTED_QUADRIC, 0.3);
+		curveDrawer.getProperty("endParameter").animateValue(currentLine.getMaxParameter(), 0.8, InterpolationTypes.INVERTED_QUADRATIC, 0.3);
 		
 		var currentLine = dbm.singletons.dbmCurveCreator.createCurveFromDoubleSeparatedString(1, true, "400, 0; 600, 580");
 		var curveDrawer = drawLayer.drawCurve(currentLine);
 		drawLayer.stopWorkingOnCurrentPath();
 		curveDrawer.getProperty("startParameter").setValue(currentLine.getMaxParameter());
-		curveDrawer.getProperty("startParameter").animateValue(0, 0.5, InterpolationTypes.INVERTED_QUADRIC, 0.7);
+		curveDrawer.getProperty("startParameter").animateValue(0, 0.5, InterpolationTypes.INVERTED_QUADRATIC, 0.7);
 		
 		var currentLine = dbm.singletons.dbmCurveCreator.createCurveFromDoubleSeparatedString(1, true, "300, 580; 1000, 300");
 		var curveDrawer = drawLayer.drawCurve(currentLine);
 		drawLayer.stopWorkingOnCurrentPath();
 		curveDrawer.getProperty("endParameter").setValue(0);
-		curveDrawer.getProperty("endParameter").animateValue(currentLine.getMaxParameter(), 0.6, InterpolationTypes.INVERTED_QUADRIC, 0.1);
+		curveDrawer.getProperty("endParameter").animateValue(currentLine.getMaxParameter(), 0.6, InterpolationTypes.INVERTED_QUADRATIC, 0.1);
 		
 		//var rotationTimeline = dbm.singletons.dbmAnimationManager.createTimeline(0, null);
 		//var speedNode = SimpleSpeedNode.create(dbm.singletons.dbmAnimationManager.getGlobalTimeNode().getProperty("time"), 0, rotationTimeline.getProperty("outputValue"));
@@ -107,8 +107,8 @@ dbm.runTempFunction(function() {
 		
 		canvasController.getProperty("display").startUpdating();
 		
-		//rollOverButton.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OVER, CallFunctionCommand.createCommand(rotationTimeline, rotationTimeline.animateValue, [1, 2, InterpolationTypes.QUADRIC]));
-		//rollOverButton.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OUT, CallFunctionCommand.createCommand(rotationTimeline, rotationTimeline.animateValue, [0, 1.5, InterpolationTypes.INVERTED_QUADRIC]));
+		//rollOverButton.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OVER, CallFunctionCommand.createCommand(rotationTimeline, rotationTimeline.animateValue, [1, 2, InterpolationTypes.QUADRATIC]));
+		//rollOverButton.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OUT, CallFunctionCommand.createCommand(rotationTimeline, rotationTimeline.animateValue, [0, 1.5, InterpolationTypes.INVERTED_QUADRATIC]));
 		//rollOverButton.activate();
 	};
 	

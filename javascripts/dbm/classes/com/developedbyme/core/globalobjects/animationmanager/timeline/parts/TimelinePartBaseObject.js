@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject");	
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject::_init");
 		
 		this.superCall();
 		

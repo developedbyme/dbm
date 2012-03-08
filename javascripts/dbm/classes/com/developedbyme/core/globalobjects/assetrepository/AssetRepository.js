@@ -30,8 +30,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	
 	dbm.setClassAsSingleton("dbmAssetRepository");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::_init");
 		
 		this.superCall();
 		
@@ -40,6 +40,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		
 		this.selectedVideoExtension = MimeTypeFunctions.getFileExtensionForMimeType(FeatureCheck.getSupportedVideoFormat());
 		this.selectedAudioExtension = MimeTypeFunctions.getFileExtensionForMimeType(FeatureCheck.getSupportedAudioFormat());
+		
+		this._pseudoVideoExtension = "[video]";
+		this._pseudoAudioExtension = "[audio]";
 		
 		return this;
 	};
@@ -161,8 +164,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 			case "jpeg":
 			case "gif":
 			case "png":
+			case "webp":
 				newAsset = ImageAsset.create(aPath);
 				break;
+			case "html":
 			case "xml":
 			case "xsl":
 				newAsset = XmlAsset.create(aPath);
@@ -186,6 +191,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 			case "bin":
 				newAsset = ArrayBufferAsset.create(aPath);
 				break;
+			case this._pseudoVideoExtension:
+				newAsset = VideoAsset.create(this.getVideoPath(aPath.substring(0, aPath.length-this._pseudoVideoExtension.length-1)));
+				break;
+			case this._pseudoAudioExtension:
+				newAsset = AudioAsset.create(this.getAudioPath(aPath.substring(0, aPath.length-this._pseudoAudioExtension.length-1)));
+				break;
 			default:
 				//METODO: error message
 				break;
@@ -193,5 +204,4 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		
 		return newAsset;
 	};
-	
 });

@@ -12,8 +12,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 	
 	dbm.setClassAsSingleton("dbmDebugManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::_init");
 		
 		this.superCall();
 		

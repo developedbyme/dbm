@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.utils.graphics.gradient.Gradient", "com.dev
 	var ColorFunctions = dbm.importClass("com.developedbyme.utils.graphics.color.ColorFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_init");
 		
 		this.superCall();
 		
@@ -37,6 +37,10 @@ dbm.registerClass("com.developedbyme.utils.graphics.gradient.Gradient", "com.dev
 		this.addColorStop(newColorStop);
 		
 		return newColorStop;
+	};
+	
+	objectFunctions.getColorStops = function() {
+		return this._colorStops.array;
 	};
 	
 	objectFunctions.addColorStop = function(aColorStop) {

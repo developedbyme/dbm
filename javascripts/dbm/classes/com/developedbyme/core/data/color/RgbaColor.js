@@ -10,11 +10,11 @@ dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedb
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-
+	
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function init() {
+	objectFunctions._init = function _init() {
 		//console.log("com.developedbyme.core.data.color.RgbaColor");
 		
 		this.superCall();
@@ -27,9 +27,27 @@ dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedb
 		return this;
 	};
 	
-	objectFunctions.getCssString = function init() {
+	objectFunctions.getCssString = function getCssString() {
+		var alpha = this.a;
+		if(alpha < 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
 		return "rgba(" + (100*this.r) + "%," + (100*this.g) + "%," + (100*this.b) + "%," + (this.a) + ")";
-	}
+	};
+	
+	objectFunctions.getSvgColorStopString = function() {
+		return "rgb(" + (100*this.r) + "%," + (100*this.g) + "%," + (100*this.b) + "%)";
+	};
+	
+	objectFunctions.getSvgColorStopOpacityString = function() {
+		var alpha = this.a;
+		if(alpha < 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return alpha.toString();
+	};
 	
 	staticFunctions.create = function create(aR, aG, aB, aA) {
 		//console.log("com.developedbyme.core.data.color.RgbaColor::create (static)");

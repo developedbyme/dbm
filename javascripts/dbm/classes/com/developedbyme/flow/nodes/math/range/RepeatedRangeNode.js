@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode", "
 	
 	var RepeadedRange = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode::_init");
 		
 		this.superCall();
 		

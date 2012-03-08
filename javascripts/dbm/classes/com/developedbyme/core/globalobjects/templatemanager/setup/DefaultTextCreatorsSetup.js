@@ -12,8 +12,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	
 	var TemplateTextCreatorTypes = dbm.importClass("com.developedbyme.constants.TemplateTextCreatorTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultTextCreatorsSetup::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultTextCreatorsSetup::_init");
 		
 		this.superCall();
 		

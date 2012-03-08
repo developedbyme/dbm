@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandBaseObje
 	
 	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::_init");
 		
 		this.superCall();
 		

@@ -5,8 +5,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::_init");
 		
 		this.superCall();
 		

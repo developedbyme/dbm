@@ -6,6 +6,7 @@
  */
 dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.points.Point");
+	//"use strict";
 	
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
@@ -14,7 +15,7 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function init() {
+	objectFunctions._init = function _init() {
 		//console.log("com.developedbyme.core.data.points.Point");
 		
 		this.superCall();
@@ -90,5 +91,12 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 	staticFunctions.getLengthOfVectorValues3d = function getLengthOfVectorValues3d(aX, aY, aZ) {
 		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues3d (static)");
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aY, 3));
+	};
+	
+	staticFunctions.copyPointValues3d = function copyPointValues3d(aInputPoint, aOutputPoint) {
+		//console.log("com.developedbyme.core.data.points.Point::copyPointValues3d (static)");
+		aOutputPoint.x = aInputPoint.x;
+		aOutputPoint.y = aInputPoint.y;
+		aOutputPoint.z = aInputPoint.z;
 	};
 });

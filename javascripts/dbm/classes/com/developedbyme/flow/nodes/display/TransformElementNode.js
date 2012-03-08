@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElementNode", "
 	
 	var TransformElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.TransformElementNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.display.TransformElementNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.display.TransformElementNode::_init");
 		
 		this.superCall();
 		

@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.objects.Up
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain::_init");
 		
 		this.superCall();
 		

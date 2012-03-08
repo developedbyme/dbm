@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.DelayedExtendedEventCont
 	
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.DelayedExtendedEventController::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.DelayedExtendedEventController::_init");
 		
 		this.superCall();
 		

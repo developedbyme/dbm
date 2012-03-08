@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 	
 	dbm.setClassAsSingleton("dbmBrowserDetector");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.browserdetector.BrowserDetector::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.browserdetector.BrowserDetector::_init");
 		
 		this.superCall();
 		

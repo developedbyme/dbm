@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.CommandQueue::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.CommandQueue::_init");
 		
 		this.superCall();
 		

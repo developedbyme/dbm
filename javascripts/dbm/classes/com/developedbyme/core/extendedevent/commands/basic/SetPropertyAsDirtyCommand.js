@@ -13,8 +13,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetProper
 	var GetPropertyObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject");
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::_init");
 		
 		this.superCall();
 		

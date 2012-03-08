@@ -1,13 +1,14 @@
 dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.display.SizeOfElementNode");
+	//"use strict";
 	
 	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
 	
 	var WindowForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowForElementNode");
 	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.display.SizeOfElementNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.display.SizeOfElementNode::_init");
 		
 		this.superCall();
 		
@@ -58,5 +59,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("element", aElement);
 		return newNode;
-	}
+	};
 });

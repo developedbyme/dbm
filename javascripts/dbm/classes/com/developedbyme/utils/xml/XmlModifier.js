@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.xml.XmlModifier", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.xml.XmlModifier");
+	//"use strict";
 	
 	var XmlModifier = dbm.importClass("com.developedbyme.utils.xml.XmlModifier");
 	

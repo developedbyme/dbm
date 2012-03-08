@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 	
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BSplineEvaluator::init")
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BSplineEvaluator::_init")
 		
 		this.superCall();
 		

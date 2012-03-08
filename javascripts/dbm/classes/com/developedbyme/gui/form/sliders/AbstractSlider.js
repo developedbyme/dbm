@@ -21,8 +21,8 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 	staticFunctions._SCRUB_ENABLED = "scrubEnabled";
 	staticFunctions._SCRUBBING = "scrubbing";
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::_init");
 		
 		this.superCall();
 		

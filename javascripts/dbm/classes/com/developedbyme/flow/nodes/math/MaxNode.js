@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.MaxNode", "com.developedbym
 	
 	var MaxNode = dbm.importClass("com.developedbyme.flow.nodes.math.MaxNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.MaxNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.MaxNode::_init");
 		
 		this.superCall();
 		

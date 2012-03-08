@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.UpdateFunction");
+	//"use strict";
 	
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	
@@ -14,8 +15,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.UpdateFunction::_init");
 		
 		this.superCall();
 		
@@ -140,6 +141,16 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 			if(currentObject.getStatus() == FlowStatusTypes.NEEDS_UPDATE) {
 				aReturnArray.push(currentObject);
 			}
+		}
+	};
+	
+	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.UpdateFunction::fillWithAllInputConnections");
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			aReturnArray.push(currentObject);
 		}
 	};
 	

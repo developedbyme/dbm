@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.events.Activate
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand::_init");
 		
 		this.superCall();
 		

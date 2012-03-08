@@ -23,8 +23,8 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersectionWithCircle2d", n
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.Global.Utilities.Math.LineIntersectionWithCircle2d::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.Global.Utilities.Math.LineIntersectionWithCircle2d::_init");
 		
 		this.point1 = Point.create();
 		this.point2 = Point.create();

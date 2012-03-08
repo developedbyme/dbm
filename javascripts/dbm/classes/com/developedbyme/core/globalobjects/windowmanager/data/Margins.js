@@ -12,8 +12,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.data.Margi
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::_init");
 		
 		this.superCall();
 		

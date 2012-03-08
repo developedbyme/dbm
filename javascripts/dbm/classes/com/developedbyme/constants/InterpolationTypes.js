@@ -1,13 +1,14 @@
 dbm.registerClass("com.developedbyme.constants.InterpolationTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.constants.InterpolationTypes");
+	//"use strict";
 	
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
 	staticFunctions.STEP = "step";
 	staticFunctions.LINEAR = "linear";
-	staticFunctions.QUADRIC = "quadric";
+	staticFunctions.QUADRATIC = "quadratic";
 	staticFunctions.CUBIC = "cubic";
-	staticFunctions.INVERTED_QUADRIC = "inverted/quadric";
+	staticFunctions.INVERTED_QUADRATIC = "inverted/quadratic";
 	staticFunctions.INVERTED_CUBIC = "inverted/cubic";
 	
 	staticFunctions.SINE = "sine";

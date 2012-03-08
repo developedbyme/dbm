@@ -4,8 +4,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.userinput.InputFieldObject", "co
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.userinput.InputFieldObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.userinput.InputFieldObject::_init");
 		
 		this.superCall();
 		

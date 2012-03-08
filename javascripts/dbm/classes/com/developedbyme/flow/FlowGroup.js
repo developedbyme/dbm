@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.FlowGroup");
+	//"use strict";
 	
 	var FlowGroup = dbm.importClass("com.developedbyme.flow.FlowGroup");
 	
@@ -14,20 +15,18 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.FlowGroup::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.FlowGroup::_init");
 		
 		this.superCall();
 		
 		this._objectProperty = ObjectProperty.create(this);
 		this._objectProperty.name = this.__className + "::object(o)";
 		this.addDestroyableObject(this._objectProperty);
-		this._inputProperties = (new NamedArray()).init();
-		this._inputProperties.ownsObjects = true;
-		this._outputProperties = (new NamedArray()).init();
-		this._outputProperties.ownsObjects = true;
+		this._inputProperties = NamedArray.create(true);
+		this._outputProperties = NamedArray.create(true);
 		
-		//console.log("//com.developedbyme.flow.FlowGroup::init");
+		//console.log("//com.developedbyme.flow.FlowGroup::_init");
 		return this;
 	};
 	

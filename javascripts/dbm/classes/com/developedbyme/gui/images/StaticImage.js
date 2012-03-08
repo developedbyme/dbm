@@ -1,13 +1,14 @@
 dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
+	//"use strict";
 	
 	var StaticImage = dbm.importClass("com.developedbyme.gui.images.StaticImage");
 	
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.images.StaticImage::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.images.StaticImage::_init");
 		
 		this.superCall();
 		

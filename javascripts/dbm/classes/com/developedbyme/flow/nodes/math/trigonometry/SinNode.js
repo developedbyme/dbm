@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.trigonometry.SinNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.trigonometry.SinNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.SinNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.trigonometry.SinNode::_init");
 		
 		this.superCall();
 		

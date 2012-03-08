@@ -49,12 +49,12 @@ dbm.runTempFunction(function() {
 		
 		//Timeline
 		var newTimeline = dbm.singletons.dbmAnimationManager.createTimeline(0, null);
-		newTimeline.animateValue(180, 0.5*animationTime, InterpolationTypes.QUADRIC, 0);
-		newTimeline.animateValue(360, 0.5*animationTime, InterpolationTypes.INVERTED_QUADRIC, 0.5*animationTime);
+		newTimeline.animateValue(180, 0.5*animationTime, InterpolationTypes.QUADRATIC, 0);
+		newTimeline.animateValue(360, 0.5*animationTime, InterpolationTypes.INVERTED_QUADRATIC, 0.5*animationTime);
 		
 		var scaleTimeline = dbm.singletons.dbmAnimationManager.createTimeline(1, null);
-		scaleTimeline.animateValue(1.5, 0.5*animationTime, InterpolationTypes.QUADRIC, 0+0.2);
-		scaleTimeline.animateValue(1, 0.5*animationTime, InterpolationTypes.INVERTED_QUADRIC, 0.5*animationTime+0.2);
+		scaleTimeline.animateValue(1.5, 0.5*animationTime, InterpolationTypes.QUADRATIC, 0+0.2);
+		scaleTimeline.animateValue(1, 0.5*animationTime, InterpolationTypes.INVERTED_QUADRATIC, 0.5*animationTime+0.2);
 		
 		//Node
 		var newNode = htmlCreator.createNode("div", {style: "font-size: 64px; display: inline-block;"}, "Look at me spin");

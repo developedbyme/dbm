@@ -5,8 +5,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.Objec
 	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	var NoChangeObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject::_init");
 		
 		this.superCall();
 		

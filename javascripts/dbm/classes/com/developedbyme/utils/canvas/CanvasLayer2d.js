@@ -30,8 +30,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_init");
 		
 		this.superCall();
 		

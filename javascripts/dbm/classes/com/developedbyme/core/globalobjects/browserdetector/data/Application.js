@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.data.App
 	
 	var Application = dbm.importClass("com.developedbyme.core.globalobjects.browserdetector.data.Application");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.browserdetector.data.Application::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.browserdetector.data.Application::_init");
 		
 		this.superCall();
 		

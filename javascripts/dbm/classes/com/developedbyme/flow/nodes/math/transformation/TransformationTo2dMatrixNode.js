@@ -5,8 +5,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 	
 	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo2dMatrixNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo2dMatrixNode::_init");
 		
 		this.superCall();
 		

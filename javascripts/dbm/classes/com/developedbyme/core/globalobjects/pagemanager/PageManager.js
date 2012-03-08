@@ -16,8 +16,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 	
 	dbm.setClassAsSingleton("dbmPageManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager::_init");
 		
 		this.superCall();
 		

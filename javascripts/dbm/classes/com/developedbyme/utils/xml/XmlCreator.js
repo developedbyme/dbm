@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.xml.XmlCreator");
+	//"use strict";
 	
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
 	

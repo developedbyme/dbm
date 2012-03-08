@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.Stati
 	
 	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject::_init");
 		
 		this.superCall();
 		

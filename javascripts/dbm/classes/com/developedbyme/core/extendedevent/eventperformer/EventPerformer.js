@@ -4,8 +4,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerf
 	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
 	var CommandsArrayIterator = dbm.importClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::_init");
 		
 		this.superCall();
 		

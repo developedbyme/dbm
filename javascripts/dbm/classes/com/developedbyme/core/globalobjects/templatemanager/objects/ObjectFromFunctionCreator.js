@@ -13,8 +13,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.objects.
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.objects.ObjectFromFunctionCreator::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.templatemanager.objects.ObjectFromFunctionCreator::_init");
 		
 		this.superCall();
 		

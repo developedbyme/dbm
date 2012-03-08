@@ -12,10 +12,10 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.InvertedInterpolat
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
 		
-		this.interpolationObject;
+		this.interpolationObject = null;
 		
 		return this;
 	};

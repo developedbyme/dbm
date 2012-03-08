@@ -19,8 +19,8 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.form.sliders.HorizontalScaleSlider::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.form.sliders.HorizontalScaleSlider::_init");
 		
 		this.superCall();
 		

@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.display.PrintFieldNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.display.PrintFieldNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.display.PrintFieldNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.display.PrintFieldNode::_init");
 		
 		this.superCall();
 		

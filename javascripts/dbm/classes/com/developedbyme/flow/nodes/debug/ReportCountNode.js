@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.debug.ReportCountNode", "com.dev
 	
 	var ReportCountNode = dbm.importClass("com.developedbyme.flow.nodes.debug.ReportCountNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.debug.ReportCountNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.debug.ReportCountNode::_init");
 		
 		this.superCall();
 		

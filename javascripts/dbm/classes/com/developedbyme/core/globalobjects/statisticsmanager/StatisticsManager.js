@@ -9,8 +9,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.statisticsmanager.Statis
 	
 	dbm.setClassAsSingleton("dbmStatisticsManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::_init");
 		
 		this.superCall();
 		

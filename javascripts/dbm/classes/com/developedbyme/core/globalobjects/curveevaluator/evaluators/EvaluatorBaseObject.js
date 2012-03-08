@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject::init")
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject::_init")
 		
 		this.superCall();
 		

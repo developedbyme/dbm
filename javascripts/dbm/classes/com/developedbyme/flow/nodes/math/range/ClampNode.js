@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.range.ClampNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.range.ClampNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.range.ClampNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.range.ClampNode::_init");
 		
 		this.superCall();
 		

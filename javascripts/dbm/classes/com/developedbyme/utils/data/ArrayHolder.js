@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 	
 	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.ArrayHolder::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.ArrayHolder::_init");
 		
 		this.superCall();
 		

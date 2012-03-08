@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::_init");
 		
 		this.superCall();
 		

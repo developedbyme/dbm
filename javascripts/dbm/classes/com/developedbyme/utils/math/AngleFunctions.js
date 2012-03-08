@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.math.AngleFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.AngleFunctions");
+	//"use strict";
 	
 	var AngleFunctions = dbm.importClass("com.developedbyme.utils.math.AngleFunctions");
 	
@@ -23,5 +24,19 @@ dbm.registerClass("com.developedbyme.utils.math.AngleFunctions", null, function(
 		else {
 			return (aAngle <= aMaxAngle && aAngle >= aMinAngle);
 		}
+	};
+	
+	staticFunctions.getAngleForPolygon = function(aSides) {
+		if(aSides < 2) {
+			return NaN;
+		}
+		
+		var flooredSides = Math.floor(aSides);
+		var parameter = aSides-flooredSides;
+		
+		var flooredAngle = 2*Math.PI/flooredSides;
+		var ceiledAngle = 2*Math.PI/(flooredSides+1);
+		
+		return (1-parameter)*flooredAngle+parameter*ceiledAngle;
 	};
 });

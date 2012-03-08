@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	//"use strict";
 	
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	
@@ -11,8 +12,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::_init");
 		
 		this.superCall();
 		

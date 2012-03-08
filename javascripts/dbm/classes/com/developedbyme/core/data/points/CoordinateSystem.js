@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.data.points.CoordinateSystem");
 		
 		this.superCall();

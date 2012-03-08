@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.round.RoundNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.round.RoundNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.round.RoundNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.round.RoundNode::_init");
 		
 		this.superCall();
 		

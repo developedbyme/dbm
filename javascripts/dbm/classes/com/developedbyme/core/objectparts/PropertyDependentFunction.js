@@ -1,10 +1,11 @@
 dbm.registerClass("com.developedbyme.core.objectparts.PropertyDependentFunction", "com.developedbyme.core.objectparts.ExtendedFunctionBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.PropertyDependentFunction");
+	//"use strict";
 	
 	var PropertyDependentFunction = dbm.importClass("com.developedbyme.core.objectparts.PropertyDependentFunction");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.PropertyDependentFunction::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.PropertyDependentFunction::_init");
 		
 		this.superCall();
 		

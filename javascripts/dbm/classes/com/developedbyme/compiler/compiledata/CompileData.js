@@ -16,8 +16,8 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.compiler.compiledata.CompileData::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.compiler.compiledata.CompileData::_init");
 		
 		this.superCall();
 		

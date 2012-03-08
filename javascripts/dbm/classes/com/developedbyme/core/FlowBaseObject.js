@@ -1,5 +1,8 @@
 dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.FlowBaseObject");
+	//"use strict";
+	
+	var FlowBaseObject = dbm.importClass("com.developedbyme.core.FlowBaseObject");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
@@ -11,8 +14,8 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.FlowBaseObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.FlowBaseObject::_init");
 		
 		this.superCall();
 		

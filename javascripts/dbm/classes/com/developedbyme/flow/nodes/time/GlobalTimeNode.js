@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.time.GlobalTimeNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::_init");
 		
 		this.superCall();
 		

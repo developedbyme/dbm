@@ -19,8 +19,8 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.compiler.DbmCompiler::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.compiler.DbmCompiler::_init");
 		
 		this.superCall();
 		

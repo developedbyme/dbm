@@ -12,8 +12,8 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	staticFunctions._ACTIVE = "active";
 	staticFunctions._INTERNAL_CHANGE = "internalChange";
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.form.InputField::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.form.InputField::_init");
 		
 		this.superCall();
 		

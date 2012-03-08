@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.statisticsmanager.tracke
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.trackers.GoogleAnalyticsTracker::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.trackers.GoogleAnalyticsTracker::_init");
 		
 		this.superCall();
 		

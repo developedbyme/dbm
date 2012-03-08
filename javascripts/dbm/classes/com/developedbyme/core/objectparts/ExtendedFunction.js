@@ -1,10 +1,11 @@
 dbm.registerClass("com.developedbyme.core.objectparts.ExtendedFunction", "com.developedbyme.core.objectparts.ExtendedFunctionBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ExtendedFunction");
+	//"use strict";
 	
 	var ExtendedFunction = dbm.importClass("com.developedbyme.core.objectparts.ExtendedFunction");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExtendedFunction::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExtendedFunction::_init");
 		
 		this.superCall();
 		

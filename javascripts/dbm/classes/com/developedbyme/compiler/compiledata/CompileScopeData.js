@@ -13,8 +13,8 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileScopeData", "co
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.compiler.compiledata.CompileScopeData::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.compiler.compiledata.CompileScopeData::_init");
 		
 		this.superCall();
 		

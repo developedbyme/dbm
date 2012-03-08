@@ -4,8 +4,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.EventDataObject", "com.d
 	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");
 	
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.EventDataObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.EventDataObject::_init");
 		
 		this.superCall();
 		

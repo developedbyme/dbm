@@ -1,22 +1,45 @@
+/**
+ * Error handler that prints reports in a html element.
+ *
+ * @author	Mattias Ekendahl (mattias@developedbyme.com)
+ * @version	0.2.01
+ */
 dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintTextHandler", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintTextHandler");
+	//"use strict";
 	
 	var PrintTextHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintTextHandler");
 	
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintTextHandler::init");
+	/**
+	 * Initializes the object.
+	 *
+	 * @return self
+	 */
+	objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintTextHandler::_init");
 		
 		this.superCall();
 		
 		this.htmlElement = null;
 		
 		return this;
-	};
+	}; //End function _init
 	
-	objectFunctions.report = function(aType, aLevel, aObject, aFunctionName, aData) {
+	/**
+	 * Reports errors, warning and log messages.
+	 *
+	 * @param	aId				{Uint}						The id for the call.
+	 * @param	aTimeStamp		{Uint}						The time stamp for the report.
+	 * @param	aType			{enum: ReportTypes}			The type of report.
+	 * @param	aLevel			{enum: ReportLevelTypes}	The level of severety.
+	 * @param	aObject			{*}							The object that sends the report.
+	 * @param	aFunctionName	{String}					The name of the function that sends the report.
+	 * @param	aData			{*}							The data for the report.
+	 */
+	objectFunctions.report = function report(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
 		var className;
 		switch(aType) {
 			case ReportTypes.ERROR:
@@ -35,20 +58,43 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.Pr
 		
 		var htmlString = "<div class=\"dbmReportField " + className + "\"><span class=\"dbmReportType\">" + aType + "</span><span class=\"dbmReportLevel\">" + aLevel + "</span><span class=\"dbmReportObject\">" + aObject + "</span><span class=\"dbmReportFunction\">" + aFunctionName + "</span><span class=\"dbmReportData\">" + aData + "</span></div>";
 		this.htmlElement.innerHTML += htmlString;
-	};
+	}; //End function report
 	
-	objectFunctions.reportError = function(aObject, aFunctionName, aError) {
+	/**
+	 * Reports an error catched from a try statement.
+	 *
+	 * @param	aId				{Uint}		The id for the call.
+	 * @param	aTimeStamp		{Uint}		The time stamp for the report.
+	 * @param	aObject			{*}			The object that sends the report.
+	 * @param	aFunctionName	{String}	The name of the function that sends the report.
+	 * @param	aError			{Error}		The error that occured.
+	 */
+	objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
 		var htmlString = "<div class=\"dbmReportField dbmReportErrorField\"><span class=\"dbmReportType\">error</span><span class=\"dbmReportObject\">" + aObject + "</span><span class=\"dbmReportFunction\">" + aFunctionName + "</span><span class=\"dbmReportError\">" + aError + "</span></div>";
 		this.htmlElement.innerHTML += htmlString;
-	};
+	}; //End function reportError
 	
-	staticFunctions.create = function(aHtmlElement) {
+	/**
+	 * Creates a new PrintTextHandler
+	 *
+	 * @param	aHtmlElement {HTMLElement}	The element to print the data to.
+	 *
+	 * @return	{PrintTextHandler}	The new PrintTextHandler.
+	 */
+	staticFunctions.create = function create(aHtmlElement) {
 		var newHandler = (new ClassReference()).init();
 		newHandler.htmlElement = aHtmlElement;
 		return newHandler;
-	};
+	}; //End function create
 	
-	staticFunctions.createWithDiv = function(aParentOrDocument) {
+	/**
+	 * Creates a new PrintTextHandler with a new element that is appended to the paren.
+	 *
+	 * @param	aParentOrDocument {HTMLElement|HTMLDocument}	Parent element or document to use as parent for the newly created div.
+	 *
+	 * @return	{PrintTextHandler}	The new PrintTextHandler.
+	 */
+	staticFunctions.createWithDiv = function createWithDiv(aParentOrDocument) {
 		
 		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
 		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
@@ -60,5 +106,5 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.Pr
 		
 		var newHandler = ClassReference.create(newDiv);
 		return newHandler;
-	};
+	}; //End function createWithDiv
 });

@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.string.CssLanguageFunctions");
+	//"use strict";
 	
 	var CssLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.CssLanguageFunctions");
 	

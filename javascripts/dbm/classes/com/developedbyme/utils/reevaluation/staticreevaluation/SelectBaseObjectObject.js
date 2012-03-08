@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.Selec
 	
 	var SelectBaseObjectObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject::_init");
 		
 		this.superCall();
 		

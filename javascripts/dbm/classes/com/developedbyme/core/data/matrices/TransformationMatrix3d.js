@@ -8,7 +8,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.TransformationMatrix3d",
 	staticFunctions.ROTATION_ORDER_ZXY = 4;
 	staticFunctions.ROTATION_ORDER_ZYX = 5;
 	
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.data.matrices.TransformationMatrix3d");
 		
 		this.superCall();
@@ -17,5 +17,5 @@ dbm.registerClass("com.developedbyme.core.data.matrices.TransformationMatrix3d",
 		this.setAsIdentityMatrix();
 		
 		return this;
-	}
+	};
 });

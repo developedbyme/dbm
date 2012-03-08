@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownStringPar
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownStringPart::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownStringPart::_init");
 		
 		this.superCall();
 		

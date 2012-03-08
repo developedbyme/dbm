@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.MultiplicationNode", "com.d
 	
 	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.MultiplicationNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.MultiplicationNode::_init");
 		
 		this.superCall();
 		

@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.string.ProgrammingLanguageFunctions");
+	//"use strict";
 	
 	var ProgrammingLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunctions");
 	

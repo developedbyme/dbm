@@ -15,7 +15,7 @@ dbm.registerClass("com.developedbyme.utils.id.UuidGenerator", "com.developedbyme
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.id.UuidGenerator");
 		
 		this.randomGenerator = (new MersenneTwister()).init();

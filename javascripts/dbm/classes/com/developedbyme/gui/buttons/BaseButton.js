@@ -11,8 +11,8 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
 	var CssCursorTypes = dbm.importClass("com.developedbyme.constants.CssCursorTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.buttons.BaseButton::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.buttons.BaseButton::_init");
 		
 		this.superCall();
 		

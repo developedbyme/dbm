@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.TextWidthNode", "com.deve
 	
 	var TextWidthNode = dbm.importClass("com.developedbyme.flow.nodes.canvas.TextWidthNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.TextWidthNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.TextWidthNode::_init");
 		
 		this.superCall();
 		

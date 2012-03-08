@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbym
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.IterativeFlowGroup::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.IterativeFlowGroup::_init");
 		
 		this.superCall();
 		
@@ -27,7 +27,7 @@ dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbym
 		this._updateFunction = IterativeUpdateFunction.create(this, this._update, [this._index, this._length], []);
 		this._updateFunction.name = "IterativeFlowGroup::default";
 		
-		//console.log("//com.developedbyme.flow.IterativeFlowGroup::init");
+		//console.log("//com.developedbyme.flow.IterativeFlowGroup::_init");
 		return this;
 	};
 	

@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode", "com
 	
 	var CosNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.CosNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.trigonometry.CosNode::_init");
 		
 		this.superCall();
 		

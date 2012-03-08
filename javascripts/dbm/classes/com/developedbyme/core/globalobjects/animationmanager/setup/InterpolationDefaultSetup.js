@@ -22,8 +22,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.setup.I
 		dbm.singletons.dbmAnimationManager.addInterpolationObject(InterpolationTypes.LINEAR, LinearInterpolation.create());
 		
 		var quadricInterpolation = ExponentialInterpolation.create(2);
-		dbm.singletons.dbmAnimationManager.addInterpolationObject(InterpolationTypes.QUADRIC, quadricInterpolation);
-		dbm.singletons.dbmAnimationManager.addInterpolationObject(InterpolationTypes.INVERTED_QUADRIC, InvertedInterpolation.create(quadricInterpolation));
+		dbm.singletons.dbmAnimationManager.addInterpolationObject(InterpolationTypes.QUADRATIC, quadricInterpolation);
+		dbm.singletons.dbmAnimationManager.addInterpolationObject(InterpolationTypes.INVERTED_QUADRATIC, InvertedInterpolation.create(quadricInterpolation));
 		
 		var cubicInterpolation = ExponentialInterpolation.create(3);
 		dbm.singletons.dbmAnimationManager.addInterpolationObject(InterpolationTypes.CUBIC, cubicInterpolation);

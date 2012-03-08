@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	var SelectBaseObjectObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject::_init");
 		
 		this.superCall();
 		

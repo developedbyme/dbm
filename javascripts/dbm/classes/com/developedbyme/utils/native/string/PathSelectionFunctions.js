@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.utils.native.string.PathSelectionFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.string.PathSelectionFunctions");
+	//"use strict";
 	
 	var PathSelectionFunctions = dbm.importClass("com.developedbyme.utils.native.string.PathSelectionFunctions");
 	

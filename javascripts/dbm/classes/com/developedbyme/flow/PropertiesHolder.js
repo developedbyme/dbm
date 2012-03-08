@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.PropertiesHolder", "com.developedbyme.
 	
 	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.PropertiesHolder::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.PropertiesHolder::_init");
 		
 		this.superCall();
 		

@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.parse.ParseFloatNode", "com.deve
 	
 	var ParseFloatNode = dbm.importClass("com.developedbyme.flow.nodes.parse.ParseFloatNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.parse.ParseFloatNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.parse.ParseFloatNode::_init");
 		
 		this.superCall();
 		

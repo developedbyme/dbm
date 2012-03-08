@@ -6,6 +6,7 @@
  */
 dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
+	//"use strict";
 	
 	var CurveCreator = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
 	
@@ -14,17 +15,19 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var QuadricEquationSolver = dbm.importClass("com.developedbyme.utils.math.QuadricEquationSolver");
 	
+	var CurveMergeTypes = dbm.importClass("com.developedbyme.constants.CurveMergeTypes");
 	var ExtrapolationTypes = dbm.importClass("com.developedbyme.constants.ExtrapolationTypes");
 	
 	dbm.setClassAsSingleton("dbmCurveCreator");
 	
 	staticFunctions.DEFAULT_EXACTNESS = 0.01;
 		
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
 		
 		return this;
@@ -220,5 +223,136 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 				newVerticalLine.pointsArray[j].y = aY+(aHeight*(j/aNumberOfVerticalSegments));
 			}
 		}
+	};
+	
+	objectFunctions._createOneDegreeHigherCompactSegment = function(aLastPoint, aCurrentDegree, aInputSegment, aOutputSegment) {
+		var lastX = aLastPoint.x;
+		var lastY = aLastPoint.y;
+		var lastZ = aLastPoint.z;
+		
+		aOutputSegment[aCurrentDegree].x = aInputSegment[aCurrentDegree-1].x;
+		aOutputSegment[aCurrentDegree].y = aInputSegment[aCurrentDegree-1].y;
+		aOutputSegment[aCurrentDegree].z = aInputSegment[aCurrentDegree-1].z;
+		
+		for(var i = 0; i < aCurrentDegree; i++) {
+			var calculationParameter = (i+1)/(aCurrentDegree+1);
+			var currentX = aInputSegment[i].x;
+			var currentY = aInputSegment[i].y;
+			var currentZ = aInputSegment[i].z;
+			aOutputSegment[i].x = (calculationParameter)*lastX+(1-calculationParameter)*currentX;
+			aOutputSegment[i].y = (calculationParameter)*lastY+(1-calculationParameter)*currentY;
+			aOutputSegment[i].z = (calculationParameter)*lastZ+(1-calculationParameter)*currentZ;
+			lastX = currentX;
+			lastY = currentY;
+			lastZ = currentZ;
+		}
+		
+	};
+	
+	objectFunctions.createHigherDegreeCompactSegment = function(aLastPoint, aInputDegree, aOutputDegree, aInputSegment, aReturnSegment) {
+		
+		if(aInputDegree == aOutputDegree) {
+			for(var i = 0; i < aOutputDegree; i++) {
+				aReturnSegment[i].x = aInputSegment[i].x;
+				aReturnSegment[i].y = aInputSegment[i].y;
+				aReturnSegment[i].z = aInputSegment[i].z;
+			}
+		}
+		else if(aInputDegree == 1) {
+			for(var i = 1; i < aOutputDegree+1; i++) {
+				var parameter = i/aOutputDegree;
+				aReturnSegment[i-1].x = (1-parameter)*aLastPoint.x+parameter*aInputSegment[0].x;
+				aReturnSegment[i-1].y = (1-parameter)*aLastPoint.y+parameter*aInputSegment[0].y;
+				aReturnSegment[i-1].z = (1-parameter)*aLastPoint.z+parameter*aInputSegment[0].z;
+			}
+		}
+		else {
+			this._createOneDegreeHigherCompactSegment(aLastPoint, aInputDegree, aInputSegment, aReturnSegment);
+			for(var i = aInputDegree+1; i < aOutputDegree; i++) {
+				this._createOneDegreeHigherCompactSegment(aLastPoint, i, aReturnSegment, aReturnSegment);
+			}
+		}
+	};
+	
+	objectFunctions.combineCurves = function(aCurve1, aCurve2, aMergeType) {
+		var curve1Degree = aCurve1.getCurveDegree();
+		var curve2Degree = aCurve2.getCurveDegree();
+		var maxDegree = Math.max(curve1Degree, curve2Degree);
+		var curve1IsCompact = aCurve1.isCompact();
+		var curve2IsCompact = aCurve2.isCompact();
+		var isCompact = curve1IsCompact && curve2IsCompact;
+		
+		var startPosition1 = (curve1IsCompact) ? 1 : 0;
+		var stepLength1 = (curve1IsCompact) ? curve1Degree : (curve1Degree+1);
+		var startPosition2 = (curve2IsCompact) ? 1 : 0;
+		var stepLength2 = (curve2IsCompact) ? curve2Degree : (curve2Degree+1);
+		
+		var curve1NumberOfSegments = aCurve1.getNumberOfSegments();
+		var curve2NumberOfSegments = aCurve2.getNumberOfSegments();
+		var newCurveLength = curve1NumberOfSegments+curve2NumberOfSegments;
+		
+		switch(aMergeType) {
+			case CurveMergeTypes.NON_COMPACT:
+			case CurveMergeTypes.POINT_MERGE:
+				//MENOTE: do nothing
+				break;
+			case CurveMergeTypes.LINEAR_CONNECT:
+			case CurveMergeTypes.TANGENT_CURVE_CONNECT:
+				newCurveLength++;
+				break;
+		}
+		
+		var numberOfPoints = (isCompact) ? 1+newCurveLength*maxDegree : newCurveLength*(maxDegree+1);
+		
+		var tempSegment = new Array(maxDegree);
+		var returnSegment = new Array(maxDegree);
+		
+		var returnCurve = BezierCurve.createWithLength(maxDegree, isCompact, numberOfPoints);
+		
+		var currentOutputSegmentNumber = 0;
+		var lastPoint = returnCurve.pointsArray[0];
+		
+		lastPoint.x = aCurve1.pointsArray[0].x;
+		lastPoint.y = aCurve1.pointsArray[0].y;
+		lastPoint.z = aCurve1.pointsArray[0].z;
+		
+		for(var i = 0; i < curve1NumberOfSegments; i++) {
+			if(!isCompact && i != 0) {
+				Point.copyPoint3d(aCurve1.getSegmentStartPoint(i), lastPoint);
+			}
+			aCurve1.getCompactSegment(i, tempSegment);
+			returnCurve.getCompactSegment(currentOutputSegmentNumber, returnSegment);
+			this.createHigherDegreeCompactSegment(lastPoint, curve1Degree, maxDegree, tempSegment, returnSegment);
+			currentOutputSegmentNumber++;
+			lastPoint = returnCurve.getSegmentStartPoint(currentOutputSegmentNumber);
+		}
+		
+		switch(aMergeType) {
+			case CurveMergeTypes.NON_COMPACT:
+			case CurveMergeTypes.POINT_MERGE:
+				//MENOTE: do nothing
+				break;
+			case CurveMergeTypes.LINEAR_CONNECT:
+				//METODO
+				currentOutputSegmentNumber++;
+				break;
+			case CurveMergeTypes.TANGENT_CURVE_CONNECT:
+				//METODO
+				currentOutputSegmentNumber++;
+				break;
+		}
+		
+		for(var i = 0; i < curve2NumberOfSegments; i++) {
+			if(!isCompact) {
+				Point.copyPoint3d(aCurve2.getSegmentStartPoint(i), lastPoint);
+			}
+			aCurve2.getCompactSegment(i, tempSegment);
+			returnCurve.getCompactSegment(currentOutputSegmentNumber, returnSegment);
+			this.createHigherDegreeCompactSegment(lastPoint, curve2Degree, maxDegree, tempSegment, returnSegment);
+			currentOutputSegmentNumber++;
+			lastPoint = returnCurve.getSegmentStartPoint(currentOutputSegmentNumber);
+		}
+		
+		return returnCurve;
 	};
 });

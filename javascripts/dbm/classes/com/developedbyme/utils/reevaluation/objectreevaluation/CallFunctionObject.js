@@ -9,8 +9,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::_init");
 		
 		this.superCall();
 		

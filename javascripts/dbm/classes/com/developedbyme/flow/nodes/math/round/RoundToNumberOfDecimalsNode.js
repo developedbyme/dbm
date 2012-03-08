@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.round.RoundToNumberOfDecima
 	
 	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.round.RoundToNumberOfDecimalsNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.round.RoundToNumberOfDecimalsNode::_init");
 		
 		this.superCall();
 		

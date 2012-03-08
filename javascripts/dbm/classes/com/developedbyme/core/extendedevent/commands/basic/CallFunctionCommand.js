@@ -16,8 +16,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand::_init");
 		
 		this.superCall();
 		

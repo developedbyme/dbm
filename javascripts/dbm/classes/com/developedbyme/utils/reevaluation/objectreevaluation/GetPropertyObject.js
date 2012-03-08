@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPr
 	
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject::_init");
 		
 		this.superCall();
 		

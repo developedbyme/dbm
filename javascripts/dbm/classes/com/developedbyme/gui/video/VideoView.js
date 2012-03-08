@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.gui.video.VideoView");
+	//"use strict";
 	
 	var VideoView = dbm.importClass("com.developedbyme.gui.video.VideoView");
 	
@@ -22,8 +23,8 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 	var PlaybackExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEventIds");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.video.VideoView::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.video.VideoView::_init");
 		
 		this.superCall();
 		
@@ -65,7 +66,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		this.getExtendedEvent().addCommandToEvent(VideoEventIds.LOADED_META_DATA, CallFunctionCommand.createCommand(this, this._metaDataLoaded, [GetVariableObject.createSelectDataCommand()]));
 		
 		//console.log(this);
-		//console.log("//com.developedbyme.gui.video.VideoView::init");
+		//console.log("//com.developedbyme.gui.video.VideoView::_init");
 		return this;
 	};
 	

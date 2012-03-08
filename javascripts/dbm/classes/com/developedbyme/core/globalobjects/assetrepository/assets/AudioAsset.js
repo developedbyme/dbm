@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	var AudioEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.AudioEventIds");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset::_init");
 		
 		this.superCall();
 		

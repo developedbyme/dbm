@@ -32,8 +32,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_init");
 		
 		this.superCall();
 		

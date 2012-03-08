@@ -5,8 +5,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel::_init");
 		
 		this.superCall();
 		

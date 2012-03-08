@@ -9,8 +9,8 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.NamedArray::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.NamedArray::_init");
 		
 		this.superCall();
 		

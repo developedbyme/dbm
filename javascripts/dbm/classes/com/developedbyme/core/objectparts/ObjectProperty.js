@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ObjectProperty");
+	//"use strict";
 	
 	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	
@@ -7,8 +8,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_init");
 		
 		this.superCall();
 		this._isOutput = true;

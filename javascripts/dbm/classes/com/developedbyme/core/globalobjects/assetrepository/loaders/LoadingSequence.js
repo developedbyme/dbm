@@ -18,8 +18,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	
 	staticFunctions.DEFAULT_MAX_NUMBER_OF_SIMILTANIOUS_LOADERS = 5;
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_init");
 		
 		this.superCall();
 		

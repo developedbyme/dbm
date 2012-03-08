@@ -12,7 +12,7 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.LinearInterpolatio
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.math.interpolation.LinearInterpolation");
 		
 		return this;

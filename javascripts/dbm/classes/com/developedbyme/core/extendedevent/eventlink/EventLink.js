@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.init = function init() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::init");
+	objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_init");
 		
 		this.superCall();
 		

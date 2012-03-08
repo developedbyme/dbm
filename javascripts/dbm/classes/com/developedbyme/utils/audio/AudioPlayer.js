@@ -21,8 +21,8 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	var AudioEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.AudioEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEventIds");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.audio.AudioPlayer::_init");
 		
 		this.superCall();
 		
@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		this.getExtendedEvent().addCommandToEvent(AudioEventIds.LOADED_META_DATA, CallFunctionCommand.createCommand(this, this._metaDataLoaded, [GetVariableObject.createSelectDataCommand()]));
 		
 		//console.log(this);
-		//console.log("//com.developedbyme.utils.audio.AudioPlayer::init");
+		//console.log("//com.developedbyme.utils.audio.AudioPlayer::_init");
 		return this;
 	};
 	

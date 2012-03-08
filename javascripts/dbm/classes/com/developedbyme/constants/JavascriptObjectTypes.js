@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.constants.JavascriptObjectTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.constants.JavascriptObjectTypes");
+	//"use strict";
 	
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	

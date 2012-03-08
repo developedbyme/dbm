@@ -17,8 +17,8 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralAr
 	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralArrayPart::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralArrayPart::_init");
 		
 		this.superCall();
 		

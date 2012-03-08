@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode", "com
 	
 	var BooleanSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode::_init");
 		
 		this.superCall();
 		

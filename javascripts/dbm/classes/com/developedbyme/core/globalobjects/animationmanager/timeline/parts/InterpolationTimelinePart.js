@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	var InterpolationTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::_init");
 		
 		this.superCall();
 		

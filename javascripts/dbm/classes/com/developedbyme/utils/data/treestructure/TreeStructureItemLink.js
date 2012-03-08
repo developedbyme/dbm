@@ -15,8 +15,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink::_init");
 		
 		this.superCall();
 		

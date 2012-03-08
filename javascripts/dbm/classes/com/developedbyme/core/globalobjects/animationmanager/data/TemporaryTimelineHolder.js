@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.data.Te
 	
 	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder::_init");
 		
 		this.superCall();
 		

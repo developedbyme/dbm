@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	
 	var CommandQueue = dbm.importClass("com.developedbyme.utils.data.CommandQueue");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::_init");
 		
 		this.superCall();
 		

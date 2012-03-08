@@ -1,13 +1,14 @@
 dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty");
+	//"use strict";
 	
 	var ExtendedEventProperty = dbm.importClass("com.developedbyme.core.objectparts.ExtendedEventProperty");
 	
 	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_init");
 		
 		this.superCall();
 		

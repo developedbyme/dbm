@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.parse.ParseIntNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.parse.ParseIntNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.parse.ParseIntNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.parse.ParseIntNode::_init");
 		
 		this.superCall();
 		

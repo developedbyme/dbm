@@ -1,12 +1,13 @@
 dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.GhostProperty");
+	//"use strict";
 	
 	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.GhostProperty::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.GhostProperty::_init");
 		
 		this.superCall();
 		

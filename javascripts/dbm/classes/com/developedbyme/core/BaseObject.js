@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
+	//"use strict";
 	
 	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
 	
@@ -9,8 +10,8 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
-	objectFunctions.init = function init() {
-		//console.log("com.developedbyme.core.BaseObject::init");
+	objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.BaseObject::_init");
 		
 		//this._setFunctionSavedThis(this); MENOTE: not implemented yet
 		this._isDestroyed = false;
@@ -20,6 +21,16 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		//	dbm.singletons.dbmDebugManager.objectCreated(this.__fullClassName);
 		//}
 		
+		return this;
+	};
+	
+	objectFunctions._initSeal = function _initSeal() {
+		Object.seal(this);
+	};
+	
+	objectFunctions.init = function init() {
+		this._init();
+		this._initSeal();
 		return this;
 	};
 	
@@ -112,21 +123,6 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		//MENOTE: should be overridden
 	}
 	
-	objectFunctions.superCall = function superCall() {
-		//console.log("com.developedbyme.core.BaseObject::superCall");
-		
-		var callerFunction = arguments.callee.caller;
-		
-		var superFunction = callerFunction["superFunction"];
-		
-		if(superFunction != undefined) {
-			return superFunction.apply(this, arguments);
-		}
-		else {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "superCall", "Function " + callerFunction + " doesn't have a super function.");
-		}
-	};
-	
 	staticFunctions.softDestroyIfExists = function softDestroyIfExists(aObject) {
 		if(aObject != null) {
 			if(aObject.releaseAndDestroy != undefined) {
@@ -187,6 +183,25 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 				}
 				currentArray[i] = null;
 			}
+		}
+	};
+});
+
+dbm.extendClass("com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//MENOTE: this can't be strict since arguments.callee is not available then
+	
+	objectFunctions.superCall = function superCall() {
+		//console.log("com.developedbyme.core.BaseObject::superCall");
+		
+		var callerFunction = arguments.callee.caller;
+		
+		var superFunction = callerFunction["superFunction"];
+		
+		if(superFunction != undefined) {
+			return superFunction.apply(this, arguments);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "superCall", "Function " + callerFunction + " doesn't have a super function.");
 		}
 	};
 });

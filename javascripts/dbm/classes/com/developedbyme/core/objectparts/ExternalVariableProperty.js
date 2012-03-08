@@ -1,12 +1,13 @@
 dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty");
+	//"use strict";
 	
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_init");
 		
 		this.superCall();
 		

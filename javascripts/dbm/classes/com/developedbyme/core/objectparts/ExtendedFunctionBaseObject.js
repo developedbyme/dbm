@@ -1,10 +1,11 @@
 dbm.registerClass("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject");
+	//"use strict";
 	
 	var ExtendedFunctionBaseObject = dbm.importClass("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject::_init");
 		
 		this.superCall();
 		

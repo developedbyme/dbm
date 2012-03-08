@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.MinNode", "com.developedbym
 	
 	var MinNode = dbm.importClass("com.developedbyme.flow.nodes.math.MinNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.MinNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.MinNode::_init");
 		
 		this.superCall();
 		

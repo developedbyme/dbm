@@ -1,8 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.DivisionNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.DivisionNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.DivisionNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.DivisionNode::_init");
 		
 		this.superCall();
 		

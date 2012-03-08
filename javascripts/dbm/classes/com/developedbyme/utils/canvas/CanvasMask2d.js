@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasMask2d", "com.developedb
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::_init");
 		
 		this.superCall();
 		

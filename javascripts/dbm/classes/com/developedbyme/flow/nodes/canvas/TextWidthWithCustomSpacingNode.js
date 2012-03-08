@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.TextWidthWithCustomSpacin
 	
 	var TextWidthWithCustomSpacingNode = dbm.importClass("com.developedbyme.flow.nodes.canvas.TextWidthWithCustomSpacingNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.TextWidthWithCustomSpacingNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.TextWidthWithCustomSpacingNode::_init");
 		
 		this.superCall();
 		

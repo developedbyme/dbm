@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.utils.math.QuadricEquationSolver", "com.dev
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		this.superCall();
 		
 		this.solution1 = NaN;

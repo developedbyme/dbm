@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup
 	
 	
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::_init");
 		
 		this.superCall();
 		

@@ -66,8 +66,8 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.random.MersenneTwister::_init");
 		
 		this.mt = new Array(ClassReference.N); /* the array for the state vector  */
 		this.mti = ClassReference.N+1; /* mti==N+1 means mt[N] is not initialized */

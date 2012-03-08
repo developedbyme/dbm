@@ -1,5 +1,8 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager");
+	//"use strict";
+	
+	var FlowManager = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
@@ -13,8 +16,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	dbm.setClassAsSingleton("dbmFlowManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::_init");
 		
 		this.superCall();
 		
@@ -94,7 +97,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 				continue;
 			}
 			try {
-				//LIAM: ERROR ON LINE BELOW
 				currentConnection.updateFlow();
 			}
 			catch(theError) {

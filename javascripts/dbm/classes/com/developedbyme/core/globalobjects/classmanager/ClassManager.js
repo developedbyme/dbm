@@ -1,4 +1,5 @@
 dbm.runTempFunction(function() {
+	//"use strict";
 	
 	var classManager = new Object();
 	
@@ -9,33 +10,66 @@ dbm.runTempFunction(function() {
 		this._libraries = new Object();
 		this._reInitLibraryFunctions = new Array();
 		
+		this._classHolderClass = function ClassHolder() {};
+		
+		this._objectMethodsClass = function ObjectFunctions() {};
+		this._objectMethodsClass.prototype.toString = function() {return "[ObjectFunctions]"};
+		this._staticMethodsClass = function StaticFunctions() {};
+		this._staticMethodsClass.prototype.toString = function() {return "[StaticFunctions]"};
+		
+		Object.seal(this);
+		
 		return this;
-	};
+	}; //End function init
 	
-	classManager.registerClass = function(aName, aExtends, aFunction) {
+	classManager._createClassFunction = function _createClassFunction(aName) {
+		var className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
+		eval("dbm.tempClassFunction = function " + className + "(){};");
+		var returnClassFunction = dbm.tempClassFunction;
+		dbm.tempClassFunction = null;
+		return returnClassFunction;
+	}; //End function _createClassFunction
+	
+	classManager._getClassHolder = function _getClassHolder(aName) {
+		
+		if(this._classes[aName] != undefined) {
+			return this._classes[aName];
+		}
+		
+		var newClassHolder = new (this._classHolderClass)();
+		newClassHolder.name = aName;
+		newClassHolder.classFunction = this._createClassFunction(aName);
+		newClassHolder.extendedClass = null;
+		newClassHolder.isRegistered = false;
+		newClassHolder.prototypeObject = null;
+		newClassHolder.objectMethods = new (this._objectMethodsClass)();
+		newClassHolder.staticMethods = new (this._staticMethodsClass)();
+		
+		Object.seal(newClassHolder);
+		
+		this._classes[aName] = newClassHolder;
+		
+		return newClassHolder;
+	}; //End function _getClassHolder
+	
+	classManager.registerClass = function registerClass(aName, aExtends, aFunction) {
 		//console.log("classManager.registerClass");
 		//console.log(aName, aExtends);
 		
 		this._currentRegistrationClass = aName;
 		
-		var newClassHolder;
+		var newClassHolder = this._getClassHolder(aName);
 		
-		if(this._classes[aName] != undefined) {
-			newClassHolder = this._classes[aName];
+		if(newClassHolder.isRegistered) {
+			console.log("Class " + aName + " is already registered.");
+			return newClassHolder;
 		}
-		else {
-			newClassHolder = new Object();
-			newClassHolder.name = aName;
-			newClassHolder.classFunction = function(){};
-		}
+		newClassHolder.isRegistered = true;
 		
 		newClassHolder.extendedClass = aExtends;
 		if(aExtends != null) {
 			this.importClass(aExtends);
 		}
-		newClassHolder.prototypeObject = null;
-		newClassHolder.objectMethods = new Object();
-		newClassHolder.staticMethods = new Object();
 		
 		aFunction(newClassHolder.objectMethods, newClassHolder.staticMethods, newClassHolder.classFunction);
 		
@@ -46,40 +80,48 @@ dbm.runTempFunction(function() {
 		dbm.classRegistered(aName);
 		
 		return newClassHolder;
-	};
+	}; //End function registerClass
 	
-	classManager.importClass = function(aName) {
+	classManager.extendClass = function extendClass(aName, aFunction) {
+		//console.log("classManager.extendClass");
+		//console.log(aName, aExtends);
+		
+		this._currentRegistrationClass = aName;
+		
+		var newClassHolder = this._getClassHolder(aName);
+		
+		aFunction(newClassHolder.objectMethods, newClassHolder.staticMethods, newClassHolder.classFunction);
+		
+		this._currentRegistrationClass = null;
+		
+		return newClassHolder;
+	}; //End function extendClass
+	
+	classManager.importClass = function importClass(aName) {
 		
 		if(this._classes[aName] != undefined) {
 			return this._classes[aName].classFunction;
 		}
 		
-		var newClassHolder = new Object();
-		newClassHolder.name = aName;
-		var className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
-		eval("dbm.tempClassFunction = function " + className + "(){};");
-		//eval("dbm.tempClassFunction = function " + className + "(){var functionSavedThis = null; this._setFunctionSavedThis = function(aObject) {functionSavedThis = aObject;}; this._getFunctionSavedThis = function() {return functionSavedThis;};};"); //METODO: implement back reference to this
-		newClassHolder.classFunction = dbm.tempClassFunction;
-		dbm.tempClassFunction = null;
-		
-		this._classes[aName] = newClassHolder;
+		var newClassHolder = this._getClassHolder(aName);
 		
 		dbm.loadClass(aName);
 		
 		return newClassHolder.classFunction;
-	};
+	}; //End function importClass
 	
-	classManager.getClass = function(aName) {
+	classManager.getClass = function getClass(aName) {
 		
 		if(this._classes[aName] != undefined) {
 			return this._classes[aName].classFunction;
 		}
 		
 		console.error("Class " + aName + " has not been imported.");
+		
 		return null;
-	};
+	}; //End function getClass
 	
-	classManager.addLibrary = function(aName, aPath, aEvaluationName) {
+	classManager.addLibrary = function addLibrary(aName, aPath, aEvaluationName) {
 		
 		var newLibraryHolder = new Object();
 		newLibraryHolder.name = aName;
@@ -89,17 +131,17 @@ dbm.runTempFunction(function() {
 		this._libraries[aName] = newLibraryHolder;
 		
 		dbm.loadFile(aPath);
-	};
+	}; //End function addLibrary
 	
-	classManager.importLibrary = function(aName, aReInitFunction) {
+	classManager.importLibrary = function importLibrary(aName, aReInitFunction) {
 		//console.log("classManager.importLibrary");
 		if(aReInitFunction != null && aReInitFunction != undefined) {
 			this.addReInitLibraryFunction(aReInitFunction);
 		}
 		return this._libraries[aName];
-	};
+	}; //End function importLibrary
 	
-	classManager.setupLibraries = function() {
+	classManager.setupLibraries = function setupLibraries() {
 		//console.log("classManager.setupLibraries");
 		for(var objectName in this._libraries) {
 			var currentData = this._libraries[objectName];
@@ -116,26 +158,35 @@ dbm.runTempFunction(function() {
 			currentFunction.call(null);
 		}
 		currentArray.splice(0, currentArrayLength);
-	};
+	}; //End function setupLibraries
 	
-	classManager.addReInitLibraryFunction = function(aFunction) {
+	classManager.addReInitLibraryFunction = function addReInitLibraryFunction(aFunction) {
 		this._reInitLibraryFunctions.push(aFunction);
-	};
+	}; //End function addReInitLibraryFunction
 	
-	classManager.setClassAsSingleton = function(aName, aClassPath) {
+	classManager.setClassAsSingleton = function setClassAsSingleton(aName, aClassPath) {
 		var theClassPath = (aClassPath != null) ? aClassPath : this._currentRegistrationClass;
 		
 		this._singletons[aName] = theClassPath;
-	};
+		
+		var classHolder = this._getClassHolder(theClassPath);
+		if(classHolder.prototypeObject == null) {
+			classHolder.classFunction._instance = null;
+			classHolder.classFunction.getInstance = null;
+		}
+		else {
+			console.log("Class " + theClassPath + " is already initiated. Can't set it as singleton.");
+		}
+	}; //End function setClassAsSingleton
 	
-	classManager.setupClassInheritance = function() {
+	classManager.setupClassInheritance = function setupClassInheritance() {
 		//console.log("classManager.setupClassInheritance");
 		for(var objectName in this._classes) {
 			this._setupClassInheritanceForClass(objectName);
 		}
-	};
+	}; //End function setupClassInheritance
 	
-	classManager.setupSingletons = function() {
+	classManager.setupSingletons = function setupSingletons() {
 		//console.log("classManager.setupSingletons");
 		for(var objectName in this._singletons) {
 			var className = this._singletons[objectName];
@@ -151,21 +202,26 @@ dbm.runTempFunction(function() {
 			}
 			delete this._singletons[objectName];
 		}
-	};
+	}; //End function setupSingletons
 	
-	classManager._setupClassInheritanceForClass = function(aName) {
+	classManager._setupClassInheritanceForClass = function _setupClassInheritanceForClass(aName) {
 		//console.log("classManager._setupClassInheritanceForClass");
 		//console.log(aName);
 		
 		var currentClassHolder = this._classes[aName];
 		if(currentClassHolder.prototypeObject == null) {
+			if(!currentClassHolder.isRegistered) {
+				console.log("Class " + currentClassHolder.name + " is not registered");
+			}
 			
 			//console.log(">", currentClassHolder.extendedClass);
+			
+			var extendPrototypeObject = null;
 			
 			if(currentClassHolder.extendedClass != null) {
 				
 				var extendedClass = this._setupClassInheritanceForClass(currentClassHolder.extendedClass);
-				currentClassHolder.prototypeObject = new (extendedClass.classFunction)();
+				extendPrototypeObject = new (extendedClass.classFunction)();
 				
 				var extendedMethods = extendedClass.prototypeObject;
 				for(var extendedMethodName in extendedMethods) {
@@ -182,29 +238,39 @@ dbm.runTempFunction(function() {
 				
 			}
 			else {
-				currentClassHolder.prototypeObject = new Object();
+				extendPrototypeObject = new Object();
 			}
+			Object.freeze(extendPrototypeObject);
+			
+			var prototypeClass = this._createClassFunction(aName + "Prototype");
+			prototypeClass.prototype = extendPrototypeObject;
+			currentClassHolder.prototypeObject = new prototypeClass();
 			
 			for(var objectMethodName in currentClassHolder.objectMethods) {
 				//if(currentClassHolder.prototypeObject[objectMethodName] != undefined) {
 				//	currentClassHolder.objectMethods[objectMethodName].superFunction = currentClassHolder.prototypeObject[objectMethodName];
 				//}
 				currentClassHolder.prototypeObject[objectMethodName] = currentClassHolder.objectMethods[objectMethodName];
+				delete currentClassHolder.objectMethods[objectMethodName];
 			}
+			Object.seal(currentClassHolder.objectMethods);
 			
 			currentClassHolder.prototypeObject.__className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
 			currentClassHolder.prototypeObject.__fullClassName = aName;
+			Object.seal(currentClassHolder.prototypeObject); //MENOTE: this should be freeze but firefox doesn't seem to like that
 			
 			currentClassHolder.classFunction.prototype = currentClassHolder.prototypeObject;
 			
-			
 			for(var staticMethodName in currentClassHolder.staticMethods) {
 				currentClassHolder.classFunction[staticMethodName] = currentClassHolder.staticMethods[staticMethodName];
+				delete currentClassHolder.staticMethods[staticMethodName];
 			}
+			Object.seal(currentClassHolder.staticMethods);
+			Object.seal(currentClassHolder.classFunction);
 		}
 		
 		return currentClassHolder;
-	};
+	}; //End function _setupClassInheritanceForClass
 	
 	classManager.init();
 	dbm.setClassManager(classManager);

@@ -10,7 +10,7 @@ dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedb
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.CircularBuffer");
 		
 		this._currentPosition = 0;

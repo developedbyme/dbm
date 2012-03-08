@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.develope
 	
 	var DeviceExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.DeviceExtendedEventIds");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.device.DeviceLocation::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.device.DeviceLocation::_init");
 		
 		this.superCall();
 		

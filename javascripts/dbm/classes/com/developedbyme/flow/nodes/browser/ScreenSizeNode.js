@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.ScreenSizeNode", "com.de
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::_init");
 		
 		this.superCall();
 		

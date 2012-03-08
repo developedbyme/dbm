@@ -5,8 +5,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.AlphaIndexSwitchedNode",
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.display.AlphaIndexSwitchedNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.display.AlphaIndexSwitchedNode::_init");
 		
 		this.superCall();
 		

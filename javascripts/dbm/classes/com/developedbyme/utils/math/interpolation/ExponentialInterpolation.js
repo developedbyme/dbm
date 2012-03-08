@@ -12,7 +12,7 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.ExponentialInterpo
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.math.interpolation.ExponentialInterpolation");
 		
 		this.exponent = 1;

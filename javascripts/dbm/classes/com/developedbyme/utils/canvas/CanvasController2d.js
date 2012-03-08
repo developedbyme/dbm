@@ -21,8 +21,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_init");
 		
 		this.superCall();
 		
@@ -36,11 +36,12 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		
 		this._hierarchy = TreeStructure.create();
 		this._hierarchy.ownsData = true;
-		this._hierarchy.getRoot().ownsData = true;
+		var rootNode = this._hierarchy.getRoot();
+		rootNode.ownsData = true;
 		this.addDestroyableObject(this._hierarchy);
 		var rootLayer = CanvasLayer2d.create();
-		this._hierarchy.getRoot().data = rootLayer;
-		rootLayer._linkRegistration_setTreeStructureItem(this._hierarchy.getRoot());
+		rootNode.data = rootLayer;
+		rootLayer._linkRegistration_setTreeStructureItem(rootNode);
 		
 		this.createUpdateFunction("default", this._updateFlow, [this._graphicsUpdate, this._canvas], [this._display]);
 		

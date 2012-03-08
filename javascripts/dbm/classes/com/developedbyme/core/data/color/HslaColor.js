@@ -14,7 +14,7 @@ dbm.registerClass("com.developedbyme.core.data.color.HslaColor", "com.developedb
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function init() {
+	objectFunctions._init = function _init() {
 		//console.log("com.developedbyme.core.data.color.HslaColor");
 		
 		this.superCall();
@@ -27,9 +27,27 @@ dbm.registerClass("com.developedbyme.core.data.color.HslaColor", "com.developedb
 		return this;
 	};
 	
-	objectFunctions.getCssString = function init() {
-		return "hsla(" + (360*this.r) + "," + (100*this.s) + "%," + (100*this.l) + "%," + (this.a) + ")";
+	objectFunctions.getCssString = function getCssString() {
+		var alpha = this.a;
+		if(alpha < 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return "hsla(" + (360*this.h) + "," + (100*this.s) + "%," + (100*this.l) + "%," + (alpha) + ")";
 	}
+	
+	objectFunctions.getSvgColorStopString = function() {
+		return "hsl(" + (360*this.h) + "," + (100*this.s) + "%," + (100*this.l)  + "%)";
+	};
+	
+	objectFunctions.getSvgColorStopOpacityString = function() {
+		var alpha = this.a;
+		if(alpha < 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return alpha.toString();
+	};
 	
 	staticFunctions.create = function create(aH, aS, aL, aA) {
 		//console.log("com.developedbyme.core.data.color.HslaColor::create (static)");

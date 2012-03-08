@@ -17,8 +17,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGra
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d::_init");
 		
 		this.superCall();
 		

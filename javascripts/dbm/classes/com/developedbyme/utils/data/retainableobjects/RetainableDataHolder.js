@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::_init");
 		
 		this.superCall();
 		

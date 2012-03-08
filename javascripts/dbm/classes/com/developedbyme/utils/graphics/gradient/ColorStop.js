@@ -11,8 +11,8 @@ dbm.registerClass("com.developedbyme.utils.graphics.gradient.ColorStop", "com.de
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.graphics.gradient.ColorStop::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.graphics.gradient.ColorStop::_init");
 		
 		this.superCall();
 		

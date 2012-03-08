@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+	//"use strict";
 	
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
@@ -9,14 +10,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	var SetValueTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart");
 	var InterpolationTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::_init");
 		
 		this.superCall();
 		
@@ -28,14 +30,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		this._parts = new Array();
 		this._currentPartIndex = 0;
 		
-		this._startValue = null;
+		this._startValue = this.createProperty("startValue", null);
 		this._time = this.createProperty("time", 0);
 		this._partChange = this.createGhostProperty("partChange");
+		this._anyChange = this.addProperty("anyChange", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._anyChange.connectInput(this._startValue);
+		this._anyChange.connectInput(this._time);
+		this._anyChange.connectInput(this._partChange);
 		this._outputValue = this.createProperty("outputValue", null);
 		this._outputTangent = this.createProperty("outputTangent", null);
 		
-		this.createUpdateFunction("value", this._updateValueFlow, [this._partChange, this._time], [this._outputValue]);
-		this.createUpdateFunction("tangent", this._updateValueFlow, [this._partChange, this._time], [this._outputTangent]);
+		this.createUpdateFunction("value", this._updateValueFlow, [this._anyChange, this._time], [this._outputValue]);
+		this.createUpdateFunction("tangent", this._updateValueFlow, [this._anyChange, this._time], [this._outputTangent]);
 		
 		return this;
 	};
@@ -61,13 +67,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	objectFunctions.getValueByParameter = function(aParameter) {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getValueByParameter");
 		if(this._parts.length == 0) {
-			return this._startValue;
+			return this._startValue.getValue();
 		}
 		while(true) {
 			
 			var currentPart = this._parts[this._currentPartIndex];
 			if(currentPart == null) {
-				return this._startValue;
+				return this._startValue.getValue();
 			}
 			//console.log(this._currentPartIndex, aParameter >= currentPart.startApplyTime && aParameter < currentPart.endApplyTime, aParameter, currentPart.startApplyTime, currentPart.endApplyTime);
 			if(aParameter >= currentPart.startApplyTime && aParameter < currentPart.endApplyTime) {
@@ -77,7 +83,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 			}
 			else if(aParameter < currentPart.startApplyTime) {
 				if(this._currentPartIndex == 0) {
-					return this._startValue;
+					return this._startValue.getValue();
 				}
 				this._currentPartIndex--;
 			}
@@ -165,7 +171,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	};
 	
 	objectFunctions.setStartValue = function(aStartValue) {
-		this._startValue = aStartValue;
+		this._startValue.setValue(aStartValue);
 		this._partChange.setAsDirty();
 		
 		return this;

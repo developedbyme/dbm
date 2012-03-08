@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	var SetValueTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart::_init");
 		
 		this.superCall();
 		

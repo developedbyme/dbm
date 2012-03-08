@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ConditionNode", "com.devel
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.ConditionNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.logic.ConditionNode::_init");
 		
 		this.superCall();
 		

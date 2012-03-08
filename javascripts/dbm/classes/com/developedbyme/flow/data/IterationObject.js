@@ -13,8 +13,8 @@ dbm.registerClass("com.developedbyme.flow.data.IterationObject", "com.developedb
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.data.IterationObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.data.IterationObject::_init");
 		
 		this.superCall();
 		

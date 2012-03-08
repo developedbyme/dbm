@@ -1,18 +1,42 @@
+/**
+ * Error handler that prints reports in the console.
+ *
+ * @author	Mattias Ekendahl (mattias@developedbyme.com)
+ * @version	0.2.01
+ */
 dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
+	//"use strict";
 	
 	var PrintInConsoleHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
+	
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::init");
+	/**
+	 * Initializes the object.
+	 *
+	 * @return self
+	 */
+	objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::_init");
 		
 		this.superCall();
 		
 		return this;
-	};
+	}; //End function _init
 	
-	objectFunctions.report = function(aType, aLevel, aObject, aFunctionName, aData) {
+	/**
+	 * Reports errors, warning and log messages.
+	 *
+	 * @param	aId				{Uint}						The id for the call.
+	 * @param	aTimeStamp		{Uint}						The time stamp for the report.
+	 * @param	aType			{enum: ReportTypes}			The type of report.
+	 * @param	aLevel			{enum: ReportLevelTypes}	The level of severety.
+	 * @param	aObject			{*}							The object that sends the report.
+	 * @param	aFunctionName	{String}					The name of the function that sends the report.
+	 * @param	aData			{*}							The data for the report.
+	 */
+	objectFunctions.report = function report(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
 		switch(aType) {
 			case ReportTypes.ERROR:
 				console.error(aObject, aFunctionName+":", aData);
@@ -27,9 +51,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.Pr
 				console.log(aType, aObject, aFunctionName+":", aData);
 				break;
 		}
-	};
+	}; //End function report
 	
-	objectFunctions.reportError = function(aObject, aFunctionName, aError) {
+	/**
+	 * Reports an error catched from a try statement.
+	 *
+	 * @param	aId				{Uint}		The id for the call.
+	 * @param	aTimeStamp		{Uint}		The time stamp for the report.
+	 * @param	aObject			{*}			The object that sends the report.
+	 * @param	aFunctionName	{String}	The name of the function that sends the report.
+	 * @param	aError			{Error}		The error that occured.
+	 */
+	objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
 		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
 		var errorProperties = new Array();
 		if(aError.fileName) {
@@ -51,5 +84,5 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.Pr
 		var errorString = aError.message +" (" + errorProperties.join(", ") + ")";
 		
 		console.error(aObject, aFunctionName+":", aError, errorString);
-	};
+	}; //End function reportError
 });

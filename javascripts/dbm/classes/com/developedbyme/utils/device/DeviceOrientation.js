@@ -12,8 +12,8 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceOrientation", "com.devel
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	var DeviceExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.DeviceExtendedEventIds");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.device.DeviceOrientation::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.device.DeviceOrientation::_init");
 		
 		this.superCall();
 		

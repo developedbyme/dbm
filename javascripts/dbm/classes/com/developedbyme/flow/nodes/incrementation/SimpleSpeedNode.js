@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode",
 	
 	var SimpleSpeedNode = dbm.importClass("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode::_init");
 		
 		this.superCall();
 		

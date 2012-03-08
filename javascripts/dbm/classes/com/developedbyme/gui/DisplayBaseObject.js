@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.BaseObject");
+	//console.log("com.developedbyme.gui.DisplayBaseObject");
+	//"use strict";
 	
 	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
 	
@@ -13,8 +14,8 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.DisplayBaseObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::_init");
 		
 		this.superCall();
 		

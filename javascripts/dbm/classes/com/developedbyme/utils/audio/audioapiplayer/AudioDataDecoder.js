@@ -9,14 +9,18 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.AudioDataDecoder
 	
 	var UpdateChain = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.audio.audioapiplayer.AudioDataDecoder::init");
+	var ProcessStatusTypes = dbm.importClass("com.developedbyme.constants.ProcessStatusTypes");
+	var ProcessExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ProcessExtendedEventIds");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.audio.audioapiplayer.AudioDataDecoder::_init");
 		
 		this.superCall();
 		
 		this._context = null;
 		this._data = null;
 		this._buffer = null;
+		this._status = ProcessStatusTypes.NOT_STARTED;
 		
 		var thisPointer = this;
 		this._successCallback = function(aBuffer) {
@@ -30,13 +34,30 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.AudioDataDecoder
 		return this;
 	};
 	
+	objectFunctions.getStatus = function() {
+		return this._status;
+	};
+	
 	objectFunctions._bufferCreated = function(aBuffer) {
 		console.log("com.developedbyme.utils.audio.audioapiplayer.AudioDataDecoder::_bufferCreated");
 		this._buffer = aBuffer;
+		
+		this._status = ProcessStatusTypes.DONE;
+		
+		if(this.getExtendedEvent().hasEvent(ProcessExtendedEventIds.DONE)) {
+			this.getExtendedEvent().perform(ProcessExtendedEventIds.DONE, aBuffer);
+		}
 	};
 	
 	objectFunctions._errorCreatingBuffer = function(aError) {
 		console.log("com.developedbyme.utils.audio.audioapiplayer.AudioDataDecoder::_errorCreatingBuffer");
+		console.log(aError);
+		
+		this._status = ProcessStatusTypes.ERROR;
+		
+		if(this.getExtendedEvent().hasEvent(ProcessExtendedEventIds.ERROR)) {
+			this.getExtendedEvent().perform(ProcessExtendedEventIds.ERROR, aError);
+		}
 	};
 	
 	objectFunctions.setup = function(aContext, aData) {
@@ -47,18 +68,24 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.AudioDataDecoder
 		return this
 	};
 	
-	objectFunctions.startDecoding = function() {
-		this._context.decodeAudioData(aContext, aData, this._successCallback, this._errorCallback);
+	objectFunctions.getBuffer = function() {
+		return this._buffer;
+	};
+	
+	objectFunctions.startProcess = function() {
+		this._status = ProcessStatusTypes.STARTED;
+		this._context.decodeAudioData(this._data, this._successCallback, this._errorCallback);
 		
 		return  this;
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
-		//switch(aName) {
-		//	case PlaybackExtendedEventIds.META_DATA_LOADED:
-		//		return true;
-		//}
+		switch(aName) {
+			case ProcessExtendedEventIds.DONE:
+			case ProcessExtendedEventIds.ERROR:
+				return true;
+		}
 		
 		return this.superCall(aName);
 	};
@@ -75,7 +102,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.AudioDataDecoder
 	
 	staticFunctions.create = function(aContext, aData) {
 		var newNode = (new ClassReference()).init();
-		
+		newNode.setup(aContext, aData);
 		return newNode;
 	};
 });

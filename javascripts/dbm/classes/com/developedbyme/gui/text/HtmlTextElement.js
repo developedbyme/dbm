@@ -11,8 +11,8 @@ dbm.registerClass("com.developedbyme.gui.text.HtmlTextElement", "com.developedby
 	
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.gui.text.HtmlTextElement::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.text.HtmlTextElement::_init");
 		
 		this.superCall();
 		
