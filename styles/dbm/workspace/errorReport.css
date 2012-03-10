@@ -1,7 +1,7 @@
 .dbmErrorReportCounter {
 	position: absolute;
-	width: 90px;
-	height: 20px;
+	width: 150px;
+	height: 16px;
 	background-color: rgba(0, 0, 0, 0.4);
 	border: 1px solid #EEEEEE;
 	
@@ -13,10 +13,34 @@
 	overflow: hidden;
 }
 
+.dbmErrorReportCounter .dbmIconCounter {
+	float: left;
+	width: 50px;
+	height: 16px;
+}
+
 .dbmErrorReportCounter .dbmTypeIcon {
-	display: inline;
+	float: left;
+	width: 16px;
+	height: 16px;
+}
+
+.dbmErrorReportCounter .dbmTypeIcon.dbmError {
+	content: url(../../../images/icons/gentleface/white/round_delete_icon&16.png);
+}
+
+.dbmErrorReportCounter .dbmTypeIcon.dbmWarning {
+	
+	content: url(../../../images/icons/gentleface/white/attention_icon&16.png);
+}
+
+.dbmErrorReportCounter .dbmTypeIcon.dbmLog {
+	content: url(../../../images/icons/gentleface/white/info_icon&16.png);
 }
 
 .dbmErrorReportCounter .dbmCounter {
-	display: inline;
+	float: right;
+	margin-right: 6px;
+	margin-top: 2px;
+	height: 14px;
 }
