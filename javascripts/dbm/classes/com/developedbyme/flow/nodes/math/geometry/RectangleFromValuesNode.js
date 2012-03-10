@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
+	//"use strict";
 	
 	var RectangleFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
 	

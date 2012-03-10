@@ -65,6 +65,13 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return aObject;
 	};
 	
+	objectFunctions.getDestroyableObjectsArray = function getDestroyableObjectsArray() {
+		if(this._destroyableObjects == null) {
+			this._destroyableObjects = new Array();
+		}
+		return this._destroyableObjects;
+	}
+	
 	objectFunctions.isDestroyed = function isDestroyed() {
 		//console.log("com.developedbyme.core.BaseObject::isDestroyed");
 		return this._isDestroyed;

@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.flow.PropertiesHolder", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.PropertiesHolder");
+	//"use strict";
 	
 	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	

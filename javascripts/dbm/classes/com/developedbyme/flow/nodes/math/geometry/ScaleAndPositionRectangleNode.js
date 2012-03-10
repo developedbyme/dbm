@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRectangleNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRectangleNode");
+	//"use strict";
 	
 	var ScaleAndPositionRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRectangleNode");
 	
@@ -14,7 +15,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRe
 		this.superCall();
 		
 		this._outerRectangle = this.createProperty("outerRectangle", null).setAlwaysUpdateFlow();
-		this._innerRectangle = this.createProperty("innerRectangle", null).setAlwaysUpdateFlow();
 		this._outerParameterX = this.createProperty("outerParameterX", 0);
 		this._outerParameterY = this.createProperty("outerParameterY", 0);
 		this._innerParameterX = this.createProperty("innerParameterX", 0);
@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRe
 		
 		this._tempPoint = Point.create();
 		
-		this.createUpdateFunction("default", this._update, [this._outerRectangle, this._innerRectangle, this._outerParameterX, this._outerParameterY, this._innerParameterX, this._innerParameterY, this._offsetX, this._offsetY, this._scaleX, this._scaleY, this._scaleOffsetX, this._scaleOffsetY], [this._outputRectangle]);
+		this.createUpdateFunction("default", this._update, [this._outerRectangle, this._outerParameterX, this._outerParameterY, this._innerParameterX, this._innerParameterY, this._offsetX, this._offsetY, this._scaleX, this._scaleY, this._scaleOffsetX, this._scaleOffsetY], [this._outputRectangle]);
 		
 		return this;
 	};
@@ -51,7 +51,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRe
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._outerRectangle = null;
-		this._innerRectangle = null;
 		this._outerParameterX = null;
 		this._outerParameterY = null;
 		this._innerParameterX = null;
@@ -69,16 +68,15 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRe
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aOuterRectangle, aInnerRectangle, aOuterParameterX, aOuterParameterY, aInnerParameterX, aInnerParameterY, aOffsetX, aOffsetY, aScaleX, aScaleY, aScaleOffsetX, aScaleOffsetY) {
+	staticFunctions.create = function(aOuterRectangle, aOuterParameterX, aOuterParameterY, aInnerParameterX, aInnerParameterY, aOffsetX, aOffsetY, aScaleX, aScaleY, aScaleOffsetX, aScaleOffsetY) {
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("outerRectangle", aOuterRectangle);
-		newNode.setPropertyInputWithoutNull("innerRectangle", aInnerRectangle);
 		newNode.setPropertyInputWithoutNull("outerParameterX", aOuterParameterX);
 		newNode.setPropertyInputWithoutNull("outerParameterY", aOuterParameterY);
 		newNode.setPropertyInputWithoutNull("innerParameterX", aInnerParameterX);
 		newNode.setPropertyInputWithoutNull("innerParameterY", aInnerParameterY);
 		newNode.setPropertyInputWithoutNull("offsetX", aOffsetX);
-		newNode.setPropertyInputWithoutNull("offsetX", aOffsetY);
+		newNode.setPropertyInputWithoutNull("offsetY", aOffsetY);
 		newNode.setPropertyInputWithoutNull("scaleX", aScaleX);
 		newNode.setPropertyInputWithoutNull("scaleY", aScaleY);
 		newNode.setPropertyInputWithoutNull("scaleOffsetX", aScaleOffsetX);

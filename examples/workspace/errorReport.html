@@ -3,6 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Error report example</title>
+		<link rel="stylesheet" href="../../styles/dbm/workspace/errorReport.css" />
 		<script type="application/javascript" src="../../javascripts/dbm/dbm.js"></script>
 		<script type="application/javascript">
 			dbm.setup(window, document, "../../javascripts", "classes");
@@ -12,6 +13,8 @@
 		<script type="application/javascript" src="../../javascripts/examples/workspace/errorReportExample.js"></script>
 	</head>
 	<body>
-		
+		<div id="errorReportDisplay" class="dbmErrorReportCounter" data-dbm-class="dbm:DisplayBaseObject">
+			<div class="dbmTypeIcon">Error</div><div class="dbmCounter" data-dbm-text-class="dbm:text" data-dbm-text-name="errorText">0</div><div class="dbmTypeIcon">Warnings</div><div class="dbmCounter" data-dbm-text-class="dbm:text" data-dbm-text-name="warningText">0</div><div class="dbmTypeIcon">Logs</div><div class="dbmCounter" data-dbm-text-class="dbm:text" data-dbm-text-name="logText">0</div>
+		</div>
 	</body>
 </html>

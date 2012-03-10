@@ -119,10 +119,13 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 			this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
 		}
 		else {
-			//METODO: browser prefixes
-			var transformCssValue = aElement.style.getPropertyValue("transform");
-			if(transformCssValue != null) {
-				//METODO: create transform node
+			if(aElement.style != undefined) {
+				//METODO: move this out like connect to opacity
+				//METODO: browser prefixes
+				var transformCssValue = aElement.style.getPropertyValue("transform");
+				if(transformCssValue != null) {
+					//METODO: create transform node
+				}
 			}
 		}
 		
