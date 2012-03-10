@@ -20,8 +20,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.data.Report
 	objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.globalobjects.errormanager.data.ReportData::_init");
 		
-		this.superCall();
-		
 		this.id = -1;
 		this.timeStamp = -1;
 		this.type = ReportTypes.UNKNOWN;
@@ -57,7 +55,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.data.Report
 		this.functionName = aFunctionName;
 		this.data = aData;
 		
-		Object.freezeObject(this);
+		Object.freeze(this);
 		
 		return this;
 	}; //End function setup
@@ -75,9 +73,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.data.Report
 	 *
 	 * @return	{ReportData}	The new report data.
 	 */
-	objectFunctions.create = function create(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
+	staticFunctions.create = function create(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
 		var newReportData = (new ReportData()).init();
 		newReportData.setup(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData);
 		return newReportData;
-	}; //End function create
+	}; //End function create (static)
 });

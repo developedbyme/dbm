@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.AdditionNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.AdditionNode");
+	//"use strict";
 	
 	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
 	

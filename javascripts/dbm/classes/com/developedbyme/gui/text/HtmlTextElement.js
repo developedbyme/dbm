@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.gui.text.HtmlTextElement", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
+	//"use strict";
 	
 	var HtmlTextElement = dbm.importClass("com.developedbyme.gui.text.HtmlTextElement");
 	

@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.flow.nodes.logic.ConditionNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.logic.ConditionNode");
+	//"use strict";
 	
 	var ConditionNode = dbm.importClass("com.developedbyme.flow.nodes.logic.ConditionNode");
 	

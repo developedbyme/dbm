@@ -63,7 +63,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.Fl
 		}
 		
 		var reportsArray = this._reports.getValue();
-		reportsArray.push(ReportTypes.create(aId, aTimeStamp, aType, aLevel, aObject.toString(), aFunctionName, aData));
+		reportsArray.push(ReportData.create(aId, aTimeStamp, aType, aLevel, aObject.toString(), aFunctionName, aData));
 		this._reports.setAsDirty();
 	}; //End function report
 	
@@ -101,7 +101,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.Fl
 		var errorString = aError.message +" (" + errorProperties.join(", ") + ")";
 		
 		var reportsArray = this._reports.getValue();
-		reportsArray.push(ReportTypes.create(aId, aTimeStamp, ReportTypes.ERROR, ReportLevelTypes.UNKNOWN, aObject.toString(), aFunctionName, aError.toString() + " " + errorString));
+		reportsArray.push(ReportData.create(aId, aTimeStamp, ReportTypes.ERROR, ReportLevelTypes.UNKNOWN, aObject.toString(), aFunctionName, aError.toString() + " " + errorString));
 		this._reports.setAsDirty();
 	}; //End function reportError
+	
+	staticFunctions.create = function create() {
+		var newFlowHandler = (new FlowHandler()).init();
+		return newFlowHandler;
+	};
 });

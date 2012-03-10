@@ -1,5 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.round.RoundToNumberOfDecimalsNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.round.RoundToNumberOfDecimalsNode");
+	//"use strict";
+	
+	var RoundToNumberOfDecimalsNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundToNumberOfDecimalsNode");
 	
 	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
 	
@@ -29,5 +32,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.round.RoundToNumberOfDecima
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		this.superCall();
+	};
+	
+	staticFunctions.create = function(aInputValue, aNumberOfDecimals) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputValue", aInputValue);
+		newNode.setPropertyInputWithoutNull("numberOfDecimals", aNumberOfDecimals);
+		return newNode;
 	};
 });

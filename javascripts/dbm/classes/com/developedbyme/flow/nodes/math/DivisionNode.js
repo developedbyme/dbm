@@ -1,5 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.DivisionNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.DivisionNode");
+	//"use strict";
+	
+	var DivisionNode = dbm.importClass("com.developedbyme.flow.nodes.math.DivisionNode");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.DivisionNode::_init");

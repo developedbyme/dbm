@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.gui.text.TextElement", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
+	//"use strict";
 	
 	var TextElement = dbm.importClass("com.developedbyme.gui.text.TextElement");
 	
@@ -17,6 +18,7 @@ dbm.registerClass("com.developedbyme.gui.text.TextElement", "com.developedbyme.g
 		this.superCall();
 		
 		this._text = this.addProperty("text", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._updateFunctions.getObject("display").addInputConnection(this._text);
 		
 		return this;
 	};
