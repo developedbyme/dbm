@@ -3,6 +3,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Error report example</title>
+		<link rel="stylesheet" href="../../styles/dbm/fonts.css" />
+		<link rel="stylesheet" href="../../styles/dbm/main.css" />
+		<link rel="stylesheet" href="../../styles/dbm/colorThemes/dbmStandard.css" />
+		<link rel="stylesheet" href="../../styles/dbm/workspace/logoMenu.css" />
 		<link rel="stylesheet" href="../../styles/dbm/workspace/errorReport.css" />
 		<script type="application/javascript" src="../../javascripts/dbm/dbm.js"></script>
 		<script type="application/javascript">
@@ -12,9 +16,10 @@
 		<script type="application/javascript" src="../../javascripts/dbm/setup/defaultSetup.js"></script>
 		<script type="application/javascript" src="../../javascripts/examples/workspace/errorReportExample.js"></script>
 	</head>
-	<body>
-		<div id="errorReportDisplay" class="dbmErrorReportCounter" data-dbm-class="dbm:DisplayBaseObject">
+	<body class="colorTheme dbmStandard">
+		<div id="errorReportDisplay" class="dbmErrorReportCounter smallBackground standardBorder" data-dbm-class="dbm:DisplayBaseObject">
 			<div class="dbmIconCounter"><div class="dbmTypeIcon dbmError"></div><div class="dbmCounter" data-dbm-text-class="dbm:text" data-dbm-text-name="errorsText">0</div></div><div class="dbmIconCounter"><div class="dbmTypeIcon dbmWarning"></div><div class="dbmCounter" data-dbm-text-class="dbm:text" data-dbm-text-name="warningsText">0</div></div><div class="dbmIconCounter"><div class="dbmTypeIcon dbmLog"></div><div class="dbmCounter" data-dbm-text-class="dbm:text" data-dbm-text-name="logsText">0</div></div>
 		</div>
+		<div id="menu" class="dbmLogoMenu smallBackground standardBorder">dbm<div class="dbmIcon"></div></div>
 	</body>
 </html>

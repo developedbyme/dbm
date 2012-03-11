@@ -1,0 +1,24 @@
+.dbmLogoMenu {
+	position: absolute;
+	height: 16px;
+	
+	font-size: 17px;
+	color: #FFFFFF;
+	text-shadow: #000000 1px 1px 0px;
+	
+	padding: 5px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.dbmLogoMenu .dbmIcon {
+	display: inline;
+	width: 16px;
+	height: 16px;
+	margin-left: 5px;
+	content: url(../../../images/icons/gentleface/white/sq_up_icon&16.png);
+}
+
+.dbmLogoMenu.open .dbmIcon {
+	content: url(../../../images/icons/gentleface/white/sq_down_icon&16.png);
+}
