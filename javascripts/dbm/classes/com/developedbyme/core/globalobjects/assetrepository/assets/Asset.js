@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");
+	//"use strict";
 	
 	var Asset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");
 	

@@ -37,6 +37,8 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	};
 	
 	objectFunctions._connectObjectToOpacity = function() {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::_connectObjectToOpacity");
+		//console.log(this._element.getValue());
 		this._alpha.setupExternalObject(this._element.getValue(), "opacity", null, 1);
 	};
 	

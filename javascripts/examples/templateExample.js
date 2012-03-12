@@ -17,5 +17,6 @@ dbm.runTempFunction(function() {
 		
 		console.log(templateResult.mainController);
 		console.log(templateResult.getController("contentArea/videoPlayer"));
+		
 	});
 });

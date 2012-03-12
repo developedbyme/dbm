@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Template Example</title>
+	</head>
+	<body>
+		<div id="testTemplate" data-dbm-class="dbm:DisplayBaseObject">
+			<div>
+				<div style="background-color: #0000FF" data-dbm-class="BaseButton" data-dbm-name="testButton">Test button</div>
+				<div data-dbm-name="contentArea">
+					<video data-dbm-class="VideoView" data-dbm-name="videoPlayer"></video>
+					<div data-dbm-text-class="dbm:text">Test text</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

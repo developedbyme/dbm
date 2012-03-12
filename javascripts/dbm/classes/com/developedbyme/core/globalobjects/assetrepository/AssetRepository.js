@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRepository", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository");
+	//"use strict";
 	
 	var AssetRepository = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.AssetRepository");
 	
@@ -20,6 +21,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	var AudioAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset");
 	var VideoAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset");
 	var ArrayBufferAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset");
+	var XmlIdElementAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlIdElementAsset");
 	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
@@ -96,11 +98,33 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::getAsset");
 		//console.log(aPath);
 		
+		var hashIndex = aPath.indexOf("#");
+		var hashString = null;
+		if(hashIndex >= 0) {
+			hashString = aPath.substring(hashIndex+1, aPath.length);
+			aPath = aPath.substring(0, hashIndex);
+		}
+		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
 		if(currentItem.data == null) {
 			//console.log("new", currentItem.getPath());
 			this._createAssetForTreeStructure(currentItem);
+		}
+		
+		if(hashIndex >= 0) {
+			//console.log(aPath, hashString);
+			//console.log(currentItem.data, currentItem.data instanceof XmlAsset);
+			if(!(currentItem.data instanceof XmlAsset)) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "getAsset", "Asset " + aPath + " is not an xml, can't get hash " + hashString + ".");
+				return null;
+			}
+			var hashItem = this._hierarchy.getItemByPath(hashString, currentItem);
+			
+			hashItem.data = XmlIdElementAsset.create(hashString, currentItem.data);
+			hashItem.retain();
+			
+			currentItem = hashItem;
 		}
 		
 		//this._hierarchy.debugTraceStructure();
@@ -126,7 +150,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
 		if(currentItem.data != null) {
-			//METODO: warning message
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addAsset", "Asset " + aPath + " already exists, replacing.");
 		}
 		
 		currentItem.data = aAsset;
@@ -159,7 +183,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::_createAsset");
 		
 		var newAsset = null;
-		switch(PathFunctions.getFileExtension(aPath)) {
+		var fileExtension = PathFunctions.getFileExtension(aPath);
+		switch(fileExtension) {
 			case "jpg":
 			case "jpeg":
 			case "gif":
@@ -198,7 +223,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 				newAsset = AudioAsset.create(this.getAudioPath(aPath.substring(0, aPath.length-this._pseudoAudioExtension.length-1)));
 				break;
 			default:
-				//METODO: error message
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createAsset", "Unknown file extension " + fileExtension + ".");
 				break;
 		}
 		

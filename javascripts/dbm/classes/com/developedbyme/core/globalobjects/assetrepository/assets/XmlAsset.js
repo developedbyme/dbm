@@ -1,5 +1,6 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset", "com.developedbyme.core.globalobjects.assetrepository.assets.Asset", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset");
+	//"use strict";
 	
 	var XmlAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset");
 	
@@ -64,11 +65,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 	
 	objectFunctions._setupData = function() {
 		this._data.setValue(this._loader.responseXML);
-	}
+	};
 	
 	objectFunctions._setupResponseType = function() {
 		this._loader.responseType = XmlHttpResponseTypes.DOCUMENT;
-	}
+	};
 	
 	objectFunctions.load = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::load");
