@@ -41,6 +41,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		this._hierarchy.getRoot().data = rootLayer;
 		rootLayer._linkRegistration_setTreeStructureItem(this._hierarchy.getRoot());
 		
+		this._cameraPath = this.createProperty("cameraPath", "defaultCamera");
+		
 		this.createUpdateFunction("default", this._updateFlow, [this._graphicsUpdate, this._canvas], [this._display]);
 		
 		return this;
@@ -128,6 +130,19 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		return newTexture;
 	};
 	
+	objectFunctions.addCamera = function(aPath, aCamera) {
+		var currentItem = this._hierarchy.getItemByPath(aPath);
+		if(currentItem.data != null) {
+			//METODO: warning message
+		}
+		
+		currentItem.data = aCamera;
+		aCamera._linkRegistration_setTreeStructureItem(currentItem);
+		this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));
+		
+		return aCamera;
+	};
+	
 	objectFunctions._getContext = function(aCanvas) {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasController3d::_getContext");
 		//console.log(aCanvas);
@@ -144,6 +159,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		var canvas = this._canvas.getValue();
 		var currentContext = this._getContext(canvas);
 		var currentLayer = this.getRootLayer();
+		var cameraPath = this._cameraPath.getValue();
 		
 		currentContext.viewportWidth = canvas.width;
 		currentContext.viewportHeight = canvas.height;
