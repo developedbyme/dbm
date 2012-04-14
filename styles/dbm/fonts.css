@@ -1,9 +1,0 @@
-@font-face {
-    font-family: "AniversRegular";
-    src: url("../../assets/fonts/anivers_31-webfont.eot?") format("eot"),
-         url("../../assets/fonts/anivers_31-webfont.woff") format("woff"),
-         url("../../assets/fonts/anivers_31-webfont.ttf") format("truetype"),
-         url("../../assets/fonts/anivers_31-webfont.svg#AniversRegular") format("svg");
-    font-weight: normal;
-    font-style: normal;
-}
