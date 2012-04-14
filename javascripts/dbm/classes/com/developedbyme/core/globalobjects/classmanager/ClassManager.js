@@ -17,7 +17,9 @@ dbm.runTempFunction(function() {
 		this._staticMethodsClass = function StaticFunctions() {};
 		//this._staticMethodsClass.prototype.toString = function() {return "[StaticFunctions]"};
 		
-		Object.seal(this);
+		if(Object.seal !== undefined) {
+			Object.seal(this);
+		}
 		
 		return this;
 	}; //End function init
@@ -45,7 +47,9 @@ dbm.runTempFunction(function() {
 		newClassHolder.objectMethods = new (this._objectMethodsClass)();
 		newClassHolder.staticMethods = new (this._staticMethodsClass)();
 		
-		Object.seal(newClassHolder);
+		if(Object.seal !== undefined) {
+			Object.seal(newClassHolder);
+		}
 		
 		this._classes[aName] = newClassHolder;
 		
@@ -240,7 +244,9 @@ dbm.runTempFunction(function() {
 			else {
 				extendPrototypeObject = new Object();
 			}
-			Object.freeze(extendPrototypeObject);
+			if(Object.freeze !== undefined) {
+				Object.freeze(extendPrototypeObject);
+			}
 			
 			var prototypeClass = this._createClassFunction(aName + "Prototype");
 			prototypeClass.prototype = extendPrototypeObject;
@@ -253,11 +259,15 @@ dbm.runTempFunction(function() {
 				currentClassHolder.prototypeObject[objectMethodName] = currentClassHolder.objectMethods[objectMethodName];
 				delete currentClassHolder.objectMethods[objectMethodName];
 			}
-			Object.seal(currentClassHolder.objectMethods);
+			if(Object.seal !== undefined) {
+				Object.seal(currentClassHolder.objectMethods);
+			}
 			
 			currentClassHolder.prototypeObject.__className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
 			currentClassHolder.prototypeObject.__fullClassName = aName;
-			Object.seal(currentClassHolder.prototypeObject); //MENOTE: this should be freeze but firefox doesn't seem to like that
+			if(Object.seal !== undefined) {
+				Object.seal(currentClassHolder.prototypeObject); //MENOTE: this should be freeze but firefox doesn't seem to like that
+			}
 			
 			currentClassHolder.classFunction.prototype = currentClassHolder.prototypeObject;
 			
@@ -265,8 +275,10 @@ dbm.runTempFunction(function() {
 				currentClassHolder.classFunction[staticMethodName] = currentClassHolder.staticMethods[staticMethodName];
 				delete currentClassHolder.staticMethods[staticMethodName];
 			}
-			Object.seal(currentClassHolder.staticMethods);
-			Object.seal(currentClassHolder.classFunction);
+			if(Object.seal !== undefined) {
+				Object.seal(currentClassHolder.staticMethods);
+				Object.seal(currentClassHolder.classFunction);
+			}
 		}
 		
 		return currentClassHolder;

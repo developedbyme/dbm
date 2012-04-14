@@ -28,7 +28,9 @@
 			this.tempClassFunction = null;
 			this._currentScriptNode = null;
 			this.isCreated = true;
-			Object.seal(this);
+			if(Object.seal !== undefined) {
+				Object.seal(this);
+			}
 		};
 		
 		dbm.setClassManager = function(aObject) {
