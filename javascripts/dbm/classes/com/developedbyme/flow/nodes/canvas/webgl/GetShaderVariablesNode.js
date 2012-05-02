@@ -1,0 +1,83 @@
+dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesNode");
+	
+	var GetShaderVariablesNode = dbm.importClass("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesNode");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var KeyTypeValueObject = dbm.importClass("com.developedbyme.core.data.generic.KeyTypeValueObject");
+	
+	var ShaderVariableTypes = dbm.importClass("com.developedbyme.constants.webgl.ShaderVariableTypes");
+	
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesNode::init");
+		
+		this.superCall();
+		
+		this._context = this.createProperty("context", null);
+		this._shader = this.createProperty("shader", null);
+		
+		this._shaderVariables = ArrayHolder.create(true);
+		this.addDestroyableObject(this._shaderVariables):
+		
+		this._defaultUpdate = this.createUpdateFunction("default", this._update, [this._context, this._shader], []);
+		
+		return this;
+	};
+	
+	objectFunctions.addVariable = function(aVariableName, aType) {
+		
+		var newProperty = this.createProperty(aVariableName);
+		
+		var newKeyValue = KeyTypeValueObject.create(aVariableName, aType, newProperty);
+		
+		this._shaderVariables.push(newKeyValue);
+		
+		this._defaultUpdate.connectOutput(newProperty);
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesNode::_update");
+		
+		var context = this._context.getValueWithoutFlow();
+		var shader = this._shader.getValueWithoutFlow();
+		
+		var currentArray = this._shaderVariables.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentKeyValue = currentArray[i];
+			var type = currentKeyValue.type;
+			var returnValue = null;
+			switch(type) {
+				case ShaderVariableTypes.ATTRIBUTE:
+					returnValue = context.getAttribLocation(shader, currentKeyValue.name);
+					break;
+				case ShaderVariableTypes.UNIFORM:
+					returnValue = context.getUniformLocation(shader, currentKeyValue.name);
+					break;
+				default:
+					//METODO: error message
+					continue;
+			}
+			currentKeyValue.value.setValueWithFlow();
+		}
+		
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._context = null;
+		this._shader = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aContext, aShader) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("context", aContext);
+		newNode.setPropertyInputWithoutNull("shader", aShader);
+		return newNode;
+	};
+});

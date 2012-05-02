@@ -1,0 +1,78 @@
+dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand", "com.developedbyme.utils.canvas.3d.drawcommands.BaseDrawCommand", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand");
+	
+	var BindVertexAttribPointerCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var TypedArrayFunctions = dbm.importClass("com.developedbyme.utils.native.typedarray.TypedArrayFunctions");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	var WebglDataTypes = dbm.importClass("com.developedbyme.constants.webgl.WebglDataTypes");
+	var WebglBeginModeTypes = dbm.importClass("com.developedbyme.constants.webgl.WebglBeginModeTypes");
+	
+	/**
+	 * Constructor.
+	 */
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand::init");
+		
+		this.superCall();
+		
+		this._buffer = this.createProperty("buffer", null);
+		this._bufferType = this.createProperty("bufferType", null);
+		this._shaderVariable = this.createProperty("shaderVariable", null);
+		this._itemSize = this.createProperty("itemSize", 0);
+		this._dataType = this.createProperty("dataType", WebglDataTypes.FLOAT);
+		
+		this._norm = this.createProperty("norm", false);
+		this._stride = this.createProperty("stride", 0);
+		this._offset = this.createProperty("offset", 0);
+		
+		this._graphicsUpdate.connectInput(this._buffer);
+		this._graphicsUpdate.connectInput(this._bufferType);
+		this._graphicsUpdate.connectInput(this._shaderVariable);
+		this._graphicsUpdate.connectInput(this._itemSize);
+		this._graphicsUpdate.connectInput(this._dataType);
+		this._graphicsUpdate.connectInput(this._norm);
+		this._graphicsUpdate.connectInput(this._stride);
+		this._graphicsUpdate.connectInput(this._offset);
+		
+		return this;
+	};
+	
+	objectFunctions.draw = function(aContext, aProjectionMatrix, aTransformationMatrix) {
+		
+		aContext.bindBuffer(this._bufferType.getValue(), this._buffer.getValue());
+		aContext.vertexAttribPointer(this._shaderVariable.getValue(), this._itemSize.getValue(), this._dataType.getValue(), this._norm.getValue(), this._stride.getValue(), this._offset.getValue());
+		
+	};
+	
+	/**
+	 * Sets all the references to null
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._buffer = null;
+		this._bufferType = null;
+		this._shaderVariable = null;
+		this._itemSize = null;
+		this._dataType = null;
+		
+		this._norm = null;
+		this._stride = null;
+		this._offset = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		var newCommand = (new ClassReference()).init();
+		
+		return newCommand;
+	};
+});
