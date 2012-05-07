@@ -30,8 +30,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.SetProjectionM
 	};
 	
 	objectFunctions.draw = function(aContext, aProjectionMatrix, aTransformationMatrix) {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.SetProjectionMatrixCommand::draw");
 		
-		aContext.uniformMatrix4fv(this._shaderVariable.getValue(), this._transpose.getValue(), aProjectionMatrix);
+		console.log("aContext.uniformMatrix4fv(" + this._shaderVariable.getValue() + ", " + this._transpose.getValue() + ", " + new Float32Array(aProjectionMatrix.valuesArray) + ");");
+		aContext.uniformMatrix4fv(this._shaderVariable.getValue(), this._transpose.getValue(), new Float32Array(aProjectionMatrix.valuesArray));
 		
 	};
 	

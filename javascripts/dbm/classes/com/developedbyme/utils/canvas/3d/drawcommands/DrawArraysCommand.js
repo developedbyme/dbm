@@ -23,20 +23,23 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.DrawArraysComm
 		
 		this.superCall();
 		
-		this._drawBufferLength = this.createProperty("drawBufferLength", 0);
-		this._drawBufferOffset = this.createProperty("drawBufferOffset", 0);
-		this._drawBufferBeginMode = this.createProperty("drawBufferBeginMode", WebglBeginModeTypes.TRIANGLES);
+		this._bufferLength = this.createProperty("bufferLength", 0);
+		this._bufferOffset = this.createProperty("bufferOffset", 0);
+		this._beginMode = this.createProperty("beginMode", WebglBeginModeTypes.TRIANGLES);
 		
-		this._graphicsUpdate.connectInput(this._drawBufferLength);
-		this._graphicsUpdate.connectInput(this._drawBufferOffset);
-		this._graphicsUpdate.connectInput(this._drawBufferBeginMode);
+		this._graphicsUpdate.connectInput(this._bufferLength);
+		this._graphicsUpdate.connectInput(this._bufferOffset);
+		this._graphicsUpdate.connectInput(this._beginMode);
 		
 		return this;
 	};
 	
 	objectFunctions.draw = function(aContext, aProjectionMatrix, aTransformationMatrix) {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.DrawArraysCommand::draw");
 		
-		aContext.drawArray(this._drawBufferBeginMode.getValue(), this._drawBufferOffset.getValue(), this._drawBufferDataType.getValue());
+		console.log("aContext.drawArrays(" + this._beginMode.getValue() + ", " + this._bufferOffset.getValue() + ", " + this._bufferLength.getValue() + ");");
+		
+		aContext.drawArrays(this._beginMode.getValue(), this._bufferOffset.getValue(), this._bufferLength.getValue());
 		
 	};
 	
@@ -45,15 +48,19 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.DrawArraysComm
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this._drawBufferLength = null;
-		this._drawBufferOffset = null;
-		this._drawBufferBeginMode = null;
+		this._bufferLength = null;
+		this._bufferOffset = null;
+		this._beginMode = null;
 		
 		this.superCall();
 	};
 	
-	staticFunctions.create = function() {
+	staticFunctions.create = function(aBeginMode, aOffset, aLength) {
 		var newCommand = (new ClassReference()).init();
+		
+		newCommand.setPropertyInputWithoutNull("beginMode", aBeginMode);
+		newCommand.setPropertyInputWithoutNull("bufferLength", aLength);
+		newCommand.setPropertyInputWithoutNull("bufferOffset", aOffset);
 		
 		return newCommand;
 	};

@@ -49,9 +49,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		
 		var theMatrix = this._outputMatrix.getValueWithoutFlow();
 		
-		this._scaleMatrix.setValue(0, 3, this._scaleX.getValueWithoutFlow());
-		this._scaleMatrix.setValue(1, 3, this._scaleY.getValueWithoutFlow());
-		this._scaleMatrix.setValue(2, 3, this._scaleZ.getValueWithoutFlow());
+		this._scaleMatrix.setValue(0, 0, this._scaleX.getValueWithoutFlow());
+		this._scaleMatrix.setValue(1, 1, this._scaleY.getValueWithoutFlow());
+		this._scaleMatrix.setValue(2, 2, this._scaleZ.getValueWithoutFlow());
 		
 		this._rotateXMatrix.setValue(1, 1, Math.cos(rotateX));
 		this._rotateXMatrix.setValue(2, 1, -1*Math.sin(rotateX));

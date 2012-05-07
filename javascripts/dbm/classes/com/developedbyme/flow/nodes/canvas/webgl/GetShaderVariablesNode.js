@@ -8,6 +8,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesN
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var KeyTypeValueObject = dbm.importClass("com.developedbyme.core.data.generic.KeyTypeValueObject");
+	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
 	
 	var ShaderVariableTypes = dbm.importClass("com.developedbyme.constants.webgl.ShaderVariableTypes");
 	
@@ -20,7 +21,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesN
 		this._shader = this.createProperty("shader", null);
 		
 		this._shaderVariables = ArrayHolder.create(true);
-		this.addDestroyableObject(this._shaderVariables):
+		this.addDestroyableObject(this._shaderVariables);
 		
 		this._defaultUpdate = this.createUpdateFunction("default", this._update, [this._context, this._shader], []);
 		
@@ -33,9 +34,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesN
 		
 		var newKeyValue = KeyTypeValueObject.create(aVariableName, aType, newProperty);
 		
-		this._shaderVariables.push(newKeyValue);
+		this._shaderVariables.array.push(newKeyValue);
 		
-		this._defaultUpdate.connectOutput(newProperty);
+		this._defaultUpdate.addOutputConnection(newProperty);
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
@@ -53,15 +54,22 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesN
 			switch(type) {
 				case ShaderVariableTypes.ATTRIBUTE:
 					returnValue = context.getAttribLocation(shader, currentKeyValue.name);
+					if(returnValue == -1) {
+						ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_update", "Attribute " + currentKeyValue.name + " doesn't exist.");
+					}
 					break;
 				case ShaderVariableTypes.UNIFORM:
 					returnValue = context.getUniformLocation(shader, currentKeyValue.name);
+					if(returnValue == null) {
+						ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_update", "Uniform " + currentKeyValue.name + " doesn't exist.");
+					}
 					break;
 				default:
-					//METODO: error message
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_update", "No type named " + type + ".");
 					continue;
 			}
-			currentKeyValue.value.setValueWithFlow();
+			//console.log(currentKeyValue.name, type, returnValue);
+			currentKeyValue.value.setValueWithFlow(returnValue, aFlowUpdateNumber);
 		}
 		
 	};

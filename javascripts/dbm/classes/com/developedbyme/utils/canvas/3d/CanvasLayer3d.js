@@ -60,90 +60,37 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d", "com.develo
 		this._treeStructureItem = aItem;
 	};
 	
-	objectFunctions.draw = function(aContext, aNumberOfLinksToResolve) {
+	objectFunctions.addGraphics = function(aGraphics) {
+		
+		this._graphicsUpdate.connectInput(aGraphics.getProperty("graphicsUpdate"));
+		
+		this._graphics.push(aGraphics);
+	};
+	
+	objectFunctions.draw = function(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::draw");
 		//console.log(aNumberOfLinksToResolve);
 		
-		var fragmentShader = getShader(aContext, "shader-fs");
-		var vertexShader = getShader(aContext, "shader-vs");
-
-		shaderProgram = aContext.createProgram();
-		aContext.attachShader(shaderProgram, vertexShader);
-		aContext.attachShader(shaderProgram, fragmentShader);
-		aContext.linkProgram(shaderProgram);
-
-		if(!aContext.getProgramParameter(shaderProgram, aContext.LINK_STATUS)) {
-			alert("Could not initialise shaders");
-		}
+		var currentMatrix = this._transformationMatrix.getValue();
 		
-		aContext.useProgram(shaderProgram);
+		var newMatrix = Matrix.create(4, 4);
 		
-		shaderProgram.vertexPositionAttribute = aContext.getAttribLocation(shaderProgram, "aVertexPosition");
-		aContext.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+		Matrix.multiplyMatrices(aCurrentMatrix, currentMatrix, newMatrix);
 		
-		shaderProgram.pMatrixUniform = aContext.getUniformLocation(shaderProgram, "uPMatrix");
-		shaderProgram.mvMatrixUniform = aContext.getUniformLocation(shaderProgram, "uMVMatrix");
+		console.log(aCurrentMatrix.toString(), newMatrix.toString());
 		
-		var triangleVertexPositionBuffer = aContext.createBuffer();
-		aContext.bindBuffer(aContext.ARRAY_BUFFER, triangleVertexPositionBuffer);
-		var vertices = [
-			0.0,  1.0,  0.0,
-			-1.0, -1.0,  0.0,
-			1.0, -1.0,  0.0
-		];
-		aContext.bufferData(aContext.ARRAY_BUFFER, new Float32Array(vertices), aContext.STATIC_DRAW);
-		triangleVertexPositionBuffer.itemSize = 3;
-		triangleVertexPositionBuffer.numItems = 3;
+		this._drawGraphicsAndChildren(aContext, newMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve);
 		
-		var mvMatrix = mat4.create();
-		var pMatrix = mat4.create();
-		
-		mat4.perspective(45, aContext.viewportWidth / aContext.viewportHeight, 0.1, 100.0, pMatrix);
-		
-		mat4.identity(mvMatrix);
-		
-		mat4.translate(mvMatrix, [-1.5, 0.0, -7.0]);
-		//aContext.bindBuffer(aContext.ARRAY_BUFFER, triangleVertexPositionBuffer);
-		aContext.vertexAttribPointer(shaderProgram.vertexPositionAttribute, triangleVertexPositionBuffer.itemSize, aContext.FLOAT, false, 0, 0);
-		aContext.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
-		aContext.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
-		aContext.drawArrays(aContext.TRIANGLES, 0, triangleVertexPositionBuffer.numItems);
-		
-		/*
-		aContext.save();
-		
-		var alpha = this._alpha.getValue();
-		var compositionOperation = this._compositionOperation.getValue();
-		
-		aContext.globalAlpha = aContext.globalAlpha*alpha;
-		if(compositionOperation != null) {
-			aContext.globalCompositeOperation = compositionOperation;
-		}
-		
-		var transformationMatrix = this._transformationMatrix.getValue();
-		
-		if((transformationMatrix.getValue(0, 0) == 0 && transformationMatrix.getValue(1, 0) == 0) || (transformationMatrix.getValue(0, 1) == 0 && transformationMatrix.getValue(1, 1) == 0)) {
-			aContext.restore();
-			return;
-		}
-		
-		aContext.transform(transformationMatrix.getValue(0, 0), transformationMatrix.getValue(0, 1), transformationMatrix.getValue(1, 0), transformationMatrix.getValue(1, 1), transformationMatrix.getValue(2, 0), transformationMatrix.getValue(2, 1));
-		if(this._mask != null && this._useMask.getValue()) {
-			this._mask.draw(aContext);
-		}
-		
-		this._drawGraphicsAndChildren(aContext, aNumberOfLinksToResolve);
-		
-		aContext.restore();
-		*/
+		//METODO: reuse maticeies
+		newMatrix.destroy();
 	};
 	
-	objectFunctions._drawGraphicsAndChildren = function(aContext, aNumberOfLinksToResolve) {
-		this._drawGraphics(aContext);
-		this._drawChildren(aContext, this._treeStructureItem.getChildren(), aNumberOfLinksToResolve);
+	objectFunctions._drawGraphicsAndChildren = function(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
+		this._drawGraphics(aContext, aCurrentMatrix, aPerspectiveMatrix);
+		this._drawChildren(aContext, this._treeStructureItem.getChildren(), aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve);
 	};
 	
-	objectFunctions._drawGraphics = function(aContext) {
+	objectFunctions._drawGraphics = function(aContext, aCurrentMatrix, aPerspectiveMatrix) {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_drawGraphics");
 		//console.log(this._graphics);
 		
@@ -151,11 +98,11 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d", "com.develo
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentGraphics = currentArray[i];
-			currentGraphics.draw(aContext);
+			currentGraphics.draw(aContext, aPerspectiveMatrix, aCurrentMatrix);
 		}
 	};
 	
-	objectFunctions._drawChildren = function(aContext, aChildren, aNumberOfLinksToResolve) {
+	objectFunctions._drawChildren = function(aContext, aChildren, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_drawChildren");
 		//console.log(aNumberOfLinksToResolve);
 		
@@ -174,10 +121,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d", "com.develo
 				}
 			}
 			if(currentChild.data != null) {
-				currentChild.data.draw(aContext, aNumberOfLinksToResolve-linkCountDown);
+				currentChild.data.draw(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve-linkCountDown);
 			}
 			else {
-				this._drawChildren(aContext, currentChild.getChildren(), aNumberOfLinksToResolve-linkCountDown);
+				this._drawChildren(aContext, currentChild.getChildren(), aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve-linkCountDown);
 			}
 		}
 	};

@@ -1,7 +1,7 @@
-dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateTextrueNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateTextrueNode");
+dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateTextureNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateTextureNode");
 	
-	var CreateTextrueNode = dbm.importClass("com.developedbyme.flow.nodes.canvas.webgl.CreateTextrueNode");
+	var CreateTextureNode = dbm.importClass("com.developedbyme.flow.nodes.canvas.webgl.CreateTextureNode");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
@@ -10,7 +10,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateTextrueNode",
 	var WebglFilterTypes = dbm.importClass("com.developedbyme.constants.webgl.WebglFilterTypes");
 	
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateTextrueNode::init");
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateTextureNode::init");
 		
 		this.superCall();
 		
@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateTextrueNode",
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateTextrueNode::_update");
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateTextureNode::_update");
 		
 		var currentContext = this._context.getValueWithoutFlow();
 		

@@ -28,6 +28,9 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.UseShaderProgr
 	};
 	
 	objectFunctions.draw = function(aContext, aProjectionMatrix, aTransformationMatrix) {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.UseShaderProgramCommand::draw");
+		
+		console.log("aContext.useProgram(" + this._shader.getValue() + ");");
 		
 		aContext.useProgram(this._shader.getValue());
 		

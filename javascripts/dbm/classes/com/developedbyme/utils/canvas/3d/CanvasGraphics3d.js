@@ -27,7 +27,15 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasGraphics3d", "com.dev
 		return this;
 	};
 	
+	objectFunctions.addDrawCommand = function(aCommand) {
+		
+		this._commands.push(aCommand);
+		
+		return aCommand;
+	};
+	
 	objectFunctions.draw = function(aContext, aProjectionMatrix, aTransformationMatrix) {
+		console.log("com.developedbyme.utils.canvas.3d.CanvasGraphics3d::draw");
 		
 		//METODO: covert to typed array
 		var projectionMatrix = aProjectionMatrix;

@@ -46,8 +46,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttr
 	};
 	
 	objectFunctions.draw = function(aContext, aProjectionMatrix, aTransformationMatrix) {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand::draw");
+		
+		console.log("aContext.bindBuffer(" + this._bufferType.getValue() + ", " + this._buffer.getValue() + ");");
+		console.log("aContext.vertexAttribPointer(" + this._shaderVariable.getValue() + ", " + this._itemSize.getValue() + ", " + this._dataType.getValue() + ", " + this._norm.getValue() + ", " + this._stride.getValue() + ", " + this._offset.getValue() + ");");
 		
 		aContext.bindBuffer(this._bufferType.getValue(), this._buffer.getValue());
+		aContext.enableVertexAttribArray(this._shaderVariable.getValue());
 		aContext.vertexAttribPointer(this._shaderVariable.getValue(), this._itemSize.getValue(), this._dataType.getValue(), this._norm.getValue(), this._stride.getValue(), this._offset.getValue());
 		
 	};
@@ -70,8 +75,17 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttr
 		this.superCall();
 	};
 	
-	staticFunctions.create = function() {
+	staticFunctions.create = function(aBufferType, aBuffer, aShaderVariable, aItemSize, aDataType, aNorm, aStride, aOffset) {
 		var newCommand = (new ClassReference()).init();
+		
+		newCommand.setPropertyInputWithoutNull("bufferType", aBufferType);
+		newCommand.setPropertyInputWithoutNull("buffer", aBuffer);
+		newCommand.setPropertyInputWithoutNull("shaderVariable", aShaderVariable);
+		newCommand.setPropertyInputWithoutNull("itemSize", aItemSize);
+		newCommand.setPropertyInputWithoutNull("dataType", aDataType);
+		newCommand.setPropertyInputWithoutNull("norm", aNorm);
+		newCommand.setPropertyInputWithoutNull("stride", aStride);
+		newCommand.setPropertyInputWithoutNull("offset", aOffset);
 		
 		return newCommand;
 	};

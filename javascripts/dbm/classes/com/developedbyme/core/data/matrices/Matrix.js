@@ -97,6 +97,21 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 		return ClassReference.duplicateMatrix(this);
 	};
 	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		if(this.valuesArray != null) {
+			aReturnArray.push("values: [" + this.valuesArray.join(", ") + "]");
+		}
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.valuesArray = null;
+		
+		this.superCall();
+	};
+	
 	/**
 	 * Duplicates a matrix
 	 *

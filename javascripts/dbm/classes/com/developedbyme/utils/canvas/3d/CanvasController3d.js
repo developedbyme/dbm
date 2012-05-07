@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
@@ -40,6 +41,12 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		var rootLayer = CanvasLayer3d.create();
 		this._hierarchy.getRoot().data = rootLayer;
 		rootLayer._linkRegistration_setTreeStructureItem(this._hierarchy.getRoot());
+		
+		this._identityMatrix = Matrix.create(4, 4);
+		this._identityMatrix.setValue(0, 0, 1);
+		this._identityMatrix.setValue(1, 1, 1);
+		this._identityMatrix.setValue(2, 2, 1);
+		this._identityMatrix.setValue(3, 3, 1);
 		
 		this._cameraPath = this.createProperty("cameraPath", "defaultCamera");
 		
@@ -130,6 +137,16 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		return newTexture;
 	};
 	
+	objectFunctions.createBuffer = function(aBufferType, aDataArray, aDrawType) {
+		var currentContext = this.getContext();
+		
+		var buffer = currentContext.createBuffer();
+		currentContext.bindBuffer(aBufferType, buffer);
+		currentContext.bufferData(aBufferType, new Float32Array(aDataArray), aDrawType);
+		
+		return buffer;
+	};
+	
 	objectFunctions.addCamera = function(aPath, aCamera) {
 		var currentItem = this._hierarchy.getItemByPath(aPath);
 		if(currentItem.data != null) {
@@ -153,6 +170,11 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		return currentContext;
 	};
 	
+	objectFunctions.getContext = function() {
+		var canvas = this._canvas.getValue();
+		return this._getContext(canvas);
+	};
+	
 	objectFunctions.draw = function() {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasController3d::draw");
 		
@@ -168,10 +190,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		currentContext.clearColor(0.0, 0.0, 0.0, 1.0);
 		currentContext.enable(currentContext.DEPTH_TEST);
 		
+		//METODO: set correct perspective matrix
+		var perspectiveMatrix = this._identityMatrix;
+		
 		if(this._clearBeforeDrawing) {
 			currentContext.clear(currentContext.COLOR_BUFFER_BIT | currentContext.DEPTH_BUFFER_BIT);
 		}
-		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
+		currentLayer.draw(currentContext, this._identityMatrix, perspectiveMatrix, this._numberOfLinksToResolve);
 		//console.log("//com.developedbyme.utils.canvas.3d.CanvasController3d::draw");
 	};
 	
