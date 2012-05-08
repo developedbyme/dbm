@@ -54,19 +54,21 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		this._scaleMatrix.setValue(2, 2, this._scaleZ.getValueWithoutFlow());
 		
 		this._rotateXMatrix.setValue(1, 1, Math.cos(rotateX));
-		this._rotateXMatrix.setValue(2, 1, -1*Math.sin(rotateX));
-		this._rotateXMatrix.setValue(1, 2, Math.sin(rotateX));
+		this._rotateXMatrix.setValue(2, 1, Math.sin(rotateX));
+		this._rotateXMatrix.setValue(1, 2, -1*Math.sin(rotateX));
 		this._rotateXMatrix.setValue(2, 2, Math.cos(rotateX));
 		
 		this._rotateYMatrix.setValue(0, 0, Math.cos(rotateY));
-		this._rotateYMatrix.setValue(2, 0, Math.sin(rotateY));
-		this._rotateYMatrix.setValue(0, 2, -1*Math.sin(rotateY));
+		this._rotateYMatrix.setValue(2, 0, -1*Math.sin(rotateY));
+		this._rotateYMatrix.setValue(0, 2, Math.sin(rotateY));
 		this._rotateYMatrix.setValue(2, 2, Math.cos(rotateY));
 		
 		this._rotateZMatrix.setValue(0, 0, Math.cos(rotateZ));
-		this._rotateZMatrix.setValue(1, 0, -1*Math.sin(rotateZ));
-		this._rotateZMatrix.setValue(0, 1, Math.sin(rotateZ));
+		this._rotateZMatrix.setValue(1, 0, Math.sin(rotateZ));
+		this._rotateZMatrix.setValue(0, 1, -1*Math.sin(rotateZ));
 		this._rotateZMatrix.setValue(1, 1, Math.cos(rotateZ));
+		
+		console.log(">>>>>", rotationOrder);
 		
 		switch(rotationOrder) {
 			default:
@@ -103,13 +105,13 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 				break;
 		}
 		
-		Matrix.multiplyMatrices(this._matrixOrder[0], this._scaleMatrix, this._tempMatrices[0]);
-		Matrix.multiplyMatrices(this._matrixOrder[1], this._tempMatrices[0], this._tempMatrices[1]);
-		Matrix.multiplyMatrices(this._matrixOrder[2], this._tempMatrices[1], theMatrix);
+		Matrix.multiplyMatrices(this._scaleMatrix, this._matrixOrder[0], this._tempMatrices[0]);
+		Matrix.multiplyMatrices(this._tempMatrices[0], this._matrixOrder[1], this._tempMatrices[1]);
+		Matrix.multiplyMatrices(this._tempMatrices[1], this._matrixOrder[2], theMatrix);
 		
-		theMatrix.setValue(3, 0, this._x.getValueWithoutFlow());
-		theMatrix.setValue(3, 1, this._y.getValueWithoutFlow());
-		theMatrix.setValue(3, 2, this._z.getValueWithoutFlow());
+		theMatrix.setValue(0, 3, this._x.getValueWithoutFlow());
+		theMatrix.setValue(1, 3, this._y.getValueWithoutFlow());
+		theMatrix.setValue(2, 3, this._z.getValueWithoutFlow());
 		
 		this._outputMatrix._internalFunctionality_setFlowUpdateNumber(aFlowUpdateNumber);
 		//console.log(aFlowUpdateNumber, this._outputMatrix.getFlowUpdateNumber());
@@ -134,8 +136,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 	
 	staticFunctions.create = function(aX, aY, aZ, aRotateX, aRotateY, aRotateZ, aScaleX, aScaleY, aScaleZ, aRotationOrder) {
 		//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode::create");
-		
-		aRotationOrder = VariableAliases.valueWithDefault(aRotationOrder, "xyz");
 		
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("x", aX);

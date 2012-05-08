@@ -48,9 +48,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		this._identityMatrix.setValue(2, 2, 1);
 		this._identityMatrix.setValue(3, 3, 1);
 		
-		this._cameraPath = this.createProperty("cameraPath", "defaultCamera");
+		this._camera = this.createProperty("camera", null);
+		this._camera.setAlwaysUpdateFlow(true);
 		
-		this.createUpdateFunction("default", this._updateFlow, [this._graphicsUpdate, this._canvas], [this._display]);
+		this.createUpdateFunction("default", this._updateFlow, [this._graphicsUpdate, this._canvas, this._camera], [this._display]);
 		
 		return this;
 	};
@@ -155,7 +156,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		
 		currentItem.data = aCamera;
 		aCamera._linkRegistration_setTreeStructureItem(currentItem);
-		this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));
+		this._graphicsUpdate.connectInput(aCamera.getProperty("graphicsUpdate"));
 		
 		return aCamera;
 	};
@@ -181,7 +182,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		var canvas = this._canvas.getValue();
 		var currentContext = this._getContext(canvas);
 		var currentLayer = this.getRootLayer();
-		var cameraPath = this._cameraPath.getValue();
+		var camera =  this._camera.getValue();
 		
 		currentContext.viewportWidth = canvas.width;
 		currentContext.viewportHeight = canvas.height;
@@ -191,7 +192,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		currentContext.enable(currentContext.DEPTH_TEST);
 		
 		//METODO: set correct perspective matrix
-		var perspectiveMatrix = this._identityMatrix;
+		var perspectiveMatrix = (camera != null) ? camera.getProjectionMatrix() : this._identityMatrix;
+		console.log(perspectiveMatrix.toString());
 		
 		if(this._clearBeforeDrawing) {
 			currentContext.clear(currentContext.COLOR_BUFFER_BIT | currentContext.DEPTH_BUFFER_BIT);

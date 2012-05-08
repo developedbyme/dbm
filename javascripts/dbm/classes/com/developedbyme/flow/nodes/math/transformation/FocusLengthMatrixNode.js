@@ -26,8 +26,10 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.FocusLengthM
 		//console.log("com.developedbyme.flow.nodes.math.transformation.FocusLengthMatrixNode::_update");
 		
 		var focusLength = this._focusLength.getValueWithoutFlow();
+		var outputMatrix = 	this._outputMatrix.getValueWithoutFlow();
 		
-		outputMatrix.setValue(2, 3, -1/focusLength);
+		outputMatrix.setValue(3, 3, 0);
+		outputMatrix.setValue(3, 2, -1/focusLength);
 		
 		this._outputMatrix._internalFunctionality_setFlowUpdateNumber(aFlowUpdateNumber);
 		//console.log(aFlowUpdateNumber, this._outputMatrix.getFlowUpdateNumber());

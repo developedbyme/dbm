@@ -5,6 +5,7 @@ dbm.runTempFunction(function() {
 	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	
 	var CanvasGraphics3d = dbm.importClass("com.developedbyme.utils.canvas.3d.CanvasGraphics3d");
+	var Camera3d = dbm.importClass("com.developedbyme.utils.canvas.3d.Camera3d");
 	var UseShaderProgramCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.UseShaderProgramCommand");
 	var BindVertexAttribPointerCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand");
 	var DrawArraysCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.DrawArraysCommand");
@@ -51,7 +52,16 @@ dbm.runTempFunction(function() {
 			shaderVariables.addVariable("projectionMatrix", ShaderVariableTypes.UNIFORM);
 			
 			var triangleGraphics = CanvasGraphics3d.create();
-			canvasController.getLayer("main/triangle").addGraphics(triangleGraphics);
+			canvasController.getLayer("main/triangle/shape").addGraphics(triangleGraphics);
+			//canvasController.getLayer("main/triangle").getProperty("x").setValue(0.5);
+			//canvasController.getLayer("main/triangle").getProperty("y").setValue(1);
+			canvasController.getLayer("main/triangle").getProperty("z").setValue(-2);
+			canvasController.getLayer("main/triangle/shape").getProperty("y").setValue(1);
+			canvasController.getLayer("main/triangle").getProperty("rotateX").setValue(0.25*Math.PI);
+			canvasController.getLayer("main/triangle").getProperty("rotateZ").setValue(0.25*Math.PI);
+			//canvasController.getLayer("main/triangle").getProperty("rotateY").setValue(0.25*Math.PI);
+			canvasController.getLayer("main/triangle").getProperty("scaleX").setValue(2);
+			canvasController.getLayer("main/triangle").getProperty("scaleY").setValue(0.5);
 			var triangleVertices = [
 				0.0,  1.0,  0.0,
 				-1.0, -1.0,  0.0,
@@ -65,6 +75,10 @@ dbm.runTempFunction(function() {
 			triangleGraphics.addDrawCommand(SetProjectionMatrixCommand.create(shaderVariables.getProperty("projectionMatrix")));
 			triangleGraphics.addDrawCommand(SetTransformationMatrixCommand.create(shaderVariables.getProperty("transformationMatrix")));
 			triangleGraphics.addDrawCommand(DrawArraysCommand.create(WebglBeginModeTypes.TRIANGLES, 0, triangleLength));
+			
+			var camera = Camera3d.create(); //Camera3d.createPerspectiveProjection(1);
+			canvasController.addCamera("defaultCamera", camera);
+			canvasController.getProperty("camera").setValue(camera);
 			
 			canvasController.debugTraceStructure();
 			

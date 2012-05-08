@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d", "com.develo
 		
 		var newMatrix = Matrix.create(4, 4);
 		
-		Matrix.multiplyMatrices(aCurrentMatrix, currentMatrix, newMatrix);
+		Matrix.multiplyMatrices(currentMatrix, aCurrentMatrix, newMatrix);
 		
 		console.log(aCurrentMatrix.toString(), newMatrix.toString());
 		
@@ -142,6 +142,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d", "com.develo
 			case "scaleX":
 			case "scaleY":
 			case "scaleZ":
+			case "rotationOrder":
 				if(this._transformationNode != null) {
 					return this._transformationNode.getProperty(aName);
 				}
