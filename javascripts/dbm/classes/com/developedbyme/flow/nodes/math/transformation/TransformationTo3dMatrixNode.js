@@ -68,8 +68,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		this._rotateZMatrix.setValue(0, 1, -1*Math.sin(rotateZ));
 		this._rotateZMatrix.setValue(1, 1, Math.cos(rotateZ));
 		
-		console.log(">>>>>", rotationOrder);
-		
 		switch(rotationOrder) {
 			default:
 				//METODO: error report

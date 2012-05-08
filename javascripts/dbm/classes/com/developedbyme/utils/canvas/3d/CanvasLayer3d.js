@@ -77,7 +77,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d", "com.develo
 		
 		Matrix.multiplyMatrices(currentMatrix, aCurrentMatrix, newMatrix);
 		
-		console.log(aCurrentMatrix.toString(), newMatrix.toString());
+		//console.log(aCurrentMatrix.toString(), newMatrix.toString());
 		
 		this._drawGraphicsAndChildren(aContext, newMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve);
 		

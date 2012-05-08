@@ -45,7 +45,6 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.Camera3d", "com.developedby
 	
 	objectFunctions.getCameraTransformationMatrix = function() {
 		//METODO: go through all the transforms
-		console.log(">", this._transformationMatrix.getValue().toString());
 		MatrixFunctions.getInverted4x4Matrix(this._transformationMatrix.getValue(), this._invertedMatrix);
 		return this._invertedMatrix;
 	};
