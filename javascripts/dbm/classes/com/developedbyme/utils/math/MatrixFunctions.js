@@ -109,7 +109,7 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixFunctions", null, function
 		var s5 = m02 * m13 - m12 * m03;
 
 		var c5 = m22 * m33 - m32 * m23;
-		var c4 = m21 * m33 - m31 - m23;
+		var c4 = m21 * m33 - m31 * m23;
 		var c3 = m21 * m32 - m31 * m22;
 		var c2 = m20 * m33 - m30 * m23;
 		var c1 = m20 * m32 - m30 * m22;
@@ -117,21 +117,23 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixFunctions", null, function
 		
 		var scale = 1 / (s0 * c5 - s1 * c4 + s2 * c3 + s3 * c2 - s4 * c1 + s5 * c0);
 		
-		aOutputMatrix.setValue(0, 0, scale*( m11 * c5 - m12 * c4 + m13 * c3);
-		aOutputMatrix.setValue(0, 1, scale*(-m01 * c5 + m02 * c4 - m03 * c3);
-		aOutputMatrix.setValue(0, 2, scale*( m31 * s5 - m32 * s4 + m33 * s3);
-		aOutputMatrix.setValue(0, 3, scale*(-m21 * s5 + m22 * s4 - m23 * s3);
-		aOutputMatrix.setValue(1, 0, scale*(-m10 * c5 + m12 * c2 - m13 * c1);
-		aOutputMatrix.setValue(1, 1, scale*( m00 * c5 - m02 * c2 + m03 * c1);
-		aOutputMatrix.setValue(1, 2, scale*(-m30 * s5 + m32 * s2 - m33 * s1);
-		aOutputMatrix.setValue(1, 3, scale*( m20 * s5 - m22 * s2 + m23 * s1);
-		aOutputMatrix.setValue(2, 0, scale*( m10 * c4 - m11 * c2 + m13 * c0);
-		aOutputMatrix.setValue(2, 1, scale*(-m00 * c4 + m01 * c2 - m03 * c0);
-		aOutputMatrix.setValue(2, 2, scale*( m30 * s4 - m31 * s2 + m33 * s0);
-		aOutputMatrix.setValue(2, 3, scale*(-m20 * s4 + m21 * s2 - m23 * s0);
-		aOutputMatrix.setValue(3, 0, scale*(-m10 * c3 + m11 * c1 - m12 * c0);
-		aOutputMatrix.setValue(3, 1, scale*( m00 * c3 - m01 * c1 + m02 * c0);
-		aOutputMatrix.setValue(3, 2, scale*(-m30 * s3 + m31 * s1 - m32 * s0);
-		aOutputMatrix.setValue(3, 3, scale*( m20 * s3 - m21 * s1 + m22 * s0);
+		aOutputMatrix.setValue(0, 0, scale*( m11 * c5 - m12 * c4 + m13 * c3));
+		aOutputMatrix.setValue(0, 1, scale*(-m01 * c5 + m02 * c4 - m03 * c3));
+		aOutputMatrix.setValue(0, 2, scale*( m31 * s5 - m32 * s4 + m33 * s3));
+		aOutputMatrix.setValue(0, 3, scale*(-m21 * s5 + m22 * s4 - m23 * s3));
+		aOutputMatrix.setValue(1, 0, scale*(-m10 * c5 + m12 * c2 - m13 * c1));
+		aOutputMatrix.setValue(1, 1, scale*( m00 * c5 - m02 * c2 + m03 * c1));
+		aOutputMatrix.setValue(1, 2, scale*(-m30 * s5 + m32 * s2 - m33 * s1));
+		aOutputMatrix.setValue(1, 3, scale*( m20 * s5 - m22 * s2 + m23 * s1));
+		aOutputMatrix.setValue(2, 0, scale*( m10 * c4 - m11 * c2 + m13 * c0));
+		aOutputMatrix.setValue(2, 1, scale*(-m00 * c4 + m01 * c2 - m03 * c0));
+		aOutputMatrix.setValue(2, 2, scale*( m30 * s4 - m31 * s2 + m33 * s0));
+		aOutputMatrix.setValue(2, 3, scale*(-m20 * s4 + m21 * s2 - m23 * s0));
+		aOutputMatrix.setValue(3, 0, scale*(-m10 * c3 + m11 * c1 - m12 * c0));
+		aOutputMatrix.setValue(3, 1, scale*( m00 * c3 - m01 * c1 + m02 * c0));
+		aOutputMatrix.setValue(3, 2, scale*(-m30 * s3 + m31 * s1 - m32 * s0));
+		aOutputMatrix.setValue(3, 3, scale*( m20 * s3 - m21 * s1 + m22 * s0));
+		
+		
 	};
 });

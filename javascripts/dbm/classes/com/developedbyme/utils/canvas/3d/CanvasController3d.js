@@ -194,11 +194,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		//METODO: set correct perspective matrix
 		var perspectiveMatrix = (camera != null) ? camera.getProjectionMatrix() : this._identityMatrix;
 		console.log(perspectiveMatrix.toString());
+		var transforamtionMatrix = (camera != null) ? camera.getCameraTransformationMatrix() : this._identityMatrix;
+		console.log(transforamtionMatrix.toString());
 		
 		if(this._clearBeforeDrawing) {
 			currentContext.clear(currentContext.COLOR_BUFFER_BIT | currentContext.DEPTH_BUFFER_BIT);
 		}
-		currentLayer.draw(currentContext, this._identityMatrix, perspectiveMatrix, this._numberOfLinksToResolve);
+		currentLayer.draw(currentContext, transforamtionMatrix, perspectiveMatrix, this._numberOfLinksToResolve);
 		//console.log("//com.developedbyme.utils.canvas.3d.CanvasController3d::draw");
 	};
 	

@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.Camera3d", "com.developedby
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var MatrixFunctions = dbm.importClass("com.developedbyme.utils.math.MatrixFunctions");
 	
 	var TransformationTo3dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode");
 	var FocusLengthMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.FocusLengthMatrixNode");
@@ -37,7 +38,16 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.Camera3d", "com.developedby
 		
 		this._projectionNode = null;
 		
+		this._invertedMatrix = Matrix.createIdentity(4, 4);
+		
 		return this;
+	};
+	
+	objectFunctions.getCameraTransformationMatrix = function() {
+		//METODO: go through all the transforms
+		console.log(">", this._transformationMatrix.getValue().toString());
+		MatrixFunctions.getInverted4x4Matrix(this._transformationMatrix.getValue(), this._invertedMatrix);
+		return this._invertedMatrix;
 	};
 	
 	objectFunctions.getProjectionMatrix = function() {
