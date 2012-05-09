@@ -24,8 +24,8 @@ dbm.runTempFunction(function() {
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
 		
-		var fragmentShaderPath = "../../shaders/fragments/white.frag";
-		var vertexShaderPath = "../../shaders/vertex/standard.vert";
+		var fragmentShaderPath = "../../shaders/fragments/vertexColor.frag";
+		var vertexShaderPath = "../../shaders/vertex/vertexColor.vert";
 		
 		var loader = LoadingSequence.create();
 		loader.addAssetByPath(fragmentShaderPath);
@@ -48,6 +48,7 @@ dbm.runTempFunction(function() {
 			
 			var shaderVariables = GetShaderVariablesNode.create(canvasController.getContext(), shaderProgram);
 			shaderVariables.addVariable("vertexPosition", ShaderVariableTypes.ATTRIBUTE);
+			shaderVariables.addVariable("vertexColor", ShaderVariableTypes.ATTRIBUTE);
 			shaderVariables.addVariable("transformationMatrix", ShaderVariableTypes.UNIFORM);
 			shaderVariables.addVariable("projectionMatrix", ShaderVariableTypes.UNIFORM);
 			
@@ -59,15 +60,24 @@ dbm.runTempFunction(function() {
 				-1.0, -1.0,  0.0,
 				1.0, -1.0,  0.0
 			];
+			var triangleColors = [
+				1.0, 0.0, 0.0, 1.0,
+				0.0, 1.0, 0.0, 1.0,
+				0.0, 0.0, 1.0, 1.0
+			];
 			var triangleItemSize = 3;
+			var triangleColorItemSize = 4;
 			var triangleLength = 3;
 			var triangleBuffer = canvasController.createBuffer(WebglBufferTypes.ARRAY_BUFFER, triangleVertices, WebglDrawTypes.STATIC_DRAW);
+			var triangleColorBuffer = canvasController.createBuffer(WebglBufferTypes.ARRAY_BUFFER, triangleColors, WebglDrawTypes.STATIC_DRAW);
 			
 			triangleGraphics.addDrawCommand(UseShaderProgramCommand.create(shaderProgram));
 			triangleGraphics.addDrawCommand(SetProjectionMatrixCommand.create(shaderVariables.getProperty("projectionMatrix")));
 			triangleGraphics.addDrawCommand(SetTransformationMatrixCommand.create(shaderVariables.getProperty("transformationMatrix")));
 			triangleGraphics.addDrawCommand(BindVertexAttribPointerCommand.create(WebglBufferTypes.ARRAY_BUFFER, triangleBuffer, shaderVariables.getProperty("vertexPosition"), triangleItemSize));
+			triangleGraphics.addDrawCommand(BindVertexAttribPointerCommand.create(WebglBufferTypes.ARRAY_BUFFER, triangleColorBuffer, shaderVariables.getProperty("vertexColor"), triangleColorItemSize));
 			triangleGraphics.addDrawCommand(DrawArraysCommand.create(WebglBeginModeTypes.TRIANGLES, 0, triangleLength));
+			
 			
 			var squareGraphics = CanvasGraphics3d.create();
 			canvasController.getLayer("main/square/shape").addGraphics(squareGraphics);
@@ -78,15 +88,24 @@ dbm.runTempFunction(function() {
 				1.0, -1.0,  0.0,
 				-1.0, -1.0,  0.0
 			];
+			var squareColors = [
+				0.5, 0.5, 1.0, 1.0,
+				0.5, 0.5, 1.0, 1.0,
+				0.5, 0.5, 1.0, 1.0,
+				0.5, 0.5, 1.0, 1.0
+			];
 			
 			var squareItemSize = 3;
+			var squareColorItemSize = 4;
 			var squareLength = 4;
 			var squareBuffer = canvasController.createBuffer(WebglBufferTypes.ARRAY_BUFFER, squareVertices, WebglDrawTypes.STATIC_DRAW);
-
+			var squareColorBuffer = canvasController.createBuffer(WebglBufferTypes.ARRAY_BUFFER, squareColors, WebglDrawTypes.STATIC_DRAW);
+			
 			squareGraphics.addDrawCommand(UseShaderProgramCommand.create(shaderProgram));
 			squareGraphics.addDrawCommand(SetProjectionMatrixCommand.create(shaderVariables.getProperty("projectionMatrix")));
 			squareGraphics.addDrawCommand(SetTransformationMatrixCommand.create(shaderVariables.getProperty("transformationMatrix")));
 			squareGraphics.addDrawCommand(BindVertexAttribPointerCommand.create(WebglBufferTypes.ARRAY_BUFFER, squareBuffer, shaderVariables.getProperty("vertexPosition"), squareItemSize));
+			squareGraphics.addDrawCommand(BindVertexAttribPointerCommand.create(WebglBufferTypes.ARRAY_BUFFER, squareColorBuffer, shaderVariables.getProperty("vertexColor"), squareColorItemSize));
 			squareGraphics.addDrawCommand(DrawArraysCommand.create(WebglBeginModeTypes.TRIANGLE_STRIP, 0, squareLength));
 			
 			

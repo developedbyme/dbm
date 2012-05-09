@@ -99,7 +99,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.Camera3d", "com.developedby
 	staticFunctions.create = function() {
 		var newCamera3d = (new ClassReference()).init();
 		
-		newCamera3d.getProperty("projectionMatrix").getValue().setValue(2, 2, 0);
+		newCamera3d.getProperty("projectionMatrix").getValue().setValue(2, 2, 1);
 		
 		return newCamera3d;
 	};

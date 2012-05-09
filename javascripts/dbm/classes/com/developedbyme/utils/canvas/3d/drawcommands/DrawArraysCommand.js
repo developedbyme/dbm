@@ -37,7 +37,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.DrawArraysComm
 	objectFunctions.draw = function(aContext, aProjectionMatrix, aTransformationMatrix) {
 		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.DrawArraysCommand::draw");
 		
-		console.log("aContext.drawArrays(" + this._beginMode.getValue() + ", " + this._bufferOffset.getValue() + ", " + this._bufferLength.getValue() + ");");
+		//console.log("aContext.drawArrays(" + this._beginMode.getValue() + ", " + this._bufferOffset.getValue() + ", " + this._bufferLength.getValue() + ");");
 		
 		aContext.drawArrays(this._beginMode.getValue(), this._bufferOffset.getValue(), this._bufferLength.getValue());
 		

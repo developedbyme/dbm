@@ -48,8 +48,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttr
 	objectFunctions.draw = function(aContext, aProjectionMatrix, aTransformationMatrix) {
 		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand::draw");
 		
-		console.log("aContext.bindBuffer(" + this._bufferType.getValue() + ", " + this._buffer.getValue() + ");");
-		console.log("aContext.vertexAttribPointer(" + this._shaderVariable.getValue() + ", " + this._itemSize.getValue() + ", " + this._dataType.getValue() + ", " + this._norm.getValue() + ", " + this._stride.getValue() + ", " + this._offset.getValue() + ");");
+		//console.log("aContext.bindBuffer(" + this._bufferType.getValue() + ", " + this._buffer.getValue() + ");");
+		//console.log("aContext.vertexAttribPointer(" + this._shaderVariable.getValue() + ", " + this._itemSize.getValue() + ", " + this._dataType.getValue() + ", " + this._norm.getValue() + ", " + this._stride.getValue() + ", " + this._offset.getValue() + ");");
 		
 		aContext.bindBuffer(this._bufferType.getValue(), this._buffer.getValue());
 		aContext.enableVertexAttribArray(this._shaderVariable.getValue());

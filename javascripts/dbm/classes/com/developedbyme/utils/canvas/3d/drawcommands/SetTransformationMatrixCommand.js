@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.SetTransformat
 		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.SetTransformationMatrixCommand::draw");
 		//console.log(aTransformationMatrix.toString());
 		
-		console.log("aContext.uniformMatrix4fv(" + this._shaderVariable.getValue() + ", " + this._transpose.getValue() + ", " + new Float32Array(aTransformationMatrix.valuesArray) + ");");
+		//console.log("aContext.uniformMatrix4fv(" + this._shaderVariable.getValue() + ", " + this._transpose.getValue() + ", " + new Float32Array(aTransformationMatrix.valuesArray) + ");");
 		aContext.uniformMatrix4fv(this._shaderVariable.getValue(), this._transpose.getValue(), new Float32Array(aTransformationMatrix.valuesArray));
 		
 	};
