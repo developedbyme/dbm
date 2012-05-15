@@ -42,11 +42,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		this._hierarchy.getRoot().data = rootLayer;
 		rootLayer._linkRegistration_setTreeStructureItem(this._hierarchy.getRoot());
 		
-		this._identityMatrix = Matrix.create(4, 4);
-		this._identityMatrix.setValue(0, 0, 1);
-		this._identityMatrix.setValue(1, 1, 1);
-		this._identityMatrix.setValue(2, 2, 1);
-		this._identityMatrix.setValue(3, 3, 1);
+		this._identityMatrix = Matrix.createIdentity(4, 4);
 		
 		this._camera = this.createProperty("camera", null);
 		this._camera.setAlwaysUpdateFlow(true);
@@ -191,7 +187,6 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		currentContext.clearColor(0.0, 0.0, 0.0, 1.0);
 		currentContext.enable(currentContext.DEPTH_TEST);
 		
-		//METODO: set correct perspective matrix
 		var perspectiveMatrix = (camera != null) ? camera.getProjectionMatrix() : this._identityMatrix;
 		var transforamtionMatrix = (camera != null) ? camera.getCameraTransformationMatrix() : this._identityMatrix;
 		
