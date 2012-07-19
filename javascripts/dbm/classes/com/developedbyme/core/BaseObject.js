@@ -198,6 +198,10 @@ dbm.extendClass("com.developedbyme.core.BaseObject", function(objectFunctions, s
 	//MENOTE: this can't be strict since arguments.callee is not available then
 	//MENOTE: no other function can be strict since arguments.callee.caller is not available then
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	objectFunctions.superCall = function superCall() {
 		//console.log("com.developedbyme.core.BaseObject::superCall");
 		

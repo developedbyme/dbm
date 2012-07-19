@@ -27,6 +27,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		this._loadedFilePaths = new Array();
 		this._loadedScripts = new Array();
 		this._scriptBreakdowns = NamedArray.create(true);
+		this._compileData = null;
 		
 		this._loader = LoadingSequence.create();
 		this._loader._maxNumberOfSimiltaniousLoaders = 1;
@@ -34,6 +35,16 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		
 		return this;
 	};
+	
+	/**
+	 * Sets the compile data.
+	 */
+	objectFunctions.setCompileData = function(aCompileData) {
+		this._compileData = aCompileData;
+		
+		return this;
+	}; //End function setCompileData
+	
 	
 	objectFunctions.loadForCompile = function(/* ... aFiles*/) {
 		//console.log("com.developedbyme.compiler.DbmCompiler::loadForCompile");
@@ -119,7 +130,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		
 		var returnString = "(function(){";
 		
-		var compileData = CompileData.create();
+		var compileData = (this._compileData != null) ? this._compileData : CompileData.create();
 		
 		var code = "";
 		
@@ -130,6 +141,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 			code += this._scriptBreakdowns.getObject(currentArray[i]).compile(compileData);
 		}
 		
+		returnString += compileData.getCompiledStringsCode();
 		returnString += code;
 		returnString += "})();"
 		

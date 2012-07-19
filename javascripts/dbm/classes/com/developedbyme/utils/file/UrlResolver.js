@@ -138,7 +138,7 @@ dbm.registerClass("com.developedbyme.utils.file.UrlResolver", "com.developedbyme
 		var theLength = currentArray.length;
 		for(var i = 0; i < theLength; i++) {
 			if(workPathArray.length == 0 || workPathArray[0] != currentArray[i]) {
-				returnString += _getLevelUpPath(theLength - i);
+				returnString += this._getLevelUpPath(theLength - i);
 				break;
 			} else {
 				workPathArray.shift();

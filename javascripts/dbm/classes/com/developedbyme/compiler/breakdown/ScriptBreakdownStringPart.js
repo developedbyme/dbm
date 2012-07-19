@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownStringPar
 	
 	objectFunctions.compile = function(aCompileData) {
 		
-		return this._scoop + this._script + this._scoop;
+		return aCompileData.addString(this._script, this._scoop);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

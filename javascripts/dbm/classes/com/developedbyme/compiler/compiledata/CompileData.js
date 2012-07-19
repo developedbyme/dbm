@@ -22,8 +22,9 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		this.superCall();
 		
 		this._scopesData = new Array();
-		this._shortVariables = new Array();
+		this._shortVariables = NamedArray.create(true);
 		this._strings = NamedArray.create(true);
+		this._stringsCode = null;
 		
 		this._argumentsIdGroup = CustomBaseIdGroup.createFullAlphabet("a");
 		this._variablesIdGroup = CustomBaseIdGroup.createFullAlphabet("l");
@@ -33,6 +34,14 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		
 		return this;
 	};
+	
+	/**
+	 * Adds a short variable
+	 */
+	objectFunctions.addShortVariable = function(aVariableName, aShortName) {
+		this._shortVariables.addObject(aVariableName, aShortName);
+	}; //End function addShortVariable
+	
 	
 	objectFunctions.addScope = function(aScopeData) {
 		
@@ -64,14 +73,43 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		}
 	};
 	
-	objectFunctions.addString = function(aString) {
+	objectFunctions.addString = function(aString, aScope) {
 		
-		var returnVariable = "stringName";
+		//METODO: split up strings
 		
-		return returnVariable;
+		var newId = this._stringIdGroup.getNewId();
+		
+		if(this._strings.select(aString)) {
+			return this._strings.currentSelectedItem;
+		}
+		this._strings.addObject(aString, newId);
+		
+		if(this._stringsCode == null) {
+			this._stringsCode = "var " + newId + "=" + aScope + aString + aScope;
+		}
+		else {
+			this._stringsCode += ", " + newId + "=" + aScope + aString + aScope;
+		}
+		
+		return newId;
 	};
 	
+	/**
+	 * Gets the code for all strings
+	 */
+	objectFunctions.getCompiledStringsCode = function() {
+		if(this._stringsCode != null) {
+			return this._stringsCode + ";";
+		}
+		return "";
+	}; //End function getCompiledStringsCode
+	
+	
 	objectFunctions.getVariableReference = function(aName) {
+		
+		if(this._shortVariables.select(aName)) {
+			return this._shortVariables.currentSelectedItem;
+		}
 		
 		var currentArray = this._scopesData;
 		var currentArrayLength = currentArray.length;
@@ -86,6 +124,10 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 	};
 	
 	objectFunctions.createVariableReference = function(aName, aType) {
+		
+		if(this._shortVariables.select(aName)) {
+			return this._shortVariables.currentSelectedItem;
+		}
 		
 		var currentArray = this._scopesData;
 		var currentArrayLength = currentArray.length;

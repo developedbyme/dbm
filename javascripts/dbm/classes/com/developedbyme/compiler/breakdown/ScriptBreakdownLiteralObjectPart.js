@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 		var currentPosition = 0;
 		for(var i = 0; i < currentArrayLength; i++) {
 			
-			var currentLine =StringFunctions.trim(this._script.substring(currentPosition, currentArray[i]));
+			var currentLine = StringFunctions.trim(this._script.substring(currentPosition, currentArray[i]));
 			var colonPosition = this._getColonPosition(currentLine);
 			if(colonPosition == -1) {
 				continue;
