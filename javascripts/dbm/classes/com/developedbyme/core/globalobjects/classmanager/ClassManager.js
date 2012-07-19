@@ -282,8 +282,6 @@ dbm.runTempFunction(function() {
 			}
 		}
 		
-		console.log("-");
-		
 		return currentClassHolder;
 	}; //End function _setupClassInheritanceForClass
 	
