@@ -57,6 +57,7 @@ dbm.registerClass("com.developedbyme.utils.process.ProcessGroup", "com.developed
 	};
 	
 	objectFunctions.addNode = function(aNode) {
+		
 		this._nodes.array.push(aNode);
 		
 		return this;

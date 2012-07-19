@@ -1,7 +1,7 @@
-dbm.registerClass("com.developedbyme.utils.process.WaitProcess", "com.developedbyme.utils.process.ProcessObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.process.WaitProcess");
+dbm.registerClass("com.developedbyme.utils.process.loading.LoadAssetProcess", "com.developedbyme.utils.process.ProcessObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.process.loading.LoadAssetProcess");
 	
-	var WaitProcess = dbm.importClass("com.developedbyme.utils.process.WaitProcess");
+	var LoadAssetProcess = dbm.importClass("com.developedbyme.utils.process.loading.LoadAssetProcess");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
@@ -10,7 +10,6 @@ dbm.registerClass("com.developedbyme.utils.process.WaitProcess", "com.developedb
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");
-	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ProcessStatusTypes = dbm.importClass("com.developedbyme.constants.ProcessStatusTypes");
@@ -21,11 +20,11 @@ dbm.registerClass("com.developedbyme.utils.process.WaitProcess", "com.developedb
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.process.WaitProcess::_init");
+		//console.log("com.developedbyme.utils.process.loading.LoadAssetProcess::_init");
 		
 		this.superCall();
 		
-		this._time = null;
+		this._asset = null;
 		
 		this._progress = this.createProperty("progress", 0);
 		
@@ -33,22 +32,26 @@ dbm.registerClass("com.developedbyme.utils.process.WaitProcess", "com.developedb
 	};
 	
 	objectFunctions._createId = function() {
-		return this._createNamedId("waitProcess");
+		return this._createNamedId("loadAssetProcess");
 	};
 	
-	objectFunctions.setTimeReevaluator = function(aTimeReevaluator) {
-		this._time = aTimeReevaluator;
+	objectFunctions.setAssetReevaluator = function(aAssetReevaluator) {
+		this._asset = aAssetReevaluator;
 		
 		return this;
 	};
 	
 	objectFunctions._performStartProcess = function() {
-		//console.log("com.developedbyme.utils.process.WaitProcess::_performStartProcess");
+		//console.log("com.developedbyme.utils.process.loading.LoadAssetProcess::_performStartProcess");
 		
-		var waitTime = this._time.reevaluate(this._dynamicData.getValue());
+		var loadAsset = this._asset.reevaluate(this._dynamicData.getValue());
 		
-		this._progress.animateValue(1, waitTime, InterpolationTypes.LINEAR, 0);
-		this.getDelayedExtendedEvent().addFunctionCall(this, this._processDone, [], waitTime);
+		loadAsset.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._processDone, [loadAsset]));
+		loadAsset.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADING_ERROR, CallFunctionCommand.createCommand(this, this._processError, [loadAsset]));
+		
+		//METODO: link up progress
+		
+		loadAsset.load();
 	};
 	
 	/**
@@ -59,9 +62,9 @@ dbm.registerClass("com.developedbyme.utils.process.WaitProcess", "com.developedb
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aTime) {
-		var newWaitProcess = (new ClassReference()).init();
-		newWaitProcess.setTimeReevaluator(StaticVariableObject.createReevaluationObject(aTime));
-		return newWaitProcess;
+	staticFunctions.create = function(aAsset) {
+		var newLoadAssetProcess = (new ClassReference()).init();
+		newLoadAssetProcess.setAssetReevaluator(StaticVariableObject.createReevaluationObject(aAsset));
+		return newLoadAssetProcess;
 	};
 });

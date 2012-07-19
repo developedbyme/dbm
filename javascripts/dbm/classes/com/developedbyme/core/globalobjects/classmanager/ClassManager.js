@@ -236,6 +236,7 @@ dbm.runTempFunction(function() {
 				}
 				for(var staticMethodName in extendedClass.staticMethods) {
 					if(currentClassHolder.staticMethods[staticMethodName] == undefined) {
+						//console.log(staticMethodName);
 						currentClassHolder.staticMethods[staticMethodName] = extendedClass.staticMethods[staticMethodName];
 					}
 				}
@@ -273,13 +274,15 @@ dbm.runTempFunction(function() {
 			
 			for(var staticMethodName in currentClassHolder.staticMethods) {
 				currentClassHolder.classFunction[staticMethodName] = currentClassHolder.staticMethods[staticMethodName];
-				delete currentClassHolder.staticMethods[staticMethodName];
+				//delete currentClassHolder.staticMethods[staticMethodName]; //MENOTE: this can't be done before subclasses has been setup
 			}
 			if(Object.seal !== undefined) {
 				Object.seal(currentClassHolder.staticMethods);
 				Object.seal(currentClassHolder.classFunction);
 			}
 		}
+		
+		console.log("-");
 		
 		return currentClassHolder;
 	}; //End function _setupClassInheritanceForClass
