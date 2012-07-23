@@ -53,6 +53,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		this._status.setValue(aStatus);
 	};
 	
+	objectFunctions.setHierarchyItem = function(aItem) {
+		this._hierarchyItem = aItem;
+	};
+	
 	/**
 	 * Gets the retain count.
 	 */

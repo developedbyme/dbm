@@ -14,6 +14,7 @@
 	if(dbm.isCreated != true) {
 		dbm.init = function() {
 			this.singletons = new Object();
+			this.xmlNamespaces = new Object();
 			this._specificClassesFolders = new Object();
 			this._filesToLoad = new Array();
 			this._currentFile = -1;

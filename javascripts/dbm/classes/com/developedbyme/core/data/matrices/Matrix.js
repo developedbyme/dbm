@@ -1,5 +1,5 @@
 /**
- * A 2d matrix with dynamic size size.
+ * A 2d matrix with dynamic size.
  *
  * @author	Mattias Ekendahl (mattias@developedbyme.com)
  * @version	0.3.01
@@ -95,6 +95,21 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	 */
 	objectFunctions.duplicate = function() {
 		return ClassReference.duplicateMatrix(this);
+	};
+	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		if(this.valuesArray != null) {
+			aReturnArray.push("values: [" + this.valuesArray.join(", ") + "]");
+		}
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.valuesArray = null;
+		
+		this.superCall();
 	};
 	
 	/**

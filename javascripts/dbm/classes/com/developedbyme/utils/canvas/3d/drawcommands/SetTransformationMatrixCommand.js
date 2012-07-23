@@ -1,0 +1,60 @@
+dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.SetTransformationMatrixCommand", "com.developedbyme.utils.canvas.3d.drawcommands.BaseDrawCommand", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.canvas.3d.drawcommands.SetTransformationMatrixCommand");
+	
+	var SetTransformationMatrixCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.SetTransformationMatrixCommand");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var TypedArrayFunctions = dbm.importClass("com.developedbyme.utils.native.typedarray.TypedArrayFunctions");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	/**
+	 * Constructor.
+	 */
+	objectFunctions.init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.SetTransformationMatrixCommand::init");
+		
+		this.superCall();
+		
+		this._shaderVariable = this.createProperty("shaderVariable", null);
+		this._transpose = this.createProperty("transpose", false);
+		
+		this._graphicsUpdate.connectInput(this._shaderVariable);
+		this._graphicsUpdate.connectInput(this._transpose);
+		
+		return this;
+	};
+	
+	objectFunctions.draw = function(aContext, aProjectionMatrix, aTransformationMatrix) {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.SetTransformationMatrixCommand::draw");
+		//console.log(aTransformationMatrix.toString());
+		
+		//console.log("aContext.uniformMatrix4fv(" + this._shaderVariable.getValue() + ", " + this._transpose.getValue() + ", " + new Float32Array(aTransformationMatrix.valuesArray) + ");");
+		aContext.uniformMatrix4fv(this._shaderVariable.getValue(), this._transpose.getValue(), new Float32Array(aTransformationMatrix.valuesArray));
+		
+	};
+	
+	/**
+	 * Sets all the references to null
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._shaderVariable = null;
+		this._transpose = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aShaderVariable, aTranspose) {
+		var newCommand = (new ClassReference()).init();
+		
+		newCommand.setPropertyInputWithoutNull("shaderVariable", aShaderVariable);
+		newCommand.setPropertyInputWithoutNull("transpose", aTranspose);
+		
+		return newCommand;
+	};
+});

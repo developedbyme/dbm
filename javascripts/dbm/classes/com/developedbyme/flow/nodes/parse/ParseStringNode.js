@@ -1,6 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.parse.ParseStringNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.parse.ParseStringNode");
 	
+	var ParseStringNode = dbm.importClass("com.developedbyme.flow.nodes.parse.ParseStringNode");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.parse.ParseStringNode::_init");
 		
@@ -19,12 +21,11 @@ dbm.registerClass("com.developedbyme.flow.nodes.parse.ParseStringNode", "com.dev
 		this._outputValue.setValueWithFlow(this._inputValue.getValueWithoutFlow().toString(), aFlowUpdateNumber);
 	};
 	
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputValue = null;
+		this._outputValue = null;
+		
 		this.superCall();
 	};
 	

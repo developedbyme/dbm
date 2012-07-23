@@ -5,6 +5,7 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 	
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	var CanvasController2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasController2d");
+	var CanvasController3d = dbm.importClass("com.developedbyme.utils.canvas.3d.CanvasController3d");
 	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	
@@ -114,9 +115,16 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
 		newView.setElement(htmlCreator.createNode("canvas", aAttributes));
+		
+		//MENOTE: this should move out to another class so that the controllers doesn't have to be imported
 		switch(aContextType) {
 			case "2d":
 				var canvasController = CanvasController2d.create();
+				newView.setController(canvasController);
+				newView.addDestroyableObject(canvasController);
+				break;
+			case "3d":
+				var canvasController = CanvasController3d.create();
 				newView.setController(canvasController);
 				newView.addDestroyableObject(canvasController);
 				break;

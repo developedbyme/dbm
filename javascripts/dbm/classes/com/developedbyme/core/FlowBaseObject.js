@@ -32,6 +32,10 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return this;
 	};
 	
+	objectFunctions.getObjectProperty = function() {
+		return this._objectProperty;
+	}
+	
 	objectFunctions.createUpdateFunction = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunction.create(this, aUpdateFunction, aInputsArray, aOutputsArray);
 		newUpdateFunction.name = this.__className + "::" + aName + "(f)";

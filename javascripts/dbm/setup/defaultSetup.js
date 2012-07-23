@@ -23,12 +23,16 @@ dbm.runTempFunction(function() {
 	var PageManager = dbm.importClass("com.developedbyme.core.globalobjects.pagemanager.PageManager");
 	var StatisticsManager = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager");
 	var TemplateManager = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.TemplateManager");
+	var DataManager = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.DataManager");
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
 	var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
 	var DefaultBasicClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultBasicClassShortcutSetup");
 	var DefaultTextCreatorsSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultTextCreatorsSetup");
+	var DefaultBasicParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultBasicParsersSetup");
+	var DefaultTextParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultTextParsersSetup");
+	var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
@@ -57,6 +61,14 @@ dbm.runTempFunction(function() {
 		
 		DefaultBasicClassShortcutSetup.setup();
 		DefaultTextCreatorsSetup.setup();
+		
+		dbm.xmlNamespaces.dbmData = "http://developedbyme.com/schemas/xml/data/";
+		dbm.xmlNamespaces.dbmTreeStructureAttribute = "http://developedbyme.com/schemas/xml/tree-structure-attribute/";
+		
+		DefaultBasicParsersSetup.setup();
+		DefaultTextParsersSetup.setup();
+		DefaultComplexParsersSetup.setup();
+		
 	});
 	
 	dbm.setupLoaderHook();
