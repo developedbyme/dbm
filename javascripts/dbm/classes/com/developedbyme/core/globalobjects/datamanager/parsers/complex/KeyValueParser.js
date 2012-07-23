@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.comp
 	var KeyValuePropertyPair = dbm.importClass("com.developedbyme.flow.data.KeyValuePropertyPair");
 	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser::_init");
 		
 		this.superCall();
 		

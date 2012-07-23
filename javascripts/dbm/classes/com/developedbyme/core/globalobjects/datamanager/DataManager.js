@@ -26,8 +26,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 	
 	dbm.setClassAsSingleton("dbmDataManager");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::_init");
 		
 		this.superCall();
 		

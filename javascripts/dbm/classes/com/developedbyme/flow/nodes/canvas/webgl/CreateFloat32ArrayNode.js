@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateFloat32ArrayN
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateFloat32ArrayNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateFloat32ArrayNode::_init");
 		
 		this.superCall();
 		

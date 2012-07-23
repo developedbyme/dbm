@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.text.ToUpperCaseNode", "com.deve
 	
 	var ToUpperCaseNode = dbm.importClass("com.developedbyme.flow.nodes.text.ToUpperCaseNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.text.ToUpperCaseNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.text.ToUpperCaseNode::_init");
 		
 		this.superCall();
 		

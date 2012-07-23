@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.BaseRenderPart
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.BaseRenderPart::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.BaseRenderPart::_init");
 		
 		this.superCall();
 		

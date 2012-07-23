@@ -15,8 +15,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.UseShaderProgr
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.UseShaderProgramCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.UseShaderProgramCommand::_init");
 		
 		this.superCall();
 		

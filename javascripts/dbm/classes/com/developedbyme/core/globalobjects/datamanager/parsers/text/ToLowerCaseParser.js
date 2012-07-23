@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text
 	var ToLowerCaseNode = dbm.importClass("com.developedbyme.flow.nodes.text.ToLowerCaseNode");
 	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToLowerCaseParser::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToLowerCaseParser::_init");
 		
 		this.superCall();
 		

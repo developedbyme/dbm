@@ -26,8 +26,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.Camera3d", "com.developedby
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.Camera3d::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.Camera3d::_init");
 		
 		this.superCall();
 		

@@ -9,8 +9,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateTextureNode",
 	
 	var WebglFilterTypes = dbm.importClass("com.developedbyme.constants.webgl.WebglFilterTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateTextureNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateTextureNode::_init");
 		
 		this.superCall();
 		

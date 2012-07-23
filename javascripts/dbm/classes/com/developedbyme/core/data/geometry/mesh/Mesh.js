@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.core.data.geometry.mesh.Mesh", "com.develop
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.data.geometry.mesh.Mesh");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.geometry.mesh.Mesh::_init");
 		
 		this.superCall();
 		

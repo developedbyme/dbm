@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.core.data.geometry.mesh.Face", "com.develop
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.data.geometry.mesh.Face");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.geometry.mesh.Face::_init");
 		
 		this.superCall();
 		

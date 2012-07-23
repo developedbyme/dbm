@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.core.data.generic.KeyTypeValueObject", "com
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function init() {
-		//console.log("com.developedbyme.core.data.generic.KeyTypeValueObject");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.generic.KeyTypeValueObject::_init");
 		
 		this.superCall();
 		

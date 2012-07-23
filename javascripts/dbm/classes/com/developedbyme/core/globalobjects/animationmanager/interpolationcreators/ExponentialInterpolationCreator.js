@@ -6,8 +6,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.interpo
 	var ExponentialInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.ExponentialInterpolation");
 	
 	objectFunctions.init = function() {
+		this._init();
 		return this;
 	};
+	
+	/**
+	 * Init function
+	 */
+	objectFunctions._init = function() {
+		
+		//MENOTE: should be overridden
+		
+		return this;
+	}; //End function _init
+	
 	
 	objectFunctions.create = function(aType, aExponent) {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator::create");

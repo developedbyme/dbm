@@ -6,8 +6,22 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.interpo
 	var InvertedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
 	
 	objectFunctions.init = function() {
+		
+		this._init();
+		
 		return this;
 	};
+	
+	/**
+	 * Initi function
+	 */
+	objectFunctions._init = function() {
+		
+		//MENOTE: should be overidden
+		
+		return this;
+	}; //End function _init
+	
 	
 	objectFunctions.create = function(aType, aInvertedType) {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator::create");

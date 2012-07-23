@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateBufferNode", 
 	var WebglDrawTypes = dbm.importClass("com.developedbyme.constants.webgl.WebglDrawTypes");
 	var WebglBufferTypes = dbm.importClass("com.developedbyme.constants.webgl.WebglBufferTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateBufferNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateBufferNode::_init");
 		
 		this.superCall();
 		

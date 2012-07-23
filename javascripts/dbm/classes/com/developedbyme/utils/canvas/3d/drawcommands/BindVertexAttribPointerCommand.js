@@ -18,8 +18,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttr
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand::_init");
 		
 		this.superCall();
 		

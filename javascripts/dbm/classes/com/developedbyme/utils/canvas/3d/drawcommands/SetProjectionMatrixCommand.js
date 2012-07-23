@@ -15,8 +15,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.SetProjectionM
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.SetProjectionMatrixCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.SetProjectionMatrixCommand::_init");
 		
 		this.superCall();
 		

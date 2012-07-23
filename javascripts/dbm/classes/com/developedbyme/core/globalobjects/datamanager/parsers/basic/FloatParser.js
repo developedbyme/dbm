@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.basi
 	var ParseFloatNode = dbm.importClass("com.developedbyme.flow.nodes.parse.ParseFloatNode");
 	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.FloatParser::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.FloatParser::_init");
 		
 		this.superCall();
 		

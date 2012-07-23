@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.FocusLengthF
 	
 	var FocusLengthFromFovNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.FocusLengthFromFovNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.transformation.FocusLengthFromFovNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.transformation.FocusLengthFromFovNode::_init");
 		
 		this.superCall();
 		

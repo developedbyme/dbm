@@ -14,8 +14,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.RenderGroup", 
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.RenderGroup::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.RenderGroup::_init");
 		
 		this.superCall();
 		

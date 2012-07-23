@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.text.TextReplacementNode", "com.
 	var KeyValuePropertyPair = dbm.importClass("com.developedbyme.flow.data.KeyValuePropertyPair");
 	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.text.TextReplacementNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.text.TextReplacementNode::_init");
 		
 		this.superCall();
 		

@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateShaderNode", 
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateShaderNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateShaderNode::_init");
 		
 		this.superCall();
 		

@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 	
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.objects.DataObject::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.objects.DataObject::_init");
 		
 		this.superCall();
 		

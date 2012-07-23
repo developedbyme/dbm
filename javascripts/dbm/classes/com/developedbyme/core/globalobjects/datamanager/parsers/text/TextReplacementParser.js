@@ -8,8 +8,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text
 	
 	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_init");
 		
 		this.superCall();
 		

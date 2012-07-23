@@ -6,8 +6,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text
 	var ToUpperCaseNode = dbm.importClass("com.developedbyme.flow.nodes.text.ToUpperCaseNode");
 	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToUpperCaseParser::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.ToUpperCaseParser::_init");
 		
 		this.superCall();
 		

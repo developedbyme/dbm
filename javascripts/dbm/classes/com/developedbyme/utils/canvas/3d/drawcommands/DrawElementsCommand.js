@@ -18,8 +18,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.DrawElementsCo
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.DrawElementsCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.DrawElementsCommand::_init");
 		
 		this.superCall();
 		

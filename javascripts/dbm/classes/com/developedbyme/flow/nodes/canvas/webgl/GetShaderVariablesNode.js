@@ -12,8 +12,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesN
 	
 	var ShaderVariableTypes = dbm.importClass("com.developedbyme.constants.webgl.ShaderVariableTypes");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesNode::_init");
 		
 		this.superCall();
 		

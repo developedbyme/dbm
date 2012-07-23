@@ -13,8 +13,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateBuffersFromMe
 	
 	var VertexPacker = dbm.importClass("com.developedbyme.utils.geometry.bufferpackers.VertexPacker");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateBuffersFromMeshNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.canvas.webgl.CreateBuffersFromMeshNode::_init");
 		
 		this.superCall();
 		

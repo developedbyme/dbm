@@ -3,8 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.text.ToLowerCaseNode", "com.deve
 	
 	var ToLowerCaseNode = dbm.importClass("com.developedbyme.flow.nodes.text.ToLowerCaseNode");
 	
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.nodes.text.ToLowerCaseNode::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.text.ToLowerCaseNode::_init");
 		
 		this.superCall();
 		

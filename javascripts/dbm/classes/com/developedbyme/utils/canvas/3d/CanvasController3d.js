@@ -21,8 +21,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasController3d::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.CanvasController3d::_init");
 		
 		this.superCall();
 		

@@ -10,8 +10,8 @@ dbm.registerClass("com.developedbyme.flow.data.KeyValuePropertyPair", "com.devel
 	/**
 	 * Constructor
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.flow.data.KeyValuePropertyPair::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.data.KeyValuePropertyPair::_init");
 		
 		this.superCall();
 		

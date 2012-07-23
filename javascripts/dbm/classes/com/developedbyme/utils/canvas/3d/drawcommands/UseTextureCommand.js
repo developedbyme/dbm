@@ -18,8 +18,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.UseTextureComm
 	/**
 	 * Constructor.
 	 */
-	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.UseTextureCommand::init");
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.3d.drawcommands.UseTextureCommand::_init");
 		
 		this.superCall();
 		
