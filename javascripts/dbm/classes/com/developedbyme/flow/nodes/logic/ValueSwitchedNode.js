@@ -1,16 +1,16 @@
-dbm.registerClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode");
+dbm.registerClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.logic.ValueSwitchedNode");
 	
-	var NameSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode");
+	var ValueSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::_init");
+		//console.log("com.developedbyme.flow.nodes.logic.ValueSwitchedNode::_init");
 		
 		this.superCall();
 		
 		this._name = this.createProperty("name", null);
 		this._defaultValue = this.createProperty("defaultValue", null);
-		this._objects = this.createProperty("objects", new Object());
+		this._objects; //METODO this should be a key value array
 		this._outputValue = this.createProperty("outputValue", null);
 		
 		this.createUpdateFunction("default", this._update, [this._name, this._objects, this._defaultValue], [this._outputValue]);
@@ -19,17 +19,17 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode", "com.de
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::_update");
+		//console.log("com.developedbyme.flow.nodes.logic.ValueSwitchedNode::_update");
 		
 		var name = this._name.getValueWithoutFlow();
-		var objects = this._objects.getValueWithoutFlow();
+		var objects; //MENOTE: this should be a key value array
 		
 		if(name == null) {
 			//METODO: error message
 			this._outputValue.setValueWithFlow(this._defaultValue.getValueWithoutFlow(), aFlowUpdateNumber);
 		}
 		
-		if(objects[name] !== undefined) {
+		if(objects[name] !== undefined) { //MENOTE: this should be a key value array lookup
 			this._outputValue.setValueWithFlow(objects[name], aFlowUpdateNumber);
 		}
 		else {
@@ -37,20 +37,16 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode", "com.de
 		}
 	};
 	
-	objectFunctions.addItem = function(aName, aValue) {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::addItem");
+	objectFunctions.addItem = function(aInputValue, aOutputValue) {
+		//console.log("com.developedbyme.flow.nodes.logic.ValueSwitchedNode::addItem");
 		
-		var object = this._objects.getValue();
-		object[aName] = aValue;
-		this._objects.setAsDirty();
+		//METODO: this should be a key value array
 	};
 	
 	objectFunctions.reset = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::reset");
+		//console.log("com.developedbyme.flow.nodes.logic.ValueSwitchedNode::reset");
 		
-		var selectionArray = this._array.getValueWithoutFlow();
-		selectionArray.splice(0, selectionArray.length);
-		this._array.setAsDirty();
+		//METODO: reset array
 		
 		if(this._name.canBeSet()) {
 			this._name.setValue(null);
