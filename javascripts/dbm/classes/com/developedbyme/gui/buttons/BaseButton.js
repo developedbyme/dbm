@@ -5,6 +5,8 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 	
 	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
 	
+	var TextElement = dbm.importClass("com.developedbyme.gui.text.TextElement");
+	
 	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
@@ -105,6 +107,27 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		if(aAddToParent != false) {
 			newNode.addToDom();
 		}
+		
+		return newNode;
+	};
+	
+	staticFunctions.createButton = function(aParentOrDocument, aAddToParent, aAttributes, aText) {
+		var newNode = (new ClassReference()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createNode("button", aAttributes));
+		
+		if(aAddToParent != false) {
+			newNode.addToDom();
+		}
+		
+		var newText = TextElement.create(newNode.getElement(), true, aText);
+		newNode.addDestroyableObject(newText);
 		
 		return newNode;
 	};

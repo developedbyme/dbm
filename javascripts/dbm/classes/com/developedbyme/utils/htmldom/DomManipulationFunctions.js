@@ -63,4 +63,14 @@ dbm.registerClass("com.developedbyme.utils.htmldom.DomManipulationFunctions", nu
 		
 	});
 	
+	staticFunctions.insertAtPosition = (function(aElement, aParentNode, aPosition) {
+		var children = aParentNode.children;
+		if(children.length <= aPosition) {
+			//MENOTE: should there be a warning if the array position is further in than the length?
+			aParentNode.appendChild(aElement);
+		}
+		else {
+			aParentNode.insertBefore(aElement, children[aPosition]);
+		}
+	});
 });

@@ -30,30 +30,11 @@ dbm.registerClass("com.developedbyme.workspace.gui.panels.SvgPanel", "com.develo
 	};
 	
 	staticFunctions.create = function(aAttributes) {
-		var newNode = (new ClassReference()).init();
-		
-		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
-		
-		newNode.setElement(htmlCreator.createDiv(aAttributes));
-		
-		return newNode;
+		return ClassReference._create(ClassReference, aAttributes);
 	};
 	
 	staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes) {
-		var newNode = (new ClassReference()).init();
-		
-		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
-		
-		newNode.setParent(theParent);
-		
-		var htmlCreator = newNode.getHtmlCreator();
-		
-		newNode.setElement(htmlCreator.createDiv(aAttributes));
-		
-		if(aAddToParent != false) {
-			newNode.addToDom();
-		}
-		
-		return newNode;
+		return ClassReference._createOnParent(ClassReference, aParentOrDocument, aAddToParent, aAttributes);
 	};
+	
 });

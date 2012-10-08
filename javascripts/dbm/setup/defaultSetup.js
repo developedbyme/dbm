@@ -29,6 +29,7 @@ dbm.runTempFunction(function() {
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
 	var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
 	var DefaultBasicClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultBasicClassShortcutSetup");
+	var DefaultWorkspaceClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultWorkspaceClassShortcutSetup");
 	var DefaultTextCreatorsSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultTextCreatorsSetup");
 	var DefaultBasicParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultBasicParsersSetup");
 	var DefaultTextParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultTextParsersSetup");
@@ -60,6 +61,7 @@ dbm.runTempFunction(function() {
 		DefaultStatisticsManagerSetup.setup();
 		
 		DefaultBasicClassShortcutSetup.setup();
+		DefaultWorkspaceClassShortcutSetup.setup();
 		DefaultTextCreatorsSetup.setup();
 		
 		dbm.xmlNamespaces.dbmData = "http://developedbyme.com/schemas/xml/data/";

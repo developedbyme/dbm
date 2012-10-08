@@ -26,11 +26,22 @@ dbm.registerClass("com.developedbyme.workspace.gui.panels.BasePanel", "com.devel
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
+		this._inputArea = null;
+		this._graphicsUpdate = null;
+		
 		this.superCall();
 	};
 	
 	staticFunctions.create = function(aAttributes) {
-		var newNode = (new ClassReference()).init();
+		return ClassReference._create(ClassReference, aAttributes);
+	};
+	
+	staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes) {
+		return ClassReference._createOnParent(ClassReference, aParentOrDocument, aAddToParent, aAttributes);
+	};
+	
+	staticFunctions._create = function(aClass, aAttributes) {
+		var newNode = (new aClass()).init();
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
 		
@@ -39,8 +50,8 @@ dbm.registerClass("com.developedbyme.workspace.gui.panels.BasePanel", "com.devel
 		return newNode;
 	};
 	
-	staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes) {
-		var newNode = (new ClassReference()).init();
+	staticFunctions._createOnParent = function(aClass, aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = (new aClass()).init();
 		
 		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
 		

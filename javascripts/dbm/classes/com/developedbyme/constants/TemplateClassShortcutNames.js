@@ -9,4 +9,7 @@ dbm.registerClass("com.developedbyme.constants.TemplateClassShortcutNames", null
 	staticFunctions.DBM_STATIC_IMAGE = "dbm:StaticImage";
 	staticFunctions.DBM_STATE_IMAGE = "dbm:StateImage";
 	
+	//Workspace
+	staticFunctions.DBM_CONSOLE = "dbm:Console";
+	staticFunctions.DBM_CONSOLE_LINE = "dbm:ConsoleLine";
 });
