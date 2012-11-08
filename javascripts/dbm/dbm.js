@@ -28,6 +28,10 @@
 			this._javascriptVersion = null;
 			this.tempClassFunction = null;
 			this._currentScriptNode = null;
+			
+			this._isStarting = false;
+			this._restartAfterStart = false;
+			
 			this.isCreated = true;
 			if(Object.seal !== undefined) {
 				Object.seal(this);
@@ -132,6 +136,9 @@
 		};
 		
 		dbm.loadFile = function(aFilePath) {
+			//console.log("dbm::loadFile");
+			//console.log(aFilePath);
+			
 			var colonPosition = aFilePath.indexOf(":");
 			var questionMarkPosition = aFilePath.indexOf("?");
 			if(colonPosition != -1 && (questionMarkPosition == -1 || colonPosition < questionMarkPosition)) {
@@ -144,6 +151,9 @@
 		};
 		
 		dbm._performLoadFile = function(aFilePath) {
+			//console.log("dbm::_performLoadFile");
+			//console.log(aFilePath);
+			
 			var scriptTag = document.createElement("script");
 			
 			var scriptType = "application/javascript";
@@ -174,7 +184,7 @@
 		dbm._onFileLoaded = function(aEvent) {
 			dbm._loadNextFile();
 		};
-	
+		
 		dbm._loadNextFile = function() {
 			this._currentFile++;
 			
@@ -188,6 +198,8 @@
 		
 		dbm._start = function() {
 			
+			this._isStarting = true;
+			
 			this._classManager.setupClassInheritance();
 			this._classManager.setupLibraries();
 			this._classManager.setupSingletons();
@@ -197,11 +209,33 @@
 			for(var i = 0; i < currentArrayLength; i++) {
 				currentArray[i].call(null);
 			}
+			
+			this._startFunctions = new Array();
+			this._isStarting = false;
+			
+			if(this._restartAfterStart) {
+				this._restartAfterStart = false;
+				if(this._currentFile < this._filesToLoad.length) {
+					this._performLoadFile(this._filesToLoad[this._currentFile]);
+				}
+			}
 		};
 		
 		dbm.externalStart = function() {
 			this._start();
 		};
+		
+		dbm.restartLoading = function() {
+			//console.log("dbm::restartLoading");
+			if(this._isStarting) {
+				this._restartAfterStart = true;
+			}
+			else {
+				if(this._currentFile < this._filesToLoad.length) {
+					this._performLoadFile(this._filesToLoad[this._currentFile]);
+				}
+			}
+		}
 		
 		dbm.init();
 	}
