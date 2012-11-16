@@ -6,6 +6,38 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
+	var CssRuleTypes = dbm.importClass("com.developedbyme.constants.CssRuleTypes");
+	
+	staticFunctions.getRulesByType = function(aType, aRulesArray, aReturnArray) {
+		//console.log("com.developedbyme.utils.css.CssReferenceFunctions::getRulesByType");
+		
+		var currentArray = aRulesArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentRule = currentArray[i];
+			if(currentRule.type == aType) {
+				aReturnArray.push(currentRule);
+			}
+			
+			if(currentRule.type == CssRuleTypes.MEDIA_RULE) {
+				ClassReference.getRulesByType(aType, currentRule.cssRules, aReturnArray);
+			}
+			else if(currentRule.type == CssRuleTypes.IMPORT_RULE) {
+				ClassReference.getRulesByType(aType, currentRule.styleSheet.rules, aReturnArray);
+			}
+		}
+	};
+	
+	staticFunctions.getRulesOnStyleSheet = function(aStyleSheet, aReturnArray) {
+		//console.log("com.developedbyme.utils.css.CssReferenceFunctions::getRulesOnStyleSheet");
+		
+		var currentArray = aStyleSheet.rules;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			aReturnArray.push(currentArray[i]);
+		}
+	};
+	
 	staticFunctions.getStyleDeclarationsBySelectorOnDocument = function(aSelector, aDocument) {
 		
 		aDocument = VariableAliases.valueWithDefault(aDocument, document);
@@ -29,19 +61,22 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentRule = currentArray[i];
-			if(currentRule.type == currentRule.STYLE_RULE) {
+			if(currentRule.type == CssRuleTypes.STYLE_RULE) {
 				var currentArray2 = StringFunctions.splitSeparatedString(currentRule.selectorText);
 				var currentArray2Length = currentArray2.length;
 				for(var j = 0; j < currentArray2Length; j++) {
 					var currentSelector = ClassReference.normalizeSelector(currentArray2[j]);
-					console.log(currentSelector, aNormalizedSelector);
+					//console.log(currentSelector, aNormalizedSelector);
 					if(currentSelector == aNormalizedSelector) {
 						aReturnArray.push(currentRule.style);
 					}
 				}
 			}
-			if(currentRule.type == currentRule.MEDIA_RULE) {
+			else if(currentRule.type == CssRuleTypes.MEDIA_RULE) {
 				ClassReference.getStyleDeclarationsBySelector(aNormalizedSelector, currentRule.cssRules, aReturnArray);
+			}
+			else if(currentRule.type == CssRuleTypes.IMPORT_RULE) {
+				ClassReference.getStyleDeclarationsBySelector(aNormalizedSelector, currentRule.styleSheet.rules, aReturnArray);
 			}
 		}
 	};
@@ -52,7 +87,7 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 		
 		var absolutePath = dbm.singletons.dbmPageManager.getUrlResolver().getAbsolutePath(aPath);
 		
-		console.log(absolutePath);
+		//console.log(absolutePath);
 		
 		var currentArray = aDocument.styleSheets;
 		var currentArrayLength = currentArray.length;

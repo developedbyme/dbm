@@ -1,0 +1,33 @@
+@import url("testMediaQuery2.css") screen,handheld;
+
+@charset "UTF-8";
+/* CSS Document */
+
+@media all and (aspect-ratio: 4/3) {
+	.test {
+		width: 200px;
+	}
+	
+	@media all and (min-width: 800px) and (min-height: 400px) {
+		.test {
+			width: 300px;
+		}
+	}
+	
+	@media screen, handheld {
+		.test {
+			width: 300px;
+		}
+	}
+	
+	@media screen, handheld and (min-width: 800px) {
+		.test {
+			width: 300px;
+		}
+	}
+}
+
+.test {
+	width: 100px;
+}
+

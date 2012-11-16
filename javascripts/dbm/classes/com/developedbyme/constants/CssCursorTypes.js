@@ -4,6 +4,7 @@ dbm.registerClass("com.developedbyme.constants.CssCursorTypes", null, function(o
 	
 	var CssCursorTypes = dbm.importClass("com.developedbyme.constants.CssCursorTypes");
 	
+	//METODO: this needs to be updated with more types
 	staticFunctions.POINTER = "pointer";
 	
 });

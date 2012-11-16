@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.test {
+	width: 400px;
+}
+
+@media all and (min-width: 700px) and (min-height: 300px) {
+	.test {
+		width: 300px;
+	}
+}
