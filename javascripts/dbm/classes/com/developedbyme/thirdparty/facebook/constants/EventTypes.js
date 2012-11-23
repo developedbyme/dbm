@@ -1,0 +1,20 @@
+dbm.registerClass("com.developedbyme.thirdparty.facebook.constants.EventTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.thirdparty.facebook.constants.EventTypes");
+	
+	//REFERENCE: http://developers.facebook.com/docs/reference/javascript/FB.Event.subscribe/
+	
+	var EventTypes = dbm.importClass("com.developedbyme.thirdparty.facebook.constants.EventTypes");
+	
+	staticFunctions.AUTH_LOGIN = "auth.login";
+	staticFunctions.AUTH_RESPONSE_CHANGE = "auth.authResponseChange";
+	staticFunctions.AUTH_STATUS_CHANGE = "auth.statusChange";
+	staticFunctions.AUTH_LOGOUT = "auth.logout";
+	staticFunctions.AUTH_PROMPT = "auth.prompt";
+	staticFunctions.XFBML_RENDER = "xfbml.render";
+	staticFunctions.EDGE_CREATE = "edge.create";
+	staticFunctions.EDGE_REMOVE = "edge.remove";
+	staticFunctions.COMMENT_CREATE = "comment.create";
+	staticFunctions.COMMENT_REMOVE = "comment.remove";
+	staticFunctions.MESSAGE_SEND = "message.send";
+	
+});
