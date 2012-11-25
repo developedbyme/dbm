@@ -24,7 +24,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.debug.ReportCountNode", "com.dev
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aInput1, aInput2) {
+	staticFunctions.create = function() {
 		var newNode = (new ClassReference()).init();
 		return newNode;
 	};

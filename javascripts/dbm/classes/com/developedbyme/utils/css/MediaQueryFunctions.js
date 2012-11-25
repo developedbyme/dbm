@@ -4,6 +4,10 @@ dbm.registerClass("com.developedbyme.utils.css.MediaQueryFunctions", null, funct
 	
 	var MediaQueryFunctions = dbm.importClass("com.developedbyme.utils.css.MediaQueryFunctions");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var CssReferenceFunctions = dbm.importClass("com.developedbyme.utils.css.CssReferenceFunctions");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
@@ -86,4 +90,20 @@ dbm.registerClass("com.developedbyme.utils.css.MediaQueryFunctions", null, funct
 		
 		return returnArray;
 	};
+	
+	/**
+	 * Checks if a media query matches on a window.
+	 */
+	staticFunctions.mediaQueryIsActive = function(aQuery, aWindow) {
+		
+		aWindow = VariableAliases.valueWithDefault(aWindow, window);
+		
+		var mediaResult = aWindow.matchMedia(aQuery);
+		
+		if(mediaResult.media == "invalid") {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[MediaQueryFunctions]", "mediaQueryIsActive", "Query \"" + aQuery + "\" is invalid.");
+		}
+		
+		return mediaResult.matches;
+	}; //End function mediaQueryIsActive (static)
 });
