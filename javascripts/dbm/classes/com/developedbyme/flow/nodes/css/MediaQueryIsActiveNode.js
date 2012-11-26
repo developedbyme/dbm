@@ -14,7 +14,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.css.MediaQueryIsActiveNode", "co
 		this._window = this.createProperty("window", window);
 		this._mediaQuery = this.createProperty("mediaQuery", null);
 		this._mediaQueryList = this.createProperty("mediaQueryList", null);
-		this._isActive = this.createProperty("isActive", 0);
+		this._isActive = this.createProperty("isActive", false);
 		
 		this._callback_mediaQueryChangedState = FunctionFunctions.getCallbackFunction1Argument(this, this._mediaQueryChangedState);
 		
