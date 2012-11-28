@@ -6,11 +6,14 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 	
 	var KeyValuePropertyPair = dbm.importClass("com.developedbyme.flow.data.KeyValuePropertyPair");
 	
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.KeyValuePropertyArray::_init");
@@ -30,6 +33,22 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 		this.currentSelectedItem = null;
 		
 		return this;
+	};
+	
+	objectFunctions._updateNamesArray = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.utils.data.KeyValuePropertyArray::_getObjectIndexByName");
+		
+		var namesArray = this._namesArray.getValueWithoutFlow();
+		namesArray.splice(0, namesArray.length);
+		
+		var currentArray = this._objectsArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			namesArray.push(currentObject.keyValue.getValueWithoutFlow());
+		}
+		
+		this._namesArray.setFlowAsUpdated(aFlowUpdateNumber);
 	};
 	
 	objectFunctions.getObjectsArray = function() {
@@ -109,7 +128,9 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 		
 	};
 	
-	objectFucntion._getObjectIndexByName = function(aName) {
+	objectFunctions._getObjectIndexByName = function(aName) {
+		//console.log("com.developedbyme.utils.data.KeyValuePropertyArray::_getObjectIndexByName");
+		//console.log(this._namesArray.getValue(), aName);
 		return ArrayFunctions.indexOfInArray(this._namesArray.getValue(), aName);
 	};
 	

@@ -23,7 +23,7 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 				ClassReference.getRulesByType(aType, currentRule.cssRules, aReturnArray);
 			}
 			else if(currentRule.type == CssRuleTypes.IMPORT_RULE) {
-				ClassReference.getRulesByType(aType, currentRule.styleSheet.rules, aReturnArray);
+				ClassReference.getRulesByType(aType, currentRule.styleSheet.cssRules, aReturnArray);
 			}
 		}
 	};
@@ -31,7 +31,7 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 	staticFunctions.getRulesOnStyleSheet = function(aStyleSheet, aReturnArray) {
 		//console.log("com.developedbyme.utils.css.CssReferenceFunctions::getRulesOnStyleSheet");
 		
-		var currentArray = aStyleSheet.rules;
+		var currentArray = aStyleSheet.cssRules;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			aReturnArray.push(currentArray[i]);

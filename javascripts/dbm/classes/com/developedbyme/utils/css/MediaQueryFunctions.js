@@ -36,7 +36,6 @@ dbm.registerClass("com.developedbyme.utils.css.MediaQueryFunctions", null, funct
 		}
 	};
 	
-	
 	staticFunctions.getFullSelectionCriteriaForMediaRule = function(aRule, aReturnArray) {
 		//console.log("com.developedbyme.utils.css.MediaQueryFunctions::getFullSelectionCriteriaForMediaRule");
 		//console.log(aRule);

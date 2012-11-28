@@ -23,7 +23,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode",
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode::_update");
+		console.log("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode::_update");
 		
 		var query = this._query.getValueWithoutFlow();
 		var rule = this._rule.getValueWithoutFlow();
@@ -31,29 +31,23 @@ dbm.registerClass("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode",
 		var mediaList = rule.media;
 		var mediaLength = mediaList.length;
 		
+		console.log(query, rule);
 		var currentArray = ProgrammingLanguageFunctions.getSeparatedArray(query, ClassReference._SPLIT_SEPARATORS);
 		var currentArrayLength = currentArray.length;
 		
-		var maxAddLength = Math.min(mediaLength, currentArrayLength);
-		
-		if(currentArrayLength < mediaLength) {
-			var removeLength = mediaLength-currentArrayLength;
-			for(var i = 0; i < removeLength; i++) {
-				mediaList.deleteMedium(mediaList[mediaLength-i-1]);
-			}
-		}
-		else if(currentArrayLength < mediaLength) {
-			var addLength = currentArrayLength-mediaLength;
-			for(var i = 0; i < removeLength; i++) {
-				mediaList.appendMedium(currentArray[mediaLength+i]);
-			}
+		for(var i = 0; i < mediaLength; i++) {
+			console.log(i, mediaList);
+			console.log(mediaList[0]);
+			mediaList.deleteMedium(mediaList[0]);
 		}
 		
-		for(var i = 0; i < maxAddLength; i++) {
-			mediaList[i] = currentArray[i];
+		for(var i = 0; i < currentArrayLength; i++) {
+			mediaList.appendMedium(currentArray[i]);
 		}
 		
-		this._rule.setAsClean();
+		console.log(rule);
+		
+		this._rule.setFlowAsUpdated(aFlowUpdateNumber);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

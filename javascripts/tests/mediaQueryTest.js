@@ -4,8 +4,12 @@ dbm.runTempFunction(function() {
 	
 	var MediaQueryIsActiveNode = dbm.importClass("com.developedbyme.flow.nodes.css.MediaQueryIsActiveNode");
 	var ReportNode = dbm.importClass("com.developedbyme.flow.nodes.debug.ReportNode");
+	var ValueSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode");
+	var SetMediaQuerySelectionNode = dbm.importClass("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode");
 	
 	var ProgrammingLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunctions");
+	
+	var EnabledStatusTypes = dbm.importClass("com.developedbyme.constants.generic.EnabledStatusTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
@@ -26,6 +30,15 @@ dbm.runTempFunction(function() {
 			var currentRule = currentArray[i];
 			var currentSelectionCriteria = MediaQueryFunctions.getCombinedSelectionCriteriaForMediaRule(currentRule);
 			console.log(currentSelectionCriteria);
+			
+			
+			var valueSwitchNode = ValueSwitchedNode.create(EnabledStatusTypes.ENABLED);
+			valueSwitchNode.addItem(EnabledStatusTypes.DISABLED, "not all");
+			valueSwitchNode.addItem(EnabledStatusTypes.ENABLED, currentSelectionCriteria);
+			valueSwitchNode.addItem(EnabledStatusTypes.FORCE_ENABLED, "all");
+			
+			var setMediaQueryNode = SetMediaQuerySelectionNode.create(valueSwitchNode.getProperty("outputValue"), currentRule);
+			setMediaQueryNode.getProperty("rule").startUpdating();
 		}
 		
 		var splitTestQuery = "screen and (color) and (min-height: 300px) and (min-width: 700px), handheld and (color) and (min-height: 300px) and (min-width: 700px), (color) and (aspect-ratio: 4, '/', 3), (color) and (aspect-ratio: 4, '/', 3) and (min-height: 400px) and (min-width: 800px), screen and (color) and (aspect-ratio: 4, '/', 3), handheld and (color) and (aspect-ratio: 4, '/', 3), screen and (color) and (aspect-ratio: 4, '/', 3), handheld and (min-width: 800px) and (color) and (aspect-ratio: 4, '/', 3)";

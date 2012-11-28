@@ -12,11 +12,11 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode", "com.d
 		
 		this._name = this.createProperty("name", null);
 		this._defaultValue = this.createProperty("defaultValue", null);
-		this._objects = KeyValuePropertyArray.create(this);
+		this._objects = KeyValuePropertyArray.create(true);
 		this.addDestroyableObject(this._objects);
 		this._outputValue = this.createProperty("outputValue", null);
 		
-		this.createUpdateFunction("default", this._update, [this._name, this._objects, this._defaultValue, this._objects.getProperty("anyChange")], [this._outputValue]);
+		this.createUpdateFunction("default", this._update, [this._name, this._objects.getProperty("anyChange"), this._defaultValue], [this._outputValue]);
 		
 		return this;
 	};
@@ -31,8 +31,11 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode", "com.d
 			this._outputValue.setValueWithFlow(this._defaultValue.getValueWithoutFlow(), aFlowUpdateNumber);
 		}
 		
+		//console.log(name, this._objects.select(name));
 		if(this._objects.select(name)) {
-			this._outputValue.setValueWithFlow(this._objects.currentSelectedItem.dataValue.getValue(), aFlowUpdateNumber);
+			var currentValue = this._objects.currentSelectedItem.dataValue.getValue();
+			//console.log(currentValue);
+			this._outputValue.setValueWithFlow(currentValue, aFlowUpdateNumber);
 		}
 		else {
 			this._outputValue.setValueWithFlow(this._defaultValue.getValueWithoutFlow(), aFlowUpdateNumber);
