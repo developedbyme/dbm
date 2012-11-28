@@ -14,5 +14,8 @@ dbm.runTempFunction(function() {
 		var mediaQueryIsActiveNode = MediaQueryIsActiveNode.create("screen and (min-height: 300px) and (min-width: 700px)");
 		var reportNode = ReportNode.create(mediaQueryIsActiveNode.getProperty("isActive"));
 		reportNode.start();
+		
+		var mediaQueries = MediaQueryFunctions.getAllMediaRulesOnDocument();
+		console.log(mediaQueries);
 	});
 });

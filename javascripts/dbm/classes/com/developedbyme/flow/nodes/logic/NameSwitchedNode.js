@@ -43,6 +43,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode", "com.de
 		var object = this._objects.getValue();
 		object[aName] = aValue;
 		this._objects.setAsDirty();
+		
+		return this;
 	};
 	
 	objectFunctions.reset = function() {

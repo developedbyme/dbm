@@ -38,12 +38,20 @@ dbm.registerClass("com.developedbyme.utils.css.MediaQueryFunctions", null, funct
 		if(currentArray != null && currentArray.length > 0) {
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
+				var currentSelection = currentArray[i];
 				if(parentArrayLength == 0) {
-					aReturnArray.push(currentArray[i]);
+					aReturnArray.push(currentSelection);
 				}
 				else {
+					var isAfter = (currentSelection.charAt(0) == "(");
+					
 					for(var j = 0; j < parentArrayLength; j++) {
-						aReturnArray.push(parentArray[j] + " and " + currentArray[i]);
+						if(isAfter) {
+							aReturnArray.push(parentArray[j] + " and " + currentSelection);
+						}
+						else {
+							aReturnArray.push(currentSelection + " and " + parentArray[j]);
+						}
 					}
 				}
 			}

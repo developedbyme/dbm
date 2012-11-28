@@ -3,6 +3,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode", "com.d
 	
 	var ValueSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode");
 	
+	var KeyValuePropertyArray = dbm.importClass("com.developedbyme.utils.data.KeyValuePropertyArray");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.logic.ValueSwitchedNode::_init");
 		
@@ -10,10 +12,11 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode", "com.d
 		
 		this._name = this.createProperty("name", null);
 		this._defaultValue = this.createProperty("defaultValue", null);
-		this._objects; //METODO this should be a key value array
+		this._objects = KeyValuePropertyArray.create(this);
+		this.addDestroyableObject(this._objects);
 		this._outputValue = this.createProperty("outputValue", null);
 		
-		this.createUpdateFunction("default", this._update, [this._name, this._objects, this._defaultValue], [this._outputValue]);
+		this.createUpdateFunction("default", this._update, [this._name, this._objects, this._defaultValue, this._objects.getProperty("anyChange")], [this._outputValue]);
 		
 		return this;
 	};
@@ -22,15 +25,14 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode", "com.d
 		//console.log("com.developedbyme.flow.nodes.logic.ValueSwitchedNode::_update");
 		
 		var name = this._name.getValueWithoutFlow();
-		var objects; //MENOTE: this should be a key value array
 		
 		if(name == null) {
 			//METODO: error message
 			this._outputValue.setValueWithFlow(this._defaultValue.getValueWithoutFlow(), aFlowUpdateNumber);
 		}
 		
-		if(objects[name] !== undefined) { //MENOTE: this should be a key value array lookup
-			this._outputValue.setValueWithFlow(objects[name], aFlowUpdateNumber);
+		if(this._objects.select(name)) {
+			this._outputValue.setValueWithFlow(this._objects.currentSelectedItem.dataValue.getValue(), aFlowUpdateNumber);
 		}
 		else {
 			this._outputValue.setValueWithFlow(this._defaultValue.getValueWithoutFlow(), aFlowUpdateNumber);
@@ -40,7 +42,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode", "com.d
 	objectFunctions.addItem = function(aInputValue, aOutputValue) {
 		//console.log("com.developedbyme.flow.nodes.logic.ValueSwitchedNode::addItem");
 		
-		//METODO: this should be a key value array
+		this._objects.addObject(aInputValue, aOutputValue);
+		
+		return 
 	};
 	
 	objectFunctions.reset = function() {
