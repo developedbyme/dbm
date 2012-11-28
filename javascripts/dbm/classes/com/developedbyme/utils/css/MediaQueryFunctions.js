@@ -14,6 +14,28 @@ dbm.registerClass("com.developedbyme.utils.css.MediaQueryFunctions", null, funct
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
 	var CssRuleTypes = dbm.importClass("com.developedbyme.constants.CssRuleTypes");
+	var MediaTypes = dbm.importClass("com.developedbyme.constants.css.MediaTypes");
+	
+	staticFunctions.getCombinedSelectionCriteriaForMediaRule = function(aRule) {
+		//console.log("com.developedbyme.utils.css.MediaQueryFunctions::getCombinedSelectionCriteriaForMediaRule");
+		//console.log(aRule);
+		
+		var currentArray = aRule.media;
+		
+		if(currentArray != null && currentArray.length > 0) {
+			//MENOTE: MediaList doesn't have any join function
+			var currentArrayLength = currentArray.length;
+			var returnString = currentArray[0];
+			for(var i = 1; i < currentArrayLength; i++) { //MENOTE: First value is added without ", " before loop
+				returnString += ", " + currentArray[i];
+			}
+			return returnString;
+		}
+		else {
+			return MediaTypes.ALL;
+		}
+	};
+	
 	
 	staticFunctions.getFullSelectionCriteriaForMediaRule = function(aRule, aReturnArray) {
 		//console.log("com.developedbyme.utils.css.MediaQueryFunctions::getFullSelectionCriteriaForMediaRule");

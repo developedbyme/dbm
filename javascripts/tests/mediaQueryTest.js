@@ -20,6 +20,14 @@ dbm.runTempFunction(function() {
 		var mediaQueries = MediaQueryFunctions.getAllMediaRulesOnDocument();
 		console.log(mediaQueries);
 		
+		var currentArray = mediaQueries;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentRule = currentArray[i];
+			var currentSelectionCriteria = MediaQueryFunctions.getCombinedSelectionCriteriaForMediaRule(currentRule);
+			console.log(currentSelectionCriteria);
+		}
+		
 		var splitTestQuery = "screen and (color) and (min-height: 300px) and (min-width: 700px), handheld and (color) and (min-height: 300px) and (min-width: 700px), (color) and (aspect-ratio: 4, '/', 3), (color) and (aspect-ratio: 4, '/', 3) and (min-height: 400px) and (min-width: 800px), screen and (color) and (aspect-ratio: 4, '/', 3), handheld and (color) and (aspect-ratio: 4, '/', 3), screen and (color) and (aspect-ratio: 4, '/', 3), handheld and (min-width: 800px) and (color) and (aspect-ratio: 4, '/', 3)";
 		var splittedArray = ProgrammingLanguageFunctions.getSeparatedArray(splitTestQuery, [","]);
 		console.log(splittedArray);
