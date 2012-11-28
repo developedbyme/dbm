@@ -5,6 +5,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode",
 	var SetMediaQuerySelectionNode = dbm.importClass("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode");
 	
 	var FunctionFunctions = dbm.importClass("com.developedbyme.utils.native.function.FunctionFunctions");
+	var ProgrammingLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunctions");
+	
+	staticFunctions._SPLIT_SEPARATORS = [","];
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode::_init");
@@ -25,7 +28,30 @@ dbm.registerClass("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode",
 		var query = this._query.getValueWithoutFlow();
 		var rule = this._rule.getValueWithoutFlow();
 		
-		rule.media = query;
+		var mediaList = rule.media;
+		var mediaLength = mediaList.length;
+		
+		var currentArray = ProgrammingLanguageFunctions.getSeparatedArray(query, ClassReference._SPLIT_SEPARATORS);
+		var currentArrayLength = currentArray.length;
+		
+		var maxAddLength = Math.min(mediaLength, currentArrayLength);
+		
+		if(currentArrayLength < mediaLength) {
+			var removeLength = mediaLength-currentArrayLength;
+			for(var i = 0; i < removeLength; i++) {
+				mediaList.deleteMedium(mediaList[mediaLength-i-1]);
+			}
+		}
+		else if(currentArrayLength < mediaLength) {
+			var addLength = currentArrayLength-mediaLength;
+			for(var i = 0; i < removeLength; i++) {
+				mediaList.appendMedium(currentArray[mediaLength+i]);
+			}
+		}
+		
+		for(var i = 0; i < maxAddLength; i++) {
+			mediaList[i] = currentArray[i];
+		}
 		
 		this._rule.setAsClean();
 	};

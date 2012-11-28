@@ -5,6 +5,8 @@ dbm.runTempFunction(function() {
 	var MediaQueryIsActiveNode = dbm.importClass("com.developedbyme.flow.nodes.css.MediaQueryIsActiveNode");
 	var ReportNode = dbm.importClass("com.developedbyme.flow.nodes.debug.ReportNode");
 	
+	var ProgrammingLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunctions");
+	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
 		
@@ -17,5 +19,9 @@ dbm.runTempFunction(function() {
 		
 		var mediaQueries = MediaQueryFunctions.getAllMediaRulesOnDocument();
 		console.log(mediaQueries);
+		
+		var splitTestQuery = "screen and (color) and (min-height: 300px) and (min-width: 700px), handheld and (color) and (min-height: 300px) and (min-width: 700px), (color) and (aspect-ratio: 4, '/', 3), (color) and (aspect-ratio: 4, '/', 3) and (min-height: 400px) and (min-width: 800px), screen and (color) and (aspect-ratio: 4, '/', 3), handheld and (color) and (aspect-ratio: 4, '/', 3), screen and (color) and (aspect-ratio: 4, '/', 3), handheld and (min-width: 800px) and (color) and (aspect-ratio: 4, '/', 3)";
+		var splittedArray = ProgrammingLanguageFunctions.getSeparatedArray(splitTestQuery, [","]);
+		console.log(splittedArray);
 	});
 });
