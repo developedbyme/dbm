@@ -164,17 +164,21 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 			case "currentSelectedItem":
 				return false;
 			case "_objectsObject":
-			case "_objectsObject":
+			case "_objectsArray":
 				return this.ownsObjects;
 		}
 		return this.superCall(aName);
 	};
 	
-	objectFunctions.performDestroy = function() {
-		
+	objectFunctions._performDestroyObjects = function() {
 		if(this.ownsObjects) {
 			ClassReference.softDestroyArrayIfExists(this._objectsArray);
 		}
+	}
+	
+	objectFunctions.performDestroy = function() {
+		
+		this._performDestroyObjects();
 		
 		this.superCall();
 	};

@@ -55,6 +55,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 	objectFunctions.getControllerForHtmlElement = function(aHtmlElement) {
 		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElement");
 		
+		var returnObject = this.getControllerForHtmlElementIfExists(aHtmlElement);
+		
+		if(returnObject == null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "getControllerForHtmlElement", "Controller for " + aHtmlElement + " doesn't exist.");
+		}
+		return returnObject;
+	};
+	
+	objectFunctions.getControllerForHtmlElementIfExists = function(aHtmlElement) {
+		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElementIfExists");
+		
 		var currentArray = this._displayObjects;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
@@ -64,7 +75,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 			}
 		}
 		
-		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "getControllerForHtmlElement", "Controller for " + aHtmlElement + " doesn't exist.");
 		return null;
 	};
 	
