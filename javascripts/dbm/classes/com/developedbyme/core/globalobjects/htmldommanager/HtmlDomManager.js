@@ -70,7 +70,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLink = currentArray[i];
-			if(currentLink.htmlElement = aHtmlElement) {
+			if(currentLink.htmlElement === aHtmlElement) {
 				return currentLink.controller;
 			}
 		}

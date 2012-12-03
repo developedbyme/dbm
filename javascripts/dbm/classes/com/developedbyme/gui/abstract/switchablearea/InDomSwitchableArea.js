@@ -17,10 +17,11 @@ dbm.registerClass("com.developedbyme.gui.abstract.switchablearea.InDomSwitchable
 	};
 	
 	objectFunctions._setupAreaFlow = function(aName, aDisplayObject, aAreaData) {
-		var conditionNode = ConditionNode.create("===", this._selectedArea, aName);
+		//console.log("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea::_setupAreaFlow");
+		var conditionNode = ConditionNode.create("===", this._visibleArea, aName);
 		aDisplayObject.setPropertyInput("inDom", conditionNode.getProperty("outputValue"));
 		
-		areaData.addObject("nodes", new Array(conditionNode));
+		aAreaData.addObject("nodes", new Array(conditionNode));
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

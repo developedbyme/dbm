@@ -6,6 +6,9 @@ dbm.registerClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaB
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var PartiallyOwnedNamedArray = dbm.importClass("com.developedbyme.utils.data.PartiallyOwnedNamedArray");
+	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaBaseObject::_init");
@@ -27,12 +30,14 @@ dbm.registerClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaB
 	};
 	
 	objectFunctions.addArea = function(aName, aDisplayObject, aOwnsObject) {
+		//console.log("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaBaseObject::addArea");
+		//console.log(aName, aDisplayObject, aOwnsObject);
 		
 		var areaData = PartiallyOwnedNamedArray.create(true);
 		areaData.addOwnedOverride("displayObject", VariableAliases.isTrue(aOwnsObject));
 		areaData.addObject("displayObject", aDisplayObject);
 		
-		this._setupAreaFlow(aName, aDisplayObject, aAreaData);
+		this._setupAreaFlow(aName, aDisplayObject, areaData);
 		this._display.connectInput(aDisplayObject.getProperty("display"));
 		
 		this._areas.addObject(aName, areaData);
@@ -41,12 +46,15 @@ dbm.registerClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaB
 	};
 	
 	objectFunctions.addHtmlArea = function(aName, aElement) {
+		//console.log("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaBaseObject::addHtmlArea");
+		//console.log(aName, aElement);
+		
 		var controller = dbm.singletons.dbmHtmlDomManager.getControllerForHtmlElementIfExists(aElement);
 		
-		if(controller = null) {
+		if(controller == null) {
 			
 			controller = DisplayBaseObject.create(aElement);
-			this.addDstroyableObject(controller);
+			this.addDestroyableObject(controller);
 		}
 		
 		this.addArea(aName, controller);

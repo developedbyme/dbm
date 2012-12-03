@@ -293,6 +293,9 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	};
 	
 	staticFunctions.create = function(aElement) {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::create");
+		//console.log(aElement);
+		
 		var newNode = (new ClassReference()).init();
 		
 		newNode.setElement(aElement);
