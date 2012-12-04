@@ -1,8 +1,12 @@
-dbm.registerClass("com.developedbyme.flow.nodes.animation.ValueToAnimationNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.flow.nodes.animation.ValueToAnimationNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.animation.ValueToAnimationNode");
 	//"use strict";
 	
 	var ValueToAnimationNode = dbm.importClass("com.developedbyme.flow.nodes.animation.ValueToAnimationNode");
+	
+	var ValueChangeObject = dbm.importClass("com.developedbyme.core.data.generic.ValueChangeObject");
+	
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.animation.ValueToAnimationNode::_init");
@@ -11,7 +15,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.animation.ValueToAnimationNode",
 		
 		this._inputValue = this.createProperty("inputValue", null);
 		this._currentValue = this.createProperty("currentValue", null);
-		this._timeline = null;
+		this._timeline = null; //METODO: this shouldn't be owned by this object
 		
 		this.createUpdateFunction("default", this._update, [this._inputValue], [this._currentValue]);
 		
@@ -23,14 +27,34 @@ dbm.registerClass("com.developedbyme.flow.nodes.animation.ValueToAnimationNode",
 		
 		var inputValue = this._inputValue.getValueWithoutFlow();
 		var currentValue = this._currentValue.getValueWithoutFlow();
+		var changeObject = ValueChangeObject.create(currentValue, inputValue);
 		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.VALUE_CHANGED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.VALUE_CHANGED, changeObject);
+		}
+		
+		this._currentValue.setValueWithFlow(inputValue, aFlowUpdateNumber);
 	};
 	
 	objectFunctions.setTimeline = function(aTimeline) {
 		//console.log("com.developedbyme.flow.nodes.animation.ValueToAnimationNode::setTimeline");
 		
 		this._timeline = aTimeline;
+		this._timeline.getProperty("anyChange").connectInput(this._currentValue);
+	};
+	
+	objectFunctions.getTimeline = function() {
+		return this._timeline;
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
+		switch(aName) {
+			case GenericExtendedEventIds.VALUE_CHANGED:
+				return true;
+		}
+		
+		return this.superCall(aName);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
@@ -45,6 +69,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.animation.ValueToAnimationNode",
 	staticFunctions.create = function(aInput, aTimeline) {
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
+		newNode.setTimeline(aTimeline);
 		
 		return newNode;
 	};

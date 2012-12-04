@@ -3,6 +3,8 @@ dbm.runTempFunction(function() {
 	var PlaceElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
 	var RepeadedRange = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
 	
+	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
+	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
 		
@@ -25,8 +27,8 @@ dbm.runTempFunction(function() {
 			
 			var newTimeline = dbm.singletons.dbmAnimationManager.createTimeline(0, placeElementNode.getProperty("x"));
 			
-			newTimeline.animateValue(800, 1, "quadric", i*0.5*0.25);
-			newTimeline.animateValue(0, 1, "invertedQuadric", i*0.5*0.25+1);
+			newTimeline.animateValue(800, 1, InterpolationTypes.QUADRATIC, i*0.5*0.25);
+			newTimeline.animateValue(0, 1, InterpolationTypes.INVERTED_QUADRATIC, i*0.5*0.25+1);
 			
 			placeElementNode.getProperty("display").startUpdating();
 		}	
