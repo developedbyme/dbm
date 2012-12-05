@@ -7,7 +7,9 @@
 dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.CircularBuffer");
 	//"use strict";
-		
+	
+	var CircularBuffer = dbm.importClass("com.developedbyme.utils.data.CircularBuffer");
+	
 	/**
 	 * Constructor
 	 */
@@ -19,7 +21,7 @@ dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedb
 		this._bufferLength = 0;
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Sets the length of the buffer
@@ -57,7 +59,7 @@ dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedb
 		
 		this._bufferLength = aLength;
 		return this;
-	}
+	};
 	
 	/**
 	 * Sets data at the next position.
@@ -69,7 +71,7 @@ dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedb
 		this._currentPosition = ((this._currentPosition+1) % this._bufferLength);
 		this._buffer[this._currentPosition] = aData;
 		return this;
-	}
+	};
 	
 	/**
 	 * Steps manually in the buffer.
@@ -115,5 +117,11 @@ dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedb
 		var samplePosition = (this._currentPosition+aOffset+this._bufferLength)%this._bufferLength;
 		
 		return this._buffer[samplePosition];
-	}
+	};
+	
+	staticFunctions.create = function(aLength) {
+		var newCircularBuffer = (new CircularBuffer()).init();
+		newCircularBuffer.setLength(aLength);
+		return newCircularBuffer;
+	};
 });
