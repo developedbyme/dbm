@@ -26,7 +26,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 		var theFunction = this.functionReevaluator.reevaluate(aBaseObject);
 		var argumentsArray = this.argumentsArrayReevaluator.reevaluate(aBaseObject);
 		return theFunction.apply(theObject, argumentsArray);
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

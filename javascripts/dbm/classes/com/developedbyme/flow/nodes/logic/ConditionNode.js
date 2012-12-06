@@ -8,6 +8,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ConditionNode", "com.devel
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	var ConditionEvaluation = dbm.importClass("com.developedbyme.utils.logic.ConditionEvaluation");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.logic.ConditionNode::_init");
 		
@@ -26,43 +28,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ConditionNode", "com.devel
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.logic.ConditionNode::_update");
 		
-		var returnValue;
-		var conditionType = this._conditionType.getValueWithoutFlow();
-		var inputValue1 = this._inputValue1.getValueWithoutFlow();
-		var inputValue2 = this._inputValue2.getValueWithoutFlow();
-		switch(conditionType) {
-			case "==":
-				returnValue = (inputValue1 == inputValue2);
-				break;
-			case "===":
-				returnValue = (inputValue1 === inputValue2);
-				break;
-			case ">=":
-				returnValue = (inputValue1 >= inputValue2);
-				break;
-			case ">":
-				returnValue = (inputValue1 > inputValue2);
-				break;
-			case "<=":
-				returnValue = (inputValue1 <= inputValue2);
-				break;
-			case "<":
-				returnValue = (inputValue1 < inputValue2);
-				break;
-			case "!=":
-				returnValue = (inputValue1 != inputValue2);
-				break;
-			case "&&":
-				returnValue = (inputValue1 && inputValue2);
-				break;
-			case "||":
-				returnValue = (inputValue1 || inputValue2);
-				break;
-			default:
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_update", "Unknown condition type " + conditionType + ".");
-				returnValue = 0;
-				break;
-		}
+		var returnValue = ConditionEvaluation.evaluateCondition(this._inputValue1.getValueWithoutFlow(), this._conditionType.getValueWithoutFlow(), this._inputValue2.getValueWithoutFlow());
 		
 		this._outputValue.setValueWithFlow(returnValue, aFlowUpdateNumber);
 	};
