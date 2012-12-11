@@ -59,4 +59,12 @@ dbm.registerClass("com.developedbyme.constants.JavascriptEventIds", null, functi
 	staticFunctions.DEVICE_ORIENTATION = "deviceorientation";
 	staticFunctions.COMPASS_NEEDS_CALIBRATION = "compassneedscalibration";
 	staticFunctions.DEVICE_MOTION = "devicemotion";
+	
+	//MENOTE: Touch event
+	staticFunctions.TOUCH_START = "touchstart";
+	staticFunctions.TOUCH_END = "touchend";
+	staticFunctions.TOUCH_MOVE = "touchmove";
+	staticFunctions.TOUCH_ENTER = "touchenter";
+	staticFunctions.TOUCH_LEAVE = "touchleave";
+	staticFunctions.TOUCH_CANCEL = "touchcancel";
 });
