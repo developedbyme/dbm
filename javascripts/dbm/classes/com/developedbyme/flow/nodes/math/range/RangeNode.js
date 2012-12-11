@@ -1,6 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.range.RangeNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.range.RangeNode");
 	
+	var RangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RangeNode");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.range.RangeNode::_init");
 		
@@ -32,12 +34,15 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.range.RangeNode", "com.deve
 		this._outputValue.setValueWithFlow(parameter*(maxOutputValue-minOutputValue)+minOutputValue, aFlowUpdateNumber);
 	};
 	
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputValue = null;
+		this._minInputValue = null;
+		this._maxInputValue = null;
+		this._minOutputValue = null;
+		this._maxOutputValue = null;
+		this._outputValue = null;
+		
 		this.superCall();
 	};
 	
