@@ -8,6 +8,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var ActivateEventLinkCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand");
+	var PreventDefaultCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand");
 	
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
@@ -128,5 +129,11 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.START, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, true));
 		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, false));
 		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, false));
+	};
+	
+	staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
+		//(console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::preventDefaultForEvent");
+		
+		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());
 	};
 });
