@@ -15,13 +15,14 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 		this._width = this.createProperty("width", 0);
 		this._height = this.createProperty("height", 0);
 		this._element = this.createProperty("element", null);
+		this._inDom = this.createProperty("inDom", true);
 		
 		this._windowForElementNode = WindowForElementNode.create(this._element);
 		this.addDestroyableObject(this._windowForElementNode);
 		var windowSizeNode = WindowSizeNode.create(this._windowForElementNode.getProperty("window"));
 		this.addDestroyableObject(windowSizeNode);
 		
-		this.createUpdateFunction("default", this._update, [this._element, windowSizeNode.getProperty("width"), windowSizeNode.getProperty("height")], [this._width, this._height]);
+		this.createUpdateFunction("default", this._update, [this._element, windowSizeNode.getProperty("width"), windowSizeNode.getProperty("height"), this._inDom], [this._width, this._height]);
 		
 		return this;
 	};
@@ -49,15 +50,16 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 		this._width = null;
 		this._height = null;
 		this._element = null;
-		this._document = null;
+		this._inDom = null;
 		this._windowForElementNode = null;
 		
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aElement) {
+	staticFunctions.create = function(aElement, aInDom) {
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("element", aElement);
+		newNode.setPropertyInputWithoutNull("inDom", aInDom);
 		return newNode;
 	};
 });

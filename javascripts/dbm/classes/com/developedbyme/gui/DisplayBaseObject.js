@@ -11,6 +11,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	var PlaceHtmlElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
 	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
 	var TransformElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.TransformElementNode");
+	var SizeElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeElementNode");
 	
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
@@ -19,6 +20,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		this.superCall();
 		
+		this._sizeNode = null;
 		this._placementNode = null;
 		
 		this._alpha = this.addProperty("alpha", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty));
@@ -26,11 +28,12 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this._element = this.createProperty("element", null);
 		this._parentElement = this.createProperty("parentElement", null);
 		this._inDom = this.createProperty("inDom", false);
+		this._inDomOutput = this.createProperty("inDomOutput", false);
 		
 		this._inDomUpdate = this.createGhostProperty("inDomUpdate");
 		this._display = this.createGhostProperty("display");
 		
-		this.createUpdateFunction("inDomUpdate", this._updateInDomFlow, [this._element, this._parentElement, this._inDom], [this._inDomUpdate]);
+		this.createUpdateFunction("inDomUpdate", this._updateInDomFlow, [this._element, this._parentElement, this._inDom], [this._inDomUpdate, this._inDomOutput]);
 		this.createUpdateFunction("display", this._updateDisplayFlow, [this._inDomUpdate, this._alpha], [this._display]);
 		
 		return this;
@@ -43,10 +46,12 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	};
 	
 	objectFunctions._updateInDomFlow = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::_updateInDomFlow");
 		var element = this._element.getValueWithoutFlow();
 		var parentElement = this._parentElement.getValueWithoutFlow();
 		if(element != null && parentElement != null) {
 			var inDom = this._inDom.getValueWithoutFlow();
+			this._inDomOutput.setValueWithFlow(inDom, aFlowUpdateNumber);
 			if(inDom) {
 				if(element.parentNode != parentElement) {
 					if(parentElement.ownerDocument != element.ownerDocument) {
@@ -164,6 +169,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	objectFunctions.setElementAsPositioned = function() {
 		
 		this._placementNode = PlaceHtmlElementNode.create(this._element);
+		this._sizeNode = this._placementNode;
 		this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
 		this.addDestroyableObject(this._placementNode);
 		
@@ -175,6 +181,15 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this._placementNode = TransformElementNode.create(this._element);
 		this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
 		this.addDestroyableObject(this._placementNode);
+		
+		return this;
+	};
+	
+	objectFunctions.setElementAsSized = function() {
+		
+		this._sizeNode = SizeElementNode.create(this._element);
+		this._updateFunctions.getObject("display").addInputConnection(this._sizeNode.getProperty("display"));
+		this.addDestroyableObject(this._sizeNode);
 		
 		return this;
 	};
@@ -237,8 +252,6 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 			case "x":
 			case "y":
 			case "z":
-			case "width":
-			case "height":
 			case "scaleX":
 			case "scaleY":
 			case "rotate":
@@ -249,6 +262,13 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 					return this._placementNode.getProperty(aName);
 				}
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " is not placed, can't get property " + aName + ".");
+				return null;
+			case "width":
+			case "height":
+				if(this._sizeNode != null) {
+					return this._sizeNode.getProperty(aName);
+				}
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " is not sized, can't get property " + aName + ".");
 				return null;
 		}
 		
@@ -285,9 +305,11 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this._element = null;
 		this._parentElement = null;
 		this._inDom = null;
+		this._inDomOutput = null;
 		this._alpha = null;
 		this._inDomUpdate = null;
 		this._display = null;
+		this._sizeNode = null;
 		
 		this.superCall();
 	};

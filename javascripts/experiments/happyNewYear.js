@@ -12,6 +12,7 @@ dbm.runTempFunction(function() {
 	var FlowGroup = dbm.importClass("com.developedbyme.flow.FlowGroup");
 	var RangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RangeNode");
 	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
+	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
 	
 	var DateStringToTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.DateStringToTimeNode");
 	var CurrentTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.CurrentTimeNode");
@@ -23,6 +24,8 @@ dbm.runTempFunction(function() {
 	var TextElement = dbm.importClass("com.developedbyme.gui.text.TextElement");
 	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+	
+	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
@@ -38,16 +41,20 @@ dbm.runTempFunction(function() {
 		var mouseRangeNode = RangeNode.create(mousePositionNode.getProperty("x"), 0, windowSizeNode.getProperty("width"), -3, 3);
 		
 		//Scale group
-		var scalePoint = FlowGroup.create({x: windowSizeNode.getProperty("width"), y: windowSizeNode.getProperty("height"), scale: 0.5, moveLengthScale: 0.25}, {x: 0, y: 0, moveLength: 0});
+		var scalePoint = FlowGroup.create({x: windowSizeNode.getProperty("width"), y: windowSizeNode.getProperty("height"), scale: 0.5, moveLengthScale: 0.4, maxWidthScale: 0.8}, {x: 0, y: 0, moveLength: 0, maxWidth: 0, halfMaxWidth: 0});
 		
 		var scaleXNode = MultiplicationNode.create(scalePoint.getInputProperty("x"), scalePoint.getInputProperty("scale"));
 		var scaleYNode = MultiplicationNode.create(scalePoint.getInputProperty("y"), scalePoint.getInputProperty("scale"));
 		
 		var scaleLengthNode = MultiplicationNode.create(scalePoint.getInputProperty("y"), scalePoint.getInputProperty("moveLengthScale"));
+		var scaleMaxWidthNode = MultiplicationNode.create(scalePoint.getInputProperty("x"), scalePoint.getInputProperty("maxWidthScale"));
+		var halfMaxWidthNode = MultiplicationNode.create(scaleMaxWidthNode.getProperty("outputValue"), 0.5);
 		
 		dbm.singletons.dbmFlowManager.connectProperties(scaleXNode.getProperty("outputValue"), scalePoint.getOutputProperty("x"));
 		dbm.singletons.dbmFlowManager.connectProperties(scaleYNode.getProperty("outputValue"), scalePoint.getOutputProperty("y"));
 		dbm.singletons.dbmFlowManager.connectProperties(scaleLengthNode.getProperty("outputValue"), scalePoint.getOutputProperty("moveLength"));
+		dbm.singletons.dbmFlowManager.connectProperties(scaleMaxWidthNode.getProperty("outputValue"), scalePoint.getOutputProperty("maxWidth"));
+		dbm.singletons.dbmFlowManager.connectProperties(halfMaxWidthNode.getProperty("outputValue"), scalePoint.getOutputProperty("halfMaxWidth"));
 		
 		//Parsed time
 		
@@ -76,32 +83,73 @@ dbm.runTempFunction(function() {
 		formatTimeNode.addReplacement("SS", secondsPadNumberNode.getProperty("outputValue"));
 		
 		//GUI
-		var holder = DisplayBaseObject.createDiv(document.body, true);
+		var holder = DisplayBaseObject.createDiv(document.body, false, {"class": "timezoneHolder", "style": "background-color: #FF0000"});
 		holder.addToParent(document.body);
 		holder.setElementAsTransformed();
+		holder.setElementAsSized();
 		
-		var placeTextElement = TextElement.create(holder.getElement(), true, "London");
+		var placeTextHolder = DisplayBaseObject.createDiv(holder.getElement(), true, {"class": "textHolder"});
+		placeTextHolder.setElementAsTransformed();
+		var placeTextElement = TextElement.create(placeTextHolder.getElement(), true, "London");
 		
-		var timeTextElement = TextElement.create(holder.getElement(), true, "Text");
+		var timeTextHolder = DisplayBaseObject.createDiv(holder.getElement(), true, {"class": "textHolder"});
+		timeTextHolder.setElementAsTransformed();
+		var timeTextElement = TextElement.create(timeTextHolder.getElement(), true, "00:00:00");
 		timeTextElement.setPropertyInput("text", formatTimeNode.getProperty("outputValue"));
+		
+		//Text scale
+		
+		var placeSizeOfNode = SizeOfElementNode.create(placeTextHolder.getElement(), holder.getProperty("inDomOutput"));
+		var timeSizeOfNode = SizeOfElementNode.create(timeTextHolder.getElement(), holder.getProperty("inDomOutput"));
+		
+		var placeScaleNode = DivisionNode.create(scalePoint.getOutputProperty("maxWidth"), placeSizeOfNode.getProperty("width"));
+		var timeScaleNode = DivisionNode.create(scalePoint.getOutputProperty("maxWidth"), timeSizeOfNode.getProperty("width"));
+		
+		var placeScaledHeightNode = MultiplicationNode.create(placeSizeOfNode.getProperty("height"), placeScaleNode.getProperty("outputValue"));
+		var timeScaledHeightNode = MultiplicationNode.create(timeSizeOfNode.getProperty("height"), timeScaleNode.getProperty("outputValue"));
+		
+		var totalHeightNode = AdditionNode.create(placeScaledHeightNode.getProperty("outputValue"), timeScaledHeightNode.getProperty("outputValue"));
+		var totalHeightWithSpacingNode = AdditionNode.create(totalHeightNode.getProperty("outputValue"), 10);
+		
+		placeTextHolder.setPropertyInput("x", scalePoint.getOutputProperty("halfMaxWidth"));
+		placeTextHolder.setPropertyInput("scaleX", placeScaleNode.getProperty("outputValue"));
+		placeTextHolder.setPropertyInput("scaleY", placeScaleNode.getProperty("outputValue"));
+		
+		timeTextHolder.setPropertyInput("x", scalePoint.getOutputProperty("halfMaxWidth"));
+		timeTextHolder.setPropertyInput("scaleX", timeScaleNode.getProperty("outputValue"));
+		timeTextHolder.setPropertyInput("scaleY", timeScaleNode.getProperty("outputValue"));
 		
 		//Animation
 		
 		var positionDiffNode = SubtractionNode.create(mouseRangeNode.getProperty("outputValue"), 0);
 		
-		var positionTimeline = Timeline.create(0);
+		var positionTimeline = Timeline.create(-1);
 		positionTimeline.setPropertyInput("time", positionDiffNode.getProperty("outputValue"));
+		positionTimeline.animateValueAt(0, 1, InterpolationTypes.INVERTED_QUADRATIC, -1);
+		positionTimeline.animateValueAt(1, 1, InterpolationTypes.QUADRATIC, 0);
 		
 		var scaleTimeline = Timeline.create(0);
 		scaleTimeline.setPropertyInput("time", positionDiffNode.getProperty("outputValue"));
+		scaleTimeline.animateValueAt(0.25, 1, InterpolationTypes.INVERTED_QUADRATIC, -2);
+		scaleTimeline.animateValueAt(1, 1, InterpolationTypes.QUADRATIC, -1);
+		scaleTimeline.animateValueAt(0, 1, InterpolationTypes.INVERTED_QUADRATIC, 0);
 		
 		var inDomTimeline = Timeline.create(false);
 		inDomTimeline.setPropertyInput("time", positionDiffNode.getProperty("outputValue"));
 		inDomTimeline.setValueAt(true, -2);
 		inDomTimeline.setValueAt(false, 1);
 		
+		var positionMultiplierNode = MultiplicationNode.create(positionTimeline.getProperty("outputValue"), scalePoint.getOutputProperty("moveLength"));
+		var centeredAnimationNode = AdditionNode.create(scalePoint.getOutputProperty("y"), positionMultiplierNode.getProperty("outputValue"));
+		
 		holder.setPropertyInput("inDom", inDomTimeline.getProperty("outputValue"));
-		//holder.setPropertyInput("y", positionTimeline.getProperty("outputValue"));
+		holder.setPropertyInput("y", centeredAnimationNode.getProperty("outputValue"));
+		holder.setPropertyInput("x", scalePoint.getOutputProperty("x"));
+		holder.setPropertyInput("scaleX", scaleTimeline.getProperty("outputValue"));
+		holder.setPropertyInput("scaleY", scaleTimeline.getProperty("outputValue"));
+		
+		holder.setPropertyInput("width", scalePoint.getOutputProperty("maxWidth"));
+		holder.setPropertyInput("height", totalHeightWithSpacingNode.getProperty("outputValue"));
 		
 		//Debug
 		
@@ -109,6 +157,8 @@ dbm.runTempFunction(function() {
 		traceInDomNode.start();
 		
 		//Updates
+		placeTextHolder.getProperty("display").startUpdating();
+		timeTextHolder.getProperty("display").startUpdating();
 		timeTextElement.getProperty("display").startUpdating();
 		holder.getProperty("display").startUpdating();
 		
