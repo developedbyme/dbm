@@ -17,13 +17,14 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		
 		this._element = null;
 		this._isActive = false;
+		this._touches = NamedArray.create(false);
 		this._activeTouches = this.createProperty("activeTouches", new Array());
 		
-		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.START, CallFunctionCommand.createCommand(this, this._startTouch, [GetVariableObject.createSelectDataCommand()]));
-		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.END, CallFunctionCommand.createCommand(this, this._stopTouch, [GetVariableObject.createSelectDataCommand()]));
-		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.END_OUTSIDE, CallFunctionCommand.createCommand(this, this._stopTouch, [GetVariableObject.createSelectDataCommand()]));
-		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.MOVE, CallFunctionCommand.createCommand(this, this._updateTouch, [GetVariableObject.createSelectDataCommand()]));
-		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.CANCEL, CallFunctionCommand.createCommand(this, this._cancelTouch, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.START, CallFunctionCommand.createCommand(this, this._callback_startTouch, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.END, CallFunctionCommand.createCommand(this, this._callback_stopTouch, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.END_OUTSIDE, CallFunctionCommand.createCommand(this, this._callback_stopTouch, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.MOVE, CallFunctionCommand.createCommand(this, this._callback_updateTouch, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.CANCEL, CallFunctionCommand.createCommand(this, this._callback_cancelTouch, [GetVariableObject.createSelectDataCommand()]));
 		
 		return this;
 	};
@@ -59,20 +60,111 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		return this;
 	};
 	
-	objectFucntions._startTouch = function(aEvent) {
+	objectFunctions._startTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
 		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_startTouch");
+		
+		var newTouch = TouchData.create(aIdentifier);
+		
+		this._touches.addObject(aIdentifier, newTouch);
+		var activeTouches = this._activeTouches.getValue();
+		activeTouches.push(newTouch);
+		this._activeTouches.setAsDirty();
+		
+		//METODO: send out event
+		
+		newTouch.startTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
 	};
 	
-	objectFucntions._updateTouch = function(aEvent) {
+	objectFunctions._updateTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
 		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_updateTouch");
+		
+		if(this._touches.select(aIdentifier)) {
+			var currentTouch = this._touches.currentSelectedItem;
+			currentTouch.updateTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+		}
+		else {
+			//METODO: error message
+		}
 	};
 	
-	objectFucntions._stopTouch = function(aEvent) {
+	objectFunctions._removeTouch = function(aTouch) {
+		
+		//METODO: remove from touches
+		
+		var activeTouches = this._activeTouches.getValue();
+		var touchIndex = ArrayFunctions.indexOfInArray(activeTouches, aTouch);
+		activeTouches.splice(touchIndex, 1);
+		
+		this._activeTouches.setAsDirty();
+		
+	};
+	
+	objectFunctions._stopTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
 		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_stopTouch");
+		
+		if(this._touches.select(aIdentifier)) {
+			var currentTouch = this._touches.currentSelectedItem;
+			currentTouch.stopTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+		}
+		else {
+			//METODO: error message
+		}
 	};
 	
-	objectFucntions._cancelTouch = function(aEvent) {
+	objectFunctions._cancelTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
 		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_cancelTouch");
+		
+		if(this._touches.select(aIdentifier)) {
+			var currentTouch = this._touches.currentSelectedItem;
+			currentTouch.cancelTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+		}
+		else {
+			//METODO: error message
+		}
+	};
+	
+	objectFunctions._callback_startTouch = function(aEvent) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_startTouch");
+		
+		var currentArray = aEvent.changedTouches;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			this._startTouch(currentObject.identifier, currentObject.pageX, currentObject.pageY, currentObject.radiusX, currentObject.radiusY, currentObject.rotationAngle, currentObject.force);
+		}
+	};
+	
+	objectFunctions._callback_updateTouch = function(aEvent) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_updateTouch");
+		
+		var currentArray = aEvent.changedTouches;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			this._updateTouch(currentObject.identifier, currentObject.pageX, currentObject.pageY, currentObject.radiusX, currentObject.radiusY, currentObject.rotationAngle, currentObject.force);
+		}
+	};
+	
+	objectFunctions._callback_stopTouch = function(aEvent) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_stopTouch");
+		
+		var currentArray = aEvent.changedTouches;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			this._stopTouch(currentObject.identifier, currentObject.pageX, currentObject.pageY, currentObject.radiusX, currentObject.radiusY, currentObject.rotationAngle, currentObject.force);
+		}
+	};
+	
+	objectFunctions._callback_cancelTouch = function(aEvent) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_cancelTouch");
+		
+		var currentArray = aEvent.changedTouches;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			this._cancelTouch(currentObject.identifier, currentObject.pageX, currentObject.pageY, currentObject.radiusX, currentObject.radiusY, currentObject.rotationAngle, currentObject.force);
+		}
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {

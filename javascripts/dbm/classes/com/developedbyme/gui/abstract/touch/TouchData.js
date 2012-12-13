@@ -17,36 +17,60 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 		this._currentX = this.createProperty("currentX", 0);
 		this._currentY = this.createProperty("currentY", 0);
 		
+		this._currentRadiusX = this.createProperty("currentRadiusX", 0);
+		this._currentRadiusY = this.createProperty("currentRadiusY", 0);
+		
+		this._currentRotation = this.createProperty("currentRotation", 0);
+		this._currentForce = this.createProperty("currentForce", 0);
+		
 		return this;
 	};
 	
-	objectFunctions.startTouch = function(aX, aY) {
+	objectFunctions._updateCurrentValues = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
+		
+		this._currentX.setValue(aX);
+		this._currentY.setValue(aY);
+		
+		this._currentRadiusX.setValue(aRadiusX);
+		this._currentRadiusY.setValue(aRadiusY);
+		
+		this._currentRotation.setValue(aRotation);
+		this._currentForce.setValue(aForce);
+	};
+	
+	objectFunctions.startTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
 		
 		this._isTouching.setValue(true);
 		
 		this._startX.setValue(aX);
 		this._startY.setValue(aY);
 		
-		this._currentX.setValue(aX);
-		this._currentY.setValue(aY);
+		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
 		
 		return this;
 	};
 	
-	objectFunctions.updateTouch = function(aX, aY) {
+	objectFunctions.updateTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
 		
-		this._currentX.setValue(aX);
-		this._currentY.setValue(aY);
+		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
 		
 		return this;
 	};
 	
-	objectFunctions.stopTouch = function(aX, aY) {
+	objectFunctions.stopTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
 		
 		this._isTouching.setValue(false);
 		
-		this._currentX.setValue(aX);
-		this._currentY.setValue(aY);
+		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+		
+		return this;
+	};
+	
+	objectFunctions.cancelTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
+		
+		this._isTouching.setValue(false);
+		
+		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
 		
 		return this;
 	};
