@@ -39,6 +39,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 	};
 	
 	objectFunctions.startTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchData::startTouch");
 		
 		this._isTouching.setValue(true);
 		
@@ -51,6 +52,8 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 	};
 	
 	objectFunctions.updateTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchData::updateTouch");
+		console.log(aX-this._startX.getValue(), aY-this._startY.getValue());
 		
 		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
 		
@@ -58,6 +61,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 	};
 	
 	objectFunctions.stopTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchData::stopTouch");
 		
 		this._isTouching.setValue(false);
 		
@@ -67,6 +71,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 	};
 	
 	objectFunctions.cancelTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchData::cancelTouch");
 		
 		this._isTouching.setValue(false);
 		
@@ -100,7 +105,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 		
 		var newTouchData = (new TouchData()).init();
 		
-		newTouchData.id = null;
+		newTouchData.id = aId;
 		
 		return newTouchData;
 	};

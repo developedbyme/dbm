@@ -88,7 +88,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	
 	staticFunctions.addTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate) {
 		
-		ClassReference.addLocalTouchMoveEvents(DomReferenceFunctions.getDocument(aHtmlElement), aHtmlElement, aActivate);
+		ClassReference.addLocalTouchMoveEvents(aExtendedEventController, DomReferenceFunctions.getDocument(aHtmlElement), aActivate);
 		
 	};
 	
@@ -121,7 +121,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	};
 	
 	staticFunctions.addTouchPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate) {
-		//(console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::addTouchPressWithMoveEvents");
+		//console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::addTouchPressWithMoveEvents");
+		//console.log(aExtendedEventController, aHtmlElement, aActivate);
 		
 		ClassReference.addTouchPressEvents(aExtendedEventController, aHtmlElement, aActivate);
 		ClassReference.addTouchMoveEvents(aExtendedEventController, aHtmlElement, false);

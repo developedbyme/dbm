@@ -5,7 +5,12 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var TouchData = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchData");
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	
+	var PositionFunctions = dbm.importClass("com.developedbyme.utils.htmldom.PositionFunctions");
 	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
 	
 	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
@@ -20,6 +25,9 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		this._touches = NamedArray.create(false);
 		this._activeTouches = this.createProperty("activeTouches", new Array());
 		
+		this._globalPositionPoint = Point.create();
+		this.addDestroyableObject(this._globalPositionPoint);
+		
 		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.START, CallFunctionCommand.createCommand(this, this._callback_startTouch, [GetVariableObject.createSelectDataCommand()]));
 		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.END, CallFunctionCommand.createCommand(this, this._callback_stopTouch, [GetVariableObject.createSelectDataCommand()]));
 		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.END_OUTSIDE, CallFunctionCommand.createCommand(this, this._callback_stopTouch, [GetVariableObject.createSelectDataCommand()]));
@@ -27,6 +35,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		this.getExtendedEvent().addCommandToEvent(TouchExtendedEventIds.CANCEL, CallFunctionCommand.createCommand(this, this._callback_cancelTouch, [GetVariableObject.createSelectDataCommand()]));
 		
 		return this;
+	};
+	
+	objectFunctions.getElement = function() {
+		return this._element;
 	};
 	
 	objectFunctions.setElement = function(aElement) {
@@ -60,19 +72,29 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		return this;
 	};
 	
+	objectFunctions._createTouch = function(aIdentifier) {
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_createTouch");
+		//console.log(aIdentifier);
+		var newTouch = TouchData.create(aIdentifier);
+		return newTouch;
+	};
+	
 	objectFunctions._startTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
 		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_startTouch");
 		
-		var newTouch = TouchData.create(aIdentifier);
+		var newTouch = this._createTouch(aIdentifier);
 		
-		this._touches.addObject(aIdentifier, newTouch);
-		var activeTouches = this._activeTouches.getValue();
-		activeTouches.push(newTouch);
-		this._activeTouches.setAsDirty();
+		this._addTouch(newTouch);
 		
 		//METODO: send out event
+		PositionFunctions.getGlobalPositionForNode(this.getElement(), this._globalPositionPoint);
+		
+		aX -= this._globalPositionPoint.x;
+		aY -= this._globalPositionPoint.y;
 		
 		newTouch.startTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+		
+		return newTouch;
 	};
 	
 	objectFunctions._updateTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
@@ -80,11 +102,24 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		
 		if(this._touches.select(aIdentifier)) {
 			var currentTouch = this._touches.currentSelectedItem;
+			
+			PositionFunctions.getGlobalPositionForNode(this.getElement(), this._globalPositionPoint);
+		
+			aX -= this._globalPositionPoint.x;
+			aY -= this._globalPositionPoint.y;
+			
 			currentTouch.updateTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
 		}
 		else {
 			//METODO: error message
 		}
+	};
+	
+	objectFunctions._addTouch = function(aTouch) {
+		this._touches.addObject(aTouch.id, aTouch);
+		var activeTouches = this._activeTouches.getValue();
+		activeTouches.push(aTouch);
+		this._activeTouches.setAsDirty();
 	};
 	
 	objectFunctions._removeTouch = function(aTouch) {
@@ -104,7 +139,14 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		
 		if(this._touches.select(aIdentifier)) {
 			var currentTouch = this._touches.currentSelectedItem;
+			
+			PositionFunctions.getGlobalPositionForNode(this.getElement(), this._globalPositionPoint);
+		
+			aX -= this._globalPositionPoint.x;
+			aY -= this._globalPositionPoint.y;
+			
 			currentTouch.stopTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+			//METODO: remove touch
 		}
 		else {
 			//METODO: error message
@@ -116,7 +158,14 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		
 		if(this._touches.select(aIdentifier)) {
 			var currentTouch = this._touches.currentSelectedItem;
+			
+			PositionFunctions.getGlobalPositionForNode(this.getElement(), this._globalPositionPoint);
+		
+			aX -= this._globalPositionPoint.x;
+			aY -= this._globalPositionPoint.y;
+			
 			currentTouch.cancelTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+			//METODO: remove touch
 		}
 		else {
 			//METODO: error message
@@ -188,9 +237,11 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		this.superCall();
 	};
 	
-	staticFunctions.create = function() {
+	staticFunctions.create = function(aElement) {
 		
 		var newTouchDetector = (new TouchDetector()).init();
+		
+		newTouchDetector.setElement(aElement);
 		
 		return newTouchDetector;
 	};

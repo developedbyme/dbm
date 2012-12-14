@@ -47,6 +47,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 	
 	objectFunctions.activate = function activate() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::activate");
+		//console.log(this._javascriptEventName, this._extendedEventName);
 		if(this._isActive) return this;
 		
 		this._isActive = true;
