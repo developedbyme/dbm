@@ -352,4 +352,22 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		return newNode;
 	};
+	
+	staticFunctions.createNode = function(aType, aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = (new ClassReference()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createNode(aType, aAttributes));
+		
+		if(aAddToParent != false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	};
 });
