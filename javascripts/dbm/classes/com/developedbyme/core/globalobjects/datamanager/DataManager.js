@@ -304,7 +304,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		}
 		var childPath = aPathReference + "/" + childName;
 		var inputProperty = dbm.singletons.dbmDataManager.getDataProperty(childPath);
-		parseResult = ParserResultDataObject.createLinked(inputProperty, []);
+		var parseResult = ParserResultDataObject.createLinked(inputProperty, []);
 		
 		return parseResult;
 	};

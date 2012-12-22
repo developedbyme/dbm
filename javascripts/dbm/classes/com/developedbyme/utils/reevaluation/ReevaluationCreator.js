@@ -37,10 +37,10 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.ReevaluationCreator", nu
 			}
 			
 			if(hasReevaluatorInArgumentsArray) {
-				newCommand.argumentsArrayReevaluator = ReevaluateArrayObject.createReevaluationObject(currentArray);
+				return ReevaluateArrayObject.createReevaluationObject(currentArray);
 			}
 			else {
-				newCommand.argumentsArrayReevaluator = StaticVariableObject.createReevaluationObject(currentArray);
+				return StaticVariableObject.createReevaluationObject(currentArray);
 			}
 		}
 	};

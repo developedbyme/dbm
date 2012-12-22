@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	
 	var PositionFunctions = dbm.importClass("com.developedbyme.utils.htmldom.PositionFunctions");
 	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
 	

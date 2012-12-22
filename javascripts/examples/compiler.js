@@ -22,6 +22,6 @@ dbm.runTempFunction(function() {
 		compileData.addShortVariable("currentArray3Length", "c3l");
 		
 		compiler.setCompileData(compileData);
-		compiler.loadForCompile("javascripts/dbm/dbm.js", "javascripts/dbm/setup/defaultDocumentSetup.js", "javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js", "javascripts/dbm/setup/defaultSetup.js");
+		compiler.loadForCompile("javascripts/dbm/dbm.js", "javascripts/dbm/setup/defaultDocumentSetup.js", "javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js", "javascripts/dbm/setup/defaultSetup.js", "javascripts/experiments/happyNewYear.js");
 	});
 });

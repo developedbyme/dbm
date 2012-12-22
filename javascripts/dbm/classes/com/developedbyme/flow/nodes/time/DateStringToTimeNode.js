@@ -20,7 +20,35 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.DateStringToTimeNode", "com
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.time.DateStringToTimeNode::_update");
 		
-		var currentTime = 0.001*(new Date(this._string.getValueWithoutFlow())).valueOf();
+		var currentString = this._string.getValueWithoutFlow();
+		//var currentDate = new Date(currentString); //MENOTE: not implemented in safari
+		
+		
+		var tempArray = currentString.split("T");
+		var dateArray = tempArray[0].split("-");
+		var timeString = tempArray[1];
+		var timeArray = timeString.substring(0, 8).split(":");
+		var currentDate = new Date();
+		currentDate.setUTCFullYear(parseInt(dateArray[0], 10));
+		currentDate.setUTCMonth(parseInt(dateArray[1], 10)-1);
+		currentDate.setUTCDate(parseInt(dateArray[2], 10));
+		currentDate.setUTCHours(parseInt(timeArray[0], 10));
+		currentDate.setUTCMinutes(parseInt(timeArray[1], 10));
+		currentDate.setUTCSeconds(parseInt(timeArray[2], 10));
+		currentDate.setUTCMilliseconds(0);
+		
+		var timeZoneHours = timeString.substring(9, 11);
+		var timeZoneMinutes = timeString.substring(11, 13);
+		
+		var timeZoneOffset = 1000*60*(60*parseInt(timeZoneHours, 10)+parseInt(timeZoneMinutes, 10));
+		
+		if(tempArray[1].charAt(8) == "+") {
+			timeZoneOffset *= -1;
+		}
+		currentDate = new Date(currentDate.valueOf()+timeZoneOffset)
+		
+		console.log( this._string.getValueWithoutFlow(), currentDate, timeZoneOffset, timeZoneHours, timeZoneMinutes);
+		var currentTime = 0.001*currentDate.valueOf();
 		
 		this._time.setValueWithFlow(currentTime, aFlowUpdateNumber);
 	};

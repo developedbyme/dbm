@@ -3,6 +3,8 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 	
 	var TouchData = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchData");
 	
+	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.abstract.touch.TouchData::_init");
 		
