@@ -47,7 +47,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.DateStringToTimeNode", "com
 		}
 		currentDate = new Date(currentDate.valueOf()+timeZoneOffset)
 		
-		console.log( this._string.getValueWithoutFlow(), currentDate, timeZoneOffset, timeZoneHours, timeZoneMinutes);
 		var currentTime = 0.001*currentDate.valueOf();
 		
 		this._time.setValueWithFlow(currentTime, aFlowUpdateNumber);
