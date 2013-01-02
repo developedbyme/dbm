@@ -51,6 +51,13 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 		this._scopeEnd = aEnd;
 	};
 	
+	objectFunctions.getDeeperBreakdownIfEmpty = function() {
+		if(this._scopeStart == "" && this._scopeEnd == "" && this._childBreakdowns.length == 1) {
+			return this._childBreakdowns[0];
+		}
+		return this.superCall();
+	};
+	
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart::_breakdown");
 		//console.log(this._script.substring(0, 30));
@@ -165,7 +172,8 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 	}
 	
 	objectFunctions.compile = function(aCompileData) {
-		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart::compile");
+		console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart::compile");
+		console.log(this);
 		//console.log(aCompileData);
 		var returnString = this._debugCompileString + this._scopeStart;
 		

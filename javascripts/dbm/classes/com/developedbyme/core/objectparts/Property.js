@@ -359,6 +359,18 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
+	objectFunctions.fillWithAllOutputConnections = function fillWithCleanOutputConnections(aReturnArray) {
+		var currentArray = this._outputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			aReturnArray.push(currentObject);
+		}
+		if(this._objectInputConnection != null && this._objectInputConnection.isOutput()) {
+			aReturnArray.push(this._objectInputConnection);
+		}
+	};
+	
 	objectFunctions.setAsDirty = function setAsDirty() {
 		//console.log("com.developedbyme.core.objectparts.Property::setAsDirty");
 		//console.log(this.name);

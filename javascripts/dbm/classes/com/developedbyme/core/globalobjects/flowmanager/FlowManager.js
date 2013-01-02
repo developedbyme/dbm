@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		this.superCall();
 		
 		this._flowUpdateNumber = 1;
+		this._numberOfPropertiesCleaned = 0;
 		this._updatedProperties = (new ActiveArrayIterator()).init();
 		this._updatedProperties.setAddRemoveWhileActive(true, true);
 		
@@ -47,6 +48,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.setDependentConnectionsAsDirty = function(aConnection) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::setDependentConnectionsAsDirty");
+		
 		var currentArray = new Array();
 		aConnection.fillWithCleanOutputConnections(currentArray);
 		for(var i = 0; i < currentArray.length; i++) {
@@ -142,11 +144,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.updateProperties = function() {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
+		
+		var numberOfPropertiesUpdated = 0;
+		var numberOfPropertiesSkipped = 0;
+		
 		this._updatedProperties.start();
 		while(this._updatedProperties.isActive()) {
 			var currentProperty = this._updatedProperties.getNextItem();
 			//console.log(currentProperty, currentProperty.getStatus());
 			if(currentProperty.getStatus() != FlowStatusTypes.UPDATED) {
+				numberOfPropertiesUpdated++;
 				if(currentProperty.isDestroyed()) {
 					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperties", "Property (" + currentProperty + ") is destroyed, removing.");
 					this._updatedProperties.removeItem(currentProperty);
@@ -161,7 +168,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 					ErrorManager.getInstance().reportError(this, "updateProperties", theError);
 				}
 			}
+			else {
+				numberOfPropertiesSkipped++;
+			}
 		}
+		
+		//console.log("Updated:", numberOfPropertiesUpdated, "Skipped:", numberOfPropertiesSkipped);
+		
 		//console.log("//com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
 	};
 	

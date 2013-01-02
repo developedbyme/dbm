@@ -1,56 +1,56 @@
 <data>
 	<data type="timeZones" id="timeZones">
-		<data type="timeZone" name="Kiritimati" date="2012-12-23T00:00:00+1400" soundId="normal" />
-		<data type="timeZone" name="Chatham Islands" date="2012-12-23T00:00:00+1345" soundId="normal" />
-		<data type="timeZone" name="Auckland" date="2012-12-23T00:00:00+1300" soundId="normal" />
-		<data type="timeZone" name="Kamchatka" date="2012-12-23T00:00:00+1200" soundId="normal" />
-		<data type="timeZone" name="Norfolk Island" date="2012-12-23T00:00:00+1130" soundId="normal" />
-		<data type="timeZone" name="Sydney" date="2012-12-23T00:00:00+1100" soundId="normal" />
-		<data type="timeZone" name="Lord Howe Island" date="2012-12-23T00:00:00+1030" soundId="normal" />
-		<data type="timeZone" name="Vladivostok" date="2012-12-23T00:00:00+1000" soundId="normal" />
-		<data type="timeZone" name="Darwin" date="2012-12-23T00:00:00+0930" soundId="normal" />
-		<data type="timeZone" name="Tokyo" date="2012-12-23T00:00:00+0900" soundId="normal" />
-		<data type="timeZone" name="Eucla" date="2012-12-23T00:00:00+0845" soundId="normal" />
-		<data type="timeZone" name="Singapore" date="2012-12-23T00:00:00+0800" soundId="normal" />
-		<data type="timeZone" name="Bangkok" date="2012-12-23T00:00:00+0700" soundId="normal" />
-		<data type="timeZone" name="Almaty" date="2012-12-23T00:00:00+0600" soundId="normal" />
-		<data type="timeZone" name="Kathmandu" date="2012-12-23T00:00:00+0545" soundId="normal" />
-		<data type="timeZone" name="Mumbai" date="2012-12-23T00:00:00+0530" soundId="normal" />
-		<data type="timeZone" name="Karachi" date="2012-12-23T00:00:00+0500" soundId="normal" />
-		<data type="timeZone" name="Kabul" date="2012-12-23T00:00:00+0430" soundId="normal" />
-		<data type="timeZone" name="Dubai" date="2012-12-23T00:00:00+0400" soundId="normal" />
-		<data type="timeZone" name="Tehran" date="2012-12-23T00:00:00+0330" soundId="normal" />
-		<data type="timeZone" name="Moscow" date="2012-12-23T00:00:00+0300" soundId="normal" />
-		<data type="timeZone" name="Steven's New Year" date="2012-12-22T22:17:10+0100" soundId="normal" />
-		<data type="timeZone" name="Kotka" date="2012-12-23T00:00:00+0230" soundId="normal" />
-		<data type="timeZone" name="Sauna" date="2012-12-23T00:00:00+0215" soundId="normal" />
-		<data type="timeZone" name="Mumin-dalen" date="2012-12-23T00:00:00+0208" soundId="normal" />
-		<data type="timeZone" name="Helsinki" date="2012-12-23T00:00:00+0200" soundId="normal" />
-		<data type="timeZone" name="Gotland" date="2012-12-23T00:00:00+0140" soundId="normal" />
-		<data type="timeZone" name="Kärrtorp" date="2012-12-23T00:00:00+0120" soundId="normal" />
-		<data type="timeZone" name="Stockholm" date="2012-12-23T00:00:00+0100" soundId="normal" />
-		<data type="timeZone" name="Arlanda" date="2012-12-23T00:00:00+0045" soundId="normal" />
-		<data type="timeZone" name="Super mario world" date="2012-12-23T00:00:00+0030" soundId="normal" />
-		<data type="timeZone" name="Hackney" date="2012-12-23T00:00:00+0010" soundId="normal" />
-		<data type="timeZone" name="Edinburgh" date="2012-12-23T00:00:00+0000" soundId="normal" />
-		<data type="timeZone" name="Glasgow" date="2012-12-23T00:00:00-0005" soundId="normal" />
-		<data type="timeZone" name="Heathrow airport" date="2012-12-23T00:00:00-0034" soundId="normal" />
-		<data type="timeZone" name="Azores" date="2012-12-23T00:00:00-0100" soundId="normal" />
-		<data type="timeZone" name="Sao Paulo" date="2012-12-23T00:00:00-0200" soundId="normal" />
-		<data type="timeZone" name="Buenos Aires" date="2012-12-23T00:00:00-0300" soundId="normal" />
-		<data type="timeZone" name="St. John's" date="2012-12-23T00:00:00-0330" soundId="normal" />
-		<data type="timeZone" name="La Paz" date="2012-12-23T00:00:00-0400" soundId="normal" />
-		<data type="timeZone" name="Caracas" date="2012-12-23T00:00:00-0430" soundId="normal" />
-		<data type="timeZone" name="New York" date="2012-12-23T00:00:00-0500" soundId="normal" />
-		<data type="timeZone" name="Boarding DY4221 Malaga" date="2012-12-23T06:50:00+0100" soundId="normal" />
-		<data type="timeZone" name="New Orleans" date="2012-12-23T00:00:00-0600" soundId="normal" />
-		<data type="timeZone" name="Denver" date="2012-12-23T00:00:00-0700" soundId="normal" />
-		<data type="timeZone" name="Los Angeles" date="2012-12-23T00:00:00-0800" soundId="normal" />
-		<data type="timeZone" name="Pacific pole of inaccessibility" date="2012-12-23T00:00:00-0830" soundId="normal" />
-		<data type="timeZone" name="R'lyeh (according to Lovecraft)" date="2012-12-23T00:00:00-0845" soundId="normal" />
-		<data type="timeZone" name="Anchorage" date="2012-12-23T00:00:00-0900" soundId="normal" />
-		<data type="timeZone" name="R'lyeh (according to Derleth)" date="2012-12-23T00:00:00-0910" soundId="normal" />
-		<data type="timeZone" name="Honolulu" date="2012-12-23T00:00:00-1000" soundId="normal" />
-		<data type="timeZone" name="Pago Pago" date="2012-12-23T00:00:00-1100" soundId="normal" />
+		<data type="timeZone" name="Kiritimati" date="2013-01-01T00:00:00+1400" soundId="normal" />
+		<data type="timeZone" name="Chatham Islands" date="2013-01-01T00:00:00+1345" soundId="normal" />
+		<data type="timeZone" name="Auckland" date="2013-01-01T00:00:00+1300" soundId="normal" />
+		<data type="timeZone" name="Kamchatka" date="2013-01-01T00:00:00+1200" soundId="normal" />
+		<data type="timeZone" name="Norfolk Island" date="2013-01-01T00:00:00+1130" soundId="normal" />
+		<data type="timeZone" name="Sydney" date="2013-01-01T00:00:00+1100" soundId="normal" />
+		<data type="timeZone" name="Lord Howe Island" date="2013-01-01T00:00:00+1030" soundId="normal" />
+		<data type="timeZone" name="Vladivostok" date="2013-01-01T00:00:00+1000" soundId="normal" />
+		<data type="timeZone" name="Darwin" date="2013-01-01T00:00:00+0930" soundId="normal" />
+		<data type="timeZone" name="Tokyo" date="2013-01-01T00:00:00+0900" soundId="normal" />
+		<data type="timeZone" name="Eucla" date="2013-01-01T00:00:00+0845" soundId="normal" />
+		<data type="timeZone" name="Singapore" date="2013-01-01T00:00:00+0800" soundId="normal" />
+		<data type="timeZone" name="Bangkok" date="2013-01-01T00:00:00+0700" soundId="normal" />
+		<data type="timeZone" name="Almaty" date="2013-01-01T00:00:00+0600" soundId="normal" />
+		<data type="timeZone" name="Kathmandu" date="2013-01-01T00:00:00+0545" soundId="normal" />
+		<data type="timeZone" name="Mumbai" date="2013-01-01T00:00:00+0530" soundId="normal" />
+		<data type="timeZone" name="Karachi" date="2013-01-01T00:00:00+0500" soundId="normal" />
+		<data type="timeZone" name="Kabul" date="2013-01-01T00:00:00+0430" soundId="normal" />
+		<data type="timeZone" name="Dubai" date="2013-01-01T00:00:00+0400" soundId="normal" />
+		<data type="timeZone" name="Tehran" date="2013-01-01T00:00:00+0330" soundId="normal" />
+		<data type="timeZone" name="Moscow" date="2013-01-01T00:00:00+0300" soundId="normal" />
+		<!--data type="timeZone" name="Steven's New Year" date="2012-12-22T22:17:10+0100" soundId="normal" /-->
+		<data type="timeZone" name="Kotka" date="2013-01-01T00:00:00+0230" soundId="normal" />
+		<data type="timeZone" name="Sauna" date="2013-01-01T00:00:00+0215" soundId="normal" />
+		<data type="timeZone" name="Mumin-dalen" date="2013-01-01T00:00:00+0208" soundId="normal" />
+		<data type="timeZone" name="Helsinki" date="2013-01-01T00:00:00+0200" soundId="normal" />
+		<data type="timeZone" name="Gotland" date="2013-01-01T00:00:00+0140" soundId="normal" />
+		<data type="timeZone" name="Kärrtorp" date="2013-01-01T00:00:00+0120" soundId="normal" />
+		<data type="timeZone" name="Stockholm" date="2013-01-01T00:00:00+0100" soundId="normal" />
+		<data type="timeZone" name="Arlanda" date="2013-01-01T00:00:00+0045" soundId="normal" />
+		<data type="timeZone" name="Super mario world" date="2013-01-01T00:00:00+0030" soundId="normal" />
+		<data type="timeZone" name="Hackney" date="2013-01-01T00:00:00+0010" soundId="normal" />
+		<data type="timeZone" name="Edinburgh" date="2013-01-01T00:00:00+0000" soundId="normal" />
+		<data type="timeZone" name="Glasgow" date="2013-01-01T00:00:00-0005" soundId="normal" />
+		<data type="timeZone" name="Heathrow airport" date="2013-01-01T00:00:00-0034" soundId="normal" />
+		<data type="timeZone" name="Azores" date="2013-01-01T00:00:00-0100" soundId="normal" />
+		<data type="timeZone" name="Sao Paulo" date="2013-01-01T00:00:00-0200" soundId="normal" />
+		<data type="timeZone" name="Buenos Aires" date="2013-01-01T00:00:00-0300" soundId="normal" />
+		<data type="timeZone" name="St. John's" date="2013-01-01T00:00:00-0330" soundId="normal" />
+		<data type="timeZone" name="La Paz" date="2013-01-01T00:00:00-0400" soundId="normal" />
+		<data type="timeZone" name="Caracas" date="2013-01-01T00:00:00-0430" soundId="normal" />
+		<data type="timeZone" name="New York" date="2013-01-01T00:00:00-0500" soundId="normal" />
+		<!--data type="timeZone" name="Boarding DY4221 Malaga" date="2013-01-01T06:50:00+0100" soundId="normal" /-->
+		<data type="timeZone" name="New Orleans" date="2013-01-01T00:00:00-0600" soundId="normal" />
+		<data type="timeZone" name="Denver" date="2013-01-01T00:00:00-0700" soundId="normal" />
+		<data type="timeZone" name="Los Angeles" date="2013-01-01T00:00:00-0800" soundId="normal" />
+		<!--data type="timeZone" name="Pacific pole of inaccessibility" date="2013-01-01T00:00:00-0830" soundId="normal" /-->
+		<!--data type="timeZone" name="R'lyeh (according to Lovecraft)" date="2013-01-01T00:00:00-0845" soundId="normal" /-->
+		<data type="timeZone" name="Anchorage" date="2013-01-01T00:00:00-0900" soundId="normal" />
+		<!--data type="timeZone" name="R'lyeh (according to Derleth)" date="2013-01-01T00:00:00-0910" soundId="normal" /-->
+		<data type="timeZone" name="Honolulu" date="2013-01-01T00:00:00-1000" soundId="normal" />
+		<data type="timeZone" name="Pago Pago" date="2013-01-01T00:00:00-1100" soundId="normal" />
 	</data>
 </data>

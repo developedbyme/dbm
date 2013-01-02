@@ -9,6 +9,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 	
 	var ScriptBreakdownLinePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart");
 	var ScriptBreakdownCodePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart");
+	var ScriptBreakdownDbmImportClassPart = dbm.importClass("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmImportClassPart");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
@@ -29,6 +30,14 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 		return this;
 	};
 	
+	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
+		
+		if(this._set == aCurrentPart) this._set = aNewPart;
+		if(this._in == aCurrentPart) this._in = aNewPart;
+		
+		this.superCall(aCurrentPart, aNewPart);
+	};
+	
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart::_breakdown");
 		var evaluationIndex = this._script.indexOf("=");
@@ -43,6 +52,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 			//console.log(StringFunctions.trim(this._script.substring(evaluationIndex+1, this._script.length)).substring(0, 60));
 			this._set = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(evaluationIndex+1, this._script.length)));
 			this._childBreakdowns.push(this._set);
+			
 		}
 		else if(inIndex != -1) {
 			this._variableName = StringFunctions.trim(this._script.substring(0, inIndex));
@@ -52,9 +62,33 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 		else {
 			this._variableName = StringFunctions.trim(this._script);
 		}
+	};
+	
+	objectFunctions._childsBrokenDown = function() {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart::_childsBrokenDown");
 		
-		
-	}
+		if(this._set != null) {
+			var setChildBreakdowns = this._set.getChildBreakdowns();
+			
+			//console.log(setChildBreakdowns);
+			
+			if(setChildBreakdowns.length == 2) { //METODO: fix that it can be more than 2
+				var functionCallBreakdown = setChildBreakdowns[1];
+				if(functionCallBreakdown.getType() == "callFunction") {
+					var functionNameBreakdown = setChildBreakdowns[0];
+					if(functionNameBreakdown.getType() == "variableOnObjectReference" && functionNameBreakdown.getVariableName() == "importClass" && functionNameBreakdown.getObject().getVariableName() == "dbm") {
+						
+						var classPath = functionCallBreakdown.getChildBreakdowns()[0].getString();
+						
+						var replacementPart = ScriptBreakdownDbmImportClassPart.create(this._parent, this._script, this._variableName, classPath);
+						
+						this._replaceablePart = replacementPart;
+					}
+				}
+			}
+			
+		}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart::compile");

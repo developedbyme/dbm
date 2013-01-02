@@ -18,6 +18,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownStringPar
 		return this;
 	};
 	
+	objectFunctions.getString = function() {
+		return this._script;
+	};
+	
 	objectFunctions.setScoop = function(aScoop) {
 		this._scoop = aScoop;
 	};

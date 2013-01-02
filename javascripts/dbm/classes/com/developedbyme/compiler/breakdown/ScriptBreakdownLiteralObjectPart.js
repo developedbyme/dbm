@@ -30,6 +30,20 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 		return this;
 	};
 	
+	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
+		
+		var nameIndex = ArrayFunctions.indexOfInArray(this._names, aCurrentPart);
+		if(nameIndex > -1) {
+			this._names[nameIndex] = aNewPart;
+		}
+		var valueIndex = ArrayFunctions.indexOfInArray(this._values, aCurrentPart);
+		if(valueIndex > -1) {
+			this._value[valueIndex] = aNewPart;
+		}
+		
+		this.superCall(aCurrentPart, aNewPart);
+	};
+	
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralObjectPart::_breakdown");
 		

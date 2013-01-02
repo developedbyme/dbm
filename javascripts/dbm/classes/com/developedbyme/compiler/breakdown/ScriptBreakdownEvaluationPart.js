@@ -29,9 +29,17 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 		
 		this.superCall();
 		
+		this._type = "evaluation";
 		this._operation = null;
 		
 		return this;
+	};
+	
+	objectFunctions.getDeeperBreakdownIfEmpty = function() {
+		if(this._operation == null && this._childBreakdowns.length == 1) {
+			return this._childBreakdowns[0];
+		}
+		return this.superCall();
 	};
 	
 	objectFunctions._breakdown = function() {
@@ -198,6 +206,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 	
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart::compile");
+		//console.log(this, this._childBreakdowns);
 		//console.log(aCompileData);
 		
 		//MEDEBUG

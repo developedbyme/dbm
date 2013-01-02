@@ -125,7 +125,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 	};
 	
 	objectFunctions.createTimeline = function(aStartValue, aConnectedOutput) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::createTimeline");
+		console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::createTimeline");
+		console.log(aStartValue, aConnectedOutput);
+		
 		var newTimeline = Timeline.create(aStartValue);
 		dbm.singletons.dbmFlowManager.connectProperties(this.globalTimeProperty, newTimeline.getProperty("time"));
 		if(aConnectedOutput != undefined && aConnectedOutput != null) {

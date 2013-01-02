@@ -29,6 +29,14 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCatchPart
 		return this;
 	};
 	
+	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
+		
+		if(this._evaluation == aCurrentPart) this._evaluation = aNewPart;
+		if(this._result == aCurrentPart) this._result = aNewPart;
+		
+		this.superCall(aCurrentPart, aNewPart);
+	};
+	
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCatchPart::_breakdown");
 		

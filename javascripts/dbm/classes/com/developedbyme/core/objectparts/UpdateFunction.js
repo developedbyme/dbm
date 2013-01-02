@@ -154,6 +154,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		}
 	};
 	
+	objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
+		var currentArray = this._outputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			aReturnArray.push(currentObject);
+		}
+	};
+	
 	objectFunctions._getInputFlowUpdateNumber = function() {
 		//console.log("com.developedbyme.core.objectparts.UpdateFunction::_getInputFlowUpdateNumber");
 		var returnNumber = 0;

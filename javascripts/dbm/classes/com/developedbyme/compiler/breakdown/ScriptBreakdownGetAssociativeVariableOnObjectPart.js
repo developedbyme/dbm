@@ -21,7 +21,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownGetAssoci
 		
 		this.superCall();
 		
-		this._type = "variableReference";
+		this._type = "associativeVariableOnObjectReference";
 		this._variableName = null;
 		this._variableNameLine = null;
 		this._object = null;
@@ -32,6 +32,14 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownGetAssoci
 	objectFunctions.setVariableName = function(aName) {
 		
 		this._variableName = aName;
+	};
+	
+	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
+		
+		if(this._variableNameLine == aCurrentPart) this._variableNameLine = aNewPart;
+		if(this._object == aCurrentPart) this._object = aNewPart;
+		
+		this.superCall(aCurrentPart, aNewPart);
 	};
 	
 	objectFunctions._breakdown = function() {

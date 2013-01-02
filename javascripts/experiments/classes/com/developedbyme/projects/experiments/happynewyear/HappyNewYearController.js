@@ -15,6 +15,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
 	var OneTouchOrMouseDetector = dbm.importClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector");
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var FlowAnalyzeFunctions = dbm.importClass("com.developedbyme.flow.analyze.FlowAnalyzeFunctions");
 	
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
@@ -242,6 +243,16 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		}
 		
 		this._numberOfTimeZones.setValue(currentArrayLength);
+		
+		/*
+		console.log("Flow from date", FlowAnalyzeFunctions.getAllOutputFlowForProperty(this._currentDateNode.getProperty("time")));
+		console.log("Flow from animation index", FlowAnalyzeFunctions.getAllOutputFlowForProperty(this._currentAnimationIndex));
+		//console.log(FlowAnalyzeFunctions.getPropertyOutputHierarchyString(this._currentAnimationIndex, 100));
+		
+		var connectionArray = new Array();
+		FlowAnalyzeFunctions.findConnectionBetweenProperties(this._currentAnimationIndex, this._timeZones.array[0]._holder.getProperty("scaleY"), connectionArray);
+		console.log(connectionArray);
+		*/
 	};
 	
 	objectFunctions.addSound = function(aId, aPath) {

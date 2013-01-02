@@ -28,6 +28,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		this._loadedScripts = new Array();
 		this._scriptBreakdowns = NamedArray.create(true);
 		this._compileData = null;
+		this._numberOfFilesBeforeImport = 0;
 		
 		this._loader = LoadingSequence.create();
 		this._loader._maxNumberOfSimiltaniousLoaders = 1;
@@ -44,6 +45,15 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		
 		return this;
 	}; //End function setCompileData
+	
+	/**
+	 * Sets the number of files to compile before import code.
+	 */
+	objectFunctions.setNumberOfFilesBeforeImport = function(aNumberOfFiles) {
+		this._numberOfFilesBeforeImport = aNumberOfFiles;
+		
+		return this;
+	}; //End function setNumberOfFilesBeforeImport
 	
 	
 	objectFunctions.loadForCompile = function(/* ... aFiles*/) {
@@ -132,18 +142,28 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		
 		var compileData = (this._compileData != null) ? this._compileData : CompileData.create();
 		
+		var beforeImportCode = "";
 		var code = "";
 		
 		var currentArray = this._loadedFilePaths;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			console.log("compile: " + currentArray[i]);
-			code += this._scriptBreakdowns.getObject(currentArray[i]).compile(compileData);
+			var compiledFileCode = this._scriptBreakdowns.getObject(currentArray[i]).compile(compileData);
+			if(i < this._numberOfFilesBeforeImport) {
+				beforeImportCode += compiledFileCode
+			}
+			else {
+				code += compiledFileCode
+			}
+			
 		}
 		
 		returnString += compileData.getCompiledStringsCode();
+		returnString += beforeImportCode;
+		returnString += compileData.getCompiledImportsCode();
 		returnString += code;
-		returnString += "})();"
+		returnString += "})();";
 		
 		console.log(returnString);
 		

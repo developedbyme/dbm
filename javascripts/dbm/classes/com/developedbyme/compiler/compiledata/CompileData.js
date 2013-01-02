@@ -24,13 +24,16 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		this._scopesData = new Array();
 		this._shortVariables = NamedArray.create(true);
 		this._strings = NamedArray.create(true);
+		this._imports = NamedArray.create(true);
 		this._stringsCode = null;
+		this._importsCode = null;
 		
 		this._argumentsIdGroup = CustomBaseIdGroup.createFullAlphabet("a");
 		this._variablesIdGroup = CustomBaseIdGroup.createFullAlphabet("l");
 		this._errorIdGroup = CustomBaseIdGroup.createFullAlphabet("e");
 		this._globalVariablesIdGroup = CustomBaseIdGroup.createFullAlphabet("g");
-		this._stringIdGroup = CustomBaseIdGroup.createFullAlphabet("s");
+		this._stringIdGroup = CustomBaseIdGroup.createFullAlphabet("S");
+		this._importsIdGroup = CustomBaseIdGroup.createFullAlphabet("C");
 		
 		return this;
 	};
@@ -73,22 +76,48 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		}
 	};
 	
+	objectFunctions.addImport = function(aClassName) {
+		
+		if(this._imports.select(aClassName)) {
+			return this._imports.currentSelectedItem;
+		}
+		var newId = this._importsIdGroup.getNewId();
+		this._imports.addObject(aClassName, newId);
+		
+		var stringsVariable = this.addString(aClassName, "\"");
+		
+		if(this._importsCode == null) {
+			this._importsCode = "var " + newId + "=dbm.importClass(" + stringsVariable + ")";
+		}
+		else {
+			this._importsCode += "," + newId + "=dbm.importClass(" + stringsVariable + ")";
+		}
+		
+		return newId;
+	};
+	
+	objectFunctions.addImportReference = function(aName, aCompiledName) {
+		//METODO: some error messages for overdeclaration
+		var currentScope = this._scopesData[this._scopesData.length-1];
+		currentScope.addVariableReference(aName, aCompiledName);
+		
+	};
+	
 	objectFunctions.addString = function(aString, aScope) {
 		
 		//METODO: split up strings
 		
-		var newId = this._stringIdGroup.getNewId();
-		
 		if(this._strings.select(aString)) {
 			return this._strings.currentSelectedItem;
 		}
+		var newId = this._stringIdGroup.getNewId();
 		this._strings.addObject(aString, newId);
 		
 		if(this._stringsCode == null) {
 			this._stringsCode = "var " + newId + "=" + aScope + aString + aScope;
 		}
 		else {
-			this._stringsCode += ", " + newId + "=" + aScope + aString + aScope;
+			this._stringsCode += "," + newId + "=" + aScope + aString + aScope;
 		}
 		
 		return newId;
@@ -104,6 +133,17 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		return "";
 	}; //End function getCompiledStringsCode
 	
+	/**
+	 * Gets the code for the imports.
+	 */
+	objectFunctions.getCompiledImportsCode = function() {
+		if(this._importsCode != null) {
+			return this._importsCode + ";";
+		}
+		return "";
+	}; //End function getCompiledImportsCode
+	
+	
 	
 	objectFunctions.getVariableReference = function(aName) {
 		
@@ -116,7 +156,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentScope = currentArray[currentArrayLength-1-i];
 			if(currentScope.hasVariableReference(aName)) {
-				return currentScope.getVariableReference(aName)
+				return currentScope.getVariableReference(aName);
 			}
 		}
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getVariableReference", "Variable " + aName + " isn't declared, declaring it global.");

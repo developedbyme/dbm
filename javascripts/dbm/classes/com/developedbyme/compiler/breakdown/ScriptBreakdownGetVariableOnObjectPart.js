@@ -21,16 +21,31 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownGetVariab
 		
 		this.superCall();
 		
-		this._type = "variableReference";
+		this._type = "variableOnObjectReference";
 		this._variableName = null;
 		this._object = null;
 		
 		return this;
 	};
 	
+	objectFunctions.getObject = function() {
+		return this._object;
+	};
+	
+	objectFunctions.getVariableName = function() {
+		return this._variableName;
+	};
+	
 	objectFunctions.setVariableName = function(aName) {
 		
 		this._variableName = aName;
+	};
+	
+	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
+		
+		if(this._object == aCurrentPart) this._object = aNewPart;
+		
+		this.superCall(aCurrentPart, aNewPart);
 	};
 	
 	objectFunctions._breakdown = function() {

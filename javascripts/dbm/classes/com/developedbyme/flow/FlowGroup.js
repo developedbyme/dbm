@@ -24,7 +24,9 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 		this._objectProperty.name = this.__className + "::object(o)";
 		this.addDestroyableObject(this._objectProperty);
 		this._inputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._inputProperties);
 		this._outputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._outputProperties);
 		
 		//console.log("//com.developedbyme.flow.FlowGroup::_init");
 		return this;
@@ -102,21 +104,23 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 		return this;
 	};
 	
-	/**
-	 * Performs the destruction of this class.
-	 */
-	objectFunctions.performDestroy = function() {
-		
-		ClassReference.softDestroyIfExists(this._inputProperties);
-		ClassReference.softDestroyIfExists(this._outputProperties);
-		
-		this.superCall();
+	objectFunctions.getInputPropertiesNamedArray = function() {
+		return this._inputProperties;
+	};
+	
+	objectFunctions.getOutputPropertiesNamedArray = function() {
+		return this._outputProperties;
 	};
 	
 	/**
 	 * Sets all the references to null.
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._objectProperty = null;
+		this._inputProperties = null;
+		this._outputProperties = null;
+		
 		this.superCall();
 	};
 	
