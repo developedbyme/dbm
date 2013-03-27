@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Setup Example</title>
-        <script type="application/javascript" src="../javascripts/dbm/dbm.js"></script>
-        <script type="application/javascript">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Setup Example</title>
+		<script type="application/javascript" src="../javascripts/dbm/dbm.js"></script>
+		<script type="application/javascript">
 			dbm.setup(window, document, "../javascripts", "classes");
+			dbm.loadFile("dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js");
+			dbm.loadFile("dbm/setup/defaultSetup.js");
+			dbm.loadFile("examples/setupExample.js");
+			dbm.setupLoaderHook();
 		</script>
-        <script type="application/javascript" src="../javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js"></script>
-        <script type="application/javascript" src="../javascripts/dbm/setup/defaultSetup.js"></script>
-        <script type="application/javascript" src="../javascripts/examples/setupExample.js"></script>
-    </head>
-    <body>
-    	
-    </body>
+	</head>
+	<body>
+		
+	</body>
 </html>

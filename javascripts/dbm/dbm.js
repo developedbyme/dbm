@@ -48,14 +48,20 @@
 			this._document = aDocument;
 			this._javascriptsFolder = aJavascriptsFolder;
 			this._classesFolder = aClassesFolder;
+			
+			return this;
 		};
 		
 		dbm.addSpecificClassesFolder = function(aClassPathPrefix, aClassesFolder) {
 			this._specificClassesFolders[aClassPathPrefix] = aClassesFolder;
+			
+			return this;
 		};
 		
 		dbm.setupLoaderHook = function() {
 			this._document.addEventListener("DOMContentLoaded", this._onHtmlLoaded, false);
+			
+			return this;
 		};
 		
 		dbm.addStartFunction = function(aFunction) {
@@ -118,6 +124,8 @@
 			
 			var fileName = this.getFileForClass(aClassPath);
 			this._filesToLoad.push(fileName);
+			
+			return this;
 		};
 		
 		dbm.classRegistered = function(aClassPath) {
@@ -148,6 +156,8 @@
 				var fileName = this._javascriptsFolder + "/" + aFilePath;
 				this._filesToLoad.push(fileName);
 			}
+			
+			return this;
 		};
 		
 		dbm._performLoadFile = function(aFilePath) {
@@ -223,6 +233,8 @@
 		
 		dbm.externalStart = function() {
 			this._start();
+			
+			return this;
 		};
 		
 		dbm.restartLoading = function() {
@@ -235,6 +247,8 @@
 					this._performLoadFile(this._filesToLoad[this._currentFile]);
 				}
 			}
+			
+			return this;
 		}
 		
 		dbm.init();
