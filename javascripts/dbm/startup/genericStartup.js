@@ -8,16 +8,51 @@ dbm.runTempFunction(function() {
 		return;
 	}
 	
-	var htmlPath = document.location.href;
-	var scriptPath = scriptElement.src;
+	var stripQueryString = function(aPath) {
+		var questionMarkPosition = aPath.indexOf("?");
+		var anchorMarkPosition = aPath.indexOf("#");
+		var removeEndPosition = -1;
+		if(questionMarkPosition > -1) {
+			removeEndPosition = (anchorMarkPosition > -1) ? Math.min(questionMarkPosition, anchorMarkPosition) : questionMarkPosition;
+		}
+		else {
+			removeEndPosition = anchorMarkPosition;
+		}
+		
+		if(removeEndPosition != -1) {
+			return aPath.substring(0, removeEndPosition);
+		}
+		return aPath;
+	};
+	
+	var scriptFolder = stripQueryString(scriptElement.src);
 	
 	var javascriptsFolder = null;
 	if(scriptElement.hasAttribute("data-dbm-startup-javascripts-folder")) {
 		javascriptsFolder = scriptElement.getAttribute("data-dbm-startup-javascripts-folder");
 	}
 	else {
-		//METODO: setup default folder
-		javascriptsFolder = "../javascripts"; //MEDEBUG
+		var scriptFolderArray = scriptFolder.split("/");
+		scriptFolderArray.pop(); //MENOTE: remove file name
+		var folderPosition = "../../";
+		var currentArray = folderPosition.split("/");
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentPathPart = currentArray[i];
+			switch(currentPathPart) {
+				case "":
+				case ".":
+					//MENOTE: do nothing
+					break;
+				case "..":
+					scriptFolderArray.pop();
+					break;
+				default:
+					scriptFolderArray.push(currentPathPart);
+					break;
+			}
+		}
+		javascriptsFolder = scriptFolderArray.join("/");
 	}
 	var classesFolder = "classes";
 	if(scriptElement.hasAttribute("data-dbm-startup-classes-folder")) {

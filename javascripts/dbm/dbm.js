@@ -38,6 +38,14 @@
 			}
 		};
 		
+		dbm.getDocument = function() {
+			return this._document;
+		};
+		
+		dbm.getWindow = function() {
+			return this._window;
+		};
+		
 		dbm.setClassManager = function(aObject) {
 			this._classManager = aObject;
 		};

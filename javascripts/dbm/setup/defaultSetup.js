@@ -48,11 +48,11 @@ dbm.runTempFunction(function() {
 		AnimationManager.getInstance().start();
 		
 		BrowserDetector.getInstance().detectBrowserFromUserAgent();
-		PageManager.getInstance().setDocument(document);
+		PageManager.getInstance().setDocument(dbm.getDocument());
 		PageManager.getInstance().setupQueryStringParameters();
 		AssetRepository.getInstance().setRoot(PageManager.getInstance().getCurrentFolderPath());
 		
-		WindowManager.getInstance().setMasterWindow(dbm._window);
+		WindowManager.getInstance().setMasterWindow(dbm.getWindow());
 		
 		DebugManager.getInstance().setCheckForDeletion(true);
 		
