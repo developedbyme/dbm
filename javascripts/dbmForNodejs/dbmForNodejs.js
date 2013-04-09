@@ -66,12 +66,6 @@
 			return this;
 		};
 		
-		dbm.setupLoaderHook = function() {
-			this._document.addEventListener("DOMContentLoaded", this._onHtmlLoaded, false);
-			
-			return this;
-		};
-		
 		dbm.addStartFunction = function(aFunction) {
 			//console.log("dbm.addStartFunction");
 			this._startFunctions.push(aFunction);
@@ -124,7 +118,7 @@
 				}
 			}
 			
-			var fileName = this._javascriptsFolder + "/" + classesFolder + "/" + aClassPath.split(".").join("/") + ".js";
+			var fileName = this._javascriptsFolder + "/" + classesFolder + "/" + aClassPath.split(".").join("/");
 			return fileName;
 		};
 		
@@ -172,34 +166,7 @@
 			//console.log("dbm::_performLoadFile");
 			//console.log(aFilePath);
 			
-			var scriptTag = document.createElement("script");
-			
-			var scriptType = "application/javascript";
-			if(this._javascriptVersion != null) {
-				scriptType += ";version=" + this._javascriptVersion;
-			}
-			scriptTag.type = scriptType;
-			scriptTag.src = aFilePath;
-			scriptTag.async = false;
-			
-			this._currentScriptNode = scriptTag;
-			
-			scriptTag.addEventListener("load", dbm._onFileLoaded, false);
-			scriptTag.addEventListener("error", dbm._onFileLoaded, false);
-			
-			var headTags = this._document.getElementsByTagName("head");
-			headTags[0].appendChild(scriptTag);
-		};
-		
-		dbm._onHtmlLoaded = function(aEvent) {
-			//console.log("dbm._htmlLoaded");
-			if(dbm._htmlLoaded) return;
-			dbm._htmlLoaded = true;
-			
-			dbm._loadNextFile();
-		};
-		
-		dbm._onFileLoaded = function(aEvent) {
+			require(aFilePath);
 			dbm._loadNextFile();
 		};
 		
