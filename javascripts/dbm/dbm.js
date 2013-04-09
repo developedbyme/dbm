@@ -1,14 +1,14 @@
-(function() {
+(function(aGlobalObject) {
 	//"use strict";
 	
 	var dbm;
 	
-	if(window.dbm == undefined) {
+	if(aGlobalObject.dbm == undefined) {
 		dbm = new (function DBM(){})();
-		window.dbm = dbm;
+		aGlobalObject.dbm = dbm;
 	}
 	else {
-		dbm = window.dbm;
+		dbm = aGlobalObject.dbm;
 	}
 	
 	if(dbm.isCreated != true) {
@@ -261,4 +261,4 @@
 		
 		dbm.init();
 	}
-})();
+})(window);
