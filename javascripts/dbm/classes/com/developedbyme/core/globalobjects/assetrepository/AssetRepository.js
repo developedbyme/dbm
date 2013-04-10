@@ -40,8 +40,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		this._hierarchy = TreeStructure.create();
 		this._rootNode = this._hierarchy.getRoot();
 		
-		this.selectedVideoExtension = MimeTypeFunctions.getFileExtensionForMimeType(FeatureCheck.getSupportedVideoFormat());
-		this.selectedAudioExtension = MimeTypeFunctions.getFileExtensionForMimeType(FeatureCheck.getSupportedAudioFormat());
+		this.selectedVideoExtension = "[unknown]";
+		this.selectedAudioExtension = "[unknown]";
 		
 		this._pseudoVideoExtension = "[video]";
 		this._pseudoAudioExtension = "[audio]";
@@ -49,8 +49,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		return this;
 	};
 	
+	objectFunctions.setupDefaultExtensions = function() {
+		this.selectedVideoExtension = MimeTypeFunctions.getFileExtensionForMimeType(FeatureCheck.getSupportedVideoFormat());
+		this.selectedAudioExtension = MimeTypeFunctions.getFileExtensionForMimeType(FeatureCheck.getSupportedAudioFormat());
+	};
+	
 	objectFunctions.setRoot = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::setRoot");
+		//console.log(aPath);
 		
 		if(aPath == "") {
 			this._rootNode = this._hierarchy.getRoot();

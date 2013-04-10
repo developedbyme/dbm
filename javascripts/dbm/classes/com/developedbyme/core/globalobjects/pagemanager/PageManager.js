@@ -23,6 +23,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 		
 		this._queryStringParameters = NamedArray.create(false);
 		this._document = null;
+		this._documentLocation = null;
 		this._url = null;
 		this._urlResolver = null;
 		
@@ -32,8 +33,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 	objectFunctions.setDocument = function(aDocument) {
 		
 		this._document = aDocument;
+		this._documentLocation = this._document.location.href;
 		
 		return this;
+	};
+	
+	objectFunctions.setDocumentLocation = function(aLocation) {
+		this._documentLocation = aLocation;
+		this._setUrl(this._documentLocation);
 	};
 	
 	objectFunctions.getDocument = function() {
@@ -56,8 +63,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 	
 	objectFunctions.getCurrentFolderPath = function() {
 		
-		var currentPath = PathFunctions.getPathWithoutQueryStringOrAnchor(this._document.location.href);
-		currentPath = currentPath.substring(currentPath.indexOf("://")+3, currentPath.length);
+		var currentPath = PathFunctions.getPathWithoutQueryStringOrAnchor(this._documentLocation);
+		var protocolPosition = currentPath.indexOf("://");
+		if(protocolPosition != -1) {
+			currentPath = currentPath.substring(protocolPosition+3, currentPath.length);
+		}
 		var slashIndex = currentPath.indexOf("/");
 		if(slashIndex == -1) {
 			return "";
@@ -75,7 +85,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 	
 	objectFunctions.getFileName = function() {
 		
-		var currentPath = PathFunctions.getPathWithoutQueryStringOrAnchor(this._document.location.href);
+		var currentPath = PathFunctions.getPathWithoutQueryStringOrAnchor(this._documentLocation);
 		currentPath = currentPath.substring(0, currentPath.lastIndexOf("/"));
 		
 	};
@@ -96,7 +106,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 	};
 	
 	objectFunctions.setupQueryStringParameters = function() {
-		var queryString = this._document.location.href;
+		var queryString = this._documentLocation;
 		var queryIndex = queryString.indexOf("?");
 		var queryStringArray = [];
 		

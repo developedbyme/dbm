@@ -155,7 +155,7 @@
 				this._filesToLoad.push(aFilePath);
 			}
 			else {
-				var fileName = this._javascriptsFolder + "/" + aFilePath;
+				var fileName = this._javascriptsFolder + "/" + aFilePath + ".js";
 				this._filesToLoad.push(fileName);
 			}
 			
@@ -206,8 +206,8 @@
 			}
 		};
 		
-		dbm.externalStart = function() {
-			this._start();
+		dbm.startLoading = function() {
+			this._loadNextFile();
 			
 			return this;
 		};
@@ -228,4 +228,4 @@
 		
 		dbm.init();
 	}
-})(window);
+})(global);
