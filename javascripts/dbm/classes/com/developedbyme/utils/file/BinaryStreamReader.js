@@ -19,15 +19,36 @@ dbm.registerClass("com.developedbyme.utils.file.BinaryStreamReader", "com.develo
 		this._dataArray = new Uint8Array(aArray);
 		this._position = 0;
 		
+		return  this;
+	};
+	
+	objectFunctions.getPosition = function() {
+		return this._position;
+	};
+	
+	objectFunctions.seek = function(aPosition) {
+		this._position = aPosition;
+		
+		return this;
+	};
+	
+	objectFunctions.seekRelative = function(aPosition) {
+		this._position += aPosition;
+		
+		return this;
+	};
+	
+	objectFunctions.isAtEnd = function() {
+		return (this._position >= this._dataArray.byteLength);
 	};
 	
 	objectFunctions.readUtf8String = function(aLength) {
-		console.log("com.developedbyme.utils.file.BinaryStreamReader::readUtf8String");
-		console.log(this._dataArray, this._dataArray.byteLength);
+		//console.log("com.developedbyme.utils.file.BinaryStreamReader::readUtf8String");
+		//console.log(this._dataArray, this._dataArray.byteLength);
 		var returnString = "";
 		for(var i = 0; i < aLength; i++) {
 			var currentCharCode = this._dataArray[this._position++];
-			console.log(currentCharCode);
+			//console.log(currentCharCode);
 			returnString += String.fromCharCode(currentCharCode);
 		}
 		return returnString;
@@ -59,14 +80,15 @@ dbm.registerClass("com.developedbyme.utils.file.BinaryStreamReader", "com.develo
 		var returnValue = 0;
 		while(true) {
 			var currentValue = this.readUint8();
-			var addValue = b & 0x7f;
+			var addValue = currentValue & 0x7f;
+			console.log(currentValue, addValue, returnValue);
 			returnValue += addValue;
 			if(currentValue === addValue) {
 				break;
 			}
 			returnValue <<= 7;
 		}
-		return this.readUint(4);
+		return returnValue;
 	};
 	
 	objectFunctions.readInt = function(aLength) {

@@ -6,6 +6,7 @@ dbm.runTempFunction(function() {
 	var ProcessExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ProcessExtendedEventIds");
 	
 	var BinaryStreamReader = dbm.importClass("com.developedbyme.utils.file.BinaryStreamReader");
+	var MidiFileParser = dbm.importClass("com.developedbyme.utils.file.parsers.MidiFileParser");
 	
 	dbm.addStartFunction(function() {
 		//console.log("startFunction");
@@ -18,6 +19,9 @@ dbm.runTempFunction(function() {
 			console.log(binaryStreamReader);
 			
 			console.log(binaryStreamReader.readUtf8String(4));
+			
+			var midiFile = MidiFileParser.parseFile(binaryStreamReader);
+			console.log(midiFile);
 		}
 		
 		var midLoader = dbm.singletons.dbmAssetRepository.getAsset(fileName);
