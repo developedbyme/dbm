@@ -220,6 +220,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 				break;
 			case "wav":
 			case "bin":
+			case "mid": //METODO: this needs to be registered instead a case
 				newAsset = ArrayBufferAsset.create(aPath);
 				break;
 			case this._pseudoVideoExtension:
