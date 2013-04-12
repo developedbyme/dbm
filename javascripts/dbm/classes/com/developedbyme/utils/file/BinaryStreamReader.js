@@ -42,6 +42,16 @@ dbm.registerClass("com.developedbyme.utils.file.BinaryStreamReader", "com.develo
 		return (this._position >= this._dataArray.byteLength);
 	};
 	
+	objectFunctions.readData = function(aLength) {
+		//console.log("com.developedbyme.utils.file.BinaryStreamReader::readData");
+		
+		var endPosition = this._position+aLength;
+		var returnArray = this._dataArray.buffer.slice(this._position, endPosition);
+		this._position = endPosition;
+		
+		return returnArray;
+	};
+	
 	objectFunctions.readUtf8String = function(aLength) {
 		//console.log("com.developedbyme.utils.file.BinaryStreamReader::readUtf8String");
 		//console.log(this._dataArray, this._dataArray.byteLength);
@@ -81,7 +91,6 @@ dbm.registerClass("com.developedbyme.utils.file.BinaryStreamReader", "com.develo
 		while(true) {
 			var currentValue = this.readUint8();
 			var addValue = currentValue & 0x7f;
-			console.log(currentValue, addValue, returnValue);
 			returnValue += addValue;
 			if(currentValue === addValue) {
 				break;

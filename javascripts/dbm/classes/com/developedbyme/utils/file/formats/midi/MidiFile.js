@@ -1,10 +1,10 @@
-dbm.registerClass("com.developedbyme.utils.file.formats.MidiFile", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.file.formats.MidiFile");
+dbm.registerClass("com.developedbyme.utils.file.formats.midi.MidiFile", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.file.formats.midi.MidiFile");
 	
-	var MidiFile = dbm.importClass("com.developedbyme.utils.file.formats.MidiFile");
+	var MidiFile = dbm.importClass("com.developedbyme.utils.file.formats.midi.MidiFile");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.file.formats.MidiFile::_init");
+		//console.log("com.developedbyme.utils.file.formats.midi.MidiFile::_init");
 		
 		this.superCall();
 		
@@ -31,6 +31,14 @@ dbm.registerClass("com.developedbyme.utils.file.formats.MidiFile", "com.develope
 		this._tracks[aIndex] = aData;
 		
 		return this;
+	};
+	
+	objectFunctions.getNumberOfTracks = function() {
+		return this._numberOfTracks;
+	};
+	
+	objectFunctions.getTracks = function() {
+		return this._tracks;
 	};
 	
 	staticFunctions.create = function() {

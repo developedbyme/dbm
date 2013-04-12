@@ -7,6 +7,7 @@ dbm.runTempFunction(function() {
 	
 	var BinaryStreamReader = dbm.importClass("com.developedbyme.utils.file.BinaryStreamReader");
 	var MidiFileParser = dbm.importClass("com.developedbyme.utils.file.parsers.MidiFileParser");
+	var MidiMetadataTypes = dbm.importClass("com.developedbyme.constants.fileformats.midi.MidiMetadataTypes");
 	
 	dbm.addStartFunction(function() {
 		//console.log("startFunction");
@@ -22,6 +23,13 @@ dbm.runTempFunction(function() {
 			
 			var midiFile = MidiFileParser.parseFile(binaryStreamReader);
 			console.log(midiFile);
+			
+			var currentArray = midiFile.getTracks();
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				console.log(currentObject.getMetadata(MidiMetadataTypes.SEQUENCE_OR_TRACK_NAME), currentObject);
+			}
 		}
 		
 		var midLoader = dbm.singletons.dbmAssetRepository.getAsset(fileName);
