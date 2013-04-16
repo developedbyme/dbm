@@ -37,6 +37,10 @@ dbm.registerClass("com.developedbyme.utils.file.formats.midi.MidiTrack", "com.de
 		return this;
 	};
 	
+	objectFunctions.getEvents = function() {
+		return this._events;
+	};
+	
 	staticFunctions.create = function() {
 		var newMidiTrack = (new ClassReference()).init();
 		

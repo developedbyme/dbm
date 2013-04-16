@@ -3,10 +3,12 @@ dbm.runTempFunction(function() {
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
-	var ProcessExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ProcessExtendedEventIds");
 	
 	var BinaryStreamReader = dbm.importClass("com.developedbyme.utils.file.BinaryStreamReader");
 	var MidiFileParser = dbm.importClass("com.developedbyme.utils.file.parsers.MidiFileParser");
+	
+	var MidiPlayer = dbm.importClass("com.developedbyme.utils.audio.midiplayer.MidiPlayer");
+	
 	var MidiMetadataTypes = dbm.importClass("com.developedbyme.constants.fileformats.midi.MidiMetadataTypes");
 	
 	dbm.addStartFunction(function() {
@@ -30,6 +32,11 @@ dbm.runTempFunction(function() {
 				var currentObject = currentArray[i];
 				console.log(currentObject.getMetadata(MidiMetadataTypes.SEQUENCE_OR_TRACK_NAME), currentObject);
 			}
+			
+			var player = MidiPlayer.create();
+			player.addFile(midiFile);
+			
+			console.log(player);
 		}
 		
 		var midLoader = dbm.singletons.dbmAssetRepository.getAsset(fileName);
