@@ -7,8 +7,8 @@ dbm.registerClass("com.developedbyme.constants.fileformats.midi.MidiChannelEvent
 	staticFunctions.NOTE_OFF = 0x80;
 	staticFunctions.NOTE_ON = 0x90;
 	staticFunctions.NOTE_AFTER_TOUCH = 0xA0;
-	staticFunctions.CONTROLLER = 0xB0;
+	staticFunctions.CONTROLLER_MODE_CHANGE = 0xB0;
 	staticFunctions.PROGRAM_CHANGE = 0xC0;
-	staticFunctions.CHANNEL_AFTER_TOUCH = 0xE0;
-	staticFunctions.PITCH_BEND = 0xF0;
+	staticFunctions.CHANNEL_AFTER_TOUCH = 0xD0;
+	staticFunctions.PITCH_BEND = 0xE0;
 });

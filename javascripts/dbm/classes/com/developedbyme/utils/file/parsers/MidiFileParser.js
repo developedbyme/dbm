@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 	
 	var MidiEventTypes = dbm.importClass("com.developedbyme.constants.fileformats.midi.MidiEventTypes");
 	var MidiMetadataTypes = dbm.importClass("com.developedbyme.constants.fileformats.midi.MidiMetadataTypes");
+	var MidiChannelEventTypes = dbm.importClass("com.developedbyme.constants.fileformats.midi.MidiChannelEventTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.file.parsers.MidiFileParser::_init");
@@ -164,25 +165,25 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 					var channel = type & 0x0F;
 					var data = ChannelEvent.create(timeOffset, type, midiType, channel);
 					switch(midiType) {
-						case 0x80: //Note off
+						case MidiChannelEventTypes.NOTE_OFF:
 							data.data = {"noteNumber": firstParameter, "velocity": aStreamReader.readUint8()};
 							break;
-						case 0x90: //Note on
+						case MidiChannelEventTypes.NOTE_ON:
 							data.data = {"noteNumber": firstParameter, "velocity": aStreamReader.readUint8()};
 							break;
-						case 0xA0: //Note after touch
+						case MidiChannelEventTypes.NOTE_AFTER_TOUCH:
 							data.data = {"noteNumber": firstParameter, "pressure": aStreamReader.readUint8()};
 							break;
-						case 0xB0: //Controller
+						case MidiChannelEventTypes.CONTROLLER_MODE_CHANGE:
 							data.data = {"type": firstParameter, "value": aStreamReader.readUint8()};
 							break;
-						case 0xC0: //Program change
+						case MidiChannelEventTypes.PROGRAM_CHANGE:
 							data.data = {"programId": firstParameter};
 							break;
-						case 0xE0: //Channel after touch
+						case MidiChannelEventTypes.CHANNEL_AFTER_TOUCH:
 							data.data = {"pressure": firstParameter};
 							break;
-						case 0xF0: //Pitch bend
+						case MidiChannelEventTypes.PITCH_BEND:
 							data.data = {"lsb": firstParameter, "msb": aStreamReader.readUint8()};
 							break;
 						default:

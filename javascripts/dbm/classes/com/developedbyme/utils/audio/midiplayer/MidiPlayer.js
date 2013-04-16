@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.utils.audio.midiplayer.MidiPlayer", "com.de
 						break;
 					case MidiChannelEventTypes.NOTE_AFTER_TOUCH:
 						break;
-					case MidiChannelEventTypes.CONTROLLER:
+					case MidiChannelEventTypes.CONTROLLER_MODE_CHANGE:
 						break;
 					case MidiChannelEventTypes.PROGRAM_CHANGE:
 						break;
