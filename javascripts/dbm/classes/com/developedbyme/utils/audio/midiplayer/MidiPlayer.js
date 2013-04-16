@@ -22,7 +22,21 @@ dbm.registerClass("com.developedbyme.utils.audio.midiplayer.MidiPlayer", "com.de
 		return this;
 	};
 	
+	objectFunctions._getIndexForNote = function(aArray, aChannel, aPitch) {
+		var currentArray = aArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.channel === aChannel && currentObject.pitch === aPitch) {
+				return i;
+			}
+		}
+		//METODO: error message
+		return -1;
+	};
+	
 	objectFunctions.addTrack = function(aTrack) {
+		console.log("com.developedbyme.utils.audio.midiplayer.MidiPlayer::addTrack");
 		
 		var currentTime = 0;
 		var playingNotes = new Array();
@@ -38,12 +52,26 @@ dbm.registerClass("com.developedbyme.utils.audio.midiplayer.MidiPlayer", "com.de
 					case MidiChannelEventTypes.NOTE_ON:
 						if(currentEvent.data.velocity !== 0) {
 							var newNote = MidiNote.create();
+							//METODO: set instrument id
 							newNote.channel = currentEvent.channel;
+							newNote.pitch = currentEvent.data.noteNumber;
+							newNote.setStartTime(currentTime, currentEvent.data.velocity);
 							playingNotes.push(newNote);
+							this._notes.push(newNote);
 							break;
 						}
-						//MENOTE: flow through
+						//MENOTE: flow through, 0 velocity is note off
 					case MidiChannelEventTypes.NOTE_OFF:
+						var removeIndex = this._getIndexForNote(playingNotes, currentEvent.channel, currentEvent.data.noteNumber);
+						console.log(removeIndex);
+						if(removeIndex !== -1) {
+							var currentNote = playingNotes[removeIndex];
+							playingNotes.splice(removeIndex, 1);
+							currentNote.setEndTime(currentTime, currentEvent.data.velocity);
+						}
+						else {
+							//METODO: error message
+						}
 						break;
 					case MidiChannelEventTypes.NOTE_AFTER_TOUCH:
 						break;

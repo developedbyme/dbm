@@ -15,14 +15,29 @@ dbm.registerClass("com.developedbyme.utils.audio.midiplayer.MidiNote", "com.deve
 		this.startTime = -1;
 		this.endTime = -1;
 		
-		this.startTime = -1;
-		this.endTime = -1;
+		this.extendedStartTime = -1;
+		this.extendedEndTime = -1;
+		
+		this.startVelocity = -1;
+		this.endVelocity = -1;
 		
 		this.instrumentId = -1;
 		this.channel = -1;
 		this.pitch = -1;
 		
 		return this;
+	};
+	
+	objectFunctions.setStartTime = function(aTime, aVelocity) {
+		this.startTime = aTime;
+		this.startVelocity = aVelocity;
+		this.extendedStartTime = aTime; //METODO: set this correctly
+	};
+	
+	objectFunctions.setEndTime = function(aTime, aVelocity) {
+		this.endTime = aTime;
+		this.endVelocity = aVelocity;
+		this.extendedEndTime = aTime; //METODO: set this correctly
 	};
 	
 	objectFunctions._stateChanged = function() {
