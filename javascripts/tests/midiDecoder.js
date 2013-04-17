@@ -37,6 +37,8 @@ dbm.runTempFunction(function() {
 			player.addFile(midiFile);
 			
 			console.log(player);
+			
+			player.play();
 		}
 		
 		var midLoader = dbm.singletons.dbmAssetRepository.getAsset(fileName);
