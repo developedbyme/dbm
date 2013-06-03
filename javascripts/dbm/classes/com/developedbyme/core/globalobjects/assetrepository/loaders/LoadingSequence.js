@@ -38,6 +38,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		this._continueOnError = true;
 		this._status = AssetStatusTypes.NOT_LOADED;
 		this._isLoading = false;
+		this._isAddingLoaders = false;
 		
 		this.createUpdateFunction("progress", this._updateProgressFlow, [this._time], [this._progress, this._loadedSize, this._totalSize]);
 		
@@ -84,7 +85,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		aAsset.retain();
 		this._loaders.push(aAsset);
 		
-		if(this._isLoading && (this._loadingLoaders.length < this._maxNumberOfSimiltaniousLoaders || this._maxNumberOfSimiltaniousLoaders <= 0)) {
+		if(this._isLoading && !this._isAddingLoaders && (this._loadingLoaders.length < this._maxNumberOfSimiltaniousLoaders || this._maxNumberOfSimiltaniousLoaders <= 0)) {
 			this._loadLoader(aAsset);
 		}
 		else {
@@ -157,22 +158,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	};
 	
 	objectFunctions._hasWaitingLoaders = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_hasWaitingLoaders");
+		this._isAddingLoaders = true;
 		if(this._waitingLoaders.length == 0) {
 			if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.REQUEST_MORE_LOADERS)) {
 				this.getExtendedEvent().perform(LoadingExtendedEventIds.REQUEST_MORE_LOADERS);
 			}
 		}
+		this._isAddingLoaders = false;
 		return this._waitingLoaders.length > 0;
-	}
+	};
 	
 	objectFunctions._continueLoading = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_continueLoading");
 		
-		
 		while(this._hasWaitingLoaders()) {
 			var currentLoader = this._waitingLoaders.shift();
 			this._loadLoader(currentLoader);
-			var allowedToLoadMore = (this._loadingLoaders.length < this._maxNumberOfSimiltaniousLoaders || this._maxNumberOfSimiltaniousLoaders <= 0)
+			var allowedToLoadMore = (this._loadingLoaders.length < this._maxNumberOfSimiltaniousLoaders || this._maxNumberOfSimiltaniousLoaders <= 0);
 			if(!(this._isLoading && allowedToLoadMore)) {
 				break;
 			}

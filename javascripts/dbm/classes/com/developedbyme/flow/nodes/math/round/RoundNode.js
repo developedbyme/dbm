@@ -27,4 +27,10 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.round.RoundNode", "com.deve
 	objectFunctions.setAllReferencesToNull = function() {
 		this.superCall();
 	};
+	
+	staticFunctions.create = function(aInput) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputValue", aInput);
+		return newNode;
+	};
 });

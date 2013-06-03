@@ -54,5 +54,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.range.RangeNode", "com.deve
 		newNode.setPropertyInputWithoutNull("minOutputValue", aMinOutput);
 		newNode.setPropertyInputWithoutNull("maxOutputValue", aMaxOutput);
 		return newNode;
-	}
+	};
 });
