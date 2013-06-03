@@ -37,6 +37,8 @@ dbm.registerClass("com.developedbyme.utils.data.orderselector.SteppedOrderSelect
 	};
 	
 	objectFunctions.getNextValue = function(aReservedData) {
+		//console.log("com.developedbyme.utils.data.orderselector.SteppedOrderSelector::getNextValue");
+		//console.log(aReservedData);
 		
 		while(this._currentStep < this._numberOfSteps) {
 			var modifiedStep = this.modifyStep(this._currentStep);
@@ -55,7 +57,7 @@ dbm.registerClass("com.developedbyme.utils.data.orderselector.SteppedOrderSelect
 		var numberOfSteps = Math.abs(aEndPoistion+aStartPosition);
 		
 		var newSteppedOrderSelector = (new SteppedOrderSelector()).init();
-		newSteppedOrderSelector.setup(aStartPosition, aEndPoistion, aNumberOfSteps);
+		newSteppedOrderSelector.setup(aStartPosition, aEndPoistion, numberOfSteps);
 		return newSteppedOrderSelector;
 	};
 });

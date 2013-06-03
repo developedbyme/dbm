@@ -55,6 +55,26 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 		return -1;
 	};
 	
+	staticFunctions.hasDuplicates = function(aArray) {
+		if(aArray == null) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "hasDuplicates", "Array is " + aArray + ". Can't get index of " + aData + ".");
+			return -1;
+		}
+		var currentArray = aArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentData1 = currentArray[i];
+			for(var j = i+1; j < currentArrayLength; j++) {
+				var currentData2 = currentArray[j];
+				if(currentData1 == currentData2) {
+					return i;
+				}
+			}
+			
+		}
+		return -1;
+	};
+	
 	staticFunctions.copyArray = function(aArray) {
 		var currentArray = new Array(aArray.length);
 		var currentArrayLength = currentArray.length;
@@ -89,17 +109,33 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 			currentArray[randomIndex1] = currentArray[randomIndex2];
 			currentArray[randomIndex2] = tempValue;
 		}
-	} //End function randomizeArray
+	}; //End function randomizeArray
 	
 	staticFunctions.trim = function(aArray, aTrimLeft, aTrimRight) {
 		
 		aTrimLeft = VariableAliases.valueWithDefault(aTrimLeft, true);
 		aTrimRight = VariableAliases.valueWithDefault(aTrimRight, true);
 		
-		var currentArray = aArray
+		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			currentArray[i] = StringFunctions.trim(currentArray[i], aTrimLeft, aTrimRight);
+		}
+		
+		return aArray;
+	};
+	
+	staticFunctions.removeEmptyPositions = function(aArray) {
+		
+		var currentArray = aArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentValue = currentArray[i];
+			if(!VariableAliases.isSet(currentValue)) {
+				currentArray.splice(i, 1);
+				i--;
+				currentArrayLength--;
+			}
 		}
 		
 		return aArray;

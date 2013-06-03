@@ -136,7 +136,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 				this._isLoading = false;
 				this._status = AssetStatusTypes.LOADING_ERROR;
 				if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.LOADING_ERROR)) {
-					this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADING_ERROR)
+					this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADING_ERROR);
 				}
 			}
 		}
@@ -156,13 +156,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		aLoader.load();
 	};
 	
+	objectFunctions._hasWaitingLoaders = function() {
+		if(this._waitingLoaders.length == 0) {
+			if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.REQUEST_MORE_LOADERS)) {
+				this.getExtendedEvent().perform(LoadingExtendedEventIds.REQUEST_MORE_LOADERS);
+			}
+		}
+		return this._waitingLoaders.length > 0;
+	}
+	
 	objectFunctions._continueLoading = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_continueLoading");
 		
-		while(this._waitingLoaders.length > 0) {
+		
+		while(this._hasWaitingLoaders()) {
 			var currentLoader = this._waitingLoaders.shift();
 			this._loadLoader(currentLoader);
-			if(!(this._isLoading && (this._loadingLoaders.length < this._maxNumberOfSimiltaniousLoaders || this._maxNumberOfSimiltaniousLoaders <= 0))) {
+			var allowedToLoadMore = (this._loadingLoaders.length < this._maxNumberOfSimiltaniousLoaders || this._maxNumberOfSimiltaniousLoaders <= 0)
+			if(!(this._isLoading && allowedToLoadMore)) {
 				break;
 			}
 		}
@@ -251,6 +262,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		switch(aName) {
 			case LoadingExtendedEventIds.LOADED:
 			case LoadingExtendedEventIds.LOADING_ERROR:
+			case LoadingExtendedEventIds.REQUEST_MORE_LOADERS:
 				return true;
 		}
 		

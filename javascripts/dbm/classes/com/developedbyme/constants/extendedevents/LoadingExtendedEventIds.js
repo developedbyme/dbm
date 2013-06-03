@@ -5,5 +5,6 @@ dbm.registerClass("com.developedbyme.constants.extendedevents.LoadingExtendedEve
 	
 	staticFunctions.LOADED = "loaded";
 	staticFunctions.LOADING_ERROR = "loadingError";
+	staticFunctions.REQUEST_MORE_LOADERS = "requestMoreLoaders";
 	
 });

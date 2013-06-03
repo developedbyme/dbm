@@ -21,7 +21,9 @@ dbm.registerClass("com.developedbyme.utils.data.orderselector.ModifiedSteppedOrd
 	};
 	
 	objectFunctions.modifyStep = function(aStep) {
-		return this._modifier.interpolate(aStep);
+		var returnValue = this._modifier.interpolate(aStep);
+		
+		return Math.round(this._modifier.interpolate(aStep));
 	};
 	
 	staticFunctions.create = function(aStartPosition, aEndPoistion, aModifier) {
@@ -29,7 +31,7 @@ dbm.registerClass("com.developedbyme.utils.data.orderselector.ModifiedSteppedOrd
 		var numberOfSteps = Math.abs(aEndPoistion+aStartPosition);
 		
 		var newModifiedSteppedOrderSelector = (new ModifiedSteppedOrderSelector()).init();
-		newModifiedSteppedOrderSelector.setup(aStartPosition, aEndPoistion, aNumberOfSteps);
+		newModifiedSteppedOrderSelector.setup(aStartPosition, aEndPoistion, numberOfSteps);
 		newModifiedSteppedOrderSelector.setModifier(aModifier);
 		return newModifiedSteppedOrderSelector;
 	};

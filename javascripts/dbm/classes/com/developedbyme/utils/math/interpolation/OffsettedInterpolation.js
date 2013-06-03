@@ -16,8 +16,8 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.OffsettedInterpola
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.math.interpolation.OffsettedInterpolation");
 		
-		this.interpolationObject;
-		this.multipler = 1;
+		this.interpolationObject = null;
+		this.multiplier = 1;
 		this.offset = 0;
 		
 		return this;
@@ -27,13 +27,15 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.OffsettedInterpola
 	 * Interpolates
 	 */
 	objectFunctions.interpolate = function(aParameter) {
-		return this.multipler*this.interpolationObject.interpolate(aParameter)+this.offset;
+		return this.multiplier*this.interpolationObject.interpolate(aParameter)+this.offset;
 	};
 	
 	/**
 	 * Create a new interpolation
 	 */
 	staticFunctions.create = function(aInterpolationObject, aMultiplier, aOffset) {
+		//console.log("com.developedbyme.utils.math.interpolation.OffsettedInterpolation::create");
+		//console.log(aInterpolationObject, aMultiplier, aOffset);
 		var newInterpolation = (new ClassReference()).init();
 		
 		newInterpolation.interpolationObject = aInterpolationObject;

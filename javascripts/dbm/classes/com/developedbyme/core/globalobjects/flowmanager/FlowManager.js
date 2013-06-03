@@ -81,7 +81,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 				continue;
 			}
 			currentConnection.fillWithDirtyInputConnections(currentArray);
-			if(i > 1000) {
+			if(i > 10000) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperty", "Number of properties to update has reached max.");
 				break;
 			}
