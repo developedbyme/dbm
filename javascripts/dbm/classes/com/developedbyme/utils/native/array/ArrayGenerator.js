@@ -2,8 +2,9 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayGenerator", null, f
 	//console.log("com.developedbyme.utils.native.array.ArrayGenerator");
 	//"use strict";
 	
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ArrayGenerator = dbm.importClass("com.developedbyme.utils.native.array.ArrayGenerator");
+	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
@@ -34,5 +35,11 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayGenerator", null, f
 		ArrayFunctions.removeEmptyPositions(returnArray);
 		
 		return returnArray;
+	};
+	
+	staticFunctions.createArrayFromCharCodes = function(aStartIndex, aEndIndex, aReturnArray) {
+		for(var i = aStartIndex; i < aEndIndex; i++) {
+			aReturnArray.push(String.fromCharCode(i));
+		}
 	};
 });

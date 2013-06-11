@@ -73,7 +73,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		this.mti = ClassReference.N+1; /* mti==N+1 means mt[N] is not initialized */
 		
 		return this;
-	} //End function MersenneTwister
+	}; //End function MersenneTwister
 	
 	objectFunctions._multiplyUint32 = function(aNumber1, aNumber2) {
 		//console.log("com.developedbyme.utils.random.MersenneTwister::_multiplyUint32");
@@ -100,7 +100,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		//console.log("times, extra, newValue", times, extra, newValue);
 		//console.log("+3", this._addUint32(newValue, extra));
 		return this._addUint32(newValue, extra);
-	}
+	};
 	
 	/*
 	objectFunctions._multiplyUint32For = function(aNumber1, aNumber2) {
@@ -110,7 +110,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 			returnValue = this._addUint32(returnValue, aNumber1);
 		}
 		return returnValue;
-	}
+	};
 	*/
 	
 	objectFunctions._addUint32 = function(aNumber1, aNumber2) {
@@ -120,7 +120,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 			return aNumber1+aNumber2;
 		}
 		return aNumber1-(left+1);
-	}
+	};
 	
 	objectFunctions._subtractUint32 = function(aNumber1, aNumber2) {
 		//console.log("com.developedbyme.utils.random.MersenneTwister::_subtractUint32");
@@ -128,7 +128,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 			return aNumber1-aNumber2;
 		}
 		return 0xFFFFFFFF-(aNumber2-aNumber1+1);
-	}
+	};
 	
 	objectFunctions._andUint32 = function(aNumber1, aNumber2) {
 		//console.log("com.developedbyme.utils.random.MersenneTwister::_andUint32");
@@ -140,7 +140,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 			}
 		}
 		return returnValue;
-	}
+	};
 	
 	objectFunctions._orUint32 = function(aNumber1, aNumber2) {
 		//console.log("com.developedbyme.utils.random.MersenneTwister::_orUint32");
@@ -152,7 +152,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 			}
 		}
 		return returnValue;
-	}
+	};
 	
 	objectFunctions._xorUint32 = function(aNumber1, aNumber2) {
 		//console.log("com.developedbyme.utils.random.MersenneTwister::_xorUint32");
@@ -164,7 +164,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 			}
 		}
 		return returnValue;
-	}
+	};
 	
 	/**
 	 * Initializes mt[N] with a seed.
@@ -195,7 +195,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		}
 		//console.log(this.mt[0]);
 		return this;
-	} //End function initByUint
+	}; //End function initByUint
 
 	/**
 	 * Initialize by an array.
@@ -240,7 +240,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		//console.log(this.mt);
 		
 		return this;
-	} //End function initByArray
+	}; //End function initByArray
 	
 	/**
 	 * Generates a random number on [0,0xffffffff]-interval
@@ -284,14 +284,14 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		yValue = this._xorUint32(yValue, (yValue >>> 18));
 		
 		return yValue;
-	} //End function generateInt32
+	}; //End function generateInt32
 	
 	/**
 	 * Generates a random number on [0,0x7fffffff]-interval 
 	 */
 	objectFunctions.generateInt31 = function() {
 		return (this.generateInt32()>>1);
-	} //End function generateInt31
+	}; //End function generateInt31
 	
 	/** 
 	 * Generates a random number on [0,1]-real-interval
@@ -299,7 +299,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 	objectFunctions.generateRealClosedClosed = function() {
 		return this.generateInt32()*(1.0/4294967295.0); 
 		/* divided by 2^32-1 */ 
-	} //End function generateRealClosedClosed
+	}; //End function generateRealClosedClosed
 	
 	/**
 	 * Generates a random number on [0,1)-real-interval
@@ -307,7 +307,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 	objectFunctions.generateRealClosedOpen = function() {
 		return this.generateInt32()*(1.0/4294967296.0); 
 		/* divided by 2^32 */
-	} //End function generateRealClosedOpen
+	}; //End function generateRealClosedOpen
 	
 	/**
 	 * Generates a random number on (0,1)-real-interval
@@ -315,7 +315,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 	objectFunctions.generateRealOpenOpen = function() {
 		return (Number(this.generateInt32()) + 0.5)*(1.0/4294967296.0); 
 		/* divided by 2^32 */
-	} //End function generateRealOpenOpen
+	}; //End function generateRealOpenOpen
 	
 	/**
 	 * Generates a random number on [0,1) with 53-bit resolution
@@ -324,7 +324,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		var a = this.generateInt32()>>5;
 		var b = this.generateInt32()>>6; 
 		return(Number(a*67108864.0)+b)*(1.0/9007199254740992.0); 
-	} //End function generateRealClosedOpenResolution53
+	}; //End function generateRealClosedOpenResolution53
 	
 	/**
 	 * Tests the function.
@@ -343,5 +343,11 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 			console.log(this.generateRealClosedOpen());
 		}
 		console.log("//-----------------------------------------------");
-	}
+	};
+	
+	staticFunctions.create = function() {
+		var newMersenneTwister = (new MersenneTwister()).init();
+		
+		return newMersenneTwister;
+	};
 });

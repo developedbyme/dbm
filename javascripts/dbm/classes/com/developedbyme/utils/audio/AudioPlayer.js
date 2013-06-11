@@ -286,7 +286,15 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		if(aPreload) {
 			this.getElement().load();
 		}
-	}
+	};
+	
+	objectFunctions.setUrl = function(aUrl, aPreload) {
+		this.getElement().src = aUrl;
+		this._selectedUrl = aUrl;
+		if(aPreload) {
+			this.getElement().load();
+		}
+	};
 	
 	objectFunctions.startScrubbing = function(aValue) {
 		this.seek(aValue);

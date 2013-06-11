@@ -111,6 +111,22 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 		}
 	}; //End function randomizeArray
 	
+	/**
+	 * Randomizes an array with a random number generator.
+	 */
+	staticFunctions.controlledRandomizeArray = function(aArray, aNumberOfTimes, aRandomGenerator) {
+		var currentArray = aArray;
+		var currentArrayLength= currentArray.length;
+		for(var i = 0; i < aNumberOfTimes; i++) {
+			var randomIndex1 = Math.floor(aRandomGenerator.generateRealClosedOpen()*currentArrayLength);
+			var randomIndex2 = (currentArrayLength+Math.floor(aRandomGenerator.generateRealClosedOpen()*(currentArrayLength-1))+1)%currentArrayLength;
+			
+			var tempValue = currentArray[randomIndex1];
+			currentArray[randomIndex1] = currentArray[randomIndex2];
+			currentArray[randomIndex2] = tempValue;
+		}
+	}; //End function randomizeArray
+	
 	staticFunctions.trim = function(aArray, aTrimLeft, aTrimRight) {
 		
 		aTrimLeft = VariableAliases.valueWithDefault(aTrimLeft, true);
