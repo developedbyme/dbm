@@ -66,7 +66,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.imagesequenceplayer.Im
 	};
 	
 	objectFunctions._updateCurrentPositionFlow = function(aFlowUpdateNumber) {
-		console.log("com.developedbyme.projects.experiments.imagesequenceplayer.ImageSequencePlayer::_updateCurrentPositionFlow");
+		//console.log("com.developedbyme.projects.experiments.imagesequenceplayer.ImageSequencePlayer::_updateCurrentPositionFlow");
 		var aimedPosition = this._aimedPosition.getValueWithoutFlow();
 		
 		this._resetPositionSelectors();
@@ -83,7 +83,6 @@ dbm.registerClass("com.developedbyme.projects.experiments.imagesequenceplayer.Im
 			
 			var asset = dbm.singletons.dbmAssetRepository.getAsset(filePath);
 			if(asset.getStatus() == AssetStatusTypes.LOADED) {
-				console.log(">", currentNumber);
 				this._currentPosition.setValueWithFlow(currentNumber, aFlowUpdateNumber);
 				break;
 			}
