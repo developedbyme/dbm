@@ -78,7 +78,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 	objectFunctions.detectBrowser = function(aUserAgentString) {
 		this.setupApplications(aUserAgentString);
 		
-		var firstBrowser = this.getFirstApplicationOf(["Camino", "Chrome", "Firefox", "Mobile Safari", "OmniWeb", "Opera", "Safari"]);
+		var firstBrowser = this.getFirstApplicationOf(["Camino", "Chrome", "Firefox", "CriOS", "Mobile Safari", "OmniWeb", "Opera", "Safari"]);
 		var mozillaApplication = this.getApplicationByName("Mozilla");
 		if(mozillaApplication == null) {
 			mozillaApplication = this.getApplication(0);
@@ -149,7 +149,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 		else {
 			this.browserName = firstBrowser.name;
 			if(this.browserName == "Safari") {
-				this.browserVersion = this.getApplicationByName("Version").version;
+				var versionApplication = this.getApplicationByName("Version");
+				if(versionApplication != null) {
+					this.browserVersion = versionApplication.version;
+				}
 			}
 			else {
 				this.browserVersion = firstBrowser.version;
