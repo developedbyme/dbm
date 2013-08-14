@@ -50,6 +50,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 		
 		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
 		
+		if(this.getExtendedEvent().hasEvent(TouchExtendedEventIds.START)) {
+			this.getExtendedEvent().perform(TouchExtendedEventIds.START, null);
+		}
+		
 		return this;
 	};
 	
@@ -58,6 +62,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 		console.log(aX-this._startX.getValue(), aY-this._startY.getValue());
 		
 		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+		
+		if(this.getExtendedEvent().hasEvent(TouchExtendedEventIds.MOVE)) {
+			this.getExtendedEvent().perform(TouchExtendedEventIds.MOVE, null);
+		}
 		
 		return this;
 	};
@@ -69,6 +77,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 		
 		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
 		
+		if(this.getExtendedEvent().hasEvent(TouchExtendedEventIds.END)) {
+			this.getExtendedEvent().perform(TouchExtendedEventIds.END, null);
+		}
+		
 		return this;
 	};
 	
@@ -78,6 +90,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.develop
 		this._isTouching.setValue(false);
 		
 		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+		
+		if(this.getExtendedEvent().hasEvent(TouchExtendedEventIds.CANCEL)) {
+			this.getExtendedEvent().perform(TouchExtendedEventIds.CANCEL, null);
+		}
 		
 		return this;
 	};

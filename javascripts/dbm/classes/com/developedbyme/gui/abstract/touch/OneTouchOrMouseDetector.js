@@ -32,6 +32,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector"
 		return this;
 	};
 	
+	objectFunctions.getSelectionPoint = function() {
+		return this._selectionPoint;
+	};
+	
 	objectFunctions.setElement = function(aElement) {
 		//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::setElement");
 		
@@ -69,11 +73,11 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector"
 		//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_createTouch");
 		//console.log(aIdentifier);
 		var activeTouches = this._activeTouches.getValue();
-		if(activeTouches.length == 0) {
+		//if(activeTouches.length == 0) { //MEDEBUG: touches are not removed correctly
 			//console.log("Use selection point");
 			this._selectionPoint.id = aIdentifier;
 			return this._selectionPoint;
-		}
+		//}
 		return this.superCall(aIdentifier);
 	};
 	
