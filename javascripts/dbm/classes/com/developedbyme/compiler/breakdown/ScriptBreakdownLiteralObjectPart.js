@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 		}
 		var valueIndex = ArrayFunctions.indexOfInArray(this._values, aCurrentPart);
 		if(valueIndex > -1) {
-			this._value[valueIndex] = aNewPart;
+			this._values[valueIndex] = aNewPart;
 		}
 		
 		this.superCall(aCurrentPart, aNewPart);

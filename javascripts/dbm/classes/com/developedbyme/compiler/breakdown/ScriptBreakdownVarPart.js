@@ -32,8 +32,14 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 	
 	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
 		
-		if(this._set == aCurrentPart) this._set = aNewPart;
-		if(this._in == aCurrentPart) this._in = aNewPart;
+		if(this._set == aCurrentPart) {
+			this._set = aNewPart;
+			this.addDestroyableObject(this._set);
+		}
+		if(this._in == aCurrentPart) {
+			this._in = aNewPart;
+			this.addDestroyableObject(this._in);
+		}
 		
 		this.superCall(aCurrentPart, aNewPart);
 	};
@@ -94,7 +100,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart::compile");
 		//console.log(aCompileData);
 		
-		var compiledName = aCompileData.createVariableReference(this._variableName, "variable")
+		var compiledName = aCompileData.createVariableReference(this._variableName, "variable");
 		
 		var returnString = "var " + compiledName;
 		
@@ -112,6 +118,8 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 		
 		this._evaluation = null;
 		this._result = null;
+		this._set = null;
+		this._in = null;
 		
 		this.superCall();
 	};
