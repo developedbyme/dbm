@@ -135,6 +135,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getTangentOnCurve", "Parameter " + aParameter + " is out of range 0 - " + maxParameter + ".");
 			aOutputPoint.x = NaN;
 			aOutputPoint.y = NaN;
+			aOutputPoint.z = NaN;
 			return;
 		}
 		if(segmentStart == maxParameter) {

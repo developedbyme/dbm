@@ -225,7 +225,7 @@
 			var currentArray = this._startFunctions;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
-				currentArray[i].call(null);
+				currentArray[i].call(window);
 			}
 			
 			this._startFunctions = new Array();

@@ -57,7 +57,7 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 	
 	staticFunctions.hasDuplicates = function(aArray) {
 		if(aArray == null) {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "hasDuplicates", "Array is " + aArray + ". Can't get index of " + aData + ".");
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "hasDuplicates", "Array is " + aArray + ".");
 			return -1;
 		}
 		var currentArray = aArray;
