@@ -13,23 +13,15 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode", "com
 		this._falseValue = this.createProperty("falseValue", 0);
 		this._outputValue = this.createProperty("outputValue", 1);
 		
-		this.createUpdateFunction("default", this._update, [this._switchValue, this._trueValue, this._falseValue], [this._outputValue]);
+		this.createUpdateFunctionWithArguments("default", ClassReference._update, [this._switchValue, this._trueValue, this._falseValue], [this._outputValue]);
 		
 		return this;
 	};
 	
-	objectFunctions._update = function(aFlowUpdateNumber) {
+	staticFunctions._update = function(aSwtichValue, aTrueValue, aFalseValue) {
 		//console.log("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode::_update");
 		
-		var returnValue;
-		if(this._switchValue.getValueWithoutFlow()) {
-			returnValue = this._trueValue.getValueWithoutFlow();
-		}
-		else {
-			returnValue = this._falseValue.getValueWithoutFlow();
-		}
-		
-		this._outputValue.setValueWithFlow(returnValue, aFlowUpdateNumber);
+		return (aSwtichValue ? aTrueValue : aFalseValue);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

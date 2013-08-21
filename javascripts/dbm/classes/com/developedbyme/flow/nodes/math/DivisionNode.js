@@ -13,14 +13,14 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.DivisionNode", "com.develop
 		this._divisor = this.createProperty("divisor", 1);
 		this._outputValue = this.createProperty("outputValue", 0);
 		
-		this.createUpdateFunction("default", this._update, [this._inputValue, this._divisor], [this._outputValue]);
+		this.createUpdateFunctionWithArguments("default", ClassReference._update, [this._inputValue, this._divisor], [this._outputValue]);
 		
 		return this;
 	};
 	
-	objectFunctions._update = function(aFlowUpdateNumber) {
+	staticFunctions._update = function(aInputValue, aDivisor) {
 		//console.log("com.developedbyme.flow.nodes.math.DivisionNode::_update");
-		this._outputValue.setValueWithFlow(this._inputValue.getValueWithoutFlow()/this._divisor.getValueWithoutFlow(), aFlowUpdateNumber);
+		return aInputValue/aDivisor;
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

@@ -1,6 +1,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.logic.IndexSwitchedNode");
 	
+	var IndexSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.logic.IndexSwitchedNode::_init");
 		
@@ -10,23 +12,18 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode", "com.d
 		this._array = this.createProperty("array", new Array());
 		this._outputValue = this.createProperty("outputValue", null);
 		
-		this.createUpdateFunction("default", this._update, [this._index, this._array], [this._outputValue]);
+		this.createUpdateFunctionWithArguments("default", ClassReference._update, [this._index, this._array], [this._outputValue]);
 		
 		return this;
 	};
 	
-	objectFunctions._update = function(aFlowUpdateNumber) {
+	staticFunctions._update = function(aIndex, aArray) {
 		//console.log("com.developedbyme.flow.nodes.logic.IndexSwitchedNode::_update");
 		
-		var selectionArray = this._array.getValueWithoutFlow();
-		var originalIndexValue = this._index.getValueWithoutFlow();
-		if(originalIndexValue == -1) {
-			this._outputValue.setValueWithFlow(selectionArray[indexValue], null);
-			return;
+		if(aIndex === -1) {
+			return null;
 		}
-		var indexValue = Math.floor(Math.min(selectionArray.length-1, Math.max(0, originalIndexValue)));
-		
-		this._outputValue.setValueWithFlow(selectionArray[indexValue], aFlowUpdateNumber);
+		return aArray[Math.floor(Math.min(aArray.length-1, Math.max(0, aIndex)))];
 	};
 	
 	objectFunctions.reset = function() {

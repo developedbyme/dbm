@@ -17,44 +17,31 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.BitwiseOperatorNode", "com
 		this._inputValue2 = this.createProperty("inputValue2", 0);
 		this._outputValue = this.createProperty("outputValue", 0);
 		
-		this.createUpdateFunction("default", this._update, [this._operatorType, this._inputValue1, this._inputValue2], [this._outputValue]);
+		this.createUpdateFunctionWithArguments("default", ClassReference._update, [this._operatorType, this._inputValue1, this._inputValue2], [this._outputValue]);
 		
 		return this;
 	};
 	
-	objectFunctions._update = function(aFlowUpdateNumber) {
+	staticFunctions._update = function(aOperatorType, aInputValue1, aInputValue2) {
 		//console.log("com.developedbyme.flow.nodes.logic.BitwiseOperatorNode::_update");
 		
-		var returnValue;
-		var operatorType = this.operatorType.getValueWithoutFlow();
-		var inputValue1 = this._inputValue1.getValueWithoutFlow();
-		var inputValue2 = this._inputValue2.getValueWithoutFlow();
-		switch(operatorType) {
+		switch(aOperatorType) {
 			case "&":
-				returnValue = (inputValue1 & inputValue2);
-				break;
+				return (aInputValue1 & aInputValue2);
 			case "|":
-				returnValue = (inputValue1 | inputValue2);
-				break;
+				return (aInputValue1 | aInputValue2);
 			case "^":
-				returnValue = (inputValue1 ^ inputValue2);
-				break;
+				return (aInputValue1 ^ aInputValue2);
 			case "<<":
-				returnValue = (inputValue1 << inputValue2);
-				break;
+				return (aInputValue1 << aInputValue2);
 			case ">>":
-				returnValue = (inputValue1 >>> inputValue2);
-				break;
+				return (aInputValue1 >>> aInputValue2);
 			case ">>>":
-				returnValue = (inputValue1 >>> inputValue2);
-				break;
-			default:
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_update", "Unknown operator type " + operatorType + ".");
-				returnValue = 0;
-				break;
+				return (aInputValue1 >>> aInputValue2);
 		}
 		
-		this._outputValue.setValueWithFlow(returnValue, aFlowUpdateNumber);
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "BitwiseOperatorNode", "_update", "Unknown operator type " + aOperatorType + ".");
+		return 0;
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

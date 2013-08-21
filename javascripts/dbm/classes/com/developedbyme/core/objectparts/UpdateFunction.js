@@ -72,6 +72,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		return this;
 	};
 	
+	objectFunctions.getOwnerObject = function() {
+		return this._ownerObject;
+	};
+	
 	objectFunctions.addInputConnection = function(aProperty) {
 		aProperty._linkRegistration_addConnectedOutput(this);
 		this._linkRegistration_addInputConnection(aProperty);
@@ -105,28 +109,32 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	
 	objectFunctions.updateFlow = function() {
 		var newFlowUpdateNumber = this._getInputFlowUpdateNumber();
+		var globalUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
 		if(newFlowUpdateNumber > this._flowUpdateNumber) {
-			this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
-			//LIAM: ERROR ON LINE BELOW
-			this._updateFunction.call(this._ownerObject, this._flowUpdateNumber);
+			this._flowUpdateNumber = globalUpdateNumber;
+			this._updateFunction.call(this._ownerObject, globalUpdateNumber);
 		}
-		if(this._isDestroyed) {
-			return;
+		if(!this._isDestroyed) {
+			this._cleanGhostPropertyOutput(globalUpdateNumber);
 		}
+		
+	};
+	
+	objectFunctions._cleanGhostPropertyOutput = function(aFlowUpdateNumber) {
 		var currentArray = this._ghostOutputConnections;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentProperty = currentArray[i];
-			currentProperty.setValueWithFlow(null, dbm.singletons.dbmFlowManager.getFlowUpdateNumber());
+			currentProperty.setValueWithFlow(null, aFlowUpdateNumber);
 		}
-	};
+	}
 	
 	objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
 		var currentArray = this._outputConnections;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.getStatus() == FlowStatusTypes.UPDATED) {
+			if(currentObject.getStatus() === FlowStatusTypes.UPDATED) {
 				aReturnArray.push(currentObject);
 			}
 		}
@@ -177,13 +185,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	
 	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
 		var index = ArrayFunctions.indexOfInArray(this._inputConnections, aProperty);
-		if(index != -1) {
+		if(index !== -1) {
 			this._inputConnections.splice(index, 1);
 		}
 		
 		if(aProperty instanceof GhostProperty) {
 			var index = ArrayFunctions.indexOfInArray(this._ghostOutputConnections, aProperty);
-			if(index != -1) {
+			if(index !== -1) {
 				this._ghostOutputConnections.splice(index, 1);
 			}
 		}
@@ -191,7 +199,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	
 	objectFunctions._linkRegistration_removeOutputConnection = function(aProperty) {
 		var index = ArrayFunctions.indexOfInArray(this._outputConnections, aProperty);
-		if(index != -1) {
+		if(index !== -1) {
 			this._outputConnections.splice(index, 1);
 		}
 	};
@@ -204,7 +212,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	
 	objectFunctions.performDestroy = function() {
 		
-		if(this._inputConnections != null) {
+		if(this._inputConnections !== null) {
 			var currentArray = ArrayFunctions.copyArray(this._inputConnections);
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
@@ -212,7 +220,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 			}
 		}
 		
-		if(this._outputConnections != null) {
+		if(this._outputConnections !== null) {
 			var currentArray = ArrayFunctions.copyArray(this._outputConnections);
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {

@@ -11,6 +11,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
+	var UpdateFunctionWithArguments = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunctionWithArguments");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	
@@ -34,21 +35,28 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	
 	objectFunctions.getObjectProperty = function() {
 		return this._objectProperty;
-	}
+	};
 	
 	objectFunctions.createUpdateFunction = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunction.create(this, aUpdateFunction, aInputsArray, aOutputsArray);
 		newUpdateFunction.name = this.__className + "::" + aName + "(f)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
-	}
+	};
+	
+	objectFunctions.createUpdateFunctionWithArguments = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
+		var newUpdateFunction = UpdateFunctionWithArguments.create(this, aUpdateFunction, aInputsArray, aOutputsArray);
+		newUpdateFunction.name = this.__className + "::" + aName + "(f)";
+		this._updateFunctions.addObject(aName, newUpdateFunction);
+		return newUpdateFunction;
+	};
 	
 	objectFunctions.createGhostUpdateFunction = function(aName, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunction.createGhostFunction(aInputsArray, aOutputsArray);
 		newUpdateFunction.name = this.__className + "::" + aName + "(gf)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
-	}
+	};
 	
 	objectFunctions.createProperty = function(aName, aValue) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createProperty");
@@ -79,7 +87,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	objectFunctions.getProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
 		//console.log(this, aName);
-		if(this._properties != null && this._properties.select(aName)) {
+		if(this._properties !== null && this._properties.select(aName)) {
 			return this._properties.currentSelectedItem;
 		}
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Property " + aName + " doesn't exist on " + this + ".");
@@ -88,7 +96,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	
 	objectFunctions.setPropertyInput = function(aName, aInput) {
 		var theProperty = this.getProperty(aName);
-		if(theProperty == null) {
+		if(theProperty === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setPropertyInput", "Property " + aName + " doesn't exist.");
 			return this;
 		}
@@ -102,7 +110,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	};
 	
 	objectFunctions.setPropertyInputWithoutNull = function(aName, aInput) {
-		if(aInput != null) {
+		if(aInput !== null) {
 			this.setPropertyInput(aName, aInput);
 		}
 		return this;
@@ -111,10 +119,10 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
-		if(this._properties != null) {
+		if(this._properties !== null) {
 			aReturnArray.push("properties: [" + this._properties.getNamesArray() + "]");
 		}
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

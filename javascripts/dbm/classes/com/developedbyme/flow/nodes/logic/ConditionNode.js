@@ -20,17 +20,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ConditionNode", "com.devel
 		this._inputValue2 = this.createProperty("inputValue2", 0);
 		this._outputValue = this.createProperty("outputValue", 1);
 		
-		this.createUpdateFunction("default", this._update, [this._conditionType, this._inputValue1, this._inputValue2], [this._outputValue]);
+		this.createUpdateFunctionWithArguments("default", ConditionEvaluation.evaluateCondition, [this._conditionType, this._inputValue1, this._inputValue2], [this._outputValue]);
 		
 		return this;
-	};
-	
-	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.logic.ConditionNode::_update");
-		
-		var returnValue = ConditionEvaluation.evaluateCondition(this._inputValue1.getValueWithoutFlow(), this._conditionType.getValueWithoutFlow(), this._inputValue2.getValueWithoutFlow());
-		
-		this._outputValue.setValueWithFlow(returnValue, aFlowUpdateNumber);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

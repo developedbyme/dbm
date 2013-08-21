@@ -12,14 +12,14 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.SubtractionNode", "com.deve
 		this._inputValue2 = this.createProperty("inputValue2", 0);
 		this._outputValue = this.createProperty("outputValue", 0);
 		
-		this.createUpdateFunction("default", this._update, [this._inputValue1, this._inputValue2], [this._outputValue]);
+		this.createUpdateFunctionWithArguments("default", ClassReference._update, [this._inputValue1, this._inputValue2], [this._outputValue]);
 		
 		return this;
 	};
 	
-	objectFunctions._update = function(aFlowUpdateNumber) {
+	staticFunctions._update = function(aInputValue1, aInputValue2) {
 		//console.log("com.developedbyme.flow.nodes.math.SubtractionNode::_update");
-		this._outputValue.setValueWithFlow(this._inputValue1.getValueWithoutFlow()-this._inputValue2.getValueWithoutFlow(), aFlowUpdateNumber);
+		return aInputValue1-aInputValue2;
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
