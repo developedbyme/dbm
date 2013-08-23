@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 					var data = null;
 					switch(metaType) {
 						case MidiMetadataTypes.SEQUENCE_NUMBER:
-							if(dataLength != 2) {
+							if(dataLength !== 2) {
 								//METODO: error
 							}
 							data = aStreamReader.readUint16();
@@ -61,24 +61,24 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 							data = aStreamReader.readUtf8String(dataLength);
 							break;
 						case MidiMetadataTypes.MIDI_CHANNEL_PREFIX:
-							if(dataLength != 2) {
+							if(dataLength !== 2) {
 								//METODO: error
 							}
 							data = aStreamReader.readUint8();
 							break;
 						case MidiMetadataTypes.END_OF_TRACK:
-							if(dataLength != 0) {
+							if(dataLength !== 0) {
 								//METODO: error
 							}
 							break;
 						case MidiMetadataTypes.SET_TEMPO:
-							if(dataLength != 3) {
+							if(dataLength !== 3) {
 								//METODO: error
 							}
 							data = aStreamReader.readUint(3);
 							break;
 						case MidiMetadataTypes.SMPTE_OFFSET:
-							if(dataLength != 5) {
+							if(dataLength !== 5) {
 								//METODO: error
 							}
 							data = new Object();
@@ -114,7 +114,7 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 							data["numberOf32Notes"] = aStreamReader.readUint8();
 							break;
 						case MidiMetadataTypes.KEY_SIGNATURE:
-							if(dataLength != 2) {
+							if(dataLength !== 2) {
 								//METODO: error
 							}
 							data = new Object();
@@ -154,7 +154,7 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 				//MIDI events
 				default:
 					var firstParameter;
-					if ((type & 0x80) == 0) {
+					if ((type & 0x80) === 0) {
 						firstParameter = type;
 						type = lastType;
 					}

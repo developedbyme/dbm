@@ -40,7 +40,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 			return aObject;
 		}
 		
-		if(this._destroyableObjects == null) {
+		if(this._destroyableObjects === null) {
 			this._destroyableObjects = new Array();
 		}
 		this._destroyableObjects.push(aObject);
@@ -49,9 +49,9 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	};
 	
 	objectFunctions.removeDestroyableObject = function removeDestroyableObject(aObject) {
-		if(this._destroyableObjects != null) {
+		if(this._destroyableObjects !== null) {
 			var objectIndex = ArrayFunctions.indexOfInArray(this._destroyableObjects, aObject);
-			if(objectIndex != -1) {
+			if(objectIndex !== -1) {
 				this._destroyableObjects.splice(objectIndex, 1);
 			}
 			else {
@@ -66,7 +66,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	};
 	
 	objectFunctions.getDestroyableObjectsArray = function getDestroyableObjectsArray() {
-		if(this._destroyableObjects == null) {
+		if(this._destroyableObjects === null) {
 			this._destroyableObjects = new Array();
 		}
 		return this._destroyableObjects;
@@ -131,30 +131,30 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	}
 	
 	staticFunctions.softDestroyIfExists = function softDestroyIfExists(aObject) {
-		if(aObject != null) {
-			if(aObject.releaseAndDestroy != undefined) {
+		if(aObject !== null) {
+			if(aObject.releaseAndDestroy !== undefined) {
 				aObject.releaseAndDestroy();
 			}
-			else if(aObject.destroy != undefined) {
+			else if(aObject.destroy !== undefined) {
 				aObject.destroy();
 			}
 		}
 	};
 	
 	staticFunctions.destroyIfExists = function destroyIfExists(aObject) {
-		if(aObject != null) {
+		if(aObject !== null && aObject !== undefined) {
 			aObject.destroy();
 		}
 	};
 	
 	staticFunctions.releaseAndDestroyIfExists = function releaseAndDestroyIfExists(aObject) {
-		if(aObject != null) {
+		if(aObject !== null && aObject !== undefined) {
 			aObject.releaseAndDestroy();
 		}
 	};
 	
 	staticFunctions.softDestroyArrayIfExists = function softDestroyArrayIfExists(aArray) {
-		if(aArray != null) {
+		if(aArray !== null) {
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
@@ -166,12 +166,12 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	};
 	
 	staticFunctions.destroyArrayIfExists = function destroyArrayIfExists(aArray) {
-		if(aArray != null) {
+		if(aArray !== null) {
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentObject = currentArray[i];
-				if(currentObject && currentObject.destroy != undefined) {
+				if(currentObject && currentObject.destroy !== undefined) {
 					currentObject.destroy();
 				}
 				currentArray[i] = null;
@@ -180,12 +180,12 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	};
 	
 	staticFunctions.releaseAndDestroyArrayIfExists = function releaseAndDestroyArrayIfExists(aArray) {
-		if(aArray != null) {
+		if(aArray !== null) {
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentObject = currentArray[i];
-				if(currentObject.destroy != undefined) {
+				if(currentObject.destroy !== undefined) {
 					currentObject.releaseAndDestroy();
 				}
 				currentArray[i] = null;
@@ -209,7 +209,7 @@ dbm.extendClass("com.developedbyme.core.BaseObject", function(objectFunctions, s
 		
 		var superFunction = callerFunction["superFunction"];
 		
-		if(superFunction != undefined) {
+		if(superFunction !== undefined) {
 			return superFunction.apply(this, arguments);
 		}
 		else {
