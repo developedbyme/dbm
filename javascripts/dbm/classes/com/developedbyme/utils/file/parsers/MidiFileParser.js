@@ -48,7 +48,7 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 							if(dataLength != 2) {
 								//METODO: error
 							}
-							var data = aStreamReader.readUint16();
+							data = aStreamReader.readUint16();
 							break;
 						//Text events
 						case MidiMetadataTypes.TEXT:
@@ -58,13 +58,13 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 						case MidiMetadataTypes.LYRIC:
 						case MidiMetadataTypes.MARKER:
 						case MidiMetadataTypes.CUE_POINT:
-							var data = aStreamReader.readUtf8String(dataLength);
+							data = aStreamReader.readUtf8String(dataLength);
 							break;
 						case MidiMetadataTypes.MIDI_CHANNEL_PREFIX:
 							if(dataLength != 2) {
 								//METODO: error
 							}
-							var data = aStreamReader.readUint8();
+							data = aStreamReader.readUint8();
 							break;
 						case MidiMetadataTypes.END_OF_TRACK:
 							if(dataLength != 0) {
@@ -122,7 +122,7 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 							data["minor"] = aStreamReader.readUint8();
 							break;
 						case MidiMetadataTypes.SEQUENCE_SPECIFIC:
-							var data = aStreamReader.readData(dataLength);
+							data = aStreamReader.readData(dataLength);
 							break;
 						default:
 							//METODO: error message
@@ -133,8 +133,8 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 					break;
 				case MidiEventTypes.SYSTEM_EXCLUSIVE:
 				case MidiEventTypes.SYSTEM_EXCLUSIVE_CONTINUATION:
-					var dataLength = aStreamReader.readVariableLengthUint();
-					var data = aStreamReader.readData(dataLength);
+					dataLength = aStreamReader.readVariableLengthUint();
+					data = aStreamReader.readData(dataLength);
 					returnTrack.addEvent(DataEvent.create(timeOffset, type, data));
 					break;
 				//Unrecognized codes
@@ -163,7 +163,7 @@ dbm.registerClass("com.developedbyme.utils.file.parsers.MidiFileParser", null, f
 					}
 					var midiType = type & 0xF0;
 					var channel = type & 0x0F;
-					var data = ChannelEvent.create(timeOffset, type, midiType, channel);
+					data = ChannelEvent.create(timeOffset, type, midiType, channel);
 					switch(midiType) {
 						case MidiChannelEventTypes.NOTE_OFF:
 							data.data = {"noteNumber": firstParameter, "velocity": aStreamReader.readUint8()};
