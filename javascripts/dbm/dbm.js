@@ -118,7 +118,7 @@
 		dbm.getFileForClass = function(aClassPath) {
 			var classesFolder = this._classesFolder;
 			for(var objectName in this._specificClassesFolders) {
-				if(aClassPath.indexOf(objectName) == 0) {
+				if(aClassPath.indexOf(objectName) === 0) {
 					classesFolder = this._specificClassesFolders[objectName];
 					break;
 				}
@@ -157,7 +157,7 @@
 			
 			var colonPosition = aFilePath.indexOf(":");
 			var questionMarkPosition = aFilePath.indexOf("?");
-			if(colonPosition != -1 && (questionMarkPosition == -1 || colonPosition < questionMarkPosition)) {
+			if(colonPosition !== -1 && (questionMarkPosition === -1 || colonPosition < questionMarkPosition)) {
 				this._filesToLoad.push(aFilePath);
 			}
 			else {
@@ -175,7 +175,7 @@
 			var scriptTag = document.createElement("script");
 			
 			var scriptType = "application/javascript";
-			if(this._javascriptVersion != null) {
+			if(this._javascriptVersion !== null) {
 				scriptType += ";version=" + this._javascriptVersion;
 			}
 			scriptTag.type = scriptType;
