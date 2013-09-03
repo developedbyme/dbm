@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableR
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart::compile");
 		//console.log(this._variableName);
 		var returnReference;
-		if(this.declaresVariables != null) {
+		if(this.declaresVariables !== null) {
 			returnReference = aCompileData.createVariableReference(this._variableName, this.declaresVariables);
 		}
 		else {

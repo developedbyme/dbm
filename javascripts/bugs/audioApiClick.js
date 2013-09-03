@@ -8,7 +8,7 @@
 	loader.responseType = "arraybuffer";
 	
 	loader.onreadystatechange = function() {
-		if(loader.readyState == 4 && loader.status < 400) {
+		if(loader.readyState === 4 && loader.status < 400) {
 			var theContext = new webkitAudioContext();
 			
 			theContext.decodeAudioData(loader.response, function(buffer) {

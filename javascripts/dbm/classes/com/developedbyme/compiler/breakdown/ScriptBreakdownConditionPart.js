@@ -31,20 +31,20 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCondition
 	
 	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
 		
-		if(this._evaluation == aCurrentPart) this._evaluation = aNewPart;
-		if(this._result == aCurrentPart) this._result = aNewPart;
+		if(this._evaluation === aCurrentPart) this._evaluation = aNewPart;
+		if(this._result === aCurrentPart) this._result = aNewPart;
 		
 		this.superCall(aCurrentPart, aNewPart);
 	};
 	
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownConditionPart::_breakdown");
-		if(this._conditionType != "else") {
+		if(this._conditionType !== "else") {
 			var evaluationIndex = this._script.indexOf("(");
 			var evaluationScope = ScopeFunctions.getScope(this._script, evaluationIndex, "(", ")");
 			this._evaluation = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(evaluationScope.start+1, evaluationScope.end)));
 			var resultString = StringFunctions.trim(this._script.substring(evaluationScope.end+1, this._script.length));
-			if(resultString.charAt(0) == "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end == resultString.length-1) {
+			if(resultString.charAt(0) === "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end === resultString.length-1) {
 				this._result = ScriptBreakdownCodePart.create(this, resultString.substring(1, resultString.length-1));
 				this._result.setScope("{", "}");
 			}
@@ -55,7 +55,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCondition
 		}
 		else {
 			var resultString = StringFunctions.trim(this._script.substring(4, this._script.length));
-			if(resultString.charAt(0) == "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end == resultString.length-1) {
+			if(resultString.charAt(0) === "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end === resultString.length-1) {
 				this._result = ScriptBreakdownCodePart.create(this, resultString.substring(1, resultString.length-1));
 				this._result.setScope("{", "}");
 			}
@@ -78,7 +78,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCondition
 		
 		var returnString = this._conditionType;
 		
-		if(this._evaluation != null) {
+		if(this._evaluation !== null) {
 			returnString += "(" + this._evaluation.compile(aCompileData) + ")";
 		}
 		returnString += this._result.compile(aCompileData);

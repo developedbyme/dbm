@@ -52,7 +52,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 	};
 	
 	objectFunctions.getDeeperBreakdownIfEmpty = function() {
-		if(this._scopeStart == "" && this._scopeEnd == "" && this._childBreakdowns.length == 1) {
+		if(this._scopeStart === "" && this._scopeEnd === "" && this._childBreakdowns.length === 1) {
 			return this._childBreakdowns[0];
 		}
 		return this.superCall();
@@ -65,11 +65,11 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 		var scriptWithoutScoop = this._script;
 		
 		var scopeStart = ScopeFunctions.getScopeStart(this._script, 0);
-		if(scopeStart == 0) {
+		if(scopeStart === 0) {
 			var currentScopeStartType = ScopeFunctions.getTypeOfScopeStart(this._script, scopeStart);
 			var currentScopeEndType = ScopeFunctions.getTypeOfScopeEndForScopeStart(currentScopeStartType);
 			var scope = ScopeFunctions.getAnyScope(this._script, scopeStart, currentScopeStartType, currentScopeEndType);
-			if(scope.end == this._script.length-currentScopeEndType.length) {
+			if(scope.end === this._script.length-currentScopeEndType.length) {
 				switch(currentScopeStartType) {
 					case "\"":
 					case "\'":
@@ -94,7 +94,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 		}
 		
 		var keywordType = JavascriptLanguageFunctions.startsWithKeyword(scriptWithoutScoop);
-		if(keywordType != null) {
+		if(keywordType !== null) {
 			switch(keywordType) {
 				case "if":
 				case "else if":

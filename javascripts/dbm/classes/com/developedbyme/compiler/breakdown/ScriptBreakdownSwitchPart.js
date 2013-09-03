@@ -30,8 +30,8 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownSwitchPar
 	
 	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
 		
-		if(this._evaluation == aCurrentPart) this._evaluation = aNewPart;
-		if(this._result == aCurrentPart) this._result = aNewPart;
+		if(this._evaluation === aCurrentPart) this._evaluation = aNewPart;
+		if(this._result === aCurrentPart) this._result = aNewPart;
 		
 		this.superCall(aCurrentPart, aNewPart);
 	};
@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownSwitchPar
 		var evaluationScope = ScopeFunctions.getScope(this._script, evaluationIndex, "(", ")");
 		this._evaluation = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(evaluationScope.start+1, evaluationScope.end)));
 		var resultString = StringFunctions.trim(this._script.substring(evaluationScope.end+1, this._script.length));
-		if(resultString.charAt(0) == "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end == resultString.length-1) {
+		if(resultString.charAt(0) === "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end === resultString.length-1) {
 			this._result = ScriptBreakdownCodePart.create(this, resultString.substring(1, resultString.length-1));
 			this._result.setScope("{", "}");
 		}
@@ -65,7 +65,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownSwitchPar
 		
 		var returnString = "switch";
 		
-		if(this._evaluation != null) {
+		if(this._evaluation !== null) {
 			returnString += "(" + this._evaluation.compile(aCompileData) + ")";
 		}
 		returnString += this._result.compile(aCompileData);

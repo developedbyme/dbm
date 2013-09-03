@@ -77,10 +77,10 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		//console.log("com.developedbyme.compiler.DbmCompiler::addFile");
 		//console.log(aPath, aPosition);
 		
-		if(ArrayFunctions.indexOfInArray(this._loadedFilePaths, aPath) != -1) {
+		if(ArrayFunctions.indexOfInArray(this._loadedFilePaths, aPath) !== -1) {
 			return;
 		}
-		if(aPosition != -1) {
+		if(aPosition !== -1) {
 			this._loadedFilePaths.splice(aPosition+1, 0, aPath);
 		}
 		else {
@@ -140,7 +140,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		
 		var returnString = "(function(){";
 		
-		var compileData = (this._compileData != null) ? this._compileData : CompileData.create();
+		var compileData = (this._compileData !== null) ? this._compileData : CompileData.create();
 		
 		var beforeImportCode = "";
 		var code = "";

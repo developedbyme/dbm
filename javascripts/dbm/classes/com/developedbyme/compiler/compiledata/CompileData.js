@@ -86,7 +86,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		
 		var stringsVariable = this.addString(aClassName, "\"");
 		
-		if(this._importsCode == null) {
+		if(this._importsCode === null) {
 			this._importsCode = "var " + newId + "=dbm.importClass(" + stringsVariable + ")";
 		}
 		else {
@@ -113,7 +113,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		var newId = this._stringIdGroup.getNewId();
 		this._strings.addObject(aString, newId);
 		
-		if(this._stringsCode == null) {
+		if(this._stringsCode === null) {
 			this._stringsCode = "var " + newId + "=" + aScope + aString + aScope;
 		}
 		else {
@@ -127,7 +127,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 	 * Gets the code for all strings
 	 */
 	objectFunctions.getCompiledStringsCode = function() {
-		if(this._stringsCode != null) {
+		if(this._stringsCode !== null) {
 			return this._stringsCode + ";";
 		}
 		return "";
@@ -137,7 +137,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 	 * Gets the code for the imports.
 	 */
 	objectFunctions.getCompiledImportsCode = function() {
-		if(this._importsCode != null) {
+		if(this._importsCode !== null) {
 			return this._importsCode + ";";
 		}
 		return "";

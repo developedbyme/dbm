@@ -3,7 +3,7 @@
 	
 	var dbm;
 	
-	if(aGlobalObject.dbm == undefined) {
+	if(aGlobalObject.dbm === undefined) {
 		dbm = new (function DBM(){})();
 		aGlobalObject.dbm = dbm;
 	}
@@ -11,7 +11,7 @@
 		dbm = aGlobalObject.dbm;
 	}
 	
-	if(dbm.isCreated != true) {
+	if(dbm.isCreated !== true) {
 		dbm.init = function() {
 			this.singletons = new Object();
 			this.xmlNamespaces = new Object();
@@ -144,7 +144,7 @@
 			var currentArrayLength = currentArray.length;
 			for(var i = this._currentFile+1; i < currentArrayLength; i++) {
 				var currentFile = currentArray[i];
-				if(currentFile == fileName) {
+				if(currentFile === fileName) {
 					currentArray.splice(i, 1);
 					break;
 				}

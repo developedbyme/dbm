@@ -61,7 +61,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownFunctionP
 		
 		var returnString = "function";
 		
-		//if(this._functionName != null) {
+		//if(this._functionName !== null) {
 		//	returnString += " " + this._functionName;
 		//}
 		

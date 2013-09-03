@@ -67,11 +67,11 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 			var scopeStartPosition = ScopeFunctions.getScopeStart(this._script, currentPosition);
 			var endLinePosition = ScopeFunctions.getScopeStart(this._script, currentPosition, lineEndArray);
 			
-			while((endLinePosition < scopeStartPosition || scopeStartPosition == -1) && endLinePosition != -1) {
+			while((endLinePosition < scopeStartPosition || scopeStartPosition === -1) && endLinePosition !== -1) {
 				var currentLine = this._script.substring(currentStartPosition, endLinePosition);
 				//console.log(currentLine, VariableAliases.isEmptyText(currentLine));
 				if(!VariableAliases.isEmptyText(currentLine)) {
-					this._addCodeLine(currentLine, !(this._script.charAt(endLinePosition) == ";"));
+					this._addCodeLine(currentLine, !(this._script.charAt(endLinePosition) === ";"));
 				}
 				else {
 					this._lastLineIsOpen = false;
@@ -82,7 +82,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 				
 				endLinePosition = ScopeFunctions.getScopeStart(this._script, currentPosition, lineEndArray);
 			}
-			if(endLinePosition == -1) {
+			if(endLinePosition === -1) {
 				var currentLine = this._script.substring(currentStartPosition, this._script.length);
 				if(!VariableAliases.isEmptyText(currentLine)) {
 					this._addCodeLine(currentLine, false);
@@ -95,10 +95,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 			var currentScopeStartType = ScopeFunctions.getTypeOfScopeStart(this._script, scopeStartPosition);
 			var currentEndScopeType = ScopeFunctions.getTypeOfScopeEndForScopeStart(currentScopeStartType);
 			var currentScope = ScopeFunctions.getAnyScope(this._script, scopeStartPosition, currentScopeStartType, currentEndScopeType)
-			if(currentScope.end == -1) {
+			if(currentScope.end === -1) {
 				break;
 			}
-			if(currentEndScopeType == "}") {
+			if(currentEndScopeType === "}") {
 				var currentLine = this._script.substring(currentStartPosition, currentScope.end+currentEndScopeType.length);
 				if(!VariableAliases.isEmptyText(currentLine)) {
 					this._addCodeLine(currentLine, true);
@@ -108,7 +108,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 				}
 				currentStartPosition = currentScope.end+currentEndScopeType.length;
 			}
-			else if(currentEndScopeType == "\n") {
+			else if(currentEndScopeType === "\n") {
 				var currentLine = this._script.substring(currentStartPosition, currentScope.end+currentEndScopeType.length);
 				if(!VariableAliases.isEmptyText(currentLine)) {
 					this._addCodeLine(currentLine, false);

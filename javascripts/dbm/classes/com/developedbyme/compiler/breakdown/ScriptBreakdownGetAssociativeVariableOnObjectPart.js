@@ -36,8 +36,8 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownGetAssoci
 	
 	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
 		
-		if(this._variableNameLine == aCurrentPart) this._variableNameLine = aNewPart;
-		if(this._object == aCurrentPart) this._object = aNewPart;
+		if(this._variableNameLine === aCurrentPart) this._variableNameLine = aNewPart;
+		if(this._object === aCurrentPart) this._object = aNewPart;
 		
 		this.superCall(aCurrentPart, aNewPart);
 	};

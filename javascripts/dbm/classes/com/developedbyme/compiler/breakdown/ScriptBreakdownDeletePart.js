@@ -29,14 +29,14 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownDeletePar
 	
 	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
 		
-		if(this._line == aCurrentPart) this._line = aNewPart;
+		if(this._line === aCurrentPart) this._line = aNewPart;
 		
 		this.superCall(aCurrentPart, aNewPart);
 	};
 	
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownDeletePart::_breakdown");
-		if(this._script != "") {
+		if(this._script !== "") {
 			this._line = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script));
 			this._childBreakdowns.push(this._line);
 		}
@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownDeletePar
 		
 		var returnString = "delete";
 		
-		if(this._line != null) {
+		if(this._line !== null) {
 			returnString += " " + this._line.compile(aCompileData);
 		}
 		

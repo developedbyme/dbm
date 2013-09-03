@@ -31,20 +31,20 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart
 	
 	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
 		
-		if(this._evaluation == aCurrentPart) this._evaluation = aNewPart;
-		if(this._code == aCurrentPart) this._code = aNewPart;
+		if(this._evaluation === aCurrentPart) this._evaluation = aNewPart;
+		if(this._code === aCurrentPart) this._code = aNewPart;
 		
 		this.superCall(aCurrentPart, aNewPart);
 	};
 	
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart::_breakdown");
-		if(this._whileType == "while") {
+		if(this._whileType === "while") {
 			var evaluationIndex = this._script.indexOf("(");
 			var evaluationScope = ScopeFunctions.getScope(this._script, evaluationIndex, "(", ")");
 			this._evaluation = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(evaluationScope.start+1, evaluationScope.end)));
 			var resultString = StringFunctions.trim(this._script.substring(evaluationScope.end+1, this._script.length));
-			if(resultString.charAt(0) == "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end == resultString.length-1) {
+			if(resultString.charAt(0) === "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end === resultString.length-1) {
 				this._code = ScriptBreakdownCodePart.create(this, resultString.substring(1, resultString.length-1));
 				this._code.setScope("{", "}");
 			}
@@ -80,7 +80,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart
 		var evaluation = "(" + this._evaluation.compile(aCompileData) + ")";
 		var code = this._code.compile(aCompileData);
 		
-		if(this._whileType == "while") {
+		if(this._whileType === "while") {
 			returnString += evaluation;
 			returnString += code;
 		}

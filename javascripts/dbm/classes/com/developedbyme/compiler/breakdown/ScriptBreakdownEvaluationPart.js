@@ -36,7 +36,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 	};
 	
 	objectFunctions.getDeeperBreakdownIfEmpty = function() {
-		if(this._operation == null && this._childBreakdowns.length == 1) {
+		if(this._operation === null && this._childBreakdowns.length === 1) {
 			return this._childBreakdowns[0];
 		}
 		return this.superCall();
@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 			var operators = new Array();
 			var scopes = ScopeFunctions.splitEvaluation(this._script, operators);
 			
-			if(scopes.length == 0) {
+			if(scopes.length === 0) {
 				if(JavascriptLanguageFunctions.startsWithSpecifiedKeyword(this._script, "new")) {
 					this._childBreakdowns.push(ScriptBreakdownNewPart.create(this, StringFunctions.trim(this._script.substring(3, this._script.length))));
 				}
@@ -76,7 +76,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 						switch(currentScopeType) {
 							case "(":
 								var beforePart = StringFunctions.trim(this._script.substring(0, splitPosition));
-								if(beforePart == "new") {
+								if(beforePart === "new") {
 									this._childBreakdowns.push(ScriptBreakdownNewPart.create(this, StringFunctions.trim(this._script.substring(splitPosition, this._script.length))));
 								}
 								else {
@@ -128,7 +128,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentIndex = currentArrayLength-i-1;
 			var currentPresedence = this._getPrecedence(currentArray[currentIndex]);
-			if(lowestPrecedence == -1 || currentPresedence < lowestPrecedence) {
+			if(lowestPrecedence === -1 || currentPresedence < lowestPrecedence) {
 				lowestPrecedence = currentPresedence;
 				returnIndex = currentIndex;
 			}
@@ -210,7 +210,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 		//console.log(aCompileData);
 		
 		//MEDEBUG
-		if(this._childBreakdowns.length == 0) {
+		if(this._childBreakdowns.length === 0) {
 			return "";
 		}
 		

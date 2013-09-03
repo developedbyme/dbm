@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdown", "com.d
 		
 		var registerClassRegExp = new RegExp("dbm\.registerClass\\(\"([a-zA-Z0-9_\.]*)\",[\\s]*\"([a-zA-Z0-9_\.]*)\"", "g");
 		var currentArray = this._script.match(registerClassRegExp);
-		if(currentArray != null) {
+		if(currentArray !== null) {
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentClass = currentArray[i].substring(0, currentArray[i].length-1);
@@ -54,7 +54,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdown", "com.d
 		
 		var importClassRegExp = new RegExp("dbm\.importClass\\(\"([a-zA-Z0-9_\.]*)\"\\);", "g");
 		var currentArray = this._script.match(importClassRegExp);
-		if(currentArray != null) {
+		if(currentArray !== null) {
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentClass = currentArray[i].substring(17, currentArray[i].length-3);

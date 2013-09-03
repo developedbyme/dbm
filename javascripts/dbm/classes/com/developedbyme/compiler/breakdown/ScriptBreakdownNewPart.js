@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNewPart",
 	
 	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
 		
-		if(this._line == aCurrentPart) this._line = aNewPart;
+		if(this._line === aCurrentPart) this._line = aNewPart;
 		
 		this.superCall(aCurrentPart, aNewPart);
 	};

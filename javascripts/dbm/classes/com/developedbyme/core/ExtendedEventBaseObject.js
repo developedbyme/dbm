@@ -19,7 +19,7 @@ dbm.registerClass("com.developedbyme.core.ExtendedEventBaseObject", "com.develop
 	};
 	
 	objectFunctions.getExtendedEvent = function() {
-		if(this._extendedEvent == null) {
+		if(this._extendedEvent === null) {
 			this._extendedEvent = ExtendedEventController.create(this);
 			this.addDestroyableObject(this._extendedEvent);
 		} 
@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.core.ExtendedEventBaseObject", "com.develop
 	};
 	
 	objectFunctions.getDelayedExtendedEvent = function() {
-		if(this._delayedExtendedEvent == null) {
+		if(this._delayedExtendedEvent === null) {
 			this._delayedExtendedEvent = DelayedExtendedEventController.create(this);
 			this.addDestroyableObject(this._delayedExtendedEvent);
 		} 
@@ -37,7 +37,7 @@ dbm.registerClass("com.developedbyme.core.ExtendedEventBaseObject", "com.develop
 	};
 	
 	objectFunctions.reactivateForNewDocument = function() {
-		if(this._extendedEvent != null) {
+		if(this._extendedEvent !== null) {
 			this._extendedEvent.reactivateEventListeners();
 		}
 	};

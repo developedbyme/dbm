@@ -35,7 +35,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownForPart",
 		var evaluationScope = ScopeFunctions.getScope(this._script, evaluationIndex, "(", ")");
 		this._evaluation = ScriptBreakdownCodePart.create(this, StringFunctions.trim(this._script.substring(evaluationScope.start+1, evaluationScope.end)));
 		var resultString = StringFunctions.trim(this._script.substring(evaluationScope.end+1, this._script.length));
-		if(resultString.charAt(0) == "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end == resultString.length-1) {
+		if(resultString.charAt(0) === "{" && ScopeFunctions.getScope(resultString, 0, "{", "}").end === resultString.length-1) {
 			this._code = ScriptBreakdownCodePart.create(this, resultString.substring(1, resultString.length-1));
 			this._code.setScope("{", "}");
 		}

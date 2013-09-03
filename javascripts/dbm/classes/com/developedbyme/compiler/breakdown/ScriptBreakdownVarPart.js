@@ -32,11 +32,11 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 	
 	objectFunctions._replaceChildBreakdown = function(aCurrentPart, aNewPart) {
 		
-		if(this._set == aCurrentPart) {
+		if(this._set === aCurrentPart) {
 			this._set = aNewPart;
 			this.addDestroyableObject(this._set);
 		}
-		if(this._in == aCurrentPart) {
+		if(this._in === aCurrentPart) {
 			this._in = aNewPart;
 			this.addDestroyableObject(this._in);
 		}
@@ -52,7 +52,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 		
 		//METODO: need to handle comments in variable name
 		
-		if(evaluationIndex != -1) {
+		if(evaluationIndex !== -1) {
 			this._variableName = StringFunctions.trim(this._script.substring(0, evaluationIndex));
 			
 			//console.log(StringFunctions.trim(this._script.substring(evaluationIndex+1, this._script.length)).substring(0, 60));
@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 			this._childBreakdowns.push(this._set);
 			
 		}
-		else if(inIndex != -1) {
+		else if(inIndex !== -1) {
 			this._variableName = StringFunctions.trim(this._script.substring(0, inIndex));
 			this._in = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(inIndex+4, this._script.length)));
 			this._childBreakdowns.push(this._in);
@@ -73,16 +73,16 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 	objectFunctions._childsBrokenDown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart::_childsBrokenDown");
 		
-		if(this._set != null) {
+		if(this._set !== null) {
 			var setChildBreakdowns = this._set.getChildBreakdowns();
 			
 			//console.log(setChildBreakdowns);
 			
-			if(setChildBreakdowns.length == 2) { //METODO: fix that it can be more than 2
+			if(setChildBreakdowns.length === 2) { //METODO: fix that it can be more than 2
 				var functionCallBreakdown = setChildBreakdowns[1];
-				if(functionCallBreakdown.getType() == "callFunction") {
+				if(functionCallBreakdown.getType() === "callFunction") {
 					var functionNameBreakdown = setChildBreakdowns[0];
-					if(functionNameBreakdown.getType() == "variableOnObjectReference" && functionNameBreakdown.getVariableName() == "importClass" && functionNameBreakdown.getObject().getVariableName() == "dbm") {
+					if(functionNameBreakdown.getType() === "variableOnObjectReference" && functionNameBreakdown.getVariableName() === "importClass" && functionNameBreakdown.getObject().getVariableName() === "dbm") {
 						
 						var classPath = functionCallBreakdown.getChildBreakdowns()[0].getString();
 						
@@ -104,10 +104,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVarPart",
 		
 		var returnString = "var " + compiledName;
 		
-		if(this._set != null) {
+		if(this._set !== null) {
 			returnString += "=" + this._set.compile(aCompileData);
 		}
-		else if(this._in != null) {
+		else if(this._in !== null) {
 			returnString += " in " + this._in.compile(aCompileData);
 		}
 		

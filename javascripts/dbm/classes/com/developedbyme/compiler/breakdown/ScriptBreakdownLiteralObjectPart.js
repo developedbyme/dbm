@@ -54,7 +54,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 			
 			var currentLine = StringFunctions.trim(this._script.substring(currentPosition, currentArray[i]));
 			var colonPosition = this._getColonPosition(currentLine);
-			if(colonPosition == -1) {
+			if(colonPosition === -1) {
 				continue;
 			}
 			else {
@@ -68,9 +68,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 			currentPosition = currentArray[i]+1;
 		}
 		
-		var currentLine =StringFunctions.trim(this._script.substring(currentPosition, this._script.length));
+		var currentLine = StringFunctions.trim(this._script.substring(currentPosition, this._script.length));
 		var colonPosition = this._getColonPosition(currentLine);
-		if(colonPosition != -1) {
+		if(colonPosition !== -1) {
 			var namePart = ScriptBreakdownLiteralNamePart.create(this, StringFunctions.trim(currentLine.substring(0, colonPosition)));
 			var valuePart = ScriptBreakdownLinePart.create(this, StringFunctions.trim(currentLine.substring(colonPosition+1, currentLine.length)));
 			this._names.push(namePart);

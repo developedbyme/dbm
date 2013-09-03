@@ -42,14 +42,14 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 	objectFunctions.setParent = function(aParent) {
 		
 		this._parent = aParent;
-		if(this._parent != null) {
+		if(this._parent !== null) {
 			this.declaresVariables = this._parent.declaresVariables;
 		}
 	};
 	
 	objectFunctions.changeParent = function(aParent) {
 		
-		if(this._parent != null) {
+		if(this._parent !== null) {
 			this._parent._internalFunctionality_removeChildBreakdown(this);
 			this._parent = null;
 		}
@@ -118,7 +118,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 			var scopeStartPosition = ScopeFunctions.getScopeStart(aText, currentPosition);
 			var endLinePosition = ScopeFunctions.getScopeStart(aText, currentPosition, lineEndArray);
 			
-			while((endLinePosition < scopeStartPosition || scopeStartPosition == -1) && endLinePosition != -1) {
+			while((endLinePosition < scopeStartPosition || scopeStartPosition === -1) && endLinePosition !== -1) {
 				
 				returnArray.push(endLinePosition);
 				
@@ -126,13 +126,13 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 				
 				endLinePosition = ScopeFunctions.getScopeStart(aText, currentPosition, lineEndArray);
 			}
-			if(endLinePosition == -1) {
+			if(endLinePosition === -1) {
 				break;
 			}
 			var currentScopeStartType = ScopeFunctions.getTypeOfScopeStart(aText, scopeStartPosition);
 			var currentEndScopeType = ScopeFunctions.getTypeOfScopeEndForScopeStart(currentScopeStartType);
 			var currentScope = ScopeFunctions.getAnyScope(aText, scopeStartPosition, currentScopeStartType, currentEndScopeType)
-			if(currentScope.end == -1) {
+			if(currentScope.end === -1) {
 				break;
 			}
 			currentPosition = currentScope.end+currentEndScopeType.length;
@@ -158,16 +158,16 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 			var scopeStartPosition = ScopeFunctions.getScopeStart(aText, currentPosition);
 			var colonPosition = ScopeFunctions.getScopeStart(aText, currentPosition, ":");
 			
-			if((colonPosition < scopeStartPosition || scopeStartPosition == -1) && colonPosition != -1) {
+			if((colonPosition < scopeStartPosition || scopeStartPosition === -1) && colonPosition !== -1) {
 				return colonPosition;
 			}
-			if(colonPosition == -1) {
+			if(colonPosition === -1) {
 				break;
 			}
 			var currentScopeStartType = ScopeFunctions.getTypeOfScopeStart(aText, scopeStartPosition);
 			var currentEndScopeType = ScopeFunctions.getTypeOfScopeEndForScopeStart(currentScopeStartType);
 			var currentScope = ScopeFunctions.getAnyScope(aText, scopeStartPosition, currentScopeStartType, currentEndScopeType)
-			if(currentScope.end == -1) {
+			if(currentScope.end === -1) {
 				break;
 			}
 			currentPosition = currentScope.end+currentEndScopeType.length;
@@ -199,7 +199,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentPart = currentArray[i];
-			if(currentPart == null) {
+			if(currentPart === null) {
 				console.log(">>>>>>", this.toString(), this._script, this._childBreakdowns);
 				continue;
 			}
@@ -209,7 +209,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 			}
 			
 			var deeperBreakdown = currentPart.getDeeperBreakdownIfEmpty();
-			if(deeperBreakdown != null) {
+			if(deeperBreakdown !== null) {
 				
 				this._replaceChildBreakdown(currentPart, deeperBreakdown);
 				
@@ -235,7 +235,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 			var currentPart = currentArray[i];
 			if(currentPart.executesDirectly) {
 				var newString = currentPart.compile(aCompileData);
-				if(returnString.length != 0 && newString.length != 0 && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "else") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "catch") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "finally")) {
+				if(returnString.length !== 0 && newString.length !== 0 && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "else") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "catch") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "finally")) {
 					returnString += ";";
 				}
 				returnString += newString;
