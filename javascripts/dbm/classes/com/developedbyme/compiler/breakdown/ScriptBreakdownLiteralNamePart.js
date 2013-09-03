@@ -31,7 +31,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralNa
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralNamePart::_breakdown");
 		
 		this._keyword = this._script;
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralNamePart::compile");

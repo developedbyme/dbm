@@ -181,5 +181,5 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		if(index !== -1) {
 			this._playingAudio.splice(index, 1);
 		}
-	}
+	};
 });

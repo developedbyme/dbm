@@ -86,7 +86,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.V
 		
 		this._loadProgress = maxBuffered/this._data.getValue().duration;
 		
-	}
+	};
 	
 	staticFunctions.create = function(aUrl) {
 		var newVideoAsset = (new ClassReference()).init();

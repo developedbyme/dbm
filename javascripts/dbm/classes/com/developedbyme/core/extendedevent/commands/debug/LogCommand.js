@@ -73,5 +73,5 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.debug.LogComman
 		}
 		
 		return newCommand;
-	}
+	};
 });

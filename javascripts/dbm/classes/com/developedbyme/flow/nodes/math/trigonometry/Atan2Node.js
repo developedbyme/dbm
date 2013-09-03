@@ -36,5 +36,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node", "c
 		newNode.setPropertyInputWithoutNull("x", aX);
 		newNode.setPropertyInputWithoutNull("y", aY);
 		return newNode;
-	}
+	};
 });

@@ -88,5 +88,5 @@ dbm.registerClass("com.developedbyme.core.objectparts.BrowserDependentFunction",
 	staticFunctions.create = function(aOwner) {
 		var newFunction = (new BrowserDependentFunction()).init().setOwner(aOwner);
 		return newFunction;
-	}
+	};
 });

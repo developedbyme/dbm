@@ -35,5 +35,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.PrintFieldNode", "com.de
 		newNode.setPropertyInputWithoutNull("element", aElement);
 		newNode.setPropertyInputWithoutNull("text", aText);
 		return newNode;
-	}
+	};
 });

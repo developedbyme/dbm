@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 		this._setAsNullResult();
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Sets the result to null
@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 		this.parameter1 = NaN;
 		this.parameter2 = NaN;
 		this.theResult = false;
-	}
+	};
 	
 	/**
 	 * Finds the intersection using two points and two vectors.

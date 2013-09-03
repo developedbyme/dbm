@@ -50,5 +50,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.FitRectangleNode",
 		newNode.setPropertyInputWithoutNull("outerRectangle", aOuterRectangle);
 		newNode.setPropertyInputWithoutNull("innerRectangle", aInnerRectangle);
 		return newNode;
-	}
+	};
 });

@@ -100,5 +100,5 @@ dbm.registerClass("com.developedbyme.utils.geometry.creators.PlaneCreator", null
 		}
 		
 		return aMesh;
-	}
+	};
 });

@@ -33,5 +33,5 @@ dbm.registerClass("com.developedbyme.utils.native.object.ObjectFunctions", null,
 			}
 		}
 		return valueType;
-	}
+	};
 });

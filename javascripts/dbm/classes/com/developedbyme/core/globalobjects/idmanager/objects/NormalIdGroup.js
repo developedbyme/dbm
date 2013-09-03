@@ -24,11 +24,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.Normal
 		this._idNr = 0;
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.getId = function(aNumber) {
 		return (this.prefix + aNumber + this.suffix);
-	}
+	};
 	
 	/**
 	 * Returns a new id as a string.
@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.Normal
 		var returnId = this._idNr;
 		this._idNr++;
 		return this.getId(returnId);
-	}
+	};
 	
 	/**
 	 * Return a new id as a number.
@@ -50,12 +50,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.Normal
 		var returnId = this._idNr;
 		this._idNr++;
 		return returnId;
-	}
+	};
 	
 	staticFunctions.create = function(aPrefix, aSuffix) {
 		var newNormalIdGroup = (new ClassReference()).init();
 		newNormalIdGroup.prefix = VariableAliases.valueWithDefault(aPrefix, "");
 		newNormalIdGroup.suffix = VariableAliases.valueWithDefault(aSuffix, "");
 		return newNormalIdGroup;
-	}
+	};
 });

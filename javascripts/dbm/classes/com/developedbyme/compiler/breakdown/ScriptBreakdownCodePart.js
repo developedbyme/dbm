@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 		}
 		
 		this._lastLineIsOpen = aIsOpen;
-	}
+	};
 	
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::_breakdown");
@@ -122,7 +122,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 		}
 		
 		this._isBrokenDown = true;
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::compile");

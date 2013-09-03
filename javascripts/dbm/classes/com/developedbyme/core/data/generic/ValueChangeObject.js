@@ -23,7 +23,7 @@ dbm.registerClass("com.developedbyme.core.data.generic.ValueChangeObject", "com.
 		aReturnArray.push("oldValue: " + this.oldValue);
 		aReturnArray.push("newValue: " + this.newValue);
 		
-	}
+	};
 	
 	staticFunctions.create = function(aOldValue, aNewValue) {
 		//console.log("com.developedbyme.core.data.generic.ValueChangeObject::create (static)");

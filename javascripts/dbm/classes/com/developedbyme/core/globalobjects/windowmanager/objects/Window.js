@@ -152,7 +152,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.DOM_CONTENT_LOADED, WindowExtendedEventIds.DOCUMENT_READY, WindowExtendedEventIds.DOCUMENT_READY, true).activate();
 		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.LOAD, WindowExtendedEventIds.DOCUMENT_LOADED, WindowExtendedEventIds.DOCUMENT_LOADED, true).activate();
 		this.getExtendedEvent().linkJavascriptEvent(this._window, JavascriptEventIds.UNLOAD, WindowExtendedEventIds.DOCUMENT_UNLOADED, WindowExtendedEventIds.DOCUMENT_UNLOADED, true).activate();
-	}
+	};
 	
 	objectFunctions.setUrl = function(aUrl) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setUrl");
@@ -213,7 +213,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	
 	objectFunctions.isOpen = function() {
 		return this._isOpen;
-	}
+	};
 	
 	objectFunctions.getDocument = function() {
 		if(!this.isOpen()) {
@@ -221,7 +221,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			return null;
 		}
 		return this._window.document;
-	}
+	};
 	
 	objectFunctions.getWindow = function() {
 		if(!this.isOpen()) {
@@ -229,7 +229,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			return null;
 		}
 		return this._window;
-	}
+	};
 	
 	objectFunctions.getHtmlCreator = function() {
 		if(!this.isOpen()) {
@@ -253,7 +253,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		if(this._documentReady.getValue()) {
 			this._setupIconLink();
 		}
-	}
+	};
 	
 	objectFunctions._updateFlowSize = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
@@ -287,7 +287,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 				}
 			}
 		}
-	}
+	};
 	
 	objectFunctions._updateFlowPosition = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
@@ -300,7 +300,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 				this._updatePosition(newX, newY);
 			}
 		}
-	}
+	};
 	
 	objectFunctions._updateIconFlow = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateIconFlow");
@@ -312,7 +312,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 				iconParent.appendChild(icon);
 			}
 		}
-	}
+	};
 	
 	
 	objectFunctions._updateSize = function(aWidth, aHeight) {
@@ -345,7 +345,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		}
 		
 		this._window.resizeTo(Math.round(aWidth+this._margins.horizontalMargin), Math.round(aHeight+this._margins.verticalMargin));
-	}
+	};
 	
 	objectFunctions._updateSizeBy = function(aWidth, aHeight) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateSizeBy");
@@ -355,17 +355,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		//this._verticalMargin = this._window.outerHeight-this._window.innerHeight;
 		
 		this._window.resizeBy(aWidth, aHeight);
-	}
+	};
 	
 	objectFunctions._updatePosition = function(aX, aY) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updatePosition");
 		this._updatePositionFunction.callFunction(arguments);
-	}
+	};
 	
 	objectFunctions._browser_firefox_updatePosition = function(aX, aY) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_firefox_updatePosition");
 		this._window.moveTo(aX, aY);
-	}
+	};
 	
 	objectFunctions._browser_msie_updatePosition = function(aX, aY) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_msie_updatePosition");
@@ -377,7 +377,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_browser_msie_updatePosition", "Un error occured while moving the window.");
 			ErrorManager.getInstance().reportError(this, "_browser_msie_updatePosition", theError);
 		}
-	}
+	};
 	
 	objectFunctions._browser_default_updatePosition = function(aX, aY) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_default_updatePosition");
@@ -388,7 +388,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_browser_default_updatePosition", "Un error occured while moving the window.");
 			ErrorManager.getInstance().reportError(this, "_browser_default_updatePosition", theError);
 		}
-	}
+	};
 	
 	objectFunctions._sizeUpdated = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
@@ -669,13 +669,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		if(!this._isOpen) return;
 		
 		this._window.blur();
-	}
+	};
 	
 	objectFunctions.focus = function() {
 		if(!this._isOpen) return;
 		
 		this._window.focus();
-	}
+	};
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::updateTime");

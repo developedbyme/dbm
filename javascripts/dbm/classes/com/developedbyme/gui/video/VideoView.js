@@ -311,7 +311,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		if(aPreload) {
 			this.getElement().load();
 		}
-	}
+	};
 	
 	objectFunctions.startScrubbing = function(aValue) {
 		this.seek(aValue);

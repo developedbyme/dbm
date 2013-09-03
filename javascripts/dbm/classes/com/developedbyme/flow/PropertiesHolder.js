@@ -21,5 +21,5 @@ dbm.registerClass("com.developedbyme.flow.PropertiesHolder", "com.developedbyme.
 			}
 		}
 		return newNode;
-	}
+	};
 });

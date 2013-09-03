@@ -127,7 +127,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 			var currentProperty = currentArray[i];
 			currentProperty.setValueWithFlow(null, aFlowUpdateNumber);
 		}
-	}
+	};
 	
 	objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
 		var currentArray = this._outputConnections;

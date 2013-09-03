@@ -139,5 +139,5 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 		}
 		
 		return returnString;
-	}
+	};
 });

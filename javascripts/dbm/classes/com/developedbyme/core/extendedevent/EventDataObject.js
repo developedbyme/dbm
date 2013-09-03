@@ -26,7 +26,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.EventDataObject", "com.d
 	 */
 	objectFunctions.addResult = function(aData) {
 		this.resultsArray.push(aData);
-	}
+	};
 	
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
@@ -36,7 +36,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.EventDataObject", "com.d
 		aReturnArray.push("data: " + this.data);
 		aReturnArray.push("statusData: " + this.statusData);
 		aReturnArray.push("resultsArray: " + this.resultsArray);
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

@@ -55,5 +55,5 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.Stati
 		var newObject = (new StaticVariableObject()).init();
 		newObject.reevaluationData = aData;
 		return newObject;
-	}
+	};
 });

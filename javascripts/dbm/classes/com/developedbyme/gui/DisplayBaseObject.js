@@ -204,14 +204,14 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		}
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.addToParent = function(aElement) {
 		this.setParent(aElement);
 		this.addToDom();
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.addToDom = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::addToDom");
@@ -221,7 +221,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this._inDomUpdate.update();
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.removeFromDom = function() {
 		
@@ -229,7 +229,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this._inDomUpdate.update();
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
 		

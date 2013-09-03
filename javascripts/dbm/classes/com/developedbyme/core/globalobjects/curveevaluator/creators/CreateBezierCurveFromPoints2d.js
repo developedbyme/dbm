@@ -59,5 +59,5 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 			currentPoint.x = currentArray2[arrayLength+0];
 			currentPoint.y = currentArray2[arrayLength+1];
 		}
-	}
+	};
 });

@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.flow.FlowGroupWithCustomUpdateFunction", "c
 		this._customFlowFunction = aFunction;
 		
 		return this;
-	}
+	};
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
 		if(this._customFlowFunction !== null) {
@@ -78,5 +78,5 @@ dbm.registerClass("com.developedbyme.flow.FlowGroupWithCustomUpdateFunction", "c
 			newGroup.setOutputPropertyInputWithoutNull(objectName, aOutputProperties[objectName]);
 		}
 		return newGroup;
-	}
+	};
 });

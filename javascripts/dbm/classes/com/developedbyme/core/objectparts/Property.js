@@ -109,7 +109,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 		this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
 		return this._animationController;
-	}
+	};
 	
 	objectFunctions.canBeSet = function canBeSet() {
 		return (this._inputConnection === null || (this._animationController !== null && this._canSetValueInAnimation));
@@ -131,7 +131,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._mustUpdate = false;
 		this._status = FlowStatusTypes.UPDATED;
-	}
+	};
 	
 	objectFunctions.getValue = function getValue() {
 		
@@ -390,7 +390,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		
 		aReturnArray.push("name: " + this.name);
 		aReturnArray.push("value: " + this._performGetValue());
-	}
+	};
 	
 	objectFunctions.performDestroy = function performDestroy() {
 		//console.log("com.developedbyme.core.objectparts.Property::performDestroy");

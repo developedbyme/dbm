@@ -32,13 +32,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		this._recyclePointsArray = new Array();
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.addEvaluator = function(aEvaluator) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::addEvaluator");
 		//console.log(aEvaluator);
 		this._evaluatorsArray.push(aEvaluator);
-	}
+	};
 	
 	objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPartOfCurve");
@@ -63,7 +63,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		}
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPartOfCurve", aPointSet + " can't be evaluated.");
 		return;
-	}
+	};
 	
 	objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPointOnBezierSegment3d");
@@ -86,7 +86,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		aOutputPoint.x = newXValue;
 		aOutputPoint.y = newYValue;
 		aOutputPoint.z = newZValue;
-	}
+	};
 	
 	objectFunctions.getPointOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
 		var curveDegree = aPointsArray.length-1;
@@ -104,7 +104,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		}
 		aOutputPoint.x = newXValue;
 		aOutputPoint.y = newYValue;
-	}
+	};
 	
 	objectFunctions.getTangentOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator.getTangentOnBezierSegment2d");
@@ -151,7 +151,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		
 		aOutputPoint.x = newXValue;
 		aOutputPoint.y = newYValue;
-	}
+	};
 	
 	objectFunctions.getBezierMultipliersArray = function(aCurveDegree) {
 		//MENOTE: generates constants for cv-points
@@ -168,7 +168,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 			previousArray = newArray;
 		}
 		return currentArray[aCurveDegree];
-	}
+	};
 	
 	/**
 	 * Calculates the berstein polynominal for a parameter
@@ -180,7 +180,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 	objectFunctions.calculateBernsteinPolynomialWithoutMultiplier = function(aParameter, aPointNr, aDegree) {
 		//console.log("calculateBernsteinPolynomialWithoutMultiplier");
 		return Math.pow((1-aParameter), (aDegree-aPointNr))*Math.pow(aParameter, aPointNr);
-	}
+	};
 	
 	objectFunctions._evaluateAnimationCurveSegment = function(aSegment, aEvaluationValue, aExactness) {
 		var point1 = this.curve.pointsArray[4*aSegment];
@@ -223,7 +223,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 			}
 			return (Math.pow(1-currentParameter, 3)*point1.y+3*(Math.pow(1-currentParameter, 2))*(currentParameter)*point2.y+3*(Math.pow(currentParameter, 2))*(1-currentParameter)*point3.y+Math.pow(currentParameter, 3)*point4.y);
 		}
-	}
+	};
 	
 	objectFunctions.getValueOfAnimationCurve = function(aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness) {
 		aPreInfinityMethod = VariableAliases.valueWithDefault(aPreInfinityMethod, ExtrapolationTypes.CONSTANT);
@@ -379,7 +379,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 			currentPoint.y = eliminationArray[i][arrayLength+1];
 			currentPoint.z = eliminationArray[i][arrayLength+2];
 		}
-	}
+	};
 	
 	/**
 	 * Creates a bezier curve that passes through a set of points
@@ -392,7 +392,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		
 		var curveCreator = (new CreateBezierCurveFromPoints2d()).init();
 		curveCreator.createCurve(aPointsArray, aReturnCurve, aParametersArray);
-	}
+	};
 	
 	/**
 	 * Creates a multisegment bezier curve that passes through a set of points
@@ -410,11 +410,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		var curveCreator = (new CreateMultiSegmentBezierCurveFromPoints2d()).init();
 		curveCreator.createCurve(aPointsArray, aReturnCurve, aIsRound);
 		
-	}
+	};
 	
 	objectFunctions.recycleCurve = function(aCurve) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::recycleCurve");
 		
 		this._recyclePointsArray.push(aCurve.pointsArray);
-	}
+	};
 });

@@ -94,7 +94,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 				this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED);
 			}
 		}
-	}
+	};
 	
 	staticFunctions.create = function(aUrl) {
 		var newAudioAsset = (new ClassReference()).init();

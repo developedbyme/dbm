@@ -224,7 +224,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		globalScope.addVariableReference("_gaq", "_gaq");
 		newCompileData.addScope(globalScope);
 		return newCompileData;
-	}
+	};
 	
 	staticFunctions.getJavascriptDefaultScopeData = function() {
 		var newScopeData = CompileScopeData.create();
@@ -236,5 +236,5 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		}
 		
 		return newScopeData
-	}
+	};
 });

@@ -58,14 +58,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		this.currentFrame = 0;
 		
 		this._intervalNumber = setInterval(this._updateCallback, this._updateLength);
-	}
+	};
 	
 	objectFunctions.stop = function() {
 		if(this._intervalNumber !== -1) {
 			clearInterval(this._intervalNumber);
 			this._intervalNumber = -1;
 		}
-	}
+	};
 	
 	objectFunctions._addUpdaterType = function(aType) {
 		var newUpdater = (new UpdateChain()).init();

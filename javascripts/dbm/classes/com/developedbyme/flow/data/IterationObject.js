@@ -28,13 +28,13 @@ dbm.registerClass("com.developedbyme.flow.data.IterationObject", "com.developedb
 		var newConnection = IterationConnection.create(aInProperty, aOutProperty);
 		this._inputs.addObject(aName, newConnection);
 		return newConnection;
-	}
+	};
 	
 	objectFunctions.addOutput = function(aName, aInProperty, aOutProperty) {
 		var newConnection = IterationConnection.create(aInProperty, aOutProperty);
 		this._outputs.addObject(aName, newConnection);
 		return newConnection;
-	}
+	};
 	
 	objectFunctions.updateInputs = function() {
 		//console.log("com.developedbyme.flow.data.IterationObject::updateInputs");
@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.flow.data.IterationObject", "com.developedb
 			//console.log(currentConnection.inputProperty, currentConnection.outputProperty);
 			currentConnection.outputProperty.setValue(currentConnection.inputProperty.getValue());
 		}
-	}
+	};
 	
 	objectFunctions.updateOutputs = function() {
 		//console.log("com.developedbyme.flow.data.IterationObject::updateOutputs");
@@ -55,7 +55,7 @@ dbm.registerClass("com.developedbyme.flow.data.IterationObject", "com.developedb
 			var currentConnection = currentArray[i];
 			currentConnection.outputProperty.setValue(currentConnection.inputProperty.getValue());
 		}
-	}
+	};
 	
 	/**
 	 * Performs the destruction of this class.

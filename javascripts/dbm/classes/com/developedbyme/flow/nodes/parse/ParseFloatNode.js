@@ -34,5 +34,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.parse.ParseFloatNode", "com.deve
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
 		return newNode;
-	}
+	};
 });

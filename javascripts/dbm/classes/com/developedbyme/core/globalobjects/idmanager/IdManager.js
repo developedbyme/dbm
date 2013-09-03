@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.IdManager", "c
 		this._idGroupsObject = new Object();
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Sets the id group.
@@ -36,7 +36,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.IdManager", "c
 			//METODO: warning message
 		}
 		this._idGroupsObject[aGroupName] = aGroupObject;
-	}
+	};
 	
 	/**
 	 * Returns a unique id for a group.
@@ -53,5 +53,5 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.IdManager", "c
 		}
 		var currentGroup = this._idGroupsObject[aGroupName];
 		return currentGroup.getNewId();
-	}
+	};
 });

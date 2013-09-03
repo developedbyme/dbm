@@ -65,7 +65,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownWhilePart
 		}
 		this._childBreakdowns.push(this._evaluation);
 		this._childBreakdowns.push(this._code);
-	}
+	};
 	
 	objectFunctions.setWhileType = function(aType) {
 		

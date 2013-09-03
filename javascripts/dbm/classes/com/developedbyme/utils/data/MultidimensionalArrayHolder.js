@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "c
 	
 	objectFunctions.getDimesionLength = function(aDimension) {
 		return this._lengths[aDimension];
-	}
+	};
 	
 	objectFunctions._getArrayPosition = function(aPositions) {
 		
@@ -37,7 +37,7 @@ dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "c
 		}
 		
 		return returnValue;
-	}
+	};
 	
 	objectFunctions.getValue = function(/* ... aPositions */) {
 		

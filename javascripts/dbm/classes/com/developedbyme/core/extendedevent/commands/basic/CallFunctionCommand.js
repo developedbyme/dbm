@@ -119,7 +119,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		}
 		
 		return newCommand;
-	}
+	};
 	
 	/**
 	 * Creates a command that calls a function.
@@ -157,5 +157,5 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		}
 		
 		return newCommand;
-	}
+	};
 });

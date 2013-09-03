@@ -50,5 +50,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode",
 		newNode.setPropertyInputWithoutNull("originalPosition", aOriginalPosition);
 		newNode.setPropertyInputWithoutNull("speed", aSpeed);
 		return newNode;
-	}
+	};
 });

@@ -36,7 +36,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 		}
 		
 		return returnObject;
-	}
+	};
 	
 	objectFunctions.performDestroy = function() {
 		
@@ -62,5 +62,5 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 		var newObject = (new ReevaluateObjectObject()).init();
 		newObject.originalObject = aOriginalObject;
 		return newObject;
-	}
+	};
 });

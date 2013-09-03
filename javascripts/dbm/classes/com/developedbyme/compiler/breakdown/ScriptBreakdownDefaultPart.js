@@ -42,7 +42,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownDefaultPa
 		this._result = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(colonPosition+1, this._script.length)));
 		
 		this._childBreakdowns.push(this._result);
-	}
+	};
 	
 	objectFunctions.setConditionType = function(aType) {
 		

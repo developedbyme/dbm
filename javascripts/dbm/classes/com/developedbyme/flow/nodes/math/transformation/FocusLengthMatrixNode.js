@@ -49,5 +49,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.FocusLengthM
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("focusLength", aFocusLength);
 		return newNode;
-	}
+	};
 });

@@ -118,7 +118,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 				}
 			}
 		}
-	}
+	};
 	
 	objectFunctions._getLowestPrecedenceIndex = function(aOperatorsArray) {
 		var returnIndex = -1;
@@ -134,7 +134,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 			}
 		}
 		return returnIndex;
-	}
+	};
 	
 	objectFunctions._getPrecedence = function(aOperator) {
 		switch(aOperator) {
@@ -202,7 +202,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 		
 		//METODO: error message
 		return 14;
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart::compile");

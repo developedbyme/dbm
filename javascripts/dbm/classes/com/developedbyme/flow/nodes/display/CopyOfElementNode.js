@@ -39,5 +39,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.CopyOfElementNode", "com
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("inputElement", aElement);
 		return newNode;
-	}
+	};
 });

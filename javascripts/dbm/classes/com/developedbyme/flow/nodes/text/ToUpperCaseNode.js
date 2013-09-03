@@ -33,5 +33,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.text.ToUpperCaseNode", "com.deve
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
 		return newNode;
-	}
+	};
 });

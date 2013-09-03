@@ -63,5 +63,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.text.TextReplacementNode", "com.
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
 		return newNode;
-	}
+	};
 });

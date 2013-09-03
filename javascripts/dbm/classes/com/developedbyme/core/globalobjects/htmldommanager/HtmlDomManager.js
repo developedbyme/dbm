@@ -97,7 +97,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 				ErrorManager.getInstance().reportError(this, "reactivateForNewDocument", theError);
 			}
 		}
-	}
+	};
 	
 	objectFunctions.fullAdopt = function(aFromDocument, aToDocument) {
 		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::fullAdopt");
@@ -118,7 +118,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 				ErrorManager.getInstance().reportError(this, "fullAdopt", theError);
 			}
 		}
-	}
+	};
 	
 	objectFunctions.getHtmlCreator = function(aDocument) {
 		var currentArray = this._htmlCreators;
@@ -171,7 +171,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 			var currentName = aFromElement.style[i];
 			aToElement.style.setProperty(currentName, aFromElement.style.getPropertyValue(currentName), aFromElement.style.getPropertyPriority(currentName));
 		}
-	}
+	};
 	
 	objectFunctions.getTempCanvas = function() {
 		return this._tempCanvas;

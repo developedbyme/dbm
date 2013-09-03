@@ -40,5 +40,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.FocusLengthF
 		newNode.setPropertyInputWithoutNull("fov", aFov);
 		newNode.setPropertyInputWithoutNull("viewLength", aViewLength);
 		return newNode;
-	}
+	};
 });

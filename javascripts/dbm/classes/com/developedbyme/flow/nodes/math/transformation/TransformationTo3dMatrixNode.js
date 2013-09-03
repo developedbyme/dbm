@@ -147,5 +147,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		newNode.setPropertyInputWithoutNull("scaleZ", aScaleZ);
 		newNode.setPropertyInputWithoutNull("rotationOrder", aRotationOrder);
 		return newNode;
-	}
+	};
 });

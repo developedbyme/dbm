@@ -62,5 +62,5 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.native.PreventD
 		newCommand.eventReevaluator = GetVariableObject.createSelectDataCommand();
 		
 		return newCommand;
-	}
+	};
 });

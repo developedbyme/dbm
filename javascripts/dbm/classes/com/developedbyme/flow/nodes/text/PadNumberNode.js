@@ -38,5 +38,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.text.PadNumberNode", "com.develo
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
 		newNode.setPropertyInputWithoutNull("paddingLength", aPaddingLength);
 		return newNode;
-	}
+	};
 });

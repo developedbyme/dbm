@@ -157,7 +157,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		if(this._namesArray !== null) {
 			aReturnArray.push("properties: [" + this._namesArray + "]");
 		}
-	}
+	};
 	
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
@@ -174,7 +174,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		if(this.ownsObjects) {
 			ClassReference.softDestroyArrayIfExists(this._objectsArray);
 		}
-	}
+	};
 	
 	objectFunctions.performDestroy = function() {
 		

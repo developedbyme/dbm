@@ -40,7 +40,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 		this._outVector = (new Point()).init();
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Adds points from the current vectors.
@@ -104,7 +104,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 				this._currentOutputIndex++;
 			}
 		}
-	}
+	};
 	
 	/**
 	 * Changes so that the out vector is now the reverse in vector.
@@ -115,7 +115,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 		this._inVector.x = -1*this._outVector.x;
 		this._inVector.y = -1*this._outVector.y;
 		this._inVectorLength = this._outVectorLength;	
-	}
+	};
 	
 	/**
 	 * Sets up a vector from 2 points.
@@ -134,7 +134,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 			VectorFunctions.normalizeSelf2d(aOutputVector);
 		}
 		return theLength;
-	}
+	};
 	
 	/**
 	 * Creates the curve.
@@ -188,5 +188,5 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 		else {
 			this._createFromCurrentPoint(ClassReference.TYPE_FLAG_IN | ClassReference.SKIP_VECTORS_FLAG);
 		}
-	}
+	};
 });

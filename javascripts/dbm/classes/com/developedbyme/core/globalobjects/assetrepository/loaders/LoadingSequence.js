@@ -258,7 +258,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		this._loadedSize.setValueWithFlow(loadedSize, aFlowUpdateNumber);
 		this._totalSize.setValueWithFlow(totalLoadSize, aFlowUpdateNumber);
 		this._progress.setValueWithFlow(progress, aFlowUpdateNumber);
-	}
+	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		

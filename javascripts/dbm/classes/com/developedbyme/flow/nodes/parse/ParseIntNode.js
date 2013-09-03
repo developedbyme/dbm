@@ -34,5 +34,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.parse.ParseIntNode", "com.develo
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
 		newNode.setPropertyInputWithoutNull("radix", aRadix);
 		return newNode;
-	}
+	};
 });

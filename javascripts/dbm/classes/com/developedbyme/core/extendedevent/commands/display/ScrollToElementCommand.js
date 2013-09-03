@@ -82,5 +82,5 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.display.ScrollT
 		newCommand.timeReevaluator = StaticVariableObject.createReevaluationObject(aTime);
 		
 		return newCommand;
-	}
+	};
 });

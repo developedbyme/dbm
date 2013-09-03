@@ -24,7 +24,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.Objec
 		this.objectReevaluator = (new NoChangeObject()).init();
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Sets the object reevaluator to use a static object.
@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.Objec
 		this.objectReevaluator = staticVaraiableObject;
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

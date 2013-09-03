@@ -35,7 +35,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableR
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart::_breakdown");
 		
 		this._variableName = this._script;
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart::compile");

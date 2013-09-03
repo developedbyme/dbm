@@ -38,5 +38,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.ScaleZNode",
 		newNode.setPropertyInputWithoutNull("z", aZ);
 		newNode.setPropertyInputWithoutNull("focusLength", aFocusLength);
 		return newNode;
-	}
+	};
 });

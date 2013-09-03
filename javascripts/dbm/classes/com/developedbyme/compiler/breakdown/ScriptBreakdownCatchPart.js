@@ -49,7 +49,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCatchPart
 		this._result.setScope("{", "}");
 		this._childBreakdowns.push(this._evaluation);
 		this._childBreakdowns.push(this._result);
-	}
+	};
 	
 	objectFunctions.setConditionType = function(aType) {
 		

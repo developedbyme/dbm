@@ -112,7 +112,7 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgView", "com.developedbyme.gui.Di
 		this._definitions.addObject(aId, aNode);
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

@@ -28,5 +28,5 @@ dbm.registerClass("com.developedbyme.constants.ProcessStatusTypes", null, functi
 		
 		//METODO: error message
 		return ClassReference.UNKNOWN_NAME;
-	}
+	};
 });

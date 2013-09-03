@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text
 				aReplacementNode.addReplacement(currentKeyValue.keyValue, currentKeyValue.dataValue);
 			}
 		}
-	}
+	};
 	
 	objectFunctions._createInputLink = function(aInputProperty, aXml, aPathReference) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createInputLink");

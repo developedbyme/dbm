@@ -20,7 +20,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCommentPa
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCommentPart::_breakdown");
 		
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		

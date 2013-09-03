@@ -215,7 +215,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 		if(this._namesArray !== null) {
 			aReturnArray.push("properties: [" + this._namesArray.getValue() + "]");
 		}
-	}
+	};
 	
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {

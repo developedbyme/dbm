@@ -48,5 +48,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.GetPointOnRectangl
 		newNode.setPropertyInputWithoutNull("parameterX", aParameterX);
 		newNode.setPropertyInputWithoutNull("parameterY", aParameterY);
 		return newNode;
-	}
+	};
 });

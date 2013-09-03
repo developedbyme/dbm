@@ -75,5 +75,5 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.audio.PlayAudio
 		newCommand.mixerNameReevaluator = StaticVariableObject.createReevaluationObject(aMixerName);
 		
 		return newCommand;
-	}
+	};
 });

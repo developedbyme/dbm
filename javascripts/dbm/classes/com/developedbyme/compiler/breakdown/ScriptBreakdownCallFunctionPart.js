@@ -36,7 +36,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCallFunct
 			currentPosition = currentArray[i]+1;
 		}
 		this._childBreakdowns.push(ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(currentPosition, this._script.length))));
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		

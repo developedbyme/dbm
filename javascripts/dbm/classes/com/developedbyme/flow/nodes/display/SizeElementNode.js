@@ -63,5 +63,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeElementNode", "com.d
 		newNode.setPropertyInputWithoutNull("width", aWidth);
 		newNode.setPropertyInputWithoutNull("height", aHeight);
 		return newNode;
-	}
+	};
 });

@@ -169,7 +169,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 			this._childBreakdowns.push(ScriptBreakdownEvaluationPart.create(this, scriptWithoutScoop));
 			//this._debugCompileString = this._script;
 		}
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart::compile");

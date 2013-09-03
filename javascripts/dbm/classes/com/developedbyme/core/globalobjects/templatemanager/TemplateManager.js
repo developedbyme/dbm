@@ -122,5 +122,5 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		}
 		
 		return newObject;
-	}
+	};
 });

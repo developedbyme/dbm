@@ -32,5 +32,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.trigonometry.SinNode", "com
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
 		return newNode;
-	}
+	};
 });

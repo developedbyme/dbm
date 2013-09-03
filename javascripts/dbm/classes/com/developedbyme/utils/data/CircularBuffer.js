@@ -93,7 +93,7 @@ dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedb
 		}
 		this._currentPosition = newPosition;
 		return this;
-	}
+	};
 	
 	/**
 	 * Gets the data at the current position

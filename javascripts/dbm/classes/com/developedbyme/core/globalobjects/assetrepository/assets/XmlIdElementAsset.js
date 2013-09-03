@@ -68,7 +68,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		}
 		
 		this._data.setValue(theElement);
-	}
+	};
 	
 	objectFunctions._xmlLoaded = function() {
 		this._setupData();

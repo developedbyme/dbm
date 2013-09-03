@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralAr
 		
 		this._arguments = ScriptBreakdownListPart.create(this, this._script);
 		this._childBreakdowns.push(this._arguments);
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralArrayPart::compile");

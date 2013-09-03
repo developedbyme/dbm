@@ -70,7 +70,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 			this._destroyableObjects = new Array();
 		}
 		return this._destroyableObjects;
-	}
+	};
 	
 	objectFunctions.isDestroyed = function isDestroyed() {
 		//console.log("com.developedbyme.core.BaseObject::isDestroyed");
@@ -124,11 +124,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 		var destroyedString = (this._isDestroyed) ? "*** Destroyed *** " : "";
 		return "[" + destroyedString + this.__className + attributesString + "]";
-	}
+	};
 	
 	objectFunctions._toString_getAttributes = function _toString_getAttributes(aReturnArray) {
 		//MENOTE: should be overridden
-	}
+	};
 	
 	staticFunctions.softDestroyIfExists = function softDestroyIfExists(aObject) {
 		if(aObject !== null) {

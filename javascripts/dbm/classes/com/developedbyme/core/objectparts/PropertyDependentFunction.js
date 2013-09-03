@@ -103,5 +103,5 @@ dbm.registerClass("com.developedbyme.core.objectparts.PropertyDependentFunction"
 		var newFunction = (new PropertyDependentFunction()).init().setOwner(aOwner).setFunction(aFunction);
 		newFunction.setPropertyInputWithoutNull("dependentProperty", aDependentPropertyInput);
 		return newFunction;
-	}
+	};
 });

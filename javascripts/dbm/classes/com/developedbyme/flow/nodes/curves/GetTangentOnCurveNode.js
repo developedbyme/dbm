@@ -51,5 +51,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.GetTangentOnCurveNode", "
 		newNode.setPropertyInputWithoutNull("curve", aCurve);
 		newNode.setPropertyInputWithoutNull("parameter", aParameter);
 		return newNode;
-	}
+	};
 });

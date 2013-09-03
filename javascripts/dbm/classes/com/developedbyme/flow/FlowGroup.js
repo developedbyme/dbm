@@ -136,5 +136,5 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 			newGroup.setOutputPropertyInputWithoutNull(objectName, aOutputProperties[objectName]);
 		}
 		return newGroup;
-	}
+	};
 });

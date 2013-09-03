@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.Pars
 		else {
 			return this._createResult(parseResult.result, aXml, aPathReference);
 		}
-	}
+	};
 	
 	objectFunctions._createNullResult = function(aXml, aPathReference) {
 		//MENOTE: should be overridden

@@ -29,5 +29,5 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedFunction", "com.de
 		var newFunction = (new ExtendedFunction()).init().setOwner(aOwner);
 		newFunction.setFunction(aFunction);
 		return newFunction;
-	}
+	};
 });

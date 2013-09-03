@@ -63,7 +63,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		}
 		//METODO: error message
 		return null;
-	}
+	};
 	
 	objectFunctions.setAttribute = function(aName, aValue) {
 		if(this._attributes === null) {
@@ -71,11 +71,11 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			this.addDestroyableObject(this._attributes);
 		}
 		this._attributes.addObject(aName, aValue);
-	}
+	};
 	
 	objectFunctions.hasAttribute = function(aName) {
 		return (this._attributes !== null && this._attributes.hasObject(aName));
-	}
+	};
 	
 	objectFunctions.getInheritedAttribute = function(aName) {
 		var currentItem = this;
@@ -93,7 +93,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		}
 		//METODO: warning message
 		return null;
-	}
+	};
 	
 	/**
 	 * Gets the path of the item.
@@ -296,7 +296,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		if(this.data !== null) {
 			aReturnArray.push("data: " + this.data);
 		}
-	}
+	};
 	
 	/**
 	 * Destroys all the data of the object.
@@ -317,7 +317,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		ClassReference.destroyIfExists(this._children);
 		
 		this.superCall();
-	}
+	};
 	
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
@@ -338,7 +338,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		this._children = null;
 		
 		this.superCall();
-	}
+	};
 	
 	/**
 	 * Creates a new item.

@@ -59,11 +59,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.statisticsmanager.tracke
 		var newTracker = (new ClassReference()).init();
 		
 		return newTracker;
-	}
+	};
 	
 	staticFunctions.createWithPrefix = function(aPrefix) {
 		var newTracker = (new ClassReference()).init();
 		newTracker.setTrackNamesPrefix(aPrefix);
 		return newTracker;
-	}
+	};
 });

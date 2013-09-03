@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.core.data.number.ValueWithUnit", "com.devel
 			return this.value.toString();
 		}
 		return this.value + this.unitType;
-	}
+	};
 	
 	staticFunctions.create = function create(aValue, aUnitType) {
 		//console.log("com.developedbyme.core.data.number.ValueWithUnit::create (static)");

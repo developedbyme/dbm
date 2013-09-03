@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 		}
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Sets up the coordinate system to match normal space.
@@ -48,7 +48,7 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 		this.yVector.y = 1;
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Gets a matrix that transform points in this coordinate system space to normal space. Retun matrix is not affected on the last row (so it needs to be set to identity matrix before).
@@ -69,7 +69,7 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 		//MENOTE: y-vector
 		aReturnMatrix.valuesArray[1] = this.origoPoint.x+this.yVector.x;
 		aReturnMatrix.valuesArray[4] = this.origoPoint.y+this.yVector.y;
-	}
+	};
 	
 	/**
 	 * Gets a matrix that transform points in normal space to this coordinate system space. Retun matrix is not affected on the last row (so it needs to be set to identity matrix before).
@@ -111,7 +111,7 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 			returnArray[4] = -1*returnArray[0]*(this.xVector.x)/(this.xVector.y);
 		}
 		returnArray[5] = returnArray[3]*translateX+returnArray[4]*translateY;
-	}
+	};
 	
 	/**
 	 * Transforms a point set to the coordinate system space from normal space.
@@ -125,7 +125,7 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 		this.getToTransformationMatrix(ClassReference._tempTransformationMatrix);
 		MatrixTransformation.transform2dPointSet(ClassReference._tempTransformationMatrix, aInputPointSet, aOutputPointSet);
 		
-	}
+	};
 	
 	/**
 	 * Transforms a point set to normal space from the coordinate system space.
@@ -137,5 +137,5 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 		//console.log("com.developedbyme.core.data.points.CoordinateSystem.transformPointSetFromCoordinateSystem");
 		this.getFromTransformationMatrix(ClassReference._tempTransformationMatrix);
 		MatrixTransformation.transform2dPointSet(ClassReference._tempTransformationMatrix, aInputPointSet, aOutputPointSet);
-	}
+	};
 });

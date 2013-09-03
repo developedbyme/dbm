@@ -36,5 +36,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.SubtractionNode", "com.deve
 		newNode.setPropertyInputWithoutNull("inputValue1", aInput1);
 		newNode.setPropertyInputWithoutNull("inputValue2", aInput2);
 		return newNode;
-	}
+	};
 });

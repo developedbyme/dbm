@@ -99,7 +99,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	objectFunctions.getSegmentStartPoint = function(aSegmentIndex) {
 		var stepLength = (this._isCompact) ? this._curveDegree : this._curveDegree+1;
 		return this.pointsArray[stepLength*aSegmentIndex];
-	}
+	};
 	
 	objectFunctions.getPointOnCurve = function(aParameter, aOutputPoint) {
 		//console.log("com.developedbyme.core.data.curves.BezierCurve::getPointOnCurve");
@@ -160,7 +160,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 			returnArray[i] = this.createPoint();
 		}
 		return returnArray;
-	}
+	};
 	
 	objectFunctions.createSameTypeOfCurve = function() {
 		var newCurve = (new ClassReference()).init();

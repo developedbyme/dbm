@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.sequencer.Sequen
 		//console.log("com.developedbyme.utils.audio.audioapiplayer.sequencer.SequencerNote::setLastPlayedLoopFromCurrentTime");
 		//console.log(aCurrentTime, this._position, aLoopLength);
 		this._lastPlayedLoop = Math.floor((aCurrentTime-this._position)/aLoopLength);
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		//console.log("com.developedbyme.utils.audio.audioapiplayer.sequencer.SequencerNote::setAllReferencesToNull");

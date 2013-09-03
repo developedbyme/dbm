@@ -37,5 +37,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.DivisionNode", "com.develop
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
 		newNode.setPropertyInputWithoutNull("divisor", aDivisor);
 		return newNode;
-	}
+	};
 });

@@ -53,7 +53,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	 */
 	objectFunctions.getCurrentItem = function() {
 		return this._currentItem;
-	}
+	};
 	
 	/**
 	 * Gets the next item.
@@ -67,7 +67,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 		}
 		//METODO: error report
 		return null;
-	}
+	};
 		
 	/**
 	 * Gets a specific item.
@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 		}
 		//METODO: error report
 		return null;
-	}
+	};
 	
 	/**
 	 * Checks if the position can change to a specific index.
@@ -96,28 +96,28 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	 */
 	objectFunctions.canChangePosition = function(aIndex) {
 		return (aIndex < this.array.length);
-	}
+	};
 	
 	/**
 	 * Resets the position.
 	 */
 	objectFunctions.resetPosition = function() {
 		this._currentPosition = 0;
-	}
+	};
 
 	/**
 	 * Checks if there is a next item.
 	 */
 	objectFunctions.hasNextItem = function() {
 		return (this._currentPosition < this.array.length);
-	}
+	};
 	
 	/**
 	 * Checks if there the position is specified.
 	 */
 	objectFunctions.hasPosition = function() {
 		return true;
-	}
+	};
 	
 	/**
 	 * Gets the current position in the list.
@@ -126,14 +126,14 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	 */
 	objectFunctions.getPosition = function() {
 		return this._currentPosition-1;
-	}
+	};
 	
 	/**
 	 * Checks if the total length can be specified.
 	 */
 	objectFunctions.hasLength = function() {
 		return true;
-	}
+	};
 	
 	/**
 	 * Gets the length of the list.
@@ -142,7 +142,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	 */
 	objectFunctions.getLength = function() {
 		return this.array.length;
-	}
+	};
 	
 	/**
 	 * Pushes an object to the list.
@@ -151,7 +151,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 		if(!this._verifyItem(aObject)) return;
 		this.array.push(aObject);
 		this._itemAdded(aObject);
-	}
+	};
 	
 	/**
 	 * Pops an item from the list.
@@ -162,7 +162,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 		}
 		this._itemRemoved(this.array.pop());
 		this._checkIfTheArrayIsAtEnd();
-	}
+	};
 	
 	/**
 	 * Inserts an item in the beginning of the list.
@@ -174,7 +174,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 			this._currentPosition++;
 		}
 		this._itemAdded(aObject);
-	}
+	};
 	
 	/**
 	 * Shifts an object from the list.
@@ -185,7 +185,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 			this._currentPosition--;
 			this._checkIfTheArrayIsAtEnd();
 		}
-	}
+	};
 	
 	/**
 	 * Removes an item from the list.
@@ -205,7 +205,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 			}
 		}
 		//METODO: error message
-	}
+	};
 	
 	/**
 	 * Removes an object at a specified index.
@@ -221,7 +221,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 			return;
 		}
 		//METODO: error message
-	}
+	};
 	
 	/**
 	 * Adds an item at the specifed index, moving every item after it.

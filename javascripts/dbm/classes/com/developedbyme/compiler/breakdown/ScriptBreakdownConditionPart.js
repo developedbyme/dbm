@@ -64,7 +64,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCondition
 			}
 		}
 		this._childBreakdowns.push(this._result);
-	}
+	};
 	
 	objectFunctions.setConditionType = function(aType) {
 		

@@ -15,7 +15,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.data.App
 		
 		return this;
 		
-	}
+	};
 	
 	objectFunctions.setData = function(aName, aVersion, aComment, aSquareBracketComments) {
 		this.name = aName;

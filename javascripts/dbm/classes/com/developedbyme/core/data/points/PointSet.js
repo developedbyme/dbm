@@ -109,7 +109,7 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		var newPoint = Point.create(aX, aY, aZ, aW);
 		this.pointsArray.push(newPoint);
 		return newPoint;
-	}
+	};
 	
 	objectFunctions.performDestroy = function() {
 		

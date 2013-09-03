@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownListPart"
 		}
 		currentBreakdown = ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(currentPosition, this._script.length)));
 		this._childBreakdowns.push(currentBreakdown);
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		

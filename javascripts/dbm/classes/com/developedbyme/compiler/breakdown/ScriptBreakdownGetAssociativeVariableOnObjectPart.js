@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownGetAssoci
 		
 		this._object = ScriptBreakdownLinePart.create(this, this._script);
 		this._childBreakdowns.push(this._object);
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		

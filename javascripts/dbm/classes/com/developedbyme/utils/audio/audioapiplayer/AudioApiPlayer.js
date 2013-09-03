@@ -149,7 +149,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.AudioApiPlayer",
 	
 	objectFunctions.addUpdater = function(aUpdater) {
 		this._updaters.push(aUpdater);
-	}
+	};
 	
 	objectFunctions.createAudioDataDecoder = function(aData) {
 		

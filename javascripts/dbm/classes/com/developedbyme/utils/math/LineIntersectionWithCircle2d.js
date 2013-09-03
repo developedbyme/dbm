@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersectionWithCircle2d", n
 		this._setAsNullResult();
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * Sets the result to null
@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersectionWithCircle2d", n
 		this.parameter1 = NaN;
 		this.parameter2 = NaN;
 		this.theResult = false;
-	}
+	};
 	
 	/**
 	 * Finds the intersections between a line and a circle

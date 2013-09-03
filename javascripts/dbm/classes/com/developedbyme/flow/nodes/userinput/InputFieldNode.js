@@ -47,5 +47,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.userinput.InputFieldObject", "co
 		newNode.setPropertyInputWithoutNull("element", aElement);
 		newNode.setPropertyInputWithoutNull("outputValue", aElement.value);
 		return newNode;
-	}
+	};
 });

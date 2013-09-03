@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.utils.math.physics.SwingingAcceleration", "
 		this.currentPosition += this.stepLength*0.5*(newSpeed+this.currentSpeed);
 		this.currentSpeed = newSpeed;
 		this.simulationTime += this.stepLength;
-	}
+	};
 	
 	objectFunctions.stepWithPositionCheck = function(aPosition, aExactness) {
 		aExactness = VariableAliases.valueWithDefault(aExactness, 0.01);
@@ -49,7 +49,7 @@ dbm.registerClass("com.developedbyme.utils.math.physics.SwingingAcceleration", "
 		
 		var newPosition = AngleFunctions.normalizeAngle(this.currentPosition);
 		return (AngleFunctions.angleIsInNormalizedRange(AngleFunctions.normalizeAngle(this.currentPosition), normalizedMinPosition, normalizedMaxPosition) || AngleFunctions.angleIsInNormalizedRange(normalizedPosition, oldPosition, newPosition));
-	}
+	};
 	
 	objectFunctions.stepUntilPosition = function(aPosition, aExactness) {
 		
@@ -77,7 +77,7 @@ dbm.registerClass("com.developedbyme.utils.math.physics.SwingingAcceleration", "
 			this.step();
 			oldPosition = newPosition;
 		}
-	}
+	};
 	
 	staticFunctions.create = function(aCurrentPosition, aCurrentSpeed, aSpeedDamping, aForceX, aForceY, aStepLength) {
 		var newSwingingAcceleration = (new ClassReference()).init();

@@ -84,5 +84,5 @@ dbm.registerClass("com.developedbyme.core.objectparts.DelayedFunction", "com.dev
 	staticFunctions.create = function(aOwner, aFunction, aDelayLength) {
 		var newFunction = (new DelayedFunction()).init().setOwner(aOwner).setFunction(aFunction).setDelayLength(aDelayLength);
 		return newFunction;
-	}
+	};
 });

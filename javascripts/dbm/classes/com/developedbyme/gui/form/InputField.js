@@ -52,17 +52,17 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 		}
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.setText = function(aText) {
 		this.getElement().value = this._defaultText;
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.getValue = function() {
 		return this._value.getValue();
-	}
+	};
 	
 	objectFunctions._focus = function() {
 		//console.log("com.developedbyme.gui.form.InputField::_focus");
@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 			this.getElement().value = "";
 			this._isChangingDefaultText = false;
 		}
-	}
+	};
 	
 	objectFunctions._blur = function() {
 		//console.log("com.developedbyme.gui.form.InputField::_blur");
@@ -80,7 +80,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 			this.getElement().value = this._defaultText;
 			this._isChangingDefaultText = false;
 		}
-	}
+	};
 	
 	objectFunctions._change = function(aEvent) {
 		//console.log("com.developedbyme.gui.form.InputField::_change");
@@ -94,12 +94,12 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 				this.getExtendedEvent().perform(FormFieldExtendedEventIds.REQUEST_SUBMIT, this.getElement().value);
 			}
 		}
-	}
+	};
 	
 	objectFunctions._updateFlowText = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.gui.form.InputField::_updateFlowText");
 		this.getElement().value = this._value.getValueWithoutFlow();
-	}
+	};
 	
 	objectFunctions.activate = function() {
 		this._isActive = true;

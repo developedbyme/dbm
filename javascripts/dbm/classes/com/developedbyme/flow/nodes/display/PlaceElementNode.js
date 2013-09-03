@@ -79,5 +79,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.PlaceElementNode", "com.
 		newNode.setPropertyInputWithoutNull("width", aWidth);
 		newNode.setPropertyInputWithoutNull("height", aHeight);
 		return newNode;
-	}
+	};
 });

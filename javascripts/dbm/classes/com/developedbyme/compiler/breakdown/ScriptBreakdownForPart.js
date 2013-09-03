@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownForPart",
 		}
 		this._childBreakdowns.push(this._evaluation);
 		this._childBreakdowns.push(this._code);
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		

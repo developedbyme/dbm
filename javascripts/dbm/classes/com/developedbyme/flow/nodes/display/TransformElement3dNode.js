@@ -105,5 +105,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode",
 		newNode.setPropertyInputWithoutNull("pivotY", aPivotY);
 		newNode.setPropertyInputWithoutNull("pivotZ", aPivotZ);
 		return newNode;
-	}
+	};
 });

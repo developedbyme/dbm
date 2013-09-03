@@ -64,7 +64,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 	objectFunctions.addDefinitionFile = function(aFilePath, aFileType, aPath) {
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		currentItem.data.setDefinitionFile(aFilePath, aFileType);
-	}
+	};
 	
 	objectFunctions.addXmlDefinition = function(aXml, aPath) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::addXmlDefinition");
@@ -143,7 +143,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		var dataType = VariableAliases.valueWithDefault(XmlChildRetreiver.getNamespacedAttribute(aXml, dataNamespace, "type"), aDefaultType);
 		
 		return this._parseNodeAsType(aXml, aPathReference, dataType);
-	}
+	};
 	
 	objectFunctions._parseNodeAsType = function(aXml, aPathReference, aType) {
 		if(!this._parsers.select(aType)) {
@@ -155,7 +155,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		var parseResult = currentParser.parseXml(aXml, aPathReference, aType);
 		
 		return parseResult;
-	}
+	};
 	
 	objectFunctions.parseLinks = function(aDataObject) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::parseLinks");
@@ -320,7 +320,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		else {
 			return ParserResultDataObject.create(aAttribute);
 		}
-	}
+	};
 	
 	objectFunctions.getAttribute = function(aXml, aNamespace, aAttribute, aPathReference) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::getAttribute");

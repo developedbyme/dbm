@@ -24,7 +24,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNumberPar
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownNumberPart::_breakdown");
 		//console.log(this._script);
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		

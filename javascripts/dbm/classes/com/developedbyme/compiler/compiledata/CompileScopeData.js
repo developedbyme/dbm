@@ -64,5 +64,5 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileScopeData", "co
 		var newCompileScopeData = (new ClassReference()).init();
 		
 		return newCompileScopeData;
-	}
+	};
 });

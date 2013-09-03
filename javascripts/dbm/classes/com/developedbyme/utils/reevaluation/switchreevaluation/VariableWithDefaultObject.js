@@ -67,5 +67,5 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.switchreevaluation.Varia
 			newObject.defaultReevaluation = StaticVariableObject.createReevaluationObject(aDefault);
 		}
 		return newObject;
-	}
+	};
 });

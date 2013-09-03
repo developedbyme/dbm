@@ -117,7 +117,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		if(this._status !== null) {
 			aReturnArray.push("status: " + this._status.getValue());
 		}
-	}
+	};
 	
 	/**
 	 * Sets all the references to null

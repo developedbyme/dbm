@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.NoCha
 	objectFunctions.reevaluate = function(aBaseObject) {
 		
 		return aBaseObject;
-	}
+	};
 	
 	objectFunctions.performDestroy = function() {
 		this.superCall();

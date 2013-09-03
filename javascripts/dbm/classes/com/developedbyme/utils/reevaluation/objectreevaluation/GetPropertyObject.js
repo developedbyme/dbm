@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPr
 		this.propertyNameReevaluator = staticVaraiableObject;
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * The function that reevalutes this reference.
@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPr
 		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
 		var propertyName = this.propertyNameReevaluator.reevaluate(aBaseObject);
 		return theObject.getProperty(propertyName);
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
@@ -75,5 +75,5 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPr
 		newCommand.propertyNameReevaluator = StaticVariableObject.createReevaluationObject(aPropertyName);
 		
 		return newCommand;
-	}
+	};
 });

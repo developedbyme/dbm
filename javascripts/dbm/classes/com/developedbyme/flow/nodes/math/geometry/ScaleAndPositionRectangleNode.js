@@ -82,5 +82,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRe
 		newNode.setPropertyInputWithoutNull("scaleOffsetX", aScaleOffsetX);
 		newNode.setPropertyInputWithoutNull("scaleOffsetY", aScaleOffsetY);
 		return newNode;
-	}
+	};
 });

@@ -62,5 +62,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		newNode.setPropertyInputWithoutNull("scaleX", aScaleX);
 		newNode.setPropertyInputWithoutNull("scaleY", aScaleY);
 		return newNode;
-	}
+	};
 });

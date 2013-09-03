@@ -146,5 +146,5 @@ dbm.registerClass("com.developedbyme.flow.compiler.FlowCompiler", "com.developed
 		//console.log("com.developedbyme.flow.compiler.FlowCompiler::create (static)");
 		var newFlowCompiler = (new ClassReference()).init();
 		return newFlowCompiler;
-	}
+	};
 });

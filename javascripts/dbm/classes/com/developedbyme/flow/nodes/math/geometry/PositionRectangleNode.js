@@ -75,5 +75,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.PositionRectangleN
 		newNode.setPropertyInputWithoutNull("offsetX", aOffsetX);
 		newNode.setPropertyInputWithoutNull("offsetY", aOffsetY);
 		return newNode;
-	}
+	};
 });

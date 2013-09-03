@@ -37,5 +37,5 @@ dbm.registerClass("com.developedbyme.flow.data.KeyValuePropertyPair", "com.devel
 		newNode.setPropertyInputWithoutNull("keyValue", aKeyValue);
 		newNode.setPropertyInputWithoutNull("dataValue", aDataValue);
 		return newNode;
-	}
+	};
 });

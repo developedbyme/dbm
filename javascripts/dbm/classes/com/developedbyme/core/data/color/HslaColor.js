@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.core.data.color.HslaColor", "com.developedb
 			alpha = 0;
 		}
 		return "hsla(" + (360*this.h) + "," + (100*this.s) + "%," + (100*this.l) + "%," + (alpha) + ")";
-	}
+	};
 	
 	objectFunctions.getSvgColorStopString = function() {
 		return "hsl(" + (360*this.h) + "," + (100*this.s) + "%," + (100*this.l)  + "%)";

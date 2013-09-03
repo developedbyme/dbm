@@ -86,5 +86,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.AlphaIndexSwitchedNode",
 	staticFunctions.create = function() {
 		var newNode = (new ClassReference()).init();
 		return newNode;
-	}
+	};
 });

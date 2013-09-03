@@ -23,7 +23,7 @@ dbm.registerClass("com.developedbyme.utils.math.GaussDistribution", null, functi
 			aStandardDeviation = 1;
 		}
 		return Math.pow(Math.E, (-0.5*Math.pow(aX-aAverage, 2)/(Math.pow(aStandardDeviation, 2))));
-	}
+	};
 	
 	/**
 	 * Returns the value for a point on gauss distribution curve. The value is normalized so that the total of the gauss curve always sums to 1.
@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.utils.math.GaussDistribution", null, functi
 			aStandardDeviation = 1;
 		}
 		return (1/(aStandardDeviation*Math.sqrt(2*Math.PI)))*getGaussDistributionValue(aX, aAverage, aStandardDeviation);
-	}
+	};
 	
 	/**
 	 * Gets the standard deviation for a curve a specified length.
@@ -56,5 +56,5 @@ dbm.registerClass("com.developedbyme.utils.math.GaussDistribution", null, functi
 			aZeroValue = 0.01;
 		}
 		return Math.sqrt(-0.5*(Math.pow(aLength, 2)/Math.log(aZeroValue)));
-	}
+	};
 });

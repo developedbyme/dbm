@@ -40,7 +40,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 	
 	objectFunctions.getAnimationController = function() {
 		return null;
-	}
+	};
 	
 	objectFunctions.canBeSet = function() {
 		return false;

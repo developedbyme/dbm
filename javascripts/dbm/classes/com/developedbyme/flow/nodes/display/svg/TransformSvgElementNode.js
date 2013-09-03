@@ -89,5 +89,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.svg.TransformSvgElementN
 		newNode.setPropertyInputWithoutNull("pivotX", aPivotX);
 		newNode.setPropertyInputWithoutNull("pivotY", aPivotY);
 		return newNode;
-	}
+	};
 });

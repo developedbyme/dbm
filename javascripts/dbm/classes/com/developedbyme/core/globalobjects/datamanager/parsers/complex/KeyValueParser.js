@@ -24,7 +24,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.comp
 		
 		keyValuePair.getObjectProperty().setAsDirty();
 		return ParserResultDataObject.createLinked(keyValuePair.getObjectProperty(), []);
-	}
+	};
 	
 	staticFunctions.create = function() {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser::create");

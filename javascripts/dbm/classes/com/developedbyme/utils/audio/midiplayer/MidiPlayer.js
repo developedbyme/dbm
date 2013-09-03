@@ -170,7 +170,7 @@ dbm.registerClass("com.developedbyme.utils.audio.midiplayer.MidiPlayer", "com.de
 		this._playback.setPropertyInput("maxTime", animationTime+this._lastTempoChangeTime);
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		//console.log("com.developedbyme.utils.audio.midiplayer.MidiPlayer::setAllReferencesToNull");

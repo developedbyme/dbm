@@ -25,7 +25,7 @@ dbm.registerClass("com.developedbyme.core.data.generic.KeyTypeValueObject", "com
 		aReturnArray.push("type: " + this.type);
 		aReturnArray.push("value: " + this.value);
 		
-	}
+	};
 	
 	staticFunctions.create = function create(aName, aType, aValue) {
 		//console.log("com.developedbyme.core.data.generic.KeyTypeValueObject::create (static)");

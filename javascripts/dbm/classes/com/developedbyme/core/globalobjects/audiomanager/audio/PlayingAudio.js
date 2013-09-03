@@ -88,7 +88,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 			}
 		}
 		this.getExtendedEvent().deactivateJavascriptEventLink(AudioEventIds.CAN_PLAY);
-	}
+	};
 	
 	objectFunctions.pause = function() {
 		//console.log("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio::pause");

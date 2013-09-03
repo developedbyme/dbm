@@ -157,7 +157,7 @@ dbm.registerClass("com.developedbyme.utils.process.ProcessSequence", "com.develo
 		//console.log("com.developedbyme.utils.process.ProcessSequence::_updateProgressFlow");
 		
 		//METODO
-	}
+	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		

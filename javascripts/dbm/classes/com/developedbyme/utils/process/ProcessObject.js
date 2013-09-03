@@ -149,5 +149,5 @@ dbm.registerClass("com.developedbyme.utils.process.ProcessObject", "com.develope
 	
 	staticFunctions.connectObjects = function(aOutputObject, aInputObject, aStatusType) {
 		aInputObject.connectStartSignal(aOutputObject.getStatusToSignalNodeOutput(aStatusType));
-	}
+	};
 });

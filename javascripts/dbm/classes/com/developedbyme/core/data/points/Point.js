@@ -80,7 +80,7 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 		aReturnArray.push("y: " + this.y);
 		aReturnArray.push("z: " + this.z);
 		
-	}
+	};
 	
 	staticFunctions.create = function create(aX, aY, aZ, aW) {
 		//console.log("com.developedbyme.core.data.points.Point::create (static)");

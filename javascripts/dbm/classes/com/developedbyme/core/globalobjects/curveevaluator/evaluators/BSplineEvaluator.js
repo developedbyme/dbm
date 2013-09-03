@@ -9,14 +9,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 		this.superCall();
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.canEvaluate = function(aPointSet, aType, aForward) {
 		if(aPointSet.isSetType("bSpline")) {
 			return ture;
 		}
 		return false;
-	}
+	};
 	
 	staticFunctions.getPartOfCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BSplineEvaluator::getPartOfCurve");
@@ -27,5 +27,5 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 			theCurve.getPointOnCurve((i/numberOfSegments)*(aEndParameter-aStartParameter)+aStartParameter, tempPoint);
 			aReturnCurve.pointsArray.push(tempPoint.duplicate());
 		}
-	}
+	};
 });

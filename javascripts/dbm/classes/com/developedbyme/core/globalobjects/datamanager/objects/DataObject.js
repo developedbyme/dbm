@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 			aReturnArray.push("definitionFilePath: " + this._definitionFilePath);
 			aReturnArray.push("definitionFileType: " + this._definitionFileType);
 		}
-	}
+	};
 	
 	/**
 	 * Sets all the references to null

@@ -35,7 +35,7 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 	 */
 	objectFunctions.addTypeCommand = function(aType, aCommand) {
 		this._commandsObject[aType] = aCommand;
-	}
+	};
 	
 	/**
 	 * Creates a command that calls a function.
@@ -49,7 +49,7 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 			newCommand = CallFunctionCommand.createCommand(aObject, aFunction, []);
 		}
 		this.addTypeCommand(aType, newCommand);
-	}
+	};
 	
 	/**
 	 * Creates a command that calls a function with arguments.
@@ -57,7 +57,7 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 	objectFunctions.createFunctionTypeCommandWithArguments = function(aType, aObject, aFunction, aArguments) {
 		var newCommand = CallFunctionCommand.createCommand(aObject, aFunction, aArguments);
 		this.addTypeCommand(aType, newCommand);
-	}
+	};
 	
 	/**
 	 * Adds a command to the queue.
@@ -68,7 +68,7 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 	objectFunctions.createQueuedCommand = function(aType, aDataObject) {
 		var newObject = {type: aType, dataObject: aDataObject};
 		this._commandQueueArray.push(newObject);
-	}
+	};
 	
 	/**
 	 * Runs all the queued commands.
@@ -88,7 +88,7 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 			}
 		}
 		this._isRunning = false;
-	}
+	};
 	
 	/**
 	 * Removes all the queued commands
@@ -96,7 +96,7 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 	objectFunctions.reset = function() {
 		this._commandQueueArray.splice(0, this._commandQueueArray.length);
 		this._currentPosition = 0;
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

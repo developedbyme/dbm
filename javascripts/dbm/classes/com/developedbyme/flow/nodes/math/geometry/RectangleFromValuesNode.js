@@ -53,5 +53,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValue
 		newNode.setPropertyInputWithoutNull("width", aWidth);
 		newNode.setPropertyInputWithoutNull("height", aHeight);
 		return newNode;
-	}
+	};
 });

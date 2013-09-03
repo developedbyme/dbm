@@ -31,5 +31,5 @@ dbm.registerClass("com.developedbyme.constants.UnitTypes", null, function(object
 		
 		//METODO: error message
 		return 0;
-	}
+	};
 });

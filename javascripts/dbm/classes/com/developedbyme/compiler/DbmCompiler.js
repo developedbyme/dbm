@@ -133,7 +133,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		console.log(returnString);
 		
 		return returnString;
-	}
+	};
 	
 	objectFunctions.compileFiles = function() {
 		//console.log("com.developedbyme.compiler.DbmCompiler::compileFiles");
@@ -168,7 +168,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		console.log(returnString);
 		
 		return returnString;
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

@@ -82,5 +82,5 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.events.Activate
 		newCommand.activeReevaluator = StaticVariableObject.createReevaluationObject(aActivate);
 		
 		return newCommand;
-	}
+	};
 });

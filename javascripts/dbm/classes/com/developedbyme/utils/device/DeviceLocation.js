@@ -52,7 +52,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.develope
 	
 	objectFunctions.setOptions = function(aEnableHighAccuracy, aTimeout, aMaximumAge) {
 		this._options = {"enableHighAccuracy": false, "timeout": aTimeout, "maximumAge": aMaximumAge};
-	}
+	};
 	
 	objectFunctions._positionUpdated = function(aEvent) {
 		//console.log("com.developedbyme.utils.device.DeviceLocation::_requestCallback");
@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.develope
 		if(this.getExtendedEvent().hasEvent(DeviceExtendedEventIds.POSITION_UPDATED)) {
 			this.getExtendedEvent().perform(DeviceExtendedEventIds.POSITION_UPDATED, aEvent);
 		}
-	}
+	};
 	
 	objectFunctions._positionError = function(aEvent) {
 		console.log("com.developedbyme.utils.device.DeviceLocation::_errorCallback");
@@ -98,7 +98,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.develope
 		if(this.getExtendedEvent().hasEvent(DeviceExtendedEventIds.POSITION_ERROR)) {
 			this.getExtendedEvent().perform(DeviceExtendedEventIds.POSITION_ERROR, aEvent);
 		}
-	}
+	};
 	
 	objectFunctions.updatePosition = function() {
 		

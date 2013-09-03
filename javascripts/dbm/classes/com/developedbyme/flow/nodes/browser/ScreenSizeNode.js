@@ -80,5 +80,5 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.ScreenSizeNode", "com.de
 	staticFunctions.create = function() {
 		var newNode = (new ClassReference()).init();
 		return newNode;
-	}
+	};
 });

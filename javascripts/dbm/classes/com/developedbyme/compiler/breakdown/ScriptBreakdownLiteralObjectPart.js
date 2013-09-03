@@ -79,7 +79,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 			this._childBreakdowns.push(valuePart);
 		}
 		
-	}
+	};
 	
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralObjectPart::compile");

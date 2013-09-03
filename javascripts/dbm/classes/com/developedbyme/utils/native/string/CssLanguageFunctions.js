@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 			return 0.01*parseFloat(aCssString.substring(0, percentageSignPosition));
 		}
 		return parseFloat(aCssString)/aMax;
-	}
+	};
 	
 	staticFunctions.createGradientFromCss = function(aCssString) {
 		

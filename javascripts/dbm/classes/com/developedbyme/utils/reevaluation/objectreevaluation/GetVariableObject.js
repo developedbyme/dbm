@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		this.propertyNameReevaluator = staticVaraiableObject;
 		
 		return this;
-	}
+	};
 	
 	/**
 	 * The function that reevalutes this reference.
@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
 		var propertyName = this.propertyNameReevaluator.reevaluate(aBaseObject);
 		return theObject[propertyName];
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
@@ -73,7 +73,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		newCommand.propertyNameReevaluator = StaticVariableObject.createReevaluationObject(aPropertyName);
 		
 		return newCommand;
-	}
+	};
 	
 	staticFunctions.createSelectOnBaseObjectCommand = function(aPropertyName) {
 		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject::createSelectOnBaseObjectCommand (static)");
@@ -84,7 +84,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		newCommand.propertyNameReevaluator = StaticVariableObject.createReevaluationObject(aPropertyName);
 		
 		return newCommand;
-	}
+	};
 	
 	/**
 	 * Creates a command that gets a the data of an event data object.
@@ -98,7 +98,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		newCommand.propertyNameReevaluator = StaticVariableObject.createReevaluationObject("data");
 		
 		return newCommand;
-	}
+	};
 	
 	/**
 	 * Creates a command that gets a the owner object of an event data object.
@@ -112,7 +112,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		newCommand.propertyNameReevaluator = StaticVariableObject.createReevaluationObject("ownerObject");
 		
 		return newCommand;
-	}
+	};
 	
 	/**
 	 * Creates a command that gets a the performing object of an event data object.
@@ -126,5 +126,5 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		newCommand.propertyNameReevaluator = StaticVariableObject.createReevaluationObject("performingObject");
 		
 		return newCommand;
-	}
+	};
 });
