@@ -10,6 +10,63 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	
+	staticFunctions.TRUE_STRINGS = ["true", "yes", "y", "1"];
+	staticFunctions.FALSE_STRINGS = ["false", "no", "n","0"];
+	staticFunctions.NULL_STRINGS = ["null", "undefined", "none",  ""];
+	
+	staticFunctions.IS_TRUE = 1;
+	staticFunctions.IS_FALSE = 0;
+	staticFunctions.INDETERMINATE = -1;
+	
+	staticFunctions.stringIsAlias = function(aString, aArray) {
+		var lowerCaseString = aString.toLowerCase();
+		var currentArray = aArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			if(lowerCaseString === currentArray[i]) {
+				return true;
+			}
+		}
+		return false;
+	};
+	
+	staticFunctions.determinIfStringIsBoolean = function(aString) {
+		if(ClassReference.stringIsAlias(aString, ClassReference.TRUE_STRINGS)) {
+			return ClassReference.IS_TRUE;
+		}
+		else if(ClassReference.stringIsAlias(aString, ClassReference.FALSE_STRINGS)) {
+			return ClassReference.IS_FALSE;
+		}
+		return ClassReference.INDETERMINATE;
+	};
+	
+	staticFunctions.determinIfVariableIsBoolean = function(aVariable) {
+		switch(typeof(aVariable)) {
+			case JavascriptObjectTypes.TYPE_BOOLEAN:
+				return (aVariable ? ClassReference.IS_TRUE : ClassReference.IS_FALSE);
+			case JavascriptObjectTypes.TYPE_STRING:
+				var stringDetermination = ClassReference.determinIfStringIsBoolean(aVariable);
+				if(stringDetermination === ClassReference.INDETERMINATE) {
+					ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "determinIfVariableIsBoolean", "No match for string " + aVariable);
+				}
+				return stringDetermination;
+			case JavascriptObjectTypes.TYPE_NUMBER:
+				if(aVariable === 1) {
+					return ClassReference.IS_TRUE;
+				}
+				else if(aVariable === 0) {
+					return ClassReference.IS_FALSE;
+				}
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "determinIfVariableIsBoolean", "No match for number " + aVariable);
+				return ClassReference.INDETERMINATE;
+			default:
+				if(aVariable !== null && aVariable !== undefined) {
+					ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "determinIfVariableIsBoolean", "No case for object type for variable " + aVariable);
+				}
+				return ClassReference.INDETERMINATE;
+		}
+	};
+	
 	/**
 	 * Checks if the variable is true.
 	 * 
@@ -17,45 +74,9 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	 * 
 	 * @return	True if the varaible is true.
 	 */
-	staticFunctions.isTrue = function isTrue(aVariable) {
-		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_BOOLEAN) {
-			return aVariable;
-		}
-		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_STRING) {
-			switch(aVariable.toLowerCase()) {
-				case "true":
-				case "yes":
-				case "y":
-				case "1":
-					return true;
-				case "false":
-				case "no":
-				case "n":
-				case "0":
-					return false;
-				default:
-					ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isTrue", "No match for string " + aVariable);
-					return false;
-			}	
-		}
-		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_NUMBER) {
-			if(aVariable == 1) {
-				return true;
-			}
-			else if(aVariable == 0) {
-				return false;
-			}
-			else {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isTrue", "No match for number " + aVariable);
-				return false;
-			}
-		}
-		if(aVariable == null || aVariable == undefined) {
-			return false;
-		}
-		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isTrue", "No case for object type for variable " + aVariable);
-		return false;
-	}
+	staticFunctions.isTrue = function(aVariable) {
+		return (ClassReference.determinIfVariableIsBoolean(aVariable) === ClassReference.IS_TRUE);
+	};
 	
 	/**
 	 * Checks if the variable is false.
@@ -64,46 +85,9 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	 * 
 	 * @return	True if the varaible is false.
 	 */
-	staticFunctions.isFalse = function isFalse(aVariable) {
-		//console.log("com.developedbyme.utils.data.VariableAliases::isFalse (static)");
-		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_BOOLEAN) {
-			return !aVariable;
-		}
-		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_STRING) {
-			switch(aVariable.toLowerCase()) {
-				case "true":
-				case "yes":
-				case "y":
-				case "1":
-					return false;
-				case "false":
-				case "no":
-				case "n":
-				case "0":
-					return true;
-				default:
-					ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isFalse", "No match for string " + aVariable);
-					return false;
-			}	
-		}
-		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_NUMBER) {
-			if(aVariable == 1) {
-				return false;
-			}
-			else if(aVariable == 0) {
-				return true;
-			}
-			else {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isFalse", "No match for number " + aVariable);
-				return false;
-			}
-		}
-		if(aVariable == null || aVariable == undefined) {
-			return false;
-		}
-		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isFalse", "No case for object type for variable " + aVariable);
-		return false;
-	}
+	staticFunctions.isFalse = function(aVariable) {
+		return (ClassReference.determinIfVariableIsBoolean(aVariable) === ClassReference.IS_FALSE);
+	};
 	
 	/**
 	 * Checks if the variable is null.
@@ -112,54 +96,46 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	 * 
 	 * @return	True if the varaible is false.
 	 */
-	staticFunctions.isNull = function isNull(aVariable) {
-		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_BOOLEAN) {
+	staticFunctions.isNull = function(aVariable) {
+		if(typeof(aVariable) === JavascriptObjectTypes.TYPE_BOOLEAN) {
 			return false;
 		}
-		if(aVariable == null || aVariable == undefined) {
+		if(aVariable === null || aVariable === undefined) {
 			return true;
 		}
-		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_STRING) {
-			switch(aVariable.toLowerCase()) {
-				case "null":
-				case "undefined":
-				case "none":
-				case "":
-					return true;
-				default:
-					return false;
-			}	
+		if(typeof(aVariable) === JavascriptObjectTypes.TYPE_STRING) {
+			return ClassReference.stringIsAlias(aString, ClassReference.NULL_STRINGS);
 		}
-		if(typeof(aVariable) == JavascriptObjectTypes.TYPE_NUMBER) {
+		if(typeof(aVariable) === JavascriptObjectTypes.TYPE_NUMBER) {
 			return isNaN(aVariable);
 		}
 		
 		//ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isNull", "No case for object type (" + typeof(aVariable) + ") for variable " + aVariable);
 		return false;
-	}
+	};
 	
 	/**
 	 * Checks if a text is empty.
 	 */
-	 staticFunctions.isEmptyText = function isEmptyText(aString) {
+	 staticFunctions.isEmptyText = function(aString) {
 		//trace("breel.utils.data.VariableAliases.isEmptyText");
 		var regExpString = "^[ \t\f\n\r]*$";
 		var regExp = new RegExp(regExpString);
 		return regExp.test(aString);
-	} //End function isEmptyText
+	}; //End function isEmptyText
 	
-	staticFunctions.valueWithDefault = function valueWithDefault(aValue, aDefaultValue) {
+	staticFunctions.valueWithDefault = function(aValue, aDefaultValue) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::valueWithDefault");
 		//console.log(aValue, aDefaultValue);
-		if(aValue == null || aValue == undefined) {
+		if(ClassReference.isSet(aValue)) {
 			return aDefaultValue;
 		}
 		return aValue;
 	};
 	
-	staticFunctions.isSet = function isSet(aValue) {
+	staticFunctions.isSet = function(aValue) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::isSet");
-		if(aValue == null || aValue == undefined) {
+		if(aValue === null || aValue === undefined) {
 			return false;
 		}
 		return true;
