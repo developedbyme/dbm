@@ -36,8 +36,8 @@ dbm.registerClass("com.developedbyme.utils.math.QuadricEquationSolver", "com.dev
 		//console.log("com.developedbyme.utils.math.QuadricEquationSolver::solveEquation");
 		//console.log(aA, aB, aC);
 		
-		if(aA == 0) {
-			if(aB == 0) {
+		if(aA === 0) {
+			if(aB === 0) {
 				this.solution1 = NaN;
 				this.solution2 = NaN;
 				return false;
@@ -86,7 +86,7 @@ dbm.registerClass("com.developedbyme.utils.math.QuadricEquationSolver", "com.dev
 	 */
 	staticFunctions.getContantBForLength = function(aA, aLength) {
 		
-		if(aA == 0) {
+		if(aA === 0) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[QuadricEquationSolver]", "getContantBForLength", "a is 0");
 			return NaN;
 		}

@@ -26,7 +26,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandBaseObje
 	};
 	
 	objectFunctions.setAsRemovable = function(aRemoveAfterPerform) {
-		this.removeAfterPerform = (aRemoveAfterPerform != false);
+		this.removeAfterPerform = (aRemoveAfterPerform !== false);
 		
 		return this;
 	};
@@ -50,14 +50,14 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandBaseObje
 	};
 	
 	objectFunctions.release = function() {
-		if(this._numberOfRetains != 0) {
+		if(this._numberOfRetains !== 0) {
 			this._numberOfRetains--;
 		}
 	};
 	
 	objectFunctions.releaseAndDestroy = function() {
 		this.release();
-		if(this._numberOfRetains == 0) {
+		if(this._numberOfRetains === 0) {
 			this.destroy();
 		}
 	};

@@ -77,14 +77,14 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgLayer", "com.developedbyme.gui.s
 		//console.log(aName, aParentOrDocument, aAddToParent, aAttributes);
 		var newNode = (new ClassReference()).init();
 		
-		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
-		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
 		
 		var svgCreator = dbm.singletons.dbmHtmlDomManager.getSvgCreator(theDocument);
 		
 		newNode.setElement(svgCreator.createNode("g", aAttributes));
 		newNode.setParent(theParent);
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		

@@ -65,17 +65,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 		
 		var currentPath = PathFunctions.getPathWithoutQueryStringOrAnchor(this._documentLocation);
 		var protocolPosition = currentPath.indexOf("://");
-		if(protocolPosition != -1) {
+		if(protocolPosition !== -1) {
 			currentPath = currentPath.substring(protocolPosition+3, currentPath.length);
 		}
 		var slashIndex = currentPath.indexOf("/");
-		if(slashIndex == -1) {
+		if(slashIndex === -1) {
 			return "";
 		}
 		currentPath = currentPath.substring(slashIndex, currentPath.length);
 		
 		var slashIndex = currentPath.lastIndexOf("/");
-		if(slashIndex == -1) {
+		if(slashIndex === -1) {
 			return "";
 		}
 		currentPath = currentPath.substring(0, slashIndex);
@@ -110,7 +110,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 		var queryIndex = queryString.indexOf("?");
 		var queryStringArray = [];
 		
-		if(queryIndex != -1) {
+		if(queryIndex !== -1) {
 			this._setUrl(queryString.substring(0, queryIndex));
 			queryString = queryString.substring(queryIndex+1, queryString.length);
 			queryStringArray = queryString.split("&");

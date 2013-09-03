@@ -24,7 +24,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 			//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_eventCallback");
 			//console.log(aEvent);
 			//console.log(thisPointer._javascriptEventName);
-			if(thisPointer._performerObject == null) {
+			if(thisPointer._performerObject === null) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, thisPointer, "_eventCallback", "Performer object is null.");
 				return true;
 			}
@@ -81,7 +81,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 	
 	objectFunctions.reactivate = function reactivate() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::reactivate");
-		if(this._isActive && this._eventDispatcher != null) {
+		if(this._isActive && this._eventDispatcher !== null) {
 			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, false);
 		}
 		
@@ -92,7 +92,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::performDestroy");
 		//console.log(this._javascriptEventName);
 		
-		if(this._isActive && this._eventDispatcher != null) {
+		if(this._isActive && this._eventDispatcher !== null) {
 			this.deactivate();
 		}
 		

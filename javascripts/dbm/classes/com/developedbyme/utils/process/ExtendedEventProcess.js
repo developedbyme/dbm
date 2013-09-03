@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.utils.process.ExtendedEventProcess", "com.d
 		var eventData = EventDataObject.create(this._dynamicData.getValue());
 		var result = this._command.perform(eventData);
 		
-		if(result == CommandStatusTypes.CONTINUE) {
+		if(result === CommandStatusTypes.CONTINUE) {
 			this._processDone(eventData);
 		}
 		else {

@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaB
 		
 		var controller = dbm.singletons.dbmHtmlDomManager.getControllerForHtmlElementIfExists(aElement);
 		
-		if(controller == null) {
+		if(controller === null) {
 			
 			controller = DisplayBaseObject.create(aElement);
 			this.addDestroyableObject(controller);

@@ -49,12 +49,12 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		//console.log("com.developedbyme.gui.DisplayBaseObject::_updateInDomFlow");
 		var element = this._element.getValueWithoutFlow();
 		var parentElement = this._parentElement.getValueWithoutFlow();
-		if(element != null && parentElement != null) {
+		if(element !== null && parentElement !== null) {
 			var inDom = this._inDom.getValueWithoutFlow();
 			this._inDomOutput.setValueWithFlow(inDom, aFlowUpdateNumber);
 			if(inDom) {
-				if(element.parentNode != parentElement) {
-					if(parentElement.ownerDocument != element.ownerDocument) {
+				if(element.parentNode !== parentElement) {
+					if(parentElement.ownerDocument !== element.ownerDocument) {
 						try{
 							//console.log("com.developedbyme.gui.DisplayBaseObject::_updateInDomFlow");
 							//console.log(element);
@@ -78,7 +78,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 				}
 			}
 			else {
-				if(element.parentNode != null) {
+				if(element.parentNode !== null) {
 					try{
 						element.parentNode.removeChild(element);
 					}
@@ -98,39 +98,39 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.setElement = function(aElement) {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::setElement");
-		if(aElement == null) {
+		if(aElement === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setElement", "Trying to set element to null. Use removeElement() to remove element.");
 			this.removeElement();
 			return;
 		}
-		else if(this._element.getValue() != null) {
+		else if(this._element.getValue() !== null) {
 			this.removeElement();
 		}
 		
 		this._element.setValue(aElement);
 		
-		if(aElement.parentNode != null) {
+		if(aElement.parentNode !== null) {
 			this._parentElement.setValue(aElement.parentNode);
 			this._inDom.setValue(true);
 		}
-		else if(this._inDom.getValue() && this._parentElement.getValue() != null) {
+		else if(this._inDom.getValue() && this._parentElement.getValue() !== null) {
 			this._parentElement.getValue().appendChild(aElement);
 		}
 		
-		if(dbm.singletons.dbmHtmlDomManager != undefined) {
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
 			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, aElement);
 		}
 		
-		if(this._placementNode != null) {
+		if(this._placementNode !== null) {
 			this._placementNode.getProperty("element").setValue(this._element);
 			this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
 		}
 		else {
-			if(aElement.style != undefined) {
+			if(aElement.style !== undefined) {
 				//METODO: move this out like connect to opacity
 				//METODO: browser prefixes
 				var transformCssValue = aElement.style.getPropertyValue("transform");
-				if(transformCssValue != null) {
+				if(transformCssValue !== null) {
 					//METODO: create transform node
 				}
 			}
@@ -145,17 +145,17 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		//console.log("com.developedbyme.gui.DisplayBaseObject::removeElement");
 		
 		var currentElement = this.getElement();
-		if(currentElement != null && currentElement.parentNode != null) {
+		if(currentElement !== null && currentElement.parentNode !== null) {
 			currentElement.parentNode.removeChild(currentElement);
 		}
 		
-		if(dbm.singletons.dbmHtmlDomManager != undefined) {
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
 			dbm.singletons.dbmHtmlDomManager.removeHtmlElement(this.getElement());
 		}
 		
 		this._element.setValue(null);
 		
-		if(this._placementNode != null) {
+		if(this._placementNode !== null) {
 			this._placementNode.getProperty("display").disconnectOutput();
 		}
 		
@@ -258,14 +258,14 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 			case "pivotX":
 			case "pivotY":
 			case "cssDisplay":
-				if(this._placementNode != null) {
+				if(this._placementNode !== null) {
 					return this._placementNode.getProperty(aName);
 				}
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " is not placed, can't get property " + aName + ".");
 				return null;
 			case "width":
 			case "height":
-				if(this._sizeNode != null) {
+				if(this._sizeNode !== null) {
 					return this._sizeNode.getProperty(aName);
 				}
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " is not sized, can't get property " + aName + ".");
@@ -279,10 +279,10 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		//console.log("com.developedbyme.core.FlowBaseObject::getHtmlCreator");
 		var element = this._element.getValue();
 		var parentElement = this._parentElement.getValue();
-		if(element != null) {
+		if(element !== null) {
 			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(element));
 		}
-		else if(parentElement != null) {
+		else if(parentElement !== null) {
 			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(parentElement));
 		}
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getHtmlCreator", "Element or parent must be set before getting the html creator.");
@@ -291,7 +291,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.performDestroy = function() {
 		
-		if(this._inDom != null && this._inDom.getValue()) {
+		if(this._inDom !== null && this._inDom.getValue()) {
 			this.removeFromDom();
 		}
 		
@@ -346,7 +346,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		newNode.setElement(htmlCreator.createDiv(aAttributes));
 		
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		
@@ -364,7 +364,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		newNode.setElement(htmlCreator.createNode(aType, aAttributes));
 		
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		

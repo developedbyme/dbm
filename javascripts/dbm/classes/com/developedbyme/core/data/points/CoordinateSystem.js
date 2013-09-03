@@ -25,7 +25,7 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 		this.xVector = (new Point()).init();
 		this.yVector = (new Point()).init();
 		
-		if(ClassReference._tempTransformationMatrix == null) {
+		if(ClassReference._tempTransformationMatrix === null) {
 			ClassReference._tempTransformationMatrix = (new Matrix()).init();
 			ClassReference._tempTransformationMatrix.setupSize(3, 3);
 			ClassReference._tempTransformationMatrix.setAsIdentityMatrix();
@@ -84,11 +84,11 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 		
 		var returnArray = aReturnMatrix.valuesArray;
 		
-		if(this.xVector.y == 0) {
+		if(this.xVector.y === 0) {
 			returnArray[0] = 1/this.xVector.x;
 			returnArray[1] = -1*returnArray[0]*(this.yVector.x)/(this.yVector.y);
 		}
-		else if(this.xVector.x == 0) {
+		else if(this.xVector.x === 0) {
 			returnArray[1] = 1/this.xVector.y;
 			returnArray[0] = -1*returnArray[1]*(this.yVector.y)/(this.yVector.x);
 		}
@@ -98,11 +98,11 @@ dbm.registerClass("com.developedbyme.core.data.points.CoordinateSystem", "com.de
 		}
 		returnArray[2] = returnArray[0]*translateX+returnArray[1]*translateY;
 
-		if(this.yVector.y == 0) {
+		if(this.yVector.y === 0) {
 			returnArray[3] = 1/this.yVector.x;
 			returnArray[4] = -1*returnArray[0]*(this.xVector.x)/(this.xVector.y);
 		}
-		else if(this.yVector.x == 0) {
+		else if(this.yVector.x === 0) {
 			returnArray[4] = 1/this.yVector.y;
 			returnArray[3] = -1*returnArray[1]*(this.xVector.y)/(this.xVector.x);
 		}

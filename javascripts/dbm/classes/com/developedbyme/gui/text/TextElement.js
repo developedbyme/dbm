@@ -59,14 +59,14 @@ dbm.registerClass("com.developedbyme.gui.text.TextElement", "com.developedbyme.g
 	staticFunctions.create = function(aParentOrDocument, aAddToParent, aText) {
 		var newNode = (new ClassReference()).init();
 		
-		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
-		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
 		newNode.setElement(htmlCreator.createText(aText));
 		newNode.setParent(theParent);
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		

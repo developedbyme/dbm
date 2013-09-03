@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.css.MediaQueryIsActiveNode", "co
 		
 		var currentMediaQueryList = this._mediaQueryList.getValueWithoutFlow();
 		
-		if(currentMediaQueryList != null) {
+		if(currentMediaQueryList !== null) {
 			currentMediaQueryList.removeListener(this._callback_mediaQueryChangedState);
 		}
 		
@@ -63,10 +63,10 @@ dbm.registerClass("com.developedbyme.flow.nodes.css.MediaQueryIsActiveNode", "co
 	
 	objectFunctions.performDestroy = function() {
 		
-		if(this._mediaQueryList != null) {
+		if(this._mediaQueryList !== null) {
 			var currentMediaQueryList = this._mediaQueryList.getValueWithoutFlow();
 			
-			if(currentMediaQueryList != null) {
+			if(currentMediaQueryList !== null) {
 				currentMediaQueryList.removeListener(this._callback_mediaQueryChangedState);
 			}
 		}

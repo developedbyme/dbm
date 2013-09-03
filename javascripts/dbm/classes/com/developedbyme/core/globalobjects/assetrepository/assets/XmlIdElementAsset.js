@@ -43,10 +43,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		this._xmlAsset.retain();
 		this.addDestroyableObject(this._xmlAsset);
 		
-		if(this._xmlAsset.getStatus() == AssetStatusTypes.LOADED) {
+		if(this._xmlAsset.getStatus() === AssetStatusTypes.LOADED) {
 			this._xmlLoaded();
 		}
-		else if(this._xmlAsset.getStatus() == AssetStatusTypes.LOADED) {
+		else if(this._xmlAsset.getStatus() === AssetStatusTypes.LOADED) {
 			this._xmlLoadingError();
 		}
 		else {
@@ -63,7 +63,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		var theDocument = this._xmlAsset.getData();
 		var theElement = theDocument.getElementById(this._id);
 		
-		if(theElement == null) {
+		if(theElement === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "_setupData", "Document doesn't have a node with id " + this._id + ".");
 		}
 		

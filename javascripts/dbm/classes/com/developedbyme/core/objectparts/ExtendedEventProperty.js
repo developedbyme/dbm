@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
 		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
 		this.superCall(aValue);
-		if(aValue != null) {
+		if(aValue !== null) {
 			if(this._extendedEvent.hasEvent(aValue)) {
 				this._extendedEvent.perform(aValue, null);
 			}

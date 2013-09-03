@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	objectFunctions.setDefaultText = function(aText) {
 		//console.log("com.developedbyme.gui.form.InputField::setDefaultText");
 		this._defaultText = aText;
-		if(this._defaultText != null && VariableAliases.isNull(this.getElement().value)) {
+		if(this._defaultText !== null && VariableAliases.isNull(this.getElement().value)) {
 			this._isChangingDefaultText = true;
 			this.getElement().value = this._defaultText;
 			this._isChangingDefaultText = false;
@@ -66,7 +66,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	
 	objectFunctions._focus = function() {
 		//console.log("com.developedbyme.gui.form.InputField::_focus");
-		if(this._defaultText != null && this.getElement().value == this._defaultText) {
+		if(this._defaultText !== null && this.getElement().value === this._defaultText) {
 			this._isChangingDefaultText = true;
 			this.getElement().value = "";
 			this._isChangingDefaultText = false;
@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	
 	objectFunctions._blur = function() {
 		//console.log("com.developedbyme.gui.form.InputField::_blur");
-		if(this._defaultText != null && VariableAliases.isNull(this.getElement().value)) {
+		if(this._defaultText !== null && VariableAliases.isNull(this.getElement().value)) {
 			this._isChangingDefaultText = true;
 			this.getElement().value = this._defaultText;
 			this._isChangingDefaultText = false;
@@ -89,7 +89,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 		if(this.getExtendedEvent().hasEvent(FormFieldExtendedEventIds.CHANGE)) {
 			this.getExtendedEvent().perform(FormFieldExtendedEventIds.CHANGE, this.getElement().value);
 		}
-		if(aEvent.keyCode == 13) {
+		if(aEvent.keyCode === 13) {
 			if(this.getExtendedEvent().hasEvent(FormFieldExtendedEventIds.REQUEST_SUBMIT)) {
 				this.getExtendedEvent().perform(FormFieldExtendedEventIds.REQUEST_SUBMIT, this.getElement().value);
 			}

@@ -34,7 +34,7 @@ dbm.runTempFunction(function() {
 	
 	classManager._getClassHolder = function _getClassHolder(aName) {
 		
-		if(this._classes[aName] != undefined) {
+		if(this._classes[aName] !== undefined) {
 			return this._classes[aName];
 		}
 		
@@ -71,7 +71,7 @@ dbm.runTempFunction(function() {
 		newClassHolder.isRegistered = true;
 		
 		newClassHolder.extendedClass = aExtends;
-		if(aExtends != null) {
+		if(aExtends !== null) {
 			this.importClass(aExtends);
 		}
 		
@@ -103,7 +103,7 @@ dbm.runTempFunction(function() {
 	
 	classManager.importClass = function importClass(aName) {
 		
-		if(this._classes[aName] != undefined) {
+		if(this._classes[aName] !== undefined) {
 			return this._classes[aName].classFunction;
 		}
 		
@@ -116,7 +116,7 @@ dbm.runTempFunction(function() {
 	
 	classManager.getClass = function getClass(aName) {
 		
-		if(this._classes[aName] != undefined) {
+		if(this._classes[aName] !== undefined) {
 			return this._classes[aName].classFunction;
 		}
 		
@@ -139,7 +139,7 @@ dbm.runTempFunction(function() {
 	
 	classManager.importLibrary = function importLibrary(aName, aReInitFunction) {
 		//console.log("classManager.importLibrary");
-		if(aReInitFunction != null && aReInitFunction != undefined) {
+		if(aReInitFunction !== null && aReInitFunction !== undefined) {
 			this.addReInitLibraryFunction(aReInitFunction);
 		}
 		return this._libraries[aName];
@@ -169,12 +169,12 @@ dbm.runTempFunction(function() {
 	}; //End function addReInitLibraryFunction
 	
 	classManager.setClassAsSingleton = function setClassAsSingleton(aName, aClassPath) {
-		var theClassPath = (aClassPath != null) ? aClassPath : this._currentRegistrationClass;
+		var theClassPath = (aClassPath !== null) ? aClassPath : this._currentRegistrationClass;
 		
 		this._singletons[aName] = theClassPath;
 		
 		var classHolder = this._getClassHolder(theClassPath);
-		if(classHolder.prototypeObject == null) {
+		if(classHolder.prototypeObject === null) {
 			classHolder.classFunction._instance = null;
 			classHolder.classFunction.getInstance = null;
 		}
@@ -194,7 +194,7 @@ dbm.runTempFunction(function() {
 		//console.log("classManager.setupSingletons");
 		for(var objectName in this._singletons) {
 			var className = this._singletons[objectName];
-			if(this._classes[className] == null) {
+			if(this._classes[className] === null) {
 				continue;
 			}
 			var theClass = this._classes[className].classFunction;
@@ -213,7 +213,7 @@ dbm.runTempFunction(function() {
 		//console.log(aName);
 		
 		var currentClassHolder = this._classes[aName];
-		if(currentClassHolder.prototypeObject == null) {
+		if(currentClassHolder.prototypeObject === null) {
 			if(!currentClassHolder.isRegistered) {
 				console.error("Class " + currentClassHolder.name + " is not registered");
 			}
@@ -222,7 +222,7 @@ dbm.runTempFunction(function() {
 			
 			var extendPrototypeObject = null;
 			
-			if(currentClassHolder.extendedClass != null) {
+			if(currentClassHolder.extendedClass !== null) {
 				
 				var extendedClass = this._setupClassInheritanceForClass(currentClassHolder.extendedClass);
 				extendPrototypeObject = new (extendedClass.classFunction)();
@@ -230,12 +230,12 @@ dbm.runTempFunction(function() {
 				var extendedMethods = extendedClass.prototypeObject;
 				for(var extendedMethodName in extendedMethods) {
 					//currentClassHolder.prototypeObject[extendedMethodName] = extendedMethods[extendedMethodName];
-					if(currentClassHolder.objectMethods[extendedMethodName] != undefined) {
+					if(currentClassHolder.objectMethods[extendedMethodName] !== undefined) {
 						currentClassHolder.objectMethods[extendedMethodName].superFunction = extendedMethods[extendedMethodName];
 					}
 				}
 				for(var staticMethodName in extendedClass.staticMethods) {
-					if(currentClassHolder.staticMethods[staticMethodName] == undefined) {
+					if(currentClassHolder.staticMethods[staticMethodName] === undefined) {
 						//console.log(staticMethodName);
 						currentClassHolder.staticMethods[staticMethodName] = extendedClass.staticMethods[staticMethodName];
 					}
@@ -254,7 +254,7 @@ dbm.runTempFunction(function() {
 			currentClassHolder.prototypeObject = new prototypeClass();
 			
 			for(var objectMethodName in currentClassHolder.objectMethods) {
-				//if(currentClassHolder.prototypeObject[objectMethodName] != undefined) {
+				//if(currentClassHolder.prototypeObject[objectMethodName] !== undefined) {
 				//	currentClassHolder.objectMethods[objectMethodName].superFunction = currentClassHolder.prototypeObject[objectMethodName];
 				//}
 				currentClassHolder.prototypeObject[objectMethodName] = currentClassHolder.objectMethods[objectMethodName];

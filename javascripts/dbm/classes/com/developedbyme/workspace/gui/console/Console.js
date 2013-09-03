@@ -42,7 +42,7 @@ dbm.registerClass("com.developedbyme.workspace.gui.console.Console", "com.develo
 	};
 	
 	objectFunctions._linePrinted = function(aLine) {
-		if(aLine == this._currentLine) {
+		if(aLine === this._currentLine) {
 			this._currentLine = null;
 		}
 	};
@@ -69,7 +69,7 @@ dbm.registerClass("com.developedbyme.workspace.gui.console.Console", "com.develo
 		
 		var newTextLine = this.getCurrentLine();
 		var newButton = BaseButton.createButton(newTextLine.getElement(), true, null, aText);
-		if(aCommand != null) {
+		if(aCommand !== null) {
 			newButton.getExtendedEvent().addCommandToEvent("click", aCommand);
 		}
 		newButton.activate();

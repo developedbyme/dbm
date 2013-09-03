@@ -31,11 +31,11 @@ dbm.registerClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunc
 			
 			var scopeStartPosition = ScopeFunctions.getScopeStart(aCode, currentPosition, aCommentScopeStarts);
 			
-			if(scopeStartPosition == -1) {
+			if(scopeStartPosition === -1) {
 				returnText += aCode.substring(currentPosition, aCode.length);
 				break;
 			}
-			else if(scopeStartPosition != currentPosition) {
+			else if(scopeStartPosition !== currentPosition) {
 				returnText += aCode.substring(currentPosition, scopeStartPosition);
 			}
 			
@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunc
 			var endType = ScopeFunctions.getTypeOfScopeEndForScopeStart(startType, aScopeStarts, aScopeEnds);
 			var newScope = ScopeFunctions.getScope(aCode, scopeStartPosition, startType, endType, aScopeStarts, aScopeEnds);
 			
-			if(newScope == null) {
+			if(newScope === null) {
 				//METODO: error message
 				break;
 			}
@@ -58,7 +58,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunc
 		
 		var commentPosition = ArrayFunctions.indexOfInArray(aCommentScopeStarts, aScope.type);
 		
-		if(commentPosition != -1) {
+		if(commentPosition !== -1) {
 			return aCommentReplace[commentPosition];
 		}
 		
@@ -66,7 +66,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunc
 		var currentPosition = aScope.start;
 		
 		var currentArray = aScope.childScopes;
-		if(currentArray != null) {
+		if(currentArray !== null) {
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentScope = currentArray[i];
@@ -99,7 +99,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunc
 			var scopeStartPosition = ScopeFunctions.getScopeStart(aText, currentPosition, aScopeStarts, aScopeEnds);
 			var endLinePosition = ScopeFunctions.getScopeStart(aText, currentPosition, aSeparators);
 			
-			while((endLinePosition < scopeStartPosition || scopeStartPosition == -1) && endLinePosition != -1) {
+			while((endLinePosition < scopeStartPosition || scopeStartPosition === -1) && endLinePosition !== -1) {
 				
 				currentValue += aText.substring(currentPosition, endLinePosition);
 				returnArray.push(currentValue);
@@ -109,13 +109,13 @@ dbm.registerClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunc
 				
 				endLinePosition = ScopeFunctions.getScopeStart(aText, currentPosition, aSeparators);
 			}
-			if(endLinePosition == -1) {
+			if(endLinePosition === -1) {
 				break;
 			}
 			var currentScopeStartType = ScopeFunctions.getTypeOfScopeStart(aText, scopeStartPosition, aScopeStarts);
 			var currentEndScopeType = ScopeFunctions.getTypeOfScopeEndForScopeStart(currentScopeStartType, aScopeStarts, aScopeEnds);
 			var currentScope = ScopeFunctions.getAnyScope(aText, scopeStartPosition, currentScopeStartType, currentEndScopeType, aScopeStarts, aScopeEnds);
-			if(currentScope.end == -1) {
+			if(currentScope.end === -1) {
 				break;
 			}
 			var newPosition = currentScope.end+currentEndScopeType.length;

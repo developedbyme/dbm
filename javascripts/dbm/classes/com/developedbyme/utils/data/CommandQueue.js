@@ -78,7 +78,7 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 		var currentArray = this._commandQueueArray;
 		for(var i = (this._currentPosition-1); ++i < currentArray.length;) {
 			var currentObject = currentArray[i];
-			if(this._commandsObject[currentObject["type"]] == undefined) {
+			if(this._commandsObject[currentObject["type"]] === undefined) {
 				//METODO: error message
 			}
 			else {

@@ -3,7 +3,7 @@ dbm.runTempFunction(function() {
 	//var scriptElement = document.currentScript; //MENOTE: only works in firefox
 	var scriptElements = document.querySelectorAll("script"); //MENOTE: this works as long as the script is not injected before any other script tag
 	var scriptElement = scriptElements[scriptElements.length-1];
-	if(scriptElement == null) {
+	if(scriptElement === null) {
 		console.error("Generic startup is not available without script tag");
 		return;
 	}
@@ -19,7 +19,7 @@ dbm.runTempFunction(function() {
 			removeEndPosition = anchorMarkPosition;
 		}
 		
-		if(removeEndPosition != -1) {
+		if(removeEndPosition !== -1) {
 			return aPath.substring(0, removeEndPosition);
 		}
 		return aPath;

@@ -44,10 +44,10 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgDisplayBaseObject", "com.develop
 		//console.log("com.developedbyme.core.FlowBaseObject::getHtmlCreator");
 		var element = this._element.getValue();
 		var parentElement = this._parentElement.getValue();
-		if(element != null) {
+		if(element !== null) {
 			return dbm.singletons.dbmHtmlDomManager.getSvgCreator(DomReferenceFunctions.getDocument(element));
 		}
-		else if(parentElement != null) {
+		else if(parentElement !== null) {
 			return dbm.singletons.dbmHtmlDomManager.getSvgCreator(DomReferenceFunctions.getDocument(parentElement));
 		}
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getSvgCreator", "Element or parent must be set before getting the svg creator.");

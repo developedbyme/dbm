@@ -40,20 +40,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	};
 	
 	objectFunctions.getValueAt = function(aTime) {
-		if(aTime == this.endTime || this.startTime == this.endTime) {
+		if(aTime === this.endTime || this.startTime === this.endTime) {
 			return this.getValueByParameter(1);
 		}
-		else if(aTime == this.startTime) {
+		else if(aTime === this.startTime) {
 			return this.getValueByParameter(0);
 		}
 		return this.getValueByParameter((aTime-this.startTime)/(this.endTime-this.startTime));
 	};
 	
 	objectFunctions.getTangentAt = function(aTime) {
-		if(aTime == this.endTime || this.startTime == this.endTime) {
+		if(aTime === this.endTime || this.startTime === this.endTime) {
 			return this.getTangentByParameter(1);
 		}
-		else if(aTime == this.startTime) {
+		else if(aTime === this.startTime) {
 			return this.getTangentByParameter(0);
 		}
 		return this.getTangentByParameter((aTime-this.startTime)/(this.endTime-this.startTime));

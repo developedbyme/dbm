@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.I
 	objectFunctions.load = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset::load");
 		
-		if(this._status.getValue() != AssetStatusTypes.NOT_LOADED) {
+		if(this._status.getValue() !== AssetStatusTypes.NOT_LOADED) {
 			return this;
 		}
 		

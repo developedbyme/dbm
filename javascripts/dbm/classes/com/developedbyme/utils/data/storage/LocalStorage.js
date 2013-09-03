@@ -55,7 +55,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.LocalStorage", "com.deve
 		newLocalStorage.setup(dbm.getWindow().localStorage, aPrefix, aSuffix);
 		
 		return newLocalStorage;
-	} //End function createLocalStorage
+	}; //End function createLocalStorage
 	
 	/**
 	 * Creates a new session storage
@@ -70,5 +70,13 @@ dbm.registerClass("com.developedbyme.utils.data.storage.LocalStorage", "com.deve
 		newLocalStorage.setup(dbm.getWindow().sessionStorage, aPrefix, aSuffix);
 		
 		return newLocalStorage;
-	} //End function createSessionStorage
+	}; //End function createSessionStorage
+	
+	/**
+	 * Gets local data
+	 */
+	 staticFunctions.getLocalStorageData = function(aPath) {
+		//trace("com.developedbyme.utils.data.LocalStorage.getLocalStorageData");
+		return dbm.getWindow().localStorage.getItem(aPath);
+	}; //End function getLocalStorageData
 });

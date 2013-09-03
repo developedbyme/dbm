@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowForElementNode", "
 		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_update");
 		
 		var element = this._element.getValueWithoutFlow();
-		if(element != null) {
+		if(element !== null) {
 			this.start();
 			this._window.setValueWithFlow(DomReferenceFunctions.getDocument(element).defaultView, aFlowUpdateNumber);
 		}

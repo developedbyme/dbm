@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.RectangleOfElementNode",
 		
 		var htmlElement = this._element.getValueWithoutFlow();
 		
-		if(htmlElement != null) {
+		if(htmlElement !== null) {
 			
 			var theRectangle = this._rectangle.getValueWithoutFlow();
 			theRectangle.x = htmlElement.clientLeft;

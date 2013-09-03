@@ -55,7 +55,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::_update");
 		var inputTime = this._inputTime.getValueWithoutFlow();
-		if(this._state.getValueWithoutFlow() == PlaybackStateTypes.PLAYING) {
+		if(this._state.getValueWithoutFlow() === PlaybackStateTypes.PLAYING) {
 			var timeDiff = inputTime-this._lastInputTime;
 			var playbackSpeed = this._playbackSpeed.getValueWithoutFlow();
 			var newTime = this._lastOutputTime+playbackSpeed*timeDiff;
@@ -99,7 +99,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	};
 	
 	objectFunctions.startScrubbing = function(aValue) {
-		if(this._state.getValue() == PlaybackStateTypes.SCRUBBING) return;
+		if(this._state.getValue() === PlaybackStateTypes.SCRUBBING) return;
 		
 		this._stateBeforeScrubbing = this._state.getValue();
 		this._state.setValue(PlaybackStateTypes.SCRUBBING);
@@ -107,12 +107,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	};
 	
 	objectFunctions.updateScrubbing = function(aValue) {
-		if(this._state.getValue() != PlaybackStateTypes.SCRUBBING) return;
+		if(this._state.getValue() !== PlaybackStateTypes.SCRUBBING) return;
 		this._lastOutputTime = aValue;
 	};
 	
 	objectFunctions.stopScrubbing = function(aValue) {
-		if(this._state.getValue() != PlaybackStateTypes.SCRUBBING) return;
+		if(this._state.getValue() !== PlaybackStateTypes.SCRUBBING) return;
 		this._lastOutputTime = aValue;
 		this._state.setValue(this._stateBeforeScrubbing);
 	};

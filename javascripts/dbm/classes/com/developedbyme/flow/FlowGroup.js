@@ -77,7 +77,7 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 	};
 	
 	objectFunctions.setInputPropertyInputWithoutNull = function(aName, aInput) {
-		if(aInput != null) {
+		if(aInput !== null) {
 			this.setInputPropertyInput(aName, aInput);
 		}
 		return this;
@@ -98,7 +98,7 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 	};
 	
 	objectFunctions.setOutputPropertyInputWithoutNull = function(aName, aInput) {
-		if(aInput != null) {
+		if(aInput !== null) {
 			this.setOutputPropertyInput(aName, aInput);
 		}
 		return this;

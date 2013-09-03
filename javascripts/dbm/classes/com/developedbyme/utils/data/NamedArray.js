@@ -39,11 +39,11 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	};
 	
 	objectFunctions.addObject = function(aName, aObject) {
-		if(aName == null) {
+		if(aName === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
 			return;
 		}
-		if(this._objectsObject[aName] != undefined) {
+		if(this._objectsObject[aName] !== undefined) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
 			this.removeObject(aName);
 		}
@@ -53,11 +53,11 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	};
 	
 	objectFunctions.replaceObject = function(aName, aObject) {
-		if(aName == null) {
+		if(aName === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "replaceObject", "Name is null for object" + aObject + ".");
 			return;
 		}
-		if(this._objectsObject[aName] != undefined) {
+		if(this._objectsObject[aName] !== undefined) {
 			this.removeObject(aName);
 		}
 		else {
@@ -69,11 +69,11 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	};
 
 	objectFunctions.addObjectToBeginning = function(aName, aObject) {
-		if(aName == null) {
+		if(aName === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
 			return;
 		}
-		if(this._objectsObject[aName] != undefined) {
+		if(this._objectsObject[aName] !== undefined) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
 			this.removeObject(aName);
 		}
@@ -83,7 +83,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	};
 	
 	objectFunctions.select = function(aName) {
-		if(this._objectsObject[aName] == undefined) {
+		if(this._objectsObject[aName] === undefined) {
 			this.currentSelectedItem = null;
 			return false;
 		}
@@ -92,12 +92,12 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	};
 	
 	objectFunctions.hasObject = function(aName) {
-		return (this._objectsObject[aName] != undefined);
+		return (this._objectsObject[aName] !== undefined);
 	};
 	
 	objectFunctions.getObject = function(aName) {
 		//console.log("com.developedbyme.utils.data.NamedArray::getObject");
-		if(this._objectsObject[aName] == undefined) {
+		if(this._objectsObject[aName] === undefined) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MINOR, this, "getObject", "Object " + aName + " doesn't exist.");
 			return null;
 		}
@@ -105,7 +105,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	};
 	
 	objectFunctions.removeObject = function(aName) {
-		if(this._objectsObject[aName] == undefined) {
+		if(this._objectsObject[aName] === undefined) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MAJOR, this, "removeObject", "Object " + aName + " doesn't exist.");
 			return;
 		}
@@ -113,18 +113,18 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		var currentArray = this._objectsArray;
 		var theLength = currentArray.length;
 		for(var i = 0; i < theLength; i++) {
-			if(currentArray[i] == currentObject) {
+			if(currentArray[i] === currentObject) {
 				currentArray.splice(i, 1);
 				delete this._objectsObject[aName];
 				break;
 			}
 		}
 		var nameIndex = this._namesArray.indexOf(aName);
-		if(nameIndex != -1) {
+		if(nameIndex !== -1) {
 			this._namesArray.splice(nameIndex, 1);
 		}
 		
-		if(this.currentSelectedItem == currentObject) {
+		if(this.currentSelectedItem === currentObject) {
 			this.currentSelectedItem = null;
 		}
 	};
@@ -142,7 +142,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	
 	objectFunctions.identifyObject = function(aObject) {
 		for(var objectName in this._objectsObject) {
-			if(this._objectsObject[objectName] == aObject) {
+			if(this._objectsObject[objectName] === aObject) {
 				return objectName;
 			}
 		}
@@ -154,7 +154,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("ownsObjects: " + this.ownsObjects);
-		if(this._namesArray != null) {
+		if(this._namesArray !== null) {
 			aReturnArray.push("properties: [" + this._namesArray + "]");
 		}
 	}

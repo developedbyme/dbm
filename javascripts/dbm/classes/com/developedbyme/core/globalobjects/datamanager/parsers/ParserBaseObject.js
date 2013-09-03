@@ -15,9 +15,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.Pars
 	
 	objectFunctions.parseXml = function(aXml, aPathReference, aType) {
 		var parseResult = dbm.singletons.dbmDataManager.parseNodeValue(aXml, aPathReference, aType);
-		if(parseResult == null) {
+		if(parseResult === null) {
 			parseResult = dbm.singletons.dbmDataManager.parseFirstChild(aXml, aPathReference);
-			if(parseResult == null) {
+			if(parseResult === null) {
 				//METODO: error message
 				return this._createNullResult(aXml, aPathReference);
 			}

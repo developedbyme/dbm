@@ -37,7 +37,7 @@ dbm.registerClass("com.developedbyme.utils.data.orderselector.SequencedMultipleO
 			var inRangeIndex = i % currentArrayLength;
 			var currentSelector = currentArray[inRangeIndex];
 			var returnValue = currentSelector.getNextValue(aReservedData);
-			if(returnValue != -1) {
+			if(returnValue !== -1) {
 				this._currentStep = inRangeIndex+1;
 				return returnValue;
 			}

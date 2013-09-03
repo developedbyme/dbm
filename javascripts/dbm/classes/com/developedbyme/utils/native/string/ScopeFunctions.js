@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentIndex = aText.indexOf(currentArray[i], aFromPosition);
-			if((currentIndex != -1 && currentIndex < returnPosition) || returnPosition == -1) {
+			if((currentIndex !== -1 && currentIndex < returnPosition) || returnPosition === -1) {
 				returnPosition = currentIndex;
 			}
 		}
@@ -44,11 +44,11 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 		
 		var whiteSpaceRegExp = new RegExp("[^\\s]");
 		
-		while(scopeStartPosition != -1 || operatorPosition != -1) {
+		while(scopeStartPosition !== -1 || operatorPosition !== -1) {
 			if(debugCounter++ > 10000) {
 				break;
 			}
-			while((operatorPosition < scopeStartPosition || scopeStartPosition == -1) && operatorPosition != -1) {
+			while((operatorPosition < scopeStartPosition || scopeStartPosition === -1) && operatorPosition !== -1) {
 				if(debugCounter++ > 10000) {
 					break;
 				}
@@ -67,15 +67,15 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 				operatorPosition = ClassReference.getScopeStart(aText, currentPosition, ClassReference.operatorTypes);
 			}
 			
-			if(scopeStartPosition != -1) {
+			if(scopeStartPosition !== -1) {
 				var currentScopeStartType = ClassReference.getTypeOfScopeStart(aText, scopeStartPosition);
 				var currentScopeEndType = ClassReference.getTypeOfScopeEndForScopeStart(currentScopeStartType);
-				if(currentPosition != scopeStartPosition || aReturnOperators[aReturnOperators.length-1] == null) {
+				if(currentPosition !== scopeStartPosition || aReturnOperators[aReturnOperators.length-1] === null) {
 					returnArray.push(scopeStartPosition);
 					aReturnOperators.push(null);
 				}
 				var currentScope = ClassReference.getAnyScope(aText, scopeStartPosition, currentScopeStartType, currentScopeEndType);
-				if(currentScope.end == -1) {
+				if(currentScope.end === -1) {
 					break;
 				}
 				currentPosition = currentScope.end+currentScopeEndType.length;
@@ -101,7 +101,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 			var scopeLength = currentScopeName.length;
 			var isCorrect = true;
 			for(var j = 0; j < scopeLength; j++) {
-				if(currentScopeName.charAt(j) != aText.charAt(aPosition+j)) {
+				if(currentScopeName.charAt(j) !== aText.charAt(aPosition+j)) {
 					isCorrect = false;
 					break;
 				}
@@ -124,7 +124,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 		var currentArray = aScopeStarts;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			if(aStart == currentArray[i]) {
+			if(aStart === currentArray[i]) {
 				return aScopeEnds[i];
 			}
 		}
@@ -139,10 +139,10 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 		aEndType = VariableAliases.valueWithDefault(aEndType, ClassReference.getTypeOfScopeEndForScopeStart(aStartType));
 		
 		var newChildScope = null;
-		if(aStartType == "\"" || aStartType == "\'") {
+		if(aStartType === "\"" || aStartType === "\'") {
 			newChildScope = ClassReference.getTextScope(aText, aStartPosition, aStartType, aEndType);
 		}
-		else if(aStartType == "//" || aStartType == "/*") {
+		else if(aStartType === "//" || aStartType === "/*") {
 			newChildScope = ClassReference.getCommentScope(aText, aStartPosition, aStartType, aEndType);
 		}
 		else {
@@ -172,11 +172,11 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 			}
 			var newScopeStart = ClassReference.getScopeStart(aText, currentIndex, aScopeStarts);
 			var newScopeEnd = aText.indexOf(aEndType, currentIndex);
-			if(newScopeEnd == -1) {
+			if(newScopeEnd === -1) {
 				returnScope.end = -1;
 				break;
 			}
-			if(newScopeStart == -1 || newScopeEnd < newScopeStart) {
+			if(newScopeStart === -1 || newScopeEnd < newScopeStart) {
 				returnScope.end = newScopeEnd;
 				break;
 			}
@@ -185,11 +185,11 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 			
 			var newChildScope = ClassReference.getAnyScope(aText, newScopeStart, newScopeStartType, newScopeEndType, aScopeStarts, aScopeEnds);
 			
-			if(returnScope.childScopes == undefined) {
+			if(returnScope.childScopes === undefined) {
 				returnScope.childScopes = new Array();
 			}
 			returnScope.childScopes.push(newChildScope);
-			if(newChildScope.end == -1 || newChildScope.end == aText.length) {
+			if(newChildScope.end === -1 || newChildScope.end === aText.length) {
 				returnScope.end = newScopeEnd;
 				break;
 			}
@@ -204,7 +204,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 		returnScope.start = aStartPosition;
 		
 		var endPosition = aText.indexOf(aEndType, aStartPosition);
-		if(endPosition == -1 && aStartType == "//") {
+		if(endPosition === -1 && aStartType === "//") {
 			returnScope.end = aText.length;
 		}
 		else {
@@ -227,13 +227,13 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 				break;
 			}
 			var endPosition = aText.indexOf(aEndType, currentIndex);
-			if(endPosition == -1) {
+			if(endPosition === -1) {
 				returnScope.end = -1;
 				break;
 			}
 			checkPosition = endPosition-1;
 			var slashCount = 0;
-			while(aText.charAt(checkPosition) == "\\") {
+			while(aText.charAt(checkPosition) === "\\") {
 				if(debugCounter++ > 10000) {
 					console.log("break getTextScope 2");
 					break;
@@ -241,7 +241,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 				slashCount++;
 				checkPosition--;
 			}
-			if(slashCount%2 == 0) {
+			if(slashCount%2 === 0) {
 				returnScope.end = endPosition;
 				break;
 			}

@@ -95,7 +95,7 @@ dbm.registerClass("com.developedbyme.flow.compiler.FlowCompiler", "com.developed
 			for(var j = 0; j < currentArray2Length; j++) {
 				var currentConnection = currentArray2[j];
 				if(currentConnection instanceof UpdateFunction) {
-					if(ArrayFunctions.indexOfInArray(updateFunctions, currentConnection) == -1) {
+					if(ArrayFunctions.indexOfInArray(updateFunctions, currentConnection) === -1) {
 						updateFunctions.push(currentConnection);
 					}
 					newVariableName = null;
@@ -106,7 +106,7 @@ dbm.registerClass("com.developedbyme.flow.compiler.FlowCompiler", "com.developed
 				}
 				else {
 					if(!variableNames.hasObject(currentConnection)) {
-						if(newVariableName == null) {
+						if(newVariableName === null) {
 							newVariableName = "variable_" + (numberOfVariables++);
 						}
 						variableNames.addObject(currentConnection, newVariableName);

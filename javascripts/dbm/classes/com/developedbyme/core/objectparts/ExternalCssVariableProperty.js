@@ -25,29 +25,29 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	
 	objectFunctions._performSetValue = function(aValue) {
 		
-		if(this._externalObject == null) {
+		if(this._externalObject === null) {
 			this._value = aValue;
 			return;
 		}
 		
-		var newValue = (this._unit == null) ? aValue :  aValue + "" + this._unit;
+		var newValue = (this._unit === null) ? aValue :  aValue + "" + this._unit;
 		
 		this._externalObject.style.setProperty(this._externalVariableName, newValue, this._priority);
 	};
 	
 	objectFunctions._performGetValue = function() {
 		
-		if(this._externalObject == null) {
+		if(this._externalObject === null) {
 			return this._value;
 		}
 		
 		var cssValue;
 		cssValue = this._externalObject.style.getPropertyValue(this._externalVariableName);
 		
-		if(cssValue == null) {
+		if(cssValue === null) {
 			return null;
 		}
-		else if(this._unit != null) {
+		else if(this._unit !== null) {
 			var unitPosition = cssValue.lastIndexOf(this._unit);
 			var valueWithoutUnit = cssValue.substring(0, unitPosition);
 			return parseFloat(valueWithoutUnit);
@@ -58,7 +58,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	
 	objectFunctions.setupExternalObject = function(aObject, aVariableName, aUnit, aDefaultValue) {
 		
-		if(this._externalObject != null) {
+		if(this._externalObject !== null) {
 			//METODO: warning message
 			this.removeExternalObject();
 		}
@@ -69,11 +69,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		this._externalVariableName = aVariableName;
 		this._unit = aUnit;
 		
-		if(startValue != null) {
+		if(startValue !== null) {
 			this._performSetValue(startValue);
 		}
 		else {
-			if(this.getValue() == null && aDefaultValue != null) {
+			if(this.getValue() === null && aDefaultValue !== null) {
 				this._performSetValue(aDefaultValue);
 			}
 			this.setAsDirty();
@@ -82,7 +82,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	
 	objectFunctions.removeExternalObject = function() {
 		
-		if(this._externalObject != null) {
+		if(this._externalObject !== null) {
 			this._value = this._performGetValue();
 		}
 		else {
@@ -116,7 +116,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
 		aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
 		newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
-		if(aValue != null) {
+		if(aValue !== null) {
 			newExternalCssVariableProperty.setValue(aValue);
 		}
 		return newExternalCssVariableProperty;

@@ -54,13 +54,13 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesN
 			switch(type) {
 				case ShaderVariableTypes.ATTRIBUTE:
 					returnValue = context.getAttribLocation(shader, currentKeyValue.name);
-					if(returnValue == -1) {
+					if(returnValue === -1) {
 						ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_update", "Attribute " + currentKeyValue.name + " doesn't exist.");
 					}
 					break;
 				case ShaderVariableTypes.UNIFORM:
 					returnValue = context.getUniformLocation(shader, currentKeyValue.name);
-					if(returnValue == null) {
+					if(returnValue === null) {
 						ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_update", "Uniform " + currentKeyValue.name + " doesn't exist.");
 					}
 					break;

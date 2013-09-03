@@ -67,9 +67,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.PropertyDependentFunction"
 		var currentValue = this._dependentProperty.getValue();
 		switch(this._type) {
 			case "notNull":
-				return (currentValue != null);
+				return (currentValue !== null);
 			case "isTrue":
-				return (currentValue == true);
+				return (currentValue === true);
 			default:
 				//METODO: error message
 		}

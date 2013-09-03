@@ -15,14 +15,14 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentRule = currentArray[i];
-			if(currentRule.type == aType) {
+			if(currentRule.type === aType) {
 				aReturnArray.push(currentRule);
 			}
 			
-			if(currentRule.type == CssRuleTypes.MEDIA_RULE) {
+			if(currentRule.type === CssRuleTypes.MEDIA_RULE) {
 				ClassReference.getRulesByType(aType, currentRule.cssRules, aReturnArray);
 			}
-			else if(currentRule.type == CssRuleTypes.IMPORT_RULE) {
+			else if(currentRule.type === CssRuleTypes.IMPORT_RULE) {
 				ClassReference.getRulesByType(aType, currentRule.styleSheet.cssRules, aReturnArray);
 			}
 		}
@@ -61,21 +61,21 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentRule = currentArray[i];
-			if(currentRule.type == CssRuleTypes.STYLE_RULE) {
+			if(currentRule.type === CssRuleTypes.STYLE_RULE) {
 				var currentArray2 = StringFunctions.splitSeparatedString(currentRule.selectorText);
 				var currentArray2Length = currentArray2.length;
 				for(var j = 0; j < currentArray2Length; j++) {
 					var currentSelector = ClassReference.normalizeSelector(currentArray2[j]);
 					//console.log(currentSelector, aNormalizedSelector);
-					if(currentSelector == aNormalizedSelector) {
+					if(currentSelector === aNormalizedSelector) {
 						aReturnArray.push(currentRule.style);
 					}
 				}
 			}
-			else if(currentRule.type == CssRuleTypes.MEDIA_RULE) {
+			else if(currentRule.type === CssRuleTypes.MEDIA_RULE) {
 				ClassReference.getStyleDeclarationsBySelector(aNormalizedSelector, currentRule.cssRules, aReturnArray);
 			}
-			else if(currentRule.type == CssRuleTypes.IMPORT_RULE) {
+			else if(currentRule.type === CssRuleTypes.IMPORT_RULE) {
 				ClassReference.getStyleDeclarationsBySelector(aNormalizedSelector, currentRule.styleSheet.rules, aReturnArray);
 			}
 		}
@@ -93,7 +93,7 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentStyleSheet = currentArray[i];
-			if(currentStyleSheet.href == absolutePath) {
+			if(currentStyleSheet.href === absolutePath) {
 				return currentStyleSheet;
 			}
 		}
@@ -118,7 +118,7 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 				break;
 			}
 			var nextSpace = aSelector.indexOf(" ", currentPosition);
-			if(nextSpace == -1) {
+			if(nextSpace === -1) {
 				returnString += aSelector.substring(currentPosition, aSelector.length);
 				break;
 			}
@@ -127,13 +127,13 @@ dbm.registerClass("com.developedbyme.utils.css.CssReferenceFunctions", null, fun
 			var lastChar = aSelector.charCodeAt(nextSpace-1);
 			for(var i = nextSpace+1; i < selectorLength; i++) {
 				var currentChar = aSelector.charCodeAt(i);
-				if(!(currentChar == 0x20 || currentChar == 0x09 || currentChar == 0x0A || currentChar == 0x0D || currentChar == 0x0C)) {
+				if(!(currentChar === 0x20 || currentChar === 0x09 || currentChar === 0x0A || currentChar === 0x0D || currentChar === 0x0C)) {
 					currentPosition = i;
 					break;
 				}
 			}
 			var newChar = aSelector.charCodeAt(currentPosition);
-			if(((lastChar >= 97 && lastChar <= 122) || (lastChar >= 48 && lastChar <= 57) || (lastChar >= 65 && lastChar <= 90) || (lastChar == 42) || (lastChar == 46)) && ((newChar >= 97 && newChar <= 122) || (newChar >= 48 && newChar <= 57) || (newChar >= 65 && newChar <= 90) || (newChar == 42) || (newChar == 46))) {
+			if(((lastChar >= 97 && lastChar <= 122) || (lastChar >= 48 && lastChar <= 57) || (lastChar >= 65 && lastChar <= 90) || (lastChar === 42) || (lastChar === 46)) && ((newChar >= 97 && newChar <= 122) || (newChar >= 48 && newChar <= 57) || (newChar >= 65 && newChar <= 90) || (newChar === 42) || (newChar === 46))) {
 				returnString += " ";
 			}
 		}

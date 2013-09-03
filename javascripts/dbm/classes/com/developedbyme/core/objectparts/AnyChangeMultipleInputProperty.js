@@ -94,7 +94,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 		//console.log(this.name);
 		
 		var index = ArrayFunctions.indexOfInArray(this._inputConnections, aProperty);
-		if(index != -1) {
+		if(index !== -1) {
 			this._inputConnections.splice(index, 1);
 		}
 	};
@@ -105,19 +105,19 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentConnection = currentArray[i];
-			if(currentConnection != null && currentConnection.getStatus() == FlowStatusTypes.NEEDS_UPDATE) {
+			if(currentConnection !== null && currentConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
 				aReturnArray.push(currentConnection);
 			}
 		}
 		
-		if(this._objectInputConnection != null && !this._objectInputConnection.isOutput() && this._objectInputConnection.getStatus() == FlowStatusTypes.NEEDS_UPDATE) {
+		if(this._objectInputConnection !== null && !this._objectInputConnection.isOutput() && this._objectInputConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
 			aReturnArray.push(this._objectInputConnection);
 		}
 	};
 	
 	objectFunctions.performDestroy = function() {
 		
-		if(this._inputConnections != null) {
+		if(this._inputConnections !== null) {
 			var currentArray = ArrayFunctions.copyArray(this._inputConnections);
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {

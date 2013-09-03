@@ -44,11 +44,11 @@ dbm.registerClass("com.developedbyme.utils.process.ExternalWaitProcess", "com.de
 		
 		var externalMarkerValue = this._externalMarker.getValueWithoutFlow();
 		
-		if(externalMarkerValue == 1) {
+		if(externalMarkerValue === 1) {
 			this._processDone(null);
 			this._updateExternalMarker.stopUpdating();
 		}
-		if(externalMarkerValue == -1) {
+		if(externalMarkerValue === -1) {
 			this._processError(null);
 			this._updateExternalMarker.stopUpdating();
 		}

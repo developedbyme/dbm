@@ -40,7 +40,7 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 	 * Releases the object
 	 */
 	objectFunctions.release = function() {
-		if(this._numberOfRetains != 0) {
+		if(this._numberOfRetains !== 0) {
 			this._numberOfRetains--;
 		}
 	};
@@ -50,7 +50,7 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 	 */
 	objectFunctions.releaseAndDestroy = function() {
 		this.release();
-		if(this._numberOfRetains == 0) {
+		if(this._numberOfRetains === 0) {
 			this.destroy();
 		}
 	};
@@ -67,8 +67,8 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 	 */
 	objectFunctions.performDestroy = function() {
 		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
-		//console.log(this.ownsData, this.data != null, this.data.destroy);
-		if(this.ownsData && this.data != null && this.data.destroy) {
+		//console.log(this.ownsData, this.data !== null, this.data.destroy);
+		if(this.ownsData && this.data !== null && this.data.destroy) {
 			this.data.destroy();
 		}
 		this.superCall();

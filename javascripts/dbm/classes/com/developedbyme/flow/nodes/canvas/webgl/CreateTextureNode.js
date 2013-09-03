@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateTextureNode",
 		var currentContext = this._context.getValueWithoutFlow();
 		
 		var currentTexture = this._shader.getValueWithoutFlow();
-		if(currentTexture != null) {
+		if(currentTexture !== null) {
 			//METODO: this might not be the case
 			currentContext.deleteTexture(currentTexture);
 		}

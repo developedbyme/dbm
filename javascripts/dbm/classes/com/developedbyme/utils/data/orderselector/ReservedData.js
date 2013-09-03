@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.utils.data.orderselector.ReservedData", "co
 	};
 	
 	objectFunctions.isReserved = function(aIndex) {
-		return (this._array[aIndex] == 1);
+		return (this._array[aIndex] === 1);
 	};
 	
 	objectFunctions.reserve = function(aIndex) {

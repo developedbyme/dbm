@@ -79,13 +79,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d", "com.d
 		
 		var image = this._image.getValue();
 		
-		if(image != null) {
+		if(image !== null) {
 			var sourceX = Math.max(0, this._sourceX.getValue());
 			var sourceY = Math.max(0, this._sourceY.getValue());
 			var sourceWidth = Math.min(image.width, this._sourceWidth.getValue());
 			var sourceHeight = Math.min(image.height, this._sourceHeight.getValue());
 			
-			if(sourceWidth != 0 && sourceHeight != 0) {
+			if(sourceWidth !== 0 && sourceHeight !== 0) {
 				aContext.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, this._destinationX.getValue(), this._destinationY.getValue(), this._destinationWidth.getValue(), this._destinationHeight.getValue());
 			}
 		}

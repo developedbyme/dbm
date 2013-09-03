@@ -58,7 +58,7 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgView", "com.developedbyme.gui.Di
 	
 	objectFunctions.getLayer = function(aPath) {
 		var currentItem = this._hierarchy.getItemByPath(aPath);
-		if(currentItem.data == null) {
+		if(currentItem.data === null) {
 			var newLayer = SvgLayer.createOnParent(this.getElement(), true); //METODO: add to correct layer
 			currentItem.data = newLayer;
 			newLayer._linkRegistration_setTreeStructureItem(currentItem);
@@ -125,14 +125,14 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgView", "com.developedbyme.gui.Di
 	staticFunctions.create = function(aParentOrDocument, aAddToParent, aAttributes) {
 		var newNode = (new ClassReference()).init();
 		
-		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
-		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
 		
 		var svgCreator = dbm.singletons.dbmHtmlDomManager.getSvgCreator(theDocument);
 		
 		newNode.setElement(svgCreator.createSvg(aAttributes));
 		newNode.setParent(theParent);
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		

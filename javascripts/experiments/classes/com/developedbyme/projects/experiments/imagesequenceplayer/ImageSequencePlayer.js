@@ -74,7 +74,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.imagesequenceplayer.Im
 		
 		for(var i = 0; i < this._length; i++) {
 			var currentNumber = Math.ceil(0.5*i);
-			if(i % 2 == 1) {
+			if(i % 2 === 1) {
 				currentNumber *= -1;
 			}
 			currentNumber = (aimedPosition+currentNumber+this._length)%this._length;
@@ -82,7 +82,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.imagesequenceplayer.Im
 			var filePath = this._loadingGenerateFileNameNode.getProperty("outputValue").getValue();
 			
 			var asset = dbm.singletons.dbmAssetRepository.getAsset(filePath);
-			if(asset.getStatus() == AssetStatusTypes.LOADED) {
+			if(asset.getStatus() === AssetStatusTypes.LOADED) {
 				this._currentPosition.setValueWithFlow(currentNumber, aFlowUpdateNumber);
 				break;
 			}
@@ -150,7 +150,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.imagesequenceplayer.Im
 		
 		var currentImageNumber = this._orderSelector.getNextValue(this._reservedData);
 		
-		if(currentImageNumber != -1) {
+		if(currentImageNumber !== -1) {
 			this._loadingPadFileNameNode.setPropertyInput("inputValue", currentImageNumber);
 			var filePath = this._loadingGenerateFileNameNode.getProperty("outputValue").getValue();
 			
@@ -165,7 +165,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.imagesequenceplayer.Im
 		console.log("com.developedbyme.projects.experiments.imagesequenceplayer.ImageSequencePlayer::_callback_imageLoaded");
 		console.log(aIndex, this._aimedPosition.getValue());
 		
-		if(aIndex == this._aimedPosition.getValue()) {
+		if(aIndex === this._aimedPosition.getValue()) {
 			this._aimedPosition.setAsDirty();
 		}
 	};

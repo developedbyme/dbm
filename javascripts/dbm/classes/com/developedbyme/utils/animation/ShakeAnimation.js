@@ -49,7 +49,7 @@ dbm.registerClass("com.developedbyme.utils.animation.ShakeAnimation", null, func
 		
 		for(var i = 0; i < aNumberOfShakes; i++) {
 			
-			var side = (i%2 == 0) ? 1 : -1;
+			var side = (i%2 === 0) ? 1 : -1;
 			
 			var newLength = aMinStepTime+(aMaxStepTime-aMinStepTime)*Math.random();
 			var newPositionX = aCenterX+side*((2*Math.random()-1)*(aMaxAmplitudeX-aMinAmplitudeX)+aMinAmplitudeX);
@@ -79,10 +79,10 @@ dbm.registerClass("com.developedbyme.utils.animation.ShakeAnimation", null, func
 		
 		var intensityInterpoaltionObject;
 		
-		if(typeof(aIntensityInterpolation) == JavascriptObjectTypes.TYPE_STRING) {
+		if(typeof(aIntensityInterpolation) === JavascriptObjectTypes.TYPE_STRING) {
 			intensityInterpoaltionObject = dbm.singletons.dbmAnimationManager.getInterpolationObject(aIntensityInterpolation);
 		}
-		else if(aInterpolation == null) {
+		else if(aInterpolation === null) {
 			intensityInterpoaltionObject = aIntensityInterpolation;
 		}
 		

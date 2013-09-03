@@ -24,7 +24,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode", "com.de
 		var name = this._name.getValueWithoutFlow();
 		var objects = this._objects.getValueWithoutFlow();
 		
-		if(name == null) {
+		if(name === null) {
 			//METODO: error message
 			this._outputValue.setValueWithFlow(this._defaultValue.getValueWithoutFlow(), aFlowUpdateNumber);
 		}

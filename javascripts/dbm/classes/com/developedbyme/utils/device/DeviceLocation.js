@@ -66,7 +66,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.develope
 		this._longitude.setValue(coordinates.longitude);
 		this._accuracy.setValue(coordinates.accuracy);
 		
-		if(coordinates.altitude != null) {
+		if(coordinates.altitude !== null) {
 			this._hasAltitude.setValue(true);
 			this._altitude.setValue(coordinates.altitude);
 			this._altitudeAccuracy.setValue(coordinates.altitudeAccuracy);
@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.develope
 			this._hasAltitude.setValue(false);
 		}
 		
-		if(coordinates.heading != null) {
+		if(coordinates.heading !== null) {
 			this._hasDirection.setValue(true);
 			this._heading.setValue(coordinates.heading);
 			this._speed.setValue(coordinates.speed);

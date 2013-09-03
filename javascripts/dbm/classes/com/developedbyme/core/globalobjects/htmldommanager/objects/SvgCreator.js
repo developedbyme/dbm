@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.S
 	};
 	
 	objectFunctions.setAttributesToNode = function(aElement, aAttributes) {
-		if(aAttributes != null) {
+		if(aAttributes !== null) {
 			for(var objectName in aAttributes) {
 				aElement.setAttribute(objectName, aAttributes[objectName]);
 			}
@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.S
 		var currentArrayLength = currentArray.length;
 		for(var i = 1; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
+			if(currentObject.ownerDocument && currentObject.ownerDocument === newElement.ownerDocument) {
 				newElement.appendChild(currentObject);
 			}
 			else {
@@ -62,7 +62,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.S
 		var currentArrayLength = currentArray.length;
 		for(var i = 2; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
+			if(currentObject.ownerDocument && currentObject.ownerDocument === newElement.ownerDocument) {
 				newElement.appendChild(currentObject);
 			}
 			else {

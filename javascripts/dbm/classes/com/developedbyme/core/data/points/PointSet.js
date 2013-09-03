@@ -37,7 +37,7 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 	 * @return	Always false.
 	 */
 	objectFunctions.isSetType = function(aType) {
-		return (aType == this.setType);
+		return (aType === this.setType);
 	};
 	
 	objectFunctions.getNumberOfPoints = function() {
@@ -53,7 +53,7 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		//console.log("com.developedbyme.core.data.points.PointSet::setupFromArray");
 		var currentArray = aArray;
 		var theLength = currentArray.length;
-		if((theLength/aNumberOfDimesions) != Math.floor(theLength/aNumberOfDimesions)) {
+		if((theLength/aNumberOfDimesions) !== Math.floor(theLength/aNumberOfDimesions)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setupFromArray", "Length " + (theLength) + " doesn't fit dimensions (" + aNumberOfDimesions + ").");
 			return;
 		}

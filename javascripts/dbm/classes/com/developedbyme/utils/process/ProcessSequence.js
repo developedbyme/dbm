@@ -71,10 +71,10 @@ dbm.registerClass("com.developedbyme.utils.process.ProcessSequence", "com.develo
 		
 		this._status = ProcessStatusTypes.STARTED;
 		
-		if(aProcess.getStatus() == ProcessStatusTypes.DONE) {
+		if(aProcess.getStatus() === ProcessStatusTypes.DONE) {
 			this._doneProcesses.push(aProcess);
 		}
-		else if(aProcess.getStatus() == ProcessStatusTypes.ERROR) {
+		else if(aProcess.getStatus() === ProcessStatusTypes.ERROR) {
 			this._doneProcesses.push(aProcess);
 			if(!this._continueOnError) {
 				this._isProcessing = false;
@@ -84,7 +84,7 @@ dbm.registerClass("com.developedbyme.utils.process.ProcessSequence", "com.develo
 				}
 			}
 		}
-		else if(aProcess.getStatus() == ProcessStatusTypes.STARTED) {
+		else if(aProcess.getStatus() === ProcessStatusTypes.STARTED) {
 			this._addListenersToProcess(aProcess);
 			this._startedProcesses.push(aProcess);
 		}
@@ -111,7 +111,7 @@ dbm.registerClass("com.developedbyme.utils.process.ProcessSequence", "com.develo
 			}
 		}
 		
-		if(this._startedProcesses.length == 0 && this._waitingProcesses == 0 && this._status == ProcessStatusTypes.STARTED) {
+		if(this._startedProcesses.length === 0 && this._waitingProcesses === 0 && this._status === ProcessStatusTypes.STARTED) {
 			this._status = ProcessStatusTypes.DONE;
 			if(this.getExtendedEvent().hasEvent(ProcessExtendedEventIds.DONE)) {
 				this.getExtendedEvent().perform(ProcessExtendedEventIds.DONE);
@@ -122,7 +122,7 @@ dbm.registerClass("com.developedbyme.utils.process.ProcessSequence", "com.develo
 	objectFunctions._setProcessAsLoaded = function(aProcess) {
 		
 		var currentIndex = ArrayFunctions.indexOfInArray(this._startedProcesses, aProcess);
-		if(currentIndex != -1) {
+		if(currentIndex !== -1) {
 			this._startedProcesses.splice(currentIndex, 1);
 		}
 		

@@ -41,8 +41,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.RenderModel3d"
 		var model = this._model.getValue();
 		var camera =  this._camera.getValue();
 		
-		var perspectiveMatrix = (camera != null) ? camera.getProjectionMatrix() : this._identityMatrix;
-		var transforamtionMatrix = (camera != null) ? camera.getCameraTransformationMatrix() : this._identityMatrix;
+		var perspectiveMatrix = (camera !== null) ? camera.getProjectionMatrix() : this._identityMatrix;
+		var transforamtionMatrix = (camera !== null) ? camera.getCameraTransformationMatrix() : this._identityMatrix;
 		
 		model.getRootLayer().draw(aContext, aProjectionMatrix, aTransformationMatrix, this._numberOfLinksToResolve);
 	};

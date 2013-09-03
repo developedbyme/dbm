@@ -79,7 +79,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.sequencer.FixedP
 	objectFunctions.startPlayingNote = function(aTrackIndex, aPosition, aPitch) {
 		//console.log("com.developedbyme.utils.audio.audioapiplayer.sequencer.FixedPositionsSequencerController::startPlayingNote");
 		var currentSequencerNote = this._sequencerLayout.getValue(aTrackIndex, aPosition, aPitch);
-		if(currentSequencerNote != null) {
+		if(currentSequencerNote !== null) {
 			//METODO: warning message
 			return;
 		}
@@ -89,7 +89,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.sequencer.FixedP
 	
 	objectFunctions.stopPlayingNote = function(aTrackIndex, aPosition, aPitch) {
 		var currentSequencerNote = this._sequencerLayout.getValue(aTrackIndex, aPosition, aPitch);
-		if(currentSequencerNote == null) {
+		if(currentSequencerNote === null) {
 			//METODO: error message
 			return;
 		}

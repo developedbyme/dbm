@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.DelayedExtendedEventCont
 		this._owner.getExtendedEvent().createEvent(newInternalName);
 		this._owner.getExtendedEvent().addCommandToEvent(newInternalName, aCommand);
 		
-		if(aUndoCommand != null) {
+		if(aUndoCommand !== null) {
 			newInternalUndoName = dbm.singletons.dbmIdManager.getNewId("delayedUndoEvent");
 			this._owner.getExtendedEvent().createEvent(newInternalUndoName);
 			this._owner.getExtendedEvent().addCommandToEvent(newInternalUndoName, aUndoCommand);
@@ -102,7 +102,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.DelayedExtendedEventCont
 		
 		var insertPosition = this._getInsertPosition(aTime);
 		
-		if(insertPosition != -1) {
+		if(insertPosition !== -1) {
 			this._delayedTimesArray.splice(insertPosition, 0, aTime);
 			this._delayedCommands.splice(insertPosition, 0, aEventName);
 			this._delayedUndoCommands.splice(insertPosition, 0, aUndoEventName);
@@ -133,7 +133,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.DelayedExtendedEventCont
 		if(newPosition < this._lastPosition) {
 			for(var i = this._lastPosition-1; i >= newPosition; i--) {
 				var currentEvent = this._delayedUndoCommands[i];
-				if(currentEvent != null) {
+				if(currentEvent !== null) {
 					this._owner.getExtendedEvent().perform(currentEvent);
 				}
 			}
@@ -141,7 +141,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.DelayedExtendedEventCont
 		else {
 			for(var i = this._lastPosition; i < newPosition; i++) {
 				var currentEvent = this._delayedCommands[i];
-				if(currentEvent != null) {
+				if(currentEvent !== null) {
 					this._owner.getExtendedEvent().perform(currentEvent);
 				}
 			}

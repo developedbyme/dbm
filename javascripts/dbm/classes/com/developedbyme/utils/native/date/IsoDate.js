@@ -19,7 +19,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.IsoDate", null, function(
 		var timeZoneMultiplier = 0;
 		var timeZoneMinutes = 0;
 		
-		if(tPosition == -1) {
+		if(tPosition === -1) {
 			dataArray = aString.split("-");
 			timeArray = [0, 0, 0];
 		}
@@ -27,15 +27,15 @@ dbm.registerClass("com.developedbyme.utils.native.date.IsoDate", null, function(
 			dataArray = aString.substring(0, tPosition).split("-");
 			timeArray = aString.substring(tPosition+1, tPosition+1+8).split(":");
 			if(aString.length-(tPosition+1) > 8) {
-				timeZoneMultiplier = (aString.charAt(tPosition+1+8) == "+") ? -1 : 1; //MENOTE: if time is ahead, move back the time
+				timeZoneMultiplier = (aString.charAt(tPosition+1+8) === "+") ? -1 : 1; //MENOTE: if time is ahead, move back the time
 				timeZoneMinutes = 60*Number(aString.substring(tPosition+1+8+1, tPosition+1+8+1+2))+Number(aString.substring(tPosition+1+8+1+2, tPosition+1+8+1+2+2));
 			}
 		}
 		var currentDate = new Date(Number(dataArray[0]), Number(dataArray[1])-1, Number(dataArray[2]), Number(timeArray[0]), Number(timeArray[1]), Number(timeArray[2]));
-		if(timeZoneMultiplier != null) {
+		if(timeZoneMultiplier !== null) {
 			currentDate = new Date(currentDate.valueOf()+timeZoneMultiplier*timeZoneMinutes*60*1000-aLocalTimeZoneOffset*60*1000);
 		}
-		else if(aLocalTimeZoneOffset != 0) {
+		else if(aLocalTimeZoneOffset !== 0) {
 			currentDate = new Date(currentDate.valueOf()-aLocalTimeZoneOffset*60*1000);
 			
 		}

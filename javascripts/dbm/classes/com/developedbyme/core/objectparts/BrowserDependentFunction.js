@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.BrowserDependentFunction",
 			this._browsers.addObject(browserName, currentArray);
 		}
 		
-		var browserVersion = (aBrowserVersion == null) ? "0" : aBrowserVersion.toString();
+		var browserVersion = (aBrowserVersion === null) ? "0" : aBrowserVersion.toString();
 		
 		var dataObject = {"version": browserVersion, "function": aFunction};
 		
@@ -70,7 +70,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.BrowserDependentFunction",
 				}
 			}
 		}
-		if(theFunction == null) {
+		if(theFunction === null) {
 			theFunction = this._defaultFunction;
 		}
 		

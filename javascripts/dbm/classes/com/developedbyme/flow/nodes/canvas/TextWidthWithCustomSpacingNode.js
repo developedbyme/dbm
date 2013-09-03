@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.TextWidthWithCustomSpacin
 			textWidth += currentCharacterWidth;
 		}
 		
-		if(textWidth == 0) {
+		if(textWidth === 0) {
 			return;
 		}
 		

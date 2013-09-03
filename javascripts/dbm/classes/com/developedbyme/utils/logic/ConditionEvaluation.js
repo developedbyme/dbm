@@ -17,7 +17,7 @@ dbm.registerClass("com.developedbyme.utils.logic.ConditionEvaluation", null, fun
 		var returnValue;
 		switch(aConditionType) {
 			case "==":
-				returnValue = (aInputValue1 == aInputValue2);
+				returnValue = (aInputValue1 === aInputValue2);
 				break;
 			case "===":
 				returnValue = (aInputValue1 === aInputValue2);
@@ -35,7 +35,7 @@ dbm.registerClass("com.developedbyme.utils.logic.ConditionEvaluation", null, fun
 				returnValue = (aInputValue1 < aInputValue2);
 				break;
 			case "!=":
-				returnValue = (aInputValue1 != aInputValue2);
+				returnValue = (aInputValue1 !== aInputValue2);
 				break;
 			case "!==":
 				returnValue = (aInputValue1 !== aInputValue2);

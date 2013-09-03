@@ -24,8 +24,8 @@ dbm.registerClass("com.developedbyme.utils.native.object.ObjectFunctions", null,
 		//console.log(aValue);
 		var valueType = typeof(aValue);
 		
-		if(valueType == JavascriptObjectTypes.TYPE_OBJECT) {
-			if(aValue == null) {
+		if(valueType === JavascriptObjectTypes.TYPE_OBJECT) {
+			if(aValue === null) {
 				return JavascriptObjectTypes.NON_REAL_TYPE_NULL;
 			}
 			else if(aValue instanceof Array) {

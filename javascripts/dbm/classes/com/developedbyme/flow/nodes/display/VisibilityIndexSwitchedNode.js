@@ -40,8 +40,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedN
 		var selectionArray = this._array.getValueWithoutFlow();
 		var currentItem = this._currentVisibleItem.getValueWithoutFlow();
 		var originalIndexValue = this._index.getValueWithoutFlow();
-		if(originalIndexValue == -1) {
-			if(currentItem != null) {
+		if(originalIndexValue === -1) {
+			if(currentItem !== null) {
 				currentItem.removeFromDom();
 				this._currentVisibleItem.setValueWithFlow(null, aFlowUpdateNumber);
 			}
@@ -50,10 +50,10 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.VisibilityIndexSwitchedN
 		var indexValue = Math.floor(Math.min(selectionArray.length-1, Math.max(0, originalIndexValue)));
 		
 		var newItem = selectionArray[indexValue];
-		if(currentItem != null) {
+		if(currentItem !== null) {
 			currentItem.removeFromDom();
 		}
-		if(newItem != null) {
+		if(newItem !== null) {
 			newItem.addToDom();
 		}
 		

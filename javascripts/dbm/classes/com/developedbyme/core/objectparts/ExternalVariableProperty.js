@@ -25,7 +25,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	
 	objectFunctions._performSetValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performSetValue");
-		if(this._externalObject == null) {
+		if(this._externalObject === null) {
 			this._value = aValue;
 			return;
 		}
@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	
 	objectFunctions._performGetValue = function() {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performGetValue");
-		if(this._externalObject == null) {
+		if(this._externalObject === null) {
 			return this._value;
 		}
 		return this._externalObject[this._externalVariableName];
@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	objectFunctions.setupExternalObject = function(aObject, aVariableName) {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::setupExternalObject");
 		
-		if(this._externalObject != null) {
+		if(this._externalObject !== null) {
 			//METODO: warning message
 			this.removeExternalObject();
 		}
@@ -53,7 +53,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		this._externalObject = aObject;
 		this._externalVariableName = aVariableName;
 		
-		if(startValue != null) {
+		if(startValue !== null) {
 			this._performSetValue(startValue);
 		}
 		else {
@@ -63,7 +63,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	
 	objectFunctions.removeExternalObject = function() {
 		
-		if(this._externalObject != null) {
+		if(this._externalObject !== null) {
 			this._value = this._externalObject[this._externalVariableName]
 		}
 		else {
@@ -97,7 +97,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
 		aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
 		newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
-		if(aValue != null) {
+		if(aValue !== null) {
 			newExternalVariableProperty.setValue(aValue);
 		}
 		return newExternalVariableProperty;

@@ -58,7 +58,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::setRoot");
 		//console.log(aPath);
 		
-		if(aPath == "") {
+		if(aPath === "") {
 			this._rootNode = this._hierarchy.getRoot();
 		}
 		else {
@@ -86,7 +86,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		
 		var currentItem = aTreeStructureItem;
 		var returnArray = new Array();
-		while(currentItem != null) {
+		while(currentItem !== null) {
 			if(currentItem.hasAttribute("absolutePath")) {
 				returnArray.unshift(currentItem.getAttribute("absolutePath"));
 				break;
@@ -113,7 +113,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
-		if(currentItem.data == null) {
+		if(currentItem.data === null) {
 			//console.log("new", currentItem.getPath());
 			this._createAssetForTreeStructure(currentItem);
 		}
@@ -143,7 +143,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
-		if(currentItem.data == null) {
+		if(currentItem.data === null) {
 			this._createAssetForTreeStructure(currentItem);
 		}
 		
@@ -155,7 +155,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
-		if(currentItem.data != null) {
+		if(currentItem.data !== null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addAsset", "Asset " + aPath + " already exists, replacing.");
 		}
 		
@@ -168,7 +168,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
-		return (currentItem.data != null);
+		return (currentItem.data !== null);
 	};
 	
 	objectFunctions.createFileAsset = function(aPath, aFilePath, aType) {

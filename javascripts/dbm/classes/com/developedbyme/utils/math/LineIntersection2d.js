@@ -58,12 +58,12 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 		//console.log("com.developedbyme.utils.math.LineIntersection::findLineIntersection");
 		//console.log(aPoint1, aVector1, aPoint2, aVector2);
 		
-		if(aVector1.x == 0) {
-			if(aVector2.x == 0) {
+		if(aVector1.x === 0) {
+			if(aVector2.x === 0) {
 				this._setAsNullResult();
 				return false;
 			}
-			if(aVector1.y == 0) {
+			if(aVector1.y === 0) {
 				this._setAsNullResult();
 				return false;
 			}
@@ -74,8 +74,8 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 			this.parameter1 = (this.y-aPoint1.y)/(aVector1.y);
 			
 		}
-		else if(aVector1.y == 0) {
-			if(aVector2.y == 0) {
+		else if(aVector1.y === 0) {
+			if(aVector2.y === 0) {
 				this._setAsNullResult();
 				return false;
 			}
@@ -86,8 +86,8 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 			this.parameter1 = (this.x-aPoint1.x)/(aVector1.x);
 			
 		}
-		else if(aVector2.x == 0) {
-			if(aVector2.y == 0) {
+		else if(aVector2.x === 0) {
+			if(aVector2.y === 0) {
 				this._setAsNullResult();
 				return false;
 			}
@@ -97,14 +97,14 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 			this.y = aPoint1.y+(aVector1.y)*this.parameter1;
 			this.parameter2 = (this.y-aPoint2.y)/(aVector2.y);
 		}
-		else if(aVector2.y == 0) {
+		else if(aVector2.y === 0) {
 			this.y = aPoint2.y;
 			
 			this.parameter1 = (aPoint2.y-aPoint1.y)/aVector1.y;
 			this.x = aPoint1.x+(aVector1.x)*this.parameter1;
 			this.parameter2 = (this.x-aPoint2.x)/(aVector2.x);
 		}
-		else if((aVector1.x/aVector1.y) == (aVector2.x/aVector2.y)) {
+		else if((aVector1.x/aVector1.y) === (aVector2.x/aVector2.y)) {
 			this._setAsNullResult();
 			return false;
 		}
@@ -130,10 +130,10 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 	 */
 	staticFunctions.findLineIntersectionsWithPointSet = function(aLinePoint, aLineVector, aPointSet, aIsRound, aType, aReturnArray) {
 		//console.log("findLineIntersectionsWithPointSet");
-		if(aType == undefined) {
+		if(aType === undefined) {
 			 aType = ClassReference.QUALIFY_TYPE_ON_POINT_SET;
 		}
-		if(aReturnArray == null) {
+		if(aReturnArray === null) {
 			aReturnArray = new Array();
 		}
 		var currentIntersectionObject;
@@ -157,12 +157,12 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 			var theResult = currentIntersectionObject.findLineIntersection(aLinePoint, aLineVector, lastPoint, tempVector);
 			lastPoint = currentPoint;
 			if(theResult) {
-				if((aType == ClassReference.QUALIFY_TYPE_ON_LINE) || (aType == ClassReference.QUALIFY_TYPE_ON_BOTH)) {
+				if((aType === ClassReference.QUALIFY_TYPE_ON_LINE) || (aType === ClassReference.QUALIFY_TYPE_ON_BOTH)) {
 					if((currentIntersectionObject.parameter1 < 0) || (currentIntersectionObject.parameter1 > 1)) {
 						continue;
 					}
 				}
-				if((aType == ClassReference.QUALIFY_TYPE_ON_POINT_SET) || (aType == ClassReference.QUALIFY_TYPE_ON_BOTH)) {
+				if((aType === ClassReference.QUALIFY_TYPE_ON_POINT_SET) || (aType === ClassReference.QUALIFY_TYPE_ON_BOTH)) {
 					if((currentIntersectionObject.parameter2 < 0) || (currentIntersectionObject.parameter2 > 1)) {
 						continue;
 					}
@@ -171,7 +171,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 				currentIntersectionObject = (new LineIntersection2d()).init();
 			}
 			else {
-				if(aType == ClassReference.QUALIFY_TYPE_ALL_AND_NULL_RESULTS) {
+				if(aType === ClassReference.QUALIFY_TYPE_ALL_AND_NULL_RESULTS) {
 					aReturnArray.push(currentIntersectionObject);
 					currentIntersectionObject = (new LineIntersection2d()).init();
 				}
@@ -236,7 +236,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 		
 		if(tempLineIntersection.findLineIntersection(aLinePoint, aLineVector, aPoint, tempVector)) {
 			if(tempLineIntersection.parameter2 >= 0 && (tempLineIntersection.parameter1 >= 0 && tempLineIntersection.parameter1 <= 1)) {
-				if(minParameter2 == NaN || tempLineIntersection.parameter2 < minParameter2) {
+				if(minParameter2 === NaN || tempLineIntersection.parameter2 < minParameter2) {
 					minParameter2 = tempLineIntersection.parameter2;
 					returnParameter = tempLineIntersection.parameter1;
 				}
@@ -247,14 +247,14 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 	};
 	
 	staticFunctions.getTempLineIntersection = function() {
-		if(ClassReference._tempLineIntersection == null) {
+		if(ClassReference._tempLineIntersection === null) {
 			ClassReference._tempLineIntersection = (new LineIntersection2d()).init();
 		}
 		return ClassReference._tempLineIntersection;
 	};
 	
 	staticFunctions.getTempVector = function() {
-		if(ClassReference._tempVector == null) {
+		if(ClassReference._tempVector === null) {
 			ClassReference._tempVector = Point.create();
 		}
 		return ClassReference._tempVector;

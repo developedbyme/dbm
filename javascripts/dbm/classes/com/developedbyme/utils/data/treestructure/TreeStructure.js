@@ -50,11 +50,11 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		aItem.ownsData = this.ownsData;
 		
 		var currentItem = aBaseItem;
-		if(currentItem == null) {
+		if(currentItem === null) {
 			currentItem = this._root;
 		}
 		
-		if(aPath == "" && aPath == "/") {
+		if(aPath === "" && aPath === "/") {
 			aPath = aItem.getName();
 		}
 		else {
@@ -62,7 +62,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		}
 		
 		var currentArray;
-		if(aPath.charAt(0) == "/") {
+		if(aPath.charAt(0) === "/") {
 			currentItem = this._root;
 			currentArray = aPath.substring(1, aPath.length).split("/");
 		}
@@ -82,9 +82,9 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 					break;
 				default:
 					var newItem = currentItem.getChildByName(currentPathPart);
-					if(newItem == null) {
+					if(newItem === null) {
 						newItem = this.createItem(currentPathPart, currentItem, true);
-						if(newItem == null) {
+						if(newItem === null) {
 							return;
 						}
 					}
@@ -130,11 +130,11 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		aBaseItem = VariableAliases.valueWithDefault(aBaseItem, null);
 		
 		var currentItem = aBaseItem;
-		if(currentItem == null) {
+		if(currentItem === null) {
 			currentItem = this._root;
 		}
 		var currentArray;
-		if(aPath.charAt(0) == "/") {
+		if(aPath.charAt(0) === "/") {
 			currentItem = this._root;
 			currentArray = aPath.substring(1, aPath.length).split("/");
 		}
@@ -154,9 +154,9 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 					break;
 				default:
 					var newItem = currentItem.getChildByName(currentPathPart);
-					if(newItem == null) {
+					if(newItem === null) {
 						newItem = this.createItem(currentPathPart, currentItem);
-						if(newItem == null) {
+						if(newItem === null) {
 							return null;
 						}
 					}

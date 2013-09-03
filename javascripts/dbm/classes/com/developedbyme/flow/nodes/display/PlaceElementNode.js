@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.PlaceElementNode", "com.
 		//console.log("com.developedbyme.flow.nodes.display.PlaceElementNode::_update");
 		
 		var htmlElement = this._element.getValueWithoutFlow();
-		if(htmlElement == null) {
+		if(htmlElement === null) {
 			return;
 		}
 		
@@ -38,16 +38,16 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.PlaceElementNode", "com.
 			htmlElement.style.setProperty("top", Math.round(this._y.getValueWithoutFlow()) + "px", "");
 			
 			var z = this._z.getValueWithoutFlow();
-			if(z != null) {
+			if(z !== null) {
 				htmlElement.style.setProperty("z-index", Math.round(z), "");
 			}
 			
 			var width = this._width.getValueWithoutFlow();
-			if(width != null) {
+			if(width !== null) {
 				htmlElement.style.setProperty("width", width + "px", "");
 			}
 			var height = this._height.getValueWithoutFlow();
-			if(height != null) {
+			if(height !== null) {
 				htmlElement.style.setProperty("height", height + "px", "");
 			}
 		}

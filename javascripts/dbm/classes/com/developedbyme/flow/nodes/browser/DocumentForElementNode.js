@@ -40,7 +40,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.DocumentForElementNode",
 		//console.log("com.developedbyme.flow.nodes.browser.DocumentForElementNode::_update");
 		
 		var element = this._element.getValueWithoutFlow();
-		if(element != null) {
+		if(element !== null) {
 			this.start();
 			this._document.setValueWithFlow(DomReferenceFunctions.getDocument(element), aFlowUpdateNumber);
 		}

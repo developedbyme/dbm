@@ -54,7 +54,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	
 	objectFunctions.getLayer = function(aPath) {
 		var currentItem = this._hierarchy.getItemByPath(aPath);
-		if(currentItem.data == null) {
+		if(currentItem.data === null) {
 			var newLayer = CanvasLayer2d.create();
 			currentItem.data = newLayer;
 			newLayer._linkRegistration_setTreeStructureItem(currentItem);
@@ -65,7 +65,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	
 	objectFunctions.createRenderLayer = function(aPath, aOffsetX, aOffsetY, aWidth, aHeight) {
 		var currentItem = this._hierarchy.getItemByPath(aPath);
-		if(currentItem.data == null) {
+		if(currentItem.data === null) {
 			var newLayer = CanvasRenderLayer2d.create(aOffsetX, aOffsetY, aWidth, aHeight);
 			currentItem.data = newLayer;
 			newLayer._linkRegistration_setTreeStructureItem(currentItem);

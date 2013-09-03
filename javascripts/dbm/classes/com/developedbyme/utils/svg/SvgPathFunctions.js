@@ -31,7 +31,7 @@ dbm.registerClass("com.developedbyme.utils.svg.SvgPathFunctions", null, function
 		
 		var moveRelativeIndex = ArrayFunctions.lastIndexOfInArray(commandsArray, SvgPathCommandTypes.MOVE_TO_RELATIVE);
 		var moveIndex = ArrayFunctions.lastIndexOfInArray(commandsArray, SvgPathCommandTypes.MOVE_TO);
-		var lastMoveIndex = (moveRelativeIndex != -1) ? ((moveIndex != -1) ? Math.max(moveRelativeIndex, moveIndex) : moveRelativeIndex) : moveIndex;
+		var lastMoveIndex = (moveRelativeIndex !== -1) ? ((moveIndex !== -1) ? Math.max(moveRelativeIndex, moveIndex) : moveRelativeIndex) : moveIndex;
 		
 		var isCompact = (lastMoveIndex <= 0);
 		
@@ -56,7 +56,7 @@ dbm.registerClass("com.developedbyme.utils.svg.SvgPathFunctions", null, function
 				return null;
 			}
 			var currentValue = currentArray[i];
-			if(typeof(currentValue) == JavascriptObjectTypes.TYPE_STRING) {
+			if(typeof(currentValue) === JavascriptObjectTypes.TYPE_STRING) {
 				currentCommand = currentValue;
 				i++;
 			}
@@ -182,7 +182,7 @@ dbm.registerClass("com.developedbyme.utils.svg.SvgPathFunctions", null, function
 	};
 	
 	staticFunctions._setupSegment = function(aLastPoint, aInputDegree, aOutputDegree, aInputSegment, aReturnSegment) {
-		if(aInputDegree == aOutputDegree) {
+		if(aInputDegree === aOutputDegree) {
 			for(var i = 0; i < aOutputDegree; i++) {
 				aReturnSegment[i].x = aInputSegment[i].x;
 				aReturnSegment[i].y = aInputSegment[i].y;
@@ -275,7 +275,7 @@ dbm.registerClass("com.developedbyme.utils.svg.SvgPathFunctions", null, function
 		var currentArray = aCurve.pointsArray;
 		var currentArrayLength = currentArray.length;
 		for(var i = 1; i < currentArrayLength; i += numberOfPointsPerStep) {
-			if(i != 1) {
+			if(i !== 1) {
 				if(isCompact) {
 					returnString += " ";
 				}
@@ -301,7 +301,7 @@ dbm.registerClass("com.developedbyme.utils.svg.SvgPathFunctions", null, function
 		var currentArray = aCurve.pointsArray;
 		var currentArrayLength = currentArray.length;
 		for(var i = 1; i < currentArrayLength; i += numberOfPointsPerStep) {
-			if(i != 1) {
+			if(i !== 1) {
 				if(!isCompact) {
 					aPathElement.pathSegList.appendItem(aPathElement.createSVGPathSegMovetoAbs(aCurve.pointsArray[i].x, aCurve.pointsArray[i].y));
 					i++;

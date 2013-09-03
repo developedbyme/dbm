@@ -15,7 +15,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlModifier", null, function(obje
 	staticFunctions.DEFAULT_USE_CDATA = true;
 	
 	staticFunctions.getOwnerDocument = function(aNode) {
-		return ((aNode.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aNode : aNode.ownerDocument);
+		return ((aNode.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aNode : aNode.ownerDocument);
 	};
 	
 	staticFunctions.createChild = function(aParentNode, aName) {

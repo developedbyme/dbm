@@ -49,7 +49,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	objectFunctions.load = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset::load");
 		
-		if(this._status.getValue() != AssetStatusTypes.NOT_LOADED) {
+		if(this._status.getValue() !== AssetStatusTypes.NOT_LOADED) {
 			return this;
 		}
 		
@@ -89,7 +89,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		if(!isNaN(newProgress)) {
 			this._loadProgress = newProgress
 			
-			if(this._loadProgress == 1) {
+			if(this._loadProgress === 1) {
 				this.getExtendedEvent().deactivateJavascriptEventLink(AudioEventIds.PROGRESS);
 				this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED);
 			}

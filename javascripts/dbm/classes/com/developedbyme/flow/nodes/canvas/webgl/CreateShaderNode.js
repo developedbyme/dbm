@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateShaderNode", 
 		var currentContext = this._context.getValueWithoutFlow();
 		
 		var currentShader = this._shader.getValueWithoutFlow();
-		if(currentShader != null) {
+		if(currentShader !== null) {
 			//METODO: this might not be the case
 			currentContext.deleteShader(currentShader);
 		}

@@ -49,11 +49,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 	};
 	
 	objectFunctions.getDefinitionXml = function() {
-		if(this._definitionXml == null && this._definitionFilePath != null) {
+		if(this._definitionXml === null && this._definitionFilePath !== null) {
 			switch(this._definitionFileType) {
 				case "dbmData":
 					var currentAsset = dbm.singletons.dbmAssetRepository.getAsset(this._definitionFilePath);
-					if(currentAsset.getStatus() != AssetStatusTypes.LOADED) {
+					if(currentAsset.getStatus() !== AssetStatusTypes.LOADED) {
 						currentAsset.useAsync = false;
 						currentAsset.load();
 						this.setDefinitionXml(XmlChildRetreiver.getFirstChild(currentAsset.getData()));
@@ -80,10 +80,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
-		if(this._data != null) {
+		if(this._data !== null) {
 			aReturnArray.push("data: " + this._data.getValue());
 		}
-		if(this._definitionFilePath != null) {
+		if(this._definitionFilePath !== null) {
 			aReturnArray.push("definitionFilePath: " + this._definitionFilePath);
 			aReturnArray.push("definitionFileType: " + this._definitionFileType);
 		}

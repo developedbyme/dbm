@@ -72,7 +72,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 	};
 	
 	objectFunctions.getWindowForDocument = function(aDocument) {
-		if(this._masterWindow != null && aDocument == this._masterWindow.getDocument()) {
+		if(this._masterWindow !== null && aDocument === this._masterWindow.getDocument()) {
 			return this._masterWindow;
 		}
 		
@@ -80,7 +80,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentWindow = currentArray[i];
-			if(currentWindow.isOpen() && aDocument == currentWindow.getDocument()) {
+			if(currentWindow.isOpen() && aDocument === currentWindow.getDocument()) {
 				return currentWindow;
 			}
 		}
@@ -91,7 +91,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 	objectFunctions.getScreenSizeNode = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::getScreenSizeNode");
 		
-		if(this._screenSizeNode == null) {
+		if(this._screenSizeNode === null) {
 			this._screenSizeNode = ScreenSizeNode.create();
 		}
 		
@@ -116,7 +116,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 	objectFunctions.hasDefaultMargins = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::hasDefaultMargins");
 		
-		return (this._defaultMargins != null);
+		return (this._defaultMargins !== null);
 		
 	};
 	
@@ -136,7 +136,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 	
 	objectFunctions._linkRegistration_removeWindow = function(aWindow) {
 		var windowName = this._windows.identifyObject(aWindow);
-		if(windowName != null) {
+		if(windowName !== null) {
 			this._windows.removeObject(windowName);
 		}
 		else {
@@ -147,15 +147,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 	objectFunctions._setWindowAsHighestDepth = function(aWindow) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_setWindowAsHighestDepth");
 		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
-		if(position != -1) {
-			if(position != this._windowsOrder.length-1 && !this._isUpdatingDepths) {
+		if(position !== -1) {
+			if(position !== this._windowsOrder.length-1 && !this._isUpdatingDepths) {
 				this._currentDepthOrder.setAsDirty();
 			}
 			this._windowsOrder.splice(position, 1);
 		}
 		
 		this._windowsOrder.push(aWindow);
-		if(this._currentFocusedWindow != null) {
+		if(this._currentFocusedWindow !== null) {
 			this._currentFocusedWindow.getProperty("hasFocus").setValue(false);
 			this._currentFocusedWindow.getExtendedEvent().perform(WindowExtendedEventIds.BLUR);
 			this._currentFocusedWindow._checkForLastPosition();
@@ -169,11 +169,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 	objectFunctions._windowClosed = function(aWindow) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_windowClosed");
 		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
-		if(position != -1) {
+		if(position !== -1) {
 			this._windowsOrder.splice(position, 1);
 		}
 		
-		if(aWindow == this._currentFocusedWindow) {
+		if(aWindow === this._currentFocusedWindow) {
 			this._currentFocusedWindow = null;
 		}
 		
@@ -212,7 +212,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentWindow = currentArray[i];
-			if(currentWindow != this._windowsOrder[i]) {
+			if(currentWindow !== this._windowsOrder[i]) {
 				currentWindow.focus();
 			}
 		}

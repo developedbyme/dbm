@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 */
 	objectFunctions.setName = function(aName) {
 		//console.log("set name");
-		if(this._parent != null) {
+		if(this._parent !== null) {
 			this._parent.changeChildName(this, aName);
 		}
 		else {
@@ -54,7 +54,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	} //End function set name
 	
 	objectFunctions.getAttribute = function(aName) {
-		if(this._attributes == null) {
+		if(this._attributes === null) {
 			//METODO: error message
 			return null;
 		}
@@ -66,7 +66,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	}
 	
 	objectFunctions.setAttribute = function(aName, aValue) {
-		if(this._attributes == null) {
+		if(this._attributes === null) {
 			this._attributes = NamedArray.create(false);
 			this.addDestroyableObject(this._attributes);
 		}
@@ -74,13 +74,13 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	}
 	
 	objectFunctions.hasAttribute = function(aName) {
-		return (this._attributes != null && this._attributes.hasObject(aName));
+		return (this._attributes !== null && this._attributes.hasObject(aName));
 	}
 	
 	objectFunctions.getInheritedAttribute = function(aName) {
 		var currentItem = this;
 		var debugCounter = 0;
-		while(currentItem != null) {
+		while(currentItem !== null) {
 			if(debugCounter++ > 1000) {
 				//METODO: error message
 				return null;
@@ -102,7 +102,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		//console.log("getPath");
 		var currentItem = this;
 		var returnArray = new Array();
-		while(currentItem != null) {
+		while(currentItem !== null) {
 			returnArray.unshift(currentItem.getName());
 			currentItem = currentItem.getParent();
 		}
@@ -138,7 +138,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 */
 	objectFunctions.isLink = function() {
 		//console.log("isLink");
-		return (this._type == TreeStructureItemTypes.LINK);
+		return (this._type === TreeStructureItemTypes.LINK);
 	} //End function isLink
 	
 	/**
@@ -173,7 +173,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 */
 	objectFunctions._linkRegistration_setParent = function(aParent) {
 		//console.log("setParent");
-		if(this._parent != null) {
+		if(this._parent !== null) {
 			this._parent.removeChild(this);
 		}
 		this._parent = aParent;
@@ -219,7 +219,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.removeChild = function(aItem) {
 		//console.log("removeChild");
 		var childName = this._children.identifyObject(aItem);
-		if(childName != null) {
+		if(childName !== null) {
 			aItem._linkRegistration_removeParent();
 			aItem.releaseAndDestroy();
 			this._children.removeObject(childName);
@@ -232,7 +232,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.changeChildName = function(aItem, aNewName) {
 		//console.log("changeChildName");
 		var childName = this._children.identifyObject(aItem);
-		if(childName != null) {
+		if(childName !== null) {
 			
 			this._children.removeObject(childName);
 			aItem._linkRegistration_setName(aNewName);
@@ -293,7 +293,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		
 		aReturnArray.push("name: " + this._name);
 		aReturnArray.push("type: " + this._type);
-		if(this.data != null) {
+		if(this.data !== null) {
 			aReturnArray.push("data: " + this.data);
 		}
 	}
@@ -303,7 +303,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 */
 	objectFunctions.performDestroy = function() {
 		
-		if(this._parent != null) {
+		if(this._parent !== null) {
 			this._parent.removeChild(this);
 		}
 		if(this._children) {

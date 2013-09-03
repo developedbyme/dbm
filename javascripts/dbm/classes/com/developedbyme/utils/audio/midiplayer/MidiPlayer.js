@@ -138,7 +138,7 @@ dbm.registerClass("com.developedbyme.utils.audio.midiplayer.MidiPlayer", "com.de
 				console.log(currentEvent.metadataType, currentTime, currentEvent);
 				switch(currentEvent.metadataType) {
 					case MidiMetadataTypes.SET_TEMPO:
-						if(this._lastTempoChangePosition != currentTime) {
+						if(this._lastTempoChangePosition !== currentTime) {
 							//METODO
 						}
 						this._lastTempo = aTicksPerQuarterNote/(0.000001*currentEvent.data);

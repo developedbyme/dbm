@@ -149,7 +149,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.JavascriptLanguageFunct
 		
 		var currentIndex = ArrayFunctions.indexOfInArray(ClassReference.KEWWORD_REG_EXP_NAMES, aKeyword);
 		
-		if(currentIndex == -1) {
+		if(currentIndex === -1) {
 			return false;
 		}
 		

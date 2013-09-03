@@ -77,14 +77,14 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 	};
 	
 	objectFunctions._fillPath = function(aContext, aStyle) {
-		if(aStyle != null) {
+		if(aStyle !== null) {
 			aContext.fillStyle = aStyle;
 			aContext.fill();
 		}
 	};
 	
 	objectFunctions._strokePath = function(aContext, aStyle) {
-		if(aStyle != null) {
+		if(aStyle !== null) {
 			aContext.strokeStyle = aStyle;
 			aContext.stroke();
 		}

@@ -135,7 +135,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	
 	objectFunctions.getValue = function getValue() {
 		
-		if(this._status == FlowStatusTypes.NEEDS_UPDATE) {
+		if(this._status === FlowStatusTypes.NEEDS_UPDATE) {
 			dbm.singletons.dbmFlowManager.updateProperty(this);
 		}
 		
@@ -151,7 +151,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	objectFunctions.hasAnimationController = function hasAnimationController() {
-		return (this._animationController != null);
+		return (this._animationController !== null);
 	};
 	
 	objectFunctions.setStatus = function setStatus(aStatus) {
@@ -216,8 +216,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			//console.log(newFlowUpdateNumber, this._flowUpdateNumber);
 			if(newFlowUpdateNumber > this._flowUpdateNumber) {
 				var newValue = this._inputConnection.getValue();
-				//console.log(newValue, this._value, newValue != this._value);
-				if(this._alwaysUpdateFlow|| this._mustUpdate || (newValue != this._performGetValue())) {
+				//console.log(newValue, this._value, newValue !== this._value);
+				if(this._alwaysUpdateFlow|| this._mustUpdate || (newValue !== this._performGetValue())) {
 					this._performSetValue(newValue);
 					this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
 					this._mustUpdate = false;
@@ -266,7 +266,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions._linkRegistration_setInputConnection = function _linkRegistration_setInputConnection(aInputConnection) {
 		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_setInputConnection");
 		//console.log(this.name);
-		if(this._inputConnection != null) {
+		if(this._inputConnection !== null) {
 			this.disconnectInput();
 		}
 		this._inputConnection = aInputConnection;
@@ -295,7 +295,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions._linkRegistration_removeInputConnection = function _linkRegistration_removeInputConnection(aProperty) {
 		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeInputConnection");
 		//console.log(this.name);
-		if(this._inputConnection == null) {
+		if(this._inputConnection === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_linkRegistration_removeInputConnection", "Property " + this + " doesn't have any input.");
 			return;
 		}
@@ -314,7 +314,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions._linkRegistration_removeConnectedOutput = function _linkRegistration_removeConnectedOutput(aOutputConnection) {
 		
 		var index = ArrayFunctions.indexOfInArray(this._outputConnections, aOutputConnection);
-		if(index == -1) {
+		if(index === -1) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_linkRegistration_removeConnectedOutput", "Property " + this + " doesn't have output " + aOutputConnection + ".");
 			return;
 		}
@@ -326,7 +326,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.getStatus == undefined || currentObject.getStatus() == FlowStatusTypes.UPDATED) {
+			if(currentObject.getStatus === undefined || currentObject.getStatus() === FlowStatusTypes.UPDATED) {
 				aReturnArray.push(currentObject);
 			}
 		}

@@ -16,10 +16,10 @@ dbm.registerClass("com.developedbyme.utils.math.GaussDistribution", null, functi
 	 * @return	The gauss value.
 	 */
 	staticFunctions.getGaussDistributionValue = function(aX, aAverage, aStandardDeviation) {
-		if(aAverage == undefined) {
+		if(aAverage === undefined) {
 			aAverage = 0;
 		}
-		if(aAverage == aStandardDeviation) {
+		if(aAverage === aStandardDeviation) {
 			aStandardDeviation = 1;
 		}
 		return Math.pow(Math.E, (-0.5*Math.pow(aX-aAverage, 2)/(Math.pow(aStandardDeviation, 2))));
@@ -34,10 +34,10 @@ dbm.registerClass("com.developedbyme.utils.math.GaussDistribution", null, functi
 	 * @return	The gauss value.
 	 */
 	staticFunctions.getNormalGaussDistributionValue = function(aX, aAverage, aStandardDeviation) {
-		if(aAverage == undefined) {
+		if(aAverage === undefined) {
 			aAverage = 0;
 		}
-		if(aAverage == aStandardDeviation) {
+		if(aAverage === aStandardDeviation) {
 			aStandardDeviation = 1;
 		}
 		return (1/(aStandardDeviation*Math.sqrt(2*Math.PI)))*getGaussDistributionValue(aX, aAverage, aStandardDeviation);
@@ -52,7 +52,7 @@ dbm.registerClass("com.developedbyme.utils.math.GaussDistribution", null, functi
 	 */
 	staticFunctions.getStandardDeviationForLength = function(aLength, aZeroValue) {
 		//console.log("getStandardDeviationForLength");
-		if(aZeroValue == undefined) {
+		if(aZeroValue === undefined) {
 			aZeroValue = 0.01;
 		}
 		return Math.sqrt(-0.5*(Math.pow(aLength, 2)/Math.log(aZeroValue)));

@@ -31,9 +31,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 		
 		while(currentStartPosition < aUserAgentString.length) {
 			var slashPosition = aUserAgentString.indexOf("/", currentStartPosition);
-			if(slashPosition != -1) {
+			if(slashPosition !== -1) {
 				var spacePosition = aUserAgentString.indexOf(" ", slashPosition);
-				if(spacePosition == -1) {
+				if(spacePosition === -1) {
 					spacePosition = aUserAgentString.length;
 				}
 				var applicationAndVersion = aUserAgentString.substring(currentStartPosition, spacePosition);
@@ -43,19 +43,19 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 				var applicationComment = null;
 				var applicationSquareBracketComment = null;
 				
-				if(aUserAgentString.charAt(spacePosition+1) == "[") {
+				if(aUserAgentString.charAt(spacePosition+1) === "[") {
 					//MENOTE: square brackets aren't allowed, this is for browsers not conforming to standards.
 					var endBracketPosition = aUserAgentString.indexOf("]", spacePosition+1);
-					if(endBracketPosition == -1) {
+					if(endBracketPosition === -1) {
 						//METODO: error message
 						break;
 					}
 					applicationSquareBracketComment = aUserAgentString.substring(spacePosition+2, endBracketPosition);
 					spacePosition = endBracketPosition+1;
 				}
-				if(aUserAgentString.charAt(spacePosition+1) == "(") {
+				if(aUserAgentString.charAt(spacePosition+1) === "(") {
 					var endBracketPosition = aUserAgentString.indexOf(")", spacePosition+1);
-					if(endBracketPosition == -1) {
+					if(endBracketPosition === -1) {
 						//METODO: error message
 						break;
 					}
@@ -80,11 +80,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 		
 		var firstBrowser = this.getFirstApplicationOf(["Camino", "Chrome", "Firefox", "CriOS", "Mobile Safari", "OmniWeb", "Opera", "Safari"]);
 		var mozillaApplication = this.getApplicationByName("Mozilla");
-		if(mozillaApplication == null) {
+		if(mozillaApplication === null) {
 			mozillaApplication = this.getApplication(0);
 		}
 		var commentsArray = null;
-		if(mozillaApplication != null) {
+		if(mozillaApplication !== null) {
 			commentsArray = mozillaApplication.comment.split(";");
 		}
 		
@@ -102,7 +102,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 					this.deviceType = "handheld";
 					break;
 				default:
-					if(this.device.indexOf("SymbianOS") != -1) {
+					if(this.device.indexOf("SymbianOS") !== -1) {
 						this.deviceType = "handheld";
 					}
 					break;
@@ -114,11 +114,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 					this.deviceType = "handheld";
 					break;
 				default:
-					if(this.operatingSystem != null) {
-						if(this.operatingSystem.indexOf("Android") != -1) {
+					if(this.operatingSystem !== null) {
+						if(this.operatingSystem.indexOf("Android") !== -1) {
 							this.deviceType = "handheld";
 						}
-						else if(this.operatingSystem.indexOf("Linux armv") != -1) {
+						else if(this.operatingSystem.indexOf("Linux armv") !== -1) {
 							this.deviceType = "handheld";
 						}
 					}
@@ -127,20 +127,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 		}
 		
 		var firstRenderEngine = this.getFirstApplicationOf(["AppleWebKit", "Gecko", "KHTML", "Presto"]);
-		if(firstRenderEngine != null) {
+		if(firstRenderEngine !== null) {
 			this.renderEngine = firstRenderEngine.name;
 		}
 		
-		if(firstBrowser == null) {
+		if(firstBrowser === null) {
 			//MENOTE: check for internet explorerer on konqueror
-			if(commentsArray != null) {
-				if(commentsArray[1].indexOf("MSIE") != -1) {
+			if(commentsArray !== null) {
+				if(commentsArray[1].indexOf("MSIE") !== -1) {
 					this.browserName = "MSIE";
 					this.browserVersion = commentsArray[1].substring(commentsArray[1].indexOf("MSIE")+5, commentsArray[1].length);
 					this.renderEngine = commentsArray[4];
 				}
 				
-				else if(commentsArray[1].indexOf("Konqueror") != -1) {
+				else if(commentsArray[1].indexOf("Konqueror") !== -1) {
 					this.browserName = "Konqueror";
 					this.browserVersion = commentsArray[1].substring(commentsArray[1].indexOf("/")+1, commentsArray[1].length);
 				}
@@ -148,9 +148,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 		}
 		else {
 			this.browserName = firstBrowser.name;
-			if(this.browserName == "Safari") {
+			if(this.browserName === "Safari") {
 				var versionApplication = this.getApplicationByName("Version");
-				if(versionApplication != null) {
+				if(versionApplication !== null) {
 					this.browserVersion = versionApplication.version;
 				}
 			}

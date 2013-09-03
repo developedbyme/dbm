@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.flow.analyze.FlowAnalyzeFunctions", null, f
 		
 		var returnString = aPrefix + aConnection.name;
 		
-		if(newNumberOfSteps != 0) {
+		if(newNumberOfSteps !== 0) {
 			var currentArray = new Array();
 			aConnection.fillWithAllOutputConnections(currentArray);
 			var currentArrayLength = currentArray.length;
@@ -59,7 +59,7 @@ dbm.registerClass("com.developedbyme.flow.analyze.FlowAnalyzeFunctions", null, f
 	staticFunctions.findConnectionBetweenProperties = function(aStartProperty, aEndProperty, aReturnArray) {
 		//console.log("com.developedbyme.flow.analyze.FlowAnalyzeFunctions::findConnectionBetweenProperties");
 		//console.log(aStartProperty.name, aEndProperty.name);
-		if(aStartProperty == aEndProperty) {
+		if(aStartProperty === aEndProperty) {
 			return aReturnArray.push(new Array(aEndProperty));
 		}
 		var returnArray = new Array();
@@ -86,7 +86,7 @@ dbm.registerClass("com.developedbyme.flow.analyze.FlowAnalyzeFunctions", null, f
 	
 	staticFunctions.hasConnectionBetweenProperties = function(aStartProperty, aEndProperty) {
 		
-		if(aStartProperty == aEndProperty) {
+		if(aStartProperty === aEndProperty) {
 			return true;
 		}
 		
@@ -94,7 +94,7 @@ dbm.registerClass("com.developedbyme.flow.analyze.FlowAnalyzeFunctions", null, f
 		aStartProperty.fillWithAllOutputConnections(currentArray);
 		for(var i = 0; i < currentArray.length; i++) {
 			var currentConnection = currentArray[i];
-			if(currentConnection == aEndProperty) {
+			if(currentConnection === aEndProperty) {
 				return true;
 			}
 			currentConnection.fillWithAllOutputConnections(currentArray);

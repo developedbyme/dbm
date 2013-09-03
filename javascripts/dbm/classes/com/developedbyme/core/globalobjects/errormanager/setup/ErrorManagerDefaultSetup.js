@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.setup.Error
 	 * Sets up the default handlers (PrintInConsoleHandler).
 	 */
 	staticFunctions.setup = function setup() {
-		if(console != null) {
+		if(console !== null) {
 			var printInConsoleHandler = (new PrintInConsoleHandler()).init();
 			ErrorManager.getInstance().addHandler(printInConsoleHandler);
 		}

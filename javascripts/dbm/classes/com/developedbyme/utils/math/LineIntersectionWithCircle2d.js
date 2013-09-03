@@ -69,7 +69,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersectionWithCircle2d", n
 			return false;
 		}
 		
-		if(theLength == 0) {
+		if(theLength === 0) {
 			var lengthToCenter = VectorFunctions.lengthFromVectorValues2d(aCirclePoint.x-aLinePoint.x, aCirclePoint.y-aLinePoint.y);
 			var length1 = lengthToCenter-aRadius;
 			var length2 = lengthToCenter+aRadius;
@@ -109,14 +109,14 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersectionWithCircle2d", n
 	};
 	
 	staticFunctions.getTempVector = function() {
-		if(ClassReference._tempVector == null) {
+		if(ClassReference._tempVector === null) {
 			ClassReference._tempVector = Point.create();
 		}
 		return ClassReference._tempVector;
 	};
 	
 	staticFunctions.getTempVector2 = function() {
-		if(ClassReference._tempVector2 == null) {
+		if(ClassReference._tempVector2 === null) {
 			ClassReference._tempVector2 = Point.create();
 		}
 		return ClassReference._tempVector2;

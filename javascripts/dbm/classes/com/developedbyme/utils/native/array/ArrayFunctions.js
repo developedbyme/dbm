@@ -12,7 +12,7 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	staticFunctions.indexOfInArray = function(aArray, aData) {
-		if(aArray == null) {
+		if(aArray === null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "indexOfInArray", "Array is " + aArray + ". Can't get index of " + aData + ".");
 			return -1;
 		}
@@ -25,7 +25,7 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentData = currentArray[i];
-				if(currentData == aData) {
+				if(currentData === aData) {
 					return i;
 				}
 			}
@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 	};
 	
 	staticFunctions.lastIndexOfInArray = function(aArray, aData) {
-		if(aArray == null) {
+		if(aArray === null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "lastIndexOfInArray", "Array is " + aArray + ". Can't get index of " + aData + ".");
 			return -1;
 		}
@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentData = currentArray[currentArrayLength-i-1];
-				if(currentData == aData) {
+				if(currentData === aData) {
 					return i;
 				}
 			}
@@ -56,7 +56,7 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 	};
 	
 	staticFunctions.hasDuplicates = function(aArray) {
-		if(aArray == null) {
+		if(aArray === null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "hasDuplicates", "Array is " + aArray + ".");
 			return -1;
 		}
@@ -66,7 +66,7 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 			var currentData1 = currentArray[i];
 			for(var j = i+1; j < currentArrayLength; j++) {
 				var currentData2 = currentArray[j];
-				if(currentData1 == currentData2) {
+				if(currentData1 === currentData2) {
 					return i;
 				}
 			}

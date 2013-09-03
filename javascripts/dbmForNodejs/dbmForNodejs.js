@@ -3,7 +3,7 @@
 	
 	var dbm;
 	
-	if(aGlobalObject.dbm == undefined) {
+	if(aGlobalObject.dbm === undefined) {
 		dbm = new (function DBM(){})();
 		aGlobalObject.dbm = dbm;
 	}
@@ -11,7 +11,7 @@
 		dbm = aGlobalObject.dbm;
 	}
 	
-	if(dbm.isCreated != true) {
+	if(dbm.isCreated !== true) {
 		dbm.init = function() {
 			this.singletons = new Object();
 			this.xmlNamespaces = new Object();
@@ -112,7 +112,7 @@
 		dbm.getFileForClass = function(aClassPath) {
 			var classesFolder = this._classesFolder;
 			for(var objectName in this._specificClassesFolders) {
-				if(aClassPath.indexOf(objectName) == 0) {
+				if(aClassPath.indexOf(objectName) === 0) {
 					classesFolder = this._specificClassesFolders[objectName];
 					break;
 				}
@@ -138,7 +138,7 @@
 			var currentArrayLength = currentArray.length;
 			for(var i = this._currentFile+1; i < currentArrayLength; i++) {
 				var currentFile = currentArray[i];
-				if(currentFile == fileName) {
+				if(currentFile === fileName) {
 					currentArray.splice(i, 1);
 					break;
 				}
@@ -151,7 +151,7 @@
 			
 			var colonPosition = aFilePath.indexOf(":");
 			var questionMarkPosition = aFilePath.indexOf("?");
-			if(colonPosition != -1 && (questionMarkPosition == -1 || colonPosition < questionMarkPosition)) {
+			if(colonPosition !== -1 && (questionMarkPosition === -1 || colonPosition < questionMarkPosition)) {
 				this._filesToLoad.push(aFilePath);
 			}
 			else {

@@ -36,7 +36,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerf
 				this._commandsArray.removeItem(currentCommand);
 			}
 			
-			if((theResult == CommandStatusTypes.BREAK) || (this.breakOnError && (theResult == CommandStatusTypes.ERROR))) {
+			if((theResult === CommandStatusTypes.BREAK) || (this.breakOnError && (theResult === CommandStatusTypes.ERROR))) {
 				this._commandsArray.stop();
 			}
 		}

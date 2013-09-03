@@ -5,14 +5,14 @@ dbm.registerClass("com.developedbyme.utils.file.MimeTypeFunctions", null, functi
 	
 	staticFunctions.getFileExtensionForMimeType = function(aMimeType) {
 		//console.log("com.developedbyme.utils.file.MimeTypeFunctions::getFileExtensionForMimeType");
-		if(aMimeType == null) {
+		if(aMimeType === null) {
 			//METODO: error message
 			return null;
 		}
 		
 		var mimeType = aMimeType;
 		var semiColonPosition = aMimeType.indexOf(";")
-		if(semiColonPosition != -1) {
+		if(semiColonPosition !== -1) {
 			mimeType = aMimeType.substring(0, semiColonPosition);
 		}
 		

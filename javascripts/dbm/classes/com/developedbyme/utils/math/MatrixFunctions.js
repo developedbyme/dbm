@@ -29,12 +29,12 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixFunctions", null, function
 		var outputSizeH = aOutputMatrix.sizeH;
 		var outputSizeV = aOutputMatrix.sizeV;
 		
-		if(sizeH != outputSizeV || sizeV != outputSizeH) {
+		if(sizeH !== outputSizeV || sizeV !== outputSizeH) {
 			//METODO: error message
 			return;
 		}
 		
-		if(sizeH == sizeV) {
+		if(sizeH === sizeV) {
 			ClassReference.transposeQuadraticMatrix(aInputMatrix, aOutputMatrix);
 			return;
 		}

@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.objects.Ca
 	objectFunctions.isUpdaterFor = function(aObject, aFunction) {
 		//console.log("com.developedbyme.core.globalobjects.updatemanager.objects.CallFunctionUpdater::isUpdaterFor");
 		
-		return (this._updateObject == aObject && this._updateFunction == aFunction);
+		return (this._updateObject === aObject && this._updateFunction === aFunction);
 	};
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {

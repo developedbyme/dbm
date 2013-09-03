@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	objectFunctions._internalFunctionality_setArray = function(aArray, aOwnsObjects) {
 		
 		this.array = aArray;
-		this.ownsObjects = (aOwnsObjects != false);
+		this.ownsObjects = (aOwnsObjects !== false);
 		this._currentPosition = 0;
 		this._checkIfTheArrayIsAtEnd();
 		
@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	};
 	
 	objectFunctions._itemRemoved = function(aObject) {
-		if(aObject == this._currentItem) {
+		if(aObject === this._currentItem) {
 			this._currentItem = null;
 		}
 	};
@@ -78,7 +78,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	objectFunctions.getItem = function(aIndex, aMoveCurrentPosition) {
 		if(aIndex < this.array.length) {
 			var returnItem = this.array[aIndex];
-			if(aMoveCurrentPosition != false) {
+			if(aMoveCurrentPosition !== false) {
 				this._currentItem = returnItem;
 				this._currentPosition = aIndex+1;
 				this._checkIfTheArrayIsAtEnd();
@@ -157,7 +157,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	 * Pops an item from the list.
 	 */
 	objectFunctions.pop = function() {
-		if(this._currentPosition == this.array.length) {
+		if(this._currentPosition === this.array.length) {
 			this._currentPosition--;
 		}
 		this._itemRemoved(this.array.pop());

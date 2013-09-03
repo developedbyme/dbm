@@ -104,7 +104,7 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		
 		newNode.setElement(htmlCreator.createDiv(aAttributes));
 		
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		
@@ -122,7 +122,7 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		
 		newNode.setElement(htmlCreator.createNode("button", aAttributes));
 		
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		

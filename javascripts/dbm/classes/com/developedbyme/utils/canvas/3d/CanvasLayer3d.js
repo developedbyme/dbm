@@ -113,14 +113,14 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d", "com.develo
 			var linkCountDown = 0;
 			if(currentChild.isLink()) {
 				currentChild = this._treeStructureItem.getRoot().getItemByPath(currentChild.link, currentChild);
-				if(aNumberOfLinksToResolve == 0) {
+				if(aNumberOfLinksToResolve === 0) {
 					continue;
 				}
 				else if(aNumberOfLinksToResolve > 0) {
 					linkCountDown = 1;
 				}
 			}
-			if(currentChild.data != null) {
+			if(currentChild.data !== null) {
 				currentChild.data.draw(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve-linkCountDown);
 			}
 			else {
@@ -143,7 +143,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d", "com.develo
 			case "scaleY":
 			case "scaleZ":
 			case "rotationOrder":
-				if(this._transformationNode != null) {
+				if(this._transformationNode !== null) {
 					return this._transformationNode.getProperty(aName);
 				}
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " doesn't have a transform node. Can't get " + aName + ".");

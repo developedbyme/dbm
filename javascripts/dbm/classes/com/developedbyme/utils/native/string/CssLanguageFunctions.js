@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 		
 		var percentageSignPosition = aCssString.indexOf("%");
 		
-		if(percentageSignPosition != -1) {
+		if(percentageSignPosition !== -1) {
 			return 0.01*parseFloat(aCssString.substring(0, percentageSignPosition));
 		}
 		return parseFloat(aCssString)/aMax;

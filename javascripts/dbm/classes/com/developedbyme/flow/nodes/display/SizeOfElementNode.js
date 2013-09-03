@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 		
 		var htmlElement = this._element.getValueWithoutFlow();
 		
-		if(htmlElement != null) {
+		if(htmlElement !== null) {
 			this._width.setValueWithFlow(htmlElement.clientWidth, aFlowUpdateNumber);
 			this._height.setValueWithFlow(htmlElement.clientHeight, aFlowUpdateNumber);
 		}

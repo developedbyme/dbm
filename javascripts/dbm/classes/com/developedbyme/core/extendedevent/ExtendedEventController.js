@@ -88,7 +88,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	
 	objectFunctions.getEventLinkGroup = function(aName) {
 		var theGroup = this._eventLinkGroups.getObject(aName);
-		if(theGroup == null) {
+		if(theGroup === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getEventLinkGroup", "Event link group " + aName + " doesn't exist.");
 			return null;
 		}
@@ -111,7 +111,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	
 	
 	objectFunctions.addEventLink = function(aEventLink, aGroupName, aDontWarnOnCreation) {
-		if(aGroupName == null) {
+		if(aGroupName === null) {
 			aGroupName = this._defaultEventLinkGroupName;
 		}
 		
@@ -120,7 +120,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 			currentGroup = this._eventLinkGroups.currentSelectedItem;
 		}
 		else {
-			if(!aDontWarnOnCreation && aGroupName != this._defaultEventLinkGroupName) {
+			if(!aDontWarnOnCreation && aGroupName !== this._defaultEventLinkGroupName) {
 				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NOTICE, this, "addEventLink", "Event link group " + aGroupName + " doesn't exist, creating.");
 			}
 			currentGroup = this.createEventLinkGroup(aGroupName);
@@ -132,11 +132,11 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	objectFunctions.linkJavascriptEvent = function(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent) {
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::linkJavascriptEvent");
 		//console.log(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent);
-		if(aJavascriptEventName == null) {
+		if(aJavascriptEventName === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEvent", "Javascript event is null for " + aExtendedEventName + " on " + this._owner + ".");
 			return;
 		}
-		else if(aExtendedEventName == null) {
+		else if(aExtendedEventName === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEvent", "Extended event event is null for " + aJavascriptEventName + " on " + this._owner + ".");
 			return;
 		}
@@ -157,7 +157,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	objectFunctions.activateJavascriptEventLink = function(aName) {
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::activateJavascriptEventLink");
 		//console.log(aName);
-		if(aName == null) {
+		if(aName === null) {
 			aName = this._defaultEventLinkGroupName;
 		}
 		
@@ -207,7 +207,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::removeEvent");
 		this._eventPerformers.removeObject(aName);
 		
-		if(this._groupsController != null) {
+		if(this._groupsController !== null) {
 			this._groupsController.recreateEventIfCommandsExists(aName);
 		}
 	};
@@ -241,12 +241,12 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 			return null;
 		}
 		
-		if(aCommand.id == null) {
+		if(aCommand.id === null) {
 			aCommand.id = "autoId_" + aEventName;
 		}
 		
 		var dontShowWarnings = false;
-		if(this._owner._extendedEvent_eventIsExpected != undefined) {
+		if(this._owner._extendedEvent_eventIsExpected !== undefined) {
 			dontShowWarnings = this._owner._extendedEvent_eventIsExpected(aEventName);
 		}
 		
@@ -258,7 +258,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	
 	objectFunctions.removeCommandFromEvent = function(aEventName, aCommand) {
 		var currentPerformer = this.getEvent(aEventName, true);
-		if(currentPerformer == null) {
+		if(currentPerformer === null) {
 			return;
 		}
 		currentPerformer.removeCommand(aCommand);
@@ -266,7 +266,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	
 	objectFunctions.removeCommandByIdFromEvent = function(aEventName, aId) {
 		var currentPerformer = this.getEvent(aEventName, true);
-		if(currentPerformer == null) {
+		if(currentPerformer === null) {
 			return;
 		}
 		currentPerformer.removeCommandById(aId);
@@ -274,7 +274,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	
 	objectFunctions.hasCommandWithId = function(aEventName, aId) {
 		var currentPerformer = this.getEvent(aEventName, true);
-		if(currentPerformer == null) {
+		if(currentPerformer === null) {
 			return false;
 		}
 		return currentPerformer.hasCommandWithId(aId);

@@ -84,7 +84,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 			return this._interpolationObjects.currentSelectedItem;
 		}
 		var slashPostion = aType.indexOf("/");
-		if(slashPostion != -1) {
+		if(slashPostion !== -1) {
 			var creatorName = aType.substring(0, slashPostion);
 			if(this._dynamicInterpolationCreators.select(creatorName)) {
 				var dynamicInterpolationCreator = this._dynamicInterpolationCreators.currentSelectedItem;
@@ -130,7 +130,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		
 		var newTimeline = Timeline.create(aStartValue);
 		dbm.singletons.dbmFlowManager.connectProperties(this.globalTimeProperty, newTimeline.getProperty("time"));
-		if(aConnectedOutput != undefined && aConnectedOutput != null) {
+		if(aConnectedOutput !== undefined && aConnectedOutput !== null) {
 			//console.log(newTimeline.getProperty("outputValue"), aConnectedOutput);
 			dbm.singletons.dbmFlowManager.connectProperties(newTimeline.getProperty("outputValue"), aConnectedOutput);
 			aConnectedOutput._animationController = newTimeline;

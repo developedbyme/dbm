@@ -79,7 +79,7 @@ dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedb
 	 * @param	aSteps	The number of steps to take.
 	 */
 	objectFunctions.manuallyStep = function(aSteps) {
-		if(aSteps == undefined) {
+		if(aSteps === undefined) {
 			aSteps = 1;
 		}
 		var newPosition = this._currentPosition+aSteps;
@@ -102,7 +102,7 @@ dbm.registerClass("com.developedbyme.utils.data.CircularBuffer", "com.developedb
 	 */
 	objectFunctions.getData = function(aOffset) {
 		
-		if(aOffset == undefined) {
+		if(aOffset === undefined) {
 			aOffset = 0;
 		}
 		if(aOffset > 0) {

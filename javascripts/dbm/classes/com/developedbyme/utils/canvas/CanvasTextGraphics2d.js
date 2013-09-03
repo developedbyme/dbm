@@ -76,9 +76,9 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d", "com.de
 	};
 	
 	objectFunctions._fillText = function(aContext, aStyle, aText, aX, aY, aMaxWidth) {
-		if(aStyle != null) {
+		if(aStyle !== null) {
 			aContext.fillStyle = aStyle;
-			if(aMaxWidth != null) {
+			if(aMaxWidth !== null) {
 				aContext.fillText(aText, aX, aY, aMaxWidth);
 			}
 			else {
@@ -88,10 +88,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d", "com.de
 	};
 	
 	objectFunctions._strokeText = function(aContext, aStyle, aText, aX, aY, aMaxWidth) {
-		if(aStyle != null) {
+		if(aStyle !== null) {
 			aContext.strokeStyle = aStyle;
 			aContext.fillStyle = aStyle; //MENOTE: Safari 5.0.5 is using  fillStyle when stroking text
-			if(aMaxWidth != null) {
+			if(aMaxWidth !== null) {
 				aContext.strokeText(aText, aX, aY, aMaxWidth);
 			}
 			else {

@@ -78,7 +78,7 @@ dbm.registerClass("com.developedbyme.utils.graphics.color.ColorFunctions", "com.
 		
 		var lowerCaseName = aName.toLowerCase();
 		
-		if(ArrayFunctions.indexOfInArray(lowerCaseName, HtmlColorNames.namesArray) == -1) {
+		if(ArrayFunctions.indexOfInArray(lowerCaseName, HtmlColorNames.namesArray) === -1) {
 			//METODO: error message
 			return -1;
 		}

@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.Model3d", "com.developedbym
 	
 	objectFunctions.getLayer = function(aPath) {
 		var currentItem = this._hierarchy.getItemByPath(aPath);
-		if(currentItem.data == null) {
+		if(currentItem.data === null) {
 			var newLayer = CanvasLayer3d.create();
 			currentItem.data = newLayer;
 			newLayer._linkRegistration_setTreeStructureItem(currentItem);

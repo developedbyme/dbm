@@ -26,7 +26,7 @@ dbm.registerClass("com.developedbyme.gui.images.StateImage", "com.developedbyme.
 		
 		aPreload = VariableAliases.valueWithDefault(aPreload, false);
 		
-		if(aName == null) {
+		if(aName === null) {
 			this._switchNode.getProperty("defaultValue").setValue(aUrl);
 		}
 		else {
@@ -51,8 +51,8 @@ dbm.registerClass("com.developedbyme.gui.images.StateImage", "com.developedbyme.
 	staticFunctions.create = function(aParentOrDocument, aAddToParent, aUrl, aDefaultState, aAttributes) {
 		var newNode = (new ClassReference()).init();
 		
-		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
-		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.gui.images.StateImage", "com.developedbyme.
 		newNode.addState(aDefaultState, aUrl);
 		newNode.getProperty("state").setValue(aDefaultState);
 		newNode.setParent(theParent);
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		

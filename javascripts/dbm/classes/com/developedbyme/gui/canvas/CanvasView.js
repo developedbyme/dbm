@@ -73,10 +73,10 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		var newWidth = this._width.getValueWithoutFlow();
 		var newHeight = this._height.getValueWithoutFlow();
 		
-		if(newWidth != 0) {
+		if(newWidth !== 0) {
 			element.width = newWidth;
 		}
-		if(newHeight != 0) {
+		if(newHeight !== 0) {
 			element.height = newHeight;
 		}
 	};
@@ -109,8 +109,8 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 	staticFunctions.create = function(aParentOrDocument, aAddToParent, aContextType, aAttributes) {
 		var newView = (new ClassReference()).init();
 		
-		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
-		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
@@ -133,7 +133,7 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 				break;
 		}
 		newView.setParent(theParent);
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newView.addToDom();
 		}
 		

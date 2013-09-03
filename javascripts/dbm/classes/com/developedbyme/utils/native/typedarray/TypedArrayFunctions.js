@@ -6,10 +6,10 @@ dbm.registerClass("com.developedbyme.utils.native.typedarray.TypedArrayFunctions
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	staticFunctions.getWebGlFloatArray = function() {
-		if(Float32Array != undefined) {
+		if(Float32Array !== undefined) {
 			return Float32Array;
 		}
-		if(WebGLFloatArray != undefined) {
+		if(WebGLFloatArray !== undefined) {
 			return WebGLFloatArray;
 		}
 		return Array;

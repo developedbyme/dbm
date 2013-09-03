@@ -13,7 +13,7 @@ dbm.registerClass("com.developedbyme.utils.htmldom.PositionFunctions", null, fun
 		aReturnPoint.x = 0;
 		aReturnPoint.y = 0;
 		var debugBreakCounter = 0;
-		while(currentElement != null) {
+		while(currentElement !== null) {
 			if(debugBreakCounter++ > 1000) {
 				//METODO: error message
 				break;
@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.utils.htmldom.PositionFunctions", null, fun
 		aReturnPoint.x = 0;
 		aReturnPoint.y = 0;
 		var debugBreakCounter = 0;
-		while(currentElement != null) {
+		while(currentElement !== null) {
 			if(debugBreakCounter++ > 1000) {
 				//METODO: error message
 				break;
@@ -42,7 +42,7 @@ dbm.registerClass("com.developedbyme.utils.htmldom.PositionFunctions", null, fun
 			aReturnPoint.x += currentElement.offsetLeft;
 			aReturnPoint.y += currentElement.offsetTop;
 			currentElement = currentElement.offsetParent;
-			if(aParentElement == currentElement) {
+			if(aParentElement === currentElement) {
 				return aReturnPoint;
 			}
 		}

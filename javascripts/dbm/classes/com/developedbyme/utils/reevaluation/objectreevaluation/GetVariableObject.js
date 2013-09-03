@@ -64,7 +64,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		//console.log(aPropertyName);
 		var newCommand = (new GetVariableObject()).init();
 		
-		if(aObject.reevaluate != undefined) {
+		if(aObject.reevaluate !== undefined) {
 			newCommand.objectReevaluator = aObject;
 		}
 		else {

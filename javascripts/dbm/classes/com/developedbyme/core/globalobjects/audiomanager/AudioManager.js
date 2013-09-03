@@ -94,14 +94,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		aMixerName = VariableAliases.valueWithDefault(aMixerName, "audio");
 		
 		var audioAsset;
-		if(PathFunctions.getFileExtension(aId) == null) {
+		if(PathFunctions.getFileExtension(aId) === null) {
 			audioAsset = dbm.singletons.dbmAssetRepository.getAsset(dbm.singletons.dbmAssetRepository.getAudioPath(aId));
 		}
 		else {
 			audioAsset = dbm.singletons.dbmAssetRepository.getAsset(aId);
 		}
 		
-		if(audioAsset.getStatus() == AssetStatusTypes.NOT_LOADED) {
+		if(audioAsset.getStatus() === AssetStatusTypes.NOT_LOADED) {
 			audioAsset.load();
 		}
 		
@@ -120,7 +120,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentPlayingAudio = currentArray[i];
-			if(currentPlayingAudio.getElement() == audioTag) {
+			if(currentPlayingAudio.getElement() === audioTag) {
 				currentPlayingAudio.stop();
 				currentPlayingAudio.destroy();
 				break;
@@ -146,14 +146,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 		aLoop = VariableAliases.valueWithDefault(aLoop, false);
 		
 		var audioAsset;
-		if(PathFunctions.getFileExtension(aId) == null) {
+		if(PathFunctions.getFileExtension(aId) === null) {
 			audioAsset = dbm.singletons.dbmAssetRepository.getAsset(dbm.singletons.dbmAssetRepository.getAudioPath(aId));
 		}
 		else {
 			audioAsset = dbm.singletons.dbmAssetRepository.getAsset(aId);
 		}
 		
-		if(audioAsset.getStatus() == AssetStatusTypes.NOT_LOADED) {
+		if(audioAsset.getStatus() === AssetStatusTypes.NOT_LOADED) {
 			audioAsset.load();
 		}
 		
@@ -178,7 +178,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 	objectFunctions._linkRegistration_removePlayingAudio = function(aPlayingAudio) {
 		var index = ArrayFunctions.indexOfInArray(this._playingAudio, aPlayingAudio);
 		
-		if(index != -1) {
+		if(index !== -1) {
 			this._playingAudio.splice(index, 1);
 		}
 	}

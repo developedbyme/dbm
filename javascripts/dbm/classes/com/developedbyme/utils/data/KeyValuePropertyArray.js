@@ -65,7 +65,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 	};
 	
 	objectFunctions.addObject = function(aName, aObject) {
-		if(aName == null) {
+		if(aName === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
 			return;
 		}
@@ -85,7 +85,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 	};
 	
 	objectFunctions.replaceObject = function(aName, aObject) {
-		if(aName == null) {
+		if(aName === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "replaceObject", "Name is null for object" + aObject + ".");
 			return;
 		}
@@ -108,7 +108,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 	};
 
 	objectFunctions.addObjectToBeginning = function(aName, aObject) {
-		if(aName == null) {
+		if(aName === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
 			return;
 		}
@@ -136,7 +136,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 	
 	objectFunctions.select = function(aName) {
 		var currentIndex = this._getObjectIndexByName(aName);
-		if(currentIndex == -1) {
+		if(currentIndex === -1) {
 			this.currentSelectedItem = null;
 			return false;
 		}
@@ -146,13 +146,13 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 	
 	objectFunctions.hasObject = function(aName) {
 		var currentIndex = this._getObjectIndexByName(aName);
-		return (currentIndex != -1);
+		return (currentIndex !== -1);
 	};
 	
 	objectFunctions.getObject = function(aName) {
 		//console.log("com.developedbyme.utils.data.KeyValuePropertyArray::getObject");
 		var currentIndex = this._getObjectIndexByName(aName);
-		if(currentIndex == -1) {
+		if(currentIndex === -1) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MINOR, this, "getObject", "Object " + aName + " doesn't exist.");
 			return null;
 		}
@@ -161,7 +161,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 	
 	objectFunctions.removeObject = function(aName) {
 		var currentIndex = this._getObjectIndexByName(aName);
-		if(currentIndex == -1) {
+		if(currentIndex === -1) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MAJOR, this, "removeObject", "Object " + aName + " doesn't exist.");
 			return;
 		}
@@ -174,7 +174,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 		this._nameChangeProperty.disconnectInput(currentObject.keyValue);
 		this._nameChangeProperty.setAsDirty();
 		
-		if(this.currentSelectedItem == currentObject) {
+		if(this.currentSelectedItem === currentObject) {
 			this.currentSelectedItem = null;
 		}
 	};
@@ -199,7 +199,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 		
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.dataValue.getValue() == aObject) {
+			if(currentObject.dataValue.getValue() === aObject) {
 				return currentObject.keyValue.getValue()
 			}
 		};
@@ -212,7 +212,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("ownsObjects: " + this.ownsObjects);
-		if(this._namesArray != null) {
+		if(this._namesArray !== null) {
 			aReturnArray.push("properties: [" + this._namesArray.getValue() + "]");
 		}
 	}

@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.Custom
 			returnString = this.baseArray[currentIndex] + returnString;
 			
 			tempNumber -= currentIndex;
-			if(tempNumber == 0) {
+			if(tempNumber === 0) {
 				break;
 			}
 			tempNumber /= this.baseArray.length;

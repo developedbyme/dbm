@@ -90,7 +90,7 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	objectFunctions.play = function() {
 		
 		var currentState = this._stateTimeline.getValue();
-		if(currentState == PlaybackStateTypes.PLAYING) {
+		if(currentState === PlaybackStateTypes.PLAYING) {
 			return;
 		}
 		
@@ -100,7 +100,7 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		
 		var playbackState = this._playbackState.getValue();
 		var playbackSpeed = this._playbackSpeed.getValue();
-		if(playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1 && this.getElement().paused) {
+		if(playbackState === PlaybackStateTypes.PLAYING && playbackSpeed === 1 && this.getElement().paused) {
 			this._performPlay();
 		}
 	};
@@ -108,7 +108,7 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	objectFunctions.pause = function() {
 		
 		var currentState = this._stateTimeline.getValue();
-		if(currentState == PlaybackStateTypes.PAUSED) {
+		if(currentState === PlaybackStateTypes.PAUSED) {
 			return;
 		}
 		
@@ -174,14 +174,14 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	objectFunctions.setStateAt = function(aState, aOutputTime, aTime) {
 		//console.log("com.developedbyme.utils.audio.AudioPlayer::setStateAt");
 		//console.log(this._selectedUrl, aState, aTime);
-		if(aState == PlaybackStateTypes.PAUSED) {
-			if(this._stateTimeline.getValueAt(aTime) != PlaybackStateTypes.PAUSED) {
+		if(aState === PlaybackStateTypes.PAUSED) {
+			if(this._stateTimeline.getValueAt(aTime) !== PlaybackStateTypes.PAUSED) {
 				this._stateTimeline.setValueAt(PlaybackStateTypes.PAUSED, aTime);
 			}
 			this._startPositionTimeline.setValueAt(aOutputTime, aTime);
 		}
 		else {
-			if(this._stateTimeline.getValueAt(aTime) != PlaybackStateTypes.PLAYING) {
+			if(this._stateTimeline.getValueAt(aTime) !== PlaybackStateTypes.PLAYING) {
 				this._stateTimeline.setValueAt(PlaybackStateTypes.PLAYING, aTime);
 			}
 			this._startTimeTimeline.setValueAt(aTime, aTime);
@@ -259,27 +259,27 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 			var currentType = this._getTypeForUrl(currentUrl);
 			var canPlayStatus = this.getElement().canPlayType(currentType);
 			//console.log(currentType, canPlayStatus);
-			if(canPlayStatus == "probably") {
+			if(canPlayStatus === "probably") {
 				this.getElement().src = currentUrl;
 				this._selectedUrl = currentUrl;
 				isSelected = true;
 				break;
 			}
-			else if(maybeUrl == null) {
-				if(canPlayStatus == "maybe") {
+			else if(maybeUrl === null) {
+				if(canPlayStatus === "maybe") {
 					maybeUrl = currentUrl;
 				}
 				else {
 					var currentTypeWithoutCodecs = this._getTypeWithoutCodecsForUrl(currentUrl);
 					var canPlayStatus = this.getElement().canPlayType(currentTypeWithoutCodecs);
 					//console.log(currentTypeWithoutCodecs, canPlayStatus);
-					if(canPlayStatus == "probably" || canPlayStatus == "maybe") {
+					if(canPlayStatus === "probably" || canPlayStatus === "maybe") {
 						maybeUrl = currentUrl;
 					}
 				}
 			}
 		}
-		if(!isSelected && maybeUrl != null) {
+		if(!isSelected && maybeUrl !== null) {
 			this.getElement().src = maybeUrl;
 			this._selectedUrl = maybeUrl;
 		}
@@ -339,14 +339,14 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 			
 			//console.log(this._selectedUrl, isPaused, hasEnded, maxTime, this.getElement().currentTime, state, startTime, startPosition, currentTime, playbackState, playbackSpeed);
 			
-			if((!isPaused) && (playbackState != PlaybackStateTypes.PLAYING || playbackSpeed != 1 || state == PlaybackStateTypes.PAUSED)) {
+			if((!isPaused) && (playbackState !== PlaybackStateTypes.PLAYING || playbackSpeed !== 1 || state === PlaybackStateTypes.PAUSED)) {
 				this._performPause();
 				isPaused = true;
 			}
 			
 			if(isPaused) {
-				if(state == PlaybackStateTypes.PLAYING && playbackState == PlaybackStateTypes.PLAYING && playbackSpeed == 1) {
-					if(this.getElement().currentTime != maxTime) {
+				if(state === PlaybackStateTypes.PLAYING && playbackState === PlaybackStateTypes.PLAYING && playbackSpeed === 1) {
+					if(this.getElement().currentTime !== maxTime) {
 						var timeDifference = Math.abs(maxTime-this.getElement().currentTime);
 						if(timeDifference > this._maxTimeDifference && this.getElement().currentTime-timeDifference < this.getElement().duration) {
 							//console.log(this.getElement().currentTime, maxTime, this.getElement().duration, timeShouldBeAt);
@@ -358,8 +358,8 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 					}
 				}
 				else {
-					if(state != PlaybackStateTypes.PAUSED) {
-						if(this.getElement().currentTime != maxTime) {
+					if(state !== PlaybackStateTypes.PAUSED) {
+						if(this.getElement().currentTime !== maxTime) {
 							this._performSeek(maxTime);
 							//console.log("update", this._selectedUrl, maxTime);
 							this._outputTime.setValueWithFlow(maxTime, aFlowUpdateNumber);
@@ -370,8 +370,8 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 					}
 					else {
 						//console.log("else", this._selectedUrl, this.getElement().currentTime);
-						if(this.getElement().currentTime != startPosition) {
-							if(this.getElement().networkState == this.getElement().NETWORK_IDLE || this.getElement().networkState == this.getElement().NETWORK_LOADING) {
+						if(this.getElement().currentTime !== startPosition) {
+							if(this.getElement().networkState === this.getElement().NETWORK_IDLE || this.getElement().networkState === this.getElement().NETWORK_LOADING) {
 								//console.log("else", this._selectedUrl, this.getElement().currentTime, startPosition);
 								this._performSeek(startPosition);
 							}
@@ -436,15 +436,15 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	staticFunctions.create = function(aParentOrDocument, aAddToParent, aUrls, aPreload, aAttributes) {
 		var newNode = (new ClassReference()).init();
 		
-		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
-		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
 		newNode.setElement(htmlCreator.createNode("audio", aAttributes));
 		newNode.setUrls(aUrls, aPreload);
 		newNode.setParent(theParent);
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		

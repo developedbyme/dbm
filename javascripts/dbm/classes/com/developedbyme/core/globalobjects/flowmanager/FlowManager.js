@@ -53,7 +53,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		aConnection.fillWithCleanOutputConnections(currentArray);
 		for(var i = 0; i < currentArray.length; i++) {
 			var currentConnection = currentArray[i];
-			if(currentConnection.setStatus != null) {
+			if(currentConnection.setStatus !== null) {
 				currentConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
 			}
 			currentConnection.fillWithCleanOutputConnections(currentArray);
@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		currentArray.push(aProperty);
 		for(var i = 0; i < currentArray.length; i++) {
 			var currentConnection = currentArray[i];
-			if(currentConnection == null) {
+			if(currentConnection === null) {
 				currentArray.splice(i, 1);
 				i--;
 				continue;
@@ -93,7 +93,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		//var nodeNames = new Array();
 		for(var i = currentArray.length-1; i >= 0; i--) {
 			var currentConnection = currentArray[i];
-			if(currentConnection.getStatus != null && currentConnection.getStatus() == 1) {
+			if(currentConnection.getStatus !== null && currentConnection.getStatus() === 1) {
 				//nodeNames.push(currentConnection.name + " (skip)");
 				//numberOfSkipped++;
 				continue;
@@ -152,7 +152,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		while(this._updatedProperties.isActive()) {
 			var currentProperty = this._updatedProperties.getNextItem();
 			//console.log(currentProperty, currentProperty.getStatus());
-			if(currentProperty.getStatus() != FlowStatusTypes.UPDATED) {
+			if(currentProperty.getStatus() !== FlowStatusTypes.UPDATED) {
 				numberOfPropertiesUpdated++;
 				if(currentProperty.isDestroyed()) {
 					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperties", "Property (" + currentProperty + ") is destroyed, removing.");

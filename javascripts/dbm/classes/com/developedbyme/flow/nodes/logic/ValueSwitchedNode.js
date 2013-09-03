@@ -26,7 +26,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode", "com.d
 		
 		var name = this._name.getValueWithoutFlow();
 		
-		if(name == null) {
+		if(name === null) {
 			//METODO: error message
 			this._outputValue.setValueWithFlow(this._defaultValue.getValueWithoutFlow(), aFlowUpdateNumber);
 		}

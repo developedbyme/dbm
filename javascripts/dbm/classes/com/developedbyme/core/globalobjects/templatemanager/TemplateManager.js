@@ -50,7 +50,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		
 		var mainController = this._createControllersForTemplateNode(aTemplate, "", templateResult);
 		
-		if(mainController != null) {
+		if(mainController !== null) {
 			templateResult.mainController = mainController;
 		}
 		
@@ -67,7 +67,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		
 		//METODO: implement text and html text
 		
-		if(currentClassName != null) {
+		if(currentClassName !== null) {
 			var currentClass;
 			
 			if(this._classShortcuts.select(currentClassName)) {
@@ -77,11 +77,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 				currentClass = dbm.getClass(currentClassName);
 			}
 			
-			if(currentClass != null) {
+			if(currentClass !== null) {
 				newObject = (new currentClass()).init();
 				newObject.setElement(aNode);
 				
-				var registrationName = (currentName != null) ?  currentName : dbm.singletons.dbmIdManager.getNewId(newObject.__className);
+				var registrationName = (currentName !== null) ?  currentName : dbm.singletons.dbmIdManager.getNewId(newObject.__className);
 				
 				aTemplateResult.addController(aBasePath + registrationName, newObject);
 			}
@@ -90,22 +90,22 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 			}
 		}
 		
-		var newPath = (currentName != null) ? aBasePath + currentName + "/" : aBasePath;
+		var newPath = (currentName !== null) ? aBasePath + currentName + "/" : aBasePath;
 		
-		if(currentTextClassName != null) {
+		if(currentTextClassName !== null) {
 			
 			var currentTextName = XmlChildRetreiver.getAttribute(aNode, TemplateManager.TEXT_NAME_ATTRIBUTE);
 			
 			var currentTextCreator = this._textCreators.getObject(currentTextClassName);
-			if(currentTextCreator != null) {
+			if(currentTextCreator !== null) {
 				
 				var textObject = currentTextCreator.createObject(aNode);
 				
-				var textRegistrationName = (currentTextName != null) ? currentTextName : dbm.singletons.dbmIdManager.getNewId("text");
+				var textRegistrationName = (currentTextName !== null) ? currentTextName : dbm.singletons.dbmIdManager.getNewId("text");
 				
 				aTemplateResult.addController(aBasePath + textRegistrationName, textObject);
 				
-				if(newObject == null) {
+				if(newObject === null) {
 					newObject = textObject;
 				}
 			}

@@ -11,12 +11,12 @@ dbm.registerClass("com.developedbyme.utils.htmldom.DomReferenceFunctions", null,
 	
 	staticFunctions.getDocument = (function(aElementOrDocument) {
 		//console.log("com.developedbyme.utils.htmldom.DomReferenceFunctions::getDocument (static)");
-		return (aElementOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aElementOrDocument : aElementOrDocument.ownerDocument;
+		return (aElementOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aElementOrDocument : aElementOrDocument.ownerDocument;
 	});
 	
 	staticFunctions.getDocumentVisualParent = (function(aElementOrDocument) {
 		//console.log("com.developedbyme.utils.htmldom.DomReferenceFunctions::getDocumentVisualParent (static)");
-		return (aElementOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aElementOrDocument.body : aElementOrDocument;
+		return (aElementOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aElementOrDocument.body : aElementOrDocument;
 	});
 	
 });

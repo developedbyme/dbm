@@ -42,7 +42,7 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgPath", "com.developedbyme.gui.sv
 	
 	objectFunctions._updateDrawFlow = function(aFlowUpdateNumber) {
 		var element = this._element.getValueWithoutFlow();
-		if(element != null) {
+		if(element !== null) {
 			element.pathSegList.clear();
 			SvgPathFunctions.drawCurveToPath(element, this._curve.getValueWithoutFlow())
 		}
@@ -70,14 +70,14 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgPath", "com.developedbyme.gui.sv
 	staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes) {
 		var newNode = (new ClassReference()).init();
 		
-		var theDocument = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
-		var theParent = (aParentOrDocument.nodeType == XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
 		
 		var svgCreator = dbm.singletons.dbmHtmlDomManager.getSvgCreator(theDocument);
 		
 		newNode.setElement(svgCreator.createNode("path", aAttributes));
 		newNode.setParent(theParent);
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		

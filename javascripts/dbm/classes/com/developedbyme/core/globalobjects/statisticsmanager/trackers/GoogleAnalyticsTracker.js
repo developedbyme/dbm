@@ -41,8 +41,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.statisticsmanager.tracke
 		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.trackers.GoogleAnalyticsTracker::trackEvent");
 		//console.log(aCategory, aAction, aLabel, aValue);
 		
-		if(aLabel != null) {
-			if(aValue != null) {
+		if(aLabel !== null) {
+			if(aValue !== null) {
 				_gaq.push([this._trackEventName, aCategory, aAction, aLabel, aValue]);
 			}
 			else {

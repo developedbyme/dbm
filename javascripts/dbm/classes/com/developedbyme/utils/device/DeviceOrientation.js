@@ -47,26 +47,26 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceOrientation", "com.devel
 		//console.log("com.developedbyme.utils.device.DeviceOrientation::_orientationUpdated");
 		//console.log(aEvent);
 		//console.log(aEvent.gamma);
-		if(aEvent.alpha == null && aEvent.beta == null && aEvent.gamma == null) {
+		if(aEvent.alpha === null && aEvent.beta === null && aEvent.gamma === null) {
 			if(this.getExtendedEvent().hasEvent(DeviceExtendedEventIds.ORIENTATION_ERROR)) {
 				this.getExtendedEvent().perform(DeviceExtendedEventIds.ORIENTATION_ERROR, aEvent);
 			}
 			return;
 		}
 		
-		if(aEvent.alpha != null) {
+		if(aEvent.alpha !== null) {
 			this._alphaValue.setValue(AngleFunctions.degreesToRadians(aEvent.alpha));
 		}
 		else {
 			this._alphaValue.setValue(NaN);
 		}
-		if(aEvent.beta != null) {
+		if(aEvent.beta !== null) {
 			this._betaValue.setValue(AngleFunctions.degreesToRadians(aEvent.beta));
 		}
 		else {
 			this._betaValue.setValue(NaN);
 		}
-		if(aEvent.gamma != null) {
+		if(aEvent.gamma !== null) {
 			this._gammaValue.setValue(AngleFunctions.degreesToRadians(aEvent.gamma));
 		}
 		else {

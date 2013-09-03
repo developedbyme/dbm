@@ -1,5 +1,5 @@
 (function() {
-	if(window.console == undefined) {
+	if(window.console === undefined) {
 		var console = new Object();
 		window.console = console;
 		console.dir = function(){};

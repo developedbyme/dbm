@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 	};
 	
 	objectFunctions.setAttributesToNode = function(aElement, aAttributes) {
-		if(aAttributes != null) {
+		if(aAttributes !== null) {
 			for(var objectName in aAttributes) {
 				aElement.setAttribute(objectName, aAttributes[objectName]);
 			}
@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		var currentArrayLength = currentArray.length;
 		for(var i = 2; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
+			if(currentObject.ownerDocument && currentObject.ownerDocument === newElement.ownerDocument) {
 				newElement.appendChild(currentObject);
 			}
 			else {
@@ -65,7 +65,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		var currentArrayLength = currentArray.length;
 		for(var i = 1; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
+			if(currentObject.ownerDocument && currentObject.ownerDocument === newElement.ownerDocument) {
 				newElement.appendChild(currentObject);
 			}
 			else {
@@ -86,7 +86,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 	objectFunctions.createLink = function(aHref, aTarget, aAttributes /*, ... childs */) {
 		var newElement = this.ownerDocument.createElement("a");
 		newElement.href = aHref;
-		if(aTarget != null) {
+		if(aTarget !== null) {
 			var target = aTarget;
 			newElement.onclick = function() {
 				return dbm.handleLink(this.href, target);
@@ -97,7 +97,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		var currentArrayLength = currentArray.length;
 		for(var i = 3; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
+			if(currentObject.ownerDocument && currentObject.ownerDocument === newElement.ownerDocument) {
 				newElement.appendChild(currentObject);
 			}
 			else {
@@ -116,7 +116,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		var currentArrayLength = currentArray.length;
 		for(var i = 3; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.ownerDocument && currentObject.ownerDocument == newElement.ownerDocument) {
+			if(currentObject.ownerDocument && currentObject.ownerDocument === newElement.ownerDocument) {
 				newElement.appendChild(currentObject);
 			}
 			else {
@@ -151,7 +151,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 				newElement.appendChild(newOption);
 			}
 		}
-		else if(aValues != null) {
+		else if(aValues !== null) {
 			for(var objectName in aValues) {
 				newOption = this.ownerDocument.createElement("option");
 				newOption.text = aValues[objectName];

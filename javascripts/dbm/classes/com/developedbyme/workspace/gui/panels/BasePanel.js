@@ -61,7 +61,7 @@ dbm.registerClass("com.developedbyme.workspace.gui.panels.BasePanel", "com.devel
 		
 		newNode.setElement(htmlCreator.createDiv(aAttributes));
 		
-		if(aAddToParent != false) {
+		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
 		

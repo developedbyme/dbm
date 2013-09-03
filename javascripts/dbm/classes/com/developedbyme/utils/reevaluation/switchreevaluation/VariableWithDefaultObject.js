@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.switchreevaluation.Varia
 	objectFunctions.reevaluate = function(aBaseObject) {
 		
 		var returnValue = this.variableReevaluation.reevaluate(aBaseObject);
-		if(returnValue == null) {
+		if(returnValue === null) {
 			returnValue = this.defaultReevaluation.reevaluate(aBaseObject);
 		}
 		

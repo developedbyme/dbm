@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 	objectFunctions._linkRegistration_removeObjectProperty = function(aProperty) {
 		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
 		var objectIndex = ArrayFunctions.indexOfInArray(this._objectProperties, aProperty);
-		if(objectIndex != -1) {
+		if(objectIndex !== -1) {
 			this._objectProperties.splice(objectIndex, 1);
 		}
 		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
@@ -56,7 +56,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentObject = currentArray[i];
-				if(currentObject.getStatus == undefined || currentObject.getStatus() == FlowStatusTypes.UPDATED) {
+				if(currentObject.getStatus === undefined || currentObject.getStatus() === FlowStatusTypes.UPDATED) {
 					aReturnArray.push(currentObject);
 				}
 			}
@@ -70,7 +70,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentObject = currentArray[i];
-				if(currentObject.getStatus == undefined || currentObject.getStatus() == FlowStatusTypes.NEEDS_UPDATE) {
+				if(currentObject.getStatus === undefined || currentObject.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
 					aReturnArray.push(currentObject);
 				}
 			}
@@ -82,7 +82,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 		//console.log("com.developedbyme.core.objectparts.Property::performDestroy");
 		//console.log(this.toString());
 		
-		if(this._objectProperties != null) {
+		if(this._objectProperties !== null) {
 			var currentArray = this._objectProperties;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {

@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.animation.CommandTimerNode", "co
 		for(var i = this._lastPosition-1; i >= 0; i--) {
 			if(currentTime < this._delayedTimesArray[i]) {
 				var currentEvent = this._delayedUndoCommands[i];
-				if(currentEvent != null) {
+				if(currentEvent !== null) {
 					var eventDataObject = EventDataObject.create(null, this, this);
 					currentEvent.perform(eventDataObject);
 					eventDataObject.destroy();
@@ -50,7 +50,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.animation.CommandTimerNode", "co
 			//console.log(i, currentTime, this._delayedTimesArray[i]);
 			if(currentTime >= this._delayedTimesArray[i]) {
 				var currentEvent = this._delayedCommands[i];
-				if(currentEvent != null) {
+				if(currentEvent !== null) {
 					var eventDataObject = EventDataObject.create(null, this, this);
 					currentEvent.perform(eventDataObject);
 					eventDataObject.destroy();
@@ -88,14 +88,14 @@ dbm.registerClass("com.developedbyme.flow.nodes.animation.CommandTimerNode", "co
 		
 		var insertPosition = this._getInsertPosition(aTime);
 		
-		if(aCommand != null) {
+		if(aCommand !== null) {
 			aCommand.retain();
 		}
-		if(aUndoCommand != null) {
+		if(aUndoCommand !== null) {
 			aUndoCommand.retain();
 		}
 		
-		if(insertPosition != -1) {
+		if(insertPosition !== -1) {
 			this._delayedTimesArray.splice(insertPosition, 0, aTime);
 			this._delayedCommands.splice(insertPosition, 0, aCommand);
 			this._delayedUndoCommands.splice(insertPosition, 0, aUndoCommand);

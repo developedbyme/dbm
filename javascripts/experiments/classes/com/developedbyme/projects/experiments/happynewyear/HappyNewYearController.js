@@ -118,7 +118,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		
 		var nextPlayTime = this._nextPlayTimes[0]
 		
-		if(nextPlayTime != -1 && compareValue >= nextPlayTime-0.75) {
+		if(nextPlayTime !== -1 && compareValue >= nextPlayTime-0.75) {
 			
 			this._nextPlayTimes.shift();
 			var nextBeepEffect = this._nextBeepEffects.shift();
@@ -143,7 +143,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		var currentValue = this._currentIndex.getValueWithoutFlow();
 		
 		var currentTimeZone = this._timeZones.array[currentValue];
-		if(currentTimeZone != null) {
+		if(currentTimeZone !== null) {
 			this._nextPlayTimes.push(currentTimeZone.getCompareTime()-20);
 			this._nextPlayTimes.push(currentTimeZone.getCompareTime()-10);
 			this._nextPlayTimes.push(currentTimeZone.getCompareTime()-3);
@@ -269,13 +269,13 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		//console.log("com.developedbyme.projects.experiments.happynewyear.HappyNewYearController::_callback_keyPressed");
 		//console.log(aEvent);
 		
-		if(aEvent.keyCode == 38) { //Up
+		if(aEvent.keyCode === 38) { //Up
 			var currentValue = this._keyOverrideValue.getValue();
 			var newValue = Math.round(currentValue-1);
 			this._keyOverrideValue.animateValue(newValue, 0.5, InterpolationTypes.INVERTED_QUADRATIC, 0);
 			this._keyOverrideValue.animateValue(0, 1, InterpolationTypes.INVERTED_QUADRATIC, 5);
 		}
-		else if(aEvent.keyCode == 40) { //Down
+		else if(aEvent.keyCode === 40) { //Down
 			var currentValue = this._keyOverrideValue.getValue();
 			var newValue = Math.round(currentValue+1);
 			this._keyOverrideValue.animateValue(newValue, 0.5, InterpolationTypes.INVERTED_QUADRATIC, 0);

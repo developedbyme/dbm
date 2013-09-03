@@ -52,7 +52,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	 * Sets the matrix values to an identity matrix. Only possible when the horisontal size and vertical size are the same.
 	 */
 	objectFunctions.setAsIdentityMatrix = function() {
-		if(this.sizeH != this.sizeV) {
+		if(this.sizeH !== this.sizeV) {
 			//METODO: error message
 			return;
 		}
@@ -100,7 +100,7 @@ dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedb
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
-		if(this.valuesArray != null) {
+		if(this.valuesArray !== null) {
 			aReturnArray.push("values: [" + this.valuesArray.join(", ") + "]");
 		}
 	};

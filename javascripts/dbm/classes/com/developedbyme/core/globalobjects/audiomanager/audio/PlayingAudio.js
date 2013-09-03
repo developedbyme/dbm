@@ -66,7 +66,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 		
 		this._outputVolume.update();
 		
-		if(this._element.readyState != 0) {
+		if(this._element.readyState !== 0) {
 			this._performPlay();
 		}
 		else {
@@ -82,7 +82,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 		//console.log("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio::_performPlay");
 		
 		if(this._isPlaying) {
-			if(this._element.readyState != 0) {
+			if(this._element.readyState !== 0) {
 				this._element.currentTime = 0;
 				this._element.play();
 			}
@@ -137,7 +137,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 	
 	objectFunctions.performDestroy = function() {
 		
-		if(this._element != null && this._isPlaying) {
+		if(this._element !== null && this._isPlaying) {
 			this._element.pause();
 			dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateInput");
 		}

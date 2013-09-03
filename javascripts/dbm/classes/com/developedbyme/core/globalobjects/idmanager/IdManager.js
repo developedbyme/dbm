@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.IdManager", "c
 	 */
 	objectFunctions.setIdGroup = function(aGroupName, aGroupObject) {
 		//console.log("setIdGroup");
-		if(this._idGroupsObject[aGroupName] != undefined) {
+		if(this._idGroupsObject[aGroupName] !== undefined) {
 			//METODO: warning message
 		}
 		this._idGroupsObject[aGroupName] = aGroupObject;
@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.IdManager", "c
 	 */
 	objectFunctions.getNewId = function(aGroupName) {
 		//console.log("getId");
-		if(this._idGroupsObject[aGroupName] == undefined) {
+		if(this._idGroupsObject[aGroupName] === undefined) {
 			//METODO: warning message
 			var newGroup = (new NormalIdGroup()).init();
 			newGroup.prefix = aGroupName + "_";

@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "c
 		
 		aPositions = arguments;
 		
-		if(aPositions.length != this._lengths.length) {
+		if(aPositions.length !== this._lengths.length) {
 			//METODO: error message
 			return null;
 		}
@@ -54,7 +54,7 @@ dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "c
 	
 	objectFunctions.setValue = function(/* ... aPositions, aValue */) {
 		
-		if(arguments.length != this._lengths.length+1) {
+		if(arguments.length !== this._lengths.length+1) {
 			//METODO: error message
 			return;
 		}

@@ -59,7 +59,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BSpline", "com.developedby
 	objectFunctions._realBezierBaseFunctionRecursive = function(aPointNr, aDegree, aParameter) {
 		//console.log("com.developedbyme.core.data.curves.BSpline.Debug::realBezierBaseFunctionRecursive");
 		//console.log(aPointNr, aDegree, aParameter, this.knotsArray.length);
-		if(aDegree == 0) {
+		if(aDegree === 0) {
 			//console.log("+++");
 			if((this.knotsArray[aPointNr] <= aParameter) && (aParameter < this.knotsArray[aPointNr+1])) {
 				return 1;
@@ -72,11 +72,11 @@ dbm.registerClass("com.developedbyme.core.data.curves.BSpline", "com.developedby
 			//console.log("---", this.knotsArray[aPointNr], this.knotsArray[aPointNr+aDegree], this.knotsArray[aPointNr+aDegree+1], this.knotsArray[aPointNr+1]);
 			var returnValue = 0;
 			var baseFunctionValue = this.Debug::realBezierBaseFunctionRecursive(aPointNr, aDegree-1, aParameter);
-			if(baseFunctionValue != 0) {
+			if(baseFunctionValue !== 0) {
 				returnValue += (aParameter-this.knotsArray[aPointNr])/(this.knotsArray[aPointNr+aDegree]-this.knotsArray[aPointNr])*baseFunctionValue;
 			}
 			var baseFunctionValue = this._realBezierBaseFunctionRecursive(aPointNr+1, aDegree-1, aParameter);
-			if(baseFunctionValue != 0) {
+			if(baseFunctionValue !== 0) {
 				returnValue += (this.knotsArray[aPointNr+aDegree+1]-aParameter)/(this.knotsArray[aPointNr+aDegree+1]-this.knotsArray[aPointNr+1])*baseFunctionValue;
 			}
 			//console.log(returnValue);

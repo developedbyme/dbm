@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.notes.Note", "co
 		
 		this._context = aContext;
 		this._source = aSource;
-		this._duration = (aDuration != -1) ? aDuration : this._source.buffer.duration*this._source.playbackRate.value;
+		this._duration = (aDuration !== -1) ? aDuration : this._source.buffer.duration*this._source.playbackRate.value;
 		
 		return this;
 	};

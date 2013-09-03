@@ -69,12 +69,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 		
 		if(this._isCheckingForDeletion) {
 			for(var objectName in aObject) {
-				if(aObject[objectName] != null) {
+				if(aObject[objectName] !== null) {
 					var currentType = typeof(aObject[objectName]);
-					if(currentType == "object" && aObject[objectName] instanceof BaseObject && !aObject[objectName].isDestroyed() && aObject._internalFunctionality_ownsVariable(objectName)) {
+					if(currentType === "object" && aObject[objectName] instanceof BaseObject && !aObject[objectName].isDestroyed() && aObject._internalFunctionality_ownsVariable(objectName)) {
 						this._tempArray.push(objectName + ": " + aObject[objectName]);
 					}
-					else if(currentType == "object" && aObject[objectName] instanceof Array && aObject._internalFunctionality_ownsVariable(objectName)) {
+					else if(currentType === "object" && aObject[objectName] instanceof Array && aObject._internalFunctionality_ownsVariable(objectName)) {
 						var currentArray = aObject[objectName];
 						var currentArrayLength = currentArray.length;
 						for(var i = 0; i < currentArrayLength; i++) {
@@ -97,9 +97,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 		
 		if(this._isCheckingForDeletion) {
 			for(var objectName in aObject) {
-				if(aObject[objectName] != null) {
+				if(aObject[objectName] !== null) {
 					var currentType = typeof(aObject[objectName]);
-					if(currentType == "object") {
+					if(currentType === "object") {
 						this._tempArray.push(objectName + ": " + aObject[objectName]);
 					}
 				}

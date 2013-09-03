@@ -10,7 +10,7 @@ dbm.registerClass("com.developedbyme.utils.native.object.ClassFunctions", null, 
 	var StringRegularExpressions = dbm.importClass("com.developedbyme.utils.native.string.StringRegularExpressions");
 	
 	staticFunctions.getConstantNames = function(aClass) {
-		if(aClass == null) {
+		if(aClass === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[ClassFunctions]", "getConstantNames ", "Class is " + aClass + ". Can't get constants.");
 			return null;
 		}

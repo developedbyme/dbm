@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 	objectFunctions.load = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::load");
 		
-		if(this._status.getValue() != AssetStatusTypes.NOT_LOADED) {
+		if(this._status.getValue() !== AssetStatusTypes.NOT_LOADED) {
 			return this;
 		}
 		

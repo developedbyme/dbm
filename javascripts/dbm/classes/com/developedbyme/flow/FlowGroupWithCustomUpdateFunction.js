@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.flow.FlowGroupWithCustomUpdateFunction", "c
 	}
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
-		if(this._customFlowFunction != null) {
+		if(this._customFlowFunction !== null) {
 			this._customFlowFunction(aFlowUpdateNumber);
 		}
 		else {

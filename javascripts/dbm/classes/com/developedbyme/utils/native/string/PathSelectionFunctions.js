@@ -13,7 +13,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.PathSelectionFunctions"
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentTestPath = currentArray[i];
-			if(currentTestPath.indexOf(aFolderPath) == 0) {
+			if(currentTestPath.indexOf(aFolderPath) === 0) {
 				returnArray.push(currentTestPath);
 			}
 		}

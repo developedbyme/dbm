@@ -17,7 +17,7 @@ dbm.registerClass("com.developedbyme.utils.svg.SvgLengthFunctions", null, functi
 	staticFunctions._tempValueWithUnit = null;
 	
 	staticFunctions._getTempValueWithUnit = function() {
-		if(ClassReference._tempValueWithUnit == null) {
+		if(ClassReference._tempValueWithUnit === null) {
 			ClassReference._tempValueWithUnit = ValueWithUnit.create(0, UnitTypes.UNKNOWN);
 		}
 		return ClassReference._tempValueWithUnit;

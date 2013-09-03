@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.core.data.number.ValueWithUnit", "com.devel
 	};
 	
 	objectFunctions.getCssString = function getCssString() {
-		if(this.unitType == UnitTypes.NONE || this.unitType == UnitTypes.UNKNOWN) {
+		if(this.unitType === UnitTypes.NONE || this.unitType === UnitTypes.UNKNOWN) {
 			return this.value.toString();
 		}
 		return this.value + this.unitType;
@@ -56,17 +56,17 @@ dbm.registerClass("com.developedbyme.core.data.number.ValueWithUnit", "com.devel
 			aReturnValueWithUnit.value = aValue.value;
 			aReturnValueWithUnit.unitType = aValue.unitType;
 		}
-		else if(typeof(aValue) == JavascriptObjectTypes.TYPE_NUMBER) {
+		else if(typeof(aValue) === JavascriptObjectTypes.TYPE_NUMBER) {
 			aReturnValueWithUnit.value = aValue;
 			aReturnValueWithUnit.unitType = aDefaultUnitType;
 		}
-		else if(typeof(aValue) == JavascriptObjectTypes.TYPE_STRING) {
+		else if(typeof(aValue) === JavascriptObjectTypes.TYPE_STRING) {
 			//METODO
 			
 			var numberEndPosition = ParseFunctions.getEndOfCssNumber(aValue, 0);
 			if(numberEndPosition > 0) {
 				aReturnValueWithUnit.value = parseFloat(aValue.substring(0, numberEndPosition));
-				if(numberEndPosition != aValue.length) {
+				if(numberEndPosition !== aValue.length) {
 					var unitType = aValue.substring(numberEndPosition, aValue.length);
 					switch(unitType.toLowerCase()) {
 						case UnitTypes.PX:

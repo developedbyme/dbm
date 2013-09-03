@@ -48,7 +48,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	objectFunctions.getPartsStartTime = function() {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getPartsStartTime");
-		if(this._parts.length == 0) {
+		if(this._parts.length === 0) {
 			return -Infinity;
 		}
 		
@@ -57,7 +57,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	objectFunctions.getPartsEndTime = function() {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getPartsEndTime");
-		if(this._parts.length == 0) {
+		if(this._parts.length === 0) {
 			return Infinity;
 		}
 		
@@ -66,13 +66,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	objectFunctions.getValueByParameter = function(aParameter) {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getValueByParameter");
-		if(this._parts.length == 0) {
+		if(this._parts.length === 0) {
 			return this._startValue.getValue();
 		}
 		while(true) {
 			
 			var currentPart = this._parts[this._currentPartIndex];
-			if(currentPart == null) {
+			if(currentPart === null) {
 				return this._startValue.getValue();
 			}
 			//console.log(this._currentPartIndex, aParameter >= currentPart.startApplyTime && aParameter < currentPart.endApplyTime, aParameter, currentPart.startApplyTime, currentPart.endApplyTime);
@@ -82,13 +82,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 				return currentPart.getValueAt(aParameter);
 			}
 			else if(aParameter < currentPart.startApplyTime) {
-				if(this._currentPartIndex == 0) {
+				if(this._currentPartIndex === 0) {
 					return this._startValue.getValue();
 				}
 				this._currentPartIndex--;
 			}
 			else {
-				if(this._currentPartIndex == this._parts.length-1 || aParameter < this._parts[this._currentPartIndex+1].startApplyTime) {
+				if(this._currentPartIndex === this._parts.length-1 || aParameter < this._parts[this._currentPartIndex+1].startApplyTime) {
 					return currentPart.getValueAt(currentPart.endApplyTime);
 				}
 				this._currentPartIndex++;
@@ -98,7 +98,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	objectFunctions.getTangentByParameter = function(aParameter) {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getTangentByParameter");
-		if(this._parts.length == 0) {
+		if(this._parts.length === 0) {
 			return 0;
 		}
 		while(true) {
@@ -110,13 +110,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 				return currentPart.getTangentAt(aParameter);
 			}
 			else if(aParameter < currentPart.startApplyTime) {
-				if(this._currentPartIndex == 0) {
+				if(this._currentPartIndex === 0) {
 					return 0;
 				}
 				this._currentPartIndex--;
 			}
 			else {
-				if(this._currentPartIndex == this._parts.length-1 || aParameter < this._parts[this._currentPartIndex+1].startApplyTime) {
+				if(this._currentPartIndex === this._parts.length-1 || aParameter < this._parts[this._currentPartIndex+1].startApplyTime) {
 					return 0;
 				}
 				this._currentPartIndex++;
@@ -134,20 +134,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	};
 	
 	objectFunctions.getValueAt = function(aTime) {
-		if(aTime == this.endTime || this.startTime == this.endTime) {
+		if(aTime === this.endTime || this.startTime === this.endTime) {
 			return this.getValueByParameter(1);
 		}
-		else if(aTime == this.startTime) {
+		else if(aTime === this.startTime) {
 			return this.getValueByParameter(0);
 		}
 		return this.getValueByParameter((aTime-this.startTime)/(this.endTime-this.startTime));
 	};
 	
 	objectFunctions.getTangentAt = function(aTime) {
-		if(aTime == this.endTime || this.startTime == this.endTime) {
+		if(aTime === this.endTime || this.startTime === this.endTime) {
 			return this.getTangentByParameter(1);
 		}
-		else if(aTime == this.startTime) {
+		else if(aTime === this.startTime) {
 			return this.getTangentByParameter(0);
 		}
 		return this.getTangentByParameter((aTime-this.startTime)/(this.endTime-this.startTime));
@@ -238,10 +238,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		var currentTime = this._time.getValue();
 		var startValue = this.getValueAt(currentTime+aDelay);
 		
-		if(typeof(aInterpolation) == JavascriptObjectTypes.TYPE_STRING) {
+		if(typeof(aInterpolation) === JavascriptObjectTypes.TYPE_STRING) {
 			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(aInterpolation);
 		}
-		else if(aInterpolation == null) {
+		else if(aInterpolation === null) {
 			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(InterpolationTypes.LINEAR);
 		}
 		
@@ -260,10 +260,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		
 		var startValue = this.getValueAt(aStartTime);
 		
-		if(typeof(aInterpolation) == JavascriptObjectTypes.TYPE_STRING) {
+		if(typeof(aInterpolation) === JavascriptObjectTypes.TYPE_STRING) {
 			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(aInterpolation);
 		}
-		else if(aInterpolation == null) {
+		else if(aInterpolation === null) {
 			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(InterpolationTypes.LINEAR);
 		}
 		

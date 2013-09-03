@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.NaturalSizeOfImageNode",
 		
 		var htmlElement = this._element.getValueWithoutFlow();
 		
-		if(htmlElement != null) {
+		if(htmlElement !== null) {
 			this._width.setValueWithFlow(htmlElement.naturalWidth, aFlowUpdateNumber);
 			this._height.setValueWithFlow(htmlElement.naturalHeight, aFlowUpdateNumber);
 		}

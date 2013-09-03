@@ -34,12 +34,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode",
 		
 		var htmlElement = this._element.getValueWithoutFlow();
 		
-		if(htmlElement != null) {
+		if(htmlElement !== null) {
 			
 			var htmlElementWidthOffset;
 			var htmlElementHeightOffset;
 			
-			if(htmlElement.clientWidth == 0 && !isNaN(htmlElement.width) && htmlElement.width != 0) {
+			if(htmlElement.clientWidth === 0 && !isNaN(htmlElement.width) && htmlElement.width !== 0) {
 				htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.width;
 				htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.height;
 			}

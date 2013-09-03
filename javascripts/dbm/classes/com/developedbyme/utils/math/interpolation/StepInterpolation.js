@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.StepInterpolation"
 	 * Gets the tangent for a parameter
 	 */
 	objectFunctions.getTangent = function(aParameter) {
-		return (aParameter == 1) ? Infinity : 0;
+		return (aParameter === 1) ? Infinity : 0;
 	};
 	
 	/**

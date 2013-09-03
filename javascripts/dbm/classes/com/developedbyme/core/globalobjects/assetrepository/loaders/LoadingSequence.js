@@ -78,7 +78,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	
 	objectFunctions.addAsset = function(aAsset) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::addAsset");
-		if(ArrayFunctions.indexOfInArray(this._loaders, aAsset) != -1) {
+		if(ArrayFunctions.indexOfInArray(this._loaders, aAsset) !== -1) {
 			return this;
 		}
 		
@@ -128,10 +128,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		
 		this._status = AssetStatusTypes.LOADING;
 		
-		if(aLoader.getStatus() == AssetStatusTypes.LOADED) {
+		if(aLoader.getStatus() === AssetStatusTypes.LOADED) {
 			this._loadedLoaders.push(aLoader);
 		}
-		else if(aLoader.getStatus() == AssetStatusTypes.ERROR) {
+		else if(aLoader.getStatus() === AssetStatusTypes.ERROR) {
 			this._loadedLoaders.push(aLoader);
 			if(!this._continueOnError) {
 				this._isLoading = false;
@@ -141,7 +141,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 				}
 			}
 		}
-		else if(aLoader.getStatus() == AssetStatusTypes.LOADING) {
+		else if(aLoader.getStatus() === AssetStatusTypes.LOADING) {
 			this._addListenersToLoader(aLoader);
 			this._loadingLoaders.push(aLoader);
 		}
@@ -160,7 +160,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	objectFunctions._hasWaitingLoaders = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_hasWaitingLoaders");
 		this._isAddingLoaders = true;
-		if(this._waitingLoaders.length == 0) {
+		if(this._waitingLoaders.length === 0) {
 			if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.REQUEST_MORE_LOADERS)) {
 				this.getExtendedEvent().perform(LoadingExtendedEventIds.REQUEST_MORE_LOADERS);
 			}
@@ -181,7 +181,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 			}
 		}
 		
-		if(this._loadingLoaders.length == 0 && this._waitingLoaders == 0 && this._status == AssetStatusTypes.LOADING) {
+		if(this._loadingLoaders.length === 0 && this._waitingLoaders === 0 && this._status === AssetStatusTypes.LOADING) {
 			this._status = AssetStatusTypes.LOADED;
 			if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.LOADED)) {
 				this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED);
@@ -192,7 +192,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	objectFunctions._setLoaderAsLoaded = function(aLoader) {
 		
 		var currentIndex = ArrayFunctions.indexOfInArray(this._loadingLoaders, aLoader);
-		if(currentIndex != -1) {
+		if(currentIndex !== -1) {
 			this._loadingLoaders.splice(currentIndex, 1);
 		}
 		
@@ -252,7 +252,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 			totalLoadSize += currentLoader.getTotalSize();
 		}
 		
-		var progress = (totalLoadSize == 0) ? 0 : loadedSize/totalLoadSize;
+		var progress = (totalLoadSize === 0) ? 0 : loadedSize/totalLoadSize;
 		//console.log(loadedSize, totalLoadSize, progress);
 		
 		this._loadedSize.setValueWithFlow(loadedSize, aFlowUpdateNumber);

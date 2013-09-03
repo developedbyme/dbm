@@ -139,7 +139,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._width.setValue(innerWidth);
 		this._height.setValue(innerHeight);
 		
-		if(this._margins == null) {
+		if(this._margins === null) {
 			this._useDefaultMargins = false;
 			this._margins = Margins.create(this._window.outerWidth-innerWidth, this._window.outerHeight-innerHeight);
 		}
@@ -269,7 +269,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 				innerHeight = this._window.innerHeight;
 				outerWidth = this._window.outerWidth;
 				outerHeight = this._window.outerHeight;
-				if((innerWidth > 0 || innerHeight > 0) && (innerWidth != outerWidth || innerHeight != outerHeight)) {
+				if((innerWidth > 0 || innerHeight > 0) && (innerWidth !== outerWidth || innerHeight !== outerHeight)) {
 					this._isOpening = false;
 				}
 				
@@ -281,7 +281,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 				innerWidth = this._window.innerWidth;
 				innerHeight = this._window.innerHeight;
 				
-				if(newWidth != innerWidth || newHeight != innerHeight) {
+				if(newWidth !== innerWidth || newHeight !== innerHeight) {
 					//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
 					this._updateSize(newWidth, newHeight);
 				}
@@ -294,7 +294,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		if(this._isOpen) {
 			var newX = Math.round(this._x.getValueWithoutFlow());
 			var newY = Math.round(this._y.getValueWithoutFlow());
-			if(newX != this._cachedScreenX || newY != this._cachedScreenY) {
+			if(newX !== this._cachedScreenX || newY !== this._cachedScreenY) {
 				//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
 				//console.log(newX + " " + this._cachedScreenX + " " + newY + " " + this._cachedScreenY);
 				this._updatePosition(newX, newY);
@@ -306,7 +306,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateIconFlow");
 		if(this._isOpen) {
 			var icon = this._icon.getExternalObject();
-			if(icon != null) {
+			if(icon !== null) {
 				var iconParent = icon.parentNode;
 				iconParent.removeChild(icon);
 				iconParent.appendChild(icon);
@@ -322,7 +322,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		//this._horizontalMargin = this._window.outerWidth-this._window.innerWidth;
 		//this._verticalMargin = this._window.outerHeight-this._window.innerHeight;
 		
-		if(this._margins == null) {
+		if(this._margins === null) {
 			var innerWidth = this._window.innerWidth;
 			var innerHeight = this._window.innerHeight;
 			var outerWidth = this._window.outerWidth;
@@ -331,7 +331,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			var horizontalMargin = outerWidth-innerWidth;
 			var verticalMargin = outerHeight-innerHeight;
 			
-			var isMarginReady = (horizontalMargin > 0 || verticalMargin > 0) && horizontalMargin < 50 && verticalMargin < 100 && (innerWidth != 0 || innerHeight != 0);
+			var isMarginReady = (horizontalMargin > 0 || verticalMargin > 0) && horizontalMargin < 50 && verticalMargin < 100 && (innerWidth !== 0 || innerHeight !== 0);
 			
 			if(!isMarginReady) return;
 			
@@ -401,24 +401,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		var outerWidth = null;
 		var outerHeight = null;
 		
-		if(this._window != null) {
+		if(this._window !== null) {
 			if(this._isOpening) {
 				innerWidth = this._window.innerWidth;
 				innerHeight = this._window.innerHeight;
 				outerWidth = this._window.outerWidth;
 				outerHeight = this._window.outerHeight;
-				if((innerWidth > 0 || innerHeight > 0) && (innerWidth != outerWidth || innerHeight != outerHeight)) {
+				if((innerWidth > 0 || innerHeight > 0) && (innerWidth !== outerWidth || innerHeight !== outerHeight)) {
 					this._isOpening = false;
 				}
 				
 			}
 			
 			if(!this._isOpening) {
-				if(innerWidth == null) {
+				if(innerWidth === null) {
 					innerWidth = this._window.innerWidth;
 					innerHeight = this._window.innerHeight;
 				}
-				if(innerWidth != this._lastResizeWidth && innerHeight != this._lastResizeHeight) {
+				if(innerWidth !== this._lastResizeWidth && innerHeight !== this._lastResizeHeight) {
 					this._lastResizeWidth = innerWidth;
 					this._lastResizeHeight = innerHeight;
 					this.setSize(innerWidth, innerHeight);
@@ -476,13 +476,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._bodyNode.setValue(theDocument.body);
 		this._title.setupExternalObject(theDocument, "title");
 		
-		if(this._icon != null) {
+		if(this._icon !== null) {
 			this._setupIconLink();
 		}
 		
 		dbm.singletons.dbmFlowManager.updateProperties();
 		
-		if(this._lastDocument != null) {
+		if(this._lastDocument !== null) {
 			dbm.singletons.dbmHtmlDomManager.fullAdopt(this._lastDocument, theDocument);
 		}
 		this._lastDocument = theDocument;
@@ -504,7 +504,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	objectFunctions._checkForLastPosition = function() {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_checkForLastPosition");
 		
-		if(this._window != null) {
+		if(this._window !== null) {
 			if(this._window.closed) {
 				//MENOTE: do nothing
 			}
@@ -513,7 +513,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 					//MENOTE: this._window.screenX and this._window.screenY are really slow
 					var newX = this._window.screenX;
 					var newY = this._window.screenY;
-					if((newX != this._x.getValue() || newY != this._y.getValue()) && !(newX == 0 && newY == 0)) {
+					if((newX !== this._x.getValue() || newY !== this._y.getValue()) && !(newX === 0 && newY === 0)) {
 						this._positionUpdated(newX, newY);
 					}
 				}
@@ -529,12 +529,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentTag = currentArray[i];
-			if(currentTag.rel == "icon" || currentTag.rel == "shortcut icon") {
+			if(currentTag.rel === "icon" || currentTag.rel === "shortcut icon") {
 				linkTag = currentTag;
 				break;
 			}
 		}
-		if(linkTag == null) {
+		if(linkTag === null) {
 			linkTag = this.getHtmlCreator().createNode("link", {"rel": "icon", "type": "image/png"});
 			this.getDocument().head.appendChild(linkTag);
 		}
@@ -582,7 +582,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		var horizontalMargin = this._window.outerWidth-this._width.getValue();
 		var verticalMargin = this._window.outerHeight-this._height.getValue();
 		
-		var isMarginReady = (horizontalMargin > 0 || verticalMargin > 0) && horizontalMargin < 50 && verticalMargin < 100 && (this._window.innerWidth != 0 || this._window.innerHeight != 0);
+		var isMarginReady = (horizontalMargin > 0 || verticalMargin > 0) && horizontalMargin < 50 && verticalMargin < 100 && (this._window.innerWidth !== 0 || this._window.innerHeight !== 0);
 		
 		if(this._useDefaultMargins && dbm.singletons.dbmWindowManager.hasDefaultMargins()) {
 			this._margins = dbm.singletons.dbmWindowManager.getDefaultMargins();
@@ -701,7 +701,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 				
 				//console.log(newX, this._x.getValue(), newY, this._y.getValue());
 				
-				if(newX != this._x.getValue() || newY != this._y.getValue()) {
+				if(newX !== this._x.getValue() || newY !== this._y.getValue()) {
 					this._positionUpdated(newX, newY);
 				}
 				this._lastMovementCheckTime = aTime;
@@ -713,13 +713,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 				var innerWidth = this._window.innerWidth;
 				var innerHeight = this._window.innerHeight;
 				
-				if((innerWidth != 0 && innerHeight != 0) && (newWidth != innerWidth || newHeight != innerHeight) && this._margins != null) {
+				if((innerWidth !== 0 && innerHeight !== 0) && (newWidth !== innerWidth || newHeight !== innerHeight) && this._margins !== null) {
 					//console.log(newWidth, innerWidth, newHeight, innerHeight, this._margins.horizontalMargin, this._margins.verticalMargin, this._window.outerWidth-innerWidth, this._window.outerHeight-innerHeight);
 					
 					var newHorizontalMargin = this._window.outerWidth-innerWidth;
 					var newVerticalMargin = this._window.outerHeight-innerHeight;
 					
-					var isMarginReady = (newHorizontalMargin > 0 || newVerticalMargin > 0) && newHorizontalMargin < 50 && newVerticalMargin < 100 && (innerWidth != 0 || innerHeight != 0);
+					var isMarginReady = (newHorizontalMargin > 0 || newVerticalMargin > 0) && newHorizontalMargin < 50 && newVerticalMargin < 100 && (innerWidth !== 0 || innerHeight !== 0);
 					
 					if(isMarginReady) {
 						this._margins.horizontalMargin = newHorizontalMargin;
@@ -828,10 +828,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	staticFunctions.create = function(aName, aUrl, aWidth, aHeight) {
 		var newWindow = (new Window()).init();
 		 newWindow.name = aName;
-		 if(aUrl != null) {
+		 if(aUrl !== null) {
 		 	newWindow.setUrl(aUrl);
 		 }
-		 if(aWidth != null && aHeight != null) {
+		 if(aWidth !== null && aHeight !== null) {
 			 newWindow.setSize(aWidth, aHeight);
 		 }
 		 return newWindow;

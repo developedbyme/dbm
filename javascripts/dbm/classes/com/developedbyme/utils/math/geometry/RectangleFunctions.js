@@ -17,15 +17,15 @@ dbm.registerClass("com.developedbyme.utils.math.geometry.RectangleFunctions", nu
 		var side = Math.floor(aParameter*4);
 		var localParameter = 4*aParameter-side;
 		var localSide = side%4;
-		if(localSide == 0) {
+		if(localSide === 0) {
 			aReturnPoint.x = aRectangle.x+localParameter*aRectangle.width;
 			aReturnPoint.y = aRectangle.y;
 		}
-		else if(localSide == 1) {
+		else if(localSide === 1) {
 			aReturnPoint.x = aRectangle.x+aRectangle.width;
 			aReturnPoint.y = aRectangle.y+localParameter*aRectangle.height;
 		}
-		else if(localSide == 2) {
+		else if(localSide === 2) {
 			aReturnPoint.x = aRectangle.x+(1-localParameter)*aRectangle.width;
 			aReturnPoint.y = aRectangle.y*aRectangle.height;
 		}
@@ -102,7 +102,7 @@ dbm.registerClass("com.developedbyme.utils.math.geometry.RectangleFunctions", nu
 	};
 	
 	staticFunctions.getTempPoint = function() {
-		if(ClassReference._tempPoint == null) {
+		if(ClassReference._tempPoint === null) {
 			ClassReference._tempPoint = Point.create();
 		}
 		return ClassReference._tempPoint;

@@ -58,7 +58,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 	
 	objectFunctions.getLayer = function(aPath) {
 		var currentItem = this._hierarchy.getItemByPath(aPath);
-		if(currentItem.data == null) {
+		if(currentItem.data === null) {
 			var newLayer = CanvasLayer3d.create();
 			currentItem.data = newLayer;
 			newLayer._linkRegistration_setTreeStructureItem(currentItem);
@@ -146,7 +146,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 	
 	objectFunctions.addCamera = function(aPath, aCamera) {
 		var currentItem = this._hierarchy.getItemByPath(aPath);
-		if(currentItem.data != null) {
+		if(currentItem.data !== null) {
 			//METODO: warning message
 		}
 		
@@ -161,7 +161,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasController3d::_getContext");
 		//console.log(aCanvas);
 		var currentContext = aCanvas.getContext("webgl");
-		if(currentContext == null) {
+		if(currentContext === null) {
 			currentContext = aCanvas.getContext("experimental-webgl");
 		}
 		return currentContext;
@@ -187,8 +187,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasController3d", "com.d
 		currentContext.clearColor(0.0, 0.0, 0.0, 1.0);
 		currentContext.enable(currentContext.DEPTH_TEST);
 		
-		var perspectiveMatrix = (camera != null) ? camera.getProjectionMatrix() : this._identityMatrix;
-		var transforamtionMatrix = (camera != null) ? camera.getCameraTransformationMatrix() : this._identityMatrix;
+		var perspectiveMatrix = (camera !== null) ? camera.getProjectionMatrix() : this._identityMatrix;
+		var transforamtionMatrix = (camera !== null) ? camera.getCameraTransformationMatrix() : this._identityMatrix;
 		
 		if(this._clearBeforeDrawing) {
 			currentContext.clear(currentContext.COLOR_BUFFER_BIT | currentContext.DEPTH_BUFFER_BIT);

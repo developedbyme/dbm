@@ -97,7 +97,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Comp
 	
 	staticFunctions._replaceObjectInsideReevaluationObjectRecursive = function(aBaseObject, aPathArray, aPathIndex, aObject, aWithDefault) {
 		
-		if(aPathIndex == aPathArray.length) {
+		if(aPathIndex === aPathArray.length) {
 			if(aWithDefault) {
 				return VariableWithDefaultObject.createReevaluationObject(aObject, aBaseObject);
 			}

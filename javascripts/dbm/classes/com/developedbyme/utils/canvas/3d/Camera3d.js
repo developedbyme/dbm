@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.Camera3d", "com.developedby
 			case "focusLength":
 			case "fov":
 			case "viewLength":
-				if(this._projectionNode != null) {
+				if(this._projectionNode !== null) {
 					return this._projectionNode.getProperty(aName);
 				}
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " doesn't have a projection node. Can't get " + aName + ".");

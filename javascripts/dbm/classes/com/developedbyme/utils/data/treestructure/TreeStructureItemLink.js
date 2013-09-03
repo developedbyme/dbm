@@ -85,7 +85,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemL
 		
 		var newTabString = aTabString + " ";
 		
-		if(aResolveLinksLevel != 0) {
+		if(aResolveLinksLevel !== 0) {
 			var newLevel;
 			if(aResolveLinksLevel > 0) {
 				newLevel = aResolveLinksLevel-1;

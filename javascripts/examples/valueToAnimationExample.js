@@ -36,7 +36,7 @@ dbm.runTempFunction(function() {
 		//console.log(newTimeline);
 		
 		var animationFunction = function(aOwnerObject, aValueChange) {
-			if(aValueChange.newValue == true) {
+			if(aValueChange.newValue === true) {
 				aOwnerObject.getTimeline().animateValue(800, 0.5, InterpolationTypes.QUADRATIC, 0);
 			}
 			else {

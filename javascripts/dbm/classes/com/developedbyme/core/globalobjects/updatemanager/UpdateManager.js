@@ -46,7 +46,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 	
 	objectFunctions.start = function() {
 		
-		if(this._intervalNumber != -1) {
+		if(this._intervalNumber !== -1) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "start", "Update manager is already started.");
 			return;
 		}
@@ -61,7 +61,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 	}
 	
 	objectFunctions.stop = function() {
-		if(this._intervalNumber != -1) {
+		if(this._intervalNumber !== -1) {
 			clearInterval(this._intervalNumber);
 			this._intervalNumber = -1;
 		}

@@ -46,11 +46,11 @@ dbm.registerClass("com.developedbyme.utils.native.string.ParseFunctions", null, 
 		aStartPosition = VariableAliases.valueWithDefault(aStartPosition, 0);
 		
 		var firstChar = aString.charAt(aStartPosition);
-		if(firstChar == "#") {
+		if(firstChar === "#") {
 			return ClassReference.getEndOfHexadecimalNumber(aString, aStartPosition+1);
 		}
 		else {
-			if(firstChar == "0" && aString.charAt(aStartPosition+1) == "x") {
+			if(firstChar === "0" && aString.charAt(aStartPosition+1) === "x") {
 				return ClassReference.getEndOfHexadecimalNumber(aString, aStartPosition+1);
 			}
 			return ClassReference.getEndOfFloatNumber(aString, aStartPosition);
@@ -86,13 +86,13 @@ dbm.registerClass("com.developedbyme.utils.native.string.ParseFunctions", null, 
 		for(var i = aStartPosition; i < theLength; i++) {
 			var currentChar = aString.charAt(i);
 			if(!currentRegExp.test(currentChar)) {
-				if(currentPhase == 0 && currentChar == ".") {
+				if(currentPhase === 0 && currentChar === ".") {
 					currentPhase = 1;
 				}
-				else if((currentPhase == 0 || currentPhase == 1) && (currentChar == "e" || currentChar == "E")) {
+				else if((currentPhase === 0 || currentPhase === 1) && (currentChar === "e" || currentChar === "E")) {
 					currentPhase = 2;
 					var nextChar = aString.charAt(i+1);
-					if(nextChar == "+" || nextChar == "-") {
+					if(nextChar === "+" || nextChar === "-") {
 						i++;
 					}
 				}
@@ -116,7 +116,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ParseFunctions", null, 
 		for(var i = aStartPosition; i < theLength; i++) {
 			var currentChar = aString.charAt(i);
 			if(!currentRegExp.test(currentChar)) {
-				if(currentPhase == 0 && currentChar == ".") {
+				if(currentPhase === 0 && currentChar === ".") {
 					currentPhase = 1;
 				}
 				else {

@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 	objectFunctions.setRoot = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::setRoot");
 		
-		if(aPath == "") {
+		if(aPath === "") {
 			this._rootNode = this._hierarchy.getRoot();
 		}
 		else {
@@ -86,19 +86,19 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		
 		var parentData = aTreeStructureItem.getParent().data;
 		var parentDefinitionXml = parentData.getDefinitionXml();
-		if(parentDefinitionXml != null) {
+		if(parentDefinitionXml !== null) {
 			var dataNamespace = dbm.xmlNamespaces.dbmData;
 			var currentChild = XmlChildRetreiver.getNamespacedChildByNamespacedAttribute(parentDefinitionXml, dataNamespace, "name", aTreeStructureItem.getName(), dataNamespace, "item");
 			
 			var currentChildName = aTreeStructureItem.getName();
 			
-			if(currentChild == null && currentChildName.indexOf("child[") == 0) {
+			if(currentChild === null && currentChildName.indexOf("child[") === 0) {
 				var children = this.getDataChildren(parentDefinitionXml);
 				var childIndex = parseInt(currentChildName.substring(6, currentChildName.length-1), 10);
 				currentChild = children[childIndex];
 			}
 			
-			if(currentChild != null) {
+			if(currentChild !== null) {
 				newDataObject.setDefinitionXml(currentChild);
 				this.parseLinks(newDataObject);
 				this._parseDataObject(newDataObject);
@@ -165,7 +165,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentChild = currentArray[i];
 			var dataNamespace = dbm.xmlNamespaces.dbmData;
-			if(currentChild.namespaceURI == dataNamespace) {
+			if(currentChild.namespaceURI === dataNamespace) {
 				var linkName = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "name");
 			 	switch(currentChild.localName) {
 					case "link":
@@ -196,7 +196,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentChild = currentArray[i];
 			var dataNamespace = dbm.xmlNamespaces.dbmData;
-			if(currentChild.namespaceURI == dataNamespace) {
+			if(currentChild.namespaceURI === dataNamespace) {
 			 	switch(currentChild.localName) {
 					case "link":
 					case "fileLink":
@@ -227,7 +227,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
-		if(currentItem.data == null) {
+		if(currentItem.data === null) {
 			this._createAssetForTreeStructure(currentItem);
 		}
 		
@@ -241,7 +241,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		var rootItem = this._hierarchy.getItemByPath(aBasePath, this._rootNode).getParent();
 		var currentItem = this._hierarchy.getItemByPath(aPath, rootItem);
 		
-		if(currentItem.data == null) {
+		if(currentItem.data === null) {
 			this._createAssetForTreeStructure(currentItem);
 		}
 		
@@ -253,7 +253,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		
 		var dataNamespace = dbm.xmlNamespaces.dbmData;
 		var returnValue = XmlChildRetreiver.getNamespacedAttribute(aXml, dataNamespace, "nodeValue");
-		if(returnValue != null) {
+		if(returnValue !== null) {
 			return returnValue;
 		}
 		
@@ -269,7 +269,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		
 		var dataNamespace = dbm.xmlNamespaces.dbmData;
 		var attributeValue = XmlChildRetreiver.getNamespacedAttribute(aXml, dataNamespace, "nodeValue");
-		if(attributeValue  != null) {
+		if(attributeValue  !== null) {
 			return this.parseAttribute(attributeValue, aPathReference);
 		}
 		
@@ -278,7 +278,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		}
 		
 		var nodeValueNode = XmlChildRetreiver.getNamespacedChild(aXml, dataNamespace, "nodeValue");
-		if(nodeValueNode != null) {
+		if(nodeValueNode !== null) {
 			return this._parseNode(nodeValueNode, aPathReference, aType);
 		}
 		
@@ -289,7 +289,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::parseFirstChild");
 		
 		var children = this.getDataChildren(aXml);
-		if(children.length == 0) {
+		if(children.length === 0) {
 			//METODO: error message
 			return null;
 		}
@@ -299,7 +299,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		var firstChild = children[0];
 		var dataNamespace = dbm.xmlNamespaces.dbmData;
 		var childName = XmlChildRetreiver.getNamespacedAttribute(firstChild, dataNamespace, "name");
-		if(childName == null) {
+		if(childName === null) {
 			childName = "child[0]";
 		}
 		var childPath = aPathReference + "/" + childName;
@@ -312,7 +312,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 	objectFunctions.parseAttribute = function(aAttribute, aPathReference) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::parseAttribute");
 		
-		if(aAttribute.indexOf("dbmDataLink:") == 0) {
+		if(aAttribute.indexOf("dbmDataLink:") === 0) {
 			var linkedPath = aAttribute.substring(12, aAttribute.length);
 			var returnProperty = this._getRelativeDataProperty(linkedPath, aPathReference);
 			return ParserResultDataObject.createLinked(returnProperty, []);
@@ -327,7 +327,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		
 		var dataNamespace = dbm.xmlNamespaces.dbmData;
 		var returnValue = XmlChildRetreiver.getNamespacedAttribute(aXml, aNamespace, aAttribute);
-		if(returnValue != null) {
+		if(returnValue !== null) {
 			return this.parseAttribute(returnValue, aPathReference);
 		}
 		

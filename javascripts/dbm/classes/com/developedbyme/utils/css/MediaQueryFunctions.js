@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.utils.css.MediaQueryFunctions", null, funct
 		
 		var currentArray = aRule.media;
 		
-		if(currentArray != null && currentArray.length > 0) {
+		if(currentArray !== null && currentArray.length > 0) {
 			//MENOTE: MediaList doesn't have any join function
 			var currentArrayLength = currentArray.length;
 			var returnString = currentArray[0];
@@ -56,15 +56,15 @@ dbm.registerClass("com.developedbyme.utils.css.MediaQueryFunctions", null, funct
 		
 		
 		var currentArray = aRule.media;
-		if(currentArray != null && currentArray.length > 0) {
+		if(currentArray !== null && currentArray.length > 0) {
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentSelection = currentArray[i];
-				if(parentArrayLength == 0) {
+				if(parentArrayLength === 0) {
 					aReturnArray.push(currentSelection);
 				}
 				else {
-					var isAfter = (currentSelection.charAt(0) == "(");
+					var isAfter = (currentSelection.charAt(0) === "(");
 					
 					for(var j = 0; j < parentArrayLength; j++) {
 						if(isAfter) {
@@ -129,7 +129,7 @@ dbm.registerClass("com.developedbyme.utils.css.MediaQueryFunctions", null, funct
 		
 		var mediaResult = aWindow.matchMedia(aQuery);
 		
-		if(mediaResult.media == "invalid") {
+		if(mediaResult.media === "invalid") {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[MediaQueryFunctions]", "mediaQueryIsActive", "Query \"" + aQuery + "\" is invalid.");
 		}
 		

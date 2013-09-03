@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.canvas.webgl.CreateBufferNode", 
 		var currentContext = this._context.getValueWithoutFlow();
 		
 		var currentBuffer = this._buffer.getValueWithoutFlow();
-		if(currentBuffer != null) {
+		if(currentBuffer !== null) {
 			//METODO: this might not be the case
 			currentContext.deleteBuffer(currentBuffer);
 		}

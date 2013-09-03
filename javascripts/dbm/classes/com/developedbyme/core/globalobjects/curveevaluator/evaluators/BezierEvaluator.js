@@ -72,7 +72,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::getPartOfSegment");
 		//console.log(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArray, aStartLoop, aIsCompact);
 		
-		if(aStartParameter == aEndParameter) {
+		if(aStartParameter === aEndParameter) {
 			return;
 		}
 		
@@ -108,10 +108,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 		
 		var segmentStart = Math.floor(aStartParameter);
 		var segmentEnd = Math.floor(aEndParameter);
-		if((segmentEnd == aEndParameter) && (segmentStart != segmentEnd)) {
+		if((segmentEnd === aEndParameter) && (segmentStart !== segmentEnd)) {
 			segmentEnd--;
 		}
-		if(segmentStart == segmentEnd) {
+		if(segmentStart === segmentEnd) {
 			aCurve._getSegmentArray(segmentStart, segmentPointsArray);
 			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, aEndParameter-segmentEnd, aExactness, aReturnCurve.pointsArray, 0, isCompact);
 		}

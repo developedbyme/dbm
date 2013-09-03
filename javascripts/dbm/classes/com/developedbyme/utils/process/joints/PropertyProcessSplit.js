@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.utils.process.joints.PropertyProcessSplit",
 		
 		var currentStatus = this._status.getValueWithoutFlow();
 		
-		if(currentStatus == ProcessStatusTypes.STARTED) {
+		if(currentStatus === ProcessStatusTypes.STARTED) {
 			var currentSplitValue = this._splitValue.getValueWithoutFlow();
 			
 		}

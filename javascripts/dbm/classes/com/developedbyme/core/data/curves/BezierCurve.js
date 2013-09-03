@@ -69,7 +69,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 		var currentArray = aArray;
 		var theLength = currentArray.length;
 		var compactMoveLength = this._isCompact ? 0 : 1;
-		if((((theLength/aNumberOfDimensions)-1+compactMoveLength)%(this._curveDegree+compactMoveLength)) != 0) {
+		if((((theLength/aNumberOfDimensions)-1+compactMoveLength)%(this._curveDegree+compactMoveLength)) !== 0) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setupFromArray", "Length " + (theLength/aNumberOfDimensions) + " doesn't fit curve degree (" + this._curveDegree + ").");
 			return;
 		}
@@ -116,7 +116,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 			aOutputPoint.z = NaN;
 			return;
 		}
-		if(segmentStart == maxParameter) {
+		if(segmentStart === maxParameter) {
 			segmentStart--;
 			localParameter = 1;
 		}
@@ -138,7 +138,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 			aOutputPoint.z = NaN;
 			return;
 		}
-		if(segmentStart == maxParameter) {
+		if(segmentStart === maxParameter) {
 			segmentStart--;
 			localParameter = 1;
 		}

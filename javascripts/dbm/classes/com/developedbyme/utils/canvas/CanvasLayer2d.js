@@ -64,7 +64,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	
 	objectFunctions.getMask = function() {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::getMask");
-		if(this._mask == null) {
+		if(this._mask === null) {
 			this._mask = CanvasMask2d.create();
 			this.addDestroyableObject(this._mask);
 			this._graphicsUpdate.connectInput(this._mask.getProperty("graphicsUpdate"));
@@ -104,19 +104,19 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		var compositionOperation = this._compositionOperation.getValue();
 		
 		aContext.globalAlpha = aContext.globalAlpha*alpha;
-		if(compositionOperation != null) {
+		if(compositionOperation !== null) {
 			aContext.globalCompositeOperation = compositionOperation;
 		}
 		
 		var transformationMatrix = this._transformationMatrix.getValue();
 		
-		if((transformationMatrix.getValue(0, 0) == 0 && transformationMatrix.getValue(1, 0) == 0) || (transformationMatrix.getValue(0, 1) == 0 && transformationMatrix.getValue(1, 1) == 0)) {
+		if((transformationMatrix.getValue(0, 0) === 0 && transformationMatrix.getValue(1, 0) === 0) || (transformationMatrix.getValue(0, 1) === 0 && transformationMatrix.getValue(1, 1) === 0)) {
 			aContext.restore();
 			return;
 		}
 		
 		aContext.transform(transformationMatrix.getValue(0, 0), transformationMatrix.getValue(0, 1), transformationMatrix.getValue(1, 0), transformationMatrix.getValue(1, 1), transformationMatrix.getValue(2, 0), transformationMatrix.getValue(2, 1));
-		if(this._mask != null && this._useMask.getValue()) {
+		if(this._mask !== null && this._useMask.getValue()) {
 			this._mask.draw(aContext);
 		}
 		
@@ -153,14 +153,14 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 			var linkCountDown = 0;
 			if(currentChild.isLink()) {
 				currentChild = this._treeStructureItem.getRoot().getItemByPath(currentChild.link, currentChild);
-				if(aNumberOfLinksToResolve == 0) {
+				if(aNumberOfLinksToResolve === 0) {
 					continue;
 				}
 				else if(aNumberOfLinksToResolve > 0) {
 					linkCountDown = 1;
 				}
 			}
-			if(currentChild.data != null) {
+			if(currentChild.data !== null) {
 				currentChild.data.draw(aContext, aNumberOfLinksToResolve-linkCountDown);
 			}
 			else {
@@ -171,7 +171,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	
 	objectFunctions._getCurrentDrawingLayer = function() {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::_getCurrentDrawingLayer");
-		if(this._currentDrawingLayer != null) {
+		if(this._currentDrawingLayer !== null) {
 			return this._currentDrawingLayer;
 		}
 		return this._createNewDrawingLayer();
@@ -182,7 +182,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		var lastDrawingLayer = this._currentDrawingLayer;
 		this._currentDrawingLayer = CanvasGraphics2d.create();
 		this._graphicsUpdate.connectInput(this._currentDrawingLayer.getProperty("graphicsUpdate"));
-		if(lastDrawingLayer != null) {
+		if(lastDrawingLayer !== null) {
 			this._currentDrawingLayer.getProperty("lineWidth").setValue(lastDrawingLayer.getProperty("lineWidth").getValue());
 			this._currentDrawingLayer.getProperty("strokeStyle").setValue(lastDrawingLayer.getProperty("strokeStyle").getValue());
 			this._currentDrawingLayer.getProperty("lineCap").setValue(lastDrawingLayer.getProperty("lineCap").getValue());
@@ -229,7 +229,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::lineTo");
 		var currentDrawingLayer = this._getCurrentDrawingLayer();
 		var currentCurve = currentDrawingLayer.getLastCurve();
-		if(currentCurve == null || currentCurve.getProperty("curve").getValue().getCurveDegree() != 1) {
+		if(currentCurve === null || currentCurve.getProperty("curve").getValue().getCurveDegree() !== 1) {
 			currentCurve = CurveDrawer2d.create(BezierCurve.createWithValues(1, true, [this._currentDrawingPosition.x, this._currentDrawingPosition.y], 2));
 			currentDrawingLayer.addCurve(currentCurve);
 		}
@@ -247,7 +247,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	objectFunctions.quadraticCurveTo = function(aControlX, aControlY, aX, aY) {
 		var currentDrawingLayer = this._getCurrentDrawingLayer();
 		var currentCurve = currentDrawingLayer.getLastCurve();
-		if(currentCurve == null || currentCurve.getProperty("curve").getValue().getCurveDegree() != 2) {
+		if(currentCurve === null || currentCurve.getProperty("curve").getValue().getCurveDegree() !== 2) {
 			currentCurve = CurveDrawer2d.create(BezierCurve.createWithValues(2, true, [this._currentDrawingPosition.x, this._currentDrawingPosition.y], 2));
 			currentDrawingLayer.addCurve(currentCurve);
 		}
@@ -266,7 +266,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	objectFunctions.bezierCurveTo = function(aControl1X, aControl1Y, aControl2X, aControl2Y, aX, aY) {
 		var currentDrawingLayer = this._getCurrentDrawingLayer();
 		var currentCurve = currentDrawingLayer.getLastCurve();
-		if(currentCurve == null || currentCurve.getProperty("curve").getValue().getCurveDegree() != 3) {
+		if(currentCurve === null || currentCurve.getProperty("curve").getValue().getCurveDegree() !== 3) {
 			currentCurve = CurveDrawer2d.create(BezierCurve.createWithValues(3, true, [this._currentDrawingPosition.x, this._currentDrawingPosition.y], 2));
 			currentDrawingLayer.addCurve(currentCurve);
 		}
@@ -378,7 +378,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 			case "rotate":
 			case "scaleX":
 			case "scaleY":
-				if(this._transformationNode != null) {
+				if(this._transformationNode !== null) {
 					return this._transformationNode.getProperty(aName);
 				}
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " doesn't have a transform node. Can't get " + aName + ".");

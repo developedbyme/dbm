@@ -24,9 +24,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentChild =  currentArray[i];
 			var parentApplyType = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "parentApplyType");
-			if(parentApplyType == "replacement") {
+			if(parentApplyType === "replacement") {
 				var childName = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "name");
-				if(childName == null) {
+				if(childName === null) {
 					childName = "child[" + i + "]";
 				}
 				var childPath = aPathReference + "/" + childName;

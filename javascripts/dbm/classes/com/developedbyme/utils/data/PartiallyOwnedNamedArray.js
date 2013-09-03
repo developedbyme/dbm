@@ -54,7 +54,7 @@ dbm.registerClass("com.developedbyme.utils.data.PartiallyOwnedNamedArray", "com.
 	objectFunctions._performDestroyObjects = function() {
 		
 		for(var objectName in this._objectObjects) {
-			var shouldDestroy = (this._ownedOverridesObject[objectName] != undefined) ? this._ownedOverridesObject[objectName] : this.ownsObjects;
+			var shouldDestroy = (this._ownedOverridesObject[objectName] !== undefined) ? this._ownedOverridesObject[objectName] : this.ownsObjects;
 			if(shouldDestroy) {
 				ClassReference.softDestroyArrayIfExists(this._objectObjects[objectName]);
 			}

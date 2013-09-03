@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	objectFunctions._setStatus = function(aStatus) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_setStatus");
 		//console.log(aStatus);
-		if(aStatus == AssetStatusTypes.LOADED || aStatus == AssetStatusTypes.LOADING_ERROR) {
+		if(aStatus === AssetStatusTypes.LOADED || aStatus === AssetStatusTypes.LOADING_ERROR) {
 			this._loadProgress = 1;
 		}
 		this._status.setValue(aStatus);
@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	 * Releases the object
 	 */
 	objectFunctions.release = function() {
-		if(this._numberOfRetains != 0) {
+		if(this._numberOfRetains !== 0) {
 			this._numberOfRetains--;
 		}
 	};
@@ -85,7 +85,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	 */
 	objectFunctions.releaseAndDestroy = function() {
 		this.release();
-		if(this._numberOfRetains == 0) {
+		if(this._numberOfRetains === 0) {
 			this.destroy();
 		}
 	};
@@ -114,7 +114,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
-		if(this._status != null) {
+		if(this._status !== null) {
 			aReturnArray.push("status: " + this._status.getValue());
 		}
 	}

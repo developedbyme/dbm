@@ -64,7 +64,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.userinput.ConfirmLeavePageNode",
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		if(this._window != null) {
+		if(this._window !== null) {
 			this.stop();
 		}
 		

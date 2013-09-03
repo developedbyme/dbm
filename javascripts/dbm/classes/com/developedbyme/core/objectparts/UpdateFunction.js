@@ -146,7 +146,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.getStatus() == FlowStatusTypes.NEEDS_UPDATE) {
+			if(currentObject.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
 				aReturnArray.push(currentObject);
 			}
 		}

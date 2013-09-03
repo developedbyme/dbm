@@ -29,13 +29,13 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.svg.TransformSvgElementN
 		
 		var htmlElement = this._element.getValueWithoutFlow();
 		
-		if(htmlElement != null) {
+		if(htmlElement !== null) {
 			
 			var pivotX = this._pivotX.getValueWithoutFlow();
 			var pivotY = this._pivotY.getValueWithoutFlow();
 			
 			var transform = this._transform.getValueWithoutFlow();
-			if(transform == null) {
+			if(transform === null) {
 				transform = htmlElement.ownerSVGElement.createSVGTransform();
 				this._transform.setValueWithFlow(transform, aFlowUpdateNumber);
 				htmlElement.transform.baseVal.appendItem(transform);

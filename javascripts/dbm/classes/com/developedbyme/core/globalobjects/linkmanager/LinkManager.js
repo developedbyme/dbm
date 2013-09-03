@@ -23,7 +23,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.linkmanager.LinkManager"
 	
 	objectFunctions.handleLink = function(aUrl, aTarget) {
 		//console.log("com.developedbyme.core.globalobjects.linkmanager.LinkManager::handleLink");
-		if(aTarget != null) {
+		if(aTarget !== null) {
 			window.open(aUrl, aTarget);
 			return false;
 		}

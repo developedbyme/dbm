@@ -40,7 +40,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowSizeNode", "com.de
 		
 		var theWindow = this._window.getValueWithoutFlow();
 		
-		if(theWindow != null) {
+		if(theWindow !== null) {
 			this.start();
 			this._width.setValueWithFlow(theWindow.innerWidth, aFlowUpdateNumber);
 			this._height.setValueWithFlow(theWindow.innerHeight, aFlowUpdateNumber);
@@ -56,7 +56,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowSizeNode", "com.de
 		
 		var theWindow = this._window.getValue();
 		
-		if(theWindow != null) {
+		if(theWindow !== null) {
 			this._width.setValue(theWindow.innerWidth);
 			this._height.setValue(theWindow.innerHeight);
 		}

@@ -187,10 +187,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		var point2 = this.curve.pointsArray[4*aSegment+1];
 		var point3 = this.curve.pointsArray[4*aSegment+2];
 		var point4 = this.curve.pointsArray[4*aSegment+3];
-		if(aEvaluationValue == point1.x) {
+		if(aEvaluationValue === point1.x) {
 			return point1.y;
 		}
-		else if(aEvaluationValue == point4.x) {
+		else if(aEvaluationValue === point4.x) {
 			return point4.y;
 		}
 		else {
@@ -402,7 +402,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 	 */
 	objectFunctions.createMultiSegmentBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aIsRound) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator.createMultiSegmentBezierCurveFromPoints2d");
-		if(aReturnCurve.getCurveDegree() != 3) {
+		if(aReturnCurve.getCurveDegree() !== 3) {
 			//METODO
 			//return;
 		}

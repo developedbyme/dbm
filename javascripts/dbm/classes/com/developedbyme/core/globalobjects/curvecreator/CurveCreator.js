@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 		aStartAngle = VariableAliases.valueWithDefault(aStartAngle, 0);
 		
 		var numberOfInternalSegments = (aLengths.length)/(aDegree);
-		if(numberOfInternalSegments != Math.floor(numberOfInternalSegments)) {
+		if(numberOfInternalSegments !== Math.floor(numberOfInternalSegments)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "createSmoothStar", "Internal segnments length " + (aLengths.length) + " doesn't fit curve degree (" + aDegree + ").");
 			return null;
 		}
@@ -251,14 +251,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 	
 	objectFunctions.createHigherDegreeCompactSegment = function(aLastPoint, aInputDegree, aOutputDegree, aInputSegment, aReturnSegment) {
 		
-		if(aInputDegree == aOutputDegree) {
+		if(aInputDegree === aOutputDegree) {
 			for(var i = 0; i < aOutputDegree; i++) {
 				aReturnSegment[i].x = aInputSegment[i].x;
 				aReturnSegment[i].y = aInputSegment[i].y;
 				aReturnSegment[i].z = aInputSegment[i].z;
 			}
 		}
-		else if(aInputDegree == 1) {
+		else if(aInputDegree === 1) {
 			for(var i = 1; i < aOutputDegree+1; i++) {
 				var parameter = i/aOutputDegree;
 				aReturnSegment[i-1].x = (1-parameter)*aLastPoint.x+parameter*aInputSegment[0].x;
@@ -317,7 +317,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 		lastPoint.z = aCurve1.pointsArray[0].z;
 		
 		for(var i = 0; i < curve1NumberOfSegments; i++) {
-			if(!isCompact && i != 0) {
+			if(!isCompact && i !== 0) {
 				Point.copyPoint3d(aCurve1.getSegmentStartPoint(i), lastPoint);
 			}
 			aCurve1.getCompactSegment(i, tempSegment);

@@ -57,7 +57,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		
 		var returnObject = this.getControllerForHtmlElementIfExists(aHtmlElement);
 		
-		if(returnObject == null) {
+		if(returnObject === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "getControllerForHtmlElement", "Controller for " + aHtmlElement + " doesn't exist.");
 		}
 		return returnObject;
@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLink = currentArray[i];
 			try {
-				if(currentLink.htmlElement.ownerDocument == aDocument) {
+				if(currentLink.htmlElement.ownerDocument === aDocument) {
 					//console.log(currentLink.controller, currentLink.htmlElement.nodeName);
 					currentLink.controller.reactivateForNewDocument();
 				}
@@ -108,7 +108,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLink = currentArray[i];
 			try {
-				if(currentLink.htmlElement.ownerDocument == aFromDocument) {
+				if(currentLink.htmlElement.ownerDocument === aFromDocument) {
 					//console.log(currentLink.htmlElement.nodeName);
 					aToDocument.adoptNode(currentLink.htmlElement);
 				}
@@ -157,7 +157,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 	};
 	
 	objectFunctions.setAttributesToNode = function(aElement, aAttributes) {
-		if(aAttributes != null) {
+		if(aAttributes !== null) {
 			for(var objectName in aAttributes) {
 				aElement.setAttribute(objectName, aAttributes[objectName]);
 			}

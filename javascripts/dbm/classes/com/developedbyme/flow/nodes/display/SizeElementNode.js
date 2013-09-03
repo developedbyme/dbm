@@ -26,18 +26,18 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeElementNode", "com.d
 		//console.log("com.developedbyme.flow.nodes.display.SizeElementNode::_update");
 		
 		var htmlElement = this._element.getValueWithoutFlow();
-		if(htmlElement == null) {
+		if(htmlElement === null) {
 			return;
 		}
 		
 		try {
 			
 			var width = this._width.getValueWithoutFlow();
-			if(width != null) {
+			if(width !== null) {
 				htmlElement.style.setProperty("width", width + "px", "");
 			}
 			var height = this._height.getValueWithoutFlow();
-			if(height != null) {
+			if(height !== null) {
 				htmlElement.style.setProperty("height", height + "px", "");
 			}
 		}

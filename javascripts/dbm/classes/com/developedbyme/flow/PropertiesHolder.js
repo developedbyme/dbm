@@ -15,7 +15,7 @@ dbm.registerClass("com.developedbyme.flow.PropertiesHolder", "com.developedbyme.
 	staticFunctions.create = function(aProperties) {
 		//console.log("com.developedbyme.flow.PropertiesHolder::create");
 		var newNode = (new ClassReference()).init();
-		if(aProperties != null) {
+		if(aProperties !== null) {
 			for(var objectName in aProperties) {
 				newNode.createProperty(objectName, aProperties[objectName]);
 			}

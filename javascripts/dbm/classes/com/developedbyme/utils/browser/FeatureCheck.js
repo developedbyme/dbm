@@ -28,15 +28,15 @@ dbm.registerClass("com.developedbyme.utils.browser.FeatureCheck", null, function
 			var currentType = currentArray[i];
 			var currentTypeStatus = testVideoElement.canPlayType(currentType);
 			//console.log(currentTypeStatus, currentType);
-			if(currentTypeStatus == "probably") {
+			if(currentTypeStatus === "probably") {
 				return currentType;
 			}
-			else if(maybeType == null && currentTypeStatus == "maybe") {
+			else if(maybeType === null && currentTypeStatus === "maybe") {
 				maybeType = currentType;
 			}
 		}
 		
-		if(maybeType != null) {
+		if(maybeType !== null) {
 			return maybeType;
 		}
 		
@@ -59,15 +59,15 @@ dbm.registerClass("com.developedbyme.utils.browser.FeatureCheck", null, function
 			var currentType = currentArray[i];
 			var currentTypeStatus = testVideoElement.canPlayType(currentType);
 			//console.log(currentTypeStatus, currentType);
-			if(currentTypeStatus == "probably") {
+			if(currentTypeStatus === "probably") {
 				return currentType;
 			}
-			else if(maybeType == null && currentTypeStatus == "maybe") {
+			else if(maybeType === null && currentTypeStatus === "maybe") {
 				maybeType = currentType;
 			}
 		}
 		
-		if(maybeType != null) {
+		if(maybeType !== null) {
 			return maybeType;
 		}
 		

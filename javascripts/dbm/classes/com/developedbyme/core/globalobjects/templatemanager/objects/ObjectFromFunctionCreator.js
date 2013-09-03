@@ -50,7 +50,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.objects.
 		
 		var index = ArrayFunctions.indexOfInArray(this._argumentNamesArray, aName);
 		
-		if(index == -1) {
+		if(index === -1) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "insertArgumentByName", "Function doesn't have any argument named " + aName + ".");
 			return this;
 		}

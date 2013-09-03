@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.sequencer.Sequen
 	
 	objectFunctions.removeSequencerNote = function(aSequencerNote) {
 		var noteIndex = ArrayFunctions.indexOfInArray(this._notes, aSequencerNote);
-		if(noteIndex == -1) {
+		if(noteIndex === -1) {
 			//METODO: error message
 			return;
 		}

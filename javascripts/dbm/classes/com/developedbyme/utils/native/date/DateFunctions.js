@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 			case 10:
 				return 30;
 			case 1:
-				if(((aYear % 4) == 0) && (((aYear % 100) != 0) || ((aYear % 400) == 0))) {
+				if(((aYear % 4) === 0) && (((aYear % 100) !== 0) || ((aYear % 400) === 0))) {
 					return 29;
 				}
 				return 28;
@@ -55,7 +55,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 		var multiplier;
 		var testDate1;
 		var testDate2;
-		if(aDate2.valueOf() == aDate1.valueOf()) {
+		if(aDate2.valueOf() === aDate1.valueOf()) {
 			returnObject["years"] = 0;
 			returnObject["months"] = 0;
 			returnObject["days"] = 0;
@@ -128,7 +128,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 		var currentMonth = testDate2.getMonth()-1;
 		if(realMonthsDifference > 0) {
 			for(var i = 0; i < realMonthsDifference; i++) {
-				if(currentMonth == -1) {
+				if(currentMonth === -1) {
 					currentYear--;
 					currentMonth = 11;
 				}

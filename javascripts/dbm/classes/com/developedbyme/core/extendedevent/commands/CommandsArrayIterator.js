@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 		var currentArray = this.array;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			if(aId == currentArray[i].id) {
+			if(aId === currentArray[i].id) {
 				return true;
 			}
 		}
@@ -59,7 +59,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentCommand = currentArray[i];
-				if(aId == currentCommand.id) {
+				if(aId === currentCommand.id) {
 					this._itemRemoved(currentArray[i]);
 					currentArray.splice(i, 1);
 					currentArrayLength--;
