@@ -59,7 +59,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	objectFunctions.loadForCompile = function(/* ... aFiles*/) {
 		//console.log("com.developedbyme.compiler.DbmCompiler::loadForCompile");
 		
-		aFiles = arguments;
+		var aFiles = arguments;
 		
 		var currentArray = aFiles;
 		var currentArrayLength = currentArray.length;
@@ -151,10 +151,10 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 			console.log("compile: " + currentArray[i]);
 			var compiledFileCode = this._scriptBreakdowns.getObject(currentArray[i]).compile(compileData);
 			if(i < this._numberOfFilesBeforeImport) {
-				beforeImportCode += compiledFileCode
+				beforeImportCode += compiledFileCode;
 			}
 			else {
-				code += compiledFileCode
+				code += compiledFileCode;
 			}
 			
 		}
