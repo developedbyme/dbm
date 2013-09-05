@@ -124,10 +124,43 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 		return operation;
 	};
 	
-	objectFunctions.getFromTable = function(aTableName, aKey) {
+	objectFunctions.selectFromTable = function(aTableName, aKey) {
 		
 		var operation = this._createOperation(aTableName, "readonly");
-		operation.get(aTableName, aKey);
+		operation.select(aTableName, aKey);
+		
+		return operation;
+	};
+	
+	objectFunctions.selectRangeFromTable = function(aTableName, aLowerLimit, aUpperLimit, aOpenLower, aOpenUpper) {
+		console.log("com.developedbyme.utils.data.storage.database.IndexedDatabase::selectRangeFromTable");
+		console.log(aTableName, aLowerLimit, aUpperLimit, aOpenLower, aOpenUpper);
+		
+		aOpenLower = VariableAliases.valueWithDefault(aOpenLower, true);
+		aOpenUpper = VariableAliases.valueWithDefault(aOpenUpper, true);
+		
+		var rangeClass = ClassReference.getRangeClass();
+		var range;
+		if(aLowerLimit === -1) {
+			range = rangeClass.upperBound(aUpperLimit, aOpenUpper);
+		}
+		else if(aUpperLimit === -1) {
+			range = rangeClass.lowerBound(aLowerLimit, aOpenLower);
+		}
+		else {
+			range = rangeClass.bound(aLowerLimit, aUpperLimit, aOpenLower, aOpenUpper);
+		}
+		
+		var operation = this._createOperation(aTableName, "readonly");
+		operation.selectRange(aTableName, range);
+		
+		return operation;
+	};
+	
+	objectFunctions.deleteFromTable = function(aTableName, aKey) {
+		
+		var operation = this._createOperation(aTableName, "readonly");
+		operation.delete(aTableName, aKey);
 		
 		return operation;
 	};
@@ -160,7 +193,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 	staticFunctions.create = function(aName, aStructure, aVersion) {
 		//trace("com.developedbyme.utils.data.IndexedDatabase.create");
 		
-		var aVersion = VariableAliases.valueWithDefault(aVersion, 0);
+		aVersion = VariableAliases.valueWithDefault(aVersion, 0);
 		
 		var newIndexedDatabase = (new IndexedDatabase()).init();
 		
@@ -174,6 +207,13 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 		if(window.webkitIndexedDB) return window.webkitIndexedDB.open(aName);
 		if(window.mozIndexedDB) return window.mozIndexedDB.open(aName);
 		if(window.msIndexedDB) return window.msIndexedDB.open(aName);
+		//METODO: error emssage
+		return null;
+	};
+	
+	staticFunctions.getRangeClass = function() {
+		if(window.IDBKeyRange) return window.IDBKeyRange;
+		if(window.webkitIDBKeyRange) return window.webkitIDBKeyRange;
 		//METODO: error emssage
 		return null;
 	};

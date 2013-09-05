@@ -21,7 +21,9 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 		
 		this._transaction = null;
 		this._request = null;
+		this._result = null;
 		this._status = 0;
+		this._hasMultipleResults = false;
 		
 		this.getExtendedEvent().addCommandToEvent(IndexedDatabaseEventIds.SUCCESS, CallFunctionCommand.createCommand(this, this._successCallback, [GetVariableObject.createSelectDataCommand()]));
 		this.getExtendedEvent().addCommandToEvent(IndexedDatabaseEventIds.ERROR, CallFunctionCommand.createCommand(this, this._errorCallback, [GetVariableObject.createSelectDataCommand()]));
@@ -39,7 +41,20 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 	objectFunctions._successCallback = function(aEvent) {
 		console.log("com.developedbyme.utils.data.storage.database.IndexedDatabaseOperation::_successCallback");
 		
-		this._status = 1;
+		if(this._hasMultipleResults) {
+			var result = this._request.result;
+			console.log(result);
+			if(result === null) {
+				this._status = 1;
+				return;
+			}
+			this._result.push(result.value);
+			result.continue();
+		}
+		else {
+			this._status = 1;
+			this._result = this._request.result;
+		}
 	};
 	
 	objectFunctions._errorCallback = function(aEvent) {
@@ -72,7 +87,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 		return this;
 	};
 	
-	objectFunctions.get = function(aTableName, aKey) {
+	objectFunctions.select = function(aTableName, aKey) {
 		
 		this._status = 2;
 		
@@ -84,7 +99,49 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 		return this;
 	};
 	
+	objectFunctions.selectRange = function(aTableName, aRange) {
+		console.log("com.developedbyme.utils.data.storage.database.IndexedDatabaseOperation::_errorCallback");
+		console.log(aTableName, aRange);
+		
+		this._status = 2;
+		this._hasMultipleResults = true;
+		this._result = new Array();
+		
+		var objectStore = this._transaction.objectStore(aTableName);
+		this._request = objectStore.openCursor(aRange);
+		this.getExtendedEvent().linkJavascriptEvent(this._request, IndexedDatabaseEventIds.SUCCESS, IndexedDatabaseEventIds.SUCCESS, ClassReference.REQUEST_GROUP, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._request, IndexedDatabaseEventIds.ERROR, IndexedDatabaseEventIds.ERROR, ClassReference.REQUEST_GROUP, true).activate();
+		
+		return this;
+	};
+	
+	objectFunctions.delete = function(aTableName, aKey) {
+		
+		this._status = 2;
+		
+		var objectStore = this._transaction.objectStore(aTableName);
+		this._request = objectStore.delete(aKey);
+		this.getExtendedEvent().linkJavascriptEvent(this._request, IndexedDatabaseEventIds.SUCCESS, IndexedDatabaseEventIds.SUCCESS, ClassReference.REQUEST_GROUP, true).activate();
+		this.getExtendedEvent().linkJavascriptEvent(this._request, IndexedDatabaseEventIds.ERROR, IndexedDatabaseEventIds.ERROR, ClassReference.REQUEST_GROUP, true).activate();
+		
+		return this;
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case IndexedDatabaseEventIds.SUCCESS:
+			case IndexedDatabaseEventIds.ERROR:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._transaction = null;
+		this._request = null;
 		
 		this.superCall();
 	};

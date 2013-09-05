@@ -17,13 +17,18 @@ dbm.runTempFunction(function() {
 		var database = IndexedDatabase.create("Test", structure);
 		
 		var setDataFunction = function() {
+			/*
 			var operation = database.insertToTable("Test", {"someData": "Hello world!"});
 			console.log(operation);
 			
 			var operation = database.countTable("Test");
 			console.log(operation);
 			
-			var operation = database.getFromTable("Test", 1);
+			var operation = database.selectFromTable("Test", 1);
+			console.log(operation);
+			*/
+			
+			var operation = database.selectRangeFromTable("Test", 0, -1);
 			console.log(operation);
 		}
 		
