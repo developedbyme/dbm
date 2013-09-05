@@ -9,6 +9,8 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	var DateDifference = dbm.importClass("com.developedbyme.core.data.date.DateDifference");
+	
 	staticFunctions._dateDifferenceIsLater = function(aDateArray2, aDateArray1) {
 		var theLength = aDateArray2.length;
 		for(var i = 0; i < theLength; i++) {
@@ -46,22 +48,18 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 		return -1;
 	};
 	
-	staticFunctions.defaultDateDifferenceObject = new Object();
-	
 	staticFunctions.dateDifference = function(aDate2, aDate1, aReturnObject) {
 		//console.log("dateDifference", aDate2, aDate1);
-		var returnObject = VariableAliases.valueWithDefault(aReturnObject, ClassRefernce.defaultDateDifferenceObject);
+		var returnObject = aReturnObject;
+		if(!VariableAliases.isSet(aReturnObject)) {
+			returnObject = DateDifference.createWithoutValues();
+		}
 		
 		var multiplier;
 		var testDate1;
 		var testDate2;
 		if(aDate2.valueOf() === aDate1.valueOf()) {
-			returnObject["years"] = 0;
-			returnObject["months"] = 0;
-			returnObject["days"] = 0;
-			returnObject["hours"] = 0;
-			returnObject["minutes"] = 0;
-			returnObject["seconds"] = 0;
+			returnObject.setValues(0, 0, 0, 0, 0, 0);
 			
 			return returnObject;
 		}
@@ -84,7 +82,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 		var realSecondsDifference = testDate2.getSeconds()-testDate1.getSeconds();
 		
 		var realArray = [realYearsDifference, realMonthsDifference, realDateDifference, realHoursDifference, realMinutesDifference, realSecondsDifference];
-		var zeroArray = [1,0,0,0,0,0];
+		var zeroArray = [1, 0, 0, 0, 0, 0];
 		
 		var numberOfYearsDifference = 0;
 		var numberOfMonthsDifference = 0;
@@ -99,7 +97,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 			realYearsDifference -= numberOfYearsDifference;
 		}
 		
-		if(ClassRefernce._dateDifferenceIsLater(realArray, zeroArray)) {
+		if(ClassReference._dateDifferenceIsLater(realArray, zeroArray)) {
 			numberOfYearsDifference++;
 			realYearsDifference--;
 		}
@@ -113,7 +111,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 		realArray.shift();
 		zeroArray.shift();
 		var newRealMonthDifference = 0;
-		if(!ClassRefernce._dateDifferenceIsLater(realArray, zeroArray)) {
+		if(!ClassReference._dateDifferenceIsLater(realArray, zeroArray)) {
 			numberOfMonthsDifference--;
 			newRealMonthDifference = 1;
 		}
@@ -132,7 +130,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 					currentYear--;
 					currentMonth = 11;
 				}
-				numberOfDaysDifference += ClassRefernce.getNumberOfDaysInMonth(currentYear, currentMonth);
+				numberOfDaysDifference += ClassReference.getNumberOfDaysInMonth(currentYear, currentMonth);
 				currentMonth--;
 			}
 		}
@@ -141,7 +139,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 		zeroArray.shift();
 		
 		var newRealDateDifference = 0;
-		if(!ClassRefernce._dateDifferenceIsLater(realArray, zeroArray)) {
+		if(!ClassReference._dateDifferenceIsLater(realArray, zeroArray)) {
 			numberOfDaysDifference--;
 			newRealDateDifference = 1;
 		}
@@ -156,7 +154,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 		zeroArray.shift();
 		
 		var newRealHoursDifference = 0;
-		if(!ClassRefernce._dateDifferenceIsLater(realArray, zeroArray)) {
+		if(!ClassReference._dateDifferenceIsLater(realArray, zeroArray)) {
 			numberOfHoursDifference--;
 			newRealHoursDifference = 1;
 		}
@@ -171,7 +169,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 		zeroArray.shift();
 		
 		var newRealMinutesDifference = 0;
-		if(!ClassRefernce._dateDifferenceIsLater(realArray, zeroArray)) {
+		if(!ClassReference._dateDifferenceIsLater(realArray, zeroArray)) {
 			numberOfMinutesDifference--;
 			newRealMinutesDifference = 1;
 		}
@@ -183,12 +181,7 @@ dbm.registerClass("com.developedbyme.utils.native.date.DateFunctions", null, fun
 		numberOfSecondsDifference = 60*realHoursDifference+realSecondsDifference;
 		
 		//Set return values
-		returnObject["years"] = multiplier*numberOfYearsDifference;
-		returnObject["months"] = multiplier*numberOfMonthsDifference;
-		returnObject["days"] = multiplier*numberOfDaysDifference;
-		returnObject["hours"] = multiplier*numberOfHoursDifference;
-		returnObject["minutes"] = multiplier*numberOfMinutesDifference;
-		returnObject["seconds"] = multiplier*numberOfSecondsDifference;
+		returnObject.setValues(multiplier*numberOfYearsDifference, multiplier*numberOfMonthsDifference, multiplier*numberOfDaysDifference, multiplier*numberOfHoursDifference, multiplier*numberOfMinutesDifference, multiplier*numberOfSecondsDifference);
 		
 		return returnObject;
 	};
