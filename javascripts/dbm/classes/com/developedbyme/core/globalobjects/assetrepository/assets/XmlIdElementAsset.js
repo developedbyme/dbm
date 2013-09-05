@@ -8,10 +8,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
-	
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
@@ -92,7 +88,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
-	 	this._xmlAsset = null;
+		this._xmlAsset = null;
 		
 		this.superCall();
 	};

@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 			}
 			thisPointer._performerObject.perform(thisPointer._extendedEventName, aEvent);
 			return true;
-		}
+		};
 		
 		return this;
 	};

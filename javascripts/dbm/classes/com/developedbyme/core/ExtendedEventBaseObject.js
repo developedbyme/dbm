@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.core.ExtendedEventBaseObject", "com.develop
 		if(this._extendedEvent === null) {
 			this._extendedEvent = ExtendedEventController.create(this);
 			this.addDestroyableObject(this._extendedEvent);
-		} 
+		}
 		
 		return this._extendedEvent;
 	};
@@ -31,7 +31,7 @@ dbm.registerClass("com.developedbyme.core.ExtendedEventBaseObject", "com.develop
 		if(this._delayedExtendedEvent === null) {
 			this._delayedExtendedEvent = DelayedExtendedEventController.create(this);
 			this.addDestroyableObject(this._delayedExtendedEvent);
-		} 
+		}
 		
 		return this._delayedExtendedEvent;
 	};

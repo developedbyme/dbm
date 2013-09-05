@@ -23,8 +23,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	var ArrayBufferAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset");
 	var XmlIdElementAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlIdElementAsset");
 	
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	var MimeTypeFunctions = dbm.importClass("com.developedbyme.utils.file.MimeTypeFunctions");

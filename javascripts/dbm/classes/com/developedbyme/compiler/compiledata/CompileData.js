@@ -175,7 +175,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 			var currentScope = currentArray[currentArrayLength-1-i];
 			if(currentScope.hasVariableReference(aName)) {
 				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "createVariableReference", "Variable " + aName + " already exists.");
-				return currentScope.getVariableReference(aName)
+				return currentScope.getVariableReference(aName);
 			}
 		}
 		return this._performCreateVariableReference(aName, aType, this._scopesData[this._scopesData.length-1]);
@@ -235,6 +235,6 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 			newScopeData.addVariableReference(currentArray[i], currentArray[i]);
 		}
 		
-		return newScopeData
+		return newScopeData;
 	};
 });

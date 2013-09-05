@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		var thisPointer = this;
 		this._loader.onreadystatechange = function() {
 			thisPointer._updateReadyState();
-		}
+		};
 		//this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.LOAD, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
 		//this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true);
 		

@@ -131,7 +131,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 			}
 			var currentScopeStartType = ScopeFunctions.getTypeOfScopeStart(aText, scopeStartPosition);
 			var currentEndScopeType = ScopeFunctions.getTypeOfScopeEndForScopeStart(currentScopeStartType);
-			var currentScope = ScopeFunctions.getAnyScope(aText, scopeStartPosition, currentScopeStartType, currentEndScopeType)
+			var currentScope = ScopeFunctions.getAnyScope(aText, scopeStartPosition, currentScopeStartType, currentEndScopeType);
 			if(currentScope.end === -1) {
 				break;
 			}
@@ -166,7 +166,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 			}
 			var currentScopeStartType = ScopeFunctions.getTypeOfScopeStart(aText, scopeStartPosition);
 			var currentEndScopeType = ScopeFunctions.getTypeOfScopeEndForScopeStart(currentScopeStartType);
-			var currentScope = ScopeFunctions.getAnyScope(aText, scopeStartPosition, currentScopeStartType, currentEndScopeType)
+			var currentScope = ScopeFunctions.getAnyScope(aText, scopeStartPosition, currentScopeStartType, currentEndScopeType);
 			if(currentScope.end === -1) {
 				break;
 			}

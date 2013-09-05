@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		var newProgress = maxBuffered/this._data.getValue().duration;
 		
 		if(!isNaN(newProgress)) {
-			this._loadProgress = newProgress
+			this._loadProgress = newProgress;
 			
 			if(this._loadProgress === 1) {
 				this.getExtendedEvent().deactivateJavascriptEventLink(AudioEventIds.PROGRESS);

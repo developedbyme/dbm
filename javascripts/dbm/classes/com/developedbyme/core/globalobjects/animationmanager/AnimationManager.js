@@ -15,7 +15,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 	var TemporaryTimelineHolder = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder");
 	var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");
 	var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
@@ -150,7 +149,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentHolder = currentArray[i];
-			if(currentHolder.theObject = aObject) {
+			if(currentHolder.theObject === aObject) {
 				return currentHolder;
 			}
 		}

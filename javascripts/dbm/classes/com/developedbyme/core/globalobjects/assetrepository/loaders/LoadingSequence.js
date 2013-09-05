@@ -218,7 +218,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 			this._isLoading = false;
 			this._status = AssetStatusTypes.LOADING_ERROR;
 			if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.LOADING_ERROR)) {
-				this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADING_ERROR)
+				this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADING_ERROR);
 			}
 		}
 	};

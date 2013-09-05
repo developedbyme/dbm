@@ -22,7 +22,6 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart::_init");

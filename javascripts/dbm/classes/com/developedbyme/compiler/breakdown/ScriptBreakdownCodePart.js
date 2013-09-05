@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 				var currentLine = this._script.substring(currentStartPosition, endLinePosition);
 				//console.log(currentLine, VariableAliases.isEmptyText(currentLine));
 				if(!VariableAliases.isEmptyText(currentLine)) {
-					this._addCodeLine(currentLine, !(this._script.charAt(endLinePosition) === ";"));
+					this._addCodeLine(currentLine, (this._script.charAt(endLinePosition) !== ";"));
 				}
 				else {
 					this._lastLineIsOpen = false;
@@ -94,7 +94,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 			}
 			var currentScopeStartType = ScopeFunctions.getTypeOfScopeStart(this._script, scopeStartPosition);
 			var currentEndScopeType = ScopeFunctions.getTypeOfScopeEndForScopeStart(currentScopeStartType);
-			var currentScope = ScopeFunctions.getAnyScope(this._script, scopeStartPosition, currentScopeStartType, currentEndScopeType)
+			var currentScope = ScopeFunctions.getAnyScope(this._script, scopeStartPosition, currentScopeStartType, currentEndScopeType);
 			if(currentScope.end === -1) {
 				break;
 			}

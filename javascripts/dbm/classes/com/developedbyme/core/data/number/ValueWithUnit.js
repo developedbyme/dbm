@@ -50,7 +50,7 @@ dbm.registerClass("com.developedbyme.core.data.number.ValueWithUnit", "com.devel
 		//console.log("com.developedbyme.core.data.number.ValueWithUnit::parseValue (static)");
 		//console.log(aValue, typeof(aValue), aReturnValueWithUnit, aDefaultUnitType);
 		
-		var aDefaultUnitType = VariableAliases.valueWithDefault(aDefaultUnitType, UnitTypes.UNKNOWN);
+		aDefaultUnitType = VariableAliases.valueWithDefault(aDefaultUnitType, UnitTypes.UNKNOWN);
 		
 		if(aValue instanceof ValueWithUnit) {
 			aReturnValueWithUnit.value = aValue.value;
