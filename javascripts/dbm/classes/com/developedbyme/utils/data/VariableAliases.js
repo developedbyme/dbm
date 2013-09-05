@@ -127,7 +127,7 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	staticFunctions.valueWithDefault = function(aValue, aDefaultValue) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::valueWithDefault");
 		//console.log(aValue, aDefaultValue);
-		if(ClassReference.isSet(aValue)) {
+		if(!ClassReference.isSet(aValue)) {
 			return aDefaultValue;
 		}
 		return aValue;

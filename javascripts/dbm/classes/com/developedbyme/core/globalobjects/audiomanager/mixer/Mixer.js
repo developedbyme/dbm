@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer
 	objectFunctions.createChannel = function(aName, aInput) {
 		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer::createChannel");
 		var newChannel = MixerChannel.create(null, aInput);
-		if(aName !== null) {
+		if(VariableAliases.isSet(aName)) {
 			newChannel.setName(aName);
 		}
 		this.addChannel(newChannel);
@@ -49,7 +49,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer
 	objectFunctions.createMixer = function(aName) {
 		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer::createMixer");
 		var newMixer = Mixer.create();
-		if(aName !== null) {
+		if(VariableAliases.isSet(aName)) {
 			newMixer.getMasterChannel().setName(aName);
 		}
 		this.addChannel(newMixer.getMasterChannel());
@@ -68,7 +68,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer
 	
 	staticFunctions.create = function(aMasterChannel) {
 		var newMixer = (new ClassReference()).init();
-		if(aMasterChannel !== null) {
+		if(VariableAliases.isSet(aMasterChannel)) {
 			newMixer.setMasterChannel(aMasterChannel);
 		}
 		else {

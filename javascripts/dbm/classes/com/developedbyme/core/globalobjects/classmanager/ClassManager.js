@@ -24,7 +24,8 @@ dbm.runTempFunction(function() {
 		return this;
 	}; //End function init
 	
-	classManager._createClassFunction = function _createClassFunction(aName) {
+	classManager._createClassFunction = function(aName) {
+		//console.log(aName);
 		var className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
 		eval("dbm.tempClassFunction = function " + className + "(){};");
 		var returnClassFunction = dbm.tempClassFunction;
@@ -169,7 +170,7 @@ dbm.runTempFunction(function() {
 	}; //End function addReInitLibraryFunction
 	
 	classManager.setClassAsSingleton = function setClassAsSingleton(aName, aClassPath) {
-		var theClassPath = (aClassPath !== null) ? aClassPath : this._currentRegistrationClass;
+		var theClassPath = (aClassPath !== null && aClassPath !== undefined) ? aClassPath : this._currentRegistrationClass;
 		
 		this._singletons[aName] = theClassPath;
 		

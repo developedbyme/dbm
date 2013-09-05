@@ -87,6 +87,7 @@
 		
 		dbm.registerClass = function(aName, aExtends, aFunction) {
 			//console.log("dbm.registerClass");
+			//console.log(aName, aExtends, aFunction);
 			this._classManager.registerClass(aName, aExtends, aFunction);
 		};
 		
@@ -112,6 +113,8 @@
 		};
 		
 		dbm.setClassAsSingleton = function(aName, aClassPath) {
+			//console.log("dbm.setClassAsSingleton");
+			//console.log(aName, aClassPath);
 			return this._classManager.setClassAsSingleton(aName, aClassPath);
 		};
 		

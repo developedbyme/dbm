@@ -12,6 +12,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	dbm.setClassAsSingleton("dbmFlowManager");
@@ -53,7 +55,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		aConnection.fillWithCleanOutputConnections(currentArray);
 		for(var i = 0; i < currentArray.length; i++) {
 			var currentConnection = currentArray[i];
-			if(currentConnection.setStatus !== null) {
+			if(VariableAliases.isSet(currentConnection.setStatus)) {
 				currentConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
 			}
 			currentConnection.fillWithCleanOutputConnections(currentArray);
@@ -93,7 +95,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		//var nodeNames = new Array();
 		for(var i = currentArray.length-1; i >= 0; i--) {
 			var currentConnection = currentArray[i];
-			if(currentConnection.getStatus !== null && currentConnection.getStatus() === 1) {
+			if(VariableAliases.isSet(currentConnection.getStatus) && currentConnection.getStatus() === 1) {
 				//nodeNames.push(currentConnection.name + " (skip)");
 				//numberOfSkipped++;
 				continue;
