@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLink = currentArray[i];
-			if(currentLink.htmlElement = aHtmlElement) {
+			if(currentLink.htmlElement === aHtmlElement) {
 				currentArray.splice(i, 1);
 				return;
 			}
@@ -125,7 +125,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentCreator = currentArray[i];
-			if(currentCreator.ownerDocument = aDocument) {
+			if(currentCreator.ownerDocument === aDocument) {
 				return currentCreator;
 			}
 		}
@@ -139,7 +139,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentCreator = currentArray[i];
-			if(currentCreator.ownerDocument = aDocument) {
+			if(currentCreator.ownerDocument === aDocument) {
 				return currentCreator;
 			}
 		}

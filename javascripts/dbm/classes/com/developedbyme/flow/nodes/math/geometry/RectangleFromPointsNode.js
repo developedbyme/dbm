@@ -42,9 +42,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromPoint
 	
 	staticFunctions.create = function(aTopLeftPoint, aBottomRightPoint) {
 		var newNode = (new ClassReference()).init();
-		newNode.setPropertyInputWithoutNull("topLeftPoint", aX);
-		newNode.setPropertyInputWithoutNull("bottomRightPoint", aY);
-		newNode.setPropertyInputWithoutNull("height", aHeight);
+		newNode.setPropertyInputWithoutNull("topLeftPoint", aTopLeftPoint);
+		newNode.setPropertyInputWithoutNull("bottomRightPoint", aBottomRightPoint);
 		return newNode;
 	};
 });

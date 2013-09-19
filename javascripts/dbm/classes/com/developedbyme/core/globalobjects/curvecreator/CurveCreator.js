@@ -164,7 +164,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 		
 	objectFunctions.createCurveFromValuesArray = function(aDegree, aIsCompact, aValuesArray) {
 		
-		var valuesArray = aValuesArray
+		var valuesArray = aValuesArray;
 		var numberOfPoints = 0.5*valuesArray.length;
 		
 		var newCurve = BezierCurve.createWithLength(aDegree, aIsCompact, numberOfPoints);

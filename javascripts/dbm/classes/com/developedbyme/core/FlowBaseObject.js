@@ -15,6 +15,8 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::_init");
 		
@@ -110,7 +112,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	};
 	
 	objectFunctions.setPropertyInputWithoutNull = function(aName, aInput) {
-		if(aInput !== null) {
+		if(VariableAliases.isSet(aInput)) {
 			this.setPropertyInput(aName, aInput);
 		}
 		return this;

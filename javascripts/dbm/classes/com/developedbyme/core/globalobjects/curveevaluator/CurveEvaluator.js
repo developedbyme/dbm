@@ -56,7 +56,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 				}
 				else {
 					currentEvaluator.getPartOfCurve(aPointSet, aEndParameter, aStartParameter, aExactness, aReturnCurve);
-					aReturnCurve; //METODO: reverse
+					//aReturnCurve; //METODO: reverse
 				}
 				return;
 			}

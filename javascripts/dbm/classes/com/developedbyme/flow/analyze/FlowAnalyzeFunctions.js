@@ -48,7 +48,7 @@ dbm.registerClass("com.developedbyme.flow.analyze.FlowAnalyzeFunctions", null, f
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentConnection = currentArray[i];
 				
-				returnString += "\n" + ClassReference.getPropertyOutputHierarchyString(currentConnection, newNumberOfSteps, newPrefix, aAddPrefix)
+				returnString += "\n" + ClassReference.getPropertyOutputHierarchyString(currentConnection, newNumberOfSteps, newPrefix, aAddPrefix);
 				
 			}
 		}

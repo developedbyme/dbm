@@ -7,7 +7,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions._init = function _init() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_init");
 		
 		this.superCall();
@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		this._eventDispatcher = null;
 		this._javascriptEventName = null;
 		this._extendedEventName = null;
+		this._useCapture = false;
 		
 		var thisPointer = this;
 		this._eventCallback = function _eventCallback(aEvent) {
@@ -35,24 +36,25 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		return this;
 	};
 	
-	objectFunctions.setupLink = function setupLink(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName) {
+	objectFunctions.setupLink = function(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName, aUseCapture) {
 		
 		this._performerObject = aEventPerformer;
 		this._eventDispatcher = aEventDispatcher;
 		this._javascriptEventName = aJavascriptEventName;
 		this._extendedEventName = aExtendedEventName;
+		this._useCapture = aUseCapture;
 		
 		return this;
 	};
 	
-	objectFunctions.activate = function activate() {
+	objectFunctions.activate = function() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::activate");
-		//console.log(this._javascriptEventName, this._extendedEventName);
+		//console.log(this._javascriptEventName, this._extendedEventName, this._useCapture);
 		if(this._isActive) return this;
 		
 		this._isActive = true;
 		try {
-			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, false);
+			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, this._useCapture);
 		}
 		catch(theError) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "activate", "Event listener " + this._javascriptEventName + " couldn't be added to.");
@@ -62,14 +64,14 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		return this;
 	};
 	
-	objectFunctions.deactivate = function deactivate() {
+	objectFunctions.deactivate = function() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::deactivate");
 		if(!this._isActive) return this;
 		
 		this._isActive = false;
 		
 		try {
-			this._eventDispatcher.removeEventListener(this._javascriptEventName, this._eventCallback, false);
+			this._eventDispatcher.removeEventListener(this._javascriptEventName, this._eventCallback, this._useCapture);
 		}
 		catch(theError) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "deactivate", "Event listener " + this._javascriptEventName + " couldn't be removed from.");
@@ -79,16 +81,16 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		return this;
 	};
 	
-	objectFunctions.reactivate = function reactivate() {
+	objectFunctions.reactivate = function() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::reactivate");
 		if(this._isActive && this._eventDispatcher !== null) {
-			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, false);
+			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, this._useCapture);
 		}
 		
 		return this;
 	};
 	
-	objectFunctions.performDestroy = function performDestroy() {
+	objectFunctions.performDestroy = function() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::performDestroy");
 		//console.log(this._javascriptEventName);
 		
@@ -99,7 +101,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		this.superCall();
 	};
 	
-	objectFunctions.setAllReferencesToNull = function setAllReferencesToNull() {
+	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._performerObject = null;
 		this._eventDispatcher = null;
@@ -110,8 +112,9 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		this.superCall();
 	};
 	
-	staticFunctions.create = function create(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName) {
-		return (new EventLink()).init().setupLink(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName);
+	staticFunctions.create = function(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName, aUseCapture) {
+		
+		return (new EventLink()).init().setupLink(aEventPerformer, aEventDispatcher, aJavascriptEventName, aExtendedEventName, aUseCapture);
 	};
 	
 });

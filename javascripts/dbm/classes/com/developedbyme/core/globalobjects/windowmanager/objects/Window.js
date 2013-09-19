@@ -827,13 +827,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	
 	staticFunctions.create = function(aName, aUrl, aWidth, aHeight) {
 		var newWindow = (new Window()).init();
-		 newWindow.name = aName;
-		 if(aUrl !== null) {
-		 	newWindow.setUrl(aUrl);
-		 }
-		 if(aWidth !== null && aHeight !== null) {
+		newWindow.name = aName;
+		if(aUrl !== null) {
+			newWindow.setUrl(aUrl);
+		}
+		if(aWidth !== null && aHeight !== null) {
 			 newWindow.setSize(aWidth, aHeight);
-		 }
-		 return newWindow;
+		}
+		return newWindow;
 	};
 });

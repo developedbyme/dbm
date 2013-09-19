@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgPath", "com.developedbyme.gui.sv
 		var element = this._element.getValueWithoutFlow();
 		if(element !== null) {
 			element.pathSegList.clear();
-			SvgPathFunctions.drawCurveToPath(element, this._curve.getValueWithoutFlow())
+			SvgPathFunctions.drawCurveToPath(element, this._curve.getValueWithoutFlow());
 		}
 	};
 	

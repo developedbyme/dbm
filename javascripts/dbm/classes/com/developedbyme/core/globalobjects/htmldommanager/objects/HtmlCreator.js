@@ -90,7 +90,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 			var target = aTarget;
 			newElement.onclick = function() {
 				return dbm.handleLink(this.href, target);
-			}
+			};
 		}
 		this.setAttributesToNode(newElement, aAttributes);
 		var currentArray = arguments;

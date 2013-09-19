@@ -18,8 +18,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 	var PlayingAudio = dbm.importClass("com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio");
 	var AudioPlayer = dbm.importClass("com.developedbyme.utils.audio.AudioPlayer");
 	
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");

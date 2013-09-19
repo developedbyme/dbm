@@ -15,6 +15,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_init");
@@ -23,6 +24,8 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		
 		this._element = null;
 		this._isActive = false;
+		this._useCapture = true;
+		this._currentEvent = null;
 		this._touches = NamedArray.create(false);
 		this._activeTouches = this.createProperty("activeTouches", new Array());
 		
@@ -46,15 +49,17 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		
 		this._element = aElement;
 		
-		InteractionExtendedEventSetup.addTouchPressWithMoveEvents(this.getExtendedEvent(), aElement, false);
+		InteractionExtendedEventSetup.addTouchPressWithMoveEvents(this.getExtendedEvent(), aElement, false, this._useCapture);
 		
+		return this;
+	};
+	
+	objectFunctions.preventEventDefaults = function() {
 		InteractionExtendedEventSetup.preventDefaultForEvent(this.getExtendedEvent(), TouchExtendedEventIds.START);
 		InteractionExtendedEventSetup.preventDefaultForEvent(this.getExtendedEvent(), TouchExtendedEventIds.END);
 		InteractionExtendedEventSetup.preventDefaultForEvent(this.getExtendedEvent(), TouchExtendedEventIds.END_OUTSIDE);
 		InteractionExtendedEventSetup.preventDefaultForEvent(this.getExtendedEvent(), TouchExtendedEventIds.MOVE);
 		InteractionExtendedEventSetup.preventDefaultForEvent(this.getExtendedEvent(), TouchExtendedEventIds.CANCEL);
-		
-		return this;
 	};
 	
 	objectFunctions.activate = function() {
@@ -73,6 +78,19 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		return this;
 	};
 	
+	objectFunctions.stopEvent = function() {
+		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::stopEvent");
+		if(this._currentEvent !== null) {
+			this._currentEvent.stopImmediatePropagation();
+			this._currentEvent.preventDefault();
+			this._currentEvent.cancelBubble = true;
+			console.log(this._currentEvent, this._currentEvent.eventPhase, this._currentEvent.cancelBubble);
+		}
+		else {
+			//METODO: error message
+		}
+	}
+	
 	objectFunctions._createTouch = function(aIdentifier) {
 		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_createTouch");
 		//console.log(aIdentifier);
@@ -87,13 +105,16 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		
 		this._addTouch(newTouch);
 		
-		//METODO: send out event
 		PositionFunctions.getGlobalPositionForNode(this.getElement(), this._globalPositionPoint);
 		
 		aX -= this._globalPositionPoint.x;
 		aY -= this._globalPositionPoint.y;
 		
 		newTouch.startTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.NEW)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.NEW, newTouch);
+		}
 		
 		return newTouch;
 	};
@@ -110,6 +131,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 			aY -= this._globalPositionPoint.y;
 			
 			currentTouch.updateTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
+			
+			if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.UPDATE)) {
+				this.getExtendedEvent().perform(GenericExtendedEventIds.UPDATE, currentTouch);
+			}
 		}
 		else {
 			//METODO: error message
@@ -125,8 +150,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	
 	objectFunctions._removeTouch = function(aTouch) {
 		
-		//METODO: remove from touches
-		
+		this._touches.removeObject(aTouch.id);
 		var activeTouches = this._activeTouches.getValue();
 		var touchIndex = ArrayFunctions.indexOfInArray(activeTouches, aTouch);
 		activeTouches.splice(touchIndex, 1);
@@ -147,7 +171,11 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 			aY -= this._globalPositionPoint.y;
 			
 			currentTouch.stopTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
-			//METODO: remove touch
+			this._removeTouch(currentTouch);
+			
+			if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.END)) {
+				this.getExtendedEvent().perform(GenericExtendedEventIds.END, currentTouch);
+			}
 		}
 		else {
 			//METODO: error message
@@ -166,7 +194,11 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 			aY -= this._globalPositionPoint.y;
 			
 			currentTouch.cancelTouch(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
-			//METODO: remove touch
+			this._removeTouch(currentTouch);
+			
+			if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.CANCEL)) {
+				this.getExtendedEvent().perform(GenericExtendedEventIds.CANCEL, currentTouch);
+			}
 		}
 		else {
 			//METODO: error message
@@ -187,16 +219,22 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	objectFunctions._callback_updateTouch = function(aEvent) {
 		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_updateTouch");
 		
+		this._currentEvent = aEvent;
+		
 		var currentArray = aEvent.changedTouches;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
 			this._updateTouch(currentObject.identifier, currentObject.pageX, currentObject.pageY, currentObject.radiusX, currentObject.radiusY, currentObject.rotationAngle, currentObject.force);
 		}
+		
+		this._currentEvent = null;
 	};
 	
 	objectFunctions._callback_stopTouch = function(aEvent) {
 		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_stopTouch");
+		
+		this._currentEvent = aEvent;
 		
 		var currentArray = aEvent.changedTouches;
 		var currentArrayLength = currentArray.length;
@@ -204,10 +242,14 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 			var currentObject = currentArray[i];
 			this._stopTouch(currentObject.identifier, currentObject.pageX, currentObject.pageY, currentObject.radiusX, currentObject.radiusY, currentObject.rotationAngle, currentObject.force);
 		}
+		
+		this._currentEvent = null;
 	};
 	
 	objectFunctions._callback_cancelTouch = function(aEvent) {
 		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_cancelTouch");
+		
+		this._currentEvent = aEvent;
 		
 		var currentArray = aEvent.changedTouches;
 		var currentArrayLength = currentArray.length;
@@ -215,6 +257,8 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 			var currentObject = currentArray[i];
 			this._cancelTouch(currentObject.identifier, currentObject.pageX, currentObject.pageY, currentObject.radiusX, currentObject.radiusY, currentObject.rotationAngle, currentObject.force);
 		}
+		
+		this._currentEvent = null;
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
@@ -227,6 +271,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 			case TouchExtendedEventIds.ENTER:
 			case TouchExtendedEventIds.LEAVE:
 			case TouchExtendedEventIds.CANCEL:
+			case GenericExtendedEventIds.NEW:
+			case GenericExtendedEventIds.UPDATE:
+			case GenericExtendedEventIds.END:
+			case GenericExtendedEventIds.CANCEL:
 				return true;
 		}
 		
@@ -239,6 +287,16 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	staticFunctions.create = function(aElement) {
+		
+		var newTouchDetector = (new TouchDetector()).init();
+		
+		newTouchDetector.setElement(aElement);
+		newTouchDetector.preventEventDefaults();
+		
+		return newTouchDetector;
+	};
+	
+	staticFunctions.createWithoutPreventingDefaults = function(aElement) {
 		
 		var newTouchDetector = (new TouchDetector()).init();
 		

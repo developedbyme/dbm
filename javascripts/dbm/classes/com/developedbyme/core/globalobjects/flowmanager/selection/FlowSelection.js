@@ -27,7 +27,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.selection.Fl
 		var currentArray = new Array(1);
 		currentArray[0] = aNode;
 		for(var i = 0; i < currentArray.length; i++) { //MENOTE: the array switches length
-			currentItem = currentArray[i];
+			var currentItem = currentArray[i];
 			currentItem.fillWithAllInputConnections(currentItem, currentArray);
 		}
 		
@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.selection.Fl
 		
 		var currentArray = ArrayFunctions.copyArray(aNodes);
 		for(var i = 0; i < currentArray.length; i++) { //MENOTE: the array switches length
-			currentItem = currentArray[i];
+			var currentItem = currentArray[i];
 			currentItem.fillWithAllInputConnections(currentItem, currentArray);
 		}
 		

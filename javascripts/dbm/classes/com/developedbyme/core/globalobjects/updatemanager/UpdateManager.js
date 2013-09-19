@@ -100,7 +100,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 	};
 	
 	objectFunctions.removeUpdatedFunction = function(aObject, aFunction, aType) {
-		var currentChain = this._updateChains.getObject(aType)
+		var currentChain = this._updateChains.getObject(aType);
 		var currentArray = currentChain.array;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {

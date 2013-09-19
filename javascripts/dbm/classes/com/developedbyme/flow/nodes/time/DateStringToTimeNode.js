@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.DateStringToTimeNode", "com
 		if(tempArray[1].charAt(8) === "+") {
 			timeZoneOffset *= -1;
 		}
-		currentDate = new Date(currentDate.valueOf()+timeZoneOffset)
+		currentDate = new Date(currentDate.valueOf()+timeZoneOffset);
 		
 		var currentTime = 0.001*currentDate.valueOf();
 		

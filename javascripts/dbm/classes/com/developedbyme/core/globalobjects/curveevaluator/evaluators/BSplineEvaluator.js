@@ -13,7 +13,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 	
 	objectFunctions.canEvaluate = function(aPointSet, aType, aForward) {
 		if(aPointSet.isSetType("bSpline")) {
-			return ture;
+			return true;
 		}
 		return false;
 	};

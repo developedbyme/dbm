@@ -64,7 +64,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	objectFunctions.removeExternalObject = function() {
 		
 		if(this._externalObject !== null) {
-			this._value = this._externalObject[this._externalVariableName]
+			this._value = this._externalObject[this._externalVariableName];
 		}
 		else {
 			//METODO: error message

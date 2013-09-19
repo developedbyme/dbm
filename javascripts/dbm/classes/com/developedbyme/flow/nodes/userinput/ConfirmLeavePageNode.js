@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.userinput.ConfirmLeavePageNode",
 		var thisPointer = this;
 		this._callback_confirmFunction = function(aEvent) {
 			return thisPointer._confirmFunction(aEvent);
-		}
+		};
 		
 		return this;
 	};

@@ -4,9 +4,15 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgDisplayBaseObject", "com.develop
 	
 	var SvgDisplayBaseObject = dbm.importClass("com.developedbyme.gui.svg.SvgDisplayBaseObject");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var TransformSvgElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.svg.TransformSvgElementNode");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.svg.SvgDisplayBaseObject::_init");

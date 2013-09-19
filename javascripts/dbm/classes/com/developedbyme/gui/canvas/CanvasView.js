@@ -64,14 +64,15 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 	};
 	
 	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
+		console.log("com.developedbyme.gui.canvas.CanvasView::_updateDisplayFlow");
 		
 		this.superCall(aFlowUpdateNumber);
 		
 		var element = this._element.getValueWithoutFlow();
 		
-		
 		var newWidth = this._width.getValueWithoutFlow();
 		var newHeight = this._height.getValueWithoutFlow();
+		console.log(newWidth, newHeight);
 		
 		if(newWidth !== 0) {
 			element.width = newWidth;

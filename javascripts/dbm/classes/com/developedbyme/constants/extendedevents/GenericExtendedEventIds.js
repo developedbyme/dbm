@@ -10,4 +10,9 @@ dbm.registerClass("com.developedbyme.constants.extendedevents.GenericExtendedEve
 	
 	staticFunctions.NAME_CHANGED = "nameChanged";
 	staticFunctions.VALUE_CHANGED = "valueChanged";
+	
+	staticFunctions.NEW = "new";
+	staticFunctions.UPDATE = "update";
+	staticFunctions.END = "end";
+	staticFunctions.CANCEL = "cancel";
 });

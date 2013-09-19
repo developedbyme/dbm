@@ -170,7 +170,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 	};
 	
 	objectFunctions.getApplication = function(aIndex) {
-		return this._applications.getObjectsArray()[aIndex]
+		return this._applications.getObjectsArray()[aIndex];
 	};
 	
 	objectFunctions.getApplicationByName = function(aName) {

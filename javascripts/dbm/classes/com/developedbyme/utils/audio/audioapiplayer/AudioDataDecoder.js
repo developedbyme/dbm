@@ -65,7 +65,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.AudioDataDecoder
 		this._context = aContext;
 		this._data = aData;
 		
-		return this
+		return this;
 	};
 	
 	objectFunctions.getBuffer = function() {

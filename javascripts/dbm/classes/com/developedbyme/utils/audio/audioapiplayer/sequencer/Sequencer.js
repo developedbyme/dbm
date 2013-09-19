@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.sequencer.Sequen
 	objectFunctions.setLength = function(aLength) {
 		//console.log("com.developedbyme.utils.audio.audioapiplayer.sequencer.Sequencer::setLength");
 		//console.log(aLength);
-		if(!(aLength > 0)) {
+		if(isNaN(aLength) || (aLength <= 0)) {
 			//METODO: error message
 			return this;
 		}

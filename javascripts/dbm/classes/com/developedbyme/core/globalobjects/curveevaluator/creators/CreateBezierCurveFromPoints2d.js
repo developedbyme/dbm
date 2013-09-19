@@ -13,12 +13,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::_init");
 		
 		this.superCall();
 		
 		return this;
-	} //End function CreateBezierCurveFromPoints2d
+	}; //End function CreateBezierCurveFromPoints2d
 	
 	/**
 	 * Creates the curve.
@@ -28,6 +28,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 	 * @param	aParameters		The array with parameters for the different points.
 	 */
 	objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aParameters) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::createCurve");
+		//console.log(aPointsArray, aReturnCurve, aParameters);
 		var curveDegree = aPointsArray.length-1;
 		var multipliersArray = dbm.singletons.dbmCurveEvaluator.getBezierMultipliersArray(curveDegree);
 		

@@ -204,7 +204,7 @@ dbm.runTempFunction(function() {
 			theClass._instance = newObject;
 			theClass.getInstance = function() {
 				return this._instance;
-			}
+			};
 			delete this._singletons[objectName];
 		}
 	}; //End function setupSingletons

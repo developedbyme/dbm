@@ -88,7 +88,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	
 	objectFunctions.getEventLinkGroup = function(aName) {
 		var theGroup = this._eventLinkGroups.getObject(aName);
-		if(theGroup === null) {
+		if(!VariableAliases.isSet(theGroup)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getEventLinkGroup", "Event link group " + aName + " doesn't exist.");
 			return null;
 		}
@@ -111,7 +111,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	
 	
 	objectFunctions.addEventLink = function(aEventLink, aGroupName, aDontWarnOnCreation) {
-		if(aGroupName === null) {
+		if(!VariableAliases.isSet(aGroupName)) {
 			aGroupName = this._defaultEventLinkGroupName;
 		}
 		
@@ -129,20 +129,19 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 		currentGroup.addLink(aEventLink);
 	};
 	
-	objectFunctions.linkJavascriptEvent = function(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::linkJavascriptEvent");
+	objectFunctions.linkJavascriptEventWithCapture = function(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aUseCapture, aGroupName, aDontWarnOnCreation, aCreateEvent) {
+		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::_linkJavascriptEvent");
 		//console.log(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent);
-		if(aJavascriptEventName === null) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEvent", "Javascript event is null for " + aExtendedEventName + " on " + this._owner + ".");
-			return;
+		if(!VariableAliases.isSet(aJavascriptEventName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEventWithCapture", "Javascript event is null for " + aExtendedEventName + " on " + this._owner + ".");
+			return null;
 		}
-		else if(aExtendedEventName === null) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEvent", "Extended event event is null for " + aJavascriptEventName + " on " + this._owner + ".");
-			return;
+		else if(!VariableAliases.isSet(aExtendedEventName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEventWithCapture", "Extended event event is null for " + aJavascriptEventName + " on " + this._owner + ".");
+			return null;
 		}
 		
-		
-		var newEventLink = EventLink.create(this, aEventDispatcher, aJavascriptEventName, aExtendedEventName);
+		var newEventLink = EventLink.create(this, aEventDispatcher, aJavascriptEventName, aExtendedEventName, aUseCapture);
 		
 		this.addEventLink(newEventLink, aGroupName, aDontWarnOnCreation);
 		if(aCreateEvent) {
@@ -154,10 +153,17 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 		return newEventLink;
 	};
 	
+	objectFunctions.linkJavascriptEvent = function(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent) {
+		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::linkJavascriptEvent");
+		//console.log(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent);
+		
+		return this.linkJavascriptEventWithCapture(aEventDispatcher, aJavascriptEventName, aExtendedEventName, false, aGroupName, aDontWarnOnCreation, aCreateEvent);
+	};
+	
 	objectFunctions.activateJavascriptEventLink = function(aName) {
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::activateJavascriptEventLink");
 		//console.log(aName);
-		if(aName === null) {
+		if(!VariableAliases.isSet(aName)) {
 			aName = this._defaultEventLinkGroupName;
 		}
 		
@@ -213,9 +219,10 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	};
 	
 	objectFunctions.getEvent = function(aName, aDontWarnOnCreation) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::getEvent");
+		console.log("com.developedbyme.core.extendedevent.ExtendedEventController::getEvent");
 		var thePerformer;
 		
+		console.log(aName, this._eventPerformers.select(aName), aDontWarnOnCreation);
 		if(this._eventPerformers.select(aName)) {
 			thePerformer = this._eventPerformers.currentSelectedItem;
 		}

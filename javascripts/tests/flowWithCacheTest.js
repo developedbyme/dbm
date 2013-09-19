@@ -20,5 +20,7 @@ dbm.runTempFunction(function() {
 		additionNode._inputValue2.setValue(4);
 		
 		dbm.singletons.dbmFlowManager.updateProperty(additionNode2._outputValue);
+		
+		console.log(additionNode2._outputValue);
 	});
 });

@@ -1,17 +1,19 @@
-dbm.registerClass("com.developedbyme.flow.nodes.data.CachedValueNodes", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.data.CachedValueNodes");
-
+dbm.registerClass("com.developedbyme.flow.nodes.data.CachedValueNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.data.CachedValueNode");
+	
+	var CachedValueNode = dbm.importClass("com.developedbyme.flow.nodes.data.CachedValueNode");
+	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	var CachedValueNodes = dbm.importClass("com.developedbyme.flow.nodes.data.CachedValueNodes");
+	var CircularBuffer = dbm.importClass("com.developedbyme.utils.data.CircularBuffer");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.data.CachedValueNodes::_init");
+		//console.log("com.developedbyme.flow.nodes.data.CachedValueNode::_init");
 		
 		this.superCall();
 		
@@ -36,7 +38,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.data.CachedValueNodes", "com.dev
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.CachedValueNodes::_update");
+		//console.log("com.developedbyme.flow.nodes.math.CachedValueNode::_update");
 		
 		var offset = this._offset.getValueWithoutFlow();
 		
@@ -45,13 +47,13 @@ dbm.registerClass("com.developedbyme.flow.nodes.data.CachedValueNodes", "com.dev
 	};
 	
 	objectFunctions._updateLength = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.CachedValueNodes::_updateLength");
+		//console.log("com.developedbyme.flow.nodes.math.CachedValueNode::_updateLength");
 		
 		this._buffer.setNewData(this._inputValue.getValueWithoutFlow());
 	};
 	
 	objectFunctions._updateLength = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.CachedValueNodes::_updateLength");
+		//console.log("com.developedbyme.flow.nodes.math.CachedValueNode::_updateLength");
 		
 		this._buffer.setLength(this._maxLength.getValueWithoutFlow());
 	};

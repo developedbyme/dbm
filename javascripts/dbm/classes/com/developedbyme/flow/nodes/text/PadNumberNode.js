@@ -3,7 +3,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.text.PadNumberNode", "com.develo
 	
 	var PadNumberNode = dbm.importClass("com.developedbyme.flow.nodes.text.PadNumberNode");
 	
-	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions")
+	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.text.PadNumberNode::_init");

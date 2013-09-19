@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode", "com.d
 		
 		this._objects.addObject(aInputValue, aOutputValue);
 		
-		return 
+		return;
 	};
 	
 	objectFunctions.reset = function() {

@@ -223,6 +223,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._currentDrawingPosition.x = aX;
 		this._currentDrawingPosition.y = aY;
+		
+		return this;
 	};
 	
 	objectFunctions.lineTo = function(aX, aY) {
@@ -242,6 +244,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._currentDrawingPosition.x = aX;
 		this._currentDrawingPosition.y = aY;
+		
+		return this;
 	};
 	
 	objectFunctions.quadraticCurveTo = function(aControlX, aControlY, aX, aY) {
@@ -261,6 +265,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._currentDrawingPosition.x = aX;
 		this._currentDrawingPosition.y = aY;
+		
+		return this;
 	};
 	
 	objectFunctions.bezierCurveTo = function(aControl1X, aControl1Y, aControl2X, aControl2Y, aX, aY) {
@@ -281,12 +287,14 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._currentDrawingPosition.x = aX;
 		this._currentDrawingPosition.y = aY;
+		
+		return this;
 	};
 	
 	objectFunctions.drawCurve = function(aCurve, aStartParameter, aEndParameter) {
 		
-		var aStartParameter = VariableAliases.valueWithDefault(aStartParameter, 0);
-		var aEndParameter = VariableAliases.valueWithDefault(aEndParameter, aCurve.getMaxParameter());
+		aStartParameter = VariableAliases.valueWithDefault(aStartParameter, 0);
+		aEndParameter = VariableAliases.valueWithDefault(aEndParameter, aCurve.getMaxParameter());
 		
 		var currentDrawingLayer = this._getCurrentDrawingLayer();
 		
@@ -306,8 +314,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	
 	objectFunctions.maskCurve = function(aCurve, aStartParameter, aEndParameter) {
 		
-		var aStartParameter = VariableAliases.valueWithDefault(aStartParameter, 0);
-		var aEndParameter = VariableAliases.valueWithDefault(aEndParameter, aCurve.getMaxParameter());
+		aStartParameter = VariableAliases.valueWithDefault(aStartParameter, 0);
+		aEndParameter = VariableAliases.valueWithDefault(aEndParameter, aCurve.getMaxParameter());
 		
 		var currentDrawingLayer = this.getMask();
 		
@@ -330,10 +338,14 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		currentDrawingLayer.getStartPoint(this._currentDrawingPosition);
 		this.stopWorkingOnCurrentPath();
+		
+		return this;
 	};
 	
 	objectFunctions.stopWorkingOnCurrentPath = function() {
 		this._createNewDrawingLayer();
+		
+		return this;
 	};
 	
 	objectFunctions.drawImage = function(aImage) {

@@ -234,7 +234,7 @@ dbm.registerClass("com.developedbyme.gui.video.VideoView", "com.developedbyme.gu
 		//console.log(this, this._selectedUrl, this.getElement().videoWidth, this.getElement().videoHeight);
 		
 		if(this.getExtendedEvent().hasEvent(PlaybackExtendedEventIds.META_DATA_LOADED)) {
-			this.getExtendedEvent().perform(PlaybackExtendedEventIds.META_DATA_LOADED)
+			this.getExtendedEvent().perform(PlaybackExtendedEventIds.META_DATA_LOADED);
 		}
 	};
 	

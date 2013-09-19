@@ -167,7 +167,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 			var dataNamespace = dbm.xmlNamespaces.dbmData;
 			if(currentChild.namespaceURI === dataNamespace) {
 				var linkName = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "name");
-			 	switch(currentChild.localName) {
+				switch(currentChild.localName) {
 					case "link":
 						var linkReference = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "link");
 						this._hierarchy.addItem(TreeStructureItemLink.create(linkName, linkReference), parentPath, aDataObject.getHierarchyItem());
@@ -197,7 +197,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 			var currentChild = currentArray[i];
 			var dataNamespace = dbm.xmlNamespaces.dbmData;
 			if(currentChild.namespaceURI === dataNamespace) {
-			 	switch(currentChild.localName) {
+				switch(currentChild.localName) {
 					case "link":
 					case "fileLink":
 					case "item":

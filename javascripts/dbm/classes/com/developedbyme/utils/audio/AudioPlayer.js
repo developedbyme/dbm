@@ -209,7 +209,7 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		//console.log(this, this._selectedUrl, this.getElement().videoWidth, this.getElement().videoHeight);
 		
 		if(this.getExtendedEvent().hasEvent(PlaybackExtendedEventIds.META_DATA_LOADED)) {
-			this.getExtendedEvent().perform(PlaybackExtendedEventIds.META_DATA_LOADED)
+			this.getExtendedEvent().perform(PlaybackExtendedEventIds.META_DATA_LOADED);
 		}
 	};
 	

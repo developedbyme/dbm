@@ -1,10 +1,11 @@
-dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector", "com.developedbyme.gui.abstract.touch.TouchDetector", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector");
+dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector", "com.developedbyme.gui.abstract.touch.TouchDetector", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector");
 	
-	var OneTouchOrMouseDetector = dbm.importClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector");
+	var TouchOrMouseDetector = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector");
 	
 	var TouchData = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchData");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
 	
 	var PositionFunctions = dbm.importClass("com.developedbyme.utils.htmldom.PositionFunctions");
@@ -16,32 +17,27 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector"
 	staticFunctions._MOUSE_TOUCH_IDENTIFIER = "mouse";
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_init");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector::_init");
 		
 		this.superCall();
 		
-		this._selectionPoint = TouchData.create(ClassReference._MOUSE_TOUCH_IDENTIFIER);
 		this._mouseTouch = null;
 		this._mousePositionNode = null;
 		
-		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.PRESS, CallFunctionCommand.createCommand(this, this._startMouseTouch, []));
-		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.RELEASE, CallFunctionCommand.createCommand(this, this._stopMouseTouch, []));
-		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.RELEASE_OUTSIDE, CallFunctionCommand.createCommand(this, this._stopMouseTouch, []));
-		this.getExtendedEvent().addCommandToEvent(MouseExtendedEventIds.MOVE, CallFunctionCommand.createCommand(this, this._updateMouseTouch, []));
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.PRESS, CallFunctionCommand.createCommand(this, this._startMouseTouch, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.RELEASE, CallFunctionCommand.createCommand(this, this._stopMouseTouch, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.RELEASE_OUTSIDE, CallFunctionCommand.createCommand(this, this._stopMouseTouch, [GetVariableObject.createSelectDataCommand()]));
+		this.getExtendedEvent().addCommandToEvent(MouseExtendedEventIds.MOVE, CallFunctionCommand.createCommand(this, this._updateMouseTouch, [GetVariableObject.createSelectDataCommand()]));
 		
 		return this;
 	};
 	
-	objectFunctions.getSelectionPoint = function() {
-		return this._selectionPoint;
-	};
-	
 	objectFunctions.setElement = function(aElement) {
-		//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::setElement");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector::setElement");
 		
 		this.superCall(aElement);
 		
-		InteractionExtendedEventSetup.addPressWithMoveEvents(this.getExtendedEvent(), aElement, false);
+		InteractionExtendedEventSetup.addPressWithMoveEvents(this.getExtendedEvent(), aElement, false, this._useCapture);
 		
 		this._mousePositionNode = MousePositionNode.create(aElement.ownerDocument);
 		this.addDestroyableObject(this._mousePositionNode);
@@ -69,45 +65,44 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector"
 		return;
 	};
 	
-	objectFunctions._createTouch = function(aIdentifier) {
-		//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_createTouch");
-		//console.log(aIdentifier);
-		var activeTouches = this._activeTouches.getValue();
-		//if(activeTouches.length === 0) { //MEDEBUG: touches are not removed correctly
-			//console.log("Use selection point");
-			this._selectionPoint.id = aIdentifier;
-			return this._selectionPoint;
-		//}
-		return this.superCall(aIdentifier);
-	};
-	
-	objectFunctions._startMouseTouch = function() {
-		console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_startMouseTouch");
+	objectFunctions._startMouseTouch = function(aEvent) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector::_startMouseTouch");
+		
+		this._currentEvent = aEvent;
 		
 		var xPosition = this._mousePositionNode.getProperty("x").getValue();
 		var yPosition = this._mousePositionNode.getProperty("y").getValue();
 		
 		this._mouseTouch = this._startTouch(ClassReference._MOUSE_TOUCH_IDENTIFIER, xPosition, yPosition, 0, 0, 0, 1);
 		
+		this._currentEvent = null;
 	};
 	
-	objectFunctions._stopMouseTouch = function() {
-		console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_stopMouseTouch");
+	objectFunctions._stopMouseTouch = function(aEvent) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector::_stopMouseTouch");
+		
+		this._currentEvent = aEvent;
 		
 		var xPosition = this._mousePositionNode.getProperty("x").getValue();
 		var yPosition = this._mousePositionNode.getProperty("y").getValue();
 		
 		this._stopTouch(ClassReference._MOUSE_TOUCH_IDENTIFIER, xPosition, yPosition, 0, 0, 0, 1);
 		this._mouseTouch = null;
+		
+		this._currentEvent = null;
 	};
 	
-	objectFunctions._updateMouseTouch = function() {
-		console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_updateMouseTouch");
+	objectFunctions._updateMouseTouch = function(aEvent) {
+		console.log("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector::_updateMouseTouch");
+		
+		this._currentEvent = aEvent;
 		
 		var xPosition = this._mousePositionNode.getProperty("x").getValue();
 		var yPosition = this._mousePositionNode.getProperty("y").getValue();
 		
 		this._updateTouch(ClassReference._MOUSE_TOUCH_IDENTIFIER, xPosition, yPosition, 0, 0, 0, 1);
+		
+		this._currentEvent = null;
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
@@ -131,11 +126,11 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector"
 	
 	staticFunctions.create = function(aElement) {
 		
-		var newOneTouchOrMouseDetector = (new OneTouchOrMouseDetector()).init();
+		var newTouchOrMouseDetector = (new TouchOrMouseDetector()).init();
 		
-		newOneTouchOrMouseDetector.setElement(aElement);
-		newOneTouchOrMouseDetector.preventEventDefaults();
+		newTouchOrMouseDetector.setElement(aElement);
+		newTouchOrMouseDetector.preventEventDefaults();
 		
-		return newOneTouchOrMouseDetector;
+		return newTouchOrMouseDetector;
 	};
 });

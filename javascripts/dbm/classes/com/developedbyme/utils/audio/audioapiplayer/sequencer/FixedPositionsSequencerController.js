@@ -73,7 +73,7 @@ dbm.registerClass("com.developedbyme.utils.audio.audioapiplayer.sequencer.FixedP
 			this._notes.setValue(aTrackIndex, i, currentArray[i]);
 		}
 		
-		return this;0
+		return this;
 	};
 	
 	objectFunctions.startPlayingNote = function(aTrackIndex, aPosition, aPitch) {

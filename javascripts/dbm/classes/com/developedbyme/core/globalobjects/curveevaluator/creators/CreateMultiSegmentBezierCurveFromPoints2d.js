@@ -127,6 +127,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 	 */
 	objectFunctions._setupVector = function(aCurrentPoint, aVectorPointingPoint, aOutputVector) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_setupVector");
+		//console.log(aCurrentPoint, aVectorPointingPoint, aOutputVector);
 		aOutputVector.x = aVectorPointingPoint.x-aCurrentPoint.x;
 		aOutputVector.y = aVectorPointingPoint.y-aCurrentPoint.y;
 		var theLength = (1/3)*Math.sqrt(Math.pow(aOutputVector.x, 2) + Math.pow(aOutputVector.y, 2));
@@ -145,6 +146,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 	 */
 	objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aIsRound) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::createCurve");
+		//console.log(aPointsArray, aReturnCurve, aIsRound);
 		this._isCompact = aReturnCurve.isCompact();
 		this._outputArray = aReturnCurve.pointsArray;
 		var currentArray = aPointsArray;

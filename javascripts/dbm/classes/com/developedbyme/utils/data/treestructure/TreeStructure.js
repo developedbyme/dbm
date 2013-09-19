@@ -8,6 +8,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructure");
 	//"use strict";
 	
+	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
+	
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
