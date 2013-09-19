@@ -76,6 +76,7 @@ dbm.runTempFunction(function() {
 		var shirtColor = "#000000";
 		var pantsColor = "#6666FF";
 		var skinColor = "#FF6666";
+		var guitarColor = "#FA8C32";
 		
 		canvasView.getController().getLayer("legs");
 		
@@ -91,11 +92,11 @@ dbm.runTempFunction(function() {
 		headLayer.setPropertyInput("y", centerPositionY-100);
 		headLayer.moveTo(-50, 50).lineTo(-25, 50).quadraticCurveTo(0, 50, 0, 125).quadraticCurveTo(0, 50, 25, 50).lineTo(50, 50).lineTo(50, -50).lineTo(-50, -50).closePath();
 		
-		canvasView.getController().getLayer("arms");
 		canvasView.getController().getLayer("guitar");
+		canvasView.getController().getLayer("arms");
 		
 		var createArm = function(aName, aBaseX, aBaseY, aAimX, aAimY, aUpperLength, aLowerLength, aInversion) {
-			var basePoint = movablePointsController.createPoint(aName + "/base", aBaseX, aBaseY);
+			var basePoint = movablePointsController.createPoint(aName + "/base", aBaseX, aBaseY).lock();
 			var aimPoint = movablePointsController.createPoint(aName + "/aim", aAimX, aAimY);
 			
 			//Positions
@@ -203,7 +204,7 @@ dbm.runTempFunction(function() {
 		};
 		
 		var createLeg = function(aName, aBaseX, aBaseY, aAimX, aAimY, aUpperLength, aLowerLength, aInversion) {
-			var basePoint = movablePointsController.createPoint(aName + "/base", aBaseX, aBaseY);
+			var basePoint = movablePointsController.createPoint(aName + "/base", aBaseX, aBaseY).lock();
 			var aimPoint = movablePointsController.createPoint(aName + "/aim", aAimX, aAimY);
 			
 			//Positions
@@ -328,7 +329,7 @@ dbm.runTempFunction(function() {
 			canvasLayer.setPropertyInput("rotate", aRotation);
 			
 			var baseLayer = canvasView.getController().getLayer(aName+"/base");
-			baseLayer.setFillStyle("#FF0000");
+			baseLayer.setFillStyle(guitarColor);
 			baseLayer.drawCurve(curve);
 			
 			for(var i = 0; i < 5; i++) {
@@ -342,14 +343,14 @@ dbm.runTempFunction(function() {
 		var upperArmLength = 100;
 		var lowerArmLength = 100;
 		
-		createGuitar("guitar", centerPositionX-20, centerPositionY+20, 1.33*0.25*Math.PI);
-		
-		createArm("arms/right", centerPositionX+50, centerPositionY-42, centerPositionX+200, centerPositionY-100, upperArmLength, lowerArmLength, 1);
-		createArm("arms/left", centerPositionX-50, centerPositionY-42, centerPositionX-60, centerPositionY+90, upperArmLength, lowerArmLength, 1);
+		createArm("arms/right", centerPositionX+50, centerPositionY-42, centerPositionX+155, centerPositionY-95, upperArmLength, lowerArmLength, 1);
+		createArm("arms/left", centerPositionX-50, centerPositionY-42, centerPositionX-20, centerPositionY+20, upperArmLength, lowerArmLength, 1);
 		
 		var legLength = 70;
 		createLeg("legs/right", centerPositionX+50-16, centerPositionY+50, centerPositionX+50-16, centerPositionY+50+2*legLength, legLength, legLength, -1);
 		createLeg("legs/left", centerPositionX-50+16, centerPositionY+50, centerPositionX-50+16, centerPositionY+50+2*legLength, legLength, legLength, 1);
+		
+		createGuitar("guitar", centerPositionX-20, centerPositionY+20, 1.33*0.25*Math.PI);
 		
 		canvasView.addToDom();
 		console.log(canvasView);

@@ -219,10 +219,10 @@ dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController"
 	};
 	
 	objectFunctions.getEvent = function(aName, aDontWarnOnCreation) {
-		console.log("com.developedbyme.core.extendedevent.ExtendedEventController::getEvent");
+		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::getEvent");
 		var thePerformer;
 		
-		console.log(aName, this._eventPerformers.select(aName), aDontWarnOnCreation);
+		//console.log(aName, this._eventPerformers.select(aName), aDontWarnOnCreation);
 		if(this._eventPerformers.select(aName)) {
 			thePerformer = this._eventPerformers.currentSelectedItem;
 		}

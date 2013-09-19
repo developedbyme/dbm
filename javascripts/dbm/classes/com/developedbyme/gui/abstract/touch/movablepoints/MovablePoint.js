@@ -29,6 +29,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoi
 		this._addYNode = AdditionNode.create(this._orignalY, this._movedY);
 		this._x = this.createProperty("x", this._addXNode.getProperty("outputValue"));
 		this._y = this.createProperty("y", this._addYNode.getProperty("outputValue"));
+		this._isLocked = this.createProperty("isLocked", false);
 		
 		this._radius = this.createProperty("radius", 50);
 		this._touch = null;
@@ -37,9 +38,21 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoi
 		return this;
 	};
 	
+	objectFunctions.lock = function() {
+		this._isLocked.setValue(true);
+		
+		return this;
+	};
+	
+	objectFunctions.unlock = function() {
+		this._isLocked.setValue(false);
+		
+		return this;
+	};
+	
 	objectFunctions.checkForControlStart = function(aX, aY) {
 		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint::checkForControlStart");
-		if(this._touch === null) {
+		if(this._touch === null && !(this._isLocked.getValue())) {
 			if(Math.sqrt(Math.pow(this._x.getValue()-aX, 2)+Math.pow(this._y.getValue()-aY, 2)) <= this._radius.getValue()) {
 				return true;
 			}
