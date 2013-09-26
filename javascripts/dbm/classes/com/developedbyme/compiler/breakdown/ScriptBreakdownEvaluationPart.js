@@ -44,6 +44,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart::_breakdown");
 		//console.log(this._script.substring(0, 60));
+		//console.log(this._script.substring(this._script.length-60, this._script.length));
 		
 		if(!VariableAliases.isEmptyText(this._script)) {
 			

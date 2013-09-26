@@ -36,8 +36,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 	objectFunctions._addCodeLine = function(aLine, aIsOpen) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::_addCodeLine");
 		//console.log(aLine.substring(0, 60));
+		//console.log(aLine.match(this._startsWithScopeRegExp), this._lastLineIsOpen, aLine.match(this._startsWithScopeRegExp) && this._lastLineIsOpen);
 		
-		if(aLine.match(this._startsWithScopeRegExp) && this._lastLineIsOpen) {
+		if(aLine.match(this._startsWithScopeRegExp) !== null && this._lastLineIsOpen) {
 			this._childBreakdowns[this._childBreakdowns.length-1].appendScript(StringFunctions.trim(aLine));
 		}
 		else {
@@ -82,6 +83,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 				
 				endLinePosition = ScopeFunctions.getScopeStart(this._script, currentPosition, lineEndArray);
 			}
+			
 			if(endLinePosition === -1) {
 				var currentLine = this._script.substring(currentStartPosition, this._script.length);
 				if(!VariableAliases.isEmptyText(currentLine)) {

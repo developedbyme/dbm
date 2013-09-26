@@ -5,6 +5,7 @@ dbm.runTempFunction(function() {
 	var CompileData = dbm.importClass("com.developedbyme.compiler.compiledata.CompileData");
 	
 	dbm.addStartFunction(function() {
+		console.log("startFunction");
 		var compiler = (new DbmCompiler()).init();
 		
 		var compileData = CompileData.create();
@@ -26,6 +27,6 @@ dbm.runTempFunction(function() {
 		
 		compiler.setCompileData(compileData);
 		compiler.setNumberOfFilesBeforeImport(3);
-		compiler.loadForCompile("javascripts/dbm/dbm.js", "javascripts/dbm/setup/defaultDocumentSetup.js", "javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js", "javascripts/dbm/setup/defaultSetup.js");
+		compiler.loadForCompile("javascripts/dbm/dbm.js", "javascripts/dbm/setup/defaultDocumentSetup.js", "javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js", "javascripts/dbm/setup/compiledDefaultSetup.js", "javascripts/tests/inverseKinematicTest.js");
 	});
 });

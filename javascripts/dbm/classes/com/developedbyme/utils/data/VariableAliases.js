@@ -104,7 +104,7 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 			return true;
 		}
 		if(typeof(aVariable) === JavascriptObjectTypes.TYPE_STRING) {
-			return ClassReference.stringIsAlias(aString, ClassReference.NULL_STRINGS);
+			return ClassReference.stringIsAlias(aVariable, ClassReference.NULL_STRINGS);
 		}
 		if(typeof(aVariable) === JavascriptObjectTypes.TYPE_NUMBER) {
 			return isNaN(aVariable);

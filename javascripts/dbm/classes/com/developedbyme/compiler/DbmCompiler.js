@@ -136,7 +136,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	};
 	
 	objectFunctions.compileFiles = function() {
-		//console.log("com.developedbyme.compiler.DbmCompiler::compileFiles");
+		console.log("com.developedbyme.compiler.DbmCompiler::compileFiles");
 		
 		var returnString = "(function(){";
 		
@@ -149,6 +149,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			console.log("compile: " + currentArray[i]);
+			//console.log(this._scriptBreakdowns.getObject(currentArray[i]));
 			var compiledFileCode = this._scriptBreakdowns.getObject(currentArray[i]).compile(compileData);
 			if(i < this._numberOfFilesBeforeImport) {
 				beforeImportCode += compiledFileCode;
@@ -156,7 +157,6 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 			else {
 				code += compiledFileCode;
 			}
-			
 		}
 		
 		returnString += compileData.getCompiledStringsCode();

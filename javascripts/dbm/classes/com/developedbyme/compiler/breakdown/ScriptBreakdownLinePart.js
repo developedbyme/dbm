@@ -61,8 +61,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart::_breakdown");
 		//console.log(this._script.substring(0, 30));
+		//console.log(this._script.substring(this._script.length-30, this._script.length));
 		
-		var scriptWithoutScoop = this._script;
+		var scriptWithoutScope = this._script;
 		
 		var scopeStart = ScopeFunctions.getScopeStart(this._script, 0);
 		if(scopeStart === 0) {
@@ -73,33 +74,36 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 				switch(currentScopeStartType) {
 					case "\"":
 					case "\'":
-						this._childBreakdowns.push(ScriptBreakdownStringPart.create(this, scriptWithoutScoop.substring(1, scriptWithoutScoop.length-1), currentScopeStartType));
+						this._childBreakdowns.push(ScriptBreakdownStringPart.create(this, scriptWithoutScope.substring(1, scriptWithoutScope.length-1), currentScopeStartType));
 						return;
 					case "(":
 						this.setScope(currentScopeStartType, currentScopeEndType);
-						scriptWithoutScoop = StringFunctions.trim(scriptWithoutScoop.substring(1, scriptWithoutScoop.length-1));
+						scriptWithoutScope = StringFunctions.trim(scriptWithoutScope.substring(1, scriptWithoutScope.length-1));
 						break;
 					case "[":
-						this._childBreakdowns.push(ScriptBreakdownLiteralArrayPart.create(this, scriptWithoutScoop.substring(1, scriptWithoutScoop.length-1)));
+						this._childBreakdowns.push(ScriptBreakdownLiteralArrayPart.create(this, scriptWithoutScope.substring(1, scriptWithoutScope.length-1)));
 						return;
 					case "{":
-						this._childBreakdowns.push(ScriptBreakdownLiteralObjectPart.create(this, scriptWithoutScoop.substring(1, scriptWithoutScoop.length-1)));
+						this._childBreakdowns.push(ScriptBreakdownLiteralObjectPart.create(this, scriptWithoutScope.substring(1, scriptWithoutScope.length-1)));
 						return;
 					case "//":
 					case "/*":
-						this._childBreakdowns.push(ScriptBreakdownCommentPart.create(this, scriptWithoutScoop));
+						this._childBreakdowns.push(ScriptBreakdownCommentPart.create(this, scriptWithoutScope));
 						return;
+					default:
+						console.log("Unknown startType " + currentScopeStartType);
+						break;
 				}
 			}
 		}
 		
-		var keywordType = JavascriptLanguageFunctions.startsWithKeyword(scriptWithoutScoop);
+		var keywordType = JavascriptLanguageFunctions.startsWithKeyword(scriptWithoutScope);
 		if(keywordType !== null) {
 			switch(keywordType) {
 				case "if":
 				case "else if":
 				case "else":
-					this._childBreakdowns.push(ScriptBreakdownConditionPart.create(this, keywordType, scriptWithoutScoop));
+					this._childBreakdowns.push(ScriptBreakdownConditionPart.create(this, keywordType, scriptWithoutScope));
 					break;
 				case "do":
 				case "while":
@@ -110,7 +114,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 					break;
 				case "var":
 				case "const":
-					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(keywordType.length, scriptWithoutScoop.length));
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScope.substring(keywordType.length, scriptWithoutScope.length));
 					var currentArray = this._getCommaArray(stringWithoutKeyword);
 					var currentArrayLength = currentArray.length;
 					var currentPosition = 0;
@@ -121,52 +125,52 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart"
 					this._childBreakdowns.push(ScriptBreakdownVarPart.create(this, StringFunctions.trim(stringWithoutKeyword.substring(currentPosition, stringWithoutKeyword.length))));
 					break;
 				case "function":
-					this._childBreakdowns.push(ScriptBreakdownFunctionPart.create(this, scriptWithoutScoop));
+					this._childBreakdowns.push(ScriptBreakdownFunctionPart.create(this, scriptWithoutScope));
 					break;
 				case "switch":
-					this._childBreakdowns.push(ScriptBreakdownSwitchPart.create(this, scriptWithoutScoop));
+					this._childBreakdowns.push(ScriptBreakdownSwitchPart.create(this, scriptWithoutScope));
 					break;
 				case "case":
-					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(4, scriptWithoutScoop.length));
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScope.substring(4, scriptWithoutScope.length));
 					this._childBreakdowns.push(ScriptBreakdownCasePart.create(this, stringWithoutKeyword));
 					break;
 				case "default":
-					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(7, scriptWithoutScoop.length));
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScope.substring(7, scriptWithoutScope.length));
 					this._childBreakdowns.push(ScriptBreakdownDefaultPart.create(this, stringWithoutKeyword));
 					break;
 				case "return":
-					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(6, scriptWithoutScoop.length));
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScope.substring(6, scriptWithoutScope.length));
 					this._childBreakdowns.push(ScriptBreakdownReturnPart.create(this, stringWithoutKeyword));
 					break;
 				case "delete":
-					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(6, scriptWithoutScoop.length));
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScope.substring(6, scriptWithoutScope.length));
 					this._childBreakdowns.push(ScriptBreakdownDeletePart.create(this, stringWithoutKeyword));
 					break;
 				case "continue":
 				case "break":
-					this._childBreakdowns.push(ScriptBreakdownKeywordPart.create(this, scriptWithoutScoop));
+					this._childBreakdowns.push(ScriptBreakdownKeywordPart.create(this, scriptWithoutScope));
 					break;
 				case "try":
-					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(keywordType.length, scriptWithoutScoop.length));
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScope.substring(keywordType.length, scriptWithoutScope.length));
 					this._childBreakdowns.push(ScriptBreakdownTryPart.create(this, stringWithoutKeyword));
 					break;
 				case "finally":
-					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(keywordType.length, scriptWithoutScoop.length));
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScope.substring(keywordType.length, scriptWithoutScope.length));
 					this._childBreakdowns.push(ScriptBreakdownFinallyPart.create(this, stringWithoutKeyword));
 					break;
 				case "catch":
-					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScoop.substring(keywordType.length, scriptWithoutScoop.length));
+					var stringWithoutKeyword = StringFunctions.trim(scriptWithoutScope.substring(keywordType.length, scriptWithoutScope.length));
 					this._childBreakdowns.push(ScriptBreakdownCatchPart.create(this, stringWithoutKeyword));
 					break;
 				default:
 				case "new": //MENOTE: new is broken down in evaluation
-					this._childBreakdowns.push(ScriptBreakdownEvaluationPart.create(this, scriptWithoutScoop));
+					this._childBreakdowns.push(ScriptBreakdownEvaluationPart.create(this, scriptWithoutScope));
 					//this._debugCompileString = this._script;
 					break;
 			}
 		}
 		else {
-			this._childBreakdowns.push(ScriptBreakdownEvaluationPart.create(this, scriptWithoutScoop));
+			this._childBreakdowns.push(ScriptBreakdownEvaluationPart.create(this, scriptWithoutScope));
 			//this._debugCompileString = this._script;
 		}
 	};

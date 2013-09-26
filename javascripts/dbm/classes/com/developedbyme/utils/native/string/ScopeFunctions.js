@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 	
 	staticFunctions.getScopeStart = function(aText, aFromPosition, aScopeStarts) {
 		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getScopeStart");
+		//console.log(aText.substring(aFromPosition), aScopeStarts);
 		
 		aFromPosition = VariableAliases.valueWithDefault(aFromPosition, 0);
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
@@ -31,7 +32,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 	};
 	
 	staticFunctions.splitEvaluation = function(aText, aReturnOperators) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getTypeOfScopeStart");
+		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::splitEvaluation");
 		
 		var returnArray = new Array();
 		
@@ -70,7 +71,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 			if(scopeStartPosition !== -1) {
 				var currentScopeStartType = ClassReference.getTypeOfScopeStart(aText, scopeStartPosition);
 				var currentScopeEndType = ClassReference.getTypeOfScopeEndForScopeStart(currentScopeStartType);
-				if(currentPosition !== scopeStartPosition || aReturnOperators[aReturnOperators.length-1] === null) {
+				if(currentPosition !== scopeStartPosition || (aReturnOperators.length === 0 || aReturnOperators[aReturnOperators.length-1] === null)) {
 					returnArray.push(scopeStartPosition);
 					aReturnOperators.push(null);
 				}

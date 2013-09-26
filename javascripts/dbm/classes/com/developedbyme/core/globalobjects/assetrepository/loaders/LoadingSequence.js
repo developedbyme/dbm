@@ -181,7 +181,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 			}
 		}
 		
-		if(this._loadingLoaders.length === 0 && this._waitingLoaders === 0 && this._status === AssetStatusTypes.LOADING) {
+		//console.log(this._loadingLoaders.length, this._waitingLoaders.length, this._status);
+		if(this._loadingLoaders.length === 0 && this._waitingLoaders.length === 0 && this._status === AssetStatusTypes.LOADING) {
 			this._status = AssetStatusTypes.LOADED;
 			if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.LOADED)) {
 				this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED);
