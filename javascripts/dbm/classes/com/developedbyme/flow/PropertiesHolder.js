@@ -4,6 +4,8 @@ dbm.registerClass("com.developedbyme.flow.PropertiesHolder", "com.developedbyme.
 	
 	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.PropertiesHolder::_init");
 		
@@ -15,7 +17,7 @@ dbm.registerClass("com.developedbyme.flow.PropertiesHolder", "com.developedbyme.
 	staticFunctions.create = function(aProperties) {
 		//console.log("com.developedbyme.flow.PropertiesHolder::create");
 		var newNode = (new ClassReference()).init();
-		if(aProperties !== null) {
+		if(VariableAliases.isSet(aProperties)) {
 			for(var objectName in aProperties) {
 				newNode.createProperty(objectName, aProperties[objectName]);
 			}

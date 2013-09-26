@@ -36,6 +36,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRe
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRectangleNode::_update");
+		//console.log(this);
 		
 		var outputRectangle = this._outputRectangle.getValueWithoutFlow();
 		

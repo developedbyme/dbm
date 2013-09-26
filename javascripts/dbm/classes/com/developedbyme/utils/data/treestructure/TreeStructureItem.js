@@ -177,7 +177,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			this._parent.removeChild(this);
 		}
 		this._parent = aParent;
-		this._root = aParent.getRoot();
+		this._internalFunctionality_setRoot(aParent.getRoot());
 	} //End function setParent
 	
 	/**
@@ -186,7 +186,14 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions._internalFunctionality_setRoot = function(aRoot) {
 		//console.log("setRoot");
 		this._root = aRoot;
-	} //End function setRoot
+		
+		var currentArray = this._children.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			currentObject._internalFunctionality_setRoot(aRoot);
+		}
+	} //End function _internalFunctionality_setRoot
 	
 	/**
 	 * Removes the parent of this item.
@@ -194,8 +201,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions._linkRegistration_removeParent = function() {
 		//console.log("removeParent");
 		this._parent = null;
-		this._root = null;
-	} //End function removeParent
+		this._internalFunctionality_setRoot(null);
+	} //End function _linkRegistration_removeParent
 	
 	/**
 	 * Adds a child.

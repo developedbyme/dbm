@@ -30,6 +30,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		this._root = TreeStructureItem.create("");
 		this._root._internalFunctionality_setRoot(this);
 		
+		this._itemClass = TreeStructureItem;
+		
 		return this;
 	}; //End function _init
 	
@@ -112,7 +114,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		aForce = VariableAliases.valueWithDefault(aForce, false);
 		
 		if(!this.createMissingItems && !aForce) return null;
-		var newItem = TreeStructureItem.create(aName);
+		var newItem = this._itemClass.create(aName);
 		aParent.addChild(newItem);
 		
 		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_CREATED)) {
