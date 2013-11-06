@@ -69,6 +69,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	 */
 	objectFunctions.retain = function() {
 		this._numberOfRetains++;
+		
+		return this;
 	};
 	
 	/**
@@ -78,6 +80,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		if(this._numberOfRetains !== 0) {
 			this._numberOfRetains--;
 		}
+		
+		return this;
 	};
 	
 	/**
@@ -88,6 +92,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		if(this._numberOfRetains === 0) {
 			this.destroy();
 		}
+		
+		return this;
 	};
 	
 	/**
@@ -95,6 +101,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 	 */
 	objectFunctions.forceReleaseAllRetains = function() {
 		this._numberOfRetains = 0;
+		
+		return this;
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {

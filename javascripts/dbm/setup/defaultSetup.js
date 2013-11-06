@@ -72,6 +72,9 @@ dbm.runTempFunction(function() {
 		DefaultTextParsersSetup.setup();
 		DefaultComplexParsersSetup.setup();
 		
+		dbm.singletons.dbmAssetRepository.linkFolderToServer("remotes/localhost", "http://localhost");
+		dbm.singletons.dbmAssetRepository.linkFolderToServer("remotes/dbm", "http://www.developedbyme.com");
+		
 	});
 	
 	dbm.setupLoaderHook();

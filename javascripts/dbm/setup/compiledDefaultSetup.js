@@ -51,5 +51,8 @@ dbm.runTempFunction(function() {
 		CurveEvaluator.getInstance().addEvaluator((new BezierEvaluator()).init());
 		
 		DefaultStatisticsManagerSetup.setup();
+		
+		dbm.singletons.dbmAssetRepository.linkFolderToServer("remotes/localhost", "http://localhost");
+		dbm.singletons.dbmAssetRepository.linkFolderToServer("remotes/dbm", "http://www.developedbyme.com");
 	});
 });

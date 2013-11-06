@@ -323,4 +323,20 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		//METODO: error message
 		return null;
 	};
+	
+	staticFunctions.getAllValuesForAttribute = function(aXml, aAttributeName, aReturnArray) {
+		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getAllValuesForAttribute (static)");
+		
+		var currentAttribute = ClassReference.getAttribute(aXml, aAttributeName);
+		if(currentAttribute !== null) {
+			aReturnArray.push(currentAttribute);
+		}
+		
+		var currentArray = ClassReference.getChilds(aXml);
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentChild = currentArray[i];
+			ClassReference.getAllValuesForAttribute(currentChild, aAttributeName, aReturnArray);
+		}
+	};
 });

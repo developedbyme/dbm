@@ -96,8 +96,9 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	 * Pushes an object to the list.
 	 */
 	objectFunctions.push = function(aObject) {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::push");
 		if(!this._verifyItem(aObject)) return;
-		if(!this._commandQueue.isRunning) {
+		if(!this._commandQueue.isRunning()) {
 			this._itemPreAdded(aObject);
 		}
 		if(!this._isActive || this._canAddItemsWhileActive) {
@@ -125,7 +126,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	 */
 	objectFunctions.unshift = function(aObject) {
 		if(!this._verifyItem(aObject)) return;
-		if(!this._commandQueue.isRunning) {
+		if(!this._commandQueue.isRunning()) {
 			this._itemPreAdded(aObject);
 		}
 		if(!this._isActive || this._canAddItemsWhileActive) {
@@ -179,7 +180,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	 */
 	objectFunctions.addItemAt = function(aObject, aIndex) {
 		if(!this._verifyItem(aObject)) return;
-		if(!this._commandQueue.isRunning) {
+		if(!this._commandQueue.isRunning()) {
 			this._itemPreAdded(aObject);
 		}
 		if(!this._isActive || this._canAddItemsWhileActive) {

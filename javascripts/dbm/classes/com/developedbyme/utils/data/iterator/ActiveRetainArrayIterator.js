@@ -19,11 +19,13 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterat
 	};
 	
 	objectFunctions._itemPreAdded = function(aObject) {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator::_itemPreAdded");
 		aObject.retain();
 		this.superCall(aObject);
 	};
 	
 	objectFunctions._itemRemoved = function(aObject) {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator::_itemRemoved");
 		aObject.releaseAndDestroy();
 		this.superCall(aObject);
 	};

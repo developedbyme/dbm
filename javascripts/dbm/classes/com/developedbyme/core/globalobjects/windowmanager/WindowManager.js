@@ -134,6 +134,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 		return newWindow;
 	};
 	
+	objectFunctions.createWindowFromExisiting = function(aName, aWindow) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::createWindowFromExisiting");
+		
+		var newWindow = (new Window()).init();
+		newWindow.setupFromExistingWindow(aWindow);
+		newWindow.name = aName;
+		this._windows.addObject(aName, newWindow);
+		
+		return newWindow;
+	};
+	
 	objectFunctions._linkRegistration_removeWindow = function(aWindow) {
 		var windowName = this._windows.identifyObject(aWindow);
 		if(windowName !== null) {

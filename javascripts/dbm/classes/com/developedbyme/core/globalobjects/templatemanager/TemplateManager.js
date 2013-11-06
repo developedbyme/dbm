@@ -13,6 +13,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
 	
 	dbm.setClassAsSingleton("dbmTemplateManager");
 	
@@ -44,9 +45,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 	};
 	
 	objectFunctions.createControllersForTemplate = function(aTemplate) {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
+		console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
+		console.log(aTemplate);
 		
 		var templateResult = TemplateResult.create();
+		templateResult.rootElement = aTemplate;
 		
 		var mainController = this._createControllersForTemplateNode(aTemplate, "", templateResult);
 		
@@ -55,6 +58,28 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		}
 		
 		return templateResult;
+	};
+	
+	objectFunctions.createControllersForAsset = function(aPath, aRemoveId, aDocument) {
+		console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForAsset");
+		console.log(aPath, aRemoveId, aDocument);
+		
+		aRemoveId = VariableAliases.valueWithDefault(aRemoveId, true);
+		aDocument = VariableAliases.valueWithDefault(aDocument, dbm.getDocument());
+		
+		console.log(dbm.singletons.dbmAssetRepository.getAsset(aPath), dbm.singletons.dbmAssetRepository.getAssetData(aPath));
+		var template = dbm.singletons.dbmAssetRepository.getAssetData(aPath);
+		if(template === null) {
+			//METODO: error message
+			return null;
+		}
+		
+		var copiedTemplate = DomManipulationFunctions.importNode(template, true, aDocument);
+		if(aRemoveId) {
+			copiedTemplate.id = null;
+		}
+		
+		return this.createControllersForTemplate(copiedTemplate);
 	};
 	
 	objectFunctions._createControllersForTemplateNode = function(aNode, aBasePath, aTemplateResult) {

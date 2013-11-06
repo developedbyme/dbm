@@ -46,26 +46,44 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandBaseObje
 	
 	
 	objectFunctions.retain = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::retain");
 		this._numberOfRetains++;
+		
+		return this;
 	};
 	
 	objectFunctions.release = function() {
 		if(this._numberOfRetains !== 0) {
 			this._numberOfRetains--;
 		}
+		
+		return this;
 	};
 	
 	objectFunctions.releaseAndDestroy = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::releaseAndDestroy");
 		this.release();
 		if(this._numberOfRetains === 0) {
 			this.destroy();
 		}
+		
+		return this;
 	};
 	
 	objectFunctions.forceReleaseAllRetains = function() {
 		this._numberOfRetains = 0;
+		
+		return this;
 	};
 	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("id: " + this.id);
+	};
 	
 	objectFunctions.performDestroy = function() {
 		this.superCall();

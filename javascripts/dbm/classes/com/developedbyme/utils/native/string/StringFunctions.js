@@ -39,4 +39,15 @@ dbm.registerClass("com.developedbyme.utils.native.string.StringFunctions", null,
 		
 		return currentArray;
 	};
+	
+	staticFunctions.splitToCharCodes = function(aString) {
+		var returnArray = new Array(aString.length);
+		var currentArray = returnArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			currentArray[i] = aString.charCodeAt(i);
+		}
+		
+		return returnArray;
+	};
 });

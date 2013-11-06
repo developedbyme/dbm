@@ -84,7 +84,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 		return returnDocument;
 	});
 	
-	staticFunctions.createXmlFromString = (function(aText) {
+	staticFunctions.createXmlFromString = function(aText) {
 		var returnDocument;
 		if (window.DOMParser) {
 			//console.log("standard");
@@ -99,9 +99,9 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 		} 
 		
 		return returnDocument;
-	});
+	};
 	
-	staticFunctions.createStringFromXml = (function XMLtoString(aNode){
+	staticFunctions.createStringFromXml = function(aNode){
 		if(window.XMLSerializer) {
 			//console.log("standard");
 			var serializer = new XMLSerializer();
@@ -111,5 +111,5 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 			//console.log("ie");
 			return aNode.xml;
 		}
-	});
+	};
 });

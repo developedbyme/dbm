@@ -6,6 +6,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_init");
 		
@@ -97,7 +99,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
 		aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
 		newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
-		if(aValue !== null) {
+		if(!VariableAliases.isNull(aValue)) {
 			newExternalVariableProperty.setValue(aValue);
 		}
 		return newExternalVariableProperty;

@@ -64,6 +64,17 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		return CommandStatusTypes.CONTINUE;
 	};
 	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("object: " + this.objectReevaluator);
+		aReturnArray.push("function: " + this.functionReevaluator);
+		aReturnArray.push("arguments: " + this.argumentsArrayReevaluator);
+	};
+	
 	
 	objectFunctions.performDestroy = function() {
 		

@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.LocalStorage", "com.deve
 	/**
 	 * Gets local data
 	 */
-	 staticFunctions.getLocalStorageData = function(aPath) {
+	staticFunctions.getLocalStorageData = function(aPath) {
 		//trace("com.developedbyme.utils.data.LocalStorage.getLocalStorageData");
 		return dbm.getWindow().localStorage.getItem(aPath);
 	}; //End function getLocalStorageData

@@ -155,8 +155,8 @@
 		};
 		
 		dbm.loadFile = function(aFilePath) {
-			//console.log("dbm::loadFile");
-			//console.log(aFilePath);
+			console.log("dbm::loadFile");
+			console.log(aFilePath);
 			
 			var colonPosition = aFilePath.indexOf(":");
 			var questionMarkPosition = aFilePath.indexOf("?");
@@ -195,7 +195,7 @@
 		};
 		
 		dbm._onHtmlLoaded = function(aEvent) {
-			//console.log("dbm._htmlLoaded");
+			//console.log("dbm._onHtmlLoaded");
 			if(dbm._htmlLoaded) return;
 			dbm._htmlLoaded = true;
 			
@@ -203,6 +203,7 @@
 		};
 		
 		dbm._onFileLoaded = function(aEvent) {
+			//console.log("dbm._onFileLoaded");
 			dbm._loadNextFile();
 		};
 		
@@ -227,11 +228,13 @@
 			
 			var currentArray = this._startFunctions;
 			var currentArrayLength = currentArray.length;
+			
+			this._startFunctions = new Array();
+			
 			for(var i = 0; i < currentArrayLength; i++) {
 				currentArray[i].call(window);
 			}
 			
-			this._startFunctions = new Array();
 			this._isStarting = false;
 			
 			if(this._restartAfterStart) {

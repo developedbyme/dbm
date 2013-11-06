@@ -19,6 +19,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.objects.
 		this._controllers = NamedArray.create(false);
 		this.addDestroyableObject(this._controllers);
 		this.mainController = null;
+		this.rootElement = null;
 		
 		return this;
 	};

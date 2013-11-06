@@ -251,4 +251,35 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 		
 		return returnScope;
 	};
+	
+	staticFunctions.getLegacyEscapedTextScope = function(aText, aStartPosition, aStartType, aEndType) {
+		var returnScope = new Object();
+		returnScope.type = aStartType;
+		returnScope.start = aStartPosition;
+		
+		var currentIndex = aStartPosition+aStartType.length;
+		var debugCounter = 0;
+		while(true) {
+			if(debugCounter++ > 10000) {
+				console.log("break getTextScope 1");
+				break;
+			}
+			var endPosition = aText.indexOf(aEndType, currentIndex);
+			if(endPosition === -1) {
+				returnScope.end = -1;
+				break;
+			}
+			checkPosition = endPosition+1;
+			if(aText.charAt(checkPosition) === aStartType) {
+				endPosition = checkPosition;
+			}
+			else {
+				returnScope.end = endPosition;
+				break;
+			}
+			currentIndex = endPosition+aStartType.length;
+		}
+		
+		return returnScope;
+	};
 });

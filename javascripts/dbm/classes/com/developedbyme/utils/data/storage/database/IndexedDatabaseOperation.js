@@ -25,6 +25,8 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 		this._status = 0;
 		this._hasMultipleResults = false;
 		
+		this.getExtendedEvent().addCommandToEvent(IndexedDatabaseEventIds.COMPLETE, CallFunctionCommand.createCommand(this, this._completeCallback, [GetVariableObject.createSelectDataCommand()]));
+		
 		this.getExtendedEvent().addCommandToEvent(IndexedDatabaseEventIds.SUCCESS, CallFunctionCommand.createCommand(this, this._successCallback, [GetVariableObject.createSelectDataCommand()]));
 		this.getExtendedEvent().addCommandToEvent(IndexedDatabaseEventIds.ERROR, CallFunctionCommand.createCommand(this, this._errorCallback, [GetVariableObject.createSelectDataCommand()]));
 		
@@ -34,6 +36,8 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 	objectFunctions.setTransaction = function(aTransaction) {
 		
 		this._transaction = aTransaction;
+		
+		this.getExtendedEvent().linkJavascriptEvent(this._transaction, IndexedDatabaseEventIds.COMPLETE, IndexedDatabaseEventIds.COMPLETE, ClassReference.TRANSACTION_GROUP, true).activate();
 		
 		return this;
 	};
@@ -61,6 +65,12 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 		console.log("com.developedbyme.utils.data.storage.database.IndexedDatabaseOperation::_errorCallback");
 		
 		this._status = -1;
+	};
+	
+	objectFunctions._completeCallback = function(aEvent) {
+		console.log("com.developedbyme.utils.data.storage.database.IndexedDatabaseOperation::_completeCallback");
+		
+		//MENOTE: should this set the
 	};
 	
 	objectFunctions.insert = function(aTableName, aData) {

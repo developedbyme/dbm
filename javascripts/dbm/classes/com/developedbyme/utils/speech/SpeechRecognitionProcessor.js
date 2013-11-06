@@ -45,7 +45,14 @@ dbm.registerClass("com.developedbyme.utils.speech.SpeechRecognitionProcessor", "
 	};
 	
 	objectFunctions._createSpeechRecognition = function() {
-		return new webkitSpeechRecognition();
+		if(window.SpeechRecognition !== undefined) {
+			return new (window.SpeechRecognition)();
+		}
+		else if(window.webkitSpeechRecognition !== undefined) {
+			return new (window.webkitSpeechRecognition)();
+		}
+		//METODO: error message
+		return null;
 	};
 	
 	objectFunctions.setup = function(aLanguage, aContinuous, aInterimResults, aMaxAlternatives) {

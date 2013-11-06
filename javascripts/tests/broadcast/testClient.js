@@ -5,7 +5,10 @@ dbm.runTempFunction(function() {
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
 		
-		var testClient = DbmBroadcastClient.create("test", "default", "http://127.0.0.1/path/to/initialCall");
+		var initialPath = "../assets/tests/broadcast/testClient.xml"; //"http://127.0.0.1/path/to/initialCall";
+		var testClient = DbmBroadcastClient.create("test", "default", initialPath);
+		
+		testClient.start();
 		
 		console.log(testClient);
 	});

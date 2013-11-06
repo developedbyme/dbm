@@ -11,6 +11,8 @@ dbm.registerClass("com.developedbyme.utils.htmldom.DomManipulationFunctions", nu
 	
 	staticFunctions.importNode = (function(aElement, aDeep, aDocument) {
 		//console.log("com.developedbyme.utils.htmldom.DomManipulationFunctions::importNode");
+		//console.log(aElement, aDeep, aDocument);
+		
 		try {
 			return aDocument.importNode(aElement, aDeep);
 		}

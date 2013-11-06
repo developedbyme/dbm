@@ -94,6 +94,7 @@ dbm.runTempFunction(function() {
 		
 		canvasView.getController().getLayer("guitar");
 		canvasView.getController().getLayer("arms");
+		canvasView.addToDom();
 		
 		var createArm = function(aName, aBaseX, aBaseY, aAimX, aAimY, aUpperLength, aLowerLength, aInversion) {
 			var basePoint = movablePointsController.createPoint(aName + "/base", aBaseX, aBaseY).lock();
@@ -109,7 +110,7 @@ dbm.runTempFunction(function() {
 			basePosition.getProperty("display").startUpdating();
 			*/
 		
-			var targetedPosition = DisplayBaseObject.createDiv(dbm.getDocument(), true, {"style": "width: 10px; height: 10px; background-color: #FF0000; position: absolute; left: 0px; top: 0px;"});
+			var targetedPosition = DisplayBaseObject.createDiv(dbm.getDocument(), true, {"style": "width: 20px; height: 20px; border: 2px solid #FF0000; position: absolute; left: -2px; top: -2px;"});
 			targetedPosition.setElementAsTransformed();
 			targetedPosition.setPropertyInput("x", aimPoint.getProperty("x"));
 			targetedPosition.setPropertyInput("y", aimPoint.getProperty("y"));
@@ -217,7 +218,7 @@ dbm.runTempFunction(function() {
 			basePosition.getProperty("display").startUpdating();
 			*/
 		
-			var targetedPosition = DisplayBaseObject.createDiv(dbm.getDocument(), true, {"style": "width: 10px; height: 10px; background-color: #FF0000; position: absolute; left: 0px; top: 0px;"});
+			var targetedPosition = DisplayBaseObject.createDiv(dbm.getDocument(), true, {"style": "width: 20px; height: 20px; border: 2px solid #FF0000; position: absolute; left: -2px; top: -2px;"});
 			targetedPosition.setElementAsTransformed();
 			targetedPosition.setPropertyInput("x", aimPoint.getProperty("x"));
 			targetedPosition.setPropertyInput("y", aimPoint.getProperty("y"));
@@ -352,7 +353,5 @@ dbm.runTempFunction(function() {
 		
 		createGuitar("guitar", centerPositionX-20, centerPositionY+20, 1.33*0.25*Math.PI);
 		
-		canvasView.addToDom();
-		console.log(canvasView);
 	});
 });

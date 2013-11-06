@@ -34,6 +34,8 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 	 */
 	objectFunctions.retain = function() {
 		this._numberOfRetains++;
+		
+		return this;
 	};
 	
 	/**
@@ -43,6 +45,8 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 		if(this._numberOfRetains !== 0) {
 			this._numberOfRetains--;
 		}
+		
+		return this;
 	};
 	
 	/**
@@ -53,6 +57,8 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 		if(this._numberOfRetains === 0) {
 			this.destroy();
 		}
+		
+		return this;
 	};
 	
 	/**
@@ -60,6 +66,8 @@ dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableData
 	 */
 	objectFunctions.forceReleaseAllRetains = function() {
 		this._numberOfRetains = 0;
+		
+		return this;
 	};
 	
 	/**

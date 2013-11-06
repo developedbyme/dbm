@@ -1,0 +1,15 @@
+.inlineBlock {
+	display: inline-block;
+}
+
+.floatLeft {
+	float: left;
+}
+
+.floatRight {
+	float: right;
+}
+
+.clearBoth {
+	clear: both;
+}

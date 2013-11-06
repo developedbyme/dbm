@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	var ImageAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset");
 	var XmlAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset");
 	var TextAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset");
+	var JsonAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.JsonAsset");
 	var AudioAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset");
 	var VideoAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset");
 	var ArrayBufferAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset");
@@ -139,10 +140,32 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	objectFunctions.getAssetData = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::getAssetData");
 		
+		var hashIndex = aPath.indexOf("#");
+		var hashString = null;
+		if(hashIndex >= 0) {
+			hashString = aPath.substring(hashIndex+1, aPath.length);
+			aPath = aPath.substring(0, hashIndex);
+		}
+		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		
 		if(currentItem.data === null) {
 			this._createAssetForTreeStructure(currentItem);
+		}
+		
+		if(hashIndex >= 0) {
+			//console.log(aPath, hashString);
+			//console.log(currentItem.data, currentItem.data instanceof XmlAsset);
+			if(!(currentItem.data instanceof XmlAsset)) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "getAssetDAta", "Asset " + aPath + " is not an xml, can't get hash " + hashString + ".");
+				return null;
+			}
+			var hashItem = this._hierarchy.getItemByPath(hashString, currentItem);
+			
+			hashItem.data = XmlIdElementAsset.create(hashString, currentItem.data);
+			hashItem.retain();
+			
+			currentItem = hashItem;
 		}
 		
 		return currentItem.data.getData();
@@ -172,7 +195,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	objectFunctions.createFileAsset = function(aPath, aFilePath, aType) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::createFileAsset");
 		
-		//METODO
+		var newAsset = this._createAssetOfType(aFilePath, aType);
+		this.addAsset(aPath, newAsset);
+		return newAsset;
 	};
 	
 	objectFunctions.getVideoPath = function(aPath) {
@@ -186,9 +211,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	objectFunctions._createAsset = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::_createAsset");
 		
+		return this._createAssetOfType(aPath, PathFunctions.getFileExtension(aPath));
+	};
+	
+	objectFunctions._createAssetOfType = function(aPath, aType) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::_createAssetOfType");
+		
 		var newAsset = null;
-		var fileExtension = PathFunctions.getFileExtension(aPath);
-		switch(fileExtension) {
+		switch(aType) {
 			case "jpg":
 			case "jpeg":
 			case "gif":
@@ -205,6 +235,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 			case "txt":
 			case "vert":
 			case "frag":
+			case "csv":
 				newAsset = TextAsset.create(aPath);
 				break;
 			case "mp3":
@@ -221,6 +252,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 			case "mid": //METODO: this needs to be registered instead a case
 				newAsset = ArrayBufferAsset.create(aPath);
 				break;
+			case "json":
+				newAsset = JsonAsset.create(aPath);
+				break;
 			case this._pseudoVideoExtension:
 				newAsset = VideoAsset.create(this.getVideoPath(aPath.substring(0, aPath.length-this._pseudoVideoExtension.length-1)));
 				break;
@@ -228,7 +262,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 				newAsset = AudioAsset.create(this.getAudioPath(aPath.substring(0, aPath.length-this._pseudoAudioExtension.length-1)));
 				break;
 			default:
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createAsset", "Unknown file extension " + fileExtension + ".");
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createAssetOfType", "Unknown file extension " + aType + ".");
 				break;
 		}
 		

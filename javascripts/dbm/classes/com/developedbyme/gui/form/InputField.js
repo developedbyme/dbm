@@ -8,6 +8,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
 	staticFunctions._ACTIVE = "active";
 	staticFunctions._INTERNAL_CHANGE = "internalChange";
@@ -55,7 +56,17 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	};
 	
 	objectFunctions.setText = function(aText) {
-		this.getElement().value = this._defaultText;
+		console.log("com.developedbyme.gui.form.InputField::setText");
+		
+		if(aText === "" && this._defaultText !== null) {
+			this._isChangingDefaultText = true;
+			this.getElement().value = this._defaultText;
+			this._isChangingDefaultText = false;
+		}
+		else {
+			this.getElement().value = aText;
+		}
+		this._value.setValue(aText);
 		
 		return this;
 	};
@@ -132,5 +143,27 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	
 	staticFunctions.create = function(aElement, aDefaultText) {
 		return (new InputField()).init().setElement(aElement).setDefaultText(aDefaultText);
+	};
+	
+	staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aDefaultText, aType, aAttributes) {
+		
+		aType = VariableAliases.valueWithDefault(aType, "text");
+		
+		var newNode = (new ClassReference()).init();
+		
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
+		
+		newNode.setElement(htmlCreator.createNode("input", aAttributes));
+		newNode.setDefaultText(aDefaultText);
+		newNode.getElement().type = aType;
+		newNode.setParent(theParent);
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
 	};
 });

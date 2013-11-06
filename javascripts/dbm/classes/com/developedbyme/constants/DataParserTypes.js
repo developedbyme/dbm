@@ -16,4 +16,6 @@ dbm.registerClass("com.developedbyme.constants.DataParserTypes", null, function(
 	//Complex
 	staticFunctions.KEY_VALUE = "keyValue";
 	
+	//Object
+	staticFunctions.STRING_ALIASES = "stringAliases";
 });
