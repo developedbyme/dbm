@@ -75,6 +75,30 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 		return -1;
 	};
 	
+	staticFunctions.removeDuplicates = function(aArray) {
+		if(aArray === null) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "hasDuplicates", "Array is " + aArray + ".");
+			return 0;
+		}
+		var numberOfDuplicates = 0;
+		var currentArray = aArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentData1 = currentArray[i];
+			for(var j = i+1; j < currentArrayLength; j++) {
+				var currentData2 = currentArray[j];
+				if(currentData1 === currentData2) {
+					currentArray.splice(j, 1);
+					currentArrayLength--;
+					j--
+					numberOfDuplicates++;
+				}
+			}
+		}
+		
+		return numberOfDuplicates;
+	};
+	
 	staticFunctions.copyArray = function(aArray) {
 		var currentArray = new Array(aArray.length);
 		var currentArrayLength = currentArray.length;

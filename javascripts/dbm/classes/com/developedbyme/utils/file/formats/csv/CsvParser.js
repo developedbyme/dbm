@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 		
 		this._rawData = null;
 		this._rows = new Array();
+		this._numberOfColumns = 0;
 		
 		return this;
 	};
@@ -46,6 +47,37 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 		return this;
 	};
 	
+	objectFunctions.addColumn = function(aIndex) {
+		var currentArray = this._rows;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentRow = currentArray[i];
+			currentRow.splice(aIndex, 0, "");
+		}
+		
+		this._numberOfColumns++;
+		
+		return this;
+	}
+	
+	objectFunctions.addRow = function(aRow) {
+		this._rows.push(aRow);
+		this._numberOfColumns = Math.max(this._numberOfColumns, aRow.length);
+		
+		return this;
+	};
+	
+	objectFunctions.createRow = function() {
+		var currentArray = new Array(this._numberOfColumns);
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			currentArray[i] = "";
+		}
+		
+		this.addRow(currentArray);
+		
+		return currentArray;
+	};
 	
 	objectFunctions.getRows = function() {
 		return this._rows;
@@ -56,7 +88,35 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 		return this._rows[aIndex];
 	};
 	
+	objectFunctions.findColumnByValue = function(aRowIndex, aSearchValue) {
+		var currentArray = this.getRow(aRowIndex);
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			if(currentArray[i] === aSearchValue) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	objectFunctions.findRowByField = function(aColumnIndex, aSearchValue, aStartIndex, aEndIndex) {
+		
+		aStartIndex = VariableAliases.valueWithDefault(aStartIndex, 0);
+		aEndIndex = VariableAliases.valueWithDefault(aEndIndex, this._rows.length);
+		
+		var currentArray = this._rows;
+		var currentArrayLength = Math.min(currentArray.length, aEndIndex);
+		for(var i = aStartIndex; i < currentArrayLength; i++) {
+			var currentRow = currentArray[i];
+			if(currentRow[aColumnIndex] === aSearchValue) {
+				return i;
+			}
+		}
+		return -1;
+	};
+	
+	objectFunctions.findRowByFieldWithCompareFunction = function(aColumnIndex, aSearchValue, aCompareFunction, aStartIndex, aEndIndex) {
+		//console.log("com.developedbyme.utils.file.formats.csv.CsvParser::findRowByFieldWithCompareFunction");
 		
 		aStartIndex = VariableAliases.valueWithDefault(aStartIndex, 0);
 		aEndIndex = VariableAliases.valueWithDefault(aEndIndex, this._rows.length);
@@ -65,7 +125,7 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 		var currwentArrayLength = Math.min(currentArray.length, aEndIndex);
 		for(var i = aStartIndex; i < aEndIndex; i++) {
 			var currentRow = currentArray[i];
-			if(currentRow[aColumnIndex] === aSearchValue) {
+			if(aCompareFunction(currentRow[aColumnIndex], aSearchValue) === 0) {
 				return i;
 			}
 		}
@@ -127,7 +187,7 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 				}
 				else if(firstRowDelimiter === currentPosition) {
 					currentPosition += this._rowDelimiter.length;
-					this._rows.push(currentRow);
+					this.addRow(currentRow);
 					currentRow = new Array();
 				}
 			}
@@ -141,19 +201,42 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 					var valueData = data.substring(currentPosition, firstRowDelimiter);
 					currentRow.push(valueData);
 					currentPosition = firstRowDelimiter+this._rowDelimiter.length;
-					this._rows.push(currentRow);
+					this.addRow(currentRow);
 					currentRow = new Array();
 				}
 				else {
 					var valueData = data.substring(currentPosition, dataLength);
 					currentRow.push(valueData);
 					currentPosition = dataLength;
-					this._rows.push(currentRow);
+					this.addRow(currentRow);
 					currentRow = null;
 					break;
 				}
 			}
 		}
+	};
+	
+	objectFunctions.encode = function() {
+		var returnString = "";
+		
+		var currentArray = this._rows;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentArray2 = currentArray[i];
+			var currentArray2Length = currentArray2.length;
+			for(var j = 0; j < currentArray2Length; j++) {
+				var currentField = currentArray2[j];
+				if(currentField !== "") {
+					returnString += "\"" + currentField.replace("\"", "\"\"\"") + "\"";
+				}
+				if(j !== currentArray2Length-1) {
+					returnString += ",";
+				}
+			}
+			returnString += "\n";
+		}
+		
+		return returnString;
 	};
 	
 	staticFunctions.create = function(aData, aFieldDelimiter, aRowDelimiter, aStringScope) {

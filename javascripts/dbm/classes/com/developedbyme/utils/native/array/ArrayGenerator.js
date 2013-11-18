@@ -42,4 +42,17 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayGenerator", null, f
 			aReturnArray.push(String.fromCharCode(i));
 		}
 	};
+	
+	staticFunctions.createRange = function(aStartIndex, aEndIndex, aStep, aReturnArray) {
+		for(var i = aStartIndex; i < aEndIndex; i += aStep) {
+			aReturnArray.push(i);
+		}
+	};
+	
+	staticFunctions.createNewRange = function(aStartIndex, aEndIndex, aStep) {
+		aStep = VariableAliases.valueWithDefault(aStep, 1);
+		var returnArray = new Array();
+		ClassReference.createRange(aStartIndex, aEndIndex, aStep, returnArray);
+		return returnArray;
+	};
 });
