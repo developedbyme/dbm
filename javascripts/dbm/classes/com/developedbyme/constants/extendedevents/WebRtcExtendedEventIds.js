@@ -1,0 +1,22 @@
+dbm.registerClass("com.developedbyme.constants.extendedevents.WebRtcExtendedEventIds", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.constants.extendedevents.WebRtcExtendedEventIds");
+	
+	var WebRtcExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.WebRtcExtendedEventIds");
+	
+	staticFunctions.CONNECTED = "conencted";
+	
+	staticFunctions.OFFER_CREATED = "offerCreated";
+	staticFunctions.OFFER_ERROR = "offerError";
+	
+	staticFunctions.ANSWER_CREATED = "answerCreated";
+	staticFunctions.ANSWER_ERROR = "answerError";
+	
+	staticFunctions.LOCAL_DESCRIPTION_SET = "localDescriptionSet";
+	staticFunctions.LOCAL_DESCRIPTION_ERROR = "localDescriptionError";
+	
+	staticFunctions.REMOTE_DESCRIPTION_SET = "remoteDescriptionSet";
+	staticFunctions.REMOTE_DESCRIPTION_ERROR = "remoteDescriptionError";
+	
+	staticFunctions.NEW_ICE_CANDIDATE = "newIceCandidate";
+	staticFunctions.ALL_ICE_CANDIDATES_AVAILABLE = "allIceCandidatesAvailable";
+});

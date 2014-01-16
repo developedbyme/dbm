@@ -7,6 +7,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	var EventListenerFunctions = dbm.importClass("com.developedbyme.utils.native.function.EventListenerFunctions");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_init");
 		
@@ -20,18 +22,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		this._extendedEventName = null;
 		this._useCapture = false;
 		
-		var thisPointer = this;
-		this._eventCallback = function _eventCallback(aEvent) {
-			//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_eventCallback");
-			//console.log(aEvent);
-			//console.log(thisPointer._javascriptEventName);
-			if(thisPointer._performerObject === null) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, thisPointer, "_eventCallback", "Performer object is null.");
-				return true;
-			}
-			thisPointer._performerObject.perform(thisPointer._extendedEventName, aEvent);
-			return true;
-		};
+		this._eventCallback = EventListenerFunctions.createCallbackFunction(this);
 		
 		return this;
 	};
@@ -54,7 +45,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		
 		this._isActive = true;
 		try {
-			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, this._useCapture);
+			EventListenerFunctions.addEventListener(this._eventDispatcher, this._javascriptEventName, this._eventCallback, this._useCapture);
 		}
 		catch(theError) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "activate", "Event listener " + this._javascriptEventName + " couldn't be added to.");
@@ -71,7 +62,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		this._isActive = false;
 		
 		try {
-			this._eventDispatcher.removeEventListener(this._javascriptEventName, this._eventCallback, this._useCapture);
+			EventListenerFunctions.removeEventListener(this._eventDispatcher, this._javascriptEventName, this._eventCallback, this._useCapture);
 		}
 		catch(theError) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "deactivate", "Event listener " + this._javascriptEventName + " couldn't be removed from.");
@@ -84,7 +75,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 	objectFunctions.reactivate = function() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::reactivate");
 		if(this._isActive && this._eventDispatcher !== null) {
-			this._eventDispatcher.addEventListener(this._javascriptEventName, this._eventCallback, this._useCapture);
+			EventListenerFunctions.addEventListener(this._eventDispatcher, this._javascriptEventName, this._eventCallback, this._useCapture);
 		}
 		
 		return this;
@@ -96,6 +87,10 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "c
 		
 		if(this._isActive && this._eventDispatcher !== null) {
 			this.deactivate();
+		}
+		if(this._eventCallback !== null && this._eventCallback._deleteEventCallback !== null) {
+			this._eventCallback._deleteEventCallback();
+			this._eventCallback._deleteEventCallback = null;
 		}
 		
 		this.superCall();

@@ -13,6 +13,8 @@
 	
 	if(dbm.isCreated !== true) {
 		dbm.init = function() {
+			this._environmentName = "browser";
+			
 			this.singletons = new Object();
 			this.xmlNamespaces = new Object();
 			this._specificClassesFolders = new Object();
@@ -36,6 +38,10 @@
 			if(Object.seal !== undefined) {
 				Object.seal(this);
 			}
+		};
+		
+		dbm.getEnvironmentName = function() {
+			return this._environmentName;
 		};
 		
 		dbm.getDocument = function() {

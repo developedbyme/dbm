@@ -55,6 +55,20 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 		return -1;
 	};
 	
+	staticFunctions.removeFromArray = function(aArray, aValue) {
+		if(aArray === null) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "removeFromArray", "Array is " + aArray + ". Can't remove " + aValue + ".");
+			return;
+		}
+		
+		var index = ClassReference.indexOfInArray(aArray, aValue);
+		if(index === -1) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "removeFromArray", "Can't find " + aValue + " in array " + aArray + ".");
+			return;
+		}
+		aArray.splice(index, 1);
+	};
+	
 	staticFunctions.hasDuplicates = function(aArray) {
 		if(aArray === null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "hasDuplicates", "Array is " + aArray + ".");

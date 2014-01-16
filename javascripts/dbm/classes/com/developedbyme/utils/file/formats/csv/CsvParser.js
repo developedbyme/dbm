@@ -3,6 +3,10 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 	
 	var CsvParser = dbm.importClass("com.developedbyme.utils.file.formats.csv.CsvParser");
 	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
 	
@@ -164,8 +168,8 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 		
 		var debugCounter = 0;
 		while(currentPosition < dataLength) {
-			if(debugCounter++ > 100000) {
-				//METODO error message
+			if(debugCounter++ > 100000000) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "parse", "Loop has gone on for too long.");
 				break;
 			}
 			

@@ -20,7 +20,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ConditionNode", "com.devel
 		this._inputValue2 = this.createProperty("inputValue2", 0);
 		this._outputValue = this.createProperty("outputValue", 1);
 		
-		this.createUpdateFunctionWithArguments("default", ConditionEvaluation.evaluateCondition, [this._conditionType, this._inputValue1, this._inputValue2], [this._outputValue]);
+		this.createUpdateFunctionWithArguments("default", ConditionEvaluation.evaluateCondition, [this._inputValue1, this._conditionType, this._inputValue2], [this._outputValue]);
 		
 		return this;
 	};

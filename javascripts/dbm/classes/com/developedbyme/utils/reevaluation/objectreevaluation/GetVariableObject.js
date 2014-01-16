@@ -127,4 +127,18 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		
 		return newCommand;
 	};
+	
+	/**
+	 * Creates a command that gets an argument of an event data.
+	 * 
+	 * @return	The new command.
+	 */
+	staticFunctions.createSelectMultipleArgumentDataCommand = function(aIndex) {
+		var newCommand = (new GetVariableObject()).init();
+		
+		newCommand.objectReevaluator = ClassReference.createSelectDataCommand();
+		newCommand.propertyNameReevaluator = StaticVariableObject.createReevaluationObject(aIndex);
+		
+		return newCommand;
+	};
 });
