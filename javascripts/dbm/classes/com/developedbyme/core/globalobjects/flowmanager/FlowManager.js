@@ -36,6 +36,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	};
 	
 	objectFunctions.increaseFlowUpdateNumber = function() {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::increaseFlowUpdateNumber");
 		this._flowUpdateNumber++;
 		return this._flowUpdateNumber;
 	};
