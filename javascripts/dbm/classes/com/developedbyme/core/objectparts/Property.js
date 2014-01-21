@@ -37,6 +37,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._isUpdating = false;
 		this._mustUpdate = true;
 		
+		this._cachedDependentNodeChains = null;
+		
 		return this;
 	};
 	
@@ -360,6 +362,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	objectFunctions.fillWithAllOutputConnections = function fillWithCleanOutputConnections(aReturnArray) {
+		console.log("com.developedbyme.core.objectparts.Property::fillWithAllOutputConnections");
+		
 		var currentArray = this._outputConnections;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
@@ -371,7 +375,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
-	objectFunctions.setAsDirty = function setAsDirty() {
+	objectFunctions.setAsDirty = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::setAsDirty");
 		//console.log(this.name);
 		this.setStatus(FlowStatusTypes.NEEDS_UPDATE);
@@ -379,20 +383,33 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.setDependentConnectionsAsDirty();
 	};
 	
-	objectFunctions.setDependentConnectionsAsDirty = function setDependentConnectionsAsDirty() {
+	objectFunctions.setDependentConnectionsAsDirty = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::setDependentConnectionsAsDirty");
+		//console.log(this, this._cachedDependentNodeChains);
 		
-		dbm.singletons.dbmFlowManager.setDependentConnectionsAsDirty(this);
+		if(this._cachedDependentNodeChains !== null) {
+			dbm.singletons.dbmFlowManager.setUpdateChainsAsDirty(this._cachedDependentNodeChains);
+		}
+		else {
+			dbm.singletons.dbmFlowManager.setDependentConnectionsAsDirty(this);
+		}
 	};
 	
-	objectFunctions._toString_getAttributes = function _toString_getAttributes(aReturnArray) {
+	objectFunctions.setCachedDependentNodeChains = function(aNodeChains) {
+		console.log("com.developedbyme.core.objectparts.Property::setCachedDependentNodeChains");
+		console.log(this, aNodeChains);
+		
+		this._cachedDependentNodeChains = aNodeChains;
+	};
+	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("name: " + this.name);
 		aReturnArray.push("value: " + this._performGetValue());
 	};
 	
-	objectFunctions.performDestroy = function performDestroy() {
+	objectFunctions.performDestroy = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::performDestroy");
 		//console.log(this.toString());
 		

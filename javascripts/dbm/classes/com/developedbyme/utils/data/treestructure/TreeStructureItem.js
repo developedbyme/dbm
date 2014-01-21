@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		this._attributes = null;
 		
 		return this;
-	} //End function _init
+	}; //End function _init
 	
 	/**
 	 * Gets the name of the item.
@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.getName = function() {
 		//console.log("getName");
 		return this._name;
-	} //End function getName
+	}; //End function getName
 	
 	/**
 	 * Sets the name of the item.
@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		else {
 			this._linkRegistration_setName(aName);
 		}
-	} //End function set name
+	}; //End function set name
 	
 	objectFunctions.getAttribute = function(aName) {
 		if(this._attributes === null) {
@@ -107,7 +107,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			currentItem = currentItem.getParent();
 		}
 		return returnArray.join("/");
-	} //End function getPath
+	}; //End function getPath
 	
 	/**
 	 * Gets the type of the item.
@@ -115,7 +115,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.getType = function() {
 		//console.log("getType");
 		return this._type;
-	} //End function getType
+	}; //End function getType
 	
 	/**
 	 * Gets the parent of this item.
@@ -123,7 +123,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.getParent = function() {
 		//console.log("getParent");
 		return this._parent;
-	} //End function getParent
+	}; //End function getParent
 	
 	/**
 	 * Gets the root of this tree structure.
@@ -131,7 +131,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.getRoot = function() {
 		//console.log("getRoot");
 		return this._root;
-	} //End function getRoot
+	}; //End function getRoot
 	
 	/**
 	 * Gets the item is a link or not
@@ -139,7 +139,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.isLink = function() {
 		//console.log("isLink");
 		return (this._type === TreeStructureItemTypes.LINK);
-	} //End function isLink
+	}; //End function isLink
 	
 	/**
 	 * Gets the names of the childs.
@@ -147,7 +147,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.getChildNames = function() {
 		//console.log("getChildNames");
 		return this._children.getNamesArray();
-	} //End function getChildNames
+	}; //End function getChildNames
 	
 	/**
 	 * Gets the children.
@@ -155,7 +155,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.getChildren = function() {
 		//console.log("getChildren");
 		return this._children.getObjectsArray();
-	} //End function getChildren
+	}; //End function getChildren
 	
 	
 	/**
@@ -166,7 +166,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		this._name = aName;
 		
 		return this;
-	} //End function setName
+	}; //End function setName
 	
 	/**
 	 * Sets the parent of this item.
@@ -178,7 +178,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		}
 		this._parent = aParent;
 		this._internalFunctionality_setRoot(aParent.getRoot());
-	} //End function setParent
+	}; //End function setParent
 	
 	/**
 	 * Sets the root
@@ -193,7 +193,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			var currentObject = currentArray[i];
 			currentObject._internalFunctionality_setRoot(aRoot);
 		}
-	} //End function _internalFunctionality_setRoot
+	}; //End function _internalFunctionality_setRoot
 	
 	/**
 	 * Removes the parent of this item.
@@ -202,7 +202,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		//console.log("removeParent");
 		this._parent = null;
 		this._internalFunctionality_setRoot(null);
-	} //End function _linkRegistration_removeParent
+	}; //End function _linkRegistration_removeParent
 	
 	/**
 	 * Adds a child.
@@ -218,7 +218,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			this._children.removeObject(childName);
 		}
 		this._children.addObject(childName, aItem);
-	} //End function addChild
+	}; //End function addChild
 	
 	/**
 	 * Removes a child.
@@ -231,7 +231,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			aItem.releaseAndDestroy();
 			this._children.removeObject(childName);
 		}
-	} //End function removeChild
+	}; //End function removeChild
 	
 	/**
 	 * Changes the name of a child.
@@ -246,7 +246,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			this._children.addObject(aNewName, aItem);
 			
 		}
-	} //End function changeChildName
+	}; //End function changeChildName
 	
 	/**
 	 * Gets a child by it's name.
@@ -257,7 +257,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			return this._children.currentSelectedItem;
 		}
 		return null;
-	} //End function getChildByName
+	}; //End function getChildByName
 	
 	/**
 	 * Resolves a path from this item.
@@ -265,7 +265,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	objectFunctions.resolvePath = function(aPath) {
 		//console.log("resolvePath");
 		return aPath;
-	} //End function resolvePath
+	}; //End function resolvePath
 	
 	/**
 	 * Traces out the full structure.
@@ -277,7 +277,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		var newTabString = aTabString + " ";
 		
 		this.debugTraceChildren(newTabString, aResolveLinksLevel);
-	} //End function debugTraceStructure
+	}; //End function debugTraceStructure
 	
 	/**
 	 * Traces out the full structure.
@@ -290,7 +290,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			var currentChild = currentArray[i];
 			currentChild.debugTraceStructure(aTabString, aResolveLinksLevel);
 		}
-	} //End function debugTraceChildren
+	}; //End function debugTraceChildren
 	
 	/**
 	 * Gets the parameters for this class. Part of the toString function.

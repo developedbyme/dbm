@@ -27,6 +27,7 @@ dbm.runTempFunction(function() {
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
+	var UpdateManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.setup.UpdateManagerDefaultSetup");
 	var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
 	var DefaultBasicClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultBasicClassShortcutSetup");
 	var DefaultWorkspaceClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultWorkspaceClassShortcutSetup");
@@ -42,7 +43,9 @@ dbm.runTempFunction(function() {
 		ErrorManagerDefaultSetup.setup();
 		InterpolationDefaultSetup.setup();
 		
+		UpdateManagerDefaultSetup.setup();
 		UpdateManager.getInstance().start();
+		
 		FlowManager.getInstance().start();
 		AnimationManager.getInstance().setupDefaultPlayback();
 		AnimationManager.getInstance().start();

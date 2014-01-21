@@ -29,4 +29,30 @@ dbm.registerClass("com.developedbyme.utils.native.function.FunctionFunctions", n
 		
 		return returnFunction;
 	};
+	
+	staticFunctions.createScopedFunction = function(aObject, aFunction) {
+		var thisPointer = aObject;
+		var thisFunction = aFunction;
+		var newScopedFunction = function _scopedFunction() {
+			return thisFunction.call(thisPointer);
+		};
+		newScopedFunction.destroy = function() {
+			thisPointer = null;
+			thisFunction = null;
+		};
+		return newScopedFunction;
+	};
+	
+	staticFunctions.createScopedFunctionWithArguments = function(aObject, aFunction) {
+		var thisPointer = aObject;
+		var thisFunction = aFunction;
+		var newScopedFunction = function _scopedFunction(/* ... arguments */) {
+			return thisFunction.apply(thisPointer, arguments);
+		};
+		newScopedFunction.destroy = function() {
+			thisPointer = null;
+			thisFunction = null;
+		};
+		return newScopedFunction;
+	};
 });

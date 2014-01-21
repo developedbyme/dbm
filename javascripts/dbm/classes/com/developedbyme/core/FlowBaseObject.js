@@ -22,8 +22,9 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		
 		this.superCall();
 		
+		this.__nodeId = (dbm.singletons.dbmIdManager) ? dbm.singletons.dbmIdManager.getNewId(this.__className) : this.__className;
 		this._objectProperty = ObjectProperty.create(this);
-		this._objectProperty.name = this.__className + "::object(o)";
+		this._objectProperty.name = this.__nodeId + "::object(o)";
 		this.addDestroyableObject(this._objectProperty);
 		this._properties = (new NamedArray()).init();
 		this._properties.ownsObjects = true;
@@ -41,21 +42,21 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	
 	objectFunctions.createUpdateFunction = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunction.create(this, aUpdateFunction, aInputsArray, aOutputsArray);
-		newUpdateFunction.name = this.__className + "::" + aName + "(f)";
+		newUpdateFunction.name = this.__nodeId + "::" + aName + "(f)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
 	};
 	
 	objectFunctions.createUpdateFunctionWithArguments = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunctionWithArguments.create(this, aUpdateFunction, aInputsArray, aOutputsArray);
-		newUpdateFunction.name = this.__className + "::" + aName + "(f)";
+		newUpdateFunction.name = this.__nodeId + "::" + aName + "(f)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
 	};
 	
 	objectFunctions.createGhostUpdateFunction = function(aName, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunction.createGhostFunction(aInputsArray, aOutputsArray);
-		newUpdateFunction.name = this.__className + "::" + aName + "(gf)";
+		newUpdateFunction.name = this.__nodeId + "::" + aName + "(gf)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
 	};
@@ -64,7 +65,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		//console.log("com.developedbyme.core.FlowBaseObject::createProperty");
 		//console.log(aName, aValue);
 		var newProperty = Property.create(this._objectProperty, aValue);
-		newProperty.name = this.__className + "::" + aName;
+		newProperty.name = this.__nodeId + "::" + aName;
 		this._properties.addObject(aName, newProperty);
 		return newProperty;
 	};
@@ -72,7 +73,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	objectFunctions.addProperty = function(aName, aProperty) {
 		//console.log("com.developedbyme.core.FlowBaseObject::addProperty");
 		//console.log(aName, aProperty);
-		aProperty.name = this.__className + "::" + aName;
+		aProperty.name = this.__nodeId + "::" + aName;
 		this._properties.addObject(aName, aProperty);
 		//console.log("//com.developedbyme.core.FlowBaseObject::addProperty");
 		return aProperty;
@@ -81,7 +82,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	objectFunctions.createGhostProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createGhostProperty");
 		var newProperty = GhostProperty.create(this._objectProperty);
-		newProperty.name = this.__className + "::" + aName + "(g)";
+		newProperty.name = this.__nodeId + "::" + aName + "(g)";
 		this._properties.addObject(aName, newProperty);
 		return newProperty;
 	};

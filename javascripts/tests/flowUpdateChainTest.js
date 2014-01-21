@@ -33,7 +33,9 @@ dbm.runTempFunction(function() {
 		
 		console.log(dbm.singletons.dbmAnimationManager.globalTimeProperty);
 		
-		var repeatedRangeNode = RepeadedRange.create(dbm.singletons.dbmAnimationManager.globalTimeProperty, 0, animationTime+1);
+		var originalTimeProperty = dbm.singletons.dbmAnimationManager.globalTimeProperty;
+		
+		var repeatedRangeNode = RepeadedRange.create(originalTimeProperty, 0, animationTime+1);
 		dbm.singletons.dbmAnimationManager.globalTimeProperty = repeatedRangeNode.getProperty("outputValue");
 		
 		//Center of page
@@ -77,7 +79,7 @@ dbm.runTempFunction(function() {
 		document.body.appendChild(newNode);
 			
 		var placeElementNode = PlaceElementNode.create(newNode, boxCenterOffsetX.getProperty("outputValue"), boxCenterOffsetY.getProperty("outputValue"), 0, 50, 50);
-		placeElementNode.getProperty("display").startUpdating();
+		//placeElementNode.getProperty("display").startUpdating();
 		
 		/*
 		var additionNode = (new AdditionNode()).init();
@@ -95,14 +97,18 @@ dbm.runTempFunction(function() {
 		//dbm.singletons.dbmFlowManager.updateProperty(printTextNode.getProperty("display"));
 		*/
 		
-		
+		var timeUpdateProperty = dbm.singletons.dbmAnimationManager._globalTimeNode.getProperty("time");
 		
 		var flowUpdateChains = FlowUpdateChainCreator.createAllChainsForOutputConnection(placeElementNode.getProperty("display"));
 		console.log(flowUpdateChains);
 		
+		var flowUpdateChains2 = FlowUpdateChainCreator.createAllChainsForInputConnection(timeUpdateProperty);
+		console.log(flowUpdateChains2);
+		
+		timeUpdateProperty.setCachedDependentNodeChains(flowUpdateChains2);
 		var flowUpdater = FlowUpdater.create(flowUpdateChains);
-		//flowUpdater.update();
-		//dbm.singletons.dbmUpdateManager.addUpdater(flowUpdater, "updateFlow");
+		flowUpdater.update();
+		dbm.singletons.dbmUpdateManager.addUpdater(flowUpdater, "updateFlow");
 		
 		
 	});

@@ -78,8 +78,41 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 		this.superCall(aReturnArray);
 	};
 	
+	objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllOutputConnections");
+		//console.log(this._isOutput, this._objectProperties);
+		
+		if(!this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				aReturnArray.push(currentObject);
+			}
+		}
+		else {
+			this.superCall(aReturnArray);
+		}
+	};
+	
+	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllInputConnections");
+		
+		if(this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				aReturnArray.push(currentObject);
+			}
+		}
+		else {
+			this.superCall(aReturnArray);
+		}
+	};
+	
 	objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.core.objectparts.Property::performDestroy");
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
 		//console.log(this.toString());
 		
 		if(this._objectProperties !== null) {
@@ -93,7 +126,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 		}
 		
 		this.superCall();
-		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
+		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

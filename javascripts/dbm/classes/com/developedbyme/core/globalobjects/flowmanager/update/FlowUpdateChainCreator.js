@@ -14,23 +14,39 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
-	staticFunctions.createChainForConnection = function(aConnection, aOutputConnection) {
-		return FlowUpdateChain.create().setOutputConnection(aOutputConnection).addConnection(aConnection);
+	staticFunctions.createChainForConnection = function(aConnection, aInputConnection, aOutputConnection) {
+		return FlowUpdateChain.create().setInputConnection(aInputConnection).setOutputConnection(aOutputConnection).addConnection(aConnection);
 	};
 	
-	staticFunctions.createChainsForConnections = function(aConnections, aOutputConnection, aOutputArray) {
+	staticFunctions.createChainsForConnections = function(aConnections, aInputConnection, aOutputConnection, aOutputArray) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::createChainsForConnections");
 		//console.log(aConnections, aOutputConnection, aOutputArray);
 		
 		var currentArray = aConnections;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			aOutputArray.push(ClassReference.createChainForConnection(currentArray[i], aOutputConnection));
+			aOutputArray.push(ClassReference.createChainForConnection(currentArray[i], aInputConnection, aOutputConnection));
 		}
 	};
 	
+	staticFunctions.doesInputAlreadyExistsInChainArray = function(aArray, aInputConnection, aEndNumber) {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::doesInputAlreadyExistsInChainArray");
+		
+		var currentArrayLength = aArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			//console.log(aArray[i].inputConnection === aInputConnection, aArray[i].inputConnection, aInputConnection);
+			if(aArray[i].inputConnection === aInputConnection) {
+				return true;
+			}
+		}
+		return false;
+	};
+	
 	staticFunctions.doesOutputAlreadyExistsInChainArray = function(aArray, aOutputConnection, aEndNumber) {
-		for(var i = 0; i < aEndNumber; i++) {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::doesOutputAlreadyExistsInChainArray");
+		
+		var currentArrayLength = aArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
 			if(aArray[i].outputConnection === aOutputConnection) {
 				return true;
 			}
@@ -40,6 +56,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 	
 	staticFunctions._removeChainFromUnsortedArray = function(aArray, aChain) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::_removeChainFromUnsortedArray");
+		//console.log(aArray, aChain);
 		
 		var count = 0;
 		
@@ -49,33 +66,52 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 			var currentChain = currentArray[i];
 			
 			if(currentChain === aChain) {
+				console.log("+++", i, aChain);
 				currentArray.splice(i, 1);
 				i--;
 				currentArrayLength--;
 			}
 			else if(currentChain.outputConnection === aChain.outputConnection) {
+				if(aChain.outputConnection !== null) console.log("+", i, aChain);
 				count++;
 			}
 		}
 		
-		return count;
+		return (aChain.outputConnection !== null) ? count : -1;
 	};
 	
 	staticFunctions.createAllChainsForOutputConnection = function(aConnection) {
-		
-		var sortedArray = new Array();
 		var unsortedArray = new Array(1);
-		unsortedArray[0] = ClassReference.createChainForConnection(aConnection, null);
+		unsortedArray[0] = ClassReference.createChainForConnection(aConnection, null, null);
+		return ClassReference._createAllInputChains(unsortedArray);
+	};
+	
+	staticFunctions.createAllChainsForMultipleOutputConnections = function(aConnections) {
+		var unsortedArray = new Array();
+		ClassReference.createChainForConnection(aConnections, null, null, unsortedArray);
+		return ClassReference._createAllInputChains(unsortedArray);
+	};
+	
+	staticFunctions.createAllChainsForInputConnection = function(aConnection) {
+		var unsortedArray = new Array(1);
+		unsortedArray[0] = ClassReference.createChainForConnection(aConnection, null, null);
+		return ClassReference._createAllOutputChains(unsortedArray);
+	};
+	
+	staticFunctions._createAllInputChains = function(aStartChainsArray) {
+		var sortedArray = new Array();
+		var unsortedArray = aStartChainsArray;
 		
 		var currentArray = unsortedArray;
-		for(var i = 0; i < currentArray.length; i++) { //MENOTE: the array switches length
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) { //MENOTE: the array switches length
 			var currentChain = currentArray[i];
 			var currentArray2 = currentChain.connections;
 			var currentConnection = currentArray2[0];
 			var debugCounter = 0;
 			while(true) {
 				if(debugCounter++ > 10000) {
-					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[FlowUpdateChainCreator]", "createAllChainsForOutputConnection", "Loop has run for too long.");
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[FlowUpdateChainCreator]", "_createAllInputChains", "Loop has run for too long.");
 					break;
 				}
 				var currentInputConnections = new Array();
@@ -87,8 +123,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 					currentInputConnections[0].fillWithAllOutputConnections(currentOutputConnections);
 					if(currentOutputConnections.length > 1) {
 						currentChain.setInputConnection(currentConnection);
-						if(!ClassReference.doesOutputAlreadyExistsInChainArray(currentArray, currentConnection, i)) {
-							currentArray.push(ClassReference.createChainForConnection(currentInputConnections[0], currentConnection));
+						if(!ClassReference.doesOutputAlreadyExistsInChainArray(currentArray, currentConnection)) {
+							currentArray.push(ClassReference.createChainForConnection(currentInputConnections[0], null, currentConnection));
+							currentArrayLength++;
 						}
 					}
 					else {
@@ -99,8 +136,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 				}
 				else if(currentInputConnectionsLength > 1) {
 					currentChain.setInputConnection(currentConnection);
-					if(!ClassReference.doesOutputAlreadyExistsInChainArray(currentArray, currentConnection, i)) {
-						ClassReference.createChainsForConnections(currentInputConnections, currentConnection, currentArray);
+					if(!ClassReference.doesOutputAlreadyExistsInChainArray(currentArray, currentConnection)) {
+						ClassReference.createChainsForConnections(currentInputConnections, null, currentConnection, currentArray);
+						currentArrayLength = currentArray.length;
 					}
 				}
 				else {
@@ -110,24 +148,101 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 			}
 		}
 		
-		var currentArray = sortedArray;
-		var currentArrayLength = unsortedArray.length; //MENOTE: that's right, take the length from the unsorted while working on the sorted
-		var currentArray2 = unsortedArray;
-		var currentArray2Length = unsortedArray.length;
+		ClassReference._sortChains(sortedArray, unsortedArray);
+		
+		return sortedArray;
+	};
+	
+	staticFunctions._createAllOutputChains = function(aStartChainsArray) {
+		var sortedArray = new Array();
+		var unsortedArray = aStartChainsArray;
+		
+		var currentArray = unsortedArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			sortedArray.push(currentArray[i]);
+		}
+		for(var i = 0; i < currentArrayLength; i++) { //MENOTE: the array switches length
+			var currentChain = currentArray[i];
+			var currentArray2 = currentChain.connections;
+			var currentConnection = currentArray2[0];
+			//if(currentChain.inputConnection !== null) {
+			//	currentArray2.push(currentChain.inputConnection);
+			//}
+			var debugCounter = 0;
+			while(true) {
+				//console.log("*********", currentConnection.name);
+				if(debugCounter++ > 10000) {
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[FlowUpdateChainCreator]", "_createAllOutputChains", "Loop has run for too long.");
+					break;
+				}
+				var currentOutputConnections = new Array();
+				currentConnection.fillWithAllOutputConnections(currentOutputConnections);
+				var currentOutputConnectionsLength = currentOutputConnections.length;
+				if(currentOutputConnectionsLength === 1) {
+					
+					var currentInputConnections = new Array();
+					currentOutputConnections[0].fillWithAllInputConnections(currentInputConnections);
+					if(currentInputConnections.length > 1) {
+						//currentArray2.shift();
+						currentChain.setOutputConnection(currentOutputConnections[0]);
+						if(!ClassReference.doesInputAlreadyExistsInChainArray(currentArray, currentOutputConnections[0])) {
+							currentArray.push(ClassReference.createChainForConnection(currentOutputConnections[0], currentOutputConnections[0], null));
+							currentArrayLength++;
+						}
+					}
+					else {
+						currentConnection = currentOutputConnections[0];
+						currentArray2.unshift(currentConnection);
+						continue;
+					}
+				}
+				else if(currentOutputConnectionsLength > 1) {
+					//currentArray2.shift();
+					currentChain.setOutputConnection(currentConnection);
+					if(!ClassReference.doesInputAlreadyExistsInChainArray(currentArray, currentConnection)) {
+						ClassReference.createChainsForConnections(currentOutputConnections, currentConnection, null, currentArray);
+						currentArrayLength = currentArray.length;
+					}
+				}
+				else {
+					//MENOTE: do nothing
+				}
+				break;
+			}
+		}
+		
+		ClassReference._sortChains(sortedArray, unsortedArray);
+		
+		return sortedArray;
+	};
+	
+	staticFunctions._sortChains = function(aSortedArray, aUnsortedArray) {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::_sortChains");
+		//console.log(aSortedArray, aUnsortedArray);
+		
+		var currentArray = aSortedArray;
+		var currentArrayLength = aUnsortedArray.length; //MENOTE: that's right, take the length from the unsorted while working on the sorted
+		var currentArray2 = aUnsortedArray;
+		var currentArray2Length = aUnsortedArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var sortedChain = currentArray[i];
+			console.log(i, currentArray.length, (sortedChain.inputConnection) ? sortedChain.inputConnection.name : "-");
 			var remainingOutputConnections = ClassReference._removeChainFromUnsortedArray(currentArray2, sortedChain);
 			currentArray2Length--;
-			if(remainingOutputConnections === 0) {
-				for(var j = 0; j < currentArray2Length; j++) {
-					var unsortedChain = currentArray2[j];
-					if(unsortedChain.inputConnection === sortedChain.outputConnection) {
-						currentArray.push(unsortedChain);
+			console.log(">", remainingOutputConnections);
+			if(sortedChain.outputConnection !== null) {
+				console.log(sortedChain.outputConnection.name);
+				if(remainingOutputConnections === 0) {
+					for(var j = 0; j < currentArray2Length; j++) {
+						var unsortedChain = currentArray2[j];
+						if(unsortedChain.inputConnection === sortedChain.outputConnection) {
+							console.log(">>>", unsortedChain);
+							currentArray.push(unsortedChain);
+						}
 					}
 				}
 			}
 		}
-		
-		return sortedArray;
 	};
 });

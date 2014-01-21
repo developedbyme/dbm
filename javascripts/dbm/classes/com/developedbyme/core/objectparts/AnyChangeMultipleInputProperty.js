@@ -115,6 +115,23 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 		}
 	};
 	
+	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::fillWithAllInputConnections");
+		
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentConnection = currentArray[i];
+			if(currentConnection !== null) {
+				aReturnArray.push(currentConnection);
+			}
+		}
+		
+		if(this._objectInputConnection !== null && !this._objectInputConnection.isOutput()) {
+			aReturnArray.push(this._objectInputConnection);
+		}
+	};
+	
 	objectFunctions.performDestroy = function() {
 		
 		if(this._inputConnections !== null) {

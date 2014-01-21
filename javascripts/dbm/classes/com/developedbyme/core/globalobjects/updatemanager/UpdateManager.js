@@ -19,8 +19,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		
 		this.superCall();
 		
-		this._intervalNumber = -1;
-		this._updateLength = 40;
+		this._updateTimer = null;
 		
 		this._startTime = 0;
 
@@ -36,17 +35,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		this._addUpdaterType("default");
 		this._addUpdaterType("updateFlow");
 		
-		var thisPointer = this;
-		this._updateCallback = function _updateCallback() {
-			thisPointer.update();
-		};
-		
 		return this;
 	};
 	
 	objectFunctions.start = function() {
 		
-		if(this._intervalNumber !== -1) {
+		if(this._updateTimer.getStatus()) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "start", "Update manager is already started.");
 			return;
 		}
@@ -57,13 +51,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		this.currentTime = 0;
 		this.currentFrame = 0;
 		
-		this._intervalNumber = setInterval(this._updateCallback, this._updateLength);
+		this._updateTimer.start();
 	};
 	
 	objectFunctions.stop = function() {
-		if(this._intervalNumber !== -1) {
-			clearInterval(this._intervalNumber);
-			this._intervalNumber = -1;
+		if(!this._updateTimer.getStatus()) {
+			this._updateTimer.stop();
 		}
 	};
 	
@@ -72,6 +65,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		this._updateChain.push(newUpdater);
 		this._updateChains.addObject(aType, newUpdater);
 		return newUpdater;
+	};
+	
+	objectFunctions.setTimer = function(aTimer) {
+		this._updateTimer = aTimer;
+		this._updateTimer.setUpdateObject(this);
+		
+		return this;
 	};
 	
 	objectFunctions.update = function() {

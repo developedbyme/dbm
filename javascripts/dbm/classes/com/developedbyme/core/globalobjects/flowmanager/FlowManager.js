@@ -63,6 +63,25 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		}
 	};
 	
+	objectFunctions.setUpdateChainsAsDirty = function(aUpdateChains) {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::setUpdateChainsAsDirty");
+		//console.log(aUpdateChains);
+		var currentArray = aUpdateChains;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentChain = currentArray[i];
+			var currentArray2 = currentChain.connections;
+			var currentArray2Length = currentArray2.length;
+			for(var j = 0; j < currentArray2Length; j++) {
+				var currentConnection = currentArray2[j];
+				//console.log(currentConnection);
+				if(VariableAliases.isSet(currentConnection.setStatus)) {
+					currentConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
+				}
+			}
+		}
+	};
+	
 	objectFunctions.updateProperty = function(aProperty) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperty");
 		//console.log(aProperty.toString());
