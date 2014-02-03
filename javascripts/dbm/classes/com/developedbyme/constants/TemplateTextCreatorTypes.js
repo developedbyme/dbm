@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.TemplateTextCreatorTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.TemplateTextCreatorTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.TemplateTextCreatorTypes");
 	
 	var TemplateTextCreatorTypes = dbm.importClass("com.developedbyme.constants.TemplateTextCreatorTypes");

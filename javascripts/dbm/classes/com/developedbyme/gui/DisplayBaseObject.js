@@ -8,41 +8,33 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	var PlaceHtmlElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
 	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
 	var TransformElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.TransformElementNode");
-	var SizeElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeElementNode");
+	var SetElementToCssPropertiesNode = dbm.importClass("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode");
+	var RoundNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundNode");
 	
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
+	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	var UnitTypes = dbm.importClass("com.developedbyme.constants.UnitTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::_init");
 		
 		this.superCall();
 		
-		this._sizeNode = null;
-		this._placementNode = null;
-		
-		this._alpha = this.addProperty("alpha", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty));
-		
 		this._element = this.createProperty("element", null);
 		this._parentElement = this.createProperty("parentElement", null);
 		this._inDom = this.createProperty("inDom", false);
 		this._inDomOutput = this.createProperty("inDomOutput", false);
 		
-		this._inDomUpdate = this.createGhostProperty("inDomUpdate");
 		this._display = this.createGhostProperty("display");
 		
-		this.createUpdateFunction("inDomUpdate", this._updateInDomFlow, [this._element, this._parentElement, this._inDom], [this._inDomUpdate, this._inDomOutput]);
-		this.createUpdateFunction("display", this._updateDisplayFlow, [this._inDomUpdate, this._alpha], [this._display]);
+		this.createUpdateFunction("inDomUpdate", this._updateInDomFlow, [this._element, this._parentElement, this._inDom], [this._inDomOutput]);
+		this.createUpdateFunction("display", this._updateDisplayFlow, [this._inDomOutput], [this._display]);
 		
 		return this;
-	};
-	
-	objectFunctions._connectObjectToOpacity = function() {
-		//console.log("com.developedbyme.gui.DisplayBaseObject::_connectObjectToOpacity");
-		//console.log(this._element.getValue());
-		this._alpha.setupExternalObject(this._element.getValue(), "opacity", null, 1);
 	};
 	
 	objectFunctions._updateInDomFlow = function(aFlowUpdateNumber) {
@@ -121,23 +113,6 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, aElement);
 		}
 		
-		if(this._placementNode !== null) {
-			this._placementNode.getProperty("element").setValue(this._element);
-			this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
-		}
-		else {
-			if(aElement.style !== undefined) {
-				//METODO: move this out like connect to opacity
-				//METODO: browser prefixes
-				var transformCssValue = aElement.style.getPropertyValue("transform");
-				if(transformCssValue !== null) {
-					//METODO: create transform node
-				}
-			}
-		}
-		
-		this._connectObjectToOpacity();
-		
 		return this;
 	};
 	
@@ -155,10 +130,6 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		this._element.setValue(null);
 		
-		if(this._placementNode !== null) {
-			this._placementNode.getProperty("display").disconnectOutput();
-		}
-		
 		return this;
 	};
 	
@@ -168,28 +139,33 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.setElementAsPositioned = function() {
 		
-		this._placementNode = PlaceHtmlElementNode.create(this._element);
-		this._sizeNode = this._placementNode;
-		this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
-		this.addDestroyableObject(this._placementNode);
+		this.createRoundedCssProperty("x", "roundedX", "left", UnitTypes.PX, 0);
+		this.createRoundedCssProperty("y", "roundedY", "top", UnitTypes.PX, 0);
 		
 		return this;
 	};
 	
 	objectFunctions.setElementAsTransformed = function() {
 		
-		this._placementNode = TransformElementNode.create(this._element);
-		this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
-		this.addDestroyableObject(this._placementNode);
+		var x = this.createProperty("x", 0);
+		var y = this.createProperty("y", 0);
+		var scaleX = this.createProperty("scaleX", 1);
+		var scaleY = this.createProperty("scaleY", 1);
+		var rotate = this.createProperty("rotate", 0);
+		var pivotX = this.createProperty("pivotX", 0.5);
+		var pivotY = this.createProperty("pivotY", 0.5);
+		
+		var placementNode = TransformElementNode.create(this._element, x, y, scaleX, scaleY, rotate, pivotX, pivotY);
+		this._updateFunctions.getObject("display").addInputConnection(placementNode.getProperty("display"));
+		this.addDestroyableObject(placementNode);
 		
 		return this;
 	};
 	
 	objectFunctions.setElementAsSized = function() {
 		
-		this._sizeNode = SizeElementNode.create(this._element);
-		this._updateFunctions.getObject("display").addInputConnection(this._sizeNode.getProperty("display"));
-		this.addDestroyableObject(this._sizeNode);
+		this.createCssProperty("width", "width", UnitTypes.PX, null);
+		this.createCssProperty("height", "height", UnitTypes.PX, null);
 		
 		return this;
 	};
@@ -218,7 +194,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		//console.log(this._element.getValue());
 		
 		this._inDom.setValue(true);
-		this._inDomUpdate.update();
+		this._inDomOutput.update();
 		
 		return this;
 	};
@@ -226,7 +202,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	objectFunctions.removeFromDom = function() {
 		
 		this._inDom.setValue(false);
-		this._inDomUpdate.update();
+		this._inDomOutput.update();
 		
 		return this;
 	};
@@ -245,34 +221,42 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		return this;
 	};
 	
-	objectFunctions.getProperty = function(aName) {
-		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
+	objectFunctions.enableAlpha = function() {
+		this.createCssProperty("alpha", "opacity", null, 1);
 		
-		switch(aName) {
-			case "x":
-			case "y":
-			case "z":
-			case "scaleX":
-			case "scaleY":
-			case "rotate":
-			case "pivotX":
-			case "pivotY":
-			case "cssDisplay":
-				if(this._placementNode !== null) {
-					return this._placementNode.getProperty(aName);
-				}
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " is not placed, can't get property " + aName + ".");
-				return null;
-			case "width":
-			case "height":
-				if(this._sizeNode !== null) {
-					return this._sizeNode.getProperty(aName);
-				}
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Object " + this + " is not sized, can't get property " + aName + ".");
-				return null;
+		return this;
+	};
+	
+	objectFunctions.enableZIndex = function() {
+		this.createRoundedCssProperty("z", "roundedZ", "z-index", null, 0);
+		
+		return this;
+	};
+	
+	objectFunctions.createRoundedCssProperty = function(aName, aRoundedName, aCssProperty, aUnit, aDefaultValue) {
+		var inputProperty = this.createProperty(aName, aDefaultValue);
+		var roundedProperty = this.createCssProperty(aRoundedName, aCssProperty, aUnit, aDefaultValue);
+		
+		var roundNode = this.addDestroyableObject(RoundNode.create(inputProperty));
+		roundedProperty.connectInput(roundNode.getProperty("outputValue"));
+		
+		return inputProperty;
+	};
+	
+	objectFunctions.createCssProperty = function(aName, aCssProperty, aUnit, aDefaultValue) {
+		if(!VariableAliases.isSet(aUnit)) {
+			aUnit = CssFunctions.isLengthProperty(aCssProperty) ? UnitTypes.PX : null;
 		}
+		aDefaultValue = VariableAliases.valueWithDefault(aDefaultValue, null);
 		
-		return this.superCall(aName);
+		var newProperty = this.addProperty(aName, ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty)).setup(aCssProperty, aUnit, aDefaultValue);
+		this._updateFunctions.getObject("display").addInputConnection(newProperty);
+		
+		var setElementNode = SetElementToCssPropertiesNode.create(this._element).addUpdateProperty(newProperty);
+		this._updateFunctions.getObject("display").addInputConnection(setElementNode.getProperty("elementSet"));
+		this.addDestroyableObject(setElementNode);
+		
+		return newProperty;
 	};
 	
 	objectFunctions.getHtmlCreator = function() {
@@ -300,16 +284,11 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this._placementNode = null;
-		
 		this._element = null;
 		this._parentElement = null;
 		this._inDom = null;
 		this._inDomOutput = null;
-		this._alpha = null;
-		this._inDomUpdate = null;
 		this._display = null;
-		this._sizeNode = null;
 		
 		this.superCall();
 	};

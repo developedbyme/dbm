@@ -23,10 +23,6 @@ dbm.registerClass("com.developedbyme.gui.text.TextElement", "com.developedbyme.g
 		return this;
 	};
 	
-	objectFunctions._connectObjectToOpacity = function() {
-		//MENOTE: do nothing
-	};
-	
 	objectFunctions.setElement = function(aElement) {
 		this.superCall(aElement);
 		

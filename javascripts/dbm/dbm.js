@@ -1,18 +1,18 @@
 (function(aGlobalObject) {
 	//"use strict";
 	
-	var dbm;
+	var dbmObject;
 	
 	if(aGlobalObject.dbm === undefined) {
-		dbm = new (function DBM(){})();
-		aGlobalObject.dbm = dbm;
+		dbmObject = new (function DBM(){})();
+		aGlobalObject.dbm = dbmObject;
 	}
 	else {
-		dbm = aGlobalObject.dbm;
+		dbmObject = aGlobalObject.dbm;
 	}
 	
-	if(dbm.isCreated !== true) {
-		dbm.init = function() {
+	if(dbmObject.isCreated !== true) {
+		dbmObject.init = function() {
 			this._environmentName = "browser";
 			
 			this.singletons = new Object();
@@ -20,6 +20,7 @@
 			this._specificClassesFolders = new Object();
 			this._filesToLoad = new Array();
 			this._currentFile = -1;
+			this._currentScriptTag = null;
 			this._htmlLoaded = false;
 			this._startFunctions = new Array();
 			this._classManager = null;
@@ -40,23 +41,23 @@
 			}
 		};
 		
-		dbm.getEnvironmentName = function() {
+		dbmObject.getEnvironmentName = function() {
 			return this._environmentName;
 		};
 		
-		dbm.getDocument = function() {
+		dbmObject.getDocument = function() {
 			return this._document;
 		};
 		
-		dbm.getWindow = function() {
+		dbmObject.getWindow = function() {
 			return this._window;
 		};
 		
-		dbm.setClassManager = function(aObject) {
+		dbmObject.setClassManager = function(aObject) {
 			this._classManager = aObject;
 		};
 		
-		dbm.setup = function(aWindow, aDocument, aJavascriptsFolder, aClassesFolder) {
+		dbmObject.setup = function(aWindow, aDocument, aJavascriptsFolder, aClassesFolder) {
 			//console.log("dbm.setup");
 			this._window = aWindow;
 			this._document = aDocument;
@@ -66,65 +67,65 @@
 			return this;
 		};
 		
-		dbm.addSpecificClassesFolder = function(aClassPathPrefix, aClassesFolder) {
+		dbmObject.addSpecificClassesFolder = function(aClassPathPrefix, aClassesFolder) {
 			this._specificClassesFolders[aClassPathPrefix] = aClassesFolder;
 			
 			return this;
 		};
 		
-		dbm.setupLoaderHook = function() {
+		dbmObject.setupLoaderHook = function() {
 			this._document.addEventListener("DOMContentLoaded", this._onHtmlLoaded, false);
 			
 			return this;
 		};
 		
-		dbm.addStartFunction = function(aFunction) {
+		dbmObject.addStartFunction = function(aFunction) {
 			//console.log("dbm.addStartFunction");
 			this._startFunctions.push(aFunction);
 		};
 		
-		dbm.runTempFunction = function(aFunction) {
+		dbmObject.runTempFunction = function(aFunction) {
 			aFunction();
 		};
 		
-		dbm.handleLink = function(aUrl, aTarget) {
+		dbmObject.handleLink = function(aUrl, aTarget) {
 			return this.singletons.dbmLinkManager.handleLink(aUrl, aTarget);
 		};
 		
-		dbm.registerClass = function(aName, aExtends, aFunction) {
+		dbmObject.registerClass = function(aName, aExtends, aFunction) {
 			//console.log("dbm.registerClass");
 			//console.log(aName, aExtends, aFunction);
 			this._classManager.registerClass(aName, aExtends, aFunction);
 		};
 		
-		dbm.extendClass = function(aName, aFunction) {
+		dbmObject.extendClass = function(aName, aFunction) {
 			this._classManager.extendClass(aName, aFunction);
 		};
 		
-		dbm.importClass = function(aClassPath) {
+		dbmObject.importClass = function(aClassPath) {
 			return this._classManager.importClass(aClassPath);
 		};
 		
-		dbm.getClass = function(aClassPath) {
+		dbmObject.getClass = function(aClassPath) {
 			return this._classManager.getClass(aClassPath);
 		};
 		
-		dbm.addLibrary = function(aName, aPath, aEvaluationName) {
+		dbmObject.addLibrary = function(aName, aPath, aEvaluationName) {
 			this._classManager.addLibrary(aName, aPath, aEvaluationName);
 		};
 		
-		dbm.importLibrary = function(aName, aReInitFunction) {
+		dbmObject.importLibrary = function(aName, aReInitFunction) {
 			//console.log("dbm.importLibrary");
 			return this._classManager.importLibrary(aName, aReInitFunction);
 		};
 		
-		dbm.setClassAsSingleton = function(aName, aClassPath) {
+		dbmObject.setClassAsSingleton = function(aName, aClassPath) {
 			//console.log("dbm.setClassAsSingleton");
 			//console.log(aName, aClassPath);
 			return this._classManager.setClassAsSingleton(aName, aClassPath);
 		};
 		
-		dbm.getFileForClass = function(aClassPath) {
+		dbmObject.getFileForClass = function(aClassPath) {
 			var classesFolder = this._classesFolder;
 			for(var objectName in this._specificClassesFolders) {
 				if(aClassPath.indexOf(objectName) === 0) {
@@ -137,7 +138,7 @@
 			return fileName;
 		};
 		
-		dbm.loadClass = function(aClassPath) {
+		dbmObject.loadClass = function(aClassPath) {
 			
 			var fileName = this.getFileForClass(aClassPath);
 			this._filesToLoad.push(fileName);
@@ -145,7 +146,7 @@
 			return this;
 		};
 		
-		dbm.classRegistered = function(aClassPath) {
+		dbmObject.classRegistered = function(aClassPath) {
 			//console.log("dbm.classRegistered");
 			//console.log(aClassPath);
 			var fileName = this.getFileForClass(aClassPath);
@@ -160,7 +161,7 @@
 			}
 		};
 		
-		dbm.loadFile = function(aFilePath) {
+		dbmObject.loadFile = function(aFilePath) {
 			console.log("dbm::loadFile");
 			console.log(aFilePath);
 			
@@ -177,7 +178,7 @@
 			return this;
 		};
 		
-		dbm._performLoadFile = function(aFilePath) {
+		dbmObject._performLoadFile = function(aFilePath) {
 			//console.log("dbm::_performLoadFile");
 			//console.log(aFilePath);
 			
@@ -196,24 +197,36 @@
 			scriptTag.addEventListener("load", dbm._onFileLoaded, false);
 			scriptTag.addEventListener("error", dbm._onFileLoaded, false);
 			
+			this._currentScriptTag = scriptTag;
+			
 			var headTags = this._document.getElementsByTagName("head");
 			headTags[0].appendChild(scriptTag);
 		};
 		
-		dbm._onHtmlLoaded = function(aEvent) {
+		dbmObject._onHtmlLoaded = function(aEvent) {
 			//console.log("dbm._onHtmlLoaded");
 			if(dbm._htmlLoaded) return;
 			dbm._htmlLoaded = true;
 			
+			dbm._document.removeEventListener("DOMContentLoaded", dbm._onHtmlLoaded, false);
+			
 			dbm._loadNextFile();
 		};
 		
-		dbm._onFileLoaded = function(aEvent) {
+		dbmObject._onFileLoaded = function(aEvent) {
 			//console.log("dbm._onFileLoaded");
+			dbm._clearCurrentFileLoad();
 			dbm._loadNextFile();
 		};
 		
-		dbm._loadNextFile = function() {
+		dbmObject._clearCurrentFileLoad = function() {
+			this._currentScriptTag.removeEventListener("load", dbm._onFileLoaded, false);
+			this._currentScriptTag.removeEventListener("error", dbm._onFileLoaded, false);
+			
+			this._filesToLoad[this._currentFile] = null;
+		};
+		
+		dbmObject._loadNextFile = function() {
 			this._currentFile++;
 			
 			if(this._currentFile >= this._filesToLoad.length) {
@@ -224,7 +237,7 @@
 			}
 		};
 		
-		dbm._start = function() {
+		dbmObject._start = function() {
 			
 			this._isStarting = true;
 			
@@ -251,13 +264,13 @@
 			}
 		};
 		
-		dbm.externalStart = function() {
+		dbmObject.externalStart = function() {
 			this._start();
 			
 			return this;
 		};
 		
-		dbm.restartLoading = function() {
+		dbmObject.restartLoading = function() {
 			//console.log("dbm::restartLoading");
 			if(this._isStarting) {
 				this._restartAfterStart = true;
@@ -271,6 +284,9 @@
 			return this;
 		}
 		
-		dbm.init();
+		dbmObject.init();
 	}
+	
+	//MENOTE: clear up references
+	dbmObject = null;
 })(window);

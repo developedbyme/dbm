@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.CssRuleTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.CssRuleTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.CssRuleTypes");
 	//"use strict";
 	

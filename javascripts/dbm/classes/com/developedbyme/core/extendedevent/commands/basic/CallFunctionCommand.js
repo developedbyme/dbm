@@ -109,9 +109,19 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 			return null;
 		}
 		
-		newCommand.objectReevaluator = StaticVariableObject.createReevaluationObject(aObject);
+		if(aObject instanceof ReevaluationBaseObject) {
+			newCommand.objectReevaluator = aObject;
+		}
+		else {
+			newCommand.objectReevaluator = StaticVariableObject.createReevaluationObject(aObject);
+		}
 		
-		newCommand.functionReevaluator = StaticVariableObject.createReevaluationObject(aFunction);
+		if(aFunction instanceof ReevaluationBaseObject) {
+			newCommand.functionReevaluator = aFunction;
+		}
+		else {
+			newCommand.functionReevaluator = StaticVariableObject.createReevaluationObject(aFunction);
+		}
 		
 		var hasReevaluatorInArgumentsArray = false;
 		var theLength = aArgumentsArray.length;
@@ -146,27 +156,24 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		var newFunctionReevaluator = (new GetVariableObject()).init();
 		newFunctionReevaluator.propertyNameReevaluator = StaticVariableObject.createReevaluationObject(aFunctionName);
 		
-		newCommand.objectReevaluator = StaticVariableObject.createReevaluationObject(aObject);
-		newFunctionReevaluator.objectReevaluator = StaticVariableObject.createReevaluationObject(aObject);
-		
-		newCommand.functionReevaluator = newFunctionReevaluator;
-		
-		var hasReevaluatorInArgumentsArray = false;
-		var theLength = aArgumentsArray.length;
-		for(var i = 0; i < theLength; i++) {
-			if(aArgumentsArray[i] instanceof ReevaluationBaseObject) {
-				hasReevaluatorInArgumentsArray = true;
-				break;
-			}
-		}
-		
-		if(hasReevaluatorInArgumentsArray) {
-			newCommand.argumentsArrayReevaluator = ReevaluateArrayObject.createReevaluationObject(aArgumentsArray);
+		if(aObject instanceof ReevaluationBaseObject) {
+			newFunctionReevaluator.objectReevaluator = aObject;
 		}
 		else {
-			newCommand.argumentsArrayReevaluator = StaticVariableObject.createReevaluationObject(aArgumentsArray);
+			newFunctionReevaluator.objectReevaluator = StaticVariableObject.createReevaluationObject(aObject);
 		}
 		
-		return newCommand;
+		return ClassReference.createCommand(aObject, newFunctionReevaluator, aArgumentsArray);
+	};
+	
+	/**
+	 * Creates a command that calls a function on the performing object.
+	 * 
+	 * @param	aFunctionName	The name of the function to call.
+	 * @param	aArgumentsArray	The arguments to pass to the function.
+	 * @return	The new command.
+	 */
+	staticFunctions.createCallFunctionOnPerformingObjectCommand = function(aFunctionName, aArgumentsArray) {
+		return ClassReference.createCallFunctionOnObjectCommand(GetVariableObject.createSelectPerformingObjectCommand(), aFunctionName, aArgumentsArray);
 	};
 });

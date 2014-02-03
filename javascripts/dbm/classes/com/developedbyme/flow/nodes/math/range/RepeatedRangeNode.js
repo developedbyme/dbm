@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
 	
 	var RepeadedRange = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode", "
 	};
 	
 	staticFunctions.create = function(aInput, aMin, aMax) {
-		var newNode = (new ClassReference()).init();
+		var newNode = (new RepeadedRange()).init();
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
 		newNode.setPropertyInputWithoutNull("minValue", aMin);
 		newNode.setPropertyInputWithoutNull("maxValue", aMax);

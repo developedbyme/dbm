@@ -24,13 +24,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.objects.Up
 		this.start();
 		while(this.isActive()) {
 			var currentUpdater = this.getNextItem();
-			try {
+			//try {
 				currentUpdater.updateTime(aTime, aFrame);
-			}
-			catch(theError) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateTime", "Un error occured while updating " + currentUpdater +".");
-				ErrorManager.getInstance().reportError(this, "updateTime", theError);
-			}
+			//}
+			//catch(theError) {
+			//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateTime", "Un error occured while updating " + currentUpdater +".");
+			//	ErrorManager.getInstance().reportError(this, "updateTime", theError);
+			//}
 		}
 	};
 });

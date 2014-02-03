@@ -10,7 +10,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
-	objectFunctions._init = function _init() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.BaseObject::_init");
 		
 		//this._setFunctionSavedThis(this); MENOTE: not implemented yet
@@ -24,17 +24,17 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return this;
 	};
 	
-	objectFunctions._initSeal = function _initSeal() {
+	objectFunctions._initSeal = function() {
 		Object.seal(this);
 	};
 	
-	objectFunctions.init = function init() {
+	objectFunctions.init = function() {
 		this._init();
 		this._initSeal();
 		return this;
 	};
 	
-	objectFunctions.addDestroyableObject = function addDestroyableObject(aObject) {
+	objectFunctions.addDestroyableObject = function(aObject) {
 		if(!(aObject instanceof BaseObject)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addDestroyableObject", "Object " + aObject + " is not a base object so it can't be destroyed by " + this + ".");
 			return aObject;
@@ -48,7 +48,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return aObject;
 	};
 	
-	objectFunctions.removeDestroyableObject = function removeDestroyableObject(aObject) {
+	objectFunctions.removeDestroyableObject = function(aObject) {
 		if(this._destroyableObjects !== null) {
 			var objectIndex = ArrayFunctions.indexOfInArray(this._destroyableObjects, aObject);
 			if(objectIndex !== -1) {
@@ -65,19 +65,19 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return aObject;
 	};
 	
-	objectFunctions.getDestroyableObjectsArray = function getDestroyableObjectsArray() {
+	objectFunctions.getDestroyableObjectsArray = function() {
 		if(this._destroyableObjects === null) {
 			this._destroyableObjects = new Array();
 		}
 		return this._destroyableObjects;
 	};
 	
-	objectFunctions.isDestroyed = function isDestroyed() {
+	objectFunctions.isDestroyed = function() {
 		//console.log("com.developedbyme.core.BaseObject::isDestroyed");
 		return this._isDestroyed;
 	};
 	
-	objectFunctions.destroy = function destroy() {
+	objectFunctions.destroy = function() {
 		//console.log("com.developedbyme.core.BaseObject::destroy");
 		//console.log(this.toString());
 		this._isDestroyed = true;
@@ -102,20 +102,20 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
-	objectFunctions.performDestroy = function performDestroy() {
+	objectFunctions.performDestroy = function() {
 		//this._setFunctionSavedThis(null); MENOTE: not implemented yet
 		ClassReference.softDestroyArrayIfExists(this._destroyableObjects);
 	};
 	
-	objectFunctions.setAllReferencesToNull = function setAllReferencesToNull() {
+	objectFunctions.setAllReferencesToNull = function() {
 		this._destroyableObjects = null;
 	};
 	
-	objectFunctions._internalFunctionality_ownsVariable = function _internalFunctionality_ownsVariable(aName) {
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		return true;
 	};
 	
-	objectFunctions.toString = function toString() {
+	objectFunctions.toString = function() {
 		var attributesArray = new Array();
 		this._toString_getAttributes(attributesArray);
 		var attributesString = "";
@@ -126,11 +126,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return "[" + destroyedString + this.__className + attributesString + "]";
 	};
 	
-	objectFunctions._toString_getAttributes = function _toString_getAttributes(aReturnArray) {
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		//MENOTE: should be overridden
 	};
 	
-	staticFunctions.softDestroyIfExists = function softDestroyIfExists(aObject) {
+	staticFunctions.softDestroyIfExists = function(aObject) {
 		if(aObject !== null) {
 			if(aObject.releaseAndDestroy !== undefined) {
 				aObject.releaseAndDestroy();
@@ -141,19 +141,19 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
-	staticFunctions.destroyIfExists = function destroyIfExists(aObject) {
+	staticFunctions.destroyIfExists = function(aObject) {
 		if(aObject !== null && aObject !== undefined) {
 			aObject.destroy();
 		}
 	};
 	
-	staticFunctions.releaseAndDestroyIfExists = function releaseAndDestroyIfExists(aObject) {
+	staticFunctions.releaseAndDestroyIfExists = function(aObject) {
 		if(aObject !== null && aObject !== undefined) {
 			aObject.releaseAndDestroy();
 		}
 	};
 	
-	staticFunctions.softDestroyArrayIfExists = function softDestroyArrayIfExists(aArray) {
+	staticFunctions.softDestroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
@@ -165,7 +165,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
-	staticFunctions.destroyArrayIfExists = function destroyArrayIfExists(aArray) {
+	staticFunctions.destroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
@@ -179,7 +179,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
-	staticFunctions.releaseAndDestroyArrayIfExists = function releaseAndDestroyArrayIfExists(aArray) {
+	staticFunctions.releaseAndDestroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
@@ -202,7 +202,7 @@ dbm.extendClass("com.developedbyme.core.BaseObject", function(objectFunctions, s
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	objectFunctions.superCall = function superCall() {
+	objectFunctions.superCall = function() {
 		//console.log("com.developedbyme.core.BaseObject::superCall");
 		
 		var callerFunction = arguments.callee.caller;

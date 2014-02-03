@@ -12,9 +12,13 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 		
 		this.superCall();
 		
-		this._commandQueue.createFunctionTypeCommand("removeItemById", this, this.push, true);
-		
 		return this;
+	};
+	
+	objectFunctions._createCommandsForCommandQueue = function() {
+		this.superCall();
+		
+		this._commandQueue.createFunctionTypeCommand("removeItemById", this, this.push, true);
 	};
 	
 	/**

@@ -22,9 +22,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		this._svgCreators = new Array();
 		
 		this._tempCanvas = document.createElement("canvas");
-		this._masterWindowHtmlCreator = HtmlCreator.create(document);
+		this._masterWindowHtmlCreator = HtmlCreator.create(dbm.getDocument());
 		this._htmlCreators.push(this._masterWindowHtmlCreator);
-		this._masterWindowSvgCreator = SvgCreator.create(document);
+		this._masterWindowSvgCreator = SvgCreator.create(dbm.getDocument());
 		this._svgCreators.push(this._masterWindowSvgCreator);
 		
 		return this;
@@ -75,6 +75,32 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 			}
 		}
 		
+		return null;
+	};
+	
+	objectFunctions.getParentControllerForHtmlElementByClass = function(aHtmlElement, aClass) {
+		var currentElement = aHtmlElement;
+		var debugCounter = 0;
+		while(currentElement !== null) {
+			if(debugCounter++ > 1000) {
+				//METODO: error message
+				return null;
+			}
+			var currentController = this.getControllerForHtmlElementIfExists(currentElement);
+			if(currentController !== null) {
+				if(currentController instanceof aClass) {
+					return currentController;
+				}
+				else {
+					currentElement = currentController.getProperty("parentElement").getValue();
+				}
+			}
+			else {
+				currentElement = currentElement.parentNode;
+			}
+			
+		}
+		//METODO: error message
 		return null;
 	};
 	

@@ -13,6 +13,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
+	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	objectFunctions._init = function() {
@@ -109,7 +111,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	
 	objectFunctions.updateFlow = function() {
 		var newFlowUpdateNumber = this._getInputFlowUpdateNumber();
-		var globalUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+		var globalUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 		if(newFlowUpdateNumber > this._flowUpdateNumber) {
 			this._flowUpdateNumber = globalUpdateNumber;
 			this._updateFunction.call(this._ownerObject, globalUpdateNumber);

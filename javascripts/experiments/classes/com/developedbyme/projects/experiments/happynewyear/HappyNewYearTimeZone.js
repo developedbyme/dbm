@@ -30,6 +30,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 	var PadNumberNode = dbm.importClass("com.developedbyme.flow.nodes.text.PadNumberNode");
 	var TextReplacementNode = dbm.importClass("com.developedbyme.flow.nodes.text.TextReplacementNode");
 	var ReportNode = dbm.importClass("com.developedbyme.flow.nodes.debug.ReportNode");
+	var UpdateSwitchNode = dbm.importClass("com.developedbyme.flow.nodes.update.UpdateSwitchNode");
 	
 	var ValuesFromRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode");
 	var PositionRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode");
@@ -38,6 +39,8 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 	var TextElement = dbm.importClass("com.developedbyme.gui.text.TextElement");
 	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+	
+	var EvaluateTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
 	
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
@@ -56,12 +59,19 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		
 		this._selectedIndex = this.createProperty("selectedIndex", -1);
 		this._currentIndex = this.createProperty("currentIndex", -1);
+		this._currentIndex.createTimelineControl();
 		this._moveLength = this.createProperty("moveLength", 0);
 		this._maxWidth = this.createProperty("maxWidth", 0);
 		this._halfMaxWidth = this.createProperty("halfMaxWidth", 0);
 		this._centerX = this.createProperty("centerX", 0);
 		this._centerY = this.createProperty("centerY", 0);
 		this._currentDate = this.createProperty("currentDate", 0);
+		
+		this._positionTimeline = this.createProperty("positionTimeline", null).setAlwaysUpdateFlow(true);
+		this._scaleTimeline = this.createProperty("scaleTimeline", null).setAlwaysUpdateFlow(true);
+		this._inDomTimeline = this.createProperty("inDomTimeline", null).setAlwaysUpdateFlow(true);
+		
+		this._updateSwitchNode = null;
 		
 		return this;
 	};
@@ -115,7 +125,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		var outputTextSelection = BooleanSwitchedNode.create(pastDateCondition.getProperty("outputValue"), formatTimeNode.getProperty("outputValue"), "00:00:00");
 		
 		//GUI
-		this._holder = DisplayBaseObject.createDiv(document.body, false, {"class": "timezoneHolder"});
+		this._holder = DisplayBaseObject.createDiv(document.body, false, {"class": "timezoneHolder", "style": "width: 1000px;"});
 		this._holder.addToParent(document.body);
 		this._holder.setElementAsTransformed();
 		this._holder.setElementAsSized();
@@ -123,11 +133,14 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		this._placeTextHolder = DisplayBaseObject.createNode("span", this._holder.getElement(), true, {"class": "textHolder"});
 		this._placeTextHolder.setElementAsTransformed();
 		var placeTextElement = TextElement.create(this._placeTextHolder.getElement(), true, aName);
+		placeTextElement.getProperty("display").update();
 		
 		this._timeTextHolder = DisplayBaseObject.createNode("span", this._holder.getElement(), true, {"class": "textHolder"});
 		this._timeTextHolder.setElementAsTransformed();
 		this._timeTextElement = TextElement.create(this._timeTextHolder.getElement(), true, "00:00:00");
+		this._timeTextElement.getProperty("display").update();
 		this._timeTextElement.setPropertyInput("text", outputTextSelection.getProperty("outputValue"));
+		
 		
 		//Text scale
 		
@@ -166,39 +179,32 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		
 		var positionDiffNode = SubtractionNode.create(this._selectedIndex, this._currentIndex);
 		
-		var positionTimeline = Timeline.create(1);
-		positionTimeline.setPropertyInput("time", positionDiffNode.getProperty("outputValue"));
-		positionTimeline.animateValueAt(0, 0.75, InterpolationTypes.INVERTED_QUADRATIC, -0.75);
-		positionTimeline.animateValueAt(-1, 0.75, InterpolationTypes.QUADRATIC, 0);
+		var positionTimelineEvalutationNode = EvaluateTimelineNode.create(this._positionTimeline, positionDiffNode.getProperty("outputValue"));
+		var scaleTimelineEvalutationNode = EvaluateTimelineNode.create(this._scaleTimeline, positionDiffNode.getProperty("outputValue"));
+		var inDomTimelineEvalutationNode = EvaluateTimelineNode.create(this._inDomTimeline, positionDiffNode.getProperty("outputValue"));
 		
-		var scaleTimeline = Timeline.create(0);
-		scaleTimeline.setPropertyInput("time", positionDiffNode.getProperty("outputValue"));
-		scaleTimeline.animateValueAt(0.10, 0.5, InterpolationTypes.INVERTED_QUADRATIC, -1.5);
-		scaleTimeline.animateValueAt(1, 0.75, InterpolationTypes.QUADRATIC, -0.75);
-		scaleTimeline.animateValueAt(0, 0.75, InterpolationTypes.INVERTED_QUADRATIC, 0);
-		
-		var inDomTimeline = Timeline.create(false);
-		inDomTimeline.setPropertyInput("time", positionDiffNode.getProperty("outputValue"));
-		inDomTimeline.setValueAt(true, -1.5);
-		inDomTimeline.setValueAt(false, 0.75);
-		
-		var positionMultiplierNode = MultiplicationNode.create(positionTimeline.getProperty("outputValue"), this._moveLength);
+		var positionMultiplierNode = MultiplicationNode.create(positionTimelineEvalutationNode.getProperty("outputValue"), this._moveLength);
 		var centeredAnimationNode = AdditionNode.create(this._centerY, positionMultiplierNode.getProperty("outputValue"));
 		
-		this._holder.setPropertyInput("inDom", inDomTimeline.getProperty("outputValue"));
+		this._holder.setPropertyInput("inDom", inDomTimelineEvalutationNode.getProperty("outputValue"));
 		this._holder.setPropertyInput("y", centeredAnimationNode.getProperty("outputValue"));
 		this._holder.setPropertyInput("x", this._centerX);
-		this._holder.setPropertyInput("scaleX", scaleTimeline.getProperty("outputValue"));
-		this._holder.setPropertyInput("scaleY", scaleTimeline.getProperty("outputValue"));
+		this._holder.setPropertyInput("scaleX", scaleTimelineEvalutationNode.getProperty("outputValue"));
+		this._holder.setPropertyInput("scaleY", scaleTimelineEvalutationNode.getProperty("outputValue"));
 		
 		this._holder.setPropertyInput("width", this._maxWidth);
 		this._holder.setPropertyInput("height", totalHeightWithSpacingNode.getProperty("outputValue"));
 		
 		//Updates
-		this._placeTextHolder.getProperty("display").startUpdating();
-		this._timeTextHolder.getProperty("display").startUpdating();
-		this._timeTextElement.getProperty("display").startUpdating();
-		this._holder.getProperty("display").startUpdating();
+		this._updateSwitchNode = UpdateSwitchNode.createWithGlobalTicker(this._holder.getProperty("inDomOutput"));
+		this._updateSwitchNode.getProperty("update").startUpdating();
+		
+		this._updateSwitchNode.addUpdateProperty(placeTextElement.getProperty("text"));
+		this._updateSwitchNode.addUpdateProperty(this._timeTextElement.getProperty("text"));
+		this._updateSwitchNode.addUpdateProperty(this._placeTextHolder.getProperty("display"));
+		this._updateSwitchNode.addUpdateProperty(this._timeTextHolder.getProperty("display"));
+		this._updateSwitchNode.addUpdateProperty(this._timeTextElement.getProperty("display"));
+		this._updateSwitchNode.addUpdateProperty(this._holder.getProperty("display"));
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.ExtrapolationTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.ExtrapolationTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.ExtrapolationTypes");
 	
 	var ExtrapolationTypes = dbm.importClass("com.developedbyme.constants.ExtrapolationTypes");

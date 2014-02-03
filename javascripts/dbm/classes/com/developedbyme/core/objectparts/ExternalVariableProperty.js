@@ -88,8 +88,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName) {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::create (static)");
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
-		aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
-		newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
+			newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
 		newExternalVariableProperty.setupExternalObject(aExternalObject, aVariableName);
 		return newExternalVariableProperty;
 	};
@@ -97,8 +99,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::createWithoutExternalObject (static)");
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
-		aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
-		newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
+			newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
 		if(!VariableAliases.isNull(aValue)) {
 			newExternalVariableProperty.setValue(aValue);
 		}

@@ -96,17 +96,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetProper
 	staticFunctions.createSetPropertyOnObjectCommand = function(aObject, aPropertyName, aValue) {
 		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand::createSetPropertyOnObjectCommand (static)");
 		//console.log(aObject, aPropertyName, aValue);
-		var newCommand = (new SetPropertyCommand()).init();
 		
-		newCommand.propertyReevaluator = GetPropertyObject.createCommand(aObject, aPropertyName);
-		
-		if(aValue instanceof ReevaluationBaseObject) {
-			newCommand.valueReevaluator = aValue;
-		}
-		else {
-			newCommand.valueReevaluator = StaticVariableObject.createReevaluationObject(aValue);
-		}
-		
-		return newCommand;
+		return ClassReference.createCommand(GetPropertyObject.createCommand(aObject, aPropertyName), aValue);
 	};
 });

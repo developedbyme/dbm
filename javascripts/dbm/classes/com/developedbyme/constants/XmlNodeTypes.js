@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.XmlNodeTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.XmlNodeTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.XmlNodeTypes");
 	//"use strict";
 	

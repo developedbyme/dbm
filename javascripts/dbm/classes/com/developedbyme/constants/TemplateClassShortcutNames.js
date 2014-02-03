@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.TemplateClassShortcutNames", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.TemplateClassShortcutNames", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.TemplateClassShortcutNames");
 	
 	var TemplateClassShortcutNames = dbm.importClass("com.developedbyme.constants.TemplateClassShortcutNames");
@@ -13,4 +13,5 @@ dbm.registerClass("com.developedbyme.constants.TemplateClassShortcutNames", null
 	//Workspace
 	staticFunctions.DBM_CONSOLE = "dbm:Console";
 	staticFunctions.DBM_CONSOLE_LINE = "dbm:ConsoleLine";
+	staticFunctions.DBM_WORKSPACE = "dbm:Workspace";
 });

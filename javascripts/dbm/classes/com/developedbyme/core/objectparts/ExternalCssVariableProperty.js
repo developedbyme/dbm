@@ -24,6 +24,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	};
 	
 	objectFunctions._performSetValue = function(aValue) {
+		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::_performSetValue");
+		//console.log(aValue);
 		
 		if(this._externalObject === null) {
 			this._value = aValue;
@@ -56,7 +58,31 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		return cssValue;
 	};
 	
-	objectFunctions.setupExternalObject = function(aObject, aVariableName, aUnit, aDefaultValue) {
+	objectFunctions.setup = function(aVariableName, aUnit, aDefaultValue) {
+		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::setup");
+		//console.log(aVariableName, aUnit, aDefaultValue);
+		
+		this._externalVariableName = aVariableName;
+		this._unit = aUnit;
+		
+		var startValue = this.getValue();
+		if(startValue !== null) {
+			this._performSetValue(startValue);
+		}
+		else {
+			if(this.getValue() === null && aDefaultValue !== null) {
+				this._performSetValue(aDefaultValue);
+			}
+		}
+		
+		this.setAsDirty();
+		
+		return this;
+	};
+	
+	objectFunctions.setExternalObject = function(aObject) {
+		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::setExternalObject");
+		//console.log(aObject);
 		
 		if(this._externalObject !== null) {
 			//METODO: warning message
@@ -66,18 +92,22 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		var startValue = this.getValue();
 		
 		this._externalObject = aObject;
-		this._externalVariableName = aVariableName;
-		this._unit = aUnit;
 		
 		if(startValue !== null) {
 			this._performSetValue(startValue);
 		}
-		else {
-			if(this.getValue() === null && aDefaultValue !== null) {
-				this._performSetValue(aDefaultValue);
-			}
-			this.setAsDirty();
-		}
+		
+		this.setAsDirty();
+		
+		return this;
+	};
+	
+	objectFunctions.setupExternalObject = function(aObject, aVariableName, aUnit, aDefaultValue) {
+		
+		this.setup(aVariableName, aUnit, aDefaultValue);
+		this.setExternalObject(aObject);
+		
+		return this;
 	};
 	
 	objectFunctions.removeExternalObject = function() {
@@ -90,8 +120,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		}
 		
 		this._externalObject = null;
-		this._externalVariableName = null;
-		this._unit = null;
 		
 	};
 	
@@ -106,17 +134,21 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	
 	staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName, aUnit) {
 		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
-		aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
-		newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
+			newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
 		newExternalCssVariableProperty.setupExternalObject(aExternalObject, aVariableName, aUnit);
 		return newExternalCssVariableProperty;
 	};
 	
 	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
 		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
-		aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
-		newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
-		if(aValue !== null) {
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
+			newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
+		if(aValue !== null && aValue !== undefined) {
 			newExternalCssVariableProperty.setValue(aValue);
 		}
 		return newExternalCssVariableProperty;

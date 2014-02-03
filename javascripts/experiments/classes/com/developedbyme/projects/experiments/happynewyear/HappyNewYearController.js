@@ -49,6 +49,8 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
+	var FlowUpdateChainCreator = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
+	
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
 	objectFunctions._init = function() {
@@ -69,8 +71,10 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		this._currentIndex = this.createProperty("currentIndex", -1);
 		this._currentIndexAnimation = this.createGhostProperty("currentIndexAnimation");
 		this._currentAnimationIndex = this.createProperty("currentAnimationIndex", -1);
+		this._currentAnimationIndex.createTimelineControl();
 		this._currentIndexWithOverride = this.createProperty("currentIndexWithOverride", -1);
 		this._keyOverrideValue = this.createProperty("keyOverrideValue", 0);
+		this._keyOverrideValue.createTimelineControl();
 		this._timeZones = ArrayHolder.create(true);
 		this.addDestroyableObject(this._timeZones);
 		this._numberOfTimeZones = this.createProperty("numberOfTimeZones", 0);
@@ -82,6 +86,20 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		this._windowSizeNode.start();
 		this._currentDateNode = CurrentTimeNode.create();
 		this._currentDateNode.start();
+		
+		//Timezone animations
+		this._timeZonePositionTimeline = Timeline.create(1);
+		this._timeZonePositionTimeline.animateValueAt(0, 0.75, InterpolationTypes.INVERTED_QUADRATIC, -0.75);
+		this._timeZonePositionTimeline.animateValueAt(-1, 0.75, InterpolationTypes.QUADRATIC, 0);
+		
+		this._timeZoneScaleTimeline = Timeline.create(0);
+		this._timeZoneScaleTimeline.animateValueAt(0.10, 0.5, InterpolationTypes.INVERTED_QUADRATIC, -1.5);
+		this._timeZoneScaleTimeline.animateValueAt(1, 0.75, InterpolationTypes.QUADRATIC, -0.75);
+		this._timeZoneScaleTimeline.animateValueAt(0, 0.75, InterpolationTypes.INVERTED_QUADRATIC, 0);
+		
+		this._timeZoneInDomTimeline = Timeline.create(false);
+		this._timeZoneInDomTimeline.setValueAt(true, -1.5);
+		this._timeZoneInDomTimeline.setValueAt(false, 0.75);
 		
 		//Debug driver
 		var mousePositionNode = (new MousePositionNode()).init();
@@ -198,6 +216,10 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		
 		newTimeZone.setPropertyInput("selectedIndex", this._currentIndexWithOverride);
 		
+		newTimeZone.setPropertyInput("positionTimeline", this._timeZonePositionTimeline.getObjectProperty());
+		newTimeZone.setPropertyInput("scaleTimeline", this._timeZoneScaleTimeline.getObjectProperty());
+		newTimeZone.setPropertyInput("inDomTimeline", this._timeZoneInDomTimeline.getObjectProperty());
+		
 		return newTimeZone;
 		
 	};
@@ -243,6 +265,9 @@ dbm.registerClass("com.developedbyme.projects.experiments.happynewyear.HappyNewY
 		}
 		
 		this._numberOfTimeZones.setValue(currentArrayLength);
+		
+		//var updateChain = FlowUpdateChainCreator.createAllChainsForInputConnection(this._currentDateNode.getProperty("time"));
+		//this._currentDateNode.getProperty("time").setCachedDependentNodeChains(updateChain);
 		
 		/*
 		console.log("Flow from date", FlowAnalyzeFunctions.getAllOutputFlowForProperty(this._currentDateNode.getProperty("time")));

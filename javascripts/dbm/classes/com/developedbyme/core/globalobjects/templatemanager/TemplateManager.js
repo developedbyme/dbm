@@ -9,11 +9,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 	
 	var TemplateResult = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult");
 	
+	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");
+	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
 	dbm.setClassAsSingleton("dbmTemplateManager");
 	
@@ -22,14 +26,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 	staticFunctions.TEXT_CLASS_ATTRIBUTE = "data-dbm-text-class";
 	staticFunctions.TEXT_NAME_ATTRIBUTE = "data-dbm-text-name";
 	staticFunctions.IGNORE_CHILDREN_ATTRIBUTE = "data-dbm-ignore-children";
+	staticFunctions.COMMANDS_ATTRIBUTE = "data-dbm-commands";
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::_init");
 		
 		this.superCall();
 		
-		this._classShortcuts = NamedArray.create(false);
-		this._textCreators = NamedArray.create(false);
+		this._classShortcuts = this.addDestroyableObject(NamedArray.create(false));
+		this._textCreators = this.addDestroyableObject(NamedArray.create(false));
+		this._commands = this.addDestroyableObject(NamedArray.create(true));
 		
 		return this;
 	};
@@ -44,9 +50,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		this._textCreators.addObject(aName, aCreator);
 	};
 	
+	objectFunctions.addCommand = function(aName, aCommand) {
+		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::addCommand");
+		//console.log(aName, aCommand);
+		
+		aCommand.retain();
+		this._commands.addObject(aName, aCommand);
+	};
+	
 	objectFunctions.createControllersForTemplate = function(aTemplate) {
-		console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
-		console.log(aTemplate);
+		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
+		//console.log(aTemplate);
 		
 		var templateResult = TemplateResult.create();
 		templateResult.rootElement = aTemplate;
@@ -60,23 +74,30 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		return templateResult;
 	};
 	
-	objectFunctions.createControllersForAsset = function(aPath, aRemoveId, aDocument) {
-		console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForAsset");
-		console.log(aPath, aRemoveId, aDocument);
+	objectFunctions.createControllersForAsset = function(aPath, aRemoveId, aDocumentOrParent, aAddToParent) {
+		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForAsset");
+		//console.log(aPath, aRemoveId, aDocument);
 		
 		aRemoveId = VariableAliases.valueWithDefault(aRemoveId, true);
-		aDocument = VariableAliases.valueWithDefault(aDocument, dbm.getDocument());
+		aDocumentOrParent = VariableAliases.valueWithDefault(aDocumentOrParent, dbm.getDocument());
+		aAddToParent = VariableAliases.valueWithDefault(aAddToParent, false);
 		
-		console.log(dbm.singletons.dbmAssetRepository.getAsset(aPath), dbm.singletons.dbmAssetRepository.getAssetData(aPath));
+		var theDocument = DomReferenceFunctions.getDocument(aDocumentOrParent);
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aDocumentOrParent);
+		
+		//console.log(dbm.singletons.dbmAssetRepository.getAsset(aPath), dbm.singletons.dbmAssetRepository.getAssetData(aPath));
 		var template = dbm.singletons.dbmAssetRepository.getAssetData(aPath);
 		if(template === null) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "createControllersForAsset", "Template is null for asset " + aPath + ".");
 			return null;
 		}
 		
-		var copiedTemplate = DomManipulationFunctions.importNode(template, true, aDocument);
+		var copiedTemplate = DomManipulationFunctions.importNode(template, true, theDocument);
 		if(aRemoveId) {
 			copiedTemplate.id = null;
+		}
+		if(aAddToParent) {
+			theParent.appendChild(copiedTemplate);
 		}
 		
 		return this.createControllersForTemplate(copiedTemplate);
@@ -89,8 +110,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		var ignoreChildren = VariableAliases.isTrue(XmlChildRetreiver.getAttribute(aNode, TemplateManager.IGNORE_CHILDREN_ATTRIBUTE));
 		
 		var newObject = null;
-		
-		//METODO: implement text and html text
 		
 		if(currentClassName !== null) {
 			var currentClass;
@@ -109,9 +128,38 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 				var registrationName = (currentName !== null) ?  currentName : dbm.singletons.dbmIdManager.getNewId(newObject.__className);
 				
 				aTemplateResult.addController(aBasePath + registrationName, newObject);
+				
+				var commandsString = XmlChildRetreiver.getAttribute(aNode, TemplateManager.COMMANDS_ATTRIBUTE);
+				if(commandsString !== null) {
+					
+					var currentArray = StringFunctions.splitSeparatedString(commandsString, ";", true, true);
+					var currentArrayLength = currentArray.length;
+					for(var i = 0; i < currentArrayLength; i++) {
+						var currentCommandWithArguments = currentArray[i];
+						var currentCommandName;
+						var currentArguments = null;
+						var spacePosition = currentCommandWithArguments.indexOf(" ");
+						if(spacePosition !== -1) {
+							currentCommandName = currentCommandWithArguments.substring(0, spacePosition);
+							currentArguments = currentCommandWithArguments.substring(spacePosition+1, currentCommandWithArguments.length);
+						}
+						else {
+							currentCommandName = currentCommandWithArguments;
+						}
+						if(this._commands.select(currentCommandName)) {
+							var currentCommand = this._commands.currentSelectedItem;
+							var eventData = EventDataObject.create({"arguments": currentArguments}, this, newObject);
+							currentCommand.perform(eventData);
+							eventData.destroy();
+						}
+						else {
+							ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createControllersForTemplateNode", "Command " + currentCommandName + " doesn't exist.");
+						}
+					}
+				}
 			}
 			else {
-				//METODO: error report
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createControllersForTemplateNode", "Class " + currentClass + " doesn't exist.");
 			}
 		}
 		
@@ -135,7 +183,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 				}
 			}
 			else {
-				//METODO: error message
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createControllersForTemplateNode", "Text creator " + currentTextClassName + " doesn't exist.");
 			}
 		}
 		else if(!ignoreChildren) {

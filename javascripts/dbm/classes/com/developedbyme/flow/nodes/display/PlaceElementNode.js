@@ -7,54 +7,52 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.PlaceElementNode", "com.
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
+	var SetElementToCssPropertiesNode = dbm.importClass("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode");
+	
+	var RoundNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundNode");
+	
+	var UnitTypes = dbm.importClass("com.developedbyme.constants.UnitTypes");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.display.PlaceElementNode::_init");
 		
 		this.superCall();
 		
 		this._x = this.createProperty("x", null);
+		var roundXNode = this.addDestroyableObject(RoundNode.create(this._x));
+		this._roundedX = this.addProperty("roundedX", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty)).setup("left", UnitTypes.PX, null).connectInput(roundXNode.getProperty("outputValue"));
 		this._y = this.createProperty("y", null);
+		var roundYNode = this.addDestroyableObject(RoundNode.create(this._y));
+		this._roundedY = this.addProperty("roundedY", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty)).setup("top", UnitTypes.PX, null).connectInput(roundYNode.getProperty("outputValue"));
 		this._z = this.createProperty("z", null);
-		this._width = this.createProperty("width", null);
-		this._height = this.createProperty("height", null);
+		var roundZNode = this.addDestroyableObject(RoundNode.create(this._z));
+		this._roundedZ = this.addProperty("roundedZ", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty)).setup("z-index", null, null).connectInput(roundZNode.getProperty("outputValue"));
+		this._width = this.addProperty("width", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty).setup("width", UnitTypes.PX, null));
+		this._height = this.addProperty("height", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty).setup("height", UnitTypes.PX, null));
 		this._element = this.createProperty("element", null);
-		this._display = this.createGhostProperty("display");
+		this._elementSet = this.createGhostProperty("elementSet")
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create(this._objectProperty));
 		
-		this.createUpdateFunction("default", this._update, [this._x, this._y, this._z, this._width, this._height, this._element], [this._display]);
+		this.createUpdateFunction("elementSet", this._updateElementSet, [this._element], [this._elementSet]);
+		
+		this._display.connectInput(this._roundedX).connectInput(this._roundedY).connectInput(this._roundedZ).connectInput(this._width).connectInput(this._height).connectInput(this._elementSet);
 		
 		return this;
 	};
 	
-	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.display.PlaceElementNode::_update");
+	objectFunctions._updateElementSet = function(aFlowUpdateNumber) {
+		console.log("com.developedbyme.flow.nodes.display.PlaceElementNode::_updateElementSet");
+		console.log(this);
 		
 		var htmlElement = this._element.getValueWithoutFlow();
-		if(htmlElement === null) {
-			return;
-		}
 		
-		try {
-			htmlElement.style.setProperty("left", Math.round(this._x.getValueWithoutFlow()) + "px", "");
-			htmlElement.style.setProperty("top", Math.round(this._y.getValueWithoutFlow()) + "px", "");
-			
-			var z = this._z.getValueWithoutFlow();
-			if(z !== null) {
-				htmlElement.style.setProperty("z-index", Math.round(z), "");
-			}
-			
-			var width = this._width.getValueWithoutFlow();
-			if(width !== null) {
-				htmlElement.style.setProperty("width", width + "px", "");
-			}
-			var height = this._height.getValueWithoutFlow();
-			if(height !== null) {
-				htmlElement.style.setProperty("height", height + "px", "");
-			}
-		}
-		catch(theError) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_update", "Un error occured while setting properties.");
-			ErrorManager.getInstance().reportError(this, "_update", theError);
-		}
+		this._roundedX.setExternalObject(htmlElement);
+		this._roundedY.setExternalObject(htmlElement);
+		this._roundedZ.setExternalObject(htmlElement);
+		this._width.setExternalObject(htmlElement);
+		this._height.setExternalObject(htmlElement);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

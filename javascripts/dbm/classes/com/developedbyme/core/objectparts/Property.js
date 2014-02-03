@@ -13,9 +13,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
+	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
-	objectFunctions._init = function _init() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::_init");
 		
 		this.superCall();
@@ -42,15 +44,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this;
 	};
 	
-	objectFunctions._performSetValue = function _performSetValue(aValue) {
+	objectFunctions._performSetValue = function(aValue) {
 		this._value = aValue;
 	};
 	
-	objectFunctions._performGetValue = function _performGetValue() {
+	objectFunctions._performGetValue = function() {
 		return this._value;
 	};
 	
-	objectFunctions.setValue = function setValue(aValue) {
+	objectFunctions.setValue = function(aValue) {
 		if(this._inputConnection !== null && (this._animationController === null || !this._canSetValueInAnimation)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Can't set value when property has input.");
 			return;
@@ -58,7 +60,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		if(this._animationController === null) {
 			if(!dbm.singletons.dbmAnimationManager.isRecording()) {
 				this._performSetValue(aValue);
-				this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+				this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 				this.setDependentConnectionsAsDirty();
 				return;
 			}
@@ -67,7 +69,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._animationController.setValue(aValue);
 	};
 	
-	objectFunctions.setValueWithDelay = function setValueWithDelay(aValue, aDelay) {
+	objectFunctions.setValueWithDelay = function(aValue, aDelay) {
 		if(this._inputConnection !== null && this._animationController === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValueWithDelay", "Can't set value when property has input.");
 			return;
@@ -78,7 +80,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._animationController.setValue(aValue, aDelay);
 	};
 	
-	objectFunctions.animateValue = function animateValue(aValue, aTime, aInterpolation, aDelay) {
+	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
 		if(this._animationController === null) {
 			if(this._inputConnection !== null) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValue", "Can't set value when property has input.");
@@ -89,7 +91,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._animationController.animateValue(aValue, aTime, aInterpolation, aDelay);
 	};
 	
-	objectFunctions.createTimelineControl = function createTimelineControl() {
+	objectFunctions.createTimelineControl = function() {
 		if(this._animationController === null) {
 			if(this._inputConnection !== null) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "createTimelineControl", "Can't set value when property has input.");
@@ -101,7 +103,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._animationController;
 	};
 	
-	objectFunctions.getAnimationController = function getAnimationController() {
+	objectFunctions.getAnimationController = function() {
 		if(this._animationController !== null) {
 			return this._animationController;
 		}
@@ -113,11 +115,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._animationController;
 	};
 	
-	objectFunctions.canBeSet = function canBeSet() {
+	objectFunctions.canBeSet = function() {
 		return (this._inputConnection === null || (this._animationController !== null && this._canSetValueInAnimation));
 	};
 	
-	objectFunctions.setValueWithFlow = function setValueWithFlow(aValue, aFlowUpdateNumber) {
+	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.objectparts.Property::setValueWithFlow");
 		//console.log(this.name);
 		//console.log(aValue, this._value);
@@ -129,13 +131,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
-	objectFunctions.setFlowAsUpdated =function(aFlowUpdateNumber) {
+	objectFunctions.setFlowAsUpdated = function(aFlowUpdateNumber) {
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._mustUpdate = false;
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
-	objectFunctions.getValue = function getValue() {
+	objectFunctions.getValue = function() {
 		
 		if(this._status === FlowStatusTypes.NEEDS_UPDATE) {
 			dbm.singletons.dbmFlowManager.updateProperty(this);
@@ -144,57 +146,57 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._performGetValue();
 	};
 	
-	objectFunctions.getValueWithoutFlow = function getValueWithoutFlow() {
+	objectFunctions.getValueWithoutFlow = function() {
 		return this._performGetValue();
 	};
 	
-	objectFunctions.getAnimationController = function getAnimationController() {
+	objectFunctions.getAnimationController = function() {
 		return this._animationController;
 	};
 	
-	objectFunctions.hasAnimationController = function hasAnimationController() {
+	objectFunctions.hasAnimationController = function() {
 		return (this._animationController !== null);
 	};
 	
-	objectFunctions.setStatus = function setStatus(aStatus) {
+	objectFunctions.setStatus = function(aStatus) {
 		this._status = aStatus;
 	};
 	
-	objectFunctions.getStatus = function getStatus() {
+	objectFunctions.getStatus = function() {
 		return this._status;
 	};
 	
-	objectFunctions.setAlwaysUpdateFlow = function setAlwaysUpdateFlow(aUpdate) {
+	objectFunctions.setAlwaysUpdateFlow = function(aUpdate) {
 		this._alwaysUpdateFlow = !VariableAliases.isFalse(aUpdate);
 		
 		return this;
 	};
 	
-	objectFunctions.getFlowUpdateNumber = function getFlowUpdateNumber() {
+	objectFunctions.getFlowUpdateNumber = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::getFlowUpdateNumber");
 		return this._flowUpdateNumber;
 	};
 	
-	objectFunctions._internalFunctionality_setFlowUpdateNumber = function _internalFunctionality_setFlowUpdateNumber(aFlowUpdateNumber) {
+	objectFunctions._internalFunctionality_setFlowUpdateNumber = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.objectparts.Property::_internalFunctionality_setFlowUpdateNumber");
 		this._flowUpdateNumber = aFlowUpdateNumber;
 	};
 	
-	objectFunctions._linkRegistration_setAsUpdating = function _linkRegistration_setAsUpdating(aIsUpdating) {
+	objectFunctions._linkRegistration_setAsUpdating = function(aIsUpdating) {
 		this._isUpdating = aIsUpdating;
 	};
 	
-	objectFunctions.isUpdating = function isUpdating() {
+	objectFunctions.isUpdating = function() {
 		return this._isUpdating;
 	};
 	
-	objectFunctions.update = function update() {
+	objectFunctions.update = function() {
 		dbm.singletons.dbmFlowManager.updateProperty(this);
 		
 		return this;
 	};
 	
-	objectFunctions.startUpdating = function startUpdating() {
+	objectFunctions.startUpdating = function() {
 		if(this._isUpdating) return this;
 		
 		dbm.singletons.dbmFlowManager.addUpdatedProperty(this);
@@ -202,7 +204,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this;
 	};
 	
-	objectFunctions.stopUpdating = function stopUpdating() {
+	objectFunctions.stopUpdating = function() {
 		if(!this._isUpdating) return this;
 		
 		dbm.singletons.dbmFlowManager.removeUpdatedProperty(this);
@@ -210,7 +212,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this;
 	};
 	
-	objectFunctions.updateFlow = function updateFlow() {
+	objectFunctions.updateFlow = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::updateFlow");
 		//console.log(this.name);
 		if(this._inputConnection !== null) {
@@ -219,9 +221,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			if(newFlowUpdateNumber > this._flowUpdateNumber) {
 				var newValue = this._inputConnection.getValue();
 				//console.log(newValue, this._value, newValue !== this._value);
-				if(this._alwaysUpdateFlow|| this._mustUpdate || (newValue !== this._performGetValue())) {
+				if(this._alwaysUpdateFlow || this._mustUpdate || (newValue !== this._performGetValue())) {
 					this._performSetValue(newValue);
-					this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+					this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 					this._mustUpdate = false;
 				}
 			}
@@ -229,21 +231,21 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
-	objectFunctions._linkRegistration_setObjectInputConnection = function _linkRegistration_setObjectInputConnection(aInputConnection) {
+	objectFunctions._linkRegistration_setObjectInputConnection = function(aInputConnection) {
 		this._objectInputConnection = aInputConnection;
 	};
 	
-	objectFunctions._linkRegistration_removeObjectInputConnection = function _linkRegistration_removeObjectInputConnection() {
+	objectFunctions._linkRegistration_removeObjectInputConnection = function() {
 		this._objectInputConnection = null;
 	};
 	
-	objectFunctions.connectInput = function connectInput(aProperty) {
+	objectFunctions.connectInput = function(aProperty) {
 		dbm.singletons.dbmFlowManager.connectProperties(aProperty, this);
 		
 		return this;
 	};
 	
-	objectFunctions.disconnectInput = function disconnectInput() {
+	objectFunctions.disconnectInput = function() {
 		if(this._inputConnection === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "disconnectInput", "Property " + this + " doesn't have any input.");
 			return;
@@ -253,19 +255,19 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this;
 	};
 	
-	objectFunctions.connectOutput = function connectOutput(aProperty) {
+	objectFunctions.connectOutput = function(aProperty) {
 		dbm.singletons.dbmFlowManager.connectProperties(this, aProperty);
 		
 		return this;
 	};
 	
-	objectFunctions.disconnectOutput = function disconnectOutput(aProperty) {
+	objectFunctions.disconnectOutput = function(aProperty) {
 		dbm.singletons.dbmFlowManager.disconnectProperties(this, aProperty);
 		
 		return this;
 	};
 	
-	objectFunctions._linkRegistration_setInputConnection = function _linkRegistration_setInputConnection(aInputConnection) {
+	objectFunctions._linkRegistration_setInputConnection = function(aInputConnection) {
 		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_setInputConnection");
 		//console.log(this.name);
 		if(this._inputConnection !== null) {
@@ -281,20 +283,20 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._flowUpdateNumber = 0;
 	};
 	
-	objectFunctions._linkRegistration_addConnectedOutput = function _linkRegistration_addConnectedOutput(aOutputConnection) {
+	objectFunctions._linkRegistration_addConnectedOutput = function(aOutputConnection) {
 		this._outputConnections.push(aOutputConnection);
 	};
 	
-	objectFunctions._linkRegistration_setInputUpdateFunction = function _linkRegistration_setInputUpdateFunction(aUpdateFunction) {
+	objectFunctions._linkRegistration_setInputUpdateFunction = function(aUpdateFunction) {
 		this._inputUpdateFunction = aUpdateFunction;
 		this.setAsDirty();
 	};
 	
-	objectFunctions._linkRegistration_removeInputUpdateFunction = function _linkRegistration_removeInputUpdateFunction() {
+	objectFunctions._linkRegistration_removeInputUpdateFunction = function() {
 		this._inputUpdateFunction = null;
 	};
 	
-	objectFunctions._linkRegistration_removeInputConnection = function _linkRegistration_removeInputConnection(aProperty) {
+	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
 		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeInputConnection");
 		//console.log(this.name);
 		if(this._inputConnection === null) {
@@ -313,7 +315,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
-	objectFunctions._linkRegistration_removeConnectedOutput = function _linkRegistration_removeConnectedOutput(aOutputConnection) {
+	objectFunctions._linkRegistration_removeConnectedOutput = function(aOutputConnection) {
 		
 		var index = ArrayFunctions.indexOfInArray(this._outputConnections, aOutputConnection);
 		if(index === -1) {
@@ -323,7 +325,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._outputConnections.splice(index, 1);
 	};
 	
-	objectFunctions.fillWithCleanOutputConnections = function fillWithCleanOutputConnections(aReturnArray) {
+	objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
 		var currentArray = this._outputConnections;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
@@ -337,7 +339,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
-	objectFunctions.fillWithDirtyInputConnections = function fillWithDirtyInputConnections(aReturnArray) {
+	objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
 		if(this._inputConnection !== null && this._inputConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
 			aReturnArray.push(this._inputConnection);
 		}
@@ -349,7 +351,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
-	objectFunctions.fillWithAllInputConnections = function fillWithInputConnections(aReturnArray) {
+	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
 		if(this._inputConnection !== null) {
 			aReturnArray.push(this._inputConnection);
 		}
@@ -361,8 +363,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
-	objectFunctions.fillWithAllOutputConnections = function fillWithCleanOutputConnections(aReturnArray) {
-		console.log("com.developedbyme.core.objectparts.Property::fillWithAllOutputConnections");
+	objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.Property::fillWithAllOutputConnections");
 		
 		var currentArray = this._outputConnections;
 		var currentArrayLength = currentArray.length;
@@ -396,8 +398,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	objectFunctions.setCachedDependentNodeChains = function(aNodeChains) {
-		console.log("com.developedbyme.core.objectparts.Property::setCachedDependentNodeChains");
-		console.log(this, aNodeChains);
+		//console.log("com.developedbyme.core.objectparts.Property::setCachedDependentNodeChains");
+		//console.log(this, aNodeChains);
 		
 		this._cachedDependentNodeChains = aNodeChains;
 	};
@@ -438,7 +440,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
 	};
 	
-	objectFunctions._internalFunctionality_ownsVariable = function _internalFunctionality_ownsVariable(aName) {
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "_value":
 				return false;
@@ -446,7 +448,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this.superCall();
 	};
 	
-	objectFunctions.setAllReferencesToNull = function setAllReferencesToNull() {
+	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._value = null;
 		this._objectInputConnection = null;
@@ -458,11 +460,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.superCall();
 	};
 	
-	staticFunctions.create = function create(aObjectInput, aValue) {
+	staticFunctions.create = function(aObjectInput, aValue) {
 		//console.log("com.developedbyme.core.objectparts.Property::create");
 		var newProperty = (new Property()).init();
-		aObjectInput._linkRegistration_addObjectProperty(newProperty);
-		newProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newProperty);
+			newProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
 		if(aValue instanceof Property) {
 			newProperty.connectInput(aValue);
 		}

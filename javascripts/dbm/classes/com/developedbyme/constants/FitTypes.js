@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.FitTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.FitTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.FitTypes");
 	
 	var FitTypes = dbm.importClass("com.developedbyme.constants.FitTypes");

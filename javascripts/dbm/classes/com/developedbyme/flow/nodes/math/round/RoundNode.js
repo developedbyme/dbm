@@ -1,31 +1,19 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.round.RoundNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.round.RoundNode");
 	
+	var RoundNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundNode");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.round.RoundNode::_init");
 		
 		this.superCall();
 		
-		this._inputValue = this.createProperty("inputValue", 0);
-		this._outputValue = this.createProperty("outputValue", 0);
+		var inputValue = this.createProperty("inputValue", 0);
+		var outputValue = this.createProperty("outputValue", 0);
 		
-		this.createUpdateFunction("default", this._update, [this._inputValue], [this._outputValue]);
+		this.createUpdateFunctionWithArguments("default", Math.round, [inputValue], [outputValue]);
 		
 		return this;
-	};
-	
-	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.round.RoundNode::_update");
-		this._outputValue.setValueWithFlow(Math.round(this._inputValue.getValueWithoutFlow()), aFlowUpdateNumber);
-	};
-	
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
-	objectFunctions.setAllReferencesToNull = function() {
-		this.superCall();
 	};
 	
 	staticFunctions.create = function(aInput) {

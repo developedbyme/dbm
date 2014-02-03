@@ -106,6 +106,7 @@ dbm.runTempFunction(function() {
 		console.log(flowUpdateChains2);
 		
 		timeUpdateProperty.setCachedDependentNodeChains(flowUpdateChains2);
+		
 		var flowUpdater = FlowUpdater.create(flowUpdateChains);
 		flowUpdater.update();
 		dbm.singletons.dbmUpdateManager.addUpdater(flowUpdater, "updateFlow");

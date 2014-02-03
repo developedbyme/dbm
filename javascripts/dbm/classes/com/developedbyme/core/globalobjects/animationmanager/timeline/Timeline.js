@@ -128,7 +128,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		return this._time.getValue();
 	};
 	
-	objectFunctions.getValue = function(aTime) {
+	objectFunctions.getValue = function() {
 		var currentTime = this._time.getValue();
 		return this.getValueAt(currentTime);
 	};

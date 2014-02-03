@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.PlaybackStateTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.PlaybackStateTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.PlaybackStateTypes");
 	
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");

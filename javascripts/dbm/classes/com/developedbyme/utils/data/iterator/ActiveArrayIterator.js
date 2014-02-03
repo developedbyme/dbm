@@ -13,10 +13,29 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		this._isActive = false;
 		this._canAddItemsWhileActive = true;
 		this._canRemoveItemsWhileActive = true;
-			
+		
+		this._commandQueue = null;
+		
+		return this;
+	};
+	
+	objectFunctions.getCommandQueue = function() {
+		if(this._commandQueue === null) {
+			this._createCommandQueue();
+		}
+		return this._commandQueue;
+	};
+	
+	objectFunctions._createCommandQueue = function() {
 		this._commandQueue = (new CommandQueue()).init();
 		this.addDestroyableObject(this._commandQueue);
 		
+		this._createCommandsForCommandQueue();
+		
+		return this._commandQueue;
+	};
+	
+	objectFunctions._createCommandsForCommandQueue = function() {
 		this._commandQueue.createFunctionTypeCommand("push", this, this.push, true);
 		this._commandQueue.createFunctionTypeCommand("pop", this, this.push, false);
 		this._commandQueue.createFunctionTypeCommand("unshift", this, this.unshift, true);
@@ -27,8 +46,10 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		
 		this._commandQueue.createFunctionTypeCommand("setAddItemsWhileActive", this, this.setAddItemsWhileActive, true);
 		this._commandQueue.createFunctionTypeCommand("setRemoveItemsWhileActive", this, this.setRemoveItemsWhileActive, true);
-		
-		return this;
+	};
+	
+	objectFunctions._commandQueueIsRunning = function() {
+		return (this._commandQueue !== null && this._commandQueue.isRunning())
 	};
 	
 	objectFunctions._itemPreAdded = function(aObject) {
@@ -41,8 +62,8 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 			this._canRemoveItemsWhileActive = aCanRemoveItemsWhileActive;
 		}
 		else {
-			this._commandQueue.createQueuedCommand("setAddItemsWhileActive", aCanAddItemsWhileActive);
-			this._commandQueue.createQueuedCommand("setRemoveItemsWhileActive", aCanRemoveItemsWhileActive);
+			this.getCommandQueue().createQueuedCommand("setAddItemsWhileActive", aCanAddItemsWhileActive);
+			this.getCommandQueue().createQueuedCommand("setRemoveItemsWhileActive", aCanRemoveItemsWhileActive);
 		}
 		
 		return this;
@@ -53,7 +74,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 			this._canAddItemsWhileActive = aCanAddItemsWhileActive;
 		}
 		else {
-			this._commandQueue.createQueuedCommand("setAddItemsWhileActive", aCanAddItemsWhileActive);
+			this.getCommandQueue().createQueuedCommand("setAddItemsWhileActive", aCanAddItemsWhileActive);
 		}
 		
 		return this;
@@ -64,7 +85,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 			this._canRemoveItemsWhileActive = aCanRemoveItemsWhileActive;
 		}
 		else {
-			this._commandQueue.createQueuedCommand("setRemoveItemsWhileActive", aCanRemoveItemsWhileActive);
+			this.getCommandQueue().createQueuedCommand("setRemoveItemsWhileActive", aCanRemoveItemsWhileActive);
 		}
 		
 		return this;
@@ -88,8 +109,10 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	objectFunctions.stop = function() {
 		this._isActive = false;
 		this.resetPosition();
-		this._commandQueue.runQueuedCommands();
-		this._commandQueue.reset();
+		if(this._commandQueue !== null) {
+			this._commandQueue.runQueuedCommands();
+			this._commandQueue.reset();
+		}
 	};
 	
 	/**
@@ -98,14 +121,14 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	objectFunctions.push = function(aObject) {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::push");
 		if(!this._verifyItem(aObject)) return;
-		if(!this._commandQueue.isRunning()) {
+		if(!this._commandQueueIsRunning()) {
 			this._itemPreAdded(aObject);
 		}
 		if(!this._isActive || this._canAddItemsWhileActive) {
 			this.superCall(aObject);
 		}
 		else {
-			this._commandQueue.createQueuedCommand("push", aObject);
+			this.getCommandQueue().createQueuedCommand("push", aObject);
 		}
 	};
 	
@@ -117,7 +140,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 			this.superCall();
 		}
 		else {
-			this._commandQueue.createQueuedCommand("pop", null);
+			this.getCommandQueue().createQueuedCommand("pop", null);
 		}
 	};
 	
@@ -126,14 +149,14 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	 */
 	objectFunctions.unshift = function(aObject) {
 		if(!this._verifyItem(aObject)) return;
-		if(!this._commandQueue.isRunning()) {
+		if(!this._commandQueueIsRunning()) {
 			this._itemPreAdded(aObject);
 		}
 		if(!this._isActive || this._canAddItemsWhileActive) {
 			this.superCall(aObject);
 		}
 		else {
-			this._commandQueue.createQueuedCommand("unshift", aObject);
+			this.getCommandQueue().createQueuedCommand("unshift", aObject);
 		}
 	};
 	
@@ -145,7 +168,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 			this.superCall();
 		}
 		else {
-			this._commandQueue.createQueuedCommand("shift", null);
+			this.getCommandQueue().createQueuedCommand("shift", null);
 		}
 	};
 	
@@ -159,7 +182,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 			this.superCall(aObject);
 		}
 		else {
-			this._commandQueue.createQueuedCommand("removeItem", aObject);
+			this.getCommandQueue().createQueuedCommand("removeItem", aObject);
 		}
 	};
 	
@@ -171,7 +194,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 			this.superCall(aIndex);
 		}
 		else {
-			this._commandQueue.createQueuedCommand("removeItemAt", aIndex);
+			this.getCommandQueue().createQueuedCommand("removeItemAt", aIndex);
 		}
 	};
 	
@@ -180,14 +203,14 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	 */
 	objectFunctions.addItemAt = function(aObject, aIndex) {
 		if(!this._verifyItem(aObject)) return;
-		if(!this._commandQueue.isRunning()) {
+		if(!this._commandQueueIsRunning()) {
 			this._itemPreAdded(aObject);
 		}
 		if(!this._isActive || this._canAddItemsWhileActive) {
 			this.superCall(aObject, aIndex);
 		}
 		else {
-			this._commandQueue.createQueuedCommand("addItemAt", {"object": aObject, "index": aIndex});
+			this.getCommandQueue().createQueuedCommand("addItemAt", {"object": aObject, "index": aIndex});
 		}
 	};
 	

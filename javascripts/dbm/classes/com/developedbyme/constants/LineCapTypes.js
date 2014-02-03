@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.LineCapTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.LineCapTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.LineCapTypes");
 	
 	var LineCapTypes = dbm.importClass("com.developedbyme.constants.LineCapTypes");

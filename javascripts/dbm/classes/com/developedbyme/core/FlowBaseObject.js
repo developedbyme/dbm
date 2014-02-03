@@ -23,9 +23,9 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		this.superCall();
 		
 		this.__nodeId = (dbm.singletons.dbmIdManager) ? dbm.singletons.dbmIdManager.getNewId(this.__className) : this.__className;
-		this._objectProperty = ObjectProperty.create(this);
-		this._objectProperty.name = this.__nodeId + "::object(o)";
-		this.addDestroyableObject(this._objectProperty);
+		
+		this._objectProperty = null;
+		
 		this._properties = (new NamedArray()).init();
 		this._properties.ownsObjects = true;
 		this.addDestroyableObject(this._properties);
@@ -36,7 +36,28 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return this;
 	};
 	
+	objectFunctions._createObjectProperty = function() {
+		this._objectProperty = ObjectProperty.create(this);
+		this._objectProperty.name = this.__nodeId + "::object(o)";
+		this.addDestroyableObject(this._objectProperty);
+		this._addObjectPropertyToAllProperties();
+		this._objectProperty.setAsDirty();
+	};
+	
+	objectFunctions._addObjectPropertyToAllProperties = function() {
+		var currentArray = this._properties.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentProperty = currentArray[i];
+			this._objectProperty._linkRegistration_addObjectProperty(currentProperty);
+			currentProperty._linkRegistration_setObjectInputConnection(this._objectProperty);
+		}
+	};
+	
 	objectFunctions.getObjectProperty = function() {
+		if(this._objectProperty === null) {
+			this._createObjectProperty();
+		}
 		return this._objectProperty;
 	};
 	

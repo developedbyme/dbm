@@ -36,6 +36,7 @@ dbm.runTempFunction(function() {
 		
 		var mainWorkspace = Workspace.createOnParent(document.body);
 		mainWorkspace.setElementAsPositioned();
+		mainWorkspace.setElementAsSized();
 		mainWorkspace.setPropertyInput("width", windowSizeNode.getProperty("width"));
 		mainWorkspace.setPropertyInput("height", windowSizeNode.getProperty("height"));
 		mainWorkspace.linkElementSizeToWorkspaceArea();
@@ -50,6 +51,7 @@ dbm.runTempFunction(function() {
 		
 		var areaElement1 = DisplayBaseObject.createNewDiv({"name": "Area 1", "style": "position: absolute; overflow: hidden; background-color: #FF0000;"});
 		areaElement1.setElementAsPositioned();
+		areaElement1.setElementAsSized();
 		areaElement1.getProperty("display").startUpdating();
 		areaElement1.addToDom();
 		
@@ -58,6 +60,7 @@ dbm.runTempFunction(function() {
 		
 		var areaElement2 = DisplayBaseObject.createNewDiv({"name": "Area 2", "style": "position: absolute; overflow: hidden; background-color: #00FF00;"});
 		areaElement2.setElementAsPositioned();
+		areaElement2.setElementAsSized();
 		areaElement2.getProperty("display").startUpdating();
 		areaElement2.addToDom();
 		
@@ -72,6 +75,7 @@ dbm.runTempFunction(function() {
 		
 		var areaElement3 = DisplayBaseObject.createNewDiv({"name": "Area 3", "style": "position: absolute; overflow: hidden; background-color: #0000FF;"});
 		areaElement3.setElementAsPositioned();
+		areaElement3.setElementAsSized();
 		areaElement3.getProperty("display").startUpdating();
 		areaElement3.addToDom();
 		

@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.InterpolationTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.InterpolationTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.InterpolationTypes");
 	//"use strict";
 	

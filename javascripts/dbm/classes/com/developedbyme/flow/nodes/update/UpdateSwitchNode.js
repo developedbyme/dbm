@@ -3,25 +3,27 @@ dbm.registerClass("com.developedbyme.flow.nodes.update.UpdateSwitchNode", "com.d
 	
 	var UpdateSwitchNode = dbm.importClass("com.developedbyme.flow.nodes.update.UpdateSwitchNode");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-	
-	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.update.UpdateSwitchNode::_init");
 		
 		this.superCall();
 		
-		this._ticker = this.createProperty("ticker", false);
+		this._ticker = this.createProperty("ticker", 0);
 		this._shouldUpdate = this.createProperty("shouldUpdate", false);
-		this._update = this.createGhostProperty("update");
+		this._updateProperty = this.createGhostProperty("update");
 		
-		this._propertiesToUpdate = new Array();
+		this._propertiesToUpdate = ArrayHolder.create(false);
+		this.addDestroyableObject(this._propertiesToUpdate);
 		
-		this.createUpdateFunction("default", this._update, [this._shouldUpdate, this._ticker], [this._update]);
+		this.createUpdateFunction("default", this._update, [this._shouldUpdate, this._ticker], [this._updateProperty]);
+		
+		return this;
+	};
+	
+	objectFunctions.addUpdateProperty = function(aProprety) {
+		this._propertiesToUpdate.array.push(aProprety);
 		
 		return this;
 	};
@@ -31,7 +33,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.update.UpdateSwitchNode", "com.d
 		var shouldUpdate = this._shouldUpdate.getValueWithoutFlow();
 		
 		if(shouldUpdate) {
-			var currentArray = this._propertiesToUpdate;
+			var currentArray = this._propertiesToUpdate.array;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentProperty = currentArray[i];
@@ -43,15 +45,30 @@ dbm.registerClass("com.developedbyme.flow.nodes.update.UpdateSwitchNode", "com.d
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
+		this._ticker = null;
 		this._shouldUpdate = null;
-		this._update = null;
+		this._updateProperty = null;
 		
 		this.superCall();
 	};
 	
-	staticFunctions.create = function() {
+	staticFunctions.create = function(aShouldUpdate, aTicker) {
 		
 		var newUpdateSwitchNode = (new ClassReference()).init();
+		
+		newUpdateSwitchNode.setPropertyInputWithoutNull("shouldUpdate", aShouldUpdate);
+		newUpdateSwitchNode.setPropertyInputWithoutNull("ticker", aTicker);
+		
+		return newUpdateSwitchNode;
+	};
+	
+	staticFunctions.createWithGlobalTicker = function(aShouldUpdate) {
+		
+		var newUpdateSwitchNode = (new ClassReference()).init();
+		
+		newUpdateSwitchNode.setPropertyInputWithoutNull("shouldUpdate", aShouldUpdate);
+		newUpdateSwitchNode.setPropertyInputWithoutNull("ticker", dbm.singletons.dbmAnimationManager.globalTimeProperty);
+		
 		return newUpdateSwitchNode;
 	};
 });

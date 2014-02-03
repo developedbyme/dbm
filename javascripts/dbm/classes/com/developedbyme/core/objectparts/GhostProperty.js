@@ -39,8 +39,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.devel
 	
 	staticFunctions.create = function(aObjectInput) {
 		var newGhostProperty = (new GhostProperty()).init();
-		aObjectInput._linkRegistration_addObjectProperty(newGhostProperty);
-		newGhostProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newGhostProperty);
+			newGhostProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
 		return newGhostProperty;
 	};
 	

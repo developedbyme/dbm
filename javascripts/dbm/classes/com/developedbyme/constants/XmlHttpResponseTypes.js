@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.XmlHttpResponseTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.XmlHttpResponseTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.XmlHttpResponseTypes");
 	
 	var XmlHttpResponseTypes = dbm.importClass("com.developedbyme.constants.XmlHttpResponseTypes");

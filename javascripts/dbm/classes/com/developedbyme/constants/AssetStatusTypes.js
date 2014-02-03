@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.AssetStatusTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.AssetStatusTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.AssetStatusTypes");
 	
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");

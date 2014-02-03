@@ -17,12 +17,14 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 		this._element = this.createProperty("element", null);
 		this._inDom = this.createProperty("inDom", true);
 		
+		/*
 		this._windowForElementNode = WindowForElementNode.create(this._element);
 		this.addDestroyableObject(this._windowForElementNode);
 		var windowSizeNode = WindowSizeNode.create(this._windowForElementNode.getProperty("window"));
 		this.addDestroyableObject(windowSizeNode);
+		*/
 		
-		this.createUpdateFunction("default", this._update, [this._element, windowSizeNode.getProperty("width"), windowSizeNode.getProperty("height"), this._inDom], [this._width, this._height]);
+		this.createUpdateFunction("default", this._update, [this._element/*, windowSizeNode.getProperty("width"), windowSizeNode.getProperty("height")*/, this._inDom], [this._width, this._height]);
 		
 		return this;
 	};

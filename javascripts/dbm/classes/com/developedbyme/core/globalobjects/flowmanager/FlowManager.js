@@ -12,6 +12,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	
+	var FlowUpdater = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdater");
+	var FlowUpdateChainCreator = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
+	
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
+	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
@@ -23,22 +28,21 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		this.superCall();
 		
-		this._flowUpdateNumber = 1;
-		this._numberOfPropertiesCleaned = 0;
 		this._updatedProperties = (new ActiveArrayIterator()).init();
 		this._updatedProperties.setAddRemoveWhileActive(true, true);
+		
+		this._cachedFlowUpdater = null;
 		
 		return this;
 	};
 	
 	objectFunctions.getFlowUpdateNumber = function() {
-		return this._flowUpdateNumber;
+		return GlobalVariables.FLOW_UPDATE_NUMBER;
 	};
 	
 	objectFunctions.increaseFlowUpdateNumber = function() {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::increaseFlowUpdateNumber");
-		this._flowUpdateNumber++;
-		return this._flowUpdateNumber;
+		return (++GlobalVariables.FLOW_UPDATE_NUMBER);
 	};
 	
 	objectFunctions.start = function() {
@@ -47,6 +51,36 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.stop = function() {
 		dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateFlow");
+	};
+	
+	objectFunctions.cacheUpdatedProperties = function() {
+		console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::cacheUpdatedProperties");
+		
+		if(this._cachedFlowUpdater === null) {
+			
+			console.log(this._updatedProperties, this._updatedProperties.array);
+			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updatedProperties.array);
+			
+			console.log(updateChains);
+			this._cachedFlowUpdater = FlowUpdater.create(updateChains);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "cacheUpdatedProperties", "Updated properties are alread cached. Re-caching.");
+			this.recacheUpdatedProperties();
+		}
+	};
+	
+	objectFunctions.recacheUpdatedProperties = function() {
+		if(this._cachedFlowUpdater !== null) {
+			
+			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updatedProperties.array);
+			
+			this._cachedFlowUpdater.setChains(updateChains);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "recacheUpdatedProperties", "Updated properties are not cached. Creating initial cache.");
+			this.cacheUpdatedProperties();
+		}
 	};
 	
 	objectFunctions.setDependentConnectionsAsDirty = function(aConnection) {
@@ -91,7 +125,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 			return;
 		}
 		
-		this._flowUpdateNumber++;
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
 		
 		var currentArray = new Array();
 		currentArray.push(aProperty);
@@ -120,17 +154,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 				//numberOfSkipped++;
 				continue;
 			}
-			try {
+			//try {
 				currentConnection.updateFlow();
-			}
-			catch(theError) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateProperty", "Un error occured while updating " + currentConnection + " started from " + aProperty + ".");
-				ErrorManager.getInstance().reportError(this, "updateProperty", theError);
-			}
+			//}
+			//catch(theError) {
+			//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateProperty", "Un error occured while updating " + currentConnection + " started from " + aProperty + ".");
+			//	ErrorManager.getInstance().reportError(this, "updateProperty", theError);
+			//}
 			//nodeNames.push(currentConnection.name);
 		}
 		
-		this._flowUpdateNumber++;
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
 		
 		//console.log(nodeNames.join(", "));
 		
@@ -167,6 +201,29 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	objectFunctions.updateProperties = function() {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
 		
+		if(this._cachedFlowUpdater !== null) {
+			this._performUpdateCachedProperties();
+		}
+		else {
+			this._performUpdateUncachedProperties();
+		}
+		
+		//console.log("//com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
+	};
+	
+	objectFunctions._performUpdateCachedProperties = function() {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::_performUpdateCachedProperties");
+		
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
+		
+		this._cachedFlowUpdater.update();
+		
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
+	};
+	
+	objectFunctions._performUpdateUncachedProperties = function() {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::_performUpdateUncachedProperties");
+		
 		var numberOfPropertiesUpdated = 0;
 		var numberOfPropertiesSkipped = 0;
 		
@@ -177,18 +234,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 			if(currentProperty.getStatus() !== FlowStatusTypes.UPDATED) {
 				numberOfPropertiesUpdated++;
 				if(currentProperty.isDestroyed()) {
-					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperties", "Property (" + currentProperty + ") is destroyed, removing.");
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "_performUpdateUncachedProperties", "Property (" + currentProperty + ") is destroyed, removing.");
 					this._updatedProperties.removeItem(currentProperty);
 					continue;
 				}
-				try {
-					
+				//try {
 					this.updateProperty(currentProperty);
-				}
-				catch(theError) {
-					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateProperties", "Un error occured while updating " + currentProperty +".");
-					ErrorManager.getInstance().reportError(this, "updateProperties", theError);
-				}
+				//}
+				//catch(theError) {
+				//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_performUpdateUncachedProperties", "Un error occured while updating " + currentProperty +".");
+				//	ErrorManager.getInstance().reportError(this, "_performUpdateUncachedProperties", theError);
+				//}
 			}
 			else {
 				numberOfPropertiesSkipped++;
@@ -196,8 +252,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		}
 		
 		//console.log("Updated:", numberOfPropertiesUpdated, "Skipped:", numberOfPropertiesSkipped);
-		
-		//console.log("//com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
 	};
 	
 	objectFunctions.addUpdatedProperty = function(aProperty) {

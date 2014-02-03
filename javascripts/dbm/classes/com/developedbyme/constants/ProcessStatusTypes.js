@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.ProcessStatusTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.ProcessStatusTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.ProcessStatusTypes");
 	
 	var ProcessStatusTypes = dbm.importClass("com.developedbyme.constants.ProcessStatusTypes");

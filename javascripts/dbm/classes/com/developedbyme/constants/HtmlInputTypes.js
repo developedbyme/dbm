@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.HtmlInputTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.HtmlInputTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.HtmlInputTypes");
 	
 	var HtmlInputTypes = dbm.importClass("com.developedbyme.constants.HtmlInputTypes");

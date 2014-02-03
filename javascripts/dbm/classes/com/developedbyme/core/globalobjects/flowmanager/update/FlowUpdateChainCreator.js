@@ -66,13 +66,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 			var currentChain = currentArray[i];
 			
 			if(currentChain === aChain) {
-				console.log("+++", i, aChain);
 				currentArray.splice(i, 1);
 				i--;
 				currentArrayLength--;
 			}
 			else if(currentChain.outputConnection === aChain.outputConnection) {
-				if(aChain.outputConnection !== null) console.log("+", i, aChain);
 				count++;
 			}
 		}
@@ -88,7 +86,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 	
 	staticFunctions.createAllChainsForMultipleOutputConnections = function(aConnections) {
 		var unsortedArray = new Array();
-		ClassReference.createChainForConnection(aConnections, null, null, unsortedArray);
+		ClassReference.createChainsForConnections(aConnections, null, null, unsortedArray);
 		return ClassReference._createAllInputChains(unsortedArray);
 	};
 	
@@ -115,26 +113,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 					break;
 				}
 				var currentInputConnections = new Array();
+				var currentOutputConnections = new Array();
+				
 				currentConnection.fillWithAllInputConnections(currentInputConnections);
+				currentConnection.fillWithAllOutputConnections(currentOutputConnections);
 				var currentInputConnectionsLength = currentInputConnections.length;
-				if(currentInputConnectionsLength === 1) {
-					
-					var currentOutputConnections = new Array();
-					currentInputConnections[0].fillWithAllOutputConnections(currentOutputConnections);
-					if(currentOutputConnections.length > 1) {
-						currentChain.setInputConnection(currentConnection);
-						if(!ClassReference.doesOutputAlreadyExistsInChainArray(currentArray, currentConnection)) {
-							currentArray.push(ClassReference.createChainForConnection(currentInputConnections[0], null, currentConnection));
-							currentArrayLength++;
-						}
-					}
-					else {
-						currentConnection = currentInputConnections[0];
-						currentArray2.push(currentConnection);
-						continue;
-					}
+				
+				if(currentInputConnectionsLength === 1 && currentOutputConnections.length < 2) {
+					currentConnection = currentInputConnections[0];
+					currentArray2.push(currentConnection);
+					continue;
 				}
-				else if(currentInputConnectionsLength > 1) {
+				else if(currentInputConnectionsLength > 0) {
 					currentChain.setInputConnection(currentConnection);
 					if(!ClassReference.doesOutputAlreadyExistsInChainArray(currentArray, currentConnection)) {
 						ClassReference.createChainsForConnections(currentInputConnections, null, currentConnection, currentArray);
@@ -166,9 +156,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 			var currentChain = currentArray[i];
 			var currentArray2 = currentChain.connections;
 			var currentConnection = currentArray2[0];
-			//if(currentChain.inputConnection !== null) {
-			//	currentArray2.push(currentChain.inputConnection);
-			//}
+			if(currentChain.inputConnection !== null) {
+				currentArray2.push(currentChain.inputConnection);
+			}
 			var debugCounter = 0;
 			while(true) {
 				//console.log("*********", currentConnection.name);
@@ -176,29 +166,21 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[FlowUpdateChainCreator]", "_createAllOutputChains", "Loop has run for too long.");
 					break;
 				}
+				
+				var currentInputConnections = new Array();
 				var currentOutputConnections = new Array();
+				
+				currentConnection.fillWithAllInputConnections(currentInputConnections);
 				currentConnection.fillWithAllOutputConnections(currentOutputConnections);
 				var currentOutputConnectionsLength = currentOutputConnections.length;
-				if(currentOutputConnectionsLength === 1) {
-					
-					var currentInputConnections = new Array();
-					currentOutputConnections[0].fillWithAllInputConnections(currentInputConnections);
-					if(currentInputConnections.length > 1) {
-						//currentArray2.shift();
-						currentChain.setOutputConnection(currentOutputConnections[0]);
-						if(!ClassReference.doesInputAlreadyExistsInChainArray(currentArray, currentOutputConnections[0])) {
-							currentArray.push(ClassReference.createChainForConnection(currentOutputConnections[0], currentOutputConnections[0], null));
-							currentArrayLength++;
-						}
-					}
-					else {
-						currentConnection = currentOutputConnections[0];
-						currentArray2.unshift(currentConnection);
-						continue;
-					}
+				
+				if(currentOutputConnectionsLength === 1 && currentInputConnections.length < 2) {
+					currentConnection = currentOutputConnections[0];
+					currentArray2.unshift(currentConnection);
+					continue;
 				}
-				else if(currentOutputConnectionsLength > 1) {
-					//currentArray2.shift();
+				else if(currentOutputConnectionsLength > 0) {
+					currentArray2.shift();
 					currentChain.setOutputConnection(currentConnection);
 					if(!ClassReference.doesInputAlreadyExistsInChainArray(currentArray, currentConnection)) {
 						ClassReference.createChainsForConnections(currentOutputConnections, currentConnection, null, currentArray);
@@ -227,17 +209,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 		var currentArray2Length = aUnsortedArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var sortedChain = currentArray[i];
-			console.log(i, currentArray.length, (sortedChain.inputConnection) ? sortedChain.inputConnection.name : "-");
 			var remainingOutputConnections = ClassReference._removeChainFromUnsortedArray(currentArray2, sortedChain);
 			currentArray2Length--;
-			console.log(">", remainingOutputConnections);
 			if(sortedChain.outputConnection !== null) {
-				console.log(sortedChain.outputConnection.name);
 				if(remainingOutputConnections === 0) {
 					for(var j = 0; j < currentArray2Length; j++) {
 						var unsortedChain = currentArray2[j];
 						if(unsortedChain.inputConnection === sortedChain.outputConnection) {
-							console.log(">>>", unsortedChain);
 							currentArray.push(unsortedChain);
 						}
 					}

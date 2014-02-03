@@ -156,8 +156,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::create");
 		//console.log(aObjectInput);
 		var newAnyChangeMultipleInputProperty = (new AnyChangeMultipleInputProperty()).init();
-		aObjectInput._linkRegistration_addObjectProperty(newAnyChangeMultipleInputProperty);
-		newAnyChangeMultipleInputProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newAnyChangeMultipleInputProperty);
+			newAnyChangeMultipleInputProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
 		return newAnyChangeMultipleInputProperty;
 	};
 	

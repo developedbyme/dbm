@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.JavascriptEventIds", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.JavascriptEventIds", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.JavascriptEventIds");
 	
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");

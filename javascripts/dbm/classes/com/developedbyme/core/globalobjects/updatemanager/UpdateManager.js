@@ -45,8 +45,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 			return;
 		}
 		
-		var startDate = new Date();
-		this._startTime = startDate.getTime();
+		this._startTime = Date.now();
 		
 		this.currentTime = 0;
 		this.currentFrame = 0;
@@ -78,8 +77,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager::update");
 		
 		this._isUpdating = true;
-		var newDate = new Date();
-		this.currentTime = 0.001*(newDate.getTime()-this._startTime);
+		var currentTime = Date.now();
+		this.currentTime = 0.001*(currentTime-this._startTime);
 		this.currentFrame++;
 		
 		this._updateChain.updateTime(this.currentTime, this.currentFrame);

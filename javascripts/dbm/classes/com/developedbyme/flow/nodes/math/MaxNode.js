@@ -12,14 +12,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.MaxNode", "com.developedbym
 		this._inputValue2 = this.createProperty("inputValue2", 0);
 		this._outputValue = this.createProperty("outputValue", 0);
 		
-		this.createUpdateFunction("default", this._update, [this._inputValue1, this._inputValue2], [this._outputValue]);
+		this.createUpdateFunctionWithArguments("default", Math.max, [this._inputValue1, this._inputValue2], [this._outputValue]);
 		
 		return this;
-	};
-	
-	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.MaxNode::_update");
-		this._outputValue.setValueWithFlow(Math.max(this._inputValue1.getValueWithoutFlow(), this._inputValue2.getValueWithoutFlow()), aFlowUpdateNumber);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

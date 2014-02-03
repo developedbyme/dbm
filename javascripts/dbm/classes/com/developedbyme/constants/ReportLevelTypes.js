@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.ReportLevelTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.ReportLevelTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.ReportLevelTypes");
 	
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");

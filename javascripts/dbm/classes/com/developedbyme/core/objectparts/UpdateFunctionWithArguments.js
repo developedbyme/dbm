@@ -13,6 +13,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
+	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	objectFunctions._init = function() {
@@ -33,7 +35,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 		}
 		
 		var newFlowUpdateNumber = this._getInputFlowUpdateParameters(this._cachedInputArray);
-		var globalUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+		var globalUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 		if(newFlowUpdateNumber > this._flowUpdateNumber) {
 			this._flowUpdateNumber = globalUpdateNumber;
 			var returnValue = this._updateFunction.apply(this, this._cachedInputArray);

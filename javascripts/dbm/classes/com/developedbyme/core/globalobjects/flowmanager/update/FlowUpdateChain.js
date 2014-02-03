@@ -54,13 +54,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 			if(VariableAliases.isSet(currentConnection.getStatus) && currentConnection.getStatus() === 1) {
 				continue;
 			}
-			try {
+			//try {
 				currentConnection.updateFlow();
-			}
-			catch(theError) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "update", "Un error occured while updating " + currentConnection + ".");
-				ErrorManager.getInstance().reportError(this, "updateProperty", theError);
-			}
+			//}
+			//catch(theError) {
+			//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "update", "Un error occured while updating " + currentConnection + ".");
+			//	ErrorManager.getInstance().reportError(this, "updateProperty", theError);
+			//}
 		}
 	};
 	

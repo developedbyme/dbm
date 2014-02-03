@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.constants.CommandStatusTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.constants.CommandStatusTypes", null, function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.constants.CommandStatusTypes");
 	
 	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");

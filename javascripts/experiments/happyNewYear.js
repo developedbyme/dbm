@@ -6,6 +6,8 @@ dbm.runTempFunction(function() {
 	
 	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	
+	var FlowUpdateChainCreator = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
+	
 	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
@@ -33,6 +35,13 @@ dbm.runTempFunction(function() {
 			controller.addSound("normal", normalSound);
 			controller.addSound("fail", failSound);
 			controller.addSound("horn", hornSound);
+			
+			//var timeUpdateProperty = dbm.singletons.dbmAnimationManager._globalTimeNode.getProperty("time");
+			//var flowUpdateChains2 = FlowUpdateChainCreator.createAllChainsForInputConnection(timeUpdateProperty);
+			//timeUpdateProperty.setCachedDependentNodeChains(flowUpdateChains2);
+			//console.log(flowUpdateChains2);
+			//
+			//dbm.singletons.dbmFlowManager.cacheUpdatedProperties();
 		}
 		
 		var loaderGroup = LoadingSequence.create();

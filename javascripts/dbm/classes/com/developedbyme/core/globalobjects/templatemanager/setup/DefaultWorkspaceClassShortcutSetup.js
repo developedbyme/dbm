@@ -9,6 +9,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	
 	var Console = dbm.importClass("com.developedbyme.workspace.gui.console.Console");
 	var ConsoleLine = dbm.importClass("com.developedbyme.workspace.gui.console.ConsoleLine");
+	var Workspace = dbm.importClass("com.developedbyme.workspace.gui.Workspace");
 	
 	var TemplateClassShortcutNames = dbm.importClass("com.developedbyme.constants.TemplateClassShortcutNames");
 	
@@ -24,6 +25,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_CONSOLE, Console);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_CONSOLE_LINE, ConsoleLine);
+		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_WORKSPACE, Workspace);
 		
 	};
 });

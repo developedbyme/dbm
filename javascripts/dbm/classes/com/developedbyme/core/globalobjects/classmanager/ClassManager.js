@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	//"use strict";
 	
-	var classManager = new Object();
+	var classManager = new (function ClassManager(){})();
 	
 	classManager.init = function() {
 		this._classes = new Object();
@@ -10,11 +10,11 @@ dbm.runTempFunction(function() {
 		this._libraries = new Object();
 		this._reInitLibraryFunctions = new Array();
 		
-		this._classHolderClass = function ClassHolder() {};
+		this._classHolderClass = this._createClassFunction("ClassHolder");
 		
-		this._objectMethodsClass = function ObjectFunctions() {};
+		this._objectMethodsClass = this._createClassFunction("ObjectFunctions");
 		//this._objectMethodsClass.prototype.toString = function() {return "[ObjectFunctions]"};
-		this._staticMethodsClass = function StaticFunctions() {};
+		this._staticMethodsClass = this._createClassFunction("StaticFunctions");
 		//this._staticMethodsClass.prototype.toString = function() {return "[StaticFunctions]"};
 		
 		if(Object.seal !== undefined) {
@@ -26,14 +26,25 @@ dbm.runTempFunction(function() {
 	
 	classManager._createClassFunction = function(aName) {
 		//console.log(aName);
+		
 		var className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
+		
+		var generateFunction = new Function("return function " + className + "(){};");
+		return generateFunction();
+		
+		/*
 		eval("dbm.tempClassFunction = function " + className + "(){};");
 		var returnClassFunction = dbm.tempClassFunction;
 		dbm.tempClassFunction = null;
 		return returnClassFunction;
+		*/
+		
+		/*
+		return function() {};
+		*/
 	}; //End function _createClassFunction
 	
-	classManager._getClassHolder = function _getClassHolder(aName) {
+	classManager._getClassHolder = function(aName) {
 		
 		if(this._classes[aName] !== undefined) {
 			return this._classes[aName];
@@ -57,7 +68,7 @@ dbm.runTempFunction(function() {
 		return newClassHolder;
 	}; //End function _getClassHolder
 	
-	classManager.registerClass = function registerClass(aName, aExtends, aFunction) {
+	classManager.registerClass = function(aName, aExtends, aFunction) {
 		//console.log("classManager.registerClass");
 		//console.log(aName, aExtends);
 		
@@ -87,7 +98,7 @@ dbm.runTempFunction(function() {
 		return newClassHolder;
 	}; //End function registerClass
 	
-	classManager.extendClass = function extendClass(aName, aFunction) {
+	classManager.extendClass = function(aName, aFunction) {
 		//console.log("classManager.extendClass");
 		//console.log(aName, aExtends);
 		
@@ -102,7 +113,7 @@ dbm.runTempFunction(function() {
 		return newClassHolder;
 	}; //End function extendClass
 	
-	classManager.importClass = function importClass(aName) {
+	classManager.importClass = function(aName) {
 		
 		if(this._classes[aName] !== undefined) {
 			return this._classes[aName].classFunction;
@@ -115,7 +126,7 @@ dbm.runTempFunction(function() {
 		return newClassHolder.classFunction;
 	}; //End function importClass
 	
-	classManager.getClass = function getClass(aName) {
+	classManager.getClass = function(aName) {
 		
 		if(this._classes[aName] !== undefined) {
 			return this._classes[aName].classFunction;
@@ -126,7 +137,7 @@ dbm.runTempFunction(function() {
 		return null;
 	}; //End function getClass
 	
-	classManager.addLibrary = function addLibrary(aName, aPath, aEvaluationName) {
+	classManager.addLibrary = function(aName, aPath, aEvaluationName) {
 		
 		var newLibraryHolder = new Object();
 		newLibraryHolder.name = aName;
@@ -138,7 +149,7 @@ dbm.runTempFunction(function() {
 		dbm.loadFile(aPath);
 	}; //End function addLibrary
 	
-	classManager.importLibrary = function importLibrary(aName, aReInitFunction) {
+	classManager.importLibrary = function(aName, aReInitFunction) {
 		//console.log("classManager.importLibrary");
 		if(aReInitFunction !== null && aReInitFunction !== undefined) {
 			this.addReInitLibraryFunction(aReInitFunction);
@@ -146,7 +157,7 @@ dbm.runTempFunction(function() {
 		return this._libraries[aName];
 	}; //End function importLibrary
 	
-	classManager.setupLibraries = function setupLibraries() {
+	classManager.setupLibraries = function() {
 		//console.log("classManager.setupLibraries");
 		for(var objectName in this._libraries) {
 			var currentData = this._libraries[objectName];
@@ -165,11 +176,11 @@ dbm.runTempFunction(function() {
 		currentArray.splice(0, currentArrayLength);
 	}; //End function setupLibraries
 	
-	classManager.addReInitLibraryFunction = function addReInitLibraryFunction(aFunction) {
+	classManager.addReInitLibraryFunction = function(aFunction) {
 		this._reInitLibraryFunctions.push(aFunction);
 	}; //End function addReInitLibraryFunction
 	
-	classManager.setClassAsSingleton = function setClassAsSingleton(aName, aClassPath) {
+	classManager.setClassAsSingleton = function(aName, aClassPath) {
 		var theClassPath = (aClassPath !== null && aClassPath !== undefined) ? aClassPath : this._currentRegistrationClass;
 		
 		this._singletons[aName] = theClassPath;
@@ -184,14 +195,14 @@ dbm.runTempFunction(function() {
 		}
 	}; //End function setClassAsSingleton
 	
-	classManager.setupClassInheritance = function setupClassInheritance() {
+	classManager.setupClassInheritance = function() {
 		//console.log("classManager.setupClassInheritance");
 		for(var objectName in this._classes) {
 			this._setupClassInheritanceForClass(objectName);
 		}
 	}; //End function setupClassInheritance
 	
-	classManager.setupSingletons = function setupSingletons() {
+	classManager.setupSingletons = function() {
 		//console.log("classManager.setupSingletons");
 		for(var objectName in this._singletons) {
 			var className = this._singletons[objectName];
@@ -209,7 +220,7 @@ dbm.runTempFunction(function() {
 		}
 	}; //End function setupSingletons
 	
-	classManager._setupClassInheritanceForClass = function _setupClassInheritanceForClass(aName) {
+	classManager._setupClassInheritanceForClass = function(aName) {
 		//console.log("classManager._setupClassInheritanceForClass");
 		//console.log(aName);
 		
@@ -288,4 +299,8 @@ dbm.runTempFunction(function() {
 	
 	classManager.init();
 	dbm.setClassManager(classManager);
+	
+	//MENOTE: clear up references
+	classManager = null;
+	arguments = null;
 });

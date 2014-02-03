@@ -10,6 +10,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
+	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	objectFunctions._init = function() {
@@ -37,11 +39,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowU
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {
 		
-		dbm.singletons.dbmFlowManager.increaseFlowUpdateNumber();
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
 		
 		this.update();
 		
-		dbm.singletons.dbmFlowManager.increaseFlowUpdateNumber();
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
 	};
 	
 	staticFunctions.create = function(aChainsArray) {
