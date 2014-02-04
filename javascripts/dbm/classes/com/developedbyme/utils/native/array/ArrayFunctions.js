@@ -122,6 +122,14 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 		return currentArray;
 	};
 	
+	staticFunctions.concatToArray = function(aReturnArray, aArray) {
+		var currentArray = aArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			aReturnArray.push(currentArray[i]);
+		}
+	};
+	
 	staticFunctions.getPositionInOrder = function(aValue, aArray) {
 		var currentArray = aArray
 		var currentArrayLength = currentArray.length;

@@ -131,46 +131,35 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		}
 	};
 	
-	objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
-		var currentArray = this._outputConnections;
+	objectFunctions._fillWithPropertiesOfStatus = function(aProperties, aStatus, aReturnArray) {
+		var currentArray = aProperties;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.getStatus() === FlowStatusTypes.UPDATED) {
+			if(currentObject.getStatus() === aStatus) {
 				aReturnArray.push(currentObject);
 			}
 		}
+	};
+	
+	objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
+		this._fillWithPropertiesOfStatus(this._outputConnections, FlowStatusTypes.UPDATED, aReturnArray);
 	};
 	
 	objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
 		//console.log("com.developedbyme.core.objectparts.UpdateFunction::fillWithDirtyInputConnections");
-		var currentArray = this._inputConnections;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentObject = currentArray[i];
-			if(currentObject.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
-				aReturnArray.push(currentObject);
-			}
-		}
+		this._fillWithPropertiesOfStatus(this._inputConnections, FlowStatusTypes.NEEDS_UPDATE, aReturnArray);
 	};
 	
 	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
 		//console.log("com.developedbyme.core.objectparts.UpdateFunction::fillWithAllInputConnections");
-		var currentArray = this._inputConnections;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentObject = currentArray[i];
-			aReturnArray.push(currentObject);
-		}
+		
+		ArrayFunctions.concatToArray(aReturnArray, this._inputConnections);
 	};
 	
 	objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
-		var currentArray = this._outputConnections;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentObject = currentArray[i];
-			aReturnArray.push(currentObject);
-		}
+		
+		ArrayFunctions.concatToArray(aReturnArray, this._outputConnections);
 	};
 	
 	objectFunctions._getInputFlowUpdateNumber = function() {
