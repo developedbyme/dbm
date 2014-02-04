@@ -7,6 +7,8 @@ dbm.registerClass("com.developedbyme.utils.native.object.ObjectFunctions", null,
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	
 	staticFunctions.identifyProperty = function(aPropertyValue, aObject) {
@@ -33,5 +35,27 @@ dbm.registerClass("com.developedbyme.utils.native.object.ObjectFunctions", null,
 			}
 		}
 		return valueType;
+	};
+	
+	staticFunctions.convertValueToType = function(aValue, aType) {
+		//console.log("com.developedbyme.utils.native.object.ObjectFunctions::convertValueToType");
+		//console.log(aValue, aType);
+		
+		switch(aType) {
+			case JavascriptObjectTypes.TYPE_NUMBER:
+				return parseFloat(aValue);
+				break;
+			case JavascriptObjectTypes.TYPE_STRING:
+				return aValue.toString();
+			case JavascriptObjectTypes.TYPE_BOOLEAN:
+				return VariableAliases.isTrue(avalue);
+			case JavascriptObjectTypes.NON_REAL_TYPE_ANY:
+				//MENOTE: just return the value
+				break;
+			default:
+				//METODO: error message
+				break;
+		}
+		return aValue;
 	};
 });

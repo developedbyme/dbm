@@ -3,6 +3,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 	
 	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
 	
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	
 	objectFunctions._init = function() {
@@ -20,13 +22,16 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 	};
 	
 	objectFunctions.reevaluate = function(aBaseObject) {
-		var currentArray = this.originalArray;
+		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var currentArray = this.originalArray.reevaluate(aBaseObject);
 		var theLength = currentArray.length;
 		
 		var returnArray = new Array(theLength);
 		
 		for (var i = 0; i < theLength; i++) {
-			var currentData = this.originalArray[i];
+			var currentData = currentArray[i];
 			if(currentData instanceof ReevaluationBaseObject) {
 				returnArray[i] = currentData.reevaluate(aBaseObject);
 			}
@@ -60,7 +65,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 	 */
 	staticFunctions.createReevaluationObject = function(aOriginalArray) {
 		var newObject = (new ReevaluateArrayObject()).init();
-		newObject.originalArray = aOriginalArray;
+		newObject.originalArray = ReevaluationCreator.reevaluationOrStaticValue(aOriginalArray);
 		return newObject;
 	};
 });

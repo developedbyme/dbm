@@ -13,23 +13,27 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.commands
 	
 	staticFunctions.createLayoutSplit = function(aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions::createLayoutSplit");
+		//console.log(aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath);
 		
 		var splitLayout = SplitLayoutAreaPart.create();
-		if(aSplitType === "horizontal") {
-			splitLayout.setupHorizontalSplit();
-		}
-		else if(aSplitType === "vertical") {
-			splitLayout.setupVerticalSplit();
-		}
-		else {
-			//METODO: error message
-			return;
+		switch(aSplitType) {
+			case "horizontal":
+			case "h":
+				splitLayout.setupHorizontalSplit();
+				break;
+			case "vertical":
+			case "v":
+				splitLayout.setupVerticalSplit();
+				break;
+			default:
+				//METODO: error message
+				break;
 		}
 		
 		splitLayout.setPropertyInput("splitPosition", aPercentageParameter);
 		splitLayout.setPropertyInput("splitOffset", aOffset);
 		
-		mainWorkspace.addPart(aPath, splitLayout);
+		aWorkspace.addPart(aPath, splitLayout);
 	};
 	
 	staticFunctions.createSizedElementArea = function(aObject, aPath) {

@@ -5,9 +5,6 @@ dbm.runTempFunction(function() {
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	var SplitLayoutAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.layout.SplitLayoutAreaPart");
-	var SizedElementAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart");
-	
 	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
 	
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -25,24 +22,11 @@ dbm.runTempFunction(function() {
 			var windowSizeNode = WindowSizeNode.create(dbm.getWindow());
 			windowSizeNode.start();
 			
-			var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(visualTemplatesPath, true, dbm.getDocument().body, true);
+			var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(visualTemplatesPath, null, true, dbm.getDocument().body, true);
 			
 			var mainWorkspace = templateResult.mainController;
 			mainWorkspace.setPropertyInput("width", windowSizeNode.getProperty("width"));
 			mainWorkspace.setPropertyInput("height", windowSizeNode.getProperty("height"));
-			
-			//Layouts
-			var mainSplitLayout = SplitLayoutAreaPart.create();
-			mainSplitLayout.setupHorizontalSplit();
-			mainSplitLayout.setPropertyInput("splitOffset", 30);
-			
-			mainWorkspace.addPart("main/splitLayout", mainSplitLayout);
-			
-			var splitLayout2 = SplitLayoutAreaPart.create();
-			splitLayout2.setupVerticalSplit();
-			splitLayout2.setPropertyInput("splitPosition", 0.8);
-		
-			mainWorkspace.addPart("main/splitLayout/area2/splitLayout", splitLayout2);
 		};
 		
 		var templateLoader = dbm.singletons.dbmAssetRepository.getAsset(visualTemplatesPath);

@@ -13,6 +13,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
@@ -33,7 +34,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 	
 	objectFunctions.perform = function(aEventDataObject) {
 		//console.log("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand::perform");
-		//console.log(aEventDataObject);
+		//console.log(this, aEventDataObject);
 		
 		var theObject = this.objectReevaluator.reevaluate(aEventDataObject);
 		var theFunction = this.functionReevaluator.reevaluate(aEventDataObject);
@@ -109,35 +110,9 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 			return null;
 		}
 		
-		if(aObject instanceof ReevaluationBaseObject) {
-			newCommand.objectReevaluator = aObject;
-		}
-		else {
-			newCommand.objectReevaluator = StaticVariableObject.createReevaluationObject(aObject);
-		}
-		
-		if(aFunction instanceof ReevaluationBaseObject) {
-			newCommand.functionReevaluator = aFunction;
-		}
-		else {
-			newCommand.functionReevaluator = StaticVariableObject.createReevaluationObject(aFunction);
-		}
-		
-		var hasReevaluatorInArgumentsArray = false;
-		var theLength = aArgumentsArray.length;
-		for(var i = 0; i < theLength; i++) {
-			if(aArgumentsArray[i] instanceof ReevaluationBaseObject) {
-				hasReevaluatorInArgumentsArray = true;
-				break;
-			}
-		}
-		
-		if(hasReevaluatorInArgumentsArray) {
-			newCommand.argumentsArrayReevaluator = ReevaluateArrayObject.createReevaluationObject(aArgumentsArray);
-		}
-		else {
-			newCommand.argumentsArrayReevaluator = StaticVariableObject.createReevaluationObject(aArgumentsArray);
-		}
+		newCommand.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
+		newCommand.functionReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aFunction);
+		newCommand.argumentsArrayReevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aArgumentsArray);
 		
 		return newCommand;
 	};
@@ -154,14 +129,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		var newCommand = (new CallFunctionCommand()).init();
 		
 		var newFunctionReevaluator = (new GetVariableObject()).init();
+		newFunctionReevaluator.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
 		newFunctionReevaluator.propertyNameReevaluator = StaticVariableObject.createReevaluationObject(aFunctionName);
-		
-		if(aObject instanceof ReevaluationBaseObject) {
-			newFunctionReevaluator.objectReevaluator = aObject;
-		}
-		else {
-			newFunctionReevaluator.objectReevaluator = StaticVariableObject.createReevaluationObject(aObject);
-		}
 		
 		return ClassReference.createCommand(aObject, newFunctionReevaluator, aArgumentsArray);
 	};

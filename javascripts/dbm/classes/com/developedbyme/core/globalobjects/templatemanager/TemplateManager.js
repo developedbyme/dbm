@@ -58,14 +58,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		this._commands.addObject(aName, aCommand);
 	};
 	
-	objectFunctions.createControllersForTemplate = function(aTemplate) {
+	objectFunctions.createControllersForTemplate = function(aTemplate, aDynamicData) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
 		//console.log(aTemplate);
 		
 		var templateResult = TemplateResult.create();
 		templateResult.rootElement = aTemplate;
 		
-		var mainController = this._createControllersForTemplateNode(aTemplate, "", templateResult);
+		var mainController = this._createControllersForTemplateNode(aTemplate, "", aDynamicData, templateResult);
 		
 		if(mainController !== null) {
 			templateResult.mainController = mainController;
@@ -74,7 +74,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		return templateResult;
 	};
 	
-	objectFunctions.createControllersForAsset = function(aPath, aRemoveId, aDocumentOrParent, aAddToParent) {
+	objectFunctions.createControllersForAsset = function(aPath, aDynamicData, aRemoveId, aDocumentOrParent, aAddToParent) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForAsset");
 		//console.log(aPath, aRemoveId, aDocument);
 		
@@ -100,10 +100,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 			theParent.appendChild(copiedTemplate);
 		}
 		
-		return this.createControllersForTemplate(copiedTemplate);
+		return this.createControllersForTemplate(copiedTemplate, aDynamicData);
 	};
 	
-	objectFunctions._createControllersForTemplateNode = function(aNode, aBasePath, aTemplateResult) {
+	objectFunctions._createControllersForTemplateNode = function(aNode, aBasePath, aDynamicData, aTemplateResult) {
 		var currentClassName = XmlChildRetreiver.getAttribute(aNode, TemplateManager.CLASS_ATTRIBUTE);
 		var currentName = XmlChildRetreiver.getAttribute(aNode, TemplateManager.NAME_ATTRIBUTE);
 		var currentTextClassName = XmlChildRetreiver.getAttribute(aNode, TemplateManager.TEXT_CLASS_ATTRIBUTE);
@@ -148,7 +148,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 						}
 						if(this._commands.select(currentCommandName)) {
 							var currentCommand = this._commands.currentSelectedItem;
-							var eventData = EventDataObject.create({"arguments": currentArguments}, this, newObject);
+							var eventData = EventDataObject.create({"arguments": currentArguments, "dynamicData": aDynamicData}, this, newObject);
 							currentCommand.perform(eventData);
 							eventData.destroy();
 						}
@@ -190,7 +190,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 			var currentArray = XmlChildRetreiver.getChilds(aNode);
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
-				this._createControllersForTemplateNode(currentArray[i], newPath, aTemplateResult);
+				this._createControllersForTemplateNode(currentArray[i], newPath, aDynamicData, aTemplateResult);
 			}
 		}
 		

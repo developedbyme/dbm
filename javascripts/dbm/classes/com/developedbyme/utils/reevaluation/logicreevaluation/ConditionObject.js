@@ -1,4 +1,4 @@
-dbm.registerClass("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionObject", "com.developedbyme.utils.reevaluation.logicreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ObjectReevaluationBaseObject");
 	
 	var ConditionObject = dbm.importClass("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionObject");

@@ -25,7 +25,7 @@ dbm.runTempFunction(function() {
 			var windowSizeNode = WindowSizeNode.create(dbm.getWindow());
 			windowSizeNode.start();
 			
-			var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(visualTemplatesPath, true, dbm.getDocument().body, true);
+			var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(visualTemplatesPath, null, true, dbm.getDocument().body, true);
 			
 			var mainWorkspace = templateResult.mainController;
 			mainWorkspace.setPropertyInput("width", windowSizeNode.getProperty("width"));

@@ -3,7 +3,11 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 	
 	var ReevaluateArrayWithTypesObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayWithTypesObject");
 	
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	
+	var ObjectFunctions = dbm.importClass("com.developedbyme.utils.native.object.ObjectFunctions");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayWithTypesObject::_init");
@@ -16,12 +20,14 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 	};
 	
 	objectFunctions.reevaluate = function(aBaseObject) {
-		var currentArray = this.superCall();
+		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayWithTypesObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var currentArray = this.superCall(aBaseObject);
 		var currentArrayLength = currentArray.length;
 		
 		for(var i = 0; i < currentArrayLength; i++) {
-			//METODO: convert values
-			currentArray[i] = currentArray[i];
+			currentArray[i] = ObjectFunctions.convertValueToType(currentArray[i], this.typesArray[i]);
 		}
 		
 		return currentArray;
@@ -41,9 +47,9 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.Reev
 	 * @param	aTypesArray		The types that the array should be converted to.
 	 * @return	The new object.
 	 */
-	staticFunctions.createReevaluationObject = function(aOriginalArray, aTypesArray) {
+	staticFunctions.createCommand = function(aOriginalArray, aTypesArray) {
 		var newObject = (new ReevaluateArrayWithTypesObject()).init();
-		newObject.originalArray = aOriginalArray;
+		newObject.originalArray = ReevaluationCreator.reevaluationOrStaticValue(aOriginalArray);
 		newObject.typesArray = aTypesArray;
 		return newObject;
 	};

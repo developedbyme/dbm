@@ -13,13 +13,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	var WorkspaceCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions");
 	
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var ReevaluateArrayWithTypesObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayWithTypesObject");
+	var SplitStringObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject");
+	var CombineArraysObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject");
 	
 	var TemplateCommandNames = dbm.importClass("com.developedbyme.constants.TemplateCommandNames");
+	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	
 	staticFunctions.setup = function() {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultTemplateCommandsSetup::setup");
 		
 		var selectArgumentReevaluator = GetVariableObject.createCommand(GetVariableObject.createSelectDataCommand(), "arguments");
+		var splitArgumentsReevaluator = SplitStringObject.createCommand(selectArgumentReevaluator, " ");
 		
 		ClassReference._createCallFunction(TemplateCommandNames.POSITIONED, "setElementAsPositioned", []);
 		ClassReference._createCallFunction(TemplateCommandNames.SIZED, "setElementAsSized", []);
@@ -32,7 +37,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		
 		//Workspace
 		ClassReference._createCallFunction(TemplateCommandNames.ELEMENT_SIZE_AS_AREA, "linkElementSizeToWorkspaceArea", []);
-		//METODO: split layout
+		dbm.singletons.dbmTemplateManager.addCommand(
+			TemplateCommandNames.LAYOUT_SPLIT, CallFunctionCommand.createCommand(
+				WorkspaceCommandFunctions, WorkspaceCommandFunctions.createLayoutSplit, ReevaluateArrayWithTypesObject.createCommand(
+					CombineArraysObject.createCommand([GetVariableObject.createSelectPerformingObjectCommand()], splitArgumentsReevaluator),
+					[JavascriptObjectTypes.NON_REAL_TYPE_ANY, JavascriptObjectTypes.TYPE_STRING, JavascriptObjectTypes.TYPE_NUMBER, JavascriptObjectTypes.TYPE_NUMBER, JavascriptObjectTypes.TYPE_STRING]
+				)
+			)
+		);
 		dbm.singletons.dbmTemplateManager.addCommand(TemplateCommandNames.SIZED_ELEMENT_AREA, CallFunctionCommand.createCommand(WorkspaceCommandFunctions, WorkspaceCommandFunctions.createSizedElementArea, [GetVariableObject.createSelectPerformingObjectCommand(), selectArgumentReevaluator]));
 	};
 	

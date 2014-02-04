@@ -7,6 +7,7 @@ dbm.registerClass("com.developedbyme.constants.JavascriptObjectTypes", null, fun
 	staticFunctions.TYPE_UNDEFINED = "undefined";
 	staticFunctions.NON_REAL_TYPE_NULL = "null"; //MENOTE: null has type "object"
 	staticFunctions.NON_REAL_TYPE_ARRAY = "array"; //MENOTE: array has type "object"
+	staticFunctions.NON_REAL_TYPE_ANY = "*"; //MENOTE: there is no type for any
 	staticFunctions.TYPE_OBJECT = "object";
 	staticFunctions.TYPE_BOOLEAN = "boolean";
 	staticFunctions.TYPE_NUMBER = "number";
