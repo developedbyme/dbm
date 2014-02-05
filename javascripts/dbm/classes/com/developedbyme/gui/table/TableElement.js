@@ -62,7 +62,7 @@ dbm.registerClass("com.developedbyme.gui.table.TableElement", "com.developedbyme
 		}
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		//console.log("com.developedbyme.gui.table.TableElement::setAllReferencesToNull");

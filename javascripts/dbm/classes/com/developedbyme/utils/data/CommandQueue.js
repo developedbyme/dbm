@@ -25,7 +25,7 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 	 */
 	objectFunctions.isRunning = function() {
 		return this._isRunning;
-	} //End function get isRunning
+	}; //End function get isRunning
 	
 	/**
 	 * Adds a command that performs the queued command of a type.

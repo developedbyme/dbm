@@ -18,7 +18,7 @@ dbm.registerClass("com.developedbyme.utils.file.formats.midi.events.ChannelEvent
 		var newChannelEvent = (new ClassReference()).init();
 		
 		newChannelEvent.setupType(aTimeOffset, aType);
-		newChannelEvent.midiType = aMidiType
+		newChannelEvent.midiType = aMidiType;
 		newChannelEvent.channel = aChannel;
 		
 		return newChannelEvent;

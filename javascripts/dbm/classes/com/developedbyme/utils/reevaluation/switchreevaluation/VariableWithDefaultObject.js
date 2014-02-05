@@ -35,7 +35,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.switchreevaluation.Varia
 		}
 		
 		return returnValue;
-	} //End function reevaluate
+	}; //End function reevaluate
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

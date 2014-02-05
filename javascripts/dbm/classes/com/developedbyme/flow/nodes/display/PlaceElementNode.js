@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.PlaceElementNode", "com.
 		this._width = this.addProperty("width", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty).setup("width", UnitTypes.PX, null));
 		this._height = this.addProperty("height", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty).setup("height", UnitTypes.PX, null));
 		this._element = this.createProperty("element", null);
-		this._elementSet = this.createGhostProperty("elementSet")
+		this._elementSet = this.createGhostProperty("elementSet");
 		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create(this._objectProperty));
 		
 		this.createUpdateFunction("elementSet", this._updateElementSet, [this._element], [this._elementSet]);

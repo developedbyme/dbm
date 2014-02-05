@@ -5,6 +5,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 	
 	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
 	
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::_init");
 		

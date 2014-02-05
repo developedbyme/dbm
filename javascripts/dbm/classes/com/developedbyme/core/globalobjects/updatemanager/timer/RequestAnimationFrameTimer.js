@@ -27,7 +27,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Requ
 	};
 	
 	objectFunctions._requestNextFrame = function() {
-		this._updateRequestFunction.call(this._updateRequestObject, this._callbackFunction)
+		this._updateRequestFunction.call(this._updateRequestObject, this._callbackFunction);
 	};
 	
 	objectFunctions._performStart = function() {
@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Requ
 	};
 	
 	staticFunctions.create = function(aUpdateObject, aUpdateRequestObject, aUpdatedRequestFunction) {
-		var newRequestAnimationFrameTimer = (new ClassReference).init();
+		var newRequestAnimationFrameTimer = (new ClassReference()).init();
 		newRequestAnimationFrameTimer.setUpdateObject(aUpdateObject);
 		newRequestAnimationFrameTimer.setUpdateRequestFunction(aUpdateRequestObject, aUpdatedRequestFunction);
 		return newRequestAnimationFrameTimer;

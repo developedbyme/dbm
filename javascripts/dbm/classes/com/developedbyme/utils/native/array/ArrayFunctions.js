@@ -104,7 +104,7 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 				if(currentData1 === currentData2) {
 					currentArray.splice(j, 1);
 					currentArrayLength--;
-					j--
+					j--;
 					numberOfDuplicates++;
 				}
 			}
@@ -131,7 +131,7 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 	};
 	
 	staticFunctions.getPositionInOrder = function(aValue, aArray) {
-		var currentArray = aArray
+		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			if(aValue < currentArray[i]) {

@@ -221,7 +221,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 	
 	objectFunctions.fullBreakdown = function() {
 		
-		this._script = aScript;
+		//METODO
 	};
 	
 	objectFunctions.compile = function(aCompileData) {

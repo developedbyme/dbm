@@ -93,7 +93,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralOb
 			argumentsArray.push(currentName.compile(aCompileData) + ":" + currentValue.compile(aCompileData));
 		}
 		
-		returnString = "{" + argumentsArray.join(",") + "}";
+		var returnString = "{" + argumentsArray.join(",") + "}";
 		
 		return returnString;
 	};

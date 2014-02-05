@@ -76,7 +76,7 @@ dbm.registerClass("com.developedbyme.utils.file.UrlResolver", "com.developedbyme
 			return this._basePath + "/" + this._folderNamesArray.join("/");
 		}
 		
-		if(aPath.indexOf("/") === 0) { 
+		if(aPath.indexOf("/") === 0) {
 			//MENOTE: aPath is relative to base of url
 			if(this._basePath.indexOf("://") > -1) {
 				return this._basePath + aPath;

@@ -14,14 +14,14 @@
    modification, are permitted provided that the following conditions
    are met:
 
-	 1. Redistributions of source code must retain the above copyright
+	1. Redistributions of source code must retain the above copyright
 		notice, this list of conditions and the following disclaimer.
 
-	 2. Redistributions in binary form must reproduce the above copyright
+	2. Redistributions in binary form must reproduce the above copyright
 		notice, this list of conditions and the following disclaimer in the
 		documentation and/or other materials provided with the distribution.
 
-	 3. The names of its contributors may not be used to endorse or promote 
+	3. The names of its contributors may not be used to endorse or promote 
 		products derived from this software without specific prior written 
 		permission.
 
@@ -94,7 +94,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		var extra = this._multiplyUint32((aNumber1-(times*rotateTimes)), aNumber2);
 		
 		var newValue = 0;
-		if(rotateOffset != 0) {
+		if(rotateOffset !== 0) {
 			newValue = this._multiplyUint32(times, rotateOffset);
 		}
 		//console.log("times, extra, newValue", times, extra, newValue);
@@ -159,7 +159,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		var returnValue = 0;
 		for(var i = 0; i < 32; i++) {
 			var shiftValue = 1 << i;
-			if((aNumber1 & shiftValue) != (aNumber2 & shiftValue)) {
+			if((aNumber1 & shiftValue) !== (aNumber2 & shiftValue)) {
 				returnValue += Math.pow(2, i);
 			}
 		}
@@ -217,7 +217,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		for (; k; k--) {
 			this.mt[i] = this._addUint32(this._addUint32(this._xorUint32(this.mt[i], this._multiplyUint32(this._xorUint32(this.mt[i-1], (this.mt[i-1] >>> 30)), 1664525)), aKeysArray[j]), j); /* non linear */
 			i++; j++;
-			if (i>=ClassReference.N) { 
+			if (i>=ClassReference.N) {
 				this.mt[0] = this.mt[ClassReference.N-1];
 				i=1;
 			}
@@ -236,7 +236,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		}
 		//console.log(this.mt);
 		
-		this.mt[0] = 0x80000000; /* MSB is 1; assuring non-zero initial array */ 
+		this.mt[0] = 0x80000000; /* MSB is 1; assuring non-zero initial array */
 		//console.log(this.mt);
 		
 		return this;
@@ -255,7 +255,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 		if (this.mti >= ClassReference.N) { /* generate N words at one time */
 			var kk;
 			
-			if (this.mti == ClassReference.N+1) {   /* if init_genrand() has not been called, */
+			if (this.mti === ClassReference.N+1) {   /* if init_genrand() has not been called, */
 				this.initByUint(5489);
 			}/* a default initial seed is used */
 			
@@ -287,7 +287,7 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 	}; //End function generateInt32
 	
 	/**
-	 * Generates a random number on [0,0x7fffffff]-interval 
+	 * Generates a random number on [0,0x7fffffff]-interval
 	 */
 	objectFunctions.generateInt31 = function() {
 		return (this.generateInt32()>>1);
@@ -297,15 +297,15 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 	 * Generates a random number on [0,1]-real-interval
 	 */
 	objectFunctions.generateRealClosedClosed = function() {
-		return this.generateInt32()*(1.0/4294967295.0); 
-		/* divided by 2^32-1 */ 
+		return this.generateInt32()*(1.0/4294967295.0);
+		/* divided by 2^32-1 */
 	}; //End function generateRealClosedClosed
 	
 	/**
 	 * Generates a random number on [0,1)-real-interval
 	 */
 	objectFunctions.generateRealClosedOpen = function() {
-		return this.generateInt32()*(1.0/4294967296.0); 
+		return this.generateInt32()*(1.0/4294967296.0);
 		/* divided by 2^32 */
 	}; //End function generateRealClosedOpen
 	
@@ -313,17 +313,17 @@ dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.develop
 	 * Generates a random number on (0,1)-real-interval
 	 */
 	objectFunctions.generateRealOpenOpen = function() {
-		return (Number(this.generateInt32()) + 0.5)*(1.0/4294967296.0); 
+		return (Number(this.generateInt32()) + 0.5)*(1.0/4294967296.0);
 		/* divided by 2^32 */
 	}; //End function generateRealOpenOpen
 	
 	/**
 	 * Generates a random number on [0,1) with 53-bit resolution
 	 */
-	objectFunctions.generateRealClosedOpenResolution53 = function() { 
+	objectFunctions.generateRealClosedOpenResolution53 = function() {
 		var a = this.generateInt32()>>5;
-		var b = this.generateInt32()>>6; 
-		return(Number(a*67108864.0)+b)*(1.0/9007199254740992.0); 
+		var b = this.generateInt32()>>6;
+		return(Number(a*67108864.0)+b)*(1.0/9007199254740992.0);
 	}; //End function generateRealClosedOpenResolution53
 	
 	/**

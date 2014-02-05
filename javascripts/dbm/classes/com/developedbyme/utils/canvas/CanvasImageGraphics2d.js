@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d", "com.d
 	
 	objectFunctions.setImage = function(aImage) {
 		
-		this._image.setValue(aImage)
+		this._image.setValue(aImage);
 		
 		this._sourceWidth.setValue(aImage.width);
 		this._sourceHeight.setValue(aImage.height);

@@ -282,7 +282,7 @@
 			}
 			
 			return this;
-		}
+		};
 		
 		dbmObject.init();
 	}

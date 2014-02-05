@@ -57,7 +57,7 @@ dbm.registerClass("com.developedbyme.utils.htmldom.DomManipulationFunctions", nu
 		catch(theError) {
 			var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(aDocument);
 			var newFragment = htmlCreator.createFromTemplate(aElement.outerHTML);
-			var currentNode = aElement
+			var currentNode = aElement;
 			var currentExportNode = newFragment.firstChild;
 			//METODO
 			return newFragment.firstChild;

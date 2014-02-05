@@ -104,7 +104,7 @@ dbm.registerClass("com.developedbyme.utils.audio.midiplayer.MidiPlayer", "com.de
 							var currentNote = playingNotes[removeIndex];
 							playingNotes.splice(removeIndex, 1);
 							currentNote.setEndTime(currentTime, currentEvent.data.velocity);
-							this._notesPlaybackCommand.addCommandAt(LogCommand.createCommand("Stop", newNote.instrumentId, newNote.pitch), LogCommand.createCommand("Unstop", newNote.instrumentId, newNote.pitch), currentTime);
+							this._notesPlaybackCommand.addCommandAt(LogCommand.createCommand("Stop", currentNote.instrumentId, currentNote.pitch), LogCommand.createCommand("Unstop", currentNote.instrumentId, currentNote.pitch), currentTime);
 						}
 						else {
 							//METODO: error message

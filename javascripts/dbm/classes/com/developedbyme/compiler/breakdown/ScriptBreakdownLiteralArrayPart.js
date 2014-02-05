@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralAr
 	objectFunctions.compile = function(aCompileData) {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownLiteralArrayPart::compile");
 		
-		returnString = "[" + this._arguments.compile(aCompileData) + "]";
+		var returnString = "[" + this._arguments.compile(aCompileData) + "]";
 		
 		return returnString;
 	};

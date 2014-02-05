@@ -46,10 +46,8 @@ dbm.registerClass("com.developedbyme.utils.xml.DbmXmlEncoder", null, function(ob
 				return ClassReference.encodeNullValue(aParentNode);
 			case JavascriptObjectTypes.NON_REAL_TYPE_ARRAY:
 				return ClassReference.encodeArray(aValue, aParentNode);
-				break;
 			case JavascriptObjectTypes.TYPE_OBJECT:
 				return ClassReference.encodeObject(aValue, aParentNode);
-				break;
 			case JavascriptObjectTypes.TYPE_BOOLEAN:
 			case JavascriptObjectTypes.TYPE_NUMBER:
 			case JavascriptObjectTypes.TYPE_STRING:

@@ -9,6 +9,7 @@ dbm.registerClass("com.developedbyme.utils.process.loading.LoadAssetProcess", "c
 	
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
@@ -16,6 +17,7 @@ dbm.registerClass("com.developedbyme.utils.process.loading.LoadAssetProcess", "c
 	var ProcessExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ProcessExtendedEventIds");
 	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
+	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	

@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.utils.geometry.creators.BoxCreator", null, 
 		tempHorizontalVector.setValues(aWidth, 0, 0);
 		tempVerticalVector.setValues(0, aHeight, 0);
 		horizontalSections = aWidthSections;
-		verticalSections = aHeightSection;
+		verticalSections = aHeightSections;
 		//METODO: set uv points
 		PlaneCreator.createPlane(aMesh, tempPoint, tempHorizontalVector, tempVerticalVector, tempUvPoint, tempUvHorizontalVector, tempUvVerticalVector);
 		
@@ -37,7 +37,7 @@ dbm.registerClass("com.developedbyme.utils.geometry.creators.BoxCreator", null, 
 		tempHorizontalVector.setValues(0, 0, -1*aDepth);
 		tempVerticalVector.setValues(0, aHeight, 0);
 		horizontalSections = aDepthSections;
-		verticalSections = aHeightSection;
+		verticalSections = aHeightSections;
 		//METODO: set uv points
 		PlaneCreator.createPlane(aMesh, tempPoint, tempHorizontalVector, tempVerticalVector, tempUvPoint, tempUvHorizontalVector, tempUvVerticalVector);
 		
@@ -46,7 +46,7 @@ dbm.registerClass("com.developedbyme.utils.geometry.creators.BoxCreator", null, 
 		tempHorizontalVector.setValues(-1*aWidth, 0, 0);
 		tempVerticalVector.setValues(0, aHeight, 0);
 		horizontalSections = aWidthSections;
-		verticalSections = aHeightSection;
+		verticalSections = aHeightSections;
 		//METODO: set uv points
 		PlaneCreator.createPlane(aMesh, tempPoint, tempHorizontalVector, tempVerticalVector, tempUvPoint, tempUvHorizontalVector, tempUvVerticalVector);
 		
@@ -55,7 +55,7 @@ dbm.registerClass("com.developedbyme.utils.geometry.creators.BoxCreator", null, 
 		tempHorizontalVector.setValues(0, 0, aDepth);
 		tempVerticalVector.setValues(0, aHeight, 0);
 		horizontalSections = aDepthSections;
-		verticalSections = aHeightSection;
+		verticalSections = aHeightSections;
 		//METODO: set uv points
 		PlaneCreator.createPlane(aMesh, tempPoint, tempHorizontalVector, tempVerticalVector, tempUvPoint, tempUvHorizontalVector, tempUvVerticalVector);
 		
@@ -64,7 +64,7 @@ dbm.registerClass("com.developedbyme.utils.geometry.creators.BoxCreator", null, 
 		tempHorizontalVector.setValues(aWidth, 0, 0);
 		tempVerticalVector.setValues(0, 0, -1*aDepth);
 		horizontalSections = aWidthSections;
-		verticalSections = aDepthSection;
+		verticalSections = aDepthSections;
 		//METODO: set uv points
 		PlaneCreator.createPlane(aMesh, tempPoint, tempHorizontalVector, tempVerticalVector, tempUvPoint, tempUvHorizontalVector, tempUvVerticalVector);
 		
@@ -73,7 +73,7 @@ dbm.registerClass("com.developedbyme.utils.geometry.creators.BoxCreator", null, 
 		tempHorizontalVector.setValues(-1*aWidth, 0, 0);
 		tempVerticalVector.setValues(0, 0, -1*aDepth);
 		horizontalSections = aWidthSections;
-		verticalSections = aDepthSection;
+		verticalSections = aDepthSections;
 		//METODO: set uv points
 		PlaneCreator.createPlane(aMesh, tempPoint, tempHorizontalVector, tempVerticalVector, tempUvPoint, tempUvHorizontalVector, tempUvVerticalVector);
 		

@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject",
 		//MENOTE: should be overridden
 		
 		return null;
-	} //End function reevaluate
+	}; //End function reevaluate
 	
 	objectFunctions.performDestroy = function() {
 		this.superCall();

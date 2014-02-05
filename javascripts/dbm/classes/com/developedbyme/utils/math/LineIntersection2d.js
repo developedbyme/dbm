@@ -131,7 +131,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 	staticFunctions.findLineIntersectionsWithPointSet = function(aLinePoint, aLineVector, aPointSet, aIsRound, aType, aReturnArray) {
 		//console.log("findLineIntersectionsWithPointSet");
 		if(aType === undefined) {
-			 aType = ClassReference.QUALIFY_TYPE_ON_POINT_SET;
+			aType = ClassReference.QUALIFY_TYPE_ON_POINT_SET;
 		}
 		if(aReturnArray === null) {
 			aReturnArray = new Array();
@@ -236,7 +236,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 		
 		if(tempLineIntersection.findLineIntersection(aLinePoint, aLineVector, aPoint, tempVector)) {
 			if(tempLineIntersection.parameter2 >= 0 && (tempLineIntersection.parameter1 >= 0 && tempLineIntersection.parameter1 <= 1)) {
-				if(minParameter2 === NaN || tempLineIntersection.parameter2 < minParameter2) {
+				if(isNaN(minParameter2) || tempLineIntersection.parameter2 < minParameter2) {
 					minParameter2 = tempLineIntersection.parameter2;
 					returnParameter = tempLineIntersection.parameter1;
 				}

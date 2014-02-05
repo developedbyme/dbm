@@ -79,7 +79,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 			returnDocument.async = "false";
 			returnDocument.loadXML("<temp />");
 			returnDocument.removeChild(returnDocument.firstChild);
-		} 
+		}
 		
 		return returnDocument;
 	});
@@ -96,7 +96,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 			returnDocument = new ActiveXObject("Microsoft.XMLDOM");
 			returnDocument.async = "false";
 			returnDocument.loadXML(aText);
-		} 
+		}
 		
 		return returnDocument;
 	};

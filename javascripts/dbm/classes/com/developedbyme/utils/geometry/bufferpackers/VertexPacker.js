@@ -13,7 +13,7 @@ dbm.registerClass("com.developedbyme.utils.geometry.bufferpackers.VertexPacker",
 		var returnArray = new Array(3*aMesh.faces.length);
 		
 		var currentArray = aMesh.faces;
-		var currentArrayLength = currentArrray.length;
+		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentFace = currentArray[i];
 			returnArray[3*i]   = currentFace.vertex1;

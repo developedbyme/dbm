@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixFunctions", null, function
 		
 		for(var i = 0; i < sizeH; i++) {
 			for(var j = 0; j < sizeV; j++) {
-				aOutputMatrix.setValue(i, j, aScale*aInputMatrix.getValue(i, j))
+				aOutputMatrix.setValue(i, j, aScale*aInputMatrix.getValue(i, j));
 			}
 		}
 	};
@@ -41,12 +41,16 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixFunctions", null, function
 		
 		for(var i = 0; i < sizeH; i++) {
 			for(var j = 0; j < sizeV; j++) {
-				aOutputMatrix.setValue(j, i, aInputMatrix.getValue(i, j))
+				aOutputMatrix.setValue(j, i, aInputMatrix.getValue(i, j));
 			}
 		}
 	};
 	
 	staticFunctions.transposeQuadraticMatrix = function(aInputMatrix, aOutputMatrix) {
+		
+		var sizeH = aInputMatrix.sizeH;
+		var sizeV = aInputMatrix.sizeV;
+		
 		for(var i = 0; i < sizeH; i++) {
 			aOutputMatrix.setValue(i, i, aInputMatrix.getValue(i, i));
 			for(var j = i+1; j < sizeV; j++) {

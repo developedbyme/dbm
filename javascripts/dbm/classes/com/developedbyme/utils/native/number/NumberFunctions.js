@@ -13,8 +13,6 @@ dbm.registerClass("com.developedbyme.utils.native.number.NumberFunctions", null,
 	
 	staticFunctions.roundToNumberOfDecimals = function(aNumber, aNumberOfDecimals) {
 		var multiplicationValue = Math.pow(10, aNumberOfDecimals);
-		return Math.round(multiplicationValue*aNumber)/multiplicationValue
+		return Math.round(multiplicationValue*aNumber)/multiplicationValue;
 	};
 });
-
-

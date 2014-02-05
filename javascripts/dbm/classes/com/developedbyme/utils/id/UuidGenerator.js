@@ -21,7 +21,7 @@ dbm.registerClass("com.developedbyme.utils.id.UuidGenerator", "com.developedbyme
 		this.randomGenerator = (new MersenneTwister()).init();
 		
 		return this;
-	} //End function UuidGenerator
+	}; //End function UuidGenerator
 	
 	/**
 	 * Gets a random part (4 hexadecimal numbers)
@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.utils.id.UuidGenerator", "com.developedbyme
 	objectFunctions._getRandomPart = function(aMax) {
 		//console.log("getRandomPart");
 		return Math.floor(this.randomGenerator.generateRealClosedOpen()*(aMax+1));
-	} //End function getRandomPart
+	}; //End function getRandomPart
 	
 	/**
 	 * Generates a version 4 UUID (random)
@@ -60,5 +60,5 @@ dbm.registerClass("com.developedbyme.utils.id.UuidGenerator", "com.developedbyme
 		returnString += NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16) , 4) + NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4) + NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4);
 		
 		return returnString;
-	} //End function generateV4
+	}; //End function generateV4
 });

@@ -44,11 +44,10 @@ dbm.registerClass("com.developedbyme.utils.native.object.ObjectFunctions", null,
 		switch(aType) {
 			case JavascriptObjectTypes.TYPE_NUMBER:
 				return parseFloat(aValue);
-				break;
 			case JavascriptObjectTypes.TYPE_STRING:
 				return aValue.toString();
 			case JavascriptObjectTypes.TYPE_BOOLEAN:
-				return VariableAliases.isTrue(avalue);
+				return VariableAliases.isTrue(aValue);
 			case JavascriptObjectTypes.NON_REAL_TYPE_ANY:
 				//MENOTE: just return the value
 				break;

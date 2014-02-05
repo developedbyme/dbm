@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Inte
 	};
 	
 	staticFunctions.create = function(aUpdateObject, aFps) {
-		var newIntervalTimer = (new ClassReference).init();
+		var newIntervalTimer = (new ClassReference()).init();
 		newIntervalTimer.setUpdateObject(aUpdateObject);
 		newIntervalTimer.setIntervalLength(Math.round(1000/aFps));
 		return newIntervalTimer;

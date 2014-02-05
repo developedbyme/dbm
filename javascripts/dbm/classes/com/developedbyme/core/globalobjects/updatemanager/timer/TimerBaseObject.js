@@ -91,7 +91,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Time
 		if(aName === "_updateObject") {
 			return false;
 		}
-		return this.superCall(aName);;
+		return this.superCall(aName);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
@@ -103,7 +103,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Time
 	};
 	
 	staticFunctions.create = function(aUpdateObject) {
-		var newTimerBaseObject = (new ClassReference).init();
+		var newTimerBaseObject = (new ClassReference()).init();
 		newTimerBaseObject.setUpdateObject(aUpdateObject);
 		return newTimerBaseObject;
 	};

@@ -353,7 +353,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		var newDrawingLayer = CanvasImageGraphics2d.create(aImage);
 		this._graphicsUpdate.connectInput(newDrawingLayer.getProperty("graphicsUpdate"));
 		this._graphics.push(newDrawingLayer);
-		return newDrawingLayer; 
+		return newDrawingLayer;
 	};
 	
 	objectFunctions.drawText = function(aText) {
@@ -362,7 +362,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		var newDrawingLayer = CanvasTextGraphics2d.create(aText);
 		this._graphicsUpdate.connectInput(newDrawingLayer.getProperty("graphicsUpdate"));
 		this._graphics.push(newDrawingLayer);
-		return newDrawingLayer; 
+		return newDrawingLayer;
 	};
 	
 	objectFunctions.addDrawingPart = function(aPart) {
@@ -378,7 +378,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		var newDrawingLayer = CanvasTextWithCustomSpacingGraphics2d.create(aText, aSpacing);
 		this._graphicsUpdate.connectInput(newDrawingLayer.getProperty("graphicsUpdate"));
 		this._graphics.push(newDrawingLayer);
-		return newDrawingLayer; 
+		return newDrawingLayer;
 	};
 	
 	objectFunctions.getProperty = function(aName) {

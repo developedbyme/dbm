@@ -47,5 +47,5 @@ dbm.registerClass("com.developedbyme.utils.math.EquationSolver", null, function(
 				eliminationArray[i][k] /= rowMultiplier;
 			}
 		}
-	} //End function solveEquation
+	}; //End function solveEquation
 });

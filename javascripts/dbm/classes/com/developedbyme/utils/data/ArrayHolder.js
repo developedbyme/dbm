@@ -42,21 +42,21 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 	/**
 	 * Creates a new holder
 	 */
-	 staticFunctions.create = function(aOwnsObjects) {
+	staticFunctions.create = function(aOwnsObjects) {
 		//trace("breel.utils.data.ArrayHolder.create");
 		var newArrayHolder = (new ArrayHolder()).init();
 		newArrayHolder.ownsObjects = aOwnsObjects;
 		return newArrayHolder;
-	} //End function create
+	}; //End function create
 	
 	/**
 	 * Creates anew holder from array
 	 */
-	 staticFunctions.createFromArray = function(aArray, aOwnsObjects) {
+	staticFunctions.createFromArray = function(aArray, aOwnsObjects) {
 		//trace("breel.utils.data.ArrayHolder.createFromArray");
 		var newArrayHolder = (new ArrayHolder()).init();
 		newArrayHolder.array = aArray;
 		newArrayHolder.ownsObjects = aOwnsObjects;
 		return newArrayHolder;
-	} //End function createFromArray
+	}; //End function createFromArray
 });

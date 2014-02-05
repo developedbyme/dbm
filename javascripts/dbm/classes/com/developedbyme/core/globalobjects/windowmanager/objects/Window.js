@@ -832,7 +832,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 			newWindow.setUrl(aUrl);
 		}
 		if(aWidth !== null && aHeight !== null) {
-			 newWindow.setSize(aWidth, aHeight);
+			newWindow.setSize(aWidth, aHeight);
 		}
 		return newWindow;
 	};

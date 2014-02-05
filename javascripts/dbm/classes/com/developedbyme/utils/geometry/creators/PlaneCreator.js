@@ -9,16 +9,16 @@ dbm.registerClass("com.developedbyme.utils.geometry.creators.PlaneCreator", null
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	staticFunctions.createSimpleXYPlane = function(aMesh, aX, aY, aWidth, aHeight, aSectionsHorizontal, aSectionsVertical, aMinU, aMinV, aMaxU, aMaxV) {
-		aX = VariableAlises.valueWithDefault(aX, 0);
-		aY = VariableAlises.valueWithDefault(aX, 0);
-		aWidth = VariableAlises.valueWithDefault(aWidth, 1);
-		aHeight = VariableAlises.valueWithDefault(aHeight, 1);
-		aSectionsHorizontal = VariableAlises.valueWithDefault(aSectionsHorizontal, 3);
-		aSectionsVertical = VariableAlises.valueWithDefault(aSectionsVertical, 3);
-		aMinU = VariableAlises.valueWithDefault(aMinU, 0);
-		aMinV = VariableAlises.valueWithDefault(aMinV, 0);
-		aMaxU = VariableAlises.valueWithDefault(aMaxU, 1);
-		aMaxV = VariableAlises.valueWithDefault(aMaxV, 1);
+		aX = VariableAliases.valueWithDefault(aX, 0);
+		aY = VariableAliases.valueWithDefault(aX, 0);
+		aWidth = VariableAliases.valueWithDefault(aWidth, 1);
+		aHeight = VariableAliases.valueWithDefault(aHeight, 1);
+		aSectionsHorizontal = VariableAliases.valueWithDefault(aSectionsHorizontal, 3);
+		aSectionsVertical = VariableAliases.valueWithDefault(aSectionsVertical, 3);
+		aMinU = VariableAliases.valueWithDefault(aMinU, 0);
+		aMinV = VariableAliases.valueWithDefault(aMinV, 0);
+		aMaxU = VariableAliases.valueWithDefault(aMaxU, 1);
+		aMaxV = VariableAliases.valueWithDefault(aMaxV, 1);
 		
 		var numberOfFaces = 2*(aSectionsVertical)*(aSectionsHorizontal);
 		var verticesArray = new Array((aSectionsVertical+1)*(aSectionsHorizontal+1));
@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.utils.geometry.creators.PlaneCreator", null
 			}
 		}
 		
-		ClassReference.createFacesFromGridVertecies(aMesh, verticesArray, aSectionsHorizontal, aSectionsVertical)
+		ClassReference.createFacesFromGridVertecies(aMesh, verticesArray, aSectionsHorizontal, aSectionsVertical);
 		
 		return aMesh;
 	};

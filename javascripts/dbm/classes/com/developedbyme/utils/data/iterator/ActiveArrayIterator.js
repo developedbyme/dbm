@@ -49,7 +49,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	};
 	
 	objectFunctions._commandQueueIsRunning = function() {
-		return (this._commandQueue !== null && this._commandQueue.isRunning())
+		return (this._commandQueue !== null && this._commandQueue.isRunning());
 	};
 	
 	objectFunctions._itemPreAdded = function(aObject) {

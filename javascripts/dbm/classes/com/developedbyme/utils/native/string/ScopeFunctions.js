@@ -232,7 +232,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 				returnScope.end = -1;
 				break;
 			}
-			checkPosition = endPosition-1;
+			var checkPosition = endPosition-1;
 			var slashCount = 0;
 			while(aText.charAt(checkPosition) === "\\") {
 				if(debugCounter++ > 10000) {
@@ -269,7 +269,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, 
 				returnScope.end = -1;
 				break;
 			}
-			checkPosition = endPosition+1;
+			var checkPosition = endPosition+1;
 			if(aText.charAt(checkPosition) === aStartType) {
 				endPosition = checkPosition;
 			}

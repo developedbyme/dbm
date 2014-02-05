@@ -106,10 +106,10 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.StaticCallback
 	
 	staticFunctions.addSetOfCallbackLinks = function(aEventPerformer, aExtendedEventNames, aReturnNamedArray) {
 		
-		var currnetArray = aExtendedEventNames;
+		var currentArray = aExtendedEventNames;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			var currentName = currnetArray[i];
+			var currentName = currentArray[i];
 			var newStaticCallbackLink = ClassReference.createAndAddCallbackLink(aEventPerformer, currentName);
 			aReturnNamedArray.addObject(currentName, newStaticCallbackLink);
 		}

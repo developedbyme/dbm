@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ScaleRectangleNode
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this._outerRectangle = null
+		this._outerRectangle = null;
 		this._scaleX = null;
 		this._scaleY = null;
 		this._scaleOffsetX = null;

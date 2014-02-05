@@ -318,7 +318,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		}
 		
 		if(this.ownsData) {
-			ClassReference.softDestroyIfExists(this.data)
+			ClassReference.softDestroyIfExists(this.data);
 		}
 		
 		ClassReference.destroyIfExists(this._children);

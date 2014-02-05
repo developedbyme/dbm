@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "c
 	
 	objectFunctions.getValue = function(/* ... aPositions */) {
 		
-		aPositions = arguments;
+		var aPositions = arguments;
 		
 		if(aPositions.length !== this._lengths.length) {
 			//METODO: error message
@@ -84,13 +84,13 @@ dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "c
 	/**
 	 * Creates a new holder
 	 */
-	 staticFunctions.create = function(/* ... aLengths */) {
+	staticFunctions.create = function(/* ... aLengths */) {
 		//trace("breel.utils.data.MultidimensionalArrayHolder.create");
 		
-		aLengths = arguments;
+		var aLengths = arguments;
 		
 		var newMultidimensionalArrayHolder = (new MultidimensionalArrayHolder()).init();
 		newMultidimensionalArrayHolder.setLengths(ArrayFunctions.copyArray(aLengths));
 		return newMultidimensionalArrayHolder;
-	} //End function create
+	}; //End function create
 });

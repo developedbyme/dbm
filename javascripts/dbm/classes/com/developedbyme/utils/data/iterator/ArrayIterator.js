@@ -27,7 +27,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 		this._checkIfTheArrayIsAtEnd();
 		
 		return this;
-	} //End function setArray
+	}; //End function setArray
 	
 	
 	objectFunctions._verifyItem = function(aObject) {
@@ -229,7 +229,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	objectFunctions.addItemAt = function(aObject, aIndex) {
 		if(!this.verifyItem(aObject)) return;
 		if(aIndex >= this.array.length) {
-			this.array.push(aObject);	
+			this.array.push(aObject);
 		}
 		else {
 			if(aIndex <= this._currentPosition) {

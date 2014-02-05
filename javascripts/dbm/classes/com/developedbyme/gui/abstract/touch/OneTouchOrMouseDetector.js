@@ -78,7 +78,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector"
 			this._selectionPoint.id = aIdentifier;
 			return this._selectionPoint;
 		//}
-		return this.superCall(aIdentifier);
+		//return this.superCall(aIdentifier);
 	};
 	
 	objectFunctions._startMouseTouch = function() {

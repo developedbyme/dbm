@@ -55,7 +55,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.StringAliases", "com.de
 			return 0;
 		}
 		return (aCharCodes1.length > aCharCodes2.length) ? 1 : -1;
-	}
+	};
 	
 	objectFunctions._findAliasIndex = function(aName) {
 		

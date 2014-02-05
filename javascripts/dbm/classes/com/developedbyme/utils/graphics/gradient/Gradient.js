@@ -101,7 +101,7 @@ dbm.registerClass("com.developedbyme.utils.graphics.gradient.Gradient", "com.dev
 			aCanvasGradient.addColorStop(position, color.getCssString());
 		}
 		
-		return aGradient;
+		return aCanvasGradient;
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

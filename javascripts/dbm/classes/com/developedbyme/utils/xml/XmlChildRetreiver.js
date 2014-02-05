@@ -241,7 +241,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 			}
 			return null;
 		}
-		if(!(aXml.nodeType === XmlNodeTypes.ELEMENT_NODE)) {
+		if(aXml.nodeType !== XmlNodeTypes.ELEMENT_NODE) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getAttribute", "Node is not an element.");
 			return null;
 		}
@@ -278,7 +278,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 			}
 			return null;
 		}
-		if(!(aXml.nodeType === XmlNodeTypes.ELEMENT_NODE)) {
+		if(aXml.nodeType !== XmlNodeTypes.ELEMENT_NODE) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getNamespacedAttribute", "Node is not an element.");
 			return null;
 		}

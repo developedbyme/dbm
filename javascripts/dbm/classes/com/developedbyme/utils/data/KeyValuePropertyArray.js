@@ -194,15 +194,15 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 	
 	objectFunctions.identifyObject = function(aObject) {
 		
-		var curentArray = this._objectsArray;
-		var currentArrayLength = curentArray.length;
+		var currentArray = this._objectsArray;
+		var currentArrayLength = currentArray.length;
 		
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
 			if(currentObject.dataValue.getValue() === aObject) {
-				return currentObject.keyValue.getValue()
+				return currentObject.keyValue.getValue();
 			}
-		};
+		}
 		
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "identifyObject", "Object " + aObject + " doesn't exist.");
 		return null;

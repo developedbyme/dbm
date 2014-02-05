@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.utils.math.music.NoteLengths", null, functi
 	};
 	
 	staticFunctions.tupletLength = function(aNumberOfNotes, aPlayedOverNumberOfNotes, aNoteLength) {
-		console.log("com.developedbyme.utils.math.music.NoteLengths::tupletLength")
+		console.log("com.developedbyme.utils.math.music.NoteLengths::tupletLength");
 		console.log(aNumberOfNotes, aPlayedOverNumberOfNotes, aNoteLength);
 		return (aNoteLength*aPlayedOverNumberOfNotes)/aNumberOfNotes;
 	};

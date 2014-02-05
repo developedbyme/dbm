@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BSpline", "com.developedby
 		else {
 			//console.log("---", this.knotsArray[aPointNr], this.knotsArray[aPointNr+aDegree], this.knotsArray[aPointNr+aDegree+1], this.knotsArray[aPointNr+1]);
 			var returnValue = 0;
-			var baseFunctionValue = this.Debug::realBezierBaseFunctionRecursive(aPointNr, aDegree-1, aParameter);
+			var baseFunctionValue = this._realBezierBaseFunctionRecursive(aPointNr, aDegree-1, aParameter);
 			if(baseFunctionValue !== 0) {
 				returnValue += (aParameter-this.knotsArray[aPointNr])/(this.knotsArray[aPointNr+aDegree]-this.knotsArray[aPointNr])*baseFunctionValue;
 			}

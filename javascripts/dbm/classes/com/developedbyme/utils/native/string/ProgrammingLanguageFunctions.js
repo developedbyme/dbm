@@ -67,9 +67,10 @@ dbm.registerClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunc
 		
 		var currentArray = aScope.childScopes;
 		if(currentArray !== null) {
+			var currentScope;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
-				var currentScope = currentArray[i];
+				currentScope = currentArray[i];
 				returnText += aCode.substring(currentPosition, currentScope.start);
 				returnText += ClassReference._getUncommentedCodeFromScope(aCode, currentScope, aCommentScopeStarts, aCommentReplace);
 				currentPosition = currentScope.end;

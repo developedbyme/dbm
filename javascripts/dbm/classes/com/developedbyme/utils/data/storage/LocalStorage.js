@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.LocalStorage", "com.deve
 	/**
 	 * Creates a new local storage
 	 */
-	 staticFunctions.createLocalStorage = function(aPrefix, aSuffix) {
+	staticFunctions.createLocalStorage = function(aPrefix, aSuffix) {
 		//trace("com.developedbyme.utils.data.LocalStorage.createLocalStorage");
 		var newLocalStorage = (new LocalStorage()).init();
 		
@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.LocalStorage", "com.deve
 	/**
 	 * Creates a new session storage
 	 */
-	 staticFunctions.createSessionStorage = function(aPrefix, aSuffix) {
+	staticFunctions.createSessionStorage = function(aPrefix, aSuffix) {
 		//trace("com.developedbyme.utils.data.LocalStorage.createSessionStorage");
 		var newLocalStorage = (new LocalStorage()).init();
 		

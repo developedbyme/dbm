@@ -200,12 +200,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 			var maxParameter = 1;
 			var currentXValue = aEvaluationValue-point1.x;
 			var debugLoopCounter = 0;
+			var currentParameter;
 			while(true) {
 				if(debugLoopCounter++ > 200) {
 					//METODO: error message
 					break;
 				}
-				var currentParameter = (maxParameter-minParameter)*(aEvaluationValue-minValue)/(maxValue-minValue)+minParameter;
+				currentParameter = (maxParameter-minParameter)*(aEvaluationValue-minValue)/(maxValue-minValue)+minParameter;
 				var currentXValue = (Math.pow(1-currentParameter, 3)*point1.x+3*(Math.pow(1-currentParameter, 2))*(currentParameter)*point2.x+3*(Math.pow(currentParameter, 2))*(1-currentParameter)*point3.x+Math.pow(currentParameter, 3)*point4.x);
 				if(Math.abs(currentXValue-aEvaluationValue) < this.exactness) {
 					break;
@@ -237,7 +238,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 			switch(aPreInfinityMethod) {
 				case ExtrapolationTypes.CONSTANT:
 					return currentArray[0].y;
-					break;
 				case ExtrapolationTypes.OSCILLATE:
 					//METODO
 				case ExtrapolationTypes.LINEAR:
@@ -252,7 +252,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 			switch(aPostInfinityMethod) {
 				case ExtrapolationTypes.CONSTANT:
 					return currentArray[currentArray.length-1].y;
-					break;
 				case ExtrapolationTypes.OSCILLATE:
 					//METODO
 				case ExtrapolationTypes.LINEAR:
@@ -296,7 +295,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		while(true) {
 			if((evaluationParameter >= currentArray[4*currentSegmentNr].x) && (evaluationParameter < currentArray[4*currentSegmentNr+3].x)) {
 				return this._evaluateAnimationCurveSegment(currentSegmentNumber, evaluationParameter, aExactness)+outputValueOffset;
-				break;
 			}
 			else if(evaluationParameter < currentArray[4*currentSegmentNr].x) {
 				currentSegmentNr--;

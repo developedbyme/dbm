@@ -13,16 +13,16 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArraySortingFunctions", 
 	staticFunctions.caseInsensitive = function(aValue1, aValue2) {
 		aValue1 = aValue1.toLowerCase();
 		aValue2 = aValue2.toLowerCase();
-		if(aValue1 == aValue2) return 0;
-		if(aValue1 > aValue2) return 1;
-		return -1;
+		return ClassReference._compareValues(aValue1, aValue2);
 	};
 	
 	staticFunctions.trimmedCaseInsensitive = function(aValue1, aValue2) {
 		aValue1 = StringFunctions.trim(aValue1.toLowerCase());
 		aValue2 = StringFunctions.trim(aValue2.toLowerCase());
-		if(aValue1 == aValue2) return 0;
-		if(aValue1 > aValue2) return 1;
-		return -1;
+		return ClassReference._compareValues(aValue1, aValue2);
+	};
+	
+	staticFunctions._compareValues = function(aValue1, aValue2) {
+		return ((aValue1 === aValue2) ? 0 : ((aValue1 > aValue2) ? 1 : 0));
 	};
 });

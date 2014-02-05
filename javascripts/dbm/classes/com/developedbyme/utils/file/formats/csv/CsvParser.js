@@ -62,7 +62,7 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 		this._numberOfColumns++;
 		
 		return this;
-	}
+	};
 	
 	objectFunctions.addRow = function(aRow) {
 		this._rows.push(aRow);
@@ -101,7 +101,7 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 			}
 		}
 		return -1;
-	}
+	};
 	
 	objectFunctions.findRowByField = function(aColumnIndex, aSearchValue, aStartIndex, aEndIndex) {
 		
@@ -156,7 +156,7 @@ dbm.registerClass("com.developedbyme.utils.file.formats.csv.CsvParser", "com.dev
 		}
 		
 		return returnArray;
-	}
+	};
 	
 	objectFunctions.parse = function() {
 		

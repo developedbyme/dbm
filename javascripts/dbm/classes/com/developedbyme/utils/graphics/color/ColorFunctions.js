@@ -57,11 +57,14 @@ dbm.registerClass("com.developedbyme.utils.graphics.color.ColorFunctions", "com.
 	
 	staticFunctions.createColorFromShortHexString = function(aHexString) {
 		
-		var r = ((aValue >> 8) & 0x0F)/0x0F;
+		var dataString = aHexString.substring(1, 4);
+		var dataValue = parseInt(dataString, 16);
+		
+		var r = ((dataValue >> 8) & 0x0F)/0x0F;
 		r &= r << 4;
-		var g = ((aValue >> 4) & 0x0F)/0x0F;
+		var g = ((dataValue >> 4) & 0x0F)/0x0F;
 		g &= g << 4;
-		var b = ((aValue) & 0x0F)/0x0F;
+		var b = ((dataValue) & 0x0F)/0x0F;
 		b &= b << 4;
 		
 		var newColor = RgbaColor.create(r, g, b);
@@ -87,7 +90,7 @@ dbm.registerClass("com.developedbyme.utils.graphics.color.ColorFunctions", "com.
 	};
 	
 	staticFunctions.createColorFromHslString = function(aHslString) {
-		var newColor = HslColor.create();
+		var newColor = HslaColor.create();
 		
 		var dataArray = ClassReference._getValueArrayFromCssFunctionString(aHslString);
 		newColor.h = CssLanguageFunctions.getPercentageValue(dataArray[0], 360);

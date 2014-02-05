@@ -11,7 +11,7 @@ dbm.registerClass("com.developedbyme.utils.file.MimeTypeFunctions", null, functi
 		}
 		
 		var mimeType = aMimeType;
-		var semiColonPosition = aMimeType.indexOf(";")
+		var semiColonPosition = aMimeType.indexOf(";");
 		if(semiColonPosition !== -1) {
 			mimeType = aMimeType.substring(0, semiColonPosition);
 		}

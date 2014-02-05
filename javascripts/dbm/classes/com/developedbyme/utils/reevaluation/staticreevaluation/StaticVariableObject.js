@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.Stati
 		//MENOTE: should be overridden
 		
 		return this.reevaluationData;
-	} //End function reevaluate
+	}; //End function reevaluate
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

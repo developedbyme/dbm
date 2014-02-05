@@ -89,7 +89,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 		else {
 			//METODO: error message
 		}
-	}
+	};
 	
 	objectFunctions._createTouch = function(aIdentifier) {
 		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_createTouch");

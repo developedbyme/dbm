@@ -72,7 +72,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 				//METODO: error message
 				break;
 			}
-		}		
+		}
 	};
 	
 	objectFunctions.detectBrowser = function(aUserAgentString) {

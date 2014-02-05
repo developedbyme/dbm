@@ -18,7 +18,7 @@ dbm.registerClass("com.developedbyme.utils.data.orderselector.ReservedData", "co
 	objectFunctions.setLength = function(aLength) {
 		this._array = new Array(aLength);
 		
-		return this
+		return this;
 	};
 	
 	objectFunctions.isReserved = function(aIndex) {

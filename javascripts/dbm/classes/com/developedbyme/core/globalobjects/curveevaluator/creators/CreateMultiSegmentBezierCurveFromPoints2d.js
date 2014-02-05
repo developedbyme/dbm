@@ -114,7 +114,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.
 		
 		this._inVector.x = -1*this._outVector.x;
 		this._inVector.y = -1*this._outVector.y;
-		this._inVectorLength = this._outVectorLength;	
+		this._inVectorLength = this._outVectorLength;
 	};
 	
 	/**

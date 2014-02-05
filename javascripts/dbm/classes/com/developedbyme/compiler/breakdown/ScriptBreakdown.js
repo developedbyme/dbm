@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdown", "com.d
 		
 		var returnArray = new Array();
 		
-		var registerClassRegExp = new RegExp("dbm\.registerClass\\(\"([a-zA-Z0-9_\.]*)\",[\\s]*\"([a-zA-Z0-9_\.]*)\"", "g");
+		var registerClassRegExp = new RegExp("dbm\\.registerClass\\(\"([a-zA-Z0-9_\\.]*)\",[\\s]*\"([a-zA-Z0-9_\\.]*)\"", "g");
 		var currentArray = this._script.match(registerClassRegExp);
 		if(currentArray !== null) {
 			var currentArrayLength = currentArray.length;
@@ -52,7 +52,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdown", "com.d
 			}
 		}
 		
-		var importClassRegExp = new RegExp("dbm\.importClass\\(\"([a-zA-Z0-9_\.]*)\"\\);", "g");
+		var importClassRegExp = new RegExp("dbm\\.importClass\\(\"([a-zA-Z0-9_\\.]*)\"\\);", "g");
 		var currentArray = this._script.match(importClassRegExp);
 		if(currentArray !== null) {
 			var currentArrayLength = currentArray.length;

@@ -40,7 +40,7 @@ dbm.registerClass("com.developedbyme.utils.math.GaussDistribution", null, functi
 		if(aAverage === aStandardDeviation) {
 			aStandardDeviation = 1;
 		}
-		return (1/(aStandardDeviation*Math.sqrt(2*Math.PI)))*getGaussDistributionValue(aX, aAverage, aStandardDeviation);
+		return (1/(aStandardDeviation*Math.sqrt(2*Math.PI)))*ClassReference.getGaussDistributionValue(aX, aAverage, aStandardDeviation);
 	};
 	
 	/**
