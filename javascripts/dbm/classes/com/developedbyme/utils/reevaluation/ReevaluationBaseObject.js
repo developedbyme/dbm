@@ -30,10 +30,6 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject",
 		return null;
 	}; //End function reevaluate
 	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
 		this.superCall();
 	};

@@ -126,13 +126,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 	 * @return	The new command.
 	 */
 	staticFunctions.createCallFunctionOnObjectCommand = function(aObject, aFunctionName, aArgumentsArray) {
-		var newCommand = (new CallFunctionCommand()).init();
-		
-		var newFunctionReevaluator = (new GetVariableObject()).init();
-		newFunctionReevaluator.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
-		newFunctionReevaluator.propertyNameReevaluator = StaticVariableObject.createReevaluationObject(aFunctionName);
-		
-		return ClassReference.createCommand(aObject, newFunctionReevaluator, aArgumentsArray);
+		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray);
 	};
 	
 	/**

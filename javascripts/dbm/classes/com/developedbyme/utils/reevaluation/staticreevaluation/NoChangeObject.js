@@ -24,10 +24,6 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.NoCha
 		return aBaseObject;
 	};
 	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.reevaluationData = null;

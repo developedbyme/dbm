@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	
+	var FlowBaseObject = dbm.importClass("com.developedbyme.core.FlowBaseObject");
 	var FlowUpdater = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdater");
 	var FlowUpdateChainCreator = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
 	
@@ -190,6 +191,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		}
 		aOutputProperty._linkRegistration_removeConnectedOutput(aInputProperty);
 		aInputProperty._linkRegistration_removeInputConnection(aOutputProperty);
+	};
+	
+	objectFunctions.setPropertyInput = function(aProperty, aInput) {
+		if(aInput instanceof Property) {
+			this.connectProperties(aInput, aProperty);
+		}
+		else if(aInput instanceof FlowBaseObject) {
+			this.connectProperties(aInput.getObjectProperty(), aProperty);
+		}
+		else {
+			aProperty.setValue(aInput);
+		}
 	};
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {

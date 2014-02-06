@@ -16,17 +16,13 @@ dbm.runTempFunction(function() {
 		
 		var visualTemplatesPath = "../assets/examples/workspace/basicSetup/visualTemplatesWithCommands2.html#mainWorkspace";
 		
-		var fileLoaded = function(aLoader) {
+		var fileLoaded = function() {
 			console.log("fileLoaded");
 			
 			var windowSizeNode = WindowSizeNode.create(dbm.getWindow());
 			windowSizeNode.start();
 			
-			var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(visualTemplatesPath, null, true, dbm.getDocument().body, true);
-			
-			var mainWorkspace = templateResult.mainController;
-			mainWorkspace.setPropertyInput("width", windowSizeNode.getProperty("width"));
-			mainWorkspace.setPropertyInput("height", windowSizeNode.getProperty("height"));
+			dbm.singletons.dbmTemplateManager.createControllersForAsset(visualTemplatesPath, {"width": windowSizeNode.getProperty("width"), "height": windowSizeNode.getProperty("height")}, true, dbm.getDocument().body, true);
 		};
 		
 		var templateLoader = dbm.singletons.dbmAssetRepository.getAsset(visualTemplatesPath);

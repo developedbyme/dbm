@@ -6,33 +6,19 @@ dbm.runTempFunction(function() {
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var Workspace = dbm.importClass("com.developedbyme.workspace.gui.Workspace");
-	var EditableCurvePart = dbm.importClass("com.developedbyme.workspace.gui.parts.curves.EditableCurvePart");
-	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
-	var ScrollableAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.ScrollableAreaPart");
 	var SplitLayoutAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.layout.SplitLayoutAreaPart");
 	var SizedElementAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart");
 	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
 	
-	var PressButton = dbm.importClass("com.developedbyme.gui.buttons.PressButton");
-	
 	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
-	var RectangleFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
-	var FlowHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.FlowHandler");
 	
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	
-	var SetupPlacementFunctions = dbm.importClass("com.developedbyme.flow.setup.display.SetupPlacementFunctions");
-	var SetupErrorReportFunctions = dbm.importClass("com.developedbyme.flow.setup.workspace.SetupErrorReportFunctions");
-	
-	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
 		
 		var windowSizeNode = WindowSizeNode.create(window);
 		windowSizeNode.start();
-		
-		var rectangleNode = RectangleFromValuesNode.create(0, 0, windowSizeNode.getProperty("width"), windowSizeNode.getProperty("height"));
 		
 		var mainWorkspace = Workspace.createOnParent(document.body);
 		mainWorkspace.setElementAsPositioned();

@@ -25,6 +25,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.startup.standalone.StandAloneP
 		//MENOTE: should be overridden
 	};
 	
+	objectFunctions._addStartFunction = function(aFunction, aArgumentsArray) {
+		this._assetsLoader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, aFunction, aArgumentsArray));
+	};
+	
 	objectFunctions.addCssLink = function(aPath) {
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
@@ -34,23 +38,10 @@ dbm.registerClass("com.developedbyme.gui.abstract.startup.standalone.StandAloneP
 	};
 	
 	objectFunctions.start = function() {
-		this._setup();
-		this._performStart();
 		
-		return this;
-	};
-	
-	objectFunctions._performStart = function() {
-		console.log("com.developedbyme.gui.abstract.startup.standalone.StandAlonePage::_performStart");
-		
-		this._assetsLoader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._assetsLoaded, []));
 		this._assetsLoader.load();
 		
 		return this;
-	};
-	
-	objectFunctions._assetsLoaded = function() {
-		//MENOTE: should be overridden
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

@@ -124,12 +124,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setPropertyInput", "Property " + aName + " doesn't exist.");
 			return this;
 		}
-		if(aInput instanceof Property) {
-			dbm.singletons.dbmFlowManager.connectProperties(aInput, theProperty);
-		}
-		else {
-			theProperty.setValue(aInput);
-		}
+		dbm.singletons.dbmFlowManager.setPropertyInput(theProperty, aInput);
 		return this;
 	};
 	
