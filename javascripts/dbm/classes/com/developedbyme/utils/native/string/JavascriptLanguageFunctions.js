@@ -2,10 +2,19 @@ dbm.registerClass("com.developedbyme.utils.native.string.JavascriptLanguageFunct
 	//console.log("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	//"use strict";
 	
+	//Self reference
 	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var RegExpFunctions = dbm.importClass("com.developedbyme.utils.native.regexp.RegExpFunctions");
+	
+	//Constants
 	
 	staticFunctions.KEWWORD_REG_EXPS = [
 		new RegExp("^if[\\s]*\\("),
@@ -135,14 +144,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.JavascriptLanguageFunct
 	];
 	
 	staticFunctions.startsWithKeyword = function(aText) {
-		var currentArray = ClassReference.KEWWORD_REG_EXPS;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			if(aText.match(currentArray[i])) {
-				return ClassReference.KEWWORD_REG_EXP_NAMES[i];
-			}
-		}
-		return null;
+		return RegExpFunctions.matchTextInRegExpArrayWithNames(aText, ClassReference.KEWWORD_REG_EXPS, ClassReference.KEWWORD_REG_EXP_NAMES);
 	};
 	
 	staticFunctions.startsWithSpecifiedKeyword = function(aText, aKeyword) {

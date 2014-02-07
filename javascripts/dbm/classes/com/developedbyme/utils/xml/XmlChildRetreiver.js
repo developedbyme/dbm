@@ -14,11 +14,15 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 	staticFunctions.WARN_FOR_NO_XML = false;
 	staticFunctions.WARN_FOR_NO_RESULT = false;
 	
+	staticFunctions._reportWarning = function(aShouldWarn, aFunctionName, aText) {
+		if(aShouldWarn) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", aFunctionName, aText);
+		}
+	};
+	
 	staticFunctions.getFirstChild = function(aXml) {
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getFirstChild", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getFirstChild", "Xml is null");
 			return null;
 		}
 		
@@ -31,9 +35,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 			}
 		}
 		
-		if(ClassReference.WARN_FOR_NO_RESULT) {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getFirstChild", "No result in " + aXml);
-		}
+		ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getFirstChild", "No result in " + aXml);
 		return null;
 	};
 	
@@ -41,26 +43,14 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChild (static)");
 		//console.log(aXml, aChildName);
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChild", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getChild", "Xml is null");
 			return null;
 		}
 		
-		var returnArray = new Array();
-		var currentArray = aXml.childNodes;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentChild = currentArray[i];
-			if(currentChild.nodeName === aChildName) {
-				returnArray.push(currentChild);
-			}
-		}
+		var returnArray = ClassReference.getChilds();
 		
 		if(returnArray.length === 0) {
-			if(ClassReference.WARN_FOR_NO_RESULT) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChild", "No result in " + aXml);
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getChild", "No result in " + aXml);
 			return null;
 		}
 		if(returnArray.length > 1) {
@@ -73,9 +63,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getNamespacedChild (static)");
 		//console.log(aXml, aChildNamespace, aChildName);
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getNamespacedChild", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNamespacedChild", "Xml is null");
 			return null;
 		}
 		
@@ -90,9 +78,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		}
 		
 		if(returnArray.length === 0) {
-			if(ClassReference.WARN_FOR_NO_RESULT) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getNamespacedChild", "No result in " + aXml);
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getNamespacedChild", "No result in " + aXml);
 			return null;
 		}
 		if(returnArray.length > 1) {
@@ -109,9 +95,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		var returnArray = new Array();
 		
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChildByAttribute", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getChildByAttribute", "Xml is null");
 			return returnArray;
 		}
 		
@@ -126,9 +110,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		}
 		
 		if(returnArray.length === 0) {
-			if(ClassReference.WARN_FOR_NO_RESULT) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChildByAttribute", "No result in " + aXml);
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getChildByAttribute", "No result in " + aXml);
 			return returnArray;
 		}
 		return returnArray;
@@ -140,9 +122,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		//console.log(aXml, aAttributeName, aValue, aChildName);
 		
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChildByAttribute", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getChildByAttribute", "Xml is null");
 			return null;
 		}
 		
@@ -162,9 +142,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		}
 		
 		if(returnArray.length === 0) {
-			if(ClassReference.WARN_FOR_NO_RESULT) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getChildByAttribute", "No result in " + aXml);
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getChildByAttribute", "No result in " + aXml);
 			return null;
 		}
 		if(returnArray.length > 1) {
@@ -177,9 +155,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getNamespacedChildByNamespacedAttribute (static)");
 		
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getNamespacedChildByNamespacedAttribute", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNamespacedChildByNamespacedAttribute", "Xml is null");
 			return null;
 		}
 		
@@ -199,9 +175,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		}
 		
 		if(returnArray.length === 0) {
-			if(ClassReference.WARN_FOR_NO_RESULT) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getNamespacedChildByNamespacedAttribute", "No result in " + aXml);
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getNamespacedChildByNamespacedAttribute", "No result in " + aXml);
 			return null;
 		}
 		if(returnArray.length > 1) {
@@ -212,9 +186,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 	
 	staticFunctions.getNodeValue = function(aXml) {
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getNodeValue", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNodeValue", "Xml is null");
 			return null;
 		}
 		
@@ -227,18 +199,14 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 			}
 		}
 		
-		if(ClassReference.WARN_FOR_NO_RESULT) {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getNodeValue", "No result in " + aXml);
-		}
+		ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getNodeValue", "No result in " + aXml);
 		
 		return null;
 	};
 	
 	staticFunctions.getAttribute = function(aXml, aAttributeName) {
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getAttribute", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getAttribute", "Xml is null");
 			return null;
 		}
 		if(aXml.nodeType !== XmlNodeTypes.ELEMENT_NODE) {
@@ -247,9 +215,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		}
 		if(aXml.hasAttribute) {
 			if(!aXml.hasAttribute(aAttributeName)) {
-				if(ClassReference.WARN_FOR_NO_RESULT) {
-					ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getAttribute", "No result in " + aXml);
-				}
+				ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getAttribute", "No result in " + aXml);
 				return null;
 			}
 			return aXml.getAttribute(aAttributeName);
@@ -264,18 +230,14 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 					return currentAttribute["value"];
 				}
 			}
-			if(ClassReference.WARN_FOR_NO_RESULT) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getAttribute", "No result in " + aXml);
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getAttribute", "No result in " + aXml);
 			return null;
 		}
 	};
 	
 	staticFunctions.getNamespacedAttribute = function(aXml, aAttributeNamespace, aAttributeName) {
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getNamespacedAttribute", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNamespacedAttribute", "Xml is null");
 			return null;
 		}
 		if(aXml.nodeType !== XmlNodeTypes.ELEMENT_NODE) {
@@ -284,9 +246,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 		}
 		
 		if(!aXml.hasAttributeNS(aAttributeNamespace, aAttributeName)) {
-			if(ClassReference.WARN_FOR_NO_RESULT) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "getNamespacedAttribute", "No result in " + aXml);
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getNamespacedAttribute", "No result in " + aXml);
 			return null;
 		}
 		return aXml.getAttributeNS(aAttributeNamespace, aAttributeName);
@@ -295,9 +255,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 	
 	staticFunctions.hasSimpleContent = function(aXml) {
 		if(aXml === null) {
-			if(ClassReference.WARN_FOR_NO_XML) {
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", "hasSimpleContent", "Xml is null");
-			}
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "hasSimpleContent", "Xml is null");
 			return false;
 		}
 		if((aXml.childNodes.length === 1) && (aXml.firstChild.nodeType === XmlNodeTypes.TEXT_NODE || aXml.firstChild.nodeType === XmlNodeTypes.CDATA_SECTION_NODE)) {
@@ -308,7 +266,6 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, functio
 	
 	staticFunctions.getFirstTextNode = function(aXml) {
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getTextNode (static)");
-		
 		
 		var currentArray = aXml.childNodes;
 		var currentArrayLength = currentArray.length;

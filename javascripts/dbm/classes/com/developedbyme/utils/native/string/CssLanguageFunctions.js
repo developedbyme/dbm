@@ -2,15 +2,23 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 	//console.log("com.developedbyme.utils.native.string.CssLanguageFunctions");
 	//"use strict";
 	
+	//Self reference
 	var CssLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.CssLanguageFunctions");
 	
+	//Error report
+	
+	//Dependencies
 	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");
 	
+	//Utils
 	var ProgrammingLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
+	var RegExpFunctions = dbm.importClass("com.developedbyme.utils.native.regexp.RegExpFunctions");
+	
+	//Constants
 	
 	staticFunctions.COLOR_REG_EXPS = [
 		new RegExp("#[0-9a-fA-F]{6}"),
@@ -31,14 +39,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 	];
 	
 	staticFunctions.getColorType = function(aCssString) {
-		var currentArray = ClassReference.COLOR_REG_EXPS;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			if(aCssString.match(currentArray[i])) {
-				return ClassReference.COLOR_REG_EXP_NAMES[i];
-			}
-		}
-		return null;
+		return RegExpFunctions.matchTextInRegExpArrayWithNames(aCssString, ClassReference.COLOR_REG_EXPS, ClassReference.COLOR_REG_EXP_NAMES);
 	};
 	
 	staticFunctions.getPercentageValue = function(aCssString, aMax) {
@@ -69,15 +70,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 		
 		switch(type) {
 			case "-webkit-gradient":
-				//METODO: use legacy
-				dataArray.shift(); //MENOTE: remove type
-				dataArray.shift(); //MENOTE: remove direction start
-				dataArray.shift(); //MENOTE: remove direction end
-				var currentArray = dataArray;
-				var currentArrayLength = currentArray.length;
-				for(var i = 0; i < currentArrayLength; i++) {
-					this._addWebkitLegacyColorStopToGradient(currentArray[i], newGradient, i/(currentArrayLength-1));
-				}
+				//METODO: error message, legacy description not supported
 				break;
 			case "linear-gradient":
 			case "-dbm-linear-gradient":
@@ -86,13 +79,6 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 			case "-ms-linear-gradient":
 			case "-o-linear-gradient":
 			case "-webkit-linear-gradient":
-				dataArray.shift(); //MENOTE: remove direction
-				var currentArray = dataArray;
-				var currentArrayLength = currentArray.length;
-				for(var i = 0; i < currentArrayLength; i++) {
-					this._addColorStopToGradient(currentArray[i], newGradient, i/(currentArrayLength-1));
-				}
-				break;
 			case "radial-gradient":
 			case "-dbm-radial-gradient":
 			case "-khtml-radial-gradient":
@@ -100,15 +86,10 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 			case "-ms-radial-gradient":
 			case "-o-radial-gradient":
 			case "-webkit-radial-gradient":
-				dataArray.shift(); //MENOTE: remove direction and/or position
-				var currentArray = dataArray;
-				var currentArrayLength = currentArray.length;
-				for(var i = 0; i < currentArrayLength; i++) {
-					this._addColorStopToGradient(currentArray[i], newGradient, i/(currentArrayLength-1));
-				}
+				//MENOTE: remove direction and or direction
+				ClassReference._addColorStopsToGradient(dataArray, newGradient, 1, dataArray.length);
 				break;
 			default:
-				//METODO: add radial gradients
 				//METODO: error message
 				break;
 		}
@@ -116,14 +97,17 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 		return newGradient;
 	};
 	
+	staticFunctions._addColorStopsToGradient = function(aCssStrings, aGradient, aStartPosition, aEndPosition) {
+		var currentArray = aCssStrings;
+		for(var i = aStartPosition; i < aEndPosition; i++) {
+			this._addColorStopToGradient(currentArray[i], newGradient, (i-aStartPosition)/(aEndPosition-1));
+		}
+	};
+	
 	staticFunctions._addColorStopToGradient = function(aCssString, aGradient, aDefaultPosition) {
 		var dataArray = ProgrammingLanguageFunctions.getSeparatedArray(aCssString, [" "]);
 		var position = (dataArray.length > 1) ? ClassReference.getPercentageValue(dataArray[1]) : aDefaultPosition;
 		
 		aGradient.createColorStopFromCssString(position, dataArray[0]);
-	};
-	
-	staticFunctions._addWebkitLegacyColorStopToGradient = function(aCssString, aGradient, aDefaultPosition) {
-		//METODO
 	};
 });

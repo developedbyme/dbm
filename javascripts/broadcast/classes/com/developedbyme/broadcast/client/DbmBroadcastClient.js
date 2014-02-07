@@ -10,6 +10,11 @@ dbm.registerClass("com.developedbyme.broadcast.client.DbmBroadcastClient", "com.
 		
 		this.superCall();
 		
+		this._lastUpdateCall = 0;
+		this._updateOffset = 0;
+		this._updateInterval = 5;
+		
+		
 		this._serverName = null;
 		this._localName = null;
 		
@@ -33,6 +38,19 @@ dbm.registerClass("com.developedbyme.broadcast.client.DbmBroadcastClient", "com.
 		this._initialUrl = aInitialUrl;
 		
 		return this;
+	};
+	
+	objectFunctions.start = function() {
+		
+		dbm.singletons.dbmUpdateManager.addUpdater(this, "default");
+		
+		return this;
+	};
+	
+	objectFunctions.updateTime = function(aTime, aFrame) {
+		console.log("com.developedbyme.broadcast.client.DbmBroadcastClient::updateTime");
+		
+		
 	};
 	
 	/**

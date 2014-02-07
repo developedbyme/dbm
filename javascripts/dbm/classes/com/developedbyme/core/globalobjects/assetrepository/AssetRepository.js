@@ -139,36 +139,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	
 	objectFunctions.getAssetData = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::getAssetData");
-		
-		var hashIndex = aPath.indexOf("#");
-		var hashString = null;
-		if(hashIndex >= 0) {
-			hashString = aPath.substring(hashIndex+1, aPath.length);
-			aPath = aPath.substring(0, hashIndex);
-		}
-		
-		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
-		
-		if(currentItem.data === null) {
-			this._createAssetForTreeStructure(currentItem);
-		}
-		
-		if(hashIndex >= 0) {
-			//console.log(aPath, hashString);
-			//console.log(currentItem.data, currentItem.data instanceof XmlAsset);
-			if(!(currentItem.data instanceof XmlAsset)) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "getAssetDAta", "Asset " + aPath + " is not an xml, can't get hash " + hashString + ".");
-				return null;
-			}
-			var hashItem = this._hierarchy.getItemByPath(hashString, currentItem);
-			
-			hashItem.data = XmlIdElementAsset.create(hashString, currentItem.data);
-			hashItem.retain();
-			
-			currentItem = hashItem;
-		}
-		
-		return currentItem.data.getData();
+		return this.getAsset(aPath).getData();
 	};
 	
 	objectFunctions.addAsset = function(aPath, aAsset) {
