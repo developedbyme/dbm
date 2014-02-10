@@ -106,7 +106,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		var hashIndex = aPath.indexOf("#");
 		var hashString = null;
 		if(hashIndex >= 0) {
-			hashString = aPath.substring(hashIndex+1, aPath.length);
+			hashString = aPath.substring(hashIndex, aPath.length);
 			aPath = aPath.substring(0, hashIndex);
 		}
 		
@@ -126,7 +126,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 			}
 			var hashItem = this._hierarchy.getItemByPath(hashString, currentItem);
 			
-			hashItem.data = XmlIdElementAsset.create(hashString, currentItem.data);
+			hashItem.data = XmlIdElementAsset.create(hashString.substring(1, hashString.length), currentItem.data);
 			hashItem.retain();
 			
 			currentItem = hashItem;

@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	var StaticImage = dbm.importClass("com.developedbyme.gui.images.StaticImage");
 	var StateImage = dbm.importClass("com.developedbyme.gui.images.StateImage");
 	var InputField = dbm.importClass("com.developedbyme.gui.form.InputField");
+	var TreeStructureView = dbm.importClass("com.developedbyme.gui.data.treestructure.TreeStructureView");
 	
 	var TemplateClassShortcutNames = dbm.importClass("com.developedbyme.constants.TemplateClassShortcutNames");
 	
@@ -30,6 +31,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_STATIC_IMAGE, StaticImage);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_STATE_IMAGE, StateImage);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_INPUT_FIELD, InputField);
+		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_TREE_STRUCTURE_VIEW, TreeStructureView);
 		
 	};
 });

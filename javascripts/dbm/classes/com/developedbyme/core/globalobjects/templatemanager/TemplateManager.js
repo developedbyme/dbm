@@ -27,6 +27,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 	staticFunctions.TEXT_NAME_ATTRIBUTE = "data-dbm-text-name";
 	staticFunctions.IGNORE_CHILDREN_ATTRIBUTE = "data-dbm-ignore-children";
 	staticFunctions.COMMANDS_ATTRIBUTE = "data-dbm-commands";
+	staticFunctions.TEXT_COMMANDS_ATTRIBUTE = "data-dbm-text-commands";
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::_init");
@@ -103,6 +104,33 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		return this.createControllersForTemplate(copiedTemplate, aDynamicData);
 	};
 	
+	objectFunctions._executeCommandsForObject = function(aObject, aCommandsString, aDynamicData) {
+		var currentArray = StringFunctions.splitSeparatedString(aCommandsString, ";", true, true);
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentCommandWithArguments = currentArray[i];
+			var currentCommandName;
+			var currentArguments = null;
+			var spacePosition = currentCommandWithArguments.indexOf(" ");
+			if(spacePosition !== -1) {
+				currentCommandName = currentCommandWithArguments.substring(0, spacePosition);
+				currentArguments = currentCommandWithArguments.substring(spacePosition+1, currentCommandWithArguments.length);
+			}
+			else {
+				currentCommandName = currentCommandWithArguments;
+			}
+			if(this._commands.select(currentCommandName)) {
+				var currentCommand = this._commands.currentSelectedItem;
+				var eventData = EventDataObject.create({"arguments": currentArguments, "dynamicData": aDynamicData}, this, aObject);
+				currentCommand.perform(eventData);
+				eventData.destroy();
+			}
+			else {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_executeCommandsForObject", "Command " + currentCommandName + " doesn't exist.");
+			}
+		}
+	};
+	
 	objectFunctions._createControllersForTemplateNode = function(aNode, aBasePath, aDynamicData, aTemplateResult) {
 		var currentClassName = XmlChildRetreiver.getAttribute(aNode, TemplateManager.CLASS_ATTRIBUTE);
 		var currentName = XmlChildRetreiver.getAttribute(aNode, TemplateManager.NAME_ATTRIBUTE);
@@ -131,31 +159,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 				
 				var commandsString = XmlChildRetreiver.getAttribute(aNode, TemplateManager.COMMANDS_ATTRIBUTE);
 				if(commandsString !== null) {
-					
-					var currentArray = StringFunctions.splitSeparatedString(commandsString, ";", true, true);
-					var currentArrayLength = currentArray.length;
-					for(var i = 0; i < currentArrayLength; i++) {
-						var currentCommandWithArguments = currentArray[i];
-						var currentCommandName;
-						var currentArguments = null;
-						var spacePosition = currentCommandWithArguments.indexOf(" ");
-						if(spacePosition !== -1) {
-							currentCommandName = currentCommandWithArguments.substring(0, spacePosition);
-							currentArguments = currentCommandWithArguments.substring(spacePosition+1, currentCommandWithArguments.length);
-						}
-						else {
-							currentCommandName = currentCommandWithArguments;
-						}
-						if(this._commands.select(currentCommandName)) {
-							var currentCommand = this._commands.currentSelectedItem;
-							var eventData = EventDataObject.create({"arguments": currentArguments, "dynamicData": aDynamicData}, this, newObject);
-							currentCommand.perform(eventData);
-							eventData.destroy();
-						}
-						else {
-							ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createControllersForTemplateNode", "Command " + currentCommandName + " doesn't exist.");
-						}
-					}
+					this._executeCommandsForObject(newObject, commandsString, aDynamicData);
 				}
 			}
 			else {
@@ -180,6 +184,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 				
 				if(newObject === null) {
 					newObject = textObject;
+				}
+				
+				var commandsString = XmlChildRetreiver.getAttribute(aNode, TemplateManager.TEXT_COMMANDS_ATTRIBUTE);
+				if(commandsString !== null) {
+					this._executeCommandsForObject(textObject, commandsString, aDynamicData);
 				}
 			}
 			else {

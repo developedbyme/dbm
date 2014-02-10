@@ -262,11 +262,12 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	objectFunctions.getHtmlCreator = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::getHtmlCreator");
 		var element = this._element.getValue();
-		var parentElement = this._parentElement.getValue();
 		if(element !== null) {
 			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(element));
 		}
-		else if(parentElement !== null) {
+		
+		var parentElement = this._parentElement.getValue();
+		if(parentElement !== null) {
 			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(parentElement));
 		}
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getHtmlCreator", "Element or parent must be set before getting the html creator.");
