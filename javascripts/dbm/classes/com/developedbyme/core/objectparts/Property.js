@@ -81,13 +81,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
-		if(this._animationController === null) {
-			if(this._inputConnection !== null) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValue", "Can't set value when property has input.");
-				return;
-			}
-			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
-		}
+		this.createTimelineControl();
 		this._animationController.animateValue(aValue, aTime, aInterpolation, aDelay);
 	};
 	
@@ -460,9 +454,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aObjectInput, aValue) {
-		//console.log("com.developedbyme.core.objectparts.Property::create");
-		var newProperty = (new Property()).init();
+	staticFunctions._createWithInputValue = function(aClass, aObjectInput, aValue) {
+		var newProperty = (new aClass()).init();
 		if(aObjectInput !== null) {
 			aObjectInput._linkRegistration_addObjectProperty(newProperty);
 			newProperty._linkRegistration_setObjectInputConnection(aObjectInput);
@@ -474,6 +467,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			newProperty.setValue(aValue);
 		}
 		return newProperty;
+	}
+	
+	staticFunctions.create = function(aObjectInput, aValue) {
+		//console.log("com.developedbyme.core.objectparts.Property::create");
+		return ClassReference._createWithInputValue(Property, aObjectInput, aValue);
 	};
 	
 });

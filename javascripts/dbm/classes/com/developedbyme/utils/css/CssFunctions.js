@@ -5,40 +5,16 @@ dbm.registerClass("com.developedbyme.utils.css.CssFunctions", null, function(obj
 	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
 	
 	staticFunctions.BROWSER_CSS_PREFIXES = ["-webkit-", "-khtml-", "-moz-", "-o-", "-ms-"];
+	staticFunctions.LENGTH_PROPERTIES = ["border-top-width", "border-right-width", "border-bottom-width", "border-left-width", "border-width", "bottom", "height", "left", "letter-spacing", "line-height", "margin-top", "margin-right", "margin-bottom", "margin-left", "margin", "max-height", "max-width", "min-height", "min-width", "outline-width", "padding-top", "padding-right", "padding-bottom", "padding-left", "padding", "right", "text-indent", "top", "width", "word-spacing"];
 	
 	staticFunctions.isLengthProperty = function(aProperty) {
-		switch(aProperty) {
-			case "border-top-width":
-			case "border-right-width":
-			case "border-bottom-width":
-			case "border-left-width":
-			case "border-width": //MENOTE: can be complex too
-			case "bottom":
-			case "height":
-			case "left":
-			case "letter-spacing":
-			case "line-height":
-			case "margin-top":
-			case "margin-right":
-			case "margin-bottom":
-			case "margin-left":
-			case "margin": //MENOTE: can be complex too
-			case "max-height":
-			case "max-width":
-			case "min-height":
-			case "min-width":
-			case "outline-width":
-			case "padding-top":
-			case "padding-right":
-			case "padding-bottom":
-			case "padding-left":
-			case "padding": //MENOTE: can be complex too
-			case "right":
-			case "text-indent":
-			case "top":
-			case "width":
-			case "word-spacing":
+		
+		var currentArray = ClassReference.LENGTH_PROPERTIES;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			if(currentArray[i] === aProperty) {
 				return true;
+			}
 		}
 		return false;
 	};
@@ -63,7 +39,6 @@ dbm.registerClass("com.developedbyme.utils.css.CssFunctions", null, function(obj
 			returnObject[currentArray[i]+aProperty] = aValue;
 		}
 	};
-	
 });
 
 

@@ -73,6 +73,17 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		this._attributes.addObject(aName, aValue);
 	};
 	
+	objectFunctions.changeAttribute = function(aName, aValue) {
+		if(this._attributes === null) {
+			this._attributes = NamedArray.create(false);
+			this.addDestroyableObject(this._attributes);
+		}
+		if(this._attributes.hasObject(aName)) {
+			this._attributes.removeObject(aName);
+		}
+		this._attributes.addObject(aName, aValue);
+	};
+	
 	objectFunctions.hasAttribute = function(aName) {
 		return (this._attributes !== null && this._attributes.hasObject(aName));
 	};

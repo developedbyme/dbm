@@ -47,6 +47,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.internal.SetElementToCssProperti
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
+		this._updateProperties = null;
+		this._length = null;
 		this._element = null;
 		this._elementSet = null;
 		

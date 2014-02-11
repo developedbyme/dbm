@@ -109,6 +109,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentCommandWithArguments = currentArray[i];
+			if(currentCommandWithArguments === "") {
+				continue;
+			}
 			var currentCommandName;
 			var currentArguments = null;
 			var spacePosition = currentCommandWithArguments.indexOf(" ");

@@ -18,6 +18,18 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		return this;
 	};
 	
+	objectFunctions.changeToExternalEventController = function(aExtendedEventController) {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::changeToExternalEventController");
+		
+		//METODO: Fix so this function can be called a second time
+		this._extendedEvent.destroy();
+		this.removeDestroyableObject(this._extendedEvent);
+		
+		this._extendedEvent = aExtendedEventController;
+		
+		return this;
+	};
+	
 	objectFunctions._performSetValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
 		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
@@ -45,18 +57,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 	};
 	
 	staticFunctions.create = function(aObjectInput, aValue) {
-		var newExtendedEventProperty = (new ExtendedEventProperty()).init();
-		if(aObjectInput !== null) {
-			aObjectInput._linkRegistration_addObjectProperty(newExtendedEventProperty);
-			newExtendedEventProperty._linkRegistration_setObjectInputConnection(aObjectInput);
-		}
-		if(aValue instanceof Property) {
-			newExtendedEventProperty.connectInput(aValue);
-		}
-		else {
-			newExtendedEventProperty.setValue(aValue);
-		}
-		return newExtendedEventProperty;
+		return ClassReference._createWithInputValue(ExtendedEventProperty, aObjectInput, aValue);
 	};
 	
 });

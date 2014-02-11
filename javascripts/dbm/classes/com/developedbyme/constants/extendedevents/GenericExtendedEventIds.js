@@ -15,4 +15,7 @@ dbm.registerClass("com.developedbyme.constants.extendedevents.GenericExtendedEve
 	staticFunctions.UPDATE = "update";
 	staticFunctions.END = "end";
 	staticFunctions.CANCEL = "cancel";
+	
+	staticFunctions.OPEN = "open";
+	staticFunctions.CLOSE = "close";
 });

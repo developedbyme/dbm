@@ -81,86 +81,106 @@ dbm.registerClass("com.developedbyme.utils.svg.SvgPathFunctions", null, function
 					var newSegment = returnCurve.createCompactSegment();
 					var relativeX = 0;
 					var relativeY = 0;
+					var addShorthandInput = false;
+					var fillInputSegment = false;
+					var iIncrement = 0;
+					var newLastTempSegmentDegree = 0;
+					var newLength = 0;
+					var returnOffset = 0;
+					
 					switch(currentCommand) {
 						case SvgPathCommandTypes.CUBIC_CURVE_TO_RELATIVE:
 							relativeX = lastPoint.x;
 							relativeY = lastPoint.y;
 						case SvgPathCommandTypes.CUBIC_CURVE_TO:
-							lastTempSegmentDegree = 3;
-							ClassReference._fillInputSegment(currentArray, i, 3, relativeX, relativeY, 0, tempSegment);
-							ClassReference._setupSegment(lastPoint, lastTempSegmentDegree, degree, tempSegment, newSegment);
-							i += 6;
+							newLastTempSegmentDegree = 3;
+							newLength = 3;
+							returnOffset = 0;
+							fillInputSegment = true;
+							iIncrement = 6;
 							break;
 						case SvgPathCommandTypes.SHORTHAND_CUBIC_CURVE_TO_RELATIVE:
 							relativeX = lastPoint.x;
 							relativeY = lastPoint.y;
 						case SvgPathCommandTypes.SHORTHAND_CUBIC_CURVE_TO:
-							ClassReference._setShorthandInput(lastPoint, lastPoint2, lastTempSegmentDegree, tempSegment);
-							lastTempSegmentDegree = 3;
-							ClassReference._fillInputSegment(currentArray, i, 2, relativeX, relativeY, 1, tempSegment);
-							ClassReference._setupSegment(lastPoint, lastTempSegmentDegree, degree, tempSegment, newSegment);
-							i += 4;
+							addShorthandInput = true;
+							newLastTempSegmentDegree = 3;
+							newLength = 2;
+							returnOffset = 1;
+							fillInputSegment = true;
+							iIncrement = 4;
 							break;
 						case SvgPathCommandTypes.QUADRATIC_CURVE_TO_RELATIVE:
 							relativeX = lastPoint.x;
 							relativeY = lastPoint.y;
 						case SvgPathCommandTypes.QUADRATIC_CURVE_TO:
-							lastTempSegmentDegree = 2;
-							ClassReference._fillInputSegment(currentArray, i, 2, relativeX, relativeY, 0, tempSegment);
-							ClassReference._setupSegment(lastPoint, lastTempSegmentDegree, degree, tempSegment, newSegment);
-							i += 4;
+							newLastTempSegmentDegree = 2;
+							newLength = 2;
+							returnOffset = 0;
+							fillInputSegment = true;
+							iIncrement = 4;
 							break;
 						case SvgPathCommandTypes.SHORTHAND_QUADRATIC_CURVE_TO_RELATIVE:
 							relativeX = lastPoint.x;
 							relativeY = lastPoint.y;
 						case SvgPathCommandTypes.SHORTHAND_QUADRATIC_CURVE_TO:
-							ClassReference._setShorthandInput(lastPoint, lastPoint2, lastTempSegmentDegree, tempSegment);
-							lastTempSegmentDegree = 2;
-							ClassReference._fillInputSegment(currentArray, i, 1, relativeX, relativeY, 1, tempSegment);
-							ClassReference._setupSegment(lastPoint, lastTempSegmentDegree, degree, tempSegment, newSegment);
-							i += 2;
+							addShorthandInput = true;
+							newLastTempSegmentDegree = 2;
+							newLength = 1;
+							returnOffset = 1;
+							fillInputSegment = true;
+							iIncrement = 2;
 							break;
 						case SvgPathCommandTypes.LINE_TO_RELATIVE:
 							relativeX = lastPoint.x;
 							relativeY = lastPoint.y;
 						case SvgPathCommandTypes.LINE_TO:
-							lastTempSegmentDegree = 1;
-							ClassReference._fillInputSegment(currentArray, i, 1, relativeX, relativeY, 0, tempSegment);
-							ClassReference._setupSegment(lastPoint, lastTempSegmentDegree, degree, tempSegment, newSegment);
-							i += 2;
+							newLastTempSegmentDegree = 1;
+							newLength = 1;
+							returnOffset = 0;
+							fillInputSegment = true;
+							iIncrement = 2;
 							break;
 						case SvgPathCommandTypes.HORIZONTAL_LINE_TO_RELATIVE:
 							relativeX = lastPoint.x;
 							relativeY = lastPoint.y;
 						case SvgPathCommandTypes.HORIZONTAL_LINE_TO:
-							lastTempSegmentDegree = 1;
+							newLastTempSegmentDegree = 1;
 							tempSegment[0].x = relativeX+currentArray[i];
 							tempSegment[0].y = lastPoint.y;
-							ClassReference._setupSegment(lastPoint, lastTempSegmentDegree, degree, tempSegment, newSegment);
-							i += 1;
+							iIncrement = 1;
 							break;
 						case SvgPathCommandTypes.VERTICAL_LINE_TO_RELATIVE:
 							relativeX = lastPoint.x;
 							relativeY = lastPoint.y;
 						case SvgPathCommandTypes.VERTICAL_LINE_TO:
-							lastTempSegmentDegree = 1;
+							newLastTempSegmentDegree = 1;
 							tempSegment[0].x = lastPoint.x;
 							tempSegment[0].y = relativeY+currentArray[i];
-							ClassReference._setupSegment(lastPoint, lastTempSegmentDegree, degree, tempSegment, newSegment);
-							i += 1;
+							iIncrement = 1;
 							break;
 						case SvgPathCommandTypes.CLOSE_PATH:
 						case SvgPathCommandTypes.CLOSE_PATH_RELATIVE:
-							lastTempSegmentDegree = 1;
+							newLastTempSegmentDegree = 1;
 							tempSegment[0].x = returnCurve.pointsArray[0].x;
 							tempSegment[0].y =  returnCurve.pointsArray[0].y;
-							ClassReference._setupSegment(lastPoint, lastTempSegmentDegree, degree, tempSegment, newSegment);
 							//MENOTE: do not increase i
 							break;
 						default:
 							//METODO: error message
 							return null;
 					}
+					
+					if(addShorthandInput) {
+						ClassReference._setShorthandInput(lastPoint, lastPoint2, lastTempSegmentDegree, tempSegment);
+					}
+					lastTempSegmentDegree = newLastTempSegmentDegree;
+					if(fillInputSegment) {
+						ClassReference._fillInputSegment(currentArray, i, newLength, relativeX, relativeY, returnOffset, tempSegment);
+					}
+					ClassReference._setupSegment(lastPoint, lastTempSegmentDegree, degree, tempSegment, newSegment);
+					i += iIncrement;
+					
 					lastPoint2 = lastPoint;
 					lastPoint = newSegment[newSegment.length-1];
 					break;

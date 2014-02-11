@@ -26,7 +26,6 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.CallFunct
 		this.functionReevaluator = null;
 		this.argumentsArrayReevaluator = null;
 		
-		//switch to true later
 		this._supressErrors = true;
 		
 		return this;

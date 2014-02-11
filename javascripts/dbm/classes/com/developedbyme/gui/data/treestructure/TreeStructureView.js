@@ -19,7 +19,12 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureView", 
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
 	
-	//Utils
+	//Constants
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	
+	//Debug
+	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
+	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.data.treestructure.TreeStructureView::_init");
@@ -28,11 +33,12 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureView", 
 		
 		this._treeStructure = null;
 		this._itemTemplate = null;
+		this._openId = dbm.singletons.dbmIdManager.getNewId("TreeStructureView_isOpen");
 		
 		this._indentLength = this.createProperty("indentLength", 10);
 		var firstIndent = this.addDestroyableObject(PropertiesHolder.create({"outputValue": 0}));
 		this._indents = new Array(firstIndent);
-		this._visibleItems = new Array();
+		this._destroyItemsWhenHidden = true;
 		
 		return this;
 	};
@@ -56,35 +62,86 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureView", 
 	objectFunctions.setTreeStructure = function(aTreeStructure) {
 		this._treeStructure = aTreeStructure;
 		
-		//this._createItemDisplay(this._treeStructure.getRoot(), 0, "(root)");
-		this._createItemDisplaysForFullTree(this._treeStructure.getRoot(), 0, "(root)"); //MEDEBUG
+		this._createItemDisplay(this._treeStructure.getRoot(), 0, "(root)", null);
+		//this._createItemDisplaysForFullTree(this._treeStructure.getRoot(), 0, "(root)"); //MEDEBUG
 	};
 	
-	objectFunctions._createItemDisplaysForFullTree = function(aCurrentItem, aLevel, aName) {
-		this._createItemDisplay(aCurrentItem, aLevel, aName);
+	objectFunctions._createItemDisplaysForFullTree = function(aCurrentItem, aLevel, aName, aParentTreeStructureItem) {
+		var newItem = this._createItemDisplay(aCurrentItem, aLevel, aName, aParentTreeStructureItem);
 		
 		var currentArray = aCurrentItem.getChildren();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentChildItem = currentArray[i];
-			this._createItemDisplaysForFullTree(currentChildItem, aLevel+1, currentChildItem.getName());
+			this._createItemDisplaysForFullTree(currentChildItem, aLevel+1, currentChildItem.getName(), newItem);
 		}
-	}
+	};
 	
-	objectFunctions._createItemDisplay = function(aTreeStructureItem, aLevel, aName) {
+	objectFunctions._createChildrenForItem = function(aObject, aLevel) {
+		//console.log("com.developedbyme.gui.data.treestructure.TreeStructureView::_createChildrenForItem");
+		//console.log(aObject, aLevel);
+		
+		var treeStructureItem = aObject.getTreeStructureItem();
+		
+		var currentArray = treeStructureItem.getChildren();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentChildItem = currentArray[i];
+			this._createItemDisplay(currentChildItem, aLevel, currentChildItem.getName(), aObject);
+		}
+	};
+	
+	objectFunctions._removeChildrenForItem = function(aObject) {
+		//console.log("com.developedbyme.gui.data.treestructure.TreeStructureView::_removeChildrenForItem");
+		
+		aObject.destroyChildren();
+	};
+	
+	objectFunctions._deleteItem = function(aObject) {
+		
+	};
+	
+	objectFunctions._createItemDisplay = function(aTreeStructureItem, aLevel, aName, aParentTreeStructureItem) {
 		//console.log("com.developedbyme.gui.data.treestructure.TreeStructureView::_createItemDisplay");
 		
 		var importedTemplateElement = DomManipulationFunctions.importNode(this._itemTemplate, true, this.getHtmlCreator().ownerDocument);
 		importedTemplateElement.id = null;
 		
-		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForTemplate(importedTemplateElement, {"name": aName, "indent": this._getIndentForLevel(aLevel), "y": 20*this._visibleItems.length});
+		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForTemplate(importedTemplateElement, {"name": aName, "indent": this._getIndentForLevel(aLevel)});
 		
 		var newItem = templateResult.mainController;
 		newItem.addToParent(this.getElement());
-		this._visibleItems.push(newItem);
+		newItem.setTreeStructureItem(aTreeStructureItem);
+		
+		if(aParentTreeStructureItem !== null) {
+			aParentTreeStructureItem._linkRegistration_addChildTreeStructureItem(newItem);
+			newItem._linkRegistration_addParentTreeStructureItem(aParentTreeStructureItem);
+		}
+		
+		if(aTreeStructureItem.hasAttribute(this._openId)) {
+			if(aTreeStructureItem.getAttribute(this._openId)) {
+				newItem.open();
+				this._createChildrenForItem(newItem, aLevel+1);
+			}
+		}
+		else {
+			aTreeStructureItem.setAttribute(this._openId, false);
+		}
+		
+		newItem.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.OPEN, CallFunctionCommand.createCommand(aTreeStructureItem, aTreeStructureItem.changeAttribute, [this._openId, true]));
+		newItem.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(aTreeStructureItem, aTreeStructureItem.changeAttribute, [this._openId, false]));
+		
+		if(this._destroyItemsWhenHidden) {
+			newItem.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.OPEN, CallFunctionCommand.createCommand(this, this._createChildrenForItem, [newItem, aLevel+1]));
+			newItem.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(this, this._removeChildrenForItem, [newItem]));
+		}
+		
+		//MEDEBUG
+		InteractionExtendedEventSetup.addClickEvents(newItem.getExtendedEvent(), newItem.getElement(), true);
+		newItem.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.CLICK, CallFunctionCommand.createCommand(newItem, newItem.toggleOpenClose, []));
 		
 		return newItem;
-	}
+	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		

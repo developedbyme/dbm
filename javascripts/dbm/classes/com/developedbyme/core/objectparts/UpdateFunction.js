@@ -2,19 +2,23 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	//console.log("com.developedbyme.core.objectparts.UpdateFunction");
 	//"use strict";
 	
+	//Self reference
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
 	
+	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	//Constants
 	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
-	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	objectFunctions._init = function() {
