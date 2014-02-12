@@ -9,6 +9,9 @@ dbm.registerClass("com.developedbyme.constants.TemplateClassShortcutNames", null
 	staticFunctions.DBM_STATIC_IMAGE = "dbm:StaticImage";
 	staticFunctions.DBM_STATE_IMAGE = "dbm:StateImage";
 	staticFunctions.DBM_INPUT_FIELD = "dbm:InputField";
+	
+	staticFunctions.DBM_SWITCHABLE_AREA_HOLDER = "dbm:SwitchableAreaHolder";
+	
 	staticFunctions.DBM_TREE_STRUCTURE_VIEW = "dbm:TreeStructureView";
 	staticFunctions.DBM_TREE_STRUCTURE_ITEM_VIEW = "dbm:TreeStructureItemView";
 	

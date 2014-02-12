@@ -22,9 +22,20 @@ dbm.registerClass("com.developedbyme.gui.images.StateImage", "com.developedbyme.
 		return this;
 	};
 	
-	objectFunctions.addState = function(aName, aUrl, aPreload) {
+	objectFunctions.addStateFromAsset = function(aName, aUrl, aPreload) {
 		
 		aPreload = VariableAliases.valueWithDefault(aPreload, false);
+		
+		var asset = dbm.singletons.dbmAssetRepository.getAsset(aUrl);
+		if(aPreload) {
+			asset.load();
+		}
+		this.addState(aName, asset.getUrl());
+		
+		return this;
+	};
+	
+	objectFunctions.addState = function(aName, aUrl) {
 		
 		if(aName === null) {
 			this._switchNode.getProperty("defaultValue").setValue(aUrl);
@@ -33,9 +44,7 @@ dbm.registerClass("com.developedbyme.gui.images.StateImage", "com.developedbyme.
 			this._switchNode.addItem(aName, aUrl);
 		}
 		
-		if(aPreload) {
-			//METODO
-		}
+		return this;
 	};
 	
 	staticFunctions.connectRollOverToImage = function(aButton, aImage, aNormalName, aOverName) {

@@ -11,6 +11,10 @@ dbm.registerClass("com.developedbyme.constants.TemplateCommandNames", null, func
 	staticFunctions.Z_INDEX_ENABLED = "zIndexEnabled";
 	staticFunctions.UPDATE_DISPLAY = "updateDisplay";
 	
+	//Dynamic data
+	staticFunctions.ADD_DYNAMIC_OBJECT = "dynamic:add";
+	staticFunctions.ADD_DYNAMIC_PROPERTY = "dynamic:addProperty";
+	
 	//Flow
 	staticFunctions.CONNECT_INPUT = "flow:connectInput";
 	staticFunctions.CONNECT_OUTPUT = "flow:connectOutput";
@@ -21,4 +25,11 @@ dbm.registerClass("com.developedbyme.constants.TemplateCommandNames", null, func
 	staticFunctions.ELEMENT_SIZE_AS_AREA = "workspace:elementSizeAsArea";
 	staticFunctions.LAYOUT_SPLIT = "workspace:layoutSplit";
 	staticFunctions.SIZED_ELEMENT_AREA = "workspace:sizedElementArea";
+	
+	//State
+	staticFunctions.ADD_STATE_IMAGE = "state:addImage";
+	
+	//Switchable area
+	staticFunctions.CREATE_IN_DOM_SWITCHABLE_AREA = "switchable:createInDomSwitch";
+	staticFunctions.SET_AREA = "switchable:setArea";
 });

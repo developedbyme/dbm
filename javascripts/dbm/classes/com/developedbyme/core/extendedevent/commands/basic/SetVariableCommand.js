@@ -1,8 +1,8 @@
-dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
+dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetVariableCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.commands.basic.SetVariableCommand");
 	
 	//Self reference
-	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
+	var SetVariableCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetVariableCommand");
 	
 	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
@@ -22,10 +22,11 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetProper
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand::_init");
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetVariableCommand::_init");
 		
 		this.superCall();
 		
+		this.objectReevaluator = null;
 		this.propertyReevaluator = null;
 		this.valueReevaluator = null;
 		
@@ -33,14 +34,13 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetProper
 	};
 	
 	objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand::perform");
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetVariableCommand::perform");
 		//console.log(aEventDataObject);
 		
+		var theObject = this.objectReevaluator.reevaluate(aEventDataObject);
 		var theProperty = this.propertyReevaluator.reevaluate(aEventDataObject);
 		var theValue = this.valueReevaluator.reevaluate(aEventDataObject);
-		theProperty.setValue(theValue);
-		
-		//console.log(theProperty.name, theProperty, theValue);
+		theObject[theProperty] = theValue;
 		
 		return CommandStatusTypes.CONTINUE;
 	};
@@ -48,6 +48,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetProper
 	
 	objectFunctions.performDestroy = function() {
 		
+		ClassReference.softDestroyIfExists(this.objectReevaluator);
 		ClassReference.softDestroyIfExists(this.propertyReevaluator);
 		ClassReference.softDestroyIfExists(this.valueReevaluator);
 		
@@ -56,6 +57,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetProper
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
+		this.objectReevaluator = null;
 		this.propertyReevaluator = null;
 		this.valueReevaluator = null;
 		
@@ -63,37 +65,23 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetProper
 	};
 	
 	/**
-	 * Creates a command that sets a property.
+	 * Creates a command that sets a variable on an object.
 	 * 
+	 * @param	aObject		The object to set the variable on
 	 * @param	aProperty	The property to set.
 	 * @param	aValue		The value to set to the property.
 	 *
 	 * @return	The new command.
 	 */
-	staticFunctions.createCommand = function(aProperty, aValue) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand::createCommand (static)");
-		//console.log(aProperty, aValue);
-		var newCommand = (new SetPropertyCommand()).init();
+	staticFunctions.createCommand = function(aObject, aProperty, aValue) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetVariableCommand::createCommand (static)");
+		//console.log(aObject, aPropertyName, aValue);
+		var newCommand = (new SetVariableCommand()).init();
 		
+		newCommand.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
 		newCommand.propertyReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aProperty);
 		newCommand.valueReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aValue);
 		
 		return newCommand;
-	};
-	
-	/**
-	 * Creates a command that sets a property on an object.
-	 * 
-	 * @param	aObject			The object to set the property on.
-	 * @param	aPropertyName	The name of the property.
-	 * @param	aValue			The value to set to the property.
-	 *
-	 * @return	The new command.
-	 */
-	staticFunctions.createSetPropertyOnObjectCommand = function(aObject, aPropertyName, aValue) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand::createSetPropertyOnObjectCommand (static)");
-		//console.log(aObject, aPropertyName, aValue);
-		
-		return ClassReference.createCommand(GetPropertyObject.createCommand(aObject, aPropertyName), aValue);
 	};
 });

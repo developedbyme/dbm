@@ -39,6 +39,7 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureView", 
 		var firstIndent = this.addDestroyableObject(PropertiesHolder.create({"outputValue": 0}));
 		this._indents = new Array(firstIndent);
 		this._destroyItemsWhenHidden = true;
+		this._rootItems = new Array();
 		
 		return this;
 	};
@@ -62,8 +63,57 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureView", 
 	objectFunctions.setTreeStructure = function(aTreeStructure) {
 		this._treeStructure = aTreeStructure;
 		
-		this._createItemDisplay(this._treeStructure.getRoot(), 0, "(root)", null);
+		this._treeStructure.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ITEM_CREATED, CallFunctionCommand.createCommand(this, this._itemAdded, [GetVariableObject.createSelectDataCommand()]));
+		
+		var rootItem = this._createItemDisplay(this._treeStructure.getRoot(), 0, "(root)", null);
+		this._rootItems.push(rootItem);
 		//this._createItemDisplaysForFullTree(this._treeStructure.getRoot(), 0, "(root)"); //MEDEBUG
+	};
+	
+	objectFunctions._findViewForItem = function(aTreeStructureItem, aCurrentItems) {
+		//console.log("com.developedbyme.gui.data.treestructure.TreeStructureView::_findViewForItem");
+		
+		var currentArray = aCurrentItems;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentItem = currentArray[i];
+			if(currentItem.getTreeStructureItem() === aTreeStructureItem) {
+				return currentItem;
+			}
+		}
+		for(var i = 0; i < currentArrayLength; i++) {
+			var returnValue = this._findViewForItem(aTreeStructureItem, currentArray[i].getChildItems());
+			if(returnValue !== null) {
+				return returnValue;
+			}
+		}
+		return null;
+	};
+	
+	objectFunctions._getLevelForView = function(aTreeStructureItemView) {
+		var currentLevel = 0;
+		var currentObject = aTreeStructureItemView.getParentTreeStructureItemView();
+		var debugCounter = 0;
+		while(currentObject !== null) {
+			if(debugCounter++ > 1000) {
+				//METODO: error message
+				return -1;
+			}
+			currentLevel++;
+			currentObject = currentObject.getParentTreeStructureItemView();
+		}
+		return currentLevel;
+	};
+	
+	objectFunctions._itemAdded = function(aTreeStructureItem) {
+		//console.log("com.developedbyme.gui.data.treestructure.TreeStructureView::_itemAdded");
+		
+		var parentObject = this._findViewForItem(aTreeStructureItem.getParent(), this._rootItems);
+		
+		if(parentObject !== null) {
+			var newLevel = this._getLevelForView(parentObject)+1;
+			this._createItemDisplay(aTreeStructureItem, newLevel, aTreeStructureItem.getName(), parentObject);
+		}
 	};
 	
 	objectFunctions._createItemDisplaysForFullTree = function(aCurrentItem, aLevel, aName, aParentTreeStructureItem) {
@@ -89,6 +139,10 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureView", 
 			var currentChildItem = currentArray[i];
 			this._createItemDisplay(currentChildItem, aLevel, currentChildItem.getName(), aObject);
 		}
+		
+		//MEDEBUG
+		//this._treeStructure.createItem("test", treeStructureItem);
+		//treeStructureItem.setName("test2");
 	};
 	
 	objectFunctions._removeChildrenForItem = function(aObject) {
@@ -107,11 +161,12 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureView", 
 		var importedTemplateElement = DomManipulationFunctions.importNode(this._itemTemplate, true, this.getHtmlCreator().ownerDocument);
 		importedTemplateElement.id = null;
 		
-		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForTemplate(importedTemplateElement, {"name": aName, "indent": this._getIndentForLevel(aLevel)});
+		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForTemplate(importedTemplateElement, {"indent": this._getIndentForLevel(aLevel)});
 		
 		var newItem = templateResult.mainController;
 		newItem.addToParent(this.getElement());
 		newItem.setTreeStructureItem(aTreeStructureItem);
+		newItem.getProperty("name").setValue(aName);
 		
 		if(aParentTreeStructureItem !== null) {
 			aParentTreeStructureItem._linkRegistration_addChildTreeStructureItem(newItem);

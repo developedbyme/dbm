@@ -40,7 +40,16 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.Objec
 		return this;
 	};
 	
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.destroyIfExists(this.objectReevaluator);
+		
+		this.superCall();
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.objectReevaluator = null;
 		
 		this.superCall();
 	};

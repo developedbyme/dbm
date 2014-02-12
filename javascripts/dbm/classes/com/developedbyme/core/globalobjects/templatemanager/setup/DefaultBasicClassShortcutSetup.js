@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	var InputField = dbm.importClass("com.developedbyme.gui.form.InputField");
 	var TreeStructureView = dbm.importClass("com.developedbyme.gui.data.treestructure.TreeStructureView");
 	var TreeStructureItemView = dbm.importClass("com.developedbyme.gui.data.treestructure.TreeStructureItemView");
+	var SwitchableAreaHolder = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaHolder");
 	
 	var TemplateClassShortcutNames = dbm.importClass("com.developedbyme.constants.TemplateClassShortcutNames");
 	
@@ -32,6 +33,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_STATIC_IMAGE, StaticImage);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_STATE_IMAGE, StateImage);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_INPUT_FIELD, InputField);
+		
+		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_SWITCHABLE_AREA_HOLDER, SwitchableAreaHolder);
+		
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_TREE_STRUCTURE_VIEW, TreeStructureView);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_TREE_STRUCTURE_ITEM_VIEW, TreeStructureItemView);
 		

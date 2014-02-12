@@ -192,6 +192,10 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 			}
 		}
 	};
+	
+	staticFunctions._createAndInitClass = function(aClass) {
+		return (new aClass()).init();
+	};
 });
 
 dbm.extendClass("com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {

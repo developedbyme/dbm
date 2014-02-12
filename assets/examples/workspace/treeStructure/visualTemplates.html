@@ -8,12 +8,14 @@
 			
 		</div>
 		
-		<div id="treeStructureItem" style="position: absolute;" data-dbm-class="dbm:TreeStructureItemView" data-dbm-commands="updateDisplay; flow:connectInput x indent;">
+		<div id="treeStructureItem" style="position: absolute;" data-dbm-class="dbm:TreeStructureItemView" data-dbm-commands="updateDisplay; flow:connectInput x indent; dynamic:addProperty name name; dynamic:addProperty outputState state">
 			<div style="display: inline-block; width: 10px; height: 10px;">
-				<img />
+				<img data-dbm-class="dbm:StateImage" data-dbm-commands="updateDisplay; flow:connectInput state state; state:addImage open open.png true; state:addImage close close.png true;" />
 			</div>
-			<div style="display: inline-block;" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text name; updateDisplay">
-				
+			<div style="display: inline-block;" data-dbm-class="dbm:SwitchableAreaHolder">
+				<div style="display: inline-block;" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text name; updateDisplay">
+					
+				</div>
 			</div>
 		</div>
 	</body>

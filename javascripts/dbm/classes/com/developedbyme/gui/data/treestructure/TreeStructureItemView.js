@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureItemVie
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
@@ -32,6 +33,7 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureItemVie
 		
 		this._parentTreeStructureItemView = null;
 		this._treeStructureItem = null;
+		this._name = this.createProperty("name", "");
 		this._ownHeight = this.createProperty("ownHeight", 20);
 		var firstAdditionNode = this.addDestroyableObject(AdditionNode.create(this.getProperty("y"), this._ownHeight));
 		this._childYPosition = this.createProperty("childYPosition", firstAdditionNode.getProperty("outputValue"));
@@ -39,10 +41,15 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureItemVie
 		
 		this._isOpen = this.createProperty("isOpen", false);
 		var switchNode = this.addDestroyableObject(BooleanSwitchedNode.create(this._isOpen, GenericExtendedEventIds.OPEN, GenericExtendedEventIds.CLOSE));
+		this._outputState = this.createProperty("outputState", switchNode.getProperty("outputValue"));
 		this._isOpenCommands = this.addProperty("isOpenCommands", ExtendedEventProperty.create(this._objectProperty, GenericExtendedEventIds.CLOSE).changeToExternalEventController(this.getExtendedEvent()));
-		this._isOpenCommands.connectInput(switchNode.getProperty("outputValue"));
+		this._isOpenCommands.connectInput(this._outputState);
 		this._updateFunctions.getObject("display").addInputConnection(this._isOpenCommands);
 		this._childItems = new Array();
+		
+		this._nameChangedCommand = SetPropertyCommand.createCommand(this._name, GetVariableObject.createCommand(GetVariableObject.createSelectDataCommand(), "newValue"));
+		this._nameChangedCommand.retain();
+		this.addDestroyableObject(this._nameChangedCommand);
 		
 		return this;
 	};
@@ -50,11 +57,22 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureItemVie
 	objectFunctions.setTreeStructureItem = function(aTreeStructureItem) {
 		this._treeStructureItem = aTreeStructureItem;
 		
+		this._name.setValue(aTreeStructureItem.getName());
+		this._treeStructureItem.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NAME_CHANGED, this._nameChangedCommand);
+		
 		return this;
 	};
 	
 	objectFunctions.getTreeStructureItem = function() {
 		return this._treeStructureItem;
+	};
+	
+	objectFunctions.getChildItems = function() {
+		return this._childItems;
+	};
+	
+	objectFunctions.getParentTreeStructureItemView = function() {
+		return this._parentTreeStructureItemView;
 	};
 	
 	objectFunctions.open = function() {
@@ -151,6 +169,10 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureItemVie
 	objectFunctions.performDestroy = function() {
 		//console.log("com.developedbyme.gui.data.treestructure.TreeStructureItemView::performDestroy");
 		
+		if(this._treeStructureItem !== null) {
+			this._treeStructureItem.getExtendedEvent().removeCommandFromEvent(GenericExtendedEventIds.NAME_CHANGED, this._nameChangedCommand);
+		}
+		
 		if(this._parentTreeStructureItemView !== null) {
 			this._parentTreeStructureItemView._linkRegistration_removeChildTreeStructureItem(this);
 			this._linkRegistration_removeParentTreeStructureItem(this._parentTreeStructureItemView);
@@ -166,14 +188,17 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureItemVie
 	objectFunctions.setAllReferencesToNull = function() {
 		//console.log("com.developedbyme.gui.data.treestructure.TreeStructureItemView::setAllReferencesToNull");
 		
+		this._name = null;
 		this._childItems = null;
 		this._treeStructureItem = null;
 		this._isOpen = null;
+		this._outputState = null;
 		this._isOpenCommands = null;
 		this._parentTreeStructureItemView = null;
 		this._ownHeight = null;
 		this._childYPosition = null;
 		this._nextYPosition = null;
+		this._nameChangedCommand = null;
 		
 		this.superCall();
 	};

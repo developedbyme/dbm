@@ -1,17 +1,24 @@
 /**
  * A tree structure item.
- *
- * @authur	mattiase
- * @version	0.0.01
  */
 dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem", "com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	//"use strict";
 	
+	//Self reference
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
-	var TreeStructureItemTypes = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemTypes");
+	//Error report
+	
+	//Dependencies
+	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
+	
+	//Utils
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	
+	//Constants
+	var TreeStructureItemTypes = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemTypes");
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	
 	/**
 	 * Constructor
@@ -21,6 +28,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		
 		this.superCall();
 		
+		this._extendedEvent = null;
 		this._children = NamedArray.create(false);
 		
 		this._type = TreeStructureItemTypes.ITEM;
@@ -31,6 +39,15 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		
 		return this;
 	}; //End function _init
+	
+	objectFunctions.getExtendedEvent = function() {
+		if(this._extendedEvent === null) {
+			this._extendedEvent = ExtendedEventController.create(this);
+			this.addDestroyableObject(this._extendedEvent);
+		}
+		
+		return this._extendedEvent;
+	};
 	
 	/**
 	 * Gets the name of the item.
@@ -174,7 +191,12 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 */
 	objectFunctions._linkRegistration_setName = function(aName) {
 		//console.log("setName");
+		var oldName = this._name;
 		this._name = aName;
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.NAME_CHANGED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.NAME_CHANGED, {"oldValue": oldName, "newValue": aName});
+		}
 		
 		return this;
 	}; //End function setName
@@ -316,6 +338,16 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		}
 	};
 	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case GenericExtendedEventIds.NAME_CHANGED:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	};
+	
 	/**
 	 * Destroys all the data of the object.
 	 */
@@ -354,6 +386,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		this._parent = null;
 		this._root = null;
 		this._children = null;
+		this._extendedEvent = null;
 		
 		this.superCall();
 	};

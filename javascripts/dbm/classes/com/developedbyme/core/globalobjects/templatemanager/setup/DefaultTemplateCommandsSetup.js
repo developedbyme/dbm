@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	var SetPropertyInputCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand");
 	var UpdatePropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand");
 	var StartUpdatingPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.StartUpdatingPropertyCommand");
+	var SetVariableCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetVariableCommand");
 	
 	var WorkspaceCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions");
 	
@@ -47,6 +48,25 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		
 		ClassReference._createCallFunction(TemplateCommandNames.ALPHA_ENABLED, "enableAlpha", []);
 		ClassReference._createCallFunction(TemplateCommandNames.Z_INDEX_ENABLED, "enableZIndex", []);
+		
+		//Dynamic data
+		dbm.singletons.dbmTemplateManager.addCommand(
+			TemplateCommandNames.ADD_DYNAMIC_OBJECT, SetVariableCommand.createCommand(
+				selectDynamicDataReevaluator,
+				this._createVerifiedSelectDataFunction(splitArgumentsReevaluator, 0, "First argument is null in " + TemplateCommandNames.ADD_DYNAMIC_OBJECT + "."),
+				GetVariableObject.createSelectPerformingObjectCommand()
+			)
+		);
+		dbm.singletons.dbmTemplateManager.addCommand(
+			TemplateCommandNames.ADD_DYNAMIC_PROPERTY, SetVariableCommand.createCommand(
+				selectDynamicDataReevaluator,
+				this._createVerifiedSelectDataFunction(splitArgumentsReevaluator, 1, "Second argument is null in " + TemplateCommandNames.ADD_DYNAMIC_PROPERTY + "."),
+				GetPropertyObject.createCommand(
+					GetVariableObject.createSelectPerformingObjectCommand(),
+					this._createVerifiedSelectDataFunction(splitArgumentsReevaluator, 0, "First argument is null in " + TemplateCommandNames.ADD_DYNAMIC_PROPERTY + ".")
+				)
+			)
+		);
 		
 		//Flow
 		dbm.singletons.dbmTemplateManager.addCommand(
@@ -90,6 +110,19 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 			)
 		);
 		dbm.singletons.dbmTemplateManager.addCommand(TemplateCommandNames.SIZED_ELEMENT_AREA, CallFunctionCommand.createCommand(WorkspaceCommandFunctions, WorkspaceCommandFunctions.createSizedElementArea, [GetVariableObject.createSelectPerformingObjectCommand(), selectArgumentReevaluator]));
+		
+		//State
+		dbm.singletons.dbmTemplateManager.addCommand(
+			TemplateCommandNames.ADD_STATE_IMAGE, CallFunctionCommand.createCallFunctionOnPerformingObjectCommand(
+				"addStateFromAsset", ReevaluateArrayWithTypesObject.createCommand(
+					splitArgumentsReevaluator,
+					[JavascriptObjectTypes.TYPE_STRING, JavascriptObjectTypes.TYPE_STRING, JavascriptObjectTypes.TYPE_BOOLEAN]
+				)
+			)
+		);
+		
+		//Switchable
+		//METODO
 	};
 	
 	staticFunctions._createCallFunction = function(aCommandName, aFunctionName, aArgumentsArray) {

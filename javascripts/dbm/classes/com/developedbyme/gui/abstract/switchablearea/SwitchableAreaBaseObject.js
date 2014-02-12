@@ -1,15 +1,25 @@
 dbm.registerClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaBaseObject", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	
+	//Self reference
 	var SwitchableAreaBaseObject = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaBaseObject");
 	
+	//Error report
+	
+	//Dependencies
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var PartiallyOwnedNamedArray = dbm.importClass("com.developedbyme.utils.data.PartiallyOwnedNamedArray");
 	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaBaseObject::_init");
 		

@@ -294,55 +294,33 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		this.superCall();
 	};
 	
+	staticFunctions._createAndInitClassWithElement = function(aClass, aElement) {
+		return ClassReference._createAndInitClass(aClass).setElement(aElement);
+	};
+	
 	staticFunctions.create = function(aElement) {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::create");
 		//console.log(aElement);
 		
-		var newNode = (new ClassReference()).init();
-		
-		newNode.setElement(aElement);
-		
-		return newNode;
+		return ClassReference._createAndInitClassWithElement(ClassReference, aElement);
 	};
 	
 	staticFunctions.createNewDiv = function(aAttributes) {
-		var newNode = (new ClassReference()).init();
-		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
 		
-		newNode.setElement(htmlCreator.createDiv(aAttributes));
-		
-		return newNode;
+		return ClassReference._createAndInitClassWithElement(ClassReference, htmlCreator.createDiv(aAttributes));
 	};
 	
 	staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
-		var newNode = (new ClassReference()).init();
 		
-		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
-		
-		newNode.setParent(theParent);
-		
-		var htmlCreator = newNode.getHtmlCreator();
-		
-		newNode.setElement(htmlCreator.createDiv(aAttributes));
-		
-		if(aAddToParent !== false) {
-			newNode.addToDom();
-		}
-		
-		return newNode;
+		return ClassReference.createNode("div", aParentOrDocument, aAddToParent, aAttributes);
 	};
 	
 	staticFunctions.createNode = function(aType, aParentOrDocument, aAddToParent, aAttributes) {
-		var newNode = (new ClassReference()).init();
+		var newNode = ClassReference._createAndInitClass(ClassReference);
 		
-		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
-		
-		newNode.setParent(theParent);
-		
-		var htmlCreator = newNode.getHtmlCreator();
-		
-		newNode.setElement(htmlCreator.createNode(aType, aAttributes));
+		newNode.setParent(DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument));
+		newNode.setElement(newNode.getHtmlCreator().createNode(aType, aAttributes));
 		
 		if(aAddToParent !== false) {
 			newNode.addToDom();

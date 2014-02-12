@@ -1,19 +1,22 @@
 /**
  * A tree structure.
- *
- * @authur	mattiase
- * @version	0.0.01
  */
 dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructure");
 	//"use strict";
 	
+	//Self reference
 	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	
+	//Error report
+	
+	//Dependencies
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	
 	/**
@@ -49,60 +52,18 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::addItem");
 		//sconsole.log(aItem, aPath, aBaseItem);
 		
-		aBaseItem = VariableAliases.valueWithDefault(aBaseItem, null);
-		
-		aItem.ownsData = this.ownsData;
-		
-		var currentItem = aBaseItem;
-		if(currentItem === null) {
-			currentItem = this._root;
+		var lastSlashIndex = aPath.lastIndexOf("/");
+		if(lastSlashIndex !== -1) {
+			aPath = aPath.substring(0, lastSlashIndex);
 		}
 		
-		if(aPath === "" && aPath === "/") {
-			aPath = aItem.getName();
-		}
-		else {
-			aPath += "/"+aItem.getName();
-		}
-		
-		var currentArray;
-		if(aPath.charAt(0) === "/") {
-			currentItem = this._root;
-			currentArray = aPath.substring(1, aPath.length).split("/");
-		}
-		else {
-			currentArray = aPath.split("/");
-		}
-		
-		var theLength = currentArray.length;
-		while(theLength > 1) {
-			var currentPathPart = currentArray.shift();
-			theLength--;
-			switch(currentPathPart) {
-				case ".":
-					break;
-				case "..":
-					currentItem = currentItem.getParent();
-					break;
-				default:
-					var newItem = currentItem.getChildByName(currentPathPart);
-					if(newItem === null) {
-						newItem = this.createItem(currentPathPart, currentItem, true);
-						if(newItem === null) {
-							return;
-						}
-					}
-					if(newItem.isLink()) {
-						var newPath = newItem.resolvePath(currentArray.join("/"));
-						this.addItem(aItem, newPath, newItem);
-						return;
-					}
-					currentItem = newItem;
-					break;
-			}
-		}
+		var currentItem = this.getItemByPath(aPath, aBaseItem);
 		
 		currentItem.addChild(aItem);
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_ADDED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_ADDED, aItem);
+		}
 	}; //End function addItem
 	
 	/**
@@ -119,6 +80,9 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		
 		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_CREATED)) {
 			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_CREATED, newItem);
+		}
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_ADDED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_ADDED, newItem);
 		}
 		
 		return newItem;
@@ -178,6 +142,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
 		switch(aName) {
+			case GenericExtendedEventIds.ITEM_ADDED:
 			case GenericExtendedEventIds.ITEM_CREATED:
 				return true;
 		}

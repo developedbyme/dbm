@@ -38,6 +38,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.I
 		return this;
 	};
 	
+	objectFunctions.getUrl = function() {
+		return this._url;
+	};
+	
 	objectFunctions.load = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset::load");
 		
