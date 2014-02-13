@@ -176,7 +176,7 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureItemVie
 		if(this._parentTreeStructureItemView !== null) {
 			this._parentTreeStructureItemView._linkRegistration_removeChildTreeStructureItem(this);
 			this._linkRegistration_removeParentTreeStructureItem(this._parentTreeStructureItemView);
-		} 
+		}
 		
 		if(this._childItems !== null) {
 			this.destroyChildren();

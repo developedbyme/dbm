@@ -100,7 +100,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 	staticFunctions._addColorStopsToGradient = function(aCssStrings, aGradient, aStartPosition, aEndPosition) {
 		var currentArray = aCssStrings;
 		for(var i = aStartPosition; i < aEndPosition; i++) {
-			this._addColorStopToGradient(currentArray[i], newGradient, (i-aStartPosition)/(aEndPosition-1));
+			this._addColorStopToGradient(currentArray[i], aGradient, (i-aStartPosition)/(aEndPosition-1));
 		}
 	};
 	

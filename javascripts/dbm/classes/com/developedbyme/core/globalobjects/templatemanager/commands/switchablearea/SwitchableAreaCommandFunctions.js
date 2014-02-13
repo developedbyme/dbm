@@ -10,12 +10,27 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.commands
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
+	var InDomSwitchableArea = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea");
+	var SwitchableAreaHolder = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaHolder");
 	
 	//Utils
 	
 	//Constants
 	
 	staticFunctions.createInDomSwitchableArea = function(aHolder) {
+		var newInDomSwitchableArea = InDomSwitchableArea.create();
 		
+		aHolder.setSwitchableArea(newInDomSwitchableArea);
+	};
+	
+	staticFunctions.addArea = function(aObject, aName, aOwnsObject) {
+		var parentAreaHolder = dbm.singletons.dbmHtmlDomManager.getParentControllerForHtmlElementByClass(aObject.getElement(), SwitchableAreaHolder);
+		
+		if(parentAreaHolder === null) {
+			//METODO: error report
+			return null;
+		}
+		
+		parentAreaHolder.getSwitchableArea().addArea(aName, aObject, aOwnsObject);
 	};
 });

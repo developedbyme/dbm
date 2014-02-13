@@ -467,7 +467,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			newProperty.setValue(aValue);
 		}
 		return newProperty;
-	}
+	};
 	
 	staticFunctions.create = function(aObjectInput, aValue) {
 		//console.log("com.developedbyme.core.objectparts.Property::create");

@@ -1,7 +1,7 @@
-dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.audio.AudioPlayer");
+dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.gui.media.MediaElementBaseObject");
 	
-	var AudioPlayer = dbm.importClass("com.developedbyme.utils.audio.AudioPlayer");
+	var MediaElementBaseObject = dbm.importClass("com.developedbyme.gui.media.MediaElementBaseObject");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	var PlaybackExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEventIds");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::_init");
+		//console.log("com.developedbyme.gui.media.MediaElementBaseObject::_init");
 		
 		this.superCall();
 		
@@ -40,8 +40,8 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		this._playbackState = this.createProperty("playbackState", PlaybackStateTypes.PLAYING);
 		this._playbackSpeed = this.createProperty("playbackSpeed", 1);
 		
-		this._mixerChannel = dbm.singletons.dbmAudioManager.getMixer("audio").createChannel(null, 1);
-		this.addDestroyableObject(this._mixerChannel);
+		this._mixerChannel = null;
+		this._createMixerChannel();
 		
 		this._volume = this.createProperty("volume", 1);
 		this._outputVolume = this.addProperty("outputVolume", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
@@ -54,14 +54,27 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		this._playback = this.createGhostProperty("playback");
 		this._updateFunctions.getObject("display").addInputConnection(this._playback);
 		
-		this.createUpdateFunction("default", this._updateFlow, [this._stateTimeline.getProperty("outputValue"), this._startTimeTimeline.getProperty("outputValue"), this._startPositionTimeline.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed, this._outputVolume], [this._outputTime, this._playback]);
+		this._hasEnded = this.createProperty("hasEnded", false);
+		this._loop = this.createProperty("loop", false);
+		this._loopPlayback = this.addProperty("loopPlayback", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null)); //MENOTE: since firefox doesn't suppert the loop attribute yet this needs to be linked
+		this._loopPlayback.connectInput(this._loop);
 		
-		this.getExtendedEvent().addCommandToEvent(AudioEventIds.VOLUME_CHANGE, SetPropertyAsDirtyCommand.createCommand(this._muted));
-		this.getExtendedEvent().addCommandToEvent(AudioEventIds.LOADED_META_DATA, CallFunctionCommand.createCommand(this, this._metaDataLoaded, [GetVariableObject.createSelectDataCommand()]));
+		this.createUpdateFunction("default", this._updateFlow, [this._stateTimeline.getProperty("outputValue"), this._startTimeTimeline.getProperty("outputValue"), this._startPositionTimeline.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed, this._outputVolume, this._loop, this._loopPlayback], [this._outputTime, this._playback, this._hasEnded]);
 		
-		//console.log(this);
-		//console.log("//com.developedbyme.utils.audio.AudioPlayer::_init");
+		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGE, SetPropertyAsDirtyCommand.createCommand(this._muted));
+		this.getExtendedEvent().addCommandToEvent(VideoEventIds.LOADED_META_DATA, CallFunctionCommand.createCommand(this, this._metaDataLoaded, [GetVariableObject.createSelectDataCommand()]));
+		
 		return this;
+	};
+	
+	objectFunctions._createMixerChannelOfType = function(aType) {
+		this._mixerChannel = dbm.singletons.dbmAudioManager.getMixer(aType).createChannel(null, 1);
+		this.addDestroyableObject(this._mixerChannel);
+	};
+	
+	objectFunctions._createMixerChannel = function() {
+		this._createMixerChannelOfType("general");
+		//MENOTE: should be overridden
 	};
 	
 	objectFunctions.setElement = function(aElement) {
@@ -70,10 +83,28 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		
 		this._outputVolume.setupExternalObject(this.getElement(), "volume");
 		this._muted.setupExternalObject(this.getElement(), "muted");
+		this._loopPlayback.setupExternalObject(this.getElement(), "loop");
 		
 		this.getExtendedEvent().linkJavascriptEvent(aElement, AudioEventIds.LOADED_META_DATA, AudioEventIds.LOADED_META_DATA, AudioEventIds.LOADED_META_DATA, true).activate();
 		
 		return this;
+	};
+	
+	objectFunctions.reactivateForNewDocument = function() {
+		this.superCall();
+		
+		var currentElement = this.getElement();
+		
+		if(currentElement !== null) {
+			var asset = dbm.singletons.dbmAssetRepository.getAsset(this._selectedUrl);
+			var videoTag = asset.getData();
+			var newVideoTag = currentElement.ownerDocument.importNode(videoTag, true);
+			newVideoTag.load();
+			dbm.singletons.dbmHtmlDomManager.copyStyle(currentElement, newVideoTag);
+			
+			this.setElement(newVideoTag);
+			//this.getProperty("display").update();
+		}
 	};
 	
 	objectFunctions.setPlaybackNode = function(aPlaybackNode) {
@@ -85,6 +116,67 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		this._playbackState.connectInput(aPlaybackNode.getProperty("state"));
 		
 		this._playback.startUpdating();
+	};
+	
+	objectFunctions._metaDataLoaded = function(aEvent) {
+		if(this.getExtendedEvent().hasEvent(PlaybackExtendedEventIds.META_DATA_LOADED)) {
+			this.getExtendedEvent().perform(PlaybackExtendedEventIds.META_DATA_LOADED);
+		}
+	};
+	
+	objectFunctions.setUrls = function(aUrls, aPreload) {
+		
+		this._urls = aUrls;
+		
+		var isSelected = false;
+		var maybeUrl = null;
+		
+		var currentArray = aUrls;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentUrl = currentArray[i];
+			var currentType = this._getTypeForUrl(currentUrl);
+			var canPlayStatus = this.getElement().canPlayType(currentType);
+			//console.log(currentType, canPlayStatus);
+			if(canPlayStatus === "probably") {
+				if(this.getElement().src === null) {
+					this.getElement().src = currentUrl;
+				}
+				this._selectedUrl = currentUrl;
+				isSelected = true;
+				break;
+			}
+			else if(maybeUrl === null) {
+				if(canPlayStatus === "maybe") {
+					maybeUrl = currentUrl;
+				}
+				else {
+					var currentTypeWithoutCodecs = this._getTypeWithoutCodecsForUrl(currentUrl);
+					var canPlayStatus = this.getElement().canPlayType(currentTypeWithoutCodecs);
+					//console.log(currentTypeWithoutCodecs, canPlayStatus);
+					if(canPlayStatus === "probably" || canPlayStatus === "maybe") {
+						maybeUrl = currentUrl;
+					}
+				}
+			}
+		}
+		if(!isSelected && maybeUrl !== null) {
+			if(this.getElement().src === null) {
+				this.getElement().src = maybeUrl;
+			}
+			this._selectedUrl = maybeUrl;
+		}
+		if(aPreload) {
+			this.getElement().load();
+		}
+	};
+	
+	objectFunctions.setUrl = function(aUrl, aPreload) {
+		this.getElement().src = aUrl;
+		this._selectedUrl = aUrl;
+		if(aPreload) {
+			this.getElement().load();
+		}
 	};
 	
 	objectFunctions.play = function() {
@@ -122,7 +214,6 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	};
 	
 	objectFunctions.seek = function(aTime) {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::seek");
 		
 		this._startTimeTimeline.setValue(this._currentTime.getValue());
 		this._startPositionTimeline.setValue(aTime);
@@ -132,15 +223,13 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	};
 	
 	objectFunctions._performPlay = function() {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::_performPlay");
 		try {
 			this._outputVolume.update();
 			this.getElement().play();
-			//console.log(this._outputVolume.getValue(), this.getElement().volume);
 		}
 		catch(theError) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
-			ErrorManager.getInstance().reportError(this, "_perfomSeek", theError);
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_performPlay", "Media " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "_performPlay", theError);
 		}
 	};
 	
@@ -153,27 +242,24 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 			this.getElement().pause();
 		}
 		catch(theError) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
-			ErrorManager.getInstance().reportError(this, "_perfomSeek", theError);
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_performPause", "Media " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "_performPause", theError);
 		}
 	};
 	
 	objectFunctions._performSeek = function(aTime) {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::_performSeek");
 		try {
 			if(aTime >= 0 && aTime <= this.getElement().duration) {
 				this.getElement().currentTime = aTime;
 			}
 		}
 		catch(theError) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Video " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_perfomSeek", "Media " + this._selectedUrl + " has an error.");
 			ErrorManager.getInstance().reportError(this, "_perfomSeek", theError);
 		}
 	};
 	
 	objectFunctions.setStateAt = function(aState, aOutputTime, aTime) {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::setStateAt");
-		//console.log(this._selectedUrl, aState, aTime);
 		if(aState === PlaybackStateTypes.PAUSED) {
 			if(this._stateTimeline.getValueAt(aTime) !== PlaybackStateTypes.PAUSED) {
 				this._stateTimeline.setValueAt(PlaybackStateTypes.PAUSED, aTime);
@@ -186,113 +272,6 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 			}
 			this._startTimeTimeline.setValueAt(aTime, aTime);
 			this._startPositionTimeline.setValueAt(aOutputTime, aTime);
-		}
-	};
-	
-	objectFunctions.resetAllPlayback = function() {
-		this._stateTimeline.clear();
-		this._startPositionTimeline.clear();
-		this._startTimeTimeline.clear();
-		
-		try {
-			this.getElement().currentTime = 0;
-		}
-		catch(theError) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "resetAllPlayback", "Video " + this._selectedUrl + " has an error.");
-			ErrorManager.getInstance().reportError(this, "resetAllPlayback", theError);
-		}
-		this._performPause();
-	};
-	
-	objectFunctions._metaDataLoaded = function(aEvent) {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::_metaDataLoaded");
-		//console.log(this, this._selectedUrl, this.getElement().videoWidth, this.getElement().videoHeight);
-		
-		if(this.getExtendedEvent().hasEvent(PlaybackExtendedEventIds.META_DATA_LOADED)) {
-			this.getExtendedEvent().perform(PlaybackExtendedEventIds.META_DATA_LOADED);
-		}
-	};
-	
-	objectFunctions._getTypeForUrl = function(aUrl) {
-		switch(PathFunctions.getFileExtension(aUrl).toLowerCase()) {
-			case "aac":
-				return "audio/aac";
-			case "mp3":
-				return "audio/mp3";
-			case "mp4":
-				return "audio/mp4";
-			case "oga":
-				return "audio/ogg; codecs=\"vorbis\"";
-		}
-		
-		//METODO: fix codecs
-		
-		return "unknown";
-	};
-	
-	objectFunctions._getTypeWithoutCodecsForUrl = function(aUrl) {
-		switch(PathFunctions.getFileExtension(aUrl).toLowerCase()) {
-			case "aac":
-				return "audio/aac";
-			case "mp3":
-				return "audio/mp3";
-			case "mp4":
-				return "audio/mp4";
-			case "oga":
-				return "audio/ogg";
-		}
-		
-		return "unknown";
-	};
-	
-	objectFunctions.setUrls = function(aUrls, aPreload) {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::setUrls");
-		this._urls = aUrls;
-		
-		var isSelected = false;
-		var maybeUrl = null;
-		
-		var currentArray = aUrls;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentUrl = currentArray[i];
-			var currentType = this._getTypeForUrl(currentUrl);
-			var canPlayStatus = this.getElement().canPlayType(currentType);
-			//console.log(currentType, canPlayStatus);
-			if(canPlayStatus === "probably") {
-				this.getElement().src = currentUrl;
-				this._selectedUrl = currentUrl;
-				isSelected = true;
-				break;
-			}
-			else if(maybeUrl === null) {
-				if(canPlayStatus === "maybe") {
-					maybeUrl = currentUrl;
-				}
-				else {
-					var currentTypeWithoutCodecs = this._getTypeWithoutCodecsForUrl(currentUrl);
-					var canPlayStatus = this.getElement().canPlayType(currentTypeWithoutCodecs);
-					//console.log(currentTypeWithoutCodecs, canPlayStatus);
-					if(canPlayStatus === "probably" || canPlayStatus === "maybe") {
-						maybeUrl = currentUrl;
-					}
-				}
-			}
-		}
-		if(!isSelected && maybeUrl !== null) {
-			this.getElement().src = maybeUrl;
-			this._selectedUrl = maybeUrl;
-		}
-		if(aPreload) {
-			this.getElement().load();
-		}
-	};
-	
-	objectFunctions.setUrl = function(aUrl, aPreload) {
-		this.getElement().src = aUrl;
-		this._selectedUrl = aUrl;
-		if(aPreload) {
-			this.getElement().load();
 		}
 	};
 	
@@ -311,10 +290,10 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	};
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::_updateFlow");
 		
 		if(this.getElement().seeking) {
 			//MENOTE: do nothing
+			//console.log("seeking");
 		}
 		else {
 		
@@ -324,8 +303,19 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 			var currentTime = this._currentTime.getValueWithoutFlow();
 			var playbackState = this._playbackState.getValueWithoutFlow();
 			var playbackSpeed = this._playbackSpeed.getValueWithoutFlow();
+			var loop = this._loop.getValueWithoutFlow();
 			
 			var timeShouldBeAt = (currentTime-startTime+startPosition);
+			
+			if(timeShouldBeAt >= this.getElement().duration) {
+				if(loop) {
+					var times = Math.floor(timeShouldBeAt/this.getElement().duration);
+					timeShouldBeAt -= times*this.getElement().duration;
+				}
+			}
+			
+			this._hasEnded.setValueWithFlow(timeShouldBeAt >= this.getElement().duration);
+			
 			var maxTime;
 			if(!isNaN(this.getElement().duration)) {
 				maxTime = Math.max(0, Math.min(this.getElement().duration, timeShouldBeAt));
@@ -392,11 +382,36 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		}
 	};
 	
+	objectFunctions.resetAllPlayback = function() {
+		this._stateTimeline.clear();
+		this._startPositionTimeline.clear();
+		this._startTimeTimeline.clear();
+		
+		try {
+			this.getElement().currentTime = 0;
+		}
+		catch(theError) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "resetAllPlayback", "Media " + this._selectedUrl + " has an error.");
+			ErrorManager.getInstance().reportError(this, "resetAllPlayback", theError);
+		}
+		this._performPause();
+	};
+	
+	objectFunctions._getTypeForUrl = function(aUrl) {
+		//MENOTE: should be overridden
+		return "unknown";
+	};
+	
+	objectFunctions._getTypeWithoutCodecsForUrl = function(aUrl) {
+		//MENOTE: should be overridden
+		return "unknown";
+	};
+	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
 		switch(aName) {
-			case AudioEventIds.VOLUME_CHANGE:
-			case AudioEventIds.LOADED_META_DATA:
+			case VideoEventIds.VOLUME_CHANGE:
+			case VideoEventIds.LOADED_META_DATA:
 			case PlaybackExtendedEventIds.META_DATA_LOADED:
 				return true;
 		}
@@ -411,7 +426,6 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
-		//console.log("com.developedbyme.utils.audio.AudioPlayer::setAllReferencesToNull");
 		
 		this._urls = null;
 		this._selectedUrl = null;
@@ -430,31 +444,27 @@ dbm.registerClass("com.developedbyme.utils.audio.AudioPlayer", "com.developedbym
 		this._volume = null;
 		this._muted = null;
 		
+		this._hasEnded = null;
+		this._loop = null;
+		this._loopPlayback = null;
+		
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aParentOrDocument, aAddToParent, aUrls, aPreload, aAttributes) {
-		var newNode = (new ClassReference()).init();
+	staticFunctions._create = function(aClass, aElementType, aParentOrDocument, aAddToParent, aUrls, aPreload, aAttributes) {
+		var newNode = ClassReference._createAndInitClass();
 		
 		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
 		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
-		newNode.setElement(htmlCreator.createNode("audio", aAttributes));
+		newNode.setElement(htmlCreator.createNode(aElementType, aAttributes));
 		newNode.setUrls(aUrls, aPreload);
 		newNode.setParent(theParent);
 		if(aAddToParent !== false) {
 			newNode.addToDom();
 		}
-		
-		return newNode;
-	};
-	
-	staticFunctions.createWithNode = function(aNode) {
-		var newNode = (new ClassReference()).init();
-		
-		newNode.setElement(aNode);
 		
 		return newNode;
 	};

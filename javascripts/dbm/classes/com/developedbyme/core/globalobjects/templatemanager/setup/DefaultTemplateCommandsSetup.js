@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	var SetVariableCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetVariableCommand");
 	
 	var WorkspaceCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions");
+	var SwitchableAreaCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions");
 	
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var GetPropertyObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject");
@@ -123,6 +124,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		
 		//Switchable
 		//METODO
+		dbm.singletons.dbmTemplateManager.addCommand(
+			TemplateCommandNames.CREATE_IN_DOM_SWITCHABLE_AREA, CallFunctionCommand.createCommand(
+				SwitchableAreaCommandFunctions, SwitchableAreaCommandFunctions.createInDomSwitchableArea, [GetVariableObject.createSelectPerformingObjectCommand()]
+			)
+		);
+		dbm.singletons.dbmTemplateManager.addCommand(
+			TemplateCommandNames.ADD_SWITCHABLE_AREA, CallFunctionCommand.createCommand(
+				SwitchableAreaCommandFunctions, SwitchableAreaCommandFunctions.addArea, ReevaluateArrayWithTypesObject.createCommand(
+					CombineArraysObject.createCommand([GetVariableObject.createSelectPerformingObjectCommand()], splitArgumentsReevaluator),
+					[JavascriptObjectTypes.NON_REAL_TYPE_ANY, JavascriptObjectTypes.TYPE_STRING, JavascriptObjectTypes.TYPE_BOOLEAN]
+				)
+			)
+		);
+		
 	};
 	
 	staticFunctions._createCallFunction = function(aCommandName, aFunctionName, aArgumentsArray) {

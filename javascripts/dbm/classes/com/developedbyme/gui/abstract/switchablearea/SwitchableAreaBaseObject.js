@@ -74,10 +74,15 @@ dbm.registerClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaB
 	
 	objectFunctions.removeAreaByName = function(aName) {
 		
+		//METODO
+		
 		return this;
 	};
 	
 	objectFunctions.showArea = function(aName) {
+		
+		this._visibleArea.setValue(aName);
+		this._display.update();
 		
 		return this;
 	};

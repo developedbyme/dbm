@@ -31,5 +31,5 @@ dbm.registerClass("com.developedbyme.constants.TemplateCommandNames", null, func
 	
 	//Switchable area
 	staticFunctions.CREATE_IN_DOM_SWITCHABLE_AREA = "switchable:createInDomSwitch";
-	staticFunctions.SET_AREA = "switchable:setArea";
+	staticFunctions.ADD_SWITCHABLE_AREA = "switchable:addArea";
 });
