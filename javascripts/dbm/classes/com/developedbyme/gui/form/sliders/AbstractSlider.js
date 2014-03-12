@@ -77,6 +77,12 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 		//MENOTE: should be overridden
 	};
 	
+	objectFunctions.enablePlayback = function() {
+		this._noPlaybackSwitchNode.getProperty("inputValue2").setValue(false);
+		
+		return this;
+	};
+	
 	objectFunctions.connectPlaybackNode = function(aPlaybackNode) {
 		
 		this._noPlaybackSwitchNode.getProperty("inputValue2").setValue(false);
@@ -163,6 +169,11 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 	
 	objectFunctions._stopScrubbing = function() {
 		//console.log("com.developedbyme.gui.form.sliders.AbstractSlider::_stopScrubbing");
+		
+		if(this._playbackValue.canBeSet()) {
+			this._playbackValue.setValue(this._outputValue.getValue());
+		}
+		
 		dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateInput");
 		this.getExtendedEvent().deactivateJavascriptEventLink(ClassReference._SCRUBBING);
 		this.getExtendedEvent().perform(PlaybackExtendedEventIds.STOP_SCRUBBING, this._getCurrentScrubValue());

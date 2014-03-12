@@ -3,6 +3,8 @@ dbm.registerClass("com.developedbyme.constants.TemplateCommandNames", null, func
 	
 	var TemplateCommandNames = dbm.importClass("com.developedbyme.constants.TemplateCommandNames");
 	
+	staticFunctions.IGNORE = "ignore";
+	
 	staticFunctions.POSITIONED = "positioned";
 	staticFunctions.SIZED = "sized";
 	staticFunctions.TRANSFORMED = "transformed";
@@ -10,6 +12,7 @@ dbm.registerClass("com.developedbyme.constants.TemplateCommandNames", null, func
 	staticFunctions.ALPHA_ENABLED = "alphaEnabled";
 	staticFunctions.Z_INDEX_ENABLED = "zIndexEnabled";
 	staticFunctions.UPDATE_DISPLAY = "updateDisplay";
+	staticFunctions.ACTIVATE = "activate";
 	
 	//Dynamic data
 	staticFunctions.ADD_DYNAMIC_OBJECT = "dynamic:add";
@@ -25,6 +28,9 @@ dbm.registerClass("com.developedbyme.constants.TemplateCommandNames", null, func
 	staticFunctions.ELEMENT_SIZE_AS_AREA = "workspace:elementSizeAsArea";
 	staticFunctions.LAYOUT_SPLIT = "workspace:layoutSplit";
 	staticFunctions.SIZED_ELEMENT_AREA = "workspace:sizedElementArea";
+	
+	//Slider
+	staticFunctions.SCALE_FIRST_CHILD = "slider:scaleFirstChild";
 	
 	//State
 	staticFunctions.ADD_STATE_IMAGE = "state:addImage";

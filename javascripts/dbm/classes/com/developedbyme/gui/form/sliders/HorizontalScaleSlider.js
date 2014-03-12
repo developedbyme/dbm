@@ -41,6 +41,7 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 		
 		this.getExtendedEvent().linkJavascriptEvent(aElement, JavascriptEventIds.MOUSE_DOWN, ButtonExtendedEventIds.PRESS, ClassReference._SCRUB_ENABLED, true);
 		this.getExtendedEvent().linkJavascriptEvent(aElement.ownerDocument, JavascriptEventIds.MOUSE_UP, ButtonExtendedEventIds.RELEASE, ClassReference._SCRUBBING, true);
+		
 	};
 	
 	objectFunctions.activate = function() {
@@ -82,8 +83,11 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 	};
 	
 	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
+		console.log("com.developedbyme.gui.form.sliders.HorizontalScaleSlider::_updateDisplayFlow");
 		
 		this.superCall(aFlowUpdateNumber);
+		
+		console.log(this._outputValue);
 		
 		var outputValue = this._outputValue.getValueWithoutFlow();
 		var minValue = this._minValue.getValueWithoutFlow();

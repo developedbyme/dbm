@@ -25,9 +25,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	var SplitStringObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject");
 	var CombineArraysObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject");
 	var NotNullObject = dbm.importClass("com.developedbyme.utils.reevaluation.verificationreevaluation.NotNullObject");
+	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
+	var LogCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
 	
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
 	
 	//Constants
 	var TemplateCommandNames = dbm.importClass("com.developedbyme.constants.TemplateCommandNames");
@@ -41,6 +44,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		var selectDynamicDataReevaluator = GetVariableObject.createCommand(selectDataCommand, "dynamicData");
 		var splitArgumentsReevaluator = SplitStringObject.createCommand(selectArgumentReevaluator, " ");
 		
+		var selectFirstChildReevaluator = CallFunctionObject.createCommand(
+			XmlChildRetreiver,
+			XmlChildRetreiver.getFirstChild,
+			[
+				CallFunctionObject.createCommand(
+					GetVariableObject.createSelectPerformingObjectCommand(),
+					GetVariableObject.createCommand(
+						GetVariableObject.createSelectPerformingObjectCommand(),
+						"getElement"
+					),
+					[]
+				)
+			]
+		);
+		
+		dbm.singletons.dbmTemplateManager.addCommand(TemplateCommandNames.IGNORE, LogCommand.createCommand("Ignoring command", selectArgumentReevaluator)); //METODO: add infor about what has been ignored
+		
 		ClassReference._createCallFunction(TemplateCommandNames.POSITIONED, "setElementAsPositioned", []);
 		ClassReference._createCallFunction(TemplateCommandNames.SIZED, "setElementAsSized", []);
 		ClassReference._createCallFunction(TemplateCommandNames.TRANSFORMED, "setElementAsTransformed", []);
@@ -49,6 +69,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		
 		ClassReference._createCallFunction(TemplateCommandNames.ALPHA_ENABLED, "enableAlpha", []);
 		ClassReference._createCallFunction(TemplateCommandNames.Z_INDEX_ENABLED, "enableZIndex", []);
+		ClassReference._createCallFunction(TemplateCommandNames.ACTIVATE, "activate", []);
 		
 		//Dynamic data
 		dbm.singletons.dbmTemplateManager.addCommand(
@@ -112,6 +133,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		);
 		dbm.singletons.dbmTemplateManager.addCommand(TemplateCommandNames.SIZED_ELEMENT_AREA, CallFunctionCommand.createCommand(WorkspaceCommandFunctions, WorkspaceCommandFunctions.createSizedElementArea, [GetVariableObject.createSelectPerformingObjectCommand(), selectArgumentReevaluator]));
 		
+		//Slider
+		ClassReference._createCallFunction(TemplateCommandNames.SCALE_FIRST_CHILD, "setScalingElement", [selectFirstChildReevaluator]);
+		
 		//State
 		dbm.singletons.dbmTemplateManager.addCommand(
 			TemplateCommandNames.ADD_STATE_IMAGE, CallFunctionCommand.createCallFunctionOnPerformingObjectCommand(
@@ -123,7 +147,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		);
 		
 		//Switchable
-		//METODO
 		dbm.singletons.dbmTemplateManager.addCommand(
 			TemplateCommandNames.CREATE_IN_DOM_SWITCHABLE_AREA, CallFunctionCommand.createCommand(
 				SwitchableAreaCommandFunctions, SwitchableAreaCommandFunctions.createInDomSwitchableArea, [GetVariableObject.createSelectPerformingObjectCommand()]
@@ -141,7 +164,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 	};
 	
 	staticFunctions._createCallFunction = function(aCommandName, aFunctionName, aArgumentsArray) {
-		dbm.singletons.dbmTemplateManager.addCommand(aCommandName, CallFunctionCommand.createCallFunctionOnPerformingObjectCommand(aFunctionName, []));
+		dbm.singletons.dbmTemplateManager.addCommand(aCommandName, CallFunctionCommand.createCallFunctionOnPerformingObjectCommand(aFunctionName, aArgumentsArray));
 		
 	};
 	

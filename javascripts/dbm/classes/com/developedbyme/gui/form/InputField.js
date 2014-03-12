@@ -20,6 +20,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 		
 		this._isActive = false;
 		this._value = this.createProperty("value", "");
+		this._lastValue = "";
 		this._display = this.createGhostProperty("display");
 		this.createUpdateFunction("display", this._updateFlowText, [this._value], [this._display]);
 		this._defaultText = null;
@@ -96,9 +97,11 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	objectFunctions._change = function(aEvent) {
 		//console.log("com.developedbyme.gui.form.InputField::_change");
 		if(this._isChangingDefaultText) return;
-		this._value.setValue(this.getElement().value);
-		if(this.getExtendedEvent().hasEvent(FormFieldExtendedEventIds.CHANGE)) {
-			this.getExtendedEvent().perform(FormFieldExtendedEventIds.CHANGE, this.getElement().value);
+		if(this.getElement().value !== this._lastValue) {
+			this._value.setValue(this.getElement().value);
+			if(this.getExtendedEvent().hasEvent(FormFieldExtendedEventIds.CHANGE)) {
+				this.getExtendedEvent().perform(FormFieldExtendedEventIds.CHANGE, this.getElement().value);
+			}
 		}
 		if(aEvent.keyCode === 13) {
 			if(this.getExtendedEvent().hasEvent(FormFieldExtendedEventIds.REQUEST_SUBMIT)) {
@@ -109,7 +112,9 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	
 	objectFunctions._updateFlowText = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.gui.form.InputField::_updateFlowText");
-		this.getElement().value = this._value.getValueWithoutFlow();
+		var newValue = this._value.getValueWithoutFlow();
+		this.getElement().value = newValue;
+		this._lastValue = newValue.toString();
 	};
 	
 	objectFunctions.activate = function() {

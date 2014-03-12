@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Visual templates</title>
+	</head>
+	<body>
+		<div id="sliderWithInputField">
+			<div style="display: inline-block; width: 100px; height: 10px; position: relative;" data-dbm-name="slider" data-dbm-class="dbm:HorizontalScaleSlider" data-dbm-commands="updateDisplay; slider:scaleFirstChild; activate; flow:connectInput minValue minValue; flow:connectInput maxValue maxValue; ignore flow:connectOutput outputValue value;">
+				<div style="position: absolute; width: 50px; height: 100%; background-color: #FF0000"></div>
+			</div>
+			<div style="display: inline-block;">
+				<input type="text" data-dbm-name="inputField" data-dbm-class="dbm:InputField" data-dbm-commands="updateDisplay; activate; ignore flow:connectInput value value;" />
+			</div>
+		</div>
+	</body>
+</html>
