@@ -122,6 +122,17 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 		return currentArray;
 	};
 	
+	staticFunctions.copyPartOfArray = function(aArray, aStart, aEnd) {
+		
+		var length = aEnd-aStart;
+		
+		var currentArray = new Array(length);
+		for(var i = 0; i < length; i++) {
+			currentArray[i] = aArray[i+aStart];
+		}
+		return currentArray;
+	};
+	
 	staticFunctions.concatToArray = function(aReturnArray, aArray) {
 		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
