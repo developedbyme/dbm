@@ -1,8 +1,8 @@
-dbm.registerClass("com.developedbyme.nodejs.server.utils.network.IncomingRequestLoader", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.nodejs.server.utils.network.IncomingRequestLoader");
+dbm.registerClass("com.developedbyme.nodejs.utils.network.IncomingRequestLoader", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader");
 	//"use strict";
 	
-	var IncomingRequestLoader = dbm.importClass("com.developedbyme.nodejs.server.utils.network.IncomingRequestLoader");
+	var IncomingRequestLoader = dbm.importClass("com.developedbyme.nodejs.utils.network.IncomingRequestLoader");
 	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
@@ -15,7 +15,7 @@ dbm.registerClass("com.developedbyme.nodejs.server.utils.network.IncomingRequest
 	var ReadableStreamEventIds = dbm.importClass("com.developedbyme.nodejs.constants.nodejsevents.ReadableStreamEventIds");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.nodejs.server.utils.network.IncomingRequestLoader::_init");
+		//console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader::_init");
 		
 		this.superCall();
 		
@@ -41,13 +41,13 @@ dbm.registerClass("com.developedbyme.nodejs.server.utils.network.IncomingRequest
 	};
 	
 	objectFunctions._dataReceived = function(aChunk) {
-		console.log("com.developedbyme.nodejs.server.utils.network.IncomingRequestLoader::_dataReceived");
+		console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader::_dataReceived");
 		
 		this._data += aChunk;
 	};
 	
 	objectFunctions._dataEnded = function() {
-		console.log("com.developedbyme.nodejs.server.utils.network.IncomingRequestLoader::_dataEnded");
+		console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader::_dataEnded");
 		
 		if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.LOADED)) {
 			this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED, this._data);
@@ -74,7 +74,7 @@ dbm.registerClass("com.developedbyme.nodejs.server.utils.network.IncomingRequest
 	};
 	
 	staticFunctions.create = function(aRequest) {
-		//console.log("com.developedbyme.nodejs.server.utils.network.IncomingRequestLoader::create");
+		//console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader::create");
 		//console.log(aElement);
 		
 		var newIncomingRequestLoader = (new ClassReference()).init();

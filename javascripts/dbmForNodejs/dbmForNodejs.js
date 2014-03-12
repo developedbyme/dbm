@@ -197,11 +197,12 @@
 			
 			var currentArray = this._startFunctions;
 			var currentArrayLength = currentArray.length;
+			this._startFunctions = new Array();
+			
 			for(var i = 0; i < currentArrayLength; i++) {
 				currentArray[i].call(null);
 			}
 			
-			this._startFunctions = new Array();
 			this._isStarting = false;
 			
 			if(this._restartAfterStart) {
@@ -220,6 +221,8 @@
 		
 		dbm.restartLoading = function() {
 			//console.log("dbm::restartLoading");
+			//console.log(this._isStarting);
+			
 			if(this._isStarting) {
 				this._restartAfterStart = true;
 			}

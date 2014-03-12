@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Time
 	};
 	
 	objectFunctions.start = function() {
-		console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::start");
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::start");
 		if(!this._isStarted) {
 			this._isStarted = true;
 			this._performStart();

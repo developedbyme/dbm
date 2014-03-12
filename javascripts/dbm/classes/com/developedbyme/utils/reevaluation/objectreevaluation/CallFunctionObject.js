@@ -26,6 +26,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 		var theFunction = this.functionReevaluator.reevaluate(aBaseObject);
 		var argumentsArray = this.argumentsArrayReevaluator.reevaluate(aBaseObject);
 		
+		//console.log(theObject, theFunction, argumentsArray);
+		
 		return theFunction.apply(theObject, argumentsArray);
 	};
 	

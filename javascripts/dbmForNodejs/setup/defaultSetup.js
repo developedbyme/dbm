@@ -33,13 +33,14 @@ dbm.runTempFunction(function() {
 	var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
+	var IntervalTimer = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.IntervalTimer");
 	
 	dbm.addStartFunction(function() {
 		
 		ErrorManagerDefaultSetup.setup();
 		InterpolationDefaultSetup.setup();
 		
-		UpdateManager.getInstance().start();
+		UpdateManager.getInstance().setTimer(IntervalTimer.create(null, 60)).start();
 		FlowManager.getInstance().start();
 		AnimationManager.getInstance().setupDefaultPlayback();
 		AnimationManager.getInstance().start();

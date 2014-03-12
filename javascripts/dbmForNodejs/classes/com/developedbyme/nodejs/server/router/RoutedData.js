@@ -21,6 +21,9 @@ dbm.registerClass("com.developedbyme.nodejs.server.router.RoutedData", "com.deve
 		this.request = null;
 		this.response = null;
 		
+		this.socket = null;
+		this.headData = null;
+		
 		this._errorText = null;
 		this._error = null;
 		

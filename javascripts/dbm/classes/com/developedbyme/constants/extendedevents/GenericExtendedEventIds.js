@@ -19,4 +19,8 @@ dbm.registerClass("com.developedbyme.constants.extendedevents.GenericExtendedEve
 	
 	staticFunctions.OPEN = "open";
 	staticFunctions.CLOSE = "close";
+	staticFunctions.ERROR = "error";
+	staticFunctions.TIMEOUT = "timeout";
+	
+	staticFunctions.RAW_DATA = "rawData";
 });

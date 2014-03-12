@@ -1,20 +1,25 @@
 dbm.registerClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
 	
+	//Self reference
 	var LogCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
+	//Constants
 	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
 	
-	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
-	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
-	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
-	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.extendedevent.commands.debug.LogCommand::_init");
 		
@@ -55,21 +60,11 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.debug.LogComman
 		var newCommand = (new LogCommand()).init();
 		
 		var aArgumentsArray = arguments;
-		
-		var hasReevaluatorInArgumentsArray = false;
-		var theLength = aArgumentsArray.length;
-		for(var i = 0; i < theLength; i++) {
-			if(aArgumentsArray[i] instanceof ReevaluationBaseObject) {
-				hasReevaluatorInArgumentsArray = true;
-				break;
-			}
-		}
-		
-		if(hasReevaluatorInArgumentsArray) {
-			newCommand.argumentsArrayReevaluator = ReevaluateArrayObject.createReevaluationObject(aArgumentsArray);
+		if(aArgumentsArray.length === 1) {
+			newCommand.argumentsArrayReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aArgumentsArray[0]);
 		}
 		else {
-			newCommand.argumentsArrayReevaluator = StaticVariableObject.createReevaluationObject(aArgumentsArray);
+			newCommand.argumentsArrayReevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aArgumentsArray);
 		}
 		
 		return newCommand;
