@@ -43,8 +43,8 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BaseEncoder",
 	};
 	
 	objectFunctions.encode = function(aEncodingData) {
-		console.log("com.developedbyme.utils.websocket.binarycommand.BaseEncoder::encode");
-		console.log(this._messagePrefix);
+		//console.log("com.developedbyme.utils.websocket.binarycommand.BaseEncoder::encode");
+		//console.log(this._messagePrefix);
 		
 		aEncodingData.addStringToMessage(this._messagePrefix);
 		

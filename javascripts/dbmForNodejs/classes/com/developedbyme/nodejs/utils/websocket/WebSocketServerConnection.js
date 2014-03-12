@@ -60,8 +60,8 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketServerConne
 	
 	objectFunctions.setupDefaultDecodingAndResponse = function() {
 		this.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.RAW_DATA, CallFunctionCommand.createCommand(this, this._handleRawData, [GetVariableObject.createSelectMultipleArgumentDataCommand(0)]));
-		this.getExtendedEvent().addCommandToEvent(MessageExtendedEventIds.PING, CallFunctionCommand.createCommand(this, this.sendRawBuffer, [WebSocketOpcodeIds.PONG, GetVariableObject.createSelectMultipleArgumentDataCommand(0)]));
-		this.getExtendedEvent().addCommandToEvent(ClassReference._CLOSE_MESSAGE, CallFunctionCommand.createCommand(this, this.sendRawBuffer, [WebSocketOpcodeIds.CLOSE, GetVariableObject.createSelectMultipleArgumentDataCommand(0)]));
+		this.getExtendedEvent().addCommandToEvent(MessageExtendedEventIds.PING, CallFunctionCommand.createCommand(this, this.sendRawBuffer, [GetVariableObject.createSelectMultipleArgumentDataCommand(0), WebSocketOpcodeIds.PONG]));
+		this.getExtendedEvent().addCommandToEvent(ClassReference._CLOSE_MESSAGE, CallFunctionCommand.createCommand(this, this.sendRawBuffer, [GetVariableObject.createSelectMultipleArgumentDataCommand(0), WebSocketOpcodeIds.CLOSE]));
 		
 		
 		return this;
@@ -101,7 +101,7 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketServerConne
 	};
 	
 	objectFunctions._handleRawFrame = function(aFrame) {
-		console.log("com.developedbyme.nodejs.utils.websocket.WebSocketServerConnection::_handleRawFrame");
+		//console.log("com.developedbyme.nodejs.utils.websocket.WebSocketServerConnection::_handleRawFrame");
 		var opcode = WebSocketEncodingFunctions.decodeOpcode(this._protocolVersion, aFrame);
 		var eventName = null;
 		switch(opcode) {
@@ -130,38 +130,25 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketServerConne
 		
 		var decodedData = WebSocketEncodingFunctions.decodeMessages(this._protocolVersion, aFrame);
 		
-		console.log(decodedData);
-		
 		if(this.getExtendedEvent().hasEvent(eventName)) {
 			this.getExtendedEvent().perform(eventName, decodedData);
 		}
 	};
 	
-	objectFunctions.send = function(aData) {
-		//METODO
+	objectFunctions.send = function(aBuffer) {
+		this.sendRawFrame(WebSocketEncodingFunctions.encodeFrame(this._protocolVersion, aBuffer));
 	};
 	
-	objectFunctions.sendRawBuffer = function(aOpcode, aBuffer) {
-		this.sendRawFrame(WebSocketEncodingFunctions.encodeUtf8Message(this._protocolVersion, aBuffer.toString("utf8"), aOpcode));
+	objectFunctions.sendRawBuffer = function(aBuffer, aOpcode) {
+		this.sendRawFrame(WebSocketEncodingFunctions.encodeFrame(this._protocolVersion, aBuffer, aOpcode));
 	};
 	
 	objectFunctions.sendRawText = function(aText) {
-		console.log("com.developedbyme.nodejs.utils.websocket.WebSocketServerConnection::sendRawText");
-		console.log(aText);
+		//console.log("com.developedbyme.nodejs.utils.websocket.WebSocketServerConnection::sendRawText");
+		//console.log(aText);
 		
-		var newFrame;
-		switch(this._protocolVersion) {
-			case 0:
-				newFrame = WebSocketEncodingFunctions.encodeUtf8MessageHybi00(aText);
-				break;
-			case 13:
-				newFrame = WebSocketEncodingFunctions.encodeUtf8MessageHybi06WithoutMasks(aText);
-				break;
-			default:
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "sendRawText", "No protocol version named " + this._protocolVersion + ". Can't encode message.");
-				return;
-		}
-		console.log(newFrame);
+		var newFrame = WebSocketEncodingFunctions.encodeUtf8Message(this._protocolVersion, aText);
+		//console.log(newFrame);
 		this.sendRawFrame(newFrame);
 	};
 	

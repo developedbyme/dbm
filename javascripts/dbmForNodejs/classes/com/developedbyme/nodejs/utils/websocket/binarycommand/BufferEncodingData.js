@@ -24,26 +24,41 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.binarycommand.Buffer
 		
 		this.superCall();
 		
+		this._messageString = null;
+		
 		return this;
 	};
 	
 	objectFunctions.addData = function(aData) {
+		//console.log("com.developedbyme.nodejs.utils.websocket.binarycommand.BufferEncodingData::addData");
 		this._data.push(aData);
 	};
 	
 	objectFunctions.addToMessage = function(aValue) {
-		//METODO
+		//console.log("com.developedbyme.nodejs.utils.websocket.binarycommand.BufferEncodingData::addToMessage");
+		//console.log(aValue);
+		this._messageString += String.fromCharCode(aValue);
 	};
 	
 	objectFunctions.addStringToMessage = function(aValue) {
-		//METODO
+		//console.log("com.developedbyme.nodejs.utils.websocket.binarycommand.BufferEncodingData::addStringToMessage");
+		//console.log(aValue);
+		this._messageString += aValue;
 	};
 	
 	objectFunctions.startEncoding = function() {
-		//METODO
+		this._message = null;
+		this._messageString = "";
 		this._dataPosition = 0;
 		
 		return this;
+	};
+	
+	objectFunctions.getEncodedMessage = function() {
+		if(this._message === null) {
+			this._message = new Buffer(this._messageString, "utf8");
+		}
+		return this._message;
 	};
 	
 	objectFunctions.getNextByte = function() {

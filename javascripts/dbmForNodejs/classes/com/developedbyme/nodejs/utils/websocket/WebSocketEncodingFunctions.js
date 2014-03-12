@@ -2,26 +2,34 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFun
 	//console.log("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFunctions");
 	//"use strict";
 	
+	//Self reference
 	var WebSocketEncodingFunctions = dbm.importClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFunctions");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	staticFunctions.encodeUtf8MessageHybi00 = function(aMessage) {
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	staticFunctions.encodeFrameHybi00 = function(aBuffer) {
 		
-		var messageLength = Buffer.byteLength(aMessage, "utf8");
+		var messageLength = aBuffer.length;
 		var returnBuffer = new Buffer(messageLength + 2);
 		
 		returnBuffer[0] = 0x00;
-		returnBuffer.write(aMessage, 1, "utf8");
+		aBuffer.copy(returnBuffer, 1, 0, messageLength);
 		returnBuffer[messageLength + 1] = 0xFF;
 		
 		return returnBuffer;
 	};
-
-	staticFunctions.encodeUtf8MessageHybi06WithForcedMasks = function(aMessage, aMask1, aMask2, aMask3, aMask4) {
-		var messageLength = Buffer.byteLength(aMessage, "utf8");
+	
+	staticFunctions.encodeFrameHybi06WithForcedMasks = function(aBuffer, aOpcode, aMask1, aMask2, aMask3, aMask4) {
+		
+		aOpcode = VariableAliases.valueWithDefault(aOpcode, 0x01);
+		
+		var messageLength = aBuffer.length;
 		
 		var lengthCode = messageLength;
 		var maskOffset = 2;
@@ -42,7 +50,7 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFun
 		
 		var returnBuffer = new Buffer(messageLength + messageOffset);
 		
-		returnBuffer[0] = 0x81; //FIN, reserved and opcode
+		returnBuffer[0] = 0x80 | aOpcode; //FIN, reserved and opcode
 		returnBuffer[1] = 0x80 | lengthCode; //Mask bit and length code
 		
 		//Extended length
@@ -59,23 +67,20 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFun
 		//Mask
 		maskBuffer.copy(returnBuffer, maskOffset, 0, 4);
 		
-		var messageBuffer = new Buffer(messageLength);
-		messageBuffer.write(aMessage, 0, "utf8");
-		
 		//Data
 		for(var i = 0; i < messageLength; i++) {
 			var currentMask = maskBuffer[i%4];
-			returnBuffer[i+messageOffset] = currentMask ^ messageBuffer[i];
+			returnBuffer[i+messageOffset] = currentMask ^ aBuffer[i];
 		}
 		
 		return returnBuffer;
 	};
 	
-	staticFunctions.encodeUtf8MessageHybi06WithoutMasks = function(aMessage, aOpcode) {
+	staticFunctions.encodeFrameHybi06WithoutMasks = function(aBuffer, aOpcode) {
 		
-		aOpcode = (aOpcode != undefined) ? aOpcode : 0x01; //MENOTE: use variable aliases
+		aOpcode = VariableAliases.valueWithDefault(aOpcode, 0x01);
 		
-		var messageLength = Buffer.byteLength(aMessage, "utf8");
+		var messageLength = aBuffer.length;
 		
 		var lengthCode = messageLength;
 		var messageOffset = 2;
@@ -101,25 +106,33 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFun
 			returnBuffer[i+2] = (messageLength >> (8*(extendedLength-i-1))) & 0xFF;
 		}
 		
-		returnBuffer.write(aMessage, messageOffset, messageLength, "utf8");
+		aBuffer.copy(returnBuffer, messageOffset, 0, messageLength);
 		
 		return returnBuffer;
 	};
 	
-	staticFunctions.encodeUtf8MessageHybi06 = function(aMessage) {
-		return ClassReference.encodeUtf8MessageHybi06WithForcedMasks(aMessage, Math.floor(Math.random()*256), Math.floor(Math.random()*256), Math.floor(Math.random()*256), Math.floor(Math.random()*256));
+	staticFunctions.encodeFrameHybi06 = function(aBuffer, aOpcode) {
+		return ClassReference.encodeFrameHybi06WithForcedMasks(aBuffer, aOpcode, Math.floor(Math.random()*256), Math.floor(Math.random()*256), Math.floor(Math.random()*256), Math.floor(Math.random()*256));
+	};
+	
+	staticFunctions.getBufferFromUtf8String = function(aMessage) {
+		return new Buffer(aMessage, "utf8");
+	};
+	
+	staticFunctions.encodeFrame = function(aType, aBuffer, aOpcode) {
+		switch(aType) {
+			case 0:
+				return ClassReference.encodeFrameHybi00(aBuffer);
+			case 13:
+				return ClassReference.encodeFrameHybi06WithoutMasks(aBuffer, aOpcode);
+			default:
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, "[WebSocketEncodingFunctions]", "encodeFrame", "No protocol version named " + aType + ". Can't encode message.");
+				return null;
+		}
 	};
 	
 	staticFunctions.encodeUtf8Message = function(aType, aMessage, aOpcode) {
-		switch(aType) {
-			case 0:
-				return ClassReference.encodeUtf8MessageHybi00(aMessage);
-			case 13:
-				return ClassReference.encodeUtf8MessageHybi06WithoutMasks(aMessage, aOpcode);
-			default:
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, "[WebSocketEncodingFunctions]", "encodeUtf8Message", "No protocol version named " + aType + ". Can't encode message.");
-				return null;
-		}
+		return ClassReference.encodeFrame(aType, ClassReference.getBufferFromUtf8String(aMessage), aOpcode);
 	};
 	
 	staticFunctions.decodeOpcodeHybi00 = function(aBuffer) {

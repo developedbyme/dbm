@@ -13,6 +13,9 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.setup.BinaryC
 	var StringEncoder = dbm.importClass("com.developedbyme.utils.websocket.binarycommand.dataencoders.StringEncoder");
 	
 	//Utils
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var LogCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
 	
 	//Constants
 	var BinaryCommandPaths = dbm.importClass("com.developedbyme.constants.websocket.BinaryCommandPaths");
@@ -24,11 +27,11 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.setup.BinaryC
 	staticFunctions.setupEcho = function(aCommandConnection) {
 		var echoEncoder = aCommandConnection.createEncoder(BinaryCommandPaths.DEBUG_ECHO, [0, 0, 1]);
 		echoEncoder.addDataEncoder(StringEncoder.create());
-		//METODO: set up callback
+		echoEncoder.decodedEventPerformer.addCommand(CallFunctionCommand.createCommand(aCommandConnection, aCommandConnection.encodeAndSend, [BinaryCommandPaths.DEBUG_ECHO_REPLY, GetVariableObject.createSelectMultipleArgumentDataCommand(0)]));
 		
 		var echoReplyEncoder = aCommandConnection.createEncoder(BinaryCommandPaths.DEBUG_ECHO_REPLY, [0, 0, 2]);
 		echoReplyEncoder.addDataEncoder(StringEncoder.create());
-		//METODO: set up log function
+		echoReplyEncoder.decodedEventPerformer.addCommand(LogCommand.createCommand("Echo reply", GetVariableObject.createSelectDataCommand()));
 		
 	};
 });

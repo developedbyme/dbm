@@ -103,8 +103,8 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 	};
 	
 	objectFunctions.encodeAndSend = function(aMessageType /* ... aData */) {
-		console.log("com.developedbyme.utils.websocket.binarycommand.BinaryCommandConnection::encodeAndSend");
-		console.log(aMessageType);
+		//console.log("com.developedbyme.utils.websocket.binarycommand.BinaryCommandConnection::encodeAndSend");
+		//console.log(aMessageType);
 		
 		if(this._namedEncoders.select(aMessageType)) {
 			var currentEncoder = this._namedEncoders.currentSelectedItem;
@@ -113,11 +113,11 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 			
 			var encodingData = this._createEncodingData().setData(aData).startEncoding();
 			
-			console.log(currentEncoder);
+			//console.log(currentEncoder);
 			currentEncoder.encode(encodingData);
-			console.log(encodingData.getEncodedMessage());
+			//console.log(encodingData.getEncodedMessage());
 			this._connection.send(encodingData.getEncodedMessage());
-			currentEncoder.destroy();
+			encodingData.destroy();
 		}
 		else {
 			//METODO: error message
@@ -149,6 +149,7 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 	};
 	
 	objectFunctions._decodeMessage = function(aMessage) {
+		//console.log("com.developedbyme.utils.websocket.binarycommand.BinaryCommandConnection::_decodeMessage");
 		
 		var decodingData = this._createEncodingData().setMessage(aMessage).startDecoding();
 		
@@ -159,7 +160,8 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 		}
 		decoder.decode(decodingData);
 		var decodedData = decodingData.getDecodedData();
-		console.log(decodedData);
+		decodingData.destroy();
+		//console.log(decodedData);
 		
 		var eventDataObject = EventDataObject.create(decodedData, this, this);
 		decoder.decodedEventPerformer.perform(eventDataObject);

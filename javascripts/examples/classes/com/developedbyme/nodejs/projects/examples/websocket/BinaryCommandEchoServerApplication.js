@@ -55,8 +55,7 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.BinaryCo
 	};
 	
 	objectFunctions._createConnection = function(aApiCallData) {
-		console.log("com.developedbyme.nodejs.projects.examples.websocket.BinaryCommandEchoServerApplication::_createConnection");
-		
+		//console.log("com.developedbyme.nodejs.projects.examples.websocket.BinaryCommandEchoServerApplication::_createConnection");
 		
 		var nativeSocket = aApiCallData.routingData.socket;
 		var newConnection = BinaryCommandConnection.create(WebSocketServerConnection.create(nativeSocket, 13)); //MEDEBUG: use protocol version instead

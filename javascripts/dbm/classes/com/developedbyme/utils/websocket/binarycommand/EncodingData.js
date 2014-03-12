@@ -107,6 +107,14 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.EncodingData"
 		return this;
 	};
 	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._data = null;
+		this._message = null;
+		
+		this.superCall();
+	};
+	
 	staticFunctions.create = function() {
 		return ClassReference._createAndInitClass(ClassReference);
 	};
