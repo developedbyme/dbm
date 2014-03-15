@@ -2,21 +2,28 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	//console.log("com.developedbyme.core.objectparts.Property");
 	//"use strict";
 	
+	//Self reference
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	//Constants
 	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
-	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::_init");
 		

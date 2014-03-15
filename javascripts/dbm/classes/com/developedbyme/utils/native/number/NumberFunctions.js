@@ -15,4 +15,13 @@ dbm.registerClass("com.developedbyme.utils.native.number.NumberFunctions", null,
 		var multiplicationValue = Math.pow(10, aNumberOfDecimals);
 		return Math.round(multiplicationValue*aNumber)/multiplicationValue;
 	};
+	
+	staticFunctions.getBitsRequiredForValue = function(aValue) {
+		var debugCounter = 0;
+		var length = 0;
+		while(aValue >= Math.pow(2, length)) {
+			length++;
+		}
+		return length;
+	}
 });

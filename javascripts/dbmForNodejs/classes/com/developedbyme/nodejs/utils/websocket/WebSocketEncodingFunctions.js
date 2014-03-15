@@ -249,7 +249,7 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFun
 		aReturnArray.push(aBuffer.slice(0, startPosition+length));
 		
 		if(startPosition+length < aBuffer.length) {
-			splitMessagesHybi06(aBuffer.slice(startPosition+length), aReturnArray);
+			ClassReference.splitMessagesHybi06(aBuffer.slice(startPosition+length), aReturnArray);
 		}
 	};
 	

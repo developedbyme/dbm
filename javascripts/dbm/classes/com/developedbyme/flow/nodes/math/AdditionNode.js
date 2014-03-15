@@ -2,8 +2,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.AdditionNode", "com.develop
 	//console.log("com.developedbyme.flow.nodes.math.AdditionNode");
 	//"use strict";
 	
+	//Self reference
 	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.AdditionNode::_init");
 		

@@ -80,7 +80,7 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 			var newHolder = currentHolder[currentId];
 			if(VariableAliases.isSet(newHolder)) {
 				if(!(newHolder instanceof Array)) {
-					//METODO: error message
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "addEncoder", "Encoder for " + aMessageType + " is obstructed on path " + aPathId + ".");
 					return;
 				}
 			}
@@ -94,7 +94,6 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 		var eventPerformer = this.getExtendedEvent().createEvent(MessageExtendedEventIds.DECODED_MESSAGE + "/" + aMessageType);
 		aEncoder.decodedEventPerformer = eventPerformer;
 		
-		//METODO: set event performer to encoder
 		currentHolder[lastId] = aEncoder;
 	};
 	
@@ -110,19 +109,24 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 			var currentEncoder = this._namedEncoders.currentSelectedItem;
 			
 			var aData = ArrayFunctions.copyPartOfArray(arguments, 1, arguments.length);
-			
-			var encodingData = this._createEncodingData().setData(aData).startEncoding();
-			
-			//console.log(currentEncoder);
-			currentEncoder.encode(encodingData);
-			//console.log(encodingData.getEncodedMessage());
-			this._connection.send(encodingData.getEncodedMessage());
-			encodingData.destroy();
+			this.performEncodeAndSend(this._namedEncoders.currentSelectedItem, aData);
 		}
 		else {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "encodeAndSend", "Encoder " + aMessageType + " doesn't exist.");
 		}
 	};
+	
+	objectFunctions.performEncodeAndSend = function(aEncoder, aData) {
+		//console.log("com.developedbyme.utils.websocket.binarycommand.BinaryCommandConnection::performEncodeAndSend");
+		//console.log(aEncoder, aData);
+		var encodingData = this._createEncodingData().setData(aData).startEncoding();
+		
+		//console.log(currentEncoder);
+		aEncoder.encode(encodingData);
+		//console.log(encodingData.getEncodedMessage());
+		this._connection.send(encodingData.getEncodedMessage());
+		encodingData.destroy();
+	}
 	
 	objectFunctions._getMessageDecoder = function(aDecodingData) {
 		//console.log("com.developedbyme.utils.websocket.binarycommand.BinaryCommandConnection::_getMessageDecoder");
@@ -130,9 +134,10 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 		
 		var currentHolder = this._encoders;
 		var debugCounter = 0;
+		var debugPath = "";
 		while(true) {
 			if(debugCounter++ > 500) {
-				//METODO: error message
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_getMessageDecoder", "Loop has been running for too long.");
 				return null;
 			}
 			var currentIndex = aDecodingData.getNextByte();
@@ -141,9 +146,10 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 				return selectedItem;
 			}
 			else if(!VariableAliases.isSet(selectedItem)) {
-				//METODO: error message
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_getMessageDecoder", "No decoder exists for " + debugPath + currentIndex.toString() + ".");
 				return null;
 			}
+			debugPath += currentIndex.toString() + "/";
 			currentHolder = selectedItem;
 		}
 	};
@@ -155,7 +161,7 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 		
 		var decoder = this._getMessageDecoder(decodingData);
 		if(decoder === null) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_decodeMessage", "No decoder exists for message " + aMessage + ".");
 			return;
 		}
 		decoder.decode(decodingData);
@@ -165,6 +171,10 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 		
 		var eventDataObject = EventDataObject.create(decodedData, this, this);
 		decoder.decodedEventPerformer.perform(eventDataObject);
+	};
+	
+	objectFunctions.encodeIdPath = function(aPath) {
+		return ClassReference._encodeIdPath(aPath);
 	};
 	
 	staticFunctions.create = function(aConnection) {

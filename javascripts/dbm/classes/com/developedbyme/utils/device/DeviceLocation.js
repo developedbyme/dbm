@@ -144,7 +144,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.develope
 	
 	staticFunctions.create = function(aGeolocation) {
 		
-		aGeolocation = VariableAliases.valueWithDefault(aGeolocation, window.navigator.geolocation);
+		aGeolocation = VariableAliases.valueWithDefault(aGeolocation, window.navigator.geolocation);  //MENOTE: change this to dbm.getWindow()
 		
 		var newDeviceLocation = (new ClassReference()).init();
 		newDeviceLocation.setGeolocation(aGeolocation);

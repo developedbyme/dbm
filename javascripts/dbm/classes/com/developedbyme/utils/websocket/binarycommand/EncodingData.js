@@ -60,14 +60,17 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.EncodingData"
 	
 	objectFunctions.addToMessage = function(aValue) {
 		//MENOTE: should be overridden
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addToMessage", "Method should have been overridden.");
 	};
 	
 	objectFunctions.addStringToMessage = function(aValue) {
 		//MENOTE: should be overridden
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addStringToMessage", "Method should have been overridden.");
 	};
 	
 	objectFunctions.startEncoding = function() {
 		//MENOTE: should be overridden
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "startEncoding", "Method should have been overridden.");
 		
 		return this;
 	};
@@ -87,15 +90,17 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.EncodingData"
 	};
 	
 	objectFunctions.getNextByte = function() {
-		//METODO: error message
+		
 		//MENOTE: should be overridden
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getNextByte", "Method should have been overridden.");
 		
 		return 0;
 	};
 	
 	objectFunctions.getNextBytesAsUtf8String = function(aLength) {
-		//METODO: error message
+		
 		//MENOTE: should be overridden
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getNextBytesAsUtf8String", "Method should have been overridden.");
 		
 		this._messagePosition += aLength;
 		return "";

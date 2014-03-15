@@ -33,6 +33,8 @@ dbm.registerClass("com.developedbyme.flow.MultipleControllersSwitch", "com.devel
 		this._inputControllers = new Array();
 		this._outputControllers = new Array();
 		
+		this._defaultController = -1;
+		
 		return this;
 	};
 	
@@ -52,6 +54,16 @@ dbm.registerClass("com.developedbyme.flow.MultipleControllersSwitch", "com.devel
 	
 	objectFunctions.setOutputConnection = function(aConnection) {
 		this._outputConnection = aConnection;
+		
+		return this;
+	};
+	
+	objectFunctions.setDefaultController = function(aControllerProperty) {
+		this._defaultController = ArrayFunctions.indexOfInArray(this._inputControllers, aControllerProperty));
+		if(this._currentController.getValue() === -1) {
+			this._currentController.setValue(this._defaultController);
+			this._updateProperty.update();
+		}
 		
 		return this;
 	};
@@ -82,7 +94,7 @@ dbm.registerClass("com.developedbyme.flow.MultipleControllersSwitch", "com.devel
 		var removedController = ArrayFunctions.indexOfInArray(this._inputControllers, aControllerProperty);
 		if(currentController === removedController) {
 			this._updateProperty.update();
-			this._currentController.setValue(-1);
+			this._currentController.setValue(this._defaultController);
 			this._updateProperty.update();
 		}
 		

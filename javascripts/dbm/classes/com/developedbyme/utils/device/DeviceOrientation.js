@@ -117,7 +117,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceOrientation", "com.devel
 	
 	staticFunctions.create = function(aEventDispatcher) {
 		
-		aEventDispatcher = VariableAliases.valueWithDefault(aEventDispatcher, window);
+		aEventDispatcher = VariableAliases.valueWithDefault(aEventDispatcher, window); //MENOTE: change this to dbm.getWindow()
 		
 		var newDeviceOrientation = (new ClassReference()).init();
 		newDeviceOrientation.setEventDispatcher(aEventDispatcher);

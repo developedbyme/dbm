@@ -1,14 +1,20 @@
 dbm.registerClass("com.developedbyme.utils.native.object.ObjectFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.object.ObjectFunctions");
 	
+	//Self reference
 	var ObjectFunctions = dbm.importClass("com.developedbyme.utils.native.object.ObjectFunctions");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	
 	staticFunctions.identifyProperty = function(aPropertyValue, aObject) {

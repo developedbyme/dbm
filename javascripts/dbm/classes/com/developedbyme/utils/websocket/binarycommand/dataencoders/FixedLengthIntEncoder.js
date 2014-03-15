@@ -26,7 +26,12 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.dataencoders.
 		
 		this._length = 1;
 		this._signed = false;
-		this._initialMask = 0;
+		
+		return this;
+	};
+	
+	objectFunctions.setSigned = function(aSigned) {
+		this._signed = aSigned;
 		
 		return this;
 	};
@@ -36,43 +41,55 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.dataencoders.
 		this._length = aLength;
 		this._signed = aSigned;
 		
-		this._initialMask = Math.pow(2, 7*(this._length-1))-1;
-		
 		return this;
 	};
 	
-	objectFunctions.encodeValue = function(aValue, aEncodingData) {
+	objectFunctions._encodeValueWithLength = function(aValue, aEncodingData, aLength) {
+		//console.log("com.developedbyme.utils.websocket.binarycommand.dataencoders.FixedLengthIntEncoder::_encodeValueWithLength");
+		//console.log(aValue, aEncodingData, aLength);
 		
 		var numericValue = aValue;
-		if(this._signed) {
-			//METODO
+		if(this._signed && numericValue < 0) {
+			var fullLength = Math.pow(2, 7*(aLength));
+			numericValue = fullLength-aValue;
 		}
 		
-		var currentMask = this._initialMask;
+		var currentMask = Math.pow(2, 7*(aLength-1))-1;
 		
-		var length = this._length;
+		var length = aLength;
 		for(var i = 0; i < length; i++) {
 			var rest = numericValue & currentMask;
 			var currentValue = (numericValue-rest) >> (7*(length-i-1));
 			aEncodingData.addToMessage(currentValue);
 			numericValue = rest;
-			currentMask >> 7;
+			currentMask >>= 7;
 		}
 	};
 	
-	objectFunctions.decodeWithoutStore = function(aDecodingData) {
+	objectFunctions.encodeValue = function(aValue, aEncodingData) {
+		this._encodeValueWithLength(aValue, aEncodingData, this._length);
+	};
+	
+	objectFunctions._decodeWithLength = function(aDecodingData, aLength) {
 		var returnValue = 0;
 		
-		var length = this._length;
+		var length = aLength;
 		for(var i = 0; i < length; i++) {
 			returnValue += aDecodingData.getNextByte() * Math.pow(2, 7*(length-i-1));
 		}
 		
 		if(this._signed) {
-			//METODO
+			var fullLength = Math.pow(2, 7*(aLength));
+			if(returnValue > 0.5*fullLength) {
+				returnValue -= fullLength;
+			}
 		}
 		
 		return returnValue;
+	};
+	
+	objectFunctions.decodeWithoutStore = function(aDecodingData) {
+		return this._decodeWithLength(aDecodingData, this._length);
 	};
 	
 	staticFunctions.create = function(aLength, aSigned) {
