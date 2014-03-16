@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.EchoServ
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var WebSocketEncodingFunctions = dbm.importClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFunctions");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
@@ -57,13 +58,27 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.EchoServ
 		var nativeSocket = aApiCallData.routingData.socket;
 		var newConnection = WebSocketServerConnection.create(nativeSocket, 13); //MEDEBUG: use protocol version instead
 		newConnection.getExtendedEvent().addCommandToEvent(MessageExtendedEventIds.MESSAGE, CallFunctionCommand.createCommand(this, this._sendResponse, [newConnection, GetVariableObject.createSelectDataCommand()]));
-		this._conenctions.push(newConnection);
 		
+		newConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ERROR, CallFunctionCommand.createCommand(newConnection, newConnection.close, []));
+		newConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.TIMEOUT, CallFunctionCommand.createCommand(newConnection, newConnection.close, []));
+		newConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(this, this._connectionClosed, [GetVariableObject.createSelectOwnerObjectCommand()]));
+		this._conenctions.push(newConnection);
+	};
+	
+	objectFunctions._connectionClosed = function(aConnection) {
+		console.log("com.developedbyme.nodejs.projects.examples.websocket.EchoServerApplication::_connectionClosed");
+		
+		var index = ArrayFunctions.indexOfInArray(this._conenctions, aConnection);
+		if(index !== -1) {
+			this._conenctions.splice(index, 1);
+		}
+		
+		aConnection.destroy();
 	};
 	
 	objectFunctions._sendResponse = function(aConnection, aMessage) {
-		console.log("com.developedbyme.nodejs.projects.examples.websocket.EchoServerApplication::_createEchoConnection");
-		console.log(aMessage);
+		//console.log("com.developedbyme.nodejs.projects.examples.websocket.EchoServerApplication::_sendResponse");
+		//console.log(aMessage);
 		
 		aConnection.sendRawText(aMessage.toString("utf8"));
 	}

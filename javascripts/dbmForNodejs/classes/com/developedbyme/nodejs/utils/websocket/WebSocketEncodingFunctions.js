@@ -77,6 +77,8 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFun
 	};
 	
 	staticFunctions.encodeFrameHybi06WithoutMasks = function(aBuffer, aOpcode) {
+		//console.log("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFunctions::encodeFrameHybi06WithoutMasks");
+		//console.log(aBuffer, aOpcode);
 		
 		aOpcode = VariableAliases.valueWithDefault(aOpcode, 0x01);
 		

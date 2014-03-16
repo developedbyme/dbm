@@ -46,11 +46,11 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketServerConne
 		this._nativeSocket = aNativeSocket;
 		this._protocolVersion = aProtocolVersion;
 		
-		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.DATA, GenericExtendedEventIds.RAW_DATA, ClassReference._DATA, true, false);
-		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.ERROR, GenericExtendedEventIds.ERROR, ClassReference._CONNECTION, true, false);
-		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.TIMEOUT, GenericExtendedEventIds.TIMEOUT, ClassReference._CONNECTION, true, false);
-		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.END, GenericExtendedEventIds.END, ClassReference._CONNECTION, true, false);
-		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.CLOSE, GenericExtendedEventIds.CLOSE, ClassReference._CONNECTION, true, false);
+		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.DATA, GenericExtendedEventIds.RAW_DATA, ClassReference._DATA, true, true);
+		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.ERROR, GenericExtendedEventIds.ERROR, ClassReference._CONNECTION, true, true);
+		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.TIMEOUT, GenericExtendedEventIds.TIMEOUT, ClassReference._CONNECTION, true, true);
+		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.END, GenericExtendedEventIds.END, ClassReference._CONNECTION, true, true);
+		this.getExtendedEvent().linkJavascriptEvent(this._nativeSocket, WebSocketServerConnectionEventIds.CLOSE, GenericExtendedEventIds.CLOSE, ClassReference._CONNECTION, true, true);
 		
 		this.getExtendedEvent().activateJavascriptEventLink(ClassReference._CONNECTION);
 		this.getExtendedEvent().activateJavascriptEventLink(ClassReference._DATA);
@@ -60,8 +60,8 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketServerConne
 	
 	objectFunctions.setupDefaultDecodingAndResponse = function() {
 		this.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.RAW_DATA, CallFunctionCommand.createCommand(this, this._handleRawData, [GetVariableObject.createSelectMultipleArgumentDataCommand(0)]));
-		this.getExtendedEvent().addCommandToEvent(MessageExtendedEventIds.PING, CallFunctionCommand.createCommand(this, this.sendRawBuffer, [GetVariableObject.createSelectMultipleArgumentDataCommand(0), WebSocketOpcodeIds.PONG]));
-		this.getExtendedEvent().addCommandToEvent(ClassReference._CLOSE_MESSAGE, CallFunctionCommand.createCommand(this, this.sendRawBuffer, [GetVariableObject.createSelectMultipleArgumentDataCommand(0), WebSocketOpcodeIds.CLOSE]));
+		this.getExtendedEvent().addCommandToEvent(MessageExtendedEventIds.PING, CallFunctionCommand.createCommand(this, this.sendRawBuffer, [GetVariableObject.createSelectDataCommand(), WebSocketOpcodeIds.PONG]));
+		this.getExtendedEvent().addCommandToEvent(ClassReference._CLOSE_MESSAGE, CallFunctionCommand.createCommand(this, this.sendRawBuffer, [GetVariableObject.createSelectDataCommand(), WebSocketOpcodeIds.CLOSE]));
 		
 		
 		return this;
@@ -102,6 +102,7 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketServerConne
 	
 	objectFunctions._handleRawFrame = function(aFrame) {
 		//console.log("com.developedbyme.nodejs.utils.websocket.WebSocketServerConnection::_handleRawFrame");
+		
 		var opcode = WebSocketEncodingFunctions.decodeOpcode(this._protocolVersion, aFrame);
 		var eventName = null;
 		switch(opcode) {
@@ -140,6 +141,9 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketServerConne
 	};
 	
 	objectFunctions.sendRawBuffer = function(aBuffer, aOpcode) {
+		//console.log("com.developedbyme.nodejs.utils.websocket.WebSocketServerConnection::sendRawBuffer");
+		//console.log(aBuffer, aOpcode);
+		
 		this.sendRawFrame(WebSocketEncodingFunctions.encodeFrame(this._protocolVersion, aBuffer, aOpcode));
 	};
 	
@@ -154,6 +158,10 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketServerConne
 	
 	objectFunctions.sendRawFrame = function(aFrame) {
 		this._nativeSocket.write(aFrame);
+	};
+	
+	objectFunctions.close = function() {
+		this._nativeSocket.end();
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
@@ -172,6 +180,24 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.WebSocketServerConne
 		}
 		
 		return this.superCall(aName);
+	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		if(this._nativeSocket !== null) {
+			this._nativeSocket.destroy();
+		}
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._lastFrameType = null;
+		this._nativeSocket = null;
+		this._remainingBuffer = null;
+		
+		this.superCall();
 	};
 	
 	staticFunctions.create = function(aNativeSocket, aProtocolVersion) {
