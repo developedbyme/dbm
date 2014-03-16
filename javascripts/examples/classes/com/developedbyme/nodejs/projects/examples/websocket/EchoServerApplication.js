@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.EchoServ
 		this.superCall();
 		
 		this._webServer = null;
-		this._conenctions = new Array();
+		this._connections = new Array();
 		
 		return this;
 	};
@@ -62,15 +62,15 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.EchoServ
 		newConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ERROR, CallFunctionCommand.createCommand(newConnection, newConnection.close, []));
 		newConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.TIMEOUT, CallFunctionCommand.createCommand(newConnection, newConnection.close, []));
 		newConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(this, this._connectionClosed, [GetVariableObject.createSelectOwnerObjectCommand()]));
-		this._conenctions.push(newConnection);
+		this._connections.push(newConnection);
 	};
 	
 	objectFunctions._connectionClosed = function(aConnection) {
 		console.log("com.developedbyme.nodejs.projects.examples.websocket.EchoServerApplication::_connectionClosed");
 		
-		var index = ArrayFunctions.indexOfInArray(this._conenctions, aConnection);
+		var index = ArrayFunctions.indexOfInArray(this._connections, aConnection);
 		if(index !== -1) {
-			this._conenctions.splice(index, 1);
+			this._connections.splice(index, 1);
 		}
 		
 		aConnection.destroy();

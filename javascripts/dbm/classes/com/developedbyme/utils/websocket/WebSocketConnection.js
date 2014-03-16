@@ -73,6 +73,7 @@ dbm.registerClass("com.developedbyme.utils.websocket.WebSocketConnection", "com.
 			case GenericExtendedEventIds.OPEN:
 			case GenericExtendedEventIds.CLOSE:
 			case GenericExtendedEventIds.ERROR:
+			case GenericExtendedEventIds.RAW_DATA:
 			case MessageExtendedEventIds.MESSAGE:
 				return true;
 		}
