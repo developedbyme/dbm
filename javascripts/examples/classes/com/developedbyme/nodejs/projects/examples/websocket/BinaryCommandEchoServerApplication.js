@@ -21,6 +21,7 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.BinaryCo
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var WebSocketEncodingFunctions = dbm.importClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFunctions");
 	var BinaryCommandDebugSetup = dbm.importClass("com.developedbyme.utils.websocket.binarycommand.setup.BinaryCommandDebugSetup");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
@@ -58,12 +59,26 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.BinaryCo
 		//console.log("com.developedbyme.nodejs.projects.examples.websocket.BinaryCommandEchoServerApplication::_createConnection");
 		
 		var nativeSocket = aApiCallData.routingData.socket;
-		var newConnection = BinaryCommandConnection.create(WebSocketServerConnection.create(nativeSocket, 13)); //MEDEBUG: use protocol version instead
+		var socketConnection = WebSocketServerConnection.create(nativeSocket, 13); //MEDEBUG: use protocol version instead
+		var newConnection = BinaryCommandConnection.create(socketConnection);
 		newConnection.setEncodingDataClass(BufferEncodingData);
 		BinaryCommandDebugSetup.setup(newConnection);
+		
+		socketConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ERROR, CallFunctionCommand.createCommand(socketConnection, socketConnection.close, []));
+		socketConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.TIMEOUT, CallFunctionCommand.createCommand(socketConnection, socketConnection.close, []));
+		socketConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(this, this._connectionClosed, [GetVariableObject.createSelectOwnerObjectCommand()]));
 		this._conenctions.push(newConnection);
+	};
+	
+	objectFunctions._connectionClosed = function(aConnection) {
+		console.log("com.developedbyme.nodejs.projects.examples.websocket.BinaryCommandEchoServerApplication::_connectionClosed");
 		
+		var index = ArrayFunctions.indexOfInArray(this._conenctions, aConnection);
+		if(index !== -1) {
+			this._conenctions.splice(index, 1);
+		}
 		
+		aConnection.destroy();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
