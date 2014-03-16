@@ -23,6 +23,7 @@ dbm.registerClass("com.developedbyme.utils.native.number.FloatEncoder", null, fu
 	};
 	
 	staticFunctions.encodeBinary32 = function(aValue) {
+		//console.log("com.developedbyme.utils.native.number.FloatEncoder::encodeBinary32");
 		var returnValue = 0;
 		
 		if(aValue === 0) {
@@ -49,6 +50,17 @@ dbm.registerClass("com.developedbyme.utils.native.number.FloatEncoder", null, fu
 		var exponent = ClassReference._getExponent(integerValue, 128);
 		
 		var countNegativeExponent = (exponent === -1);
+		
+		if(exponent !== -1) {
+			integerValue -= Math.pow(2, exponent);
+			for(var i = 0; i < exponent; i++) {
+				var nextSwitch = Math.pow(2, exponent-i-1);
+				if(integerValue >= nextSwitch) {
+					returnValue += Math.pow(2, 23-i-1);
+					integerValue -= nextSwitch;
+				}
+			}
+		}
 		
 		var numberOfFractionBits = 23-(exponent);
 		

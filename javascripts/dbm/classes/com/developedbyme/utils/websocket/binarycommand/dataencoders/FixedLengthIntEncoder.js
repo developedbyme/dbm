@@ -58,8 +58,9 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.dataencoders.
 		
 		var length = aLength;
 		for(var i = 0; i < length; i++) {
-			var rest = numericValue & currentMask;
-			var currentValue = (numericValue-rest) >> (7*(length-i-1));
+			var currentValue = Math.floor(numericValue/Math.pow(2, 7*(length-i-1)));
+			var rest = numericValue - (currentValue) * Math.pow(2, 7*(length-i-1));
+			//console.log(i, Math.pow(2, 7*(length-i-1)), currentValue, numericValue, currentMask);
 			aEncodingData.addToMessage(currentValue);
 			numericValue = rest;
 			currentMask >>= 7;
@@ -71,11 +72,14 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.dataencoders.
 	};
 	
 	objectFunctions._decodeWithLength = function(aDecodingData, aLength) {
+		//console.log("com.developedbyme.utils.websocket.binarycommand.dataencoders.FixedLengthIntEncoder::_decodeWithLength");
+		//console.log(aLength);
 		var returnValue = 0;
 		
 		var length = aLength;
 		for(var i = 0; i < length; i++) {
-			returnValue += aDecodingData.getNextByte() * Math.pow(2, 7*(length-i-1));
+			var nextByte = aDecodingData.getNextByte();
+			returnValue += nextByte * Math.pow(2, 7*(length-i-1));
 		}
 		
 		if(this._signed) {

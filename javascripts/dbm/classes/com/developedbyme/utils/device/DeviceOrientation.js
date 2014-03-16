@@ -1,17 +1,26 @@
 dbm.registerClass("com.developedbyme.utils.device.DeviceOrientation", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.device.DeviceOrientation");
 	
+	//Self reference
 	var DeviceOrientation = dbm.importClass("com.developedbyme.utils.device.DeviceOrientation");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var AngleFunctions = dbm.importClass("com.developedbyme.utils.math.AngleFunctions");
 	
+	//Constants
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	var DeviceExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.DeviceExtendedEventIds");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.device.DeviceOrientation::_init");
 		

@@ -60,7 +60,8 @@ dbm.registerClass("com.developedbyme.gui.text.TextElement", "com.developedbyme.g
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
-		newNode.setElement(htmlCreator.createText(aText));
+		newNode.setElement(htmlCreator.createText(""));
+		newNode.setPropertyInput("text", aText);
 		newNode.setParent(theParent);
 		if(aAddToParent !== false) {
 			newNode.addToDom();

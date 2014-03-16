@@ -1,8 +1,20 @@
 dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.display.TransformElement3dNode");
 	
+	//Self reference
 	var TransformElement3dNode = dbm.importClass("com.developedbyme.flow.nodes.display.TransformElement3dNode");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.display.TransformElement3dNode::_init");
 		
@@ -48,7 +60,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode",
 				htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.clientHeight;
 			}
 			
-			var transformString = "perspective(" + this._perspective.getValueWithoutFlow() + "px) translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) translateZ(" + (this._z.getValueWithoutFlow()) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") scaleZ(" + this._scaleZ.getValueWithoutFlow() + ") rotateX(" + (180*this._rotateX.getValueWithoutFlow()/Math.PI) + "deg) rotateY(" + (180*this._rotateY.getValueWithoutFlow()/Math.PI) + "deg) rotateZ(" + (180*this._rotateZ.getValueWithoutFlow()/Math.PI) + "deg)";
+			//var transformString = "perspective(" + this._perspective.getValueWithoutFlow() + "px) translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) translateZ(" + (this._z.getValueWithoutFlow()) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") scaleZ(" + this._scaleZ.getValueWithoutFlow() + ") rotateX(" + (180*this._rotateX.getValueWithoutFlow()/Math.PI) + "deg) rotateY(" + (180*this._rotateY.getValueWithoutFlow()/Math.PI) + "deg) rotateZ(" + (180*this._rotateZ.getValueWithoutFlow()/Math.PI) + "deg)";
+			var transformString = "perspective(" + this._perspective.getValueWithoutFlow() + "px) translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) translateZ(" + (this._z.getValueWithoutFlow()) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") scaleZ(" + this._scaleZ.getValueWithoutFlow() + ") rotateZ(" + (180*this._rotateZ.getValueWithoutFlow()/Math.PI) + "deg) rotateX(" + (180*this._rotateX.getValueWithoutFlow()/Math.PI) + "deg) rotateY(" + (180*this._rotateY.getValueWithoutFlow()/Math.PI) + "deg)";
+			
 			var transformationOriginString = (100*this._pivotX.getValueWithoutFlow()) + "% " + (100*this._pivotY.getValueWithoutFlow()) + "%";
 			
 			//console.log(transformString, transformationOriginString);

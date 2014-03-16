@@ -62,7 +62,9 @@ dbm.registerClass("com.developedbyme.nodejs.utils.websocket.binarycommand.Buffer
 	};
 	
 	objectFunctions.getNextByte = function() {
+		//console.log("com.developedbyme.nodejs.utils.websocket.binarycommand.BufferEncodingData::getNextByte");
 		var returnValue = this._message[this._messagePosition];
+		//console.log(this._messagePosition, this._message, this._message[this._messagePosition]);
 		this._messagePosition++;
 		return returnValue;
 	};

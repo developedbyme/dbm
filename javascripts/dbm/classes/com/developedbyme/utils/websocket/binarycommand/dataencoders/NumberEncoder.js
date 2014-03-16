@@ -31,11 +31,18 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.dataencoders.
 	};
 	
 	objectFunctions.encodeValue = function(aValue, aEncodingData) {
+		//console.log("com.developedbyme.utils.websocket.binarycommand.dataencoders.NumberEncoder::encodeValue");
+		var encodedValue = FloatEncoder.encodeBinary32(aValue)
+		//console.log(aValue, encodedValue, encodedValue.toString(2), encodedValue.toString(2).length, FloatEncoder.decodeBinary32(encodedValue));
+		
 		this._intEncoder.encodeValue(FloatEncoder.encodeBinary32(aValue), aEncodingData);
 	};
 	
 	objectFunctions.decodeWithoutStore = function(aDecodingData) {
+		//console.log("com.developedbyme.utils.websocket.binarycommand.dataencoders.NumberEncoder::decodeWithoutStore");
+		
 		var intValue = this._intEncoder.decodeWithoutStore(aDecodingData);
+		//console.log(intValue, FloatEncoder.decodeBinary32(intValue));
 		return FloatEncoder.decodeBinary32(intValue);
 	};
 	
