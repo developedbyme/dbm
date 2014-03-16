@@ -4,6 +4,7 @@
  * @authur	mattiase
  * @version	0.0.01
  */
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink", "com.developedbyme.utils.data.treestructure.TreeStructureItem", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	//"use strict";

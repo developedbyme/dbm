@@ -1,3 +1,4 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.nodejs.utils.websocket.binarycommand.BufferEncodingData", "com.developedbyme.utils.websocket.binarycommand.EncodingData", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.nodejs.utils.websocket.binarycommand.BufferEncodingData");
 	//"use strict";

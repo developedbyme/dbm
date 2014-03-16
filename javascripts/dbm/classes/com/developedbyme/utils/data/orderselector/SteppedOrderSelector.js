@@ -1,3 +1,4 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.data.orderselector.SteppedOrderSelector", "com.developedbyme.utils.data.orderselector.OrderSelectorBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.orderselector.SteppedOrderSelector");
 	//"use strict";

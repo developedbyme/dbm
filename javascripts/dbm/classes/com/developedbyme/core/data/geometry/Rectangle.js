@@ -4,6 +4,7 @@
  * @author	Mattias Ekendahl (mattias@developedbyme.com)
  * @version	0.1.01
  */
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.core.data.geometry.Rectangle", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.geometry.Rectangle");
 	

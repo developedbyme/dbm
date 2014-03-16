@@ -1,3 +1,4 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.graphics.color.HtmlColorNames", null, function(objectFunctions, staticFunctions, ClassReference) {
 
 	var HtmlColorNames = dbm.importClass("com.developedbyme.utils.graphics.color.HtmlColorNames");

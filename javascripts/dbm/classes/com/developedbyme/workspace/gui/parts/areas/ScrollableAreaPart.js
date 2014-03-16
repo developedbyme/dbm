@@ -1,3 +1,4 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.workspace.gui.parts.areas.ScrollableAreaPart", "com.developedbyme.workspace.gui.parts.BaseWorkspacePart", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.workspace.gui.parts.areas.ScrollableAreaPart");
 	//"use strict";

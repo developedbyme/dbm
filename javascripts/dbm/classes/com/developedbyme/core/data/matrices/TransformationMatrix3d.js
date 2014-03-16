@@ -1,3 +1,4 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.core.data.matrices.TransformationMatrix3d", "com.developedbyme.core.data.matrices.Matrix", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.matrices.TransformationMatrix3d");
 

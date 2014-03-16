@@ -4,6 +4,7 @@
  * @authur Mattias Ekendahl (mattias@developedbyme.com)
  * @version 0.2.01
  */
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.math.LineIntersectionWithCircle2d", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.LineIntersectionWithCircle2d");
 	
