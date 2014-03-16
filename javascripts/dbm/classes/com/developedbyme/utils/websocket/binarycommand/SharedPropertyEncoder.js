@@ -26,6 +26,7 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.SharedPropert
 		this.superCall();
 		
 		this._indexEncoder = LengthEncoder.create();
+		this.addDestroyableObject(this._indexEncoder);
 		this._dataTypeDefinition = new Array();
 		this._dataTypeEncoders = new Array();
 		
@@ -78,6 +79,15 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.SharedPropert
 		
 		var dataTypeDecoder = this._dataTypeEncoders[dataType];
 		dataTypeDecoder.decode(aDecodingData);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._indexEncoder = null;
+		this._dataTypeDefinition = null;
+		this._dataTypeEncoders = null;
+		
+		this.superCall();
 	};
 	
 	staticFunctions.create = function() {

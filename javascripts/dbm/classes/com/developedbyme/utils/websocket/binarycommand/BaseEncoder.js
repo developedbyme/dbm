@@ -65,6 +65,23 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BaseEncoder",
 		}
 	};
 	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "decodedEventPerformer":
+				return false;
+		}
+		return this.superCall(aName);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._messagePrefix = null;
+		this._dataEncoders = null;
+		this.decodedEventPerformer = null;
+		
+		this.superCall();
+	};
+	
 	staticFunctions.create = function() {
 		return ClassReference._createAndInitClass(ClassReference);
 	};

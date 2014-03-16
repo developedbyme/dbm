@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.DeviceOr
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var WebSocketEncodingFunctions = dbm.importClass("com.developedbyme.nodejs.utils.websocket.WebSocketEncodingFunctions");
 	var BinaryCommandFlowSetup = dbm.importClass("com.developedbyme.utils.websocket.binarycommand.setup.BinaryCommandFlowSetup");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
@@ -65,7 +66,8 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.DeviceOr
 		console.log("com.developedbyme.nodejs.projects.examples.websocket.DeviceOrientationServerApplication::_createInputConnection");
 		
 		var nativeSocket = aApiCallData.routingData.socket;
-		var newConnection = SharedPropertiesConnection.create(WebSocketServerConnection.create(nativeSocket, 13)); //MEDEBUG: use protocol version instead
+		var socketConnection = WebSocketServerConnection.create(nativeSocket, 13); //MEDEBUG: use protocol version instead
+		var newConnection = SharedPropertiesConnection.create(socketConnection);
 		newConnection.setEncodingDataClass(BufferEncodingData);
 		BinaryCommandFlowSetup.setup(newConnection);
 		
@@ -79,6 +81,10 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.DeviceOr
 		
 		this._connections.push(newConnection);
 		
+		socketConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ERROR, CallFunctionCommand.createCommand(socketConnection, socketConnection.close, []));
+		socketConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.TIMEOUT, CallFunctionCommand.createCommand(socketConnection, socketConnection.close, []));
+		socketConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(this, this._connectionClosed, [newConnection]));
+		this._connections.push(newConnection);
 		newConnection.startUpdatingTransfer();
 	};
 	
@@ -86,7 +92,8 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.DeviceOr
 		console.log("com.developedbyme.nodejs.projects.examples.websocket.DeviceOrientationServerApplication::_createOutputConnection");
 		
 		var nativeSocket = aApiCallData.routingData.socket;
-		var newConnection = SharedPropertiesConnection.create(WebSocketServerConnection.create(nativeSocket, 13)); //MEDEBUG: use protocol version instead
+		var socketConnection = WebSocketServerConnection.create(nativeSocket, 13); //MEDEBUG: use protocol version instead
+		var newConnection = SharedPropertiesConnection.create(socketConnection);
 		newConnection.setEncodingDataClass(BufferEncodingData);
 		BinaryCommandFlowSetup.setup(newConnection);
 		
@@ -94,9 +101,22 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.websocket.DeviceOr
 		var betaProperty = newConnection.createSharedProperty("beta", 1, this._beta, SharedPropertyDataTypes.FLOAT_32);
 		var gammaProperty = newConnection.createSharedProperty("gamma", 2, this._gamma, SharedPropertyDataTypes.FLOAT_32);
 		
+		socketConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ERROR, CallFunctionCommand.createCommand(socketConnection, socketConnection.close, []));
+		socketConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.TIMEOUT, CallFunctionCommand.createCommand(socketConnection, socketConnection.close, []));
+		socketConnection.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(this, this._connectionClosed, [newConnection]));
 		this._connections.push(newConnection);
-		
 		newConnection.startUpdatingTransfer();
+	};
+
+	objectFunctions._connectionClosed = function(aConnection) {
+		console.log("com.developedbyme.nodejs.projects.examples.websocket.DeviceOrientationServerApplication::_connectionClosed");
+		
+		var index = ArrayFunctions.indexOfInArray(this._connections, aConnection);
+		if(index !== -1) {
+			this._connections.splice(index, 1);
+		}
+		
+		aConnection.destroy();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

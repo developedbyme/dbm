@@ -24,8 +24,8 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.dataencoders.
 		
 		this.superCall();
 		
-		this._range2Encoder = FixedLengthIntEncoder.create(2, false);
-		this._range3Encoder = FixedLengthIntEncoder.create(8, false);
+		this._range2Encoder = this.addDestroyableObject(FixedLengthIntEncoder.create(2, false));
+		this._range3Encoder = this.addDestroyableObject(FixedLengthIntEncoder.create(8, false));
 		
 		return this;
 	};
@@ -62,6 +62,14 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.dataencoders.
 		
 		//METODO: error message
 		return 0;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._range2Encoder = null;
+		this._range3Encoder = null;
+		
+		this.superCall();
 	};
 	
 	staticFunctions.create = function() {

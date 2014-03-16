@@ -57,7 +57,20 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.SharedPropert
 		this.setDependentConnectionsAsDirty();
 	};
 	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_connection":
+			case "_encoder":
+				return false;
+		}
+		return this.superCall(aName);
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._connection = null;
+		this._encoder = null;
+		this._dataArray = null;
 		
 		this.superCall();
 	};

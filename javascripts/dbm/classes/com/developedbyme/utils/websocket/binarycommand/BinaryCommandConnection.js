@@ -44,6 +44,7 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 	objectFunctions.setConnection = function(aConnection) {
 		this._connection = aConnection;
 		this._connection.getExtendedEvent().addCommandToEvent(MessageExtendedEventIds.MESSAGE, CallFunctionCommand.createCommand(this, this._decodeMessage, [GetVariableObject.createSelectDataCommand()]));
+		this.addDestroyableObject(this._connection);
 		
 		return this;
 	};
@@ -175,6 +176,16 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.BinaryCommand
 	
 	objectFunctions.encodeIdPath = function(aPath) {
 		return ClassReference._encodeIdPath(aPath);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._connection = null;
+		this._namedEncoders = null;
+		this._encoders = null;
+		this._encodingDataClass = null;
+		
+		this.superCall();
 	};
 	
 	staticFunctions.create = function(aConnection) {
