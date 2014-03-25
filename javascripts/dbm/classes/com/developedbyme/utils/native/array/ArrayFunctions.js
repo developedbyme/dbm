@@ -3,14 +3,21 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 	//console.log("com.developedbyme.utils.native.array.ArrayFunctions");
 	//"use strict";
 	
+	//Self reference
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
 	
 	staticFunctions.indexOfInArray = function(aArray, aData) {
 		if(aArray === null) {

@@ -21,6 +21,7 @@ dbm.registerClass("com.developedbyme.projects.examples.websocket.DeviceOrientati
 	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
 	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
 	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
+	var Transform3dSetupNode = dbm.importClass("com.developedbyme.flow.nodes.display.Transform3dSetupNode");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -31,6 +32,7 @@ dbm.registerClass("com.developedbyme.projects.examples.websocket.DeviceOrientati
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	var SharedPropertyDataTypes = dbm.importClass("com.developedbyme.constants.websocket.SharedPropertyDataTypes");
+	var RotationOrderTypes = dbm.importClass("com.developedbyme.constants.RotationOrderTypes");
 	
 	/**
 	 * Constructor
@@ -143,6 +145,8 @@ dbm.registerClass("com.developedbyme.projects.examples.websocket.DeviceOrientati
 		holder.setElementAsPositioned();
 		holder.setPropertyInput("x", scaleXNode.getProperty("outputValue"));
 		holder.setPropertyInput("y", scaleYNode.getProperty("outputValue"));
+		var transformationSetup = Transform3dSetupNode.create(holder.getElement(), 800);
+		transformationSetup.getProperty("display").startUpdating();
 		
 		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(this._mainTemplatePath, {}, true, holder.getElement(), true);
 		console.log(templateResult);
@@ -154,7 +158,7 @@ dbm.registerClass("com.developedbyme.projects.examples.websocket.DeviceOrientati
 		//var betaOffsetNode = AdditionNode.create(betaInvertNode.getProperty("outputValue"), -0.5*Math.PI);
 		var gammaInvertNode = MultiplicationNode.create(this._gamma, -1);
 		
-		var transformationNode = TransformElement3dNode.create(newDisplayObject.getElement(), 800, 0, 0, 0, 1, 1, 1, betaInvertNode.getProperty("outputValue"), this._gamma, alphaInvertNode.getProperty("outputValue"));
+		var transformationNode = TransformElement3dNode.create(newDisplayObject.getElement(), 0, 0, 0, 1, 1, 1, betaInvertNode.getProperty("outputValue"), this._gamma, alphaInvertNode.getProperty("outputValue"), 0.5, 0.5, RotationOrderTypes.ZXY);
 		
 		holder.getProperty("display").startUpdating();
 		newDisplayObject.getProperty("display").startUpdating();

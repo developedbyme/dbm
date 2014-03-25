@@ -44,6 +44,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowMana
 		return this;
 	};
 	
+	objectFunctions.addToSharedRandomValues = function(aValuesArray) {
+		console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::addToSharedRandomValues");
+		
+		var browserWindow = this._masterWindow.getBrowserWindow();
+		aValuesArray.push(browserWindow.screenX);
+		aValuesArray.push(browserWindow.screenY);
+		aValuesArray.push(browserWindow.innerWidth);
+		aValuesArray.push(browserWindow.innerHeight);
+		aValuesArray.push(browserWindow.outerWidth);
+		aValuesArray.push(browserWindow.outerHeight);
+		aValuesArray.push(browserWindow.screen.availWidth);
+		aValuesArray.push(browserWindow.screen.availHeight);
+		aValuesArray.push(Math.floor(100*browserWindow.devicePixelRatio));
+		
+		return this;
+	};
+	
 	objectFunctions.setMasterWindow = function(aWindow) {
 		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::setMasterWindow");
 		

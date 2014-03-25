@@ -32,6 +32,8 @@
 			this._javascriptVersion = null;
 			this.tempClassFunction = null;
 			this._currentScriptNode = null;
+			this._startupSeed = new Array();
+			this._startupSeed.push(Date.now());
 			
 			this._isStarting = false;
 			this._restartAfterStart = false;
@@ -54,7 +56,12 @@
 			return this._window;
 		};
 		
+		dbmObject.getStartupSeed = function() {
+			return this._startupSeed;
+		};
+		
 		dbmObject.setClassManager = function(aObject) {
+			this._startupSeed.push(Date.now());
 			this._classManager = aObject;
 		};
 		
@@ -183,6 +190,8 @@
 			//console.log("dbm::_performLoadFile");
 			//console.log(aFilePath);
 			
+			this._startupSeed.push(Date.now());
+			
 			var scriptTag = document.createElement("script");
 			
 			var scriptType = "application/javascript";
@@ -206,6 +215,7 @@
 		
 		dbmObject._onHtmlLoaded = function(aEvent) {
 			//console.log("dbm._onHtmlLoaded");
+			//console.log(aEvent);
 			if(dbm._htmlLoaded) return;
 			dbm._htmlLoaded = true;
 			
@@ -239,6 +249,8 @@
 		};
 		
 		dbmObject._start = function() {
+			
+			this._startupSeed.push(Date.now());
 			
 			this._isStarting = true;
 			

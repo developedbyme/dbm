@@ -3,23 +3,32 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	//console.log("com.developedbyme.gui.DisplayBaseObject");
 	//"use strict";
 	
+	//Self reference
 	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
+	var ExternalPrefixedCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty");
 	var TransformElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.TransformElementNode");
 	var SetElementToCssPropertiesNode = dbm.importClass("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode");
 	var RoundNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundNode");
 	
+	//Utils
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var UnitTypes = dbm.importClass("com.developedbyme.constants.UnitTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::_init");
 		
@@ -250,7 +259,16 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		}
 		aDefaultValue = VariableAliases.valueWithDefault(aDefaultValue, null);
 		
-		var newProperty = this.addProperty(aName, ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty)).setup(aCssProperty, aUnit, aDefaultValue);
+		var newProperty;
+		if(CssFunctions.isPrefixedProperty(aCssProperty)) {
+			newProperty = ExternalPrefixedCssVariableProperty.createWithoutExternalObject(this._objectProperty);
+		}
+		else {
+			newProperty = ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty);
+		}
+		
+		newProperty.setup(aCssProperty, aUnit, aDefaultValue);
+		this.addProperty(aName, newProperty);
 		this._updateFunctions.getObject("display").addInputConnection(newProperty);
 		
 		var setElementNode = SetElementToCssPropertiesNode.create(this._element).addUpdateProperty(newProperty);

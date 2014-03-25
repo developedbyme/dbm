@@ -8,10 +8,18 @@
 dbm.registerClass("com.developedbyme.utils.id.UuidGenerator", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.id.UuidGenerator");
 	
+	//Self reference
 	var UuidGenerator = dbm.importClass("com.developedbyme.utils.id.UuidGenerator");
 	
+	//Error report
+	
+	//Dependencies
 	var MersenneTwister = dbm.importClass("com.developedbyme.utils.random.MersenneTwister");
+	
+	//Utils
 	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
+	
+	//Constants
 	
 	/**
 	 * Constructor
@@ -62,4 +70,9 @@ dbm.registerClass("com.developedbyme.utils.id.UuidGenerator", "com.developedbyme
 		
 		return returnString;
 	}; //End function generateV4
+	
+	staticFunctions.create = function() {
+		var newUuidGenerator = (new UuidGenerator()).init();
+		return newUuidGenerator;
+	}
 });

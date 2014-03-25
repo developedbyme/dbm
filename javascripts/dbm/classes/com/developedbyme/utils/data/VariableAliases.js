@@ -3,12 +3,19 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	//console.log("com.developedbyme.utils.data.VariableAliases");
 	//"use strict";
 	
+	//Self reference
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	
 	staticFunctions.TRUE_STRINGS = ["true", "yes", "y", "1"];

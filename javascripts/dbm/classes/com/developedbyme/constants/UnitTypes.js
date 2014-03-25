@@ -18,12 +18,13 @@ dbm.registerClass("com.developedbyme.constants.UnitTypes", null, function(object
 	staticFunctions.MM = "mm";
 	staticFunctions.PT = "pt";
 	staticFunctions.PC = "pc";
+	staticFunctions.DEGREE = "deg";
 	
 	staticFunctions.unitTypes = [staticFunctions.UNKNOWN, staticFunctions.NONE, staticFunctions.PX, staticFunctions.PERCENTAGE, staticFunctions.EM, staticFunctions.EX, staticFunctions.IN, staticFunctions.CM, staticFunctions.MM, staticFunctions.PT, staticFunctions.PC];
 	
 	staticFunctions.svgUnitTypes = [0, 1, 5, 2, 3, 4, 8, 6, 7, 9, 10];
 	
-	staticFunctions.getSvgUnitType = function getSvgUnitType(aUnitType) {
+	staticFunctions.getSvgUnitType = function(aUnitType) {
 		
 		var unitTypeIndex = ArrayFunctions.indexOfInArray(ClassReference.unitTypes, aUnitType);
 		if(unitTypeIndex >= 0) {

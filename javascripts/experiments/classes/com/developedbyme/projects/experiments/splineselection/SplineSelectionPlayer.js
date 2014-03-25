@@ -30,6 +30,8 @@ dbm.registerClass("com.developedbyme.projects.experiments.splineselection.Spline
 	objectFunctions._init = function() {
 		console.log("com.developedbyme.projects.experiments.splineselection.SplineSelectionPlayer::_init");
 		
+		//METODO: this needs to be updated to set perspective
+		
 		this.superCall();
 		
 		this.setElementAsTransformed();

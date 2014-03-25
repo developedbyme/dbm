@@ -2,12 +2,23 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode");
 	
+	//Self reference
 	var TransformationTo3dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode");
 	
+	//Error report
+	
+	//Dependencies
 	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	var RotationOrderTypes = dbm.importClass("com.developedbyme.constants.RotationOrderTypes");
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode::_init");
 		
@@ -22,7 +33,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		this._scaleX = this.createProperty("scaleX", 1);
 		this._scaleY = this.createProperty("scaleY", 1);
 		this._scaleZ = this.createProperty("scaleZ", 1);
-		this._rotationOrder = this.createProperty("rotationOrder", "xyz");
+		this._rotationOrder = this.createProperty("rotationOrder", RotationOrderTypes.XYZ);
 		this._outputMatrix = this.createProperty("outputMatrix", Matrix.createIdentity(4, 4));
 		
 		this._matrixOrder = new Array(3);
@@ -40,6 +51,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		return this;
 	};
 	
+	objectFunctions._setMatrixOrder = function(aMatrix1, aMatrix2, aMatrix3) {
+		this._matrixOrder[0] = aMatrix1;
+		this._matrixOrder[1] = aMatrix2;
+		this._matrixOrder[2] = aMatrix3;
+	};
+	
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode::_update");
 		
@@ -50,10 +67,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		
 		var theMatrix = this._outputMatrix.getValueWithoutFlow();
 		
+		//METODO: split this up in separate flows
 		this._scaleMatrix.setValue(0, 0, this._scaleX.getValueWithoutFlow());
 		this._scaleMatrix.setValue(1, 1, this._scaleY.getValueWithoutFlow());
 		this._scaleMatrix.setValue(2, 2, this._scaleZ.getValueWithoutFlow());
 		
+		//METODO: split this up in separate flows
 		this._rotateXMatrix.setValue(1, 1, Math.cos(rotateX));
 		this._rotateXMatrix.setValue(2, 1, Math.sin(rotateX));
 		this._rotateXMatrix.setValue(1, 2, -1*Math.sin(rotateX));
@@ -69,38 +88,27 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		this._rotateZMatrix.setValue(0, 1, -1*Math.sin(rotateZ));
 		this._rotateZMatrix.setValue(1, 1, Math.cos(rotateZ));
 		
+		//METODO: split this up in separate flows
 		switch(rotationOrder) {
 			default:
 				//METODO: error report
-			case "xyz":
-				this._matrixOrder[0] = this._rotateXMatrix;
-				this._matrixOrder[1] = this._rotateYMatrix;
-				this._matrixOrder[2] = this._rotateZMatrix;
+			case RotationOrderTypes.XYZ:
+				this._setMatrixOrder(this._rotateXMatrix, this._rotateYMatrix, this._rotateZMatrix);
 				break;
-			case "xzy":
-				this._matrixOrder[0] = this._rotateXMatrix;
-				this._matrixOrder[2] = this._rotateYMatrix;
-				this._matrixOrder[1] = this._rotateZMatrix;
+			case RotationOrderTypes.XZY:
+				this._setMatrixOrder(this._rotateXMatrix, this._rotateZMatrix, this._rotateYMatrix);
 				break;
-			case "yxz":
-				this._matrixOrder[1] = this._rotateXMatrix;
-				this._matrixOrder[0] = this._rotateYMatrix;
-				this._matrixOrder[2] = this._rotateZMatrix;
+			case RotationOrderTypes.YXZ:
+				this._setMatrixOrder(this._rotateYMatrix, this._rotateXMatrix, this._rotateZMatrix);
 				break;
-			case "yzx":
-				this._matrixOrder[2] = this._rotateXMatrix;
-				this._matrixOrder[0] = this._rotateYMatrix;
-				this._matrixOrder[1] = this._rotateZMatrix;
+			case RotationOrderTypes.YZX:
+				this._setMatrixOrder(this._rotateYMatrix, this._rotateZMatrix, this._rotateYMatrix);
 				break;
-			case "zxy":
-				this._matrixOrder[1] = this._rotateXMatrix;
-				this._matrixOrder[2] = this._rotateYMatrix;
-				this._matrixOrder[0] = this._rotateZMatrix;
+			case RotationOrderTypes.ZXY:
+				this._setMatrixOrder(this._rotateZMatrix, this._rotateXMatrix, this._rotateYMatrix);
 				break;
-			case "zyx":
-				this._matrixOrder[2] = this._rotateXMatrix;
-				this._matrixOrder[1] = this._rotateYMatrix;
-				this._matrixOrder[0] = this._rotateZMatrix;
+			case RotationOrderTypes.ZYX:
+				this._setMatrixOrder(this._rotateZMatrix, this._rotateYMatrix, this._rotateXMatrix);
 				break;
 		}
 		

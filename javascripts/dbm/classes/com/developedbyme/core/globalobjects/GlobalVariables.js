@@ -6,4 +6,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.GlobalVariables", null, 
 	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
 	
 	staticFunctions.FLOW_UPDATE_NUMBER = 1;
+	staticFunctions.RANDOM_VALUES = new Array();
+	staticFunctions.SHARED_RANDOM_NUMBER_GENERATOR = null;
 });

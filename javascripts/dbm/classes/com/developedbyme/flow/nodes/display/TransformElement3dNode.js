@@ -8,10 +8,16 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode",
 	//Error report
 	
 	//Dependencies
+	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
+	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
+	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
 	
 	//Utils
+	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
+	var CssTransformFunctions = dbm.importClass("com.developedbyme.utils.css.CssTransformFunctions");
 	
 	//Constants
+	var RotationOrderTypes = dbm.importClass("com.developedbyme.constants.RotationOrderTypes");
 	
 	/**
 	 * Constructor
@@ -21,7 +27,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode",
 		
 		this.superCall();
 		
-		this._perspective = this.createProperty("perspective", 1500);
 		this._x = this.createProperty("x", 0);
 		this._y = this.createProperty("y", 0);
 		this._z = this.createProperty("z", 0);
@@ -33,11 +38,26 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode",
 		this._rotateZ = this.createProperty("rotateZ", 0);
 		this._pivotX = this.createProperty("pivotX", 0.5);
 		this._pivotY = this.createProperty("pivotY", 0.5);
-		this._pivotZ = this.createProperty("pivotZ", 0.5);
+		this._rotationOrder = this.createProperty("rotationOrder", RotationOrderTypes.XYZ);
+		this._transformString = this.createProperty("transformString", null);
+		
 		this._element = this.createProperty("element", null);
 		this._display = this.createGhostProperty("display");
 		
-		this.createUpdateFunction("default", this._update, [this._perspective, this._x, this._y, this._z, this._scaleX, this._scaleY, this._scaleZ, this._rotateX, this._rotateY, this._rotateZ, this._pivotX, this._pivotY, this._pivotZ, this._element], [this._display]);
+		this._sizeOfElementNode = this.addDestroyableObject(SizeOfElementNode.create(this._element));
+		
+		this._elementWidth = this.createProperty("elementWidth", this._sizeOfElementNode.getProperty("width"));
+		this._elementHeight = this.createProperty("elementHeight", this._sizeOfElementNode.getProperty("height"));
+		
+		var pivotOffsetXMultiplierNode = this.addDestroyableObject(MultiplicationNode.create(this._pivotX, this._elementWidth));
+		var pivotOffsetYMultiplierNode = this.addDestroyableObject(MultiplicationNode.create(this._pivotY, this._elementHeight));
+		
+		var offsetedXNode = this.addDestroyableObject(SubtractionNode.create(this._x, pivotOffsetXMultiplierNode.getProperty("outputValue")));
+		var offsetedYNode = this.addDestroyableObject(SubtractionNode.create(this._y, pivotOffsetYMultiplierNode.getProperty("outputValue")));
+		
+		this.createUpdateFunctionWithArguments("transformString", CssTransformFunctions.generateFullTransformString, [offsetedXNode.getProperty("outputValue"), offsetedYNode.getProperty("outputValue"), this._z, this._scaleX, this._scaleY, this._scaleZ, this._rotateX, this._rotateY, this._rotateZ, this._rotationOrder], [this._transformString]);
+		
+		this.createUpdateFunction("default", this._update, [this._transformString, this._pivotX, this._pivotY, this._element], [this._display]);
 		
 		return this;
 	};
@@ -49,42 +69,20 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode",
 		
 		if(htmlElement !== null) {
 			
-			var htmlElementWidthOffset;
-			var htmlElementHeightOffset;
-			
-			if(htmlElement.clientWidth === 0 && !isNaN(htmlElement.width) && htmlElement.width !== 0) {
-				htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.width;
-				htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.height;
-			}
-			else {
-				htmlElementWidthOffset = -1*this._pivotX.getValueWithoutFlow()*htmlElement.clientWidth;
-				htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.clientHeight;
-			}
-			
-			//var transformString = "perspective(" + this._perspective.getValueWithoutFlow() + "px) translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) translateZ(" + (this._z.getValueWithoutFlow()) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") scaleZ(" + this._scaleZ.getValueWithoutFlow() + ") rotateX(" + (180*this._rotateX.getValueWithoutFlow()/Math.PI) + "deg) rotateY(" + (180*this._rotateY.getValueWithoutFlow()/Math.PI) + "deg) rotateZ(" + (180*this._rotateZ.getValueWithoutFlow()/Math.PI) + "deg)";
-			var transformString = "perspective(" + this._perspective.getValueWithoutFlow() + "px) translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) translateZ(" + (this._z.getValueWithoutFlow()) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") scaleZ(" + this._scaleZ.getValueWithoutFlow() + ") rotateZ(" + (180*this._rotateZ.getValueWithoutFlow()/Math.PI) + "deg) rotateX(" + (180*this._rotateX.getValueWithoutFlow()/Math.PI) + "deg) rotateY(" + (180*this._rotateY.getValueWithoutFlow()/Math.PI) + "deg)";
+			var transformString = this._transformString.getValueWithoutFlow();
 			
 			var transformationOriginString = (100*this._pivotX.getValueWithoutFlow()) + "% " + (100*this._pivotY.getValueWithoutFlow()) + "%";
 			
 			//console.log(transformString, transformationOriginString);
 			
-			htmlElement.style.setProperty("-moz-transform", transformString, "");
-			htmlElement.style.setProperty("-ms-transform", transformString, "");
-			htmlElement.style.setProperty("-o-transform", transformString, "");
-			htmlElement.style.setProperty("-webkit-transform", transformString, "");
-			htmlElement.style.setProperty("transform", transformString, "");
+			CssFunctions.setBrowserSpecificCssToElement(htmlElement, "transform", transformString);
 			
-			htmlElement.style.setProperty("-moz-transform-origin", transformationOriginString, "");
-			htmlElement.style.setProperty("-ms-transform-origin", transformationOriginString, "");
-			htmlElement.style.setProperty("-o-transform-origin", transformationOriginString, "");
-			htmlElement.style.setProperty("-webkit-transform-origin", transformationOriginString, "");
-			htmlElement.style.setProperty("transform-origin", transformationOriginString, "");
+			CssFunctions.setBrowserSpecificCssToElement(htmlElement, "transform-origin", transformationOriginString);
 		}
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this._perspective = null;
 		this._x = null;
 		this._y = null;
 		this._z = null;
@@ -98,15 +96,18 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode",
 		this._display = null;
 		this._pivotX = null;
 		this._pivotY = null;
-		this._pivotZ = null;
+		this._rotationOrder = null;
+		this._transformString = null;
+		this._sizeOfElementNode = null;
 		
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aElement, aPerspective, aX, aY, aZ, aScaleX, aScaleY, aScaleZ, aRotateX, aRotateY, aRotateZ, aPivotX, aPivotY, aPivotZ) {
+	staticFunctions.create = function(aElement, aX, aY, aZ, aScaleX, aScaleY, aScaleZ, aRotateX, aRotateY, aRotateZ, aPivotX, aPivotY, aRotationOrder) {
+		//console.log("com.developedbyme.flow.nodes.display.TransformElement3dNode::create");
+		//console.log(aElement, aX, aY, aZ, aScaleX, aScaleY, aScaleZ, aRotateX, aRotateY, aRotateZ, aPivotX, aPivotY, aRotationOrder);
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("element", aElement);
-		newNode.setPropertyInputWithoutNull("perspective", aPerspective);
 		newNode.setPropertyInputWithoutNull("x", aX);
 		newNode.setPropertyInputWithoutNull("y", aY);
 		newNode.setPropertyInputWithoutNull("z", aZ);
@@ -118,7 +119,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElement3dNode",
 		newNode.setPropertyInputWithoutNull("rotateZ", aRotateZ);
 		newNode.setPropertyInputWithoutNull("pivotX", aPivotX);
 		newNode.setPropertyInputWithoutNull("pivotY", aPivotY);
-		newNode.setPropertyInputWithoutNull("pivotZ", aPivotZ);
+		newNode.setPropertyInputWithoutNull("rotationOrder", aRotationOrder);
 		return newNode;
 	};
 });

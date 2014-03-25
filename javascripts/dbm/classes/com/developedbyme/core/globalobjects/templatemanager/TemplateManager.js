@@ -97,6 +97,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 		var copiedTemplate = DomManipulationFunctions.importNode(template, true, theDocument);
 		if(aRemoveId) {
 			copiedTemplate.id = null;
+			copiedTemplate.removeAttribute("id");
 		}
 		if(aAddToParent) {
 			theParent.appendChild(copiedTemplate);

@@ -5,6 +5,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var Application = dbm.importClass("com.developedbyme.core.globalobjects.browserdetector.data.Application");
 	
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	
 	dbm.setClassAsSingleton("dbmBrowserDetector");
 	
 	objectFunctions._init = function() {
@@ -20,6 +22,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 		this.renderEngine = null;
 		
 		this._applications = (new NamedArray()).init();
+		
+		return this;
+	};
+	
+	objectFunctions.addToSharedRandomValues = function(aValuesArray) {
+		console.log("com.developedbyme.core.globalobjects.browserdetector.BrowserDetector::addToSharedRandomValues");
+		
+		StringFunctions.getCharCodes(dbm.getWindow().navigator.userAgent, aValuesArray);
 		
 		return this;
 	};
@@ -167,7 +177,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.BrowserD
 	};
 	
 	objectFunctions.detectBrowserFromUserAgent = function(aUserAgentString) {
-		this.detectBrowser(navigator.userAgent);
+		this.detectBrowser(dbm.getWindow().navigator.userAgent);
 	};
 	
 	objectFunctions.getApplication = function(aIndex) {

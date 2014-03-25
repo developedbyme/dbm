@@ -3,20 +3,32 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset");
 	//"use strict";
 	
+	//Self reference
 	var XmlAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	var FormUrlEncodeReevaluationObject = dbm.importClass("com.developedbyme.utils.reevaluation.encodingreevaluation.FormUrlEncodeReevaluationObject");
 	
+	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	var ReadyStateTypes = dbm.importClass("com.developedbyme.constants.ReadyStateTypes");
 	var XmlHttpResponseTypes = dbm.importClass("com.developedbyme.constants.XmlHttpResponseTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::_init");
 		
@@ -24,10 +36,34 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		
 		this._loader = null;
 		this._url = null;
+		this._requestMethod = "GET";
+		this._requestDataReevaluator = null;
+		this._requestHeaders = null;
 		this.useAsync = true;
 		
 		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._setStatus, [AssetStatusTypes.LOADED]));
 		this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADING_ERROR, CallFunctionCommand.createCommand(this, this._setStatus, [AssetStatusTypes.ERROR]));
+		
+		return this;
+	};
+	
+	objectFunctions.setRequestMethod = function(aMethod) {
+		this._requestMethod = aMethod;
+		
+		return this;
+	};
+	
+	objectFunctions.getRequestMethod = function() {
+		return this._requestMethod;
+	};
+	
+	objectFunctions.addHeader = function(aName, aValue) {
+		if(this._requestHeaders === null) {
+			this._requestHeaders = NamedArray.create(true);
+			this.addDestroyableObject(this._requestHeaders);
+		}
+		
+		this._requestHeaders.addObject(aName, ReevaluationCreator.reevaluationOrStaticValue(aValue));
 		
 		return this;
 	};
@@ -37,6 +73,26 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		//console.log(aUrl);
 		
 		this._url = aUrl;
+		
+		return this;
+	};
+	
+	objectFunctions.getUrl = function() {
+		return this._url;
+	};
+	
+	objectFunctions.setupAsFormObjectPost = function(aData) {
+		this._requestMethod = "POST";
+		this.addHeader("Content-Type", "application/x-www-form-urlencoded");
+		
+		this.setupFormObject(aData);
+		
+		return this;
+	};
+	
+	objectFunctions.setupFormObject = function(aData) {
+		
+		this._requestDataReevaluator = FormUrlEncodeReevaluationObject.createCommand(aData);
 		
 		return this;
 	};
@@ -74,25 +130,47 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 	};
 	
 	objectFunctions.load = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::load");
+		console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::load");
 		
 		if(this._status.getValue() !== AssetStatusTypes.NOT_LOADED) {
 			return this;
 		}
 		
+		var currentUrl = this._url;
+		var requestData = null;
+		if(this._requestDataReevaluator !== null) {
+			requestData = this._requestDataReevaluator.reevaluate(this);
+			if(this._requestMethod === "GET") {
+				currentUrl += "?" + requestData;
+				requestData = null;
+			}
+		}
+		
+		console.log(this._requestMethod, currentUrl, requestData);
+		
 		this._setStatus(AssetStatusTypes.LOADING);
 		this._loader = XmlCreator.createXmlLoader();
-		this._loader.open("GET", this._url, this.useAsync);
+		this._loader.open(this._requestMethod, currentUrl, this.useAsync);
 		this._setupResponseType();
 		
 		var thisPointer = this;
+		//METODO: change this to addEventListener
 		this._loader.onreadystatechange = function() {
 			thisPointer._updateReadyState();
 		};
-		//this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.LOAD, LoadingExtendedEventIds.LOADED, LoadingExtendedEventIds.LOADED, true).activate();
-		//this.getExtendedEvent().linkJavascriptEvent(this._data, JavascriptEventIds.ERROR, LoadingExtendedEventIds.LOADING_ERROR, LoadingExtendedEventIds.LOADED, true);
 		
-		this._loader.send(null);
+		if(this._requestHeaders !== null) {
+			var currentArray = this._requestHeaders.getNamesArray();
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentHeaderName = currentArray[i];
+				var currentReevaluator = this._requestHeaders.getObject(currentHeaderName);
+				console.log(">>>>>", currentHeaderName, currentReevaluator.reevaluate(this));
+				this._loader.setRequestHeader(currentHeaderName, currentReevaluator.reevaluate(this));
+			}
+		}
+		
+		this._loader.send(requestData);
 		
 		return this;
 	};

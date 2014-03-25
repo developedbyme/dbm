@@ -2,11 +2,19 @@
 dbm.registerClass("com.developedbyme.utils.reevaluation.ReevaluationCreator", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.reevaluation.ReevaluationCreator");
 	
+	//Self reference
 	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
 	
+	//Error report
+	
+	//Dependencies
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
+	
+	//Utils
+	
+	//Constants
 	
 	staticFunctions.reevaluationOrStaticValue = function(aValue) {
 		//console.log("com.developedbyme.utils.reevaluation.ReevaluationCreator::reevaluationOrStaticValue");

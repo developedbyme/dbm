@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.Normal
 		
 		this.prefix = "";
 		this.suffix = "";
-		this._idNr = 0;
+		this._idNumber = 0;
 		
 		return this;
 	};
@@ -37,8 +37,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.Normal
 	 * @return	The id as a string.
 	 */
 	objectFunctions.getNewId = function() {
-		var returnId = this._idNr;
-		this._idNr++;
+		var returnId = this._idNumber;
+		this._idNumber++;
 		return this.getId(returnId);
 	};
 	
@@ -47,9 +47,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.Normal
 	 *
 	 * @return	The number part for the id.
 	 */
-	objectFunctions.getNewIdNr = function() {
-		var returnId = this._idNr;
-		this._idNr++;
+	objectFunctions.getNewIdNumber = function() {
+		var returnId = this._idNumber;
+		this._idNumber++;
 		return returnId;
 	};
 	

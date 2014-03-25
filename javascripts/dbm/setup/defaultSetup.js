@@ -24,6 +24,7 @@ dbm.runTempFunction(function() {
 	var StatisticsManager = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager");
 	var TemplateManager = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.TemplateManager");
 	var DataManager = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.DataManager");
+	var PerformanceManager = dbm.importClass("com.developedbyme.core.globalobjects.performancemanager.PerformanceManager");
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
@@ -39,7 +40,15 @@ dbm.runTempFunction(function() {
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
+	var MersenneTwister = dbm.importClass("com.developedbyme.utils.random.MersenneTwister");
+	var UuidGenerator = dbm.importClass("com.developedbyme.utils.id.UuidGenerator");
+	var UuidV4IdGroup = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.objects.UuidV4IdGroup");
+	
 	dbm.addStartFunction(function() {
+		
+		ArrayFunctions.concatToArray(GlobalVariables.RANDOM_VALUES, dbm.getStartupSeed());
 		
 		ErrorManagerDefaultSetup.setup();
 		InterpolationDefaultSetup.setup();
@@ -52,12 +61,16 @@ dbm.runTempFunction(function() {
 		AnimationManager.getInstance().start();
 		
 		BrowserDetector.getInstance().detectBrowserFromUserAgent();
+		BrowserDetector.getInstance().addToSharedRandomValues(GlobalVariables.RANDOM_VALUES);
 		PageManager.getInstance().setDocument(dbm.getDocument());
 		PageManager.getInstance().setupQueryStringParameters();
+		PageManager.getInstance().addToSharedRandomValues(GlobalVariables.RANDOM_VALUES);
 		AssetRepository.getInstance().setupDefaultExtensions();
 		AssetRepository.getInstance().setRoot(PageManager.getInstance().getCurrentFolderPath());
 		
 		WindowManager.getInstance().setMasterWindow(dbm.getWindow());
+		WindowManager.getInstance().addToSharedRandomValues(GlobalVariables.RANDOM_VALUES);
+		PerformanceManager.getInstance().addToSharedRandomValues(GlobalVariables.RANDOM_VALUES);
 		
 		DebugManager.getInstance().setCheckForDeletion(true);
 		
@@ -80,6 +93,13 @@ dbm.runTempFunction(function() {
 		dbm.singletons.dbmAssetRepository.linkFolderToServer("remotes/localhost", "http://localhost");
 		dbm.singletons.dbmAssetRepository.linkFolderToServer("remotes/dbm", "http://www.developedbyme.com");
 		
+		GlobalVariables.SHARED_RANDOM_NUMBER_GENERATOR = MersenneTwister.create().initByArray(GlobalVariables.RANDOM_VALUES);
+		
+		var uuidGenerator = UuidGenerator.create();
+		uuidGenerator.randomGenerator = GlobalVariables.SHARED_RANDOM_NUMBER_GENERATOR;
+		IdManager.getInstance().setIdGroup("uuid", UuidV4IdGroup.create(uuidGenerator));
+		
+		console.log(GlobalVariables.RANDOM_VALUES);
 	});
 	
 	dbm.setupLoaderHook();

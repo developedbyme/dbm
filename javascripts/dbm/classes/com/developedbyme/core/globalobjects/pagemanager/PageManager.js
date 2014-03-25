@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
 	dbm.setClassAsSingleton("dbmPageManager");
 	
@@ -27,6 +28,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 		this._documentLocation = null;
 		this._url = null;
 		this._urlResolver = null;
+		
+		return this;
+	};
+	
+	objectFunctions.addToSharedRandomValues = function(aValuesArray) {
+		console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager::addToSharedRandomValues");
+		
+		StringFunctions.getCharCodes(this._documentLocation.toString(), aValuesArray);
 		
 		return this;
 	};

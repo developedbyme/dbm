@@ -42,13 +42,19 @@ dbm.registerClass("com.developedbyme.utils.native.string.StringFunctions", null,
 	};
 	
 	staticFunctions.splitToCharCodes = function(aString) {
-		var returnArray = new Array(aString.length);
-		var currentArray = returnArray;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			currentArray[i] = aString.charCodeAt(i);
-		}
+		var returnArray = new Array();
+		ClassReference.getCharCodes(aString, returnArray);
 		
 		return returnArray;
+	};
+	
+	staticFunctions.getCharCodes = function(aString, aReturnArray) {
+		//console.log("com.developedbyme.utils.native.string.StringFunctions::getCharCodes");
+		//console.log(aString, aReturnArray);
+		var currentArray = aReturnArray;
+		var currentArrayLength = aString.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			currentArray.push(aString.charCodeAt(i));
+		}
 	};
 });
