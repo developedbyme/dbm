@@ -3,16 +3,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository");
 	//"use strict";
 	
+	//Self reference
 	var AssetRepository = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.AssetRepository");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
+	//Dependencies
 	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
@@ -25,10 +24,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	var ArrayBufferAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset");
 	var XmlIdElementAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlIdElementAsset");
 	
+	//Utils
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	var MimeTypeFunctions = dbm.importClass("com.developedbyme.utils.file.MimeTypeFunctions");
 	var FeatureCheck = dbm.importClass("com.developedbyme.utils.browser.FeatureCheck");
+	
+	//Constants
 	
 	dbm.setClassAsSingleton("dbmAssetRepository");
 	

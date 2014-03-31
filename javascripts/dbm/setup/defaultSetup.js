@@ -25,6 +25,7 @@ dbm.runTempFunction(function() {
 	var TemplateManager = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.TemplateManager");
 	var DataManager = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.DataManager");
 	var PerformanceManager = dbm.importClass("com.developedbyme.core.globalobjects.performancemanager.PerformanceManager");
+	var EncodingManager = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.EncodingManager");
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
@@ -37,6 +38,7 @@ dbm.runTempFunction(function() {
 	var DefaultBasicParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultBasicParsersSetup");
 	var DefaultTextParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultTextParsersSetup");
 	var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
+	var EncodingManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
@@ -77,6 +79,7 @@ dbm.runTempFunction(function() {
 		CurveEvaluator.getInstance().addEvaluator((new BezierEvaluator()).init());
 		
 		DefaultStatisticsManagerSetup.setup();
+		EncodingManagerDefaultSetup.setup();
 		
 		DefaultBasicClassShortcutSetup.setup();
 		DefaultWorkspaceClassShortcutSetup.setup();
@@ -99,8 +102,5 @@ dbm.runTempFunction(function() {
 		uuidGenerator.randomGenerator = GlobalVariables.SHARED_RANDOM_NUMBER_GENERATOR;
 		IdManager.getInstance().setIdGroup("uuid", UuidV4IdGroup.create(uuidGenerator));
 		
-		console.log(GlobalVariables.RANDOM_VALUES);
 	});
-	
-	dbm.setupLoaderHook();
 });

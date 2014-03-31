@@ -2,23 +2,31 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	
+	//Self reference
 	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
-	
 	staticFunctions.DEFAULT_MAX_NUMBER_OF_SIMILTANIOUS_LOADERS = 5;
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence::_init");
 		
@@ -53,6 +61,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	objectFunctions.getStatus = function() {
 		return this._status;
 	};
+	
 	objectFunctions.getProgress = function() {
 		return this._progress.getValue();
 	};
@@ -73,6 +82,19 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		this._isLoading = true;
 		this._status = AssetStatusTypes.LOADING;
 		this._continueLoading();
+		
+		return this;
+	};
+	
+	objectFunctions.addLoader = function(aLoader) {
+		this._loaders.push(aLoader);
+		
+		if(this._isLoading && !this._isAddingLoaders && (this._loadingLoaders.length < this._maxNumberOfSimiltaniousLoaders || this._maxNumberOfSimiltaniousLoaders <= 0)) {
+			this._loadLoader(aLoader);
+		}
+		else {
+			this._waitingLoaders.push(aLoader);
+		}
 		
 		return this;
 	};

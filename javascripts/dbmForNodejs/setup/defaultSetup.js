@@ -21,6 +21,7 @@ dbm.runTempFunction(function() {
 	var StatisticsManager = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager");
 	var TemplateManager = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.TemplateManager");
 	var DataManager = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.DataManager");
+	var EncodingManager = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.EncodingManager");
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
@@ -31,11 +32,21 @@ dbm.runTempFunction(function() {
 	var DefaultBasicParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultBasicParsersSetup");
 	var DefaultTextParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultTextParsersSetup");
 	var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
+	var EncodingManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");
+	var EncodingManagerDefaultNodejsSetup = dbm.importClass("com.developedbyme.nodejs.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultNodejsSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	var IntervalTimer = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.IntervalTimer");
 	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
+	var MersenneTwister = dbm.importClass("com.developedbyme.utils.random.MersenneTwister");
+	var UuidGenerator = dbm.importClass("com.developedbyme.utils.id.UuidGenerator");
+	var UuidV4IdGroup = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.objects.UuidV4IdGroup");
+	
 	dbm.addStartFunction(function() {
+		
+		ArrayFunctions.concatToArray(GlobalVariables.RANDOM_VALUES, dbm.getStartupSeed());
 		
 		ErrorManagerDefaultSetup.setup();
 		InterpolationDefaultSetup.setup();
@@ -52,6 +63,8 @@ dbm.runTempFunction(function() {
 		CurveEvaluator.getInstance().addEvaluator((new BezierEvaluator()).init());
 		
 		DefaultStatisticsManagerSetup.setup();
+		EncodingManagerDefaultSetup.setup();
+		EncodingManagerDefaultNodejsSetup.setup();
 		
 		DefaultBasicClassShortcutSetup.setup();
 		DefaultWorkspaceClassShortcutSetup.setup();
@@ -64,5 +77,10 @@ dbm.runTempFunction(function() {
 		DefaultTextParsersSetup.setup();
 		DefaultComplexParsersSetup.setup();
 		
+		GlobalVariables.SHARED_RANDOM_NUMBER_GENERATOR = MersenneTwister.create().initByArray(GlobalVariables.RANDOM_VALUES);
+		
+		var uuidGenerator = UuidGenerator.create();
+		uuidGenerator.randomGenerator = GlobalVariables.SHARED_RANDOM_NUMBER_GENERATOR;
+		IdManager.getInstance().setIdGroup("uuid", UuidV4IdGroup.create(uuidGenerator));
 	});
 });

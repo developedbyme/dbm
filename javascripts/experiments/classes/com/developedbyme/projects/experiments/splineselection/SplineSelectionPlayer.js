@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.splineselection.Spline
 		
 		this.superCall();
 		
-		this.setElementAsTransformed();
+		this.setElementAsPositioned();
 		
 		this._touchDetector = OneTouchOrMouseDetector.create(dbm.getDocument().body);
 		this._startPosition = 0;

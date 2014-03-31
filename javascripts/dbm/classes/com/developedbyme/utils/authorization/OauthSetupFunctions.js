@@ -26,7 +26,7 @@ dbm.registerClass("com.developedbyme.utils.authorization.OauthSetupFunctions", n
 		aSignatureMethod = VariableAliases.valueWithDefault(aSignatureMethod, OauthFunctions.DEFAULT_SIGNATURE_METHOD);
 		aVersion = VariableAliases.valueWithDefault(aVersion, "1.0");
 		aNonce = VariableAliases.valueWithDefault(aNonce, null);
-		aTimestamp = VariableAliases.valueWithDefault(aVersion, null);
+		aTimestamp = VariableAliases.valueWithDefault(aTimestamp, null);
 		
 		var command = OauthAuthorizationEncodeReevaluationObject.createCommand();
 		

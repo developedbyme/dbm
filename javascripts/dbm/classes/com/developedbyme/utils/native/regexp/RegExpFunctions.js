@@ -29,7 +29,8 @@ dbm.registerClass("com.developedbyme.utils.native.regexp.RegExpFunctions", null,
 	staticFunctions.matchTextInRegExpArrayWithNames = function(aText, aRegExpArray, aNamesArray) {
 		var index = ClassReference.matchTextInRegExpArray(aText, aRegExpArray);
 		if(index === -1) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[RegExpFunctions]", "matchTextInRegExpArrayWithNames", "String " + aText + " doesn't have a regexp match to any of these names " + aNamesArray + ".");
+			//MENOTE: this shouldn't have a warning
+			//ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[RegExpFunctions]", "matchTextInRegExpArrayWithNames", "String " + aText + " doesn't have a regexp match to any of these names " + aNamesArray + ".");
 			return null;
 		}
 		return aNamesArray[index];

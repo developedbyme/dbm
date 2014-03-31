@@ -81,6 +81,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 		return this._url;
 	};
 	
+	objectFunctions._internalFunctionality_setData = function(aData) {
+		this._data.setValue(aData);
+		this._setStatus(AssetStatusTypes.LOADED);
+	};
+	
 	objectFunctions.setupAsFormObjectPost = function(aData) {
 		this._requestMethod = "POST";
 		this.addHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -130,7 +135,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 	};
 	
 	objectFunctions.load = function() {
-		console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::load");
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset::load");
 		
 		if(this._status.getValue() !== AssetStatusTypes.NOT_LOADED) {
 			return this;
@@ -145,8 +150,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 				requestData = null;
 			}
 		}
-		
-		console.log(this._requestMethod, currentUrl, requestData);
 		
 		this._setStatus(AssetStatusTypes.LOADING);
 		this._loader = XmlCreator.createXmlLoader();

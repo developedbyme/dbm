@@ -30,9 +30,12 @@
 			this._javascriptVersion = null;
 			this.tempClassFunction = null;
 			this._currentScriptNode = null;
+			this._startupSeed = new Array();
+			this._startupSeed.push(Date.now());
 			
 			this._isStarting = false;
 			this._restartAfterStart = false;
+			
 			
 			this.isCreated = true;
 			if(Object.seal !== undefined) {
@@ -50,6 +53,10 @@
 		
 		dbm.getWindow = function() {
 			return this._window;
+		};
+		
+		dbm.getStartupSeed = function() {
+			return this._startupSeed;
 		};
 		
 		dbm.setClassManager = function(aObject) {

@@ -18,11 +18,10 @@ dbm.registerClass("com.developedbyme.utils.random.NonceGenerator", "com.develope
 	staticFunctions.DEFAULT_CHARACTERS = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 	
 	staticFunctions.generateNonce = function(aLength, aRandomNumberGenerator, aCharacters) {
-		console.log("com.developedbyme.utils.random.NonceGenerator::generateNonce");
+		//console.log("com.developedbyme.utils.random.NonceGenerator::generateNonce");
 		
 		aCharacters = VariableAliases.valueWithDefault(aCharacters, ClassReference.DEFAULT_CHARACTERS);
 		if(!VariableAliases.isSet(aRandomNumberGenerator)) {
-			console.dir(GlobalVariables);
 			aRandomNumberGenerator = GlobalVariables.SHARED_RANDOM_NUMBER_GENERATOR;
 			//METODO: check for null
 		}

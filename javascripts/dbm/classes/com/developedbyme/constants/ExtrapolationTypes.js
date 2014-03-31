@@ -11,5 +11,3 @@ dbm.registerClass("com.developedbyme.constants.ExtrapolationTypes", null, functi
 	staticFunctions.OSCILLATE = 4;
 	
 });
-
-

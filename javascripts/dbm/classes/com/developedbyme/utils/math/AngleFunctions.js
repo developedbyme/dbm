@@ -40,4 +40,24 @@ dbm.registerClass("com.developedbyme.utils.math.AngleFunctions", null, function(
 		
 		return (1-parameter)*flooredAngle+parameter*ceiledAngle;
 	};
+	
+	staticFunctions.angleDifference = function(aAngle1, aAngle2) {
+		//console.log("com.developedbyme.utils.math.AngleFunctions::angleDifference");
+		aAngle1 = ClassReference.normalizeAngle(aAngle1);
+		aAngle2 = ClassReference.normalizeAngle(aAngle2);
+		
+		if(Math.abs(aAngle1-aAngle2) > Math.PI) {
+			if(aAngle1 > aAngle2) {
+				return aAngle1-(aAngle2+2*Math.PI);
+			}
+			return aAngle1-(aAngle2-2*Math.PI);
+		}
+		else {
+			return aAngle1-aAngle2;
+		}
+	};
+	
+	staticFunctions.degreeDifference = function(aAngle1, aAngle2) {
+		return ClassReference.radiansToDegrees(ClassReference.angleDifference(ClassReference.degreesToRadians(aAngle1), ClassReference.degreesToRadians(aAngle2)));
+	};
 });

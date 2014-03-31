@@ -27,7 +27,7 @@ dbm.registerClass("com.developedbyme.utils.authorization.OauthFunctions", null, 
 		var returnString = "OAuth ";
 		
 		for(var objectName in aParametersObject) {
-			returnString += objectName + "=\"" + aParametersObject[objectName] + "\" ";
+			returnString += objectName + "=\"" + aParametersObject[objectName] + "\", ";
 		}
 		
 		returnString += "oauth_signature=\"" + aSignature + "\"";
@@ -79,8 +79,10 @@ dbm.registerClass("com.developedbyme.utils.authorization.OauthFunctions", null, 
 	};
 	
 	staticFunctions.createSignatureBaseString = function(aMethod, aUrl, aParametersString) {
-		//console.log("com.developedbyme.utils.authorization.OauthFunctions::createSignatureBaseString");
-		return aMethod + "&" + StringEncodingFunctions.encodeRfc3986(aUrl) + "&" + StringEncodingFunctions.encodeRfc3986(aParametersString);
+		console.log("com.developedbyme.utils.authorization.OauthFunctions::createSignatureBaseString");
+		var returnValue = aMethod + "&" + StringEncodingFunctions.encodeRfc3986(aUrl) + "&" + StringEncodingFunctions.encodeRfc3986(aParametersString);
+		console.log(returnValue);
+		return returnValue;
 	};
 	
 	staticFunctions.createSignature = function(aConsumerSecret, aTokenSecret, aBaseString, aSignatureMethod) {
@@ -90,8 +92,6 @@ dbm.registerClass("com.developedbyme.utils.authorization.OauthFunctions", null, 
 		
 		var signingKey = StringEncodingFunctions.encodeRfc3986(aConsumerSecret) + "&" + StringEncodingFunctions.encodeRfc3986(aTokenSecret);
 		
-		//METODO: create signature
-		
-		return null; //MEDEBUG
+		return StringEncodingFunctions.encodeRfc3986(dbm.singletons.dbmEncodingManager.encode(aSignatureMethod, signingKey, aBaseString));
 	};
 });

@@ -5,19 +5,28 @@ dbm.registerClass("com.developedbyme.nodejs.core.globalobjects.assetrepository.a
 	
 	var fs = require("fs");
 	
+	//Self reference
 	var BinaryFileAsset = dbm.importClass("com.developedbyme.nodejs.core.globalobjects.assetrepository.assets.BinaryFileAsset");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var StaticCallbackLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.StaticCallbackLink");
-	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
 	staticFunctions._IO_CALLBACK = "ioCallback";
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.nodejs.core.globalobjects.assetrepository.assets.BinaryFileAsset::_init");
 		

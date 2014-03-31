@@ -31,7 +31,6 @@
 			this._classesFolder = null;
 			this._javascriptVersion = null;
 			this.tempClassFunction = null;
-			this._currentScriptNode = null;
 			this._startupSeed = new Array();
 			this._startupSeed.push(Date.now());
 			
@@ -201,8 +200,6 @@
 			scriptTag.type = scriptType;
 			scriptTag.src = aFilePath;
 			scriptTag.async = false;
-			
-			this._currentScriptNode = scriptTag;
 			
 			scriptTag.addEventListener("load", dbm._onFileLoaded, false);
 			scriptTag.addEventListener("error", dbm._onFileLoaded, false);

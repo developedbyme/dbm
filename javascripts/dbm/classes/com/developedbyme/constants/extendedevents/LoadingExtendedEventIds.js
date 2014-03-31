@@ -8,4 +8,7 @@ dbm.registerClass("com.developedbyme.constants.extendedevents.LoadingExtendedEve
 	staticFunctions.LOADING_ERROR = "loadingError";
 	staticFunctions.REQUEST_MORE_LOADERS = "requestMoreLoaders";
 	
+	staticFunctions.SAVED = "saved";
+	staticFunctions.SAVING_ERROR = "savingError";
+	
 });

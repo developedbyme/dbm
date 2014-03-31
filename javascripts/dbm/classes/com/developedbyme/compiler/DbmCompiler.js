@@ -2,29 +2,39 @@
 dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.compiler.DbmCompiler");
 	
+	//Self reference
 	var DbmCompiler = dbm.importClass("com.developedbyme.compiler.DbmCompiler");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	var ScriptBreakdown = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdown");
+	var CompileData = dbm.importClass("com.developedbyme.compiler.compiledata.CompileData");
+	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	var TextAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset");
-	var ScriptBreakdown = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdown");
-	var CompileData = dbm.importClass("com.developedbyme.compiler.compiledata.CompileData");
-	
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.compiler.DbmCompiler::_init");
 		
 		this.superCall();
 		
+		this._notice = null;
 		this._loadedFilePaths = new Array();
 		this._loadedScripts = new Array();
 		this._scriptBreakdowns = NamedArray.create(true);
@@ -56,9 +66,12 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		return this;
 	}; //End function setNumberOfFilesBeforeImport
 	
+	objectFunctions.setNotice = function(aNotice) {
+		this._notice = aNotice;
+	};
 	
-	objectFunctions.loadForCompile = function(/* ... aFiles*/) {
-		//console.log("com.developedbyme.compiler.DbmCompiler::loadForCompile");
+	objectFunctions.addFiles = function(/* ... aFiles*/) {
+		//console.log("com.developedbyme.compiler.DbmCompiler::addFiles");
 		
 		var aFiles = arguments;
 		
@@ -68,10 +81,13 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 			this.addFile(currentArray[i], -1);
 		}
 		
-		this._loader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this.compileFiles, [])); //MEDEBUG
-		this._loader.load();
-		
 		return this;
+	};
+	
+	objectFunctions.load = function() {
+		//console.log("com.developedbyme.compiler.DbmCompiler::load");
+		
+		this._loader.load();
 	};
 	
 	objectFunctions.addFile = function(aPath, aPosition) {
@@ -98,6 +114,27 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		this._loader.addAsset(currentAsset);
 	};
 	
+	objectFunctions.addScript = function(aScript, aPosition) {
+		
+		aPosition = VariableAliases.valueWithDefault(aPosition, -1);
+		
+		var internalPath = dbm.singletons.dbmIdManager.getNewId("internalFile");
+		
+		var newAsset = TextAsset.create(internalPath);
+		
+		newAsset._internalFunctionality_setData(aScript);
+		
+		if(aPosition !== -1) {
+			this._loadedFilePaths.splice(aPosition+1, 0, internalPath);
+		}
+		else {
+			this._loadedFilePaths.push(internalPath);
+		}
+		
+		dbm.singletons.dbmAssetRepository.addAsset(internalPath, newAsset);
+		this._fileLoaded(internalPath, newAsset);
+	};
+	
 	objectFunctions._fileLoaded = function(aPath, aAsset) {
 		//console.log("com.developedbyme.compiler.DbmCompiler::_fileLoaded");
 		//console.log(aPath);
@@ -116,7 +153,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	};
 	
 	objectFunctions.combineFiles = function() {
-		//console.log("com.developedbyme.compiler.DbmCompiler::combineFiles");
+		console.log("com.developedbyme.compiler.DbmCompiler::combineFiles");
 		
 		var returnString = "";
 		var currentArray = this._loadedScripts;
@@ -139,7 +176,12 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	objectFunctions.compileFiles = function() {
 		console.log("com.developedbyme.compiler.DbmCompiler::compileFiles");
 		
-		var returnString = "(function(){";
+		var returnString = "";
+		
+		if(this._notice !== null) {
+			returnString += this._notice + "\n";
+		}
+		returnString += "(function(){";
 		
 		var compileData = (this._compileData !== null) ? this._compileData : CompileData.create();
 		

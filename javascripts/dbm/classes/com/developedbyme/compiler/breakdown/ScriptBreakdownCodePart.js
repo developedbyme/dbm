@@ -101,6 +101,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 			if(currentScope.end === -1) {
 				break;
 			}
+			
 			if(currentEndScopeType === "}") {
 				var currentLine = this._script.substring(currentStartPosition, currentScope.end+currentEndScopeType.length);
 				if(!VariableAliases.isEmptyText(currentLine)) {
@@ -111,7 +112,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 				}
 				currentStartPosition = currentScope.end+currentEndScopeType.length;
 			}
-			else if(currentEndScopeType === "\n") {
+			else if(currentEndScopeType === "\n" || currentEndScopeType === "*/") {
 				var currentLine = this._script.substring(currentStartPosition, currentScope.end+currentEndScopeType.length);
 				if(!VariableAliases.isEmptyText(currentLine)) {
 					this._addCodeLine(currentLine, false);
