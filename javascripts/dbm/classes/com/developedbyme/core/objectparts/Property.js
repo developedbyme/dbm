@@ -52,12 +52,24 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this;
 	};
 	
+	objectFunctions.getInputProperty = function() {
+		return this._inputConnection;
+	}
+	
 	objectFunctions._performSetValue = function(aValue) {
 		this._value = aValue;
 	};
 	
 	objectFunctions._performGetValue = function() {
 		return this._value;
+	};
+	
+	objectFunctions.externalChangeToValue = function(aValue) {
+		//console.log("com.developedbyme.core.objectparts.Property::externalChangeToValue");
+		if(aValue === this._performGetValue()) return;
+		this._performSetValue(aValue);
+		this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+		this.setDependentConnectionsAsDirty();
 	};
 	
 	objectFunctions.setValue = function(aValue) {
@@ -217,6 +229,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions.updateFlow = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::updateFlow");
 		//console.log(this.name);
+		this._status = FlowStatusTypes.UPDATED;
 		if(this._inputConnection !== null) {
 			var newFlowUpdateNumber = this._inputConnection.getFlowUpdateNumber();
 			//console.log(newFlowUpdateNumber, this._flowUpdateNumber);
@@ -224,13 +237,12 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 				var newValue = this._inputConnection.getValue();
 				//console.log(newValue, this._value, newValue !== this._value);
 				if(this._alwaysUpdateFlow || this._mustUpdate || (newValue !== this._performGetValue())) {
-					this._performSetValue(newValue);
 					this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 					this._mustUpdate = false;
+					this._performSetValue(newValue);
 				}
 			}
 		}
-		this._status = FlowStatusTypes.UPDATED;
 	};
 	
 	objectFunctions._linkRegistration_setObjectInputConnection = function(aInputConnection) {
@@ -463,17 +475,12 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	staticFunctions._createWithInputValue = function(aClass, aObjectInput, aValue) {
-		var newProperty = (new aClass()).init();
+		var newProperty = ClassReference._createAndInitClass(aClass);
 		if(aObjectInput !== null) {
 			aObjectInput._linkRegistration_addObjectProperty(newProperty);
 			newProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		}
-		if(aValue instanceof Property) {
-			newProperty.connectInput(aValue);
-		}
-		else {
-			newProperty.setValue(aValue);
-		}
+		ClassReference.setInputOrValueToProperty(newProperty, aValue);
 		return newProperty;
 	};
 	
@@ -482,4 +489,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return ClassReference._createWithInputValue(Property, aObjectInput, aValue);
 	};
 	
+	staticFunctions.setInputOrValueToProperty = function(aProperty, aValue) {
+		if(aValue instanceof Property) {
+			aProperty.connectInput(aValue);
+		}
+		else {
+			aProperty.setValue(aValue);
+		}
+		return aProperty;
+	};
 });

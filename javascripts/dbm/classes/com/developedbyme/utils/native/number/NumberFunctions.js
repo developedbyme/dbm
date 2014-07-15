@@ -2,7 +2,17 @@
 dbm.registerClass("com.developedbyme.utils.native.number.NumberFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.number.NumberFunctions");
 	
+	//Self reference
 	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
 	
 	staticFunctions.getPaddedNumber = function(aNumber, aPadding) {
 		var returnString = String(aNumber);
@@ -24,5 +34,5 @@ dbm.registerClass("com.developedbyme.utils.native.number.NumberFunctions", null,
 			length++;
 		}
 		return length;
-	}
+	};
 });

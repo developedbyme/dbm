@@ -3,8 +3,21 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 	//console.log("com.developedbyme.utils.data.ArrayHolder");
 	//"use strict";
 	
+	//Self reference
 	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.ArrayHolder::_init");
 		

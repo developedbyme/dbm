@@ -2,20 +2,29 @@
 dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector", "com.developedbyme.gui.abstract.touch.TouchDetector", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector");
 	
+	//Self reference
 	var OneTouchOrMouseDetector = dbm.importClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector");
 	
+	//Error report
+	
+	//Dependencies
 	var TouchData = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchData");
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
 	
+	//Utils
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var PositionFunctions = dbm.importClass("com.developedbyme.utils.htmldom.PositionFunctions");
 	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
 	
+	//Constants
 	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
 	var MouseExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.MouseExtendedEventIds");
 	
 	staticFunctions._MOUSE_TOUCH_IDENTIFIER = "mouse";
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_init");
 		

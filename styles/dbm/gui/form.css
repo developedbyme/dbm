@@ -1,0 +1,18 @@
+.fileUploadButton {
+	border: 1px solid #666666;
+	padding: 3px;
+}
+
+.fileUploadButton .notSelected {
+	font-size: 21px;
+	text-align: center;
+}
+
+.fileUploadButton .selected {
+	display: inline-block;
+	margin: auto;;
+}
+
+.fileUploadButton .typeField {
+	font-size: 9px;
+}

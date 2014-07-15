@@ -81,7 +81,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.events.PerformE
 		
 		newCommand.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
 		newCommand.eventNameReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aEventName);
-		newCommand.dataReevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aData);
+		newCommand.dataReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aData);
 		
 		return newCommand;
 	};

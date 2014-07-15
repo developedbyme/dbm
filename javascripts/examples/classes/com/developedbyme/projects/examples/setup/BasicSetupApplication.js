@@ -1,9 +1,12 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.projects.examples.basicsetup.BasicSetupApplication", "com.developedbyme.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+/**
+ * Example application of a basic setup of a workspace.
+ */
+dbm.registerClass("com.developedbyme.projects.examples.setup.BasicSetupApplication", "com.developedbyme.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	
 	//Self reference
-	var BasicSetupApplication = dbm.importClass("com.developedbyme.projects.examples.basicsetup.BasicSetupApplication");
+	var BasicSetupApplication = dbm.importClass("com.developedbyme.projects.examples.setup.BasicSetupApplication");
 	
 	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
@@ -13,8 +16,15 @@ dbm.registerClass("com.developedbyme.projects.examples.basicsetup.BasicSetupAppl
 	//Dependencies
 	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
 	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.projects.examples.basicsetup.BasicSetupApplication::_init");
+		//console.log("com.developedbyme.projects.examples.setup.BasicSetupApplication::_init");
 		
 		this.superCall();
 		
@@ -26,8 +36,13 @@ dbm.registerClass("com.developedbyme.projects.examples.basicsetup.BasicSetupAppl
 		return this;
 	};
 	
+	/**
+	 * Creates the page.
+	 *
+	 * @param	aTemplatePath	The path to the template that is used to create the page.
+	 */
 	objectFunctions._createPage = function(aTemplatePath) {
-		console.log("com.developedbyme.projects.examples.basicsetup.BasicSetupApplication::_createPage");
+		console.log("com.developedbyme.projects.examples.setup.BasicSetupApplication::_createPage");
 		
 		var windowSizeNode = WindowSizeNode.create(dbm.getWindow());
 		windowSizeNode.start();
@@ -36,6 +51,9 @@ dbm.registerClass("com.developedbyme.projects.examples.basicsetup.BasicSetupAppl
 		dbm.singletons.dbmTemplateManager.createControllersForAsset(aTemplatePath, {"width": windowSizeNode.getProperty("width"), "height": windowSizeNode.getProperty("height")}, true, dbm.getDocument().body, true);
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.superCall();

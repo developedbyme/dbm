@@ -32,6 +32,13 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.OffsettedInterpola
 	};
 	
 	/**
+	 * Gets the tangent for a parameter
+	 */
+	objectFunctions.getTangent = function(aParameter) {
+		return this.multiplier*this.interpolationObject.getTangent(aParameter);
+	};
+	
+	/**
 	 * Create a new interpolation
 	 */
 	staticFunctions.create = function(aInterpolationObject, aMultiplier, aOffset) {

@@ -2,11 +2,20 @@
 dbm.registerClass("com.developedbyme.utils.native.function.EventListenerFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
 	
+	//Self reference
 	var EventListenerFunctions = dbm.importClass("com.developedbyme.utils.native.function.EventListenerFunctions");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
 	
 	staticFunctions.addEventListener = function(aObject, aEventName, aFunction, aUseCapture) {
 		switch(dbm.getEnvironmentName()) {

@@ -2,25 +2,34 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.AnimationManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager");
 	
+	//Self reference
 	var AnimationManager = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.AnimationManager");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	var TemporaryTimelineHolder = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder");
 	var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");
 	var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");
 	
+	//Utils
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
+	//Constants
+	
 	
 	dbm.setClassAsSingleton("dbmAnimationManager");
 	
+	/**
+	 * Consructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::_init");
 		
@@ -68,6 +77,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 	
 	objectFunctions.addInterpolationObject = function(aType, aObject) {
 		this._interpolationObjects.addObject(aType, aObject);
+	};
+	
+	objectFunctions.identifyInterpolationObject = function(aObject) {
+		return this._interpolationObjects.identifyObject(aObject);
 	};
 	
 	objectFunctions.addInterpolationFunction = function(aType, aFunction) {

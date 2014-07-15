@@ -4,13 +4,74 @@
 		<title>Visual templates</title>
 	</head>
 	<body>
+		<div id="centeredContent" class="horizantallyCenteredMax800">
+			<div name="contentHolder">
+				
+			</div>
+		</div>
+		
+		<div id="exampleBoxWithLabel" class="exampleBoxWithLabel">
+			<div class="boxLabel" data-dbm-text-name="label" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text label; updateDisplay"></div>
+			<div class="linedTextBox" name="contentHolder">
+				
+			</div>
+		</div>
+		
 		<div id="sliderWithInputField">
-			<div style="display: inline-block; width: 100px; height: 10px; position: relative;" data-dbm-name="slider" data-dbm-class="dbm:HorizontalScaleSlider" data-dbm-commands="updateDisplay; slider:scaleFirstChild; activate; flow:connectInput minValue minValue; flow:connectInput maxValue maxValue; ignore flow:connectOutput outputValue value;">
-				<div style="position: absolute; width: 50px; height: 100%; background-color: #FF0000"></div>
+			<div class="standardBackgroundGradientIn" style="display: inline-block; width: 200px; height: 10px; position: relative;" data-dbm-name="slider" data-dbm-class="dbm:HorizontalScaleSlider" data-dbm-commands="updateDisplay; slider:scaleFirstChild; activate; flow:connectInput minValue minValue; flow:connectInput maxValue maxValue; ignore flow:connectOutput outputValue value;">
+				<div class="standardBackgroundGradient red" style="position: absolute; width: 50px; height: 100%; background-color: #FF0000"></div>
 			</div>
 			<div style="display: inline-block;">
-				<input type="text" data-dbm-name="inputField" data-dbm-class="dbm:InputField" data-dbm-commands="updateDisplay; activate; ignore flow:connectInput value value;" />
+				<input type="text" style="font-size: 9px; border: none; padding: 0px; top: -1px; width: 30px; position: relative; text-align: center;" data-dbm-name="inputField" data-dbm-class="dbm:InputField" data-dbm-commands="updateDisplay; activate; ignore flow:connectInput value value;" />
 			</div>
+		</div>
+		
+		<div id="textWithLabel" class="textWithLabel singleLine">
+			<span class="label" data-dbm-text-name="label" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text label; updateDisplay"></span>
+			<span class="text" data-dbm-text-name="text" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text text; updateDisplay"></span>
+		</div>
+		
+		<div id="textWithLabelMultipleLines" class="textWithLabel multipleLines">
+			<div class="labelHolder">
+				<span class="label" data-dbm-text-name="label" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text label; updateDisplay"></span>
+			</div>
+			<div class="textHolder cropped">
+				<span class="text" data-dbm-text-name="text" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text text; updateDisplay"></span>
+			</div>
+		</div>
+		
+		<div id="fileUploadButton" class="fileUploadButton standardBackgroundGradient" data-dbm-class="dbm:FileUploadButton" data-dbm-commands="dynamic:addProperty name name; dynamic:addProperty type typeText; dynamic:addProperty isSelected isSelected">
+			<div data-dbm-class="dbm:SwitchableAreaHolder" data-dbm-commands="switchable:createInDomSwitch; switchable:visibleAreaFromBooleanProperty isSelected selected notSelected">
+				<div class="notSelected" data-dbm-class="dbm:DisplayBaseObject" data-dbm-commands="switchable:addArea notSelected true; updateDisplay">
+					<div class="text" data-dbm-text-name="label" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text noFileSelectedText; updateDisplay"></div>
+				</div>
+				<div class="selected" data-dbm-class="dbm:DisplayBaseObject" data-dbm-commands="switchable:addArea selected true; updateDisplay">
+					<div class="iconHolder">
+						<div class="icon"></div>
+					</div>
+					<div class="fieldsHolder">
+						<div class="nameField" data-dbm-text-name="name" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text name; updateDisplay"></div>
+						<div class="textWithLabel singleLine typeField">
+							 <span class="label" data-dbm-text-name="typeLabel" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text typeLabel; updateDisplay"></span>
+							 <span class="text" data-dbm-text-name="typeText" data-dbm-text-class="dbm:text" data-dbm-text-commands="flow:connectInput text typeText; updateDisplay"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="simplePlaybackController" style="position: relative; height: 30px;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-commands="updateDisplay; layout:addController; layout:split vertical 0 30 split; layout:inputAreaFromElementSize;">
+			<div class="playButton standardBackgroundGradient" style="position: absolute;" data-dbm-class="dbm:BaseButton" data-dbm-name="playButton" data-dbm-commands="positioned; sized; updateDisplay; activate; layout:sizedElementArea split/area1">
+				<div class="icon"></div>
+			</div>
+			<div class="positionIndicator standardBackgroundGradientIn" style="position: absolute;" data-dbm-class="dbm:HorizontalPlayheadSlider" data-dbm-name="positionIndicator" data-dbm-commands="positioned; sized; updateDisplay; activate; layout:sizedElementArea split/area2; slider:setFirstChildAsPlayhead; ">
+				<div class="playhead standardBackgroundGradient red" style="position: absolute; width: 1px; height: 100%"></div>
+			</div>
+		</div>
+		
+		<div id="splitLayout" style="position: relative; height: 30px;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-commands="updateDisplay; layout:addController; layout:split vertical 0 30 split; layout:inputAreaFromElementSize;">
+			<div style="position: absolute; overflow: hidden; background-color: #FF0000;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="area1" data-dbm-commands="positioned; sized; updateDisplay; layout:sizedElementArea split/area1"></div>
+			<div style="position: absolute; overflow: hidden; background-color: #00FF00;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="area2" data-dbm-commands="positioned; sized; updateDisplay; layout:sizedElementArea split/area2;"></div>
 		</div>
 	</body>
 </html>

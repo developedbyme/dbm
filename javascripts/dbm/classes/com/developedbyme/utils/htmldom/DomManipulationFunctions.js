@@ -1,16 +1,26 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Utils for manipulating the DOM in a secure way.
+ */
 dbm.registerClass("com.developedbyme.utils.htmldom.DomManipulationFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.htmldom.DomManipulationFunctions");
 	
+	//Self reference
 	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
-	staticFunctions.importNode = (function(aElement, aDeep, aDocument) {
+	staticFunctions.importNode = function(aElement, aDeep, aDocument) {
 		//console.log("com.developedbyme.utils.htmldom.DomManipulationFunctions::importNode");
 		//console.log(aElement, aDeep, aDocument);
 		
@@ -30,9 +40,9 @@ dbm.registerClass("com.developedbyme.utils.htmldom.DomManipulationFunctions", nu
 			
 			return newFragment.firstChild;
 		}
-	});
+	};
 	
-	staticFunctions.cloneNode = (function(aElement, aDeep) {
+	staticFunctions.cloneNode = function(aElement, aDeep) {
 		try {
 			return aElement.cloneNode(aDeep);
 		}
@@ -49,9 +59,9 @@ dbm.registerClass("com.developedbyme.utils.htmldom.DomManipulationFunctions", nu
 			
 			return newFragment.firstChild;
 		}
-	});
+	};
 	
-	staticFunctions.adoptNode = (function(aElement, aDocument) {
+	staticFunctions.adoptNode = function(aElement, aDocument) {
 		try {
 			return aDocument.adoptNode(aElement);
 		}
@@ -64,9 +74,9 @@ dbm.registerClass("com.developedbyme.utils.htmldom.DomManipulationFunctions", nu
 			return newFragment.firstChild;
 		}
 		
-	});
+	};
 	
-	staticFunctions.insertAtPosition = (function(aElement, aParentNode, aPosition) {
+	staticFunctions.insertAtPosition = function(aElement, aParentNode, aPosition) {
 		var children = aParentNode.children;
 		if(children.length <= aPosition) {
 			//MENOTE: should there be a warning if the array position is further in than the length?
@@ -75,5 +85,54 @@ dbm.registerClass("com.developedbyme.utils.htmldom.DomManipulationFunctions", nu
 		else {
 			aParentNode.insertBefore(aElement, children[aPosition]);
 		}
-	});
+	};
+	
+	staticFunctions.ensureCorrectDocumentForNode = function(aElement, aDocument) {
+		if(aElement.ownerDocument !== aDocument) {
+			try{
+				aDocument.adoptNode(aElement);
+			}
+			catch(theError) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[DomManipulationFunctions]", "ensureCorrectDocumentForNode", "Un error occured while adopting node.");
+				ErrorManager.getInstance().reportError("[DomManipulationFunctions]", "ensureCorrectDocumentForNode", theError);
+			}
+		}
+	};
+	
+	staticFunctions.addToParent = function(aElement, aParentElement) {
+		if(aElement.parentNode !== aParentElement) {
+			ClassReference.ensureCorrectDocumentForNode(aElement, aParentElement.ownerDocument);
+			
+			try{
+				aParentElement.appendChild(aElement);
+			}
+			catch(theError) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[DomManipulationFunctions]", "addToParent", "Un error occured while adding " + aElement + " to " + aParentElement + ".");
+				ErrorManager.getInstance().reportError("[DomManipulationFunctions]", "addToParent", theError);
+			}
+		}
+	};
+	
+	staticFunctions.removeFromParent = function(aElement) {
+		if(aElement.parentNode !== null) {
+			try{
+				aElement.parentNode.removeChild(aElement);
+			}
+			catch(theError) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[DomManipulationFunctions]", "removeFromParent", "Un error occured while removing " + aElement + " from dom.");
+				ErrorManager.getInstance().reportError("[DomManipulationFunctions]", "removeFromParent", theError);
+			}
+		}
+	};
+	
+	staticFunctions.setElementDomStatus = function(aElement, aParentElement, aInDom) {
+		if(aElement !== null) {
+			if(aInDom && aParentElement !== null) {
+				ClassReference.addToParent(aElement, aParentElement);
+				return true;
+			}
+			ClassReference.removeFromParent(aElement);
+		}
+		return false;
+	};
 });

@@ -1,0 +1,26 @@
+.standardBackgroundGradient {
+	background: -moz-linear-gradient(top, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.1)), color-stop(100%,rgba(0,0,0,0.1)));
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.1) 100%);
+	background: -o-linear-gradient(top, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.1) 100%);
+	background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.1) 100%);
+}
+
+.standardBackgroundGradient.red {
+	background: -moz-linear-gradient(top, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.1) 100%), #FF0000;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.1)), color-stop(100%,rgba(0,0,0,0.1))), #FF0000;
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.1) 100%), #FF0000;
+	background: -o-linear-gradient(top, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.1) 100%), #FF0000;
+	background: -ms-linear-gradient(top, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.1) 100%), #FF0000;
+	background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%,rgba(0,0,0,0.1) 100%), #FF0000;
+}
+
+.standardBackgroundGradientIn {
+	background: -moz-linear-gradient(top, rgba(0,0,0,0.1), rgba(255,255,255,0.1) 0% 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.1)), color-stop(100%,rgba(255,255,255,0.1)));
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.1) 100%);
+	background: -o-linear-gradient(top, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.1) 100%);
+	background: -ms-linear-gradient(top, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.1) 100%);
+	background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(255,255,255,0.1) 100%);
+}

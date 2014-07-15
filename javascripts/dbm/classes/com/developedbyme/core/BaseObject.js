@@ -3,20 +3,30 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	//console.log("com.developedbyme.core.BaseObject");
 	//"use strict";
 	
+	//Self reference
 	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	//Constants
+	
+	/**
+	 * Consructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.BaseObject::_init");
 		
-		//this._setFunctionSavedThis(this); MENOTE: not implemented yet
 		this._isDestroyed = false;
 		this._destroyableObjects = null;
+		this._dynamicVariables = null;
 		
 		//if(dbm.singletons.dbmDebugManager) {
 		//	dbm.singletons.dbmDebugManager.objectCreated(this.__fullClassName);
@@ -25,10 +35,18 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return this;
 	};
 	
+	/**
+	 * Seals the object as part of the init function.
+	 */
 	objectFunctions._initSeal = function() {
 		Object.seal(this);
 	};
 	
+	/**
+	 * Public constructor
+	 *
+	 * @return	self
+	 */
 	objectFunctions.init = function() {
 		this._init();
 		this._initSeal();
@@ -42,7 +60,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 		
 		if(this._destroyableObjects === null) {
-			this._destroyableObjects = new Array();
+			this._destroyableObjects = ClassReference._createArray();
 		}
 		this._destroyableObjects.push(aObject);
 		
@@ -73,11 +91,42 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return this._destroyableObjects;
 	};
 	
+	objectFunctions.setDynamicVariable = function(aName, aData) {
+		if(this._dynamicVariables === null) {
+			this._dynamicVariables = ClassReference._createObject();
+		}
+		this._dynamicVariables[aName] = aData;
+		
+		return aData;
+	};
+	
+	objectFunctions.removeDynamicVariable = function(aName) {
+		if(this._dynamicVariables === null) return;
+		delete this._dynamicVariables[aName];
+		
+		return this;
+	};
+	
+	objectFunctions.getDynamicVariable = function(aName) {
+		if(this._dynamicVariables === null || this._dynamicVariables[aName] === undefined) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getDynamicVariable", "Object " + this + " doesn't have dynamic variable " + aName + ".");
+			return null;
+		}
+		return this._dynamicVariables[aName];
+	};
+	
+	objectFunctions.hasDynamicVariable = function(aName) {
+		return (this._dynamicVariables !== null && this._dynamicVariables[aName] !== undefined);
+	};
+	
 	objectFunctions.isDestroyed = function() {
 		//console.log("com.developedbyme.core.BaseObject::isDestroyed");
 		return this._isDestroyed;
 	};
 	
+	/**
+	 * Destroys the object
+	 */
 	objectFunctions.destroy = function() {
 		//console.log("com.developedbyme.core.BaseObject::destroy");
 		//console.log(this.toString());
@@ -92,6 +141,9 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 			if(dbm.singletons.dbmDebugManager) {
 				dbm.singletons.dbmDebugManager.checkThatObjectHasNoReferences(this);
 			}
+			if(this.__objectPool) {
+				this.__objectPool.reuseObject(this);
+			}
 			
 			//if(dbm.singletons.dbmDebugManager) {
 			//	dbm.singletons.dbmDebugManager.objectDestroyed(this.__fullClassName);
@@ -103,15 +155,32 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
+	/**
+	 * Performs the destruction of all the properties in the object. Part of the destroy function.
+	 */
 	objectFunctions.performDestroy = function() {
 		//this._setFunctionSavedThis(null); MENOTE: not implemented yet
 		ClassReference.softDestroyArrayIfExists(this._destroyableObjects);
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
+		ClassReference._reuseArray(this._destroyableObjects);
 		this._destroyableObjects = null;
+		
+		ClassReference._reuseObject(this._dynamicVariables);
+		this._dynamicVariables = null;
 	};
 	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		return true;
 	};
@@ -127,6 +196,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return "[" + destroyedString + this.__className + attributesString + "]";
 	};
 	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with the parameters description.
+	 */
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		//MENOTE: should be overridden
 	};
@@ -195,7 +269,38 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	};
 	
 	staticFunctions._createAndInitClass = function(aClass) {
+		//console.log("com.developedbyme.core.BaseObject::_createAndInitClass");
+		//console.log(aClass);
+		if(aClass.__objectPool) {
+			return aClass.__objectPool.createAndInitObject();
+		}
 		return (new aClass()).init();
+	};
+	
+	staticFunctions._createArray = function() {
+		if(dbm.singletons.dbmObjectPoolManager) {
+			return dbm.singletons.dbmObjectPoolManager.createArray();
+		}
+		return new Array();
+	};
+	
+	staticFunctions._createObject = function() {
+		if(dbm.singletons.dbmObjectPoolManager) {
+			return dbm.singletons.dbmObjectPoolManager.createObject();
+		}
+		return new Object();
+	};
+	
+	staticFunctions._reuseArray = function(aArray) {
+		if(dbm.singletons.dbmObjectPoolManager) {
+			dbm.singletons.dbmObjectPoolManager.reuseArray(aArray);
+		}
+	};
+	
+	staticFunctions._reuseObject = function(aObject) {
+		if(dbm.singletons.dbmObjectPoolManager) {
+			dbm.singletons.dbmObjectPoolManager.reuseObject(aObject);
+		}
 	};
 });
 

@@ -46,6 +46,7 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 	};
 	
 	objectFunctions.activate = function() {
+		//console.log("com.developedbyme.gui.form.sliders.HorizontalScaleSlider::activate");
 		this.superCall();
 		
 		if(this._canScrub) {
@@ -84,11 +85,9 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider", "c
 	};
 	
 	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		console.log("com.developedbyme.gui.form.sliders.HorizontalScaleSlider::_updateDisplayFlow");
+		//console.log("com.developedbyme.gui.form.sliders.HorizontalScaleSlider::_updateDisplayFlow");
 		
 		this.superCall(aFlowUpdateNumber);
-		
-		console.log(this._outputValue);
 		
 		var outputValue = this._outputValue.getValueWithoutFlow();
 		var minValue = this._minValue.getValueWithoutFlow();

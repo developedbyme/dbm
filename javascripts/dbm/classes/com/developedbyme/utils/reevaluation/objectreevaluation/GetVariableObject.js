@@ -61,6 +61,9 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		return theObject[propertyName];
 	};
 	
+	/**
+	 * Performs the destruction of all the properties in the object. Part of the destroy function.
+	 */
 	objectFunctions.performDestroy = function() {
 		
 		ClassReference.destroyIfExists(this.propertyNameReevaluator);
@@ -68,6 +71,9 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 		this.superCall();
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.propertyNameReevaluator = null;

@@ -35,4 +35,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.Selec
 		
 		this.superCall();
 	};
+	
+	staticFunctions.createCommand = function() {
+		return ClassReference._createAndInitClass(ClassReference);
+	};
 });

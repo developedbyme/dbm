@@ -41,7 +41,7 @@ dbm.registerClass("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaP
 		this._area.setPropertyInput("width", this._inputAreaValuesNode.getProperty("width"));
 		this._area.setPropertyInput("height", this._inputAreaValuesNode.getProperty("height"));
 		
-		this._area.setPropertyInput("parentElement", this._parentElement);
+		//this._area.setPropertyInput("parentElement", this._parentElement); //MENOTE: should layout add this kind of hierarchy?
 		this._element.connectInput(this._area.getProperty("element"));
 		
 		return this;

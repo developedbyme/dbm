@@ -1,24 +1,47 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * An array that can securly be iterated over, and additions or subtractions to the array can be delayed until the iteration is over.
+ */
 dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "com.developedbyme.utils.data.iterator.ArrayIterator", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator");
+	//"use strict";
 	
+	//Self reference
+	var ActiveArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
 	var CommandQueue = dbm.importClass("com.developedbyme.utils.data.CommandQueue");
+	var MultipleLock = dbm.importClass("com.developedbyme.utils.logic.MultipleLock");
+	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
+	//Constants
+	var LockExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LockExtendedEventIds");
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::_init");
 		
 		this.superCall();
 		
-		this._isActive = false;
 		this._canAddItemsWhileActive = true;
 		this._canRemoveItemsWhileActive = true;
+		
+		this._lock = this.addDestroyableObject(MultipleLock.create());
 		
 		this._commandQueue = null;
 		
 		return this;
-	};
+	}; //End function _init
 	
 	objectFunctions.getCommandQueue = function() {
 		if(this._commandQueue === null) {
@@ -33,14 +56,17 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		
 		this._createCommandsForCommandQueue();
 		
+		this._lock.getExtendedEvent().addCommandToEvent(LockExtendedEventIds.UNLOCKED, CallFunctionCommand.createCommand(this._commandQueue, this._commandQueue.runQueuedCommands, []));
+		this._lock.getExtendedEvent().addCommandToEvent(LockExtendedEventIds.UNLOCKED, CallFunctionCommand.createCommand(this._commandQueue, this._commandQueue.reset, []));
+		
 		return this._commandQueue;
 	};
 	
 	objectFunctions._createCommandsForCommandQueue = function() {
 		this._commandQueue.createFunctionTypeCommand("push", this, this.push, true);
-		this._commandQueue.createFunctionTypeCommand("pop", this, this.push, false);
+		this._commandQueue.createFunctionTypeCommand("pop", this, this.pop, false);
 		this._commandQueue.createFunctionTypeCommand("unshift", this, this.unshift, true);
-		this._commandQueue.createFunctionTypeCommand("shift", this, this.push, false);
+		this._commandQueue.createFunctionTypeCommand("shift", this, this.shift, false);
 		this._commandQueue.createFunctionTypeCommand("removeItem", this, this.removeItem, true);
 		this._commandQueue.createFunctionTypeCommand("removeItemAt", this, this.removeItemAt, true);
 		this._commandQueue.createFunctionTypeCommandWithArguments("addItemAt", this, this.addItemAt, [GetVariableObject.createCommand(GetVariableObject.createSelectDataCommand(), "object"), GetVariableObject.createCommand(GetVariableObject.createSelectDataCommand(), "index")]);
@@ -53,12 +79,41 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		return (this._commandQueue !== null && this._commandQueue.isRunning());
 	};
 	
+	/**
+	 * Creates a new iteration data for this array.
+	 *
+	 * @return	IterationData	The newly created object.
+	 */
+	objectFunctions.createIterationData = function() {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::createIterationData");
+		
+		var newIterationData = this.superCall();
+		this._lock.lock(newIterationData);
+		return newIterationData;
+	}; //End function createIterationData
+	
+	/**
+	 * Stop using iteration data.
+	 *
+	 * @param	aIterationData	The iteration data that is no longer being used.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.stopUsingIterationData = function(aIterationData) {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
+		
+		this._lock.unlock(aIterationData);
+		this.superCall(aIterationData);
+		
+		return this;
+	}; //End function stopUsingIterationData
+	
 	objectFunctions._itemPreAdded = function(aObject) {
 		//MENOTE: should be overridden
 	};
 	
 	objectFunctions.setAddRemoveWhileActive = function(aCanAddItemsWhileActive, aCanRemoveItemsWhileActive) {
-		if(!this._isActive) {
+		if(!this._lock.isLocked()) {
 			this._canAddItemsWhileActive = aCanAddItemsWhileActive;
 			this._canRemoveItemsWhileActive = aCanRemoveItemsWhileActive;
 		}
@@ -71,7 +126,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	};
 	
 	objectFunctions.setAddItemsWhileActive = function(aCanAddItemsWhileActive) {
-		if(!this._isActive) {
+		if(!this._lock.isLocked()) {
 			this._canAddItemsWhileActive = aCanAddItemsWhileActive;
 		}
 		else {
@@ -82,7 +137,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	};
 	
 	objectFunctions.setRemoveItemsWhileActive = function(aCanRemoveItemsWhileActive) {
-		if(!this._isActive) {
+		if(!this._lock.isLocked()) {
 			this._canRemoveItemsWhileActive = aCanRemoveItemsWhileActive;
 		}
 		else {
@@ -90,30 +145,6 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		}
 		
 		return this;
-	};
-	
-	objectFunctions._checkIfTheArrayIsAtEnd = function() {
-		if(this._currentPosition >= this.array.length) {
-			this.stop();
-		}
-	};
-	
-	objectFunctions.start = function() {
-		this._isActive = true;
-		this._checkIfTheArrayIsAtEnd();
-	};
-	
-	objectFunctions.isActive = function() {
-		return this._isActive;
-	};
-	
-	objectFunctions.stop = function() {
-		this._isActive = false;
-		this.resetPosition();
-		if(this._commandQueue !== null) {
-			this._commandQueue.runQueuedCommands();
-			this._commandQueue.reset();
-		}
 	};
 	
 	/**
@@ -125,7 +156,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		if(!this._commandQueueIsRunning()) {
 			this._itemPreAdded(aObject);
 		}
-		if(!this._isActive || this._canAddItemsWhileActive) {
+		if(!this._lock.isLocked() || this._canAddItemsWhileActive) {
 			this.superCall(aObject);
 		}
 		else {
@@ -137,7 +168,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	 * Pops an item from the list.
 	 */
 	objectFunctions.pop = function() {
-		if(!this._isActive || this._canRemoveItemsWhileActive) {
+		if(!this._lock.isLocked() || this._canRemoveItemsWhileActive) {
 			this.superCall();
 		}
 		else {
@@ -153,7 +184,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		if(!this._commandQueueIsRunning()) {
 			this._itemPreAdded(aObject);
 		}
-		if(!this._isActive || this._canAddItemsWhileActive) {
+		if(!this._lock.isLocked() || this._canAddItemsWhileActive) {
 			this.superCall(aObject);
 		}
 		else {
@@ -165,7 +196,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	 * Shifts an object from the list.
 	 */
 	objectFunctions.shift = function() {
-		if(!this._isActive || this._canRemoveItemsWhileActive) {
+		if(!this._lock.isLocked() || this._canRemoveItemsWhileActive) {
 			this.superCall();
 		}
 		else {
@@ -179,7 +210,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	objectFunctions.removeItem = function(aObject) {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::removeItem");
 		//console.log(aObject);
-		if(!this._isActive || this._canRemoveItemsWhileActive) {
+		if(!this._lock.isLocked() || this._canRemoveItemsWhileActive) {
 			this.superCall(aObject);
 		}
 		else {
@@ -191,7 +222,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 	 * Removes an object at a specified index.
 	 */
 	objectFunctions.removeItemAt = function(aIndex) {
-		if(!this._isActive || this._canRemoveItemsWhileActive) {
+		if(!this._lock.isLocked() || this._canRemoveItemsWhileActive) {
 			this.superCall(aIndex);
 		}
 		else {
@@ -207,7 +238,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		if(!this._commandQueueIsRunning()) {
 			this._itemPreAdded(aObject);
 		}
-		if(!this._isActive || this._canAddItemsWhileActive) {
+		if(!this._lock.isLocked() || this._canAddItemsWhileActive) {
 			this.superCall(aObject, aIndex);
 		}
 		else {
@@ -215,10 +246,14 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "
 		}
 	};
 	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._commandQueue = null;
+		this._lock = null;
 		
 		this.superCall();
-	};
+	}; //End function setAllReferencesToNull
 });

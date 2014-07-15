@@ -1,14 +1,27 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * A property that stores it value on an external object.
+ */
 dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	//"use strict";
 	
+	//Self reference
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	
-	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	//Error report
 	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	
+	/**
+	 * Constants
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_init");
 		
@@ -62,6 +75,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		else {
 			this.setAsDirty();
 		}
+	};
+	
+	objectFunctions._internalFunctionality_setExternalVariableName = function(aVariableName) {
+		this._externalVariableName = aVariableName;
 	};
 	
 	objectFunctions.removeExternalObject = function() {

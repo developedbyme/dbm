@@ -5,54 +5,94 @@ dbm.registerClass("com.developedbyme.nodejs.server.router.FolderRouterGroup", "c
 	
 	var url = require("url");
 	
+	//Self reference
 	var FolderRouterGroup = dbm.importClass("com.developedbyme.nodejs.server.router.FolderRouterGroup");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	//Dependencies
+	var StartsWithQualifier = dbm.importClass("com.developedbyme.nodejs.server.router.qualifiers.StartsWithQualifier");
 	
+	//Utils
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
+	var SelectBaseObjectObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject");
 	
+	//Constants
 	var ProcessExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ProcessExtendedEventIds");
 	var RoutedDataStatusTypes = dbm.importClass("com.developedbyme.nodejs.constants.RoutedDataStatusTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.nodejs.server.router.FolderRouterGroup::_init");
 		
 		this.superCall();
 		
 		this._isExclusive = true;
-		this._folderPath = null;
+		
+		var qualifier = StartsWithQualifier.create(
+			null,
+			CallFunctionObject.createFunctionOnObjectCommand(
+				SelectBaseObjectObject.createCommand(),
+				"getLocalPath",
+				[]
+			)
+		);
+		this.addQualifier(qualifier);
+		
+		this._folderPathReevaluator = qualifier.searchStringEvaluator;
 		
 		return this;
 	};
 	
-	objectFunctions._preCheckRouting = function(aRoutedData) {
-		var currentPath = url.parse(theRequest.url).pathname;
+	objectFunctions._performRoute = function(aRoutedData) {
+		console.log("com.developedbyme.nodejs.server.router.FolderRouterGroup::_performRoute");
 		
-		if(currentPath.indexOf(this._folderPath) !== 0) {
-			return false;
-		}
+		var currentPath = aRoutedData.getLocalPath();
 		
-		return true;
+		var folderPath = this._folderPathReevaluator.reevaluationData;
+		currentPath += currentPath.substring(folderPath.length+1, currentPath.length);
+		aRoutedData.setLocalPath(currentPath);
+		
+		return this.superCall(aRoutedData);
+	};
+	
+	objectFunctions._routerDone = function(aRoutedData) {
+		console.log("com.developedbyme.nodejs.server.router.FolderRouterGroup::_routerDone");
+		
+		aRoutedData.stopUsingCurrentLocalPath();
+		
+		this.superCall(aRoutedData);
 	};
 	
 	objectFunctions.setFolderPath = function(aFolderPath) {
-		this._folderPath = aFolderPath;
+		this._folderPathReevaluator.reevaluationData = aFolderPath;
 		
 		return this;
-	}
+	};
+	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		this._folderPathReevaluator = null;
+		
+		this.superCall();
+	};
 	
 	staticFunctions.create = function(aFolderPath) {
 		//console.log("com.developedbyme.nodejs.server.router.FolderRouterGroup::create");
 		//console.log(aElement);
 		
-		var newFolderRouterGroup = (new ClassReference()).init();
+		var newFolderRouterGroup = ClassReference._createAndInitClass(ClassReference);
 		
 		newFolderRouterGroup.setFolderPath(aFolderPath);
 		

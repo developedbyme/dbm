@@ -2,43 +2,57 @@
 dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.gui.canvas.CanvasView");
 	
+	//Self reference
 	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
 	
-	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+	//Error report
+	
+	//Dependencies
 	var CanvasController2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasController2d");
 	var CanvasController3d = dbm.importClass("com.developedbyme.utils.canvas.3d.CanvasController3d");
 	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
-	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	
-	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
+	//Utils
 	
+	//Constants
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
-	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.canvas.CanvasView::_init");
 		
 		this.superCall();
 		
 		this._controller = null;
-		this._sizeOfElementNode = SizeOfElementNode.create();
-		this.addDestroyableObject(this._sizeOfElementNode);
-		this._width = this.createProperty("width", this._sizeOfElementNode.getProperty("width"));
-		this._height = this.createProperty("height", this._sizeOfElementNode.getProperty("height"));
 		
-		this._updateFunctions.getObject("display").addInputConnection(this._width);
-		this._updateFunctions.getObject("display").addInputConnection(this._height);
+		this._canvasWidth = this.createProperty("canvasWidth", 512);
+		this._canvasHeight = this.createProperty("canvasHeight", 512);
+		
+		//METODO: switch this it's own update function
+		this._updateFunctions.getObject("display").addInputConnection(this._canvasWidth);
+		this._updateFunctions.getObject("display").addInputConnection(this._canvasHeight);
 		
 		return this;
 	};
-	objectFunctions.setElement = function(aElement) {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::setElement");
-		this.superCall(aElement);
+	
+	objectFunctions.setElementAsSized = function() {
 		
-		this._sizeOfElementNode.getProperty("element").setValue(aElement);
-		this._display.startUpdating();
+		this.superCall();
+		
+		this._canvasWidth.connectInput(this.getProperty("width"));
+		this._canvasHeight.connectInput(this.getProperty("height"));
 		
 		return this;
+	};
+	
+	objectFunctions.setCanvasSizeToSizeOfElement = function() {
+		var sizeOfElementNode = this.addDestroyableObject(SizeOfElementNode.create());
+		
+		sizeOfElementNode.getProperty("element").connectInput(this.getProperty("element"));
+		this._canvasWidth.connectInput(sizeOfElementNode.getProperty("width"));
+		this._canvasHeight.connectInput(sizeOfElementNode.getProperty("height"));
 	};
 	
 	objectFunctions.setController = function(aController) {
@@ -65,20 +79,20 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 	};
 	
 	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		console.log("com.developedbyme.gui.canvas.CanvasView::_updateDisplayFlow");
+		//console.log("com.developedbyme.gui.canvas.CanvasView::_updateDisplayFlow");
 		
 		this.superCall(aFlowUpdateNumber);
 		
 		var element = this._element.getValueWithoutFlow();
 		
-		var newWidth = this._width.getValueWithoutFlow();
-		var newHeight = this._height.getValueWithoutFlow();
-		console.log(newWidth, newHeight);
+		var newWidth = this._canvasWidth.getValueWithoutFlow();
+		var newHeight = this._canvasHeight.getValueWithoutFlow();
+		//console.log(newWidth, newHeight);
 		
-		if(newWidth !== 0) {
+		if(newWidth > 0) {
 			element.width = newWidth;
 		}
-		if(newHeight !== 0) {
+		if(newHeight > 0) {
 			element.height = newHeight;
 		}
 	};
@@ -100,12 +114,27 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._controller = null;
-		this._sizeOfElementNode = null;
 		this._display = null;
-		this._width = null;
-		this._height = null;
+		this._canvasWidth = null;
+		this._canvasHeight = null;
 		
 		this.superCall();
+	};
+	
+	staticFunctions.set2dControllerToView = function(aView) {
+		var canvasController = CanvasController2d.create();
+		aView.setController(canvasController);
+		aView.addDestroyableObject(canvasController);
+		
+		return aView;
+	};
+	
+	staticFunctions.set3dControllerToView = function(aView) {
+		var canvasController = CanvasController3d.create();
+		aView.setController(canvasController);
+		aView.addDestroyableObject(canvasController);
+		
+		return aView;
 	};
 	
 	staticFunctions.create = function(aParentOrDocument, aAddToParent, aContextType, aAttributes) {
@@ -117,18 +146,16 @@ dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
 		newView.setElement(htmlCreator.createNode("canvas", aAttributes));
+		newView.setCanvasSizeToSizeOfElement(); //MENOTE: this shouldn't be here
+		newView.getProperty("display").startUpdating(); //MENOTE: this shouldn't be here
 		
 		//MENOTE: this should move out to another class so that the controllers doesn't have to be imported
 		switch(aContextType) {
 			case "2d":
-				var canvasController = CanvasController2d.create();
-				newView.setController(canvasController);
-				newView.addDestroyableObject(canvasController);
+				ClassReference.set2dControllerToView(newView);
 				break;
 			case "3d":
-				var canvasController = CanvasController3d.create();
-				newView.setController(canvasController);
-				newView.addDestroyableObject(canvasController);
+				ClassReference.set3dControllerToView(newView);
 				break;
 			default:
 				//METODO: error message

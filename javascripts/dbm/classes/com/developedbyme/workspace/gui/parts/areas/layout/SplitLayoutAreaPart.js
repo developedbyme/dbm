@@ -3,13 +3,23 @@ dbm.registerClass("com.developedbyme.workspace.gui.parts.areas.layout.SplitLayou
 	//console.log("com.developedbyme.workspace.gui.parts.areas.layout.SplitLayoutAreaPart");
 	//"use strict";
 	
+	//Self reference
 	var SplitLayoutAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.layout.SplitLayoutAreaPart");
 	
+	//Error report
+	
+	//Dependencies
 	var ScaleAndPositionRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRectangleNode");
 	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.workspace.gui.parts.areas.layout.SplitLayoutAreaPart::_init");
 		

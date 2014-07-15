@@ -2,12 +2,22 @@
 dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.device.DeviceLocation");
 	
+	//Self reference
 	var DeviceLocation = dbm.importClass("com.developedbyme.utils.device.DeviceLocation");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var DeviceExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.DeviceExtendedEventIds");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.device.DeviceLocation::_init");
 		
@@ -52,7 +62,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.develope
 	};
 	
 	objectFunctions.setOptions = function(aEnableHighAccuracy, aTimeout, aMaximumAge) {
-		this._options = {"enableHighAccuracy": false, "timeout": aTimeout, "maximumAge": aMaximumAge};
+		this._options = {"enableHighAccuracy": false, "timeout": aTimeout, "maximumAge": aMaximumAge}; //MENOTE: Why is aEnableHighAccuracy not used?
 	};
 	
 	objectFunctions._positionUpdated = function(aEvent) {
@@ -145,7 +155,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceLocation", "com.develope
 	
 	staticFunctions.create = function(aGeolocation) {
 		
-		aGeolocation = VariableAliases.valueWithDefault(aGeolocation, window.navigator.geolocation);  //MENOTE: change this to dbm.getWindow()
+		aGeolocation = VariableAliases.valueWithDefault(aGeolocation, dbm.getWindow().navigator.geolocation);
 		
 		var newDeviceLocation = (new ClassReference()).init();
 		newDeviceLocation.setGeolocation(aGeolocation);

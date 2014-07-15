@@ -42,7 +42,7 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.SineInterpolation"
 		
 		var sineParameter = (this.maxValue-this.minValue)*aParameter+this.minValue+this.offset;
 		
-		return Math.cos(sineParameter);
+		return (this.maxValue-this.minValue)*Math.cos(sineParameter);
 	};
 	
 	/**

@@ -11,7 +11,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.GetPointOnCurveNode", "co
 		
 		this.superCall();
 		
-		this._curve = this.createProperty("curve", null);
+		this._curve = this.createProperty("curve", null).setAlwaysUpdateFlow(true);
 		this._parameter = this.createProperty("parameter", 0);
 		this._outputValueX = this.createProperty("outputValueX", 0);
 		this._outputValueY = this.createProperty("outputValueY", 0);

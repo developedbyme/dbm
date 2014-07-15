@@ -93,8 +93,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	 * Gets an item by path.
 	 */
 	objectFunctions.getItemByPath = function(aPath, aBaseItem) {
-		//console.log("getItemByPath");
-		//console.log(aPath, aBaseItem.getPath());
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::getItemByPath");
+		//console.log(aPath, aBaseItem);
 		
 		aBaseItem = VariableAliases.valueWithDefault(aBaseItem, null);
 		

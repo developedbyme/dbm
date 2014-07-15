@@ -2,14 +2,24 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject");
 	
+	//Self reference
 	var TimerBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject");
 	
-	var FunctionFunctions = dbm.importClass("com.developedbyme.utils.native.function.FunctionFunctions");
-	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
+	var FunctionFunctions = dbm.importClass("com.developedbyme.utils.native.function.FunctionFunctions");
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::_init");
 		
@@ -95,6 +105,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Time
 		return this.superCall(aName);
 	};
 	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._updateObject = null;
@@ -103,6 +116,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Time
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new objetc of this class.
+	 *
+	 * @param	aUpdateObject	The object to do callbacks on every tick.
+	 *
+	 * @return	The newly created object.
+	 */
 	staticFunctions.create = function(aUpdateObject) {
 		var newTimerBaseObject = (new ClassReference()).init();
 		newTimerBaseObject.setUpdateObject(aUpdateObject);

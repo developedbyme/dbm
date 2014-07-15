@@ -1,26 +1,33 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.nodejs.server.router.RouterGroup", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.nodejs.server.router.RouterGroup", "com.developedbyme.nodejs.server.router.RouterBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.nodejs.server.router.RouterGroup");
 	//"use strict";
 	
+	//Self reference
 	var RouterGroup = dbm.importClass("com.developedbyme.nodejs.server.router.RouterGroup");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	//Dependencies
 	
+	//Utils
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var ProcessExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ProcessExtendedEventIds");
 	var RoutedDataStatusTypes = dbm.importClass("com.developedbyme.nodejs.constants.RoutedDataStatusTypes");
 	
 	staticFunctions.ID_COUNTER = 0;
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.nodejs.server.router.RouterGroup::_init");
 		
@@ -36,17 +43,13 @@ dbm.registerClass("com.developedbyme.nodejs.server.router.RouterGroup", "com.dev
 		
 		this._callbackCommand = CallFunctionCommand.createCommand(this, this._childRouterDone, [GetVariableObject.createSelectDataCommand(), GetVariableObject.createSelectOwnerObjectCommand()]);
 		this._callbackCommand.retain();
+		this.addDestroyableObject(this._callbackCommand);
 		
 		return this;
 	};
 	
 	objectFunctions.setMaintainExclusiveness = function(aValue) {
 		this._maintainExclusiveness = VariableAliases.valueWithDefault(aValue, true);
-	};
-	
-	objectFunctions._preCheckRouting = function(aRoutedData) {
-		//MENOTE: should be overridden
-		return true;
 	};
 	
 	objectFunctions.addRouter = function(aRouter) {
@@ -59,17 +62,10 @@ dbm.registerClass("com.developedbyme.nodejs.server.router.RouterGroup", "com.dev
 		return this;
 	};
 	
-	objectFunctions.route = function(aRoutedData) {
-		//console.log("com.developedbyme.nodejs.server.router.RouterGroup::route");
-		//console.log(this._id);
-		
-		if(!this._preCheckRouting(aRoutedData)) {
-			return aRoutedData.getStatus();
-		}
-		
+	objectFunctions._performRoute = function(aRoutedData) {
 		this._routedData.push(aRoutedData);
 		
-		this._continueRoute(aRoutedData, 0, false);
+		this._continueRoute(aRoutedData, 0);
 		return RoutedDataStatusTypes.UNKNOWN;
 	};
 	

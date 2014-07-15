@@ -97,6 +97,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		this._inputConnections.push(aProperty);
 		
 		this._flowUpdateNumber = 0;
+		dbm.singletons.dbmFlowManager.setDependentConnectionsAsDirty(this);
 	};
 	
 	objectFunctions.addOutputConnection = function(aProperty) {
@@ -180,6 +181,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	};
 	
 	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
+		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeInputConnection");
+		
 		var index = ArrayFunctions.indexOfInArray(this._inputConnections, aProperty);
 		if(index !== -1) {
 			this._inputConnections.splice(index, 1);
@@ -191,9 +194,14 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 				this._ghostOutputConnections.splice(index, 1);
 			}
 		}
+		
+		this._flowUpdateNumber = 0;
+		dbm.singletons.dbmFlowManager.setDependentConnectionsAsDirty(this);
 	};
 	
 	objectFunctions._linkRegistration_removeOutputConnection = function(aProperty) {
+		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeOutputConnection");
+		
 		var index = ArrayFunctions.indexOfInArray(this._outputConnections, aProperty);
 		if(index !== -1) {
 			this._outputConnections.splice(index, 1);
@@ -245,13 +253,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	};
 	
 	staticFunctions.create = function(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray) {
-		var newUpdateFunction = (new UpdateFunction()).init();
+		var newUpdateFunction = ClassReference._createAndInitClass(ClassReference);
 		newUpdateFunction.setup(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray);
 		return newUpdateFunction;
 	};
 	
 	staticFunctions.createGhostFunction = function(aInputsArray, aOutputsArray) {
-		var newUpdateFunction = (new UpdateFunction()).init();
+		var newUpdateFunction = ClassReference._createAndInitClass(ClassReference);
 		newUpdateFunction.setup(null, ClassReference._noUpdateFunction, aInputsArray, aOutputsArray);
 		return newUpdateFunction;
 	};

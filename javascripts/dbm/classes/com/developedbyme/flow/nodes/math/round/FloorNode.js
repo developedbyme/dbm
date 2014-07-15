@@ -2,6 +2,8 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.round.FloorNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.round.FloorNode");
 	
+	var FloorNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.FloorNode");
+	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.round.FloorNode::_init");
 		
@@ -20,12 +22,17 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.round.FloorNode", "com.deve
 		this._outputValue.setValueWithFlow(Math.floor(this._inputValue.getValueWithoutFlow()), aFlowUpdateNumber);
 	};
 	
-	
-	objectFunctions.performDestroy = function() {
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputValue = null;
+		this._outputValue = null;
+		
 		this.superCall();
 	};
 	
-	objectFunctions.setAllReferencesToNull = function() {
-		this.superCall();
+	staticFunctions.create = function(aInput) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputValue", aInput);
+		return newNode;
 	};
 });

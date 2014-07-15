@@ -2,7 +2,7 @@
 dbm.registerClass("com.developedbyme.thirdparty.facebook.constants.OpenGraphPermissionTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.thirdparty.facebook.constants.OpenGraphPermissionTypes");
 	
-	//REFERENCE :http://developers.facebook.com/docs/reference/login/open-graph-permissions/
+	//REFERENCE: http://developers.facebook.com/docs/reference/login/open-graph-permissions/
 	//MENOTE: Not including user_actions:APP_NAMESPACE or friends_actions:APP_NAMESPACE
 	
 	var OpenGraphPermissionTypes = dbm.importClass("com.developedbyme.thirdparty.facebook.constants.OpenGraphPermissionTypes");

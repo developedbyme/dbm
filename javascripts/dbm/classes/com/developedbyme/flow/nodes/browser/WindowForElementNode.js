@@ -2,17 +2,27 @@
 dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowForElementNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode");
 	
+	//Self reference
 	var WindowForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowForElementNode");
-	var LogCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	var LogCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
-	
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
+	//Constants
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	
+	
+	/**
+	 * Constuctor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_init");
 		

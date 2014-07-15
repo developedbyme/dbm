@@ -27,21 +27,15 @@ dbm.runTempFunction(function() {
 	classManager._createClassFunction = function(aName) {
 		//console.log(aName);
 		
+		/*
+		return function() {};
+		*/
+		
 		var className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
 		
 		var generateFunction = new Function("return function " + className + "(){};");
 		return generateFunction();
 		
-		/*
-		eval("dbm.tempClassFunction = function " + className + "(){};");
-		var returnClassFunction = dbm.tempClassFunction;
-		dbm.tempClassFunction = null;
-		return returnClassFunction;
-		*/
-		
-		/*
-		return function() {};
-		*/
 	}; //End function _createClassFunction
 	
 	classManager._getClassHolder = function(aName) {
@@ -126,45 +120,90 @@ dbm.runTempFunction(function() {
 		return newClassHolder.classFunction;
 	}; //End function importClass
 	
-	classManager.getClass = function(aName) {
-		
+	classManager.getClassIfExists = function(aName) {
 		if(this._classes[aName] !== undefined) {
 			return this._classes[aName].classFunction;
 		}
 		
-		console.error("Class " + aName + " has not been imported.");
-		
 		return null;
+	}; //End function getClassIfExists
+	
+	classManager.getClass = function(aName) {
+		
+		var theClass = this.getClassIfExists(aName);
+		
+		if(theClass !== null) {
+			console.error("Class " + aName + " has not been imported.");
+		}
+		
+		return theClass;
 	}; //End function getClass
 	
-	classManager.addLibrary = function(aName, aPath, aEvaluationName) {
+	classManager.addLibrary = function(aName, aPaths, aEvaluationName, aCssPaths) {
 		
 		var newLibraryHolder = new Object();
+		newLibraryHolder.paths = aPaths;
 		newLibraryHolder.name = aName;
 		newLibraryHolder.evaluationName = aEvaluationName;
+		newLibraryHolder.isAdded = false;
 		newLibraryHolder.isCreated = false;
+		newLibraryHolder.cssPaths = aCssPaths;
+		newLibraryHolder.realLibrary = null;
 		
 		this._libraries[aName] = newLibraryHolder;
-		
-		dbm.loadFile(aPath);
 	}; //End function addLibrary
 	
 	classManager.importLibrary = function(aName, aReInitFunction) {
 		//console.log("classManager.importLibrary");
+		
+		var currentLibrary = this._libraries[aName];
+		if(currentLibrary === undefined) {
+			console.warn("Library " + aName + " is not added. Can't use.");
+			return null;
+		}
+		
 		if(aReInitFunction !== null && aReInitFunction !== undefined) {
 			this.addReInitLibraryFunction(aReInitFunction);
 		}
-		return this._libraries[aName];
+		
+		if(!currentLibrary.isAdded) {
+			currentLibrary.isAdded = true;
+			
+			var currentArray = currentLibrary.paths;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				dbm.loadFile(currentArray[i]);
+			}
+			
+			var theDocument = dbm.getDocument();
+			var currentArray = currentLibrary.cssPaths;
+			if(currentArray !== null && currentArray !== undefined) {
+				var currentArrayLength = currentArray.length;
+				for(var i = 0; i < currentArrayLength; i++) {
+					var cssPath = currentArray[i];
+					
+					var newElement = theDocument.createElement("link");
+					newElement.setAttribute("rel", "stylesheet");
+					newElement.setAttribute("type", "text/css");
+					newElement.setAttribute("href", cssPath);
+					theDocument.querySelector("head").appendChild(newElement);
+				}
+			}
+		}
+		
+		return currentLibrary;
 	}; //End function importLibrary
 	
 	classManager.setupLibraries = function() {
 		//console.log("classManager.setupLibraries");
 		for(var objectName in this._libraries) {
 			var currentData = this._libraries[objectName];
-			eval("dbm.tempObject = " + currentData.evaluationName + ";");
-			currentData.realLibrary = dbm.tempObject;
-			dbm.tempObject = null;
-			currentData.isCreated = true;
+			if(currentData.isAdded) {
+				eval("dbm.tempObject = " + currentData.evaluationName + ";");
+				currentData.realLibrary = dbm.tempObject;
+				dbm.tempObject = null;
+				currentData.isCreated = true;
+			}
 		}
 		
 		var currentArray = this._reInitLibraryFunctions;
@@ -191,7 +230,7 @@ dbm.runTempFunction(function() {
 			classHolder.classFunction.getInstance = null;
 		}
 		else {
-			console.log("Class " + theClassPath + " is already initiated. Can't set it as singleton.");
+			console.warn("Class " + theClassPath + " is already initiated. Can't set it as singleton.");
 		}
 	}; //End function setClassAsSingleton
 	
@@ -278,6 +317,8 @@ dbm.runTempFunction(function() {
 			
 			currentClassHolder.prototypeObject.__className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
 			currentClassHolder.prototypeObject.__fullClassName = aName;
+			currentClassHolder.prototypeObject.__objectPool = null;
+			
 			if(Object.seal !== undefined) {
 				Object.seal(currentClassHolder.prototypeObject); //MENOTE: this should be freeze but firefox doesn't seem to like that
 			}
@@ -288,6 +329,10 @@ dbm.runTempFunction(function() {
 				currentClassHolder.classFunction[staticMethodName] = currentClassHolder.staticMethods[staticMethodName];
 				//delete currentClassHolder.staticMethods[staticMethodName]; //MENOTE: this can't be done before subclasses has been setup
 			}
+			
+			currentClassHolder.classFunction.__fullClassName = aName;
+			currentClassHolder.classFunction.__objectPool = null;
+			
 			if(Object.seal !== undefined) {
 				Object.seal(currentClassHolder.staticMethods);
 				Object.seal(currentClassHolder.classFunction);
@@ -296,6 +341,14 @@ dbm.runTempFunction(function() {
 		
 		return currentClassHolder;
 	}; //End function _setupClassInheritanceForClass
+	
+	classManager.setObjectPoolForClass = function(aName, aObjectPool) {
+		var currentClassHolder = this._classes[aName];
+		if(currentClassHolder) {
+			currentClassHolder.prototypeObject.__objectPool = aObjectPool;
+			currentClassHolder.classFunction.__objectPool = aObjectPool;
+		}
+	}; //End function _setupObjectPoolForClass
 	
 	classManager.init();
 	dbm.setClassManager(classManager);

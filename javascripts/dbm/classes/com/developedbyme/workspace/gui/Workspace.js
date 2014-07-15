@@ -3,27 +3,36 @@ dbm.registerClass("com.developedbyme.workspace.gui.Workspace", "com.developedbym
 	//console.log("com.developedbyme.workspace.gui.Workspace");
 	//"use strict";
 	
+	//Self reference
 	var Workspace = dbm.importClass("com.developedbyme.workspace.gui.Workspace");
 	
+	//Error report
+	
+	//Dependencies
 	var TouchOrMouseDetector = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector");
 	var GenericClickTool = dbm.importClass("com.developedbyme.workspace.gui.tools.generic.GenericClickTool");
 	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
-	
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
 	var RectangleFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
+	var LayoutController = dbm.importClass("com.developedbyme.workspace.gui.LayoutController");
+	var BaseWorkspacePart = dbm.importClass("com.developedbyme.workspace.gui.parts.BaseWorkspacePart");
 	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
+	//Constants
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.workspace.gui.Workspace::_init");
 		
@@ -33,8 +42,9 @@ dbm.registerClass("com.developedbyme.workspace.gui.Workspace", "com.developedbym
 		this._availableTools = new Array();
 		this._currentSelection = new Array();
 		this._isInteracting = false;
-		this._parts = TreeStructure.create();
-		this._parts.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ITEM_CREATED, CallFunctionCommand.createCommand(this, this._newTreeStructureAdded, [GetVariableObject.createSelectDataCommand()]));
+		
+		this._layoutController = this.addDestroyableObject(LayoutController.create());
+		this._layoutArea = BaseWorkspacePart.create();
 		
 		this._touchDetector = (new TouchOrMouseDetector()).init();
 		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this._startTouch, [GetVariableObject.createSelectDataCommand()]));
@@ -44,9 +54,13 @@ dbm.registerClass("com.developedbyme.workspace.gui.Workspace", "com.developedbym
 		
 		this._workspaceAreaRectangleGenerator = RectangleFromValuesNode.create(0, 0, 100, 100);
 		
-		this._newTreeStructureAdded(this._parts.getRoot());
-		this._parts.getRoot().getAttribute("properties").setPropertyInput("inputArea", this._workspaceAreaRectangleGenerator.getProperty("outputRectangle"));
-		this._parts.getRoot().getAttribute("properties").setPropertyInput("parent", this._element);
+		var rootNode = this._layoutController.getTreeStructure().getRoot();
+		this._layoutArea.setTreeStructureItem(rootNode);
+		rootNode.getAttribute("properties").setPropertyInput("inputArea", this._workspaceAreaRectangleGenerator.getProperty("outputRectangle"));
+		rootNode.getAttribute("properties").setPropertyInput("parent", this._element);
+		
+		this.setDynamicVariable("layoutController", this._layoutController);
+		this.setDynamicVariable("layoutArea", this._layoutArea);
 		
 		return this;
 	};
@@ -78,8 +92,7 @@ dbm.registerClass("com.developedbyme.workspace.gui.Workspace", "com.developedbym
 	objectFunctions.addPart = function(aPath, aPart) {
 		//console.log("com.developedbyme.workspace.gui.Workspace::addPart");
 		
-		var treeStructureItem = this._parts.getItemByPath(aPath);
-		aPart.setTreeStructureItem(treeStructureItem);
+		this._layoutController.addPart(aPath, aPart);
 	};
 	
 	objectFunctions.addToSelection = function(aObject) {
@@ -92,28 +105,6 @@ dbm.registerClass("com.developedbyme.workspace.gui.Workspace", "com.developedbym
 	
 	objectFunctions.setSelection = function(aObjectsArray) {
 		console.log("com.developedbyme.workspace.gui.Workspace::setSelection");
-	};
-	
-	objectFunctions._newTreeStructureAdded = function(aTreeStructureItem) {
-		//console.log("com.developedbyme.workspace.gui.Workspace::_newTreeStructureAdded");
-		//console.log(aTreeStructureItem);
-		
-		var propertiesHolder = PropertiesHolder.create();
-		aTreeStructureItem.setAttribute("properties", propertiesHolder);
-		propertiesHolder.createProperty("inputArea", null).setAlwaysUpdateFlow();
-		propertiesHolder.createProperty("defaultChildArea", null).setAlwaysUpdateFlow();
-		propertiesHolder.createProperty("parent", null);
-		propertiesHolder.createProperty("defaultChildParent", null);
-		
-		propertiesHolder.setPropertyInput("defaultChildParent", propertiesHolder.getProperty("parent"));
-		propertiesHolder.setPropertyInput("defaultChildArea", propertiesHolder.getProperty("inputArea"));
-		
-		var parent = aTreeStructureItem.getParent();
-		if(parent !== null) {
-			var parentPropertiesHolder = parent.getAttribute("properties");
-			propertiesHolder.setPropertyInput("parent", parentPropertiesHolder.getProperty("defaultChildParent"));
-			propertiesHolder.setPropertyInput("inputArea", parentPropertiesHolder.getProperty("defaultChildArea"));
-		}
 	};
 	
 	objectFunctions._startTouch = function(aTouchData) {

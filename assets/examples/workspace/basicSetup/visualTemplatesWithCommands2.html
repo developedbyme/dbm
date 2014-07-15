@@ -4,10 +4,10 @@
 		<title>Visual templates</title>
 	</head>
 	<body>
-		<div id="mainWorkspace" data-dbm-class="dbm:Workspace" data-dbm-commands="positioned; sized; updateDisplay; workspace:elementSizeAsArea; workspace:layoutSplit horizontal 0 30 main/splitLayout; workspace:layoutSplit vertical 0.8 30 main/splitLayout/area2/splitLayout; flow:connectInput width width; flow:connectInput height height">
-			<div name="Area 1" style="position: absolute; overflow: hidden; background-color: #FF0000;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="area1" data-dbm-commands="positioned; sized; updateDisplay; workspace:sizedElementArea main/splitLayout/area1"></div>
-			<div name="Area 2" style="position: absolute; overflow: hidden; background-color: #00FF00;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="area2" data-dbm-commands="positioned; sized; updateDisplay; workspace:sizedElementArea main/splitLayout/area2">
-				<div name="Area 3" style="position: absolute; overflow: hidden; background-color: #0000FF;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="area3" data-dbm-commands="positioned; sized; updateDisplay; workspace:sizedElementArea main/splitLayout/area2/splitLayout/area2"></div>
+		<div id="mainWorkspace" data-dbm-class="dbm:Workspace" data-dbm-commands="positioned; sized; updateDisplay; workspace:elementSizeAsArea; layout:split horizontal 0 30 main/splitLayout; flow:connectInput width width; flow:connectInput height height">
+			<div name="Area 1" style="position: absolute; overflow: hidden; background-color: #FF0000;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="area1" data-dbm-commands="positioned; sized; updateDisplay; layout:sizedElementArea main/splitLayout/area1"></div>
+			<div name="Area 2" style="position: absolute; overflow: hidden; background-color: #00FF00;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="area2" data-dbm-commands="positioned; sized; updateDisplay; layout:sizedElementArea main/splitLayout/area2; layout:split vertical 0.8 30 splitLayout">
+				<div name="Area 3" style="position: absolute; overflow: hidden; background-color: #0000FF;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="area3" data-dbm-commands="positioned; sized; updateDisplay; layout:sizedElementArea splitLayout/area2"></div>
 			</div>
 		</div>
 	</body>

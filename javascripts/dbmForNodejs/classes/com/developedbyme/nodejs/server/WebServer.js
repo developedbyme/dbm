@@ -24,11 +24,13 @@ dbm.registerClass("com.developedbyme.nodejs.server.WebServer", "com.developedbym
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	var ServerEventIds = dbm.importClass("com.developedbyme.nodejs.constants.nodejsevents.ServerEventIds");
 	var ServerStatusTypes = dbm.importClass("com.developedbyme.nodejs.constants.ServerStatusTypes");
 	var RoutedDataTypes = dbm.importClass("com.developedbyme.nodejs.constants.RoutedDataTypes");
+	var ProcessExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ProcessExtendedEventIds");
 	
 	/**
 	 * Constructor
@@ -42,6 +44,10 @@ dbm.registerClass("com.developedbyme.nodejs.server.WebServer", "com.developedbym
 		
 		this._nativeServer = null;
 		this._port = 80;
+		
+		this._activeRoutes = new Array();
+		
+		this._routingDoneCommand = this.addDestroyableObject(CallFunctionCommand.createCommand(this, this._routingDone, [GetVariableObject.createSelectDataCommand()]).retain());
 		
 		this._requestRouterGroup = null;
 		this._defaultRequestRouterGroup = null;
@@ -59,6 +65,7 @@ dbm.registerClass("com.developedbyme.nodejs.server.WebServer", "com.developedbym
 	
 	objectFunctions.setupDefaultRouters = function(aRootDirectory) {
 		this._requestRouterGroup = ErrorCheckingRouterGroup.create(ErrorResponseRouter.createStandardResponse());
+		this._requestRouterGroup.getExtendedEvent().addCommandToEvent(ProcessExtendedEventIds.DONE, this._routingDoneCommand);
 		this._defaultRequestRouterGroup = RouterGroup.create();
 		this._defaultRequestRouterGroup.setMaintainExclusiveness(true);
 		
@@ -72,6 +79,7 @@ dbm.registerClass("com.developedbyme.nodejs.server.WebServer", "com.developedbym
 		this._requestRouterGroup.addRouter(StaticResponseRouter.create(404, {"Content-Type": "text/plain"}, "404 File not found"));
 		
 		this._upgradeRouterGroup = RouterGroup.create();
+		this._upgradeRouterGroup.getExtendedEvent().addCommandToEvent(ProcessExtendedEventIds.DONE, this._routingDoneCommand);
 		this._defaultUpgradeRouterGroup = RouterGroup.create();
 		this._upgradeRouterGroup.addRouter(this._defaultUpgradeRouterGroup);
 		//METODO: add close socket
@@ -130,21 +138,31 @@ dbm.registerClass("com.developedbyme.nodejs.server.WebServer", "com.developedbym
 	};
 	
 	objectFunctions._handleRequest = function(aRequest, aResponse) {
-		console.log("com.developedbyme.nodejs.server.WebServer::_handleRequest");
+		//console.log("com.developedbyme.nodejs.server.WebServer::_handleRequest");
 		
 		//METODO: handle redirects
 		
 		var routedData = RoutedData.create(RoutedDataTypes.REQUEST, aRequest);
 		routedData.response = aResponse;
+		this._activeRoutes.push(routedData);
 		this._requestRouterGroup.route(routedData);
 	};
 	
 	objectFunctions._handleUpgrade = function(aRequest, aSocket, aHead) {
-		console.log("com.developedbyme.nodejs.server.WebServer::_handleUpgrade");
+		//console.log("com.developedbyme.nodejs.server.WebServer::_handleUpgrade");
 		var routedData = RoutedData.create(RoutedDataTypes.UPGRADE, aRequest);
 		routedData.socket = aSocket;
 		routedData.headData = aHead;
+		this._activeRoutes.push(routedData);
 		this._upgradeRouterGroup.route(routedData);
+	};
+	
+	objectFunctions._routingDone = function(aRoutingData) {
+		//console.log("com.developedbyme.nodejs.server.WebServer::_routingDone");
+		//console.log(aRoutingData);
+		
+		ArrayFunctions.removeFromArray(this._activeRoutes, aRoutingData);
+		aRoutingData.destroy();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

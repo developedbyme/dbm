@@ -1,0 +1,11 @@
+.spacedItem {
+	
+}
+
+.spacedItem.v20 {
+	margin-top: 20px;
+}
+
+.spacedItem:first-child {
+	margin-top: 0px;
+}

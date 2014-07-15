@@ -2,13 +2,21 @@
 dbm.registerClass("com.developedbyme.flow.nodes.data.CachedValueNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.data.CachedValueNode");
 	
+	//Self reference
 	var CachedValueNode = dbm.importClass("com.developedbyme.flow.nodes.data.CachedValueNode");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var CircularBuffer = dbm.importClass("com.developedbyme.utils.data.CircularBuffer");
+	
+	//Utils
+	
+	//Constants
+	
 	
 	/**
 	 * Constructor
@@ -43,12 +51,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.data.CachedValueNode", "com.deve
 		
 		var offset = this._offset.getValueWithoutFlow();
 		
-		this._length.setValueWithFlow(this._buffer.getData(offset), aFlowUpdateNumber);
+		this._outputValue.setValueWithFlow(this._buffer.getData(offset), aFlowUpdateNumber);
 		
 	};
 	
-	objectFunctions._updateLength = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.CachedValueNode::_updateLength");
+	objectFunctions._updateInput = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.math.CachedValueNode::_updateInput");
 		
 		this._buffer.setNewData(this._inputValue.getValueWithoutFlow());
 	};

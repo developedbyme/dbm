@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
 	
 	//Constants
 	var UnitTypes = dbm.importClass("com.developedbyme.constants.UnitTypes");
@@ -41,57 +42,10 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		this._display = this.createGhostProperty("display");
 		
-		this.createUpdateFunction("inDomUpdate", this._updateInDomFlow, [this._element, this._parentElement, this._inDom], [this._inDomOutput]);
+		this.createUpdateFunctionWithArguments("inDomUpdate", DomManipulationFunctions.setElementDomStatus, [this._element, this._parentElement, this._inDom], [this._inDomOutput]);
 		this.createUpdateFunction("display", this._updateDisplayFlow, [this._inDomOutput], [this._display]);
 		
 		return this;
-	};
-	
-	objectFunctions._updateInDomFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.gui.DisplayBaseObject::_updateInDomFlow");
-		var element = this._element.getValueWithoutFlow();
-		var parentElement = this._parentElement.getValueWithoutFlow();
-		if(element !== null && parentElement !== null) {
-			var inDom = this._inDom.getValueWithoutFlow();
-			this._inDomOutput.setValueWithFlow(inDom, aFlowUpdateNumber);
-			if(inDom) {
-				if(element.parentNode !== parentElement) {
-					if(parentElement.ownerDocument !== element.ownerDocument) {
-						try{
-							//console.log("com.developedbyme.gui.DisplayBaseObject::_updateInDomFlow");
-							//console.log(element);
-							parentElement.ownerDocument.adoptNode(element);
-						}
-						catch(theError) {
-							ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_updateInDomFlowFlow", "Un error occured while adopting node.");
-							ErrorManager.getInstance().reportError(this, "_updateInDomFlowFlow", theError);
-							return;
-						}
-					}
-					
-					try{
-						parentElement.appendChild(element);
-					}
-					catch(theError) {
-						ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_updateInDomFlowFlow", "Un error occured while adding to dom.");
-						ErrorManager.getInstance().reportError(this, "_updateInDomFlowFlow", theError);
-						return;
-					}
-				}
-			}
-			else {
-				if(element.parentNode !== null) {
-					try{
-						element.parentNode.removeChild(element);
-					}
-					catch(theError) {
-						ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_updateInDomFlowFlow", "Un error occured while removing from dom.");
-						ErrorManager.getInstance().reportError(this, "_updateInDomFlowFlow", theError);
-						return;
-					}
-				}
-			}
-		}
 	};
 	
 	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
@@ -103,7 +57,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		if(aElement === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setElement", "Trying to set element to null. Use removeElement() to remove element.");
 			this.removeElement();
-			return;
+			return this;
 		}
 		else if(this._element.getValue() !== null) {
 			this.removeElement();
@@ -111,13 +65,11 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		this._element.setValue(aElement);
 		
-		if(aElement.parentNode !== null) {
+		if(aElement.parentNode !== null) { //MENOTE: should this check for having another parent set already?
 			this._parentElement.setValue(aElement.parentNode);
 			this._inDom.setValue(true);
 		}
-		else if(this._inDom.getValue() && this._parentElement.getValue() !== null) {
-			this._parentElement.getValue().appendChild(aElement);
-		}
+		this._inDomOutput.update();
 		
 		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
 			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, aElement);
@@ -139,6 +91,7 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		}
 		
 		this._element.setValue(null);
+		this._inDomOutput.update();
 		
 		return this;
 	};

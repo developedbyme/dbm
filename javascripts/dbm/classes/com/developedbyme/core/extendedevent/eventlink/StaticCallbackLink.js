@@ -2,14 +2,24 @@
 dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.StaticCallbackLink", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.extendedevent.eventlink.StaticCallbackLink");
 	
+	//Self reference
 	var StaticCallbackLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.StaticCallbackLink");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var EventListenerFunctions = dbm.importClass("com.developedbyme.utils.native.function.EventListenerFunctions");
 	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.extendedevent.eventlink.StaticCallbackLink::_init");
 		

@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlModifier", null, function(obje
 	staticFunctions.DEFAULT_USE_CDATA = true;
 	
 	staticFunctions.getOwnerDocument = function(aNode) {
+		//console.log("com.developedbyme.utils.xml.XmlModifier::getOwnerDocument");
 		return ((aNode.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aNode : aNode.ownerDocument);
 	};
 	
@@ -42,9 +43,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlModifier", null, function(obje
 	staticFunctions.createNamespacedAttribute = function(aNode, aNamespace, aPrefix, aName, aValue) {
 		//console.log("com.developedbyme.utils.xml.XmlModifier::createNamespacedAttribute");
 		//console.log(aNode, aNamespace, aPrefix, aName, aValue);
-		var newAttribute = ClassReference.getOwnerDocument(aNode).createAttributeNS(aNamespace, aPrefix + ":" + aName);
-		newAttribute.nodeValue = aValue;
-		aNode.setAttributeNode(newAttribute);
+		aNode.setAttributeNS(aNamespace, aPrefix + ":" + aName, aValue);
 		return aNode;
 	};
 	

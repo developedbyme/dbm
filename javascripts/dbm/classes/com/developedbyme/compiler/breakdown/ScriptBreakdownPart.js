@@ -220,6 +220,38 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 		this._childsBrokenDown(); //METODO: check that everything has been executed
 	};
 	
+	objectFunctions.breakdownToGetVariableDecalarations = function(aReturnArray) {
+		if(!this._isBrokenDown) {
+			this._breakdown();
+		}
+		
+		var currentArray = this._childBreakdowns;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentPart = currentArray[i];
+			if(currentPart === null) {
+				continue;
+			}
+			
+			if(currentPart._type === "functionDeclaration") {
+				continue;
+			}
+			
+			currentPart.breakdownToGetVariableDecalarations(aReturnArray);
+			
+			if(currentPart._type === "declareVariable") {
+				aReturnArray.push(currentPart._variableName);
+			}
+			
+			var deeperBreakdown = currentPart.getDeeperBreakdownIfEmpty();
+			if(deeperBreakdown !== null) {
+				
+				this._replaceChildBreakdown(currentPart, deeperBreakdown);
+				
+			}
+		}
+	};
+	
 	objectFunctions.fullBreakdown = function() {
 		
 		//METODO

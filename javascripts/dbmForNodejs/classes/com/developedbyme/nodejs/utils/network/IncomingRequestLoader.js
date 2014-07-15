@@ -34,21 +34,24 @@ dbm.registerClass("com.developedbyme.nodejs.utils.network.IncomingRequestLoader"
 	};
 	
 	objectFunctions.setRequest = function(aRequest) {
+		//console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader::setRequest");
 		
 		this._request = aRequest;
 		
 		this.getExtendedEvent().linkJavascriptEvent(this._request, ReadableStreamEventIds.DATA, ReadableStreamEventIds.DATA, ReadableStreamEventIds.DATA, true, false);
 		this.getExtendedEvent().linkJavascriptEvent(this._request, ReadableStreamEventIds.END, ReadableStreamEventIds.END, ReadableStreamEventIds.DATA, true, false);
+		
+		this.getExtendedEvent().activateJavascriptEventLink(ReadableStreamEventIds.DATA);
 	};
 	
 	objectFunctions._dataReceived = function(aChunk) {
-		console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader::_dataReceived");
+		//console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader::_dataReceived");
 		
 		this._data += aChunk;
 	};
 	
 	objectFunctions._dataEnded = function() {
-		console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader::_dataEnded");
+		//console.log("com.developedbyme.nodejs.utils.network.IncomingRequestLoader::_dataEnded");
 		
 		if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.LOADED)) {
 			this.getExtendedEvent().perform(LoadingExtendedEventIds.LOADED, this._data);

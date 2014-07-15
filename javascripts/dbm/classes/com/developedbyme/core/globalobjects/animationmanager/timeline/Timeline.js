@@ -1,23 +1,34 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * A timeline that animates a value.
+ */
 dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	//"use strict";
 	
+	//Self reference
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Depenedencies
 	var SetValueTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart");
 	var InterpolationTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::_init");
 		
@@ -47,6 +58,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		return this;
 	};
 	
+	objectFunctions._internalFunctionality_getParts = function() {
+		return this._parts;
+	};
+	
 	objectFunctions.getPartsStartTime = function() {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getPartsStartTime");
 		if(this._parts.length === 0) {
@@ -73,7 +88,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		while(true) {
 			
 			var currentPart = this._parts[this._currentPartIndex];
-			if(currentPart === null) {
+			if(currentPart === null || currentPart === undefined) {
 				return this._startValue.getValue();
 			}
 			//console.log(this._currentPartIndex, aParameter >= currentPart.startApplyTime && aParameter < currentPart.endApplyTime, aParameter, currentPart.startApplyTime, currentPart.endApplyTime);
@@ -306,6 +321,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		this._startValue = null;
 		this._time = null;
 		this._partChange = null;
+		this._anyChange = null;
 		this._outputValue = null;
 		this._outputTangent = null;
 		

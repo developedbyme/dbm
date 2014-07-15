@@ -27,12 +27,8 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		
 		this._objectProperty = null;
 		
-		this._properties = (new NamedArray()).init();
-		this._properties.ownsObjects = true;
-		this.addDestroyableObject(this._properties);
-		this._updateFunctions = (new NamedArray()).init();
-		this._updateFunctions.ownsObjects = true;
-		this.addDestroyableObject(this._updateFunctions);
+		this._properties = this.addDestroyableObject(NamedArray.create(true));
+		this._updateFunctions = this.addDestroyableObject(NamedArray.create(true));
 		
 		return this;
 	};
@@ -59,6 +55,10 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		if(this._objectProperty === null) {
 			this._createObjectProperty();
 		}
+		return this._objectProperty;
+	};
+	
+	objectFunctions.getObjectPropertyIfExists = function() {
 		return this._objectProperty;
 	};
 	
@@ -116,6 +116,16 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 			return this._properties.currentSelectedItem;
 		}
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Property " + aName + " doesn't exist on " + this + ".");
+		return null;
+	};
+	
+	objectFunctions.getUpdateFunction = function(aName) {
+		//console.log("com.developedbyme.core.FlowBaseObject::getUpdateFunction");
+		//console.log(this, aName);
+		if(this._updateFunctions.select(aName)) {
+			return this._updateFunctions.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getUpdateFunction", "Update function " + aName + " doesn't exist on " + this + ".");
 		return null;
 	};
 	

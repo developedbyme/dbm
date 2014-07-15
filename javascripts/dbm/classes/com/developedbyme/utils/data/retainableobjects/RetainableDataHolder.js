@@ -1,12 +1,24 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * Data holder that can be retained.
  * 
- * @author	mattiase
+ * @authur	Mattias Ekendahl (mattias@developedbyme.com)
  * @version	0.0.01
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder");
+	
+	//Self reference
+	var RetainableDataHolder = dbm.importClass("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
 	
 	/**
 	 * Constructor

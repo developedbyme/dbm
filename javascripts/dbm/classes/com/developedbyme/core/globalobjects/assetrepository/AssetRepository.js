@@ -23,6 +23,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	var VideoAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset");
 	var ArrayBufferAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset");
 	var XmlIdElementAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.XmlIdElementAsset");
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
 	//Utils
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
@@ -37,6 +38,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	
 	dbm.setClassAsSingleton("dbmAssetRepository");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::_init");
 		
@@ -48,8 +52,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		this.selectedVideoExtension = "[unknown]";
 		this.selectedAudioExtension = "[unknown]";
 		
-		this._pseudoVideoExtension = "[video]";
-		this._pseudoAudioExtension = "[audio]";
+		this._assetCreators = NamedArray.create(true);
 		
 		return this;
 	};
@@ -79,11 +82,25 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 		return this._rootNode.getPath();
 	};
 	
+	objectFunctions.getAbsoultePath = function(aPath) {
+		//METODO: fix this function
+		var rootPath = this.getRootPath();
+		return rootPath + "/" + aPath;
+	};
+	
 	objectFunctions.linkFolderToServer = function(aPath, aServerPath) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::linkFolderToServer");
 		
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		currentItem.setAttribute("absolutePath", aServerPath);
+	};
+	
+	objectFunctions.addAssetCreatorForTypes = function(aCreator, aTypes) {
+		var currentArray = aTypes;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			this._assetCreators.addObject(currentArray[i], aCreator);
+		}
 	};
 	
 	objectFunctions._createAssetForTreeStructure = function(aTreeStructureItem) {
@@ -194,55 +211,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRep
 	objectFunctions._createAssetOfType = function(aPath, aType) {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.AssetRepository::_createAssetOfType");
 		
-		var newAsset = null;
-		switch(aType) {
-			case "jpg":
-			case "jpeg":
-			case "gif":
-			case "png":
-			case "webp":
-				newAsset = ImageAsset.create(aPath);
-				break;
-			case "html":
-			case "xml":
-			case "xsl":
-				newAsset = XmlAsset.create(aPath);
-				break;
-			case "text":
-			case "txt":
-			case "vert":
-			case "frag":
-			case "csv":
-				newAsset = TextAsset.create(aPath);
-				break;
-			case "mp3":
-			case "oga":
-				newAsset = AudioAsset.create(aPath);
-				break;
-			case "mp4":
-			case "ogv":
-			case "webm":
-				newAsset = VideoAsset.create(aPath);
-				break;
-			case "wav":
-			case "bin":
-			case "mid": //METODO: this needs to be registered instead a case
-				newAsset = ArrayBufferAsset.create(aPath);
-				break;
-			case "json":
-				newAsset = JsonAsset.create(aPath);
-				break;
-			case this._pseudoVideoExtension:
-				newAsset = VideoAsset.create(this.getVideoPath(aPath.substring(0, aPath.length-this._pseudoVideoExtension.length-1)));
-				break;
-			case this._pseudoAudioExtension:
-				newAsset = AudioAsset.create(this.getAudioPath(aPath.substring(0, aPath.length-this._pseudoAudioExtension.length-1)));
-				break;
-			default:
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createAssetOfType", "Unknown file extension " + aType + ".");
-				break;
+		if(this._assetCreators.select(aType)) {
+			return this._assetCreators.currentSelectedItem.createAsset(aPath, aType);
 		}
-		
-		return newAsset;
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createAssetOfType", "Type " + aType + " is not registered. Can't create.");
+		return null;
 	};
 });

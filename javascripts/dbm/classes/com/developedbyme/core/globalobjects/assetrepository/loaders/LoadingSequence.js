@@ -1,4 +1,7 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Loader for a sequence of assets or loaders. Can run both sequencially or simultaneously.
+ */
 dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	

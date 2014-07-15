@@ -138,7 +138,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.deve
 	};
 	
 	staticFunctions.create = function(aObject) {
-		var newObjectProperty = (new ObjectProperty()).init();
+		var newObjectProperty = ClassReference._createAndInitClass(ClassReference);
 		newObjectProperty.setup(aObject);
 		return newObjectProperty;
 	};

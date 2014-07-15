@@ -26,7 +26,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.objects.
 		
 		var newText = (new TextElement()).init();
 		
-		newText.setElement(XmlChildRetreiver.getFirstTextNode(aDataNode));
+		var firstChild = XmlChildRetreiver.getFirstTextNode(aDataNode);
+		if(firstChild === null) {
+			firstChild = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(aDataNode.ownerDocument).createText("");
+			aDataNode.appendChild(firstChild);
+		}
+		
+		newText.setElement(firstChild);
 		
 		return newText;
 	};

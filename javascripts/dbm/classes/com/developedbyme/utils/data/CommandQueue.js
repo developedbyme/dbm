@@ -99,6 +99,9 @@ dbm.registerClass("com.developedbyme.utils.data.CommandQueue", "com.developedbym
 		this._currentPosition = 0;
 	};
 	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._commandQueueArray = null;

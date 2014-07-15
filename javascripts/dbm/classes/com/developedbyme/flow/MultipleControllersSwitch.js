@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.flow.MultipleControllersSwitch", "com.devel
 	};
 	
 	objectFunctions.setDefaultController = function(aControllerProperty) {
-		this._defaultController = ArrayFunctions.indexOfInArray(this._inputControllers, aControllerProperty));
+		this._defaultController = ArrayFunctions.indexOfInArray(this._inputControllers, aControllerProperty);
 		if(this._currentController.getValue() === -1) {
 			this._currentController.setValue(this._defaultController);
 			this._updateProperty.update();

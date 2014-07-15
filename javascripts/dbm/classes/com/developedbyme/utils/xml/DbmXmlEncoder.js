@@ -2,18 +2,23 @@
 dbm.registerClass("com.developedbyme.utils.xml.DbmXmlEncoder", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.xml.DbmXmlEncoder");
 	
+	//Self reference
 	var DbmXmlEncoder = dbm.importClass("com.developedbyme.utils.xml.DbmXmlEncoder");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
 	var XmlModifier = dbm.importClass("com.developedbyme.utils.xml.XmlModifier");
-	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ObjectFunctions = dbm.importClass("com.developedbyme.utils.native.object.ObjectFunctions");
 	
+	//Constants
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	
@@ -30,8 +35,8 @@ dbm.registerClass("com.developedbyme.utils.xml.DbmXmlEncoder", null, function(ob
 	
 	staticFunctions._createDataNode = function(aType, aParentNode) {
 		//console.log("com.developedbyme.utils.xml.DbmXmlEncoder::_createDataNode");
-		var newNode = XmlModifier.createNamespacedChild(aParentNode, "http://www.example.com", "data", "item");
-		XmlModifier.createNamespacedAttribute(newNode, "http://www.example.com", "data", "type", aType);
+		var newNode = XmlModifier.createNamespacedChild(aParentNode, dbm.xmlNamespaces.dbmData, "data", "item");
+		XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "type", aType);
 		
 		return newNode;
 	};
@@ -97,7 +102,7 @@ dbm.registerClass("com.developedbyme.utils.xml.DbmXmlEncoder", null, function(ob
 					break;
 				default:
 					var currentChild = ClassReference.encodeValue(aValue[objectName], newNode);
-					XmlModifier.createNamespacedAttribute(currentChild, "http://www.example.com", "data", "name", objectName);
+					XmlModifier.createNamespacedAttribute(currentChild, dbm.xmlNamespaces.dbmData, "data", "name", objectName);
 					break;
 			}
 		}

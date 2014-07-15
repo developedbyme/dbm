@@ -58,7 +58,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 	objectFunctions.removeItemById = function(aId) {
 		//console.log("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator::removeItemById");
 		//console.log(this._isActive, this._canRemoveItemsWhileActive);
-		if(!this._isActive || this._canRemoveItemsWhileActive) {
+		if(!this._lock.isLocked() || this._canRemoveItemsWhileActive) {
 			var isFound = false;
 			var currentArray = this.array;
 			var currentArrayLength = currentArray.length;
@@ -70,12 +70,9 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIt
 					currentArrayLength--;
 					i--;
 					isFound = true;
-					if(i < this._currentPosition) {
-						this._currentPosition--;
-					}
+					this._updateAllIterationDatas(i, -1, currentArrayLength);
 				}
 			}
-			this._checkIfTheArrayIsAtEnd();
 			if(!isFound) {
 				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "removeItemById", "No item with id " + aId + " exists.");
 			}

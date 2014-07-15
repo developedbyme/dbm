@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.utils.math.interpolation.InvertedInterpolat
 	 * Gets the tangent for a parameter
 	 */
 	objectFunctions.getTangent = function(aParameter) {
-		return -1*(this.interpolationObject.getTangent(1-aParameter));
+		return this.interpolationObject.getTangent(1-aParameter);
 	};
 	
 	/**

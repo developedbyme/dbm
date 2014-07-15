@@ -168,7 +168,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.X
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentHeaderName = currentArray[i];
 				var currentReevaluator = this._requestHeaders.getObject(currentHeaderName);
-				console.log(">>>>>", currentHeaderName, currentReevaluator.reevaluate(this));
 				this._loader.setRequestHeader(currentHeaderName, currentReevaluator.reevaluate(this));
 			}
 		}

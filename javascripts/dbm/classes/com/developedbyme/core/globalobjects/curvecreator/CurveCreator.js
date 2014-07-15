@@ -1,37 +1,56 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * Global class that create curves
  *
  * @authur	Mattias Ekendahl (mattias@developedbyme.com)
  * @version	0.0.01
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
 	//"use strict";
 	
+	//Self reference
 	var CurveCreator = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var DefaultTimelineCurveCreator = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.timeline.DefaultTimelineCurveCreator");
+	var QualifierSelector = dbm.importClass("com.developedbyme.utils.data.qualifier.QualifierSelector");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var QuadricEquationSolver = dbm.importClass("com.developedbyme.utils.math.QuadricEquationSolver");
 	
+	//Constants
 	var CurveMergeTypes = dbm.importClass("com.developedbyme.constants.CurveMergeTypes");
 	var ExtrapolationTypes = dbm.importClass("com.developedbyme.constants.ExtrapolationTypes");
 	
 	dbm.setClassAsSingleton("dbmCurveCreator");
 	
 	staticFunctions.DEFAULT_EXACTNESS = 0.01;
-		
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
 		
+		this.superCall();
+		
+		this._timelineCurveCreators = this.addDestroyableObject(QualifierSelector.create());
+		this._defaultTimelineCurveCreator = this.addDestroyableObject(DefaultTimelineCurveCreator.create());
+		
 		return this;
+	};
+	
+	objectFunctions.addTimelineCurveCreator = function(aQualifier, aCreator) {
+		this._timelineCurveCreators.addQualifiedData(aQualifier, aCreator, true);
 	};
 	
 	objectFunctions.createPolygon = function(aNumberOfSegments, aLength, aStartAngle) {
@@ -355,5 +374,101 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 		}
 		
 		return returnCurve;
+	};
+	
+	objectFunctions.createCurveFromTimeline = function(aTimeline, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset, aReturnCurve) {
+		
+		var currentCurvePosition = 0;
+		var currentTime = aStartTime;
+		var requestedDuration = (aEndTime-aStartTime);
+		
+		var startX = aStartTime+aXOffset;
+		var startY = aTimeline.getValueAt(aStartTime);
+		
+		if(aReturnCurve.pointsArray.length === 0) {
+			aReturnCurve.createPoint(startX, startY);
+		}
+		else {
+			var startPoint = aReturnCurve.pointsArray[0];
+			startPoint.x = startX;
+			startPoint.y = startY;
+		}
+		
+		var currentArray = aTimeline._internalFunctionality_getParts();
+		var currentArrayLength = currentArray.length;
+		var i = 0;
+		for(; i < currentArrayLength; i++) { //MENOTE: i is reused in the next loop
+			var currentPart = currentArray[i];
+			if(currentPart.endApplyTime > aStartTime) {
+				break;
+			}
+		}
+		for(; i < currentArrayLength; i++) { //MENOTE: i is kept from the previous loop
+			var currentPart = currentArray[i];
+			var currentStartApplyTime = currentPart.startApplyTime;
+			if(currentStartApplyTime >= aEndTime) {
+				break;
+			}
+			if(currentTime < currentPart.startApplyTime) {
+				this.ensureNextSegments(aReturnCurve, currentCurvePosition, 1);
+				var currentStartPoint = aReturnCurve.pointsArray[currentCurvePosition];
+				this.setEndOfLinearSegment(currentStartPoint.x, currentStartPoint.y, currentPart.startApplyTime+aXOffset, currentStartPoint.y, aReturnCurve, currentCurvePosition);
+				currentCurvePosition += 3;
+				currentTime = currentPart.startApplyTime;
+			}
+			var curveCreator = this.getCurveCreatorForTimelinePart(currentPart);
+			var newEndTime = Math.min(aEndTime, currentPart.endApplyTime);
+			
+			var segmentDefaultNumberOfSteps = Math.max(2, Math.ceil(aDefaultNumberOfSteps*(newEndTime-currentTime)/(requestedDuration)));
+			currentCurvePosition = curveCreator.createCurveFromPart(currentPart, currentTime, newEndTime, segmentDefaultNumberOfSteps, aXOffset, aReturnCurve, currentCurvePosition);
+			
+			currentTime = newEndTime;
+		}
+		if(currentTime < aEndTime) {
+			this.ensureNextSegments(aReturnCurve, currentCurvePosition, 1);
+			var currentStartPoint = aReturnCurve.pointsArray[currentCurvePosition];
+			this.setEndOfLinearSegment(currentStartPoint.x, currentStartPoint.y, aEndTime+aXOffset, currentStartPoint.y, aReturnCurve, currentCurvePosition);
+			currentCurvePosition += 3;
+		}
+		
+		//METODO: remove rest of curve
+	};
+	
+	objectFunctions.getCurveCreatorForTimelinePart = function(aTimelinePart) {
+		
+		var customCreator = this._timelineCurveCreators.selectQualifiedData(aTimelinePart);
+		
+		if(customCreator !== null) {
+			return customCreator;
+		}
+		
+		return this._defaultTimelineCurveCreator;
+	};
+	
+	objectFunctions.setEndOfLinearSegment = function(aStartX, aStartY, aEndX, aEndY, aReturnCurve, aPositionOnCurve) {
+		//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator::setEndOfLinearSegment");
+		//console.log(aStartX, aStartY, aEndX, aEndY);
+		var distanceX = aEndX-aStartX;
+		var distanceY = aEndY-aStartY;
+		
+		for(var i = 1; i < 3; i++) {
+			var parameter = i/3;
+			var currentPoint = aReturnCurve.pointsArray[aPositionOnCurve+i];
+			currentPoint.x = parameter*distanceX+aStartX;
+			currentPoint.y = parameter*distanceY+aStartY;
+		}
+		
+		var currentPoint = aReturnCurve.pointsArray[aPositionOnCurve+3];
+		currentPoint.x = aEndX;
+		currentPoint.y = aEndY;
+	};
+	
+	objectFunctions.ensureNextSegments = function(aReturnCurve, aPositionOnCurve, aNumberOfSegments) {
+		//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator::ensureNextSegments");
+		var currentNumberOfPoints = aReturnCurve.pointsArray.length;
+		var pointsToAdd = 1+aPositionOnCurve+3*aNumberOfSegments-currentNumberOfPoints;
+		if(pointsToAdd > 0) {
+			aReturnCurve.createPoints(pointsToAdd);
+		}
 	};
 });

@@ -37,7 +37,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	};
 	
 	objectFunctions.getTangentByParameter = function(aParameter) {
-		return (this.endValue-this.startValue)*this.interpolationObject.getTangent(aParameter);
+		return (this.endValue-this.startValue)/(this.endTime-this.startTime)*this.interpolationObject.getTangent(aParameter);
 	};
 	
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {

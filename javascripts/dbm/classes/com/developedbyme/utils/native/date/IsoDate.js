@@ -2,13 +2,22 @@
 dbm.registerClass("com.developedbyme.utils.native.date.IsoDate", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.date.IsoDate");
 	
+	//Self reference
 	var IsoDate = dbm.importClass("com.developedbyme.utils.native.date.IsoDate");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
+	
+	//Constants
+	
 	
 	staticFunctions.dateFromIsoString = function(aString, aLocalTimeZoneOffset) {
 		
@@ -42,5 +51,21 @@ dbm.registerClass("com.developedbyme.utils.native.date.IsoDate", null, function(
 		}
 		
 		return currentDate;
+	};
+	
+	staticFunctions.getIsoDate = function(aDate) {
+		return aDate.getUTCFullYear() + "-" + NumberFunctions.getPaddedNumber(aDate.getUTCMonth()+1, 2) + "-" + NumberFunctions.getPaddedNumber(aDate.getUTCDate()+1, 2);
+	};
+	
+	staticFunctions.getIsoDateAndTime = function(aDate) {
+		return ClassReference.getIsoDate(aDate) + "T" + NumberFunctions.getPaddedNumber(aDate.getUTCHours(), 2) + ":" + NumberFunctions.getPaddedNumber(aDate.getUTCMinutes(), 2) + ":" + NumberFunctions.getPaddedNumber(aDate.getUTCSeconds(), 2);
+	};
+	
+	staticFunctions.getCompactIsoDate = function(aDate) {
+		return aDate.getUTCFullYear() + "" + NumberFunctions.getPaddedNumber(aDate.getUTCMonth()+1, 2) + "" + NumberFunctions.getPaddedNumber(aDate.getUTCDate()+1, 2);
+	};
+	
+	staticFunctions.getCompactIsoDateAndTime = function(aDate) {
+		return ClassReference.getCompactIsoDate(aDate) + "T" + NumberFunctions.getPaddedNumber(aDate.getUTCHours(), 2) + "" + NumberFunctions.getPaddedNumber(aDate.getUTCMinutes(), 2) + "" + NumberFunctions.getPaddedNumber(aDate.getUTCSeconds(), 2);
 	};
 });

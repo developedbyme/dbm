@@ -3,15 +3,23 @@ dbm.registerClass("com.developedbyme.flow.setup.display.SetupPlacementFunctions"
 	//console.log("com.developedbyme.flow.setup.display.SetupPlacementFunctions");
 	//"use strict";
 	
+	//Self reference
 	var SetupPlacementFunctions = dbm.importClass("com.developedbyme.flow.setup.display.SetupPlacementFunctions");
 	
+	//Error report
+	
+	//Dependencies
 	var ScaleAndPositionRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRectangleNode");
 	var ValuesFromRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode");
 	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
 	var PositionRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode");
 	var RectangleFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
 	
 	staticFunctions.setupScaleAndPositionOfDisplayObject = function(aInputRectangle, aOuterParameterX, aOuterParameterY, aInnerParamterX, aInnerParameterY, aOffsetX, aOffsetY, aScaleX, aScaleY, aScaleOffsetX, aScaleOffsetY, aOutputDisplayObject, aReturnNodesArray) {
 		

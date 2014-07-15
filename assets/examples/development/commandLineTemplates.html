@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Visual templates</title>
+	</head>
+	<body>
+		<div id="codeOnLeft" style="width: 100%; height: 100%; position: relative; overflow: hidden; padding: 0; margin: 0;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-commands="positioned; sized; updateDisplay; layout:addController; layout:split vertical 0.5 0 main/splitLayout; layout:inputAreaFromElementSize">
+			<div style="position: absolute; overflow: hidden;" data-dbm-class="dbm:CodeMirrorView" data-dbm-name="code" data-dbm-commands="positioned; sized; updateDisplay; layout:sizedElementArea main/splitLayout/area1; callFunction createEditor"></div>
+			<div style="position: absolute; overflow: hidden; background-color: #FCFCFC;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="visual" data-dbm-commands="positioned; sized; updateDisplay; layout:sizedElementArea main/splitLayout/area2"></div>
+		</div>
+		
+		<div id="bottomGraph" style="width: 100%; height: 100%; position: relative; overflow: hidden; padding: 0; margin: 0;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-commands="positioned; sized; updateDisplay; layout:addController; layout:split horizontal 1 -100 main/splitLayout; layout:inputAreaFromElementSize">
+			<div style="position: absolute; overflow: hidden;" data-dbm-class="dbm:DisplayBaseObject" data-dbm-name="visual" data-dbm-commands="positioned; sized; updateDisplay; layout:sizedElementArea main/splitLayout/area1;"></div>
+			<div class="positionIndicator standardBackgroundGradientIn" style="position: absolute;" data-dbm-class="dbm:HorizontalPlayheadSlider" data-dbm-name="graph" data-dbm-commands="positioned; sized; activate; updateDisplay; layout:sizedElementArea main/splitLayout/area2; slider:setFirstChildAsPlayhead;">
+				<div class="playhead standardBackgroundGradient red" style="position: absolute; width: 1px; height: 100%"></div>
+				<canvas style="position: absolute; overflow: hidden;" data-dbm-class="dbm:CanvasView" data-dbm-name="canvas" data-dbm-commands="positioned; sized; updateDisplay; layout:sizedElementArea /main/splitLayout/area1;"></canvas>
+			</div>
+		</div>
+	</body>
+</html>

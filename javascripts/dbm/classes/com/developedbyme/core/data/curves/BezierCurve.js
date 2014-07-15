@@ -3,14 +3,25 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	//console.log("com.developedbyme.core.data.curves.BezierCurve");
 	//"use strict";
 	
+	//Self reference
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.data.curves.BezierCurve");
 		
@@ -109,7 +120,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 		var segmentStart = Math.floor(aParameter);
 		var localParameter = aParameter-segmentStart;
 		var compactMoveLength = this._isCompact ? 0 : 1;
-		var maxParameter = (this.pointsArray.length/(this._curveDegree+compactMoveLength))-1;
+		var maxParameter = ((this.pointsArray.length-(1-compactMoveLength))/(this._curveDegree+compactMoveLength));
 		if(aParameter < 0 || segmentStart > maxParameter) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPointOnCurve", "Parameter " + aParameter + " is out of range 0 - " + maxParameter + ".");
 			aOutputPoint.x = NaN;

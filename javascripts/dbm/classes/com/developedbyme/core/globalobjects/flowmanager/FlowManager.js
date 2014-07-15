@@ -88,15 +88,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	objectFunctions.setDependentConnectionsAsDirty = function(aConnection) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::setDependentConnectionsAsDirty");
 		
-		var currentArray = new Array();
+		var currentArray = ClassReference._createArray();
 		aConnection.fillWithCleanOutputConnections(currentArray);
-		for(var i = 0; i < currentArray.length; i++) {
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
 			var currentConnection = currentArray[i];
 			if(VariableAliases.isSet(currentConnection.setStatus)) {
 				currentConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
 			}
 			currentConnection.fillWithCleanOutputConnections(currentArray);
+			currentArrayLength = currentArray.length;
 		}
+		ClassReference._reuseArray(currentArray);
 	};
 	
 	objectFunctions.setUpdateChainsAsDirty = function(aUpdateChains) {
@@ -129,7 +132,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		GlobalVariables.FLOW_UPDATE_NUMBER++;
 		
-		var currentArray = new Array();
+		var currentArray = ClassReference._createArray();
 		currentArray.push(aProperty);
 		for(var i = 0; i < currentArray.length; i++) {
 			var currentConnection = currentArray[i];
@@ -241,9 +244,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		var numberOfPropertiesUpdated = 0;
 		var numberOfPropertiesSkipped = 0;
 		
-		this._updatedProperties.start();
-		while(this._updatedProperties.isActive()) {
-			var currentProperty = this._updatedProperties.getNextItem();
+		var iterationData = this._updatedProperties.createIterationData();
+		for(;iterationData.position < iterationData.length; iterationData.position++) {
+			var currentProperty = iterationData.array[iterationData.position];
 			//console.log(currentProperty, currentProperty.getStatus());
 			if(currentProperty.getStatus() !== FlowStatusTypes.UPDATED) {
 				numberOfPropertiesUpdated++;
@@ -264,6 +267,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 				numberOfPropertiesSkipped++;
 			}
 		}
+		this._updatedProperties.stopUsingIterationData(iterationData);
 		
 		//console.log("Updated:", numberOfPropertiesUpdated, "Skipped:", numberOfPropertiesSkipped);
 	};

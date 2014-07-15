@@ -1,24 +1,38 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * An array where all entries also have an identifier.
+ */
 dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.NamedArray");
 	//"use strict";
 	
+	//Self reference
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.NamedArray::_init");
 		
 		this.superCall();
 		
-		this._objectsObject = new Object();
-		this._objectsArray = new Array();
-		this._namesArray = new Array();
+		this._objectsObject = ClassReference._createObject();
+		this._objectsArray = ClassReference._createArray();
+		this._namesArray = ClassReference._createArray();
 		
 		this.ownsObjects = false;
 		
@@ -94,6 +108,15 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	
 	objectFunctions.hasObject = function(aName) {
 		return (VariableAliases.isSet(this._objectsObject[aName]));
+	};
+	
+	objectFunctions.hasObjects = function(aNamesArray) {
+		var currentArray = aNamesArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			if(!this.hasObject(currentArray[i])) return false;
+		}
+		return true;
 	};
 	
 	objectFunctions.getObject = function(aName) {
@@ -175,6 +198,9 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		if(this.ownsObjects) {
 			ClassReference.softDestroyArrayIfExists(this._objectsArray);
 		}
+		ClassReference._reuseObject(this._objectsObject);
+		ClassReference._reuseArray(this._objectsArray);
+		ClassReference._reuseArray(this._namesArray);
 	};
 	
 	objectFunctions.performDestroy = function() {
@@ -196,7 +222,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	};
 	
 	staticFunctions.create = function(aOwnsObjects) {
-		var newReaction = (new ClassReference()).init();
+		var newReaction = ClassReference._createAndInitClass(ClassReference);
 		newReaction.ownsObjects = VariableAliases.isTrue(aOwnsObjects);
 		return newReaction;
 	};

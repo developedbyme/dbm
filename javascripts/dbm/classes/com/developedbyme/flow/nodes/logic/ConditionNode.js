@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.ConditionNode", "com.devel
 		
 		this.superCall();
 		
-		this._conditionType = this.createProperty("conditionType", "==");
+		this._conditionType = this.createProperty("conditionType", "===");
 		this._inputValue1 = this.createProperty("inputValue1", 0);
 		this._inputValue2 = this.createProperty("inputValue2", 0);
 		this._outputValue = this.createProperty("outputValue", 1);

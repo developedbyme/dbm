@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	
 	staticFunctions.addClickEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.CLICK, ButtonExtendedEventIds.CLICK, aUseCapture, ButtonExtendedEventIds.CLICK, true, true);
 		if(aActivate) {
@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	
 	staticFunctions.addMouseOverEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_OVER, ButtonExtendedEventIds.MOUSE_OVER, aUseCapture, ButtonExtendedEventIds.MOUSE_OVER, true, true);
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_OUT, ButtonExtendedEventIds.MOUSE_OUT, aUseCapture, ButtonExtendedEventIds.MOUSE_OVER, true, true);
@@ -53,7 +53,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 		//console.log(aExtendedEventController, aHtmlElement, aActivate);
 		//console.log(DomReferenceFunctions.getDocument(aHtmlElement));
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_DOWN, ButtonExtendedEventIds.PRESS, aUseCapture, ButtonExtendedEventIds.PRESS, true, true);
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_UP, ButtonExtendedEventIds.RELEASE, aUseCapture, ButtonExtendedEventIds.RELEASE, true, true);
@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	staticFunctions.addPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		//(console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::addPressWithMoveEvents");
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		ClassReference.addPressEvents(aExtendedEventController, aHtmlElement, aActivate, aUseCapture);
 		ClassReference.addMoveEvents(aExtendedEventController, aHtmlElement, false, aUseCapture);
@@ -83,7 +83,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	
 	staticFunctions.addMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		//METODO: call local function instead of duplicate code
 		aExtendedEventController.linkJavascriptEventWithCapture(DomReferenceFunctions.getDocument(aHtmlElement), JavascriptEventIds.MOUSE_MOVE, MouseExtendedEventIds.MOVE, aUseCapture, MouseExtendedEventIds.MOVE, true, true);
@@ -95,7 +95,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	
 	staticFunctions.addLocalMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_MOVE, MouseExtendedEventIds.MOVE, aUseCapture, MouseExtendedEventIds.MOVE, true, true);
 		
@@ -106,7 +106,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	
 	staticFunctions.addTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		ClassReference.addLocalTouchMoveEvents(aExtendedEventController, DomReferenceFunctions.getDocument(aHtmlElement), aActivate, aUseCapture);
 		
@@ -114,7 +114,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 	
 	staticFunctions.addLocalTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.TOUCH_MOVE, TouchExtendedEventIds.MOVE, aUseCapture, TouchExtendedEventIds.MOVE, true, true);
 		
@@ -128,7 +128,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 		//console.log(aExtendedEventController, aHtmlElement, aActivate);
 		//console.log(DomReferenceFunctions.getDocument(aHtmlElement));
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.TOUCH_START, TouchExtendedEventIds.START, aUseCapture, TouchExtendedEventIds.START, true, true);
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.TOUCH_END, TouchExtendedEventIds.END, aUseCapture, TouchExtendedEventIds.END, true, true);
@@ -149,7 +149,7 @@ dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtende
 		//console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::addTouchPressWithMoveEvents");
 		//console.log(aExtendedEventController, aHtmlElement, aActivate);
 		
-		aUseCapture = VariableAliases.valueWithDefault(aUseCapture);
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		ClassReference.addTouchPressEvents(aExtendedEventController, aHtmlElement, aActivate, aUseCapture);
 		ClassReference.addTouchMoveEvents(aExtendedEventController, aHtmlElement, false, aUseCapture);

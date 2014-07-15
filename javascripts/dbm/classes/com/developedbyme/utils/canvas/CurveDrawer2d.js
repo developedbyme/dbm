@@ -25,7 +25,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 		
 		this._startParameter = this.createProperty("startParameter", 0);
 		this._endParameter = this.createProperty("endParameter", 0);
-		this._curve = this.createProperty("curve", null);
+		this._curve = this.createProperty("curve", null).setAlwaysUpdateFlow(true);
 		
 		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
 		this._graphicsUpdate.connectInput(this._startParameter);
@@ -81,14 +81,12 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 		for(var i = degree; i <= maxParameter*degree; i += degree) {
 			switch(degree) {
 				case 1:
-					//console.log(currentArray[i].x, currentArray[i].y);
 					aContext.lineTo(currentArray[i].x, currentArray[i].y);
 					break;
 				case 2:
 					aContext.quadraticCurveTo(currentArray[i-1].x, currentArray[i-1].y, currentArray[i].x, currentArray[i].y);
 					break;
 				case 3:
-					//console.log("lineTo", currentArray[i-2].x, currentArray[i-2].y, currentArray[i-1].x, currentArray[i-1].y, currentArray[i].x, currentArray[i].y);
 					aContext.bezierCurveTo(currentArray[i-2].x, currentArray[i-2].y, currentArray[i-1].x, currentArray[i-1].y, currentArray[i].x, currentArray[i].y);
 					break;
 				default:

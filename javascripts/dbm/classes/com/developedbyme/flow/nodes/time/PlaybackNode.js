@@ -2,10 +2,24 @@
 dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.time.PlaybackNode");
 	
+	//Self reference
 	var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");
 	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::_init");
 		
@@ -19,6 +33,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 		
 		this._state = this.createProperty("state", PlaybackStateTypes.PAUSED);
 		this._loop = this.createProperty("loop", false);
+		this._rewindIfPlayedAtEnd = this.createProperty("rewindIfPlayedAtEnd", true);
 		
 		this._playbackSpeed = this.createProperty("playbackSpeed", 1);
 		
@@ -40,6 +55,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	
 	objectFunctions.play = function() {
 		this._state.setValue(PlaybackStateTypes.PLAYING);
+		if(this._lastOutputTime === this._maxTime.getValue() && this._rewindIfPlayedAtEnd.getValue()) {
+			this.rewind();
+		}
 		return this;
 	};
 	
@@ -133,6 +151,12 @@ dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.develop
 	
 	staticFunctions.create = function() {
 		var newNode = (new ClassReference()).init();
+		return newNode;
+	};
+	
+	staticFunctions.createWithGlobalInput = function() {
+		var newNode = (new ClassReference()).init();
+		newNode.getProperty("inputTime").connectInput(dbm.singletons.dbmAnimationManager.globalTimeProperty);
 		return newNode;
 	};
 });

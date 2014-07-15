@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.nodejs.utils.file.FileWriter", "com.develop
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
+	var FolderCreator = dbm.importClass("com.developedbyme.nodejs.utils.file.FolderCreator");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -22,6 +23,7 @@ dbm.registerClass("com.developedbyme.nodejs.utils.file.FileWriter", "com.develop
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var ProcessExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ProcessExtendedEventIds");
 	
 	staticFunctions._IO_CALLBACK = "ioCallback";
 	
@@ -33,6 +35,7 @@ dbm.registerClass("com.developedbyme.nodejs.utils.file.FileWriter", "com.develop
 		
 		this.superCall();
 		
+		this._folderCreator = null;
 		this._url = null;
 		this._data = null;
 		this._encoding = "utf8";
@@ -61,20 +64,33 @@ dbm.registerClass("com.developedbyme.nodejs.utils.file.FileWriter", "com.develop
 		return this;
 	};
 	
+	objectFunctions.setEncoding = function(aEncoding) {
+		this._encoding = aEncoding;
+		
+		return this;
+	};
+	
 	objectFunctions.write = function() {
+		
+		this._folderCreator = this.addDestroyableObject(FolderCreator.createFromFilePath(this._url));
+		this._folderCreator.getExtendedEvent().addCommandToEvent(ProcessExtendedEventIds.DONE, CallFunctionCommand.createCommand(this, this._performWriteFile, []));
+		this._folderCreator.create();
+		
+		return this;
+	};
+	
+	objectFunctions._performWriteFile = function() {
 		var optionsObject = new Object();
 		optionsObject["encoding"] = this._encoding;
 		optionsObject["mode"] = this._mode;
 		optionsObject["flag"] = this._flag;
 		
 		fs.writeFile(this._url, this._data, optionsObject, this._callbackEventLink.getCallbackFunction());
-		
-		return this;
 	};
 	
 	objectFunctions._callback_ioDone = function(aError) {
-		console.log("com.developedbyme.nodejs.utils.file.FileWriter::_callback_ioDone");
-		console.log(aError);
+		//console.log("com.developedbyme.nodejs.utils.file.FileWriter::_callback_ioDone");
+		//console.log(aError);
 		
 		if(aError) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "_callback_ioDone", "Error saving data to " + this._url + ".");
@@ -105,6 +121,10 @@ dbm.registerClass("com.developedbyme.nodejs.utils.file.FileWriter", "com.develop
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
+		this._url = null;
+		this._data = null;
+		this._callbackEventLink = null;
+		this._folderCreator = null;
 		
 		this.superCall();
 	};

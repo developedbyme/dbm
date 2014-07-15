@@ -72,6 +72,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		ClassReference._createCallFunction(TemplateCommandNames.Z_INDEX_ENABLED, "enableZIndex", []);
 		ClassReference._createCallFunction(TemplateCommandNames.ACTIVATE, "activate", []);
 		
+		dbm.singletons.dbmTemplateManager.addCommand(TemplateCommandNames.CALL_FUNCTION, 
+			CallFunctionCommand.createCallFunctionOnPerformingObjectCommand(
+				this._createVerifiedSelectDataFunction(
+					splitArgumentsReevaluator,
+					0,
+					"First argument is null in " + TemplateCommandNames.CALL_FUNCTION + "."
+				),
+				[]
+			)
+		);
+		
 		//Dynamic data
 		dbm.singletons.dbmTemplateManager.addCommand(
 			TemplateCommandNames.ADD_DYNAMIC_OBJECT, SetVariableCommand.createCommand(
@@ -124,6 +135,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 		
 		//Workspace
 		ClassReference._createCallFunction(TemplateCommandNames.ELEMENT_SIZE_AS_AREA, "linkElementSizeToWorkspaceArea", []);
+		
+		//Layout
 		dbm.singletons.dbmTemplateManager.addCommand(
 			TemplateCommandNames.LAYOUT_SPLIT, CallFunctionCommand.createCommand(
 				WorkspaceCommandFunctions, WorkspaceCommandFunctions.createLayoutSplit, ReevaluateArrayWithTypesObject.createCommand(
@@ -133,9 +146,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 			)
 		);
 		dbm.singletons.dbmTemplateManager.addCommand(TemplateCommandNames.SIZED_ELEMENT_AREA, CallFunctionCommand.createCommand(WorkspaceCommandFunctions, WorkspaceCommandFunctions.createSizedElementArea, [GetVariableObject.createSelectPerformingObjectCommand(), selectArgumentReevaluator]));
+		dbm.singletons.dbmTemplateManager.addCommand(TemplateCommandNames.ADD_LAYOUT_CONTROLLER, CallFunctionCommand.createCommand(WorkspaceCommandFunctions, WorkspaceCommandFunctions.addLayoutController, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		dbm.singletons.dbmTemplateManager.addCommand(TemplateCommandNames.INPUT_AREA_FROM_ELEMENT_SIZE, CallFunctionCommand.createCommand(WorkspaceCommandFunctions, WorkspaceCommandFunctions.setSizeAsInputArea, [GetVariableObject.createSelectPerformingObjectCommand()]));
 		
 		//Slider
 		ClassReference._createCallFunction(TemplateCommandNames.SCALE_FIRST_CHILD, "setScalingElement", [selectFirstChildReevaluator]);
+		ClassReference._createCallFunction(TemplateCommandNames.SET_FIRST_CHILD_AS_PLAYHEAD, "setPlayheadElement", [selectFirstChildReevaluator]);
 		
 		//State
 		dbm.singletons.dbmTemplateManager.addCommand(
@@ -162,6 +178,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.De
 			)
 		);
 		
+		dbm.singletons.dbmTemplateManager.addCommand(
+			TemplateCommandNames.SWITCHABLE_VISIBLE_AREA_FROM_BOOLEAN_PROPERTY, CallFunctionCommand.createCommand(
+				SwitchableAreaCommandFunctions, SwitchableAreaCommandFunctions.visibleAreaFromBooleanProperty, ReevaluateArrayWithTypesObject.createCommand(
+					[
+						GetVariableObject.createSelectPerformingObjectCommand(),
+						this._createVerifiedSelectDataFunction(
+							selectDynamicDataReevaluator,
+							this._createVerifiedSelectDataFunction(splitArgumentsReevaluator, 0, "First argument is null in " + TemplateCommandNames.SWITCHABLE_VISIBLE_AREA_FROM_BOOLEAN_PROPERTY + "."),
+							"No dynamic property specified"
+						),
+						this._createVerifiedSelectDataFunction(splitArgumentsReevaluator, 1, "Second argument is null in " + TemplateCommandNames.SWITCHABLE_VISIBLE_AREA_FROM_BOOLEAN_PROPERTY + "."),
+						this._createVerifiedSelectDataFunction(splitArgumentsReevaluator, 2, "Third argument is null in " + TemplateCommandNames.SWITCHABLE_VISIBLE_AREA_FROM_BOOLEAN_PROPERTY + ".")
+					],
+					[JavascriptObjectTypes.NON_REAL_TYPE_ANY, JavascriptObjectTypes.NON_REAL_TYPE_ANY, JavascriptObjectTypes.TYPE_STRING, JavascriptObjectTypes.TYPE_STRING]
+				)
+			)
+		);
 	};
 	
 	staticFunctions._createCallFunction = function(aCommandName, aFunctionName, aArgumentsArray) {

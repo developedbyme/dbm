@@ -1,0 +1,20 @@
+.textWithLabel {
+	
+}
+
+.textWithLabel.singleLine {
+	
+}
+
+.textWithLabel.multipleLines {
+	
+}
+
+.textWithLabel .label {
+	font-weight: bold;
+}
+
+.textWithLabel.multipleLines .textHolder.cropped {
+	max-height: 150px;
+	overflow: auto;
+}

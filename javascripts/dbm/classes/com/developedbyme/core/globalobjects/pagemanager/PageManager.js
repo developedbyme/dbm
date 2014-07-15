@@ -2,22 +2,32 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager");
 	
+	//Self reference
 	var PageManager = dbm.importClass("com.developedbyme.core.globalobjects.pagemanager.PageManager");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	
+	//Utils
+	var UrlFunctions = dbm.importClass("com.developedbyme.utils.native.string.UrlFunctions");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
+	//Constants
+	
 	dbm.setClassAsSingleton("dbmPageManager");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager::_init");
 		
@@ -118,19 +128,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager"
 	objectFunctions.setupQueryStringParameters = function() {
 		var queryString = this._documentLocation;
 		var queryIndex = queryString.indexOf("?");
-		var queryStringArray = [];
 		
 		if(queryIndex !== -1) {
 			this._setUrl(queryString.substring(0, queryIndex));
 			queryString = queryString.substring(queryIndex+1, queryString.length);
-			queryStringArray = queryString.split("&");
+			UrlFunctions.parseQueryString(queryString, this._queryStringParameters);
 		}
 		else {
 			this._setUrl(queryString);
-		}
-		for(var i = 0; i < queryStringArray.length; i++) {
-			var tempArray = queryStringArray[i].split("=");
-			this.setQueryStringParameter(tempArray[0], tempArray[1]);
 		}
 	};
 	

@@ -3,11 +3,25 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 	//console.log("com.developedbyme.flow.nodes.display.SizeOfElementNode");
 	//"use strict";
 	
+	//Self reference
 	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
 	
-	var WindowForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowForElementNode");
-	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	var LayoutChangeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.LayoutChangeNode");
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.display.SizeOfElementNode::_init");
 		
@@ -17,22 +31,20 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 		this._height = this.createProperty("height", 0);
 		this._element = this.createProperty("element", null);
 		this._inDom = this.createProperty("inDom", true);
+		this._domChange = this.createGhostProperty("domChange");
 		
-		/*
-		this._windowForElementNode = WindowForElementNode.create(this._element);
-		this.addDestroyableObject(this._windowForElementNode);
-		var windowSizeNode = WindowSizeNode.create(this._windowForElementNode.getProperty("window"));
-		this.addDestroyableObject(windowSizeNode);
-		*/
-		
-		this.createUpdateFunction("default", this._update, [this._element/*, windowSizeNode.getProperty("width"), windowSizeNode.getProperty("height")*/, this._inDom], [this._width, this._height]);
+		this.createUpdateFunction("default", this._update, [this._element, this._inDom, this._domChange], [this._width, this._height]);
 		
 		return this;
 	};
 	
-	objectFunctions.setDocumentInput = function(aProperty) {
+	objectFunctions.checkForLayoutChange = function() {
+		//console.log("com.developedbyme.flow.nodes.display.SizeOfElementNode::checkForLayoutChange");
+		//console.log(this);
 		
-		this._windowForElementNode.setPropertyInput("document", aProperty);
+		var layoutChangeNode = this.addDestroyableObject(LayoutChangeNode.create(this._element));
+		
+		this._domChange.connectInput(layoutChangeNode.getProperty("change"));
 		
 		return this;
 	};
@@ -54,7 +66,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.SizeOfElementNode", "com
 		this._height = null;
 		this._element = null;
 		this._inDom = null;
-		this._windowForElementNode = null;
+		this._domChange = null;
 		
 		this.superCall();
 	};

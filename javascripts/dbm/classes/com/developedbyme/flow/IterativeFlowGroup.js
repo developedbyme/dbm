@@ -87,15 +87,16 @@ dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbym
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.FlowGroup::_update");
 		var currentIndex = 0;
-		this._iterator.start();
-		while(this._iterator.isActive()) {
-			var currentData = this._iterator.getNextItem();
+		var iterationData = this._iterator.createIterationData();
+		for(;iterationData.position < iterationData.length; iterationData.position++) {
+			var currentData = iterationData.array[iterationData.position];
 			dbm.singletons.dbmFlowManager.increaseFlowUpdateNumber();
 			this._index.setValue(currentIndex);
 			currentData.updateInputs();
 			currentData.updateOutputs();
 			currentIndex++;
 		}
+		this._iterator.stopUsingIterationData(iterationData);
 	};
 	
 	objectFunctions.createIterationInputProperty = function(aName, aIteration, aConnectedProperty) {

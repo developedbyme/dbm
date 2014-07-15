@@ -3,18 +3,30 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 	//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
 	//"use strict";
 	
+	//Self reference
 	var UpdateManager = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var UpdateChain = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain");
 	var CallFunctionUpdater = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.CallFunctionUpdater");
 	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	var UpdaterTypes = dbm.importClass("com.developedbyme.constants.UpdaterTypes");
+	
 	dbm.setClassAsSingleton("dbmUpdateManager");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager::_init");
 		
@@ -31,10 +43,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 		this._updateChains = (new NamedArray()).init();
 		this._updateChain = (new UpdateChain()).init();
 		
-		this._addUpdaterType("updateInput");
-		this._addUpdaterType("updateTimelines");
-		this._addUpdaterType("default");
-		this._addUpdaterType("updateFlow");
+		this._addUpdaterType(UpdaterTypes.UPDATE_INPUT);
+		this._addUpdaterType(UpdaterTypes.UPDATE_TIMELINES);
+		this._addUpdaterType(UpdaterTypes.DEFAULT);
+		this._addUpdaterType(UpdaterTypes.UPDATE_FLOW);
 		
 		return this;
 	};
@@ -88,18 +100,30 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 	};
 	
 	objectFunctions.addUpdater = function(aUpdater, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
 		this._updateChains.getObject(aType).push(aUpdater);
 	};
 	
 	objectFunctions.removeUpdater = function(aUpdater, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
 		this._updateChains.getObject(aType).removeItem(aUpdater);
 	};
 	
 	objectFunctions.addUpdatedFunction = function(aObject, aFunction, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
 		this._updateChains.getObject(aType).push(CallFunctionUpdater.create(aObject, aFunction));
 	};
 	
 	objectFunctions.removeUpdatedFunction = function(aObject, aFunction, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
 		var currentChain = this._updateChains.getObject(aType);
 		var currentArray = currentChain.array;
 		var currentArrayLength = currentArray.length;

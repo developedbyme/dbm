@@ -68,4 +68,13 @@ dbm.registerClass("com.developedbyme.constants.JavascriptEventIds", null, functi
 	staticFunctions.TOUCH_ENTER = "touchenter";
 	staticFunctions.TOUCH_LEAVE = "touchleave";
 	staticFunctions.TOUCH_CANCEL = "touchcancel";
+	
+	//MENOTE: Drag and drop events
+	staticFunctions.DRAG_START = "dragstart";
+	staticFunctions.DRAG_ENTER = "dragenter";
+	staticFunctions.DRAG_OVER = "dragover";
+	staticFunctions.DRAG_LEAVE = "dragleave";
+	staticFunctions.DRAG = "drag";
+	staticFunctions.DROP = "drop";
+	staticFunctions.DRAG_END = "dragend";
 });

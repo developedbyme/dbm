@@ -15,6 +15,8 @@ dbm.registerClass("com.developedbyme.constants.TemplateCommandNames", null, func
 	staticFunctions.UPDATE_DISPLAY = "updateDisplay";
 	staticFunctions.ACTIVATE = "activate";
 	
+	staticFunctions.CALL_FUNCTION = "callFunction";
+	
 	//Dynamic data
 	staticFunctions.ADD_DYNAMIC_OBJECT = "dynamic:add";
 	staticFunctions.ADD_DYNAMIC_PROPERTY = "dynamic:addProperty";
@@ -27,11 +29,16 @@ dbm.registerClass("com.developedbyme.constants.TemplateCommandNames", null, func
 	
 	//Workspace
 	staticFunctions.ELEMENT_SIZE_AS_AREA = "workspace:elementSizeAsArea";
-	staticFunctions.LAYOUT_SPLIT = "workspace:layoutSplit";
-	staticFunctions.SIZED_ELEMENT_AREA = "workspace:sizedElementArea";
+	
+	//Layout
+	staticFunctions.ADD_LAYOUT_CONTROLLER = "layout:addController";
+	staticFunctions.LAYOUT_SPLIT = "layout:split";
+	staticFunctions.SIZED_ELEMENT_AREA = "layout:sizedElementArea";
+	staticFunctions.INPUT_AREA_FROM_ELEMENT_SIZE = "layout:inputAreaFromElementSize";
 	
 	//Slider
 	staticFunctions.SCALE_FIRST_CHILD = "slider:scaleFirstChild";
+	staticFunctions.SET_FIRST_CHILD_AS_PLAYHEAD = "slider:setFirstChildAsPlayhead";
 	
 	//State
 	staticFunctions.ADD_STATE_IMAGE = "state:addImage";
@@ -39,4 +46,5 @@ dbm.registerClass("com.developedbyme.constants.TemplateCommandNames", null, func
 	//Switchable area
 	staticFunctions.CREATE_IN_DOM_SWITCHABLE_AREA = "switchable:createInDomSwitch";
 	staticFunctions.ADD_SWITCHABLE_AREA = "switchable:addArea";
+	staticFunctions.SWITCHABLE_VISIBLE_AREA_FROM_BOOLEAN_PROPERTY = "switchable:visibleAreaFromBooleanProperty";
 });

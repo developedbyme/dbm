@@ -2,19 +2,30 @@
 dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.extendedevent.ExtendedEventController");
 	
+	//Self reference
 	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");
 	var EventLinkGroup = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup");
 	var EventLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.EventLink");
 	var EventPerformer = dbm.importClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::_init");
 		

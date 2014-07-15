@@ -1,5 +1,5 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.nodejs.server.router.api.upgrade.websocket.ConnectWebSocketRouter", "com.developedbyme.nodejs.server.router.api.StaticPathCallRouter", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.nodejs.server.router.api.upgrade.websocket.ConnectWebSocketRouter", "com.developedbyme.nodejs.server.router.api.ApiCallRouter", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.nodejs.server.router.api.upgrade.websocket.ConnectWebSocketRouter");
 	//"use strict";
 	
@@ -48,7 +48,8 @@ dbm.registerClass("com.developedbyme.nodejs.server.router.api.upgrade.websocket.
 		//console.log("com.developedbyme.nodejs.server.router.api.upgrade.websocket.ConnectWebSocketRouter::create");
 		
 		var newConnectWebSocketRouter = (new ClassReference()).init();
-		newConnectWebSocketRouter.setup(aPath);
+		
+		ClassReference.setStaticPathQualifierToRouter(newConnectWebSocketRouter, aPath);
 		
 		return newConnectWebSocketRouter;
 	};

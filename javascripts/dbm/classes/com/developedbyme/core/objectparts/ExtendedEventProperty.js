@@ -1,13 +1,27 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * A property that sends out an extended when changed.
+ */
 dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty");
 	//"use strict";
 	
+	//Self reference
 	var ExtendedEventProperty = dbm.importClass("com.developedbyme.core.objectparts.ExtendedEventProperty");
 	
+	//Error report
+	
+	//Dependencies
 	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_init");
 		
@@ -31,15 +45,20 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		return this;
 	};
 	
-	objectFunctions._performSetValue = function(aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
-		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
-		this.superCall(aValue);
+	objectFunctions._performValueChangeExtendedEvent = function(aValue) {
+		console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performValueChangeExtendedEvent");
 		if(aValue !== null) {
 			if(this._extendedEvent.hasEvent(aValue)) {
 				this._extendedEvent.perform(aValue, null);
 			}
 		}
+	};
+	
+	objectFunctions._performSetValue = function(aValue) {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
+		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
+		this.superCall(aValue);
+		this._performValueChangeExtendedEvent(aValue);
 	};
 	
 	objectFunctions.getExtendedEvent = function() {

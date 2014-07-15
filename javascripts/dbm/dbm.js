@@ -30,6 +30,7 @@
 			this._javascriptsFolder = null;
 			this._classesFolder = null;
 			this._javascriptVersion = null;
+			this.tempObject = null;
 			this.tempClassFunction = null;
 			this._startupSeed = new Array();
 			this._startupSeed.push(Date.now());
@@ -62,6 +63,8 @@
 		dbmObject.setClassManager = function(aObject) {
 			this._startupSeed.push(Date.now());
 			this._classManager = aObject;
+			
+			this.singletons.dbmClassManager = aObject;
 		};
 		
 		dbmObject.setup = function(aWindow, aDocument, aJavascriptsFolder, aClassesFolder) {
@@ -117,8 +120,8 @@
 			return this._classManager.getClass(aClassPath);
 		};
 		
-		dbmObject.addLibrary = function(aName, aPath, aEvaluationName) {
-			this._classManager.addLibrary(aName, aPath, aEvaluationName);
+		dbmObject.addLibrary = function(aName, aPaths, aEvaluationName, aCssPaths) {
+			this._classManager.addLibrary(aName, aPaths, aEvaluationName, aCssPaths);
 		};
 		
 		dbmObject.importLibrary = function(aName, aReInitFunction) {

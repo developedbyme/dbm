@@ -1,5 +1,5 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.nodejs.server.router.response.ErrorResponseRouter", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.nodejs.server.router.response.ErrorResponseRouter", "com.developedbyme.nodejs.server.router.RouterBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.nodejs.server.router.response.ErrorResponseRouter");
 	//"use strict";
 	
@@ -33,8 +33,8 @@ dbm.registerClass("com.developedbyme.nodejs.server.router.response.ErrorResponse
 		return this;
 	};
 	
-	objectFunctions.route = function(aRoutedData) {
-		console.log("com.developedbyme.nodejs.server.router.response.ErrorResponseRouter::route");
+	objectFunctions._performRoute = function(aRoutedData) {
+		console.log("com.developedbyme.nodejs.server.router.response.ErrorResponseRouter::_performRoute");
 		
 		var theResponse = aRoutedData.response;
 		

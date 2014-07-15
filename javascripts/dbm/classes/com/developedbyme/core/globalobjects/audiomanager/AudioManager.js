@@ -64,6 +64,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.AudioManage
 	
 	objectFunctions.getMixer = function(aName) {
 		//console.log("com.developedbyme.core.globalobjects.audiomanager.AudioManager::getMixer");
+		//console.log(aName);
 		
 		return this._mixers.getObject(aName);
 	};

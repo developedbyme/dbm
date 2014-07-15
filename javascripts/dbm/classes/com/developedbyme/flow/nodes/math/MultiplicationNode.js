@@ -34,12 +34,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.MultiplicationNode", "com.d
 		//console.log("com.developedbyme.flow.nodes.math.MultiplicationNode::_update");
 		return aInputValue1*aInputValue2;
 	};
-		
-	
-	objectFunctions.setAllReferencesToNull = function() {
-		
-		this.superCall();
-	};
 	
 	staticFunctions.create = function(aInput1, aInput2) {
 		var newNode = (new ClassReference()).init();

@@ -27,7 +27,7 @@ dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, funct
 	/**
 	 * Constructor.
 	 */
-	objectFunctions._init = function() {
+	objectFunctions.init = function() {
 		//console.log("com.developedbyme.utils.math.LineIntersection2d::_init");
 		
 		this._setAsNullResult();

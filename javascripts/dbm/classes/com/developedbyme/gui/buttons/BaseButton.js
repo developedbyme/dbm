@@ -1,19 +1,30 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Base object for all buttons.
+ */
 dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	
+	//Self reference
 	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
 	
-	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
+	//Error report
 	
+	//Dependencies
 	var TextElement = dbm.importClass("com.developedbyme.gui.text.TextElement");
 	
+	//Utils
+	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
 	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
 	
+	//Constants
 	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
 	var CssCursorTypes = dbm.importClass("com.developedbyme.constants.CssCursorTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.buttons.BaseButton::_init");
 		
@@ -21,6 +32,11 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 		
 		this._isActive = false;
 		this._useHandCursor = true;
+		
+		//this._isActive = this.createProperty("isActive", false);
+		//this._isActiveOutput = this.createProperty("isActiveOutput", this._isActive);
+		//this._isActiveUpdate = ; //METODO: add any change property
+		//this._isActiveUpdate.connectInput(this._isActiveOutput);
 		
 		this._rollOverState = this.createProperty("rollOverState", false);
 		

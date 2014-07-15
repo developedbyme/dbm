@@ -2,9 +2,6 @@ dbm.runTempFunction(function() {
 	
 	dbm.addSpecificClassesFolder("com.developedbyme", "dbm/classes");
 	
-	//dbm.addLibrary("sizzle", "libraries/sizzle/sizzle.js", "Sizzle");
-	//dbm.addLibrary("easel", "libraries/easel/easel.js", "window");
-	
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var UpdateManager = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
 	var FlowManager = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager");
@@ -26,12 +23,15 @@ dbm.runTempFunction(function() {
 	var DataManager = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.DataManager");
 	var PerformanceManager = dbm.importClass("com.developedbyme.core.globalobjects.performancemanager.PerformanceManager");
 	var EncodingManager = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.EncodingManager");
+	var ObjectPoolManager = dbm.importClass("com.developedbyme.core.globalobjects.objectpoolmanager.ObjectPoolManager");
+	var XmlObjectEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder");
 	
 	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
 	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
 	var UpdateManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.setup.UpdateManagerDefaultSetup");
 	var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
 	var DefaultBasicClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultBasicClassShortcutSetup");
+	var DefaultDevelopmentClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultDevelopmentClassShortcutSetup");
 	var DefaultWorkspaceClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultWorkspaceClassShortcutSetup");
 	var DefaultTemplateCommandsSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultTemplateCommandsSetup");
 	var DefaultTextCreatorsSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultTextCreatorsSetup");
@@ -39,6 +39,9 @@ dbm.runTempFunction(function() {
 	var DefaultTextParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultTextParsersSetup");
 	var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
 	var EncodingManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");
+	var DefaultAssetRepositoryBrowserSetup = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup");
+	var XmlObjectEncoderDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");
+	var CurveCreatorDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.setup.CurveCreatorDefaultSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
@@ -78,13 +81,17 @@ dbm.runTempFunction(function() {
 		
 		CurveEvaluator.getInstance().addEvaluator((new BezierEvaluator()).init());
 		
+		DefaultAssetRepositoryBrowserSetup.setup();
 		DefaultStatisticsManagerSetup.setup();
 		EncodingManagerDefaultSetup.setup();
 		
 		DefaultBasicClassShortcutSetup.setup();
+		DefaultDevelopmentClassShortcutSetup.setup();
 		DefaultWorkspaceClassShortcutSetup.setup();
 		DefaultTextCreatorsSetup.setup();
 		DefaultTemplateCommandsSetup.setup();
+		XmlObjectEncoderDefaultSetup.setup();
+		CurveCreatorDefaultSetup.setup();
 		
 		dbm.xmlNamespaces.dbmData = "http://developedbyme.com/schemas/xml/data/";
 		dbm.xmlNamespaces.dbmTreeStructureAttribute = "http://developedbyme.com/schemas/xml/tree-structure-attribute/";

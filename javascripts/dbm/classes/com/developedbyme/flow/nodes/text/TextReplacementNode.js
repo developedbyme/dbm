@@ -2,12 +2,23 @@
 dbm.registerClass("com.developedbyme.flow.nodes.text.TextReplacementNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.text.TextReplacementNode");
 	
+	//Self reference
 	var TextReplacementNode = dbm.importClass("com.developedbyme.flow.nodes.text.TextReplacementNode");
 	
+	//Error report
+	
+	//Dependencies
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	var KeyValuePropertyPair = dbm.importClass("com.developedbyme.flow.data.KeyValuePropertyPair");
 	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
 	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.text.TextReplacementNode::_init");
 		

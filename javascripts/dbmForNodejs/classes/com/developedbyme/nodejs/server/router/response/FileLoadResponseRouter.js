@@ -1,5 +1,5 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.nodejs.server.router.response.FileLoadResponseRouter", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.nodejs.server.router.response.FileLoadResponseRouter", "com.developedbyme.nodejs.server.router.RouterBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.nodejs.server.router.response.FileLoadResponseRouter");
 	//"use strict";
 	
@@ -38,13 +38,11 @@ dbm.registerClass("com.developedbyme.nodejs.server.router.response.FileLoadRespo
 		return this;
 	};
 	
-	objectFunctions.route = function(aRoutedData) {
-		console.log("com.developedbyme.nodejs.server.router.response.FileLoadResponseRouter::route");
+	objectFunctions._performRoute = function(aRoutedData) {
+		console.log("com.developedbyme.nodejs.server.router.response.FileLoadResponseRouter::_performRoute");
 		
-		var theRequest = aRoutedData.request;
-		
-		var currentPath = url.parse(theRequest.url).pathname;
-		var filePath = path.resolve(path.join(this._rootDirectory, currentPath));
+		var currentPath = aRoutedData.getLocalPath();
+		var filePath = path.resolve(path.join(this._rootDirectory, "/", currentPath));
 		
 		if(filePath.indexOf(this._rootDirectory) !== 0) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "route", "Trying to access file (" + currentPath + ") outside of root directory(" + this._rootDirectory + ")");

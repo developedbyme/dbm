@@ -86,7 +86,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 	};
 	
 	staticFunctions.create = function(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray) {
-		var newUpdateFunctionWithArguments = (new UpdateFunctionWithArguments()).init();
+		var newUpdateFunctionWithArguments = ClassReference._createAndInitClass(ClassReference);
 		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray);
 		return newUpdateFunctionWithArguments;
 	};

@@ -2,18 +2,27 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset", "com.developedbyme.core.globalobjects.assetrepository.assets.Asset", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset");
 	
+	//Self reference
 	var ImageAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
-	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset::_init");
 		

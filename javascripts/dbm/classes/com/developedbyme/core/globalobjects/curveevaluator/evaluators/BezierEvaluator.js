@@ -77,16 +77,41 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 			return;
 		}
 		
-		var isCompact = aIsCompact;
-		
 		if(aStartParameter <= aExactness && aEndParameter >= 1-aExactness) {
 			var currentArray = aSegmentPoints;
 			var currentArrayLength = currentArray.length;
 			for(var i = aStartLoop; i < currentArrayLength; i++) {
 				var currentPoint = currentArray[i];
-				var newPoint = Point.create(currentPoint.x, currentPoint.y);
+				var newPoint = Point.create(currentPoint.x, currentPoint.y); //METODO: this needs to work in 3d
 				aReturnArray.push(newPoint);
 			}
+		}
+		else if(aSegmentPoints.length === 4) {
+			var newPoint4 = Point.create(0, 0);
+			dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(aSegmentPoints, aEndParameter, newPoint4);
+		
+			var newPoint1 = Point.create(0, 0);
+			dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(aSegmentPoints, aStartParameter, newPoint1);
+			
+			var scale = aEndParameter-aStartParameter;
+			
+			var tangent = Point.create(0, 0);
+			
+			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aStartParameter, tangent); //METODO: this needs to work in 3d
+			var newPoint2 = Point.create(newPoint1.x+(((scale)/3)*tangent.x), newPoint1.y+(((scale)/3)*tangent.y), newPoint1.z+(((scale)/3)*tangent.z));
+			
+			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aEndParameter, tangent); //METODO: this needs to work in 3d
+			var newPoint3 = Point.create(newPoint4.x-(((scale)/3)*tangent.x), newPoint4.y-(((scale)/3)*tangent.y), newPoint4.z-(((scale)/3)*tangent.z));
+			
+			if(!aStartLoop) {
+				aReturnArray.push(newPoint1);
+			}
+			else {
+				newPoint1.destroy();
+			}
+			aReturnArray.push(newPoint2);
+			aReturnArray.push(newPoint3);
+			aReturnArray.push(newPoint4);
 		}
 		else {
 			var firstHalfArray = new Array(aSegmentPoints.length);

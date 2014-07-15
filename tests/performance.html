@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Performance test</title>
+		
+		<script type="application/javascript" src="../javascripts/dbm/dbm.js"></script>
+		<script type="application/javascript">
+			dbm.setup(window, document, "../javascripts", "classes");
+		</script>
+		<script type="application/javascript" src="../javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js"></script>
+		<script type="application/javascript">
+			dbm.runTempFunction(function(){
+				var userAgentString = document.location.href;
+				var searchString = userAgentString.substring(userAgentString.indexOf("?")+1, userAgentString.length);
+				var currentArray = searchString.split("&");
+				var currentArrayLength = currentArray.length;
+				for(var i = 0; i < currentArrayLength; i++) {
+					var tempArray = currentArray[i].split("=");
+					var currentKey = tempArray[0];
+					if(currentKey === "script") {
+						dbm.loadFile(tempArray[1]);
+					}
+					if(currentKey === "class") {
+						dbm.importClass(tempArray[1]);
+					}
+				}
+			});
+			dbm.setupLoaderHook();
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

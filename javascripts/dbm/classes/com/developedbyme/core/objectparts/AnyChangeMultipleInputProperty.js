@@ -1,18 +1,30 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * A ghost property that has multiple input connections.
+ */
 dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	//"use strict";
 	
+	//Self reference
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	//Constants
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::_init");
 		

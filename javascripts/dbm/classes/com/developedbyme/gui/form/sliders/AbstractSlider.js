@@ -99,7 +99,7 @@ dbm.registerClass("com.developedbyme.gui.form.sliders.AbstractSlider", "com.deve
 		}
 		var maxValue = aPlaybackNode.getProperty("maxTime").getValue();
 		if(isFinite(maxValue)) {
-			this._minValue.setValue(maxValue);
+			this._maxValue.setValue(maxValue);
 		}
 	};
 	

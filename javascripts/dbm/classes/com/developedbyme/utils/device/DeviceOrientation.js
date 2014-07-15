@@ -1,4 +1,7 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Class that listens for device orientation events.
+ */
 dbm.registerClass("com.developedbyme.utils.device.DeviceOrientation", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.device.DeviceOrientation");
 	
@@ -127,7 +130,7 @@ dbm.registerClass("com.developedbyme.utils.device.DeviceOrientation", "com.devel
 	
 	staticFunctions.create = function(aEventDispatcher) {
 		
-		aEventDispatcher = VariableAliases.valueWithDefault(aEventDispatcher, window); //MENOTE: change this to dbm.getWindow()
+		aEventDispatcher = VariableAliases.valueWithDefault(aEventDispatcher, dbm.getWindow());
 		
 		var newDeviceOrientation = (new ClassReference()).init();
 		newDeviceOrientation.setEventDispatcher(aEventDispatcher);

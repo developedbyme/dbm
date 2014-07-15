@@ -26,9 +26,9 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerf
 		var currentCommand;
 		var theResult;
 		
-		this._commandsArray.start();
-		while(this._commandsArray.isActive()) {
-			currentCommand = this._commandsArray.getNextItem();
+		var iterationData = this._commandsArray.createIterationData();
+		for(;iterationData.position < iterationData.length; iterationData.position++) {
+			currentCommand = iterationData.array[iterationData.position];
 			theResult = currentCommand.perform(aEventDataObject);
 			if(this._isDestroyed) {
 				break;
@@ -38,8 +38,11 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerf
 			}
 			
 			if((theResult === CommandStatusTypes.BREAK) || (this.breakOnError && (theResult === CommandStatusTypes.ERROR))) {
-				this._commandsArray.stop();
+				break;
 			}
+		}
+		if(!this._isDestroyed) {
+			this._commandsArray.stopUsingIterationData(iterationData);
 		}
 	};
 	
@@ -48,6 +51,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerf
 	};
 	
 	objectFunctions.removeCommand = function(aCommand) {
+		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::removeCommand");
+		
 		this._commandsArray.removeItem(aCommand);
 	};
 	

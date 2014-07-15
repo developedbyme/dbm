@@ -22,8 +22,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
-	staticFunctions.DEFAULT_MAX_NUMBER_OF_SIMILTANIOUS_LOADERS = 5;
-	
 	/**
 	 * Constructor
 	 */

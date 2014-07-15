@@ -79,6 +79,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		return null;
 	};
 	
+	objectFunctions.getParentForElement = function(aHtmlElement) {
+		var currentController = this.getControllerForHtmlElementIfExists(aHtmlElement);
+		if(currentController !== null) {
+			return currentController.getProperty("parentElement").getValue();
+		}
+		else {
+			return aHtmlElement.parentNode;
+		}
+	};
+	
 	objectFunctions.getParentControllerForHtmlElementByClass = function(aHtmlElement, aClass) {
 		var currentElement = aHtmlElement;
 		var debugCounter = 0;
@@ -90,6 +100,32 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 			var currentController = this.getControllerForHtmlElementIfExists(currentElement);
 			if(currentController !== null) {
 				if(currentController instanceof aClass) {
+					return currentController;
+				}
+				else {
+					currentElement = currentController.getProperty("parentElement").getValue();
+				}
+			}
+			else {
+				currentElement = currentElement.parentNode;
+			}
+			
+		}
+		//METODO: error message
+		return null;
+	};
+	
+	objectFunctions.getParentControllerThatHasDynamicVariable = function(aHtmlElement, aVariableName) {
+		var currentElement = aHtmlElement;
+		var debugCounter = 0;
+		while(currentElement !== null) {
+			if(debugCounter++ > 1000) {
+				//METODO: error message
+				return null;
+			}
+			var currentController = this.getControllerForHtmlElementIfExists(currentElement);
+			if(currentController !== null) {
+				if(currentController.hasDynamicVariable(aVariableName)) {
 					return currentController;
 				}
 				else {

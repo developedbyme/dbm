@@ -1,14 +1,28 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Base class for every asset
+ */
 dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");
 	//"use strict";
 	
+	//Self reference
 	var Asset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_init");
 		
@@ -106,6 +120,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		return this;
 	};
 	
+	/**
+	 * Checks if an extended event is expected for this object.
+	 *
+	 * @param	aName	String	The name of the event.
+	 *
+	 * @return	Boolean	True if the event is expected.
+	 */
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
 		switch(aName) {
@@ -115,10 +136,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		}
 		
 		return this.superCall(aName);
-	};
+	}; //End function _extendedEvent_eventIsExpected
 	
 	/**
 	 * Gets the parameters for this class. Part of the toString function.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with the parameters description.
 	 */
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
@@ -126,10 +149,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		if(this._status !== null) {
 			aReturnArray.push("status: " + this._status.getValue());
 		}
-	};
+	}; //End function _toString_getAttributes
 	
 	/**
-	 * Sets all the references to null
+	 * Sets all the references to null. Part of the destroy function.
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
@@ -137,10 +160,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.A
 		this._data = null;
 		
 		this.superCall();
-	};
+	}; //End function setAllReferencesToNull
 	
+	/**
+	 * Creates a new objetc of this class.
+	 *
+	 * @return	The newly created object.
+	 */
 	staticFunctions.create = function() {
-		var newAsset = (new ClassReference()).init();
+		var newAsset = ClassReference._createAndInitClass(ClassReference);
 		return newAsset;
-	};
+	}; //End function create
 });

@@ -2,19 +2,31 @@
 dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowSizeNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode");
 	
+	//Self reference
 	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_init");
 		
 		this.superCall();
 		
-		this._width = this.createProperty("width", window.innerWidth);
-		this._height = this.createProperty("height", window.innerHeight);
-		this._window = this.createProperty("window", window);
+		var currentWindow = dbm.getWindow();
+		this._width = this.createProperty("width", currentWindow.innerWidth);
+		this._height = this.createProperty("height", currentWindow.innerHeight);
+		this._window = this.createProperty("window", currentWindow);
 		
 		this.getExtendedEvent().createEvent("resize");
 		this.getExtendedEvent().addCommandToEvent("resize", CallFunctionCommand.createCommand(this, this._updateSize, []));
@@ -47,6 +59,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowSizeNode", "com.de
 			this._height.setValueWithFlow(theWindow.innerHeight, aFlowUpdateNumber);
 		}
 		else {
+			//METODO: remove old listener for reactivation
 			this.stop();
 		}
 	};

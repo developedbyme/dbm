@@ -112,6 +112,14 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		return newPoint;
 	};
 	
+	objectFunctions.createPoints = function(aNumberOfPoints) {
+		for(var i = 0; i < aNumberOfPoints; i++) {
+			this.pointsArray.push(Point.create());
+		}
+		
+		return this;
+	};
+	
 	objectFunctions.performDestroy = function() {
 		
 		ClassReference.destroyArrayIfExists(this.pointsArray);
@@ -137,21 +145,4 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 		newSet.setupFromArray(aValues, aNumberOfDimensions);
 		return newSet;
 	};
-	
-	/**
-	 * Gets a line drawer for this set.
-	 *
-	 * @param	aType			The type of line drawer that is wanted.
-	 * @param	aStartParameter	The parameter to start drawing from.
-	 * @param	aEndParameter	The parameter to stop drawing.
-	 * @param	aNrOfSegments	The number of segemnts to split split up the pointset on.
-	 * @param	aExactness		The exactness of the line drawer.
-	 * @return	The line drawer.
-	 */
-	//InternalFunctionality function getLineDrawer(aType, aStartParameter, aEndParameter, aNrOfSegments = 2, aExactness = 0.1, aLineDrawer = null) {
-	//	//console.log("com.developedbyme.core.data.points.PointSet.InternalFunctionality::getLineDrawer");
-	//	
-	//	var evaluationFunction = GlobalLink::globalObjects["curveEvaluator"].getEvaluationFunction(this, aType, (aStartParameter <= aEndParameter));
-	//	return evaluationFunction(this, aStartParameter, aEndParameter, aNrOfSegments, aExactness, aLineDrawer);
-	//}
 });

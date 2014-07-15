@@ -10,5 +10,4 @@ dbm.registerClass("com.developedbyme.constants.ReadyStateTypes", null, function(
 	staticFunctions.PARTLY_DONE = 3;
 	staticFunctions.DONE = 4;
 	
-	
 });

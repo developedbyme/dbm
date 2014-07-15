@@ -13,12 +13,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.commands
 	//Dependencies
 	var InDomSwitchableArea = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea");
 	var SwitchableAreaHolder = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaHolder");
+	var BooleanSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode");
 	
 	//Utils
 	
 	//Constants
 	
 	staticFunctions.createInDomSwitchableArea = function(aHolder) {
+		console.log("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions::visibleAreaFromBooleanProperty");
+		console.log(aHolder);
 		var newInDomSwitchableArea = InDomSwitchableArea.create();
 		
 		aHolder.setSwitchableArea(newInDomSwitchableArea);
@@ -33,5 +36,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.commands
 		}
 		
 		parentAreaHolder.getSwitchableArea().addArea(aName, aObject, aOwnsObject);
+	};
+	
+	staticFunctions.visibleAreaFromBooleanProperty = function(aHolder, aProperty, aTrueValue, aFalseValue) {
+		console.log("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions::visibleAreaFromBooleanProperty");
+		console.log(aHolder, aProperty, aTrueValue, aFalseValue);
+		var switchableArea = aHolder.getSwitchableArea();
+		
+		var switchNode = switchableArea.addDestroyableObject(BooleanSwitchedNode.create(aProperty, aTrueValue, aFalseValue));
+		switchableArea.setPropertyInput("visibleArea", switchNode.getProperty("outputValue"));
 	};
 });

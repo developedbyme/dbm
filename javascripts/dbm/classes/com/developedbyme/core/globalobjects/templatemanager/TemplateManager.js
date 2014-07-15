@@ -114,6 +114,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 			if(currentCommandWithArguments === "") {
 				continue;
 			}
+			//console.log("Executing command:", currentCommandWithArguments);
 			var currentCommandName;
 			var currentArguments = null;
 			var spacePosition = currentCommandWithArguments.indexOf(" ");
@@ -168,7 +169,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.Template
 				}
 			}
 			else {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createControllersForTemplateNode", "Class " + currentClass + " doesn't exist.");
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_createControllersForTemplateNode", "Class " + currentClassName + " doesn't exist.");
 			}
 		}
 		

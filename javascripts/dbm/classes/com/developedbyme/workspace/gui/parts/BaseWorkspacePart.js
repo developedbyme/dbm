@@ -3,13 +3,23 @@ dbm.registerClass("com.developedbyme.workspace.gui.parts.BaseWorkspacePart", "co
 	//console.log("com.developedbyme.workspace.gui.parts.BaseWorkspacePart");
 	//"use strict";
 	
+	//Self reference
 	var BaseWorkspacePart = dbm.importClass("com.developedbyme.workspace.gui.parts.BaseWorkspacePart");
 	
+	//Error report
+	
+	//Dependencies
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.workspace.gui.parts.BaseWorkspacePart::_init");
 		
@@ -40,9 +50,12 @@ dbm.registerClass("com.developedbyme.workspace.gui.parts.BaseWorkspacePart", "co
 		//MENOTE: should be overridden
 	};
 	
-	//objectFunctions.addSubPart = function(aPart) {
-	//	this._parts.push(aPart);
-	//};
+	objectFunctions.addPart = function(aPath, aPart) {
+		//console.log("com.developedbyme.workspace.gui.parts.BaseWorkspacePart::addPart");
+		//console.log(aPath, aPart);
+		var treeStructureItem = this._treeStructureItem.getRoot().getItemByPath(aPath, this._treeStructureItem);
+		aPart.setTreeStructureItem(treeStructureItem);
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

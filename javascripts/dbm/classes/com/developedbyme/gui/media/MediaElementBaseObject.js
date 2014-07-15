@@ -2,26 +2,35 @@
 dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.gui.media.MediaElementBaseObject");
 	
+	//Self reference
 	var MediaElementBaseObject = dbm.importClass("com.developedbyme.gui.media.MediaElementBaseObject");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
+	//Utils
 	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	var AudioEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.AudioEventIds");
+	var VideoEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.VideoEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEventIds");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.media.MediaElementBaseObject::_init");
 		
@@ -126,6 +135,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 	};
 	
 	objectFunctions.setUrls = function(aUrls, aPreload) {
+		console.log("com.developedbyme.gui.media.MediaElementBaseObject::setUrls");
 		
 		this._urls = aUrls;
 		
@@ -138,9 +148,8 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 			var currentUrl = currentArray[i];
 			var currentType = this._getTypeForUrl(currentUrl);
 			var canPlayStatus = this.getElement().canPlayType(currentType);
-			//console.log(currentType, canPlayStatus);
 			if(canPlayStatus === "probably") {
-				if(this.getElement().src === null) {
+				if(!VariableAliases.isSet(this.getElement().src) || this.getElement().src === "") {
 					this.getElement().src = currentUrl;
 				}
 				this._selectedUrl = currentUrl;
@@ -162,7 +171,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 			}
 		}
 		if(!isSelected && maybeUrl !== null) {
-			if(this.getElement().src === null) {
+			if(!VariableAliases.isSet(this.getElement().src) || this.getElement().src === "") {
 				this.getElement().src = maybeUrl;
 			}
 			this._selectedUrl = maybeUrl;
@@ -173,6 +182,9 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 	};
 	
 	objectFunctions.setUrl = function(aUrl, aPreload) {
+		console.log("com.developedbyme.gui.media.MediaElementBaseObject::setUrl");
+		console.log(aUrl, aPreload);
+		
 		this.getElement().src = aUrl;
 		this._selectedUrl = aUrl;
 		if(aPreload) {
@@ -181,6 +193,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 	};
 	
 	objectFunctions.play = function() {
+		console.log("com.developedbyme.gui.media.MediaElementBaseObject::play");
 		
 		var currentState = this._stateTimeline.getValue();
 		if(currentState === PlaybackStateTypes.PLAYING) {
@@ -224,6 +237,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 	};
 	
 	objectFunctions._performPlay = function() {
+		console.log("com.developedbyme.gui.media.MediaElementBaseObject::_performPlay");
 		try {
 			this._outputVolume.update();
 			this.getElement().play();
@@ -453,7 +467,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 	};
 	
 	staticFunctions._create = function(aClass, aElementType, aParentOrDocument, aAddToParent, aUrls, aPreload, aAttributes) {
-		var newNode = ClassReference._createAndInitClass();
+		var newNode = ClassReference._createAndInitClass(aClass);
 		
 		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
 		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;

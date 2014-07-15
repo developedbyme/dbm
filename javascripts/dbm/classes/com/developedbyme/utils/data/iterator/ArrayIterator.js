@@ -1,9 +1,30 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * An array that can securly be iterated over.
+ */
 dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.developedbyme.utils.data.ArrayHolder", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.iterator.ArrayIterator");
 	
-	var CommandQueue = dbm.importClass("com.developedbyme.utils.data.CommandQueue");
+	//Self reference
+	var ArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ArrayIterator");
 	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var IterationData = dbm.importClass("com.developedbyme.utils.data.iterator.IterationData");
+	
+	//Utils
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::_init");
 		
@@ -11,6 +32,8 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 		
 		this._currentItem = null;
 		this._currentPosition = 0;
+		
+		this._iteratorDatas = ClassReference._createArray();
 		
 		return this;
 	};
@@ -45,124 +68,106 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 		}
 	};
 	
-	objectFunctions._checkIfTheArrayIsAtEnd = function() {
+	/**
+	 * Creates a new iteration data for this array.
+	 *
+	 * @return	IterationData	The newly created object.
+	 */
+	objectFunctions.createIterationData = function() {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::createIterationData");
 		
-	};
+		var newIterationData = IterationData.create(this.array);
+		this.addIterationData(newIterationData);
+		return newIterationData;
+	}; //End function createIterationData
 	
 	/**
-	 * Gets the current item.
+	 * Adds an iteration data.
+	 *
+	 * @param	aIterationData	IterationData	The iteration data to add to this iterator.
+	 *
+	 * @return	self
 	 */
-	objectFunctions.getCurrentItem = function() {
-		return this._currentItem;
-	};
+	objectFunctions.addIterationData = function(aIterationData) {
+		this._iteratorDatas.push(aIterationData);
+		
+		return this;
+	}; //End function addIterationData
 	
 	/**
-	 * Gets the next item.
+	 * Reomves an iteration data.
+	 *
+	 * @param	aAddIterationData	IterationData	The iteration data to remove to this iterator.
+	 *
+	 * @return	self
 	 */
-	objectFunctions.getNextItem = function() {
-		if(this._currentPosition < this.array.length) {
-			this._currentItem = this.array[this._currentPosition];
-			this._currentPosition++;
-			this._checkIfTheArrayIsAtEnd();
-			return this._currentItem;
+	objectFunctions.removeIterationData = function(aIterationData) {
+		var index = ArrayFunctions.indexOfInArray(this._iteratorDatas, aIterationData);
+		if(index !== -1) {
+			this._iteratorDatas.splice(index, 1);
 		}
-		//METODO: error report
-		return null;
-	};
+		else {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeIterationData", "Iteration data is not used by " + this + ".");
+		}
 		
+		return this;
+	}; //End function removeIterationData
+	
 	/**
-	 * Gets a specific item.
-	 * 
-	 * @param	aIndex					The absolute index to get the item at.
-	 * @param	aMoveCurrentPosition	If the current position should be moved to the current position.
+	 * Stop using iteration data.
+	 *
+	 * @param	aIterationData	The iteration data that is no longer being used.
+	 *
+	 * @return	self
 	 */
-	objectFunctions.getItem = function(aIndex, aMoveCurrentPosition) {
-		if(aIndex < this.array.length) {
-			var returnItem = this.array[aIndex];
-			if(aMoveCurrentPosition !== false) {
-				this._currentItem = returnItem;
-				this._currentPosition = aIndex+1;
-				this._checkIfTheArrayIsAtEnd();
+	objectFunctions.stopUsingIterationData = function(aIterationData) {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
+		
+		//METODO: would this be better as a retained object
+		this.removeIterationData(aIterationData);
+		aIterationData.destroy();
+		
+		return this;
+	}; //End function stopUsingIterationData
+	
+	/**
+	 * Updates all the iteration datas after update.
+	 *
+	 * @param	aFromPosition	int	The position where the array was altered at.
+	 * @param	aAdjustment		int	The amount that the array has been adjusted.
+	 * @param	aNewLength		int	The new total length of the array.
+	 */
+	objectFunctions._updateAllIterationDatas = function(aFromPosition, aAdjustment, aNewLength) {
+		var currentArray = this._iteratorDatas;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentIterationData = currentArray[i];
+			if(currentIterationData.position >= aFromPosition) {
+				currentIterationData.position += aAdjustment;
+				//METODO: fix negative numbers
 			}
-			return returnItem;
-		}
-		//METODO: error report
-		return null;
-	};
-	
-	/**
-	 * Checks if the position can change to a specific index.
-	 * 
-	 * @param	aIndex	The absolute index to check if the item can change to.
-	 */
-	objectFunctions.canChangePosition = function(aIndex) {
-		return (aIndex < this.array.length);
-	};
-	
-	/**
-	 * Resets the position.
-	 */
-	objectFunctions.resetPosition = function() {
-		this._currentPosition = 0;
-	};
-
-	/**
-	 * Checks if there is a next item.
-	 */
-	objectFunctions.hasNextItem = function() {
-		return (this._currentPosition < this.array.length);
-	};
-	
-	/**
-	 * Checks if there the position is specified.
-	 */
-	objectFunctions.hasPosition = function() {
-		return true;
-	};
-	
-	/**
-	 * Gets the current position in the list.
-	 * 
-	 * @return	The index of the current position, -1 if the position isn't specified.
-	 */
-	objectFunctions.getPosition = function() {
-		return this._currentPosition-1;
-	};
-	
-	/**
-	 * Checks if the total length can be specified.
-	 */
-	objectFunctions.hasLength = function() {
-		return true;
-	};
-	
-	/**
-	 * Gets the length of the list.
-	 * 
-	 * @return	The length of the list, -1 if the length isn't specified.
-	 */
-	objectFunctions.getLength = function() {
-		return this.array.length;
-	};
+			currentIterationData.length = aNewLength;
+		};
+	}; //End function _updateAllIterationDatas
 	
 	/**
 	 * Pushes an object to the list.
 	 */
 	objectFunctions.push = function(aObject) {
 		if(!this._verifyItem(aObject)) return;
-		this.array.push(aObject);
+		var newLength = this.array.push(aObject);
 		this._itemAdded(aObject);
+		
+		this._updateAllIterationDatas(newLength, 1, newLength);
 	};
 	
 	/**
 	 * Pops an item from the list.
 	 */
 	objectFunctions.pop = function() {
-		if(this._currentPosition === this.array.length) {
-			this._currentPosition--;
-		}
 		this._itemRemoved(this.array.pop());
-		this._checkIfTheArrayIsAtEnd();
+		
+		this._updateAllIterationDatas(newLength+1, -1, this.array.length);
 	};
 	
 	/**
@@ -170,11 +175,10 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	 */
 	objectFunctions.unshift = function(aObject) {
 		if(!this.verifyItem(aObject)) return;
-		this.array.unshift(aObject);
-		if(this._currentPosition > 0) {
-			this._currentPosition++;
-		}
+		var newLength = this.array.unshift(aObject);
 		this._itemAdded(aObject);
+		
+		this._updateAllIterationDatas(0, 1, newLength);
 	};
 	
 	/**
@@ -182,30 +186,28 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	 */
 	objectFunctions.shift = function() {
 		this.itemRemoved(this.array.shift());
-		if(this._currentPosition > 0) {
-			this._currentPosition--;
-			this._checkIfTheArrayIsAtEnd();
-		}
+		
+		this._updateAllIterationDatas(0, -1, this.array.length);
 	};
 	
 	/**
 	 * Removes an item from the list.
 	 */
 	objectFunctions.removeItem = function(aObject) {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::removeItem");
+		
 		var currentArray = this.array;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			if(aObject === currentArray[i]) {
-				this._itemRemoved(currentArray[i]);
-				currentArray.splice(i, 1);
-				if(i < this._currentPosition) {
-					this._currentPosition--;
-				}
-				this._checkIfTheArrayIsAtEnd();
-				return;
-			}
+		var index = ArrayFunctions.indexOfInArray(currentArray, aObject);
+		
+		if(index !== -1) {
+			this._itemRemoved(currentArray[index]);
+			currentArray.splice(index, 1);
+			
+			this._updateAllIterationDatas(index, -1, this.array.length);
 		}
-		//METODO: error message
+		else {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeItem", "Item " + aObject + " doesn't exist in " + this + ".");
+		}
 	};
 	
 	/**
@@ -215,13 +217,13 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 		if(aIndex < this.array.length) {
 			this._itemRemoved(this.array[aIndex]);
 			this.array.splice(aIndex, 1);
-			if(aIndex < this._currentPosition) {
-				this._currentPosition--;
-			}
-			this._checkIfTheArrayIsAtEnd();
+			
+			this._updateAllIterationDatas(aIndex, -1, this.array.length);
 			return;
 		}
-		//METODO: error message
+		else {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeItemAt", "Index " + aIndex + " is larger than array " + this + ".");
+		}
 	};
 	
 	/**
@@ -230,24 +232,36 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	objectFunctions.addItemAt = function(aObject, aIndex) {
 		if(!this.verifyItem(aObject)) return;
 		if(aIndex >= this.array.length) {
-			this.array.push(aObject);
+			var newLength = this.array.push(aObject);
+			this._updateAllIterationDatas(newLength, 1, newLength);
 		}
 		else {
-			if(aIndex <= this._currentPosition) {
-				this._currentPosition++;
-			}
 			this.array.splice(aIndex, 0, aObject);
+			
+			this._updateAllIterationDatas(aIndex, 1, this.array.length);
 		}
 		this._itemAdded(aObject);
 	};
 	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
+		ClassReference._reuseArray(this._iteratorDatas);
+		this._iteratorDatas = null;
 		this._currentItem = null;
 		
 		this.superCall();
 	};
 	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "_currentItem":

@@ -1,19 +1,33 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * A generic input field.
+ */
 dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.gui.form.InputField");
 	
+	//Self reference
 	var InputField = dbm.importClass("com.developedbyme.gui.form.InputField");
 	
-	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
-	var FormFieldExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.FormFieldExtendedEventIds");
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+		
+	//Constants
+	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var FormFieldExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.FormFieldExtendedEventIds");
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
 	staticFunctions._ACTIVE = "active";
 	staticFunctions._INTERNAL_CHANGE = "internalChange";
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.form.InputField::_init");
 		
@@ -22,14 +36,14 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 		this._isActive = false;
 		this._value = this.createProperty("value", "");
 		this._lastValue = "";
-		this._display = this.createGhostProperty("display");
-		this.createUpdateFunction("display", this._updateFlowText, [this._value], [this._display]);
 		this._defaultText = null;
 		this._isChangingDefaultText = false;
 		
 		this.getExtendedEvent().addCommandToEvent(FormFieldExtendedEventIds.FOCUS, CallFunctionCommand.createCommand(this, this._focus, []));
 		this.getExtendedEvent().addCommandToEvent(FormFieldExtendedEventIds.BLUR, CallFunctionCommand.createCommand(this, this._blur, []));
 		this.getExtendedEvent().addCommandToEvent(ClassReference._INTERNAL_CHANGE, CallFunctionCommand.createCommand(this, this._change, [GetVariableObject.createSelectDataCommand()]));
+		
+		this._updateFunctions.getObject("display").addInputConnection(this._value);
 		
 		return this;
 	};
@@ -48,7 +62,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	objectFunctions.setDefaultText = function(aText) {
 		//console.log("com.developedbyme.gui.form.InputField::setDefaultText");
 		this._defaultText = aText;
-		if(this._defaultText !== null && VariableAliases.isNull(this.getElement().value)) {
+		if(VariableAliases.isSet(this._defaultText) && VariableAliases.isNull(this.getElement().value)) {
 			this._isChangingDefaultText = true;
 			this.getElement().value = this._defaultText;
 			this._isChangingDefaultText = false;
@@ -60,7 +74,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	objectFunctions.setText = function(aText) {
 		console.log("com.developedbyme.gui.form.InputField::setText");
 		
-		if(aText === "" && this._defaultText !== null) {
+		if(aText === "" && VariableAliases.isSet(this._defaultText)) {
 			this._isChangingDefaultText = true;
 			this.getElement().value = this._defaultText;
 			this._isChangingDefaultText = false;
@@ -79,7 +93,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	
 	objectFunctions._focus = function() {
 		//console.log("com.developedbyme.gui.form.InputField::_focus");
-		if(this._defaultText !== null && this.getElement().value === this._defaultText) {
+		if(VariableAliases.isSet(this._defaultText) && this.getElement().value === this._defaultText) {
 			this._isChangingDefaultText = true;
 			this.getElement().value = "";
 			this._isChangingDefaultText = false;
@@ -88,7 +102,7 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	
 	objectFunctions._blur = function() {
 		//console.log("com.developedbyme.gui.form.InputField::_blur");
-		if(this._defaultText !== null && VariableAliases.isNull(this.getElement().value)) {
+		if(VariableAliases.isSet(this._defaultText) && VariableAliases.isNull(this.getElement().value)) {
 			this._isChangingDefaultText = true;
 			this.getElement().value = this._defaultText;
 			this._isChangingDefaultText = false;
@@ -97,21 +111,24 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 	
 	objectFunctions._change = function(aEvent) {
 		//console.log("com.developedbyme.gui.form.InputField::_change");
+		//console.log(this._isChangingDefaultText, this.getElement().value, this._lastValue);
 		if(this._isChangingDefaultText) return;
-		if(this.getElement().value !== this._lastValue) {
-			this._value.setValue(this.getElement().value);
+		var newValue = this.getElement().value;
+		if(newValue !== this._lastValue) {
+			this._lastValue = newValue;
+			this._value.setValue(newValue);
 			if(this.getExtendedEvent().hasEvent(FormFieldExtendedEventIds.CHANGE)) {
-				this.getExtendedEvent().perform(FormFieldExtendedEventIds.CHANGE, this.getElement().value);
+				this.getExtendedEvent().perform(FormFieldExtendedEventIds.CHANGE, newValue);
 			}
 		}
 		if(aEvent.keyCode === 13) {
 			if(this.getExtendedEvent().hasEvent(FormFieldExtendedEventIds.REQUEST_SUBMIT)) {
-				this.getExtendedEvent().perform(FormFieldExtendedEventIds.REQUEST_SUBMIT, this.getElement().value);
+				this.getExtendedEvent().perform(FormFieldExtendedEventIds.REQUEST_SUBMIT, newValue);
 			}
 		}
 	};
 	
-	objectFunctions._updateFlowText = function(aFlowUpdateNumber) {
+	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.gui.form.InputField::_updateFlowText");
 		var newValue = this._value.getValueWithoutFlow();
 		this.getElement().value = newValue;
@@ -147,12 +164,22 @@ dbm.registerClass("com.developedbyme.gui.form.InputField", "com.developedbyme.gu
 		return this.superCall(aName);
 	};
 	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._value = null;
+		this._lastValue = null;
+		this._defaultText = null;
+		
+		this.superCall();
+	};
+	
 	staticFunctions.create = function(aElement, aDefaultText) {
 		return (new InputField()).init().setElement(aElement).setDefaultText(aDefaultText);
 	};
 	
 	staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aDefaultText, aType, aAttributes) {
 		
+		aDefaultText = VariableAliases.valueWithDefault(aDefaultText, null);
 		aType = VariableAliases.valueWithDefault(aType, "text");
 		
 		var newNode = (new ClassReference()).init();

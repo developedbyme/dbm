@@ -2,17 +2,27 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager");
 	
+	//Self reference
 	var DebugManager = dbm.importClass("com.developedbyme.core.globalobjects.debugmanager.DebugManager");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
+	//Utils
+	
+	//Constants
+	
 	dbm.setClassAsSingleton("dbmDebugManager");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::_init");
 		
@@ -25,7 +35,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 		return this;
 	};
 	
-	objectFunctions.objectCreated = function objectCreated(aType) {
+	objectFunctions.objectCreated = function(aType) {
 		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::objectCreated");
 		if(!this._objectCount.hasObject(aType)) {
 			this._objectCount.addObject(aType, 0);
@@ -33,7 +43,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 		this._objectCount.replaceObject(aType, this._objectCount.getObject(aType)+1);
 	};
 	
-	objectFunctions.objectDestroyed = function objectDestroyed(aType) {
+	objectFunctions.objectDestroyed = function(aType) {
 		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::objectDestroyed");
 		if(!this._objectCount.hasObject(aType)) {
 			this._objectCount.addObject(aType, 0);
@@ -41,7 +51,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 		this._objectCount.replaceObject(aType, this._objectCount.getObject(aType)-1);
 	};
 	
-	objectFunctions.printNumberOfCreatedObjects = function printNumberOfCreatedObjects() {
+	objectFunctions.printNumberOfCreatedObjects = function() {
 		console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::printNumberOfCreatedObjects");
 		
 		var totalNumberOfItems = 0;
@@ -58,19 +68,19 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 		console.log(returnString);
 	};
 	
-	objectFunctions.setCheckForDeletion = function setCheckForDeletion(aCheck) {
+	objectFunctions.setCheckForDeletion = function(aCheck) {
 		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::setCheckForDeletion");
 		
 		this._isCheckingForDeletion = aCheck;
 	};
 	
-	objectFunctions.checkThatObjectIsDestroyed = function checkThatObjectIsDestroyed(aObject) {
+	objectFunctions.checkThatObjectIsDestroyed = function(aObject) {
 		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::checkThatObjectIsDestroyed");
 		//console.log(aObject)
 		
 		if(this._isCheckingForDeletion) {
 			for(var objectName in aObject) {
-				if(aObject[objectName] !== null) {
+				if(aObject[objectName] !== null && objectName !== "__objectPool") {
 					var currentType = typeof(aObject[objectName]);
 					if(currentType === "object" && aObject[objectName] instanceof BaseObject && !aObject[objectName].isDestroyed() && aObject._internalFunctionality_ownsVariable(objectName)) {
 						this._tempArray.push(objectName + ": " + aObject[objectName]);
@@ -93,12 +103,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManage
 		}
 	};
 	
-	objectFunctions.checkThatObjectHasNoReferences = function checkThatObjectHasNoReferences(aObject) {
+	objectFunctions.checkThatObjectHasNoReferences = function(aObject) {
 		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::checkThatObjectHasNoReferences");
 		
 		if(this._isCheckingForDeletion) {
 			for(var objectName in aObject) {
-				if(aObject[objectName] !== null) {
+				if(aObject[objectName] !== null && objectName !== "__objectPool") {
 					var currentType = typeof(aObject[objectName]);
 					if(currentType === "object") {
 						this._tempArray.push(objectName + ": " + aObject[objectName]);
