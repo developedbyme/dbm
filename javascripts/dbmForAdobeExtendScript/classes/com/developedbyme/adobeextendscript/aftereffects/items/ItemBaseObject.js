@@ -1,0 +1,69 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.ItemBaseObject", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.adobeextendscript.aftereffects.items.ItemBaseObject");
+	//"use strict";
+	
+	//Self reference
+	var ItemBaseObject = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.ItemBaseObject");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.adobeextendscript.aftereffects.items.ItemBaseObject::_init");
+		
+		this.superCall();
+		
+		this._nativeItem = null;
+		
+		return this;
+	};
+	
+	objectFunctions.setupItem = function(aNativeItem) {
+		this._nativeItem = aNativeItem;
+		
+		return this;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._nativeItem = null;
+		
+		this.superCall();
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		/*
+		switch(aName) {
+			case "":
+				return true;
+		}
+		*/
+		
+		return this.superCall(aName);
+	};
+	
+	staticFunctions.create = function(aNativeItem) {
+		//console.log("com.developedbyme.adobeextendscript.aftereffects.items.ItemBaseObject::create");
+		//console.log(aPort);
+		
+		var newItemBaseObject = (new ClassReference()).init();
+		
+		newItemBaseObject.setupItem(aNativeItem);
+		
+		return newItemBaseObject;
+	};
+});

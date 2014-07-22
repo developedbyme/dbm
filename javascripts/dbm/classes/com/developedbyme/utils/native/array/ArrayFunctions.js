@@ -221,4 +221,20 @@ dbm.registerClass("com.developedbyme.utils.native.array.ArrayFunctions", null, f
 		
 		return aArray;
 	};
+	
+	staticFunctions.removeEmptyStringPositions = function(aArray) {
+		
+		var currentArray = aArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentValue = currentArray[i];
+			if(VariableAliases.isEmptyText(currentValue)) {
+				currentArray.splice(i, 1);
+				i--;
+				currentArrayLength--;
+			}
+		}
+		
+		return aArray;
+	};
 });

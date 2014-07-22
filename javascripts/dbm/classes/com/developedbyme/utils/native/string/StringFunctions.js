@@ -3,9 +3,18 @@ dbm.registerClass("com.developedbyme.utils.native.string.StringFunctions", null,
 	//console.log("com.developedbyme.utils.native.string.StringFunctions");
 	//"use strict";
 	
+	//Self reference
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
+	//Error report
+	
+	//Dependnecies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
 	
 	staticFunctions.leftTrim = function(aText) {
 		return aText.replace(new RegExp("^[\\s]+", "g"), "");
@@ -56,5 +65,20 @@ dbm.registerClass("com.developedbyme.utils.native.string.StringFunctions", null,
 		for(var i = 0; i < currentArrayLength; i++) {
 			currentArray.push(aString.charCodeAt(i));
 		}
+	};
+	
+	staticFunctions.convertToCamelCase = function(aText) {
+		
+		var currentArray = aText.split(" ");
+		var currentArrayLength = currentArray.length;
+		var returnText = currentArray[0].toLowerCase();
+		for(var i = 1; i < currentArrayLength; i++) { //MENOTE: first iteration is done outside of loop
+			var currentString = currentArray[i].toLowerCase();
+			if(currentString.length > 0) {
+				returnText += currentString[0].toUpperCase() + currentString.substring(1, currentString.length);
+			}
+		}
+		
+		return returnText;
 	};
 });

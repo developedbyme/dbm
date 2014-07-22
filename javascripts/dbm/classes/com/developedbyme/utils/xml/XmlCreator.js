@@ -67,8 +67,9 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 	});
 	
 	staticFunctions.createEmptyXml = (function() {
+		//console.log("com.developedbyme.utils.xml.XmlCreator::createEmptyXml");
 		var returnDocument;
-		if (window.DOMParser) {
+		if (dbm.getWindow() !== null && dbm.getWindow().DOMParser) {
 			//console.log("standard");
 			var parser = new DOMParser();
 			returnDocument = parser.parseFromString("<temp />", "text/xml");
@@ -87,7 +88,7 @@ dbm.registerClass("com.developedbyme.utils.xml.XmlCreator", null, function(objec
 	
 	staticFunctions.createXmlFromString = function(aText) {
 		var returnDocument;
-		if (window.DOMParser) {
+		if (dbm.getWindow() !== null && dbm.getWindow().DOMParser) {
 			//console.log("standard");
 			var parser = new DOMParser();
 			returnDocument = parser.parseFromString(aText, "text/xml");

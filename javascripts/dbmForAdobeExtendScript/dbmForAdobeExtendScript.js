@@ -20,9 +20,7 @@
 			this.xmlNamespaces = new Object();
 			this._specificClassesFolders = new Object();
 			this._filesToLoad = new Array();
-			this._currentFile = -1;
-			this._currentScriptTag = null;
-			this._htmlLoaded = false;
+			this._currentFile = 0;
 			this._startFunctions = new Array();
 			this._classManager = null;
 			this._window = null;
@@ -79,12 +77,6 @@
 		
 		dbmObject.addSpecificClassesFolder = function(aClassPathPrefix, aClassesFolder) {
 			this._specificClassesFolders[aClassPathPrefix] = aClassesFolder;
-			
-			return this;
-		};
-		
-		dbmObject.setupLoaderHook = function() {
-			this._document.addEventListener("DOMContentLoaded", this._onHtmlLoaded, false);
 			
 			return this;
 		};
@@ -194,61 +186,46 @@
 			
 			this._startupSeed.push(Date.now());
 			
-			var scriptTag = document.createElement("script");
+			var javascriptFile = new File(aFilePath);
+			javascriptFile.open("r");
+			var fullText = javascriptFile.read();
+			javascriptFile.close();
 			
-			var scriptType = "application/javascript";
-			if(this._javascriptVersion !== null) {
-				scriptType += ";version=" + this._javascriptVersion;
+			if(fullText === "") {
+				console.log("Couldn't load " + aFilePath);
 			}
-			scriptTag.type = scriptType;
-			scriptTag.src = aFilePath;
-			scriptTag.async = false;
 			
-			scriptTag.addEventListener("load", dbm._onFileLoaded, false);
-			scriptTag.addEventListener("error", dbm._onFileLoaded, false);
+			fullText = fullText.split("this.superCall()").join("arguments.callee.superFunction.call(this)");
+			fullText = fullText.split("this.superCall(").join("arguments.callee.superFunction.call(this, ");
 			
-			this._currentScriptTag = scriptTag;
+			eval(fullText);
 			
-			var headTags = this._document.getElementsByTagName("head");
-			headTags[0].appendChild(scriptTag);
-		};
-		
-		dbmObject._onHtmlLoaded = function(aEvent) {
-			//console.log("dbm._onHtmlLoaded");
-			//console.log(aEvent);
-			if(dbm._htmlLoaded) return;
-			dbm._htmlLoaded = true;
-			
-			dbm._document.removeEventListener("DOMContentLoaded", dbm._onHtmlLoaded, false);
-			
-			dbm._loadNextFile();
+			this._onFileLoaded();
 		};
 		
 		dbmObject._onFileLoaded = function(aEvent) {
 			//console.log("dbm._onFileLoaded");
 			dbm._clearCurrentFileLoad();
-			dbm._loadNextFile();
 		};
 		
 		dbmObject._clearCurrentFileLoad = function() {
-			this._currentScriptTag.removeEventListener("load", dbm._onFileLoaded, false);
-			this._currentScriptTag.removeEventListener("error", dbm._onFileLoaded, false);
 			
 			this._filesToLoad[this._currentFile] = null;
 		};
 		
-		dbmObject._loadNextFile = function() {
-			this._currentFile++;
+		dbmObject._loadFiles = function() {
 			
-			if(this._currentFile >= this._filesToLoad.length) {
-				this._start();
-			}
-			else {
+			while(this._currentFile < this._filesToLoad.length) {
+				//console.log(this._currentFile, this._filesToLoad.length);
 				this._performLoadFile(this._filesToLoad[this._currentFile]);
+				this._currentFile++;
 			}
+			
+			this._start();
 		};
 		
 		dbmObject._start = function() {
+			//console.log("dbm::_start");
 			
 			this._startupSeed.push(Date.now());
 			
@@ -272,13 +249,13 @@
 			if(this._restartAfterStart) {
 				this._restartAfterStart = false;
 				if(this._currentFile < this._filesToLoad.length) {
-					this._performLoadFile(this._filesToLoad[this._currentFile]);
+					this._loadFiles();
 				}
 			}
 		};
 		
-		dbmObject.externalStart = function() {
-			this._start();
+		dbmObject.startLoading = function() {
+			this._loadFiles();
 			
 			return this;
 		};
@@ -290,7 +267,7 @@
 			}
 			else {
 				if(this._currentFile < this._filesToLoad.length) {
-					this._performLoadFile(this._filesToLoad[this._currentFile]);
+					this._loadFiles();
 				}
 			}
 			
@@ -302,4 +279,4 @@
 	
 	//MENOTE: clear up references
 	dbmObject = null;
-})(window);
+})(global);

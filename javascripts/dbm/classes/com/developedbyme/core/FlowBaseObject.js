@@ -149,8 +149,8 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
-		if(this._properties !== null) {
-			aReturnArray.push("properties: [" + this._properties.getNamesArray() + "]");
+		if(this._properties !== null && this._properties !== undefined) {
+			aReturnArray.push("properties: [" + this._properties.getNamesArray().join(", ") + "]");
 		}
 	};
 	

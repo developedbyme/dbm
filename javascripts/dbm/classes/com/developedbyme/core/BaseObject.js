@@ -39,7 +39,9 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	 * Seals the object as part of the init function.
 	 */
 	objectFunctions._initSeal = function() {
-		Object.seal(this);
+		if(Object.seal !== undefined) {
+			Object.seal(this);
+		}
 	};
 	
 	/**
@@ -48,12 +50,17 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	 * @return	self
 	 */
 	objectFunctions.init = function() {
+		//console.log("com.developedbyme.core.BaseObject::init");
+		
 		this._init();
 		this._initSeal();
+		
 		return this;
 	};
 	
 	objectFunctions.addDestroyableObject = function(aObject) {
+		//console.log("com.developedbyme.core.BaseObject::addDestroyableObject");
+		
 		if(!(aObject instanceof BaseObject)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addDestroyableObject", "Object " + aObject + " is not a base object so it can't be destroyed by " + this + ".");
 			return aObject;
@@ -274,7 +281,9 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		if(aClass.__objectPool) {
 			return aClass.__objectPool.createAndInitObject();
 		}
-		return (new aClass()).init();
+		var newClass = (new aClass());
+		newClass.init();
+		return newClass;
 	};
 	
 	staticFunctions._createArray = function() {

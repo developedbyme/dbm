@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
 	var XmlModifier = dbm.importClass("com.developedbyme.utils.xml.XmlModifier");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
 	//Constants
 	
@@ -30,6 +31,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 		
 		this._variableNamesArray = new Array();
 		this._propertyNamesArray = new Array();
+		this._variableCustomTypes = this.addDestroyableObject(NamedArray.create(false));
+		
+		return this;
+	};
+	
+	objectFunctions.addCustomTypeForVariable = function(aName, aType) {
+		this._variableCustomTypes.addObject(aName, aType);
 		
 		return this;
 	};
@@ -41,7 +49,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 	};
 	
 	objectFunctions.addVariablesToEncode = function(aNames) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::addVariablesToEncode");
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::addVariablesToEncode");
 		//console.log(aNames);
 		ArrayFunctions.concatToArray(this._variableNamesArray, aNames);
 		
@@ -61,7 +69,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 	};
 	
 	objectFunctions._createDataNode = function(aType, aClassName, aParentNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::_createDataNode");
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_createDataNode");
 		var newNode = XmlModifier.createNamespacedChild(aParentNode, dbm.xmlNamespaces.dbmData, "data", "item");
 		XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "type", aType);
 		XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "class", aClassName);
@@ -70,14 +78,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 	};
 	
 	objectFunctions._encodeVariables = function(aValue, aNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::_encodeVariables");
+		console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeVariables");
 		//console.log(aValue, this._variableNamesArray);
 		
 		var currentArray = this._variableNamesArray;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentVariableName = currentArray[i];
-			var newNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(aValue[currentVariableName], aNode);
+			var newNode = null;
+			console.log(currentVariableName);
+			if(this._variableCustomTypes.select(currentVariableName)) {
+				console.log(">");
+				newNode = dbm.singletons.dbmXmlObjectEncoder.encodeValueWithType(aValue[currentVariableName], this._variableCustomTypes.currentSelectedItem, aNode);
+			}
+			else {
+				console.log(">>");
+				newNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(aValue[currentVariableName], aNode);
+			}
 			//METODO: check for null
 			XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "name", currentVariableName);
 		}
@@ -103,10 +120,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 		this._encodeProperties(aValue, aNode);
 	};
 	
-	objectFunctions.encode = function(aValue, aClassName, aParentNode) {
+	objectFunctions.encode = function(aValue, aNode) {
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
+		this._encodeValue(aValue, aNode);
+		return aNode;
+	};
+	
+	objectFunctions.encodeClass = function(aValue, aClassName, aParentNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encodeClass");
 		var returnNode = this._createDataNode("dbmObject", aClassName, aParentNode);
-		this._encodeValue(aValue, returnNode);
+		this.encode(aValue, returnNode);
 		return returnNode;
 	};
 	

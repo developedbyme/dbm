@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.projects.tests.canvas.DrawPartOfCurveApplic
 		
 		var mainLayer = canvasController.getLayer("main");
 		
-		var mainCurve = dbm.singletons.dbmCurveCreator.createCurveFromDoubleSeparatedString(3, true, "10,10; 100,300; 400,150; 600,50");
+		var mainCurve = dbm.singletons.dbmCurveCreator.createCurveFromDoubleSeparatedString(3, true, "10,10; 100,300; 400,150; 600,50;");
 		
 		var drawLayer = canvasController.getLayer("main/mainCurve/full");
 		drawLayer.setStrokeStyle(1, "#FF9999");

@@ -334,8 +334,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		
 		aReturnArray.push("name: " + this._name);
 		aReturnArray.push("type: " + this._type);
-		if(this.data !== null) {
-			aReturnArray.push("data: " + this.data);
+		if(this.data !== null && this.data !== undefined) {
+			aReturnArray.push("data: " + this.data.toString());
 		}
 	};
 	

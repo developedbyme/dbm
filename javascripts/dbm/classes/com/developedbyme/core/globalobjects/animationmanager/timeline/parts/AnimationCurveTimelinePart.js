@@ -2,12 +2,23 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart", "com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart");
 	
+	//Self reference
 	var AnimationCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart");
 	
-	var ExtrapolationTypes = dbm.importClass("com.developedbyme.constants.ExtrapolationTypes");
+	//Error report
 	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	var ExtrapolationTypes = dbm.importClass("com.developedbyme.constants.ExtrapolationTypes");
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart::_init");
 		
@@ -17,6 +28,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		this.preInfinityMethod = ExtrapolationTypes.CONSTANT;
 		this.postInfinityMethod = ExtrapolationTypes.CONSTANT;
 		this.exactness = 0.01;
+		this.startParameter = 0;
+		this.endParameter = 1;
 				
 		return this;
 	};
@@ -33,18 +46,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	
 	objectFunctions.getValueByParameter = function(aParameter) {
 		
-		return dbm.singletons.dbmCurveEvaluator.getValueOfAnimationCurve(this.curve, aParameter, this.preInfinityMethod, this.postInfinityMethod, this.exactness);
+		return dbm.singletons.dbmCurveEvaluator.getValueOfAnimationCurve(this.curve, (aParameter-this.startParameter)/(this.endParameter-this.startParameter), this.preInfinityMethod, this.postInfinityMethod, this.exactness);
 		
 	};
 	
-	staticFunctions.create = function(aCurve, aPreInfinityMethod, aPostInfinityMethod, aExactness, aStartTime, aLength) {
+	//METODO: add tangent function
+	
+	staticFunctions.create = function(aCurve, aStartTime, aLength) {
 		var newPart = (new ClassReference()).init();
 		
-		aPreInfinityMethod = VariableAliases.valueWithDefault(aPreInfinityMethod, ExtrapolationTypes.CONSTANT);
-		aPostInfinityMethod = VariableAliases.valueWithDefault(aPostInfinityMethod, ExtrapolationTypes.CONSTANT);
-		aExactness = VariableAliases.valueWithDefault(aExactness, 0.01);
-		
-		newPart.setCurve(aCurve, aPreInfinityMethod, aPostInfinityMethod, aExactness).setTimes(aStartTime, aStartTime+aLength);
+		newPart.curve = aCurve;
+		newPart.setTimes(aStartTime, aStartTime+aLength);
 		
 		return newPart;
 	};

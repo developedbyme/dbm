@@ -22,11 +22,15 @@ dbm.registerClass("com.developedbyme.gui.abstract.startup.standalone.StandAloneP
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		console.log("com.developedbyme.gui.abstract.startup.standalone.StandAlonePage::_init");
+		//console.log("com.developedbyme.gui.abstract.startup.standalone.StandAlonePage::_init");
 		
 		this.superCall();
 		
-		this._contentHolder = dbm.getDocument().body;
+		var theDocument = dbm.getDocument();
+		this._contentHolder = null;
+		if(theDocument !== null) {
+			this._contentHolder = theDocument.body;
+		}
 		this._assetsLoader = LoadingSequence.create();
 		
 		return this;

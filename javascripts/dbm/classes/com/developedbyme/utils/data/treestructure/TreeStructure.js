@@ -1,7 +1,7 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * A tree structure.
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructure");
 	//"use strict";
@@ -183,6 +183,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	};
 	
 	staticFunctions.create = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::create");
 		var newTreeStructure = (new ClassReference()).init();
 		
 		return newTreeStructure;

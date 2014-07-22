@@ -178,8 +178,8 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("ownsObjects: " + this.ownsObjects);
-		if(this._namesArray !== null) {
-			aReturnArray.push("properties: [" + this._namesArray + "]");
+		if(this._namesArray !== null && this._namesArray !== undefined) {
+			aReturnArray.push("properties: [" + this._namesArray.join(", ") + "]");
 		}
 	};
 	
@@ -222,8 +222,8 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	};
 	
 	staticFunctions.create = function(aOwnsObjects) {
-		var newReaction = ClassReference._createAndInitClass(ClassReference);
-		newReaction.ownsObjects = VariableAliases.isTrue(aOwnsObjects);
-		return newReaction;
+		var newNamedArray = ClassReference._createAndInitClass(ClassReference);
+		newNamedArray.ownsObjects = VariableAliases.isTrue(aOwnsObjects);
+		return newNamedArray;
 	};
 });

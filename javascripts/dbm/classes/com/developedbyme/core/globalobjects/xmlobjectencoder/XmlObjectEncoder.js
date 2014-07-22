@@ -37,6 +37,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 		this._encodeSimpleValuesAsAttributes = true;
 		this._useCdata = true;
 		this._classEncoders = this.addDestroyableObject(NamedArray.create(true));
+		this._customTypeEncoders = this.addDestroyableObject(NamedArray.create(true));
 		
 		return this;
 	};
@@ -45,11 +46,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 		this._classEncoders.addObject(aClassName, aEncoder);
 	};
 	
+	objectFunctions.addCustomTypeEncoder = function(aType, aEncoder) {
+		this._customTypeEncoders.addObject(aType, aEncoder);
+	};
+	
 	objectFunctions.encodeXmlFromObject = function(aObject) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeXmlFromObject");
+		console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeXmlFromObject");
 		var newXml = XmlCreator.createEmptyXml();
+		console.log("+1");
 		
 		this.encodeValue(aObject, newXml);
+		console.log("+2");
 		
 		return newXml;
 	};
@@ -64,10 +71,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	
 	objectFunctions.encodeValue = function(aValue, aParentNode) {
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeValue");
+		//console.log(aValue, aParentNode);
+		
 		var newXml = XmlCreator.createEmptyXml();
 		
 		var valueType = ObjectFunctions.typeOfValue(aValue);
-		switch(valueType) {
+		
+		return this.encodeValueWithType(aValue, valueType, aParentNode);
+	};
+	
+	objectFunctions.encodeValueWithType = function(aValue, aType, aParentNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeValueWithType");
+		//console.log(aValue, aType, aParentNode);
+		
+		switch(aType) {
 			case JavascriptObjectTypes.TYPE_UNDEFINED:
 			case JavascriptObjectTypes.NON_REAL_TYPE_NULL:
 				return this.encodeNullValue(aParentNode);
@@ -78,19 +95,19 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 			case JavascriptObjectTypes.TYPE_BOOLEAN:
 			case JavascriptObjectTypes.TYPE_NUMBER:
 			case JavascriptObjectTypes.TYPE_STRING:
-				return this.encodeSimpleValue(aValue, valueType, aParentNode);
+				return this.encodeSimpleValue(aValue, aType, aParentNode);
 			case JavascriptObjectTypes.TYPE_FUNCTION:
 				//MENOTE: i'm not sure that this is what is intended when you send a function
 				return this.encodeFunction(aValue, aParentNode);
 			case JavascriptObjectTypes.TYPE_XML:
 				return this.encodeXml(aValue, aParentNode);
 			default:
-				//METODO: error message
-				return this.encodeUnknownValue(aValue, aParentNode);
+				return this.encodeCustomValue(aValue, aType, aParentNode);
 		}
 	};
 	
 	objectFunctions.encodeSimpleValue = function(aValue, aType, aParentNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeSimpleValue");
 		var newNode = this._createDataNode(aType, aParentNode);
 		if(this._encodeSimpleValuesAsAttributes) {
 			XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "nodeValue", aValue);
@@ -122,7 +139,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 		if(aValue instanceof BaseObject) {
 			var className = aValue.__fullClassName;
 			if(this._classEncoders.select(className)) {
-				return this._classEncoders.currentSelectedItem.encode(aValue, className, aParentNode);
+				return this._classEncoders.currentSelectedItem.encodeClass(aValue, className, aParentNode);
 			}
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "encodeObject", "Object " + className + " has no encoder.");
 			return null;
@@ -155,6 +172,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 		var newNode = this._createDataNode(JavascriptObjectTypes.TYPE_XML, aParentNode);
 		newNode.appendChild(newNode.getOwnerDocument().importNode(aValue, true));
 		return newNode;
+	};
+	
+	objectFunctions.encodeCustomValue = function(aValue, aType, aParentNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeCustomValue");
+		//console.log(aValue, aType, aParentNode);
+		
+		if(this._customTypeEncoders.select(aType)) {
+			var newNode = this._createDataNode(aType, aParentNode);
+			return this._customTypeEncoders.currentSelectedItem.encode(aValue, newNode);
+		}
+		//METODO: error message
+		return this.encodeUnknownValue(aValue, aParentNode);
 	};
 	
 	objectFunctions.encodeUnknownValue = function(aValue, aParentNode) {

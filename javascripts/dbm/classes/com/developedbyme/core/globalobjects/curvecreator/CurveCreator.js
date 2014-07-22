@@ -26,6 +26,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var QuadricEquationSolver = dbm.importClass("com.developedbyme.utils.math.QuadricEquationSolver");
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	var CurveMergeTypes = dbm.importClass("com.developedbyme.constants.CurveMergeTypes");
@@ -205,7 +207,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 		var firstSeparator = VariableAliases.valueWithDefault(aFirstSeparator, ";");
 		var secondSeparator = VariableAliases.valueWithDefault(aSecondSeparator, ",");
 		
-		var valuesArray = aValueString.split(firstSeparator);
+		var valuesArray = StringFunctions.splitSeparatedString(aValueString, firstSeparator);
+		ArrayFunctions.removeEmptyStringPositions(valuesArray);
 		var numberOfPoints = valuesArray.length;
 		
 		var newCurve = BezierCurve.createWithLength(aDegree, aIsCompact, numberOfPoints);
