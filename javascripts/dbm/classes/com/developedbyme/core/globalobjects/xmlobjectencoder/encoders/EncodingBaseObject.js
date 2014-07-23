@@ -11,6 +11,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
+	var EncodingDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject");
 	
 	//Utils
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
@@ -70,15 +71,21 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 	
 	objectFunctions._createDataNode = function(aType, aClassName, aParentNode) {
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_createDataNode");
+		
+		var newNode = EncodingDataObject.createComplexValue(aType, aParentNode);
+		EncodingDataObject.createAttribute("data:class", aClassName, newNode); //METODO: shouldn't be added to node value
+		
+		/*
 		var newNode = XmlModifier.createNamespacedChild(aParentNode, dbm.xmlNamespaces.dbmData, "data", "item");
 		XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "type", aType);
 		XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "class", aClassName);
+		*/
 		
 		return newNode;
 	};
 	
 	objectFunctions._encodeVariables = function(aValue, aNode) {
-		console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeVariables");
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeVariables");
 		//console.log(aValue, this._variableNamesArray);
 		
 		var currentArray = this._variableNamesArray;
@@ -86,17 +93,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentVariableName = currentArray[i];
 			var newNode = null;
-			console.log(currentVariableName);
 			if(this._variableCustomTypes.select(currentVariableName)) {
-				console.log(">");
 				newNode = dbm.singletons.dbmXmlObjectEncoder.encodeValueWithType(aValue[currentVariableName], this._variableCustomTypes.currentSelectedItem, aNode);
 			}
 			else {
-				console.log(">>");
 				newNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(aValue[currentVariableName], aNode);
 			}
 			//METODO: check for null
-			XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "name", currentVariableName);
+			newNode.name = currentVariableName;
+			//XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "name", currentVariableName);
 		}
 	};
 	
@@ -108,8 +113,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 			var currentProperty = aValue.getProperty(currentPropertyName);
 			//METODO: check for null
 			var newNode = this._encodeProperty(currentProperty, aNode);
-			XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "name", currentPropertyName);
-			XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "parentApplyType", "setPropertyInput");
+			newNode.name = currentPropertyName;
+			newNode.parentApplyType = "setPropertyInput";
+			
+			//XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "name", currentPropertyName);
+			//XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "parentApplyType", "setPropertyInput");
 		}
 	};
 	

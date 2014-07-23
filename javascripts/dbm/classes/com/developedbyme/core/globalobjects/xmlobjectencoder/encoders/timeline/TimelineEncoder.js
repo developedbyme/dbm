@@ -36,8 +36,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 		this.superCall(aValue, aNode);
 		
 		var partsNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(aValue._parts, aNode); //METODO: fix so that it doesn't have to access private variable
-		XmlModifier.createNamespacedAttribute(partsNode, dbm.xmlNamespaces.dbmData, "data", "name", "parts");
-		XmlModifier.createNamespacedAttribute(partsNode, dbm.xmlNamespaces.dbmData, "data", "parentApplyType", "timeline/applyParts");
+		partsNode.name = "parts";
+		partsNode.parentApplyType = "timeline/applyParts";
+		
+		//XmlModifier.createNamespacedAttribute(partsNode, dbm.xmlNamespaces.dbmData, "data", "name", "parts");
+		//XmlModifier.createNamespacedAttribute(partsNode, dbm.xmlNamespaces.dbmData, "data", "parentApplyType", "timeline/applyParts");
 	};
 	
 	staticFunctions.create = function() {

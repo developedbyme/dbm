@@ -51,7 +51,6 @@ dbm.registerClass("com.developedbyme.projects.examples.basic.xmlencoding.EncodeT
 		
 		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(timeline);
 		console.log(encodedXml);
-		console.log(XmlCreator.createStringFromXml(encodedXml));
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

@@ -117,6 +117,12 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._animationController;
 	};
 	
+	objectFunctions.setAnimationController = function(aController) {
+		this._animationController = aController;
+		
+		return this;
+	};
+	
 	objectFunctions.getAnimationController = function() {
 		if(this._animationController !== null) {
 			return this._animationController;

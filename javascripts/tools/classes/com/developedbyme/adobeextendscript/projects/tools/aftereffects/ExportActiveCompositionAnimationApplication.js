@@ -73,13 +73,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		
 		this._debugData = debugArray.getObject("transform/rotation");
 		
-		console.log(">1");
-		console.log(dbm.singletons.dbmXmlObjectEncoder);
 		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(debugArray);
-		console.log(">2");
 		console.log(encodedXml);
-		console.log(">3");
-		console.log(XmlCreator.createStringFromXml(encodedXml));
 	};
 	
 	objectFunctions.createTimelinesForProprety = function(aProperty, aTimelineName, aReturnArray) {
@@ -153,7 +148,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				this.getPropertiesForLayer(currentProperty, aPrefix + currentName + "/", aReturnArray);
 			}
 			else {
-				console.log(aPrefix + currentName);
+				//console.log(aPrefix + currentName);
 				aReturnArray.addObject(aPrefix + currentName, currentProperty);
 			}
 		}
@@ -169,7 +164,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			var lastValue = aProperty.keyValue(1);
 			var lastInEasing = aProperty.keyInTemporalEase(1);
 			var lastOutEasing = aProperty.keyOutTemporalEase(1);
-			this.setStartValuesForTimelines(lastValue, aReturnTimelines);
+			if(aReturnTimelines.length === 1) {
+				aReturnTimelines[0].getProperty("startValue").setValue(lastValue);
+			}
+			else {
+				this.setStartValuesForTimelines(lastValue, aReturnTimelines);
+			}
+			
 			for(var i = 2; i <= numberOfKeys; i++) { //MENOTE: count starts at 1, items are processed 2 by 2
 				var currentTime = aProperty.keyTime(i);
 				var currentValue = aProperty.keyValue(i);
@@ -185,7 +186,12 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			}
 		}
 		else {
-			this.setStartValuesForTimelines(aProperty.value, aReturnTimelines);
+			if(aReturnTimelines.length === 1) {
+				aReturnTimelines[0].getProperty("startValue").setValue(aProperty.value);
+			}
+			else {
+				this.setStartValuesForTimelines(aProperty.value, aReturnTimelines);
+			}
 		}
 	};
 	

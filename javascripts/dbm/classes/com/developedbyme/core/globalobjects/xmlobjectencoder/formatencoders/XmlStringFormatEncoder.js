@@ -1,0 +1,106 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.formatencoders.XmlStringFormatEncoder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.formatencoders.XmlStringFormatEncoder");
+	
+	//Self reference
+	var XmlStringFormatEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.formatencoders.XmlStringFormatEncoder");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.formatencoders.XmlStringFormatEncoder::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.encode = function(aEncodingData) {
+		var returnString = "";
+		
+		returnString += this._encodePart(aEncodingData);
+		
+		return returnString;
+	}
+	
+	objectFunctions.encodeString = function(aEncodingData) {
+		return this.encode(aEncodingData);
+	};
+	
+	objectFunctions._encodePart = function(aPart) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.formatencoders.XmlStringFormatEncoder::_encodePart");
+		//console.log(aPart);
+		var returnString = "";
+		switch(aPart.type) {
+			case "root":
+				returnString += this._getChildNodes(aPart);
+				break;
+			case "complexValue":
+				returnString += "<data:item " + this._getAttributesString(aPart) +  ">";
+				returnString += this._getChildNodes(aPart);
+				returnString += "</data:item>";
+				break;
+			case "simpleValue":
+				returnString += "<data:item " + this._getAttributesString(aPart) +  ">";
+				returnString += aPart.nodeValue;
+				returnString += "</data:item>";
+				break;
+			default:
+				//METODO: error message
+		}
+		return returnString;
+	};
+	
+	objectFunctions._getChildNodes = function(aPart) {
+		var returnString = "";
+		
+		var currentArray = aPart.nodeValue;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentPart = currentArray[i];
+			returnString += this._encodePart(currentPart);
+		}
+		
+		return returnString;
+	};
+	
+	objectFunctions._getAttributesString = function(aPart) {
+		returnString = this._encodeAttribute("data:type", aPart.dataType);
+		if(aPart.name !== null) {
+			returnString += " " + this._encodeAttribute("data:name", aPart.name);
+		}
+		if(aPart.parentApplyType !== null) {
+			returnString += " " + this._encodeAttribute("data:parentApplyType", aPart.parentApplyType);
+		}
+		var currentArray = aPart.attributes;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentAttribute = currentArray[i];
+			returnString += " " + this._encodeAttribute(currentAttribute.name, currentAttribute.nodeValue);
+		}
+		return returnString;
+	};
+	
+	objectFunctions._encodeAttribute = function(aName, aValue) {
+		return aName + "=\"" + aValue + "\""; //METODO: escape string
+	};
+	
+	staticFunctions.create = function() {
+		var newXmlStringFormatEncoder = ClassReference._createAndInitClass(ClassReference);
+		
+		return newXmlStringFormatEncoder;
+	};
+});

@@ -1,12 +1,27 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * A node that evaluates a timeline.
+ */
 dbm.registerClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
 	//"use strict";
 	
+	//Self reference
 	var EvaluateTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
 	
+	//Error report
+	
+	//Dependencies
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::_init");
 		

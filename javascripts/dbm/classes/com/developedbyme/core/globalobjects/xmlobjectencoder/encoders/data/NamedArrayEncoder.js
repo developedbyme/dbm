@@ -42,8 +42,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 			var currentObject = aValue.getObject(currentName);
 			
 			var newNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(currentObject, aNode);
+			newNode.name = currentName;
+			newNode.parentApplyType = "namedArray/addObject";
+			
+			/*
 			XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "name", currentName);
 			XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "parentApplyType", "namedArray/addObject");
+			*/
 		}
 		
 		

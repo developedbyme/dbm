@@ -92,10 +92,10 @@ dbm.registerClass("com.developedbyme.projects.examples.development.CommandLineWi
 		animatedObject.getProperty("y").setValue(10);
 		this._executor.addClosureVariable("animatedObject", animatedObject);
 		
-		var xAnimationController = animatedObject.getProperty("x").createTimelineControl();
-		xAnimationController.getProperty("time").disconnectInput().connectInput(playbackNode.getProperty("outputTime"));
-		var yAnimationController = animatedObject.getProperty("y").createTimelineControl();
-		yAnimationController.getProperty("time").disconnectInput().connectInput(playbackNode.getProperty("outputTime"));
+		var xAnimationController = dbm.singletons.dbmAnimationManager.createTimeline(10);
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(xAnimationController, playbackNode.getProperty("outputTime"), animatedObject.getProperty("x"));
+		var yAnimationController = dbm.singletons.dbmAnimationManager.createTimeline(10);
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(yAnimationController, playbackNode.getProperty("outputTime"), animatedObject.getProperty("y"));
 		
 		var maxTimeProperty = playbackNode.getProperty("maxTime");
 		var canvasWidthProperty = canvasView.getProperty("canvasWidth");

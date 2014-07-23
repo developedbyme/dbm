@@ -43,19 +43,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		this._currentPartIndex = 0;
 		
 		this._startValue = this.createProperty("startValue", null);
-		this._time = this.createProperty("time", 0);
 		this._partChange = this.createGhostProperty("partChange");
 		this._anyChange = this.addProperty("anyChange", AnyChangeMultipleInputProperty.create(this._objectProperty));
 		this._anyChange.connectInput(this._startValue);
-		this._anyChange.connectInput(this._time);
 		this._anyChange.connectInput(this._partChange);
-		this._outputValue = this.createProperty("outputValue", null);
-		this._outputTangent = this.createProperty("outputTangent", null);
 		
-		this.createUpdateFunction("value", this._updateValueFlow, [this._anyChange, this._time], [this._outputValue]);
-		this.createUpdateFunction("tangent", this._updateValueFlow, [this._anyChange, this._time], [this._outputTangent]);
+		this._referenceTime = null;
 		
 		return this;
+	};
+	
+	objectFunctions._internalFunctionality_setReferenceTime = function(aReferenceTimeProperty) {
+		this._referenceTime = aReferenceTimeProperty;
 	};
 	
 	objectFunctions._internalFunctionality_getParts = function() {
@@ -140,15 +139,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		}
 	};
 	
-	objectFunctions.getTime = function() {
-		return this._time.getValue();
-	};
-	
-	objectFunctions.getValue = function() {
-		var currentTime = this._time.getValue();
-		return this.getValueAt(currentTime);
-	};
-	
 	objectFunctions.getValueAt = function(aTime) {
 		if(aTime === this.endTime || this.startTime === this.endTime) {
 			return this.getValueByParameter(1);
@@ -167,23 +157,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 			return this.getTangentByParameter(0);
 		}
 		return this.getTangentByParameter((aTime-this.startTime)/(this.endTime-this.startTime));
-	};
-	
-	objectFunctions._updateValueFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::_updateValueFlow");
-		var currentTime = this._time.getValueWithoutFlow();
-		var newValue = this.getValueAt(currentTime);
-		this._outputValue.setValueWithFlow(newValue, aFlowUpdateNumber);
-		
-	};
-	
-	objectFunctions._updateTangentFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::_updateTangentFlow");
-		var currentTime = this._time.getValueWithoutFlow();
-		var newValue = this.getTangentAt(currentTime);
-		//console.log(newValue, currentTime, this._parts);
-		this._outputTangent.setValueWithFlow(newValue, aFlowUpdateNumber);
-		
 	};
 	
 	objectFunctions.setStartValue = function(aStartValue) {
@@ -221,7 +194,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 			return this;
 		}
 		
-		var currentTime = this._time.getValue();
+		var currentTime = this._referenceTime.getValue();
 		var newPart = SetValueTimelinePart.create(aValue, currentTime+aDelay, 0);
 		this.addPart(newPart);
 		
@@ -235,7 +208,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 			return this;
 		}
 		
-		var currentTime = this._time.getValue();
 		var newPart = SetValueTimelinePart.create(aValue, aTime, 0);
 		this.addPart(newPart);
 		
@@ -251,18 +223,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 			return this;
 		}
 		
-		var currentTime = this._time.getValue();
+		var currentTime = this._referenceTime.getValue();
 		var startValue = this.getValueAt(currentTime+aDelay);
 		
-		if(typeof(aInterpolation) === JavascriptObjectTypes.TYPE_STRING) {
-			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(aInterpolation);
-		}
-		else if(aInterpolation === null) {
-			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(InterpolationTypes.LINEAR);
-		}
-		
-		var newPart = InterpolationTimelinePart.create(startValue, aValue, aInterpolation, currentTime+aDelay, aTime);
-		this.addPart(newPart);
+		this.animateValueAt(aValue, aTime, aInterpolation, currentTime+aDelay);
 		
 		return this;
 	};
@@ -313,17 +277,32 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		this.superCall();
 	};
 	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		
+		switch(aName) {
+			case "_referenceTime":
+				return false;
+		}
+		
+		return this.superCall(aName);
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._parts = null;
 		this._currentPartIndex = null;
 		
 		this._startValue = null;
-		this._time = null;
 		this._partChange = null;
 		this._anyChange = null;
-		this._outputValue = null;
-		this._outputTangent = null;
+		this._referenceTime = null;
 		
 		this.superCall();
 	};

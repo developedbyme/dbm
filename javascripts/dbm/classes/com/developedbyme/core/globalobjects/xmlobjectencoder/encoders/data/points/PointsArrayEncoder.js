@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 	};
 	
 	objectFunctions._encodeValue = function(aValue, aNode) {
-		console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder::_encodeValue");
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder::_encodeValue");
 		
 		this.superCall(aValue, aNode);
 		
@@ -46,6 +46,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 			dataString += currentPoint.x + this.secondSeparator + currentPoint.y + this.secondSeparator + currentPoint.z + this.secondSeparator + currentPoint.w + this.firstSeparator; 
 		}
 		
+		aNode.type = "simpleValue";
+		aNode.nodeValue = dataString;
+		
+		/*
 		//METODO: don't use private variables
 		if(dbm.singletons.dbmXmlObjectEncoder._encodeSimpleValuesAsAttributes) {
 			XmlModifier.createNamespacedAttribute(aNode, dbm.xmlNamespaces.dbmData, "data", "nodeValue", dataString);
@@ -53,6 +57,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 		else {
 			XmlModifier.createText(aNode, dataString, dbm.singletons.dbmXmlObjectEncoder._useCdata);
 		}
+		*/
 	};
 	
 	staticFunctions.create = function() {

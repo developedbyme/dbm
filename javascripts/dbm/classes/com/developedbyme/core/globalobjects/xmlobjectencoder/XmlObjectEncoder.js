@@ -13,6 +13,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	//Dependencies
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
+	var EncodingDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject");
+	var XmlStringFormatEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.formatencoders.XmlStringFormatEncoder");
 	
 	//Utils
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
@@ -52,28 +54,35 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	
 	objectFunctions.encodeXmlFromObject = function(aObject) {
 		console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeXmlFromObject");
-		var newXml = XmlCreator.createEmptyXml();
-		console.log("+1");
+		//var newXml = XmlCreator.createEmptyXml();
 		
-		this.encodeValue(aObject, newXml);
-		console.log("+2");
+		var rootObject = EncodingDataObject.create();
+		rootObject.type = "root";
+		rootObject.dataType = "root";
+		rootObject.nodeValue = new Array();
 		
-		return newXml;
+		//this.encodeValue(aObject, newXml);
+		this.encodeValue(aObject, rootObject);
+		var xmlEncoder = XmlStringFormatEncoder.create();
+		var returnString = xmlEncoder.encode(rootObject);
+		
+		return returnString;
 	};
 	
+	/*
 	objectFunctions._createDataNode = function(aType, aParentNode) {
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::_createDataNode");
+		
 		var newNode = XmlModifier.createNamespacedChild(aParentNode, dbm.xmlNamespaces.dbmData, "data", "item");
 		XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "type", aType);
 		
 		return newNode;
 	};
+	*/
 	
 	objectFunctions.encodeValue = function(aValue, aParentNode) {
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeValue");
 		//console.log(aValue, aParentNode);
-		
-		var newXml = XmlCreator.createEmptyXml();
 		
 		var valueType = ObjectFunctions.typeOfValue(aValue);
 		
@@ -108,24 +117,29 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	
 	objectFunctions.encodeSimpleValue = function(aValue, aType, aParentNode) {
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeSimpleValue");
-		var newNode = this._createDataNode(aType, aParentNode);
+		
+		var newNode = EncodingDataObject.createSimpleValue(aType, aValue, aParentNode);
+		/*
 		if(this._encodeSimpleValuesAsAttributes) {
 			XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "nodeValue", aValue);
 		}
 		else {
 			XmlModifier.createText(newNode, aValue, this._useCdata);
 		}
+		*/
 		
 		return newNode;
 	};
 	
 	objectFunctions.encodeNullValue = function(aParentNode) {
-		var newNode = this._createDataNode(JavascriptObjectTypes.NON_REAL_TYPE_NULL, aParentNode);
+		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.NON_REAL_TYPE_NULL, null, aParentNode);
+		//var newNode = this._createDataNode(JavascriptObjectTypes.NON_REAL_TYPE_NULL, aParentNode);
 		return newNode;
 	};
 	
 	objectFunctions.encodeArray = function(aValue, aParentNode) {
-		var newNode = this._createDataNode(JavascriptObjectTypes.NON_REAL_TYPE_ARRAY, aParentNode);
+		var newNode = EncodingDataObject.createComplexValue(JavascriptObjectTypes.NON_REAL_TYPE_ARRAY, aParentNode);
+		//var newNode = this._createDataNode(JavascriptObjectTypes.NON_REAL_TYPE_ARRAY, aParentNode);
 		var currentArray = aValue;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
@@ -145,7 +159,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 			return null;
 		}
 		
-		var newNode = this._createDataNode(JavascriptObjectTypes.TYPE_OBJECT, aParentNode);
+		var newNode = EncodingDataObject.createComplexValue(JavascriptObjectTypes.TYPE_OBJECT, aParentNode);
+		//var newNode = this._createDataNode(JavascriptObjectTypes.TYPE_OBJECT, aParentNode);
 		for(var objectName in aValue) {
 			switch(objectName) {
 				case "constructor":
@@ -155,7 +170,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 					break;
 				default:
 					var currentChild = this.encodeValue(aValue[objectName], newNode);
-					XmlModifier.createNamespacedAttribute(currentChild, dbm.xmlNamespaces.dbmData, "data", "name", objectName);
+					currentChild.name = objectName;
+					//XmlModifier.createNamespacedAttribute(currentChild, dbm.xmlNamespaces.dbmData, "data", "name", objectName);
 					break;
 			}
 		}
@@ -163,14 +179,21 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	};
 	
 	objectFunctions.encodeFunction = function(aValue, aParentNode) {
+		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.TYPE_FUNCTION, aValue.toString(), aParentNode);
+		/*
 		var newNode = this._createDataNode(JavascriptObjectTypes.TYPE_FUNCTION, aParentNode);
 		XmlModifier.createText(newNode, aValue, true);
+		*/
 		return newNode;
 	};
 	
 	objectFunctions.encodeXml = function(aValue, aParentNode) {
+		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.TYPE_XML, null, aParentNode);
+		//METODO: add value
+		/*
 		var newNode = this._createDataNode(JavascriptObjectTypes.TYPE_XML, aParentNode);
 		newNode.appendChild(newNode.getOwnerDocument().importNode(aValue, true));
+		*/
 		return newNode;
 	};
 	
@@ -179,7 +202,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 		//console.log(aValue, aType, aParentNode);
 		
 		if(this._customTypeEncoders.select(aType)) {
-			var newNode = this._createDataNode(aType, aParentNode);
+			var newNode = EncodingDataObject.createComplexValue(aType, aParentNode);
+			//var newNode = this._createDataNode(aType, aParentNode);
 			return this._customTypeEncoders.currentSelectedItem.encode(aValue, newNode);
 		}
 		//METODO: error message
@@ -187,8 +211,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	};
 	
 	objectFunctions.encodeUnknownValue = function(aValue, aParentNode) {
+		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.TYPE_XML, aValue, aParentNode);
+		/*
 		var newNode = this._createDataNode(JavascriptObjectTypes.NON_REAL_TYPE_UNKNOWN, aParentNode);
 		XmlModifier.createText(newNode, aValue, true);
+		*/
 		return newNode;
 	};
 });
