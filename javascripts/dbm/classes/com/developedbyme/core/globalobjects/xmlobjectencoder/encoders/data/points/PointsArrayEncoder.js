@@ -48,16 +48,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 		
 		aNode.type = "simpleValue";
 		aNode.nodeValue = dataString;
-		
-		/*
-		//METODO: don't use private variables
-		if(dbm.singletons.dbmXmlObjectEncoder._encodeSimpleValuesAsAttributes) {
-			XmlModifier.createNamespacedAttribute(aNode, dbm.xmlNamespaces.dbmData, "data", "nodeValue", dataString);
-		}
-		else {
-			XmlModifier.createText(aNode, dataString, dbm.singletons.dbmXmlObjectEncoder._useCdata);
-		}
-		*/
 	};
 	
 	staticFunctions.create = function() {

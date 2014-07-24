@@ -12,8 +12,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
+	var LayerBaseObject = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.LayerBaseObject");
+	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
 	
 	//Utils
+	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	
 	//Constants
 	
@@ -28,6 +31,22 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 		
 		this._layers = null;
 		
+		this._width = this.addProperty("width", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._height = this.addProperty("height", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._duration = this.addProperty("duration", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._frameRate = this.addProperty("frameRate", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		
+		return this;
+	};
+	
+	objectFunctions.setupItem = function(aNativeItem) {
+		this.superCall(aNativeItem);
+		
+		this._width.setupExternalObject(aNativeItem, "width");
+		this._height.setupExternalObject(aNativeItem, "height");
+		this._duration.setupExternalObject(aNativeItem, "duration");
+		this._frameRate.setupExternalObject(aNativeItem, "frameRate");
+		
 		return this;
 	};
 	
@@ -36,7 +55,16 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 		
 		var numberOfLayers = this._nativeItem.numLayers;
 		for(var i = 1; i <= numberOfLayers; i++) { //MENOTE: count starts at 1
-			var currentLayer = this._nativeItem.layer(i);
+			var currentNativeLayer = this._nativeItem.layer(i);
+			
+			var currentLayer;
+			if(currentNativeLayer instanceof AVLayer) {
+				currentLayer = AvCompositionLayer.create(currentNativeLayer);
+			}
+			else {
+				currentLayer = LayerBaseObject.create(currentNativeLayer);
+			}
+			
 			this._layers.push(currentLayer);
 		}
 	};
@@ -50,8 +78,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
-		
-		this._nativeItem = null;
 		
 		this.superCall();
 	};

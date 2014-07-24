@@ -19,6 +19,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	var InterpolationTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
 	var AnimationCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var FileWriter = dbm.importClass("com.developedbyme.adobeextendscript.utils.file.FileWriter");
+	var MetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject");
+	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
 	
 	//Utils
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
@@ -52,29 +55,52 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		
 		var layers = this._activeComposition.getLayers();
 		
-		var layerProperties = NamedArray.create(false);
+		var compositionMetaData = MetaDataObject.create();
+		compositionMetaData.metaData.addObject("width", this._activeComposition.getProperty("width").getValue());
+		compositionMetaData.metaData.addObject("height", this._activeComposition.getProperty("height").getValue());
+		compositionMetaData.metaData.addObject("duration", this._activeComposition.getProperty("duration").getValue());
+		compositionMetaData.metaData.addObject("frameRate", this._activeComposition.getProperty("frameRate").getValue());
+		compositionMetaData.data = new Array();
 		
 		var currentArray = layers;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLayer = currentArray[i];
-			this.getPropertiesForLayer(currentLayer, "", layerProperties);
+			currentLayer.setupAnimationProperties();
+			var layerMetaData = MetaDataObject.create();
+			layerMetaData.metaData.addObject("name", currentLayer.getProperty("name").getValue());
+			layerMetaData.metaData.addObject("inPoint", currentLayer.getProperty("inPoint").getValue());
+			layerMetaData.metaData.addObject("outPoint", currentLayer.getProperty("outPoint").getValue());
+			if(currentLayer instanceof AvCompositionLayer) {
+				layerMetaData.metaData.addObject("width", currentLayer.getProperty("width").getValue());
+				layerMetaData.metaData.addObject("height", currentLayer.getProperty("height").getValue());
+				layerMetaData.metaData.addObject("blendingMode", currentLayer.getProperty("blendingMode").getValue());
+			}
+			compositionMetaData.data.push(layerMetaData);
+			
+			var timelinesArray = NamedArray.create(false);
+			
+			var currentAnimationProperties = currentLayer.getAnimationProperties();
+			var currentArray2 = currentAnimationProperties.getNamesArray();
+			var currentArray2Length = currentArray2.length;
+			for(var j = 0; j < currentArray2Length; j++) {
+				var currentName = currentArray2[j];
+				var currentProperty = currentAnimationProperties.getObject(currentName);
+				this.createTimelinesForProprety(currentProperty, currentName, timelinesArray);
+			}
+			
+			layerMetaData.data = timelinesArray;
 		}
 		
-		var debugArray = NamedArray.create(false);
+		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(compositionMetaData);
 		
-		var currentArray = layerProperties.getNamesArray();
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentName = currentArray[i];
-			var currentProperty = layerProperties.getObject(currentName);
-			this.createTimelinesForProprety(currentProperty, currentName, debugArray);
+		var saveFile = FileWriter.createWithPrompt("~/export.xml");
+		if(saveFile !== null) {
+			saveFile.setData(encodedXml);
+			saveFile.write();
 		}
 		
-		this._debugData = debugArray.getObject("transform/rotation");
-		
-		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(debugArray);
-		console.log(encodedXml);
+		this._debugData = compositionMetaData;
 	};
 	
 	objectFunctions.createTimelinesForProprety = function(aProperty, aTimelineName, aReturnArray) {

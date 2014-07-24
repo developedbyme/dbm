@@ -38,9 +38,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 		var partsNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(dbm.singletons.dbmAnimationManager.identifyInterpolationObject(aValue.interpolationObject), aNode);
 		partsNode.name = "interpolationObject";
 		partsNode.parentApplyType = "timeline/setInterpolationObject";
-		
-		//XmlModifier.createNamespacedAttribute(partsNode, dbm.xmlNamespaces.dbmData, "data", "name", "interpolationObject");
-		//XmlModifier.createNamespacedAttribute(partsNode, dbm.xmlNamespaces.dbmData, "data", "parentApplyType", "timeline/setInterpolationObject");
 	};
 	
 	staticFunctions.create = function() {

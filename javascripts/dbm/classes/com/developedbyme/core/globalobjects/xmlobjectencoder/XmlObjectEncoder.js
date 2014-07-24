@@ -53,32 +53,19 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	};
 	
 	objectFunctions.encodeXmlFromObject = function(aObject) {
-		console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeXmlFromObject");
-		//var newXml = XmlCreator.createEmptyXml();
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeXmlFromObject");
 		
 		var rootObject = EncodingDataObject.create();
 		rootObject.type = "root";
 		rootObject.dataType = "root";
 		rootObject.nodeValue = new Array();
 		
-		//this.encodeValue(aObject, newXml);
 		this.encodeValue(aObject, rootObject);
 		var xmlEncoder = XmlStringFormatEncoder.create();
 		var returnString = xmlEncoder.encode(rootObject);
 		
 		return returnString;
 	};
-	
-	/*
-	objectFunctions._createDataNode = function(aType, aParentNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::_createDataNode");
-		
-		var newNode = XmlModifier.createNamespacedChild(aParentNode, dbm.xmlNamespaces.dbmData, "data", "item");
-		XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "type", aType);
-		
-		return newNode;
-	};
-	*/
 	
 	objectFunctions.encodeValue = function(aValue, aParentNode) {
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeValue");
@@ -119,27 +106,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeSimpleValue");
 		
 		var newNode = EncodingDataObject.createSimpleValue(aType, aValue, aParentNode);
-		/*
-		if(this._encodeSimpleValuesAsAttributes) {
-			XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "nodeValue", aValue);
-		}
-		else {
-			XmlModifier.createText(newNode, aValue, this._useCdata);
-		}
-		*/
 		
 		return newNode;
 	};
 	
 	objectFunctions.encodeNullValue = function(aParentNode) {
 		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.NON_REAL_TYPE_NULL, null, aParentNode);
-		//var newNode = this._createDataNode(JavascriptObjectTypes.NON_REAL_TYPE_NULL, aParentNode);
 		return newNode;
 	};
 	
 	objectFunctions.encodeArray = function(aValue, aParentNode) {
 		var newNode = EncodingDataObject.createComplexValue(JavascriptObjectTypes.NON_REAL_TYPE_ARRAY, aParentNode);
-		//var newNode = this._createDataNode(JavascriptObjectTypes.NON_REAL_TYPE_ARRAY, aParentNode);
 		var currentArray = aValue;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
@@ -171,7 +148,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 				default:
 					var currentChild = this.encodeValue(aValue[objectName], newNode);
 					currentChild.name = objectName;
-					//XmlModifier.createNamespacedAttribute(currentChild, dbm.xmlNamespaces.dbmData, "data", "name", objectName);
 					break;
 			}
 		}
@@ -180,20 +156,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	
 	objectFunctions.encodeFunction = function(aValue, aParentNode) {
 		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.TYPE_FUNCTION, aValue.toString(), aParentNode);
-		/*
-		var newNode = this._createDataNode(JavascriptObjectTypes.TYPE_FUNCTION, aParentNode);
-		XmlModifier.createText(newNode, aValue, true);
-		*/
 		return newNode;
 	};
 	
 	objectFunctions.encodeXml = function(aValue, aParentNode) {
 		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.TYPE_XML, null, aParentNode);
 		//METODO: add value
-		/*
-		var newNode = this._createDataNode(JavascriptObjectTypes.TYPE_XML, aParentNode);
-		newNode.appendChild(newNode.getOwnerDocument().importNode(aValue, true));
-		*/
 		return newNode;
 	};
 	
@@ -203,7 +171,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 		
 		if(this._customTypeEncoders.select(aType)) {
 			var newNode = EncodingDataObject.createComplexValue(aType, aParentNode);
-			//var newNode = this._createDataNode(aType, aParentNode);
 			return this._customTypeEncoders.currentSelectedItem.encode(aValue, newNode);
 		}
 		//METODO: error message
@@ -212,10 +179,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	
 	objectFunctions.encodeUnknownValue = function(aValue, aParentNode) {
 		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.TYPE_XML, aValue, aParentNode);
-		/*
-		var newNode = this._createDataNode(JavascriptObjectTypes.NON_REAL_TYPE_UNKNOWN, aParentNode);
-		XmlModifier.createText(newNode, aValue, true);
-		*/
 		return newNode;
 	};
 });

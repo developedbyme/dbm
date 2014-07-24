@@ -73,13 +73,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_createDataNode");
 		
 		var newNode = EncodingDataObject.createComplexValue(aType, aParentNode);
-		EncodingDataObject.createAttribute("data:class", aClassName, newNode); //METODO: shouldn't be added to node value
-		
-		/*
-		var newNode = XmlModifier.createNamespacedChild(aParentNode, dbm.xmlNamespaces.dbmData, "data", "item");
-		XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "type", aType);
-		XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "class", aClassName);
-		*/
+		EncodingDataObject.createAttribute("data:class", aClassName, newNode);
 		
 		return newNode;
 	};
@@ -101,7 +95,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 			}
 			//METODO: check for null
 			newNode.name = currentVariableName;
-			//XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "name", currentVariableName);
 		}
 	};
 	
@@ -115,9 +108,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 			var newNode = this._encodeProperty(currentProperty, aNode);
 			newNode.name = currentPropertyName;
 			newNode.parentApplyType = "setPropertyInput";
-			
-			//XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "name", currentPropertyName);
-			//XmlModifier.createNamespacedAttribute(newNode, dbm.xmlNamespaces.dbmData, "data", "parentApplyType", "setPropertyInput");
 		}
 	};
 	
