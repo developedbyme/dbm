@@ -38,6 +38,7 @@ dbm.runTempFunction(function() {
 	var DefaultBasicParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultBasicParsersSetup");
 	var DefaultTextParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultTextParsersSetup");
 	var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
+	var DefaultDataManagerClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultDataManagerClassShortcutSetup");
 	var EncodingManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");
 	var DefaultAssetRepositoryBrowserSetup = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup");
 	var XmlObjectEncoderDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");
@@ -99,6 +100,7 @@ dbm.runTempFunction(function() {
 		DefaultBasicParsersSetup.setup();
 		DefaultTextParsersSetup.setup();
 		DefaultComplexParsersSetup.setup();
+		DefaultDataManagerClassShortcutSetup.setup();
 		
 		dbm.singletons.dbmAssetRepository.linkFolderToServer("remotes/localhost", "http://localhost");
 		dbm.singletons.dbmAssetRepository.linkFolderToServer("remotes/dbm", "http://www.developedbyme.com");

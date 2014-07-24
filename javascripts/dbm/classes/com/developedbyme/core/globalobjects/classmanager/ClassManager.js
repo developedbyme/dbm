@@ -132,7 +132,7 @@ dbm.runTempFunction(function() {
 		
 		var theClass = this.getClassIfExists(aName);
 		
-		if(theClass !== null) {
+		if(theClass === null) {
 			console.error("Class " + aName + " has not been imported.");
 		}
 		

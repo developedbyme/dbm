@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 		
 		this.superCall();
 		
+		this.parentApplyType = null;
 		this._hierarchyItem = null;
 		this._data = this.createProperty("data", null);
 		this._definitionFilePath = null;

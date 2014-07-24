@@ -18,6 +18,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Pars
 		
 		this.result = null;
 		this.isLinked = false;
+		this.childrenIsProperties = 0;
+		this.parentApplyType = null;
 		this.nodes = null;
 		
 		return this;

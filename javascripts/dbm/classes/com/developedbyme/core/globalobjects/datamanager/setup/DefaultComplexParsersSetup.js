@@ -5,11 +5,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.Defaul
 	var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
 	
 	var KeyValueParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser");
+	var DbmObjectParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser");
 	
 	var DataParserTypes = dbm.importClass("com.developedbyme.constants.DataParserTypes");
 	
 	staticFunctions.setup = function() {
 		
 		dbm.singletons.dbmDataManager.addParser(DataParserTypes.KEY_VALUE, KeyValueParser.create());
+		dbm.singletons.dbmDataManager.addParser(DataParserTypes.DBM_OBJECT, DbmObjectParser.create());
+		
 	};
 });

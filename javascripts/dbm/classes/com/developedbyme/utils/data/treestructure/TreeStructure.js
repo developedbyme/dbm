@@ -113,7 +113,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		
 		var theLength = currentArray.length;
 		while(theLength > 0) {
-			var currentPathPart = currentArray.shift();
+			var currentPathPart = decodeURIComponent(currentArray.shift());
 			theLength--;
 			switch(currentPathPart) {
 				case ".":

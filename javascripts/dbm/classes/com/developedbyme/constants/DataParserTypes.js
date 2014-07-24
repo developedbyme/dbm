@@ -8,6 +8,11 @@ dbm.registerClass("com.developedbyme.constants.DataParserTypes", null, function(
 	staticFunctions.STRING = "string";
 	staticFunctions.FLOAT = "float";
 	staticFunctions.NUMBER = "number";
+	staticFunctions.BOOLEAN = "boolean";
+	staticFunctions.ARRAY = "array";
+	staticFunctions.OBJECT = "object";
+	
+	staticFunctions.POINTS_ARRAY = "pointsArray";
 	
 	//Text
 	staticFunctions.UPPER_CASE_TEXT = "upperCaseText";
@@ -16,6 +21,7 @@ dbm.registerClass("com.developedbyme.constants.DataParserTypes", null, function(
 	
 	//Complex
 	staticFunctions.KEY_VALUE = "keyValue";
+	staticFunctions.DBM_OBJECT = "dbmObject";
 	
 	//Object
 	staticFunctions.STRING_ALIASES = "stringAliases";

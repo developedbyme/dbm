@@ -259,6 +259,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		this._partChange.setAsDirty();
 	};
 	
+	objectFunctions.setParts = function(aParts) {
+		this.clear();
+		this._parts = aParts;
+	};
+	
 	objectFunctions.clear = function() {
 		this._parts.splice(0, this._parts.length);
 		this._partChange.setAsDirty();

@@ -2,31 +2,38 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager");
 	
+	//Self reference
 	var DataManager = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.DataManager");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
 	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	var DataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.DataObject");
 	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
 	
+	//Utils
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	
 	dbm.setClassAsSingleton("dbmDataManager");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::_init");
 		
@@ -73,6 +80,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		var currentItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
 		currentItem.data.setDefinitionXml(aXml);
 		this.parseLinks(currentItem.data);
+		this._parseDataObject(currentItem.data);
 	};
 	
 	objectFunctions.addParser = function(aName, aParser) {
@@ -124,6 +132,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		var definitionXml = aDataObject.getDefinitionXml();
 		
 		var parseResult = this._parseNode(definitionXml, aDataObject.getHierarchyItem().getPath());
+		if(parseResult === null) {
+			//METODO: error message
+			console.error("Null result for " + aDataObject.getHierarchyItem().getPath());
+			return;
+		}
+		
+		
+		aDataObject.parentApplyType = parseResult.parentApplyType;
 		
 		if(parseResult.isLinked) {
 			aDataObject.setPropertyInput("data", parseResult.result);
@@ -136,20 +152,86 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		else {
 			aDataObject.getProperty("data").setValue(parseResult.result);
 		}
+		
+		if(parseResult.childrenIsProperties !== 0) {
+			
+			var ownerObject = aDataObject.getProperty("data").getValue();
+			
+			//METODO: check if it inside of on data:nodeValue
+			var currentArray = this.getDataChildren(definitionXml);
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentNode = currentArray[i];
+				
+				//METODO: parse node
+				var nodeName = null;
+				var requestName = null;
+				
+				if(parseResult.childrenIsProperties === 1) {
+					var dataNamespace = dbm.xmlNamespaces.dbmData;
+					nodeName = XmlChildRetreiver.getNamespacedAttribute(currentNode, dataNamespace, "name");
+					requestName = encodeURIComponent(nodeName);
+				}
+				else if(parseResult.childrenIsProperties === 2) {
+					nodeName = i;
+					requestName = "child[" + nodeName + "]";
+				}
+				else {
+					//METODO: error message
+					break;
+				}
+				
+				var currentData = this._hierarchy.getItemByPath(requestName, aDataObject.getHierarchyItem());
+				
+				if(currentData !== null) {
+					
+					if(currentData.data.parentApplyType === null) {
+						ownerObject[nodeName] = currentData.data.getProperty("data").getValue();
+					}
+					else {
+						switch(currentData.data.parentApplyType) { //METODO: report in instead of switch
+							case "namedArray/addObject":
+								ownerObject.addObject(nodeName, currentData.data.getProperty("data").getValue());
+								break;
+							case "setPropertyInput":
+								ownerObject.getProperty(nodeName).setValue(currentData.data.getProperty("data").getValue());
+								break;
+							case "timeline/applyParts":
+								ownerObject.setParts(currentData.data.getProperty("data").getValue());
+								break;
+							default:
+								//METODO: error message
+								console.warn("No apply type " + currentData.data.parentApplyType);
+						}
+					}
+				}
+				
+				//METODO: replace data link
+			}
+		}
 	};
 	
 	objectFunctions._parseNode = function(aXml, aPathReference, aDefaultType) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::_parseNode");
+		
 		var dataNamespace = dbm.xmlNamespaces.dbmData;
 		aDefaultType = VariableAliases.valueWithDefault(aDefaultType, "string");
 		var dataType = VariableAliases.valueWithDefault(XmlChildRetreiver.getNamespacedAttribute(aXml, dataNamespace, "type"), aDefaultType);
 		
-		return this._parseNodeAsType(aXml, aPathReference, dataType);
+		var result =  this._parseNodeAsType(aXml, aPathReference, dataType);
+		if(result !== null) {
+			result.parentApplyType = XmlChildRetreiver.getNamespacedAttribute(aXml, dataNamespace, "parentApplyType");
+		}
+		
+		return result;
 	};
 	
 	objectFunctions._parseNodeAsType = function(aXml, aPathReference, aType) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::_parseNodeAsType");
+		//console.log(aType);
 		if(!this._parsers.select(aType)) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_parseDataObject", "Unknown data type " + aType);
-			return;
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_parseNodeAsType", "Unknown data type " + aType);
+			return null;
 		}
 		
 		var currentParser = this._parsers.currentSelectedItem;
