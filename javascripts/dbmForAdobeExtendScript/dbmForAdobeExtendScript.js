@@ -14,7 +14,7 @@
 	
 	if(dbmObject.isCreated !== true) {
 		dbmObject.init = function() {
-			this._environmentName = "browser";
+			this._environmentName = "extendScript";
 			
 			this.singletons = new Object();
 			this.xmlNamespaces = new Object();

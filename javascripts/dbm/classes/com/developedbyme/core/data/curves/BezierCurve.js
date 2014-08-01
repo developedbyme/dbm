@@ -54,7 +54,11 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 	};
 	
 	objectFunctions.getMaxParameter = function() {
+		//console.log("com.developedbyme.core.data.curves.BezierCurve::getMaxParameter");
 		var compactMoveLength = this._isCompact ? 0 : 1;
+		if(this._curveDegree === 1) {
+			return this.pointsArray.length-1;
+		}
 		return (this.pointsArray.length-1+compactMoveLength)/(this._curveDegree+compactMoveLength);
 	};
 	
@@ -93,10 +97,17 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 		//console.log(this._curveDegree);
 		
 		var compactMoveLength = this._isCompact ? 0 : 1;
+		var startPosition;
+		if(this._curveDegree === 1) {
+			startPosition = aSegementStartParameter;
+		}
+		else {
+			startPosition = (this._curveDegree+compactMoveLength)*aSegementStartParameter;
+		}
 		
 		for(var i = 0; i <= this._curveDegree; i++) {
 			//console.log(aSegementStartParameter, i, (this._curveDegree)*aSegementStartParameter+i);
-			aReturnArray[i] = this.pointsArray[(this._curveDegree+compactMoveLength)*aSegementStartParameter+i];
+			aReturnArray[i] = this.pointsArray[startPosition+i];
 		}
 	};
 	
@@ -119,8 +130,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 		
 		var segmentStart = Math.floor(aParameter);
 		var localParameter = aParameter-segmentStart;
-		var compactMoveLength = this._isCompact ? 0 : 1;
-		var maxParameter = ((this.pointsArray.length-(1-compactMoveLength))/(this._curveDegree+compactMoveLength));
+		var maxParameter = this.getMaxParameter();
 		if(aParameter < 0 || segmentStart > maxParameter) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPointOnCurve", "Parameter " + aParameter + " is out of range 0 - " + maxParameter + ".");
 			aOutputPoint.x = NaN;
@@ -134,6 +144,8 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 		}
 		var segmentPointsArray = new Array(this._curveDegree+1);
 		this._getSegmentArray(segmentStart, segmentPointsArray);
+		
+		//console.log(segmentPointsArray, maxParameter, segmentStart);
 		dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(segmentPointsArray, localParameter, aOutputPoint);
 		//console.log("//com.developedbyme.core.data.curves.BezierCurve::getPointOnCurve");
 	};
@@ -142,7 +154,7 @@ dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.develop
 		//console.log("com.developedbyme.core.data.curves.BezierCurve.getTangentOnCurve");
 		var segmentStart = Math.floor(aParameter);
 		var localParameter = aParameter-segmentStart;
-		var maxParameter = (this.pointsArray.length/(this._curveDegree+1));
+		var maxParameter = this.getMaxParameter();
 		if(aParameter < 0 || segmentStart > maxParameter) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getTangentOnCurve", "Parameter " + aParameter + " is out of range 0 - " + maxParameter + ".");
 			aOutputPoint.x = NaN;

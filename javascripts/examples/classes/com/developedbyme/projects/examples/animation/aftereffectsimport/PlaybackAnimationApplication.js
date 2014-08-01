@@ -13,6 +13,12 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	//Dependencies
 	var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");
 	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
+	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
+	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
+	var CreateCurveFromTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.development.CreateCurveFromTimelineNode");
+	var DivisionNode = dbm.importClass("com.developedbyme.flow.nodes.math.DivisionNode");
+	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
+	var VideoView = dbm.importClass("com.developedbyme.gui.media.video.VideoView");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -55,12 +61,13 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		var playbackNode = PlaybackNode.createWithGlobalInput();
 		playbackNode.setupPlayback(0, 10, true);
-		playbackNode.play();
 		
 		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(this._graphLayoutTemplatePath, {}, true, this._contentHolder, true);
 		
 		var graphSlider = templateResult.getController("graph");
 		graphSlider.connectPlaybackNode(playbackNode);
+		graphSlider.getProperty("minValue").connectInput(playbackNode.getProperty("minTime"));
+		graphSlider.getProperty("maxValue").connectInput(playbackNode.getProperty("maxTime"));
 		
 		var canvasView = templateResult.getController("graph/canvas");
 		CanvasView.set2dControllerToView(canvasView); //METODO: move this to template
@@ -68,14 +75,79 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		this._contentHolder = templateResult.getController("visual").getElement();
 		
+		var videoView = VideoView.create(this._contentHolder, true, ["../assets/examples/animation/aftereffectsimport/playbackAnimationReference.mp4"], true, {"style": "position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;"});
+		videoView.setPlaybackNode(playbackNode);
+		videoView.play();
+		playbackNode.play();
+		
+		videoView.getProperty("display").startUpdating();
+		
 		var animationData = dbm.singletons.dbmAssetRepository.getAssetData(this._dataAssetPath);
-		console.log(animationData);
 		
 		var dataName = "playbackData";
 		dbm.singletons.dbmDataManager.addXmlDefinition(XmlChildRetreiver.getFirstChild(animationData), dataName);
-		var parsedAnimationData = dbm.singletons.dbmDataManager.getData(dataName);
+		var parsedAnimationData = dbm.singletons.dbmDataManager.getData(dataName).data;
+		
+		playbackNode.getProperty("maxTime").setValue(parsedAnimationData.metaData.getObject("duration"));
+		
+		var currentLayerData = parsedAnimationData.data[0];
+		var animatedObject = DisplayBaseObject.createDiv(this._contentHolder, true, {"style": "position: absolute; left: 0px; top: 0px; background-color: rgba(255, 0, 0, 0.5)"});
+		animatedObject.setElementAsSized();
+		animatedObject.setElementAsTransformed();
+		animatedObject.enableAlpha();
+		
+		animatedObject.getProperty("width").setValue(currentLayerData.metaData.getObject("width"));
+		animatedObject.getProperty("height").setValue(currentLayerData.metaData.getObject("height"));
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/position/x"), playbackNode.getProperty("outputTime"), animatedObject.getProperty("x"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/position/y"), playbackNode.getProperty("outputTime"), animatedObject.getProperty("y"));
+		
+		var scaleXMultiplier = MultiplicationNode.create(1, 0.01);
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/scale/x"), playbackNode.getProperty("outputTime"), scaleXMultiplier.getProperty("inputValue1"));
+		var scaleYMultiplier = MultiplicationNode.create(1, 0.01);
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/scale/y"), playbackNode.getProperty("outputTime"), scaleYMultiplier.getProperty("inputValue1"));
+		
+		animatedObject.getProperty("scaleX").connectInput(scaleXMultiplier.getProperty("outputValue"));
+		animatedObject.getProperty("scaleY").connectInput(scaleYMultiplier.getProperty("outputValue"));
+		
+		
+		var rotationMultiplier = MultiplicationNode.create(1, Math.PI/180);
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/rotation"), playbackNode.getProperty("outputTime"), rotationMultiplier.getProperty("inputValue1"));
+		
+		animatedObject.getProperty("rotate").connectInput(rotationMultiplier.getProperty("outputValue"));
+		
+		
+		var opacityMultiplier = MultiplicationNode.create(1, 0.01);
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/opacity"), playbackNode.getProperty("outputTime"), opacityMultiplier.getProperty("inputValue1"));
+		
+		animatedObject.getProperty("alpha").connectInput(opacityMultiplier.getProperty("outputValue"));
+		
+		animatedObject.getProperty("display").startUpdating();
+		
+		
+		
+		var maxTimeProperty = playbackNode.getProperty("maxTime");
+		var canvasWidthProperty = canvasView.getProperty("canvasWidth");
+		var curveCreatorRotationNode = CreateCurveFromTimelineNode.create(currentLayerData.data.getObject("transform/rotation"), 0, maxTimeProperty, canvasWidthProperty, 0);
+		
+		var scaleXNode = DivisionNode.create(canvasWidthProperty, maxTimeProperty);
+		
+		var centerLayer = canvasController.getLayer("/center");
+		centerLayer.getProperty("y").setValue(90);
+		centerLayer.getProperty("scaleX").connectInput(scaleXNode.getProperty("outputValue"));
+		centerLayer.getProperty("scaleY").setValue(-1);
+		
+		var rotationMaxParameterNode = GetMaxParameterOnCurveNode.create(curveCreatorRotationNode.getProperty("outputCurve"));
+		var drawLayerRotation = canvasController.getLayer("/center/lineRotation");
+		drawLayerRotation.setStrokeStyle(0, "#00FF00");
+		var curveDrawerRotation = drawLayerRotation.drawCurve(curveCreatorRotationNode.getProperty("outputCurve").getValue());
+		curveDrawerRotation.getProperty("curve").connectInput(curveCreatorRotationNode.getProperty("outputCurve"));
+		curveDrawerRotation.getProperty("endParameter").connectInput(rotationMaxParameterNode.getProperty("outputParameter"));
+		
+		canvasController.getProperty("display").startUpdating();
 		
 		console.log(parsedAnimationData);
+		console.log(curveDrawerRotation);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

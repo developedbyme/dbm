@@ -15,12 +15,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
 	var EncodingDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject");
 	var XmlStringFormatEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.formatencoders.XmlStringFormatEncoder");
+	var ExportMetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject");
 	
 	//Utils
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
 	var XmlModifier = dbm.importClass("com.developedbyme.utils.xml.XmlModifier");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ObjectFunctions = dbm.importClass("com.developedbyme.utils.native.object.ObjectFunctions");
+	var IsoDate = dbm.importClass("com.developedbyme.utils.native.date.IsoDate");
 	
 	//Constants
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
@@ -50,6 +52,20 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	
 	objectFunctions.addCustomTypeEncoder = function(aType, aEncoder) {
 		this._customTypeEncoders.addObject(aType, aEncoder);
+	};
+	
+	objectFunctions.createExportDataObject = function(aType) {
+		var returnObject = ExportMetaDataObject.create();
+		
+		var currentDate = new Date();
+		
+		returnObject.metaData.addObject("exportDate", IsoDate.getIsoDateAndTime(currentDate));
+		returnObject.metaData.addObject("exportType", aType);
+		returnObject.metaData.addObject("environment", dbm.getEnvironmentName());
+		
+		returnObject.namespaces.addObject("data", dbm.xmlNamespaces.dbmData);
+		
+		return returnObject;
 	};
 	
 	objectFunctions.encodeXmlFromObject = function(aObject) {

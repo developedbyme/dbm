@@ -37,6 +37,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 	
 	objectFunctions.draw = function(aContext) {
 		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::draw");
+		
 		var curve = this._curve.getValue();
 		var startParameter = this._startParameter.getValue();
 		var endParameter = this._endParameter.getValue();

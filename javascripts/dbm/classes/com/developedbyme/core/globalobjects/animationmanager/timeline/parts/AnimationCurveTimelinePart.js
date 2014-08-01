@@ -45,8 +45,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	};
 	
 	objectFunctions.getValueByParameter = function(aParameter) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart::getValueByParameter");
 		
-		return dbm.singletons.dbmCurveEvaluator.getValueOfAnimationCurve(this.curve, (aParameter-this.startParameter)/(this.endParameter-this.startParameter), this.preInfinityMethod, this.postInfinityMethod, this.exactness);
+		var parameter = (aParameter-this.startParameter)/(this.endParameter-this.startParameter); //METODO: this doesn't seem to be the correct calculation
+		//console.log(parameter, this.curve);
+		
+		return dbm.singletons.dbmCurveEvaluator.getValueOfAnimationCurve(this.curve, parameter, this.preInfinityMethod, this.postInfinityMethod, this.exactness);
 		
 	};
 	

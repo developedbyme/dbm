@@ -184,11 +184,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		return Math.pow((1-aParameter), (aDegree-aPointNr))*Math.pow(aParameter, aPointNr);
 	};
 	
-	objectFunctions._evaluateAnimationCurveSegment = function(aSegment, aEvaluationValue, aExactness) {
-		var point1 = this.curve.pointsArray[4*aSegment];
-		var point2 = this.curve.pointsArray[4*aSegment+1];
-		var point3 = this.curve.pointsArray[4*aSegment+2];
-		var point4 = this.curve.pointsArray[4*aSegment+3];
+	objectFunctions._evaluateAnimationCurveSegment = function(aPointsArray, aSegment, aEvaluationValue, aExactness) {
+		var point1 = aPointsArray[4*aSegment];
+		var point2 = aPointsArray[4*aSegment+1];
+		var point3 = aPointsArray[4*aSegment+2];
+		var point4 = aPointsArray[4*aSegment+3];
 		if(aEvaluationValue === point1.x) {
 			return point1.y;
 		}
@@ -296,7 +296,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEval
 		var currentSegmentNr = 0;
 		while(true) {
 			if((evaluationParameter >= currentArray[4*currentSegmentNr].x) && (evaluationParameter < currentArray[4*currentSegmentNr+3].x)) {
-				return this._evaluateAnimationCurveSegment(currentSegmentNumber, evaluationParameter, aExactness)+outputValueOffset;
+				return this._evaluateAnimationCurveSegment(currentArray, currentSegmentNumber, evaluationParameter, aExactness)+outputValueOffset;
 			}
 			else if(evaluationParameter < currentArray[4*currentSegmentNr].x) {
 				currentSegmentNr--;

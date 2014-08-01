@@ -2,7 +2,17 @@
 dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.VectorFunctions");
 	
+	//Self reference
 	var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
 	
 	staticFunctions.add2d = function(aInputPoint1, aInputPoint2, aOutputPoint) {
 		aOutputPoint.x = aInputPoint1.x+aInputPoint2.x;

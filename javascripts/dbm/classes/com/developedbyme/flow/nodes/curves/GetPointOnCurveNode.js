@@ -2,10 +2,21 @@
 dbm.registerClass("com.developedbyme.flow.nodes.curves.GetPointOnCurveNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.curves.GetPointOnCurveNode");
 	
+	//Self reference
 	var GetPointOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetPointOnCurveNode");
 	
+	//Error report
+	
+	//Dependencies
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.curves.GetPointOnCurveNode::_init");
 		

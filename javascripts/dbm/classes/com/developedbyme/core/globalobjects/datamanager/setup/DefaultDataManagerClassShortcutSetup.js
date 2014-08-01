@@ -2,10 +2,21 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultDataManagerClassShortcutSetup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.datamanager.setup.DefaultDataManagerClassShortcutSetup");
 	
+	//Self reference
 	var DefaultDataManagerClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultDataManagerClassShortcutSetup");
 	
+	//Error report
+	
+	//Dependencies
 	var MetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject");
+	var ExportMetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject");
 	var AnimationCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart");
+	var SpatialCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart");
+	
+	//Utils
+	
+	//Constants
+	
 	
 	staticFunctions.setup = function() {
 		

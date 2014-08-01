@@ -22,6 +22,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	var FileWriter = dbm.importClass("com.developedbyme.adobeextendscript.utils.file.FileWriter");
 	var MetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject");
 	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
+	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
+	var SpatialCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart");
 	
 	//Utils
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
@@ -55,7 +57,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		
 		var layers = this._activeComposition.getLayers();
 		
+		var exportObject = dbm.singletons.dbmXmlObjectEncoder.createExportDataObject("afterEffectsComposition");
+		
 		var compositionMetaData = MetaDataObject.create();
+		exportObject.data = compositionMetaData;
 		compositionMetaData.metaData.addObject("width", this._activeComposition.getProperty("width").getValue());
 		compositionMetaData.metaData.addObject("height", this._activeComposition.getProperty("height").getValue());
 		compositionMetaData.metaData.addObject("duration", this._activeComposition.getProperty("duration").getValue());
@@ -92,7 +97,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			layerMetaData.data = timelinesArray;
 		}
 		
-		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(compositionMetaData);
+		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(exportObject);
 		
 		var saveFile = FileWriter.createWithPrompt("~/export.xml");
 		if(saveFile !== null) {
@@ -106,21 +111,37 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	objectFunctions.createTimelinesForProprety = function(aProperty, aTimelineName, aReturnArray) {
 		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::createTimelinesForProprety");
 		//console.log(aProperty, aTimelineName, aReturnArray);
+		console.log(aProperty.unitsText);
 		
 		var namesArray = null;
+		var pointProperties = null;
 		var returnArray = new Array();
 		var isSpatial = false;
 		var dimensionLength = 0;
+		var multiplier = 1;
+		switch(aProperty.unitsText) {
+			case "percent":
+				multiplier = 0.01;
+				break;
+			case "degrees":
+				multiplier = Math.PI/180;
+				break;
+			default:
+				//MENOTE: do nothing
+				break;
+		}
 		
 		switch(aProperty.propertyValueType) {
 			case PropertyValueType.ThreeD_SPATIAL:
 				isSpatial = true;
+				pointProperties = ["outputValueX", "outputValueY", "outputValueZ"];
 			case PropertyValueType.ThreeD:
 				dimensionLength = 3;
 				namesArray = [aTimelineName + "/" + "x", aTimelineName + "/" + "y", aTimelineName + "/" + "z"];
 				break;
 			case PropertyValueType.TwoD_SPATIAL:
 				isSpatial = true;
+				pointProperties = ["outputValueX", "outputValueY"];
 			case PropertyValueType.TwoD:
 				dimensionLength = 2;
 				namesArray = [aTimelineName + "/" + "x", aTimelineName + "/" + "y"];
@@ -152,8 +173,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				aReturnArray.addObject(namesArray[i], newTimeline);
 			}
 			
+			//METODO: pass in multiplier
 			if(isSpatial) {
-				this.setupTimelinesForSpatialProperty(aProperty, returnArray);
+				this.setupTimelinesForSpatialProperty(aProperty, pointProperties, returnArray);
 			}
 			else {
 				this.setupTimelinesForProperty(aProperty, returnArray);
@@ -221,7 +243,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		}
 	};
 	
-	objectFunctions.setupTimelinesForSpatialProperty = function(aProperty, aReturnTimelines) {
+	objectFunctions.setupTimelinesForSpatialProperty = function(aProperty, aPointProperties, aReturnTimelines) {
 		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::setupTimelinesForSpatialProperty");
 		//console.log(aProperty, aReturnTimelines);
 		
@@ -229,6 +251,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		if(numberOfKeys > 1) {
 			var lastTime = aProperty.keyTime(1);
 			var lastValue = aProperty.keyValue(1);
+			var lastInEasing = aProperty.keyInTemporalEase(1);
+			var lastOutEasing = aProperty.keyOutTemporalEase(1);
 			var lastInTangent = aProperty.keyInSpatialTangent(1);
 			var lastOutTangent = aProperty.keyOutSpatialTangent(1);
 			this.setStartValuesForTimelines(lastValue, aReturnTimelines);
@@ -236,15 +260,21 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				//console.log(">>>>>>>", i);
 				var currentTime = aProperty.keyTime(i);
 				var currentValue = aProperty.keyValue(i);
+				var currentInEasing = aProperty.keyInTemporalEase(i);
+				var currentOutEasing = aProperty.keyOutTemporalEase(i);
 				var currentInTangent = aProperty.keyInSpatialTangent(i);
 				var currentOutTangent = aProperty.keyOutSpatialTangent(i);
 				
-				//METODO:
+				var spatialCurve = BezierCurve.createWithLength(3, true, 4);
+				this._fillSpacialCurveWithValues(lastValue, lastOutTangent, currentValue, currentInTangent, spatialCurve.pointsArray);
+				//METODO: check taht it's actually moving
 				
-				this.addSpatialPartToTimelines(lastTime, lastValue, lastInTangent, lastOutTangent, currentTime, currentValue, currentInTangent, currentOutTangent, aReturnTimelines);
+				this.addSpatialPartToTimelines(lastTime, lastValue, lastInEasing, lastOutEasing, currentTime, currentValue, currentInEasing, currentOutEasing, spatialCurve, aPointProperties, aReturnTimelines);
 				
 				lastTime =  currentTime;
 				lastValue = currentValue;
+				lastInEasing = currentInEasing;
+				lastOutEasing = currentOutEasing;
 				lastInTangent = currentInTangent;
 				lastOutTangent = currentOutTangent;
 			}
@@ -305,7 +335,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		}
 	};
 	
-	objectFunctions.addSpatialPartToTimelines = function(aStartTime, aStartValues, aStartInTangents, aStartOutTangents, aEndTime, aEndValues, aEndInTangents, aEndOutTangents, aReturnTimelines) {
+	objectFunctions.addSpatialPartToTimelines = function(aStartTime, aStartValues, aStartInEasing, aStartOutEasing, aEndTime, aEndValues, aEndInEasing, aEndOutEasing, aSpatialCurve, aPointProperties, aReturnTimelines) {
 		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::addSpatialPartToTimelines");
 		//console.log(aStartTime, aStartValues, aStartInTangents, aStartOutTangents, aEndTime, aEndValues, aEndInTangents, aEndOutTangents, aReturnTimelines);
 		
@@ -314,16 +344,15 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		var currentArray = aReturnTimelines;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			if(aStartValues[i] === aEndValues[i] && aStartOutTangents[i] === 0 && aEndInTangents[i] === 0) {
-				continue;
-			}
 			var newPart = null;
+			//METODO: temporal ease
 			if(isLinear) {
 				newPart = InterpolationTimelinePart.create(aStartValues[i], aEndValues[i], dbm.singletons.dbmAnimationMananger.getInterpolationObject(InterpolationTypes.LINEAR), aStartTime, aEndTime-aStartTime);
 			}
 			else {
-				var curvePoints = [0, aStartValues[i], 0.33, aStartValues[i]+aStartOutTangents[i], 0.66, aEndValues[i]+aEndInTangents[i], 1, aEndValues[i]];
-				newPart = AnimationCurveTimelinePart.create(dbm.singletons.dbmCurveCreator.createCurveFromValuesArray(3, true, curvePoints), aStartTime, aEndTime-aStartTime);
+				//var curvePoints = [0, 0, 1/3, 1/3, 2/3, 2/3, 1, 1];
+				newPart = SpatialCurveTimelinePart.create(aSpatialCurve, aStartTime, aEndTime-aStartTime);
+				newPart.pointProperty = aPointProperties[i];
 			}
 			
 			currentArray[i].addPart(newPart);
@@ -340,6 +369,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			var currentTimeline = aReturnTimelines[i];
 			currentTimeline.getProperty("startValue").setValue(currentArray[i]);
 		}
+	};
+	
+	objectFunctions._fillSpacialCurveWithValues = function(aStartPoint, aStartTangent, aEndPoint, aEndTangent, aPointsArray) {
+		aPointsArray[0].setValues(aStartPoint[0], aStartPoint[1], aStartPoint[2]);
+		aPointsArray[1].setValues(aStartPoint[0]+aStartTangent[0], aStartPoint[1]+aStartTangent[1], aStartPoint[2]+aStartTangent[2]);
+		aPointsArray[2].setValues(aEndPoint[0]+aEndTangent[0], aEndPoint[1]+aEndTangent[1], aEndPoint[2]+aEndTangent[2]);
+		aPointsArray[3].setValues(aEndPoint[0], aEndPoint[1], aEndPoint[2]);
 	};
 	
 	/**

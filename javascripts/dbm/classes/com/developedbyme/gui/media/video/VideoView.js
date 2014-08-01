@@ -3,27 +3,34 @@ dbm.registerClass("com.developedbyme.gui.media.video.VideoView", "com.developedb
 	//console.log("com.developedbyme.gui.media.video.VideoView");
 	//"use strict";
 	
+	//Self reference
 	var VideoView = dbm.importClass("com.developedbyme.gui.media.video.VideoView");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
-	
 	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
+	//Utils
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	
+	//Constants
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	var VideoEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.VideoEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.PlaybackExtendedEventIds");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.media.video.VideoView::_init");
 		

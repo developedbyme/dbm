@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 	
 	//Dependencies
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+	var EvaluateTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
 	
 	//Utils
 	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
@@ -40,12 +41,14 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 		this._selectedUrl = null;
 		this._maxTimeDifference = 1;
 		
-		this._stateTimeline = Timeline.create(PlaybackStateTypes.PAUSED);
-		this.addDestroyableObject(this._stateTimeline);
-		this._startTimeTimeline = Timeline.create(0);
-		this.addDestroyableObject(this._startTimeTimeline);
-		this._startPositionTimeline = Timeline.create(0);
-		this.addDestroyableObject(this._startPositionTimeline);
+		this._stateTimeline = this.addDestroyableObject(Timeline.create(PlaybackStateTypes.PAUSED));
+		this._startTimeTimeline = this.addDestroyableObject(Timeline.create(0));
+		this._startPositionTimeline = this.addDestroyableObject(Timeline.create(0));
+		
+		this._stateTimelineEvaluator = this.addDestroyableObject(EvaluateTimelineNode.create(this._stateTimeline, 0));
+		this._startTimeTimelineEvaluator = this.addDestroyableObject(EvaluateTimelineNode.create(this._startTimeTimeline, 0));
+		this._startPositionTimelineEvaluator = this.addDestroyableObject(EvaluateTimelineNode.create(this._startPositionTimeline, 0));
+		
 		this._currentTime = this.createProperty("currentTime", 0);
 		this._playbackState = this.createProperty("playbackState", PlaybackStateTypes.PLAYING);
 		this._playbackSpeed = this.createProperty("playbackSpeed", 1);
@@ -69,7 +72,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 		this._loopPlayback = this.addProperty("loopPlayback", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null)); //MENOTE: since firefox doesn't suppert the loop attribute yet this needs to be linked
 		this._loopPlayback.connectInput(this._loop);
 		
-		this.createUpdateFunction("default", this._updateFlow, [this._stateTimeline.getProperty("outputValue"), this._startTimeTimeline.getProperty("outputValue"), this._startPositionTimeline.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed, this._outputVolume, this._loop, this._loopPlayback], [this._outputTime, this._playback, this._hasEnded]);
+		this.createUpdateFunction("default", this._updateFlow, [this._stateTimelineEvaluator.getProperty("outputValue"), this._startTimeTimelineEvaluator.getProperty("outputValue"), this._startPositionTimelineEvaluator.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed, this._outputVolume, this._loop, this._loopPlayback], [this._outputTime, this._playback, this._hasEnded]);
 		
 		this.getExtendedEvent().addCommandToEvent(VideoEventIds.VOLUME_CHANGE, SetPropertyAsDirtyCommand.createCommand(this._muted));
 		this.getExtendedEvent().addCommandToEvent(VideoEventIds.LOADED_META_DATA, CallFunctionCommand.createCommand(this, this._metaDataLoaded, [GetVariableObject.createSelectDataCommand()]));
@@ -118,9 +121,14 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 	};
 	
 	objectFunctions.setPlaybackNode = function(aPlaybackNode) {
-		this._stateTimeline.setPropertyInput("time", aPlaybackNode.getProperty("outputTime"));
-		this._startTimeTimeline.setPropertyInput("time", aPlaybackNode.getProperty("outputTime"));
-		this._startPositionTimeline.setPropertyInput("time", aPlaybackNode.getProperty("outputTime"));
+		this._stateTimelineEvaluator.setPropertyInput("inputValue", aPlaybackNode.getProperty("outputTime"));
+		this._startTimeTimelineEvaluator.setPropertyInput("inputValue", aPlaybackNode.getProperty("outputTime"));
+		this._startPositionTimelineEvaluator.setPropertyInput("inputValue", aPlaybackNode.getProperty("outputTime"));
+		
+		this._stateTimeline._internalFunctionality_setReferenceTime(aPlaybackNode.getProperty("outputTime"));
+		this._startTimeTimeline._internalFunctionality_setReferenceTime(aPlaybackNode.getProperty("outputTime"));
+		this._startPositionTimeline._internalFunctionality_setReferenceTime(aPlaybackNode.getProperty("outputTime"));
+		
 		this._currentTime.connectInput(aPlaybackNode.getProperty("outputTime"));
 		this._playbackSpeed.connectInput(aPlaybackNode.getProperty("playbackSpeed"));
 		this._playbackState.connectInput(aPlaybackNode.getProperty("state"));
@@ -195,7 +203,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 	objectFunctions.play = function() {
 		console.log("com.developedbyme.gui.media.MediaElementBaseObject::play");
 		
-		var currentState = this._stateTimeline.getValue();
+		var currentState = this._stateTimelineEvaluator.getProperty("outputValue").getValue();
 		if(currentState === PlaybackStateTypes.PLAYING) {
 			return;
 		}
@@ -213,7 +221,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 	
 	objectFunctions.pause = function() {
 		
-		var currentState = this._stateTimeline.getValue();
+		var currentState = this._stateTimelineEvaluator.getProperty("outputValue").getValue();
 		if(currentState === PlaybackStateTypes.PAUSED) {
 			return;
 		}
@@ -312,9 +320,9 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 		}
 		else {
 		
-			var state = this._stateTimeline.getProperty("outputValue").getValueWithoutFlow();
-			var startTime = this._startTimeTimeline.getProperty("outputValue").getValueWithoutFlow();
-			var startPosition = this._startPositionTimeline.getProperty("outputValue").getValueWithoutFlow();
+			var state = this._stateTimelineEvaluator.getProperty("outputValue").getValueWithoutFlow();
+			var startTime = this._startTimeTimelineEvaluator.getProperty("outputValue").getValueWithoutFlow();
+			var startPosition = this._startPositionTimelineEvaluator.getProperty("outputValue").getValueWithoutFlow();
 			var currentTime = this._currentTime.getValueWithoutFlow();
 			var playbackState = this._playbackState.getValueWithoutFlow();
 			var playbackSpeed = this._playbackSpeed.getValueWithoutFlow();

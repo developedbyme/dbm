@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.TransformElementNode", "
 				htmlElementHeightOffset = -1*this._pivotY.getValueWithoutFlow()*htmlElement.clientHeight;
 			}
 			
-			var transformString = "translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ") rotate(" + (180*this._rotate.getValueWithoutFlow()/Math.PI) + "deg)";
+			var transformString = "translateX(" + (this._x.getValueWithoutFlow()+htmlElementWidthOffset) + "px) translateY(" + (this._y.getValueWithoutFlow()+htmlElementHeightOffset) + "px) rotate(" + (180*this._rotate.getValueWithoutFlow()/Math.PI) + "deg) scaleX(" + this._scaleX.getValueWithoutFlow() + ") scaleY(" + this._scaleY.getValueWithoutFlow() + ")";
 			var transformationOriginString = (100*this._pivotX.getValueWithoutFlow()) + "% " + (100*this._pivotY.getValueWithoutFlow()) + "%";
 			
 			//console.log(transformString, transformationOriginString);

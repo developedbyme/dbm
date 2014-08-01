@@ -197,7 +197,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	objectFunctions.setFillStyle = function(aStyle) {
 		var currentDrawingLayer = this._getCurrentDrawingLayer();
 		if(currentDrawingLayer.hasCurves()) {
-			currentDrawingLayer = this._createNewCurrentDrawingLayer();
+			currentDrawingLayer = this._createNewDrawingLayer();
 		}
 		currentDrawingLayer.getProperty("fillStyle").setValue(aStyle);
 	};
@@ -206,7 +206,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::setStrokeStyle");
 		var currentDrawingLayer = this._getCurrentDrawingLayer();
 		if(currentDrawingLayer.hasCurves()) {
-			currentDrawingLayer = this._createNewCurrentDrawingLayer();
+			currentDrawingLayer = this._createNewDrawingLayer();
 		}
 		currentDrawingLayer.getProperty("lineWidth").setValue(aLineWidth);
 		currentDrawingLayer.getProperty("strokeStyle").setValue(aStyle);
@@ -219,7 +219,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		var currentDrawingLayer = this._getCurrentDrawingLayer();
 		if(currentDrawingLayer.hasCurves()) {
-			currentDrawingLayer = this._createNewCurrentDrawingLayer();
+			currentDrawingLayer = this._createNewDrawingLayer();
 		}
 		
 		this._currentDrawingPosition.x = aX;

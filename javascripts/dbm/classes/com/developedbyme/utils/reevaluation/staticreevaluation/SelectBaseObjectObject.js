@@ -2,8 +2,21 @@
 dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject");
 	
+	//Self reference
 	var SelectBaseObjectObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Contructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject::_init");
 		
@@ -15,10 +28,11 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.Selec
 	};
 	
 	/**
-	 * The function that reevalutes this reference. Should be overridden.
+	 * The function that reevalutes this reference.
 	 *
-	 * @param	aBaseObject	The object to base the reevaluation from.
-	 * @return	null
+	 * @param	aBaseObject	Any	The object to base the reevaluation from.
+	 *
+	 * @return	Any	The base object
 	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
 		

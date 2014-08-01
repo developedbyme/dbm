@@ -9,13 +9,21 @@ dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedb
 	//console.log("com.developedbyme.core.data.points.PointSet");
 	//"use strict";
 	
+	//Self reference
 	var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	
+	//Utils
+	
+	//Constants
+	
 	
 	/**
 	 * Constructor

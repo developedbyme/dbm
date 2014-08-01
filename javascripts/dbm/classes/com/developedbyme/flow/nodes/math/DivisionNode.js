@@ -3,8 +3,20 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.DivisionNode", "com.develop
 	//console.log("com.developedbyme.flow.nodes.math.DivisionNode");
 	//"use strict";
 	
+	//Self reference
 	var DivisionNode = dbm.importClass("com.developedbyme.flow.nodes.math.DivisionNode");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.DivisionNode::_init");
 		

@@ -1,18 +1,27 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * A point.
  *
  * @author	Mattias Ekendahl (mattias@developedbyme.com)
  * @version	0.3.01
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.points.Point");
 	//"use strict";
 	
+	//Self reference
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-
+	
+	//Constants
+	
+	
 	/**
 	 * Constructor
 	 */
@@ -110,5 +119,20 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 		aOutputPoint.x = aInputPoint.x;
 		aOutputPoint.y = aInputPoint.y;
 		aOutputPoint.z = aInputPoint.z;
+	};
+	
+	staticFunctions.adjustPointsArrayLength = function(aArray, aDifference) {
+		if(aDifference < 0) {
+			aDifference *= -1;
+			for(var i = 0; i < aDifference; i++) {
+				var currentPoint = aArray.pop();
+				currentPoint.destroy();
+			}
+		}
+		else {
+			for(var i = 0; i < aDifference; i++) {
+				aArray.push(ClassReference.create());
+			}
+		}
 	};
 });

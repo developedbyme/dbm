@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 	var EncodingBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject");
 	var PointsArrayEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder");
 	var NamedArrayEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder");
+	var ExportMetaDataEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder");
 	
 	//Utils
 	
@@ -51,12 +52,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "value"]);
 		
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "preInfinityMethod", "postInfinityMethod", "exactness", "startParameter", "endParameter"]);
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "pointProperty", "startParameter", "endParameter"]);
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart", ["parts"]);
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.curves.BezierCurve", ["pointsArray", "setType", "_curveDegree", "_isCompact"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY); //MEDEBUG: shouldn't access private variables
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.curves.BezierCurve", ["pointsArray", "setType", "_curveDegree", "_isCompact"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY); //METODO: shouldn't access private variables
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.points.PointSet", ["pointsArray", "setType"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY);
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.points.Point", ["x", "y", "z", "w"]);
 		
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject", ["metaData", "data"]);
+		
+		var exportMetaDataEncoder = ExportMetaDataEncoder.create();
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject", exportMetaDataEncoder);
 		
 	};
 	
