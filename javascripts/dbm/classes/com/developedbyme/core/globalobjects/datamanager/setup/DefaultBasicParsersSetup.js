@@ -13,6 +13,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.Defaul
 	var BooleanParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.BooleanParser");
 	var ArrayParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser");
 	var ObjectParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser");
+	var NullParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.NullParser");
 	var PointsArrayParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.data.PointsArrayParser");
 	
 	//Utils
@@ -29,6 +30,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.Defaul
 		dbm.singletons.dbmDataManager.addParser(DataParserTypes.BOOLEAN, BooleanParser.create());
 		dbm.singletons.dbmDataManager.addParser(DataParserTypes.ARRAY, ArrayParser.create());
 		dbm.singletons.dbmDataManager.addParser(DataParserTypes.OBJECT, ObjectParser.create());
+		dbm.singletons.dbmDataManager.addParser(DataParserTypes.NULL, NullParser.create());
 		
 		dbm.singletons.dbmDataManager.addParser(DataParserTypes.POINTS_ARRAY, PointsArrayParser.create());
 		

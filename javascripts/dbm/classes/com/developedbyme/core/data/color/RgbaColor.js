@@ -1,16 +1,25 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * A RGBA color.
  *
  * @author	Mattias Ekendahl (mattias@developedbyme.com)
  * @version	0.0.01
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.color.RgbaColor");
 	
+	//Self reference
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
 	
 	/**
 	 * Constructor

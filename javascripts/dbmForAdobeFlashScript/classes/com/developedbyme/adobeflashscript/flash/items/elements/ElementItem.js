@@ -28,37 +28,38 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.elements.Eleme
 		
 		this.superCall();
 		
-		this._nativeItem = null;
-		
-		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._x = this.addProperty("x", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._y = this.addProperty("y", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._scaleX = this.addProperty("scaleX", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._scaleY = this.addProperty("scaleY", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._rotation = this.addProperty("rotation", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._transformX = this.addProperty("transformX", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._transformY = this.addProperty("transformY", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		
-		return this;
-	};
-	
-	objectFunctions.setNativeItem = function(aNativeItem) {
-		this._nativeItem = aNativeItem;
-		
-		this._name.setupExternalObject(aNativeItem, "name");
-		this._x.setupExternalObject(aNativeItem, "x");
-		this._y.setupExternalObject(aNativeItem, "y");
-		this._scaleX.setupExternalObject(aNativeItem, "scaleX");
-		this._scaleY.setupExternalObject(aNativeItem, "scaleY");
-		this._rotation.setupExternalObject(aNativeItem, "rotation");
-		this._transformX.setupExternalObject(aNativeItem, "transformX");
-		this._transformY.setupExternalObject(aNativeItem, "transformY");
+		this._frameItems = new Array();
+		this._startTime = 0;
+		this._endTime = 0;
+		this._elementType = "unknown";
 		
 		return this;
 	};
 	
 	objectFunctions.getElementType = function() {
-		return this._nativeItem.elementType;
+		return this._elementType;
+	};
+	
+	objectFunctions.getFrameItems = function() {
+		return this._frameItems;
+	};
+	
+	objectFunctions.setStartTime = function(aTime) {
+		this._startTime = aTime;
+		
+		return this;
+	};
+	
+	objectFunctions.setEndTime = function(aTime) {
+		this._endTime = aTime;
+		
+		return  this;
+	};
+	
+	objectFunctions.addNativeItem = function(aNativeItem) {
+		this._frameItems.push(aNativeItem);
+		
+		return this;
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
@@ -79,7 +80,7 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.elements.Eleme
 		
 		var newElementItem = (new ClassReference()).init();
 		
-		newElementItem.setNativeItem(aNativeItem);
+		newElementItem.addNativeItem(aNativeItem);
 		
 		return newElementItem;
 	};

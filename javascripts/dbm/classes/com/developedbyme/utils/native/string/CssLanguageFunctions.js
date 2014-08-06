@@ -7,6 +7,9 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 	var CssLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.CssLanguageFunctions");
 	
 	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
 	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");
@@ -21,6 +24,10 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 	
 	//Constants
 	
+	
+	/**
+	 * Regular expressions for color formats.
+	 */
 	staticFunctions.COLOR_REG_EXPS = [
 		new RegExp("#[0-9a-fA-F]{6}"),
 		new RegExp("#[0-9a-fA-F]{3}"),
@@ -30,6 +37,9 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 		new RegExp("hsl\\(")
 	];
 	
+	/**
+	 * Names matching the regular expressions for color formats.
+	 */
 	staticFunctions.COLOR_REG_EXP_NAMES = [
 		"hex",
 		"shortHex",
@@ -39,6 +49,13 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 		"hsl"
 	];
 	
+	/**
+	 * Gets the type of format that a color is described in.
+	 *
+	 * @param	aCssString	String	The css color string.
+	 *
+	 * @return	String	The name for the format that the color is specified in.
+	 */
 	staticFunctions.getColorType = function(aCssString) {
 		return RegExpFunctions.matchTextInRegExpArrayWithNames(aCssString, ClassReference.COLOR_REG_EXPS, ClassReference.COLOR_REG_EXP_NAMES);
 	};

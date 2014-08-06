@@ -49,14 +49,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.formate
 				returnString += this._getChildNodes(aPart);
 				break;
 			case "complexValue":
-				returnString += "<data:item " + this._getAttributesString(aPart) +  ">";
+				returnString += "<data:item " + this._getAttributesString(aPart) +  ">" + "\n";
 				returnString += this._getChildNodes(aPart);
-				returnString += "</data:item>";
+				returnString += "</data:item>" + "\n";
 				break;
 			case "simpleValue":
 				returnString += "<data:item " + this._getAttributesString(aPart) +  ">";
-				returnString += aPart.nodeValue;
-				returnString += "</data:item>";
+				returnString += "<![CDATA[" + aPart.nodeValue + "]]>";
+				returnString += "</data:item>" + "\n";
 				break;
 			default:
 				//METODO: error message

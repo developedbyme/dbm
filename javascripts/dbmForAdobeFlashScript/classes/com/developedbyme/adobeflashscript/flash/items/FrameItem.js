@@ -59,29 +59,7 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.FrameItem", "c
 	};
 	
 	objectFunctions.getElements = function() {
-		return this._elements;
-	};
-	
-	objectFunctions.setupElements = function() {
-		
-		this._elements = new Array();
-		
-		var currentArray = this._nativeItem.elements;
-		var currentArrayLength = currentArray.length;
-		
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentNativeElement = currentArray[i];
-			
-			var currentElement;
-			if(currentNativeElement.elementType === "shape") {
-				currentElement = ShapeElementItem.create(currentNativeElement);
-			}
-			else {
-				currentElement = ElementItem.create(currentNativeElement);
-			}
-			
-			this._elements.push(currentElement);
-		}
+		return this._nativeItem.elements;
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
@@ -103,7 +81,6 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.FrameItem", "c
 		var newFrameItem = (new ClassReference()).init();
 		
 		newFrameItem.setNativeItem(aNativeItem);
-		newFrameItem.setupElements();
 		
 		return newFrameItem;
 	};

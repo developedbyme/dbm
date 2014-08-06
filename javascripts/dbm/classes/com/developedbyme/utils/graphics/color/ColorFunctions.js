@@ -1,23 +1,39 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Function for creating and modifying colors.
+ */
 dbm.registerClass("com.developedbyme.utils.graphics.color.ColorFunctions", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.graphics.color.ColorFunctions");
 	
+	//Self reference
 	var ColorFunctions = dbm.importClass("com.developedbyme.utils.graphics.color.ColorFunctions");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	var HslaColor = dbm.importClass("com.developedbyme.core.data.color.HslaColor");
 	
-	var HtmlColorNames = dbm.importClass("com.developedbyme.utils.graphics.color.HtmlColorNames");
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var CssLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.CssLanguageFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
 	var ProgrammingLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunctions");
 	
+	//Constants
+	var HtmlColorNames = dbm.importClass("com.developedbyme.utils.graphics.color.HtmlColorNames");
+	
+	/**
+	 * Creates an array from the values in a css color string (eg. rgba(r, g, b, a), hsl(h, s, l)).
+	 *
+	 * @param	aCssString	String	The css string to get data from.
+	 *
+	 * @return	Array	The values inside the string.
+	 */
 	staticFunctions._getValueArrayFromCssFunctionString = function(aCssString) {
 		var scopeStart = aCssString.indexOf("(");
 		var scope = ScopeFunctions.getScope(aCssString, scopeStart, "(", ")");
@@ -56,6 +72,36 @@ dbm.registerClass("com.developedbyme.utils.graphics.color.ColorFunctions", "com.
 		return ClassReference.createColorFromValue(dataValue);
 	};
 	
+	/**
+	 * Gets a color for the format #RRGGBB[AA]
+	 *
+	 * @param	aHexString	String	The hexadecimal color string.
+	 *
+	 * @return	Color	The color created from the string.
+	 */
+	staticFunctions.createColorFromHexWithOptionalAlphaString = function(aHexString) {
+		//console.log("com.developedbyme.utils.graphics.color.ColorFunctions::createColorFromHexWithOptionalAlphaString");
+		//console.log(aHexString);
+		
+		var dataString = aHexString.substring(1, 7);
+		var dataValue = parseInt(dataString, 16);
+		
+		var returnColor = ClassReference.createColorFromValue(dataValue);
+		if(aHexString.length === 9) {
+			var alphaString = aHexString.substring(7, 9);
+			returnColor.a = parseInt(alphaString, 16)/0xFF;
+		}
+		
+		return returnColor;
+	};
+	
+	/**
+	 * Gets a color for the format #RRGGBB
+	 *
+	 * @param	aHexString	String	The hexadecimal color string.
+	 *
+	 * @return	Color	The color created from the string.
+	 */
 	staticFunctions.createColorFromShortHexString = function(aHexString) {
 		
 		var dataString = aHexString.substring(1, 4);

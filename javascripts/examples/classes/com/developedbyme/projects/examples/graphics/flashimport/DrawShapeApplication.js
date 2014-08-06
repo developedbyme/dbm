@@ -70,24 +70,51 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.flashimport.Draw
 		
 		console.log(parsedShapeData);
 		
-		var currentArray = parsedShapeData.data;
+		var currentArray = parsedShapeData.data.data;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLayer = currentArray[i];
-			var currentLayerName = currentLayer.metaData.getObject("name");
+			var currentLayerName = "/main/" + currentLayer.metaData.getObject("name");
+			
+			this._drawObjects(currentLayer.data, canvasController, currentLayerName);
+			
+			/*
 			var currentArray2 = currentLayer.data;
 			var currentArray2Length = currentArray2.length;
 			for(var j = 0; j < currentArray2Length; j++) {
 				var currentElement = currentArray2[j];
-				var currentArray3 = currentElement.data;
-				var currentArray3Length = currentArray3.length;
-				for(var k = 0; k < currentArray3Length; k++) {
-					this._drawPart(currentArray3[k], canvasController.getLayer("/main/" + currentLayerName + "/" + "element_" + j + "/" + "part_" + k));
+				var currentElementType = currentElement.metaData.getObject("type");
+				if(currentElementType === "shape") {
+					var currentArray3 = currentElement.data;
+					var currentArray3Length = currentArray3.length;
+					for(var k = 0; k < currentArray3Length; k++) {
+						this._drawPart(currentArray3[k], canvasController.getLayer("/main/" + currentLayerName + "/" + "element_" + j + "/" + "part_" + k));
+					}
 				}
 			}
+			*/
 		}
 		
 		canvasController.getProperty("display").update();
+	};
+	
+	objectFunctions._drawObjects = function(aObjects, aCanvasController, aLayerPrefix) {
+		var currentArray = aObjects;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentElement = currentArray[i];
+			var currentElementType = currentElement.metaData.getObject("type");
+			if(currentElementType === "shape") {
+				var currentArray2 = currentElement.data;
+				var currentArray2Length = currentArray2.length;
+				for(var j = 0; j < currentArray2Length; j++) {
+					this._drawPart(currentArray2[j], aCanvasController.getLayer(aLayerPrefix + "/" + "element_" + i + "/" + "part_" + j));
+				}
+			}
+			else if(currentElementType === "group") {
+				this._drawObjects(currentElement.data, aCanvasController, aLayerPrefix + "/" + "element_" + i);
+			}
+		}
 	};
 	
 	objectFunctions._drawPart = function(aPart, aLayer) {
@@ -96,7 +123,7 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.flashimport.Draw
 		
 		var currentData = aPart.data;
 		
-		aLayer.setStrokeStyle(0, "#000000");
+		//aLayer.setStrokeStyle(0, "#000000");
 		if(currentData.fillStyle !== null) {
 			aLayer.setFillStyle(currentData.fillStyle.color);
 		}

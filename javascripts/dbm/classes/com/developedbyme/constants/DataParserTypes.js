@@ -11,6 +11,7 @@ dbm.registerClass("com.developedbyme.constants.DataParserTypes", null, function(
 	staticFunctions.BOOLEAN = "boolean";
 	staticFunctions.ARRAY = "array";
 	staticFunctions.OBJECT = "object";
+	staticFunctions.NULL = "null";
 	
 	staticFunctions.POINTS_ARRAY = "pointsArray";
 	

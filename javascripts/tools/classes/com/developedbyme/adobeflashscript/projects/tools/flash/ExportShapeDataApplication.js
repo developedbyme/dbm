@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.adobeflashscript.projects.tools.flash.Expor
 	//Dependencies
 	var FlashDocument = dbm.importClass("com.developedbyme.adobeflashscript.flash.FlashDocument");
 	var MetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject");
+	var TimelineItem = dbm.importClass("com.developedbyme.adobeflashscript.flash.items.TimelineItem");
 	
 	//Utils
 	
@@ -44,12 +45,27 @@ dbm.registerClass("com.developedbyme.adobeflashscript.projects.tools.flash.Expor
 		
 		var exportObject = dbm.singletons.dbmXmlObjectEncoder.createExportDataObject("flashFrame");
 		
-		var layersArray = new Array();
-		exportObject.data = layersArray;
-		
 		var activeTimeline = this._document.getActiveItem();
+		exportObject.data = this._exportTimeline(activeTimeline);
 		
-		var currentArray = activeTimeline.getLayers();
+		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(exportObject);
+		console.log(encodedXml);
+		
+		var saveFileUrl = fl.browseForFileURL("save", "Save shape data", "XML Document (*.xml)", "xml");
+		if(saveFileUrl !== null) {
+			FLfile.write(saveFileUrl, encodedXml);
+		}
+	};
+	
+	objectFunctions._exportTimeline = function(aTimeline) {
+		
+		var returnObject = MetaDataObject.create();
+		
+		var layersArray = new Array();
+		returnObject.data = layersArray;
+		returnObject.metaData.addObject("name", aTimeline.getProperty("name").getValue());
+		
+		var currentArray = aTimeline.getLayers();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLayer = currentArray[i];
@@ -59,27 +75,36 @@ dbm.registerClass("com.developedbyme.adobeflashscript.projects.tools.flash.Expor
 			currentLayerData.data = elementsArray;
 			layersArray.push(currentLayerData);
 			
-			var currentFrame = currentLayer.getFrames()[0];
-			var currentArray2 = currentFrame.getElements();
-			var currentArray2Length = currentArray2.length;
-			for(var j = 0; j < currentArray2Length; j++) {
-				var currentElement = currentArray2[j];
-				var currentElementData = MetaDataObject.create();
-				currentElementData.metaData.addObject("type", currentElement.getElementType());
-				elementsArray.push(currentElementData);
-				
+			this._exportElements(currentLayer.getElements(), elementsArray);
+		}
+		
+		return returnObject;
+	};
+	
+	objectFunctions._exportElements = function(aElements, aReturnArray) {
+		var currentArray = aElements;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentElement = currentArray[i];
+			var currentElementData = MetaDataObject.create();
+			
+			var currentType = currentElement.getElementType();
+			currentElementData.metaData.addObject("type", currentType);
+			aReturnArray.push(currentElementData);
+			
+			if(currentType === "shape") {
 				var partsArray = new Array();
 				currentElementData.data = partsArray;
 				this._exportParts(currentElement.getParts(), partsArray);
 			}
-		}
-		
-		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(exportObject);
-		console.log(encodedXml);
-		
-		var saveFileUrl = fl.browseForFileURL("save", "Save shape data", "XML Document (*.xml)", "xml");
-		if(saveFileUrl !== null) {
-			FLfile.write(saveFileUrl, encodedXml);
+			else if(currentType === "group") {
+				var partsArray = new Array();
+				currentElementData.data = partsArray;
+				this._exportElements(currentElement.getParts(), partsArray);
+			}
+			else if(currentType === "instance") {
+				currentElementData.data = this._exportTimeline(TimelineItem.create(currentElement.getFrameItems()[0].libraryItem.timeline));
+			}
 		}
 	};
 	

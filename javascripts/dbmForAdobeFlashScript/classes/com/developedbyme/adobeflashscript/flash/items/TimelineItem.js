@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.TimelineItem",
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
+	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	var LayerItem = dbm.importClass("com.developedbyme.adobeflashscript.flash.items.LayerItem");
 	
 	//Utils
@@ -31,11 +32,14 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.TimelineItem",
 		this._nativeItem = null;
 		this._layers = null;
 		
+		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		
 		return this;
 	};
 	
 	objectFunctions.setNativeItem = function(aNativeItem) {
 		this._nativeItem = aNativeItem;
+		this._name.setupExternalObject(aNativeItem, "name");
 		
 		return this;
 	};
