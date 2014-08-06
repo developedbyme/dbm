@@ -70,6 +70,9 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.flashimport.Draw
 		
 		console.log(parsedShapeData);
 		
+		this._drawLayers(parsedShapeData.data.data, canvasController, "/main");
+		
+		/*
 		var currentArray = parsedShapeData.data.data;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
@@ -77,25 +80,21 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.flashimport.Draw
 			var currentLayerName = "/main/" + currentLayer.metaData.getObject("name");
 			
 			this._drawObjects(currentLayer.data, canvasController, currentLayerName);
-			
-			/*
-			var currentArray2 = currentLayer.data;
-			var currentArray2Length = currentArray2.length;
-			for(var j = 0; j < currentArray2Length; j++) {
-				var currentElement = currentArray2[j];
-				var currentElementType = currentElement.metaData.getObject("type");
-				if(currentElementType === "shape") {
-					var currentArray3 = currentElement.data;
-					var currentArray3Length = currentArray3.length;
-					for(var k = 0; k < currentArray3Length; k++) {
-						this._drawPart(currentArray3[k], canvasController.getLayer("/main/" + currentLayerName + "/" + "element_" + j + "/" + "part_" + k));
-					}
-				}
-			}
-			*/
 		}
+		*/
 		
 		canvasController.getProperty("display").update();
+	};
+	
+	objectFunctions._drawLayers = function(aLayers, aCanvasController, aLayerPrefix) {
+		var currentArray = aLayers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentLayer = currentArray[i];
+			var currentLayerName = aLayerPrefix + "/" + currentLayer.metaData.getObject("name");
+			
+			this._drawObjects(currentLayer.data, aCanvasController, currentLayerName);
+		}
 	};
 	
 	objectFunctions._drawObjects = function(aObjects, aCanvasController, aLayerPrefix) {
@@ -113,6 +112,22 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.flashimport.Draw
 			}
 			else if(currentElementType === "group") {
 				this._drawObjects(currentElement.data, aCanvasController, aLayerPrefix + "/" + "element_" + i);
+			}
+			else if(currentElementType === "instance") {
+				
+				var currentLayerName = aLayerPrefix + "/" + "element_" + i;
+				
+				var currentLayer = aCanvasController.getLayer(currentLayerName);
+				var animations = currentElement.data.animations;
+				
+				dbm.singletons.dbmAnimationManager.setupTimelineConnection(animations.getObject("x"), 0, currentLayer.getProperty("x"));
+				dbm.singletons.dbmAnimationManager.setupTimelineConnection(animations.getObject("y"), 0, currentLayer.getProperty("y"));
+				dbm.singletons.dbmAnimationManager.setupTimelineConnection(animations.getObject("scaleX"), 0, currentLayer.getProperty("scaleX"));
+				dbm.singletons.dbmAnimationManager.setupTimelineConnection(animations.getObject("scaleY"), 0, currentLayer.getProperty("scaleY"));
+				dbm.singletons.dbmAnimationManager.setupTimelineConnection(animations.getObject("rotation"), 0, currentLayer.getProperty("rotate"));
+				dbm.singletons.dbmAnimationManager.setupTimelineConnection(animations.getObject("alpha"), 0, currentLayer.getProperty("alpha"));
+				
+				this._drawLayers(currentElement.data.timeline.data, aCanvasController, currentLayerName);
 			}
 		}
 	};

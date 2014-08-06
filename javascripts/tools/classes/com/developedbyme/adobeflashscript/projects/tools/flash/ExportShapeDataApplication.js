@@ -49,7 +49,6 @@ dbm.registerClass("com.developedbyme.adobeflashscript.projects.tools.flash.Expor
 		exportObject.data = this._exportTimeline(activeTimeline);
 		
 		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(exportObject);
-		console.log(encodedXml);
 		
 		var saveFileUrl = fl.browseForFileURL("save", "Save shape data", "XML Document (*.xml)", "xml");
 		if(saveFileUrl !== null) {
@@ -103,7 +102,8 @@ dbm.registerClass("com.developedbyme.adobeflashscript.projects.tools.flash.Expor
 				this._exportElements(currentElement.getParts(), partsArray);
 			}
 			else if(currentType === "instance") {
-				currentElementData.data = this._exportTimeline(TimelineItem.create(currentElement.getFrameItems()[0].libraryItem.timeline));
+				var newTimeline = this._exportTimeline(TimelineItem.create(currentElement.getFrameItems()[0].libraryItem.timeline))
+				currentElementData.data = {"animations": currentElement._animations, "timeline": newTimeline};
 			}
 		}
 	};

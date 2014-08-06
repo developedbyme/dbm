@@ -130,7 +130,7 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.LayerItem", "c
 	};
 	
 	objectFunctions._createElementForElements = function(aNativeElements, aStartTime, aEndTime, aReturnArray) {
-		console.log("com.developedbyme.adobeflashscript.flash.items.LayerItem::_createElementForElements");
+		//console.log("com.developedbyme.adobeflashscript.flash.items.LayerItem::_createElementForElements");
 		
 		var currentArray = aNativeElements;
 		var currentArrayLength = currentArray.length;
