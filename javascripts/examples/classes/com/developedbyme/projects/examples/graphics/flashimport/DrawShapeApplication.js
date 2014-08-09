@@ -107,7 +107,7 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.flashimport.Draw
 				var currentArray2 = currentElement.data;
 				var currentArray2Length = currentArray2.length;
 				for(var j = 0; j < currentArray2Length; j++) {
-					this._drawPart(currentArray2[j], aCanvasController.getLayer(aLayerPrefix + "/" + "element_" + i + "/" + "part_" + j));
+					this._drawPart(currentArray2[j], aCanvasController.getLayer(aLayerPrefix + "/" + "element_" + i + "/" + "part_" + j), aCanvasController);
 				}
 			}
 			else if(currentElementType === "group") {
@@ -132,15 +132,31 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.flashimport.Draw
 		}
 	};
 	
-	objectFunctions._drawPart = function(aPart, aLayer) {
+	objectFunctions._drawPart = function(aPart, aLayer, aCanvasController) {
 		console.log("com.developedbyme.projects.examples.graphics.flashimport.DrawShapeApplication::_drawPart");
 		console.log(aPart, aLayer);
 		
 		var currentData = aPart.data;
 		
 		//aLayer.setStrokeStyle(0, "#000000");
-		if(currentData.fillStyle !== null) {
-			aLayer.setFillStyle(currentData.fillStyle.color);
+		var currentFillStyle = currentData.fillStyle;
+		if(currentFillStyle !== null) {
+			switch(currentFillStyle.style) {
+				case "solid":
+					aLayer.setFillStyle(currentData.fillStyle.color);
+					break;
+				case "linearGradient":
+					//METODO
+					var startPoint = currentFillStyle.startPoint;
+					var endPoint = currentFillStyle.endPoint;
+					var canvasGradient = aCanvasController.createLinearGradient(startPoint.x, startPoint.y, endPoint.x, endPoint.y, currentFillStyle.gradient);
+					aLayer.setFillStyle(canvasGradient);
+					break;
+				default:
+					//METODO: error message
+					break;
+			}
+			
 		}
 		aLayer.drawCurve(currentData.curve);
 	};

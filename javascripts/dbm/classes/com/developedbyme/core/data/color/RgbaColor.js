@@ -24,7 +24,7 @@ dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedb
 	/**
 	 * Constructor
 	 */
-	objectFunctions._init = function _init() {
+	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.data.color.RgbaColor");
 		
 		this.superCall();
@@ -37,7 +37,7 @@ dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedb
 		return this;
 	};
 	
-	objectFunctions.getCssString = function getCssString() {
+	objectFunctions.getCssString = function() {
 		var alpha = this.a;
 		if(alpha < 0.000001) {
 			//MENOTE: css doesn't support 1.2345e-7 format
@@ -57,6 +57,15 @@ dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedb
 			alpha = 0;
 		}
 		return alpha.toString();
+	};
+	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("r: " + this.r);
+		aReturnArray.push("g: " + this.g);
+		aReturnArray.push("b: " + this.b);
+		aReturnArray.push("a: " + this.a);
 	};
 	
 	staticFunctions.create = function create(aR, aG, aB, aA) {

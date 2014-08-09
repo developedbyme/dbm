@@ -2,19 +2,29 @@
 dbm.registerClass("com.developedbyme.utils.graphics.gradient.Gradient", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.graphics.gradient.Gradient");
 	
+	//Self reference
 	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependnecies
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	var ColorStop = dbm.importClass("com.developedbyme.utils.graphics.gradient.ColorStop");
 	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
 	
+	//Utils
 	var ColorFunctions = dbm.importClass("com.developedbyme.utils.graphics.color.ColorFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_init");
 		
@@ -31,24 +41,41 @@ dbm.registerClass("com.developedbyme.utils.graphics.gradient.Gradient", "com.dev
 		return this;
 	};
 	
+	/**
+	 * Creates a colo stop for a css string.
+	 *
+	 * @param	aPosition	Number PArameter for the position of the stop.
+	 * @param	aCssString	String	The css data for the stop.
+	 *
+	 * @return	ColorStop	The newly created color stop.
+	 */
 	objectFunctions.createColorStopFromCssString = function(aPosition, aCssString) {
 		var newColor = ColorFunctions.createColorFromCssString(aCssString);
-		var newColorStop = ColorStop.create(aPosition, newColor);
+		return this.createColorStop(aPosition, newColor);
+	};
+	
+	/**
+	 * Gets all the color stops for this gradient.
+	 *
+	 * @return	Array of ColorStops	The array of color stops.
+	 */
+	objectFunctions.getColorStops = function() {
+		return this._colorStops.array;
+	};
+	
+	objectFunctions.createColorStop = function(aPosition, aColor) {
+		var newColorStop = ColorStop.create(aPosition, aColor);
 		
 		this.addColorStop(newColorStop);
 		
 		return newColorStop;
 	};
 	
-	objectFunctions.getColorStops = function() {
-		return this._colorStops.array;
-	};
-	
 	objectFunctions.addColorStop = function(aColorStop) {
 		
 		this._colorStops.array.push(aColorStop);
-		this._colorStopChange.connectInput(aColorStop._objectProperty); //MENOTE: change this to getObjectProperty when available
-		aColorStop._objectProperty.setAsDirty(); //MENOTE: change this to getObjectProperty when available
+		this._colorStopChange.connectInput(aColorStop.getObjectProperty());
+		aColorStop.getObjectProperty().setAsDirty();
 		
 	};
 	

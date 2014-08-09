@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 	var PointsArrayEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder");
 	var NamedArrayEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder");
 	var ExportMetaDataEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder");
+	var GradientEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder");
 	
 	//Utils
 	
@@ -64,6 +65,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 		var exportMetaDataEncoder = ExportMetaDataEncoder.create();
 		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject", exportMetaDataEncoder);
 		
+		var gradientEncoder = GradientEncoder.create();
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.utils.graphics.gradient.Gradient", gradientEncoder);
+		
+		var colorStopEncoder = ClassReference._createEncodingBaseObject("com.developedbyme.utils.graphics.gradient.ColorStop", []);
+		colorStopEncoder.addPropertyToEncode("position");
+		colorStopEncoder.addPropertyToEncode("value");
+		
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.RgbaColor", ["r", "g", "b", "a"]);
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.HslaColor", ["h", "s", "l", "a"]);
 	};
 	
 	staticFunctions._createEncodingBaseObject = function(aClassPath, aVariables) {

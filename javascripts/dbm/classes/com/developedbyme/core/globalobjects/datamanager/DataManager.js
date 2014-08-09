@@ -199,6 +199,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 							case "timeline/applyParts":
 								ownerObject.setParts(currentData.data.getProperty("data").getValue());
 								break;
+							case "gradient/addColorStops":
+								var currentArray2 = currentData.data.getProperty("data").getValue();
+								var currentArray2Length = currentArray2.length;
+								for(var j = 0; j < currentArray2Length; j++) {
+									ownerObject.addColorStop(currentArray2[j]);
+								}
+								break;
 							default:
 								//METODO: error message
 								console.warn("No apply type " + currentData.data.parentApplyType);

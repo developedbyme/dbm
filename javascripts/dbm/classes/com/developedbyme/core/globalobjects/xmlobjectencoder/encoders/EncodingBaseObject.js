@@ -105,9 +105,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 			var currentPropertyName = currentArray[i];
 			var currentProperty = aValue.getProperty(currentPropertyName);
 			//METODO: check for null
-			var newNode = this._encodeProperty(currentProperty, aNode);
-			newNode.name = currentPropertyName;
-			newNode.parentApplyType = "setPropertyInput";
+			if(currentProperty !== null) {
+				var newNode = this._encodeProperty(currentProperty, aNode);
+				newNode.name = currentPropertyName;
+				newNode.parentApplyType = "setPropertyInput";
+			}
+			else {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_encodeProperties", "Property " + currentPropertyName + " does not exist on " + aValue + ".");
+			}
 		}
 	};
 	

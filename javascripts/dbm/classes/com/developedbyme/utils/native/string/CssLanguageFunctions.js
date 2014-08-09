@@ -116,6 +116,9 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 	};
 	
 	staticFunctions._addColorStopsToGradient = function(aCssStrings, aGradient, aStartPosition, aEndPosition) {
+		//console.log("com.developedbyme.utils.native.string.CssLanguageFunctions::_addColorStopsToGradient");
+		//console.log(aCssStrings, aGradient, aStartPosition, aEndPosition);
+		
 		var currentArray = aCssStrings;
 		for(var i = aStartPosition; i < aEndPosition; i++) {
 			this._addColorStopToGradient(currentArray[i], aGradient, (i-aStartPosition)/(aEndPosition-1));
@@ -123,6 +126,9 @@ dbm.registerClass("com.developedbyme.utils.native.string.CssLanguageFunctions", 
 	};
 	
 	staticFunctions._addColorStopToGradient = function(aCssString, aGradient, aDefaultPosition) {
+		//console.log("com.developedbyme.utils.native.string.CssLanguageFunctions::_addColorStopToGradient");
+		//console.log(aCssString, aGradient, aDefaultPosition);
+		
 		var dataArray = ProgrammingLanguageFunctions.getSeparatedArray(aCssString, [" "]);
 		var position = (dataArray.length > 1) ? ClassReference.getPercentageValue(dataArray[1]) : aDefaultPosition;
 		

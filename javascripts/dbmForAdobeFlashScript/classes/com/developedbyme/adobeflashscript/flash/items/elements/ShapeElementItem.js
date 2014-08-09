@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.elements.Shape
 	var ShapePart = dbm.importClass("com.developedbyme.adobeflashscript.flash.items.elements.ShapePart");
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");
 	
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
@@ -73,7 +74,31 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.elements.Shape
 					
 					var newCurve = this._createCurveFromHalfEdge(currentContour.getHalfEdge(), currentContour.orientation, false, nativeMatrix);
 					newShapePart.curve = newCurve;
-					newShapePart.fillStyle = {"style": currentFill.style, "color": ColorFunctions.createColorFromHexWithOptionalAlphaString(currentFill.color).getCssString()};
+					switch(currentFill.style) {
+						case "solid":
+							newShapePart.fillStyle = {"style": currentFill.style, "color": ColorFunctions.createColorFromHexWithOptionalAlphaString(currentFill.color).getCssString()};
+							break;
+						case "linearGradient":
+							console.log(">>>");
+							var newGradient = this._createGradient(currentFill.colorArray, currentFill.posArray);
+							
+							console.log(currentFill.focalPoint);
+							console.log(currentFill.matrix.a, currentFill.matrix.b, currentFill.matrix.c, currentFill.matrix.d, currentFill.matrix.tx, currentFill.matrix.ty);
+							console.log(currentFill.matrix.tx+nativeMatrix.tx, currentFill.matrix.ty+nativeMatrix.ty);
+							
+							var centerX = currentFill.matrix.tx+nativeMatrix.tx;
+							var centerY = currentFill.matrix.ty+nativeMatrix.ty;
+							var vectorScale = 819.2;
+							var vectorX = vectorScale*currentFill.matrix.a;
+							var vectorY = vectorScale*currentFill.matrix.b;
+							
+							newShapePart.fillStyle = {"style": currentFill.style, "gradient": newGradient, "startPoint": Point.create(centerX-vectorX, centerY-vectorY), "endPoint": Point.create(centerX+vectorX, centerY+vectorY)};
+							break;
+						default:
+							newShapePart.fillStyle = {"style": currentFill.style};
+							break;
+					}
+					
 				}
 				else {
 					//METODO: add holes
@@ -147,6 +172,20 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.elements.Shape
 		}
 		
 		return returnCurve;
+	};
+	
+	objectFunctions._createGradient = function(aColorsArray, aPositionsArray) {
+		var newGradient = Gradient.create();
+		
+		var currentArray = aColorsArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentColor = ColorFunctions.createColorFromHexWithOptionalAlphaString(currentArray[i]);
+			var currentPosition = aPositionsArray[i]/0xFF;
+			newGradient.createColorStop(currentPosition, currentColor);
+		}
+		
+		return newGradient;
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {

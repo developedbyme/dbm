@@ -13,8 +13,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 	//Dependencies
 	
 	//Utils
-	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
-	var XmlModifier = dbm.importClass("com.developedbyme.utils.xml.XmlModifier");
 	
 	//Constants
 	

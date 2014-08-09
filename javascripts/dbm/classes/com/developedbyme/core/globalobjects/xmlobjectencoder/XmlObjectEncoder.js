@@ -149,7 +149,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 				return this._classEncoders.currentSelectedItem.encodeClass(aValue, className, aParentNode);
 			}
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "encodeObject", "Object " + className + " has no encoder.");
-			return null;
+			return this.encodeUnknownValue(aValue, aParentNode);
 		}
 		
 		var newNode = EncodingDataObject.createComplexValue(JavascriptObjectTypes.TYPE_OBJECT, aParentNode);
@@ -194,7 +194,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	};
 	
 	objectFunctions.encodeUnknownValue = function(aValue, aParentNode) {
-		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.TYPE_XML, aValue, aParentNode);
+		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.NON_REAL_TYPE_UNKNOWN, aValue, aParentNode);
 		return newNode;
 	};
 });
