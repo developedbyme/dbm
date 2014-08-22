@@ -103,7 +103,7 @@ dbm.registerClass("com.developedbyme.adobeflashscript.projects.tools.flash.Expor
 			}
 			else if(currentType === "instance") {
 				var newTimeline = this._exportTimeline(TimelineItem.create(currentElement.getFrameItems()[0].libraryItem.timeline))
-				currentElementData.data = {"animations": currentElement._animations, "timeline": newTimeline};
+				currentElementData.data = {"animations": currentElement.getAnimations(), "timeline": newTimeline};
 			}
 		}
 	};

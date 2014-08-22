@@ -209,6 +209,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 							default:
 								//METODO: error message
 								console.warn("No apply type " + currentData.data.parentApplyType);
+								break;
 						}
 					}
 				}

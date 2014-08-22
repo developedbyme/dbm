@@ -1,7 +1,7 @@
 <data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject" xmlns:data="http://developedbyme.com/schemas/xml/data/">
 <data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-<data:item data:type="string" data:name="exportDate" data:parentApplyType="namedArray/addObject"><![CDATA[2014-08-10T16:46:50]]></data:item>
+<data:item data:type="string" data:name="exportDate" data:parentApplyType="namedArray/addObject"><![CDATA[2014-08-23T07:50:40]]></data:item>
 <data:item data:type="string" data:name="exportType" data:parentApplyType="namedArray/addObject"><![CDATA[flashFrame]]></data:item>
 <data:item data:type="string" data:name="environment" data:parentApplyType="namedArray/addObject"><![CDATA[flashScript]]></data:item>
 </data:item>
@@ -23,218 +23,6 @@
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[shape]]></data:item>
 </data:item>
 <data:item data:type="array" data:name="data">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-</data:item>
-<data:item data:type="object" data:name="data">
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
-<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[91.95,226.95,0,1;91.95,258.925,0,1;91.95,290.9,0,1;59.975,290.9,0,1;28,290.9,0,1;28,258.925,0,1;28,226.95,0,1;59.975,226.95,0,1;91.95,226.95,0,1;]]></data:item>
-<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
-<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-</data:item>
-<data:item data:type="array" data:name="holes">
-</data:item>
-<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
-<data:item data:type="object" data:name="fillStyle">
-<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
-<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
-<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
-<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
-<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
-<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
-<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
-<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
-<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
-<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
-<data:item data:type="number" data:name="x"><![CDATA[37.3875]]></data:item>
-<data:item data:type="number" data:name="y"><![CDATA[236.28749999999997]]></data:item>
-<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
-</data:item>
-<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
-<data:item data:type="number" data:name="x"><![CDATA[82.6125]]></data:item>
-<data:item data:type="number" data:name="y"><![CDATA[281.5125]]></data:item>
-<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-</data:item>
-<data:item data:type="object" data:name="data">
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
-<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[28,163,0,1;59.975,163,0,1;91.95,163,0,1;91.95,194.975,0,1;91.95,226.95,0,1;59.975,226.95,0,1;28,226.95,0,1;28,194.975,0,1;28,163,0,1;]]></data:item>
-<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
-<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-</data:item>
-<data:item data:type="array" data:name="holes">
-</data:item>
-<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
-<data:item data:type="object" data:name="fillStyle">
-<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
-<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
-<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
-<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
-<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
-<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
-<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
-<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
-<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
-<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
-<data:item data:type="number" data:name="x"><![CDATA[60]]></data:item>
-<data:item data:type="number" data:name="y"><![CDATA[163.025]]></data:item>
-<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
-</data:item>
-<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
-<data:item data:type="number" data:name="x"><![CDATA[60]]></data:item>
-<data:item data:type="number" data:name="y"><![CDATA[226.975]]></data:item>
-<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-</data:item>
-<data:item data:type="object" data:name="data">
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
-<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[400,20,0,1;400,30,0,1;400,40,0,1;350,40,0,1;300,40,0,1;300,30,0,1;300,20,0,1;350,20,0,1;400,20,0,1;]]></data:item>
-<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
-<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-</data:item>
-<data:item data:type="array" data:name="holes">
-</data:item>
-<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
-<data:item data:type="object" data:name="fillStyle">
-<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
-<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
-<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
-<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
-<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
-<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
-<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
-<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
-<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
-<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
-<data:item data:type="number" data:name="x"><![CDATA[300]]></data:item>
-<data:item data:type="number" data:name="y"><![CDATA[30]]></data:item>
-<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
-</data:item>
-<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
-<data:item data:type="number" data:name="x"><![CDATA[400]]></data:item>
-<data:item data:type="number" data:name="y"><![CDATA[30]]></data:item>
-<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-</data:item>
-<data:item data:type="object" data:name="data">
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
-<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[525.95,20,0,1;525.95,70,0,1;525.95,120,0,1;475.95,120,0,1;425.95,120,0,1;425.95,70,0,1;425.95,20,0,1;475.95,20,0,1;525.95,20,0,1;]]></data:item>
-<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
-<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-</data:item>
-<data:item data:type="array" data:name="holes">
-</data:item>
-<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
-<data:item data:type="object" data:name="fillStyle">
-<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
-<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
-<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
-<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
-<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
-<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
-<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
-<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
-<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
-<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
-<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
-<data:item data:type="number" data:name="x"><![CDATA[486.45]]></data:item>
-<data:item data:type="number" data:name="y"><![CDATA[48.6625]]></data:item>
-<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
-</data:item>
-<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
-<data:item data:type="number" data:name="x"><![CDATA[516.15]]></data:item>
-<data:item data:type="number" data:name="y"><![CDATA[84.73750000000001]]></data:item>
-<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
-<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
-</data:item>
-</data:item>
-</data:item>
-</data:item>
 <data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
 <data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
@@ -321,7 +109,7 @@
 </data:item>
 <data:item data:type="object" data:name="data">
 <data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
-<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[335.15,140,0,1;342.5267578125,135.49921875,0,1;350.5,132,0,1;383.65,111.25,0,1;416.95,130.9,0,1;428.75,137.9,0,1;439.35,149.3,0,1;447.15,157.75,0,1;452,165.75,0,1;457.1,174.2,0,1;466.35,201.7,0,1;475,227.35,0,1;475,230.85,0,1;475,241.9,0,1;457.85,254.85,0,1;442.45,266.45,0,1;416.5,277.35,0,1;392,287.65,0,1;366.2,294.05,0,1;339.9,300.6,0,1;322.25,300.6,0,1;288.6,300.6,0,1;273.25,283.35,0,1;268.15,277.6,0,1;265.65,270.55,0,1;264,265.85,0,1;264,262.75,0,1;264,256.683203125,0,1;265,249.85,0,1;265.3029296875,247.7609375,0,1;265.7,245.6,0,1;266.9125,238.9857421875,0,1;269,231.7,0,1;274.55,212.5,0,1;284.6,194.55,0,1;303.613671875,160.6294921875,0,1;331.825,142.125,0,1;333.4681640625,141.0306640625,0,1;335.15,140,0,1;]]></data:item>
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[331.825,142.125,0,1;333.4681640625,141.0306640625,0,1;335.15,140,0,1;342.5267578125,135.49921875,0,1;350.5,132,0,1;383.65,111.25,0,1;416.95,130.9,0,1;428.75,137.9,0,1;439.35,149.3,0,1;447.15,157.75,0,1;452,165.75,0,1;457.1,174.2,0,1;466.35,201.7,0,1;475,227.35,0,1;475,230.85,0,1;475,241.9,0,1;457.85,254.85,0,1;442.45,266.45,0,1;416.5,277.35,0,1;392,287.65,0,1;366.2,294.05,0,1;339.9,300.6,0,1;322.25,300.6,0,1;288.6,300.6,0,1;273.25,283.35,0,1;268.15,277.6,0,1;265.65,270.55,0,1;264,265.85,0,1;264,262.75,0,1;264,256.683203125,0,1;265,249.85,0,1;265.3029296875,247.7609375,0,1;265.7,245.6,0,1;266.9125,238.9857421875,0,1;269,231.7,0,1;274.55,212.5,0,1;284.6,194.55,0,1;303.613671875,160.6294921875,0,1;331.825,142.125,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
 <data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
@@ -355,7 +143,7 @@
 </data:item>
 <data:item data:type="object" data:name="data">
 <data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
-<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[331.825,142.125,0,1;333.4681640625,141.0306640625,0,1;335.15,140,0,1;336.6419921875,140.975,0,1;338,141.85,0,1;348.5923828125,148.6876953125,0,1;351.5,150.25,0,1;361.4154296875,154.278125,0,1;373.175,163,0,1;378.50078125,166.944921875,0,1;384.2,171.85,0,1;403,188.05,0,1;403,195.5,0,1;403,203.95,0,1;395.3,213.15,0,1;387.5,222.45,0,1;373.65,230.3,0,1;341.8,248.45,0,1;298,249.85,0,1;281.5,249.85,0,1;265,249.85,0,1;265.3029296875,247.7609375,0,1;265.7,245.6,0,1;283.35,245.6,0,1;301,245.6,0,1;341.65,244.4,0,1;371.8,227.05,0,1;384.55,219.75,0,1;391.85,211.2,0,1;399,202.8,0,1;399,195.6,0,1;399,189.6,0,1;387.6,178.75,0,1;379.4947265625,171.0048828125,0,1;367.9,163,0,1;363.417578125,159.8947265625,0,1;358.4,156.75,0,1;348.356640625,150.4630859375,0,1;338,145.175,0,1;334.9228515625,143.6005859375,0,1;331.825,142.125,0,1;]]></data:item>
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[335.15,140,0,1;336.6419921875,140.975,0,1;338,141.85,0,1;348.5923828125,148.6876953125,0,1;351.5,150.25,0,1;361.4154296875,154.278125,0,1;373.175,163,0,1;378.50078125,166.944921875,0,1;384.2,171.85,0,1;403,188.05,0,1;403,195.5,0,1;403,203.95,0,1;395.3,213.15,0,1;387.5,222.45,0,1;373.65,230.3,0,1;341.8,248.45,0,1;298,249.85,0,1;281.5,249.85,0,1;265,249.85,0,1;265.3029296875,247.7609375,0,1;265.7,245.6,0,1;283.35,245.6,0,1;301,245.6,0,1;341.65,244.4,0,1;371.8,227.05,0,1;384.55,219.75,0,1;391.85,211.2,0,1;399,202.8,0,1;399,195.6,0,1;399,189.6,0,1;387.6,178.75,0,1;379.4947265625,171.0048828125,0,1;367.9,163,0,1;363.417578125,159.8947265625,0,1;358.4,156.75,0,1;348.356640625,150.4630859375,0,1;338,145.175,0,1;334.9228515625,143.6005859375,0,1;331.825,142.125,0,1;333.4681640625,141.0306640625,0,1;335.15,140,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
 <data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
@@ -369,6 +157,324 @@
 </data:item>
 </data:item>
 </data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+</data:item>
+<data:item data:type="object" data:name="data">
+<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[400,20,0,1;400,30,0,1;400,40,0,1;350,40,0,1;300,40,0,1;300,30,0,1;300,20,0,1;350,20,0,1;400,20,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="holes">
+</data:item>
+<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
+<data:item data:type="object" data:name="fillStyle">
+<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
+<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
+<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[300.0125]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[30]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[399.9875]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[30]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+</data:item>
+<data:item data:type="object" data:name="data">
+<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[525.95,20,0,1;525.95,70,0,1;525.95,120,0,1;475.95,120,0,1;425.95,120,0,1;425.95,70,0,1;425.95,20,0,1;475.95,20,0,1;525.95,20,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="holes">
+</data:item>
+<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
+<data:item data:type="object" data:name="fillStyle">
+<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
+<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
+<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[486.45]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[48.6625]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[516.15]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[84.73750000000001]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+</data:item>
+<data:item data:type="object" data:name="data">
+<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[651.95,166.85,0,1;651.95,198.825,0,1;651.95,230.8,0,1;619.975,230.8,0,1;588,230.8,0,1;588,198.825,0,1;588,166.85,0,1;619.975,166.85,0,1;651.95,166.85,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="holes">
+</data:item>
+<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
+<data:item data:type="object" data:name="fillStyle">
+<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
+<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
+<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[620]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[166.875]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[620]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[230.825]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+</data:item>
+<data:item data:type="object" data:name="data">
+<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[651.95,230.8,0,1;651.95,262.775,0,1;651.95,294.75,0,1;619.975,294.75,0,1;588,294.75,0,1;588,262.775,0,1;588,230.8,0,1;619.975,230.8,0,1;651.95,230.8,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="holes">
+</data:item>
+<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
+<data:item data:type="object" data:name="fillStyle">
+<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
+<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
+<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[597.3875]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[240.1375]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[642.6125]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[285.3625]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+</data:item>
+<data:item data:type="object" data:name="data">
+<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[715.9,166.85,0,1;747.875,166.85,0,1;779.85,166.85,0,1;779.85,198.825,0,1;779.85,230.8,0,1;747.875,230.8,0,1;715.9,230.8,0,1;715.9,198.825,0,1;715.9,166.85,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="holes">
+</data:item>
+<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
+<data:item data:type="object" data:name="fillStyle">
+<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
+<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
+<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[748]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[134.025]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[748]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[197.975]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+</data:item>
+<data:item data:type="object" data:name="data">
+<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[651.95,166.85,0,1;683.925,166.85,0,1;715.9,166.85,0,1;715.9,198.825,0,1;715.9,230.8,0,1;683.925,230.8,0,1;651.95,230.8,0,1;651.95,198.825,0,1;651.95,166.85,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="holes">
+</data:item>
+<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
+<data:item data:type="object" data:name="fillStyle">
+<data:item data:type="string" data:name="style"><![CDATA[linearGradient]]></data:item>
+<data:item data:type="dbmObject" data:name="gradient" data:class="com.developedbyme.utils.graphics.gradient.Gradient">
+<data:item data:type="array" data:name="colorStops" data:parentApplyType="gradient/addColorStops">
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.utils.graphics.gradient.ColorStop">
+<data:item data:type="number" data:name="position" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
+<data:item data:type="dbmObject" data:name="value" data:parentApplyType="setPropertyInput" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="startPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[685]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[198.025]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="endPoint" data:class="com.developedbyme.core.data.points.Point">
+<data:item data:type="number" data:name="x"><![CDATA[685]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[261.975]]></data:item>
+<data:item data:type="number" data:name="z"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="w"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
 </data:item>
 </data:item>
 </data:item>
@@ -377,14 +483,6 @@
 <data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[Layer 7]]></data:item>
-</data:item>
-<data:item data:type="array" data:name="data">
-</data:item>
-</data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[Layer 2]]></data:item>
 </data:item>
 <data:item data:type="array" data:name="data">
 <data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
@@ -400,7 +498,7 @@
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
-<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[337.3]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[93]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
@@ -409,7 +507,7 @@
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
-<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[332.8]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[517.1]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
@@ -447,6 +545,237 @@
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
 <data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="originX" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
+<data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="originY" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
+<data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="timeline" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[Symbol 1 copy]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="data">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[Layer 1]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="data">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[shape]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="data">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+</data:item>
+<data:item data:type="object" data:name="data">
+<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[106,0,0,1;106,15.5,0,1;106,31,0,1;53,31,0,1;0,31,0,1;0,15.5,0,1;0,0,0,1;53,0,0,1;106,0,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[2]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="holes">
+</data:item>
+<data:item data:type="null" data:name="strokeStyle"><![CDATA[null]]></data:item>
+<data:item data:type="object" data:name="fillStyle">
+<data:item data:type="string" data:name="style"><![CDATA[solid]]></data:item>
+<data:item data:type="string" data:name="color"><![CDATA[rgba(80%,0%,0%,1)]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[Layer 2]]></data:item>
+</data:item>
+<data:item data:type="array" data:name="data">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[instance]]></data:item>
+</data:item>
+<data:item data:type="object" data:name="data">
+<data:item data:type="dbmObject" data:name="animations" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[true]]></data:item>
+<data:item data:type="dbmObject" data:name="x" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[337.3]]></data:item>
+<data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="value"><![CDATA[399]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startValue"><![CDATA[399]]></data:item>
+<data:item data:type="number" data:name="endValue"><![CDATA[337.3]]></data:item>
+<data:item data:type="string" data:name="interpolationObject" data:parentApplyType="timeline/setInterpolationObject"><![CDATA[linear]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="y" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[332.8]]></data:item>
+<data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="value"><![CDATA[332.8]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startValue"><![CDATA[332.8]]></data:item>
+<data:item data:type="number" data:name="endValue"><![CDATA[332.8]]></data:item>
+<data:item data:type="string" data:name="interpolationObject" data:parentApplyType="timeline/setInterpolationObject"><![CDATA[linear]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="rotation" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
+<data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="value"><![CDATA[0]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startValue"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="endValue"><![CDATA[0]]></data:item>
+<data:item data:type="string" data:name="interpolationObject" data:parentApplyType="timeline/setInterpolationObject"><![CDATA[linear]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="scaleX" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
+<data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="value"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startValue"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="endValue"><![CDATA[1]]></data:item>
+<data:item data:type="string" data:name="interpolationObject" data:parentApplyType="timeline/setInterpolationObject"><![CDATA[linear]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="scaleY" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
+<data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="value"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startValue"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="endValue"><![CDATA[1]]></data:item>
+<data:item data:type="string" data:name="interpolationObject" data:parentApplyType="timeline/setInterpolationObject"><![CDATA[linear]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="alpha" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
+<data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[1]]></data:item>
+<data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="value"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart">
+<data:item data:type="number" data:name="startTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startApplyTime"><![CDATA[9]]></data:item>
+<data:item data:type="number" data:name="endApplyTime"><![CDATA[12]]></data:item>
+<data:item data:type="number" data:name="startValue"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="endValue"><![CDATA[1]]></data:item>
+<data:item data:type="string" data:name="interpolationObject" data:parentApplyType="timeline/setInterpolationObject"><![CDATA[linear]]></data:item>
+</data:item>
 </data:item>
 </data:item>
 <data:item data:type="dbmObject" data:name="originX" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">

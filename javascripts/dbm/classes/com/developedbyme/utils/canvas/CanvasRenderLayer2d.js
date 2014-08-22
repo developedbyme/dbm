@@ -1,12 +1,24 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Canvas layer that renders it's children in a separate canvas before drawing it to the current canvas.
+ */
 dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.developedbyme.utils.canvas.CanvasLayer2d", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.canvas.CanvasRenderLayer2d");
 	
+	//Self reference
 	var CanvasRenderLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
 	
 	/**
 	 * Constructor.
@@ -27,6 +39,12 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.dev
 		return this;
 	};
 	
+	/**
+	 * Draws the graphics and children of this layer.
+	 *
+	 * @param	aContext				The canvas context to draw on.
+	 * @param	aNumberOfLinksToResolve	The number of links to use before recursion stops.
+	 */
 	objectFunctions._drawGraphicsAndChildren = function(aContext, aNumberOfLinksToResolve) {
 		
 		var renderCanvas = this._renderCanvas.getValue();
@@ -51,7 +69,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.dev
 	};
 	
 	/**
-	 * Sets all the references to null
+	 * Sets all the references to null. Part of the destroy function.
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
@@ -64,6 +82,17 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.dev
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new instance of this class.
+	 *
+	 * @param	aOffsetX	Number	The number of pixels to x offset the rendered result. (optional)
+	 * @param	aOffsetY	Number	The number of pixels to y offset the rendered result. (optional)
+	 * @param	aWidth		Number	The width (in pixels) to render. (optional)
+	 * @param	aHeight		Number	The height (in pixels) to render. (optional)
+	 * @param	aCanvas				The canvas to render on. (optional)
+	 *
+	 * @return	CanvasRenderLayer2d	The newly created instance.
+	 */
 	staticFunctions.create = function(aOffsetX, aOffsetY, aWidth, aHeight, aCanvas) {
 		var newCanvasRenderLayer2d = (new ClassReference()).init();
 		

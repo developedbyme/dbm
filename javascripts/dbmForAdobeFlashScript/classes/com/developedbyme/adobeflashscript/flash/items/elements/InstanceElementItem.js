@@ -46,26 +46,8 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.elements.Insta
 		return this;
 	};
 	
-	objectFunctions.addNativeItem = function(aNativeItem) {
-		//console.log("com.developedbyme.adobeflashscript.flash.items.elements.InstanceElementItem::addNativeItem");
-		//console.log(aNativeItem.libraryItem, aNativeItem.instanceType);
-		
-		this.superCall(aNativeItem);
-		
-		if(this._frameItems.length === 1) {
-			this._animations.getObject("x").setStartValue(aNativeItem.left);
-			this._animations.getObject("y").setStartValue(aNativeItem.top);
-			this._animations.getObject("rotation").setStartValue(aNativeItem.rotation);
-			this._animations.getObject("scaleX").setStartValue(aNativeItem.scaleX);
-			this._animations.getObject("scaleY").setStartValue(aNativeItem.scaleY);
-			this._animations.getObject("alpha").setStartValue(0.01*aNativeItem.colorAlphaPercent);
-		}
-		else {
-			//console.log(">>>>>>>");
-			//METODO
-		}
-		
-		return this;
+	objectFunctions.getAnimations = function() {
+		return this._animations;
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {

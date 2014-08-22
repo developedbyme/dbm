@@ -37,6 +37,11 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.FrameItem", "c
 		this._labelType = this.addProperty("labelType", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
 		this._actionScript = this.addProperty("actionScript", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
 		
+		this._tweenType = this.addProperty("tweenType", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._tweenEasing = this.addProperty("tweenEasing", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._useSingleEaseCurve = this.addProperty("useSingleEaseCurve", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._hasCustomEase = this.addProperty("hasCustomEase", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		
 		return this;
 	};
 	
@@ -46,6 +51,11 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.FrameItem", "c
 		this._name.setupExternalObject(aNativeItem, "name");
 		this._labelType.setupExternalObject(aNativeItem, "labelType");
 		this._actionScript.setupExternalObject(aNativeItem, "actionScript");
+		
+		this._tweenType.setupExternalObject(aNativeItem, "tweenType");
+		this._tweenEasing.setupExternalObject(aNativeItem, "tweenEasing");
+		this._useSingleEaseCurve.setupExternalObject(aNativeItem, "useSingleEaseCurve");
+		this._hasCustomEase.setupExternalObject(aNativeItem, "hasCustomEase");
 		
 		return this;
 	};
@@ -60,6 +70,10 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.FrameItem", "c
 	
 	objectFunctions.getElements = function() {
 		return this._nativeItem.elements;
+	};
+	
+	objectFunctions.isMotionObject = function() {
+		return this._nativeItem.isMotionObject();
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {

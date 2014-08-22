@@ -1,10 +1,21 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Functions for working with angles.
+ */
 dbm.registerClass("com.developedbyme.utils.math.AngleFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.AngleFunctions");
 	//"use strict";
 	
+	//Self reference
 	var AngleFunctions = dbm.importClass("com.developedbyme.utils.math.AngleFunctions");
 	
+	/**
+	 * Converts degrees to radians.
+	 *
+	 * @param	aDegrees	Number	The degrees to convert.
+	 *
+	 * @return	Number	The radians that corresponds to the degrees.
+	 */
 	staticFunctions.degreesToRadians = function(aDegrees) {
 		return Math.PI*aDegrees/180;
 	};

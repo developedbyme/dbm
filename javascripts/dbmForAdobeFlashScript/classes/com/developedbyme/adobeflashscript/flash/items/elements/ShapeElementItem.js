@@ -79,12 +79,12 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.elements.Shape
 							newShapePart.fillStyle = {"style": currentFill.style, "color": ColorFunctions.createColorFromHexWithOptionalAlphaString(currentFill.color).getCssString()};
 							break;
 						case "linearGradient":
-							console.log(">>>");
+							//console.log(">>>");
 							var newGradient = this._createGradient(currentFill.colorArray, currentFill.posArray);
 							
-							console.log(currentFill.focalPoint);
-							console.log(currentFill.matrix.a, currentFill.matrix.b, currentFill.matrix.c, currentFill.matrix.d, currentFill.matrix.tx, currentFill.matrix.ty);
-							console.log(currentFill.matrix.tx+nativeMatrix.tx, currentFill.matrix.ty+nativeMatrix.ty);
+							//console.log(currentFill.focalPoint);
+							//console.log(currentFill.matrix.a, currentFill.matrix.b, currentFill.matrix.c, currentFill.matrix.d, currentFill.matrix.tx, currentFill.matrix.ty);
+							//console.log(currentFill.matrix.tx+nativeMatrix.tx, currentFill.matrix.ty+nativeMatrix.ty);
 							
 							var centerX = currentFill.matrix.tx+nativeMatrix.tx;
 							var centerY = currentFill.matrix.ty+nativeMatrix.ty;
