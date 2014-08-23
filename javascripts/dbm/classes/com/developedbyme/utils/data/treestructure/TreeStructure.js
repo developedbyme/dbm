@@ -96,12 +96,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::getItemByPath");
 		//console.log(aPath, aBaseItem);
 		
-		aBaseItem = VariableAliases.valueWithDefault(aBaseItem, null);
+		var currentItem = VariableAliases.valueWithDefault(aBaseItem, this._root);
 		
-		var currentItem = aBaseItem;
-		if(currentItem === null) {
-			currentItem = this._root;
-		}
 		var currentArray;
 		if(aPath.charAt(0) === "/") {
 			currentItem = this._root;
@@ -120,6 +116,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 					break;
 				case "..":
 					currentItem = currentItem.getParent();
+					//METODO: check to not get out of the structure
 					break;
 				default:
 					var newItem = currentItem.getChildByName(currentPathPart);

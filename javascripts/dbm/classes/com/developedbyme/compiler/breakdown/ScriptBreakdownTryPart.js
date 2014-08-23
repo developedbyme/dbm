@@ -1,28 +1,42 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Script breakdown of a try scope.
+ */
 dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownTryPart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownTryPart");
 	
+	//Self reference
 	var ScriptBreakdownTryPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownTryPart");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependecies
 	var ScriptBreakdownLinePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart");
 	var ScriptBreakdownCodePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart");
 	
+	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
+	//Constants
+	var BreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.BreakdownTypes");
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownTryPart::_init");
 		
 		this.superCall();
 		
-		this._type = "try";
+		this._type = BreakdownTypes.TRY;
 		this._code = null;
 		
 		return this;

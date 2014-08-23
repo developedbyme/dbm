@@ -1,18 +1,32 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Base object for all breakdown parts.
+ */
 dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownPart");
 	
+	//Self reference
 	var ScriptBreakdownPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
 	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownPart::_init");
 		
@@ -32,8 +46,26 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 		return this;
 	};
 	
+	/**
+	 * Returns the type of this breakdown.
+	 *
+	 * @return BreakdownTypes	The type of this breakdown.
+	 */
 	objectFunctions.getType = function() {
 		return this._type;
+	};
+	
+	objectFunctions.getScript = function() {
+		return this._script;
+	};
+	
+	/**
+	 * Gets the parent of this part.
+	 *
+	 * @return	ScriptBreakdownPart	The parent that owns this part.
+	 */
+	objectFunctions.getParent = function() {
+		return this._parent;
 	};
 	
 	objectFunctions.getChildBreakdowns = function() {

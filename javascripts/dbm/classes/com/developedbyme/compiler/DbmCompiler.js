@@ -13,6 +13,8 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	//Dependencies
 	var ScriptBreakdown = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdown");
 	var CompileData = dbm.importClass("com.developedbyme.compiler.compiledata.CompileData");
+	var DocumentationData = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentationData");
+	var DocumentedItem = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentedItem");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -22,9 +24,13 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	var TextAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var DocumentationFunctions = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentationFunctions");
+	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var BreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.BreakdownTypes");
+	var DbmBreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.DbmBreakdownTypes");
 	
 	/**
 	 * Constructor
@@ -211,6 +217,110 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		console.log(returnString);
 		
 		return returnString;
+	};
+	
+	objectFunctions.documentFiles = function() {
+		console.log("com.developedbyme.compiler.DbmCompiler::documentFiles");
+		
+		var documentationTreeStructure = TreeStructure.create();
+		
+		var currentArray = this._loadedFilePaths;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			console.log("document: " + currentArray[i]);
+			var currentTreeStructureItem = documentationTreeStructure.getItemByPath(encodeURIComponent(currentArray[i]));
+			this.documentFile(currentArray[i], currentTreeStructureItem);
+		}
+		
+		console.log(documentationTreeStructure);
+	};
+	
+	objectFunctions.documentFile = function(aPath, aTreeStructureItem) {
+		//console.log("com.developedbyme.compiler.DbmCompiler::documentFile");
+		
+		var breakDown = this._scriptBreakdowns.getObject(aPath);
+		
+		//METODO: add file documentation
+		
+		this._constructDocumentation(breakDown.getChildBreakdowns(), aTreeStructureItem);
+	};
+	
+	objectFunctions._constructDocumentation = function(aBreakdowns, aParentTreeStructureItem) {
+		
+		var currentDocumentationData = null;
+		
+		var currentArray = aBreakdowns;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentBreakdown = currentArray[i];
+			var currentBreakdownType = currentBreakdown.getType();
+			//if(currentDocumentationData !== null) {
+			//	
+			//	if(currentBreakdownType !== BreakdownTypes.COMMENT) {
+			//		var newDocumentedItem = DocumentedItem.create(currentBreakdown.getScript());
+			//		newDocumentedItem.documentation = currentDocumentationData;
+			//		console.log(newDocumentedItem, currentBreakdown);
+			//		currentDocumentationData = null;
+			//	}
+			//}
+			switch(currentBreakdownType) {
+				case DbmBreakdownTypes.REGISTER_CLASS:
+					var newTreeStructureItem = aParentTreeStructureItem.getRoot().getItemByPath("class_" + aParentTreeStructureItem.getNumberOfChildren(), aParentTreeStructureItem);
+					var newDocumentation = DocumentationFunctions.documentDbmClass(currentBreakdown, currentDocumentationData);
+					newTreeStructureItem.data = newDocumentation;
+					this._constructDocumentation(currentBreakdown.getChildBreakdowns(), newTreeStructureItem);
+					break;
+				case BreakdownTypes.NAMED_FUNCTION_DECLARATION:
+					var newTreeStructureItem = aParentTreeStructureItem.getRoot().getItemByPath("function_" + aParentTreeStructureItem.getNumberOfChildren(), aParentTreeStructureItem);
+					var newDocumentation = DocumentationFunctions.documentNamedFunction(currentBreakdown, currentDocumentationData);
+					newTreeStructureItem.data = newDocumentation;
+					this._constructDocumentation(currentBreakdown.getChildBreakdowns(), newTreeStructureItem);
+					break;
+				case BreakdownTypes.CODE:
+				case BreakdownTypes.EVALUATION:
+				case BreakdownTypes.CALL_FUNCTION:
+				case BreakdownTypes.FUNCTION_DECLARATION:
+				case BreakdownTypes.LIST:
+				case BreakdownTypes.LINE:
+					//METODO: if there is a documentation, we should add a code documentation
+					this._constructDocumentation(currentBreakdown.getChildBreakdowns(), aParentTreeStructureItem);
+					break;
+				case BreakdownTypes.DOCUMENTATION:
+					currentDocumentationData = DocumentationData.create(currentBreakdown.getScript());
+				case BreakdownTypes.COMMENT:
+					//MENOTE: skip the reset of currentDocumentationData
+					continue;
+				default:
+					//METODO: error message
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_constructDocumentation", "Unknown type " + currentBreakdownType + ".");
+				case BreakdownTypes.VARIABLE_ON_OBJECT_REFERENCE:
+				case BreakdownTypes.STRING:
+				case BreakdownTypes.VARIABLE_REFERENCE:
+				case BreakdownTypes.RETURN:
+				case BreakdownTypes.DECLARE_VARIABLE:
+				case BreakdownTypes.NUMBER:
+				case BreakdownTypes.LITERAL_ARRAY:
+				case BreakdownTypes.LITERAL_NAME:
+				case BreakdownTypes.LITERAL_OBJECT:
+				case BreakdownTypes.FOR:
+				case BreakdownTypes.WHILE:
+				case BreakdownTypes.ASSOCIATIVE_VARIABLE_ON_OBJECT_REFERENCE:
+				case BreakdownTypes.NEW:
+				case BreakdownTypes.SWITCH:
+				case BreakdownTypes.CONDITION:
+				case BreakdownTypes.CASE:
+				case BreakdownTypes.TRY:
+				case BreakdownTypes.CATCH:
+				case BreakdownTypes.FINALLY:
+				case BreakdownTypes.DELETE:
+				case BreakdownTypes.DEFAULT:
+				case BreakdownTypes.KEYWORD:
+				case DbmBreakdownTypes.IMPORT_CLASS:
+					//MENOTE: do nothing
+					break;
+			}
+			currentDocumentationData = null;
+		}
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

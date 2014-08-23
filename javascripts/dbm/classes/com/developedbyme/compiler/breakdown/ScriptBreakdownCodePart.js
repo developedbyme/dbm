@@ -1,27 +1,40 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * A breakdown for any code.
+ */
 dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart");
 	
+	//Self reference
 	var ScriptBreakdownCodePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var ScriptBreakdownLinePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
+	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	var BreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.BreakdownTypes");
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart::_init");
 		
 		this.superCall();
 		
-		this._type = "code";
-		this._startsWithScopeRegExp = new RegExp("^[ \t\f\n\r]*[\\{\\(]");
+		this._type = BreakdownTypes.CODE;
+		this._startsWithScopeRegExp = new RegExp("^[\\s]*[\\{\\(]");
 		this._lastLineIsOpen = false;
 		this._scopeStart = "";
 		this._scopeEnd = "";
@@ -29,6 +42,12 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 		return this;
 	};
 	
+	/**
+	 * Sets the scope containing this code.
+	 *
+	 * @param	aStart	String	The start scope for this code.
+	 * @param	aEnd	String	The end scope for this code.
+	 */
 	objectFunctions.setScope = function(aStart, aEnd) {
 		this._scopeStart = aStart;
 		this._scopeEnd = aEnd;

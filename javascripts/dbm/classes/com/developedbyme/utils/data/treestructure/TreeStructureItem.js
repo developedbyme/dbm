@@ -186,6 +186,14 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		return this._children.getObjectsArray();
 	}; //End function getChildren
 	
+	/**
+	 * Gets the number of children directly 1 level under this item.
+	 *
+	 * @return	Number	The number of children.
+	 */
+	objectFunctions.getNumberOfChildren = function() {
+		return this._children.getObjectsArray().length;
+	};
 	
 	/**
 	 * Sets the name of the item.

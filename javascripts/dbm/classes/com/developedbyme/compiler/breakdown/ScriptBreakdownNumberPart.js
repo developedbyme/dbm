@@ -1,19 +1,35 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Script breakdown of a number.
+ */
 dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNumberPart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownNumberPart");
 	
+	//Self reference
 	var ScriptBreakdownNumberPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNumberPart");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	var BreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.BreakdownTypes");
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownNumberPart::_init");
 		
 		this.superCall();
 		
-		this._type = "number";
+		this._type = BreakdownTypes.NUMBER;
 		
 		return this;
 	};

@@ -1,0 +1,67 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Definition for a function documentation.
+ */
+dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.definitions.FunctionDefinition", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.compiler.compiledata.documentation.definitions.FunctionDefinition");
+	
+	//Self reference
+	var FunctionDefinition = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.definitions.FunctionDefinition");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.compiler.compiledata.documentation.definitions.FunctionDefinition::_init");
+		
+		this.superCall();
+		
+		this.functionName = null;
+		this.argumentNames = null;
+		this.hasReturn = false;
+		
+		return this;
+	};
+	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.functionName = null;
+		this.argumentNames = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a new instance of this class.
+	 *
+	 * @praam	aFunctionName		String		The name of the function.
+	 * @param	aArgumentsArray		Array		The array of argument names.
+	 * @param	aHasReturn			Boolean		True if the function returns a value.
+	 *
+	 * @return	FunctionDefinition	The newly created instance.
+	 */
+	staticFunctions.create = function(aFunctionName, aArgumentsArray, aHasReturn) {
+		var newFunctionDefinition = (new ClassReference()).init();
+		
+		newFunctionDefinition.functionName = aFunctionName;
+		newFunctionDefinition.argumentNames = aArgumentsArray;
+		newFunctionDefinition.hasReturn = aHasReturn;
+		
+		return newFunctionDefinition;
+	};
+});

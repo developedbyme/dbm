@@ -1,13 +1,19 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Breakdown for a code evaluation.
+ */
 dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart");
 	
+	//Self reference
 	var ScriptBreakdownEvaluationPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var ScriptBreakdownLinePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownLinePart");
 	var ScriptBreakdownCodePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart");
 	var ScriptBreakdownVariableReferencePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownVariableReferencePart");
@@ -17,19 +23,29 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 	var ScriptBreakdownGetAssociativeVariableOnObjectPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownGetAssociativeVariableOnObjectPart");
 	var ScriptBreakdownNewPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNewPart");
 	var ScriptBreakdownNumberPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNumberPart");
+	var ScriptBreakdownDbmRegisterClassPart = dbm.importClass("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmRegisterClassPart");
+	var ScriptBreakdownNamedFunctionDeclarationPart = dbm.importClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownNamedFunctionDeclarationPart");
 	
+	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
+	//Constants
+	var BreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.BreakdownTypes");
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart::_init");
 		
 		this.superCall();
 		
-		this._type = "evaluation";
+		this._type = BreakdownTypes.EVALUATION;
 		this._operation = null;
 		
 		return this;
@@ -118,6 +134,31 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 						break;
 				}
 			}
+		}
+	};
+	
+	objectFunctions._childsBrokenDown = function() {
+		//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluationPart::_childsBrokenDown");
+		
+		var childBreakdowns = this._childBreakdowns;
+		if(childBreakdowns.length === 2 && this._operation === "") {
+			var functionCallBreakdown = childBreakdowns[1];
+			if(functionCallBreakdown.getType() === BreakdownTypes.CALL_FUNCTION) {
+				var functionNameBreakdown = childBreakdowns[0];
+				if(functionNameBreakdown.getType() === BreakdownTypes.VARIABLE_ON_OBJECT_REFERENCE && functionNameBreakdown.getVariableName() === "registerClass" && functionNameBreakdown.getObject().getVariableName() === "dbm") {
+					
+					var registationBreakdown = functionCallBreakdown.getChildBreakdowns();
+					this._replaceablePart = ScriptBreakdownDbmRegisterClassPart.create(this._parent, this._script, registationBreakdown[0], registationBreakdown[1], registationBreakdown[2]);
+				}
+			}
+		}
+		else if(childBreakdowns.length === 2 && this._operation === "=") {
+			//METODO: check for function declaration
+			var evaluationBreakdown = childBreakdowns[1];
+			if(evaluationBreakdown.getType() === BreakdownTypes.FUNCTION_DECLARATION) {
+				this._replaceablePart = ScriptBreakdownNamedFunctionDeclarationPart.create(this._parent, this._script, childBreakdowns[0], childBreakdowns[1]);
+			}
+			//METODO: check for static variable declaration
 		}
 	};
 	

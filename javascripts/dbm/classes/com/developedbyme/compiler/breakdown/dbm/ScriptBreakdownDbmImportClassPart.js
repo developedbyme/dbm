@@ -1,19 +1,34 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Script breakdown for the import of a class.
+ */
 dbm.registerClass("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmImportClassPart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmImportClassPart");
 	
+	//Self reference
 	var ScriptBreakdownDbmImportClassPart = dbm.importClass("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmImportClassPart");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	var DbmBreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.DbmBreakdownTypes");
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmImportClassPart::_init");
 		
 		this.superCall();
 		
-		this._type = "dbmImportClass";
+		this._type = DbmBreakdownTypes.IMPORT_CLASS;
 		this._variableName = null;
 		this._classPath = null;
 		
@@ -43,6 +58,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmIm
 		return "";
 	};
 	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		

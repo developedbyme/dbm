@@ -1,4 +1,7 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Holder for a script breakdown.
+ */
 dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdown", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.compiler.breakdown.ScriptBreakdown");
 	
@@ -43,6 +46,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdown", "com.d
 		
 		this._script = aScript;
 		this._breakdown = ScriptBreakdownCodePart.create(null, this._script);
+	};
+	
+	objectFunctions.getChildBreakdowns = function() {
+		return [this._breakdown];
 	};
 	
 	objectFunctions.getIncludedFiles = function() {
