@@ -1,0 +1,350 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>BezierEvaluator</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator", "com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
+	
+	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
+	
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::_init")
+		
+		this.superCall();
+		
+		this._halfSplitPoints = new Array();
+		
+		return this;
+	};
+	
+	objectFunctions.canEvaluate = function(aPointSet) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::canEvaluate");
+		//console.log(aPointSet, aPointSet.isSetType("bezierCurve"));
+		if(aPointSet.isSetType("bezierCurve")) {
+			return true;
+		}
+		return false;
+	};
+	
+	objectFunctions._ensureSlipPointLength = function(aLength) {
+		var currentArray = this._halfSplitPoints;
+		var currentArrayLength = currentArray.length;
+		for(var i = currentArrayLength; i &lt; aLength; i++) {
+			var newLength = i+1;
+			var newArray = new Array(newLength);
+			currentArray[i] = newArray;
+			for(var j = 0; j &lt; newLength; j++) {
+				newArray[j] = Point.create();
+			}
+		}
+	};
+	
+	objectFunctions._getHalfsOfSegment = function(aSegmentPoints, aFirstHalfPoints, aLastHalfPoints) {
+		var segmentLength = aSegmentPoints.length;
+		
+		this._ensureSlipPointLength(segmentLength-1);
+		
+		aFirstHalfPoints[0] = aSegmentPoints[0].duplicate();
+		aLastHalfPoints[segmentLength-1] = aSegmentPoints[segmentLength-1].duplicate();
+		
+		var currentSplitPointArray = aSegmentPoints;
+		for(var i = 1; i &lt; segmentLength; i++) {
+			var newSplitArray = this._halfSplitPoints[segmentLength-i-1];
+			var newSplitArrayLength = newSplitArray.length;
+			for(var j = 0; j &lt; newSplitArrayLength; j++) {
+				newSplitArray[j].x = 0.5*currentSplitPointArray[j].x+0.5*currentSplitPointArray[j+1].x;
+				newSplitArray[j].y = 0.5*currentSplitPointArray[j].y+0.5*currentSplitPointArray[j+1].y;
+				newSplitArray[j].z = 0.5*currentSplitPointArray[j].z+0.5*currentSplitPointArray[j+1].z;
+			}
+			
+			currentSplitPointArray = newSplitArray;
+		}
+		
+		var middlePoint = this._halfSplitPoints[0][0];
+		aFirstHalfPoints[segmentLength-1] = middlePoint.duplicate();
+		aLastHalfPoints[0] = middlePoint.duplicate();
+		
+		for(var i = 1; i &lt; segmentLength-1; i++) {
+			aFirstHalfPoints[segmentLength-1-i] = this._halfSplitPoints[i][0].duplicate();
+			aLastHalfPoints[i] = this._halfSplitPoints[i][i].duplicate();
+		}
+	};
+	
+	objectFunctions.getPartOfSegment = function(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArray, aStartLoop, aIsCompact) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::getPartOfSegment");
+		//console.log(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArray, aStartLoop, aIsCompact);
+		
+		if(aStartParameter === aEndParameter) {
+			return;
+		}
+		
+		if(aStartParameter &lt;= aExactness &amp;&amp; aEndParameter &gt;= 1-aExactness) {
+			var currentArray = aSegmentPoints;
+			var currentArrayLength = currentArray.length;
+			for(var i = aStartLoop; i &lt; currentArrayLength; i++) {
+				var currentPoint = currentArray[i];
+				var newPoint = Point.create(currentPoint.x, currentPoint.y); //METODO: this needs to work in 3d
+				aReturnArray.push(newPoint);
+			}
+		}
+		else if(aSegmentPoints.length === 4) {
+			var newPoint4 = Point.create(0, 0);
+			dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(aSegmentPoints, aEndParameter, newPoint4);
+		
+			var newPoint1 = Point.create(0, 0);
+			dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(aSegmentPoints, aStartParameter, newPoint1);
+			
+			var scale = aEndParameter-aStartParameter;
+			
+			var tangent = Point.create(0, 0);
+			
+			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aStartParameter, tangent); //METODO: this needs to work in 3d
+			var newPoint2 = Point.create(newPoint1.x+(((scale)/3)*tangent.x), newPoint1.y+(((scale)/3)*tangent.y), newPoint1.z+(((scale)/3)*tangent.z));
+			
+			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aEndParameter, tangent); //METODO: this needs to work in 3d
+			var newPoint3 = Point.create(newPoint4.x-(((scale)/3)*tangent.x), newPoint4.y-(((scale)/3)*tangent.y), newPoint4.z-(((scale)/3)*tangent.z));
+			
+			if(!aStartLoop) {
+				aReturnArray.push(newPoint1);
+			}
+			else {
+				newPoint1.destroy();
+			}
+			aReturnArray.push(newPoint2);
+			aReturnArray.push(newPoint3);
+			aReturnArray.push(newPoint4);
+		}
+		else {
+			var firstHalfArray = new Array(aSegmentPoints.length);
+			var lastHalfArray = new Array(aSegmentPoints.length);
+			this._getHalfsOfSegment(aSegmentPoints, firstHalfArray, lastHalfArray);
+			if(aStartParameter &lt; 0.5) {
+				this.getPartOfSegment(firstHalfArray, Math.max(0, Math.min(1, 2*aStartParameter)), Math.max(0, Math.min(1, 2*aEndParameter)), 2*aExactness, aReturnArray, aStartLoop, aIsCompact);
+				aStartLoop = aIsCompact;
+			}
+			if(aEndParameter &gt; 0.5) {
+				this.getPartOfSegment(lastHalfArray, Math.max(0, Math.min(1, 2*(aStartParameter-0.5))), Math.max(0, Math.min(1, 2*(aEndParameter-0.5))), 2*aExactness, aReturnArray, aStartLoop, aIsCompact);
+			}
+		}
+	};
+	
+	objectFunctions.getPartOfCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::getPartOfCurve");
+		var segmentPointsArray = new Array(aCurve.getCurveDegree()+1);
+		
+		var isCompact = aReturnCurve.isCompact() ? 1 : 0;
+		
+		var segmentStart = Math.floor(aStartParameter);
+		var segmentEnd = Math.floor(aEndParameter);
+		if((segmentEnd === aEndParameter) &amp;&amp; (segmentStart !== segmentEnd)) {
+			segmentEnd--;
+		}
+		if(segmentStart === segmentEnd) {
+			aCurve._getSegmentArray(segmentStart, segmentPointsArray);
+			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, aEndParameter-segmentEnd, aExactness, aReturnCurve.pointsArray, 0, isCompact);
+		}
+		else {
+			//console.log(segmentStart, segmentEnd);
+			aCurve._getSegmentArray(segmentStart, segmentPointsArray);
+			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, 1, aExactness, aReturnCurve.pointsArray, 0, isCompact);
+			for(var i = segmentStart; ++i &lt; segmentEnd;) {
+				aCurve._getSegmentArray(i, segmentPointsArray);
+				this.getPartOfSegment(segmentPointsArray, 0, 1, aExactness, aReturnCurve.pointsArray, isCompact, isCompact);
+			}
+			aCurve._getSegmentArray(segmentEnd, segmentPointsArray);
+			this.getPartOfSegment(segmentPointsArray, 0, aEndParameter-segmentEnd, aExactness, aReturnCurve.pointsArray, isCompact, isCompact);
+		}
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::_init")
+		
+		this.superCall();
+		
+		this._halfSplitPoints = new Array();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">canEvaluate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.canEvaluate = function(aPointSet) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::canEvaluate");
+		//console.log(aPointSet, aPointSet.isSetType("bezierCurve"));
+		if(aPointSet.isSetType("bezierCurve")) {
+			return true;
+		}
+		return false;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_ensureSlipPointLength</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._ensureSlipPointLength = function(aLength) {
+		var currentArray = this._halfSplitPoints;
+		var currentArrayLength = currentArray.length;
+		for(var i = currentArrayLength; i &lt; aLength; i++) {
+			var newLength = i+1;
+			var newArray = new Array(newLength);
+			currentArray[i] = newArray;
+			for(var j = 0; j &lt; newLength; j++) {
+				newArray[j] = Point.create();
+			}
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_getHalfsOfSegment</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._getHalfsOfSegment = function(aSegmentPoints, aFirstHalfPoints, aLastHalfPoints) {
+		var segmentLength = aSegmentPoints.length;
+		
+		this._ensureSlipPointLength(segmentLength-1);
+		
+		aFirstHalfPoints[0] = aSegmentPoints[0].duplicate();
+		aLastHalfPoints[segmentLength-1] = aSegmentPoints[segmentLength-1].duplicate();
+		
+		var currentSplitPointArray = aSegmentPoints;
+		for(var i = 1; i &lt; segmentLength; i++) {
+			var newSplitArray = this._halfSplitPoints[segmentLength-i-1];
+			var newSplitArrayLength = newSplitArray.length;
+			for(var j = 0; j &lt; newSplitArrayLength; j++) {
+				newSplitArray[j].x = 0.5*currentSplitPointArray[j].x+0.5*currentSplitPointArray[j+1].x;
+				newSplitArray[j].y = 0.5*currentSplitPointArray[j].y+0.5*currentSplitPointArray[j+1].y;
+				newSplitArray[j].z = 0.5*currentSplitPointArray[j].z+0.5*currentSplitPointArray[j+1].z;
+			}
+			
+			currentSplitPointArray = newSplitArray;
+		}
+		
+		var middlePoint = this._halfSplitPoints[0][0];
+		aFirstHalfPoints[segmentLength-1] = middlePoint.duplicate();
+		aLastHalfPoints[0] = middlePoint.duplicate();
+		
+		for(var i = 1; i &lt; segmentLength-1; i++) {
+			aFirstHalfPoints[segmentLength-1-i] = this._halfSplitPoints[i][0].duplicate();
+			aLastHalfPoints[i] = this._halfSplitPoints[i][i].duplicate();
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getPartOfSegment</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getPartOfSegment = function(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArray, aStartLoop, aIsCompact) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::getPartOfSegment");
+		//console.log(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArray, aStartLoop, aIsCompact);
+		
+		if(aStartParameter === aEndParameter) {
+			return;
+		}
+		
+		if(aStartParameter &lt;= aExactness &amp;&amp; aEndParameter &gt;= 1-aExactness) {
+			var currentArray = aSegmentPoints;
+			var currentArrayLength = currentArray.length;
+			for(var i = aStartLoop; i &lt; currentArrayLength; i++) {
+				var currentPoint = currentArray[i];
+				var newPoint = Point.create(currentPoint.x, currentPoint.y); //METODO: this needs to work in 3d
+				aReturnArray.push(newPoint);
+			}
+		}
+		else if(aSegmentPoints.length === 4) {
+			var newPoint4 = Point.create(0, 0);
+			dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(aSegmentPoints, aEndParameter, newPoint4);
+		
+			var newPoint1 = Point.create(0, 0);
+			dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(aSegmentPoints, aStartParameter, newPoint1);
+			
+			var scale = aEndParameter-aStartParameter;
+			
+			var tangent = Point.create(0, 0);
+			
+			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aStartParameter, tangent); //METODO: this needs to work in 3d
+			var newPoint2 = Point.create(newPoint1.x+(((scale)/3)*tangent.x), newPoint1.y+(((scale)/3)*tangent.y), newPoint1.z+(((scale)/3)*tangent.z));
+			
+			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aEndParameter, tangent); //METODO: this needs to work in 3d
+			var newPoint3 = Point.create(newPoint4.x-(((scale)/3)*tangent.x), newPoint4.y-(((scale)/3)*tangent.y), newPoint4.z-(((scale)/3)*tangent.z));
+			
+			if(!aStartLoop) {
+				aReturnArray.push(newPoint1);
+			}
+			else {
+				newPoint1.destroy();
+			}
+			aReturnArray.push(newPoint2);
+			aReturnArray.push(newPoint3);
+			aReturnArray.push(newPoint4);
+		}
+		else {
+			var firstHalfArray = new Array(aSegmentPoints.length);
+			var lastHalfArray = new Array(aSegmentPoints.length);
+			this._getHalfsOfSegment(aSegmentPoints, firstHalfArray, lastHalfArray);
+			if(aStartParameter &lt; 0.5) {
+				this.getPartOfSegment(firstHalfArray, Math.max(0, Math.min(1, 2*aStartParameter)), Math.max(0, Math.min(1, 2*aEndParameter)), 2*aExactness, aReturnArray, aStartLoop, aIsCompact);
+				aStartLoop = aIsCompact;
+			}
+			if(aEndParameter &gt; 0.5) {
+				this.getPartOfSegment(lastHalfArray, Math.max(0, Math.min(1, 2*(aStartParameter-0.5))), Math.max(0, Math.min(1, 2*(aEndParameter-0.5))), 2*aExactness, aReturnArray, aStartLoop, aIsCompact);
+			}
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getPartOfCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getPartOfCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::getPartOfCurve");
+		var segmentPointsArray = new Array(aCurve.getCurveDegree()+1);
+		
+		var isCompact = aReturnCurve.isCompact() ? 1 : 0;
+		
+		var segmentStart = Math.floor(aStartParameter);
+		var segmentEnd = Math.floor(aEndParameter);
+		if((segmentEnd === aEndParameter) &amp;&amp; (segmentStart !== segmentEnd)) {
+			segmentEnd--;
+		}
+		if(segmentStart === segmentEnd) {
+			aCurve._getSegmentArray(segmentStart, segmentPointsArray);
+			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, aEndParameter-segmentEnd, aExactness, aReturnCurve.pointsArray, 0, isCompact);
+		}
+		else {
+			//console.log(segmentStart, segmentEnd);
+			aCurve._getSegmentArray(segmentStart, segmentPointsArray);
+			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, 1, aExactness, aReturnCurve.pointsArray, 0, isCompact);
+			for(var i = segmentStart; ++i &lt; segmentEnd;) {
+				aCurve._getSegmentArray(i, segmentPointsArray);
+				this.getPartOfSegment(segmentPointsArray, 0, 1, aExactness, aReturnCurve.pointsArray, isCompact, isCompact);
+			}
+			aCurve._getSegmentArray(segmentEnd, segmentPointsArray);
+			this.getPartOfSegment(segmentPointsArray, 0, aEndParameter-segmentEnd, aExactness, aReturnCurve.pointsArray, isCompact, isCompact);
+		}
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

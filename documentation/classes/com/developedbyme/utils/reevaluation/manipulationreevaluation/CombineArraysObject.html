@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>CombineArraysObject</h1>
+		<div class="classPath">com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var CombineArraysObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.ObjectReevaluationBaseObject");
+	
+	var CombineArraysObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject");
+	
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject::_init");
+		
+		this.superCall();
+		
+		this.array1Reevaluator = null;
+		this.array2Reevaluator = null;
+		
+		return this;
+	};
+	
+	objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var array1 = this.array1Reevaluator.reevaluate(aBaseObject);
+		var array2 = this.array2Reevaluator.reevaluate(aBaseObject);
+		
+		return array1.concat(array2);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.array1Reevaluator = null;
+		this.array2Reevaluator = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.createCommand = function(aArray1, aArray2) {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject::createCommand (static)");
+		var newCommand = (new CombineArraysObject()).init();
+		
+		newCommand.array1Reevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aArray1);
+		newCommand.array2Reevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aArray2);
+		
+		return newCommand;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject::_init");
+		
+		this.superCall();
+		
+		this.array1Reevaluator = null;
+		this.array2Reevaluator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reevaluate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var array1 = this.array1Reevaluator.reevaluate(aBaseObject);
+		var array2 = this.array2Reevaluator.reevaluate(aBaseObject);
+		
+		return array1.concat(array2);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.array1Reevaluator = null;
+		this.array2Reevaluator = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createCommand = function(aArray1, aArray2) {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject::createCommand (static)");
+		var newCommand = (new CombineArraysObject()).init();
+		
+		newCommand.array1Reevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aArray1);
+		newCommand.array2Reevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aArray2);
+		
+		return newCommand;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,528 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>NamedArray</h1>
+		<div class="classPath">com.developedbyme.utils.data.NamedArray</div>
+		<div class="classInheritance"></div>
+		<div class="description">An array where all entries also have an identifier.</div>
+		<div class="importSnippet">var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.data.NamedArray");
+	//"use strict";
+	
+	//Self reference
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.NamedArray::_init");
+		
+		this.superCall();
+		
+		this._objectsObject = ClassReference._createObject();
+		this._objectsArray = ClassReference._createArray();
+		this._namesArray = ClassReference._createArray();
+		
+		this.ownsObjects = false;
+		
+		this.currentSelectedItem = null;
+		
+		return this;
+	};
+	
+	objectFunctions.getObjectsArray = function() {
+		return this._objectsArray;
+	};
+	
+	objectFunctions.getObjectsObject = function() {
+		return this._objectsObject;
+	};
+	
+	objectFunctions.getNamesArray = function() {
+		return this._namesArray;
+	};
+	
+	objectFunctions.addObject = function(aName, aObject) {
+		if(!VariableAliases.isSet(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
+			return;
+		}
+		if(VariableAliases.isSet(this._objectsObject[aName])) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
+			this.removeObject(aName);
+		}
+		this._objectsObject[aName] = aObject;
+		this._objectsArray.push(aObject);
+		this._namesArray.push(aName);
+	};
+	
+	objectFunctions.replaceObject = function(aName, aObject) {
+		if(!VariableAliases.isSet(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "replaceObject", "Name is null for object" + aObject + ".");
+			return;
+		}
+		if(VariableAliases.isSet(this._objectsObject[aName])) {
+			this.removeObject(aName);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "replaceObject", "Object " + aName + " (" + this._objectsObject[aName] + ") doesn't exist.");
+		}
+		this._objectsObject[aName] = aObject;
+		this._objectsArray.push(aObject);
+		this._namesArray.push(aName);
+	};
+
+	objectFunctions.addObjectToBeginning = function(aName, aObject) {
+		if(!VariableAliases.isSet(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
+			return;
+		}
+		if(VariableAliases.isSet(this._objectsObject[aName])) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
+			this.removeObject(aName);
+		}
+		this._objectsObject[aName] = aObject;
+		this._objectsArray.unshift(aObject);
+		this._namesArray.unshift(aName);
+	};
+	
+	objectFunctions.select = function(aName) {
+		if(!VariableAliases.isSet(this._objectsObject[aName])) {
+			this.currentSelectedItem = null;
+			return false;
+		}
+		this.currentSelectedItem = this._objectsObject[aName];
+		return true;
+	};
+	
+	objectFunctions.hasObject = function(aName) {
+		return (VariableAliases.isSet(this._objectsObject[aName]));
+	};
+	
+	objectFunctions.hasObjects = function(aNamesArray) {
+		var currentArray = aNamesArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			if(!this.hasObject(currentArray[i])) return false;
+		}
+		return true;
+	};
+	
+	objectFunctions.getObject = function(aName) {
+		//console.log("com.developedbyme.utils.data.NamedArray::getObject");
+		if(!VariableAliases.isSet(this._objectsObject[aName])) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MINOR, this, "getObject", "Object " + aName + " doesn't exist.");
+			return null;
+		}
+		return this._objectsObject[aName];
+	};
+	
+	objectFunctions.removeObject = function(aName) {
+		if(!VariableAliases.isSet(this._objectsObject[aName])) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MAJOR, this, "removeObject", "Object " + aName + " doesn't exist.");
+			return;
+		}
+		var currentObject = this._objectsObject[aName];
+		var currentArray = this._objectsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			if(currentArray[i] === currentObject) {
+				currentArray.splice(i, 1);
+				delete this._objectsObject[aName];
+				break;
+			}
+		}
+		var nameIndex = this._namesArray.indexOf(aName);
+		if(nameIndex !== -1) {
+			this._namesArray.splice(nameIndex, 1);
+		}
+		
+		if(this.currentSelectedItem === currentObject) {
+			this.currentSelectedItem = null;
+		}
+	};
+	
+	objectFunctions.copy = function() {
+		var copiedNamedArray = new NamedArray();
+		
+		var currentArray = this._objectsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			copiedNamedArray.addObject(this.identifyObject(currentArray[i]), currentArray[i]);
+		}
+		return copiedNamedArray;
+	};
+	
+	objectFunctions.identifyObject = function(aObject) {
+		for(var objectName in this._objectsObject) {
+			if(this._objectsObject[objectName] === aObject) {
+				return objectName;
+			}
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "identifyObject", "Object " + aObject + " doesn't exist.");
+		return null;
+	};
+	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("ownsObjects: " + this.ownsObjects);
+		if(this._namesArray !== null &amp;&amp; this._namesArray !== undefined) {
+			aReturnArray.push("properties: [" + this._namesArray.join(", ") + "]");
+		}
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "currentSelectedItem":
+				return false;
+			case "_objectsObject":
+			case "_objectsArray":
+				return this.ownsObjects;
+		}
+		return this.superCall(aName);
+	};
+	
+	objectFunctions._performDestroyObjects = function() {
+		if(this.ownsObjects) {
+			ClassReference.softDestroyArrayIfExists(this._objectsArray);
+		}
+		ClassReference._reuseObject(this._objectsObject);
+		ClassReference._reuseArray(this._objectsArray);
+		ClassReference._reuseArray(this._namesArray);
+	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		this._performDestroyObjects();
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._objectsObject = null;
+		this._objectsArray = null;
+		this._namesArray = null;
+		
+		this.currentSelectedItem = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aOwnsObjects) {
+		var newNamedArray = ClassReference._createAndInitClass(ClassReference);
+		newNamedArray.ownsObjects = VariableAliases.isTrue(aOwnsObjects);
+		return newNamedArray;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.NamedArray::_init");
+		
+		this.superCall();
+		
+		this._objectsObject = ClassReference._createObject();
+		this._objectsArray = ClassReference._createArray();
+		this._namesArray = ClassReference._createArray();
+		
+		this.ownsObjects = false;
+		
+		this.currentSelectedItem = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getObjectsArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getObjectsArray = function() {
+		return this._objectsArray;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getObjectsObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getObjectsObject = function() {
+		return this._objectsObject;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getNamesArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getNamesArray = function() {
+		return this._namesArray;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addObject = function(aName, aObject) {
+		if(!VariableAliases.isSet(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
+			return;
+		}
+		if(VariableAliases.isSet(this._objectsObject[aName])) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
+			this.removeObject(aName);
+		}
+		this._objectsObject[aName] = aObject;
+		this._objectsArray.push(aObject);
+		this._namesArray.push(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">replaceObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.replaceObject = function(aName, aObject) {
+		if(!VariableAliases.isSet(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "replaceObject", "Name is null for object" + aObject + ".");
+			return;
+		}
+		if(VariableAliases.isSet(this._objectsObject[aName])) {
+			this.removeObject(aName);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "replaceObject", "Object " + aName + " (" + this._objectsObject[aName] + ") doesn't exist.");
+		}
+		this._objectsObject[aName] = aObject;
+		this._objectsArray.push(aObject);
+		this._namesArray.push(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addObjectToBeginning</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addObjectToBeginning = function(aName, aObject) {
+		if(!VariableAliases.isSet(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
+			return;
+		}
+		if(VariableAliases.isSet(this._objectsObject[aName])) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
+			this.removeObject(aName);
+		}
+		this._objectsObject[aName] = aObject;
+		this._objectsArray.unshift(aObject);
+		this._namesArray.unshift(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">select</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.select = function(aName) {
+		if(!VariableAliases.isSet(this._objectsObject[aName])) {
+			this.currentSelectedItem = null;
+			return false;
+		}
+		this.currentSelectedItem = this._objectsObject[aName];
+		return true;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">hasObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.hasObject = function(aName) {
+		return (VariableAliases.isSet(this._objectsObject[aName]));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">hasObjects</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.hasObjects = function(aNamesArray) {
+		var currentArray = aNamesArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			if(!this.hasObject(currentArray[i])) return false;
+		}
+		return true;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getObject = function(aName) {
+		//console.log("com.developedbyme.utils.data.NamedArray::getObject");
+		if(!VariableAliases.isSet(this._objectsObject[aName])) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MINOR, this, "getObject", "Object " + aName + " doesn't exist.");
+			return null;
+		}
+		return this._objectsObject[aName];
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removeObject = function(aName) {
+		if(!VariableAliases.isSet(this._objectsObject[aName])) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MAJOR, this, "removeObject", "Object " + aName + " doesn't exist.");
+			return;
+		}
+		var currentObject = this._objectsObject[aName];
+		var currentArray = this._objectsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			if(currentArray[i] === currentObject) {
+				currentArray.splice(i, 1);
+				delete this._objectsObject[aName];
+				break;
+			}
+		}
+		var nameIndex = this._namesArray.indexOf(aName);
+		if(nameIndex !== -1) {
+			this._namesArray.splice(nameIndex, 1);
+		}
+		
+		if(this.currentSelectedItem === currentObject) {
+			this.currentSelectedItem = null;
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">copy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.copy = function() {
+		var copiedNamedArray = new NamedArray();
+		
+		var currentArray = this._objectsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			copiedNamedArray.addObject(this.identifyObject(currentArray[i]), currentArray[i]);
+		}
+		return copiedNamedArray;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">identifyObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.identifyObject = function(aObject) {
+		for(var objectName in this._objectsObject) {
+			if(this._objectsObject[objectName] === aObject) {
+				return objectName;
+			}
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "identifyObject", "Object " + aObject + " doesn't exist.");
+		return null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("ownsObjects: " + this.ownsObjects);
+		if(this._namesArray !== null &amp;&amp; this._namesArray !== undefined) {
+			aReturnArray.push("properties: [" + this._namesArray.join(", ") + "]");
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "currentSelectedItem":
+				return false;
+			case "_objectsObject":
+			case "_objectsArray":
+				return this.ownsObjects;
+		}
+		return this.superCall(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_performDestroyObjects</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._performDestroyObjects = function() {
+		if(this.ownsObjects) {
+			ClassReference.softDestroyArrayIfExists(this._objectsArray);
+		}
+		ClassReference._reuseObject(this._objectsObject);
+		ClassReference._reuseArray(this._objectsArray);
+		ClassReference._reuseArray(this._namesArray);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		this._performDestroyObjects();
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._objectsObject = null;
+		this._objectsArray = null;
+		this._namesArray = null;
+		
+		this.currentSelectedItem = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aOwnsObjects) {
+		var newNamedArray = ClassReference._createAndInitClass(ClassReference);
+		newNamedArray.ownsObjects = VariableAliases.isTrue(aOwnsObjects);
+		return newNamedArray;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

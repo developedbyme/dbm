@@ -1,20 +1,32 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Data for a point that is movable with touch interactions.
+ */
 dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint");
 	
+	//Self reference
 	var MovablePoint = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint");
 	
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	//Error report
+	
+	//Dependnecies
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	
-	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
-	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
-	
 	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
 	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
 	
+	//Utils
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	//Constants
+	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint::_init");
 		
@@ -39,18 +51,32 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoi
 		return this;
 	};
 	
+	/**
+	 * Locks the current position of this points, and disables user interactions.
+	 */
 	objectFunctions.lock = function() {
 		this._isLocked.setValue(true);
 		
 		return this;
 	};
 	
+	/**
+	 * Unlocks the current position of this point.
+	 */
 	objectFunctions.unlock = function() {
 		this._isLocked.setValue(false);
 		
 		return this;
 	};
 	
+	/**
+	 * Checks if the point should start moving for interaction at a certain coordinate.
+	 *
+	 * @param	aX	Number	The x position.
+	 * @param	aY	Number	The y position.
+	 *
+	 * @return	Boolean		True if the point should start interacting.
+	 */
 	objectFunctions.checkForControlStart = function(aX, aY) {
 		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint::checkForControlStart");
 		if(this._touch === null && !(this._isLocked.getValue())) {
@@ -61,6 +87,11 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoi
 		return false;
 	};
 	
+	/**
+	 * Starts the interaction of this point.
+	 *
+	 * @param	aTouchData	The touch data that is controling this point.
+	 */
 	objectFunctions.startTouchControl = function(aTouchData) {
 		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint::startTouchControl");
 		//console.log(aTouchData);
@@ -75,6 +106,11 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoi
 		this._touchMoveYNode.getProperty("inputValue2").connectInput(this._touch.getProperty("startY"));
 	};
 	
+	/**
+	 * Stops the interaction of this point.
+	 *
+	 * @param	aTouchData	The touch data that is controling this point.
+	 */
 	objectFunctions._stopTouchControl = function(aTouchData) {
 		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint::_stopTouchControl");
 		
@@ -91,11 +127,23 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoi
 		this._touch = null;
 	};
 	
+	/**
+	 * Sets all reference to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new instance of this class.
+	 *
+	 * @praam	aX			Number	The x position of this point.
+	 * @param	aY			Number	The y position of this point.
+	 * @param	aRadius		Number	The radius of this point.
+	 *
+	 * @return	ClassDefinition	The newly created instance.
+	 */
 	staticFunctions.create = function(aX, aY, aRadius) {
 		
 		var newMovablePoint = (new MovablePoint()).init();

@@ -1,0 +1,146 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>StaticVariableObject</h1>
+		<div class="classPath">com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
+	
+	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject::_init");
+		
+		this.superCall();
+		
+		this.reevaluationData = null;
+		
+		return this;
+	};
+	
+	objectFunctions.getDataObject = function() {
+		return this.reevaluationData;
+	};
+	
+	/**
+	 * The function that reevalutes this reference. Should be overridden.
+	 *
+	 * @param	aBaseObject	The object to base the reevaluation from.
+	 * @return	null
+	 */
+	objectFunctions.reevaluate = function(aBaseObject) {
+		
+		//MENOTE: should be overridden
+		
+		return this.reevaluationData;
+	}; //End function reevaluate
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.reevaluationData = null;
+		
+		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "reevaluationData":
+				return false;
+		}
+		return this.superCall();
+	};
+	
+	/**
+	 * Creates a new reevaluator that returns a static value.
+	 * 
+	 * @param	aData	The data to return when beeing resolved
+	 * @return	The new object.
+	 */
+	staticFunctions.createReevaluationObject = function(aData) {
+		var newObject = (new StaticVariableObject()).init();
+		newObject.reevaluationData = aData;
+		return newObject;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject::_init");
+		
+		this.superCall();
+		
+		this.reevaluationData = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getDataObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getDataObject = function() {
+		return this.reevaluationData;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reevaluate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">The function that reevalutes this reference. Should be overridden.</div>
+			<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
+		
+		//MENOTE: should be overridden
+		
+		return this.reevaluationData;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.reevaluationData = null;
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "reevaluationData":
+				return false;
+		}
+		return this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createReevaluationObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new reevaluator that returns a static value.</div>
+			<div class="code">staticFunctions.createReevaluationObject = function(aData) {
+		var newObject = (new StaticVariableObject()).init();
+		newObject.reevaluationData = aData;
+		return newObject;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

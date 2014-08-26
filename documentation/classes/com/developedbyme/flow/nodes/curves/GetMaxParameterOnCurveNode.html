@@ -1,0 +1,125 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>GetMaxParameterOnCurveNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
+	
+	//Self reference
+	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode::_init");
+		
+		this.superCall();
+		
+		this._curve = this.createProperty("curve", null).setAlwaysUpdateFlow(true);
+		this._outputParameter = this.createProperty("outputParameter", 0);
+		
+		this.createUpdateFunction("default", this._update, [this._curve], [this._outputParameter]);
+		
+		return this;
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode::_update");
+		
+		var curve = this._curve.getValueWithoutFlow();
+		
+		this._outputParameter.setValueWithFlow(curve.getMaxParameter(), aFlowUpdateNumber);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._curve = null;
+		this._outputParameter = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aCurve) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("curve", aCurve);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode::_init");
+		
+		this.superCall();
+		
+		this._curve = this.createProperty("curve", null).setAlwaysUpdateFlow(true);
+		this._outputParameter = this.createProperty("outputParameter", 0);
+		
+		this.createUpdateFunction("default", this._update, [this._curve], [this._outputParameter]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode::_update");
+		
+		var curve = this._curve.getValueWithoutFlow();
+		
+		this._outputParameter.setValueWithFlow(curve.getMaxParameter(), aFlowUpdateNumber);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._curve = null;
+		this._outputParameter = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aCurve) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("curve", aCurve);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

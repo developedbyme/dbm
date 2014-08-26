@@ -1,0 +1,154 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ExtendedEventBaseObject</h1>
+		<div class="classPath">com.developedbyme.core.ExtendedEventBaseObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ExtendedEventBaseObject = dbm.importClass("com.developedbyme.core.ExtendedEventBaseObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.ExtendedEventBaseObject", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.ExtendedEventBaseObject");
+	//"use strict";
+	
+	var ExtendedEventBaseObject = dbm.importClass("com.developedbyme.core.ExtendedEventBaseObject");
+	
+	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
+	var DelayedExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.DelayedExtendedEventController");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.ExtendedEventBaseObject::_init");
+		
+		this.superCall();
+		
+		this._extendedEvent = null;
+		this._delayedExtendedEvent = null;
+		
+		return this;
+	};
+	
+	objectFunctions.getExtendedEvent = function() {
+		if(this._extendedEvent === null) {
+			this._extendedEvent = ExtendedEventController.create(this);
+			this.addDestroyableObject(this._extendedEvent);
+		}
+		
+		return this._extendedEvent;
+	};
+	
+	objectFunctions.getDelayedExtendedEvent = function() {
+		if(this._delayedExtendedEvent === null) {
+			this._delayedExtendedEvent = DelayedExtendedEventController.create(this);
+			this.addDestroyableObject(this._delayedExtendedEvent);
+		}
+		
+		return this._delayedExtendedEvent;
+	};
+	
+	objectFunctions.reactivateForNewDocument = function() {
+		if(this._extendedEvent !== null) {
+			this._extendedEvent.reactivateEventListeners();
+		}
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		//MENOTE: should be overridden
+		
+		return false;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._extendedEvent = null;
+		this._delayedExtendedEvent = null;
+		
+		this.superCall();
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.ExtendedEventBaseObject::_init");
+		
+		this.superCall();
+		
+		this._extendedEvent = null;
+		this._delayedExtendedEvent = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getExtendedEvent = function() {
+		if(this._extendedEvent === null) {
+			this._extendedEvent = ExtendedEventController.create(this);
+			this.addDestroyableObject(this._extendedEvent);
+		}
+		
+		return this._extendedEvent;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getDelayedExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getDelayedExtendedEvent = function() {
+		if(this._delayedExtendedEvent === null) {
+			this._delayedExtendedEvent = DelayedExtendedEventController.create(this);
+			this.addDestroyableObject(this._delayedExtendedEvent);
+		}
+		
+		return this._delayedExtendedEvent;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reactivateForNewDocument</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.reactivateForNewDocument = function() {
+		if(this._extendedEvent !== null) {
+			this._extendedEvent.reactivateEventListeners();
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		//MENOTE: should be overridden
+		
+		return false;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._extendedEvent = null;
+		this._delayedExtendedEvent = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

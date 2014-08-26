@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>UpdateChain</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var UpdateChain = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain", "com.developedbyme.utils.data.iterator.ActiveArrayIterator", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain");
+	//"use strict";
+	
+	//Self reference
+	var UpdateChain = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var IterationData = dbm.importClass("com.developedbyme.utils.data.iterator.IterationData");
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain::_init");
+		
+		this.superCall();
+		
+		this._canAddItemsWhileActive = false;
+		this._canRemoveItemsWhileActive = false;
+		
+		this._iterationData = this.addDestroyableObject(IterationData.create(this.array));
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Interface function called from the update manager every frame.
+	 *
+	 * @param	aCurrentTime	The local time of the application in seconds.
+	 * @param	aCurrentFrame	The current frame of the application.
+	 */
+	objectFunctions.updateTime = function(aTime, aFrame) {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain::updateTime");
+		
+		var iterationData = this._iterationData;
+		iterationData.position = 0;
+		iterationData.updateLength();
+		this.addIterationData(this._iterationData);
+		var currentArray = iterationData.array;
+		var currentArrayLength = iterationData.length;
+		for(var i = iterationData.position; i &lt; currentArrayLength;) { //MENOTE: i and length is updated in loop
+			var currentUpdater = currentArray[i];
+			//try {
+				currentUpdater.updateTime(aTime, aFrame);
+				i = (++iterationData.position);
+				currentArrayLength = iterationData.length;
+			//}
+			//catch(theError) {
+			//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateTime", "Un error occured while updating " + currentUpdater +".");
+			//	ErrorManager.getInstance().reportError(this, "updateTime", theError);
+			//}
+		}
+		this.removeIterationData(this._iterationData);
+	}; //End function updateTime
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain::_init");
+		
+		this.superCall();
+		
+		this._canAddItemsWhileActive = false;
+		this._canRemoveItemsWhileActive = false;
+		
+		this._iterationData = this.addDestroyableObject(IterationData.create(this.array));
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">updateTime</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Interface function called from the update manager every frame.</div>
+			<div class="code">objectFunctions.updateTime = function(aTime, aFrame) {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain::updateTime");
+		
+		var iterationData = this._iterationData;
+		iterationData.position = 0;
+		iterationData.updateLength();
+		this.addIterationData(this._iterationData);
+		var currentArray = iterationData.array;
+		var currentArrayLength = iterationData.length;
+		for(var i = iterationData.position; i &lt; currentArrayLength;) { //MENOTE: i and length is updated in loop
+			var currentUpdater = currentArray[i];
+			//try {
+				currentUpdater.updateTime(aTime, aFrame);
+				i = (++iterationData.position);
+				currentArrayLength = iterationData.length;
+			//}
+			//catch(theError) {
+			//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateTime", "Un error occured while updating " + currentUpdater +".");
+			//	ErrorManager.getInstance().reportError(this, "updateTime", theError);
+			//}
+		}
+		this.removeIterationData(this._iterationData);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

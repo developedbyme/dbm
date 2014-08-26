@@ -1,0 +1,187 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>LayoutController</h1>
+		<div class="classPath">com.developedbyme.workspace.gui.LayoutController</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var LayoutController = dbm.importClass("com.developedbyme.workspace.gui.LayoutController");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.workspace.gui.LayoutController", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.workspace.gui.LayoutController");
+	//"use strict";
+	
+	//Self reference
+	var LayoutController = dbm.importClass("com.developedbyme.workspace.gui.LayoutController");
+	
+	//Error report
+	
+	//Dependencies
+	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
+	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
+	
+	//Utils
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.workspace.gui.LayoutController::_init");
+		
+		this.superCall();
+		
+		this._parts = this.addDestroyableObject(TreeStructure.create());
+		this._parts.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ITEM_CREATED, CallFunctionCommand.createCommand(this, this._newTreeStructureAdded, [GetVariableObject.createSelectDataCommand()]));
+		
+		this._newTreeStructureAdded(this._parts.getRoot());
+		this._parts.getRoot().getAttribute("properties").setPropertyInput("inputArea", Rectangle.create(0, 0, 100, 100));
+		
+		return this;
+	};
+	
+	objectFunctions.getTreeStructure = function() {
+		return this._parts;
+	};
+	
+	objectFunctions.addPart = function(aPath, aPart) {
+		//console.log("com.developedbyme.workspace.gui.LayoutController::addPart");
+		
+		var treeStructureItem = this._parts.getItemByPath(aPath);
+		aPart.setTreeStructureItem(treeStructureItem);
+	};
+	
+	objectFunctions._newTreeStructureAdded = function(aTreeStructureItem) {
+		//console.log("com.developedbyme.workspace.gui.LayoutController::_newTreeStructureAdded");
+		//console.log(aTreeStructureItem);
+		
+		var propertiesHolder = PropertiesHolder.create();
+		aTreeStructureItem.setAttribute("properties", propertiesHolder);
+		propertiesHolder.createProperty("inputArea", null).setAlwaysUpdateFlow();
+		propertiesHolder.createProperty("defaultChildArea", null).setAlwaysUpdateFlow();
+		propertiesHolder.createProperty("parent", null);
+		propertiesHolder.createProperty("defaultChildParent", null);
+		
+		propertiesHolder.setPropertyInput("defaultChildParent", propertiesHolder.getProperty("parent"));
+		propertiesHolder.setPropertyInput("defaultChildArea", propertiesHolder.getProperty("inputArea"));
+		
+		var theParent = aTreeStructureItem.getParent();
+		if(theParent !== null) {
+			var parentPropertiesHolder = theParent.getAttribute("properties");
+			propertiesHolder.setPropertyInput("parent", parentPropertiesHolder.getProperty("defaultChildParent"));
+			propertiesHolder.setPropertyInput("inputArea", parentPropertiesHolder.getProperty("defaultChildArea"));
+		}
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._parts = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		return (new ClassReference()).init();
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.workspace.gui.LayoutController::_init");
+		
+		this.superCall();
+		
+		this._parts = this.addDestroyableObject(TreeStructure.create());
+		this._parts.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ITEM_CREATED, CallFunctionCommand.createCommand(this, this._newTreeStructureAdded, [GetVariableObject.createSelectDataCommand()]));
+		
+		this._newTreeStructureAdded(this._parts.getRoot());
+		this._parts.getRoot().getAttribute("properties").setPropertyInput("inputArea", Rectangle.create(0, 0, 100, 100));
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getTreeStructure</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getTreeStructure = function() {
+		return this._parts;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addPart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addPart = function(aPath, aPart) {
+		//console.log("com.developedbyme.workspace.gui.LayoutController::addPart");
+		
+		var treeStructureItem = this._parts.getItemByPath(aPath);
+		aPart.setTreeStructureItem(treeStructureItem);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_newTreeStructureAdded</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._newTreeStructureAdded = function(aTreeStructureItem) {
+		//console.log("com.developedbyme.workspace.gui.LayoutController::_newTreeStructureAdded");
+		//console.log(aTreeStructureItem);
+		
+		var propertiesHolder = PropertiesHolder.create();
+		aTreeStructureItem.setAttribute("properties", propertiesHolder);
+		propertiesHolder.createProperty("inputArea", null).setAlwaysUpdateFlow();
+		propertiesHolder.createProperty("defaultChildArea", null).setAlwaysUpdateFlow();
+		propertiesHolder.createProperty("parent", null);
+		propertiesHolder.createProperty("defaultChildParent", null);
+		
+		propertiesHolder.setPropertyInput("defaultChildParent", propertiesHolder.getProperty("parent"));
+		propertiesHolder.setPropertyInput("defaultChildArea", propertiesHolder.getProperty("inputArea"));
+		
+		var theParent = aTreeStructureItem.getParent();
+		if(theParent !== null) {
+			var parentPropertiesHolder = theParent.getAttribute("properties");
+			propertiesHolder.setPropertyInput("parent", parentPropertiesHolder.getProperty("defaultChildParent"));
+			propertiesHolder.setPropertyInput("inputArea", parentPropertiesHolder.getProperty("defaultChildArea"));
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._parts = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		return (new ClassReference()).init();
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

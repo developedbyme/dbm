@@ -1,0 +1,143 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>RectangleFromValuesNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var RectangleFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
+	//"use strict";
+	
+	var RectangleFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
+	
+	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode::_init");
+		
+		this.superCall();
+		
+		this._x = this.createProperty("x", 0);
+		this._y = this.createProperty("y", 0);
+		this._width = this.createProperty("width", 0);
+		this._height = this.createProperty("height", 0);
+		this._outputRectangle = this.createProperty("outputRectangle", Rectangle.create());
+		
+		this.createUpdateFunction("default", this._update, [this._x, this._y, this._width, this._height], [this._outputRectangle]);
+		
+		return this;
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode::_update");
+		
+		var outputRectangle = this._outputRectangle.getValueWithoutFlow();
+		
+		outputRectangle.x = this._x.getValueWithoutFlow();
+		outputRectangle.y = this._y.getValueWithoutFlow();
+		outputRectangle.width = this._width.getValueWithoutFlow();
+		outputRectangle.height = this._height.getValueWithoutFlow();
+		
+		this._outputRectangle.setFlowAsUpdated(aFlowUpdateNumber);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._x = null;
+		this._y = null;
+		this._width = null;
+		this._height = null;
+		this._outputRectangle = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aX, aY, aWidth, aHeight) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("x", aX);
+		newNode.setPropertyInputWithoutNull("y", aY);
+		newNode.setPropertyInputWithoutNull("width", aWidth);
+		newNode.setPropertyInputWithoutNull("height", aHeight);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode::_init");
+		
+		this.superCall();
+		
+		this._x = this.createProperty("x", 0);
+		this._y = this.createProperty("y", 0);
+		this._width = this.createProperty("width", 0);
+		this._height = this.createProperty("height", 0);
+		this._outputRectangle = this.createProperty("outputRectangle", Rectangle.create());
+		
+		this.createUpdateFunction("default", this._update, [this._x, this._y, this._width, this._height], [this._outputRectangle]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode::_update");
+		
+		var outputRectangle = this._outputRectangle.getValueWithoutFlow();
+		
+		outputRectangle.x = this._x.getValueWithoutFlow();
+		outputRectangle.y = this._y.getValueWithoutFlow();
+		outputRectangle.width = this._width.getValueWithoutFlow();
+		outputRectangle.height = this._height.getValueWithoutFlow();
+		
+		this._outputRectangle.setFlowAsUpdated(aFlowUpdateNumber);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._x = null;
+		this._y = null;
+		this._width = null;
+		this._height = null;
+		this._outputRectangle = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aX, aY, aWidth, aHeight) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("x", aX);
+		newNode.setPropertyInputWithoutNull("y", aY);
+		newNode.setPropertyInputWithoutNull("width", aWidth);
+		newNode.setPropertyInputWithoutNull("height", aHeight);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

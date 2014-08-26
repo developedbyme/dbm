@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TimelineCurveCreatorBaseObject</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject</div>
+		<div class="classInheritance"></div>
+		<div class="description">Base object for timeline curve creators.</div>
+		<div class="importSnippet">var TimelineCurveCreatorBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject");
+	//"use strict";
+	
+	//Self reference
+	var TimelineCurveCreatorBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utilities
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	/**
+	 * Creates a curve from a timeline part.
+	 */
+	objectFunctions.createCurveFromPart = function(aTimelinePart, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset, aReturnCurve, aPositionOnCurve) {
+		//MENOTE: should be overridden
+		
+		return aPositionOnCurve;
+	};
+	
+	staticFunctions.create = function() {
+		var newTimelineCurveCreatorBaseObject = (new ClassReference()).init();
+		return newTimelineCurveCreatorBaseObject;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createCurveFromPart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a curve from a timeline part.</div>
+			<div class="code">objectFunctions.createCurveFromPart = function(aTimelinePart, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset, aReturnCurve, aPositionOnCurve) {
+		//MENOTE: should be overridden
+		
+		return aPositionOnCurve;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newTimelineCurveCreatorBaseObject = (new ClassReference()).init();
+		return newTimelineCurveCreatorBaseObject;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

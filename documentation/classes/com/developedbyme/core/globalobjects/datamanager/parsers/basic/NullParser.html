@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>NullParser</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.datamanager.parsers.basic.NullParser</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var NullParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.NullParser");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.NullParser", "com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.NullParser");
+	
+	//Self reference
+	var NullParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.NullParser");
+	
+	//Error report
+	
+	//Dependencies
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.NullParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		var result = ParserResultDataObject.create(null);
+		return result;
+	};
+	
+	staticFunctions.create = function() {
+		var newNullParser = (new ClassReference()).init();
+		return newNullParser;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.NullParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">parseXml</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		var result = ParserResultDataObject.create(null);
+		return result;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newNullParser = (new ClassReference()).init();
+		return newNullParser;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

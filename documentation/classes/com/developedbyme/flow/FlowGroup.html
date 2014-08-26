@@ -1,0 +1,333 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>FlowGroup</h1>
+		<div class="classPath">com.developedbyme.flow.FlowGroup</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var FlowGroup = dbm.importClass("com.developedbyme.flow.FlowGroup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.FlowGroup");
+	//"use strict";
+	
+	var FlowGroup = dbm.importClass("com.developedbyme.flow.FlowGroup");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
+	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.FlowGroup::_init");
+		
+		this.superCall();
+		
+		this._objectProperty = ObjectProperty.create(this);
+		this._objectProperty.name = this.__className + "::object(o)";
+		this.addDestroyableObject(this._objectProperty);
+		this._inputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._inputProperties);
+		this._outputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._outputProperties);
+		
+		//console.log("//com.developedbyme.flow.FlowGroup::_init");
+		return this;
+	};
+	
+	objectFunctions.createInputProperty = function(aName, aValue) {
+		var newProperty = Property.create(this._objectProperty, aValue);
+		newProperty.name = "input::" + aName;
+		this._inputProperties.addObject(aName, newProperty);
+		return newProperty;
+	};
+	
+	objectFunctions.createOutputProperty = function(aName, aValue) {
+		var newProperty = Property.create(this._objectProperty, aValue);
+		newProperty.name = "output::" + aName;
+		this._outputProperties.addObject(aName, newProperty);
+		return newProperty;
+	};
+	
+	objectFunctions.getInputProperty = function(aName) {
+		if(this._inputProperties.select(aName)) {
+			return this._inputProperties.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getInputProperty", "Input property " + aName + " doesn't exist. Creating.");
+		return this.createInputProperty(aName, null);
+	};
+	
+	objectFunctions.getOutputProperty = function(aName) {
+		if(this._outputProperties.select(aName)) {
+			return this._outputProperties.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getOutputProperty", "Output property " + aName + " doesn't exist. Creating.");
+		return this.createOutputProperty(aName, null);
+	};
+	
+	objectFunctions.setInputPropertyInput = function(aName, aInput) {
+		if(!this._inputProperties.select(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setPropertyInput", "Property " + aName + " doesn't exist.");
+			return this;
+		}
+		if(aInput instanceof Property) {
+			dbm.singletons.dbmFlowManager.connectProperties(aInput, this._inputProperties.currentSelectedItem);
+		}
+		else {
+			this._inputProperties.currentSelectedItem.setValue(aInput);
+		}
+		return this;
+	};
+	
+	objectFunctions.setInputPropertyInputWithoutNull = function(aName, aInput) {
+		if(aInput !== null) {
+			this.setInputPropertyInput(aName, aInput);
+		}
+		return this;
+	};
+	
+	objectFunctions.setOutputPropertyInput = function(aName, aInput) {
+		if(!this._outputProperties.select(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setOutputPropertyInput", "Property " + aName + " doesn't exist.");
+			return this;
+		}
+		if(aInput instanceof Property) {
+			dbm.singletons.dbmFlowManager.connectProperties(aInput, this._outputProperties.currentSelectedItem);
+		}
+		else {
+			this._outputProperties.currentSelectedItem.setValue(aInput);
+		}
+		return this;
+	};
+	
+	objectFunctions.setOutputPropertyInputWithoutNull = function(aName, aInput) {
+		if(aInput !== null) {
+			this.setOutputPropertyInput(aName, aInput);
+		}
+		return this;
+	};
+	
+	objectFunctions.getInputPropertiesNamedArray = function() {
+		return this._inputProperties;
+	};
+	
+	objectFunctions.getOutputPropertiesNamedArray = function() {
+		return this._outputProperties;
+	};
+	
+	/**
+	 * Sets all the references to null.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._objectProperty = null;
+		this._inputProperties = null;
+		this._outputProperties = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aInputProperties, aOutputProperties) {
+		//console.log("com.developedbyme.flow.FlowGroup::create (static)");
+		var newGroup = (new ClassReference()).init();
+		for(var objectName in aInputProperties) {
+			newGroup.createInputProperty(objectName, null);
+			newGroup.setInputPropertyInputWithoutNull(objectName, aInputProperties[objectName]);
+		}
+		for(var objectName in aOutputProperties) {
+			newGroup.createOutputProperty(objectName, null);
+			newGroup.setOutputPropertyInputWithoutNull(objectName, aOutputProperties[objectName]);
+		}
+		return newGroup;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.FlowGroup::_init");
+		
+		this.superCall();
+		
+		this._objectProperty = ObjectProperty.create(this);
+		this._objectProperty.name = this.__className + "::object(o)";
+		this.addDestroyableObject(this._objectProperty);
+		this._inputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._inputProperties);
+		this._outputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._outputProperties);
+		
+		//console.log("//com.developedbyme.flow.FlowGroup::_init");
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createInputProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createInputProperty = function(aName, aValue) {
+		var newProperty = Property.create(this._objectProperty, aValue);
+		newProperty.name = "input::" + aName;
+		this._inputProperties.addObject(aName, newProperty);
+		return newProperty;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createOutputProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createOutputProperty = function(aName, aValue) {
+		var newProperty = Property.create(this._objectProperty, aValue);
+		newProperty.name = "output::" + aName;
+		this._outputProperties.addObject(aName, newProperty);
+		return newProperty;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getInputProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getInputProperty = function(aName) {
+		if(this._inputProperties.select(aName)) {
+			return this._inputProperties.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getInputProperty", "Input property " + aName + " doesn't exist. Creating.");
+		return this.createInputProperty(aName, null);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getOutputProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getOutputProperty = function(aName) {
+		if(this._outputProperties.select(aName)) {
+			return this._outputProperties.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getOutputProperty", "Output property " + aName + " doesn't exist. Creating.");
+		return this.createOutputProperty(aName, null);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setInputPropertyInput</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setInputPropertyInput = function(aName, aInput) {
+		if(!this._inputProperties.select(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setPropertyInput", "Property " + aName + " doesn't exist.");
+			return this;
+		}
+		if(aInput instanceof Property) {
+			dbm.singletons.dbmFlowManager.connectProperties(aInput, this._inputProperties.currentSelectedItem);
+		}
+		else {
+			this._inputProperties.currentSelectedItem.setValue(aInput);
+		}
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setInputPropertyInputWithoutNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setInputPropertyInputWithoutNull = function(aName, aInput) {
+		if(aInput !== null) {
+			this.setInputPropertyInput(aName, aInput);
+		}
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setOutputPropertyInput</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setOutputPropertyInput = function(aName, aInput) {
+		if(!this._outputProperties.select(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setOutputPropertyInput", "Property " + aName + " doesn't exist.");
+			return this;
+		}
+		if(aInput instanceof Property) {
+			dbm.singletons.dbmFlowManager.connectProperties(aInput, this._outputProperties.currentSelectedItem);
+		}
+		else {
+			this._outputProperties.currentSelectedItem.setValue(aInput);
+		}
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setOutputPropertyInputWithoutNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setOutputPropertyInputWithoutNull = function(aName, aInput) {
+		if(aInput !== null) {
+			this.setOutputPropertyInput(aName, aInput);
+		}
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getInputPropertiesNamedArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getInputPropertiesNamedArray = function() {
+		return this._inputProperties;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getOutputPropertiesNamedArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getOutputPropertiesNamedArray = function() {
+		return this._outputProperties;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._objectProperty = null;
+		this._inputProperties = null;
+		this._outputProperties = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aInputProperties, aOutputProperties) {
+		//console.log("com.developedbyme.flow.FlowGroup::create (static)");
+		var newGroup = (new ClassReference()).init();
+		for(var objectName in aInputProperties) {
+			newGroup.createInputProperty(objectName, null);
+			newGroup.setInputPropertyInputWithoutNull(objectName, aInputProperties[objectName]);
+		}
+		for(var objectName in aOutputProperties) {
+			newGroup.createOutputProperty(objectName, null);
+			newGroup.setOutputPropertyInputWithoutNull(objectName, aOutputProperties[objectName]);
+		}
+		return newGroup;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

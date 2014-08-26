@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>NoChangeObject</h1>
+		<div class="classPath">com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var NoChangeObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject");
+	
+	var NoChangeObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject::_init");
+		
+		this.superCall();
+		
+		this.reevaluationData = null;
+		
+		return this;
+	};
+	
+	/**
+	 * The function that reevalutes this reference. Should be overridden.
+	 *
+	 * @param	aBaseObject	The object to base the reevaluation from.
+	 * @return	null
+	 */
+	objectFunctions.reevaluate = function(aBaseObject) {
+		
+		return aBaseObject;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.reevaluationData = null;
+		
+		this.superCall();
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject::_init");
+		
+		this.superCall();
+		
+		this.reevaluationData = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reevaluate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">The function that reevalutes this reference. Should be overridden.</div>
+			<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
+		
+		return aBaseObject;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.reevaluationData = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

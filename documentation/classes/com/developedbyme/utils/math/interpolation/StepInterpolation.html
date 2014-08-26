@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>StepInterpolation</h1>
+		<div class="classPath">com.developedbyme.utils.math.interpolation.StepInterpolation</div>
+		<div class="classInheritance"></div>
+		<div class="description">Interpolataion for step</div>
+		<div class="importSnippet">var StepInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.StepInterpolation");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.math.interpolation.StepInterpolation", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.math.interpolation.StepInterpolation");
+	
+	var StepInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.StepInterpolation");
+		
+	/**
+	 * Constructor.
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.math.interpolation.StepInterpolation");
+		
+		return this;
+	};
+	
+	/**
+	 * Interpolates
+	 */
+	objectFunctions.interpolate = function(aParameter) {
+		return (aParameter &gt;= 1) ? 1 : 0;
+	};
+	
+	/**
+	 * Gets the tangent for a parameter
+	 */
+	objectFunctions.getTangent = function(aParameter) {
+		return (aParameter === 1) ? Infinity : 0;
+	};
+	
+	/**
+	 * Create a new interpolation
+	 */
+	staticFunctions.create = function() {
+		var newInterpolation = (new ClassReference()).init();
+		
+		return newInterpolation;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor.</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.math.interpolation.StepInterpolation");
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">interpolate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Interpolates</div>
+			<div class="code">objectFunctions.interpolate = function(aParameter) {
+		return (aParameter &gt;= 1) ? 1 : 0;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getTangent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the tangent for a parameter</div>
+			<div class="code">objectFunctions.getTangent = function(aParameter) {
+		return (aParameter === 1) ? Infinity : 0;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Create a new interpolation</div>
+			<div class="code">staticFunctions.create = function() {
+		var newInterpolation = (new ClassReference()).init();
+		
+		return newInterpolation;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

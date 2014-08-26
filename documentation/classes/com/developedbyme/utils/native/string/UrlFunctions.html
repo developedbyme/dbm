@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>UrlFunctions</h1>
+		<div class="classPath">com.developedbyme.utils.native.string.UrlFunctions</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var UrlFunctions = dbm.importClass("com.developedbyme.utils.native.string.UrlFunctions");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.native.string.UrlFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.native.string.UrlFunctions");
+	//"use strict";
+	
+	//Self reference
+	var UrlFunctions = dbm.importClass("com.developedbyme.utils.native.string.UrlFunctions");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	staticFunctions.parseQueryString = function(aQueryString, aReturnNamedArray) {
+		var currentArray = aQueryString.split("&amp;");
+		var currentArrayLength = currentArray.length;
+		
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var tempArray = currentArray[i].split("=");
+			if(tempArray.length === 1) {
+				aReturnNamedArray.addObject(decodeURIComponent(tempArray[0]), null);
+			}
+			else {
+				aReturnNamedArray.addObject(decodeURIComponent(tempArray[0]), decodeURIComponent(tempArray[1]));
+			}
+		}
+	};
+	
+	staticFunctions.getDataFromDataUrl = function(aDataUrl) {
+		return aDataUrl.substring(aDataUrl.indexOf(",")+1, aDataUrl.length);
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">parseQueryString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.parseQueryString = function(aQueryString, aReturnNamedArray) {
+		var currentArray = aQueryString.split("&amp;");
+		var currentArrayLength = currentArray.length;
+		
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var tempArray = currentArray[i].split("=");
+			if(tempArray.length === 1) {
+				aReturnNamedArray.addObject(decodeURIComponent(tempArray[0]), null);
+			}
+			else {
+				aReturnNamedArray.addObject(decodeURIComponent(tempArray[0]), decodeURIComponent(tempArray[1]));
+			}
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getDataFromDataUrl</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getDataFromDataUrl = function(aDataUrl) {
+		return aDataUrl.substring(aDataUrl.indexOf(",")+1, aDataUrl.length);
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

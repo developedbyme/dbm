@@ -1,0 +1,179 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>AdjustPointsInPointSetNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var AdjustPointsInPointSetNode = dbm.importClass("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode");
+	//"use strict";
+	
+	var AdjustPointsInPointSetNode = dbm.importClass("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode");
+	
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var KeyValuePropertyPair = dbm.importClass("com.developedbyme.flow.data.KeyValuePropertyPair");
+	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode::_init");
+		
+		this.superCall();
+		
+		this._anyUpdate = this.addProperty("anyUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._outputPointSet = this.createProperty("outputPointSet", null);
+		
+		this._pointAdjustments = ArrayHolder.create(true);
+		this.addDestroyableObject(this._pointAdjustments);
+		
+		this.createUpdateFunction("default", this._update, [this._anyUpdate], [this._outputPointSet]);
+		
+		return this;
+	};
+	
+	objectFunctions.setOutputPointSet = function(aPointSet) {
+		this._outputPointSet.setValue(aPointSet);
+		
+		return this;
+	};
+	
+	objectFunctions.addPointAdjustment = function(aIndex, aPoint) {
+		var newKeyValuePair = KeyValuePropertyPair.create(aIndex, aPoint);
+		this._anyUpdate.connectInput(newKeyValuePair.keyValue);
+		this._anyUpdate.connectInput(newKeyValuePair.dataValue);
+		newKeyValuePair.dataValue.setAlwaysUpdateFlow();
+		this._pointAdjustments.array.push(newKeyValuePair);
+		
+		return this;
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode::_update");
+		
+		var outputPointSet = this._outputPointSet.getValueWithoutFlow();
+		
+		var currentArray = this._pointAdjustments.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentReplacement = currentArray[i];
+			var index = currentReplacement.keyValue.getValueWithoutFlow();
+			var point = currentReplacement.dataValue.getValueWithoutFlow();
+			outputPointSet.pointsArray[index] = point;
+		}
+		
+		this._outputPointSet.setFlowAsUpdated(aFlowUpdateNumber);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._outputPointSet = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		var newNode = (new ClassReference()).init();
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode::_init");
+		
+		this.superCall();
+		
+		this._anyUpdate = this.addProperty("anyUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._outputPointSet = this.createProperty("outputPointSet", null);
+		
+		this._pointAdjustments = ArrayHolder.create(true);
+		this.addDestroyableObject(this._pointAdjustments);
+		
+		this.createUpdateFunction("default", this._update, [this._anyUpdate], [this._outputPointSet]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setOutputPointSet</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setOutputPointSet = function(aPointSet) {
+		this._outputPointSet.setValue(aPointSet);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addPointAdjustment</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addPointAdjustment = function(aIndex, aPoint) {
+		var newKeyValuePair = KeyValuePropertyPair.create(aIndex, aPoint);
+		this._anyUpdate.connectInput(newKeyValuePair.keyValue);
+		this._anyUpdate.connectInput(newKeyValuePair.dataValue);
+		newKeyValuePair.dataValue.setAlwaysUpdateFlow();
+		this._pointAdjustments.array.push(newKeyValuePair);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode::_update");
+		
+		var outputPointSet = this._outputPointSet.getValueWithoutFlow();
+		
+		var currentArray = this._pointAdjustments.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentReplacement = currentArray[i];
+			var index = currentReplacement.keyValue.getValueWithoutFlow();
+			var point = currentReplacement.dataValue.getValueWithoutFlow();
+			outputPointSet.pointsArray[index] = point;
+		}
+		
+		this._outputPointSet.setFlowAsUpdated(aFlowUpdateNumber);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._outputPointSet = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newNode = (new ClassReference()).init();
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

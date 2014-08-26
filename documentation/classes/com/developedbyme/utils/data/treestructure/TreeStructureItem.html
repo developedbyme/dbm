@@ -1,0 +1,874 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TreeStructureItem</h1>
+		<div class="classPath">com.developedbyme.utils.data.treestructure.TreeStructureItem</div>
+		<div class="classInheritance"></div>
+		<div class="description">A tree structure item.</div>
+		<div class="importSnippet">var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem", "com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	//"use strict";
+	
+	//Self reference
+	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	
+	//Error report
+	
+	//Dependencies
+	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
+	
+	//Utils
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	
+	//Constants
+	var TreeStructureItemTypes = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemTypes");
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::_init");
+		
+		this.superCall();
+		
+		this._extendedEvent = null;
+		this._children = NamedArray.create(false);
+		
+		this._type = TreeStructureItemTypes.ITEM;
+		this._name = null;
+		this._parent = null;
+		this._root = null;
+		this._attributes = null;
+		
+		return this;
+	}; //End function _init
+	
+	objectFunctions.getExtendedEvent = function() {
+		if(this._extendedEvent === null) {
+			this._extendedEvent = ExtendedEventController.create(this);
+			this.addDestroyableObject(this._extendedEvent);
+		}
+		
+		return this._extendedEvent;
+	};
+	
+	/**
+	 * Gets the name of the item.
+	 */
+	objectFunctions.getName = function() {
+		//console.log("getName");
+		return this._name;
+	}; //End function getName
+	
+	/**
+	 * Sets the name of the item.
+	 */
+	objectFunctions.setName = function(aName) {
+		//console.log("set name");
+		if(this._parent !== null) {
+			this._parent.changeChildName(this, aName);
+		}
+		else {
+			this._linkRegistration_setName(aName);
+		}
+	}; //End function set name
+	
+	objectFunctions.getAttribute = function(aName) {
+		if(this._attributes === null) {
+			//METODO: error message
+			return null;
+		}
+		if(this._attributes.select(aName)) {
+			return this._attributes.currentSelectedItem;
+		}
+		//METODO: error message
+		return null;
+	};
+	
+	objectFunctions.setAttribute = function(aName, aValue) {
+		if(this._attributes === null) {
+			this._attributes = NamedArray.create(false);
+			this.addDestroyableObject(this._attributes);
+		}
+		this._attributes.addObject(aName, aValue);
+	};
+	
+	objectFunctions.changeAttribute = function(aName, aValue) {
+		if(this._attributes === null) {
+			this._attributes = NamedArray.create(false);
+			this.addDestroyableObject(this._attributes);
+		}
+		if(this._attributes.hasObject(aName)) {
+			this._attributes.removeObject(aName);
+		}
+		this._attributes.addObject(aName, aValue);
+	};
+	
+	objectFunctions.hasAttribute = function(aName) {
+		return (this._attributes !== null &amp;&amp; this._attributes.hasObject(aName));
+	};
+	
+	objectFunctions.getInheritedAttribute = function(aName) {
+		var currentItem = this;
+		var debugCounter = 0;
+		while(currentItem !== null) {
+			if(debugCounter++ &gt; 1000) {
+				//METODO: error message
+				return null;
+			}
+			if(currentItem.hasAttribute(aName)) {
+				return currentItem.getAttribute(aName);
+			}
+			
+			currentItem = currentItem.getParent();
+		}
+		//METODO: warning message
+		return null;
+	};
+	
+	/**
+	 * Gets the path of the item.
+	 */
+	objectFunctions.getPath = function() {
+		//console.log("getPath");
+		var currentItem = this;
+		var returnArray = new Array();
+		while(currentItem !== null) {
+			returnArray.unshift(currentItem.getName());
+			currentItem = currentItem.getParent();
+		}
+		return returnArray.join("/");
+	}; //End function getPath
+	
+	/**
+	 * Gets the type of the item.
+	 */
+	objectFunctions.getType = function() {
+		//console.log("getType");
+		return this._type;
+	}; //End function getType
+	
+	/**
+	 * Gets the parent of this item.
+	 */
+	objectFunctions.getParent = function() {
+		//console.log("getParent");
+		return this._parent;
+	}; //End function getParent
+	
+	/**
+	 * Gets the root of this tree structure.
+	 */
+	objectFunctions.getRoot = function() {
+		//console.log("getRoot");
+		return this._root;
+	}; //End function getRoot
+	
+	/**
+	 * Gets the item is a link or not
+	 */
+	objectFunctions.isLink = function() {
+		//console.log("isLink");
+		return (this._type === TreeStructureItemTypes.LINK);
+	}; //End function isLink
+	
+	/**
+	 * Gets the names of the childs.
+	 */
+	objectFunctions.getChildNames = function() {
+		//console.log("getChildNames");
+		return this._children.getNamesArray();
+	}; //End function getChildNames
+	
+	/**
+	 * Gets the children.
+	 */
+	objectFunctions.getChildren = function() {
+		//console.log("getChildren");
+		return this._children.getObjectsArray();
+	}; //End function getChildren
+	
+	/**
+	 * Gets the number of children directly 1 level under this item.
+	 *
+	 * @return	Number	The number of children.
+	 */
+	objectFunctions.getNumberOfChildren = function() {
+		return this._children.getObjectsArray().length;
+	};
+	
+	/**
+	 * Sets the name of the item.
+	 */
+	objectFunctions._linkRegistration_setName = function(aName) {
+		//console.log("setName");
+		var oldName = this._name;
+		this._name = aName;
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.NAME_CHANGED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.NAME_CHANGED, {"oldValue": oldName, "newValue": aName});
+		}
+		
+		return this;
+	}; //End function setName
+	
+	/**
+	 * Sets the parent of this item.
+	 */
+	objectFunctions._linkRegistration_setParent = function(aParent) {
+		//console.log("setParent");
+		if(this._parent !== null) {
+			this._parent.removeChild(this);
+		}
+		this._parent = aParent;
+		this._internalFunctionality_setRoot(aParent.getRoot());
+	}; //End function setParent
+	
+	/**
+	 * Sets the root
+	 */
+	objectFunctions._internalFunctionality_setRoot = function(aRoot) {
+		//console.log("setRoot");
+		this._root = aRoot;
+		
+		var currentArray = this._children.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			currentObject._internalFunctionality_setRoot(aRoot);
+		}
+	}; //End function _internalFunctionality_setRoot
+	
+	/**
+	 * Removes the parent of this item.
+	 */
+	objectFunctions._linkRegistration_removeParent = function() {
+		//console.log("removeParent");
+		this._parent = null;
+		this._internalFunctionality_setRoot(null);
+	}; //End function _linkRegistration_removeParent
+	
+	/**
+	 * Adds a child.
+	 */
+	objectFunctions.addChild = function(aItem) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::addChild");
+		//console.log(aItem);
+		aItem.retain();
+		aItem._linkRegistration_setParent(this);
+		var childName = aItem.getName();
+		if(this._children.select(childName)) {
+			this._children.currentSelectedItem.releaseAndDestroy();
+			this._children.removeObject(childName);
+		}
+		this._children.addObject(childName, aItem);
+	}; //End function addChild
+	
+	/**
+	 * Removes a child.
+	 */
+	objectFunctions.removeChild = function(aItem) {
+		//console.log("removeChild");
+		var childName = this._children.identifyObject(aItem);
+		if(childName !== null) {
+			aItem._linkRegistration_removeParent();
+			aItem.releaseAndDestroy();
+			this._children.removeObject(childName);
+		}
+	}; //End function removeChild
+	
+	/**
+	 * Changes the name of a child.
+	 */
+	objectFunctions.changeChildName = function(aItem, aNewName) {
+		//console.log("changeChildName");
+		var childName = this._children.identifyObject(aItem);
+		if(childName !== null) {
+			
+			this._children.removeObject(childName);
+			aItem._linkRegistration_setName(aNewName);
+			this._children.addObject(aNewName, aItem);
+			
+		}
+	}; //End function changeChildName
+	
+	/**
+	 * Gets a child by it's name.
+	 */
+	objectFunctions.getChildByName = function(aName) {
+		//console.log("getChildByName");
+		if(this._children.select(aName)) {
+			return this._children.currentSelectedItem;
+		}
+		return null;
+	}; //End function getChildByName
+	
+	/**
+	 * Resolves a path from this item.
+	 */
+	objectFunctions.resolvePath = function(aPath) {
+		//console.log("resolvePath");
+		return aPath;
+	}; //End function resolvePath
+	
+	/**
+	 * Traces out the full structure.
+	 */
+	objectFunctions.debugTraceStructure = function(aTabString, aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		console.log(aTabString + this.toString() + "\n");
+		
+		var newTabString = aTabString + " ";
+		
+		this.debugTraceChildren(newTabString, aResolveLinksLevel);
+	}; //End function debugTraceStructure
+	
+	/**
+	 * Traces out the full structure.
+	 */
+	objectFunctions.debugTraceChildren = function(aTabString, aResolveLinksLevel) {
+		
+		var currentArray = this._children.getObjectsArray();
+		var theLength = currentArray.length;
+		for (var i = 0; i &lt; theLength; i++) {
+			var currentChild = currentArray[i];
+			currentChild.debugTraceStructure(aTabString, aResolveLinksLevel);
+		}
+	}; //End function debugTraceChildren
+	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("name: " + this._name);
+		aReturnArray.push("type: " + this._type);
+		if(this.data !== null &amp;&amp; this.data !== undefined) {
+			aReturnArray.push("data: " + this.data.toString());
+		}
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case GenericExtendedEventIds.NAME_CHANGED:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	};
+	
+	/**
+	 * Destroys all the data of the object.
+	 */
+	objectFunctions.performDestroy = function() {
+		
+		if(this._parent !== null) {
+			this._parent.removeChild(this);
+		}
+		if(this._children) {
+			ClassReference.releaseAndDestroyArrayIfExists(this._children.objectsArray);
+		}
+		
+		if(this.ownsData) {
+			ClassReference.softDestroyIfExists(this.data);
+		}
+		
+		ClassReference.destroyIfExists(this._children);
+		
+		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_root":
+			case "_parent":
+				return false;
+		}
+		return this.superCall();
+	};
+	
+	/**
+	 * Sets all the references to null
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._parent = null;
+		this._root = null;
+		this._children = null;
+		this._extendedEvent = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a new item.
+	 */
+	staticFunctions.create = function(aName) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::create");
+		var newItem = (new TreeStructureItem()).init();
+		newItem.setName(aName);
+		return newItem;
+	}; //End function create
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::_init");
+		
+		this.superCall();
+		
+		this._extendedEvent = null;
+		this._children = NamedArray.create(false);
+		
+		this._type = TreeStructureItemTypes.ITEM;
+		this._name = null;
+		this._parent = null;
+		this._root = null;
+		this._attributes = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getExtendedEvent = function() {
+		if(this._extendedEvent === null) {
+			this._extendedEvent = ExtendedEventController.create(this);
+			this.addDestroyableObject(this._extendedEvent);
+		}
+		
+		return this._extendedEvent;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the name of the item.</div>
+			<div class="code">objectFunctions.getName = function() {
+		//console.log("getName");
+		return this._name;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets the name of the item.</div>
+			<div class="code">objectFunctions.setName = function(aName) {
+		//console.log("set name");
+		if(this._parent !== null) {
+			this._parent.changeChildName(this, aName);
+		}
+		else {
+			this._linkRegistration_setName(aName);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getAttribute = function(aName) {
+		if(this._attributes === null) {
+			//METODO: error message
+			return null;
+		}
+		if(this._attributes.select(aName)) {
+			return this._attributes.currentSelectedItem;
+		}
+		//METODO: error message
+		return null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAttribute = function(aName, aValue) {
+		if(this._attributes === null) {
+			this._attributes = NamedArray.create(false);
+			this.addDestroyableObject(this._attributes);
+		}
+		this._attributes.addObject(aName, aValue);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">changeAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.changeAttribute = function(aName, aValue) {
+		if(this._attributes === null) {
+			this._attributes = NamedArray.create(false);
+			this.addDestroyableObject(this._attributes);
+		}
+		if(this._attributes.hasObject(aName)) {
+			this._attributes.removeObject(aName);
+		}
+		this._attributes.addObject(aName, aValue);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">hasAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.hasAttribute = function(aName) {
+		return (this._attributes !== null &amp;&amp; this._attributes.hasObject(aName));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getInheritedAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getInheritedAttribute = function(aName) {
+		var currentItem = this;
+		var debugCounter = 0;
+		while(currentItem !== null) {
+			if(debugCounter++ &gt; 1000) {
+				//METODO: error message
+				return null;
+			}
+			if(currentItem.hasAttribute(aName)) {
+				return currentItem.getAttribute(aName);
+			}
+			
+			currentItem = currentItem.getParent();
+		}
+		//METODO: warning message
+		return null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getPath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the path of the item.</div>
+			<div class="code">objectFunctions.getPath = function() {
+		//console.log("getPath");
+		var currentItem = this;
+		var returnArray = new Array();
+		while(currentItem !== null) {
+			returnArray.unshift(currentItem.getName());
+			currentItem = currentItem.getParent();
+		}
+		return returnArray.join("/");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the type of the item.</div>
+			<div class="code">objectFunctions.getType = function() {
+		//console.log("getType");
+		return this._type;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the parent of this item.</div>
+			<div class="code">objectFunctions.getParent = function() {
+		//console.log("getParent");
+		return this._parent;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getRoot</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the root of this tree structure.</div>
+			<div class="code">objectFunctions.getRoot = function() {
+		//console.log("getRoot");
+		return this._root;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">isLink</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the item is a link or not</div>
+			<div class="code">objectFunctions.isLink = function() {
+		//console.log("isLink");
+		return (this._type === TreeStructureItemTypes.LINK);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getChildNames</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the names of the childs.</div>
+			<div class="code">objectFunctions.getChildNames = function() {
+		//console.log("getChildNames");
+		return this._children.getNamesArray();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getChildren</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the children.</div>
+			<div class="code">objectFunctions.getChildren = function() {
+		//console.log("getChildren");
+		return this._children.getObjectsArray();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getNumberOfChildren</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the number of children directly 1 level under this item.</div>
+			<div class="code">objectFunctions.getNumberOfChildren = function() {
+		return this._children.getObjectsArray().length;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_linkRegistration_setName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets the name of the item.</div>
+			<div class="code">objectFunctions._linkRegistration_setName = function(aName) {
+		//console.log("setName");
+		var oldName = this._name;
+		this._name = aName;
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.NAME_CHANGED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.NAME_CHANGED, {"oldValue": oldName, "newValue": aName});
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_linkRegistration_setParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets the parent of this item.</div>
+			<div class="code">objectFunctions._linkRegistration_setParent = function(aParent) {
+		//console.log("setParent");
+		if(this._parent !== null) {
+			this._parent.removeChild(this);
+		}
+		this._parent = aParent;
+		this._internalFunctionality_setRoot(aParent.getRoot());
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_setRoot</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets the root</div>
+			<div class="code">objectFunctions._internalFunctionality_setRoot = function(aRoot) {
+		//console.log("setRoot");
+		this._root = aRoot;
+		
+		var currentArray = this._children.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			currentObject._internalFunctionality_setRoot(aRoot);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_linkRegistration_removeParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Removes the parent of this item.</div>
+			<div class="code">objectFunctions._linkRegistration_removeParent = function() {
+		//console.log("removeParent");
+		this._parent = null;
+		this._internalFunctionality_setRoot(null);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addChild</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Adds a child.</div>
+			<div class="code">objectFunctions.addChild = function(aItem) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::addChild");
+		//console.log(aItem);
+		aItem.retain();
+		aItem._linkRegistration_setParent(this);
+		var childName = aItem.getName();
+		if(this._children.select(childName)) {
+			this._children.currentSelectedItem.releaseAndDestroy();
+			this._children.removeObject(childName);
+		}
+		this._children.addObject(childName, aItem);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeChild</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Removes a child.</div>
+			<div class="code">objectFunctions.removeChild = function(aItem) {
+		//console.log("removeChild");
+		var childName = this._children.identifyObject(aItem);
+		if(childName !== null) {
+			aItem._linkRegistration_removeParent();
+			aItem.releaseAndDestroy();
+			this._children.removeObject(childName);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">changeChildName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Changes the name of a child.</div>
+			<div class="code">objectFunctions.changeChildName = function(aItem, aNewName) {
+		//console.log("changeChildName");
+		var childName = this._children.identifyObject(aItem);
+		if(childName !== null) {
+			
+			this._children.removeObject(childName);
+			aItem._linkRegistration_setName(aNewName);
+			this._children.addObject(aNewName, aItem);
+			
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getChildByName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets a child by it's name.</div>
+			<div class="code">objectFunctions.getChildByName = function(aName) {
+		//console.log("getChildByName");
+		if(this._children.select(aName)) {
+			return this._children.currentSelectedItem;
+		}
+		return null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">resolvePath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Resolves a path from this item.</div>
+			<div class="code">objectFunctions.resolvePath = function(aPath) {
+		//console.log("resolvePath");
+		return aPath;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">debugTraceStructure</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Traces out the full structure.</div>
+			<div class="code">objectFunctions.debugTraceStructure = function(aTabString, aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		console.log(aTabString + this.toString() + "\n");
+		
+		var newTabString = aTabString + " ";
+		
+		this.debugTraceChildren(newTabString, aResolveLinksLevel);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">debugTraceChildren</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Traces out the full structure.</div>
+			<div class="code">objectFunctions.debugTraceChildren = function(aTabString, aResolveLinksLevel) {
+		
+		var currentArray = this._children.getObjectsArray();
+		var theLength = currentArray.length;
+		for (var i = 0; i &lt; theLength; i++) {
+			var currentChild = currentArray[i];
+			currentChild.debugTraceStructure(aTabString, aResolveLinksLevel);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("name: " + this._name);
+		aReturnArray.push("type: " + this._type);
+		if(this.data !== null &amp;&amp; this.data !== undefined) {
+			aReturnArray.push("data: " + this.data.toString());
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case GenericExtendedEventIds.NAME_CHANGED:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Destroys all the data of the object.</div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		if(this._parent !== null) {
+			this._parent.removeChild(this);
+		}
+		if(this._children) {
+			ClassReference.releaseAndDestroyArrayIfExists(this._children.objectsArray);
+		}
+		
+		if(this.ownsData) {
+			ClassReference.softDestroyIfExists(this.data);
+		}
+		
+		ClassReference.destroyIfExists(this._children);
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_root":
+			case "_parent":
+				return false;
+		}
+		return this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._parent = null;
+		this._root = null;
+		this._children = null;
+		this._extendedEvent = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new item.</div>
+			<div class="code">staticFunctions.create = function(aName) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::create");
+		var newItem = (new TreeStructureItem()).init();
+		newItem.setName(aName);
+		return newItem;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,399 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>Workspace</h1>
+		<div class="classPath">com.developedbyme.workspace.gui.Workspace</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var Workspace = dbm.importClass("com.developedbyme.workspace.gui.Workspace");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.workspace.gui.Workspace", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.workspace.gui.Workspace");
+	//"use strict";
+	
+	//Self reference
+	var Workspace = dbm.importClass("com.developedbyme.workspace.gui.Workspace");
+	
+	//Error report
+	
+	//Dependencies
+	var TouchOrMouseDetector = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector");
+	var GenericClickTool = dbm.importClass("com.developedbyme.workspace.gui.tools.generic.GenericClickTool");
+	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
+	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
+	var RectangleFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
+	var LayoutController = dbm.importClass("com.developedbyme.workspace.gui.LayoutController");
+	var BaseWorkspacePart = dbm.importClass("com.developedbyme.workspace.gui.parts.BaseWorkspacePart");
+	
+	//Utils
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
+	
+	//Constants
+	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
+	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.workspace.gui.Workspace::_init");
+		
+		this.superCall();
+		
+		this._currentTool = GenericClickTool.create();
+		this._availableTools = new Array();
+		this._currentSelection = new Array();
+		this._isInteracting = false;
+		
+		this._layoutController = this.addDestroyableObject(LayoutController.create());
+		this._layoutArea = BaseWorkspacePart.create();
+		
+		this._touchDetector = (new TouchOrMouseDetector()).init();
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this._startTouch, [GetVariableObject.createSelectDataCommand()]));
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.UPDATE, CallFunctionCommand.createCommand(this, this._updateTouch, [GetVariableObject.createSelectDataCommand()]));
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.END, CallFunctionCommand.createCommand(this, this._endTouch, [GetVariableObject.createSelectDataCommand()]));
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.CANCEL, CallFunctionCommand.createCommand(this, this._cancelTouch, [GetVariableObject.createSelectDataCommand()]));
+		
+		this._workspaceAreaRectangleGenerator = RectangleFromValuesNode.create(0, 0, 100, 100);
+		
+		var rootNode = this._layoutController.getTreeStructure().getRoot();
+		this._layoutArea.setTreeStructureItem(rootNode);
+		rootNode.getAttribute("properties").setPropertyInput("inputArea", this._workspaceAreaRectangleGenerator.getProperty("outputRectangle"));
+		rootNode.getAttribute("properties").setPropertyInput("parent", this._element);
+		
+		this.setDynamicVariable("layoutController", this._layoutController);
+		this.setDynamicVariable("layoutArea", this._layoutArea);
+		
+		return this;
+	};
+	
+	objectFunctions.setElement = function(aElement) {
+		
+		this.superCall(aElement);
+		
+		this._touchDetector.setElement(aElement);
+		this._touchDetector.activate();
+		
+		return this;
+	};
+	
+	objectFunctions.linkElementSizeToWorkspaceArea = function() {
+		this._workspaceAreaRectangleGenerator.setPropertyInput("width", this.getProperty("width"));
+		this._workspaceAreaRectangleGenerator.setPropertyInput("height", this.getProperty("height"));
+		
+		return this;
+	};
+	
+	objectFunctions.setWorkspaceSize = function(aWidth, aHeight) {
+		this._workspaceAreaRectangleGenerator.setPropertyValue("width", aWidth);
+		this._workspaceAreaRectangleGenerator.setPropertyValue("height", aHeight);
+		
+		return this;
+	};
+	
+	objectFunctions.addPart = function(aPath, aPart) {
+		//console.log("com.developedbyme.workspace.gui.Workspace::addPart");
+		
+		this._layoutController.addPart(aPath, aPart);
+	};
+	
+	objectFunctions.addToSelection = function(aObject) {
+		console.log("com.developedbyme.workspace.gui.Workspace::addToSelection");
+	};
+	
+	objectFunctions.removeFromSelection = function(aObject) {
+		console.log("com.developedbyme.workspace.gui.Workspace::removeFromSelection");
+	};
+	
+	objectFunctions.setSelection = function(aObjectsArray) {
+		console.log("com.developedbyme.workspace.gui.Workspace::setSelection");
+	};
+	
+	objectFunctions._startTouch = function(aTouchData) {
+		console.log("com.developedbyme.workspace.gui.Workspace::_startTouch");
+		var result = this._currentTool.startTouch(this, this._currentSelection);
+		console.log(result);
+		
+		if(result) this._touchDetector.stopEvent();
+	};
+	
+	objectFunctions._updateTouch = function(aTouchData) {
+		console.log("com.developedbyme.workspace.gui.Workspace::_updateTouch");
+	};
+	
+	objectFunctions._endTouch = function(aTouchData) {
+		console.log("com.developedbyme.workspace.gui.Workspace::_endTouch");
+	};
+	
+	objectFunctions._cancelTouch = function(aTouchData) {
+		console.log("com.developedbyme.workspace.gui.Workspace::_cancelTouch");
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputArea = null;
+		this._graphicsUpdate = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aAttributes) {
+		return ClassReference._create(ClassReference, aAttributes);
+	};
+	
+	staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes) {
+		return ClassReference._createOnParent(ClassReference, aParentOrDocument, aAddToParent, aAttributes);
+	};
+	
+	staticFunctions._create = function(aClass, aAttributes) {
+		var newNode = (new aClass()).init();
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createDiv(aAttributes));
+		
+		return newNode;
+	};
+	
+	staticFunctions._createOnParent = function(aClass, aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = (new aClass()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createDiv(aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.workspace.gui.Workspace::_init");
+		
+		this.superCall();
+		
+		this._currentTool = GenericClickTool.create();
+		this._availableTools = new Array();
+		this._currentSelection = new Array();
+		this._isInteracting = false;
+		
+		this._layoutController = this.addDestroyableObject(LayoutController.create());
+		this._layoutArea = BaseWorkspacePart.create();
+		
+		this._touchDetector = (new TouchOrMouseDetector()).init();
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this._startTouch, [GetVariableObject.createSelectDataCommand()]));
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.UPDATE, CallFunctionCommand.createCommand(this, this._updateTouch, [GetVariableObject.createSelectDataCommand()]));
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.END, CallFunctionCommand.createCommand(this, this._endTouch, [GetVariableObject.createSelectDataCommand()]));
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.CANCEL, CallFunctionCommand.createCommand(this, this._cancelTouch, [GetVariableObject.createSelectDataCommand()]));
+		
+		this._workspaceAreaRectangleGenerator = RectangleFromValuesNode.create(0, 0, 100, 100);
+		
+		var rootNode = this._layoutController.getTreeStructure().getRoot();
+		this._layoutArea.setTreeStructureItem(rootNode);
+		rootNode.getAttribute("properties").setPropertyInput("inputArea", this._workspaceAreaRectangleGenerator.getProperty("outputRectangle"));
+		rootNode.getAttribute("properties").setPropertyInput("parent", this._element);
+		
+		this.setDynamicVariable("layoutController", this._layoutController);
+		this.setDynamicVariable("layoutArea", this._layoutArea);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setElement</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setElement = function(aElement) {
+		
+		this.superCall(aElement);
+		
+		this._touchDetector.setElement(aElement);
+		this._touchDetector.activate();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">linkElementSizeToWorkspaceArea</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.linkElementSizeToWorkspaceArea = function() {
+		this._workspaceAreaRectangleGenerator.setPropertyInput("width", this.getProperty("width"));
+		this._workspaceAreaRectangleGenerator.setPropertyInput("height", this.getProperty("height"));
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setWorkspaceSize</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setWorkspaceSize = function(aWidth, aHeight) {
+		this._workspaceAreaRectangleGenerator.setPropertyValue("width", aWidth);
+		this._workspaceAreaRectangleGenerator.setPropertyValue("height", aHeight);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addPart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addPart = function(aPath, aPart) {
+		//console.log("com.developedbyme.workspace.gui.Workspace::addPart");
+		
+		this._layoutController.addPart(aPath, aPart);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addToSelection</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addToSelection = function(aObject) {
+		console.log("com.developedbyme.workspace.gui.Workspace::addToSelection");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeFromSelection</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removeFromSelection = function(aObject) {
+		console.log("com.developedbyme.workspace.gui.Workspace::removeFromSelection");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setSelection</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setSelection = function(aObjectsArray) {
+		console.log("com.developedbyme.workspace.gui.Workspace::setSelection");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_startTouch</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._startTouch = function(aTouchData) {
+		console.log("com.developedbyme.workspace.gui.Workspace::_startTouch");
+		var result = this._currentTool.startTouch(this, this._currentSelection);
+		console.log(result);
+		
+		if(result) this._touchDetector.stopEvent();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_updateTouch</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._updateTouch = function(aTouchData) {
+		console.log("com.developedbyme.workspace.gui.Workspace::_updateTouch");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_endTouch</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._endTouch = function(aTouchData) {
+		console.log("com.developedbyme.workspace.gui.Workspace::_endTouch");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_cancelTouch</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._cancelTouch = function(aTouchData) {
+		console.log("com.developedbyme.workspace.gui.Workspace::_cancelTouch");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputArea = null;
+		this._graphicsUpdate = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aAttributes) {
+		return ClassReference._create(ClassReference, aAttributes);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createOnParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes) {
+		return ClassReference._createOnParent(ClassReference, aParentOrDocument, aAddToParent, aAttributes);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions._create = function(aClass, aAttributes) {
+		var newNode = (new aClass()).init();
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createDiv(aAttributes));
+		
+		return newNode;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createOnParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions._createOnParent = function(aClass, aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = (new aClass()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createDiv(aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

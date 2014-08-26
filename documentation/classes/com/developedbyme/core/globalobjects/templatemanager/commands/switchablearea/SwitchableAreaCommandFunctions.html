@@ -1,0 +1,109 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>SwitchableAreaCommandFunctions</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var SwitchableAreaCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions");
+	
+	//Self reference
+	var SwitchableAreaCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var InDomSwitchableArea = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea");
+	var SwitchableAreaHolder = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaHolder");
+	var BooleanSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode");
+	
+	//Utils
+	
+	//Constants
+	
+	staticFunctions.createInDomSwitchableArea = function(aHolder) {
+		console.log("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions::visibleAreaFromBooleanProperty");
+		console.log(aHolder);
+		var newInDomSwitchableArea = InDomSwitchableArea.create();
+		
+		aHolder.setSwitchableArea(newInDomSwitchableArea);
+	};
+	
+	staticFunctions.addArea = function(aObject, aName, aOwnsObject) {
+		var parentAreaHolder = dbm.singletons.dbmHtmlDomManager.getParentControllerForHtmlElementByClass(aObject.getElement(), SwitchableAreaHolder);
+		
+		if(parentAreaHolder === null) {
+			//METODO: error report
+			return null;
+		}
+		
+		parentAreaHolder.getSwitchableArea().addArea(aName, aObject, aOwnsObject);
+	};
+	
+	staticFunctions.visibleAreaFromBooleanProperty = function(aHolder, aProperty, aTrueValue, aFalseValue) {
+		console.log("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions::visibleAreaFromBooleanProperty");
+		console.log(aHolder, aProperty, aTrueValue, aFalseValue);
+		var switchableArea = aHolder.getSwitchableArea();
+		
+		var switchNode = switchableArea.addDestroyableObject(BooleanSwitchedNode.create(aProperty, aTrueValue, aFalseValue));
+		switchableArea.setPropertyInput("visibleArea", switchNode.getProperty("outputValue"));
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createInDomSwitchableArea</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createInDomSwitchableArea = function(aHolder) {
+		console.log("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions::visibleAreaFromBooleanProperty");
+		console.log(aHolder);
+		var newInDomSwitchableArea = InDomSwitchableArea.create();
+		
+		aHolder.setSwitchableArea(newInDomSwitchableArea);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addArea</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.addArea = function(aObject, aName, aOwnsObject) {
+		var parentAreaHolder = dbm.singletons.dbmHtmlDomManager.getParentControllerForHtmlElementByClass(aObject.getElement(), SwitchableAreaHolder);
+		
+		if(parentAreaHolder === null) {
+			//METODO: error report
+			return null;
+		}
+		
+		parentAreaHolder.getSwitchableArea().addArea(aName, aObject, aOwnsObject);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">visibleAreaFromBooleanProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.visibleAreaFromBooleanProperty = function(aHolder, aProperty, aTrueValue, aFalseValue) {
+		console.log("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions::visibleAreaFromBooleanProperty");
+		console.log(aHolder, aProperty, aTrueValue, aFalseValue);
+		var switchableArea = aHolder.getSwitchableArea();
+		
+		var switchNode = switchableArea.addDestroyableObject(BooleanSwitchedNode.create(aProperty, aTrueValue, aFalseValue));
+		switchableArea.setPropertyInput("visibleArea", switchNode.getProperty("outputValue"));
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

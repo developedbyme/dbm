@@ -1,0 +1,180 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>EncodingDataObject</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var EncodingDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject");
+	
+	//Self reference
+	var EncodingDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject::_init");
+		
+		this.superCall();
+		
+		this.name = null;
+		this.type = null;
+		this.dataType = null;
+		this.parentApplyType = null;
+		this.attributes = new Array();
+		this.nodeValue = null;
+		this.parentNode = null;
+		
+		return this;
+	};
+	
+	staticFunctions.create = function() {
+		var newEncodingDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		return newEncodingDataObject;
+	};
+	
+	staticFunctions.createSimpleValue = function(aDataType, aValue, aParentNode) {
+		var newEncodingDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		newEncodingDataObject.type = "simpleValue";
+		newEncodingDataObject.dataType = aDataType;
+		newEncodingDataObject.nodeValue = aValue;
+		newEncodingDataObject.parentNode = aParentNode;
+		aParentNode.nodeValue.push(newEncodingDataObject);
+		
+		return newEncodingDataObject;
+	};
+	
+	staticFunctions.createAttribute = function(aName, aValue, aParentNode) {
+		var newEncodingDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		newEncodingDataObject.type = "attribute";
+		newEncodingDataObject.dataType = "string";
+		newEncodingDataObject.name = aName;
+		newEncodingDataObject.nodeValue = aValue;
+		newEncodingDataObject.parentNode = aParentNode;
+		aParentNode.attributes.push(newEncodingDataObject);
+		
+		return newEncodingDataObject;
+	};
+	
+	staticFunctions.createComplexValue = function(aDataType, aParentNode) {
+		var newEncodingDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		newEncodingDataObject.type = "complexValue";
+		newEncodingDataObject.dataType = aDataType;
+		newEncodingDataObject.nodeValue = new Array();
+		newEncodingDataObject.parentNode = aParentNode;
+		aParentNode.nodeValue.push(newEncodingDataObject);
+		
+		return newEncodingDataObject;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject::_init");
+		
+		this.superCall();
+		
+		this.name = null;
+		this.type = null;
+		this.dataType = null;
+		this.parentApplyType = null;
+		this.attributes = new Array();
+		this.nodeValue = null;
+		this.parentNode = null;
+		
+		return this;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newEncodingDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		return newEncodingDataObject;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createSimpleValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createSimpleValue = function(aDataType, aValue, aParentNode) {
+		var newEncodingDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		newEncodingDataObject.type = "simpleValue";
+		newEncodingDataObject.dataType = aDataType;
+		newEncodingDataObject.nodeValue = aValue;
+		newEncodingDataObject.parentNode = aParentNode;
+		aParentNode.nodeValue.push(newEncodingDataObject);
+		
+		return newEncodingDataObject;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createAttribute = function(aName, aValue, aParentNode) {
+		var newEncodingDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		newEncodingDataObject.type = "attribute";
+		newEncodingDataObject.dataType = "string";
+		newEncodingDataObject.name = aName;
+		newEncodingDataObject.nodeValue = aValue;
+		newEncodingDataObject.parentNode = aParentNode;
+		aParentNode.attributes.push(newEncodingDataObject);
+		
+		return newEncodingDataObject;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createComplexValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createComplexValue = function(aDataType, aParentNode) {
+		var newEncodingDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		newEncodingDataObject.type = "complexValue";
+		newEncodingDataObject.dataType = aDataType;
+		newEncodingDataObject.nodeValue = new Array();
+		newEncodingDataObject.parentNode = aParentNode;
+		aParentNode.nodeValue.push(newEncodingDataObject);
+		
+		return newEncodingDataObject;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

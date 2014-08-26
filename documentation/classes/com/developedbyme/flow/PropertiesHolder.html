@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>PropertiesHolder</h1>
+		<div class="classPath">com.developedbyme.flow.PropertiesHolder</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.PropertiesHolder", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.PropertiesHolder");
+	//"use strict";
+	
+	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.PropertiesHolder::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	staticFunctions.create = function(aProperties) {
+		//console.log("com.developedbyme.flow.PropertiesHolder::create");
+		var newNode = (new ClassReference()).init();
+		if(VariableAliases.isSet(aProperties)) {
+			for(var objectName in aProperties) {
+				newNode.createProperty(objectName, aProperties[objectName]);
+			}
+		}
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.PropertiesHolder::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aProperties) {
+		//console.log("com.developedbyme.flow.PropertiesHolder::create");
+		var newNode = (new ClassReference()).init();
+		if(VariableAliases.isSet(aProperties)) {
+			for(var objectName in aProperties) {
+				newNode.createProperty(objectName, aProperties[objectName]);
+			}
+		}
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

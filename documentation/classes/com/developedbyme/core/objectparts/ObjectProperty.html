@@ -1,0 +1,356 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ObjectProperty</h1>
+		<div class="classPath">com.developedbyme.core.objectparts.ObjectProperty</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.objectparts.ObjectProperty");
+	//"use strict";
+	
+	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
+	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
+	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_init");
+		
+		this.superCall();
+		this._isOutput = true;
+		this._objectProperties = new Array();
+		
+		return this;
+	};
+	
+	objectFunctions.isOutput = function() {
+		return this._isOutput;
+	};
+	
+	objectFunctions.setValue = function(aValue) {
+		
+	};
+	
+	objectFunctions.setup = function(aObject) {
+		this._value = aObject;
+		return this;
+	};
+	
+	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::setValueWithFlow");
+		this._flowUpdateNumber = aFlowUpdateNumber;
+		this._status = FlowStatusTypes.UPDATED;
+	};
+	
+	objectFunctions._linkRegistration_addObjectProperty = function(aProperty) {
+		this._objectProperties.push(aProperty);
+	};
+	
+	objectFunctions._linkRegistration_removeObjectProperty = function(aProperty) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
+		var objectIndex = ArrayFunctions.indexOfInArray(this._objectProperties, aProperty);
+		if(objectIndex !== -1) {
+			this._objectProperties.splice(objectIndex, 1);
+		}
+		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
+	};
+	
+	objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
+		if(!this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				if(currentObject.getStatus === undefined || currentObject.getStatus() === FlowStatusTypes.UPDATED) {
+					aReturnArray.push(currentObject);
+				}
+			}
+		}
+		this.superCall(aReturnArray);
+	};
+	
+	objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
+		if(this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				if(currentObject.getStatus === undefined || currentObject.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
+					aReturnArray.push(currentObject);
+				}
+			}
+		}
+		this.superCall(aReturnArray);
+	};
+	
+	objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllOutputConnections");
+		//console.log(this._isOutput, this._objectProperties);
+		
+		if(!this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				aReturnArray.push(currentObject);
+			}
+		}
+		else {
+			this.superCall(aReturnArray);
+		}
+	};
+	
+	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllInputConnections");
+		
+		if(this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				aReturnArray.push(currentObject);
+			}
+		}
+		else {
+			this.superCall(aReturnArray);
+		}
+	};
+	
+	objectFunctions.performDestroy = function() {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
+		//console.log(this.toString());
+		
+		if(this._objectProperties !== null) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				currentObject._linkRegistration_removeObjectInputConnection();
+			}
+			currentArray.splice(0, currentArrayLength);
+		}
+		
+		this.superCall();
+		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._objectProperties = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aObject) {
+		var newObjectProperty = ClassReference._createAndInitClass(ClassReference);
+		newObjectProperty.setup(aObject);
+		return newObjectProperty;
+	};
+	
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_init");
+		
+		this.superCall();
+		this._isOutput = true;
+		this._objectProperties = new Array();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">isOutput</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.isOutput = function() {
+		return this._isOutput;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setValue = function(aValue) {
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setup = function(aObject) {
+		this._value = aObject;
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setValueWithFlow</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::setValueWithFlow");
+		this._flowUpdateNumber = aFlowUpdateNumber;
+		this._status = FlowStatusTypes.UPDATED;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_linkRegistration_addObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._linkRegistration_addObjectProperty = function(aProperty) {
+		this._objectProperties.push(aProperty);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_linkRegistration_removeObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._linkRegistration_removeObjectProperty = function(aProperty) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
+		var objectIndex = ArrayFunctions.indexOfInArray(this._objectProperties, aProperty);
+		if(objectIndex !== -1) {
+			this._objectProperties.splice(objectIndex, 1);
+		}
+		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">fillWithCleanOutputConnections</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
+		if(!this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				if(currentObject.getStatus === undefined || currentObject.getStatus() === FlowStatusTypes.UPDATED) {
+					aReturnArray.push(currentObject);
+				}
+			}
+		}
+		this.superCall(aReturnArray);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">fillWithDirtyInputConnections</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
+		if(this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				if(currentObject.getStatus === undefined || currentObject.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
+					aReturnArray.push(currentObject);
+				}
+			}
+		}
+		this.superCall(aReturnArray);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">fillWithAllOutputConnections</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllOutputConnections");
+		//console.log(this._isOutput, this._objectProperties);
+		
+		if(!this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				aReturnArray.push(currentObject);
+			}
+		}
+		else {
+			this.superCall(aReturnArray);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">fillWithAllInputConnections</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllInputConnections");
+		
+		if(this._isOutput) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				aReturnArray.push(currentObject);
+			}
+		}
+		else {
+			this.superCall(aReturnArray);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		//console.log("com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
+		//console.log(this.toString());
+		
+		if(this._objectProperties !== null) {
+			var currentArray = this._objectProperties;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				currentObject._linkRegistration_removeObjectInputConnection();
+			}
+			currentArray.splice(0, currentArrayLength);
+		}
+		
+		this.superCall();
+		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._objectProperties = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aObject) {
+		var newObjectProperty = ClassReference._createAndInitClass(ClassReference);
+		newObjectProperty.setup(aObject);
+		return newObjectProperty;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

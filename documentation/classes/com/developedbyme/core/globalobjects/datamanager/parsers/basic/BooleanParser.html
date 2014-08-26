@@ -1,0 +1,105 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>BooleanParser</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.datamanager.parsers.basic.BooleanParser</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var BooleanParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.BooleanParser");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.BooleanParser", "com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.BooleanParser");
+	
+	//Self reference
+	var BooleanParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.BooleanParser");
+	
+	//Error report
+	
+	//Dependencies
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.BooleanParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions._createInputLink = function(aInputProperty) {
+		//METODO
+		//var parseNode = ParseFloatNode.create(aInputProperty);
+		//return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
+		return null; //MEDEBUG
+	};
+	
+	objectFunctions._createResult = function(aValue) {
+		return ParserResultDataObject.create(VariableAliases.isTrue(aValue));
+	};
+	
+	staticFunctions.create = function() {
+		var newBooleanParser = (new ClassReference()).init();
+		return newBooleanParser;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.BooleanParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createInputLink</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createInputLink = function(aInputProperty) {
+		//METODO
+		//var parseNode = ParseFloatNode.create(aInputProperty);
+		//return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
+		return null; //MEDEBUG
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createResult</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createResult = function(aValue) {
+		return ParserResultDataObject.create(VariableAliases.isTrue(aValue));
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newBooleanParser = (new ClassReference()).init();
+		return newBooleanParser;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

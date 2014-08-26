@@ -1,0 +1,115 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>Atan2Node</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.math.trigonometry.Atan2Node</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var Atan2Node = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node");
+	
+	var Atan2Node = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node::_init");
+		
+		this.superCall();
+		
+		this._x = this.createProperty("x", 0);
+		this._y = this.createProperty("y", 0);
+		this._outputValue = this.createProperty("outputValue", 0);
+		
+		this.createUpdateFunction("default", this._update, [this._x, this._y], [this._outputValue]);
+		
+		return this;
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node::_update");
+		this._outputValue.setValueWithFlow(Math.atan2(this._y.getValueWithoutFlow(), this._x.getValueWithoutFlow()), aFlowUpdateNumber);
+	};
+	
+	
+	objectFunctions.performDestroy = function() {
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aX, aY) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("x", aX);
+		newNode.setPropertyInputWithoutNull("y", aY);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node::_init");
+		
+		this.superCall();
+		
+		this._x = this.createProperty("x", 0);
+		this._y = this.createProperty("y", 0);
+		this._outputValue = this.createProperty("outputValue", 0);
+		
+		this.createUpdateFunction("default", this._update, [this._x, this._y], [this._outputValue]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node::_update");
+		this._outputValue.setValueWithFlow(Math.atan2(this._y.getValueWithoutFlow(), this._x.getValueWithoutFlow()), aFlowUpdateNumber);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aX, aY) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("x", aX);
+		newNode.setPropertyInputWithoutNull("y", aY);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

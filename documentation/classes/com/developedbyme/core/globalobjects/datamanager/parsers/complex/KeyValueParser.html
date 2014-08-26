@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>KeyValueParser</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var KeyValueParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser");
+	
+	var KeyValueParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser");
+	
+	var KeyValuePropertyPair = dbm.importClass("com.developedbyme.flow.data.KeyValuePropertyPair");
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser::parseXml");
+		var dataNamespace = dbm.xmlNamespaces.dbmData;
+		var keyParserResult = dbm.singletons.dbmDataManager.getAttribute(aXml, dataNamespace, "keyValue", aPathReference);
+		var dataParserResult = dbm.singletons.dbmDataManager.getAttribute(aXml, dataNamespace, "dataValue", aPathReference);
+		
+		var keyValuePair = KeyValuePropertyPair.create(keyParserResult.result, dataParserResult.result);
+		
+		keyValuePair.getObjectProperty().setAsDirty();
+		return ParserResultDataObject.createLinked(keyValuePair.getObjectProperty(), []);
+	};
+	
+	staticFunctions.create = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser::create");
+		var newKeyValueParser = (new ClassReference()).init();
+		return newKeyValueParser;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">parseXml</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser::parseXml");
+		var dataNamespace = dbm.xmlNamespaces.dbmData;
+		var keyParserResult = dbm.singletons.dbmDataManager.getAttribute(aXml, dataNamespace, "keyValue", aPathReference);
+		var dataParserResult = dbm.singletons.dbmDataManager.getAttribute(aXml, dataNamespace, "dataValue", aPathReference);
+		
+		var keyValuePair = KeyValuePropertyPair.create(keyParserResult.result, dataParserResult.result);
+		
+		keyValuePair.getObjectProperty().setAsDirty();
+		return ParserResultDataObject.createLinked(keyValuePair.getObjectProperty(), []);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser::create");
+		var newKeyValueParser = (new ClassReference()).init();
+		return newKeyValueParser;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

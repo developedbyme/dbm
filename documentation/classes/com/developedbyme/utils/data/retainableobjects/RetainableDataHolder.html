@@ -1,0 +1,234 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>RetainableDataHolder</h1>
+		<div class="classPath">com.developedbyme.utils.data.retainableobjects.RetainableDataHolder</div>
+		<div class="classInheritance"></div>
+		<div class="description">Data holder that can be retained.</div>
+		<div class="importSnippet">var RetainableDataHolder = dbm.importClass("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder");
+	
+	//Self reference
+	var RetainableDataHolder = dbm.importClass("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::_init");
+		
+		this.superCall();
+		
+		this._numberOfRetains = 0;
+		this.data = null;
+		this.ownsData = false;
+		
+		return this;
+	}; //End function RetainableDataHolder
+	
+	/**
+	 * Gets the retain count.
+	 */
+	objectFunctions.getNumberOfRetains = function() {
+		return this._numberOfRetains;
+	};
+	
+	/**
+	 * Retains the object.
+	 */
+	objectFunctions.retain = function() {
+		this._numberOfRetains++;
+		
+		return this;
+	};
+	
+	/**
+	 * Releases the object
+	 */
+	objectFunctions.release = function() {
+		if(this._numberOfRetains !== 0) {
+			this._numberOfRetains--;
+		}
+		
+		return this;
+	};
+	
+	/**
+	 * Releases the object and if no reatins are left the object is destroyed.
+	 */
+	objectFunctions.releaseAndDestroy = function() {
+		this.release();
+		if(this._numberOfRetains === 0) {
+			this.destroy();
+		}
+		
+		return this;
+	};
+	
+	/**
+	 * Forces the relase of all retains.
+	 */
+	objectFunctions.forceReleaseAllRetains = function() {
+		this._numberOfRetains = 0;
+		
+		return this;
+	};
+	
+	/**
+	 * Destroys all the data of the object.
+	 */
+	objectFunctions.performDestroy = function() {
+		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
+		//console.log(this.ownsData, this.data !== null, this.data.destroy);
+		if(this.ownsData &amp;&amp; this.data !== null &amp;&amp; this.data.destroy) {
+			this.data.destroy();
+		}
+		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "data":
+				return this.ownsData;
+		}
+		return this.superCall();
+	};
+	
+	/**
+	 * Sets all the references to null
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.data = null;
+		
+		this.superCall();
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::_init");
+		
+		this.superCall();
+		
+		this._numberOfRetains = 0;
+		this.data = null;
+		this.ownsData = false;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getNumberOfRetains</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the retain count.</div>
+			<div class="code">objectFunctions.getNumberOfRetains = function() {
+		return this._numberOfRetains;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">retain</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Retains the object.</div>
+			<div class="code">objectFunctions.retain = function() {
+		this._numberOfRetains++;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">release</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Releases the object</div>
+			<div class="code">objectFunctions.release = function() {
+		if(this._numberOfRetains !== 0) {
+			this._numberOfRetains--;
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">releaseAndDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Releases the object and if no reatins are left the object is destroyed.</div>
+			<div class="code">objectFunctions.releaseAndDestroy = function() {
+		this.release();
+		if(this._numberOfRetains === 0) {
+			this.destroy();
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">forceReleaseAllRetains</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Forces the relase of all retains.</div>
+			<div class="code">objectFunctions.forceReleaseAllRetains = function() {
+		this._numberOfRetains = 0;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Destroys all the data of the object.</div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
+		//console.log(this.ownsData, this.data !== null, this.data.destroy);
+		if(this.ownsData &amp;&amp; this.data !== null &amp;&amp; this.data.destroy) {
+			this.data.destroy();
+		}
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "data":
+				return this.ownsData;
+		}
+		return this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.data = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

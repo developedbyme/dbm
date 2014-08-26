@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>UnitTypes</h1>
+		<div class="classPath">com.developedbyme.constants.UnitTypes</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var UnitTypes = dbm.importClass("com.developedbyme.constants.UnitTypes");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.constants.UnitTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.constants.UnitTypes");
+	//"use strict";
+	
+	var UnitTypes = dbm.importClass("com.developedbyme.constants.UnitTypes");
+	
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
+	staticFunctions.NONE = "none";
+	staticFunctions.UNKNOWN = "unknown";
+	staticFunctions.PX = "px";
+	staticFunctions.PERCENTAGE = "%";
+	staticFunctions.EM = "em";
+	staticFunctions.EX = "ex";
+	staticFunctions.IN = "in";
+	staticFunctions.CM = "cm";
+	staticFunctions.MM = "mm";
+	staticFunctions.PT = "pt";
+	staticFunctions.PC = "pc";
+	staticFunctions.DEGREE = "deg";
+	
+	staticFunctions.unitTypes = [staticFunctions.UNKNOWN, staticFunctions.NONE, staticFunctions.PX, staticFunctions.PERCENTAGE, staticFunctions.EM, staticFunctions.EX, staticFunctions.IN, staticFunctions.CM, staticFunctions.MM, staticFunctions.PT, staticFunctions.PC];
+	
+	staticFunctions.svgUnitTypes = [0, 1, 5, 2, 3, 4, 8, 6, 7, 9, 10];
+	
+	staticFunctions.getSvgUnitType = function(aUnitType) {
+		
+		var unitTypeIndex = ArrayFunctions.indexOfInArray(ClassReference.unitTypes, aUnitType);
+		if(unitTypeIndex &gt;= 0) {
+			return ClassReference.svgUnitTypes[unitTypeIndex];
+		}
+		
+		//METODO: error message
+		return 0;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">getSvgUnitType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getSvgUnitType = function(aUnitType) {
+		
+		var unitTypeIndex = ArrayFunctions.indexOfInArray(ClassReference.unitTypes, aUnitType);
+		if(unitTypeIndex &gt;= 0) {
+			return ClassReference.svgUnitTypes[unitTypeIndex];
+		}
+		
+		//METODO: error message
+		return 0;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

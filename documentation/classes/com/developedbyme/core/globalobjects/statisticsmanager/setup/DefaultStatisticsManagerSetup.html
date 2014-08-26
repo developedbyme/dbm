@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>DefaultStatisticsManagerSetup</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
+	
+	//Self reference
+	var DefaultStatisticsManagerSetup = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.setup.DefaultStatisticsManagerSetup");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var GoogleAnalyticsTracker = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.trackers.GoogleAnalyticsTracker");
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Sets up the analytics manager.
+	 */
+	staticFunctions.setup = function() {
+		
+		dbm.singletons.dbmStatisticsManager.addTracker(GoogleAnalyticsTracker.create());
+		
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets up the analytics manager.</div>
+			<div class="code">staticFunctions.setup = function() {
+		
+		dbm.singletons.dbmStatisticsManager.addTracker(GoogleAnalyticsTracker.create());
+		
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

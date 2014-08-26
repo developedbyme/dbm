@@ -1,0 +1,253 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TreeStructureItemLink</h1>
+		<div class="classPath">com.developedbyme.utils.data.treestructure.TreeStructureItemLink</div>
+		<div class="classInheritance"></div>
+		<div class="description">A tree strucure item link.</div>
+		<div class="importSnippet">var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink", "com.developedbyme.utils.data.treestructure.TreeStructureItem", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
+	//"use strict";
+	
+	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var TreeStructureItemTypes = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink::_init");
+		
+		this.superCall();
+		
+		this._type = TreeStructureItemTypes.LINK;
+		this.link = null;
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Adds a child.
+	 */
+	objectFunctions.addChild = function(aItem) {
+		//console.log("addChild");
+		
+		var linkedItem =  this._root.getItemByPath(this.link, this);
+		linkedItem.addChild(aItem);
+	}; //End function addChild
+	
+	/**
+	 * Removes a child.
+	 */
+	objectFunctions.removeChild = function(aItem) {
+		//console.log("removeChild");
+		
+		var linkedItem =  this._root.getItemByPath(this.link, this);
+		linkedItem.removeChild(aItem);
+	}; //End function removeChild
+	
+	/**
+	 * Changes the name of a child.
+	 */
+	objectFunctions.changeChildName = function(aItem, aNewName) {
+		//console.log("changeChildName");
+		var linkedItem =  this._root.getItemByPath(this.link, this);
+		linkedItem.changeChildName(aItem, aNewName);
+	}; //End function changeChildName
+	
+	/**
+	 * Gets a child by it's name.
+	 */
+	objectFunctions.getChildByName = function(aName) {
+		//console.log("getChildByName");
+		var linkedItem =  this._root.getItemByPath(this.link, this);
+		return linkedItem.getChildByName(aName);
+	}; //End function getChildByName
+	
+	/**
+	 * Resolves a path from this item.
+	 */
+	objectFunctions.resolvePath = function(aPath) {
+		//console.log("resolvePath");
+		if(VariableAliases.isNull(aPath)) {
+			return this.link;
+		}
+		return this.link + "/" + aPath;
+	}; //End function resolvePath
+	
+	/**
+	 * Traces out the full structure.
+	 */
+	objectFunctions.debugTraceStructure = function(aTabString, aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		console.log(aTabString + this.toString() + "\n");
+		
+		var newTabString = aTabString + " ";
+		
+		if(aResolveLinksLevel !== 0) {
+			var newLevel;
+			if(aResolveLinksLevel &gt; 0) {
+				newLevel = aResolveLinksLevel-1;
+			}
+			else {
+				newLevel = aResolveLinksLevel;
+			}
+			
+			var linkedItem =  this._root.getItemByPath(this.link, this._parent);
+			
+			linkedItem.debugTraceChildren(newTabString, newLevel);
+		}
+	}; //End function debugTraceStructure
+	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("link: " + this.link);
+	};
+	
+	/**
+	 * Creates a new link.
+	 */
+	staticFunctions.create = function(aName, aLink) {
+		//console.log("create");
+		var newItem = (new TreeStructureItemLink()).init();
+		newItem.setName(aName);
+		newItem.link = aLink;
+		return newItem;
+	}; //End function create
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink::_init");
+		
+		this.superCall();
+		
+		this._type = TreeStructureItemTypes.LINK;
+		this.link = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addChild</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Adds a child.</div>
+			<div class="code">objectFunctions.addChild = function(aItem) {
+		//console.log("addChild");
+		
+		var linkedItem =  this._root.getItemByPath(this.link, this);
+		linkedItem.addChild(aItem);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeChild</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Removes a child.</div>
+			<div class="code">objectFunctions.removeChild = function(aItem) {
+		//console.log("removeChild");
+		
+		var linkedItem =  this._root.getItemByPath(this.link, this);
+		linkedItem.removeChild(aItem);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">changeChildName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Changes the name of a child.</div>
+			<div class="code">objectFunctions.changeChildName = function(aItem, aNewName) {
+		//console.log("changeChildName");
+		var linkedItem =  this._root.getItemByPath(this.link, this);
+		linkedItem.changeChildName(aItem, aNewName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getChildByName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets a child by it's name.</div>
+			<div class="code">objectFunctions.getChildByName = function(aName) {
+		//console.log("getChildByName");
+		var linkedItem =  this._root.getItemByPath(this.link, this);
+		return linkedItem.getChildByName(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">resolvePath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Resolves a path from this item.</div>
+			<div class="code">objectFunctions.resolvePath = function(aPath) {
+		//console.log("resolvePath");
+		if(VariableAliases.isNull(aPath)) {
+			return this.link;
+		}
+		return this.link + "/" + aPath;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">debugTraceStructure</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Traces out the full structure.</div>
+			<div class="code">objectFunctions.debugTraceStructure = function(aTabString, aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		console.log(aTabString + this.toString() + "\n");
+		
+		var newTabString = aTabString + " ";
+		
+		if(aResolveLinksLevel !== 0) {
+			var newLevel;
+			if(aResolveLinksLevel &gt; 0) {
+				newLevel = aResolveLinksLevel-1;
+			}
+			else {
+				newLevel = aResolveLinksLevel;
+			}
+			
+			var linkedItem =  this._root.getItemByPath(this.link, this._parent);
+			
+			linkedItem.debugTraceChildren(newTabString, newLevel);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("link: " + this.link);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new link.</div>
+			<div class="code">staticFunctions.create = function(aName, aLink) {
+		//console.log("create");
+		var newItem = (new TreeStructureItemLink()).init();
+		newItem.setName(aName);
+		newItem.link = aLink;
+		return newItem;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

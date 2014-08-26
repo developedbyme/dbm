@@ -1,0 +1,193 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>PartiallyOwnedNamedArray</h1>
+		<div class="classPath">com.developedbyme.utils.data.PartiallyOwnedNamedArray</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var PartiallyOwnedNamedArray = dbm.importClass("com.developedbyme.utils.data.PartiallyOwnedNamedArray");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.data.PartiallyOwnedNamedArray", "com.developedbyme.utils.data.NamedArray", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.data.PartiallyOwnedNamedArray");
+	//"use strict";
+	
+	var PartiallyOwnedNamedArray = dbm.importClass("com.developedbyme.utils.data.PartiallyOwnedNamedArray");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.PartiallyOwnedNamedArray::_init");
+		
+		this.superCall();
+		
+		this._ownedOverridesObject = new Object();
+		
+		return this;
+	};
+	
+	objectFunctions.addOwnedOverride = function(aName, aOwned) {
+		this._ownedOverridesObject[aName] = !VariableAliases.isFalse(aOwned);
+		
+		return this;
+	};
+	
+	objectFunctions.removedOwnedOverride = function(aName) {
+		delete this._ownedOverridesObject[aName];
+		
+		return this;
+	};
+	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		var ownedOverrides = new Array();
+		var notOwnedOverrides = new Array();
+		for(var objectName in this._ownedOverridesObject) {
+			var isOwned = this._ownedOverridesObject[objectName];
+			if(isOwned) {
+				ownedOverrides.push(objectName);
+			}
+			else {
+				notOwnedOverrides.push(objectName);
+			}
+		}
+		
+		aReturnArray.push("ownedOverrides: " + ownedOverrides.join(", "));
+		aReturnArray.push("notOwnedOverrides: " + notOwnedOverrides.join(", "));
+	};
+	
+	objectFunctions._performDestroyObjects = function() {
+		
+		for(var objectName in this._objectObjects) {
+			var shouldDestroy = (this._ownedOverridesObject[objectName] !== undefined) ? this._ownedOverridesObject[objectName] : this.ownsObjects;
+			if(shouldDestroy) {
+				ClassReference.softDestroyArrayIfExists(this._objectObjects[objectName]);
+			}
+		}
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._ownedOverridesObject = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aOwnsObjects) {
+		var newReaction = (new ClassReference()).init();
+		newReaction.ownsObjects = VariableAliases.isTrue(aOwnsObjects);
+		return newReaction;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.PartiallyOwnedNamedArray::_init");
+		
+		this.superCall();
+		
+		this._ownedOverridesObject = new Object();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addOwnedOverride</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addOwnedOverride = function(aName, aOwned) {
+		this._ownedOverridesObject[aName] = !VariableAliases.isFalse(aOwned);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removedOwnedOverride</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removedOwnedOverride = function(aName) {
+		delete this._ownedOverridesObject[aName];
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		var ownedOverrides = new Array();
+		var notOwnedOverrides = new Array();
+		for(var objectName in this._ownedOverridesObject) {
+			var isOwned = this._ownedOverridesObject[objectName];
+			if(isOwned) {
+				ownedOverrides.push(objectName);
+			}
+			else {
+				notOwnedOverrides.push(objectName);
+			}
+		}
+		
+		aReturnArray.push("ownedOverrides: " + ownedOverrides.join(", "));
+		aReturnArray.push("notOwnedOverrides: " + notOwnedOverrides.join(", "));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_performDestroyObjects</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._performDestroyObjects = function() {
+		
+		for(var objectName in this._objectObjects) {
+			var shouldDestroy = (this._ownedOverridesObject[objectName] !== undefined) ? this._ownedOverridesObject[objectName] : this.ownsObjects;
+			if(shouldDestroy) {
+				ClassReference.softDestroyArrayIfExists(this._objectObjects[objectName]);
+			}
+		}
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._ownedOverridesObject = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aOwnsObjects) {
+		var newReaction = (new ClassReference()).init();
+		newReaction.ownsObjects = VariableAliases.isTrue(aOwnsObjects);
+		return newReaction;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

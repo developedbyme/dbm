@@ -1,0 +1,250 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ObjectPool</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool</div>
+		<div class="classInheritance"></div>
+		<div class="description">Object pool, that reuses objects after they have been destroyed instead of creating new ones.</div>
+		<div class="importSnippet">var ObjectPool = dbm.importClass("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool");
+	
+	//Self reference
+	var ObjectPool = dbm.importClass("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	staticFunctions.DEFAULT_MAX_NUMBER_OF_OBJECTS = 512;
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::_init");
+		
+		this.superCall();
+		
+		this._class = null;
+		this._objects = new Array();
+		this._numberOfObjects = 0;
+		this._maxNumberOfObjects = ClassReference.DEFAULT_MAX_NUMBER_OF_OBJECTS;
+		
+		return this;
+	};
+	
+	objectFunctions.setClass = function(aClass) {
+		this._class = aClass;
+		
+		return this;
+	};
+	
+	objectFunctions.setMaxNumberOfObjects = function(aMaxNumberOfObjects) {
+		this._maxNumberOfObjects = aMaxNumberOfObjects;
+		
+		//METODO: cut down array if it's too long
+		
+		return this;
+	};
+	
+	objectFunctions.createObject = function() {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::createObject");
+		//console.log(this._numberOfObjects);
+		
+		if(this._numberOfObjects === 0) {
+			var theClass = this._class;
+			return (new theClass());
+		}
+		
+		this._numberOfObjects--;
+		var newObject = this._objects[this._numberOfObjects];
+		this._objects[this._numberOfObjects] = null;
+		return newObject;
+	};
+	
+	objectFunctions.createAndInitObject = function() {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::createAndInitObject");
+		//console.log(this._numberOfObjects);
+		
+		return this.createObject().init();
+	};
+	
+	objectFunctions.reuseObject = function(aObject) {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::reuseObject");
+		
+		if(this._maxNumberOfObjects !== -1 &amp;&amp; this._numberOfObjects &gt;= this._maxNumberOfObjects) {
+			//MENOTE: The object is already destroyed, so just ignore it.
+			return;
+		}
+		
+		this._objects[this._numberOfObjects] = aObject;
+		this._numberOfObjects++;
+	};
+	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._class = null;
+		this._objects = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a new object.
+	 *
+	 * @param	aClass				The class that the pool will be creating.
+	 * @param	aMaxNumberOfObjects	The max number of items to store before destroying the rest.
+	 *
+	 * @return	ObjectPool	The newly created object pool.
+	 */
+	staticFunctions.create = function(aClass, aMaxNumberOfObjects) {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::create");
+		
+		aMaxNumberOfObjects = VariableAliases.valueWithDefault(aMaxNumberOfObjects, ClassReference.DEFAULT_MAX_NUMBER_OF_OBJECTS);
+		
+		var returnObject = ClassReference._createAndInitClass(ClassReference);
+		returnObject.setClass(aClass);
+		returnObject.setMaxNumberOfObjects(aMaxNumberOfObjects);
+		
+		return returnObject;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::_init");
+		
+		this.superCall();
+		
+		this._class = null;
+		this._objects = new Array();
+		this._numberOfObjects = 0;
+		this._maxNumberOfObjects = ClassReference.DEFAULT_MAX_NUMBER_OF_OBJECTS;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setClass</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setClass = function(aClass) {
+		this._class = aClass;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setMaxNumberOfObjects</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setMaxNumberOfObjects = function(aMaxNumberOfObjects) {
+		this._maxNumberOfObjects = aMaxNumberOfObjects;
+		
+		//METODO: cut down array if it's too long
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createObject = function() {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::createObject");
+		//console.log(this._numberOfObjects);
+		
+		if(this._numberOfObjects === 0) {
+			var theClass = this._class;
+			return (new theClass());
+		}
+		
+		this._numberOfObjects--;
+		var newObject = this._objects[this._numberOfObjects];
+		this._objects[this._numberOfObjects] = null;
+		return newObject;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createAndInitObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createAndInitObject = function() {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::createAndInitObject");
+		//console.log(this._numberOfObjects);
+		
+		return this.createObject().init();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reuseObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.reuseObject = function(aObject) {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::reuseObject");
+		
+		if(this._maxNumberOfObjects !== -1 &amp;&amp; this._numberOfObjects &gt;= this._maxNumberOfObjects) {
+			//MENOTE: The object is already destroyed, so just ignore it.
+			return;
+		}
+		
+		this._objects[this._numberOfObjects] = aObject;
+		this._numberOfObjects++;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._class = null;
+		this._objects = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new object.</div>
+			<div class="code">staticFunctions.create = function(aClass, aMaxNumberOfObjects) {
+		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::create");
+		
+		aMaxNumberOfObjects = VariableAliases.valueWithDefault(aMaxNumberOfObjects, ClassReference.DEFAULT_MAX_NUMBER_OF_OBJECTS);
+		
+		var returnObject = ClassReference._createAndInitClass(ClassReference);
+		returnObject.setClass(aClass);
+		returnObject.setMaxNumberOfObjects(aMaxNumberOfObjects);
+		
+		return returnObject;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

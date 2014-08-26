@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>AudioPlayer</h1>
+		<div class="classPath">com.developedbyme.gui.media.audio.AudioPlayer</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var AudioPlayer = dbm.importClass("com.developedbyme.gui.media.audio.AudioPlayer");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.gui.media.audio.AudioPlayer", "com.developedbyme.gui.media.MediaElementBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.gui.media.audio.AudioPlayer");
+	
+	var AudioPlayer = dbm.importClass("com.developedbyme.gui.media.audio.AudioPlayer");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.media.audio.AudioPlayer::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions._createMixerChannel = function() {
+		this._createMixerChannelOfType("audio");
+	};
+	
+	objectFunctions._getTypeForUrl = function(aUrl) {
+		switch(PathFunctions.getFileExtension(aUrl).toLowerCase()) {
+			case "aac":
+				return "audio/aac";
+			case "mp3":
+				return "audio/mp3";
+			case "mp4":
+				return "audio/mp4";
+			case "oga":
+				return "audio/ogg; codecs=\"vorbis\"";
+		}
+		
+		//METODO: fix codecs
+		
+		return "unknown";
+	};
+	
+	objectFunctions._getTypeWithoutCodecsForUrl = function(aUrl) {
+		switch(PathFunctions.getFileExtension(aUrl).toLowerCase()) {
+			case "aac":
+				return "audio/aac";
+			case "mp3":
+				return "audio/mp3";
+			case "mp4":
+				return "audio/mp4";
+			case "oga":
+				return "audio/ogg";
+		}
+		
+		return "unknown";
+	};
+	
+	staticFunctions.create = function(aParentOrDocument, aAddToParent, aUrls, aPreload, aAttributes) {
+		return ClassReference._create(ClassReference, "audio", aParentOrDocument, aAddToParent, aUrls, aPreload, aAttributes);
+	};
+	
+	staticFunctions.createWithNode = function(aNode) {
+		var newNode = (new ClassReference()).init();
+		
+		newNode.setElement(aNode);
+		
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.media.audio.AudioPlayer::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createMixerChannel</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createMixerChannel = function() {
+		this._createMixerChannelOfType("audio");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_getTypeForUrl</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._getTypeForUrl = function(aUrl) {
+		switch(PathFunctions.getFileExtension(aUrl).toLowerCase()) {
+			case "aac":
+				return "audio/aac";
+			case "mp3":
+				return "audio/mp3";
+			case "mp4":
+				return "audio/mp4";
+			case "oga":
+				return "audio/ogg; codecs=\"vorbis\"";
+		}
+		
+		//METODO: fix codecs
+		
+		return "unknown";
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_getTypeWithoutCodecsForUrl</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._getTypeWithoutCodecsForUrl = function(aUrl) {
+		switch(PathFunctions.getFileExtension(aUrl).toLowerCase()) {
+			case "aac":
+				return "audio/aac";
+			case "mp3":
+				return "audio/mp3";
+			case "mp4":
+				return "audio/mp4";
+			case "oga":
+				return "audio/ogg";
+		}
+		
+		return "unknown";
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aParentOrDocument, aAddToParent, aUrls, aPreload, aAttributes) {
+		return ClassReference._create(ClassReference, "audio", aParentOrDocument, aAddToParent, aUrls, aPreload, aAttributes);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createWithNode</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createWithNode = function(aNode) {
+		var newNode = (new ClassReference()).init();
+		
+		newNode.setElement(aNode);
+		
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

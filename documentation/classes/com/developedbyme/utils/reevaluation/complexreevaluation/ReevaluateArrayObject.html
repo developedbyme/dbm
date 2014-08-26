@@ -1,0 +1,172 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ReevaluateArrayObject</h1>
+		<div class="classPath">com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
+	
+	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
+	
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
+	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::_init");
+		
+		this.superCall();
+		
+		this.originalArray = null;
+		
+		return this;
+	};
+	
+	objectFunctions.getDataObject = function() {
+		return this.originalArray;
+	};
+	
+	objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var currentArray = this.originalArray.reevaluate(aBaseObject);
+		var theLength = currentArray.length;
+		
+		var returnArray = new Array(theLength);
+		
+		for (var i = 0; i &lt; theLength; i++) {
+			var currentData = currentArray[i];
+			if(currentData instanceof ReevaluationBaseObject) {
+				returnArray[i] = currentData.reevaluate(aBaseObject);
+			}
+			else {
+				returnArray[i] = currentData;
+			}
+		}
+		
+		return returnArray;
+	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		//METODO: destroy child evaluators
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.originalArray = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a new reevaluator that reevaluates the objects of an array.
+	 * 
+	 * @param	aOriginalArray	The array that can have both static and reevaluator objects.
+	 * @return	The new object.
+	 */
+	staticFunctions.createReevaluationObject = function(aOriginalArray) {
+		var newObject = (new ReevaluateArrayObject()).init();
+		newObject.originalArray = ReevaluationCreator.reevaluationOrStaticValue(aOriginalArray);
+		return newObject;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::_init");
+		
+		this.superCall();
+		
+		this.originalArray = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getDataObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getDataObject = function() {
+		return this.originalArray;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reevaluate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var currentArray = this.originalArray.reevaluate(aBaseObject);
+		var theLength = currentArray.length;
+		
+		var returnArray = new Array(theLength);
+		
+		for (var i = 0; i &lt; theLength; i++) {
+			var currentData = currentArray[i];
+			if(currentData instanceof ReevaluationBaseObject) {
+				returnArray[i] = currentData.reevaluate(aBaseObject);
+			}
+			else {
+				returnArray[i] = currentData;
+			}
+		}
+		
+		return returnArray;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		//METODO: destroy child evaluators
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.originalArray = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createReevaluationObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new reevaluator that reevaluates the objects of an array.</div>
+			<div class="code">staticFunctions.createReevaluationObject = function(aOriginalArray) {
+		var newObject = (new ReevaluateArrayObject()).init();
+		newObject.originalArray = ReevaluationCreator.reevaluationOrStaticValue(aOriginalArray);
+		return newObject;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

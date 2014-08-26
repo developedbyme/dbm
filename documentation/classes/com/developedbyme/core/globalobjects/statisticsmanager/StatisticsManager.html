@@ -1,0 +1,128 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>StatisticsManager</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var StatisticsManager = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager");
+	
+	var StatisticsManager = dbm.importClass("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	dbm.setClassAsSingleton("dbmStatisticsManager");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::_init");
+		
+		this.superCall();
+		
+		this._trackers = new Array();
+		
+		return this;
+	};
+	
+	objectFunctions.addTracker = function(aTracker) {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::addTracker");
+		
+		this._trackers.push(aTracker);
+		
+	};
+	
+	objectFunctions.trackPage = function(aPage) {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::trackPage");
+		
+		var currentArray = this._trackers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentTracker = currentArray[i];
+			currentTracker.trackPage(aPage);
+		}
+		
+	};
+	
+	objectFunctions.trackEvent = function(aCategory, aAction, aLabel, aValue) {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::trackEvent");
+		
+		var currentArray = this._trackers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentTracker = currentArray[i];
+			currentTracker.trackEvent(aCategory, aAction, aLabel, aValue);
+		}
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::_init");
+		
+		this.superCall();
+		
+		this._trackers = new Array();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addTracker</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addTracker = function(aTracker) {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::addTracker");
+		
+		this._trackers.push(aTracker);
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">trackPage</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.trackPage = function(aPage) {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::trackPage");
+		
+		var currentArray = this._trackers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentTracker = currentArray[i];
+			currentTracker.trackPage(aPage);
+		}
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">trackEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.trackEvent = function(aCategory, aAction, aLabel, aValue) {
+		//console.log("com.developedbyme.core.globalobjects.statisticsmanager.StatisticsManager::trackEvent");
+		
+		var currentArray = this._trackers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentTracker = currentArray[i];
+			currentTracker.trackEvent(aCategory, aAction, aLabel, aValue);
+		}
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

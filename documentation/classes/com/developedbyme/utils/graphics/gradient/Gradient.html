@@ -1,0 +1,322 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>Gradient</h1>
+		<div class="classPath">com.developedbyme.utils.graphics.gradient.Gradient</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.graphics.gradient.Gradient", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.graphics.gradient.Gradient");
+	
+	//Self reference
+	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependnecies
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var ColorStop = dbm.importClass("com.developedbyme.utils.graphics.gradient.ColorStop");
+	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
+	
+	//Utils
+	var ColorFunctions = dbm.importClass("com.developedbyme.utils.graphics.color.ColorFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_init");
+		
+		this.superCall();
+		
+		this._colorStopChange = this.addProperty("colorStopChange", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._colorStops = ArrayHolder.create(true);
+		this.addDestroyableObject(this._colorStops);
+		
+		this._order = this.createGhostProperty("order");
+		this._order.setAsDirty();
+		this.createUpdateFunction("default", this._updateOrderFlow, [this._colorStopChange], [this._order]);
+		
+		return this;
+	};
+	
+	/**
+	 * Creates a colo stop for a css string.
+	 *
+	 * @param	aPosition	Number PArameter for the position of the stop.
+	 * @param	aCssString	String	The css data for the stop.
+	 *
+	 * @return	ColorStop	The newly created color stop.
+	 */
+	objectFunctions.createColorStopFromCssString = function(aPosition, aCssString) {
+		var newColor = ColorFunctions.createColorFromCssString(aCssString);
+		return this.createColorStop(aPosition, newColor);
+	};
+	
+	/**
+	 * Gets all the color stops for this gradient.
+	 *
+	 * @return	Array of ColorStops	The array of color stops.
+	 */
+	objectFunctions.getColorStops = function() {
+		return this._colorStops.array;
+	};
+	
+	objectFunctions.createColorStop = function(aPosition, aColor) {
+		var newColorStop = ColorStop.create(aPosition, aColor);
+		
+		this.addColorStop(newColorStop);
+		
+		return newColorStop;
+	};
+	
+	objectFunctions.addColorStop = function(aColorStop) {
+		
+		this._colorStops.array.push(aColorStop);
+		this._colorStopChange.connectInput(aColorStop.getObjectProperty());
+		aColorStop.getObjectProperty().setAsDirty();
+		
+	};
+	
+	objectFunctions.sortColorStops = function() {
+		this._colorStops.array.sort(this._sortColorStopsOrderFunction);
+	};
+	
+	objectFunctions._sortColorStopsOrderFunction = function(aColorStop1, aColorStop2) {
+		return aColorStop1.getProperty("position").getValue()-aColorStop2.getProperty("position").getValue();
+	};
+	
+	objectFunctions._updateOrderFlow = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_updateOrderFlow");
+		this.sortColorStops();
+	};
+	
+	objectFunctions.getCssString = function(aFunctionName, aDirection) {
+		this._order.update();
+		
+		aFunctionName = VariableAliases.valueWithDefault(aFunctionName, "linear-gradient");
+		aDirection = VariableAliases.valueWithDefault(aDirection, "left");
+		
+		var returnString = aFunctionName + "(" + aDirection;
+		
+		var currentArray = this._colorStops.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentColorStop = currentArray[i];
+			var color = currentColorStop.getProperty("value").getValueWithoutFlow();
+			var position = currentColorStop.getProperty("position").getValueWithoutFlow();
+			returnString += ",";
+			
+			returnString += color.getCssString() + " " + (100*position)+"%";
+		}
+		
+		returnString += ")";
+		
+		return returnString;
+	};
+	
+	objectFunctions.addColorStopsToCanvasGradient = function(aCanvasGradient) {
+		this._order.update();
+		
+		var currentArray = this._colorStops.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentColorStop = currentArray[i];
+			var color = currentColorStop.getProperty("value").getValueWithoutFlow();
+			var position = currentColorStop.getProperty("position").getValueWithoutFlow();
+			
+			aCanvasGradient.addColorStop(position, color.getCssString());
+		}
+		
+		return aCanvasGradient;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._colorStopChange = null;
+		this._colorStops = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		var newReaction = (new ClassReference()).init();
+		return newReaction;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_init");
+		
+		this.superCall();
+		
+		this._colorStopChange = this.addProperty("colorStopChange", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._colorStops = ArrayHolder.create(true);
+		this.addDestroyableObject(this._colorStops);
+		
+		this._order = this.createGhostProperty("order");
+		this._order.setAsDirty();
+		this.createUpdateFunction("default", this._updateOrderFlow, [this._colorStopChange], [this._order]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createColorStopFromCssString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a colo stop for a css string.</div>
+			<div class="code">objectFunctions.createColorStopFromCssString = function(aPosition, aCssString) {
+		var newColor = ColorFunctions.createColorFromCssString(aCssString);
+		return this.createColorStop(aPosition, newColor);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getColorStops</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets all the color stops for this gradient.</div>
+			<div class="code">objectFunctions.getColorStops = function() {
+		return this._colorStops.array;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createColorStop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createColorStop = function(aPosition, aColor) {
+		var newColorStop = ColorStop.create(aPosition, aColor);
+		
+		this.addColorStop(newColorStop);
+		
+		return newColorStop;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addColorStop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addColorStop = function(aColorStop) {
+		
+		this._colorStops.array.push(aColorStop);
+		this._colorStopChange.connectInput(aColorStop.getObjectProperty());
+		aColorStop.getObjectProperty().setAsDirty();
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">sortColorStops</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.sortColorStops = function() {
+		this._colorStops.array.sort(this._sortColorStopsOrderFunction);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_sortColorStopsOrderFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._sortColorStopsOrderFunction = function(aColorStop1, aColorStop2) {
+		return aColorStop1.getProperty("position").getValue()-aColorStop2.getProperty("position").getValue();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_updateOrderFlow</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._updateOrderFlow = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_updateOrderFlow");
+		this.sortColorStops();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getCssString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getCssString = function(aFunctionName, aDirection) {
+		this._order.update();
+		
+		aFunctionName = VariableAliases.valueWithDefault(aFunctionName, "linear-gradient");
+		aDirection = VariableAliases.valueWithDefault(aDirection, "left");
+		
+		var returnString = aFunctionName + "(" + aDirection;
+		
+		var currentArray = this._colorStops.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentColorStop = currentArray[i];
+			var color = currentColorStop.getProperty("value").getValueWithoutFlow();
+			var position = currentColorStop.getProperty("position").getValueWithoutFlow();
+			returnString += ",";
+			
+			returnString += color.getCssString() + " " + (100*position)+"%";
+		}
+		
+		returnString += ")";
+		
+		return returnString;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addColorStopsToCanvasGradient</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addColorStopsToCanvasGradient = function(aCanvasGradient) {
+		this._order.update();
+		
+		var currentArray = this._colorStops.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentColorStop = currentArray[i];
+			var color = currentColorStop.getProperty("value").getValueWithoutFlow();
+			var position = currentColorStop.getProperty("position").getValueWithoutFlow();
+			
+			aCanvasGradient.addColorStop(position, color.getCssString());
+		}
+		
+		return aCanvasGradient;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._colorStopChange = null;
+		this._colorStops = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newReaction = (new ClassReference()).init();
+		return newReaction;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

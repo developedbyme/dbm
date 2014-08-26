@@ -1,0 +1,204 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>UpdateFunctionWithArguments</h1>
+		<div class="classPath">com.developedbyme.core.objectparts.UpdateFunctionWithArguments</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var UpdateFunctionWithArguments = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunctionWithArguments");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArguments", "com.developedbyme.core.objectparts.UpdateFunction", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments");
+	//"use strict";
+	
+	//Self reference
+	var UpdateFunctionWithArguments = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunctionWithArguments");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
+	
+	//Utils
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
+	//Constants
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
+	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_init");
+		
+		this.superCall();
+		
+		this._cachedInputArray = new Array();
+		
+		return this;
+	};
+	
+	objectFunctions.updateFlow = function() {
+		
+		var inputLength = this._inputConnections.length;
+		if(this._cachedInputArray.length !== inputLength) {
+			this._cachedInputArray = new Array(inputLength);
+		}
+		
+		var newFlowUpdateNumber = this._getInputFlowUpdateParameters(this._cachedInputArray);
+		var globalUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+		if(newFlowUpdateNumber &gt; this._flowUpdateNumber) {
+			this._flowUpdateNumber = globalUpdateNumber;
+			var returnValue = this._updateFunction.apply(this, this._cachedInputArray);
+			if(returnValue !== undefined) {
+				this._outputConnections[0].setValueWithFlow(returnValue, this._flowUpdateNumber);
+			}
+		}
+		if(!this._isDestroyed) {
+			this._cleanGhostPropertyOutput(globalUpdateNumber);
+		}
+	};
+	
+	objectFunctions.updateFlowOutput = function(/* rest */) {
+		var argumentsArray = arguments;
+		var currentArray = this._outputConnections;
+		var currentArrayLength = Math.min(argumentsArray.length, currentArray.length);
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			currentArray[i].setValueWithFlow(argumentsArray[i], this._flowUpdateNumber);
+		}
+	};
+	
+	objectFunctions._getInputFlowUpdateParameters = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_getInputFlowUpdateParameters");
+		var returnNumber = 0;
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			aReturnArray[i] = currentObject.getValueWithoutFlow();
+			returnNumber = Math.max(returnNumber, currentObject.getFlowUpdateNumber());
+		}
+		return returnNumber;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._cachedInputArray = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray) {
+		var newUpdateFunctionWithArguments = ClassReference._createAndInitClass(ClassReference);
+		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray);
+		return newUpdateFunctionWithArguments;
+	};
+	
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_init");
+		
+		this.superCall();
+		
+		this._cachedInputArray = new Array();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">updateFlow</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.updateFlow = function() {
+		
+		var inputLength = this._inputConnections.length;
+		if(this._cachedInputArray.length !== inputLength) {
+			this._cachedInputArray = new Array(inputLength);
+		}
+		
+		var newFlowUpdateNumber = this._getInputFlowUpdateParameters(this._cachedInputArray);
+		var globalUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+		if(newFlowUpdateNumber &gt; this._flowUpdateNumber) {
+			this._flowUpdateNumber = globalUpdateNumber;
+			var returnValue = this._updateFunction.apply(this, this._cachedInputArray);
+			if(returnValue !== undefined) {
+				this._outputConnections[0].setValueWithFlow(returnValue, this._flowUpdateNumber);
+			}
+		}
+		if(!this._isDestroyed) {
+			this._cleanGhostPropertyOutput(globalUpdateNumber);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">updateFlowOutput</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.updateFlowOutput = function(/* rest */) {
+		var argumentsArray = arguments;
+		var currentArray = this._outputConnections;
+		var currentArrayLength = Math.min(argumentsArray.length, currentArray.length);
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			currentArray[i].setValueWithFlow(argumentsArray[i], this._flowUpdateNumber);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_getInputFlowUpdateParameters</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._getInputFlowUpdateParameters = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_getInputFlowUpdateParameters");
+		var returnNumber = 0;
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			aReturnArray[i] = currentObject.getValueWithoutFlow();
+			returnNumber = Math.max(returnNumber, currentObject.getFlowUpdateNumber());
+		}
+		return returnNumber;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._cachedInputArray = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray) {
+		var newUpdateFunctionWithArguments = ClassReference._createAndInitClass(ClassReference);
+		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray);
+		return newUpdateFunctionWithArguments;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

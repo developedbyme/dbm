@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>PathFunctions</h1>
+		<div class="classPath">com.developedbyme.utils.file.PathFunctions</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.file.PathFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.file.PathFunctions");
+	
+	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
+	
+	staticFunctions.getFileExtension = function(aPath) {
+		var currentPath = ClassReference.getPathWithoutQueryStringOrAnchor(aPath);
+		var dotPosition = currentPath.lastIndexOf(".");
+		var slashPosition = currentPath.lastIndexOf("/");
+		if(dotPosition === -1 || slashPosition &gt; dotPosition) {
+			return null;
+		}
+		return currentPath.substring(dotPosition+1, currentPath.length);
+	};
+	
+	staticFunctions.getFileName = function(aPath) {
+		var currentPath = ClassReference.getPathWithoutQueryStringOrAnchor(aPath);
+		var dotPosition = currentPath.lastIndexOf(".");
+		var slashPosition = currentPath.lastIndexOf("/");
+		if(dotPosition === -1 || slashPosition &gt; dotPosition) {
+			return null;
+		}
+		if(slashPosition === -1) {
+			currentPath = currentPath.substring(0, dotPosition);
+		}
+		else {
+			currentPath = currentPath.substring(slashPosition+1, dotPosition);
+		}
+		return currentPath;
+	};
+	
+	staticFunctions.getPathWithoutQueryStringOrAnchor = function(aPath) {
+		var hashTagPosition = aPath.indexOf("#");
+		var questionMarkPosition = aPath.indexOf("?");
+		var minPosition = hashTagPosition;
+		if(questionMarkPosition !== -1 &amp;&amp; (minPosition === -1 || questionMarkPosition &lt; hashTagPosition)) {
+			minPosition = questionMarkPosition;
+		}
+		if(minPosition === -1) {
+			return aPath;
+		}
+		return aPath.substring(0, minPosition);
+	};
+	
+	staticFunctions.removeInitialSlash = function(aPath) {
+		if(aPath.charAt(0) === "/") {
+			return aPath.substring(1, aPath.length);
+		}
+		return aPath;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">getFileExtension</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getFileExtension = function(aPath) {
+		var currentPath = ClassReference.getPathWithoutQueryStringOrAnchor(aPath);
+		var dotPosition = currentPath.lastIndexOf(".");
+		var slashPosition = currentPath.lastIndexOf("/");
+		if(dotPosition === -1 || slashPosition &gt; dotPosition) {
+			return null;
+		}
+		return currentPath.substring(dotPosition+1, currentPath.length);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getFileName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getFileName = function(aPath) {
+		var currentPath = ClassReference.getPathWithoutQueryStringOrAnchor(aPath);
+		var dotPosition = currentPath.lastIndexOf(".");
+		var slashPosition = currentPath.lastIndexOf("/");
+		if(dotPosition === -1 || slashPosition &gt; dotPosition) {
+			return null;
+		}
+		if(slashPosition === -1) {
+			currentPath = currentPath.substring(0, dotPosition);
+		}
+		else {
+			currentPath = currentPath.substring(slashPosition+1, dotPosition);
+		}
+		return currentPath;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getPathWithoutQueryStringOrAnchor</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getPathWithoutQueryStringOrAnchor = function(aPath) {
+		var hashTagPosition = aPath.indexOf("#");
+		var questionMarkPosition = aPath.indexOf("?");
+		var minPosition = hashTagPosition;
+		if(questionMarkPosition !== -1 &amp;&amp; (minPosition === -1 || questionMarkPosition &lt; hashTagPosition)) {
+			minPosition = questionMarkPosition;
+		}
+		if(minPosition === -1) {
+			return aPath;
+		}
+		return aPath.substring(0, minPosition);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeInitialSlash</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.removeInitialSlash = function(aPath) {
+		if(aPath.charAt(0) === "/") {
+			return aPath.substring(1, aPath.length);
+		}
+		return aPath;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

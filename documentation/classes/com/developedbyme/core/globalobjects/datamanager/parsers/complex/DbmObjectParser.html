@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>DbmObjectParser</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var DbmObjectParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser");
+	
+	//Self reference
+	var DbmObjectParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser");
+	
+	//Error report
+	
+	//Dependencies
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser::parseXml");
+		var dataNamespace = dbm.xmlNamespaces.dbmData;
+		var classResult = dbm.singletons.dbmDataManager.getAttribute(aXml, dataNamespace, "class", aPathReference);
+		
+		var className = classResult.result;
+		var theClass = dbm.getClass(className);
+		if(theClass === null) {
+			//METODO: error message
+			return ParserResultDataObject.create(null);;
+		}
+		var returnObject = new theClass();
+		returnObject.init();
+		
+		var result = ParserResultDataObject.create(returnObject, []);
+		result.childrenIsProperties = 1;
+		
+		return result;
+	};
+	
+	staticFunctions.create = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser::create");
+		var newDbmObjectParser = (new ClassReference()).init();
+		return newDbmObjectParser;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">parseXml</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser::parseXml");
+		var dataNamespace = dbm.xmlNamespaces.dbmData;
+		var classResult = dbm.singletons.dbmDataManager.getAttribute(aXml, dataNamespace, "class", aPathReference);
+		
+		var className = classResult.result;
+		var theClass = dbm.getClass(className);
+		if(theClass === null) {
+			//METODO: error message
+			return ParserResultDataObject.create(null);;
+		}
+		var returnObject = new theClass();
+		returnObject.init();
+		
+		var result = ParserResultDataObject.create(returnObject, []);
+		result.childrenIsProperties = 1;
+		
+		return result;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser::create");
+		var newDbmObjectParser = (new ClassReference()).init();
+		return newDbmObjectParser;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

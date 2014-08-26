@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>InvertedInterpolationCreator</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var InvertedInterpolationCreator = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator");
+	
+	var InvertedInterpolationCreator = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator");
+	
+	var InvertedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
+	
+	objectFunctions.init = function() {
+		
+		this._init();
+		
+		return this;
+	};
+	
+	/**
+	 * Initi function
+	 */
+	objectFunctions._init = function() {
+		
+		//MENOTE: should be overidden
+		
+		return this;
+	}; //End function _init
+	
+	
+	objectFunctions.create = function(aType, aInvertedType) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator::create");
+		
+		return InvertedInterpolation.create(dbm.singletons.dbmAnimationManager.getInterpolationObject(aInvertedType));
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.init = function() {
+		
+		this._init();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Initi function</div>
+			<div class="code">objectFunctions._init = function() {
+		
+		//MENOTE: should be overidden
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.create = function(aType, aInvertedType) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator::create");
+		
+		return InvertedInterpolation.create(dbm.singletons.dbmAnimationManager.getInterpolationObject(aInvertedType));
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,163 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ExternalPrefixedCssVariableProperty</h1>
+		<div class="classPath">com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ExternalPrefixedCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty", "com.developedbyme.core.objectparts.ExternalCssVariableProperty", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty");
+	//"use strict";
+	
+	//Self reference
+	var ExternalPrefixedCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
+	
+	//Constants
+	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions._performSetValue = function(aValue) {
+		//console.log("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty::_performSetValue");
+		//console.log(aValue);
+		
+		//METODO
+		
+		if(this._externalObject === null) {
+			this._value = aValue;
+			return;
+		}
+		
+		CssFunctions.setBrowserSpecificCssToElement(this._externalObject, this._externalVariableName, aValue, this._unit, this._priority);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName, aUnit) {
+		var newExternalPrefixedCssVariableProperty = (new ExternalPrefixedCssVariableProperty()).init();
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newExternalPrefixedCssVariableProperty);
+			newExternalPrefixedCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
+		newExternalPrefixedCssVariableProperty.setupExternalObject(aExternalObject, aVariableName, aUnit);
+		return newExternalPrefixedCssVariableProperty;
+	};
+	
+	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
+		var newExternalPrefixedCssVariableProperty = (new ExternalPrefixedCssVariableProperty()).init();
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newExternalPrefixedCssVariableProperty);
+			newExternalPrefixedCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
+		if(aValue !== null &amp;&amp; aValue !== undefined) {
+			newExternalPrefixedCssVariableProperty.setValue(aValue);
+		}
+		return newExternalPrefixedCssVariableProperty;
+	};
+	
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_performSetValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._performSetValue = function(aValue) {
+		//console.log("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty::_performSetValue");
+		//console.log(aValue);
+		
+		//METODO
+		
+		if(this._externalObject === null) {
+			this._value = aValue;
+			return;
+		}
+		
+		CssFunctions.setBrowserSpecificCssToElement(this._externalObject, this._externalVariableName, aValue, this._unit, this._priority);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName, aUnit) {
+		var newExternalPrefixedCssVariableProperty = (new ExternalPrefixedCssVariableProperty()).init();
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newExternalPrefixedCssVariableProperty);
+			newExternalPrefixedCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
+		newExternalPrefixedCssVariableProperty.setupExternalObject(aExternalObject, aVariableName, aUnit);
+		return newExternalPrefixedCssVariableProperty;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createWithoutExternalObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
+		var newExternalPrefixedCssVariableProperty = (new ExternalPrefixedCssVariableProperty()).init();
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newExternalPrefixedCssVariableProperty);
+			newExternalPrefixedCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
+		if(aValue !== null &amp;&amp; aValue !== undefined) {
+			newExternalPrefixedCssVariableProperty.setValue(aValue);
+		}
+		return newExternalPrefixedCssVariableProperty;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

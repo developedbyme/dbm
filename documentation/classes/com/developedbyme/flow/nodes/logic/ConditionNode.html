@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ConditionNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.logic.ConditionNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ConditionNode = dbm.importClass("com.developedbyme.flow.nodes.logic.ConditionNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.logic.ConditionNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.logic.ConditionNode");
+	//"use strict";
+	
+	var ConditionNode = dbm.importClass("com.developedbyme.flow.nodes.logic.ConditionNode");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var ConditionEvaluation = dbm.importClass("com.developedbyme.utils.logic.ConditionEvaluation");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.logic.ConditionNode::_init");
+		
+		this.superCall();
+		
+		this._conditionType = this.createProperty("conditionType", "===");
+		this._inputValue1 = this.createProperty("inputValue1", 0);
+		this._inputValue2 = this.createProperty("inputValue2", 0);
+		this._outputValue = this.createProperty("outputValue", 1);
+		
+		this.createUpdateFunctionWithArguments("default", ConditionEvaluation.evaluateCondition, [this._inputValue1, this._conditionType, this._inputValue2], [this._outputValue]);
+		
+		return this;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._conditionType = null;
+		this._inputValue1 = null;
+		this._inputValue2 = null;
+		this._outputValue = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aConditionType, aInputValue1, aInputValue2) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("conditionType", aConditionType);
+		newNode.setPropertyInputWithoutNull("inputValue1", aInputValue1);
+		newNode.setPropertyInputWithoutNull("inputValue2", aInputValue2);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.logic.ConditionNode::_init");
+		
+		this.superCall();
+		
+		this._conditionType = this.createProperty("conditionType", "===");
+		this._inputValue1 = this.createProperty("inputValue1", 0);
+		this._inputValue2 = this.createProperty("inputValue2", 0);
+		this._outputValue = this.createProperty("outputValue", 1);
+		
+		this.createUpdateFunctionWithArguments("default", ConditionEvaluation.evaluateCondition, [this._inputValue1, this._conditionType, this._inputValue2], [this._outputValue]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._conditionType = null;
+		this._inputValue1 = null;
+		this._inputValue2 = null;
+		this._outputValue = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aConditionType, aInputValue1, aInputValue2) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("conditionType", aConditionType);
+		newNode.setPropertyInputWithoutNull("inputValue1", aInputValue1);
+		newNode.setPropertyInputWithoutNull("inputValue2", aInputValue2);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

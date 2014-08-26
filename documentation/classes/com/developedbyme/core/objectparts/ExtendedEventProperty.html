@@ -1,0 +1,190 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ExtendedEventProperty</h1>
+		<div class="classPath">com.developedbyme.core.objectparts.ExtendedEventProperty</div>
+		<div class="classInheritance"></div>
+		<div class="description">A property that sends out an extended when changed.</div>
+		<div class="importSnippet">var ExtendedEventProperty = dbm.importClass("com.developedbyme.core.objectparts.ExtendedEventProperty");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty");
+	//"use strict";
+	
+	//Self reference
+	var ExtendedEventProperty = dbm.importClass("com.developedbyme.core.objectparts.ExtendedEventProperty");
+	
+	//Error report
+	
+	//Dependencies
+	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
+	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_init");
+		
+		this.superCall();
+		
+		this._extendedEvent = ExtendedEventController.create(this);
+		this.addDestroyableObject(this._extendedEvent);
+		
+		return this;
+	};
+	
+	objectFunctions.changeToExternalEventController = function(aExtendedEventController) {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::changeToExternalEventController");
+		
+		//METODO: Fix so this function can be called a second time
+		this._extendedEvent.destroy();
+		this.removeDestroyableObject(this._extendedEvent);
+		
+		this._extendedEvent = aExtendedEventController;
+		
+		return this;
+	};
+	
+	objectFunctions._performValueChangeExtendedEvent = function(aValue) {
+		console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performValueChangeExtendedEvent");
+		if(aValue !== null) {
+			if(this._extendedEvent.hasEvent(aValue)) {
+				this._extendedEvent.perform(aValue, null);
+			}
+		}
+	};
+	
+	objectFunctions._performSetValue = function(aValue) {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
+		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
+		this.superCall(aValue);
+		this._performValueChangeExtendedEvent(aValue);
+	};
+	
+	objectFunctions.getExtendedEvent = function() {
+		return this._extendedEvent;
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		return true;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._extendedEvent = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aObjectInput, aValue) {
+		return ClassReference._createWithInputValue(ExtendedEventProperty, aObjectInput, aValue);
+	};
+	
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_init");
+		
+		this.superCall();
+		
+		this._extendedEvent = ExtendedEventController.create(this);
+		this.addDestroyableObject(this._extendedEvent);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">changeToExternalEventController</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.changeToExternalEventController = function(aExtendedEventController) {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::changeToExternalEventController");
+		
+		//METODO: Fix so this function can be called a second time
+		this._extendedEvent.destroy();
+		this.removeDestroyableObject(this._extendedEvent);
+		
+		this._extendedEvent = aExtendedEventController;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_performValueChangeExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._performValueChangeExtendedEvent = function(aValue) {
+		console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performValueChangeExtendedEvent");
+		if(aValue !== null) {
+			if(this._extendedEvent.hasEvent(aValue)) {
+				this._extendedEvent.perform(aValue, null);
+			}
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_performSetValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._performSetValue = function(aValue) {
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
+		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
+		this.superCall(aValue);
+		this._performValueChangeExtendedEvent(aValue);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getExtendedEvent = function() {
+		return this._extendedEvent;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		return true;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._extendedEvent = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aObjectInput, aValue) {
+		return ClassReference._createWithInputValue(ExtendedEventProperty, aObjectInput, aValue);
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

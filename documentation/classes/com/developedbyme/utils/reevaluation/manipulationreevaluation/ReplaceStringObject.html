@@ -1,0 +1,154 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ReplaceStringObject</h1>
+		<div class="classPath">com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject</div>
+		<div class="classInheritance"></div>
+		<div class="description">Reevaluator that replaces a key value in a string.</div>
+		<div class="importSnippet">var ReplaceStringObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.ObjectReevaluationBaseObject");
+	
+	//Self reference
+	var ReplaceStringObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject::_init");
+		
+		this.superCall();
+		
+		this.stringReevaluator = null;
+		this.oldValueReevaluator = null;
+		this.newValueReevaluator = null;
+		
+		return this;
+	};
+	
+	/**
+	 * Reevaluates the value.
+	 *
+	 * @param	aBaseObject	The abse for the reevaluation.
+	 *
+	 * @return	Any	The reevaluated value.
+	 */
+	objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var string = this.stringReevaluator.reevaluate(aBaseObject);
+		var oldValue = this.oldValueReevaluator.reevaluate(aBaseObject);
+		var newValue = this.newValueReevaluator.reevaluate(aBaseObject);
+		
+		return string.split(oldValue).join(newValue);
+	};
+	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.stringReevaluator = null;
+		this.oldValueReevaluator = null;
+		this.newValueReevaluator = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.createCommand = function(aString, aOldValue, aNewValue) {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject::createCommand (static)");
+		var newCommand = ClassReference._createAndInitClass(ClassReference);
+		
+		newCommand.stringReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aString);
+		newCommand.oldValueReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aOldValue);
+		newCommand.newValueReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aNewValue);
+		
+		return newCommand;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject::_init");
+		
+		this.superCall();
+		
+		this.stringReevaluator = null;
+		this.oldValueReevaluator = null;
+		this.newValueReevaluator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reevaluate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Reevaluates the value.</div>
+			<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var string = this.stringReevaluator.reevaluate(aBaseObject);
+		var oldValue = this.oldValueReevaluator.reevaluate(aBaseObject);
+		var newValue = this.newValueReevaluator.reevaluate(aBaseObject);
+		
+		return string.split(oldValue).join(newValue);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.stringReevaluator = null;
+		this.oldValueReevaluator = null;
+		this.newValueReevaluator = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createCommand = function(aString, aOldValue, aNewValue) {
+		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject::createCommand (static)");
+		var newCommand = ClassReference._createAndInitClass(ClassReference);
+		
+		newCommand.stringReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aString);
+		newCommand.oldValueReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aOldValue);
+		newCommand.newValueReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aNewValue);
+		
+		return newCommand;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

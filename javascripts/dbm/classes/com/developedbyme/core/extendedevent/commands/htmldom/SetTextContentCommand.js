@@ -31,7 +31,6 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.htmldom.SetText
 		
 		this.superCall();
 		
-		this.elementReevaluator = null;
 		this.textReevaluator = null;
 		
 		return this;
@@ -43,6 +42,11 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.htmldom.SetText
 		
 		var theElement = this.elementReevaluator.reevaluate(aEventDataObject);
 		var theText = this.textReevaluator.reevaluate(aEventDataObject);
+		
+		if(!VariableAliases.isSet(theElement)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "perform", "Element is null. Can't set text content to " + theText);
+			return CommandStatusTypes.ERROR;
+		}
 		
 		theElement.textContent = theText;
 		

@@ -1,0 +1,698 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>DisplayBaseObject</h1>
+		<div class="classPath">com.developedbyme.gui.DisplayBaseObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.gui.DisplayBaseObject");
+	//"use strict";
+	
+	//Self reference
+	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
+	var ExternalPrefixedCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty");
+	var TransformElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.TransformElementNode");
+	var SetElementToCssPropertiesNode = dbm.importClass("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode");
+	var RoundNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundNode");
+	
+	//Utils
+	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
+	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
+	
+	//Constants
+	var UnitTypes = dbm.importClass("com.developedbyme.constants.UnitTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::_init");
+		
+		this.superCall();
+		
+		this._element = this.createProperty("element", null);
+		this._parentElement = this.createProperty("parentElement", null);
+		this._inDom = this.createProperty("inDom", false);
+		this._inDomOutput = this.createProperty("inDomOutput", false);
+		
+		this._display = this.createGhostProperty("display");
+		
+		this.createUpdateFunctionWithArguments("inDomUpdate", DomManipulationFunctions.setElementDomStatus, [this._element, this._parentElement, this._inDom], [this._inDomOutput]);
+		this.createUpdateFunction("display", this._updateDisplayFlow, [this._inDomOutput], [this._display]);
+		
+		return this;
+	};
+	
+	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
+		//MENOTE: should be overridden
+	};
+	
+	objectFunctions.setElement = function(aElement) {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::setElement");
+		if(aElement === null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setElement", "Trying to set element to null. Use removeElement() to remove element.");
+			this.removeElement();
+			return this;
+		}
+		else if(this._element.getValue() !== null) {
+			this.removeElement();
+		}
+		
+		this._element.setValue(aElement);
+		
+		if(aElement.parentNode !== null) { //MENOTE: should this check for having another parent set already?
+			this._parentElement.setValue(aElement.parentNode);
+			this._inDom.setValue(true);
+		}
+		this._inDomOutput.update();
+		
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
+			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, aElement);
+		}
+		
+		return this;
+	};
+	
+	objectFunctions.removeElement = function() {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::removeElement");
+		
+		var currentElement = this.getElement();
+		if(currentElement !== null &amp;&amp; currentElement.parentNode !== null) {
+			currentElement.parentNode.removeChild(currentElement);
+		}
+		
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
+			dbm.singletons.dbmHtmlDomManager.removeHtmlElement(this.getElement());
+		}
+		
+		this._element.setValue(null);
+		this._inDomOutput.update();
+		
+		return this;
+	};
+	
+	objectFunctions.getElement = function() {
+		return this._element.getValue();
+	};
+	
+	objectFunctions.setElementAsPositioned = function() {
+		
+		this.createRoundedCssProperty("x", "roundedX", "left", UnitTypes.PX, 0);
+		this.createRoundedCssProperty("y", "roundedY", "top", UnitTypes.PX, 0);
+		
+		return this;
+	};
+	
+	objectFunctions.setElementAsTransformed = function() {
+		
+		var x = this.createProperty("x", 0);
+		var y = this.createProperty("y", 0);
+		var scaleX = this.createProperty("scaleX", 1);
+		var scaleY = this.createProperty("scaleY", 1);
+		var rotate = this.createProperty("rotate", 0);
+		var pivotX = this.createProperty("pivotX", 0.5);
+		var pivotY = this.createProperty("pivotY", 0.5);
+		
+		var placementNode = TransformElementNode.create(this._element, x, y, scaleX, scaleY, rotate, pivotX, pivotY);
+		this._updateFunctions.getObject("display").addInputConnection(placementNode.getProperty("display"));
+		this.addDestroyableObject(placementNode);
+		
+		return this;
+	};
+	
+	objectFunctions.setElementAsSized = function() {
+		
+		this.createCssProperty("width", "width", UnitTypes.PX, null);
+		this.createCssProperty("height", "height", UnitTypes.PX, null);
+		
+		return this;
+	};
+	
+	objectFunctions.setParent = function(aElement) {
+		
+		if(aElement instanceof DisplayBaseObject) {
+			this.setPropertyInput("parentElement", aElement.getProperty("element"));
+		}
+		else {
+			this.setPropertyInput("parentElement", aElement);
+		}
+		
+		return this;
+	};
+	
+	objectFunctions.addToParent = function(aElement) {
+		this.setParent(aElement);
+		this.addToDom();
+		
+		return this;
+	};
+	
+	objectFunctions.addToDom = function() {
+		//console.log("com.developedbyme.core.FlowBaseObject::addToDom");
+		//console.log(this._element.getValue());
+		
+		this._inDom.setValue(true);
+		this._inDomOutput.update();
+		
+		return this;
+	};
+	
+	objectFunctions.removeFromDom = function() {
+		
+		this._inDom.setValue(false);
+		this._inDomOutput.update();
+		
+		return this;
+	};
+	
+	objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
+		
+		this._element.getValue().style.setProperty(aStyleProperty, aValue, "");
+		
+		return this;
+	};
+	
+	objectFunctions.removeStyleProperty = function(aStyleProperty) {
+		
+		this._element.getValue().style.removeProperty(aStyleProperty);
+		
+		return this;
+	};
+	
+	objectFunctions.enableAlpha = function() {
+		this.createCssProperty("alpha", "opacity", null, 1);
+		
+		return this;
+	};
+	
+	objectFunctions.enableZIndex = function() {
+		this.createRoundedCssProperty("z", "roundedZ", "z-index", null, 0);
+		
+		return this;
+	};
+	
+	objectFunctions.createRoundedCssProperty = function(aName, aRoundedName, aCssProperty, aUnit, aDefaultValue) {
+		var inputProperty = this.createProperty(aName, aDefaultValue);
+		var roundedProperty = this.createCssProperty(aRoundedName, aCssProperty, aUnit, aDefaultValue);
+		
+		var roundNode = this.addDestroyableObject(RoundNode.create(inputProperty));
+		roundedProperty.connectInput(roundNode.getProperty("outputValue"));
+		
+		return inputProperty;
+	};
+	
+	objectFunctions.createCssProperty = function(aName, aCssProperty, aUnit, aDefaultValue) {
+		if(!VariableAliases.isSet(aUnit)) {
+			aUnit = CssFunctions.isLengthProperty(aCssProperty) ? UnitTypes.PX : null;
+		}
+		aDefaultValue = VariableAliases.valueWithDefault(aDefaultValue, null);
+		
+		var newProperty;
+		if(CssFunctions.isPrefixedProperty(aCssProperty)) {
+			newProperty = ExternalPrefixedCssVariableProperty.createWithoutExternalObject(this._objectProperty);
+		}
+		else {
+			newProperty = ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty);
+		}
+		
+		newProperty.setup(aCssProperty, aUnit, aDefaultValue);
+		this.addProperty(aName, newProperty);
+		this._updateFunctions.getObject("display").addInputConnection(newProperty);
+		
+		var setElementNode = SetElementToCssPropertiesNode.create(this._element).addUpdateProperty(newProperty);
+		this._updateFunctions.getObject("display").addInputConnection(setElementNode.getProperty("elementSet"));
+		this.addDestroyableObject(setElementNode);
+		
+		return newProperty;
+	};
+	
+	objectFunctions.getHtmlCreator = function() {
+		//console.log("com.developedbyme.core.FlowBaseObject::getHtmlCreator");
+		var element = this._element.getValue();
+		if(element !== null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(element));
+		}
+		
+		var parentElement = this._parentElement.getValue();
+		if(parentElement !== null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(parentElement));
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getHtmlCreator", "Element or parent must be set before getting the html creator.");
+		return null;
+	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		if(this._inDom !== null &amp;&amp; this._inDom.getValue()) {
+			this.removeFromDom();
+		}
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._element = null;
+		this._parentElement = null;
+		this._inDom = null;
+		this._inDomOutput = null;
+		this._display = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions._createAndInitClassWithElement = function(aClass, aElement) {
+		return ClassReference._createAndInitClass(aClass).setElement(aElement);
+	};
+	
+	staticFunctions.create = function(aElement) {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::create");
+		//console.log(aElement);
+		
+		return ClassReference._createAndInitClassWithElement(ClassReference, aElement);
+	};
+	
+	staticFunctions.createNewDiv = function(aAttributes) {
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		
+		return ClassReference._createAndInitClassWithElement(ClassReference, htmlCreator.createDiv(aAttributes));
+	};
+	
+	staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
+		
+		return ClassReference.createNode("div", aParentOrDocument, aAddToParent, aAttributes);
+	};
+	
+	staticFunctions.createNode = function(aType, aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = ClassReference._createAndInitClass(ClassReference);
+		
+		newNode.setParent(DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument));
+		newNode.setElement(newNode.getHtmlCreator().createNode(aType, aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::_init");
+		
+		this.superCall();
+		
+		this._element = this.createProperty("element", null);
+		this._parentElement = this.createProperty("parentElement", null);
+		this._inDom = this.createProperty("inDom", false);
+		this._inDomOutput = this.createProperty("inDomOutput", false);
+		
+		this._display = this.createGhostProperty("display");
+		
+		this.createUpdateFunctionWithArguments("inDomUpdate", DomManipulationFunctions.setElementDomStatus, [this._element, this._parentElement, this._inDom], [this._inDomOutput]);
+		this.createUpdateFunction("display", this._updateDisplayFlow, [this._inDomOutput], [this._display]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_updateDisplayFlow</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
+		//MENOTE: should be overridden
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setElement</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setElement = function(aElement) {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::setElement");
+		if(aElement === null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setElement", "Trying to set element to null. Use removeElement() to remove element.");
+			this.removeElement();
+			return this;
+		}
+		else if(this._element.getValue() !== null) {
+			this.removeElement();
+		}
+		
+		this._element.setValue(aElement);
+		
+		if(aElement.parentNode !== null) { //MENOTE: should this check for having another parent set already?
+			this._parentElement.setValue(aElement.parentNode);
+			this._inDom.setValue(true);
+		}
+		this._inDomOutput.update();
+		
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
+			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, aElement);
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeElement</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removeElement = function() {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::removeElement");
+		
+		var currentElement = this.getElement();
+		if(currentElement !== null &amp;&amp; currentElement.parentNode !== null) {
+			currentElement.parentNode.removeChild(currentElement);
+		}
+		
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
+			dbm.singletons.dbmHtmlDomManager.removeHtmlElement(this.getElement());
+		}
+		
+		this._element.setValue(null);
+		this._inDomOutput.update();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getElement</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getElement = function() {
+		return this._element.getValue();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setElementAsPositioned</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setElementAsPositioned = function() {
+		
+		this.createRoundedCssProperty("x", "roundedX", "left", UnitTypes.PX, 0);
+		this.createRoundedCssProperty("y", "roundedY", "top", UnitTypes.PX, 0);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setElementAsTransformed</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setElementAsTransformed = function() {
+		
+		var x = this.createProperty("x", 0);
+		var y = this.createProperty("y", 0);
+		var scaleX = this.createProperty("scaleX", 1);
+		var scaleY = this.createProperty("scaleY", 1);
+		var rotate = this.createProperty("rotate", 0);
+		var pivotX = this.createProperty("pivotX", 0.5);
+		var pivotY = this.createProperty("pivotY", 0.5);
+		
+		var placementNode = TransformElementNode.create(this._element, x, y, scaleX, scaleY, rotate, pivotX, pivotY);
+		this._updateFunctions.getObject("display").addInputConnection(placementNode.getProperty("display"));
+		this.addDestroyableObject(placementNode);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setElementAsSized</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setElementAsSized = function() {
+		
+		this.createCssProperty("width", "width", UnitTypes.PX, null);
+		this.createCssProperty("height", "height", UnitTypes.PX, null);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setParent = function(aElement) {
+		
+		if(aElement instanceof DisplayBaseObject) {
+			this.setPropertyInput("parentElement", aElement.getProperty("element"));
+		}
+		else {
+			this.setPropertyInput("parentElement", aElement);
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addToParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addToParent = function(aElement) {
+		this.setParent(aElement);
+		this.addToDom();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addToDom</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addToDom = function() {
+		//console.log("com.developedbyme.core.FlowBaseObject::addToDom");
+		//console.log(this._element.getValue());
+		
+		this._inDom.setValue(true);
+		this._inDomOutput.update();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeFromDom</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removeFromDom = function() {
+		
+		this._inDom.setValue(false);
+		this._inDomOutput.update();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setStyleProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
+		
+		this._element.getValue().style.setProperty(aStyleProperty, aValue, "");
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeStyleProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removeStyleProperty = function(aStyleProperty) {
+		
+		this._element.getValue().style.removeProperty(aStyleProperty);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">enableAlpha</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.enableAlpha = function() {
+		this.createCssProperty("alpha", "opacity", null, 1);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">enableZIndex</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.enableZIndex = function() {
+		this.createRoundedCssProperty("z", "roundedZ", "z-index", null, 0);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createRoundedCssProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createRoundedCssProperty = function(aName, aRoundedName, aCssProperty, aUnit, aDefaultValue) {
+		var inputProperty = this.createProperty(aName, aDefaultValue);
+		var roundedProperty = this.createCssProperty(aRoundedName, aCssProperty, aUnit, aDefaultValue);
+		
+		var roundNode = this.addDestroyableObject(RoundNode.create(inputProperty));
+		roundedProperty.connectInput(roundNode.getProperty("outputValue"));
+		
+		return inputProperty;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createCssProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createCssProperty = function(aName, aCssProperty, aUnit, aDefaultValue) {
+		if(!VariableAliases.isSet(aUnit)) {
+			aUnit = CssFunctions.isLengthProperty(aCssProperty) ? UnitTypes.PX : null;
+		}
+		aDefaultValue = VariableAliases.valueWithDefault(aDefaultValue, null);
+		
+		var newProperty;
+		if(CssFunctions.isPrefixedProperty(aCssProperty)) {
+			newProperty = ExternalPrefixedCssVariableProperty.createWithoutExternalObject(this._objectProperty);
+		}
+		else {
+			newProperty = ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty);
+		}
+		
+		newProperty.setup(aCssProperty, aUnit, aDefaultValue);
+		this.addProperty(aName, newProperty);
+		this._updateFunctions.getObject("display").addInputConnection(newProperty);
+		
+		var setElementNode = SetElementToCssPropertiesNode.create(this._element).addUpdateProperty(newProperty);
+		this._updateFunctions.getObject("display").addInputConnection(setElementNode.getProperty("elementSet"));
+		this.addDestroyableObject(setElementNode);
+		
+		return newProperty;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getHtmlCreator</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getHtmlCreator = function() {
+		//console.log("com.developedbyme.core.FlowBaseObject::getHtmlCreator");
+		var element = this._element.getValue();
+		if(element !== null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(element));
+		}
+		
+		var parentElement = this._parentElement.getValue();
+		if(parentElement !== null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(parentElement));
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getHtmlCreator", "Element or parent must be set before getting the html creator.");
+		return null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		if(this._inDom !== null &amp;&amp; this._inDom.getValue()) {
+			this.removeFromDom();
+		}
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._element = null;
+		this._parentElement = null;
+		this._inDom = null;
+		this._inDomOutput = null;
+		this._display = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_createAndInitClassWithElement</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions._createAndInitClassWithElement = function(aClass, aElement) {
+		return ClassReference._createAndInitClass(aClass).setElement(aElement);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aElement) {
+		//console.log("com.developedbyme.gui.DisplayBaseObject::create");
+		//console.log(aElement);
+		
+		return ClassReference._createAndInitClassWithElement(ClassReference, aElement);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createNewDiv</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createNewDiv = function(aAttributes) {
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		
+		return ClassReference._createAndInitClassWithElement(ClassReference, htmlCreator.createDiv(aAttributes));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createDiv</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
+		
+		return ClassReference.createNode("div", aParentOrDocument, aAddToParent, aAttributes);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createNode</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createNode = function(aType, aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = ClassReference._createAndInitClass(ClassReference);
+		
+		newNode.setParent(DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument));
+		newNode.setElement(newNode.getHtmlCreator().createNode(aType, aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>NumberFunctions</h1>
+		<div class="classPath">com.developedbyme.utils.native.number.NumberFunctions</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.native.number.NumberFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.native.number.NumberFunctions");
+	
+	//Self reference
+	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	staticFunctions.getPaddedNumber = function(aNumber, aPadding) {
+		var returnString = String(aNumber);
+		for(var i = returnString.length; i &lt; aPadding; i++) {
+			returnString = "0" + returnString;
+		}
+		return returnString;
+	};
+	
+	staticFunctions.roundToNumberOfDecimals = function(aNumber, aNumberOfDecimals) {
+		var multiplicationValue = Math.pow(10, aNumberOfDecimals);
+		return Math.round(multiplicationValue*aNumber)/multiplicationValue;
+	};
+	
+	staticFunctions.getBitsRequiredForValue = function(aValue) {
+		var debugCounter = 0;
+		var length = 0;
+		while(aValue &gt;= Math.pow(2, length)) {
+			length++;
+		}
+		return length;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">getPaddedNumber</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getPaddedNumber = function(aNumber, aPadding) {
+		var returnString = String(aNumber);
+		for(var i = returnString.length; i &lt; aPadding; i++) {
+			returnString = "0" + returnString;
+		}
+		return returnString;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">roundToNumberOfDecimals</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.roundToNumberOfDecimals = function(aNumber, aNumberOfDecimals) {
+		var multiplicationValue = Math.pow(10, aNumberOfDecimals);
+		return Math.round(multiplicationValue*aNumber)/multiplicationValue;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getBitsRequiredForValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getBitsRequiredForValue = function(aValue) {
+		var debugCounter = 0;
+		var length = 0;
+		while(aValue &gt;= Math.pow(2, length)) {
+			length++;
+		}
+		return length;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

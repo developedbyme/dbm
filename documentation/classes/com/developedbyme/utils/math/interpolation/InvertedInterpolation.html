@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>InvertedInterpolation</h1>
+		<div class="classPath">com.developedbyme.utils.math.interpolation.InvertedInterpolation</div>
+		<div class="classInheritance"></div>
+		<div class="description">Interpolataion for inverted</div>
+		<div class="importSnippet">var InvertedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.InvertedInterpolation");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.math.interpolation.InvertedInterpolation", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
+	
+	var InvertedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
+		
+	/**
+	 * Constructor.
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
+		
+		this.interpolationObject = null;
+		
+		return this;
+	};
+	
+	/**
+	 * Interpolates
+	 */
+	objectFunctions.interpolate = function(aParameter) {
+		return 1-(this.interpolationObject.interpolate(1-aParameter));
+	};
+	
+	/**
+	 * Gets the tangent for a parameter
+	 */
+	objectFunctions.getTangent = function(aParameter) {
+		return this.interpolationObject.getTangent(1-aParameter);
+	};
+	
+	/**
+	 * Create a new interpolation
+	 */
+	staticFunctions.create = function(aInterpolationObject) {
+		var newInterpolation = (new ClassReference()).init();
+		
+		newInterpolation.interpolationObject = aInterpolationObject;
+		
+		return newInterpolation;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor.</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
+		
+		this.interpolationObject = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">interpolate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Interpolates</div>
+			<div class="code">objectFunctions.interpolate = function(aParameter) {
+		return 1-(this.interpolationObject.interpolate(1-aParameter));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getTangent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the tangent for a parameter</div>
+			<div class="code">objectFunctions.getTangent = function(aParameter) {
+		return this.interpolationObject.getTangent(1-aParameter);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Create a new interpolation</div>
+			<div class="code">staticFunctions.create = function(aInterpolationObject) {
+		var newInterpolation = (new ClassReference()).init();
+		
+		newInterpolation.interpolationObject = aInterpolationObject;
+		
+		return newInterpolation;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

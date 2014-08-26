@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>MetaDataObject</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var MetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject");
+	
+	//Self reference
+	var MetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject::_init");
+		
+		this.superCall();
+		
+		this.metaData = NamedArray.create(false);
+		this.data = null;
+		
+		return this;
+	};
+	
+	staticFunctions.create = function() {
+		var newMetaDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		return newMetaDataObject;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject::_init");
+		
+		this.superCall();
+		
+		this.metaData = NamedArray.create(false);
+		this.data = null;
+		
+		return this;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newMetaDataObject = ClassReference._createAndInitClass(ClassReference);
+		
+		return newMetaDataObject;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

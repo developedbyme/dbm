@@ -1,0 +1,170 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>EncodingBaseObject</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.encodingmanager.encoders.EncodingBaseObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var EncodingBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.encoders.EncodingBaseObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.encodingmanager.encoders.EncodingBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.encodingmanager.encoders.EncodingBaseObject");
+	
+	//Self reference
+	var EncodingBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.encoders.EncodingBaseObject");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.encodingmanager.encoders.EncodingBaseObject::_init");
+		
+		this.superCall();
+		
+		this._key = null;
+		this._value = null;
+		this._encodedValue = null;
+		
+		return this;
+	};
+	
+	objectFunctions.setKey = function(aKey) {
+		this._key = aKey;
+		
+		return this;
+	};
+	
+	objectFunctions.setValue = function(aValue) {
+		this._value = aValue;
+		
+		return this;
+	};
+	
+	objectFunctions.getEncodedValue = function() {
+		return this._encodedValue;
+	};
+	
+	objectFunctions.encode = function() {
+		//MENOTE: should be overridden
+		//METODO: error message
+		return null;
+	};
+	
+	objectFunctions.reset = function() {
+		this._key = null;
+		this._value = null;
+		this._encodedValue = null;
+	};
+	
+	/**
+	 * Sets all the references to null
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._key = null;
+		this._value = null;
+		this._encodedValue = null;
+		
+		this.superCall();
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.encodingmanager.encoders.EncodingBaseObject::_init");
+		
+		this.superCall();
+		
+		this._key = null;
+		this._value = null;
+		this._encodedValue = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setKey</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setKey = function(aKey) {
+		this._key = aKey;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setValue = function(aValue) {
+		this._value = aValue;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getEncodedValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getEncodedValue = function() {
+		return this._encodedValue;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">encode</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.encode = function() {
+		//MENOTE: should be overridden
+		//METODO: error message
+		return null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.reset = function() {
+		this._key = null;
+		this._value = null;
+		this._encodedValue = null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._key = null;
+		this._value = null;
+		this._encodedValue = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

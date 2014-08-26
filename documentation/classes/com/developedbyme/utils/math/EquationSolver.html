@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>EquationSolver</h1>
+		<div class="classPath">com.developedbyme.utils.math.EquationSolver</div>
+		<div class="classInheritance"></div>
+		<div class="description">Global utility for solving equations.</div>
+		<div class="importSnippet">var EquationSolver = dbm.importClass("com.developedbyme.utils.math.EquationSolver");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.math.EquationSolver", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.math.EquationSolver");
+		
+	/**
+	 * Solves an equation with one variable.
+	 *
+	 * @param	aSolveArray	The array containing all the data and is transformed to solved array.
+	 */
+	staticFunctions.solveEquation = function(aSolveArray) {
+		//console.log("com.developedbyme.utils.math.EquationSolver.solveEcuation");
+		var eliminationArray = aSolveArray;
+		var arrayLength = eliminationArray.length;
+		
+		for(var i = 0; ++i &lt; arrayLength;) {
+			//MENOTE: no elimination on first row
+			var currentEliminationArray = eliminationArray[i];
+			var currentDataArray = eliminationArray[i];
+			var currentRemoveArray;
+			for(var j = 0; j &lt; i; j++) {
+				currentRemoveArray = eliminationArray[j];
+				var multiplier = currentDataArray[j]/currentRemoveArray[j];
+				for(var k = 0; k &lt; currentEliminationArray.length; k++) {
+					currentEliminationArray[k] = currentDataArray[k] - multiplier*currentRemoveArray[k];
+				}
+				currentEliminationArray[j] = 0;
+			}
+		}
+		
+		for(var i = arrayLength; --i &gt;= 0;) {
+			var arrayTotalLength = eliminationArray[i].length;
+			for(var j = arrayLength; --j &gt; i;) {
+				var rowMultiplier = eliminationArray[i][j];
+				for(var k = arrayLength-1; ++k &lt; arrayTotalLength;) {
+					eliminationArray[i][k] = eliminationArray[i][k]-rowMultiplier*eliminationArray[j][k];
+				}
+				eliminationArray[i][j] = 0;
+			}
+			var rowMultiplier = eliminationArray[i][i];
+			eliminationArray[i][i] = 1;
+			for(var k = arrayLength-1; ++k &lt; arrayTotalLength;) {
+				eliminationArray[i][k] /= rowMultiplier;
+			}
+		}
+	}; //End function solveEquation
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">solveEquation</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Solves an equation with one variable.</div>
+			<div class="code">staticFunctions.solveEquation = function(aSolveArray) {
+		//console.log("com.developedbyme.utils.math.EquationSolver.solveEcuation");
+		var eliminationArray = aSolveArray;
+		var arrayLength = eliminationArray.length;
+		
+		for(var i = 0; ++i &lt; arrayLength;) {
+			//MENOTE: no elimination on first row
+			var currentEliminationArray = eliminationArray[i];
+			var currentDataArray = eliminationArray[i];
+			var currentRemoveArray;
+			for(var j = 0; j &lt; i; j++) {
+				currentRemoveArray = eliminationArray[j];
+				var multiplier = currentDataArray[j]/currentRemoveArray[j];
+				for(var k = 0; k &lt; currentEliminationArray.length; k++) {
+					currentEliminationArray[k] = currentDataArray[k] - multiplier*currentRemoveArray[k];
+				}
+				currentEliminationArray[j] = 0;
+			}
+		}
+		
+		for(var i = arrayLength; --i &gt;= 0;) {
+			var arrayTotalLength = eliminationArray[i].length;
+			for(var j = arrayLength; --j &gt; i;) {
+				var rowMultiplier = eliminationArray[i][j];
+				for(var k = arrayLength-1; ++k &lt; arrayTotalLength;) {
+					eliminationArray[i][k] = eliminationArray[i][k]-rowMultiplier*eliminationArray[j][k];
+				}
+				eliminationArray[i][j] = 0;
+			}
+			var rowMultiplier = eliminationArray[i][i];
+			eliminationArray[i][i] = 1;
+			for(var k = arrayLength-1; ++k &lt; arrayTotalLength;) {
+				eliminationArray[i][k] /= rowMultiplier;
+			}
+		}
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

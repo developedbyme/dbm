@@ -1,0 +1,155 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TransformedPathAssetCreator</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator</div>
+		<div class="classInheritance"></div>
+		<div class="description">Creates an asset and sets the path after transforming it.</div>
+		<div class="importSnippet">var TransformedPathAssetCreator = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator", "com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator");
+	//"use strict";
+	
+	//Self reference
+	var TransformedPathAssetCreator = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator::_init");
+		
+		this.superCall();
+		
+		this._pathReevaluator = null;
+		
+		return this;
+	};
+	
+	/**
+	 * Set the reevaluator for the path.
+	 *
+	 * @param	aPathReevaluator	The path reevaluator.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.setPathReevaluator = function(aPathReevaluator) {
+		this._pathReevaluator = aPathReevaluator;
+		this.addDestroyableObject(this._pathReevaluator);
+		
+		return this;
+	};
+	
+	/**
+	 * Creates a new asset.
+	 *
+	 * @param	aPath	The path to the asset.
+	 * @param	aType	The type of asset to create (interface/ignored for class).
+	 *
+	 * @return	Asset	The newly created asset.
+	 */
+	objectFunctions.createAsset = function(aPath, aType) {
+		return this.superCall(this._pathReevaluator.reevaluate(aPath), aType);
+	};
+	
+	/**
+	 * Sets all the references to null.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._pathReevaluator = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a new transformed path asset creator.
+	 *
+	 * @param	aClass				The class that this creator is generating.
+	 * @param	aPathReevaluator	The reevaluator for the path.
+	 *
+	 * @return	TransformedPathAssetCreator	The newly created transformed path asset creator.
+	 */
+	staticFunctions.create = function(aClass, aPathReevaluator) {
+		var newTransformedPathAssetCreator = ClassReference._createAndInitClass(ClassReference);
+		newTransformedPathAssetCreator.setClass(aClass);
+		newTransformedPathAssetCreator.setPathReevaluator(aPathReevaluator);
+		return newTransformedPathAssetCreator;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator::_init");
+		
+		this.superCall();
+		
+		this._pathReevaluator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setPathReevaluator</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Set the reevaluator for the path.</div>
+			<div class="code">objectFunctions.setPathReevaluator = function(aPathReevaluator) {
+		this._pathReevaluator = aPathReevaluator;
+		this.addDestroyableObject(this._pathReevaluator);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createAsset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new asset.</div>
+			<div class="code">objectFunctions.createAsset = function(aPath, aType) {
+		return this.superCall(this._pathReevaluator.reevaluate(aPath), aType);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._pathReevaluator = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new transformed path asset creator.</div>
+			<div class="code">staticFunctions.create = function(aClass, aPathReevaluator) {
+		var newTransformedPathAssetCreator = ClassReference._createAndInitClass(ClassReference);
+		newTransformedPathAssetCreator.setClass(aClass);
+		newTransformedPathAssetCreator.setPathReevaluator(aPathReevaluator);
+		return newTransformedPathAssetCreator;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

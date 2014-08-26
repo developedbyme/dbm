@@ -1,0 +1,135 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>EvaluateTimelineNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.animation.EvaluateTimelineNode</div>
+		<div class="classInheritance"></div>
+		<div class="description">A node that evaluates a timeline.</div>
+		<div class="importSnippet">var EvaluateTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
+	//"use strict";
+	
+	//Self reference
+	var EvaluateTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
+	
+	//Error report
+	
+	//Dependencies
+	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::_init");
+		
+		this.superCall();
+		
+		var timeline = this.createProperty("timeline", null).setAlwaysUpdateFlow(true);
+		var inputValue = this.createProperty("inputValue", 0);
+		var outputValue = this.createProperty("outputValue", null);
+		
+		this.createUpdateFunctionWithArguments("default", ClassReference._update, [timeline, inputValue], [outputValue]);
+		
+		return this;
+	};
+	
+	staticFunctions.create = function(aTimeline, aInputValue) {
+		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::create");
+		var newNode = (new ClassReference()).init();
+		if(aTimeline instanceof Timeline) {
+			newNode.setPropertyInputWithoutNull("timeline", aTimeline.getObjectProperty());
+		}
+		else {
+			newNode.setPropertyInputWithoutNull("timeline", aTimeline);
+		}
+		
+		newNode.setPropertyInputWithoutNull("inputValue", aInputValue);
+		
+		//console.log(newNode);
+		
+		return newNode;
+	};
+	
+	staticFunctions._update = function(aTimeline, aInputValue) {
+		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::_update");
+		//console.log(aTimeline, aInputValue);
+		
+		if(aTimeline === null) {
+			return null;
+		}
+		return aTimeline.getValueAt(aInputValue);
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::_init");
+		
+		this.superCall();
+		
+		var timeline = this.createProperty("timeline", null).setAlwaysUpdateFlow(true);
+		var inputValue = this.createProperty("inputValue", 0);
+		var outputValue = this.createProperty("outputValue", null);
+		
+		this.createUpdateFunctionWithArguments("default", ClassReference._update, [timeline, inputValue], [outputValue]);
+		
+		return this;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aTimeline, aInputValue) {
+		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::create");
+		var newNode = (new ClassReference()).init();
+		if(aTimeline instanceof Timeline) {
+			newNode.setPropertyInputWithoutNull("timeline", aTimeline.getObjectProperty());
+		}
+		else {
+			newNode.setPropertyInputWithoutNull("timeline", aTimeline);
+		}
+		
+		newNode.setPropertyInputWithoutNull("inputValue", aInputValue);
+		
+		//console.log(newNode);
+		
+		return newNode;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions._update = function(aTimeline, aInputValue) {
+		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::_update");
+		//console.log(aTimeline, aInputValue);
+		
+		if(aTimeline === null) {
+			return null;
+		}
+		return aTimeline.getValueAt(aInputValue);
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

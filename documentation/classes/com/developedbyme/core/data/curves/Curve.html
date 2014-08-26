@@ -1,0 +1,183 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>Curve</h1>
+		<div class="classPath">com.developedbyme.core.data.curves.Curve</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var Curve = dbm.importClass("com.developedbyme.core.data.curves.Curve");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.data.curves.Curve", "com.developedbyme.core.data.points.PointSet", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.data.curves.Curve");
+	//"use strict";
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.curves.Curve::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.isSetType = function(aType) {
+		switch(aType) {
+			case "curve":
+				return true;
+			default:
+				return this.superCall(aType);
+		}
+	};
+	
+	objectFunctions.getPointOnCurve = function(aParameter, aOutputPoint) {
+		//console.log("com.developedbyme.core.data.curves.Curve::getPointOnCurve");
+		//MENOTE: must be overwritten
+		//METODO: error message
+	};
+	
+	objectFunctions.getTangentOnCurve = function(aParameter, aOutputPoint) {
+		//MENOTE: must be overwritten
+		//METODO: error message
+	};
+	
+	objectFunctions.getNormalOnCurve = function(aParameter, aOutputPoint) {
+		//MENOTE: must be overwritten
+		//METODO: error message
+	};
+	
+	objectFunctions.createSameTypeOfCurve = function() {
+		var newCurve = (new ClassReference()).init();
+		return newCurve;
+	};
+	
+	objectFunctions.duplicate = function() {
+		var theObject = this.createSameTypeOfCurve();
+		var currentArray = this.pointsArray;
+		var outputArray = theObject.pointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			outputArray.push(currentArray[i].duplicate());
+		}
+		return theObject;
+	};
+	
+	staticFunctions.createWithLength = function(aLength) {
+		var newSet = (new ClassReference()).init();
+		newSet.fillWithEmptyPoints(aLength);
+		return newSet;
+	};
+	
+	staticFunctions.createWithValues = function(aValues, aNumberOfDimensions) {
+		var newSet = (new ClassReference()).init();
+		newSet.setupFromArray(aValues, aNumberOfDimensions);
+		return newSet;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.curves.Curve::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">isSetType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.isSetType = function(aType) {
+		switch(aType) {
+			case "curve":
+				return true;
+			default:
+				return this.superCall(aType);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getPointOnCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getPointOnCurve = function(aParameter, aOutputPoint) {
+		//console.log("com.developedbyme.core.data.curves.Curve::getPointOnCurve");
+		//MENOTE: must be overwritten
+		//METODO: error message
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getTangentOnCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getTangentOnCurve = function(aParameter, aOutputPoint) {
+		//MENOTE: must be overwritten
+		//METODO: error message
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getNormalOnCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getNormalOnCurve = function(aParameter, aOutputPoint) {
+		//MENOTE: must be overwritten
+		//METODO: error message
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createSameTypeOfCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createSameTypeOfCurve = function() {
+		var newCurve = (new ClassReference()).init();
+		return newCurve;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">duplicate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.duplicate = function() {
+		var theObject = this.createSameTypeOfCurve();
+		var currentArray = this.pointsArray;
+		var outputArray = theObject.pointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			outputArray.push(currentArray[i].duplicate());
+		}
+		return theObject;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createWithLength</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createWithLength = function(aLength) {
+		var newSet = (new ClassReference()).init();
+		newSet.fillWithEmptyPoints(aLength);
+		return newSet;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createWithValues</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createWithValues = function(aValues, aNumberOfDimensions) {
+		var newSet = (new ClassReference()).init();
+		newSet.setupFromArray(aValues, aNumberOfDimensions);
+		return newSet;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

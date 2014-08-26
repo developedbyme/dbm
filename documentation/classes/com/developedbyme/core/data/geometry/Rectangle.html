@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>Rectangle</h1>
+		<div class="classPath">com.developedbyme.core.data.geometry.Rectangle</div>
+		<div class="classInheritance"></div>
+		<div class="description">A rectangle.</div>
+		<div class="importSnippet">var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.data.geometry.Rectangle", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.data.geometry.Rectangle");
+	
+	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.geometry.Rectangle");
+		
+		this.superCall();
+		
+		this.x = 0;
+		this.y = 0;
+		this.width = 0;
+		this.height = 0;
+		
+		return this;
+	};
+	
+	/**
+	 * Duplicates the object without the data flow connections.
+	 *
+	 * @return	The newly created object.
+	 */
+	objectFunctions.duplicate = function() {
+		var theObject = (new ClassReference()).init();
+		theObject.x = this.x;
+		theObject.y = this.y;
+		theObject.width = this.width;
+		theObject.height = this.height;
+		return theObject;
+	};
+	
+	staticFunctions.create = function(aX, aY, aWidth, aHeight) {
+		//console.log("com.developedbyme.core.data.geometry.Rectangle::create (static)");
+		//console.log(aX, aY, aWidth, aHeight);
+		var newRectangle = (new Rectangle()).init();
+		newRectangle.x = VariableAliases.valueWithDefault(aX, 0);
+		newRectangle.y = VariableAliases.valueWithDefault(aY, 0);
+		newRectangle.width = VariableAliases.valueWithDefault(aWidth, 0);
+		newRectangle.height = VariableAliases.valueWithDefault(aHeight, 0);
+		
+		return newRectangle;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.geometry.Rectangle");
+		
+		this.superCall();
+		
+		this.x = 0;
+		this.y = 0;
+		this.width = 0;
+		this.height = 0;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">duplicate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Duplicates the object without the data flow connections.</div>
+			<div class="code">objectFunctions.duplicate = function() {
+		var theObject = (new ClassReference()).init();
+		theObject.x = this.x;
+		theObject.y = this.y;
+		theObject.width = this.width;
+		theObject.height = this.height;
+		return theObject;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aX, aY, aWidth, aHeight) {
+		//console.log("com.developedbyme.core.data.geometry.Rectangle::create (static)");
+		//console.log(aX, aY, aWidth, aHeight);
+		var newRectangle = (new Rectangle()).init();
+		newRectangle.x = VariableAliases.valueWithDefault(aX, 0);
+		newRectangle.y = VariableAliases.valueWithDefault(aY, 0);
+		newRectangle.width = VariableAliases.valueWithDefault(aWidth, 0);
+		newRectangle.height = VariableAliases.valueWithDefault(aHeight, 0);
+		
+		return newRectangle;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

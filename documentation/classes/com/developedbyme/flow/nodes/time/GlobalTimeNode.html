@@ -1,0 +1,138 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>GlobalTimeNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.time.GlobalTimeNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.time.GlobalTimeNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::_init");
+		
+		this.superCall();
+		
+		this._time = this.createProperty("time", 0);
+		this._frame = this.createProperty("frame", 0);
+		
+		return this;
+	};
+	
+	objectFunctions.start = function() {
+		dbm.singletons.dbmUpdateManager.addUpdater(this, "updateInput");
+		
+		return this;
+	};
+	
+	objectFunctions.stop = function() {
+		dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateInput");
+		
+		return this;
+	};
+	
+	objectFunctions.updateTime = function(aTime, aFrame) {
+		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::updateTime");
+		//console.log(aTime);
+		this._time.setValue(aTime);
+		this._frame.setValue(aFrame);
+	};
+	
+	objectFunctions.performDestroy = function() {
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		var newNode = (new ClassReference()).init();
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::_init");
+		
+		this.superCall();
+		
+		this._time = this.createProperty("time", 0);
+		this._frame = this.createProperty("frame", 0);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">start</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.start = function() {
+		dbm.singletons.dbmUpdateManager.addUpdater(this, "updateInput");
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">stop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.stop = function() {
+		dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateInput");
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">updateTime</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.updateTime = function(aTime, aFrame) {
+		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::updateTime");
+		//console.log(aTime);
+		this._time.setValue(aTime);
+		this._frame.setValue(aFrame);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newNode = (new ClassReference()).init();
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,190 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>SetPropertyAsDirtyCommand</h1>
+		<div class="classPath">com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
+	
+	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	
+	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
+	var GetPropertyObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject");
+	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::_init");
+		
+		this.superCall();
+		
+		this.propertyReevaluator = null;
+		
+		return this;
+	};
+	
+	objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::perform");
+		//console.log(aEventDataObject);
+		
+		var theProperty = this.propertyReevaluator.reevaluate(aEventDataObject);
+		theProperty.setAsDirty();
+		
+		//console.log(theProperty.name, theProperty);
+		
+		return CommandStatusTypes.CONTINUE;
+	};
+	
+	
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this.propertyReevaluator);
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.propertyReevaluator = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a command that sets a property as dirty.
+	 * 
+	 * @param	aProperty	The property to set.
+	 * @param	aValue		The value to set to the property.
+	 *
+	 * @return	The new command.
+	 */
+	staticFunctions.createCommand = function(aProperty) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createCommand (static)");
+		//console.log(aProperty);
+		var newCommand = (new SetPropertyAsDirtyCommand()).init();
+		
+		newCommand.propertyReevaluator = StaticVariableObject.createReevaluationObject(aProperty);
+		
+		return newCommand;
+	};
+	
+	/**
+	 * Creates a command that sets a property as dirty on an object.
+	 * 
+	 * @param	aObject			The object to set the property on.
+	 * @param	aPropertyName	The name of the property.
+	 * @param	aValue			The value to set to the property.
+	 *
+	 * @return	The new command.
+	 */
+	staticFunctions.createSetPropertyOnObjectCommand = function(aObject, aPropertyName) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createSetPropertyOnObjectCommand (static)");
+		//console.log(aObject, aPropertyName);
+		var newCommand = (new SetPropertyAsDirtyCommand()).init();
+		
+		newCommand.propertyReevaluator = GetPropertyObject.createCommand(aObject, aPropertyName);
+		
+		return newCommand;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::_init");
+		
+		this.superCall();
+		
+		this.propertyReevaluator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">perform</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::perform");
+		//console.log(aEventDataObject);
+		
+		var theProperty = this.propertyReevaluator.reevaluate(aEventDataObject);
+		theProperty.setAsDirty();
+		
+		//console.log(theProperty.name, theProperty);
+		
+		return CommandStatusTypes.CONTINUE;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this.propertyReevaluator);
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.propertyReevaluator = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a command that sets a property as dirty.</div>
+			<div class="code">staticFunctions.createCommand = function(aProperty) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createCommand (static)");
+		//console.log(aProperty);
+		var newCommand = (new SetPropertyAsDirtyCommand()).init();
+		
+		newCommand.propertyReevaluator = StaticVariableObject.createReevaluationObject(aProperty);
+		
+		return newCommand;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createSetPropertyOnObjectCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a command that sets a property as dirty on an object.</div>
+			<div class="code">staticFunctions.createSetPropertyOnObjectCommand = function(aObject, aPropertyName) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createSetPropertyOnObjectCommand (static)");
+		//console.log(aObject, aPropertyName);
+		var newCommand = (new SetPropertyAsDirtyCommand()).init();
+		
+		newCommand.propertyReevaluator = GetPropertyObject.createCommand(aObject, aPropertyName);
+		
+		return newCommand;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

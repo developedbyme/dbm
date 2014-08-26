@@ -1,0 +1,174 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>MovablePointsController</h1>
+		<div class="classPath">com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var MovablePointsController = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController");
+	
+	var MovablePointsController = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController");
+	
+	var MovablePoint = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint");
+	
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	
+	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController::_init");
+		
+		this.superCall();
+		
+		this._touchDetector = null;
+		this._movablePoints = NamedArray.create(true);
+		this.addDestroyableObject(this._movablePoints);
+		
+		return this;
+	};
+	
+	objectFunctions.createPoint = function(aName, aX, aY, aRadius) {
+		var newPoint = MovablePoint.create(aX, aY, aRadius);
+		this._movablePoints.addObject(aName, newPoint);
+		
+		return newPoint;
+	};
+	
+	objectFunctions.setTouchDetector = function(aTouchDetector) {
+		this._touchDetector = aTouchDetector;
+		
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this._newTouch, [GetVariableObject.createSelectDataCommand()]));
+		
+		return this;
+	};
+	
+	objectFunctions._newTouch = function(aTouchData) {
+		console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController::_newTouch");
+		var x = aTouchData.getProperty("startX").getValue();
+		var y = aTouchData.getProperty("startY").getValue();
+		
+		var currentArray = this._movablePoints.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.checkForControlStart(x, y)) {
+				currentObject.startTouchControl(aTouchData);
+				break;
+			}
+		}
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aTouchDetector) {
+		
+		var newMovablePointsController = (new MovablePointsController()).init();
+		
+		newMovablePointsController.setTouchDetector(aTouchDetector);
+		
+		return newMovablePointsController;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController::_init");
+		
+		this.superCall();
+		
+		this._touchDetector = null;
+		this._movablePoints = NamedArray.create(true);
+		this.addDestroyableObject(this._movablePoints);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createPoint</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createPoint = function(aName, aX, aY, aRadius) {
+		var newPoint = MovablePoint.create(aX, aY, aRadius);
+		this._movablePoints.addObject(aName, newPoint);
+		
+		return newPoint;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setTouchDetector</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setTouchDetector = function(aTouchDetector) {
+		this._touchDetector = aTouchDetector;
+		
+		this._touchDetector.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this._newTouch, [GetVariableObject.createSelectDataCommand()]));
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_newTouch</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._newTouch = function(aTouchData) {
+		console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController::_newTouch");
+		var x = aTouchData.getProperty("startX").getValue();
+		var y = aTouchData.getProperty("startY").getValue();
+		
+		var currentArray = this._movablePoints.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.checkForControlStart(x, y)) {
+				currentObject.startTouchControl(aTouchData);
+				break;
+			}
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aTouchDetector) {
+		
+		var newMovablePointsController = (new MovablePointsController()).init();
+		
+		newMovablePointsController.setTouchDetector(aTouchDetector);
+		
+		return newMovablePointsController;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

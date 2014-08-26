@@ -1,0 +1,167 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ExtendedFunctionBaseObject</h1>
+		<div class="classPath">com.developedbyme.core.objectparts.ExtendedFunctionBaseObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ExtendedFunctionBaseObject = dbm.importClass("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject");
+	//"use strict";
+	
+	var ExtendedFunctionBaseObject = dbm.importClass("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject::_init");
+		
+		this.superCall();
+		
+		this._isLocked = false;
+		
+		this._owner = null;
+		
+		return this;
+	};
+	
+	objectFunctions.setOwner = function(aOwner) {
+		
+		this._owner = aOwner;
+		
+		return this;
+	};
+	
+	objectFunctions.callFunction = function(aArguments) {
+		if(this._isLocked) {
+			//METODO: error message
+			return;
+		}
+		return this._performCallFunction(aArguments);
+	};
+	
+	objectFunctions._performCallFunction = function(aArguments) {
+		//MENOTE: should be overridden
+	};
+	
+	objectFunctions.lock = function() {
+		this._isLocked = true;
+	};
+	
+	objectFunctions.unlock = function() {
+		this._isLocked = false;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._owner = null;
+		
+		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_owner":
+				return false;
+		}
+		return this.superCall();
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.ExtendedFunctionBaseObject::_init");
+		
+		this.superCall();
+		
+		this._isLocked = false;
+		
+		this._owner = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setOwner</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setOwner = function(aOwner) {
+		
+		this._owner = aOwner;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">callFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.callFunction = function(aArguments) {
+		if(this._isLocked) {
+			//METODO: error message
+			return;
+		}
+		return this._performCallFunction(aArguments);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_performCallFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._performCallFunction = function(aArguments) {
+		//MENOTE: should be overridden
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">lock</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.lock = function() {
+		this._isLocked = true;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">unlock</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.unlock = function() {
+		this._isLocked = false;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._owner = null;
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_owner":
+				return false;
+		}
+		return this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,387 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TreeStructure</h1>
+		<div class="classPath">com.developedbyme.utils.data.treestructure.TreeStructure</div>
+		<div class="classInheritance"></div>
+		<div class="description">A tree structure.</div>
+		<div class="importSnippet">var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.data.treestructure.TreeStructure");
+	//"use strict";
+	
+	//Self reference
+	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
+	
+	//Error report
+	
+	//Dependencies
+	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::_init");
+		
+		this.superCall();
+		
+		this.createMissingItems = true;
+		this.ownsData = false;
+		
+		this._root = TreeStructureItem.create("");
+		this._root._internalFunctionality_setRoot(this);
+		
+		this._itemClass = TreeStructureItem;
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Gets the root of the tree structure.
+	 */
+	objectFunctions.getRoot = function() {
+		return this._root;
+	}; //End function getRoot
+	
+	/**
+	 * Adds an item.
+	 */
+	objectFunctions.addItem = function(aItem, aPath, aBaseItem) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::addItem");
+		//sconsole.log(aItem, aPath, aBaseItem);
+		
+		var lastSlashIndex = aPath.lastIndexOf("/");
+		if(lastSlashIndex !== -1) {
+			aPath = aPath.substring(0, lastSlashIndex);
+		}
+		
+		var currentItem = this.getItemByPath(aPath, aBaseItem);
+		
+		currentItem.addChild(aItem);
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_ADDED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_ADDED, aItem);
+		}
+	}; //End function addItem
+	
+	/**
+	 * Creates a new item
+	 */
+	objectFunctions.createItem = function(aName, aParent, aForce) {
+		//console.log("createItem");
+		
+		aForce = VariableAliases.valueWithDefault(aForce, false);
+		
+		if(!this.createMissingItems &amp;&amp; !aForce) return null;
+		var newItem = this._itemClass.create(aName);
+		aParent.addChild(newItem);
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_CREATED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_CREATED, newItem);
+		}
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_ADDED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_ADDED, newItem);
+		}
+		
+		return newItem;
+	}; //End function createItem
+	
+	/**
+	 * Gets an item by path.
+	 */
+	objectFunctions.getItemByPath = function(aPath, aBaseItem) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::getItemByPath");
+		//console.log(aPath, aBaseItem);
+		
+		var currentItem = VariableAliases.valueWithDefault(aBaseItem, this._root);
+		
+		var currentArray;
+		if(aPath.charAt(0) === "/") {
+			currentItem = this._root;
+			currentArray = aPath.substring(1, aPath.length).split("/");
+		}
+		else {
+			currentArray = aPath.split("/");
+		}
+		
+		var theLength = currentArray.length;
+		while(theLength &gt; 0) {
+			var currentPathPart = decodeURIComponent(currentArray.shift());
+			theLength--;
+			switch(currentPathPart) {
+				case ".":
+					break;
+				case "..":
+					currentItem = currentItem.getParent();
+					//METODO: check to not get out of the structure
+					break;
+				default:
+					var newItem = currentItem.getChildByName(currentPathPart);
+					if(newItem === null) {
+						newItem = this.createItem(currentPathPart, currentItem);
+						if(newItem === null) {
+							return null;
+						}
+					}
+					if(newItem.isLink()) {
+						var newPath = newItem.resolvePath(currentArray.join("/"));
+						return this.getItemByPath(newPath, currentItem);
+					}
+					currentItem = newItem;
+					break;
+			}
+		}
+		return currentItem;
+	}; //End function getItemByPath
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case GenericExtendedEventIds.ITEM_ADDED:
+			case GenericExtendedEventIds.ITEM_CREATED:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	};
+	
+	/**
+	 * Traces out the full structure.
+	 */
+	objectFunctions.debugTraceStructure = function(aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		
+		aResolveLinksLevel = VariableAliases.valueWithDefault(aResolveLinksLevel, 10);
+		
+		this._root.debugTraceStructure("", aResolveLinksLevel);
+	}; //End function debugTraceStructure
+	
+	/**
+	 * Destroys all the data of the object.
+	 */
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this._root);
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Sets all the references to null
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._root = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::create");
+		var newTreeStructure = (new ClassReference()).init();
+		
+		return newTreeStructure;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::_init");
+		
+		this.superCall();
+		
+		this.createMissingItems = true;
+		this.ownsData = false;
+		
+		this._root = TreeStructureItem.create("");
+		this._root._internalFunctionality_setRoot(this);
+		
+		this._itemClass = TreeStructureItem;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getRoot</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the root of the tree structure.</div>
+			<div class="code">objectFunctions.getRoot = function() {
+		return this._root;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addItem</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Adds an item.</div>
+			<div class="code">objectFunctions.addItem = function(aItem, aPath, aBaseItem) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::addItem");
+		//sconsole.log(aItem, aPath, aBaseItem);
+		
+		var lastSlashIndex = aPath.lastIndexOf("/");
+		if(lastSlashIndex !== -1) {
+			aPath = aPath.substring(0, lastSlashIndex);
+		}
+		
+		var currentItem = this.getItemByPath(aPath, aBaseItem);
+		
+		currentItem.addChild(aItem);
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_ADDED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_ADDED, aItem);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createItem</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new item</div>
+			<div class="code">objectFunctions.createItem = function(aName, aParent, aForce) {
+		//console.log("createItem");
+		
+		aForce = VariableAliases.valueWithDefault(aForce, false);
+		
+		if(!this.createMissingItems &amp;&amp; !aForce) return null;
+		var newItem = this._itemClass.create(aName);
+		aParent.addChild(newItem);
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_CREATED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_CREATED, newItem);
+		}
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_ADDED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_ADDED, newItem);
+		}
+		
+		return newItem;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getItemByPath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets an item by path.</div>
+			<div class="code">objectFunctions.getItemByPath = function(aPath, aBaseItem) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::getItemByPath");
+		//console.log(aPath, aBaseItem);
+		
+		var currentItem = VariableAliases.valueWithDefault(aBaseItem, this._root);
+		
+		var currentArray;
+		if(aPath.charAt(0) === "/") {
+			currentItem = this._root;
+			currentArray = aPath.substring(1, aPath.length).split("/");
+		}
+		else {
+			currentArray = aPath.split("/");
+		}
+		
+		var theLength = currentArray.length;
+		while(theLength &gt; 0) {
+			var currentPathPart = decodeURIComponent(currentArray.shift());
+			theLength--;
+			switch(currentPathPart) {
+				case ".":
+					break;
+				case "..":
+					currentItem = currentItem.getParent();
+					//METODO: check to not get out of the structure
+					break;
+				default:
+					var newItem = currentItem.getChildByName(currentPathPart);
+					if(newItem === null) {
+						newItem = this.createItem(currentPathPart, currentItem);
+						if(newItem === null) {
+							return null;
+						}
+					}
+					if(newItem.isLink()) {
+						var newPath = newItem.resolvePath(currentArray.join("/"));
+						return this.getItemByPath(newPath, currentItem);
+					}
+					currentItem = newItem;
+					break;
+			}
+		}
+		return currentItem;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case GenericExtendedEventIds.ITEM_ADDED:
+			case GenericExtendedEventIds.ITEM_CREATED:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">debugTraceStructure</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Traces out the full structure.</div>
+			<div class="code">objectFunctions.debugTraceStructure = function(aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		
+		aResolveLinksLevel = VariableAliases.valueWithDefault(aResolveLinksLevel, 10);
+		
+		this._root.debugTraceStructure("", aResolveLinksLevel);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Destroys all the data of the object.</div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this._root);
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._root = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::create");
+		var newTreeStructure = (new ClassReference()).init();
+		
+		return newTreeStructure;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

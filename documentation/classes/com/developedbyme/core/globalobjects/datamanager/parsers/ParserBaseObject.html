@@ -1,0 +1,128 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ParserBaseObject</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ParserBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject");
+	
+	var ParserBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject");
+	
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		var parseResult = dbm.singletons.dbmDataManager.parseNodeValue(aXml, aPathReference, aType);
+		if(parseResult === null) {
+			parseResult = dbm.singletons.dbmDataManager.parseFirstChild(aXml, aPathReference);
+			if(parseResult === null) {
+				//METODO: error message
+				return this._createNullResult(aXml, aPathReference);
+			}
+		}
+		if(parseResult.isLinked) {
+			return this._createInputLink(parseResult.result, aXml, aPathReference);
+		}
+		else {
+			return this._createResult(parseResult.result, aXml, aPathReference);
+		}
+	};
+	
+	objectFunctions._createNullResult = function(aXml, aPathReference) {
+		//MENOTE: should be overridden
+		return ParserResultDataObject.create(null);
+	};
+	
+	objectFunctions._createInputLink = function(aInputProperty, aXml, aPathReference) {
+		//MENOTE: should be overridden
+		return ParserResultDataObject.create(null);
+	};
+	
+	objectFunctions._createResult = function(aValue, aXml, aPathReference) {
+		//MENOTE: should be overridden
+		return ParserResultDataObject.create(aValue);
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">parseXml</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		var parseResult = dbm.singletons.dbmDataManager.parseNodeValue(aXml, aPathReference, aType);
+		if(parseResult === null) {
+			parseResult = dbm.singletons.dbmDataManager.parseFirstChild(aXml, aPathReference);
+			if(parseResult === null) {
+				//METODO: error message
+				return this._createNullResult(aXml, aPathReference);
+			}
+		}
+		if(parseResult.isLinked) {
+			return this._createInputLink(parseResult.result, aXml, aPathReference);
+		}
+		else {
+			return this._createResult(parseResult.result, aXml, aPathReference);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createNullResult</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createNullResult = function(aXml, aPathReference) {
+		//MENOTE: should be overridden
+		return ParserResultDataObject.create(null);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createInputLink</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createInputLink = function(aInputProperty, aXml, aPathReference) {
+		//MENOTE: should be overridden
+		return ParserResultDataObject.create(null);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createResult</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createResult = function(aValue, aXml, aPathReference) {
+		//MENOTE: should be overridden
+		return ParserResultDataObject.create(aValue);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

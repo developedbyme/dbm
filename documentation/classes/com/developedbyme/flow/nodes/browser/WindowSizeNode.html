@@ -1,0 +1,214 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>WindowSizeNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.browser.WindowSizeNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowSizeNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode");
+	
+	//Self reference
+	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_init");
+		
+		this.superCall();
+		
+		var currentWindow = dbm.getWindow();
+		this._width = this.createProperty("width", currentWindow.innerWidth);
+		this._height = this.createProperty("height", currentWindow.innerHeight);
+		this._window = this.createProperty("window", currentWindow);
+		
+		this.getExtendedEvent().createEvent("resize");
+		this.getExtendedEvent().addCommandToEvent("resize", CallFunctionCommand.createCommand(this, this._updateSize, []));
+		this.getExtendedEvent().createEventLinkGroup("resize");
+		
+		this.createUpdateFunction("windowUpdated", this._windowUpdated, [this._window], [this._width, this._height]);
+		
+		return this;
+	};
+	
+	objectFunctions.start = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::start");
+		this.getExtendedEvent().linkJavascriptEvent(this._window.getValue(), "resize", "resize", "resize", true).activate();
+	};
+	
+	objectFunctions.stop = function() {
+		//this.getExtendedEvent("resize").deactivateJavascriptEventLink();
+		this.getExtendedEvent().deactivateJavascriptEventLink("resize");
+	};
+	
+	objectFunctions._windowUpdated = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_windowUpdated");
+		//console.log(aEvent);
+		
+		var theWindow = this._window.getValueWithoutFlow();
+		
+		if(theWindow !== null) {
+			this.start();
+			this._width.setValueWithFlow(theWindow.innerWidth, aFlowUpdateNumber);
+			this._height.setValueWithFlow(theWindow.innerHeight, aFlowUpdateNumber);
+		}
+		else {
+			//METODO: remove old listener for reactivation
+			this.stop();
+		}
+	};
+	
+	objectFunctions._updateSize = function(aEvent) {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_updateSize");
+		//console.log(aEvent);
+		
+		var theWindow = this._window.getValue();
+		
+		if(theWindow !== null) {
+			this._width.setValue(theWindow.innerWidth);
+			this._height.setValue(theWindow.innerHeight);
+		}
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._width = null;
+		this._height = null;
+		this._window = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aWindow) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("window", aWindow);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_init");
+		
+		this.superCall();
+		
+		var currentWindow = dbm.getWindow();
+		this._width = this.createProperty("width", currentWindow.innerWidth);
+		this._height = this.createProperty("height", currentWindow.innerHeight);
+		this._window = this.createProperty("window", currentWindow);
+		
+		this.getExtendedEvent().createEvent("resize");
+		this.getExtendedEvent().addCommandToEvent("resize", CallFunctionCommand.createCommand(this, this._updateSize, []));
+		this.getExtendedEvent().createEventLinkGroup("resize");
+		
+		this.createUpdateFunction("windowUpdated", this._windowUpdated, [this._window], [this._width, this._height]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">start</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.start = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::start");
+		this.getExtendedEvent().linkJavascriptEvent(this._window.getValue(), "resize", "resize", "resize", true).activate();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">stop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.stop = function() {
+		//this.getExtendedEvent("resize").deactivateJavascriptEventLink();
+		this.getExtendedEvent().deactivateJavascriptEventLink("resize");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_windowUpdated</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._windowUpdated = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_windowUpdated");
+		//console.log(aEvent);
+		
+		var theWindow = this._window.getValueWithoutFlow();
+		
+		if(theWindow !== null) {
+			this.start();
+			this._width.setValueWithFlow(theWindow.innerWidth, aFlowUpdateNumber);
+			this._height.setValueWithFlow(theWindow.innerHeight, aFlowUpdateNumber);
+		}
+		else {
+			//METODO: remove old listener for reactivation
+			this.stop();
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_updateSize</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._updateSize = function(aEvent) {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_updateSize");
+		//console.log(aEvent);
+		
+		var theWindow = this._window.getValue();
+		
+		if(theWindow !== null) {
+			this._width.setValue(theWindow.innerWidth);
+			this._height.setValue(theWindow.innerHeight);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._width = null;
+		this._height = null;
+		this._window = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aWindow) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("window", aWindow);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

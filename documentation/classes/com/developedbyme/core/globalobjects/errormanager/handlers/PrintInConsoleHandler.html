@@ -1,0 +1,164 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>PrintInConsoleHandler</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler</div>
+		<div class="classInheritance"></div>
+		<div class="description">Error handler that prints reports in the console.</div>
+		<div class="importSnippet">var PrintInConsoleHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
+	//"use strict";
+	
+	var PrintInConsoleHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
+	
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	
+	/**
+	 * Initializes the object.
+	 *
+	 * @return self
+	 */
+	objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::_init");
+		
+		this.superCall();
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Reports errors, warning and log messages.
+	 *
+	 * @param	aId				{Uint}						The id for the call.
+	 * @param	aTimeStamp		{Uint}						The time stamp for the report.
+	 * @param	aType			{enum: ReportTypes}			The type of report.
+	 * @param	aLevel			{enum: ReportLevelTypes}	The level of severety.
+	 * @param	aObject			{*}							The object that sends the report.
+	 * @param	aFunctionName	{String}					The name of the function that sends the report.
+	 * @param	aData			{*}							The data for the report.
+	 */
+	objectFunctions.report = function report(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
+		switch(aType) {
+			case ReportTypes.ERROR:
+				console.error(aObject, aFunctionName+":", aData);
+				break;
+			case ReportTypes.WARNING:
+				console.warn(aObject, aFunctionName+":", aData);
+				break;
+			case ReportTypes.LOG:
+				console.log(aObject, aFunctionName+":", aData);
+				break;
+			default:
+				console.log(aType, aObject, aFunctionName+":", aData);
+				break;
+		}
+	}; //End function report
+	
+	/**
+	 * Reports an error catched from a try statement.
+	 *
+	 * @param	aId				{Uint}		The id for the call.
+	 * @param	aTimeStamp		{Uint}		The time stamp for the report.
+	 * @param	aObject			{*}			The object that sends the report.
+	 * @param	aFunctionName	{String}	The name of the function that sends the report.
+	 * @param	aError			{Error}		The error that occured.
+	 */
+	objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
+		var errorProperties = new Array();
+		if(aError.fileName) {
+			errorProperties.push("fileName: " + aError.fileName);
+		}
+		if(aError.sourceURL) {
+			errorProperties.push("sourceURL: " + aError.sourceURL);
+		}
+		if(aError.lineNumber) {
+			errorProperties.push("lineNumber: " + aError.lineNumber);
+		}
+		if(aError.line) {
+			errorProperties.push("lineNumber: " + aError.line);
+		}
+		if(aError.stack) {
+			errorProperties.push("stack: " + aError.stack);
+		}
+		
+		var errorString = aError.message +" (" + errorProperties.join(", ") + ")";
+		
+		console.error(aObject, aFunctionName+":", aError, errorString);
+	}; //End function reportError
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Initializes the object.</div>
+			<div class="code">objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">report</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Reports errors, warning and log messages.</div>
+			<div class="code">objectFunctions.report = function report(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
+		switch(aType) {
+			case ReportTypes.ERROR:
+				console.error(aObject, aFunctionName+":", aData);
+				break;
+			case ReportTypes.WARNING:
+				console.warn(aObject, aFunctionName+":", aData);
+				break;
+			case ReportTypes.LOG:
+				console.log(aObject, aFunctionName+":", aData);
+				break;
+			default:
+				console.log(aType, aObject, aFunctionName+":", aData);
+				break;
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reportError</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Reports an error catched from a try statement.</div>
+			<div class="code">objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
+		var errorProperties = new Array();
+		if(aError.fileName) {
+			errorProperties.push("fileName: " + aError.fileName);
+		}
+		if(aError.sourceURL) {
+			errorProperties.push("sourceURL: " + aError.sourceURL);
+		}
+		if(aError.lineNumber) {
+			errorProperties.push("lineNumber: " + aError.lineNumber);
+		}
+		if(aError.line) {
+			errorProperties.push("lineNumber: " + aError.line);
+		}
+		if(aError.stack) {
+			errorProperties.push("stack: " + aError.stack);
+		}
+		
+		var errorString = aError.message +" (" + errorProperties.join(", ") + ")";
+		
+		console.error(aObject, aFunctionName+":", aError, errorString);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,218 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>SetPropertyInputCommand</h1>
+		<div class="classPath">com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var SetPropertyInputCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand");
+	
+	//Self reference
+	var SetPropertyInputCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var GetPropertyObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject");
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand::_init");
+		
+		this.superCall();
+		
+		this.inputValueReevaluator = null;
+		this.propertyReevaluator = null;
+		
+		return this;
+	};
+	
+	objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand::perform");
+		//console.log(this, aEventDataObject);
+		
+		var inputValue = this.inputValueReevaluator.reevaluate(aEventDataObject);
+		var property = this.propertyReevaluator.reevaluate(aEventDataObject);
+		
+		if(!(property instanceof Property)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "perform", property + " is not a property.");
+			aEventDataObject.addResult(null);
+			return CommandStatusTypes.ERROR;
+		}
+		
+		dbm.singletons.dbmFlowManager.setPropertyInput(property, inputValue);
+		
+		return CommandStatusTypes.CONTINUE;
+	};
+	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("inputValue: " + this.inputValueReevaluator);
+		aReturnArray.push("property: " + this.propertyReevaluator);
+	};
+	
+	
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this.inputValueReevaluator);
+		ClassReference.softDestroyIfExists(this.propertyReevaluator);
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.inputValueReevaluator = null;
+		this.propertyReevaluator = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.createCommand = function(aProperty, aInputValue) {
+		var newCommand = (new SetPropertyInputCommand()).init();
+		
+		newCommand.propertyReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aProperty);
+		newCommand.inputValueReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aInputValue);
+		
+		return newCommand;
+	};
+	
+	staticFunctions.createOnObjectCommand = function(aObject, aPropertyName, aInputValue) {
+		return ClassReference.createCommand(GetPropertyObject.createCommand(aObject, aPropertyName), aInputValue);
+	};
+	
+	staticFunctions.createOnPerformingObjectCommand = function(aInputValue) {
+		return ClassReference.createOnObjectCommand(GetVariableObject.createSelectPerformingObjectCommand(), aInputValue);
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand::_init");
+		
+		this.superCall();
+		
+		this.inputValueReevaluator = null;
+		this.propertyReevaluator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">perform</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand::perform");
+		//console.log(this, aEventDataObject);
+		
+		var inputValue = this.inputValueReevaluator.reevaluate(aEventDataObject);
+		var property = this.propertyReevaluator.reevaluate(aEventDataObject);
+		
+		if(!(property instanceof Property)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "perform", property + " is not a property.");
+			aEventDataObject.addResult(null);
+			return CommandStatusTypes.ERROR;
+		}
+		
+		dbm.singletons.dbmFlowManager.setPropertyInput(property, inputValue);
+		
+		return CommandStatusTypes.CONTINUE;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("inputValue: " + this.inputValueReevaluator);
+		aReturnArray.push("property: " + this.propertyReevaluator);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this.inputValueReevaluator);
+		ClassReference.softDestroyIfExists(this.propertyReevaluator);
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.inputValueReevaluator = null;
+		this.propertyReevaluator = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createCommand = function(aProperty, aInputValue) {
+		var newCommand = (new SetPropertyInputCommand()).init();
+		
+		newCommand.propertyReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aProperty);
+		newCommand.inputValueReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aInputValue);
+		
+		return newCommand;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createOnObjectCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createOnObjectCommand = function(aObject, aPropertyName, aInputValue) {
+		return ClassReference.createCommand(GetPropertyObject.createCommand(aObject, aPropertyName), aInputValue);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createOnPerformingObjectCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createOnPerformingObjectCommand = function(aInputValue) {
+		return ClassReference.createOnObjectCommand(GetVariableObject.createSelectPerformingObjectCommand(), aInputValue);
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

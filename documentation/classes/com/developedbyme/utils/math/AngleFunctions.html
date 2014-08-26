@@ -1,0 +1,175 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>AngleFunctions</h1>
+		<div class="classPath">com.developedbyme.utils.math.AngleFunctions</div>
+		<div class="classInheritance"></div>
+		<div class="description">Functions for working with angles.</div>
+		<div class="importSnippet">var AngleFunctions = dbm.importClass("com.developedbyme.utils.math.AngleFunctions");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.math.AngleFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.math.AngleFunctions");
+	//"use strict";
+	
+	//Self reference
+	var AngleFunctions = dbm.importClass("com.developedbyme.utils.math.AngleFunctions");
+	
+	/**
+	 * Converts degrees to radians.
+	 *
+	 * @param	aDegrees	Number	The degrees to convert.
+	 *
+	 * @return	Number	The radians that corresponds to the degrees.
+	 */
+	staticFunctions.degreesToRadians = function(aDegrees) {
+		return Math.PI*aDegrees/180;
+	};
+	
+	staticFunctions.radiansToDegrees = function(aRadians) {
+		return 180*aRadians/Math.PI;
+	};
+	
+	staticFunctions.normalizeAngle = function(aAngle) {
+		var times = Math.floor((aAngle+Math.PI)/(2*Math.PI));
+		return (aAngle-(times*2*Math.PI));
+	};
+	
+	staticFunctions.angleIsInNormalizedRange = function(aAngle, aMinAngle, aMaxAngle) {
+		if(aMinAngle &gt; aMaxAngle) {
+			return !(aAngle &gt; aMaxAngle &amp;&amp; aAngle &lt; aMinAngle);
+		}
+		else {
+			return (aAngle &lt;= aMaxAngle &amp;&amp; aAngle &gt;= aMinAngle);
+		}
+	};
+	
+	staticFunctions.getAngleForPolygon = function(aSides) {
+		if(aSides &lt; 2) {
+			return NaN;
+		}
+		
+		var flooredSides = Math.floor(aSides);
+		var parameter = aSides-flooredSides;
+		
+		var flooredAngle = 2*Math.PI/flooredSides;
+		var ceiledAngle = 2*Math.PI/(flooredSides+1);
+		
+		return (1-parameter)*flooredAngle+parameter*ceiledAngle;
+	};
+	
+	staticFunctions.angleDifference = function(aAngle1, aAngle2) {
+		//console.log("com.developedbyme.utils.math.AngleFunctions::angleDifference");
+		aAngle1 = ClassReference.normalizeAngle(aAngle1);
+		aAngle2 = ClassReference.normalizeAngle(aAngle2);
+		
+		if(Math.abs(aAngle1-aAngle2) &gt; Math.PI) {
+			if(aAngle1 &gt; aAngle2) {
+				return aAngle1-(aAngle2+2*Math.PI);
+			}
+			return aAngle1-(aAngle2-2*Math.PI);
+		}
+		else {
+			return aAngle1-aAngle2;
+		}
+	};
+	
+	staticFunctions.degreeDifference = function(aAngle1, aAngle2) {
+		return ClassReference.radiansToDegrees(ClassReference.angleDifference(ClassReference.degreesToRadians(aAngle1), ClassReference.degreesToRadians(aAngle2)));
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">degreesToRadians</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Converts degrees to radians.</div>
+			<div class="code">staticFunctions.degreesToRadians = function(aDegrees) {
+		return Math.PI*aDegrees/180;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">radiansToDegrees</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.radiansToDegrees = function(aRadians) {
+		return 180*aRadians/Math.PI;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">normalizeAngle</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.normalizeAngle = function(aAngle) {
+		var times = Math.floor((aAngle+Math.PI)/(2*Math.PI));
+		return (aAngle-(times*2*Math.PI));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">angleIsInNormalizedRange</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.angleIsInNormalizedRange = function(aAngle, aMinAngle, aMaxAngle) {
+		if(aMinAngle &gt; aMaxAngle) {
+			return !(aAngle &gt; aMaxAngle &amp;&amp; aAngle &lt; aMinAngle);
+		}
+		else {
+			return (aAngle &lt;= aMaxAngle &amp;&amp; aAngle &gt;= aMinAngle);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getAngleForPolygon</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getAngleForPolygon = function(aSides) {
+		if(aSides &lt; 2) {
+			return NaN;
+		}
+		
+		var flooredSides = Math.floor(aSides);
+		var parameter = aSides-flooredSides;
+		
+		var flooredAngle = 2*Math.PI/flooredSides;
+		var ceiledAngle = 2*Math.PI/(flooredSides+1);
+		
+		return (1-parameter)*flooredAngle+parameter*ceiledAngle;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">angleDifference</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.angleDifference = function(aAngle1, aAngle2) {
+		//console.log("com.developedbyme.utils.math.AngleFunctions::angleDifference");
+		aAngle1 = ClassReference.normalizeAngle(aAngle1);
+		aAngle2 = ClassReference.normalizeAngle(aAngle2);
+		
+		if(Math.abs(aAngle1-aAngle2) &gt; Math.PI) {
+			if(aAngle1 &gt; aAngle2) {
+				return aAngle1-(aAngle2+2*Math.PI);
+			}
+			return aAngle1-(aAngle2-2*Math.PI);
+		}
+		else {
+			return aAngle1-aAngle2;
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">degreeDifference</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.degreeDifference = function(aAngle1, aAngle2) {
+		return ClassReference.radiansToDegrees(ClassReference.angleDifference(ClassReference.degreesToRadians(aAngle1), ClassReference.degreesToRadians(aAngle2)));
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

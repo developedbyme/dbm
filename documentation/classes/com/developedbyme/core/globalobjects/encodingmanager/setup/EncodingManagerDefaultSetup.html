@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>EncodingManagerDefaultSetup</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup</div>
+		<div class="classInheritance"></div>
+		<div class="description">Default setup for the global encoding manager.</div>
+		<div class="importSnippet">var EncodingManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");
+	//"use strict";
+	
+	//Self reference
+	var EncodingManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");
+	
+	//Error report
+	
+	//Dependencies
+	var PlainTextEncoder = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.encoders.PlainTextEncoder");
+	
+	//Utils
+	
+	//Constants
+	var EncodingMethodIds = dbm.importClass("com.developedbyme.constants.EncodingMethodIds");
+	
+	/**
+	 * Sets up the default encoders.
+	 */
+	staticFunctions.setup = function() {
+		dbm.singletons.dbmEncodingManager.addEncoder(EncodingMethodIds.PLAIN_TEXT, PlainTextEncoder.create());
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets up the default encoders.</div>
+			<div class="code">staticFunctions.setup = function() {
+		dbm.singletons.dbmEncodingManager.addEncoder(EncodingMethodIds.PLAIN_TEXT, PlainTextEncoder.create());
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

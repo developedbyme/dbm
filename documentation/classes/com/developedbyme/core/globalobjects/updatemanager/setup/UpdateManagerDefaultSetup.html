@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>UpdateManagerDefaultSetup</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.updatemanager.setup.UpdateManagerDefaultSetup</div>
+		<div class="classInheritance"></div>
+		<div class="description">Default setup for the global update manager.</div>
+		<div class="importSnippet">var UpdateManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.setup.UpdateManagerDefaultSetup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.setup.UpdateManagerDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.updatemanager.setup.UpdateManagerDefaultSetup");
+	//"use strict";
+	
+	//Self reference
+	var UpdateManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.setup.UpdateManagerDefaultSetup");
+	
+	//Error report
+	
+	//Dependencies
+	var UpdateManager = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
+	var IntervalTimer = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.IntervalTimer");
+	var RequestAnimationFrameTimer = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.RequestAnimationFrameTimer");
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Sets up the default timers.
+	 */
+	staticFunctions.setup = function() {
+		var mainTimer;
+		
+		if(window.requestAnimationFrame) {
+			mainTimer = RequestAnimationFrameTimer.create(null, window, window.requestAnimationFrame);
+		}
+		else if(window.mozRequestAnimationFrame) {
+			mainTimer = RequestAnimationFrameTimer.create(null, window, window.mozRequestAnimationFrame);
+		}
+		else if(window.webkitRequestAnimationFrame) {
+			mainTimer = RequestAnimationFrameTimer.create(null, window, window.webkitRequestAnimationFrame);
+		}
+		else {
+			mainTimer = IntervalTimer.create(null, 60);
+		}
+		
+		UpdateManager.getInstance().setTimer(mainTimer);
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets up the default timers.</div>
+			<div class="code">staticFunctions.setup = function() {
+		var mainTimer;
+		
+		if(window.requestAnimationFrame) {
+			mainTimer = RequestAnimationFrameTimer.create(null, window, window.requestAnimationFrame);
+		}
+		else if(window.mozRequestAnimationFrame) {
+			mainTimer = RequestAnimationFrameTimer.create(null, window, window.mozRequestAnimationFrame);
+		}
+		else if(window.webkitRequestAnimationFrame) {
+			mainTimer = RequestAnimationFrameTimer.create(null, window, window.webkitRequestAnimationFrame);
+		}
+		else {
+			mainTimer = IntervalTimer.create(null, 60);
+		}
+		
+		UpdateManager.getInstance().setTimer(mainTimer);
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,309 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>UpdateManager</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.updatemanager.UpdateManager</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var UpdateManager = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
+	//"use strict";
+	
+	//Self reference
+	var UpdateManager = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.UpdateManager");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var UpdateChain = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain");
+	var CallFunctionUpdater = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.objects.CallFunctionUpdater");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	var UpdaterTypes = dbm.importClass("com.developedbyme.constants.UpdaterTypes");
+	
+	dbm.setClassAsSingleton("dbmUpdateManager");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager::_init");
+		
+		this.superCall();
+		
+		this._updateTimer = null;
+		
+		this._startTime = 0;
+
+		this.currentTime = 0;
+		this.currentFrame = 0;
+		this._isUpdating = false;
+		
+		this._updateChains = (new NamedArray()).init();
+		this._updateChain = (new UpdateChain()).init();
+		
+		this._addUpdaterType(UpdaterTypes.UPDATE_INPUT);
+		this._addUpdaterType(UpdaterTypes.UPDATE_TIMELINES);
+		this._addUpdaterType(UpdaterTypes.DEFAULT);
+		this._addUpdaterType(UpdaterTypes.UPDATE_FLOW);
+		
+		return this;
+	};
+	
+	objectFunctions.start = function() {
+		
+		if(this._updateTimer.getStatus()) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "start", "Update manager is already started.");
+			return;
+		}
+		
+		this._startTime = Date.now();
+		
+		this.currentTime = 0;
+		this.currentFrame = 0;
+		
+		this._updateTimer.start();
+	};
+	
+	objectFunctions.stop = function() {
+		if(!this._updateTimer.getStatus()) {
+			this._updateTimer.stop();
+		}
+	};
+	
+	objectFunctions._addUpdaterType = function(aType) {
+		var newUpdater = (new UpdateChain()).init();
+		this._updateChain.push(newUpdater);
+		this._updateChains.addObject(aType, newUpdater);
+		return newUpdater;
+	};
+	
+	objectFunctions.setTimer = function(aTimer) {
+		this._updateTimer = aTimer;
+		this._updateTimer.setUpdateObject(this);
+		
+		return this;
+	};
+	
+	objectFunctions.update = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager::update");
+		
+		this._isUpdating = true;
+		var currentTime = Date.now();
+		this.currentTime = 0.001*(currentTime-this._startTime);
+		this.currentFrame++;
+		
+		this._updateChain.updateTime(this.currentTime, this.currentFrame);
+		
+		this._isUpdating = false;
+	};
+	
+	objectFunctions.addUpdater = function(aUpdater, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
+		this._updateChains.getObject(aType).push(aUpdater);
+	};
+	
+	objectFunctions.removeUpdater = function(aUpdater, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
+		this._updateChains.getObject(aType).removeItem(aUpdater);
+	};
+	
+	objectFunctions.addUpdatedFunction = function(aObject, aFunction, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
+		this._updateChains.getObject(aType).push(CallFunctionUpdater.create(aObject, aFunction));
+	};
+	
+	objectFunctions.removeUpdatedFunction = function(aObject, aFunction, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
+		var currentChain = this._updateChains.getObject(aType);
+		var currentArray = currentChain.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentUpdater = currentArray[i];
+			if(currentUpdater instanceof CallFunctionUpdater &amp;&amp; currentUpdater.isUpdaterFor(aObject, aFunction)) {
+				currentChain.removeItem(currentUpdater);
+				currentUpdater.destroy();
+				break;
+			}
+		}
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager::_init");
+		
+		this.superCall();
+		
+		this._updateTimer = null;
+		
+		this._startTime = 0;
+
+		this.currentTime = 0;
+		this.currentFrame = 0;
+		this._isUpdating = false;
+		
+		this._updateChains = (new NamedArray()).init();
+		this._updateChain = (new UpdateChain()).init();
+		
+		this._addUpdaterType(UpdaterTypes.UPDATE_INPUT);
+		this._addUpdaterType(UpdaterTypes.UPDATE_TIMELINES);
+		this._addUpdaterType(UpdaterTypes.DEFAULT);
+		this._addUpdaterType(UpdaterTypes.UPDATE_FLOW);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">start</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.start = function() {
+		
+		if(this._updateTimer.getStatus()) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "start", "Update manager is already started.");
+			return;
+		}
+		
+		this._startTime = Date.now();
+		
+		this.currentTime = 0;
+		this.currentFrame = 0;
+		
+		this._updateTimer.start();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">stop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.stop = function() {
+		if(!this._updateTimer.getStatus()) {
+			this._updateTimer.stop();
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_addUpdaterType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._addUpdaterType = function(aType) {
+		var newUpdater = (new UpdateChain()).init();
+		this._updateChain.push(newUpdater);
+		this._updateChains.addObject(aType, newUpdater);
+		return newUpdater;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setTimer</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setTimer = function(aTimer) {
+		this._updateTimer = aTimer;
+		this._updateTimer.setUpdateObject(this);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.update = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.UpdateManager::update");
+		
+		this._isUpdating = true;
+		var currentTime = Date.now();
+		this.currentTime = 0.001*(currentTime-this._startTime);
+		this.currentFrame++;
+		
+		this._updateChain.updateTime(this.currentTime, this.currentFrame);
+		
+		this._isUpdating = false;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addUpdater</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addUpdater = function(aUpdater, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
+		this._updateChains.getObject(aType).push(aUpdater);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeUpdater</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removeUpdater = function(aUpdater, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
+		this._updateChains.getObject(aType).removeItem(aUpdater);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addUpdatedFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addUpdatedFunction = function(aObject, aFunction, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
+		this._updateChains.getObject(aType).push(CallFunctionUpdater.create(aObject, aFunction));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeUpdatedFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removeUpdatedFunction = function(aObject, aFunction, aType) {
+		
+		aType = VariableAliases.valueWithDefault(aType, UpdaterTypes.DEFAULT);
+		
+		var currentChain = this._updateChains.getObject(aType);
+		var currentArray = currentChain.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentUpdater = currentArray[i];
+			if(currentUpdater instanceof CallFunctionUpdater &amp;&amp; currentUpdater.isUpdaterFor(aObject, aFunction)) {
+				currentChain.removeItem(currentUpdater);
+				currentUpdater.destroy();
+				break;
+			}
+		}
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

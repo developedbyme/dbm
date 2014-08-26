@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>PositionFunctions</h1>
+		<div class="classPath">com.developedbyme.utils.htmldom.PositionFunctions</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var PositionFunctions = dbm.importClass("com.developedbyme.utils.htmldom.PositionFunctions");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.htmldom.PositionFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.htmldom.PositionFunctions");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var PositionFunctions = dbm.importClass("com.developedbyme.utils.htmldom.PositionFunctions");
+	
+	staticFunctions.getGlobalPositionForNode = (function(aElement, aReturnPoint) {
+		//console.log("com.developedbyme.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
+		var currentElement = aElement;
+		aReturnPoint.x = 0;
+		aReturnPoint.y = 0;
+		var debugBreakCounter = 0;
+		while(currentElement !== null) {
+			if(debugBreakCounter++ &gt; 1000) {
+				//METODO: error message
+				break;
+			}
+			//console.log({x: currentElement}, currentElement.offsetLeft, currentElement.offsetTop);
+			aReturnPoint.x += currentElement.offsetLeft;
+			aReturnPoint.y += currentElement.offsetTop;
+			currentElement = currentElement.offsetParent;
+		}
+		
+		return aReturnPoint;
+	});
+	
+	staticFunctions.getParentPositionForNode = (function(aElement, aParentElement, aReturnPoint) {
+		//console.log("com.developedbyme.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
+		var currentElement = aElement;
+		aReturnPoint.x = 0;
+		aReturnPoint.y = 0;
+		var debugBreakCounter = 0;
+		while(currentElement !== null) {
+			if(debugBreakCounter++ &gt; 1000) {
+				//METODO: error message
+				break;
+			}
+			//console.log({x: currentElement}, currentElement.offsetLeft, currentElement.offsetTop);
+			aReturnPoint.x += currentElement.offsetLeft;
+			aReturnPoint.y += currentElement.offsetTop;
+			currentElement = currentElement.offsetParent;
+			if(aParentElement === currentElement) {
+				return aReturnPoint;
+			}
+		}
+		
+		//METODO: error message
+		return aReturnPoint;
+	});
+	
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

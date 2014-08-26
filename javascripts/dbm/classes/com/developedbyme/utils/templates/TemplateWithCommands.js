@@ -44,8 +44,8 @@ dbm.registerClass("com.developedbyme.utils.templates.TemplateWithCommands", "com
 	 * @return	self
 	 */
 	objectFunctions.setTemplate = function(aTemplate) {
-		console.log("com.developedbyme.utils.templates.TemplateWithCommands::setTemplate");
-		console.log(aTemplate);
+		//console.log("com.developedbyme.utils.templates.TemplateWithCommands::setTemplate");
+		//console.log(aTemplate);
 		
 		this._template = aTemplate;
 		
@@ -60,8 +60,8 @@ dbm.registerClass("com.developedbyme.utils.templates.TemplateWithCommands", "com
 	 * @return	HTMLElement		The new item.
 	 */
 	objectFunctions.createNewItem = function(aData) {
-		console.log("com.developedbyme.utils.templates.TemplateWithCommands::createNewItem");
-		console.log(aData);
+		//console.log("com.developedbyme.utils.templates.TemplateWithCommands::createNewItem");
+		//console.log(aData);
 		
 		var newElement = DomManipulationFunctions.cloneNode(this._template, true);
 		

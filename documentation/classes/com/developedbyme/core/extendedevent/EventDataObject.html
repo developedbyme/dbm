@@ -1,0 +1,217 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>EventDataObject</h1>
+		<div class="classPath">com.developedbyme.core.extendedevent.EventDataObject</div>
+		<div class="classInheritance"></div>
+		<div class="description">Data used to perform an extended event.</div>
+		<div class="importSnippet">var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.EventDataObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.EventDataObject");
+	
+	//Self reference
+	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.EventDataObject::_init");
+		
+		this.superCall();
+		
+		this.data = null;
+		this.ownerObject = null;
+		this.performingObject = null;
+		
+		this.resultsArray = ClassReference._createArray();
+		this.statusData = null;
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Adds a result to this event data.
+	 * 
+	 * @param	aData	The data to store in the results array.
+	 */
+	objectFunctions.addResult = function(aData) {
+		this.resultsArray.push(aData);
+	}; //End function addResult
+	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with the parameters description.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("ownerObject: " + this.ownerObject);
+		aReturnArray.push("performingObject: " + this.performingObject);
+		aReturnArray.push("data: " + this.data);
+		aReturnArray.push("statusData: " + this.statusData);
+		aReturnArray.push("resultsArray: " + this.resultsArray);
+	}; //End function _toString_getAttributes
+	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.data = null;
+		this.ownerObject = null;
+		this.performingObject = null;
+		
+		ClassReference._reuseArray(this.resultsArray);
+		this.resultsArray = null;
+		this.statusData = null;
+		
+		this.superCall();
+	}; //End function setAllReferencesToNull
+	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "data":
+			case "ownerObject":
+			case "performingObject":
+				return false;
+		}
+		return this.superCall();
+	}; //End function _internalFunctionality_ownsVariable
+	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aData				Any						The data for the event.
+	 * @param	aOwner				ExtendedEventBaseObject	The owner of this event.
+	 * @param	aPerformingObject	Any						The object that is actually performing the event.
+	 *
+	 * @return	The newly created object.
+	 */
+	staticFunctions.create = function(aData, aOwner, aPerformingObject) {
+		//console.log("com.developedbyme.core.extendedevent.EventDataObject::create (static)");
+		var newData = ClassReference._createAndInitClass(ClassReference);
+		
+		newData.data = aData;
+		newData.ownerObject = aOwner;
+		newData.performingObject = aPerformingObject;
+		
+		return newData;
+	}; //End function create
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.EventDataObject::_init");
+		
+		this.superCall();
+		
+		this.data = null;
+		this.ownerObject = null;
+		this.performingObject = null;
+		
+		this.resultsArray = ClassReference._createArray();
+		this.statusData = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addResult</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Adds a result to this event data.</div>
+			<div class="code">objectFunctions.addResult = function(aData) {
+		this.resultsArray.push(aData);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("ownerObject: " + this.ownerObject);
+		aReturnArray.push("performingObject: " + this.performingObject);
+		aReturnArray.push("data: " + this.data);
+		aReturnArray.push("statusData: " + this.statusData);
+		aReturnArray.push("resultsArray: " + this.resultsArray);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null. Part of the destroy function.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.data = null;
+		this.ownerObject = null;
+		this.performingObject = null;
+		
+		ClassReference._reuseArray(this.resultsArray);
+		this.resultsArray = null;
+		this.statusData = null;
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
+			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "data":
+			case "ownerObject":
+			case "performingObject":
+				return false;
+		}
+		return this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new object of this class.</div>
+			<div class="code">staticFunctions.create = function(aData, aOwner, aPerformingObject) {
+		//console.log("com.developedbyme.core.extendedevent.EventDataObject::create (static)");
+		var newData = ClassReference._createAndInitClass(ClassReference);
+		
+		newData.data = aData;
+		newData.ownerObject = aOwner;
+		newData.performingObject = aPerformingObject;
+		
+		return newData;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

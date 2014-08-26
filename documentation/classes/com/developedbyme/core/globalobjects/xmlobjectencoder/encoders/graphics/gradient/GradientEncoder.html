@@ -1,0 +1,115 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>GradientEncoder</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder</div>
+		<div class="classInheritance"></div>
+		<div class="description">Data encoder for a gradient.</div>
+		<div class="importSnippet">var GradientEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder", "com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder");
+	
+	//Self reference
+	var GradientEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	/**
+	 * Encodes the value.
+	 *
+	 * @param	aValue	Any					The value to encode.
+	 * @param	aNode	EncodingDataObject	Encoding data where child properties will be added.
+	 */
+	objectFunctions._encodeValue = function(aValue, aNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder::_encodeValue");
+		
+		this.superCall(aValue, aNode);
+		
+		var partsNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(aValue.getColorStops(), aNode);
+		partsNode.name = "colorStops";
+		partsNode.parentApplyType = "gradient/addColorStops";
+	};
+	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @return	GradientEncoder	The newly created object.
+	 */
+	staticFunctions.create = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder::create");
+		var newGradientEncoder = ClassReference._createAndInitClass(ClassReference);
+		
+		return newGradientEncoder;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_encodeValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Encodes the value.</div>
+			<div class="code">objectFunctions._encodeValue = function(aValue, aNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder::_encodeValue");
+		
+		this.superCall(aValue, aNode);
+		
+		var partsNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(aValue.getColorStops(), aNode);
+		partsNode.name = "colorStops";
+		partsNode.parentApplyType = "gradient/addColorStops";
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new object of this class.</div>
+			<div class="code">staticFunctions.create = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder::create");
+		var newGradientEncoder = ClassReference._createAndInitClass(ClassReference);
+		
+		return newGradientEncoder;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

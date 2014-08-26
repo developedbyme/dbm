@@ -1,0 +1,373 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>Asset</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.assets.Asset</div>
+		<div class="classInheritance"></div>
+		<div class="description">Base class for every asset</div>
+		<div class="importSnippet">var Asset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");
+	//"use strict";
+	
+	//Self reference
+	var Asset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
+	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_init");
+		
+		this.superCall();
+		
+		this._hierarchyItem = null;
+		this._status = this.createProperty("status", AssetStatusTypes.NOT_LOADED);
+		this._data = this.createProperty("data", null);
+		this._numberOfRetains = 0;
+		
+		this._loadingSize = 20000;
+		this._loadProgress = 0;
+		
+		return this;
+	};
+	
+	objectFunctions.getData = function() {
+		return this._data.getValue();
+	};
+	
+	objectFunctions.getStatus = function() {
+		return this._status.getValue();
+	};
+	
+	objectFunctions.getProgress = function() {
+		return this._loadProgress;
+	};
+	
+	objectFunctions.getLoadedSize = function() {
+		return this._loadProgress*this._loadingSize;
+	};
+	
+	objectFunctions.getTotalSize = function() {
+		return this._loadingSize;
+	};
+	
+	objectFunctions._setStatus = function(aStatus) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_setStatus");
+		//console.log(aStatus);
+		if(aStatus === AssetStatusTypes.LOADED || aStatus === AssetStatusTypes.LOADING_ERROR) {
+			this._loadProgress = 1;
+		}
+		this._status.setValue(aStatus);
+	};
+	
+	objectFunctions.setHierarchyItem = function(aItem) {
+		this._hierarchyItem = aItem;
+	};
+	
+	/**
+	 * Gets the retain count.
+	 */
+	objectFunctions.getNumberOfRetains = function() {
+		return this._numberOfRetains;
+	};
+	
+	/**
+	 * Retains the object.
+	 */
+	objectFunctions.retain = function() {
+		this._numberOfRetains++;
+		
+		return this;
+	};
+	
+	/**
+	 * Releases the object
+	 */
+	objectFunctions.release = function() {
+		if(this._numberOfRetains !== 0) {
+			this._numberOfRetains--;
+		}
+		
+		return this;
+	};
+	
+	/**
+	 * Releases the object and if no reatins are left the object is destroyed.
+	 */
+	objectFunctions.releaseAndDestroy = function() {
+		this.release();
+		if(this._numberOfRetains === 0) {
+			this.destroy();
+		}
+		
+		return this;
+	};
+	
+	/**
+	 * Forces the relase of all retains.
+	 */
+	objectFunctions.forceReleaseAllRetains = function() {
+		this._numberOfRetains = 0;
+		
+		return this;
+	};
+	
+	/**
+	 * Checks if an extended event is expected for this object.
+	 *
+	 * @param	aName	String	The name of the event.
+	 *
+	 * @return	Boolean	True if the event is expected.
+	 */
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case LoadingExtendedEventIds.LOADED:
+			case LoadingExtendedEventIds.LOADING_ERROR:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	}; //End function _extendedEvent_eventIsExpected
+	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with the parameters description.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		if(this._status !== null) {
+			aReturnArray.push("status: " + this._status.getValue());
+		}
+	}; //End function _toString_getAttributes
+	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._status = null;
+		this._data = null;
+		
+		this.superCall();
+	}; //End function setAllReferencesToNull
+	
+	/**
+	 * Creates a new objetc of this class.
+	 *
+	 * @return	The newly created object.
+	 */
+	staticFunctions.create = function() {
+		var newAsset = ClassReference._createAndInitClass(ClassReference);
+		return newAsset;
+	}; //End function create
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_init");
+		
+		this.superCall();
+		
+		this._hierarchyItem = null;
+		this._status = this.createProperty("status", AssetStatusTypes.NOT_LOADED);
+		this._data = this.createProperty("data", null);
+		this._numberOfRetains = 0;
+		
+		this._loadingSize = 20000;
+		this._loadProgress = 0;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getData</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getData = function() {
+		return this._data.getValue();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getStatus</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getStatus = function() {
+		return this._status.getValue();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getProgress</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getProgress = function() {
+		return this._loadProgress;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getLoadedSize</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getLoadedSize = function() {
+		return this._loadProgress*this._loadingSize;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getTotalSize</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getTotalSize = function() {
+		return this._loadingSize;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_setStatus</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._setStatus = function(aStatus) {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_setStatus");
+		//console.log(aStatus);
+		if(aStatus === AssetStatusTypes.LOADED || aStatus === AssetStatusTypes.LOADING_ERROR) {
+			this._loadProgress = 1;
+		}
+		this._status.setValue(aStatus);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setHierarchyItem</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setHierarchyItem = function(aItem) {
+		this._hierarchyItem = aItem;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getNumberOfRetains</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the retain count.</div>
+			<div class="code">objectFunctions.getNumberOfRetains = function() {
+		return this._numberOfRetains;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">retain</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Retains the object.</div>
+			<div class="code">objectFunctions.retain = function() {
+		this._numberOfRetains++;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">release</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Releases the object</div>
+			<div class="code">objectFunctions.release = function() {
+		if(this._numberOfRetains !== 0) {
+			this._numberOfRetains--;
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">releaseAndDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Releases the object and if no reatins are left the object is destroyed.</div>
+			<div class="code">objectFunctions.releaseAndDestroy = function() {
+		this.release();
+		if(this._numberOfRetains === 0) {
+			this.destroy();
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">forceReleaseAllRetains</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Forces the relase of all retains.</div>
+			<div class="code">objectFunctions.forceReleaseAllRetains = function() {
+		this._numberOfRetains = 0;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Checks if an extended event is expected for this object.</div>
+			<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case LoadingExtendedEventIds.LOADED:
+			case LoadingExtendedEventIds.LOADING_ERROR:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		if(this._status !== null) {
+			aReturnArray.push("status: " + this._status.getValue());
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null. Part of the destroy function.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._status = null;
+		this._data = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new objetc of this class.</div>
+			<div class="code">staticFunctions.create = function() {
+		var newAsset = ClassReference._createAndInitClass(ClassReference);
+		return newAsset;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

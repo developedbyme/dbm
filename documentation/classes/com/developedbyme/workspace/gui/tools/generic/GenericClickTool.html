@@ -1,0 +1,101 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>GenericClickTool</h1>
+		<div class="classPath">com.developedbyme.workspace.gui.tools.generic.GenericClickTool</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var GenericClickTool = dbm.importClass("com.developedbyme.workspace.gui.tools.generic.GenericClickTool");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.workspace.gui.tools.generic.GenericClickTool", "com.developedbyme.workspace.gui.tools.BaseTool", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.workspace.gui.tools.generic.GenericClickTool");
+	//"use strict";
+	
+	var GenericClickTool = dbm.importClass("com.developedbyme.workspace.gui.tools.generic.GenericClickTool");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.workspace.gui.tools.generic.GenericClickTool::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.startTouch = function(aWorkspace, aSelection) {
+		console.log("com.developedbyme.workspace.gui.tools.generic.GenericClickTool::startTouch");
+		
+		//METODO
+		
+		return false;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		var baseTool = (new ClassReference()).init();
+		
+		return baseTool;
+		
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.workspace.gui.tools.generic.GenericClickTool::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">startTouch</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.startTouch = function(aWorkspace, aSelection) {
+		console.log("com.developedbyme.workspace.gui.tools.generic.GenericClickTool::startTouch");
+		
+		//METODO
+		
+		return false;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var baseTool = (new ClassReference()).init();
+		
+		return baseTool;
+		
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

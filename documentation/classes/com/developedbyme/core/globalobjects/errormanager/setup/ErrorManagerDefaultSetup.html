@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ErrorManagerDefaultSetup</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup</div>
+		<div class="classInheritance"></div>
+		<div class="description">Default setup for the global error manager.</div>
+		<div class="importSnippet">var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
+	//"use strict";
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ErrorManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.setup.ErrorManagerDefaultSetup");
+	var PrintInConsoleHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
+	
+	/**
+	 * Sets up the default handlers (PrintInConsoleHandler).
+	 */
+	staticFunctions.setup = function setup() {
+		if(console !== null) {
+			var printInConsoleHandler = (new PrintInConsoleHandler()).init();
+			ErrorManager.getInstance().addHandler(printInConsoleHandler);
+		}
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets up the default handlers (PrintInConsoleHandler).</div>
+			<div class="code">staticFunctions.setup = function setup() {
+		if(console !== null) {
+			var printInConsoleHandler = (new PrintInConsoleHandler()).init();
+			ErrorManager.getInstance().addHandler(printInConsoleHandler);
+		}
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

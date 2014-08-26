@@ -1,0 +1,129 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>InstanceOfClassObject</h1>
+		<div class="classPath">com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var InstanceOfClassObject = dbm.importClass("com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ObjectReevaluationBaseObject");
+	//"use strict";
+	
+	//Self reference
+	var InstanceOfClassObject = dbm.importClass("com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject::_init");
+		
+		this.superCall();
+		
+		this.objectReevaluator = null;
+		this.classReevaluator = null;
+		
+		return this;
+	};
+	
+	objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject::reevaluate");
+		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
+		var theClass = this.classReevaluator.reevaluate(aBaseObject);
+		return (theObject instanceof theClass);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.objectReevaluator = null;
+		this.classReevaluator = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.createCommand = function(aObject, aClass) {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject::createCommand (static)");
+		var newCommand = (new InstanceOfClassObject()).init();
+		
+		newCommand.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
+		newCommand.classReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aClass);
+		
+		return newCommand;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject::_init");
+		
+		this.superCall();
+		
+		this.objectReevaluator = null;
+		this.classReevaluator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reevaluate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject::reevaluate");
+		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
+		var theClass = this.classReevaluator.reevaluate(aBaseObject);
+		return (theObject instanceof theClass);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.objectReevaluator = null;
+		this.classReevaluator = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createCommand = function(aObject, aClass) {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject::createCommand (static)");
+		var newCommand = (new InstanceOfClassObject()).init();
+		
+		newCommand.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
+		newCommand.classReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aClass);
+		
+		return newCommand;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

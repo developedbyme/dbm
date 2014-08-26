@@ -1,0 +1,203 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>EventListenerFunctions</h1>
+		<div class="classPath">com.developedbyme.utils.native.function.EventListenerFunctions</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var EventListenerFunctions = dbm.importClass("com.developedbyme.utils.native.function.EventListenerFunctions");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.native.function.EventListenerFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
+	
+	//Self reference
+	var EventListenerFunctions = dbm.importClass("com.developedbyme.utils.native.function.EventListenerFunctions");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	staticFunctions.addEventListener = function(aObject, aEventName, aFunction, aUseCapture) {
+		switch(dbm.getEnvironmentName()) {
+			case "nodejs":
+				return aObject.addListener(aEventName, aFunction, aUseCapture);
+			default:
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[EventListenerFunctions]", "addEventListener", "Unknown environment " + dbm.getEnvironmentName() + ".");
+			case "browser":
+				return aObject.addEventListener(aEventName, aFunction, aUseCapture);
+		}
+	};
+	
+	staticFunctions.removeEventListener = function(aObject, aEventName, aFunction, aUseCapture) {
+		switch(dbm.getEnvironmentName()) {
+			case "nodejs":
+				return aObject.removeListener(aEventName, aFunction, aUseCapture);
+			default:
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[EventListenerFunctions]", "removeEventListener", "Unknown environment " + dbm.getEnvironmentName() + ".");
+			case "browser":
+				return aObject.removeEventListener(aEventName, aFunction, aUseCapture);
+		}
+	};
+	
+	staticFunctions.createCallbackFunction = function(aObject) {
+		switch(dbm.getEnvironmentName()) {
+			case "nodejs":
+				return ClassReference.createMultipleArgumentsCallback(aObject);
+			default:
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[EventListenerFunctions]", "createCallbackFunction", "Unknown environment " + dbm.getEnvironmentName() + ".");
+			case "browser":
+				return ClassReference.createSingleEventObjectCallback(aObject);
+		}
+	};
+	
+	staticFunctions.createSingleEventObjectCallback = function(aObject) {
+		var thisPointer = aObject;
+		var eventCallback = function _eventCallback(aEvent) {
+			//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
+			//console.log(aEvent);
+			//console.log(thisPointer._javascriptEventName);
+			if(thisPointer === null || thisPointer._performerObject === null) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, thisPointer, "_eventCallback", "Performer object is null.");
+				return true;
+			}
+			thisPointer._performerObject.perform(thisPointer._extendedEventName, aEvent);
+			return true;
+		};
+		eventCallback._deleteEventCallback = function() {
+			thisPointer = null;
+		};
+		return eventCallback;
+	};
+	
+	staticFunctions.createMultipleArgumentsCallback = function(aObject) {
+		var thisPointer = aObject;
+		var eventCallback = function _eventCallback(/* ... aArguments */) {
+			//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
+			//console.log(aEvent);
+			//console.log(thisPointer._javascriptEventName);
+			var aArguments = arguments;
+			if(thisPointer === null || thisPointer._performerObject === null) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, thisPointer, "_eventCallback", "Performer object is null.");
+				return true;
+			}
+			thisPointer._performerObject.perform(thisPointer._extendedEventName, aArguments);
+			return true;
+		};
+		eventCallback._deleteEventCallback = function() {
+			thisPointer = null;
+		};
+		return eventCallback;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">addEventListener</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.addEventListener = function(aObject, aEventName, aFunction, aUseCapture) {
+		switch(dbm.getEnvironmentName()) {
+			case "nodejs":
+				return aObject.addListener(aEventName, aFunction, aUseCapture);
+			default:
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[EventListenerFunctions]", "addEventListener", "Unknown environment " + dbm.getEnvironmentName() + ".");
+			case "browser":
+				return aObject.addEventListener(aEventName, aFunction, aUseCapture);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeEventListener</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.removeEventListener = function(aObject, aEventName, aFunction, aUseCapture) {
+		switch(dbm.getEnvironmentName()) {
+			case "nodejs":
+				return aObject.removeListener(aEventName, aFunction, aUseCapture);
+			default:
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[EventListenerFunctions]", "removeEventListener", "Unknown environment " + dbm.getEnvironmentName() + ".");
+			case "browser":
+				return aObject.removeEventListener(aEventName, aFunction, aUseCapture);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createCallbackFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createCallbackFunction = function(aObject) {
+		switch(dbm.getEnvironmentName()) {
+			case "nodejs":
+				return ClassReference.createMultipleArgumentsCallback(aObject);
+			default:
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[EventListenerFunctions]", "createCallbackFunction", "Unknown environment " + dbm.getEnvironmentName() + ".");
+			case "browser":
+				return ClassReference.createSingleEventObjectCallback(aObject);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createSingleEventObjectCallback</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createSingleEventObjectCallback = function(aObject) {
+		var thisPointer = aObject;
+		var eventCallback = function _eventCallback(aEvent) {
+			//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
+			//console.log(aEvent);
+			//console.log(thisPointer._javascriptEventName);
+			if(thisPointer === null || thisPointer._performerObject === null) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, thisPointer, "_eventCallback", "Performer object is null.");
+				return true;
+			}
+			thisPointer._performerObject.perform(thisPointer._extendedEventName, aEvent);
+			return true;
+		};
+		eventCallback._deleteEventCallback = function() {
+			thisPointer = null;
+		};
+		return eventCallback;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createMultipleArgumentsCallback</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createMultipleArgumentsCallback = function(aObject) {
+		var thisPointer = aObject;
+		var eventCallback = function _eventCallback(/* ... aArguments */) {
+			//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
+			//console.log(aEvent);
+			//console.log(thisPointer._javascriptEventName);
+			var aArguments = arguments;
+			if(thisPointer === null || thisPointer._performerObject === null) {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, thisPointer, "_eventCallback", "Performer object is null.");
+				return true;
+			}
+			thisPointer._performerObject.perform(thisPointer._extendedEventName, aArguments);
+			return true;
+		};
+		eventCallback._deleteEventCallback = function() {
+			thisPointer = null;
+		};
+		return eventCallback;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

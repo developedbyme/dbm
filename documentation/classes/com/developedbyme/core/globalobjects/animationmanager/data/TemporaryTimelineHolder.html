@@ -1,0 +1,202 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TemporaryTimelineHolder</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var TemporaryTimelineHolder = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder");
+	
+	var TemporaryTimelineHolder = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder");
+	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
+	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
+	
+	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder::_init");
+		
+		this.superCall();
+		
+		this.theObject = null;
+		this._timelines = new Array();
+		
+		return this;
+	};
+	
+	objectFunctions.getProperty = function(aName) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder::getProperty");
+		if(this._properties.select(aName)) {
+			return this._properties.currentSelectedItem;
+		}
+		var newProperty = ExternalVariableProperty.create(this._objectProperty, this.theObject, aName);
+		newProperty.setValue(this.theObject[newProperty]);
+		newProperty.name = this.__className + "::" + aName + "(e)";
+		this._properties.addObject(aName, newProperty);
+		
+		var newTimeline = dbm.singletons.dbmAnimationManager.createTimeline(this.theObject[newProperty], newProperty);
+		this._timelines.push(newTimeline);
+		
+		newProperty.startUpdating();
+		return newProperty;
+	};
+	
+	objectFunctions.getCssProperty = function(aName) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder::getProperty");
+		if(this._properties.select(aName)) {
+			return this._properties.currentSelectedItem;
+		}
+		
+		var theUnit = null;
+		if(CssFunctions.isLengthProperty(aName)) {
+			theUnit = "px";
+		}
+		
+		var newProperty = ExternalCssVariableProperty.create(this._objectProperty, this.theObject, aName, theUnit);
+		newProperty.name = this.__className + "::" + aName + "(css)";
+		//METODO: set start value
+		//var cssDeclaration = aHtmlElement.ownerDocument.defaultView.getComputedStyle(aHtmlElement);
+		//var currentValue = cssDeclaration.getPropertyValue(aVariable);
+		this._properties.addObject(aName, newProperty);
+		
+		var newTimeline = dbm.singletons.dbmAnimationManager.createTimeline(newProperty.getValue(), newProperty);
+		this._timelines.push(newTimeline);
+		
+		newProperty.startUpdating();
+		return newProperty;
+	};
+	
+	
+	
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyArrayIfExists(this._timelines);
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.theObject = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aObject) {
+		var newTemporaryTimelineHolder = (new ClassReference()).init();
+		newTemporaryTimelineHolder.theObject = aObject;
+		return newTemporaryTimelineHolder;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder::_init");
+		
+		this.superCall();
+		
+		this.theObject = null;
+		this._timelines = new Array();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getProperty = function(aName) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder::getProperty");
+		if(this._properties.select(aName)) {
+			return this._properties.currentSelectedItem;
+		}
+		var newProperty = ExternalVariableProperty.create(this._objectProperty, this.theObject, aName);
+		newProperty.setValue(this.theObject[newProperty]);
+		newProperty.name = this.__className + "::" + aName + "(e)";
+		this._properties.addObject(aName, newProperty);
+		
+		var newTimeline = dbm.singletons.dbmAnimationManager.createTimeline(this.theObject[newProperty], newProperty);
+		this._timelines.push(newTimeline);
+		
+		newProperty.startUpdating();
+		return newProperty;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getCssProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getCssProperty = function(aName) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder::getProperty");
+		if(this._properties.select(aName)) {
+			return this._properties.currentSelectedItem;
+		}
+		
+		var theUnit = null;
+		if(CssFunctions.isLengthProperty(aName)) {
+			theUnit = "px";
+		}
+		
+		var newProperty = ExternalCssVariableProperty.create(this._objectProperty, this.theObject, aName, theUnit);
+		newProperty.name = this.__className + "::" + aName + "(css)";
+		//METODO: set start value
+		//var cssDeclaration = aHtmlElement.ownerDocument.defaultView.getComputedStyle(aHtmlElement);
+		//var currentValue = cssDeclaration.getPropertyValue(aVariable);
+		this._properties.addObject(aName, newProperty);
+		
+		var newTimeline = dbm.singletons.dbmAnimationManager.createTimeline(newProperty.getValue(), newProperty);
+		this._timelines.push(newTimeline);
+		
+		newProperty.startUpdating();
+		return newProperty;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyArrayIfExists(this._timelines);
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.theObject = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aObject) {
+		var newTemporaryTimelineHolder = (new ClassReference()).init();
+		newTemporaryTimelineHolder.theObject = aObject;
+		return newTemporaryTimelineHolder;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

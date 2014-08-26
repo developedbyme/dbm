@@ -1,0 +1,145 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>HslaColor</h1>
+		<div class="classPath">com.developedbyme.core.data.color.HslaColor</div>
+		<div class="classInheritance"></div>
+		<div class="description">A HSLA color.</div>
+		<div class="importSnippet">var HslaColor = dbm.importClass("com.developedbyme.core.data.color.HslaColor");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.data.color.HslaColor", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.data.color.HslaColor");
+	
+	var HslaColor = dbm.importClass("com.developedbyme.core.data.color.HslaColor");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.data.color.HslaColor");
+		
+		this.superCall();
+		
+		this.h = 0;
+		this.s = 0;
+		this.l = 0;
+		this.a = 1;
+		
+		return this;
+	};
+	
+	objectFunctions.getCssString = function getCssString() {
+		var alpha = this.a;
+		if(alpha &lt; 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return "hsla(" + (360*this.h) + "," + (100*this.s) + "%," + (100*this.l) + "%," + (alpha) + ")";
+	};
+	
+	objectFunctions.getSvgColorStopString = function() {
+		return "hsl(" + (360*this.h) + "," + (100*this.s) + "%," + (100*this.l)  + "%)";
+	};
+	
+	objectFunctions.getSvgColorStopOpacityString = function() {
+		var alpha = this.a;
+		if(alpha &lt; 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return alpha.toString();
+	};
+	
+	staticFunctions.create = function create(aH, aS, aL, aA) {
+		//console.log("com.developedbyme.core.data.color.HslaColor::create (static)");
+		//console.log(aH, aS, aL, aA);
+		var newHslaColor = (new HslaColor()).init();
+		newHslaColor.r = VariableAliases.valueWithDefault(aH, 0);
+		newHslaColor.g = VariableAliases.valueWithDefault(aS, 0);
+		newHslaColor.b = VariableAliases.valueWithDefault(aL, 0);
+		newHslaColor.a = VariableAliases.valueWithDefault(aA, 1);
+		
+		return newHslaColor;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.data.color.HslaColor");
+		
+		this.superCall();
+		
+		this.h = 0;
+		this.s = 0;
+		this.l = 0;
+		this.a = 1;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getCssString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getCssString = function getCssString() {
+		var alpha = this.a;
+		if(alpha &lt; 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return "hsla(" + (360*this.h) + "," + (100*this.s) + "%," + (100*this.l) + "%," + (alpha) + ")";
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getSvgColorStopString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getSvgColorStopString = function() {
+		return "hsl(" + (360*this.h) + "," + (100*this.s) + "%," + (100*this.l)  + "%)";
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getSvgColorStopOpacityString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getSvgColorStopOpacityString = function() {
+		var alpha = this.a;
+		if(alpha &lt; 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return alpha.toString();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function create(aH, aS, aL, aA) {
+		//console.log("com.developedbyme.core.data.color.HslaColor::create (static)");
+		//console.log(aH, aS, aL, aA);
+		var newHslaColor = (new HslaColor()).init();
+		newHslaColor.r = VariableAliases.valueWithDefault(aH, 0);
+		newHslaColor.g = VariableAliases.valueWithDefault(aS, 0);
+		newHslaColor.b = VariableAliases.valueWithDefault(aL, 0);
+		newHslaColor.a = VariableAliases.valueWithDefault(aA, 1);
+		
+		return newHslaColor;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

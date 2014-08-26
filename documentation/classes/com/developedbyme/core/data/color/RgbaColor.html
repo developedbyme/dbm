@@ -1,0 +1,176 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>RgbaColor</h1>
+		<div class="classPath">com.developedbyme.core.data.color.RgbaColor</div>
+		<div class="classInheritance"></div>
+		<div class="description">A RGBA color.</div>
+		<div class="importSnippet">var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.data.color.RgbaColor");
+	
+	//Self reference
+	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.color.RgbaColor");
+		
+		this.superCall();
+		
+		this.r = 0;
+		this.g = 0;
+		this.b = 0;
+		this.a = 1;
+		
+		return this;
+	};
+	
+	objectFunctions.getCssString = function() {
+		var alpha = this.a;
+		if(alpha &lt; 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return "rgba(" + (100*this.r) + "%," + (100*this.g) + "%," + (100*this.b) + "%," + (this.a) + ")";
+	};
+	
+	objectFunctions.getSvgColorStopString = function() {
+		return "rgb(" + (100*this.r) + "%," + (100*this.g) + "%," + (100*this.b) + "%)";
+	};
+	
+	objectFunctions.getSvgColorStopOpacityString = function() {
+		var alpha = this.a;
+		if(alpha &lt; 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return alpha.toString();
+	};
+	
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("r: " + this.r);
+		aReturnArray.push("g: " + this.g);
+		aReturnArray.push("b: " + this.b);
+		aReturnArray.push("a: " + this.a);
+	};
+	
+	staticFunctions.create = function create(aR, aG, aB, aA) {
+		//console.log("com.developedbyme.core.data.color.RgbaColor::create (static)");
+		//console.log(aR, aG, aB, aA);
+		var newRgbaColor = (new RgbaColor()).init();
+		newRgbaColor.r = VariableAliases.valueWithDefault(aR, 0);
+		newRgbaColor.g = VariableAliases.valueWithDefault(aG, 0);
+		newRgbaColor.b = VariableAliases.valueWithDefault(aB, 0);
+		newRgbaColor.a = VariableAliases.valueWithDefault(aA, 1);
+		
+		return newRgbaColor;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.data.color.RgbaColor");
+		
+		this.superCall();
+		
+		this.r = 0;
+		this.g = 0;
+		this.b = 0;
+		this.a = 1;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getCssString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getCssString = function() {
+		var alpha = this.a;
+		if(alpha &lt; 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return "rgba(" + (100*this.r) + "%," + (100*this.g) + "%," + (100*this.b) + "%," + (this.a) + ")";
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getSvgColorStopString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getSvgColorStopString = function() {
+		return "rgb(" + (100*this.r) + "%," + (100*this.g) + "%," + (100*this.b) + "%)";
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getSvgColorStopOpacityString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getSvgColorStopOpacityString = function() {
+		var alpha = this.a;
+		if(alpha &lt; 0.000001) {
+			//MENOTE: css doesn't support 1.2345e-7 format
+			alpha = 0;
+		}
+		return alpha.toString();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("r: " + this.r);
+		aReturnArray.push("g: " + this.g);
+		aReturnArray.push("b: " + this.b);
+		aReturnArray.push("a: " + this.a);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function create(aR, aG, aB, aA) {
+		//console.log("com.developedbyme.core.data.color.RgbaColor::create (static)");
+		//console.log(aR, aG, aB, aA);
+		var newRgbaColor = (new RgbaColor()).init();
+		newRgbaColor.r = VariableAliases.valueWithDefault(aR, 0);
+		newRgbaColor.g = VariableAliases.valueWithDefault(aG, 0);
+		newRgbaColor.b = VariableAliases.valueWithDefault(aB, 0);
+		newRgbaColor.a = VariableAliases.valueWithDefault(aA, 1);
+		
+		return newRgbaColor;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

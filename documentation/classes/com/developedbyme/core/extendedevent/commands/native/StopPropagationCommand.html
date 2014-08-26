@@ -1,0 +1,161 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>StopPropagationCommand</h1>
+		<div class="classPath">com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var StopPropagationCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand");
+	
+	var StopPropagationCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand::_init");
+		
+		this.superCall();
+		
+		this.eventReevaluator = null;
+		
+		return this;
+	};
+	
+	objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand::perform");
+		//console.log(aEventDataObject);
+		
+		var theEvent = this.eventReevaluator.reevaluate(aEventDataObject);
+		theEvent.stopPropagation();
+		
+		return CommandStatusTypes.CONTINUE;
+	};
+	
+	
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this.eventReevaluator);
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.eventReevaluator = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.createCommand = function(aEvent) {
+		var newCommand = (new StopPropagationCommand()).init();
+		
+		newCommand.eventReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aEvent);
+		
+		return newCommand;
+	};
+	
+	staticFunctions.createCommandWithDataAsEvent = function() {
+		var newCommand = (new StopPropagationCommand()).init();
+		
+		newCommand.eventReevaluator = GetVariableObject.createSelectDataCommand();
+		
+		return newCommand;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand::_init");
+		
+		this.superCall();
+		
+		this.eventReevaluator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">perform</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand::perform");
+		//console.log(aEventDataObject);
+		
+		var theEvent = this.eventReevaluator.reevaluate(aEventDataObject);
+		theEvent.stopPropagation();
+		
+		return CommandStatusTypes.CONTINUE;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this.eventReevaluator);
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.eventReevaluator = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createCommand = function(aEvent) {
+		var newCommand = (new StopPropagationCommand()).init();
+		
+		newCommand.eventReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aEvent);
+		
+		return newCommand;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createCommandWithDataAsEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createCommandWithDataAsEvent = function() {
+		var newCommand = (new StopPropagationCommand()).init();
+		
+		newCommand.eventReevaluator = GetVariableObject.createSelectDataCommand();
+		
+		return newCommand;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

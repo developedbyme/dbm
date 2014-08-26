@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>HtmlElementControllerLink</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var HtmlElementControllerLink = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink");
+	//"use strict";
+	
+	var HtmlElementControllerLink = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink::_init");
+		
+		this.superCall();
+		
+		this.controller = null;
+		this.htmlElement = null;
+		
+		return this;
+	};
+	
+	objectFunctions.setObjects = function(aController, aHtmlElement) {
+		//console.log("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink::setObjects");
+		
+		this.controller = aController;
+		this.htmlElement = aHtmlElement;
+		
+		return this;
+		
+	};
+	
+	staticFunctions.create = function(aController, aHtmlElement) {
+		
+		return (new HtmlElementControllerLink()).init().setObjects(aController, aHtmlElement);
+		
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink::_init");
+		
+		this.superCall();
+		
+		this.controller = null;
+		this.htmlElement = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setObjects</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setObjects = function(aController, aHtmlElement) {
+		//console.log("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink::setObjects");
+		
+		this.controller = aController;
+		this.htmlElement = aHtmlElement;
+		
+		return this;
+		
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aController, aHtmlElement) {
+		
+		return (new HtmlElementControllerLink()).init().setObjects(aController, aHtmlElement);
+		
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

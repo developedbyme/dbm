@@ -1,0 +1,224 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>CurveDrawer2d</h1>
+		<div class="classPath">com.developedbyme.utils.canvas.CurveDrawer2d</div>
+		<div class="classInheritance"></div>
+		<div class="description">A graphics in a 2d canvas.</div>
+		<div class="importSnippet">var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.canvas.CurveDrawer2d");
+	
+	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	/**
+	 * Constructor.
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::_init");
+		
+		this.superCall();
+		
+		this._startParameter = this.createProperty("startParameter", 0);
+		this._endParameter = this.createProperty("endParameter", 0);
+		this._curve = this.createProperty("curve", null).setAlwaysUpdateFlow(true);
+		
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate.connectInput(this._startParameter);
+		this._graphicsUpdate.connectInput(this._endParameter);
+		this._graphicsUpdate.connectInput(this._curve);
+		
+		return this;
+	};
+	
+	objectFunctions.draw = function(aContext) {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::draw");
+		
+		var curve = this._curve.getValue();
+		var startParameter = this._startParameter.getValue();
+		var endParameter = this._endParameter.getValue();
+		
+		//console.log(this, curve, startParameter, endParameter, 0.01, aContext, aContext.strokeStyle);
+		ClassReference.drawCurve(curve, startParameter, endParameter, 0.01, aContext);
+	};
+	
+	objectFunctions.getStartPoint = function(aReturnPoint) {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::getStartPoint");
+		var curve = this._curve.getValue();
+		var startParameter = this._startParameter.getValue();
+		curve.getPointOnCurve(startParameter, aReturnPoint);
+	};
+	
+	staticFunctions.create = function(aCurve) {
+		var newCurveDrawer2d = (new ClassReference()).init();
+		newCurveDrawer2d.setPropertyInput("curve", aCurve);
+		return newCurveDrawer2d;
+	};
+	
+	staticFunctions.drawCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawCurve (static)");
+		if(aCurve.isSetType("bezierCurve")) {
+			ClassReference.drawBezierCurve(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawCurve", "Curve is not of correect type.");
+		}
+	};
+	
+	staticFunctions.drawBezierCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawBezierCurve (static)");
+		//console.log(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
+		
+		var tempCurve = aCurve.createSameTypeOfCurve();
+		dbm.singletons.dbmCurveEvaluator.getPartOfCurve(aCurve, aStartParameter, aEndParameter, aExactness, tempCurve);
+		
+		var currentArray = tempCurve.pointsArray;
+		var degree = tempCurve.getCurveDegree();
+		var maxParameter = tempCurve.getMaxParameter();
+		for(var i = degree; i &lt;= maxParameter*degree; i += degree) {
+			switch(degree) {
+				case 1:
+					aContext.lineTo(currentArray[i].x, currentArray[i].y);
+					break;
+				case 2:
+					aContext.quadraticCurveTo(currentArray[i-1].x, currentArray[i-1].y, currentArray[i].x, currentArray[i].y);
+					break;
+				case 3:
+					aContext.bezierCurveTo(currentArray[i-2].x, currentArray[i-2].y, currentArray[i-1].x, currentArray[i-1].y, currentArray[i].x, currentArray[i].y);
+					break;
+				default:
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawBezierCurve", "Can't draw bezier curve of degree " + degree + ".");
+					break;
+			}
+		}
+		
+		//dbm.singletons.dbmCurveEvaluator.recycleCurve(tempCurve);
+		
+		tempCurve.destroy();
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor.</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::_init");
+		
+		this.superCall();
+		
+		this._startParameter = this.createProperty("startParameter", 0);
+		this._endParameter = this.createProperty("endParameter", 0);
+		this._curve = this.createProperty("curve", null).setAlwaysUpdateFlow(true);
+		
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate.connectInput(this._startParameter);
+		this._graphicsUpdate.connectInput(this._endParameter);
+		this._graphicsUpdate.connectInput(this._curve);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">draw</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.draw = function(aContext) {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::draw");
+		
+		var curve = this._curve.getValue();
+		var startParameter = this._startParameter.getValue();
+		var endParameter = this._endParameter.getValue();
+		
+		//console.log(this, curve, startParameter, endParameter, 0.01, aContext, aContext.strokeStyle);
+		ClassReference.drawCurve(curve, startParameter, endParameter, 0.01, aContext);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getStartPoint</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getStartPoint = function(aReturnPoint) {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::getStartPoint");
+		var curve = this._curve.getValue();
+		var startParameter = this._startParameter.getValue();
+		curve.getPointOnCurve(startParameter, aReturnPoint);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aCurve) {
+		var newCurveDrawer2d = (new ClassReference()).init();
+		newCurveDrawer2d.setPropertyInput("curve", aCurve);
+		return newCurveDrawer2d;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">drawCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.drawCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawCurve (static)");
+		if(aCurve.isSetType("bezierCurve")) {
+			ClassReference.drawBezierCurve(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawCurve", "Curve is not of correect type.");
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">drawBezierCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.drawBezierCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawBezierCurve (static)");
+		//console.log(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
+		
+		var tempCurve = aCurve.createSameTypeOfCurve();
+		dbm.singletons.dbmCurveEvaluator.getPartOfCurve(aCurve, aStartParameter, aEndParameter, aExactness, tempCurve);
+		
+		var currentArray = tempCurve.pointsArray;
+		var degree = tempCurve.getCurveDegree();
+		var maxParameter = tempCurve.getMaxParameter();
+		for(var i = degree; i &lt;= maxParameter*degree; i += degree) {
+			switch(degree) {
+				case 1:
+					aContext.lineTo(currentArray[i].x, currentArray[i].y);
+					break;
+				case 2:
+					aContext.quadraticCurveTo(currentArray[i-1].x, currentArray[i-1].y, currentArray[i].x, currentArray[i].y);
+					break;
+				case 3:
+					aContext.bezierCurveTo(currentArray[i-2].x, currentArray[i-2].y, currentArray[i-1].x, currentArray[i-1].y, currentArray[i].x, currentArray[i].y);
+					break;
+				default:
+					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawBezierCurve", "Can't draw bezier curve of degree " + degree + ".");
+					break;
+			}
+		}
+		
+		//dbm.singletons.dbmCurveEvaluator.recycleCurve(tempCurve);
+		
+		tempCurve.destroy();
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

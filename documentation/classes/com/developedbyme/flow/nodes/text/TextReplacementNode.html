@@ -1,0 +1,177 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TextReplacementNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.text.TextReplacementNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var TextReplacementNode = dbm.importClass("com.developedbyme.flow.nodes.text.TextReplacementNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.text.TextReplacementNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.text.TextReplacementNode");
+	
+	//Self reference
+	var TextReplacementNode = dbm.importClass("com.developedbyme.flow.nodes.text.TextReplacementNode");
+	
+	//Error report
+	
+	//Dependencies
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var KeyValuePropertyPair = dbm.importClass("com.developedbyme.flow.data.KeyValuePropertyPair");
+	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.text.TextReplacementNode::_init");
+		
+		this.superCall();
+		
+		this._inputValue = this.createProperty("inputValue", "");
+		this._outputValue = this.createProperty("outputValue", "");
+		this._replacementUpdate = this.addProperty("replacementUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		
+		this._textReplacements = ArrayHolder.create(true);
+		this.addDestroyableObject(this._textReplacements);
+		
+		this.createUpdateFunction("default", this._update, [this._inputValue, this._replacementUpdate], [this._outputValue]);
+		
+		return this;
+	};
+	
+	objectFunctions.addReplacement = function(aKeyValue, aDataValue) {
+		var newKeyValuePair = KeyValuePropertyPair.create(aKeyValue, aDataValue);
+		this._replacementUpdate.connectInput(newKeyValuePair.keyValue);
+		this._replacementUpdate.connectInput(newKeyValuePair.dataValue);
+		this._textReplacements.array.push(newKeyValuePair);
+		
+		return this;
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.text.TextReplacementNode::_update");
+		
+		var currentText = this._inputValue.getValueWithoutFlow().toString();
+		
+		var currentArray = this._textReplacements.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentReplacement = currentArray[i];
+			var keyValue = currentReplacement.keyValue.getValueWithoutFlow().toString();
+			var dataValue = currentReplacement.dataValue.getValueWithoutFlow().toString();
+			currentText = currentText.split(keyValue).join(dataValue);
+		}
+		
+		this._outputValue.setValueWithFlow(currentText, aFlowUpdateNumber);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputValue = null;
+		this._outputValue = null;
+		this._replacementUpdate = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aInput) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputValue", aInput);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.text.TextReplacementNode::_init");
+		
+		this.superCall();
+		
+		this._inputValue = this.createProperty("inputValue", "");
+		this._outputValue = this.createProperty("outputValue", "");
+		this._replacementUpdate = this.addProperty("replacementUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		
+		this._textReplacements = ArrayHolder.create(true);
+		this.addDestroyableObject(this._textReplacements);
+		
+		this.createUpdateFunction("default", this._update, [this._inputValue, this._replacementUpdate], [this._outputValue]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addReplacement</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addReplacement = function(aKeyValue, aDataValue) {
+		var newKeyValuePair = KeyValuePropertyPair.create(aKeyValue, aDataValue);
+		this._replacementUpdate.connectInput(newKeyValuePair.keyValue);
+		this._replacementUpdate.connectInput(newKeyValuePair.dataValue);
+		this._textReplacements.array.push(newKeyValuePair);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.text.TextReplacementNode::_update");
+		
+		var currentText = this._inputValue.getValueWithoutFlow().toString();
+		
+		var currentArray = this._textReplacements.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentReplacement = currentArray[i];
+			var keyValue = currentReplacement.keyValue.getValueWithoutFlow().toString();
+			var dataValue = currentReplacement.dataValue.getValueWithoutFlow().toString();
+			currentText = currentText.split(keyValue).join(dataValue);
+		}
+		
+		this._outputValue.setValueWithFlow(currentText, aFlowUpdateNumber);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputValue = null;
+		this._outputValue = null;
+		this._replacementUpdate = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aInput) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputValue", aInput);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

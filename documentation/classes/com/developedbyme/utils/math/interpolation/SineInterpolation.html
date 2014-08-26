@@ -1,0 +1,124 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>SineInterpolation</h1>
+		<div class="classPath">com.developedbyme.utils.math.interpolation.SineInterpolation</div>
+		<div class="classInheritance"></div>
+		<div class="description">Interpolataion for sine</div>
+		<div class="importSnippet">var SineInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.SineInterpolation");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.math.interpolation.SineInterpolation", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.math.interpolation.SineInterpolation");
+	
+	var SineInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.SineInterpolation");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+		
+	/**
+	 * Constructor.
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.math.interpolation.SineInterpolation");
+		
+		this.minValue = 0;
+		this.maxValue = 0.5*Math.PI;
+		this.offset = 0;
+		
+		return this;
+	};
+	
+	/**
+	 * Interpolates
+	 */
+	objectFunctions.interpolate = function(aParameter) {
+		
+		var sineParameter = (this.maxValue-this.minValue)*aParameter+this.minValue+this.offset;
+		
+		return Math.sin(sineParameter);
+	};
+	
+	/**
+	 * Gets the tangent for a parameter
+	 */
+	objectFunctions.getTangent = function(aParameter) {
+		
+		var sineParameter = (this.maxValue-this.minValue)*aParameter+this.minValue+this.offset;
+		
+		return (this.maxValue-this.minValue)*Math.cos(sineParameter);
+	};
+	
+	/**
+	 * Create a new interpolation
+	 */
+	staticFunctions.create = function(aMinValue, aMaxValue, aOffset) {
+		var newInterpolation = (new ClassReference()).init();
+		
+		newInterpolation.minValue = VariableAliases.valueWithDefault(aMinValue, 0);
+		newInterpolation.maxValue = VariableAliases.valueWithDefault(aMaxValue, 0.5*Math.PI);
+		newInterpolation.offset = VariableAliases.valueWithDefault(aOffset, 0);
+		
+		return newInterpolation;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor.</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.math.interpolation.SineInterpolation");
+		
+		this.minValue = 0;
+		this.maxValue = 0.5*Math.PI;
+		this.offset = 0;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">interpolate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Interpolates</div>
+			<div class="code">objectFunctions.interpolate = function(aParameter) {
+		
+		var sineParameter = (this.maxValue-this.minValue)*aParameter+this.minValue+this.offset;
+		
+		return Math.sin(sineParameter);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getTangent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the tangent for a parameter</div>
+			<div class="code">objectFunctions.getTangent = function(aParameter) {
+		
+		var sineParameter = (this.maxValue-this.minValue)*aParameter+this.minValue+this.offset;
+		
+		return (this.maxValue-this.minValue)*Math.cos(sineParameter);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Create a new interpolation</div>
+			<div class="code">staticFunctions.create = function(aMinValue, aMaxValue, aOffset) {
+		var newInterpolation = (new ClassReference()).init();
+		
+		newInterpolation.minValue = VariableAliases.valueWithDefault(aMinValue, 0);
+		newInterpolation.maxValue = VariableAliases.valueWithDefault(aMaxValue, 0.5*Math.PI);
+		newInterpolation.offset = VariableAliases.valueWithDefault(aOffset, 0);
+		
+		return newInterpolation;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

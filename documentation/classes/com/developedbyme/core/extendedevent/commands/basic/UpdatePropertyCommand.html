@@ -1,0 +1,210 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>UpdatePropertyCommand</h1>
+		<div class="classPath">com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var UpdatePropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand");
+	
+	var UpdatePropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	
+	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
+	var GetPropertyObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject");
+	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand::_init");
+		
+		this.superCall();
+		
+		this.propertyReevaluator = null;
+		
+		return this;
+	};
+	
+	objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand::perform");
+		//console.log(aEventDataObject);
+		
+		var theProperty = this.propertyReevaluator.reevaluate(aEventDataObject);
+		theProperty.update();
+		
+		return CommandStatusTypes.CONTINUE;
+	};
+	
+	
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this.propertyReevaluator);
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.propertyReevaluator = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a command that updates a property.
+	 * 
+	 * @param	aProperty	The property to set.
+	 *
+	 * @return	The new command.
+	 */
+	staticFunctions.createCommand = function(aProperty) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand::createCommand (static)");
+		//console.log(aProperty, aValue);
+		
+		var newCommand = (new UpdatePropertyCommand()).init();
+		
+		if(aProperty instanceof ReevaluationBaseObject) {
+			newCommand.propertyReevaluator = aProperty;
+		}
+		else {
+			newCommand.propertyReevaluator = StaticVariableObject.createReevaluationObject(aProperty);
+		}
+		
+		return newCommand;
+	};
+	
+	/**
+	 * Creates a command that updates a property on an object.
+	 * 
+	 * @param	aObject			The object to set the property on.
+	 * @param	aPropertyName	The name of the property.
+	 *
+	 * @return	The new command.
+	 */
+	staticFunctions.createUpdatePropertyOnObjectCommand = function(aObject, aPropertyName) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand::createStartUpdatingPropertyOnObjectCommand (static)");
+		//console.log(aObject, aPropertyName, aValue);
+		return ClassReference.createCommand(GetPropertyObject.createCommand(aObject, aPropertyName));
+	};
+	
+	/**
+	 * Creates a command that updates a property on the performing object.
+	 * 
+	 * @param	aPropertyName	The name of the property.
+	 *
+	 * @return	The new command.
+	 */
+	staticFunctions.createUpdatePropertyOnPerformingObjectCommand = function(aPropertyName) {
+		return ClassReference.createUpdatePropertyOnObjectCommand(GetVariableObject.createSelectPerformingObjectCommand(), aPropertyName);
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand::_init");
+		
+		this.superCall();
+		
+		this.propertyReevaluator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">perform</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand::perform");
+		//console.log(aEventDataObject);
+		
+		var theProperty = this.propertyReevaluator.reevaluate(aEventDataObject);
+		theProperty.update();
+		
+		return CommandStatusTypes.CONTINUE;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyIfExists(this.propertyReevaluator);
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.propertyReevaluator = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a command that updates a property.</div>
+			<div class="code">staticFunctions.createCommand = function(aProperty) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand::createCommand (static)");
+		//console.log(aProperty, aValue);
+		
+		var newCommand = (new UpdatePropertyCommand()).init();
+		
+		if(aProperty instanceof ReevaluationBaseObject) {
+			newCommand.propertyReevaluator = aProperty;
+		}
+		else {
+			newCommand.propertyReevaluator = StaticVariableObject.createReevaluationObject(aProperty);
+		}
+		
+		return newCommand;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createUpdatePropertyOnObjectCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a command that updates a property on an object.</div>
+			<div class="code">staticFunctions.createUpdatePropertyOnObjectCommand = function(aObject, aPropertyName) {
+		//console.log("com.developedbyme.core.extendedevent.commands.basic.UpdatePropertyCommand::createStartUpdatingPropertyOnObjectCommand (static)");
+		//console.log(aObject, aPropertyName, aValue);
+		return ClassReference.createCommand(GetPropertyObject.createCommand(aObject, aPropertyName));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createUpdatePropertyOnPerformingObjectCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a command that updates a property on the performing object.</div>
+			<div class="code">staticFunctions.createUpdatePropertyOnPerformingObjectCommand = function(aPropertyName) {
+		return ClassReference.createUpdatePropertyOnObjectCommand(GetVariableObject.createSelectPerformingObjectCommand(), aPropertyName);
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

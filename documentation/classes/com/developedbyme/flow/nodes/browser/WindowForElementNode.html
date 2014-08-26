@@ -1,0 +1,177 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>WindowForElementNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.browser.WindowForElementNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var WindowForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowForElementNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowForElementNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode");
+	
+	//Self reference
+	var WindowForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowForElementNode");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	var LogCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
+	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
+	
+	//Constants
+	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	
+	
+	/**
+	 * Constuctor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_init");
+		
+		this.superCall();
+		
+		this._element = this.createProperty("element", null);
+		this._window = this.createProperty("window", null);
+		
+		//MENOTE: Since events for changing document doesn't work this property can be used to flasg those changes
+		this._document = this.createProperty("document", null);
+		
+		this.createUpdateFunction("default", this._update, [this._element, this._document], [this._window]);
+		
+		this.getExtendedEvent().createEvent("windowChanged");
+		this.getExtendedEvent().addCommandToEvent("windowChanged", SetPropertyAsDirtyCommand.createCommand(this._element));
+		//this.getExtendedEvent().addCommandToEvent("windowChanged", LogCommand.createCommand("test"));
+		
+		return this;
+	};
+	
+	objectFunctions.start = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::start");
+		this.getExtendedEvent().linkJavascriptEvent(this._element.getValue(), JavascriptEventIds.DOM_NODE_INSERTED_INTO_DOCUMENT, "windowChanged", "windowChanged", true, true).activate();
+	};
+	
+	objectFunctions.stop = function() {
+		this.getExtendedEvent().deactivateJavascriptLink("windowChanged");
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_update");
+		
+		var element = this._element.getValueWithoutFlow();
+		if(element !== null) {
+			this.start();
+			this._window.setValueWithFlow(DomReferenceFunctions.getDocument(element).defaultView, aFlowUpdateNumber);
+		}
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._element = null;
+		this._window = null;
+		this._document = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aElement) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("element", aElement);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constuctor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_init");
+		
+		this.superCall();
+		
+		this._element = this.createProperty("element", null);
+		this._window = this.createProperty("window", null);
+		
+		//MENOTE: Since events for changing document doesn't work this property can be used to flasg those changes
+		this._document = this.createProperty("document", null);
+		
+		this.createUpdateFunction("default", this._update, [this._element, this._document], [this._window]);
+		
+		this.getExtendedEvent().createEvent("windowChanged");
+		this.getExtendedEvent().addCommandToEvent("windowChanged", SetPropertyAsDirtyCommand.createCommand(this._element));
+		//this.getExtendedEvent().addCommandToEvent("windowChanged", LogCommand.createCommand("test"));
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">start</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.start = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::start");
+		this.getExtendedEvent().linkJavascriptEvent(this._element.getValue(), JavascriptEventIds.DOM_NODE_INSERTED_INTO_DOCUMENT, "windowChanged", "windowChanged", true, true).activate();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">stop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.stop = function() {
+		this.getExtendedEvent().deactivateJavascriptLink("windowChanged");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_update");
+		
+		var element = this._element.getValueWithoutFlow();
+		if(element !== null) {
+			this.start();
+			this._window.setValueWithFlow(DomReferenceFunctions.getDocument(element).defaultView, aFlowUpdateNumber);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._element = null;
+		this._window = null;
+		this._document = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aElement) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("element", aElement);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,377 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>CanvasController2d</h1>
+		<div class="classPath">com.developedbyme.utils.canvas.CanvasController2d</div>
+		<div class="classInheritance"></div>
+		<div class="description">Controller for a 2d canvas.</div>
+		<div class="importSnippet">var CanvasController2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasController2d");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.canvas.CanvasController2d");
+	
+	var CanvasController2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasController2d");
+	
+	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
+	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
+	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var CanvasRenderLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	/**
+	 * Constructor.
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_init");
+		
+		this.superCall();
+		
+		this._numberOfLinksToResolve = 10;
+		this._minScale = 0.001;
+		
+		this._canvas = this.createProperty("canvas", null);
+		this._clearBeforeDrawing = true;
+		this._display = this.createGhostProperty("display");
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		
+		this._hierarchy = TreeStructure.create();
+		this._hierarchy.ownsData = true;
+		var rootNode = this._hierarchy.getRoot();
+		rootNode.ownsData = true;
+		this.addDestroyableObject(this._hierarchy);
+		var rootLayer = CanvasLayer2d.create();
+		rootNode.data = rootLayer;
+		rootLayer._linkRegistration_setTreeStructureItem(rootNode);
+		
+		this.createUpdateFunction("default", this._updateFlow, [this._graphicsUpdate, this._canvas], [this._display]);
+		
+		return this;
+	};
+	
+	objectFunctions.getRootLayer = function() {
+		return this._hierarchy.getRoot().data;
+	};
+	
+	objectFunctions.getLayer = function(aPath) {
+		var currentItem = this._hierarchy.getItemByPath(aPath);
+		if(currentItem.data === null) {
+			var newLayer = CanvasLayer2d.create();
+			currentItem.data = newLayer;
+			newLayer._linkRegistration_setTreeStructureItem(currentItem);
+			this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));
+		}
+		return currentItem.data;
+	};
+	
+	objectFunctions.createRenderLayer = function(aPath, aOffsetX, aOffsetY, aWidth, aHeight) {
+		var currentItem = this._hierarchy.getItemByPath(aPath);
+		if(currentItem.data === null) {
+			var newLayer = CanvasRenderLayer2d.create(aOffsetX, aOffsetY, aWidth, aHeight);
+			currentItem.data = newLayer;
+			newLayer._linkRegistration_setTreeStructureItem(currentItem);
+			this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));
+		}
+		return currentItem.data;
+	};
+	
+	objectFunctions.createLink = function(aFrom, aTo) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLink");
+		var tempArray = aFrom.split("/");
+		
+		var newLink = TreeStructureItemLink.create(tempArray.pop(), aTo);
+		
+		this._hierarchy.addItem(newLink, tempArray.join("/"));
+	};
+	
+	objectFunctions.createPattern = function(aImage, aRepeat) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createPattern");
+		
+		aRepeat = VariableAliases.valueWithDefault(aRepeat, "repeat");
+		
+		var canvas = this._canvas.getValue();
+		return canvas.getContext("2d").createPattern(aImage, aRepeat);
+	};
+	
+	objectFunctions.getWidthOfText = function(aText, aFont) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::getWidthOfText");
+		
+		var canvas = this._canvas.getValue();
+		canvas.getContext("2d").font = aFont;
+		return canvas.getContext("2d").measureText(aText).width;
+	};
+	
+	objectFunctions.createLinearGradient = function(aX1, aY1, aX2, aY2, aGradient) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		
+		var canvas = this._canvas.getValue();
+		var gradient = canvas.getContext("2d").createLinearGradient(aX1, aY1, aX2, aY2);
+		aGradient.addColorStopsToCanvasGradient(gradient);
+		return gradient;
+	};
+	
+	objectFunctions.createRadialGradient = function(aX1, aY1, aRadius1, aX2, aY2, aRadius2, aGradient) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		
+		var canvas = this._canvas.getValue();
+		var gradient = canvas.getContext("2d").createRadialGradient(aX1, aY1, aRadius1, aX2, aY2, aRadius2);
+		aGradient.addColorStopsToCanvasGradient(gradient);
+		return gradient;
+	};
+	
+	objectFunctions.draw = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
+		var canvas = this._canvas.getValue();
+		var currentContext = canvas.getContext("2d");
+		var currentLayer = this.getRootLayer();
+		
+		if(this._clearBeforeDrawing) {
+			currentContext.clearRect(0, 0, canvas.width, canvas.height);
+		}
+		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
+		//console.log("//com.developedbyme.utils.canvas.CanvasController2d::draw");
+	};
+	
+	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_updateFlow");
+		this.draw();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._canvas = null;
+		this._display = null;
+		this._graphicsUpdate = null;
+		
+		this._hierarchy = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Traces out the full structure.
+	 */
+	objectFunctions.debugTraceStructure = function(aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		
+		aResolveLinksLevel = VariableAliases.valueWithDefault(aResolveLinksLevel, 10);
+		
+		this._hierarchy.debugTraceStructure(aResolveLinksLevel);
+	}; //End function debugTraceStructure
+	
+	staticFunctions.create = function(aCanvas) {
+		var newCanvasController2d = (new ClassReference()).init();
+		newCanvasController2d.getProperty("canvas").setValue(aCanvas);
+		return newCanvasController2d;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor.</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_init");
+		
+		this.superCall();
+		
+		this._numberOfLinksToResolve = 10;
+		this._minScale = 0.001;
+		
+		this._canvas = this.createProperty("canvas", null);
+		this._clearBeforeDrawing = true;
+		this._display = this.createGhostProperty("display");
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		
+		this._hierarchy = TreeStructure.create();
+		this._hierarchy.ownsData = true;
+		var rootNode = this._hierarchy.getRoot();
+		rootNode.ownsData = true;
+		this.addDestroyableObject(this._hierarchy);
+		var rootLayer = CanvasLayer2d.create();
+		rootNode.data = rootLayer;
+		rootLayer._linkRegistration_setTreeStructureItem(rootNode);
+		
+		this.createUpdateFunction("default", this._updateFlow, [this._graphicsUpdate, this._canvas], [this._display]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getRootLayer</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getRootLayer = function() {
+		return this._hierarchy.getRoot().data;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getLayer</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getLayer = function(aPath) {
+		var currentItem = this._hierarchy.getItemByPath(aPath);
+		if(currentItem.data === null) {
+			var newLayer = CanvasLayer2d.create();
+			currentItem.data = newLayer;
+			newLayer._linkRegistration_setTreeStructureItem(currentItem);
+			this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));
+		}
+		return currentItem.data;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createRenderLayer</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createRenderLayer = function(aPath, aOffsetX, aOffsetY, aWidth, aHeight) {
+		var currentItem = this._hierarchy.getItemByPath(aPath);
+		if(currentItem.data === null) {
+			var newLayer = CanvasRenderLayer2d.create(aOffsetX, aOffsetY, aWidth, aHeight);
+			currentItem.data = newLayer;
+			newLayer._linkRegistration_setTreeStructureItem(currentItem);
+			this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));
+		}
+		return currentItem.data;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createLink</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createLink = function(aFrom, aTo) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLink");
+		var tempArray = aFrom.split("/");
+		
+		var newLink = TreeStructureItemLink.create(tempArray.pop(), aTo);
+		
+		this._hierarchy.addItem(newLink, tempArray.join("/"));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createPattern</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createPattern = function(aImage, aRepeat) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createPattern");
+		
+		aRepeat = VariableAliases.valueWithDefault(aRepeat, "repeat");
+		
+		var canvas = this._canvas.getValue();
+		return canvas.getContext("2d").createPattern(aImage, aRepeat);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getWidthOfText</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getWidthOfText = function(aText, aFont) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::getWidthOfText");
+		
+		var canvas = this._canvas.getValue();
+		canvas.getContext("2d").font = aFont;
+		return canvas.getContext("2d").measureText(aText).width;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createLinearGradient</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createLinearGradient = function(aX1, aY1, aX2, aY2, aGradient) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		
+		var canvas = this._canvas.getValue();
+		var gradient = canvas.getContext("2d").createLinearGradient(aX1, aY1, aX2, aY2);
+		aGradient.addColorStopsToCanvasGradient(gradient);
+		return gradient;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createRadialGradient</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createRadialGradient = function(aX1, aY1, aRadius1, aX2, aY2, aRadius2, aGradient) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		
+		var canvas = this._canvas.getValue();
+		var gradient = canvas.getContext("2d").createRadialGradient(aX1, aY1, aRadius1, aX2, aY2, aRadius2);
+		aGradient.addColorStopsToCanvasGradient(gradient);
+		return gradient;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">draw</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.draw = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
+		var canvas = this._canvas.getValue();
+		var currentContext = canvas.getContext("2d");
+		var currentLayer = this.getRootLayer();
+		
+		if(this._clearBeforeDrawing) {
+			currentContext.clearRect(0, 0, canvas.width, canvas.height);
+		}
+		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
+		//console.log("//com.developedbyme.utils.canvas.CanvasController2d::draw");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_updateFlow</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._updateFlow = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_updateFlow");
+		this.draw();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._canvas = null;
+		this._display = null;
+		this._graphicsUpdate = null;
+		
+		this._hierarchy = null;
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">debugTraceStructure</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Traces out the full structure.</div>
+			<div class="code">objectFunctions.debugTraceStructure = function(aResolveLinksLevel) {
+		//console.log("debugTraceStructure");
+		
+		aResolveLinksLevel = VariableAliases.valueWithDefault(aResolveLinksLevel, 10);
+		
+		this._hierarchy.debugTraceStructure(aResolveLinksLevel);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aCanvas) {
+		var newCanvasController2d = (new ClassReference()).init();
+		newCanvasController2d.getProperty("canvas").setValue(aCanvas);
+		return newCanvasController2d;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

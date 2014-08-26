@@ -1,0 +1,246 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>CommandBaseObject</h1>
+		<div class="classPath">com.developedbyme.core.extendedevent.commands.CommandBaseObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var CommandBaseObject = dbm.importClass("com.developedbyme.core.extendedevent.commands.CommandBaseObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::_init");
+		
+		this.superCall();
+		
+		this.id = null;
+		this._numberOfRetains = 0;
+		this.removeAfterPerform = false;
+		
+		return this;
+	};
+	
+	objectFunctions.setId = function(aId) {
+		this.id = aId;
+		
+		return this;
+	};
+	
+	objectFunctions.setAsRemovable = function(aRemoveAfterPerform) {
+		this.removeAfterPerform = (aRemoveAfterPerform !== false);
+		
+		return this;
+	};
+	
+	objectFunctions.perform = function(aEventDataObject) {
+		
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "perform", "Method should have been overridden.");
+		
+		aEventDataObject.addResult(null);
+		
+		return CommandStatusTypes.CONTINUE;
+	};
+	
+	objectFunctions.getNumberOfRetains = function() {
+		return this._numberOfRetains;
+	};
+	
+	
+	objectFunctions.retain = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::retain");
+		this._numberOfRetains++;
+		
+		return this;
+	};
+	
+	objectFunctions.release = function() {
+		if(this._numberOfRetains !== 0) {
+			this._numberOfRetains--;
+		}
+		
+		return this;
+	};
+	
+	objectFunctions.releaseAndDestroy = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::releaseAndDestroy");
+		this.release();
+		if(this._numberOfRetains === 0) {
+			this.destroy();
+		}
+		
+		return this;
+	};
+	
+	objectFunctions.forceReleaseAllRetains = function() {
+		this._numberOfRetains = 0;
+		
+		return this;
+	};
+	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("id: " + this.id);
+	};
+	
+	objectFunctions.performDestroy = function() {
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::_init");
+		
+		this.superCall();
+		
+		this.id = null;
+		this._numberOfRetains = 0;
+		this.removeAfterPerform = false;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setId</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setId = function(aId) {
+		this.id = aId;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAsRemovable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAsRemovable = function(aRemoveAfterPerform) {
+		this.removeAfterPerform = (aRemoveAfterPerform !== false);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">perform</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.perform = function(aEventDataObject) {
+		
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "perform", "Method should have been overridden.");
+		
+		aEventDataObject.addResult(null);
+		
+		return CommandStatusTypes.CONTINUE;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getNumberOfRetains</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getNumberOfRetains = function() {
+		return this._numberOfRetains;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">retain</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.retain = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::retain");
+		this._numberOfRetains++;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">release</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.release = function() {
+		if(this._numberOfRetains !== 0) {
+			this._numberOfRetains--;
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">releaseAndDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.releaseAndDestroy = function() {
+		//console.log("com.developedbyme.core.extendedevent.commands.CommandBaseObject::releaseAndDestroy");
+		this.release();
+		if(this._numberOfRetains === 0) {
+			this.destroy();
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">forceReleaseAllRetains</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.forceReleaseAllRetains = function() {
+		this._numberOfRetains = 0;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		aReturnArray.push("id: " + this.id);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

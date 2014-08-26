@@ -1,0 +1,184 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>IterationData</h1>
+		<div class="classPath">com.developedbyme.utils.data.iterator.IterationData</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var IterationData = dbm.importClass("com.developedbyme.utils.data.iterator.IterationData");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.data.iterator.IterationData", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.data.iterator.IterationData");
+	
+	//Self reference
+	var IterationData = dbm.importClass("com.developedbyme.utils.data.iterator.IterationData");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveIterationData::_init");
+		
+		this.superCall();
+		
+		this.position = 0;
+		this.length = 0;
+		this.array = null;
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Sets the array for this iteration.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.setArray = function(aArray) {
+		
+		this.array = aArray;
+		this.length = aArray.length;
+		
+		return this;
+	}; //End function setArray
+	
+	/**
+	 * Updates the cached length value. Only necessary to use if the data isn't added to an iteration.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.updateLength = function() {
+		this.length = this.array.length;
+		
+		return this;
+	}; //End function updateLength
+	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.array = null;
+		
+		this.superCall();
+	}; //End function setAllReferencesToNull
+	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "array":
+				return false;
+		}
+		return this.superCall(aName);
+	}; //End function _internalFunctionality_ownsVariable
+	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aArray	The array for for this iteration.
+	 *
+	 * @return	The newly created object.
+	 */
+	staticFunctions.create = function(aArray) {
+		var newIterationData = ClassReference._createAndInitClass(ClassReference);
+		newIterationData.setArray(aArray);
+		return newIterationData;
+	}; //End function create
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.iterator.ActiveIterationData::_init");
+		
+		this.superCall();
+		
+		this.position = 0;
+		this.length = 0;
+		this.array = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets the array for this iteration.</div>
+			<div class="code">objectFunctions.setArray = function(aArray) {
+		
+		this.array = aArray;
+		this.length = aArray.length;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">updateLength</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Updates the cached length value. Only necessary to use if the data isn't added to an iteration.</div>
+			<div class="code">objectFunctions.updateLength = function() {
+		this.length = this.array.length;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null. Part of the destroy function.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.array = null;
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
+			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "array":
+				return false;
+		}
+		return this.superCall(aName);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new object of this class.</div>
+			<div class="code">staticFunctions.create = function(aArray) {
+		var newIterationData = ClassReference._createAndInitClass(ClassReference);
+		newIterationData.setArray(aArray);
+		return newIterationData;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

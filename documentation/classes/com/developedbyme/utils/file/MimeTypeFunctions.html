@@ -1,0 +1,128 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>MimeTypeFunctions</h1>
+		<div class="classPath">com.developedbyme.utils.file.MimeTypeFunctions</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var MimeTypeFunctions = dbm.importClass("com.developedbyme.utils.file.MimeTypeFunctions");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.file.MimeTypeFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.file.MimeTypeFunctions");
+	
+	var MimeTypeFunctions = dbm.importClass("com.developedbyme.utils.file.MimeTypeFunctions");
+	
+	staticFunctions.getFileExtensionForMimeType = function(aMimeType) {
+		//console.log("com.developedbyme.utils.file.MimeTypeFunctions::getFileExtensionForMimeType");
+		if(aMimeType === null) {
+			//METODO: error message
+			return null;
+		}
+		
+		var mimeType = aMimeType;
+		var semiColonPosition = aMimeType.indexOf(";");
+		if(semiColonPosition !== -1) {
+			mimeType = aMimeType.substring(0, semiColonPosition);
+		}
+		
+		//console.log(mimeType);
+		switch(mimeType.toLowerCase()) {
+			case "video/mp4":
+				return "mp4";
+			case "video/ogg":
+				return "ogv";
+			case "video/webm":
+				return "webm";
+			case "audio/mpeg":
+				return "mp3";
+			case "audio/ogg":
+				return "oga";
+		}
+		//METODO: error message
+		return null;
+	};
+	
+	staticFunctions.getMimeTypeForFileExtension = function(aExtension) {
+		switch(aExtension.toLowerCase()) {
+			case "mp4":
+				return "video/mp4";
+			case "ogv":
+				return "video/ogg";
+			case "webm":
+				return "video/webm";
+			case "mp3":
+				return "audio/mpeg";
+			case "oga":
+				return "audio/ogg";
+		}
+		//METODO: error message
+		return null;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">getFileExtensionForMimeType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getFileExtensionForMimeType = function(aMimeType) {
+		//console.log("com.developedbyme.utils.file.MimeTypeFunctions::getFileExtensionForMimeType");
+		if(aMimeType === null) {
+			//METODO: error message
+			return null;
+		}
+		
+		var mimeType = aMimeType;
+		var semiColonPosition = aMimeType.indexOf(";");
+		if(semiColonPosition !== -1) {
+			mimeType = aMimeType.substring(0, semiColonPosition);
+		}
+		
+		//console.log(mimeType);
+		switch(mimeType.toLowerCase()) {
+			case "video/mp4":
+				return "mp4";
+			case "video/ogg":
+				return "ogv";
+			case "video/webm":
+				return "webm";
+			case "audio/mpeg":
+				return "mp3";
+			case "audio/ogg":
+				return "oga";
+		}
+		//METODO: error message
+		return null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getMimeTypeForFileExtension</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.getMimeTypeForFileExtension = function(aExtension) {
+		switch(aExtension.toLowerCase()) {
+			case "mp4":
+				return "video/mp4";
+			case "ogv":
+				return "video/ogg";
+			case "webm":
+				return "video/webm";
+			case "mp3":
+				return "audio/mpeg";
+			case "oga":
+				return "audio/ogg";
+		}
+		//METODO: error message
+		return null;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

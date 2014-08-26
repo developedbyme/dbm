@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ExportMetaDataEncoder</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ExportMetaDataEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder", "com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder");
+	
+	//Self reference
+	var ExportMetaDataEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var EncodingDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject");
+	
+	//Utils
+	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
+	var XmlModifier = dbm.importClass("com.developedbyme.utils.xml.XmlModifier");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions._encodeValue = function(aValue, aNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder::_encodeValue");
+		
+		this.superCall(aValue, aNode);
+		
+		var namespaces = aValue.namespaces;
+		var currentArray = namespaces.getNamesArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentName = currentArray[i];
+			EncodingDataObject.createAttribute("xmlns:" + currentName, namespaces.getObject(currentName), aNode);
+		}
+	};
+	
+	staticFunctions.create = function() {
+		var newExportMetaDataEncoder = ClassReference._createAndInitClass(ClassReference);
+		
+		newExportMetaDataEncoder.addVariableToEncode("metaData");
+		newExportMetaDataEncoder.addVariableToEncode("data");
+		
+		return newExportMetaDataEncoder;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_encodeValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._encodeValue = function(aValue, aNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder::_encodeValue");
+		
+		this.superCall(aValue, aNode);
+		
+		var namespaces = aValue.namespaces;
+		var currentArray = namespaces.getNamesArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentName = currentArray[i];
+			EncodingDataObject.createAttribute("xmlns:" + currentName, namespaces.getObject(currentName), aNode);
+		}
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newExportMetaDataEncoder = ClassReference._createAndInitClass(ClassReference);
+		
+		newExportMetaDataEncoder.addVariableToEncode("metaData");
+		newExportMetaDataEncoder.addVariableToEncode("data");
+		
+		return newExportMetaDataEncoder;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

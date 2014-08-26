@@ -1,0 +1,124 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>PointsArrayEncoder</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var PointsArrayEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder", "com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder");
+	
+	//Self reference
+	var PointsArrayEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
+	var XmlModifier = dbm.importClass("com.developedbyme.utils.xml.XmlModifier");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder::_init");
+		
+		this.superCall();
+		
+		this.firstSeparator = ";";
+		this.secondSeparator = ",";
+		
+		return this;
+	};
+	
+	objectFunctions._encodeValue = function(aValue, aNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder::_encodeValue");
+		
+		this.superCall(aValue, aNode);
+		
+		var dataString = "";
+		var currentArray = aValue;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentPoint = currentArray[i];
+			dataString += currentPoint.x + this.secondSeparator + currentPoint.y + this.secondSeparator + currentPoint.z + this.secondSeparator + currentPoint.w + this.firstSeparator; 
+		}
+		
+		aNode.type = "simpleValue";
+		aNode.nodeValue = dataString;
+	};
+	
+	staticFunctions.create = function() {
+		var newPointsArrayEncoder = ClassReference._createAndInitClass(ClassReference);
+		
+		return newPointsArrayEncoder;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder::_init");
+		
+		this.superCall();
+		
+		this.firstSeparator = ";";
+		this.secondSeparator = ",";
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_encodeValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._encodeValue = function(aValue, aNode) {
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder::_encodeValue");
+		
+		this.superCall(aValue, aNode);
+		
+		var dataString = "";
+		var currentArray = aValue;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentPoint = currentArray[i];
+			dataString += currentPoint.x + this.secondSeparator + currentPoint.y + this.secondSeparator + currentPoint.z + this.secondSeparator + currentPoint.w + this.firstSeparator; 
+		}
+		
+		aNode.type = "simpleValue";
+		aNode.nodeValue = dataString;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newPointsArrayEncoder = ClassReference._createAndInitClass(ClassReference);
+		
+		return newPointsArrayEncoder;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

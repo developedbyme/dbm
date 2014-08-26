@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>DefaultComplexParsersSetup</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
+	
+	var DefaultComplexParsersSetup = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.setup.DefaultComplexParsersSetup");
+	
+	var KeyValueParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.KeyValueParser");
+	var DbmObjectParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.complex.DbmObjectParser");
+	
+	var DataParserTypes = dbm.importClass("com.developedbyme.constants.DataParserTypes");
+	
+	staticFunctions.setup = function() {
+		
+		dbm.singletons.dbmDataManager.addParser(DataParserTypes.KEY_VALUE, KeyValueParser.create());
+		dbm.singletons.dbmDataManager.addParser(DataParserTypes.DBM_OBJECT, DbmObjectParser.create());
+		
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.setup = function() {
+		
+		dbm.singletons.dbmDataManager.addParser(DataParserTypes.KEY_VALUE, KeyValueParser.create());
+		dbm.singletons.dbmDataManager.addParser(DataParserTypes.DBM_OBJECT, DbmObjectParser.create());
+		
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

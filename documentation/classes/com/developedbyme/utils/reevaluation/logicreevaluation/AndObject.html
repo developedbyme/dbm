@@ -1,0 +1,158 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>AndObject</h1>
+		<div class="classPath">com.developedbyme.utils.reevaluation.logicreevaluation.AndObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var AndObject = dbm.importClass("com.developedbyme.utils.reevaluation.logicreevaluation.AndObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.logicreevaluation.AndObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ObjectReevaluationBaseObject");
+	//"use strict";
+	
+	//Self reference
+	var AndObject = dbm.importClass("com.developedbyme.utils.reevaluation.logicreevaluation.AndObject");
+	
+	//Error report
+	
+	//Dependencies
+	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
+	
+	//Utils
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.AndObject::_init");
+		
+		this.superCall();
+		
+		this.reevaluators = this.addDestroyableObject(ArrayHolder.create(true));
+		
+		return this;
+	};
+	
+	objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.AndObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var currentArray = this.reevaluators.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentReevaluator = currentArray[i];
+			var currentResult = currentReevaluator.reevaluate(aBaseObject);
+			if(!currentResult) {
+				return false;
+			}
+		}
+		
+		return true;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.reevaluators = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.createCommand = function(/* ... aArguments */) {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.AndObject::createCommand (static)");
+		
+		var aArguments = arguments;
+		
+		var newCommand = (new AndObject()).init();
+		
+		var currentArray = aArguments;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			newCommand.reevaluators.array.push(ReevaluationCreator.reevaluationOrStaticValue(currentArray[i]));
+		}
+		
+		return newCommand;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.AndObject::_init");
+		
+		this.superCall();
+		
+		this.reevaluators = this.addDestroyableObject(ArrayHolder.create(true));
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reevaluate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.AndObject::reevaluate");
+		//console.log(this, aBaseObject);
+		
+		var currentArray = this.reevaluators.array;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentReevaluator = currentArray[i];
+			var currentResult = currentReevaluator.reevaluate(aBaseObject);
+			if(!currentResult) {
+				return false;
+			}
+		}
+		
+		return true;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.reevaluators = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createCommand = function(/* ... aArguments */) {
+		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.AndObject::createCommand (static)");
+		
+		var aArguments = arguments;
+		
+		var newCommand = (new AndObject()).init();
+		
+		var currentArray = aArguments;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			newCommand.reevaluators.array.push(ReevaluationCreator.reevaluationOrStaticValue(currentArray[i]));
+		}
+		
+		return newCommand;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

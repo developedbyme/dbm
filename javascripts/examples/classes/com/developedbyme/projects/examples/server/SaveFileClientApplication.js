@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.projects.examples.server.SaveFileClientAppl
 	var LogCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
+	var IsoDate = dbm.importClass("com.developedbyme.utils.native.date.IsoDate");
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
@@ -41,7 +42,7 @@ dbm.registerClass("com.developedbyme.projects.examples.server.SaveFileClientAppl
 		var loader = JsonAsset.create("http://localhost:8080/dbm/examples/saveFile");
 		
 		var currentDate = new Date();
-		var dateString = currentDate.getUTCFullYear() + "-" + NumberFunctions.getPaddedNumber(currentDate.getUTCMonth()+1, 2) + "-" + NumberFunctions.getPaddedNumber(currentDate.getUTCDate()+1, 2);
+		var dateString = IsoDate.getIsoDate(currentDate);
 		loader.setupAsFormObjectPost({"fileName": "saveFileClientApplication/" + dateString + "/test.txt", "dataEncoding": "ascii", "data": "Hello saved file."});
 		
 		loader.load();

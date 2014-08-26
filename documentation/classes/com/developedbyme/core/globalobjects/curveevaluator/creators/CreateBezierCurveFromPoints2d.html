@@ -1,0 +1,132 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>CreateBezierCurveFromPoints2d</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d</div>
+		<div class="classInheritance"></div>
+		<div class="description">Creates curve that passes through a set of points.</div>
+		<div class="importSnippet">var CreateBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
+	
+	var EquationSolver = dbm.importClass("com.developedbyme.utils.math.EquationSolver");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::_init");
+		
+		this.superCall();
+		
+		return this;
+	}; //End function CreateBezierCurveFromPoints2d
+	
+	/**
+	 * Creates the curve.
+	 *
+	 * @param	aPointsArray	The points that defines how the curve should be created.
+	 * @param	aReturnCurve	The curve that gets the new values.
+	 * @param	aParameters		The array with parameters for the different points.
+	 */
+	objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aParameters) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::createCurve");
+		//console.log(aPointsArray, aReturnCurve, aParameters);
+		var curveDegree = aPointsArray.length-1;
+		var multipliersArray = dbm.singletons.dbmCurveEvaluator.getBezierMultipliersArray(curveDegree);
+		
+		var arrayLength = aPointsArray.length;
+		
+		var eliminationArray = new Array(arrayLength);
+		var currentArray = eliminationArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentArray2 = new Array(arrayLength+2);
+			currentArray[i] = currentArray2;
+			var parameter = aParameters[i];
+			for(var j = 0; j &lt; arrayLength; j++) {
+				currentArray2[j] = multipliersArray[j]*dbm.singletons.dbmCurveEvaluator.calculateBernsteinPolynomialWithoutMultiplier(parameter, j, curveDegree);
+			}
+			
+			var startBpValue = Math.pow((1-parameter), curveDegree);
+			var endBpValue = Math.pow(parameter, curveDegree);
+			var currentPoint = aPointsArray[i];
+			currentArray2[arrayLength+0] = currentPoint.x;
+			currentArray2[arrayLength+1] = currentPoint.y;
+		}
+		
+		EquationSolver.solveEquation(eliminationArray);
+		
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentPoint = aReturnCurve.pointsArray[i];
+			var currentArray2 = eliminationArray[i];
+			currentPoint.x = currentArray2[arrayLength+0];
+			currentPoint.y = currentArray2[arrayLength+1];
+		}
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates the curve.</div>
+			<div class="code">objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aParameters) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::createCurve");
+		//console.log(aPointsArray, aReturnCurve, aParameters);
+		var curveDegree = aPointsArray.length-1;
+		var multipliersArray = dbm.singletons.dbmCurveEvaluator.getBezierMultipliersArray(curveDegree);
+		
+		var arrayLength = aPointsArray.length;
+		
+		var eliminationArray = new Array(arrayLength);
+		var currentArray = eliminationArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentArray2 = new Array(arrayLength+2);
+			currentArray[i] = currentArray2;
+			var parameter = aParameters[i];
+			for(var j = 0; j &lt; arrayLength; j++) {
+				currentArray2[j] = multipliersArray[j]*dbm.singletons.dbmCurveEvaluator.calculateBernsteinPolynomialWithoutMultiplier(parameter, j, curveDegree);
+			}
+			
+			var startBpValue = Math.pow((1-parameter), curveDegree);
+			var endBpValue = Math.pow(parameter, curveDegree);
+			var currentPoint = aPointsArray[i];
+			currentArray2[arrayLength+0] = currentPoint.x;
+			currentArray2[arrayLength+1] = currentPoint.y;
+		}
+		
+		EquationSolver.solveEquation(eliminationArray);
+		
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentPoint = aReturnCurve.pointsArray[i];
+			var currentArray2 = eliminationArray[i];
+			currentPoint.x = currentArray2[arrayLength+0];
+			currentPoint.y = currentArray2[arrayLength+1];
+		}
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

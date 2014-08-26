@@ -1,0 +1,148 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>RangeNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.math.range.RangeNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var RangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RangeNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.math.range.RangeNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.math.range.RangeNode");
+	
+	var RangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RangeNode");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.range.RangeNode::_init");
+		
+		this.superCall();
+		
+		this._inputValue = this.createProperty("inputValue", 0);
+		this._minInputValue = this.createProperty("minInputValue", 0);
+		this._maxInputValue = this.createProperty("maxInputValue", 1);
+		this._minOutputValue = this.createProperty("minOutputValue", 0);
+		this._maxOutputValue = this.createProperty("maxOutputValue", 1);
+		this._outputValue = this.createProperty("outputValue", 0);
+		
+		this.createUpdateFunction("default", this._update, [this._inputValue, this._minInputValue, this._maxInputValue, this._minOutputValue, this._maxOutputValue], [this._outputValue]);
+		
+		return this;
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.math.range.RangeNode::_update");
+		
+		var minInputValue = this._minInputValue.getValueWithoutFlow();
+		var maxInputValue = this._maxInputValue.getValueWithoutFlow();
+		var minOutputValue = this._minOutputValue.getValueWithoutFlow();
+		var maxOutputValue = this._maxOutputValue.getValueWithoutFlow();
+		var inputValue = this._inputValue.getValueWithoutFlow();
+		
+		var parameter = (inputValue-minInputValue)/(maxInputValue-minInputValue);
+		
+		this._outputValue.setValueWithFlow(parameter*(maxOutputValue-minOutputValue)+minOutputValue, aFlowUpdateNumber);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputValue = null;
+		this._minInputValue = null;
+		this._maxInputValue = null;
+		this._minOutputValue = null;
+		this._maxOutputValue = null;
+		this._outputValue = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aInput, aMinInput, aMaxInput, aMinOutput, aMaxOutput) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputValue", aInput);
+		newNode.setPropertyInputWithoutNull("minInputValue", aMinInput);
+		newNode.setPropertyInputWithoutNull("maxInputValue", aMaxInput);
+		newNode.setPropertyInputWithoutNull("minOutputValue", aMinOutput);
+		newNode.setPropertyInputWithoutNull("maxOutputValue", aMaxOutput);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.range.RangeNode::_init");
+		
+		this.superCall();
+		
+		this._inputValue = this.createProperty("inputValue", 0);
+		this._minInputValue = this.createProperty("minInputValue", 0);
+		this._maxInputValue = this.createProperty("maxInputValue", 1);
+		this._minOutputValue = this.createProperty("minOutputValue", 0);
+		this._maxOutputValue = this.createProperty("maxOutputValue", 1);
+		this._outputValue = this.createProperty("outputValue", 0);
+		
+		this.createUpdateFunction("default", this._update, [this._inputValue, this._minInputValue, this._maxInputValue, this._minOutputValue, this._maxOutputValue], [this._outputValue]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.math.range.RangeNode::_update");
+		
+		var minInputValue = this._minInputValue.getValueWithoutFlow();
+		var maxInputValue = this._maxInputValue.getValueWithoutFlow();
+		var minOutputValue = this._minOutputValue.getValueWithoutFlow();
+		var maxOutputValue = this._maxOutputValue.getValueWithoutFlow();
+		var inputValue = this._inputValue.getValueWithoutFlow();
+		
+		var parameter = (inputValue-minInputValue)/(maxInputValue-minInputValue);
+		
+		this._outputValue.setValueWithFlow(parameter*(maxOutputValue-minOutputValue)+minOutputValue, aFlowUpdateNumber);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputValue = null;
+		this._minInputValue = null;
+		this._maxInputValue = null;
+		this._minOutputValue = null;
+		this._maxOutputValue = null;
+		this._outputValue = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aInput, aMinInput, aMaxInput, aMinOutput, aMaxOutput) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputValue", aInput);
+		newNode.setPropertyInputWithoutNull("minInputValue", aMinInput);
+		newNode.setPropertyInputWithoutNull("maxInputValue", aMaxInput);
+		newNode.setPropertyInputWithoutNull("minOutputValue", aMinOutput);
+		newNode.setPropertyInputWithoutNull("maxOutputValue", aMaxOutput);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

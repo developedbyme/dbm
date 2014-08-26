@@ -1,0 +1,98 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TextAsset</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var TextAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset", "com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset");
+	
+	var TextAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset");
+	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
+	
+	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
+	var ReadyStateTypes = dbm.importClass("com.developedbyme.constants.ReadyStateTypes");
+	var XmlHttpResponseTypes = dbm.importClass("com.developedbyme.constants.XmlHttpResponseTypes");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions._setupData = function() {
+		this._data.setValue(this._loader.responseText);
+	};
+	
+	objectFunctions._setupResponseType = function() {
+		this._loader.responseType = XmlHttpResponseTypes.TEXT;
+	};
+	
+	staticFunctions.create = function(aUrl) {
+		var newTextAsset = (new ClassReference()).init();
+		newTextAsset.setUrl(aUrl);
+		return newTextAsset;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_setupData</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._setupData = function() {
+		this._data.setValue(this._loader.responseText);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_setupResponseType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._setupResponseType = function() {
+		this._loader.responseType = XmlHttpResponseTypes.TEXT;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aUrl) {
+		var newTextAsset = (new ClassReference()).init();
+		newTextAsset.setUrl(aUrl);
+		return newTextAsset;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>EncodingManager</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.encodingmanager.EncodingManager</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var EncodingManager = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.EncodingManager");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.encodingmanager.EncodingManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.encodingmanager.EncodingManager");
+	
+	var EncodingManager = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.EncodingManager");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	
+	dbm.setClassAsSingleton("dbmEncodingManager");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.encodingmanager.EncodingManager::_init");
+		
+		this.superCall();
+		
+		this._encoders = this.addDestroyableObject(NamedArray.create(true));
+		
+		return this;
+	};
+	
+	objectFunctions.addEncoder = function(aEncoderName, aEncoder) {
+		this._encoders.addObject(aEncoderName, aEncoder);
+	};
+	
+	objectFunctions.encode = function(aEncoderName, aKey, aValue) {
+		if(this._encoders.select(aEncoderName)) {
+			var currentEncoder = this._encoders.currentSelectedItem;
+			var returnValue = currentEncoder.setKey(aKey).setValue(aValue).encode();
+			currentEncoder.reset();
+			return returnValue;
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "encode", "No encoder with name " + aEncoderName + " exists.");
+		return null;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.encodingmanager.EncodingManager::_init");
+		
+		this.superCall();
+		
+		this._encoders = this.addDestroyableObject(NamedArray.create(true));
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addEncoder</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addEncoder = function(aEncoderName, aEncoder) {
+		this._encoders.addObject(aEncoderName, aEncoder);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">encode</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.encode = function(aEncoderName, aKey, aValue) {
+		if(this._encoders.select(aEncoderName)) {
+			var currentEncoder = this._encoders.currentSelectedItem;
+			var returnValue = currentEncoder.setKey(aKey).setValue(aValue).encode();
+			currentEncoder.reset();
+			return returnValue;
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "encode", "No encoder with name " + aEncoderName + " exists.");
+		return null;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

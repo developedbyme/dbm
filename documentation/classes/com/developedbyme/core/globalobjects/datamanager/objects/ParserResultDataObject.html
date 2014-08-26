@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ParserResultDataObject</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
+	
+	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject::_init");
+		
+		this.superCall();
+		
+		this.result = null;
+		this.isLinked = false;
+		this.childrenIsProperties = 0;
+		this.parentApplyType = null;
+		this.nodes = null;
+		
+		return this;
+	};
+	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+	};
+	
+	/**
+	 * Sets all the references to null
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.result = null;
+		this.nodes = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aResult) {
+		var newParserResultDataObject = (new ClassReference()).init();
+		newParserResultDataObject.result = aResult;
+		return newParserResultDataObject;
+	};
+	
+	staticFunctions.createLinked = function(aResultLink, aNodes) {
+		var newParserResultDataObject = (new ClassReference()).init();
+		newParserResultDataObject.result = aResultLink;
+		newParserResultDataObject.isLinked = true;
+		newParserResultDataObject.nodes = aNodes;
+		return newParserResultDataObject;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject::_init");
+		
+		this.superCall();
+		
+		this.result = null;
+		this.isLinked = false;
+		this.childrenIsProperties = 0;
+		this.parentApplyType = null;
+		this.nodes = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.result = null;
+		this.nodes = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aResult) {
+		var newParserResultDataObject = (new ClassReference()).init();
+		newParserResultDataObject.result = aResult;
+		return newParserResultDataObject;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createLinked</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createLinked = function(aResultLink, aNodes) {
+		var newParserResultDataObject = (new ClassReference()).init();
+		newParserResultDataObject.result = aResultLink;
+		newParserResultDataObject.isLinked = true;
+		newParserResultDataObject.nodes = aNodes;
+		return newParserResultDataObject;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

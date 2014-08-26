@@ -1,0 +1,157 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ErrorManager</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.errormanager.ErrorManager</div>
+		<div class="classInheritance"></div>
+		<div class="description">Global manager for handling errors.</div>
+		<div class="importSnippet">var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	//"use strict";
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	
+	dbm.setClassAsSingleton("dbmErrorManager");
+	
+	/**
+	 * Initializes the object.
+	 *
+	 * @return self
+	 */
+	objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.ErrorManager::_init");
+		
+		this.superCall();
+		
+		this._handlers = new Array();
+		this._idNumber = 0;
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Adds a handler that gets called with every message.
+	 *
+	 * @param	aHandler	{ErrorHandlerInterface}	The handler.
+	 */
+	objectFunctions.addHandler = function addHandler(aHandler) {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.ErrorManager::addHandler");
+		this._handlers.push(aHandler);
+	}; //End function addHandler
+	
+	/**
+	 * Reports errors, warning and log messages.
+	 *
+	 * @param	aType			{enum: ReportTypes}			The type of report.
+	 * @param	aLevel			{enum: ReportLevelTypes}	The level of severety.
+	 * @param	aObject			{*}							The object that sends the report.
+	 * @param	aFunctionName	{String}					The name of the function that sends the report.
+	 * @param	aData			{*}							The data for the report.
+	 */
+	objectFunctions.report = function report(aType, aLevel, aObject, aFunctionName, aData) {
+		
+		var currentId = this._idNumber++;
+		var currentTimeStamp = new Date().valueOf();
+		
+		var currentArray = this._handlers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentHandler = currentArray[i];
+			currentHandler.report(currentId, currentTimeStamp, aType, aLevel, aObject, aFunctionName, aData);
+		}
+	}; //End function report
+	
+	/**
+	 * Reports an error catched from a try statement.
+	 *
+	 * @param	aObject			{*}			The object that sends the report.
+	 * @param	aFunctionName	{String}	The name of the function that sends the report.
+	 * @param	aError			{Error}		The error that occured.
+	 */
+	objectFunctions.reportError = function reportError(aObject, aFunctionName, aError) {
+		
+		var currentId = this._idNumber++;
+		var currentTimeStamp = new Date().valueOf();
+		
+		var currentArray = this._handlers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentHandler = currentArray[i];
+			
+			currentHandler.reportError(currentId, currentTimeStamp, aObject, aFunctionName, aError);
+		}
+	}; //End function reportError
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Initializes the object.</div>
+			<div class="code">objectFunctions._init = function _init() {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.ErrorManager::_init");
+		
+		this.superCall();
+		
+		this._handlers = new Array();
+		this._idNumber = 0;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addHandler</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Adds a handler that gets called with every message.</div>
+			<div class="code">objectFunctions.addHandler = function addHandler(aHandler) {
+		//console.log("com.developedbyme.core.globalobjects.errormanager.ErrorManager::addHandler");
+		this._handlers.push(aHandler);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">report</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Reports errors, warning and log messages.</div>
+			<div class="code">objectFunctions.report = function report(aType, aLevel, aObject, aFunctionName, aData) {
+		
+		var currentId = this._idNumber++;
+		var currentTimeStamp = new Date().valueOf();
+		
+		var currentArray = this._handlers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentHandler = currentArray[i];
+			currentHandler.report(currentId, currentTimeStamp, aType, aLevel, aObject, aFunctionName, aData);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reportError</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Reports an error catched from a try statement.</div>
+			<div class="code">objectFunctions.reportError = function reportError(aObject, aFunctionName, aError) {
+		
+		var currentId = this._idNumber++;
+		var currentTimeStamp = new Date().valueOf();
+		
+		var currentArray = this._handlers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentHandler = currentArray[i];
+			
+			currentHandler.reportError(currentId, currentTimeStamp, aObject, aFunctionName, aError);
+		}
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

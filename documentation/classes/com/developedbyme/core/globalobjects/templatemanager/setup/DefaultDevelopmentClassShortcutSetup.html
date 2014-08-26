@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>DefaultDevelopmentClassShortcutSetup</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.templatemanager.setup.DefaultDevelopmentClassShortcutSetup</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var DefaultDevelopmentClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultDevelopmentClassShortcutSetup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultDevelopmentClassShortcutSetup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultDevelopmentClassShortcutSetup");
+	
+	//Self reference
+	var DefaultDevelopmentClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultDevelopmentClassShortcutSetup");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependecies
+	var CodeMirrorView = dbm.importClass("com.developedbyme.thirdparty.codemirror.CodeMirrorView");
+	
+	//Utils
+	
+	//Constants
+	var TemplateClassShortcutNames = dbm.importClass("com.developedbyme.constants.TemplateClassShortcutNames");
+	
+	staticFunctions.setup = function() {
+		
+		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_CODE_MIRROR_VIEW, CodeMirrorView);
+		
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.setup = function() {
+		
+		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_CODE_MIRROR_VIEW, CodeMirrorView);
+		
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

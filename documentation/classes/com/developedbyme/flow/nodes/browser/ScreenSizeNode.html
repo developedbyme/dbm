@@ -1,0 +1,213 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ScreenSizeNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.browser.ScreenSizeNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ScreenSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.ScreenSizeNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.browser.ScreenSizeNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode");
+	
+	var ScreenSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.ScreenSizeNode");
+	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::_init");
+		
+		this.superCall();
+		
+		var theScreen = window.screen;
+		
+		this._width = this.createProperty("width", 0);
+		this._height = this.createProperty("height", 0);
+		this._availWidth = this.createProperty("availWidth", 0);
+		this._availHeight = this.createProperty("availHeight", 0);
+		this._availLeft = this.createProperty("availLeft", 0);
+		this._availTop = this.createProperty("availTop", 0);
+		this._screen = this.createProperty("screen", theScreen);
+		
+		this.createUpdateFunction("default", this._update, [this._screen], [this._width, this._height, this._availWidth, this._availHeight, this._availLeft, this._availTop]);
+		
+		this.getExtendedEvent().createEvent("resize");
+		this.getExtendedEvent().addCommandToEvent("resize", CallFunctionCommand.createCommand(this, this._updateSize, []));
+		
+		return this;
+	};
+	
+	objectFunctions.start = function() {
+		console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::start");
+		
+		//METODO
+		this.getExtendedEvent().linkJavascriptEvent(this._window.getValue(), "resize", "resize", "resize", true, true).activate();
+	};
+	
+	objectFunctions.stop = function() {
+		
+		//METODO
+		this.getExtendedEvent().deactivateJavascriptLink("resize");
+	};
+	
+	objectFunctions._updateSize = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::_updateSize");
+		//console.log(aEvent);
+		
+		this._screen.setAsDirty();
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::_update");
+		
+		var theScreen = this._screen.getValueWithoutFlow();
+		
+		//MENOTE: everything taht has to do with the screen might be slow. Properties should only be requested once.
+		this._width.setValueWithFlow(theScreen.width, aFlowUpdateNumber);
+		this._height.setValueWithFlow(theScreen.height, aFlowUpdateNumber);
+		this._availWidth.setValueWithFlow(theScreen.availWidth, aFlowUpdateNumber);
+		this._availHeight.setValueWithFlow(theScreen.availHeight, aFlowUpdateNumber);
+		var availLeft = theScreen.availLeft;
+		if(availLeft !== undefined) {
+			this._availLeft.setValueWithFlow(availLeft, aFlowUpdateNumber);
+		}
+		var availTop = theScreen.availTop;
+		if(availTop !== undefined) {
+			this._availTop.setValueWithFlow(availTop, aFlowUpdateNumber);
+		}
+	};
+	
+	objectFunctions.performDestroy = function() {
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		var newNode = (new ClassReference()).init();
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::_init");
+		
+		this.superCall();
+		
+		var theScreen = window.screen;
+		
+		this._width = this.createProperty("width", 0);
+		this._height = this.createProperty("height", 0);
+		this._availWidth = this.createProperty("availWidth", 0);
+		this._availHeight = this.createProperty("availHeight", 0);
+		this._availLeft = this.createProperty("availLeft", 0);
+		this._availTop = this.createProperty("availTop", 0);
+		this._screen = this.createProperty("screen", theScreen);
+		
+		this.createUpdateFunction("default", this._update, [this._screen], [this._width, this._height, this._availWidth, this._availHeight, this._availLeft, this._availTop]);
+		
+		this.getExtendedEvent().createEvent("resize");
+		this.getExtendedEvent().addCommandToEvent("resize", CallFunctionCommand.createCommand(this, this._updateSize, []));
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">start</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.start = function() {
+		console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::start");
+		
+		//METODO
+		this.getExtendedEvent().linkJavascriptEvent(this._window.getValue(), "resize", "resize", "resize", true, true).activate();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">stop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.stop = function() {
+		
+		//METODO
+		this.getExtendedEvent().deactivateJavascriptLink("resize");
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_updateSize</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._updateSize = function() {
+		//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::_updateSize");
+		//console.log(aEvent);
+		
+		this._screen.setAsDirty();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.browser.ScreenSizeNode::_update");
+		
+		var theScreen = this._screen.getValueWithoutFlow();
+		
+		//MENOTE: everything taht has to do with the screen might be slow. Properties should only be requested once.
+		this._width.setValueWithFlow(theScreen.width, aFlowUpdateNumber);
+		this._height.setValueWithFlow(theScreen.height, aFlowUpdateNumber);
+		this._availWidth.setValueWithFlow(theScreen.availWidth, aFlowUpdateNumber);
+		this._availHeight.setValueWithFlow(theScreen.availHeight, aFlowUpdateNumber);
+		var availLeft = theScreen.availLeft;
+		if(availLeft !== undefined) {
+			this._availLeft.setValueWithFlow(availLeft, aFlowUpdateNumber);
+		}
+		var availTop = theScreen.availTop;
+		if(availTop !== undefined) {
+			this._availTop.setValueWithFlow(availTop, aFlowUpdateNumber);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newNode = (new ClassReference()).init();
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

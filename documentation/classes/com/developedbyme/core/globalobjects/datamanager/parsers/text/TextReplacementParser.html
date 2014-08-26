@@ -1,0 +1,155 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TextReplacementParser</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var TextReplacementParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser", "com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser");
+	
+	var TextReplacementParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser");
+	
+	var TextReplacementNode = dbm.importClass("com.developedbyme.flow.nodes.text.TextReplacementNode");
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions._setupReplacement = function(aReplacementNode, aXml, aPathReference) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_setupReplacement");
+		var dataNamespace = dbm.xmlNamespaces.dbmData;
+		var currentArray = dbm.singletons.dbmDataManager.getDataChildren(aXml);
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentChild =  currentArray[i];
+			var parentApplyType = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "parentApplyType");
+			if(parentApplyType === "replacement") {
+				var childName = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "name");
+				if(childName === null) {
+					childName = "child[" + i + "]";
+				}
+				var childPath = aPathReference + "/" + childName;
+				var currentKeyValue = dbm.singletons.dbmDataManager.getData(childPath);
+				aReplacementNode.addReplacement(currentKeyValue.keyValue, currentKeyValue.dataValue);
+			}
+		}
+	};
+	
+	objectFunctions._createInputLink = function(aInputProperty, aXml, aPathReference) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createInputLink");
+		var parseNode = TextReplacementNode.create(aInputProperty);
+		
+		this._setupReplacement(parseNode, aXml, aPathReference);
+		
+		return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
+	};
+	
+	objectFunctions._createResult = function(aValue, aXml, aPathReference) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createResult");
+		var parseNode = TextReplacementNode.create(aValue);
+		
+		this._setupReplacement(parseNode, aXml, aPathReference);
+		
+		return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
+	};
+	
+	staticFunctions.create = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::create");
+		var newTextReplacementParser = (new ClassReference()).init();
+		return newTextReplacementParser;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_setupReplacement</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._setupReplacement = function(aReplacementNode, aXml, aPathReference) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_setupReplacement");
+		var dataNamespace = dbm.xmlNamespaces.dbmData;
+		var currentArray = dbm.singletons.dbmDataManager.getDataChildren(aXml);
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentChild =  currentArray[i];
+			var parentApplyType = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "parentApplyType");
+			if(parentApplyType === "replacement") {
+				var childName = XmlChildRetreiver.getNamespacedAttribute(currentChild, dataNamespace, "name");
+				if(childName === null) {
+					childName = "child[" + i + "]";
+				}
+				var childPath = aPathReference + "/" + childName;
+				var currentKeyValue = dbm.singletons.dbmDataManager.getData(childPath);
+				aReplacementNode.addReplacement(currentKeyValue.keyValue, currentKeyValue.dataValue);
+			}
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createInputLink</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createInputLink = function(aInputProperty, aXml, aPathReference) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createInputLink");
+		var parseNode = TextReplacementNode.create(aInputProperty);
+		
+		this._setupReplacement(parseNode, aXml, aPathReference);
+		
+		return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createResult</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createResult = function(aValue, aXml, aPathReference) {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createResult");
+		var parseNode = TextReplacementNode.create(aValue);
+		
+		this._setupReplacement(parseNode, aXml, aPathReference);
+		
+		return ParserResultDataObject.createLinked(parseNode.getProperty("outputValue"), [parseNode]);
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::create");
+		var newTextReplacementParser = (new ClassReference()).init();
+		return newTextReplacementParser;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

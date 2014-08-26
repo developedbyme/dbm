@@ -1,0 +1,223 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>EventPerformer</h1>
+		<div class="classPath">com.developedbyme.core.extendedevent.eventperformer.EventPerformer</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var EventPerformer = dbm.importClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");
+	
+	//Self reference
+	var EventPerformer = dbm.importClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");
+	
+	//Error report
+	
+	//Dependencies
+	var CommandsArrayIterator = dbm.importClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator");
+	
+	//Utils
+	
+	//Constants
+	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::_init");
+		
+		this.superCall();
+		
+		this._commandsArray = (new CommandsArrayIterator()).init();
+		this._commandsArray.canRemoveItemsWhileActive = true;
+		this._commandsArray.canAddItemsWhileActive = false;
+		this.addDestroyableObject(this._commandsArray);
+		
+		this.breakOnError = false;
+		this._isPerforming = false;
+		
+		return this;
+	};
+	
+	objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::perform");
+		var currentCommand;
+		var theResult;
+		
+		var iterationData = this._commandsArray.createIterationData();
+		for(;iterationData.position &lt; iterationData.length; iterationData.position++) {
+			currentCommand = iterationData.array[iterationData.position];
+			theResult = currentCommand.perform(aEventDataObject);
+			if(this._isDestroyed) {
+				break;
+			}
+			if(currentCommand.removeAfterPerform) {
+				this._commandsArray.removeItem(currentCommand);
+			}
+			
+			if((theResult === CommandStatusTypes.BREAK) || (this.breakOnError &amp;&amp; (theResult === CommandStatusTypes.ERROR))) {
+				break;
+			}
+		}
+		if(!this._isDestroyed) {
+			this._commandsArray.stopUsingIterationData(iterationData);
+		}
+	};
+	
+	objectFunctions.addCommand = function(aCommand) {
+		this._commandsArray.push(aCommand);
+	};
+	
+	objectFunctions.removeCommand = function(aCommand) {
+		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::removeCommand");
+		
+		this._commandsArray.removeItem(aCommand);
+	};
+	
+	objectFunctions.removeCommandById = function(aId) {
+		this._commandsArray.removeItemById(aId);
+	};
+	
+	objectFunctions.hasCommandWithId = function(aId) {
+		return this._commandsArray.hasItemWithId(aId);
+	};
+	
+	objectFunctions.resetCommands = function() {
+		this._commandsArray.stop();
+		this._commandsArray.destroy();
+		
+		this._commandsArray = (new CommandsArrayIterator()).init();
+		this._commandsArray.canRemoveItemsWhileActive = true;
+		this._commandsArray.canAddItemsWhileActive = false;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._commandsArray = null;
+		
+		this.superCall();
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::_init");
+		
+		this.superCall();
+		
+		this._commandsArray = (new CommandsArrayIterator()).init();
+		this._commandsArray.canRemoveItemsWhileActive = true;
+		this._commandsArray.canAddItemsWhileActive = false;
+		this.addDestroyableObject(this._commandsArray);
+		
+		this.breakOnError = false;
+		this._isPerforming = false;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">perform</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.perform = function(aEventDataObject) {
+		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::perform");
+		var currentCommand;
+		var theResult;
+		
+		var iterationData = this._commandsArray.createIterationData();
+		for(;iterationData.position &lt; iterationData.length; iterationData.position++) {
+			currentCommand = iterationData.array[iterationData.position];
+			theResult = currentCommand.perform(aEventDataObject);
+			if(this._isDestroyed) {
+				break;
+			}
+			if(currentCommand.removeAfterPerform) {
+				this._commandsArray.removeItem(currentCommand);
+			}
+			
+			if((theResult === CommandStatusTypes.BREAK) || (this.breakOnError &amp;&amp; (theResult === CommandStatusTypes.ERROR))) {
+				break;
+			}
+		}
+		if(!this._isDestroyed) {
+			this._commandsArray.stopUsingIterationData(iterationData);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addCommand = function(aCommand) {
+		this._commandsArray.push(aCommand);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removeCommand = function(aCommand) {
+		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::removeCommand");
+		
+		this._commandsArray.removeItem(aCommand);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">removeCommandById</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.removeCommandById = function(aId) {
+		this._commandsArray.removeItemById(aId);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">hasCommandWithId</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.hasCommandWithId = function(aId) {
+		return this._commandsArray.hasItemWithId(aId);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">resetCommands</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.resetCommands = function() {
+		this._commandsArray.stop();
+		this._commandsArray.destroy();
+		
+		this._commandsArray = (new CommandsArrayIterator()).init();
+		this._commandsArray.canRemoveItemsWhileActive = true;
+		this._commandsArray.canAddItemsWhileActive = false;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._commandsArray = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>CanvasMask2d</h1>
+		<div class="classPath">com.developedbyme.utils.canvas.CanvasMask2d</div>
+		<div class="classInheritance"></div>
+		<div class="description">A mask in a 2d canvas.</div>
+		<div class="importSnippet">var CanvasMask2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasMask2d");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasMask2d", "com.developedbyme.utils.canvas.CanvasGraphics2d", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.canvas.CanvasMask2d");
+	
+	var CanvasMask2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasMask2d");
+	
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	
+	/**
+	 * Constructor.
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.draw = function(aContext) {
+		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::draw");
+		//console.log(this, this._curves);
+		
+		var currentArray = this._curves;
+		var currentArrayLength = currentArray.length;
+		if(currentArrayLength &gt; 0) {
+			var tempPoint = Point.create();
+			currentArray[0].getStartPoint(tempPoint);
+			aContext.moveTo(tempPoint.x, tempPoint.y);
+			aContext.beginPath();
+			aContext.lineWidth = 0;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentCurve = currentArray[i];
+				currentCurve.getStartPoint(tempPoint);
+				aContext.lineTo(tempPoint.x, tempPoint.y);
+				currentCurve.draw(aContext);
+			}
+			aContext.closePath();
+			aContext.clip();
+		}
+		
+	};
+	
+	staticFunctions.create = function() {
+		var newCanvasMask2d = (new ClassReference()).init();
+		
+		return newCanvasMask2d;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor.</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">draw</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.draw = function(aContext) {
+		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::draw");
+		//console.log(this, this._curves);
+		
+		var currentArray = this._curves;
+		var currentArrayLength = currentArray.length;
+		if(currentArrayLength &gt; 0) {
+			var tempPoint = Point.create();
+			currentArray[0].getStartPoint(tempPoint);
+			aContext.moveTo(tempPoint.x, tempPoint.y);
+			aContext.beginPath();
+			aContext.lineWidth = 0;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentCurve = currentArray[i];
+				currentCurve.getStartPoint(tempPoint);
+				aContext.lineTo(tempPoint.x, tempPoint.y);
+				currentCurve.draw(aContext);
+			}
+			aContext.closePath();
+			aContext.clip();
+		}
+		
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newCanvasMask2d = (new ClassReference()).init();
+		
+		return newCanvasMask2d;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

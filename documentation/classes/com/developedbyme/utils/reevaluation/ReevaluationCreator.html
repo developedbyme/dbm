@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ReevaluationCreator</h1>
+		<div class="classPath">com.developedbyme.utils.reevaluation.ReevaluationCreator</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.ReevaluationCreator", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
+	//Self reference
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	
+	//Error report
+	
+	//Dependencies
+	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
+	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
+	
+	//Utils
+	
+	//Constants
+	
+	staticFunctions.reevaluationOrStaticValue = function(aValue) {
+		//console.log("com.developedbyme.utils.reevaluation.ReevaluationCreator::reevaluationOrStaticValue");
+		
+		if(aValue instanceof ReevaluationBaseObject) {
+			return aValue;
+		}
+		else {
+			return StaticVariableObject.createReevaluationObject(aValue);
+		}
+		
+	};
+	
+	staticFunctions.arrayReevaluationOrStaticValue = function(aValue) {
+		//console.log("com.developedbyme.utils.reevaluation.ReevaluationCreator::arrayReevaluationOrStaticValue");
+		
+		if(aValue instanceof ReevaluationBaseObject) {
+			return aValue;
+		}
+		else {
+			var hasReevaluatorInArgumentsArray = false;
+			var currentArray = aValue;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				if(currentArray[i] instanceof ReevaluationBaseObject) {
+					hasReevaluatorInArgumentsArray = true;
+					break;
+				}
+			}
+			
+			if(hasReevaluatorInArgumentsArray) {
+				return ReevaluateArrayObject.createReevaluationObject(currentArray);
+			}
+			else {
+				return StaticVariableObject.createReevaluationObject(currentArray);
+			}
+		}
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">reevaluationOrStaticValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.reevaluationOrStaticValue = function(aValue) {
+		//console.log("com.developedbyme.utils.reevaluation.ReevaluationCreator::reevaluationOrStaticValue");
+		
+		if(aValue instanceof ReevaluationBaseObject) {
+			return aValue;
+		}
+		else {
+			return StaticVariableObject.createReevaluationObject(aValue);
+		}
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">arrayReevaluationOrStaticValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.arrayReevaluationOrStaticValue = function(aValue) {
+		//console.log("com.developedbyme.utils.reevaluation.ReevaluationCreator::arrayReevaluationOrStaticValue");
+		
+		if(aValue instanceof ReevaluationBaseObject) {
+			return aValue;
+		}
+		else {
+			var hasReevaluatorInArgumentsArray = false;
+			var currentArray = aValue;
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				if(currentArray[i] instanceof ReevaluationBaseObject) {
+					hasReevaluatorInArgumentsArray = true;
+					break;
+				}
+			}
+			
+			if(hasReevaluatorInArgumentsArray) {
+				return ReevaluateArrayObject.createReevaluationObject(currentArray);
+			}
+			else {
+				return StaticVariableObject.createReevaluationObject(currentArray);
+			}
+		}
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

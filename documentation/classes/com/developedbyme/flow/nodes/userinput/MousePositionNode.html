@@ -1,0 +1,172 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>MousePositionNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.userinput.MousePositionNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.userinput.MousePositionNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode");
+	
+	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
+	
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::_init");
+		
+		this.superCall();
+		
+		this._x = this.createProperty("x", 0);
+		this._y = this.createProperty("y", 0);
+		this._document = this.createProperty("document", document); //MENOTE: change this to use dbm.getDocument()
+		
+		this.getExtendedEvent().createEvent(JavascriptEventIds.MOUSE_MOVE);
+		this.getExtendedEvent().addCommandToEvent(JavascriptEventIds.MOUSE_MOVE, CallFunctionCommand.createCommand(this, this._updatePosition, [GetVariableObject.createSelectDataCommand()]));
+		
+		return this;
+	};
+	
+	objectFunctions.start = function() {
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::start");
+		this.getExtendedEvent().linkJavascriptEvent(this._document.getValue(), JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, true).activate();
+		
+		return this;
+	};
+	
+	objectFunctions.stop = function() {
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::stop");
+		this.getExtendedEvent().deactivateJavascriptLink(JavascriptEventIds.MOUSE_MOVE);
+		
+		return this;
+	};
+	
+	//MENOTE: switch this to take x and y as parameters
+	objectFunctions._updatePosition = function(aEvent) {
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::_updatePosition");
+		//console.log(aEvent);
+		
+		this._x.setValue(aEvent.pageX);
+		this._y.setValue(aEvent.pageY);
+		
+		//console.log(this._x, this._y);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._x = null;
+		this._y = null;
+		this._document = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aElement) {
+		
+		var newMousePositionNode = (new ClassReference()).init();
+		if(!VariableAliases.isNull(aElement)) {
+			newMousePositionNode._document.setValue(aElement);
+		}
+		return newMousePositionNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::_init");
+		
+		this.superCall();
+		
+		this._x = this.createProperty("x", 0);
+		this._y = this.createProperty("y", 0);
+		this._document = this.createProperty("document", document); //MENOTE: change this to use dbm.getDocument()
+		
+		this.getExtendedEvent().createEvent(JavascriptEventIds.MOUSE_MOVE);
+		this.getExtendedEvent().addCommandToEvent(JavascriptEventIds.MOUSE_MOVE, CallFunctionCommand.createCommand(this, this._updatePosition, [GetVariableObject.createSelectDataCommand()]));
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">start</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.start = function() {
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::start");
+		this.getExtendedEvent().linkJavascriptEvent(this._document.getValue(), JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, true).activate();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">stop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.stop = function() {
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::stop");
+		this.getExtendedEvent().deactivateJavascriptLink(JavascriptEventIds.MOUSE_MOVE);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_updatePosition</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._updatePosition = function(aEvent) {
+		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::_updatePosition");
+		//console.log(aEvent);
+		
+		this._x.setValue(aEvent.pageX);
+		this._y.setValue(aEvent.pageY);
+		
+		//console.log(this._x, this._y);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._x = null;
+		this._y = null;
+		this._document = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aElement) {
+		
+		var newMousePositionNode = (new ClassReference()).init();
+		if(!VariableAliases.isNull(aElement)) {
+			newMousePositionNode._document.setValue(aElement);
+		}
+		return newMousePositionNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,319 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>CanvasGraphics2d</h1>
+		<div class="classPath">com.developedbyme.utils.canvas.CanvasGraphics2d</div>
+		<div class="classInheritance"></div>
+		<div class="description">A graphics in a 2d canvas.</div>
+		<div class="importSnippet">var CanvasGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasGraphics2d");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.canvas.CanvasGraphics2d");
+	
+	var CanvasGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasGraphics2d");
+	
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	
+	var LineCapTypes = dbm.importClass("com.developedbyme.constants.LineCapTypes");
+	var LineJoinTypes = dbm.importClass("com.developedbyme.constants.LineJoinTypes");
+	
+	/**
+	 * Constructor.
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasGraphics2d::_init");
+		
+		this.superCall();
+		
+		this._curves = new Array();
+		this.moveWhenSwitchingCurves = false;
+		
+		this._fillStyle = this.createProperty("fillStyle", null);
+		this._lineWidth = this.createProperty("lineWidth", 1);
+		this._lineCap = this.createProperty("lineCap", LineCapTypes.BUTT);
+		this._lineJoin = this.createProperty("lineJoin", LineJoinTypes.MITER);
+		this._miterLimit = this.createProperty("miterLimit", 10);
+		this._strokeStyle = this.createProperty("strokeStyle", null);
+		
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate.connectInput(this._fillStyle);
+		this._graphicsUpdate.connectInput(this._lineWidth);
+		this._graphicsUpdate.connectInput(this._lineCap);
+		this._graphicsUpdate.connectInput(this._lineJoin);
+		this._graphicsUpdate.connectInput(this._miterLimit);
+		this._graphicsUpdate.connectInput(this._strokeStyle);
+		
+		this.closePath = false;
+		this._canDraw = true;
+		this._strokeOverFill = true;
+		
+		return this;
+	};
+	
+	objectFunctions.getStartPoint = function(aReturnPoint) {
+		if(this._curves.length &gt; 0) {
+			this._curves[0].getStartPoint(aReturnPoint);
+		}
+		//METODO: error message
+		return;
+	};
+	
+	objectFunctions.getLastCurve = function() {
+		if(this._curves.length &gt; 0) {
+			return this._curves[this._curves.length-1];
+		}
+		return null;
+	};
+	
+	objectFunctions.hasCurves = function() {
+		return this._curves.length &gt; 0;
+	};
+	
+	objectFunctions.canDraw = function() {
+		return this._canDraw;
+	};
+	
+	objectFunctions.addCurve = function(aCurve) {
+		this._curves.push(aCurve);
+		this._graphicsUpdate.connectInput(aCurve.getProperty("graphicsUpdate"));
+	};
+	
+	objectFunctions._fillPath = function(aContext, aStyle) {
+		if(aStyle !== null) {
+			aContext.fillStyle = aStyle;
+			aContext.fill();
+		}
+	};
+	
+	objectFunctions._strokePath = function(aContext, aStyle) {
+		if(aStyle !== null) {
+			aContext.strokeStyle = aStyle;
+			aContext.save();
+			aContext.setTransform(1, 0, 0, 1, 0, 0);
+			aContext.stroke();
+			aContext.restore();
+		}
+	};
+	
+	objectFunctions.draw = function(aContext) {
+		//console.log("com.developedbyme.utils.canvas.CanvasGraphics2d::draw");
+		//console.log(this, this._curves, this.strokeStyle);
+		
+		var currentArray = this._curves;
+		var currentArrayLength = currentArray.length;
+		if(currentArrayLength &gt; 0) {
+			var tempPoint = Point.create();
+			currentArray[0].getStartPoint(tempPoint);
+			aContext.moveTo(tempPoint.x, tempPoint.y);
+			aContext.beginPath();
+			aContext.lineWidth = this._lineWidth.getValue();
+			aContext.lineCap = this._lineCap.getValue();
+			aContext.lineJoin = this._lineJoin.getValue();
+			aContext.miterLimit = this._miterLimit.getValue();
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentCurve = currentArray[i];
+				currentCurve.getStartPoint(tempPoint);
+				if(this.moveWhenSwitchingCurves) {
+					aContext.moveTo(tempPoint.x, tempPoint.y);
+				}
+				else {
+					aContext.lineTo(tempPoint.x, tempPoint.y);
+				}
+				currentCurve.draw(aContext);
+			}
+			if(this.closePath) {
+				aContext.closePath();
+			}
+			if(this._strokeOverFill) {
+				this._fillPath(aContext, this._fillStyle.getValue());
+				this._strokePath(aContext, this._strokeStyle.getValue());
+			}
+			else {
+				this._strokePath(aContext, this._strokeStyle.getValue());
+				this._fillPath(aContext, this._fillStyle.getValue());
+			}
+		}
+		
+	};
+	
+	staticFunctions.create = function() {
+		var newCanvasGraphics2d = (new ClassReference()).init();
+		
+		return newCanvasGraphics2d;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor.</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasGraphics2d::_init");
+		
+		this.superCall();
+		
+		this._curves = new Array();
+		this.moveWhenSwitchingCurves = false;
+		
+		this._fillStyle = this.createProperty("fillStyle", null);
+		this._lineWidth = this.createProperty("lineWidth", 1);
+		this._lineCap = this.createProperty("lineCap", LineCapTypes.BUTT);
+		this._lineJoin = this.createProperty("lineJoin", LineJoinTypes.MITER);
+		this._miterLimit = this.createProperty("miterLimit", 10);
+		this._strokeStyle = this.createProperty("strokeStyle", null);
+		
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate.connectInput(this._fillStyle);
+		this._graphicsUpdate.connectInput(this._lineWidth);
+		this._graphicsUpdate.connectInput(this._lineCap);
+		this._graphicsUpdate.connectInput(this._lineJoin);
+		this._graphicsUpdate.connectInput(this._miterLimit);
+		this._graphicsUpdate.connectInput(this._strokeStyle);
+		
+		this.closePath = false;
+		this._canDraw = true;
+		this._strokeOverFill = true;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getStartPoint</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getStartPoint = function(aReturnPoint) {
+		if(this._curves.length &gt; 0) {
+			this._curves[0].getStartPoint(aReturnPoint);
+		}
+		//METODO: error message
+		return;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getLastCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getLastCurve = function() {
+		if(this._curves.length &gt; 0) {
+			return this._curves[this._curves.length-1];
+		}
+		return null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">hasCurves</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.hasCurves = function() {
+		return this._curves.length &gt; 0;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">canDraw</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.canDraw = function() {
+		return this._canDraw;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addCurve = function(aCurve) {
+		this._curves.push(aCurve);
+		this._graphicsUpdate.connectInput(aCurve.getProperty("graphicsUpdate"));
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_fillPath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._fillPath = function(aContext, aStyle) {
+		if(aStyle !== null) {
+			aContext.fillStyle = aStyle;
+			aContext.fill();
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_strokePath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._strokePath = function(aContext, aStyle) {
+		if(aStyle !== null) {
+			aContext.strokeStyle = aStyle;
+			aContext.save();
+			aContext.setTransform(1, 0, 0, 1, 0, 0);
+			aContext.stroke();
+			aContext.restore();
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">draw</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.draw = function(aContext) {
+		//console.log("com.developedbyme.utils.canvas.CanvasGraphics2d::draw");
+		//console.log(this, this._curves, this.strokeStyle);
+		
+		var currentArray = this._curves;
+		var currentArrayLength = currentArray.length;
+		if(currentArrayLength &gt; 0) {
+			var tempPoint = Point.create();
+			currentArray[0].getStartPoint(tempPoint);
+			aContext.moveTo(tempPoint.x, tempPoint.y);
+			aContext.beginPath();
+			aContext.lineWidth = this._lineWidth.getValue();
+			aContext.lineCap = this._lineCap.getValue();
+			aContext.lineJoin = this._lineJoin.getValue();
+			aContext.miterLimit = this._miterLimit.getValue();
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentCurve = currentArray[i];
+				currentCurve.getStartPoint(tempPoint);
+				if(this.moveWhenSwitchingCurves) {
+					aContext.moveTo(tempPoint.x, tempPoint.y);
+				}
+				else {
+					aContext.lineTo(tempPoint.x, tempPoint.y);
+				}
+				currentCurve.draw(aContext);
+			}
+			if(this.closePath) {
+				aContext.closePath();
+			}
+			if(this._strokeOverFill) {
+				this._fillPath(aContext, this._fillStyle.getValue());
+				this._strokePath(aContext, this._strokeStyle.getValue());
+			}
+			else {
+				this._strokePath(aContext, this._strokeStyle.getValue());
+				this._fillPath(aContext, this._fillStyle.getValue());
+			}
+		}
+		
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newCanvasGraphics2d = (new ClassReference()).init();
+		
+		return newCanvasGraphics2d;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

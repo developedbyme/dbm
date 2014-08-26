@@ -1,0 +1,131 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>NormalIdGroup</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.idmanager.objects.NormalIdGroup</div>
+		<div class="classInheritance"></div>
+		<div class="description">An id group that combines a prefix, number, and suffix to an id.</div>
+		<div class="importSnippet">var NormalIdGroup = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.objects.NormalIdGroup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.NormalIdGroup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.idmanager.objects.NormalIdGroup");
+	
+	var NormalIdGroup = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.objects.NormalIdGroup");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.idmanager.objects.NormalIdGroup");
+		
+		this.superCall();
+		
+		this.prefix = "";
+		this.suffix = "";
+		this._idNumber = 0;
+		
+		return this;
+	};
+	
+	objectFunctions.getId = function(aNumber) {
+		return (this.prefix + aNumber + this.suffix);
+	};
+	
+	/**
+	 * Returns a new id as a string.
+	 *
+	 * @return	The id as a string.
+	 */
+	objectFunctions.getNewId = function() {
+		var returnId = this._idNumber;
+		this._idNumber++;
+		return this.getId(returnId);
+	};
+	
+	/**
+	 * Return a new id as a number.
+	 *
+	 * @return	The number part for the id.
+	 */
+	objectFunctions.getNewIdNumber = function() {
+		var returnId = this._idNumber;
+		this._idNumber++;
+		return returnId;
+	};
+	
+	staticFunctions.create = function(aPrefix, aSuffix) {
+		var newNormalIdGroup = (new ClassReference()).init();
+		newNormalIdGroup.prefix = VariableAliases.valueWithDefault(aPrefix, "");
+		newNormalIdGroup.suffix = VariableAliases.valueWithDefault(aSuffix, "");
+		return newNormalIdGroup;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.idmanager.objects.NormalIdGroup");
+		
+		this.superCall();
+		
+		this.prefix = "";
+		this.suffix = "";
+		this._idNumber = 0;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getId</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getId = function(aNumber) {
+		return (this.prefix + aNumber + this.suffix);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getNewId</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Returns a new id as a string.</div>
+			<div class="code">objectFunctions.getNewId = function() {
+		var returnId = this._idNumber;
+		this._idNumber++;
+		return this.getId(returnId);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getNewIdNumber</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Return a new id as a number.</div>
+			<div class="code">objectFunctions.getNewIdNumber = function() {
+		var returnId = this._idNumber;
+		this._idNumber++;
+		return returnId;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aPrefix, aSuffix) {
+		var newNormalIdGroup = (new ClassReference()).init();
+		newNormalIdGroup.prefix = VariableAliases.valueWithDefault(aPrefix, "");
+		newNormalIdGroup.suffix = VariableAliases.valueWithDefault(aSuffix, "");
+		return newNormalIdGroup;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

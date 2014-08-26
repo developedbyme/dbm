@@ -1,0 +1,167 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>Margins</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.windowmanager.data.Margins</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var Margins = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.data.Margins");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.data.Margins", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins");
+	
+	var Margins = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.data.Margins");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::_init");
+		
+		this.superCall();
+		
+		this.horizontalMargin = null;
+		this.verticalMargin = null;
+		
+		this._hasSpecificMargins = false;
+		this.marginLeft = null;
+		this.marginTop = null;
+		this.marginRight = null;
+		this.marginBottom = null;
+		
+		return this;
+	};
+	
+	objectFunctions.setMargins = function(aHorizontal, aVertical) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::setMargins");
+		
+		this.horizontalMargin = aHorizontal;
+		this.verticalMargin = aVertical;
+		
+		return this;
+	};
+	
+	objectFunctions.setSpecifiedMargins = function(aLeft, aTop, aRight, aBottom) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::setSpecifiedMargins");
+		
+		this._hasSpecificMargins = true;
+		this.marginLeft = aLeft;
+		this.marginTop = aTop;
+		this.marginRight = aRight;
+		this.marginBottom = aBottom;
+		
+		return this;
+	};
+	
+	objectFunctions.hasSpecifiedMargins = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::hasSpecifiedMargins");
+		
+		return this._hasSpecificMargins;
+	};
+	
+	staticFunctions.create = function(aHorizontal, aVertical, aLeft, aTop, aRight, aBottom) {
+		var newMargins = (new Margins()).init();
+		
+		newMargins.setMargins(aHorizontal, aVertical);
+		
+		if(VariableAliases.isSet(aLeft)) {
+			newMargins.setSpecifiedMargins(aLeft, aTop, aRight, aBottom);
+		}
+		
+		return newMargins;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::_init");
+		
+		this.superCall();
+		
+		this.horizontalMargin = null;
+		this.verticalMargin = null;
+		
+		this._hasSpecificMargins = false;
+		this.marginLeft = null;
+		this.marginTop = null;
+		this.marginRight = null;
+		this.marginBottom = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setMargins</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setMargins = function(aHorizontal, aVertical) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::setMargins");
+		
+		this.horizontalMargin = aHorizontal;
+		this.verticalMargin = aVertical;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setSpecifiedMargins</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setSpecifiedMargins = function(aLeft, aTop, aRight, aBottom) {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::setSpecifiedMargins");
+		
+		this._hasSpecificMargins = true;
+		this.marginLeft = aLeft;
+		this.marginTop = aTop;
+		this.marginRight = aRight;
+		this.marginBottom = aBottom;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">hasSpecifiedMargins</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.hasSpecifiedMargins = function() {
+		//console.log("com.developedbyme.core.globalobjects.windowmanager.data.Margins::hasSpecifiedMargins");
+		
+		return this._hasSpecificMargins;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aHorizontal, aVertical, aLeft, aTop, aRight, aBottom) {
+		var newMargins = (new Margins()).init();
+		
+		newMargins.setMargins(aHorizontal, aVertical);
+		
+		if(VariableAliases.isSet(aLeft)) {
+			newMargins.setSpecifiedMargins(aLeft, aTop, aRight, aBottom);
+		}
+		
+		return newMargins;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

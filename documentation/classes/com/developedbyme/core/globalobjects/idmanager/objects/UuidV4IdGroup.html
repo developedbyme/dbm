@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>UuidV4IdGroup</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.idmanager.objects.UuidV4IdGroup</div>
+		<div class="classInheritance"></div>
+		<div class="description">An id group that generates a v4 uuid.</div>
+		<div class="importSnippet">var UuidV4IdGroup = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.objects.UuidV4IdGroup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.objects.UuidV4IdGroup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.idmanager.objects.UuidV4IdGroup");
+	
+	//Self reference
+	var UuidV4IdGroup = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.objects.UuidV4IdGroup");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.idmanager.objects.UuidV4IdGroup");
+		
+		this.superCall();
+		
+		this._uuidGenerator = null;
+		
+		return this;
+	};
+	
+	objectFunctions.setGenerator = function(aGenerator) {
+		this._uuidGenerator = aGenerator;
+		
+		return this;
+	};
+	
+	/**
+	 * Returns a new id as a string.
+	 *
+	 * @return	The id as a string.
+	 */
+	objectFunctions.getNewId = function() {
+		return this._uuidGenerator.generateV4();
+	};
+	
+	staticFunctions.create = function(aUuidGenerator) {
+		var newUuidV4IdGroup = (new ClassReference()).init();
+		newUuidV4IdGroup.setGenerator(aUuidGenerator);
+		return newUuidV4IdGroup;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.idmanager.objects.UuidV4IdGroup");
+		
+		this.superCall();
+		
+		this._uuidGenerator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setGenerator</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setGenerator = function(aGenerator) {
+		this._uuidGenerator = aGenerator;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getNewId</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Returns a new id as a string.</div>
+			<div class="code">objectFunctions.getNewId = function() {
+		return this._uuidGenerator.generateV4();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aUuidGenerator) {
+		var newUuidV4IdGroup = (new ClassReference()).init();
+		newUuidV4IdGroup.setGenerator(aUuidGenerator);
+		return newUuidV4IdGroup;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

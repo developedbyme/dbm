@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TemplateResult</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var TemplateResult = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult");
+	
+	var TemplateResult = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult::_init");
+		
+		this.superCall();
+		
+		this._controllers = NamedArray.create(false);
+		this.addDestroyableObject(this._controllers);
+		this.mainController = null;
+		this.rootElement = null;
+		
+		return this;
+	};
+	
+	objectFunctions.addController = function(aName, aObject) {
+		this._controllers.addObject(aName, aObject);
+	};
+	
+	objectFunctions.getController = function(aName) {
+		return this._controllers.getObject(aName);
+	};
+	
+	objectFunctions.getControllerNames = function() {
+		return this._controllers.getNamesArray();
+	};
+	
+	staticFunctions.create = function() {
+		
+		var newTemplateResult = (new TemplateResult()).init();
+		
+		return newTemplateResult;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult::_init");
+		
+		this.superCall();
+		
+		this._controllers = NamedArray.create(false);
+		this.addDestroyableObject(this._controllers);
+		this.mainController = null;
+		this.rootElement = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">addController</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.addController = function(aName, aObject) {
+		this._controllers.addObject(aName, aObject);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getController</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getController = function(aName) {
+		return this._controllers.getObject(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getControllerNames</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getControllerNames = function() {
+		return this._controllers.getNamesArray();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		
+		var newTemplateResult = (new TemplateResult()).init();
+		
+		return newTemplateResult;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

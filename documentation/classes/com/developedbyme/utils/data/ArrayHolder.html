@@ -1,0 +1,189 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ArrayHolder</h1>
+		<div class="classPath">com.developedbyme.utils.data.ArrayHolder</div>
+		<div class="classInheritance"></div>
+		<div class="description">Holder of an array.
+The purpose of this object is that it implements and destroy() function and destroys the array if it owns it.</div>
+		<div class="importSnippet">var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.data.ArrayHolder");
+	//"use strict";
+	
+	//Self reference
+	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.ArrayHolder::_init");
+		
+		this.superCall();
+		
+		this.array = new Array();
+		this.ownsObjects = false;
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Performs the destruction of this object. Part of the destroy function.
+	 */
+	objectFunctions.performDestroy = function() {
+		
+		if(this.ownsObjects) {
+			ClassReference.destroyArrayIfExists(this.array);
+		}
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Sets all the refernences to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.array = null;
+		
+		this.superCall();
+	}; //End function setAllReferencesToNull
+	
+	/**
+	 * Checks if this object owns a specific variable. Part of the destroy function.
+	 */
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "array":
+				return this.ownsObjects;
+		}
+		return this.superCall();
+	};
+	
+	/**
+	 * Creates a new instance of this class.
+	 *
+	 * @param	aOwnsObjects	Boolean		If the array is owned by the new holder and should be destroyed when the holder is destroyed.
+	 *
+	 * @return	ArrayHolder	The newly created object.
+	 */
+	staticFunctions.create = function(aOwnsObjects) {
+		//trace("breel.utils.data.ArrayHolder.create");
+		var newArrayHolder = (new ArrayHolder()).init();
+		newArrayHolder.ownsObjects = aOwnsObjects;
+		return newArrayHolder;
+	}; //End function create
+	
+	/**
+	 * Creates a new holder from an existing array.
+	 *
+	 * @param	aArray			Array		The array that the new holder will hold.
+	 * @param	aOwnsObjects	Boolean		If the array is owned by the new holder and should be destroyed when the holder is destroyed.
+	 *
+	 * @return	ArrayHolder	The newly created object.
+	 */
+	staticFunctions.createFromArray = function(aArray, aOwnsObjects) {
+		//trace("breel.utils.data.ArrayHolder.createFromArray");
+		var newArrayHolder = (new ArrayHolder()).init();
+		newArrayHolder.array = aArray;
+		newArrayHolder.ownsObjects = aOwnsObjects;
+		return newArrayHolder;
+	}; //End function createFromArray
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.data.ArrayHolder::_init");
+		
+		this.superCall();
+		
+		this.array = new Array();
+		this.ownsObjects = false;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Performs the destruction of this object. Part of the destroy function.</div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		if(this.ownsObjects) {
+			ClassReference.destroyArrayIfExists(this.array);
+		}
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the refernences to null. Part of the destroy function.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.array = null;
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Checks if this object owns a specific variable. Part of the destroy function.</div>
+			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "array":
+				return this.ownsObjects;
+		}
+		return this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new instance of this class.</div>
+			<div class="code">staticFunctions.create = function(aOwnsObjects) {
+		//trace("breel.utils.data.ArrayHolder.create");
+		var newArrayHolder = (new ArrayHolder()).init();
+		newArrayHolder.ownsObjects = aOwnsObjects;
+		return newArrayHolder;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createFromArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new holder from an existing array.</div>
+			<div class="code">staticFunctions.createFromArray = function(aArray, aOwnsObjects) {
+		//trace("breel.utils.data.ArrayHolder.createFromArray");
+		var newArrayHolder = (new ArrayHolder()).init();
+		newArrayHolder.array = aArray;
+		newArrayHolder.ownsObjects = aOwnsObjects;
+		return newArrayHolder;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

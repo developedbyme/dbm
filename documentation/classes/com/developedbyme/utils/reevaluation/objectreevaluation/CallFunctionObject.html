@@ -1,0 +1,182 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>CallFunctionObject</h1>
+		<div class="classPath">com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject</div>
+		<div class="classInheritance"></div>
+		<div class="description">Reevaluation that returns the value of a function call.</div>
+		<div class="importSnippet">var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject", "com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
+	
+	//Self reference
+	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::_init");
+		
+		this.superCall();
+		
+		this.functionReevaluator = null;
+		this.argumentsArrayReevaluator = null;
+		
+		return this;
+	};
+	
+	objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::reevaluate");
+		//console.log(this);
+		
+		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
+		var theFunction = this.functionReevaluator.reevaluate(aBaseObject);
+		var argumentsArray = this.argumentsArrayReevaluator.reevaluate(aBaseObject);
+		
+		//console.log(theObject, theFunction, argumentsArray);
+		
+		if(!VariableAliases.isSet(theFunction)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "reevaluate", "Function is null. Can't create call on object " + theObject + " with arguments " + argumentsArray);
+			return null;
+		}
+		
+		return theFunction.apply(theObject, argumentsArray);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.functionReevaluator = null;
+		this.argumentsArrayReevaluator = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.createCommand = function(aObject, aFunction, aArgumentsArray) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand (static)");
+		
+		if(!VariableAliases.isSet(aFunction)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[CallFunctionObject]", "createCommand", "Function is null. Can't create call for " + aFunction + " on object " + aObject + " with arguments " + aArgumentsArray);
+			return null;
+		}
+		
+		var newCommand = (new CallFunctionObject()).init();
+		
+		newCommand.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
+		newCommand.functionReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aFunction);
+		newCommand.argumentsArrayReevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aArgumentsArray);
+		
+		return newCommand;
+	};
+	
+	staticFunctions.createFunctionOnObjectCommand = function(aObject, aFunctionName, aArgumentsArray) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand (static)");
+		
+		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray);
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::_init");
+		
+		this.superCall();
+		
+		this.functionReevaluator = null;
+		this.argumentsArrayReevaluator = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">reevaluate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::reevaluate");
+		//console.log(this);
+		
+		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
+		var theFunction = this.functionReevaluator.reevaluate(aBaseObject);
+		var argumentsArray = this.argumentsArrayReevaluator.reevaluate(aBaseObject);
+		
+		//console.log(theObject, theFunction, argumentsArray);
+		
+		if(!VariableAliases.isSet(theFunction)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "reevaluate", "Function is null. Can't create call on object " + theObject + " with arguments " + argumentsArray);
+			return null;
+		}
+		
+		return theFunction.apply(theObject, argumentsArray);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.functionReevaluator = null;
+		this.argumentsArrayReevaluator = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createCommand = function(aObject, aFunction, aArgumentsArray) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand (static)");
+		
+		if(!VariableAliases.isSet(aFunction)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[CallFunctionObject]", "createCommand", "Function is null. Can't create call for " + aFunction + " on object " + aObject + " with arguments " + aArgumentsArray);
+			return null;
+		}
+		
+		var newCommand = (new CallFunctionObject()).init();
+		
+		newCommand.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
+		newCommand.functionReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aFunction);
+		newCommand.argumentsArrayReevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aArgumentsArray);
+		
+		return newCommand;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createFunctionOnObjectCommand</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.createFunctionOnObjectCommand = function(aObject, aFunctionName, aArgumentsArray) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand (static)");
+		
+		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray);
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

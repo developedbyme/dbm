@@ -1,0 +1,173 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>PathAssetCreator</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator</div>
+		<div class="classInheritance"></div>
+		<div class="description">Creates an asset and sets the path.</div>
+		<div class="importSnippet">var PathAssetCreator = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator");
+	//"use strict";
+	
+	//Self reference
+	var PathAssetCreator = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator::_init");
+		
+		this.superCall();
+		
+		this._class = null;
+		
+		return this;
+	};
+	
+	/**
+	 * Set the class that this creator is using to create new assets.
+	 *
+	 * @param	aClass	The class to create
+	 *
+	 * @return	self
+	 */
+	objectFunctions.setClass = function(aClass) {
+		this._class = aClass;
+		
+		return this;
+	};
+	
+	/**
+	 * Creates a new asset.
+	 *
+	 * @param	aPath	The path to the asset.
+	 * @param	aType	The type of asset to create (interface/ignored for class).
+	 *
+	 * @return	Asset	The newly created asset.
+	 */
+	objectFunctions.createAsset = function(aPath, aType) {
+		return this._class.create(aPath);
+	};
+	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 */
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		if(this._status !== null) {
+			aReturnArray.push("class: " + this._class);
+		}
+	};
+	
+	/**
+	 * Sets all the references to null.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._class = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a new path asset creator.
+	 *
+	 * @param	aClass	The class that this creator is generating.
+	 *
+	 * @return	PathAssetCreator	The newly create path asset creator.
+	 */
+	staticFunctions.create = function(aClass) {
+		var newPathAssetCreator = ClassReference._createAndInitClass(ClassReference);
+		newPathAssetCreator.setClass(aClass);
+		return newPathAssetCreator;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator::_init");
+		
+		this.superCall();
+		
+		this._class = null;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setClass</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Set the class that this creator is using to create new assets.</div>
+			<div class="code">objectFunctions.setClass = function(aClass) {
+		this._class = aClass;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createAsset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new asset.</div>
+			<div class="code">objectFunctions.createAsset = function(aPath, aType) {
+		return this._class.create(aPath);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+		this.superCall(aReturnArray);
+		
+		if(this._status !== null) {
+			aReturnArray.push("class: " + this._class);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._class = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new path asset creator.</div>
+			<div class="code">staticFunctions.create = function(aClass) {
+		var newPathAssetCreator = ClassReference._createAndInitClass(ClassReference);
+		newPathAssetCreator.setClass(aClass);
+		return newPathAssetCreator;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>KeyValuePropertyPair</h1>
+		<div class="classPath">com.developedbyme.flow.data.KeyValuePropertyPair</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var KeyValuePropertyPair = dbm.importClass("com.developedbyme.flow.data.KeyValuePropertyPair");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.data.KeyValuePropertyPair", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.data.KeyValuePropertyPair");
+	
+	var KeyValuePropertyPair = dbm.importClass("com.developedbyme.flow.data.KeyValuePropertyPair");
+	
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.data.KeyValuePropertyPair::_init");
+		
+		this.superCall();
+		
+		this.keyValue = this.createProperty("keyValue", "");
+		this.dataValue = this.createProperty("dataValue", "");
+		
+		return this;
+	};
+	
+	/**
+	 * Sets all the references to null.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.keyValue = null;
+		this.dataValue = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aKeyValue, aDataValue) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("keyValue", aKeyValue);
+		newNode.setPropertyInputWithoutNull("dataValue", aDataValue);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.data.KeyValuePropertyPair::_init");
+		
+		this.superCall();
+		
+		this.keyValue = this.createProperty("keyValue", "");
+		this.dataValue = this.createProperty("dataValue", "");
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this.keyValue = null;
+		this.dataValue = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aKeyValue, aDataValue) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("keyValue", aKeyValue);
+		newNode.setPropertyInputWithoutNull("dataValue", aDataValue);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

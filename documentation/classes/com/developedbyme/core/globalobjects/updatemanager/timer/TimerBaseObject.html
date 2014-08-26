@@ -1,0 +1,302 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>TimerBaseObject</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var TimerBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject");
+	
+	//Self reference
+	var TimerBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	var FunctionFunctions = dbm.importClass("com.developedbyme.utils.native.function.FunctionFunctions");
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::_init");
+		
+		this.superCall();
+		
+		this._isStarted = false;
+		this._updateObject = null;
+		this._callbackFunction = FunctionFunctions.createScopedFunction(this, this.update);
+		
+		return this;
+	};
+	
+	objectFunctions.setUpdateObject = function(aObject) {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::setUpdateObject");
+		
+		this._updateObject = aObject;
+		
+		return this;
+	};
+	
+	objectFunctions.getStatus = function() {
+		return this._isStarted;
+	};
+	
+	objectFunctions.start = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::start");
+		if(!this._isStarted) {
+			this._isStarted = true;
+			this._performStart();
+		}
+		else {
+			//METODO: warning
+		}
+		
+		return this;
+	};
+	
+	objectFunctions.stop = function() {
+		if(this._isStarted) {
+			this._isStarted = false;
+			this._performStop();
+		}
+		else {
+			//METODO: warning
+		}
+		
+		return this;
+	};
+	
+	objectFunctions._performStart = function() {
+		//METODO: should be overridded
+	};
+	
+	objectFunctions._performStop = function() {
+		//METODO: should be overridded
+	};
+	
+	objectFunctions._preUpdate = function() {
+		//METODO: should be overridded
+	};
+	
+	objectFunctions.update = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::update");
+		
+		this._preUpdate();
+		this._updateObject.update();
+	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		if(this._isStarted) {
+			this.stop();
+		}
+		ClassReference.destroyIfExists(this._callbackFunction);
+		
+		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		if(aName === "_updateObject") {
+			return false;
+		}
+		return this.superCall(aName);
+	};
+	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._updateObject = null;
+		this._callbackFunction = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a new objetc of this class.
+	 *
+	 * @param	aUpdateObject	The object to do callbacks on every tick.
+	 *
+	 * @return	The newly created object.
+	 */
+	staticFunctions.create = function(aUpdateObject) {
+		var newTimerBaseObject = (new ClassReference()).init();
+		newTimerBaseObject.setUpdateObject(aUpdateObject);
+		return newTimerBaseObject;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::_init");
+		
+		this.superCall();
+		
+		this._isStarted = false;
+		this._updateObject = null;
+		this._callbackFunction = FunctionFunctions.createScopedFunction(this, this.update);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setUpdateObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setUpdateObject = function(aObject) {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::setUpdateObject");
+		
+		this._updateObject = aObject;
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getStatus</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getStatus = function() {
+		return this._isStarted;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">start</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.start = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::start");
+		if(!this._isStarted) {
+			this._isStarted = true;
+			this._performStart();
+		}
+		else {
+			//METODO: warning
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">stop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.stop = function() {
+		if(this._isStarted) {
+			this._isStarted = false;
+			this._performStop();
+		}
+		else {
+			//METODO: warning
+		}
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_performStart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._performStart = function() {
+		//METODO: should be overridded
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_performStop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._performStop = function() {
+		//METODO: should be overridded
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_preUpdate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._preUpdate = function() {
+		//METODO: should be overridded
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.update = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::update");
+		
+		this._preUpdate();
+		this._updateObject.update();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		if(this._isStarted) {
+			this.stop();
+		}
+		ClassReference.destroyIfExists(this._callbackFunction);
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		if(aName === "_updateObject") {
+			return false;
+		}
+		return this.superCall(aName);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Sets all the references to null. Part of the destroy function.</div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._updateObject = null;
+		this._callbackFunction = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Creates a new objetc of this class.</div>
+			<div class="code">staticFunctions.create = function(aUpdateObject) {
+		var newTimerBaseObject = (new ClassReference()).init();
+		newTimerBaseObject.setUpdateObject(aUpdateObject);
+		return newTimerBaseObject;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

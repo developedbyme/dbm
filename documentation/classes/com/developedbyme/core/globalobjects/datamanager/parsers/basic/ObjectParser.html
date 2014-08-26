@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>ObjectParser</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var ObjectParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser", "com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser");
+	
+	//Self reference
+	var ObjectParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser");
+	
+	//Error report
+	
+	//Dependencies
+	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		return this._createResult();
+		//METODO: enable links
+	};
+	
+	objectFunctions._createInputLink = function(aInputProperty) {
+		return ParserResultDataObject.createLinked(aInputProperty, []);
+	};
+	
+	objectFunctions._createResult = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser::_createResult");
+		
+		var result = ParserResultDataObject.create(new Object());
+		result.childrenIsProperties = 1;
+		
+		return result;
+	};
+	
+	staticFunctions.create = function() {
+		var newObjectParser = (new ClassReference()).init();
+		return newObjectParser;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">parseXml</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.parseXml = function(aXml, aPathReference, aType) {
+		return this._createResult();
+		//METODO: enable links
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createInputLink</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createInputLink = function(aInputProperty) {
+		return ParserResultDataObject.createLinked(aInputProperty, []);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_createResult</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._createResult = function() {
+		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser::_createResult");
+		
+		var result = ParserResultDataObject.create(new Object());
+		result.childrenIsProperties = 1;
+		
+		return result;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function() {
+		var newObjectParser = (new ClassReference()).init();
+		return newObjectParser;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

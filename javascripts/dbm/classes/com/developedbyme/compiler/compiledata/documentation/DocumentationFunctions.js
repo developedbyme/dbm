@@ -38,7 +38,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.Document
 	 * @return	DocumentedItem	The new documentation.
 	 */
 	staticFunctions.documentDbmClass = function(aBreakdown, aDocumentationData) {
-		//console.log("com.developedbyme.compiler.compiledata.documentation.DocumentationFunctions::parseDocumentationCode");
+		//console.log("com.developedbyme.compiler.compiledata.documentation.DocumentationFunctions::documentDbmClass");
 		//console.log(aBreakdown, aDocumentationData);
 		
 		var returnData = DocumentedItem.create(DocumentationTypes.CLASS, aBreakdown.getScript());

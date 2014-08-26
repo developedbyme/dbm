@@ -1,0 +1,95 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>AdditionNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.math.AdditionNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.math.AdditionNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.math.AdditionNode");
+	//"use strict";
+	
+	//Self reference
+	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.AdditionNode::_init");
+		
+		this.superCall();
+		
+		var inputValue1 = this.createProperty("inputValue1", 0);
+		var inputValue2 = this.createProperty("inputValue2", 0);
+		var outputValue = this.createProperty("outputValue", 0);
+		
+		this.createUpdateFunctionWithArguments("default", ClassReference._update, [inputValue1, inputValue2], [outputValue]);
+		
+		return this;
+	};
+	
+	staticFunctions._update = function(aInputValue1, aInputValue2) {
+		//console.log("com.developedbyme.flow.nodes.math.AdditionNode::_update");
+		return aInputValue1+aInputValue2;
+	};
+	
+	staticFunctions.create = function(aInput1, aInput2) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputValue1", aInput1);
+		newNode.setPropertyInputWithoutNull("inputValue2", aInput2);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.math.AdditionNode::_init");
+		
+		this.superCall();
+		
+		var inputValue1 = this.createProperty("inputValue1", 0);
+		var inputValue2 = this.createProperty("inputValue2", 0);
+		var outputValue = this.createProperty("outputValue", 0);
+		
+		this.createUpdateFunctionWithArguments("default", ClassReference._update, [inputValue1, inputValue2], [outputValue]);
+		
+		return this;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions._update = function(aInputValue1, aInputValue2) {
+		//console.log("com.developedbyme.flow.nodes.math.AdditionNode::_update");
+		return aInputValue1+aInputValue2;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aInput1, aInput2) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputValue1", aInput1);
+		newNode.setPropertyInputWithoutNull("inputValue2", aInput2);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

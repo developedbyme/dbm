@@ -1,0 +1,419 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>AnyChangeMultipleInputProperty</h1>
+		<div class="classPath">com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty</div>
+		<div class="classInheritance"></div>
+		<div class="description">A ghost property that has multiple input connections.</div>
+		<div class="importSnippet">var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	//"use strict";
+	
+	//Self reference
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
+	//Constants
+	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::_init");
+		
+		this.superCall();
+		
+		this._inputConnections = new Array();
+		
+		return this;
+	};
+	
+	objectFunctions.setValue = function(aValue) {
+		
+	};
+	
+	objectFunctions.setValueWithDelay = function(aValue, aDelay) {
+		
+	};
+	
+	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
+		
+	};
+	
+	objectFunctions.createTimelineControl = function() {
+		
+	};
+	
+	objectFunctions.getAnimationController = function() {
+		return null;
+	};
+	
+	objectFunctions.canBeSet = function() {
+		return false;
+	};
+	
+	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
+		
+	};
+	
+	objectFunctions.updateFlow = function() {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::updateFlow");
+		//console.log(this.name);
+		
+		var highestFlowUpdateNumber = 0;
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentConnection = currentArray[i];
+			highestFlowUpdateNumber = Math.max(highestFlowUpdateNumber, currentConnection.getFlowUpdateNumber());
+		}
+		
+		if(highestFlowUpdateNumber &gt; this._flowUpdateNumber) {
+			this._performSetValue(dbm.singletons.dbmFlowManager.getFlowUpdateNumber());
+			this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+		}
+		this._status = FlowStatusTypes.UPDATED;
+	};
+	
+	objectFunctions.disconnectInput = function(aProperty) {
+		dbm.singletons.dbmFlowManager.disconnectProperties(aProperty, this);
+		
+		return this;
+	};
+	
+	objectFunctions._linkRegistration_setInputConnection = function(aInputConnection) {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::_linkRegistration_setInputConnection");
+		//console.log(this.name);
+		this._inputConnections.push(aInputConnection);
+		this.setStatus(FlowStatusTypes.NEEDS_UPDATE);
+		this.setDependentConnectionsAsDirty();
+		
+		this._flowUpdateNumber = 0;
+	};
+	
+	objectFunctions._linkRegistration_setInputUpdateFunction = function(aUpdateFunction) {
+		
+	};
+	
+	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::_linkRegistration_removeInputConnection");
+		//console.log(this.name);
+		
+		var index = ArrayFunctions.indexOfInArray(this._inputConnections, aProperty);
+		if(index !== -1) {
+			this._inputConnections.splice(index, 1);
+		}
+	};
+	
+	objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
+		
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentConnection = currentArray[i];
+			if(currentConnection !== null &amp;&amp; currentConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
+				aReturnArray.push(currentConnection);
+			}
+		}
+		
+		if(this._objectInputConnection !== null &amp;&amp; !this._objectInputConnection.isOutput() &amp;&amp; this._objectInputConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
+			aReturnArray.push(this._objectInputConnection);
+		}
+	};
+	
+	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::fillWithAllInputConnections");
+		
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentConnection = currentArray[i];
+			if(currentConnection !== null) {
+				aReturnArray.push(currentConnection);
+			}
+		}
+		
+		if(this._objectInputConnection !== null &amp;&amp; !this._objectInputConnection.isOutput()) {
+			aReturnArray.push(this._objectInputConnection);
+		}
+	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		if(this._inputConnections !== null) {
+			var currentArray = ArrayFunctions.copyArray(this._inputConnections);
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				this.disconnectInput(currentArray[i]);
+			}
+		}
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputConnections = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aObjectInput) {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::create");
+		//console.log(aObjectInput);
+		var newAnyChangeMultipleInputProperty = (new AnyChangeMultipleInputProperty()).init();
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newAnyChangeMultipleInputProperty);
+			newAnyChangeMultipleInputProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
+		return newAnyChangeMultipleInputProperty;
+	};
+	
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description">Constructor</div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::_init");
+		
+		this.superCall();
+		
+		this._inputConnections = new Array();
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setValue = function(aValue) {
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setValueWithDelay</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setValueWithDelay = function(aValue, aDelay) {
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">animateValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">createTimelineControl</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.createTimelineControl = function() {
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">getAnimationController</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.getAnimationController = function() {
+		return null;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">canBeSet</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.canBeSet = function() {
+		return false;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setValueWithFlow</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">updateFlow</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.updateFlow = function() {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::updateFlow");
+		//console.log(this.name);
+		
+		var highestFlowUpdateNumber = 0;
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentConnection = currentArray[i];
+			highestFlowUpdateNumber = Math.max(highestFlowUpdateNumber, currentConnection.getFlowUpdateNumber());
+		}
+		
+		if(highestFlowUpdateNumber &gt; this._flowUpdateNumber) {
+			this._performSetValue(dbm.singletons.dbmFlowManager.getFlowUpdateNumber());
+			this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+		}
+		this._status = FlowStatusTypes.UPDATED;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">disconnectInput</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.disconnectInput = function(aProperty) {
+		dbm.singletons.dbmFlowManager.disconnectProperties(aProperty, this);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_linkRegistration_setInputConnection</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._linkRegistration_setInputConnection = function(aInputConnection) {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::_linkRegistration_setInputConnection");
+		//console.log(this.name);
+		this._inputConnections.push(aInputConnection);
+		this.setStatus(FlowStatusTypes.NEEDS_UPDATE);
+		this.setDependentConnectionsAsDirty();
+		
+		this._flowUpdateNumber = 0;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_linkRegistration_setInputUpdateFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._linkRegistration_setInputUpdateFunction = function(aUpdateFunction) {
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_linkRegistration_removeInputConnection</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::_linkRegistration_removeInputConnection");
+		//console.log(this.name);
+		
+		var index = ArrayFunctions.indexOfInArray(this._inputConnections, aProperty);
+		if(index !== -1) {
+			this._inputConnections.splice(index, 1);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">fillWithDirtyInputConnections</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
+		
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentConnection = currentArray[i];
+			if(currentConnection !== null &amp;&amp; currentConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
+				aReturnArray.push(currentConnection);
+			}
+		}
+		
+		if(this._objectInputConnection !== null &amp;&amp; !this._objectInputConnection.isOutput() &amp;&amp; this._objectInputConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
+			aReturnArray.push(this._objectInputConnection);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">fillWithAllInputConnections</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::fillWithAllInputConnections");
+		
+		var currentArray = this._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentConnection = currentArray[i];
+			if(currentConnection !== null) {
+				aReturnArray.push(currentConnection);
+			}
+		}
+		
+		if(this._objectInputConnection !== null &amp;&amp; !this._objectInputConnection.isOutput()) {
+			aReturnArray.push(this._objectInputConnection);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.performDestroy = function() {
+		
+		if(this._inputConnections !== null) {
+			var currentArray = ArrayFunctions.copyArray(this._inputConnections);
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				this.disconnectInput(currentArray[i]);
+			}
+		}
+		
+		this.superCall();
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputConnections = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aObjectInput) {
+		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::create");
+		//console.log(aObjectInput);
+		var newAnyChangeMultipleInputProperty = (new AnyChangeMultipleInputProperty()).init();
+		if(aObjectInput !== null) {
+			aObjectInput._linkRegistration_addObjectProperty(newAnyChangeMultipleInputProperty);
+			newAnyChangeMultipleInputProperty._linkRegistration_setObjectInputConnection(aObjectInput);
+		}
+		return newAnyChangeMultipleInputProperty;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

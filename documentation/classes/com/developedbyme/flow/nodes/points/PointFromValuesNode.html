@@ -1,0 +1,143 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>PointFromValuesNode</h1>
+		<div class="classPath">com.developedbyme.flow.nodes.points.PointFromValuesNode</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var PointFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.points.PointFromValuesNode");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.points.PointFromValuesNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.flow.nodes.points.PointFromValuesNode");
+	//"use strict";
+	
+	var PointFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.points.PointFromValuesNode");
+	
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.points.PointFromValuesNode::_init");
+		
+		this.superCall();
+		
+		this._x = this.createProperty("x", 0);
+		this._y = this.createProperty("y", 0);
+		this._z = this.createProperty("z", 0);
+		this._w = this.createProperty("w", 0);
+		this._outputPoint = this.createProperty("outputPoint", Point.create());
+		
+		this.createUpdateFunction("default", this._update, [this._x, this._y, this._z, this._w], [this._outputPoint]);
+		
+		return this;
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.points.PointFromValuesNode::_update");
+		
+		var outputPoint = this._outputPoint.getValueWithoutFlow();
+		
+		outputPoint.x = this._x.getValueWithoutFlow();
+		outputPoint.y = this._y.getValueWithoutFlow();
+		outputPoint.z = this._z.getValueWithoutFlow();
+		outputPoint.w = this._w.getValueWithoutFlow();
+		
+		this._outputPoint.setFlowAsUpdated(aFlowUpdateNumber);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._x = null;
+		this._y = null;
+		this._z = null;
+		this._w = null;
+		this._outputPoint = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aX, aY, aZ, aW) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("x", aX);
+		newNode.setPropertyInputWithoutNull("y", aY);
+		newNode.setPropertyInputWithoutNull("z", aZ);
+		newNode.setPropertyInputWithoutNull("w", aW);
+		return newNode;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.flow.nodes.points.PointFromValuesNode::_init");
+		
+		this.superCall();
+		
+		this._x = this.createProperty("x", 0);
+		this._y = this.createProperty("y", 0);
+		this._z = this.createProperty("z", 0);
+		this._w = this.createProperty("w", 0);
+		this._outputPoint = this.createProperty("outputPoint", Point.create());
+		
+		this.createUpdateFunction("default", this._update, [this._x, this._y, this._z, this._w], [this._outputPoint]);
+		
+		return this;
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">_update</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("com.developedbyme.flow.nodes.points.PointFromValuesNode::_update");
+		
+		var outputPoint = this._outputPoint.getValueWithoutFlow();
+		
+		outputPoint.x = this._x.getValueWithoutFlow();
+		outputPoint.y = this._y.getValueWithoutFlow();
+		outputPoint.z = this._z.getValueWithoutFlow();
+		outputPoint.w = this._w.getValueWithoutFlow();
+		
+		this._outputPoint.setFlowAsUpdated(aFlowUpdateNumber);
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._x = null;
+		this._y = null;
+		this._z = null;
+		this._w = null;
+		this._outputPoint = null;
+		
+		this.superCall();
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.create = function(aX, aY, aZ, aW) {
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("x", aX);
+		newNode.setPropertyInputWithoutNull("y", aY);
+		newNode.setPropertyInputWithoutNull("z", aZ);
+		newNode.setPropertyInputWithoutNull("w", aW);
+		return newNode;
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>

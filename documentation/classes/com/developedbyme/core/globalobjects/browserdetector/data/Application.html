@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>Application</h1>
+		<div class="classPath">com.developedbyme.core.globalobjects.browserdetector.data.Application</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var Application = dbm.importClass("com.developedbyme.core.globalobjects.browserdetector.data.Application");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.browserdetector.data.Application", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.globalobjects.browserdetector.data.Application");
+	
+	var Application = dbm.importClass("com.developedbyme.core.globalobjects.browserdetector.data.Application");
+	
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.browserdetector.data.Application::_init");
+		
+		this.superCall();
+		
+		this.name = null;
+		this.version = null;
+		this.comment = null;
+		this.squareBracketComments = null;
+		
+		return this;
+		
+	};
+	
+	objectFunctions.setData = function(aName, aVersion, aComment, aSquareBracketComments) {
+		this.name = aName;
+		this.version = aVersion;
+		this.comment = aComment;
+		this.squareBracketComments = aSquareBracketComments;
+		
+		return this;
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions._init = function() {
+		//console.log("com.developedbyme.core.globalobjects.browserdetector.data.Application::_init");
+		
+		this.superCall();
+		
+		this.name = null;
+		this.version = null;
+		this.comment = null;
+		this.squareBracketComments = null;
+		
+		return this;
+		
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">setData</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">objectFunctions.setData = function(aName, aVersion, aComment, aSquareBracketComments) {
+		this.name = aName;
+		this.version = aVersion;
+		this.comment = aComment;
+		this.squareBracketComments = aSquareBracketComments;
+		
+		return this;
+	}</div>
+		</div></div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		</div>
+		
+		
+	
+</body></html>

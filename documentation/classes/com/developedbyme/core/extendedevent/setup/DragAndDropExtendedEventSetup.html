@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+	</head>
+	<body>
+		<h1>DragAndDropExtendedEventSetup</h1>
+		<div class="classPath">com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup</div>
+		<div class="classInheritance"></div>
+		<div class="description"></div>
+		<div class="importSnippet">var DragAndDropExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup");</div>
+		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup");
+	
+	//Self reference
+	var DragAndDropExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	var ActivateEventLinkCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand");
+	var PreventDefaultCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand");
+	var StopPropagationCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand");
+	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var DragAndDropExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.DragAndDropExtendedEventIds");
+	
+	staticFunctions.addDropEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.DRAG_ENTER, DragAndDropExtendedEventIds.DRAG_ENTER, aUseCapture, DragAndDropExtendedEventIds.DROP, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.DRAG_OVER, DragAndDropExtendedEventIds.DRAG_OVER, aUseCapture, DragAndDropExtendedEventIds.DROP, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.DRAG_LEAVE, DragAndDropExtendedEventIds.DRAG_LEAVE, aUseCapture, DragAndDropExtendedEventIds.DROP, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.DROP, DragAndDropExtendedEventIds.DROP, aUseCapture, DragAndDropExtendedEventIds.DROP, true, true);
+		
+		DragAndDropExtendedEventSetup.preventDefaultForEvent(aExtendedEventController, DragAndDropExtendedEventIds.DRAG_OVER);
+		DragAndDropExtendedEventSetup.preventDefaultForEvent(aExtendedEventController, DragAndDropExtendedEventIds.DROP);
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(DragAndDropExtendedEventIds.DROP);
+		}
+	};
+	
+	staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
+		//(console.log("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup::preventDefaultForEvent");
+		
+		aExtendedEventController.addCommandToEvent(aEventName, StopPropagationCommand.createCommandWithDataAsEvent());
+		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());
+	};
+})</div>
+		<h2>Local functions</h2>
+		<div class="localFunctions">
+			
+		</div>
+		<h2>Static functions</h2>
+		<div class="staticFunctions">
+			
+		<div>
+			<div class="definition">
+				<span class="functionName">addDropEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.addDropEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.DRAG_ENTER, DragAndDropExtendedEventIds.DRAG_ENTER, aUseCapture, DragAndDropExtendedEventIds.DROP, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.DRAG_OVER, DragAndDropExtendedEventIds.DRAG_OVER, aUseCapture, DragAndDropExtendedEventIds.DROP, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.DRAG_LEAVE, DragAndDropExtendedEventIds.DRAG_LEAVE, aUseCapture, DragAndDropExtendedEventIds.DROP, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.DROP, DragAndDropExtendedEventIds.DROP, aUseCapture, DragAndDropExtendedEventIds.DROP, true, true);
+		
+		DragAndDropExtendedEventSetup.preventDefaultForEvent(aExtendedEventController, DragAndDropExtendedEventIds.DRAG_OVER);
+		DragAndDropExtendedEventSetup.preventDefaultForEvent(aExtendedEventController, DragAndDropExtendedEventIds.DROP);
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(DragAndDropExtendedEventIds.DROP);
+		}
+	}</div>
+		</div><div>
+			<div class="definition">
+				<span class="functionName">preventDefaultForEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+			</div>
+			<div class="description"></div>
+			<div class="code">staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
+		//(console.log("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup::preventDefaultForEvent");
+		
+		aExtendedEventController.addCommandToEvent(aEventName, StopPropagationCommand.createCommandWithDataAsEvent());
+		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());
+	}</div>
+		</div></div>
+		
+		
+	
+</body></html>
