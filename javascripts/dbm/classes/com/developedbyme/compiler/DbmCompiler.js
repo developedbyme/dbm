@@ -233,6 +233,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		}
 		
 		console.log(documentationTreeStructure);
+		return documentationTreeStructure;
 	};
 	
 	objectFunctions.documentFile = function(aPath, aTreeStructureItem) {

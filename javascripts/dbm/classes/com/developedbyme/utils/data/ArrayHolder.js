@@ -53,7 +53,7 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 		this.array = null;
 		
 		this.superCall();
-	};
+	}; //End function setAllReferencesToNull
 	
 	/**
 	 * Checks if this object owns a specific variable. Part of the destroy function.

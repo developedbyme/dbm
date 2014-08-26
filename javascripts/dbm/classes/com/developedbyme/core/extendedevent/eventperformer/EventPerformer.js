@@ -2,9 +2,23 @@
 dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");
 	
-	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	//Self reference
+	var EventPerformer = dbm.importClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");
+	
+	//Error report
+	
+	//Dependencies
 	var CommandsArrayIterator = dbm.importClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator");
 	
+	//Utils
+	
+	//Constants
+	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::_init");
 		

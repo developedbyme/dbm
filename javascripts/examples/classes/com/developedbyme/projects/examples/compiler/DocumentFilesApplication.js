@@ -15,12 +15,19 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	
 	//Dependencies
 	var DbmCompiler = dbm.importClass("com.developedbyme.compiler.DbmCompiler");
+	var TemplateWithCommands = dbm.importClass("com.developedbyme.utils.templates.TemplateWithCommands");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var RemoveIdCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.htmldom.RemoveIdCommand");
+	var SetTextContentCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.htmldom.SetTextContentCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var GetNamedArrayValueObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetNamedArrayValueObject");
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var DocumentationTypes = dbm.importClass("com.developedbyme.constants.compiler.DocumentationTypes");
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	
 	/**
 	 * Constructor
@@ -29,6 +36,11 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		//console.log("com.developedbyme.projects.examples.compiler.DocumentFilesApplication::_init");
 		
 		this.superCall();
+		
+		this._classTemplatePath = "../assets/examples/compiler/documentationTemplates.xml#class";
+		this._functionTemplatePath = "../assets/examples/compiler/documentationTemplates.xml#function";
+		
+		this._assetsLoader.addAssetsByPath(this._classTemplatePath, this._functionTemplatePath);
 		
 		this._addStartFunction(this._createPage, []);
 		
@@ -49,7 +61,38 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	objectFunctions._generateDocumentation = function(aCompiler) {
 		console.log("com.developedbyme.projects.examples.compiler.DocumentFilesApplication::_generateDocumentation");
 		console.log(aCompiler);
-		aCompiler.documentFiles();
+		
+		var documentationTree = aCompiler.documentFiles();
+		console.log(documentationTree);
+		
+		var selectDataReevaluator = GetNamedArrayValueObject.createCommand(GetVariableObject.createSelectDataCommand(), "data");
+		var selectDefinitionReevaluator = GetVariableObject.createCommand(selectDataReevaluator, "definition");
+		
+		var classTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._classTemplatePath));
+		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveIdCommand.createOnTemplateOutputCommand());
+		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, SetTextContentCommand.createOnTemplateOutputWithQueryCommand("h1", GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath")));
+		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, SetTextContentCommand.createOnTemplateOutputWithQueryCommand(".description", GetVariableObject.createCommand(selectDataReevaluator, "_description"))); //METODO: do not access private variable
+		
+		
+		var functionTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._functionTemplatePath));
+		
+		console.log(classTemplate, functionTemplate);
+		
+		var currentArray = documentationTree.getRoot().getChildren();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentFile = currentArray[i];
+			var outputData = this._generateDocumentationForFile(currentFile, classTemplate);
+			console.log(currentFile.getName(), outputData);
+		}
+	};
+	
+	objectFunctions._generateDocumentationForFile = function(aTreeStructureItem, aClassTemplate) {
+		var currentChildren = aTreeStructureItem.getChildren();
+		if(currentChildren.length === 1 && currentChildren[0].data.type === DocumentationTypes.CLASS) {
+			return aClassTemplate.createNewItem(currentChildren[0].data);
+		}
+		return null;
 	};
 	
 	/**
