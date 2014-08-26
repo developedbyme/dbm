@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.compiler.snippets.SnippetsGenerator", "com.
 	/**
 	 * Generates an import statement for a class.
 	 *
-	 * @param	@aClassPath		String	The path to the class to generate code for.
+	 * @param	aClassPath		String	The path to the class to generate code for.
 	 * 
 	 * @return	String	The generated code.
 	 */
@@ -60,7 +60,7 @@ dbm.registerClass("com.developedbyme.compiler.snippets.SnippetsGenerator", "com.
 	/**
 	 * Gets the class name from a full path.
 	 *
-	 * @param	@aClassPath		String	The path to get the name for.
+	 * @param	aClassPath		String	The path to get the name for.
 	 *
 	 * @return	String 	The name of the class.
 	 */

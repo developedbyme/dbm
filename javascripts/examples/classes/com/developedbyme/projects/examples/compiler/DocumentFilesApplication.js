@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	var DbmCompiler = dbm.importClass("com.developedbyme.compiler.DbmCompiler");
 	var TemplateWithCommands = dbm.importClass("com.developedbyme.utils.templates.TemplateWithCommands");
 	var JsonAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.JsonAsset");
+	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -27,6 +28,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
 	var InsertTemplatedArrayCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.template.InsertTemplatedArrayCommand");
 	var RemoveElementCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.htmldom.RemoveElementCommand");
+	var RebaseDocumentLinksCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.htmldom.RebaseDocumentLinksCommand");
 	var SnippetsGenerator = dbm.importClass("com.developedbyme.compiler.snippets.SnippetsGenerator");
 	var DocumentationTreeStructureFunctions = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentationTreeStructureFunctions");
 	var IsoDate = dbm.importClass("com.developedbyme.utils.native.date.IsoDate");
@@ -51,6 +53,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		var currentDate = new Date();
 		var dateString = IsoDate.getCompactIsoDateAndTime(currentDate);
 		this._rootFolderForSaving = "documentation/" + dateString + "/classes";
+		this._currentFilePath = UrlResolver.create();
 		
 		this._assetsLoader.addAssetsByPath(this._classTemplatePath, this._functionTemplatePath);
 		
@@ -91,6 +94,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		var functionTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._functionTemplatePath));
 		
 		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveIdCommand.createOnTemplateOutputCommand());
+		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RebaseDocumentLinksCommand.createOnTemplateOutputCommand(this._currentFilePath));
 		
 		this._createSetTextContentCommand(classTemplate, "h1", CallFunctionObject.createCommand(SnippetsGenerator, SnippetsGenerator.getClassNameFromPath, [GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath")]));
 		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveElementCommand.createOnTemplateOutputWithQueryCommand("#function"));
@@ -143,23 +147,24 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	objectFunctions._generateDocumentationForFile = function(aTreeStructureItem, aClassTemplate) {
 		var currentChildren = aTreeStructureItem.getChildren();
 		if(currentChildren.length === 1 && currentChildren[0].data.type === DocumentationTypes.CLASS) {
+			var currentClassPath = currentChildren[0].data.definition.classPath;
+			var currentFilePath = currentClassPath.split(".").join("/");
+			this._currentFilePath.setupBaseUrl("", currentFilePath.substring(0, currentFilePath.lastIndexOf("/")));
+			
 			var returnValue = aClassTemplate.createNewItem(currentChildren[0]);
 			
-			this._saveClassDocumentation(currentChildren[0].data.definition.classPath, returnValue);
+			this._saveClassDocumentation(currentFilePath, returnValue);
 			return returnValue;
 		}
 		return null;
 	};
 	
-	objectFunctions._saveClassDocumentation = function(aClassPath, aHtmlDocument) {
+	objectFunctions._saveClassDocumentation = function(aFilePath, aHtmlDocument) {
 		console.log("com.developedbyme.projects.examples.compiler.DocumentFilesApplication::_saveClassDocumentation");
 		
 		var loader = JsonAsset.create("http://localhost:8080/dbm/examples/saveFile");
 		
-		var filePath = aClassPath.split(".").join("/");
-		
-		loader.setupAsFormObjectPost({"fileName": this._rootFolderForSaving + "/" + filePath + ".html", "dataEncoding": "ascii", "data": XmlCreator.createStringFromXml(aHtmlDocument)});
-		console.log(loader);
+		loader.setupAsFormObjectPost({"fileName": this._rootFolderForSaving + "/" + aFilePath + ".html", "dataEncoding": "ascii", "data": XmlCreator.createStringFromXml(aHtmlDocument)});
 		
 		loader.load();
 	};

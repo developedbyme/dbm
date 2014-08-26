@@ -118,12 +118,15 @@ dbm.registerClass("com.developedbyme.utils.file.UrlResolver", "com.developedbyme
 		
 		var workPath = aPath;
 		
-		if(workPath.indexOf(this._basePath) !== 0) {
-			//METODO: error message
-			return null;
+		if(this._basePath !== "") {
+			if(workPath.indexOf(this._basePath) !== 0) {
+				//METODO: error message
+				return null;
+			}
+		
+			workPath = workPath.substring(this._basePath.length + 1, workPath.length);
 		}
 		
-		workPath = workPath.substring(this._basePath.length + 1, workPath.length);
 		
 		var questionMarkPosition = workPath.indexOf("?");
 		var queryString = ""; //MENOTE: should include ? if exists
