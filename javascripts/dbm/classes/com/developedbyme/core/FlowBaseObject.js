@@ -1,14 +1,20 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Base object for objects that are using properites to flow updates through the application.
+ */
 dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.FlowBaseObject");
 	//"use strict";
 	
+	//Self reference
 	var FlowBaseObject = dbm.importClass("com.developedbyme.core.FlowBaseObject");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
@@ -16,8 +22,15 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::_init");
 		
@@ -33,6 +46,9 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return this;
 	};
 	
+	/**
+	 * Creates an object property for this object. Needed when simple values are combined to an object (eg. values to a point).
+	 */
 	objectFunctions._createObjectProperty = function() {
 		this._objectProperty = ObjectProperty.create(this);
 		this._objectProperty.name = this.__nodeId + "::object(o)";
@@ -41,6 +57,9 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		this._objectProperty.setAsDirty();
 	};
 	
+	/**
+	 * Adds the object property to all the exisitng properties.
+	 */
 	objectFunctions._addObjectPropertyToAllProperties = function() {
 		var currentArray = this._properties.getObjectsArray();
 		var currentArrayLength = currentArray.length;
@@ -51,6 +70,11 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		}
 	};
 	
+	/**
+	 * Gets the object property for this object. The property is created if it doesn't alread exists.
+	 *
+	 * @return	ObjectProperty	The object property.
+	 */
 	objectFunctions.getObjectProperty = function() {
 		if(this._objectProperty === null) {
 			this._createObjectProperty();
@@ -58,6 +82,11 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return this._objectProperty;
 	};
 	
+	/**
+	 * Gets the object property if it exists.
+	 *
+	 * @return	ObjectProperty	The object property. Null if the property doesn't exist.
+	 */
 	objectFunctions.getObjectPropertyIfExists = function() {
 		return this._objectProperty;
 	};
@@ -146,6 +175,11 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return this;
 	};
 	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with the parameters description.
+	 */
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
@@ -154,6 +188,9 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		}
 	};
 	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._objectProperty = null;

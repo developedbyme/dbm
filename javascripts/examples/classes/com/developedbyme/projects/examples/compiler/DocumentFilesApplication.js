@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	var TemplateWithCommands = dbm.importClass("com.developedbyme.utils.templates.TemplateWithCommands");
 	var JsonAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.JsonAsset");
 	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -29,10 +30,14 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	var InsertTemplatedArrayCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.template.InsertTemplatedArrayCommand");
 	var RemoveElementCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.htmldom.RemoveElementCommand");
 	var RebaseDocumentLinksCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.htmldom.RebaseDocumentLinksCommand");
+	var QuerySelectorObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject");
 	var SnippetsGenerator = dbm.importClass("com.developedbyme.compiler.snippets.SnippetsGenerator");
 	var DocumentationTreeStructureFunctions = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentationTreeStructureFunctions");
 	var IsoDate = dbm.importClass("com.developedbyme.utils.native.date.IsoDate");
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var ArraySortingFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArraySortingFunctions");
+	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
@@ -52,7 +57,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		
 		var currentDate = new Date();
 		var dateString = IsoDate.getCompactIsoDateAndTime(currentDate);
-		this._rootFolderForSaving = "documentation/" + dateString + "/classes";
+		this._rootFolderForSaving = "documentation/" + dateString;
 		this._currentFilePath = UrlResolver.create();
 		
 		this._assetsLoader.addAssetsByPath(this._classTemplatePath, this._functionTemplatePath);
@@ -82,8 +87,13 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		console.log("com.developedbyme.projects.examples.compiler.DocumentFilesApplication::_generateDocumentation");
 		console.log(aCompiler);
 		
+		var classHierarchyGraph = NamedArray.create(false);
+		
 		var documentationTree = aCompiler.documentFiles();
 		console.log(documentationTree);
+		
+		aCompiler.getClassHierarchy(classHierarchyGraph);
+		console.log(classHierarchyGraph);
 		
 		var selectTreeStructureReevaluator = GetNamedArrayValueObject.createCommand(GetVariableObject.createSelectDataCommand(), "data");
 		var selectDataReevaluator = GetVariableObject.createCommand(selectTreeStructureReevaluator, "data");
@@ -94,15 +104,18 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		var functionTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._functionTemplatePath));
 		
 		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveIdCommand.createOnTemplateOutputCommand());
-		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RebaseDocumentLinksCommand.createOnTemplateOutputCommand(this._currentFilePath));
+		
 		
 		this._createSetTextContentCommand(classTemplate, "h1", CallFunctionObject.createCommand(SnippetsGenerator, SnippetsGenerator.getClassNameFromPath, [GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath")]));
 		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveElementCommand.createOnTemplateOutputWithQueryCommand("#function"));
 		this._createSetTextContentCommand(classTemplate, ".classPath", GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath"));
 		this._createSetTextContentCommand(classTemplate, ".description", GetVariableObject.createCommand(selectDocumentationReevaluator, "_description")); //METODO: do not access private variable
-		this._createSetTextContentCommand(classTemplate, ".code", GetVariableObject.createCommand(selectDataReevaluator, "fullCode"));
-		this._createSetTextContentCommand(classTemplate, ".importSnippet", CallFunctionObject.createCommand(SnippetsGenerator, SnippetsGenerator.createImport, [GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath")]));
+		this._createSetTextContentCommand(classTemplate, ".fullCode .code", GetVariableObject.createCommand(selectDataReevaluator, "fullCode"));
+		this._createSetTextContentCommand(classTemplate, ".snippet .code", CallFunctionObject.createCommand(SnippetsGenerator, SnippetsGenerator.createImport, [GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath")]));
 		
+		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertDependencyLinks, [QuerySelectorObject.createOnTemplateOutputCommand(".dependencies"), GetVariableObject.createCommand(selectDefinitionReevaluator, "dependencies")]));
+		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertClassInheritanceLinks, [QuerySelectorObject.createOnTemplateOutputCommand(".classInheritance"), GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath"), classHierarchyGraph]));
+		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertSubclassLinks, [QuerySelectorObject.createOnTemplateOutputCommand(".subClasses"), GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath"), classHierarchyGraph]));
 		
 		classTemplate.getExtendedEvent().addCommandToEvent(
 			GenericExtendedEventIds.NEW,
@@ -133,14 +146,16 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		functionTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveIdCommand.createOnTemplateOutputCommand());
 		this._createSetTextContentCommand(functionTemplate, ".functionName", GetVariableObject.createCommand(selectDefinitionReevaluator, "functionName"));
 		this._createSetTextContentCommand(functionTemplate, ".description", GetVariableObject.createCommand(selectDocumentationReevaluator, "_description")); //METODO: do not access private variable
-		this._createSetTextContentCommand(functionTemplate, ".code", GetVariableObject.createCommand(selectDataReevaluator, "fullCode"));
+		this._createSetTextContentCommand(functionTemplate, ".fullCode .code", GetVariableObject.createCommand(selectDataReevaluator, "fullCode"));
+		
+		//Rebase all the links at the end
+		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RebaseDocumentLinksCommand.createOnTemplateOutputCommand(this._currentFilePath));
 		
 		var currentArray = documentationTree.getRoot().getChildren();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentFile = currentArray[i];
 			var outputData = this._generateDocumentationForFile(currentFile, classTemplate);
-			console.log(currentFile.getName(), outputData);
 		}
 	};
 	
@@ -148,7 +163,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		var currentChildren = aTreeStructureItem.getChildren();
 		if(currentChildren.length === 1 && currentChildren[0].data.type === DocumentationTypes.CLASS) {
 			var currentClassPath = currentChildren[0].data.definition.classPath;
-			var currentFilePath = currentClassPath.split(".").join("/");
+			var currentFilePath = "classes/" + currentClassPath.split(".").join("/")  + ".html";
 			this._currentFilePath.setupBaseUrl("", currentFilePath.substring(0, currentFilePath.lastIndexOf("/")));
 			
 			var returnValue = aClassTemplate.createNewItem(currentChildren[0]);
@@ -160,11 +175,11 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	};
 	
 	objectFunctions._saveClassDocumentation = function(aFilePath, aHtmlDocument) {
-		console.log("com.developedbyme.projects.examples.compiler.DocumentFilesApplication::_saveClassDocumentation");
+		//console.log("com.developedbyme.projects.examples.compiler.DocumentFilesApplication::_saveClassDocumentation");
 		
 		var loader = JsonAsset.create("http://localhost:8080/dbm/examples/saveFile");
 		
-		loader.setupAsFormObjectPost({"fileName": this._rootFolderForSaving + "/" + aFilePath + ".html", "dataEncoding": "ascii", "data": XmlCreator.createStringFromXml(aHtmlDocument)});
+		loader.setupAsFormObjectPost({"fileName": this._rootFolderForSaving + "/" + aFilePath, "dataEncoding": "ascii", "data": XmlCreator.createStringFromXml(aHtmlDocument)});
 		
 		loader.load();
 	};
@@ -178,6 +193,107 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	 */
 	objectFunctions._createSetTextContentCommand = function(aTemplate, aQuery, aData) {
 		aTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, SetTextContentCommand.createOnTemplateOutputWithQueryCommand(aQuery, aData));
+	};
+	
+	/**
+	 * Inserts inheritance links to a node.
+	 *
+	 * @param	aHolderElement			Element		The element to insert the links in.
+	 * @param	aClass					String		The name of the class to get inheritance for.
+	 * @param	aClassInheritanceGraph	NamedArray	The inheritance data graph.
+	 */
+	objectFunctions.insertClassInheritanceLinks = function(aHolderElement, aClass, aClassInheritanceGraph) {
+		var currentClassName = aClassInheritanceGraph.getObject(aClass);
+		var classArray = new Array();
+		
+		var debugCounter = 0;
+		while(currentClassName) {
+			if(debugCounter++ > 1000) {
+				//METODO: error message
+				break;
+			}
+			classArray.push(currentClassName);
+			currentClassName = aClassInheritanceGraph.getObject(currentClassName);
+		}
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(aHolderElement.ownerDocument);
+		
+		this.insertClassLinks(aHolderElement, classArray, htmlCreator.createText(" > "), "No inheritance");
+	};
+	
+	/**
+	 * Inserts subclass links to a node.
+	 *
+	 * @param	aHolderElement			Element		The element to insert the links in.
+	 * @param	aClass					String		The name of the class to get subclasses for.
+	 * @param	aClassInheritanceGraph	NamedArray	The inheritance data graph.
+	 */
+	objectFunctions.insertSubclassLinks = function(aHolderElement, aClass, aClassInheritanceGraph) {
+		var currentClassName = aClassInheritanceGraph.getObject(aClass);
+		var classArray = new Array();
+		
+		aClassInheritanceGraph.identifyObjectWithMultipleResults(aClass, classArray);
+		classArray.sort(ArraySortingFunctions.classPathsByName);
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(aHolderElement.ownerDocument);
+		
+		this.insertClassLinks(aHolderElement, classArray, htmlCreator.createText(", "), "Class has no subclasses.");
+	};
+	
+	/**
+	 * Inserts dependency links to a node.
+	 *
+	 * @param	aHolderElement		Element		The element to insert the links in.
+	 * @param	aClassPaths			Array		Array of class paths.
+	 */
+	objectFunctions.insertDependencyLinks = function(aHolderElement, aClassPaths) {
+		var classArray = ArrayFunctions.copyArray(aClassPaths);
+		classArray.sort(ArraySortingFunctions.classPathsByName);
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(aHolderElement.ownerDocument);
+		
+		this.insertClassLinks(aHolderElement, classArray, htmlCreator.createText(", "), "Class has no dependencies.");
+	};
+	
+	/**
+	 * Inserts a list of class links.
+	 *
+	 * @param	aHolderElement		Element		The element to insert the links in.
+	 * @param	aClassPaths			Array		Array of class paths.
+	 * @param	aSpacingElement		Element		The element to insert between links.
+	 * @param	aNoDataText			String		The text to display if there are no links.
+	 */
+	objectFunctions.insertClassLinks = function(aHolderElement, aClassPaths, aSpacingElement, aNoDataText) {
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(aHolderElement.ownerDocument);
+		
+		var currentArray = aClassPaths;
+		var currentArrayLength = currentArray.length;
+		if(currentArrayLength) {
+			for(var i = 0; i < currentArrayLength; i++) {
+				if(i !== 0) {
+					aHolderElement.appendChild(DomManipulationFunctions.cloneNode(aSpacingElement, true));
+				}
+				aHolderElement.appendChild(this.createClassLink(currentArray[i], htmlCreator));
+			}
+		}
+		else {
+			aHolderElement.appendChild(htmlCreator.createNode("span", {"class": "noData"}, htmlCreator.createText(aNoDataText)));
+		}
+	};
+	
+	/**
+	 * Creates a new link to a class.
+	 *
+	 * @param	aClassPath		String 			The path to the class.
+	 * @param	aHtmlCreator	HtmlCreator		The creator for new nodes.
+	 *
+	 * @return	Element	The a tag that links to the class.
+	 */
+	objectFunctions.createClassLink = function(aClassPath, aHtmlCreator) {
+		var filePath = "classes/" + aClassPath.split(".").join("/")  + ".html";
+		var className = aClassPath.substring(aClassPath.lastIndexOf(".")+1, aClassPath.length);
+		return aHtmlCreator.createNode("a", {"title": aClassPath, "href": filePath}, aHtmlCreator.createText(className));
 	};
 	
 	/**

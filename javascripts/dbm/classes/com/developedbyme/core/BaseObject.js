@@ -58,6 +58,13 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return this;
 	};
 	
+	/**
+	 * Adds an object that should be destroyed when this object is destroyed.
+	 *
+	 * @param	aObject		BaseObject	The object that should be owned by this object.
+	 *
+	 * @return	BaseObject	The object that is passed in.
+	 */
 	objectFunctions.addDestroyableObject = function(aObject) {
 		//console.log("com.developedbyme.core.BaseObject::addDestroyableObject");
 		
@@ -124,6 +131,21 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	
 	objectFunctions.hasDynamicVariable = function(aName) {
 		return (this._dynamicVariables !== null && this._dynamicVariables[aName] !== undefined);
+	};
+	
+	objectFunctions.superCall = function() {
+		//console.log("com.developedbyme.core.BaseObject::superCall");
+		
+		var callerFunction = arguments.callee.caller;
+		
+		var superFunction = callerFunction["superFunction"];
+		
+		if(superFunction !== undefined) {
+			return superFunction.apply(this, arguments);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "superCall", "Function " + callerFunction + " doesn't have a super function.");
+		}
 	};
 	
 	objectFunctions.isDestroyed = function() {
@@ -309,30 +331,6 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	staticFunctions._reuseObject = function(aObject) {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			dbm.singletons.dbmObjectPoolManager.reuseObject(aObject);
-		}
-	};
-});
-
-dbm.extendClass("com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//MENOTE: this can't be strict since arguments.callee is not available then
-	//MENOTE: no other function can be strict since arguments.callee.caller is not available then
-	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
-	
-	objectFunctions.superCall = function() {
-		//console.log("com.developedbyme.core.BaseObject::superCall");
-		
-		var callerFunction = arguments.callee.caller;
-		
-		var superFunction = callerFunction["superFunction"];
-		
-		if(superFunction !== undefined) {
-			return superFunction.apply(this, arguments);
-		}
-		else {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "superCall", "Function " + callerFunction + " doesn't have a super function.");
 		}
 	};
 });

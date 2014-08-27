@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmRe
 	//Dependencies
 	
 	//Utils
+	var BreakdownFunctions = dbm.importClass("com.developedbyme.compiler.breakdown.BreakdownFunctions");
 	
 	//Constants
 	var DbmBreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.DbmBreakdownTypes");
@@ -34,6 +35,20 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmRe
 		this._declarationFunction = null;
 		
 		return this;
+	};
+	
+	/**
+	 * Gets the class path.
+	 */
+	objectFunctions.getClassPath = function() {
+		return BreakdownFunctions.getValueOrNull(this._classPath);
+	};
+	
+	/**
+	 * Gets the class path of the extended.
+	 */
+	objectFunctions.getExtendedClassPath = function() {
+		return BreakdownFunctions.getValueOrNull(this._superClassPath);
 	};
 	
 	/**

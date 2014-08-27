@@ -47,8 +47,8 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.htmldom.RebaseD
 			return CommandStatusTypes.ERROR;
 		}
 		
-		var linkElements = theElement.querySelectorAll("link");
-		this._rebaseAttributeOnElements(linkElements, "href", urlResolver);
+		this._rebaseAttributeOnElements(theElement.querySelectorAll("link"), "href", urlResolver);
+		this._rebaseAttributeOnElements(theElement.querySelectorAll("a"), "href", urlResolver);
 		
 		return CommandStatusTypes.CONTINUE;
 	};

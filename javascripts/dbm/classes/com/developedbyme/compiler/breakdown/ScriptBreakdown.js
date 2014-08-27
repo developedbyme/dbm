@@ -37,6 +37,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdown", "com.d
 		return this;
 	};
 	
+	objectFunctions.getType = function() {
+		return "scriptFile";
+	};
+	
 	objectFunctions.setOwner = function(aOwner) {
 		
 		this._owner = aOwner;

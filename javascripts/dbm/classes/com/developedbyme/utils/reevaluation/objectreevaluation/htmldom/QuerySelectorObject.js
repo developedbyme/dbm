@@ -11,6 +11,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.htmld
 	//Error report
 	
 	//Dependnecies
+	var GetNamedArrayValueObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetNamedArrayValueObject");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	//Utils
 	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
@@ -60,8 +62,9 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.htmld
 	/**
 	 * Creates a command that executes a query selector on an element.
 	 * 
-	 * @param	aObject		HTMLElement		The element to search from.
-	 * @param	aQuery		String			The name of the value to get.
+	 * @param	aObject		Element		The element to search from.
+	 * @param	aQuery		String		The name of the value to get.
+	 *
 	 * @return	The new command.
 	 */
 	staticFunctions.createCommand = function(aObject, aQuery) {
@@ -73,5 +76,19 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.htmld
 		newCommand.queryReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aQuery);
 		
 		return newCommand;
+	};
+	
+	/**
+	 * Creates a command that executes a query selector on the output from a template
+	 * 
+	 * @param	aObject		Element		The element to search from.
+	 *
+	 * @return	The new command.
+	 */
+	staticFunctions.createOnTemplateOutputCommand = function(aQuery) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject::createOnTemplateOutputCommand");
+		//console.log(aQuery);
+		
+		return ClassReference.createCommand(GetNamedArrayValueObject.createCommand(GetVariableObject.createSelectDataCommand(), "output"), aQuery);
 	};
 });

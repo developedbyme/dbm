@@ -42,6 +42,10 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmIm
 		return this;
 	};
 	
+	objectFunctions.getClassPath = function() {
+		return this._classPath;
+	};
+	
 	objectFunctions._breakdown = function() {
 		//console.log("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmImportClassPart::_breakdown");
 		

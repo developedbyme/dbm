@@ -1,4 +1,7 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Compiler that can break down javascript and compress it into a single file.
+ */
 dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.compiler.DbmCompiler");
 	
@@ -31,6 +34,7 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	var BreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.BreakdownTypes");
 	var DbmBreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.DbmBreakdownTypes");
+	var DocumentationTypes = dbm.importClass("com.developedbyme.constants.compiler.DocumentationTypes");
 	
 	/**
 	 * Constructor
@@ -56,6 +60,10 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	
 	/**
 	 * Sets the compile data.
+	 *
+	 * @param	aCompileData	CompileData		The data to use when generating the compiled code.
+	 *
+	 * @return	self
 	 */
 	objectFunctions.setCompileData = function(aCompileData) {
 		this._compileData = aCompileData;
@@ -239,11 +247,11 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 	objectFunctions.documentFile = function(aPath, aTreeStructureItem) {
 		//console.log("com.developedbyme.compiler.DbmCompiler::documentFile");
 		
-		var breakDown = this._scriptBreakdowns.getObject(aPath);
+		var breakdown = this._scriptBreakdowns.getObject(aPath);
 		
 		//METODO: add file documentation
 		
-		this._constructDocumentation(breakDown.getChildBreakdowns(), aTreeStructureItem);
+		this._constructDocumentation(breakdown.getChildBreakdowns(), aTreeStructureItem);
 	};
 	
 	objectFunctions._constructDocumentation = function(aBreakdowns, aParentTreeStructureItem) {
@@ -291,6 +299,15 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 				case BreakdownTypes.COMMENT:
 					//MENOTE: skip the reset of currentDocumentationData
 					continue;
+				case DbmBreakdownTypes.IMPORT_CLASS:
+					var parentData = aParentTreeStructureItem.data;
+					if(parentData !== null && parentData.type === DocumentationTypes.CLASS) {
+						var currentClassName = currentBreakdown.getClassPath();
+						if(currentClassName !== parentData.definition.classPath) {
+							parentData.definition.dependencies.push(currentBreakdown.getClassPath());
+						}
+					}
+					break;
 				default:
 					//METODO: error message
 					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_constructDocumentation", "Unknown type " + currentBreakdownType + ".");
@@ -316,7 +333,6 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 				case BreakdownTypes.DELETE:
 				case BreakdownTypes.DEFAULT:
 				case BreakdownTypes.KEYWORD:
-				case DbmBreakdownTypes.IMPORT_CLASS:
 					//MENOTE: do nothing
 					break;
 			}
@@ -324,6 +340,27 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		}
 	};
 	
+	objectFunctions.getClassHierarchy = function(aNamedArray) {
+		this._getClassHierarchyRecursive(this._scriptBreakdowns.getObjectsArray(), aNamedArray);
+	};
+	
+	objectFunctions._getClassHierarchyRecursive = function(aBreakdowns, aNamedArray) {
+		var currentArray = aBreakdowns;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentBreakdown = currentArray[i];
+			if(currentBreakdown.getType() === DbmBreakdownTypes.REGISTER_CLASS) {
+				aNamedArray.addObject(currentBreakdown.getClassPath(), currentBreakdown.getExtendedClassPath());
+			}
+			else {
+				this._getClassHierarchyRecursive(currentBreakdown.getChildBreakdowns(), aNamedArray);
+			}
+		}
+	};
+	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._loadedFiles = null;

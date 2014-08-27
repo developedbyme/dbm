@@ -41,18 +41,39 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		return this;
 	};
 	
+	/**
+	 * Gets the objects as an array.
+	 *
+	 * @return	Array	The array containing all the objects.
+	 */
 	objectFunctions.getObjectsArray = function() {
 		return this._objectsArray;
 	};
 	
+	/**
+	 * Gets an object that has all the records set on it.
+	 *
+	 * @return	Object	The accosiative array of all the values.
+	 */
 	objectFunctions.getObjectsObject = function() {
 		return this._objectsObject;
 	};
 	
+	/**
+	 * Gets the names of objects in this array.
+	 *
+	 * @return	Array	The array containing all the names.
+	 */
 	objectFunctions.getNamesArray = function() {
 		return this._namesArray;
 	};
 	
+	/**
+	 * Adds an object to this array. It replaces the object with the same name if it exists.
+	 *
+	 * @param	aName	String	The name of the object.
+	 * @param	aObject	*		The object to store.
+	 */
 	objectFunctions.addObject = function(aName, aObject) {
 		if(!VariableAliases.isSet(aName)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
@@ -67,6 +88,12 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		this._namesArray.push(aName);
 	};
 	
+	/**
+	 * Replaces an object in this array. It adds it if no object exists.
+	 *
+	 * @param	aName	String	The name of the object.
+	 * @param	aObject	*		The object to store.
+	 */
 	objectFunctions.replaceObject = function(aName, aObject) {
 		if(!VariableAliases.isSet(aName)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "replaceObject", "Name is null for object" + aObject + ".");
@@ -106,6 +133,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		return true;
 	};
 	
+	/**
+	 * Checks if an object exists for a name.
+	 *
+	 * @param	aName	String	The name of the object.
+	 *
+	 * @return	Boolean		True if the object exists.
+	 */
 	objectFunctions.hasObject = function(aName) {
 		return (VariableAliases.isSet(this._objectsObject[aName]));
 	};
@@ -121,7 +155,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	
 	objectFunctions.getObject = function(aName) {
 		//console.log("com.developedbyme.utils.data.NamedArray::getObject");
-		if(!VariableAliases.isSet(this._objectsObject[aName])) {
+		if(this._objectsObject[aName] === undefined) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MINOR, this, "getObject", "Object " + aName + " doesn't exist.");
 			return null;
 		}
@@ -129,7 +163,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	};
 	
 	objectFunctions.removeObject = function(aName) {
-		if(!VariableAliases.isSet(this._objectsObject[aName])) {
+		if(this._objectsObject[aName] === undefined) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MAJOR, this, "removeObject", "Object " + aName + " doesn't exist.");
 			return;
 		}
@@ -164,6 +198,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		return copiedNamedArray;
 	};
 	
+	/**
+	 * Identifies the name of an object in this array. The first matching object if the object occurs multiple times.
+	 *
+	 * @param	aObject		*	The object to identify.
+	 *
+	 * @return	String	The name of the first matching record. Null if it's not found.
+	 */
 	objectFunctions.identifyObject = function(aObject) {
 		for(var objectName in this._objectsObject) {
 			if(this._objectsObject[objectName] === aObject) {
@@ -174,6 +215,25 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		return null;
 	};
 	
+	/**
+	 * Identifies the name of all the records that matches an object.
+	 *
+	 * @param	aObject			*		The object to identify.
+	 * @param	aReturnArray	Array	The array to fill with the matching names.
+	 */
+	objectFunctions.identifyObjectWithMultipleResults = function(aObject, aReturnArray) {
+		for(var objectName in this._objectsObject) {
+			if(this._objectsObject[objectName] === aObject) {
+				aReturnArray.push(objectName);
+			}
+		}
+	};
+	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with the parameters description.
+	 */
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
@@ -183,6 +243,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		}
 	};
 	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "currentSelectedItem":
@@ -203,6 +270,9 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		ClassReference._reuseArray(this._namesArray);
 	};
 	
+	/**
+	 * Performs the destruction of all the properties in the object. Part of the destroy function.
+	 */
 	objectFunctions.performDestroy = function() {
 		
 		this._performDestroyObjects();
@@ -210,6 +280,9 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		this.superCall();
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._objectsObject = null;
@@ -221,6 +294,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new instance of this class.
+	 *
+	 * @praam	aOwnsObjects	Boolean		True if this array owns the objects and should destroy them when the array is destroyed.
+	 *
+	 * @return	ClassDefinition	The newly created instance.
+	 */
 	staticFunctions.create = function(aOwnsObjects) {
 		var newNamedArray = ClassReference._createAndInitClass(ClassReference);
 		newNamedArray.ownsObjects = VariableAliases.isTrue(aOwnsObjects);
