@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>ActiveRetainArrayIterator</h1>
-		<div class="classPath">com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var ActiveRetainArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator", "com.developedbyme.utils.data.iterator.ActiveArrayIterator", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>ActiveRetainArrayIterator</h1>
+					<div class="classPath">com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator</div>
+					<div class="classInheritance"><a title="com.developedbyme.utils.data.iterator.ActiveArrayIterator" href="ActiveArrayIterator.html">ActiveArrayIterator</a> &gt; <a title="com.developedbyme.utils.data.iterator.ArrayIterator" href="ArrayIterator.html">ArrayIterator</a> &gt; <a title="com.developedbyme.utils.data.ArrayHolder" href="../ArrayHolder.html">ArrayHolder</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="com.developedbyme.core.extendedevent.commands.CommandsArrayIterator" href="../../../core/extendedevent/commands/CommandsArrayIterator.html">CommandsArrayIterator</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ActiveRetainArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator", "com.developedbyme.utils.data.iterator.ActiveArrayIterator", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator");
 	
 	objectFunctions._init = function() {
@@ -54,15 +76,26 @@
 		this.superCall();
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator::_init");
 		
 		this.superCall();
@@ -71,62 +104,122 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_verifyItem</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._verifyItem = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._verifyItem = function(aObject) {
 		//METODO
 		
 		return true;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_itemPreAdded</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._itemPreAdded = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._itemPreAdded = function(aObject) {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator::_itemPreAdded");
 		aObject.retain();
 		this.superCall(aObject);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_itemRemoved</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._itemRemoved = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._itemRemoved = function(aObject) {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator::_itemRemoved");
 		aObject.releaseAndDestroy();
 		this.superCall(aObject);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.performDestroy = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.performDestroy = function() {
 		
 		
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

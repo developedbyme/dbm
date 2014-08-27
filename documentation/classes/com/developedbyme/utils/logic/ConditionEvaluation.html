@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>ConditionEvaluation</h1>
-		<div class="classPath">com.developedbyme.utils.logic.ConditionEvaluation</div>
-		<div class="classInheritance"></div>
-		<div class="description">Static class for evaluating conditions.</div>
-		<div class="importSnippet">var ConditionEvaluation = dbm.importClass("com.developedbyme.utils.logic.ConditionEvaluation");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.logic.ConditionEvaluation", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>ConditionEvaluation</h1>
+					<div class="classPath">com.developedbyme.utils.logic.ConditionEvaluation</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description">Static class for evaluating conditions.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.constants.ConditionOperationTypes" href="../../constants/ConditionOperationTypes.html">ConditionOperationTypes</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ConditionEvaluation = dbm.importClass("com.developedbyme.utils.logic.ConditionEvaluation");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.logic.ConditionEvaluation", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.logic.ConditionEvaluation");
 	
 	//Self reference
@@ -77,19 +99,30 @@
 		return returnValue;
 	}; //End function evaluateCondition 
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">evaluateCondition</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Evaluates a contition</div>
-			<div class="code">staticFunctions.evaluateCondition = function(aInputValue1, aConditionType, aInputValue2) {
+			<div class="descriptionHolder">
+				<div class="description">Evaluates a contition</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.evaluateCondition = function(aInputValue1, aConditionType, aInputValue2) {
 		var returnValue;
 		switch(aConditionType) {
 			case ConditionOperationTypes.EQUAL:
@@ -130,7 +163,17 @@
 		
 		return returnValue;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

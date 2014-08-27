@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>PointSet</h1>
-		<div class="classPath">com.developedbyme.core.data.points.PointSet</div>
-		<div class="classInheritance"></div>
-		<div class="description">Base class for a set of points.</div>
-		<div class="importSnippet">var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>PointSet</h1>
+					<div class="classPath">com.developedbyme.core.data.points.PointSet</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Base class for a set of points.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="com.developedbyme.core.data.curves.Curve" href="../curves/Curve.html">Curve</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.data.points.Point" href="Point.html">Point</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.points.PointSet");
 	//"use strict";
 	
@@ -157,15 +179,26 @@
 		return newSet;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.data.points.PointSet");
 		
 		this.superCall();
@@ -175,28 +208,58 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">isSetType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Base function for determin if a set is of a special kind. Should be overridden.</div>
-			<div class="code">objectFunctions.isSetType = function(aType) {
+			<div class="descriptionHolder">
+				<div class="description">Base function for determin if a set is of a special kind. Should be overridden.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.isSetType = function(aType) {
 		return (aType === this.setType);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getNumberOfPoints</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getNumberOfPoints = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getNumberOfPoints = function() {
 		return this.pointsArray.length;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setupFromArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets up the point set from a one 1d array.</div>
-			<div class="code">objectFunctions.setupFromArray = function(aArray, aNumberOfDimesions) {
+			<div class="descriptionHolder">
+				<div class="description">Sets up the point set from a one 1d array.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setupFromArray = function(aArray, aNumberOfDimesions) {
 		//console.log("com.developedbyme.core.data.points.PointSet::setupFromArray");
 		var currentArray = aArray;
 		var theLength = currentArray.length;
@@ -215,12 +278,22 @@
 			this.pointsArray[(i/aNumberOfDimesions)] = newPoint;
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">fillWithEmptyPoints</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Fills the point set with "empty" points</div>
-			<div class="code">objectFunctions.fillWithEmptyPoints = function(aLength) {
+			<div class="descriptionHolder">
+				<div class="description">Fills the point set with "empty" points</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.fillWithEmptyPoints = function(aLength) {
 		var pointClass = this._pointClass;
 		
 		this.pointsArray = new Array(aLength);
@@ -228,12 +301,22 @@
 			this.pointsArray[i] = Point.create();
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">duplicate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Duplicates the object without the data flow connections.</div>
-			<div class="code">objectFunctions.duplicate = function() {
+			<div class="descriptionHolder">
+				<div class="description">Duplicates the object without the data flow connections.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.duplicate = function() {
 		var theObject = (new ClassReference());
 		var currentArray = this.pointsArray;
 		var outputArray = theObject.pointsArray;
@@ -243,85 +326,165 @@
 		}
 		return theObject;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">reverse</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.reverse = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.reverse = function() {
 		this.pointsArray.reverse();
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createPoint</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createPoint = function(aX, aY, aZ, aW) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createPoint = function(aX, aY, aZ, aW) {
 		var newPoint = Point.create(aX, aY, aZ, aW);
 		this.pointsArray.push(newPoint);
 		return newPoint;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createPoints</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createPoints = function(aNumberOfPoints) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createPoints = function(aNumberOfPoints) {
 		for(var i = 0; i &lt; aNumberOfPoints; i++) {
 			this.pointsArray.push(Point.create());
 		}
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.performDestroy = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.performDestroy = function() {
 		
 		ClassReference.destroyArrayIfExists(this.pointsArray);
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this.pointsArray = null;
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">createWithLength</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createWithLength = function(aLength) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createWithLength = function(aLength) {
 		var newSet = (new ClassReference()).init();
 		newSet.fillWithEmptyPoints(aLength);
 		return newSet;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createWithValues</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createWithValues = function(aValues, aNumberOfDimensions) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createWithValues = function(aValues, aNumberOfDimensions) {
 		var newSet = (new ClassReference()).init();
 		newSet.setupFromArray(aValues, aNumberOfDimensions);
 		return newSet;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

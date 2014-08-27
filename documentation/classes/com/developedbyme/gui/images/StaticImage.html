@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>StaticImage</h1>
-		<div class="classPath">com.developedbyme.gui.images.StaticImage</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var StaticImage = dbm.importClass("com.developedbyme.gui.images.StaticImage");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>StaticImage</h1>
+					<div class="classPath">com.developedbyme.gui.images.StaticImage</div>
+					<div class="classInheritance"><a title="com.developedbyme.gui.DisplayBaseObject" href="../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="com.developedbyme.gui.images.StateImage" href="StateImage.html">StateImage</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.ExternalVariableProperty" href="../../core/objectparts/ExternalVariableProperty.html">ExternalVariableProperty</a>, <a title="com.developedbyme.constants.XmlNodeTypes" href="../../constants/XmlNodeTypes.html">XmlNodeTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var StaticImage = dbm.importClass("com.developedbyme.gui.images.StaticImage");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	//"use strict";
 	
@@ -71,15 +93,26 @@
 		return newNode;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.images.StaticImage::_init");
 		
 		this.superCall();
@@ -89,12 +122,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setElement</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setElement = function(aElement) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setElement = function(aElement) {
 		
 		this.superCall(aElement);
 		
@@ -102,27 +145,47 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._source = null;
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.create = function(aParentOrDocument, aAddToParent, aUrl, aAttributes) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aParentOrDocument, aAddToParent, aUrl, aAttributes) {
 		var newNode = (new ClassReference()).init();
 		
 		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
@@ -138,12 +201,22 @@
 		
 		return newNode;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createNew</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createNew = function(aUrl, aAttributes) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createNew = function(aUrl, aAttributes) {
 		var newNode = (new ClassReference()).init();
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
@@ -152,7 +225,17 @@
 		
 		return newNode;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

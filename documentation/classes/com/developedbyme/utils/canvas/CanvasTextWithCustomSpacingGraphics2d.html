@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>CanvasTextWithCustomSpacingGraphics2d</h1>
-		<div class="classPath">com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d</div>
-		<div class="classInheritance"></div>
-		<div class="description">A text with custom spacing in a 2d canvas.</div>
-		<div class="importSnippet">var CanvasTextWithCustomSpacingGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d", "com.developedbyme.utils.canvas.CanvasTextGraphics2d", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>CanvasTextWithCustomSpacingGraphics2d</h1>
+					<div class="classPath">com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d</div>
+					<div class="classInheritance"><a title="com.developedbyme.utils.canvas.CanvasTextGraphics2d" href="CanvasTextGraphics2d.html">CanvasTextGraphics2d</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">A text with custom spacing in a 2d canvas.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="com.developedbyme.constants.LineCapTypes" href="../../constants/LineCapTypes.html">LineCapTypes</a>, <a title="com.developedbyme.constants.LineJoinTypes" href="../../constants/LineJoinTypes.html">LineJoinTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CanvasTextWithCustomSpacingGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d", "com.developedbyme.utils.canvas.CanvasTextGraphics2d", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d");
 	
 	var CanvasTextWithCustomSpacingGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d");
@@ -109,15 +131,26 @@
 		return newCanvasTextWithCustomSpacingGraphics2d;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor.</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d::_init");
 		
 		this.superCall();
@@ -128,12 +161,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">draw</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.draw = function(aContext) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.draw = function(aContext) {
 		
 		aContext.save();
 		
@@ -176,12 +219,22 @@
 		
 		aContext.restore();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_updateTextWidthFlow</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._updateTextWidthFlow = function(aFlowUpdateNumber) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._updateTextWidthFlow = function(aFlowUpdateNumber) {
 		
 		var canvasContext = dbm.singletons.dbmHtmlDomManager.getTempCanvas().getContext("2d");
 		canvasContext.font = this._font.getValueWithoutFlow();
@@ -203,16 +256,26 @@
 		
 		this._textWidth.setValueWithFlow(textWidth, aFlowUpdateNumber);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.create = function(aText, aSpacing) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aText, aSpacing) {
 		var newCanvasTextWithCustomSpacingGraphics2d = (new ClassReference()).init();
 		
 		newCanvasTextWithCustomSpacingGraphics2d.setPropertyInput("text", aText);
@@ -220,7 +283,17 @@
 		
 		return newCanvasTextWithCustomSpacingGraphics2d;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

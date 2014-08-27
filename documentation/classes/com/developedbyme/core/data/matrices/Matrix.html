@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>Matrix</h1>
-		<div class="classPath">com.developedbyme.core.data.matrices.Matrix</div>
-		<div class="classInheritance"></div>
-		<div class="description">A 2d matrix with dynamic size.</div>
-		<div class="importSnippet">var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>Matrix</h1>
+					<div class="classPath">com.developedbyme.core.data.matrices.Matrix</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">A 2d matrix with dynamic size.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.matrices.Matrix");
 	
 	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
@@ -209,15 +231,26 @@
 		return newMatrix;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.data.matrices.Matrix::_init");
 		
 		this.superCall();
@@ -228,12 +261,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setupSize</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets up and creates all the values in the matrix</div>
-			<div class="code">objectFunctions.setupSize = function(aSizeH, aSizeV) {
+			<div class="descriptionHolder">
+				<div class="description">Sets up and creates all the values in the matrix</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setupSize = function(aSizeH, aSizeV) {
 		//console.log("com.developedbyme.core.data.matrices.Matrix::setupSize");
 		//console.log(aSizeH, aSizeV);
 		this.sizeH = aSizeH;
@@ -242,24 +285,44 @@
 		this.valuesArray = currentArray;
 		this.reset();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">reset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Resets the matrix by setting all values to 0.</div>
-			<div class="code">objectFunctions.reset = function() {
+			<div class="descriptionHolder">
+				<div class="description">Resets the matrix by setting all values to 0.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.reset = function() {
 		var currentArray = this.valuesArray;
 		var theLength = currentArray.length;
 		for(var i = -1; ++i &lt; theLength;) {
 			currentArray[i] = 0;
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAsIdentityMatrix</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets the matrix values to an identity matrix. Only possible when the horisontal size and vertical size are the same.</div>
-			<div class="code">objectFunctions.setAsIdentityMatrix = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets the matrix values to an identity matrix. Only possible when the horisontal size and vertical size are the same.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAsIdentityMatrix = function() {
 		if(this.sizeH !== this.sizeV) {
 			//METODO: error message
 			return;
@@ -271,65 +334,125 @@
 			currentArray[i*(theSize+1)] = 1;
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets a value in the matrix.</div>
-			<div class="code">objectFunctions.setValue = function(aX, aY, aValue) {
+			<div class="descriptionHolder">
+				<div class="description">Sets a value in the matrix.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setValue = function(aX, aY, aValue) {
 		var currentArray = this.valuesArray;
 		currentArray[this.sizeH*aY+aX] = aValue;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Gets a value in the matrix.</div>
-			<div class="code">objectFunctions.getValue = function(aX, aY) {
+			<div class="descriptionHolder">
+				<div class="description">Gets a value in the matrix.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getValue = function(aX, aY) {
 		var currentArray = this.valuesArray;
 		return currentArray[this.sizeH*aY+aX];
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">duplicate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Duplicates the matrix.</div>
-			<div class="code">objectFunctions.duplicate = function() {
+			<div class="descriptionHolder">
+				<div class="description">Duplicates the matrix.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.duplicate = function() {
 		return ClassReference.duplicateMatrix(this);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
 		if(this.valuesArray !== null) {
 			aReturnArray.push("values: [" + this.valuesArray.join(", ") + "]");
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this.valuesArray = null;
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">duplicateMatrix</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Duplicates a matrix</div>
-			<div class="code">staticFunctions.duplicateMatrix = function(aMatrix) {
+			<div class="descriptionHolder">
+				<div class="description">Duplicates a matrix</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.duplicateMatrix = function(aMatrix) {
 		var newMatrix = (new Matrix()).init();
 		newMatrix.setupSize(aMatrix.sizeH, aMatrix.sizeV);
 		var currentArray = aMatrix.valuesArray;
@@ -340,12 +463,22 @@
 		}
 		return newMatrix;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">multiplyMatrices</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Multiplies two matrices.</div>
-			<div class="code">staticFunctions.multiplyMatrices = function(aInputMatrix1, aInputMatrix2, aOutputMatrix) {
+			<div class="descriptionHolder">
+				<div class="description">Multiplies two matrices.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.multiplyMatrices = function(aInputMatrix1, aInputMatrix2, aOutputMatrix) {
 		//console.log("com.developedbyme.core.data.matrices.Matrix.(static)multiplyMatrices");
 		
 		var inputValuesArray1 = aInputMatrix1.valuesArray;
@@ -366,24 +499,44 @@
 			}
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new matrix.</div>
-			<div class="code">staticFunctions.create = function(aWidth, aHeight) {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new matrix.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aWidth, aHeight) {
 		//console.log("com.developedbyme.core.data.matrices.Matrix::create (static)");
 		//console.log(aWidth, aHeight);
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);
 		return newMatrix;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createIdentity</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new identity matrix.</div>
-			<div class="code">staticFunctions.createIdentity = function(aWidth, aHeight) {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new identity matrix.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createIdentity = function(aWidth, aHeight) {
 		//console.log("com.developedbyme.core.data.matrices.Matrix::createIdentity (static)");
 		//console.log(aWidth, aHeight);
 		var newMatrix = (new ClassReference()).init();
@@ -391,12 +544,22 @@
 		newMatrix.setAsIdentityMatrix();
 		return newMatrix;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createWithValues</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createWithValues = function(aWidth, aHeight, aValues) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createWithValues = function(aWidth, aHeight, aValues) {
 		//console.log("com.developedbyme.core.data.matrices.Matrix::createWithValues (static)");
 		//console.log(aWidth, aHeight, aValues);
 		var newMatrix = (new ClassReference()).init();
@@ -408,7 +571,17 @@
 		}
 		return newMatrix;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

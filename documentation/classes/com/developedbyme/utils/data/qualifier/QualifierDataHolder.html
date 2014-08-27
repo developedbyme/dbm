@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>QualifierDataHolder</h1>
-		<div class="classPath">com.developedbyme.utils.data.qualifier.QualifierDataHolder</div>
-		<div class="classInheritance"></div>
-		<div class="description">Data holder that can be qualified to certain conditions.</div>
-		<div class="importSnippet">var QualifierDataHolder = dbm.importClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>QualifierDataHolder</h1>
+					<div class="classPath">com.developedbyme.utils.data.qualifier.QualifierDataHolder</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Data holder that can be qualified to certain conditions.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../../reevaluation/ReevaluationCreator.html">ReevaluationCreator</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var QualifierDataHolder = dbm.importClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.qualifier.QualifierDataHolder");
 	
 	//Self reference
@@ -95,15 +117,26 @@
 		return newQualifierDataHolder;
 	}
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.qualifier.QualifierDataHolder::_init");
 		
 		this.superCall();
@@ -114,20 +147,40 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">qualify</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Qualifies a base object to be valid for this data.</div>
-			<div class="code">objectFunctions.qualify = function(aBaseObject) {
+			<div class="descriptionHolder">
+				<div class="description">Qualifies a base object to be valid for this data.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.qualify = function(aBaseObject) {
 		return this.qualifierReevaluator.reevaluate(aBaseObject);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Destroys all the data of the object.</div>
-			<div class="code">objectFunctions.performDestroy = function() {
+			<div class="descriptionHolder">
+				<div class="description">Destroys all the data of the object.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.performDestroy = function() {
 		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
 		//console.log(this.ownsData, this.data !== null, this.data.destroy);
 		
@@ -138,40 +191,70 @@
 		}
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "data":
 				return this.ownsData;
 		}
 		return this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets all the references to null.</div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets all the references to null.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this.data = null;
 		this.qualifierReevaluator = null;
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.create = function(aReevaluator, aData, aOwnsData) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aReevaluator, aData, aOwnsData) {
 		var newQualifierDataHolder = (new ClassReference()).init();
 		
 		newQualifierDataHolder.qualifierReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aReevaluator);
@@ -180,7 +263,17 @@
 		
 		return newQualifierDataHolder;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

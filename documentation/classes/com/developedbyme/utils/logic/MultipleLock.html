@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>MultipleLock</h1>
-		<div class="classPath">com.developedbyme.utils.logic.MultipleLock</div>
-		<div class="classInheritance"></div>
-		<div class="description">A lock that can be locked multiple times.</div>
-		<div class="importSnippet">var MultipleLock = dbm.importClass("com.developedbyme.utils.logic.MultipleLock");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.logic.MultipleLock", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>MultipleLock</h1>
+					<div class="classPath">com.developedbyme.utils.logic.MultipleLock</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">A lock that can be locked multiple times.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.utils.data.ArrayHolder" href="../data/ArrayHolder.html">ArrayHolder</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.extendedevents.LockExtendedEventIds" href="../../constants/extendedevents/LockExtendedEventIds.html">LockExtendedEventIds</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var MultipleLock = dbm.importClass("com.developedbyme.utils.logic.MultipleLock");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.logic.MultipleLock", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.logic.MultipleLock");
 	
 	//Self reference
@@ -141,15 +163,26 @@
 		return newMultipleLock;
 	}; //End function create
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.logic.MultipleLock::_init");
 		
 		this.superCall();
@@ -159,21 +192,41 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">isLocked</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if this lock is locked.</div>
-			<div class="code">objectFunctions.isLocked = function() {
+			<div class="descriptionHolder">
+				<div class="description">Checks if this lock is locked.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.isLocked = function() {
 		//console.log("com.developedbyme.utils.logic.MultipleLock::isLocked");
 		return this._isLocked;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">lock</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Locks this lock.</div>
-			<div class="code">objectFunctions.lock = function(aIdentifier) {
+			<div class="descriptionHolder">
+				<div class="description">Locks this lock.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.lock = function(aIdentifier) {
 		//console.log("com.developedbyme.utils.logic.MultipleLock::lock");
 		
 		var theArray = this._locks.array;
@@ -187,12 +240,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">unlock</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Unlocks this lock.</div>
-			<div class="code">objectFunctions.unlock = function(aIdentifier) {
+			<div class="descriptionHolder">
+				<div class="description">Unlocks this lock.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.unlock = function(aIdentifier) {
 		//console.log("com.developedbyme.utils.logic.MultipleLock::unlock");
 		
 		var theArray = this._locks.array;
@@ -213,12 +276,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if an extended event is expected for this object.</div>
-			<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if an extended event is expected for this object.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
 		switch(aName) {
 			case LockExtendedEventIds.LOCKED:
@@ -228,31 +301,61 @@
 		
 		return this.superCall(aName);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets all the references to null. Part of the destroy function.</div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets all the references to null. Part of the destroy function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._locks = null;
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new objetc of this class.</div>
-			<div class="code">staticFunctions.create = function() {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new objetc of this class.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function() {
 		var newMultipleLock = ClassReference._createAndInitClass(ClassReference);
 		return newMultipleLock;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

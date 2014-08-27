@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>DefaultAssetRepositoryBrowserSetup</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup</div>
-		<div class="classInheritance"></div>
-		<div class="description">Sets up the asset creator for use in a browse.</div>
-		<div class="importSnippet">var DefaultAssetRepositoryBrowserSetup = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>DefaultAssetRepositoryBrowserSetup</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description">Sets up the asset creator for use in a browse.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset" href="../assets/ArrayBufferAsset.html">ArrayBufferAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset" href="../assets/AudioAsset.html">AudioAsset</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset" href="../assets/ImageAsset.html">ImageAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.JsonAsset" href="../assets/JsonAsset.html">JsonAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator" href="../assetcreators/PathAssetCreator.html">PathAssetCreator</a>, <a title="com.developedbyme.constants.PseudoFileExtensions" href="../../../../constants/PseudoFileExtensions.html">PseudoFileExtensions</a>, <a title="com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject" href="../../../../utils/reevaluation/manipulationreevaluation/ReplaceStringObject.html">ReplaceStringObject</a>, <a title="com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject" href="../../../../utils/reevaluation/staticreevaluation/SelectBaseObjectObject.html">SelectBaseObjectObject</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset" href="../assets/TextAsset.html">TextAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator" href="../assetcreators/TransformedPathAssetCreator.html">TransformedPathAssetCreator</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset" href="../assets/VideoAsset.html">VideoAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset" href="../assets/XmlAsset.html">XmlAsset</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var DefaultAssetRepositoryBrowserSetup = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup");
 	//"use strict";
 	
@@ -72,19 +94,30 @@
 		);
 	}; //End function setup
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets up the asset repository for browser use.</div>
-			<div class="code">staticFunctions.setup = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets up the asset repository for browser use.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.setup = function() {
 		dbm.singletons.dbmAssetRepository.addAssetCreatorForTypes(PathAssetCreator.create(ImageAsset), ["jpg", "jpeg", "gif", "png","webp"]);
 		dbm.singletons.dbmAssetRepository.addAssetCreatorForTypes(PathAssetCreator.create(XmlAsset), ["html", "xml", "xsl"]);
 		dbm.singletons.dbmAssetRepository.addAssetCreatorForTypes(PathAssetCreator.create(TextAsset), ["text", "txt", "vert", "frag", "csv"]);
@@ -116,7 +149,17 @@
 			[PseudoFileExtensions.VIDEO]
 		);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

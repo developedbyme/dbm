@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>ErrorManager</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.errormanager.ErrorManager</div>
-		<div class="classInheritance"></div>
-		<div class="description">Global manager for handling errors.</div>
-		<div class="importSnippet">var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>ErrorManager</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.errormanager.ErrorManager</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Global manager for handling errors.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	//"use strict";
 	
@@ -85,15 +107,26 @@
 		}
 	}; //End function reportError
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Initializes the object.</div>
-			<div class="code">objectFunctions._init = function _init() {
+			<div class="descriptionHolder">
+				<div class="description">Initializes the object.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function _init() {
 		//console.log("com.developedbyme.core.globalobjects.errormanager.ErrorManager::_init");
 		
 		this.superCall();
@@ -103,21 +136,41 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addHandler</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Adds a handler that gets called with every message.</div>
-			<div class="code">objectFunctions.addHandler = function addHandler(aHandler) {
+			<div class="descriptionHolder">
+				<div class="description">Adds a handler that gets called with every message.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.addHandler = function addHandler(aHandler) {
 		//console.log("com.developedbyme.core.globalobjects.errormanager.ErrorManager::addHandler");
 		this._handlers.push(aHandler);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">report</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Reports errors, warning and log messages.</div>
-			<div class="code">objectFunctions.report = function report(aType, aLevel, aObject, aFunctionName, aData) {
+			<div class="descriptionHolder">
+				<div class="description">Reports errors, warning and log messages.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.report = function report(aType, aLevel, aObject, aFunctionName, aData) {
 		
 		var currentId = this._idNumber++;
 		var currentTimeStamp = new Date().valueOf();
@@ -129,12 +182,22 @@
 			currentHandler.report(currentId, currentTimeStamp, aType, aLevel, aObject, aFunctionName, aData);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">reportError</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Reports an error catched from a try statement.</div>
-			<div class="code">objectFunctions.reportError = function reportError(aObject, aFunctionName, aError) {
+			<div class="descriptionHolder">
+				<div class="description">Reports an error catched from a try statement.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.reportError = function reportError(aObject, aFunctionName, aError) {
 		
 		var currentId = this._idNumber++;
 		var currentTimeStamp = new Date().valueOf();
@@ -147,10 +210,20 @@
 			currentHandler.reportError(currentId, currentTimeStamp, aObject, aFunctionName, aError);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

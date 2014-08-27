@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>EventDataObject</h1>
-		<div class="classPath">com.developedbyme.core.extendedevent.EventDataObject</div>
-		<div class="classInheritance"></div>
-		<div class="description">Data used to perform an extended event.</div>
-		<div class="importSnippet">var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.EventDataObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>EventDataObject</h1>
+					<div class="classPath">com.developedbyme.core.extendedevent.EventDataObject</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Data used to perform an extended event.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.EventDataObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.extendedevent.EventDataObject");
 	
 	//Self reference
@@ -117,15 +139,26 @@
 		return newData;
 	}; //End function create
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.extendedevent.EventDataObject::_init");
 		
 		this.superCall();
@@ -139,20 +172,40 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addResult</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Adds a result to this event data.</div>
-			<div class="code">objectFunctions.addResult = function(aData) {
+			<div class="descriptionHolder">
+				<div class="description">Adds a result to this event data.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.addResult = function(aData) {
 		this.resultsArray.push(aData);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
-			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+			<div class="descriptionHolder">
+				<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("ownerObject: " + this.ownerObject);
@@ -161,12 +214,22 @@
 		aReturnArray.push("statusData: " + this.statusData);
 		aReturnArray.push("resultsArray: " + this.resultsArray);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets all the references to null. Part of the destroy function.</div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets all the references to null. Part of the destroy function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this.data = null;
 		this.ownerObject = null;
@@ -178,12 +241,22 @@
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
-			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "data":
 			case "ownerObject":
@@ -192,16 +265,26 @@
 		}
 		return this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new object of this class.</div>
-			<div class="code">staticFunctions.create = function(aData, aOwner, aPerformingObject) {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new object of this class.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aData, aOwner, aPerformingObject) {
 		//console.log("com.developedbyme.core.extendedevent.EventDataObject::create (static)");
 		var newData = ClassReference._createAndInitClass(ClassReference);
 		
@@ -211,7 +294,17 @@
 		
 		return newData;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

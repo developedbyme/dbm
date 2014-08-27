@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>WorkspaceCommandFunctions</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var WorkspaceCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>WorkspaceCommandFunctions</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.workspace.gui.parts.BaseWorkspacePart" href="../../../../../workspace/gui/parts/BaseWorkspacePart.html">BaseWorkspacePart</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.workspace.gui.LayoutController" href="../../../../../workspace/gui/LayoutController.html">LayoutController</a>, <a title="com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode" href="../../../../../flow/nodes/math/geometry/RectangleFromValuesNode.html">RectangleFromValuesNode</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart" href="../../../../../workspace/gui/parts/areas/SizedElementAreaPart.html">SizedElementAreaPart</a>, <a title="com.developedbyme.flow.nodes.display.SizeOfElementNode" href="../../../../../flow/nodes/display/SizeOfElementNode.html">SizeOfElementNode</a>, <a title="com.developedbyme.workspace.gui.parts.areas.layout.SplitLayoutAreaPart" href="../../../../../workspace/gui/parts/areas/layout/SplitLayoutAreaPart.html">SplitLayoutAreaPart</a>, <a title="com.developedbyme.workspace.gui.Workspace" href="../../../../../workspace/gui/Workspace.html">Workspace</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var WorkspaceCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions");
 	
 	//Self reference
@@ -103,19 +125,30 @@
 		layoutArea.getTreeStructureItem().getAttribute("properties").setPropertyInput("inputArea", createRectangleNode.getProperty("outputRectangle"));
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">createLayoutSplit</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createLayoutSplit = function(aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createLayoutSplit = function(aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions::createLayoutSplit");
 		//console.log(aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath);
 		
@@ -142,12 +175,22 @@
 		
 		layoutArea.addPart(aPath, splitLayout);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createSizedElementArea</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createSizedElementArea = function(aObject, aPath) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createSizedElementArea = function(aObject, aPath) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions::createSizedElementArea");
 		
 		var parentController = dbm.singletons.dbmHtmlDomManager.getParentControllerThatHasDynamicVariable(aObject.getElement(), "layoutArea");
@@ -163,12 +206,22 @@
 		aObject.setDynamicVariable("layoutArea", newArea);
 		layoutArea.addPart(aPath, newArea);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addLayoutController</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addLayoutController = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addLayoutController = function(aObject) {
 		console.log("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions::addLayoutController");
 		console.log(aObject);
 		
@@ -183,12 +236,22 @@
 		aObject.setDynamicVariable("layoutArea", layoutArea);
 		
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setSizeAsInputArea</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.setSizeAsInputArea = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.setSizeAsInputArea = function(aObject) {
 		var sizeNode = aObject.addDestroyableObject(SizeOfElementNode.create(aObject.getProperty("element"), aObject.getProperty("inDomOutput")));
 		sizeNode.checkForLayoutChange();
 		var createRectangleNode = aObject.addDestroyableObject(RectangleFromValuesNode.create(0, 0, sizeNode.getProperty("width"), sizeNode.getProperty("height")));
@@ -196,7 +259,17 @@
 		var layoutArea = aObject.getDynamicVariable("layoutArea");
 		layoutArea.getTreeStructureItem().getAttribute("properties").setPropertyInput("inputArea", createRectangleNode.getProperty("outputRectangle"));
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>CreateBezierCurveFromPoints2d</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d</div>
-		<div class="classInheritance"></div>
-		<div class="description">Creates curve that passes through a set of points.</div>
-		<div class="importSnippet">var CreateBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>CreateBezierCurveFromPoints2d</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Creates curve that passes through a set of points.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.math.EquationSolver" href="../../../../utils/math/EquationSolver.html">EquationSolver</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CreateBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
 	
 	var EquationSolver = dbm.importClass("com.developedbyme.utils.math.EquationSolver");
@@ -67,27 +89,48 @@
 		}
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::_init");
 		
 		this.superCall();
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates the curve.</div>
-			<div class="code">objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aParameters) {
+			<div class="descriptionHolder">
+				<div class="description">Creates the curve.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aParameters) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::createCurve");
 		//console.log(aPointsArray, aReturnCurve, aParameters);
 		var curveDegree = aPointsArray.length-1;
@@ -122,10 +165,20 @@
 			currentPoint.y = currentArray2[arrayLength+1];
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>EventListenerFunctions</h1>
-		<div class="classPath">com.developedbyme.utils.native.function.EventListenerFunctions</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var EventListenerFunctions = dbm.importClass("com.developedbyme.utils.native.function.EventListenerFunctions");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.native.function.EventListenerFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>EventListenerFunctions</h1>
+					<div class="classPath">com.developedbyme.utils.native.function.EventListenerFunctions</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var EventListenerFunctions = dbm.importClass("com.developedbyme.utils.native.function.EventListenerFunctions");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.native.function.EventListenerFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
 	
 	//Self reference
@@ -98,19 +120,30 @@
 		return eventCallback;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">addEventListener</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addEventListener = function(aObject, aEventName, aFunction, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addEventListener = function(aObject, aEventName, aFunction, aUseCapture) {
 		switch(dbm.getEnvironmentName()) {
 			case "nodejs":
 				return aObject.addListener(aEventName, aFunction, aUseCapture);
@@ -120,12 +153,22 @@
 				return aObject.addEventListener(aEventName, aFunction, aUseCapture);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">removeEventListener</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.removeEventListener = function(aObject, aEventName, aFunction, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.removeEventListener = function(aObject, aEventName, aFunction, aUseCapture) {
 		switch(dbm.getEnvironmentName()) {
 			case "nodejs":
 				return aObject.removeListener(aEventName, aFunction, aUseCapture);
@@ -135,12 +178,22 @@
 				return aObject.removeEventListener(aEventName, aFunction, aUseCapture);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createCallbackFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createCallbackFunction = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createCallbackFunction = function(aObject) {
 		switch(dbm.getEnvironmentName()) {
 			case "nodejs":
 				return ClassReference.createMultipleArgumentsCallback(aObject);
@@ -150,12 +203,22 @@
 				return ClassReference.createSingleEventObjectCallback(aObject);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createSingleEventObjectCallback</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createSingleEventObjectCallback = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createSingleEventObjectCallback = function(aObject) {
 		var thisPointer = aObject;
 		var eventCallback = function _eventCallback(aEvent) {
 			//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
@@ -173,12 +236,22 @@
 		};
 		return eventCallback;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createMultipleArgumentsCallback</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createMultipleArgumentsCallback = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createMultipleArgumentsCallback = function(aObject) {
 		var thisPointer = aObject;
 		var eventCallback = function _eventCallback(/* ... aArguments */) {
 			//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
@@ -197,7 +270,17 @@
 		};
 		return eventCallback;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

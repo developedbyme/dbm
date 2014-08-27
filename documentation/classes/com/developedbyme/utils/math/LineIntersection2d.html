@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>LineIntersection2d</h1>
-		<div class="classPath">com.developedbyme.utils.math.LineIntersection2d</div>
-		<div class="classInheritance"></div>
-		<div class="description">Class for determin where two lines collide.</div>
-		<div class="importSnippet">var LineIntersection2d = dbm.importClass("com.developedbyme.utils.math.LineIntersection2d");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>LineIntersection2d</h1>
+					<div class="classPath">com.developedbyme.utils.math.LineIntersection2d</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description">Class for determin where two lines collide.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.math.AngleFunctions" href="AngleFunctions.html">AngleFunctions</a>, <a title="com.developedbyme.core.data.points.Point" href="../../core/data/points/Point.html">Point</a>, <a title="com.developedbyme.utils.math.VectorFunctions" href="VectorFunctions.html">VectorFunctions</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var LineIntersection2d = dbm.importClass("com.developedbyme.utils.math.LineIntersection2d");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.LineIntersection2d");
 	
 	var LineIntersection2d = dbm.importClass("com.developedbyme.utils.math.LineIntersection2d");
@@ -265,39 +287,70 @@
 	};
 
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor.</div>
-			<div class="code">objectFunctions.init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.init = function() {
 		//console.log("com.developedbyme.utils.math.LineIntersection2d::_init");
 		
 		this._setAsNullResult();
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_setAsNullResult</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets the result to null</div>
-			<div class="code">objectFunctions._setAsNullResult = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets the result to null</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._setAsNullResult = function() {
 		this.x = NaN;
 		this.y = NaN;
 		this.parameter1 = NaN;
 		this.parameter2 = NaN;
 		this.theResult = false;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">findLineIntersection</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Finds the intersection using two points and two vectors.</div>
-			<div class="code">objectFunctions.findLineIntersection = function(aPoint1, aVector1, aPoint2, aVector2) {
+			<div class="descriptionHolder">
+				<div class="description">Finds the intersection using two points and two vectors.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.findLineIntersection = function(aPoint1, aVector1, aPoint2, aVector2) {
 		//console.log("com.developedbyme.utils.math.LineIntersection::findLineIntersection");
 		//console.log(aPoint1, aVector1, aPoint2, aVector2);
 		
@@ -359,16 +412,26 @@
 		}
 		return true;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">findLineIntersectionsWithPointSet</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Finds all the collisions between a line and a point set.</div>
-			<div class="code">staticFunctions.findLineIntersectionsWithPointSet = function(aLinePoint, aLineVector, aPointSet, aIsRound, aType, aReturnArray) {
+			<div class="descriptionHolder">
+				<div class="description">Finds all the collisions between a line and a point set.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.findLineIntersectionsWithPointSet = function(aLinePoint, aLineVector, aPointSet, aIsRound, aType, aReturnArray) {
 		//console.log("findLineIntersectionsWithPointSet");
 		if(aType === undefined) {
 			aType = ClassReference.QUALIFY_TYPE_ON_POINT_SET;
@@ -419,12 +482,22 @@
 		}
 		return aReturnArray;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">findClosestParameterToPoint</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Finds the parameter where a line is closest to a point.</div>
-			<div class="code">staticFunctions.findClosestParameterToPoint = function(aLinePoint, aLineVector, aPoint) {
+			<div class="descriptionHolder">
+				<div class="description">Finds the parameter where a line is closest to a point.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.findClosestParameterToPoint = function(aLinePoint, aLineVector, aPoint) {
 		
 		var tempLineIntersection = ClassReference.getTempLineIntersection();
 		var tempVector = ClassReference.getTempVector();
@@ -436,12 +509,22 @@
 		
 		return tempLineIntersection.parameter1;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">findClosestParameterToPointInRange</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Finds the parameter where a line is closest to a point in a range.</div>
-			<div class="code">staticFunctions.findClosestParameterToPointInRange = function(aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle) {
+			<div class="descriptionHolder">
+				<div class="description">Finds the parameter where a line is closest to a point in a range.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.findClosestParameterToPointInRange = function(aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle) {
 		//console.log("com.developedbyme.utils.math.LineIntersection2d::findClosestParameterToPointInRange");
 		
 		var tempLineIntersection = ClassReference.getTempLineIntersection();
@@ -487,29 +570,59 @@
 		
 		return returnParameter;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getTempLineIntersection</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getTempLineIntersection = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getTempLineIntersection = function() {
 		if(ClassReference._tempLineIntersection === null) {
 			ClassReference._tempLineIntersection = (new LineIntersection2d()).init();
 		}
 		return ClassReference._tempLineIntersection;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getTempVector</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getTempVector = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getTempVector = function() {
 		if(ClassReference._tempVector === null) {
 			ClassReference._tempVector = Point.create();
 		}
 		return ClassReference._tempVector;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

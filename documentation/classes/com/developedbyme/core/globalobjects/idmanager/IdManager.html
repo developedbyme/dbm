@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>IdManager</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.idmanager.IdManager</div>
-		<div class="classInheritance"></div>
-		<div class="description">Global object for andeling id</div>
-		<div class="importSnippet">var IdManager = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.IdManager");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.IdManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>IdManager</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.idmanager.IdManager</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Global object for andeling id</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.idmanager.objects.NormalIdGroup" href="objects/NormalIdGroup.html">NormalIdGroup</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var IdManager = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.IdManager");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.idmanager.IdManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.idmanager.IdManager");
 	
 	var IdManager = dbm.importClass("com.developedbyme.core.globalobjects.idmanager.IdManager");
@@ -59,39 +81,70 @@
 		return currentGroup.getNewId();
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.idmanager.IdManager");
 		
 		this._idGroupsObject = new Object();
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setIdGroup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets the id group.</div>
-			<div class="code">objectFunctions.setIdGroup = function(aGroupName, aGroupObject) {
+			<div class="descriptionHolder">
+				<div class="description">Sets the id group.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setIdGroup = function(aGroupName, aGroupObject) {
 		//console.log("setIdGroup");
 		if(this._idGroupsObject[aGroupName] !== undefined) {
 			//METODO: warning message
 		}
 		this._idGroupsObject[aGroupName] = aGroupObject;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getNewId</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Returns a unique id for a group.</div>
-			<div class="code">objectFunctions.getNewId = function(aGroupName) {
+			<div class="descriptionHolder">
+				<div class="description">Returns a unique id for a group.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getNewId = function(aGroupName) {
 		//console.log("getId");
 		if(this._idGroupsObject[aGroupName] === undefined) {
 			//METODO: warning message
@@ -102,10 +155,20 @@
 		var currentGroup = this._idGroupsObject[aGroupName];
 		return currentGroup.getNewId();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

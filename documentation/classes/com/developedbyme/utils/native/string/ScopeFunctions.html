@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>ScopeFunctions</h1>
-		<div class="classPath">com.developedbyme.utils.native.string.ScopeFunctions</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>ScopeFunctions</h1>
+					<div class="classPath">com.developedbyme.utils.native.string.ScopeFunctions</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.string.ScopeFunctions");
 	//"use strict";
 	
@@ -293,19 +315,30 @@
 		return returnScope;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">getScopeStart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getScopeStart = function(aText, aFromPosition, aScopeStarts) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getScopeStart = function(aText, aFromPosition, aScopeStarts) {
 		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getScopeStart");
 		//console.log(aText.substring(aFromPosition), aScopeStarts);
 		
@@ -325,12 +358,22 @@
 		
 		return returnPosition;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">splitEvaluation</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.splitEvaluation = function(aText, aReturnOperators) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.splitEvaluation = function(aText, aReturnOperators) {
 		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::splitEvaluation");
 		
 		var returnArray = new Array();
@@ -387,12 +430,22 @@
 		
 		return returnArray;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getTypeOfScopeStart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getTypeOfScopeStart = function(aText, aPosition, aScopeStarts) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getTypeOfScopeStart = function(aText, aPosition, aScopeStarts) {
 		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getTypeOfScopeStart");
 		
 		aPosition = VariableAliases.valueWithDefault(aPosition, 0);
@@ -417,12 +470,22 @@
 		
 		return null;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getTypeOfScopeEndForScopeStart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getTypeOfScopeEndForScopeStart = function(aStart, aScopeStarts, aScopeEnds) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getTypeOfScopeEndForScopeStart = function(aStart, aScopeStarts, aScopeEnds) {
 		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getTypeOfScopeEndForScopeStart");
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
@@ -438,12 +501,22 @@
 		}
 		//METODO: error message
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getAnyScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getAnyScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getAnyScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
 		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getAnyScope");
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
@@ -463,12 +536,22 @@
 		
 		return newChildScope;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
 		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getScope");
 		//console.log(aStartPosition, aStartType, aEndType, aText.substring(Math.max(0, aStartPosition-4), aStartPosition+1));
 		
@@ -513,12 +596,22 @@
 		}
 		return returnScope;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getCommentScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getCommentScope = function(aText, aStartPosition, aStartType, aEndType) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getCommentScope = function(aText, aStartPosition, aStartType, aEndType) {
 		var returnScope = new Object();
 		returnScope.type = aStartType;
 		returnScope.start = aStartPosition;
@@ -533,12 +626,22 @@
 		
 		return returnScope;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getTextScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getTextScope = function(aText, aStartPosition, aStartType, aEndType) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getTextScope = function(aText, aStartPosition, aStartType, aEndType) {
 		var returnScope = new Object();
 		returnScope.type = aStartType;
 		returnScope.start = aStartPosition;
@@ -574,12 +677,22 @@
 		
 		return returnScope;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getLegacyEscapedTextScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getLegacyEscapedTextScope = function(aText, aStartPosition, aStartType, aEndType) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getLegacyEscapedTextScope = function(aText, aStartPosition, aStartType, aEndType) {
 		var returnScope = new Object();
 		returnScope.type = aStartType;
 		returnScope.start = aStartPosition;
@@ -609,7 +722,17 @@
 		
 		return returnScope;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

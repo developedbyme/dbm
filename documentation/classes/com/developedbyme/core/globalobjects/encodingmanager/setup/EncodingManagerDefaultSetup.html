@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>EncodingManagerDefaultSetup</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup</div>
-		<div class="classInheritance"></div>
-		<div class="description">Default setup for the global encoding manager.</div>
-		<div class="importSnippet">var EncodingManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>EncodingManagerDefaultSetup</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description">Default setup for the global encoding manager.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.constants.EncodingMethodIds" href="../../../../constants/EncodingMethodIds.html">EncodingMethodIds</a>, <a title="com.developedbyme.core.globalobjects.encodingmanager.encoders.PlainTextEncoder" href="../encoders/PlainTextEncoder.html">PlainTextEncoder</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var EncodingManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.encodingmanager.setup.EncodingManagerDefaultSetup");
 	//"use strict";
 	
@@ -32,22 +54,43 @@
 		dbm.singletons.dbmEncodingManager.addEncoder(EncodingMethodIds.PLAIN_TEXT, PlainTextEncoder.create());
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets up the default encoders.</div>
-			<div class="code">staticFunctions.setup = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets up the default encoders.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.setup = function() {
 		dbm.singletons.dbmEncodingManager.addEncoder(EncodingMethodIds.PLAIN_TEXT, PlainTextEncoder.create());
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

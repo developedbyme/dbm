@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>TimelineCurveCreatorBaseObject</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject</div>
-		<div class="classInheritance"></div>
-		<div class="description">Base object for timeline curve creators.</div>
-		<div class="importSnippet">var TimelineCurveCreatorBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>TimelineCurveCreatorBaseObject</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Base object for timeline curve creators.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="com.developedbyme.core.globalobjects.curvecreator.timeline.DefaultTimelineCurveCreator" href="DefaultTimelineCurveCreator.html">DefaultTimelineCurveCreator</a>, <a title="com.developedbyme.core.globalobjects.curvecreator.timeline.LinearInterpolationTimelineCurveCreator" href="LinearInterpolationTimelineCurveCreator.html">LinearInterpolationTimelineCurveCreator</a>, <a title="com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator" href="TangentRoundedTimelineCurveCreator.html">TangentRoundedTimelineCurveCreator</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var TimelineCurveCreatorBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject");
 	//"use strict";
 	
@@ -51,45 +73,86 @@
 		return newTimelineCurveCreatorBaseObject;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject");
 		
 		this.superCall();
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createCurveFromPart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a curve from a timeline part.</div>
-			<div class="code">objectFunctions.createCurveFromPart = function(aTimelinePart, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset, aReturnCurve, aPositionOnCurve) {
+			<div class="descriptionHolder">
+				<div class="description">Creates a curve from a timeline part.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createCurveFromPart = function(aTimelinePart, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset, aReturnCurve, aPositionOnCurve) {
 		//MENOTE: should be overridden
 		
 		return aPositionOnCurve;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.create = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function() {
 		var newTimelineCurveCreatorBaseObject = (new ClassReference()).init();
 		return newTimelineCurveCreatorBaseObject;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

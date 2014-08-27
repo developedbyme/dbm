@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>CurveCreator</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.curvecreator.CurveCreator</div>
-		<div class="classInheritance"></div>
-		<div class="description">Global class that create curves</div>
-		<div class="importSnippet">var CurveCreator = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>CurveCreator</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.curvecreator.CurveCreator</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Global class that create curves</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.data.curves.BezierCurve" href="../../data/curves/BezierCurve.html">BezierCurve</a>, <a title="com.developedbyme.constants.CurveMergeTypes" href="../../../constants/CurveMergeTypes.html">CurveMergeTypes</a>, <a title="com.developedbyme.core.globalobjects.curvecreator.timeline.DefaultTimelineCurveCreator" href="timeline/DefaultTimelineCurveCreator.html">DefaultTimelineCurveCreator</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ExtrapolationTypes" href="../../../constants/ExtrapolationTypes.html">ExtrapolationTypes</a>, <a title="com.developedbyme.core.data.points.Point" href="../../data/points/Point.html">Point</a>, <a title="com.developedbyme.utils.math.QuadricEquationSolver" href="../../../utils/math/QuadricEquationSolver.html">QuadricEquationSolver</a>, <a title="com.developedbyme.utils.data.qualifier.QualifierSelector" href="../../../utils/data/qualifier/QualifierSelector.html">QualifierSelector</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.native.string.StringFunctions" href="../../../utils/native/string/StringFunctions.html">StringFunctions</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CurveCreator = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
 	//"use strict";
 	
@@ -478,15 +500,26 @@
 		}
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
 		
 		this.superCall();
@@ -496,20 +529,40 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addTimelineCurveCreator</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.addTimelineCurveCreator = function(aQualifier, aCreator) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.addTimelineCurveCreator = function(aQualifier, aCreator) {
 		this._timelineCurveCreators.addQualifiedData(aQualifier, aCreator, true);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createPolygon</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createPolygon = function(aNumberOfSegments, aLength, aStartAngle) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createPolygon = function(aNumberOfSegments, aLength, aStartAngle) {
 		
 		aStartAngle = VariableAliases.valueWithDefault(aStartAngle, 0);
 		
@@ -526,12 +579,22 @@
 		
 		return newCurve;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createStar</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createStar = function(aNumberOfSegments, aLengths, aStartAngle) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createStar = function(aNumberOfSegments, aLengths, aStartAngle) {
 		
 		aStartAngle = VariableAliases.valueWithDefault(aStartAngle, 0);
 		
@@ -549,12 +612,22 @@
 		
 		return newCurve;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createSmoothStar</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createSmoothStar = function(aNumberOfSegments, aDegree, aLengths, aStartAngle) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createSmoothStar = function(aNumberOfSegments, aDegree, aLengths, aStartAngle) {
 		
 		aStartAngle = VariableAliases.valueWithDefault(aStartAngle, 0);
 		
@@ -578,12 +651,22 @@
 		
 		return newCurve;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createRectangle</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createRectangle = function(aX, aY, aWidth, aHeight) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createRectangle = function(aX, aY, aWidth, aHeight) {
 		//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator::createRectangle");
 		
 		var newCurve = BezierCurve.createWithLength(1, true, 5);
@@ -602,12 +685,22 @@
 		
 		return newCurve;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createCircle</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createCircle = function(aX, aY, aRadius, aNumberOfSegments, aStartAngle) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createCircle = function(aX, aY, aRadius, aNumberOfSegments, aStartAngle) {
 		//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator::createCircle");
 		
 		aNumberOfSegments = VariableAliases.valueWithDefault(aNumberOfSegments, 8);
@@ -644,12 +737,22 @@
 		
 		return newCurve;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createCurveFromSeparatedString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createCurveFromSeparatedString = function(aDegree, aIsCompact, aValueString, aSeparator) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createCurveFromSeparatedString = function(aDegree, aIsCompact, aValueString, aSeparator) {
 			
 		var separator = VariableAliases.valueWithDefault(aSeparator, ",");
 		
@@ -657,12 +760,22 @@
 		
 		return this.createCurveFromValuesArray(aDegree, aIsCompact, valuesArray);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createCurveFromValuesArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createCurveFromValuesArray = function(aDegree, aIsCompact, aValuesArray) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createCurveFromValuesArray = function(aDegree, aIsCompact, aValuesArray) {
 		
 		var valuesArray = aValuesArray;
 		var numberOfPoints = 0.5*valuesArray.length;
@@ -679,12 +792,22 @@
 		
 		return newCurve;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createCurveFromDoubleSeparatedString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createCurveFromDoubleSeparatedString = function(aDegree, aIsCompact, aValueString, aFirstSeparator, aSecondSeparator) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createCurveFromDoubleSeparatedString = function(aDegree, aIsCompact, aValueString, aFirstSeparator, aSecondSeparator) {
 			
 		var firstSeparator = VariableAliases.valueWithDefault(aFirstSeparator, ";");
 		var secondSeparator = VariableAliases.valueWithDefault(aSecondSeparator, ",");
@@ -706,12 +829,22 @@
 		
 		return newCurve;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createGrid</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createGrid = function(aX, aY, aWidth, aHeight, aNumberOfHorizontalSegments, aNumberOfVerticalSegments, aHorizontalReturnArray, aVerticalReturnArray) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createGrid = function(aX, aY, aWidth, aHeight, aNumberOfHorizontalSegments, aNumberOfVerticalSegments, aHorizontalReturnArray, aVerticalReturnArray) {
 		
 		for(var i = 0; i &lt; aNumberOfVerticalSegments+1; i++) {
 			var newHorizontalLine = BezierCurve.createWithLength(1, true, aNumberOfHorizontalSegments+1);
@@ -733,12 +866,22 @@
 			}
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_createOneDegreeHigherCompactSegment</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._createOneDegreeHigherCompactSegment = function(aLastPoint, aCurrentDegree, aInputSegment, aOutputSegment) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._createOneDegreeHigherCompactSegment = function(aLastPoint, aCurrentDegree, aInputSegment, aOutputSegment) {
 		var lastX = aLastPoint.x;
 		var lastY = aLastPoint.y;
 		var lastZ = aLastPoint.z;
@@ -761,12 +904,22 @@
 		}
 		
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createHigherDegreeCompactSegment</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createHigherDegreeCompactSegment = function(aLastPoint, aInputDegree, aOutputDegree, aInputSegment, aReturnSegment) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createHigherDegreeCompactSegment = function(aLastPoint, aInputDegree, aOutputDegree, aInputSegment, aReturnSegment) {
 		
 		if(aInputDegree === aOutputDegree) {
 			for(var i = 0; i &lt; aOutputDegree; i++) {
@@ -790,12 +943,22 @@
 			}
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">combineCurves</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.combineCurves = function(aCurve1, aCurve2, aMergeType) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.combineCurves = function(aCurve1, aCurve2, aMergeType) {
 		var curve1Degree = aCurve1.getCurveDegree();
 		var curve2Degree = aCurve2.getCurveDegree();
 		var maxDegree = Math.max(curve1Degree, curve2Degree);
@@ -876,12 +1039,22 @@
 		
 		return returnCurve;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createCurveFromTimeline</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createCurveFromTimeline = function(aTimeline, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset, aReturnCurve) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createCurveFromTimeline = function(aTimeline, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset, aReturnCurve) {
 		
 		var currentCurvePosition = 0;
 		var currentTime = aStartTime;
@@ -938,12 +1111,22 @@
 		
 		//METODO: remove rest of curve
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getCurveCreatorForTimelinePart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getCurveCreatorForTimelinePart = function(aTimelinePart) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getCurveCreatorForTimelinePart = function(aTimelinePart) {
 		
 		var customCreator = this._timelineCurveCreators.selectQualifiedData(aTimelinePart);
 		
@@ -953,12 +1136,22 @@
 		
 		return this._defaultTimelineCurveCreator;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setEndOfLinearSegment</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setEndOfLinearSegment = function(aStartX, aStartY, aEndX, aEndY, aReturnCurve, aPositionOnCurve) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setEndOfLinearSegment = function(aStartX, aStartY, aEndX, aEndY, aReturnCurve, aPositionOnCurve) {
 		//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator::setEndOfLinearSegment");
 		//console.log(aStartX, aStartY, aEndX, aEndY);
 		var distanceX = aEndX-aStartX;
@@ -975,12 +1168,22 @@
 		currentPoint.x = aEndX;
 		currentPoint.y = aEndY;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">ensureNextSegments</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.ensureNextSegments = function(aReturnCurve, aPositionOnCurve, aNumberOfSegments) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.ensureNextSegments = function(aReturnCurve, aPositionOnCurve, aNumberOfSegments) {
 		//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator::ensureNextSegments");
 		var currentNumberOfPoints = aReturnCurve.pointsArray.length;
 		var pointsToAdd = 1+aPositionOnCurve+3*aNumberOfSegments-currentNumberOfPoints;
@@ -988,10 +1191,20 @@
 			aReturnCurve.createPoints(pointsToAdd);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

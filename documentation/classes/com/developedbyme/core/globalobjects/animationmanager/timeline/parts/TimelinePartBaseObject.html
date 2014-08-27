@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>TimelinePartBaseObject</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var TimelinePartBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>TimelinePartBaseObject</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart" href="AnimationCurveTimelinePart.html">AnimationCurveTimelinePart</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart" href="InterpolationTimelinePart.html">InterpolationTimelinePart</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart" href="SetValueTimelinePart.html">SetValueTimelinePart</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart" href="SpatialCurveTimelinePart.html">SpatialCurveTimelinePart</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var TimelinePartBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject");	
 	
 	objectFunctions._init = function() {
@@ -69,15 +91,26 @@
 		return this.getTangentByParameter((aTime-this.startTime)/(this.endTime-this.startTime));
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject::_init");
 		
 		this.superCall();
@@ -86,12 +119,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setTimes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setTimes = function(aStartTime, aEndTime) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setTimes = function(aStartTime, aEndTime) {
 		
 		this.startTime = aStartTime;
 		this.endTime = aEndTime;
@@ -100,42 +143,82 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setTimeToGlobal</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setTimeToGlobal = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setTimeToGlobal = function() {
 		
 		this.endTime = this.startTime+1;
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getValueByParameter</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getValueByParameter = function(aParameter) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getValueByParameter = function(aParameter) {
 		//MENOTE: should be overridden
 		//METODO: error meassage
 		return null;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getTangentByParameter</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getTangentByParameter = function(aParameter) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getTangentByParameter = function(aParameter) {
 		var tangent = (this.getValueByParameter(aParameter+0.01)-this.getValueByParameter(aParameter-0.01))/0.02;
 		return tangent;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getValueAt</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getValueAt = function(aTime) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getValueAt = function(aTime) {
 		if(aTime === this.endTime || this.startTime === this.endTime) {
 			return this.getValueByParameter(1);
 		}
@@ -144,12 +227,22 @@
 		}
 		return this.getValueByParameter((aTime-this.startTime)/(this.endTime-this.startTime));
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getTangentAt</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getTangentAt = function(aTime) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getTangentAt = function(aTime) {
 		if(aTime === this.endTime || this.startTime === this.endTime) {
 			return this.getTangentByParameter(1);
 		}
@@ -158,10 +251,20 @@
 		}
 		return this.getTangentByParameter((aTime-this.startTime)/(this.endTime-this.startTime));
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

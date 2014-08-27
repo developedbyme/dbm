@@ -1,23 +1,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>FlowBaseObject</h1>
-		<div class="classPath">com.developedbyme.core.FlowBaseObject</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var FlowBaseObject = dbm.importClass("com.developedbyme.core.FlowBaseObject");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>FlowBaseObject</h1>
+					<div class="classPath">com.developedbyme.core.FlowBaseObject</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Base object for objects that are using properites to flow updates through the application.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="com.developedbyme.flow.nodes.math.AdditionNode" href="../flow/nodes/math/AdditionNode.html">AdditionNode</a>, <a title="com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode" href="../flow/nodes/points/AdjustPointsInPointSetNode.html">AdjustPointsInPointSetNode</a>, <a title="com.developedbyme.flow.nodes.math.trigonometry.Atan2Node" href="../flow/nodes/math/trigonometry/Atan2Node.html">Atan2Node</a>, <a title="com.developedbyme.flow.nodes.logic.BooleanSwitchedNode" href="../flow/nodes/logic/BooleanSwitchedNode.html">BooleanSwitchedNode</a>, <a title="com.developedbyme.utils.canvas.CanvasController2d" href="../utils/canvas/CanvasController2d.html">CanvasController2d</a>, <a title="com.developedbyme.utils.canvas.3d.CanvasController3d" href="../utils/canvas/3d/CanvasController3d.html">CanvasController3d</a>, <a title="com.developedbyme.utils.canvas.CanvasGraphics2d" href="../utils/canvas/CanvasGraphics2d.html">CanvasGraphics2d</a>, <a title="com.developedbyme.utils.canvas.CanvasImageGraphics2d" href="../utils/canvas/CanvasImageGraphics2d.html">CanvasImageGraphics2d</a>, <a title="com.developedbyme.utils.canvas.CanvasLayer2d" href="../utils/canvas/CanvasLayer2d.html">CanvasLayer2d</a>, <a title="com.developedbyme.utils.canvas.3d.CanvasLayer3d" href="../utils/canvas/3d/CanvasLayer3d.html">CanvasLayer3d</a>, <a title="com.developedbyme.utils.canvas.CanvasTextGraphics2d" href="../utils/canvas/CanvasTextGraphics2d.html">CanvasTextGraphics2d</a>, <a title="com.developedbyme.utils.graphics.color.ColorFunctions" href="../utils/graphics/color/ColorFunctions.html">ColorFunctions</a>, <a title="com.developedbyme.utils.graphics.gradient.ColorStop" href="../utils/graphics/gradient/ColorStop.html">ColorStop</a>, <a title="com.developedbyme.flow.nodes.logic.ConditionNode" href="../flow/nodes/logic/ConditionNode.html">ConditionNode</a>, <a title="com.developedbyme.flow.nodes.math.trigonometry.CosNode" href="../flow/nodes/math/trigonometry/CosNode.html">CosNode</a>, <a title="com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode" href="../flow/nodes/curves/CreateArcLengthCurveNode.html">CreateArcLengthCurveNode</a>, <a title="com.developedbyme.flow.nodes.curves.CreateMultiSegmentBezierCurveNode" href="../flow/nodes/curves/CreateMultiSegmentBezierCurveNode.html">CreateMultiSegmentBezierCurveNode</a>, <a title="com.developedbyme.utils.canvas.CurveDrawer2d" href="../utils/canvas/CurveDrawer2d.html">CurveDrawer2d</a>, <a title="com.developedbyme.core.extendedevent.DelayedExtendedEventController" href="extendedevent/DelayedExtendedEventController.html">DelayedExtendedEventController</a>, <a title="com.developedbyme.flow.nodes.math.DivisionNode" href="../flow/nodes/math/DivisionNode.html">DivisionNode</a>, <a title="com.developedbyme.core.ExtendedEventBaseObject" href="ExtendedEventBaseObject.html">ExtendedEventBaseObject</a>, <a title="com.developedbyme.core.objectparts.ExtendedFunctionBaseObject" href="objectparts/ExtendedFunctionBaseObject.html">ExtendedFunctionBaseObject</a>, <a title="com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode" href="../flow/nodes/curves/GetMaxParameterOnCurveNode.html">GetMaxParameterOnCurveNode</a>, <a title="com.developedbyme.flow.nodes.curves.GetPointOnCurveNode" href="../flow/nodes/curves/GetPointOnCurveNode.html">GetPointOnCurveNode</a>, <a title="com.developedbyme.flow.nodes.time.GlobalTimeNode" href="../flow/nodes/time/GlobalTimeNode.html">GlobalTimeNode</a>, <a title="com.developedbyme.utils.graphics.gradient.Gradient" href="../utils/graphics/gradient/Gradient.html">Gradient</a>, <a title="com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode" href="../flow/nodes/math/trigonometry/InverseKinematicsNode.html">InverseKinematicsNode</a>, <a title="com.developedbyme.flow.data.KeyValuePropertyPair" href="../flow/data/KeyValuePropertyPair.html">KeyValuePropertyPair</a>, <a title="com.developedbyme.core.globalobjects.audiomanager.mixer.Mixer" href="globalobjects/audiomanager/mixer/Mixer.html">Mixer</a>, <a title="com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel" href="globalobjects/audiomanager/mixer/MixerChannel.html">MixerChannel</a>, <a title="com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint" href="../gui/abstract/touch/movablepoints/MovablePoint.html">MovablePoint</a>, <a title="com.developedbyme.flow.nodes.math.MultiplicationNode" href="../flow/nodes/math/MultiplicationNode.html">MultiplicationNode</a>, <a title="com.developedbyme.flow.nodes.logic.NameSwitchedNode" href="../flow/nodes/logic/NameSwitchedNode.html">NameSwitchedNode</a>, <a title="com.developedbyme.flow.nodes.data.ObjectVariableWithDefaultValueNode" href="../flow/nodes/data/ObjectVariableWithDefaultValueNode.html">ObjectVariableWithDefaultValueNode</a>, <a title="com.developedbyme.flow.nodes.curves.ParameterFromValueNode" href="../flow/nodes/curves/ParameterFromValueNode.html">ParameterFromValueNode</a>, <a title="com.developedbyme.flow.nodes.parse.ParseFloatNode" href="../flow/nodes/parse/ParseFloatNode.html">ParseFloatNode</a>, <a title="com.developedbyme.flow.nodes.parse.ParseStringNode" href="../flow/nodes/parse/ParseStringNode.html">ParseStringNode</a>, <a title="com.developedbyme.flow.nodes.time.PlaybackNode" href="../flow/nodes/time/PlaybackNode.html">PlaybackNode</a>, <a title="com.developedbyme.flow.nodes.points.PointFromValuesNode" href="../flow/nodes/points/PointFromValuesNode.html">PointFromValuesNode</a>, <a title="com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode" href="../flow/nodes/math/geometry/PositionRectangleNode.html">PositionRectangleNode</a>, <a title="com.developedbyme.flow.nodes.math.PowerNode" href="../flow/nodes/math/PowerNode.html">PowerNode</a>, <a title="com.developedbyme.flow.PropertiesHolder" href="../flow/PropertiesHolder.html">PropertiesHolder</a>, <a title="com.developedbyme.flow.nodes.math.range.RangeNode" href="../flow/nodes/math/range/RangeNode.html">RangeNode</a>, <a title="com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode" href="../flow/nodes/math/geometry/RectangleFromValuesNode.html">RectangleFromValuesNode</a>, <a title="com.developedbyme.flow.nodes.math.round.RoundNode" href="../flow/nodes/math/round/RoundNode.html">RoundNode</a>, <a title="com.developedbyme.flow.nodes.math.geometry.ScaleAndPositionRectangleNode" href="../flow/nodes/math/geometry/ScaleAndPositionRectangleNode.html">ScaleAndPositionRectangleNode</a>, <a title="com.developedbyme.flow.nodes.math.geometry.ScaleRectangleNode" href="../flow/nodes/math/geometry/ScaleRectangleNode.html">ScaleRectangleNode</a>, <a title="com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode" href="../flow/nodes/internal/SetElementToCssPropertiesNode.html">SetElementToCssPropertiesNode</a>, <a title="com.developedbyme.flow.nodes.math.trigonometry.SinNode" href="../flow/nodes/math/trigonometry/SinNode.html">SinNode</a>, <a title="com.developedbyme.flow.nodes.display.SizeOfElementNode" href="../flow/nodes/display/SizeOfElementNode.html">SizeOfElementNode</a>, <a title="com.developedbyme.flow.nodes.math.SquareRootNode" href="../flow/nodes/math/SquareRootNode.html">SquareRootNode</a>, <a title="com.developedbyme.flow.nodes.math.SubtractionNode" href="../flow/nodes/math/SubtractionNode.html">SubtractionNode</a>, <a title="com.developedbyme.gui.abstract.switchablearea.SwitchableAreaBaseObject" href="../gui/abstract/switchablearea/SwitchableAreaBaseObject.html">SwitchableAreaBaseObject</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder" href="globalobjects/animationmanager/data/TemporaryTimelineHolder.html">TemporaryTimelineHolder</a>, <a title="com.developedbyme.flow.nodes.text.TextReplacementNode" href="../flow/nodes/text/TextReplacementNode.html">TextReplacementNode</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline" href="globalobjects/animationmanager/timeline/Timeline.html">Timeline</a>, <a title="com.developedbyme.flow.nodes.text.ToLowerCaseNode" href="../flow/nodes/text/ToLowerCaseNode.html">ToLowerCaseNode</a>, <a title="com.developedbyme.flow.nodes.text.ToUpperCaseNode" href="../flow/nodes/text/ToUpperCaseNode.html">ToUpperCaseNode</a>, <a title="com.developedbyme.flow.nodes.math.transformation.TransformationTo2dMatrixNode" href="../flow/nodes/math/transformation/TransformationTo2dMatrixNode.html">TransformationTo2dMatrixNode</a>, <a title="com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode" href="../flow/nodes/math/transformation/TransformationTo3dMatrixNode.html">TransformationTo3dMatrixNode</a>, <a title="com.developedbyme.flow.nodes.display.TransformElementNode" href="../flow/nodes/display/TransformElementNode.html">TransformElementNode</a>, <a title="com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode" href="../flow/nodes/math/geometry/ValuesFromRectangleNode.html">ValuesFromRectangleNode</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.objectparts.GhostProperty" href="objectparts/GhostProperty.html">GhostProperty</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a>, <a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.core.objectparts.UpdateFunction" href="objectparts/UpdateFunction.html">UpdateFunction</a>, <a title="com.developedbyme.core.objectparts.UpdateFunctionWithArguments" href="objectparts/UpdateFunctionWithArguments.html">UpdateFunctionWithArguments</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var FlowBaseObject = dbm.importClass("com.developedbyme.core.FlowBaseObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.FlowBaseObject");
 	//"use strict";
 	
+	//Self reference
 	var FlowBaseObject = dbm.importClass("com.developedbyme.core.FlowBaseObject");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
@@ -25,8 +50,15 @@
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::_init");
 		
@@ -42,6 +74,9 @@
 		return this;
 	};
 	
+	/**
+	 * Creates an object property for this object. Needed when simple values are combined to an object (eg. values to a point).
+	 */
 	objectFunctions._createObjectProperty = function() {
 		this._objectProperty = ObjectProperty.create(this);
 		this._objectProperty.name = this.__nodeId + "::object(o)";
@@ -50,6 +85,9 @@
 		this._objectProperty.setAsDirty();
 	};
 	
+	/**
+	 * Adds the object property to all the exisitng properties.
+	 */
 	objectFunctions._addObjectPropertyToAllProperties = function() {
 		var currentArray = this._properties.getObjectsArray();
 		var currentArrayLength = currentArray.length;
@@ -60,6 +98,11 @@
 		}
 	};
 	
+	/**
+	 * Gets the object property for this object. The property is created if it doesn't alread exists.
+	 *
+	 * @return	ObjectProperty	The object property.
+	 */
 	objectFunctions.getObjectProperty = function() {
 		if(this._objectProperty === null) {
 			this._createObjectProperty();
@@ -67,6 +110,11 @@
 		return this._objectProperty;
 	};
 	
+	/**
+	 * Gets the object property if it exists.
+	 *
+	 * @return	ObjectProperty	The object property. Null if the property doesn't exist.
+	 */
 	objectFunctions.getObjectPropertyIfExists = function() {
 		return this._objectProperty;
 	};
@@ -155,6 +203,11 @@
 		return this;
 	};
 	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with the parameters description.
+	 */
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
@@ -163,6 +216,9 @@
 		}
 	};
 	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._objectProperty = null;
@@ -172,15 +228,26 @@
 		this.superCall();
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::_init");
 		
 		this.superCall();
@@ -194,24 +261,44 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_createObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._createObjectProperty = function() {
+			<div class="descriptionHolder">
+				<div class="description">Creates an object property for this object. Needed when simple values are combined to an object (eg. values to a point).</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._createObjectProperty = function() {
 		this._objectProperty = ObjectProperty.create(this);
 		this._objectProperty.name = this.__nodeId + "::object(o)";
 		this.addDestroyableObject(this._objectProperty);
 		this._addObjectPropertyToAllProperties();
 		this._objectProperty.setAsDirty();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_addObjectPropertyToAllProperties</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._addObjectPropertyToAllProperties = function() {
+			<div class="descriptionHolder">
+				<div class="description">Adds the object property to all the exisitng properties.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._addObjectPropertyToAllProperties = function() {
 		var currentArray = this._properties.getObjectsArray();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i &lt; currentArrayLength; i++) {
@@ -220,64 +307,124 @@
 			currentProperty._linkRegistration_setObjectInputConnection(this._objectProperty);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getObjectProperty = function() {
+			<div class="descriptionHolder">
+				<div class="description">Gets the object property for this object. The property is created if it doesn't alread exists.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getObjectProperty = function() {
 		if(this._objectProperty === null) {
 			this._createObjectProperty();
 		}
 		return this._objectProperty;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getObjectPropertyIfExists</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getObjectPropertyIfExists = function() {
+			<div class="descriptionHolder">
+				<div class="description">Gets the object property if it exists.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getObjectPropertyIfExists = function() {
 		return this._objectProperty;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createUpdateFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createUpdateFunction = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createUpdateFunction = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunction.create(this, aUpdateFunction, aInputsArray, aOutputsArray);
 		newUpdateFunction.name = this.__nodeId + "::" + aName + "(f)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createUpdateFunctionWithArguments</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createUpdateFunctionWithArguments = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createUpdateFunctionWithArguments = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunctionWithArguments.create(this, aUpdateFunction, aInputsArray, aOutputsArray);
 		newUpdateFunction.name = this.__nodeId + "::" + aName + "(f)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createGhostUpdateFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createGhostUpdateFunction = function(aName, aInputsArray, aOutputsArray) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createGhostUpdateFunction = function(aName, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunction.createGhostFunction(aInputsArray, aOutputsArray);
 		newUpdateFunction.name = this.__nodeId + "::" + aName + "(gf)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createProperty = function(aName, aValue) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createProperty = function(aName, aValue) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createProperty");
 		//console.log(aName, aValue);
 		var newProperty = Property.create(this._objectProperty, aValue);
@@ -285,12 +432,22 @@
 		this._properties.addObject(aName, newProperty);
 		return newProperty;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.addProperty = function(aName, aProperty) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.addProperty = function(aName, aProperty) {
 		//console.log("com.developedbyme.core.FlowBaseObject::addProperty");
 		//console.log(aName, aProperty);
 		aProperty.name = this.__nodeId + "::" + aName;
@@ -298,24 +455,44 @@
 		//console.log("//com.developedbyme.core.FlowBaseObject::addProperty");
 		return aProperty;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createGhostProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.createGhostProperty = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createGhostProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createGhostProperty");
 		var newProperty = GhostProperty.create(this._objectProperty);
 		newProperty.name = this.__nodeId + "::" + aName + "(g)";
 		this._properties.addObject(aName, newProperty);
 		return newProperty;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getProperty = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
 		//console.log(this, aName);
 		if(this._properties !== null &amp;&amp; this._properties.select(aName)) {
@@ -324,12 +501,22 @@
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Property " + aName + " doesn't exist on " + this + ".");
 		return null;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getUpdateFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getUpdateFunction = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getUpdateFunction = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getUpdateFunction");
 		//console.log(this, aName);
 		if(this._updateFunctions.select(aName)) {
@@ -338,12 +525,22 @@
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getUpdateFunction", "Update function " + aName + " doesn't exist on " + this + ".");
 		return null;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setPropertyInput</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setPropertyInput = function(aName, aInput) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setPropertyInput = function(aName, aInput) {
 		var theProperty = this.getProperty(aName);
 		if(theProperty === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setPropertyInput", "Property " + aName + " doesn't exist.");
@@ -352,35 +549,65 @@
 		dbm.singletons.dbmFlowManager.setPropertyInput(theProperty, aInput);
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setPropertyInputWithoutNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setPropertyInputWithoutNull = function(aName, aInput) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setPropertyInputWithoutNull = function(aName, aInput) {
 		if(VariableAliases.isSet(aInput)) {
 			this.setPropertyInput(aName, aInput);
 		}
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+			<div class="descriptionHolder">
+				<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
 		if(this._properties !== null &amp;&amp; this._properties !== undefined) {
 			aReturnArray.push("properties: [" + this._properties.getNamesArray().join(", ") + "]");
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets all the references to null. Part of the destroy function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._objectProperty = null;
 		this._properties = null;
@@ -388,10 +615,20 @@
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>RectangleFunctions</h1>
-		<div class="classPath">com.developedbyme.utils.math.geometry.RectangleFunctions</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var RectangleFunctions = dbm.importClass("com.developedbyme.utils.math.geometry.RectangleFunctions");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.math.geometry.RectangleFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>RectangleFunctions</h1>
+					<div class="classPath">com.developedbyme.utils.math.geometry.RectangleFunctions</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.FitTypes" href="../../../constants/FitTypes.html">FitTypes</a>, <a title="com.developedbyme.core.data.points.Point" href="../../../core/data/points/Point.html">Point</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var RectangleFunctions = dbm.importClass("com.developedbyme.utils.math.geometry.RectangleFunctions");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.math.geometry.RectangleFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.geometry.RectangleFunctions");
 	
 	var RectangleFunctions = dbm.importClass("com.developedbyme.utils.math.geometry.RectangleFunctions");
@@ -118,19 +140,30 @@
 		return ClassReference._tempPoint;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">getPointOnRectangleEdge</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getPointOnRectangleEdge = function(aRectangle, aParameter, aReturnPoint) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getPointOnRectangleEdge = function(aRectangle, aParameter, aReturnPoint) {
 		var side = Math.floor(aParameter*4);
 		var localParameter = 4*aParameter-side;
 		var localSide = side%4;
@@ -151,50 +184,100 @@
 			aReturnPoint.y = aRectangle.y+(1-localParameter)*aRectangle.height;
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getPointOnRectangle</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getPointOnRectangle = function(aRectangle, aParameterX, aParameterY, aReturnPoint) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getPointOnRectangle = function(aRectangle, aParameterX, aParameterY, aReturnPoint) {
 		aReturnPoint.x = aRectangle.x+aParameterX*aRectangle.width;
 		aReturnPoint.y = aRectangle.y+aParameterY*aRectangle.height;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getPositionedRectanglePosition</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getPositionedRectanglePosition = function(aOuterRectangle, aInnerRectangle, aOuterParameterX, aOuterParameterY, aInnerParameterX, aInnerParameterY, aOffsetParameterX, aOffsetParameterY, aReturnPoint) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getPositionedRectanglePosition = function(aOuterRectangle, aInnerRectangle, aOuterParameterX, aOuterParameterY, aInnerParameterX, aInnerParameterY, aOffsetParameterX, aOffsetParameterY, aReturnPoint) {
 		aReturnPoint.x = (aOuterRectangle.x+aOuterParameterX*aOuterRectangle.width)-(aInnerParameterX*aInnerRectangle.width)+aOffsetParameterX;
 		aReturnPoint.y = (aOuterRectangle.y+aOuterParameterY*aOuterRectangle.height)-(aInnerParameterY*aInnerRectangle.height)+aOffsetParameterY;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getScaledRectangle</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getScaledRectangle = function(aOuterRectangle, aParameterX, aParameterY, aOffsetParameterX, aOffsetParameterY, aReturnRectangle) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getScaledRectangle = function(aOuterRectangle, aParameterX, aParameterY, aOffsetParameterX, aOffsetParameterY, aReturnRectangle) {
 		aReturnRectangle.width = aParameterX*aOuterRectangle.width+aOffsetParameterX;
 		aReturnRectangle.height = aParameterY*aOuterRectangle.height+aOffsetParameterY;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getBlendedRectangle</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getBlendedRectangle = function(aOuterRectangle, aInnerRectangle, aParameterX, aParameterY, aReturnRectangle) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getBlendedRectangle = function(aOuterRectangle, aInnerRectangle, aParameterX, aParameterY, aReturnRectangle) {
 		aReturnRectangle.x = aInnerRectangle.x+aParameterX*(aOuterRectangle.x-aInnerRectangle.x);
 		aReturnRectangle.y = aInnerRectangle.y+aParameterY*(aOuterRectangle.y-aInnerRectangle.y);
 		aReturnRectangle.width = aInnerRectangle.width+aParameterX*(aOuterRectangle.width-aInnerRectangle.width);
 		aReturnRectangle.height = aInnerRectangle.height+aParameterY*(aOuterRectangle.height-aInnerRectangle.height);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">fitRectangle</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.fitRectangle = function(aType, aOuterRectangle, aInnerRectangle, aReturnRectangle) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.fitRectangle = function(aType, aOuterRectangle, aInnerRectangle, aReturnRectangle) {
 		
 		switch(aType) {
 			case FitTypes.NONE:
@@ -230,29 +313,59 @@
 				break;
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getRectangleFromPoints</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getRectangleFromPoints = function(aTopLeftPoint, aBottomRightPoint, aReturnRectangle) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getRectangleFromPoints = function(aTopLeftPoint, aBottomRightPoint, aReturnRectangle) {
 		aReturnRectangle.x = aTopLeftPoint.x;
 		aReturnRectangle.y = aTopLeftPoint.y;
 		aReturnRectangle.width = aBottomRightPoint.x-aTopLeftPoint.x;
 		aReturnRectangle.height = aBottomRightPoint.y-aTopLeftPoint.y;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getTempPoint</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getTempPoint = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getTempPoint = function() {
 		if(ClassReference._tempPoint === null) {
 			ClassReference._tempPoint = Point.create();
 		}
 		return ClassReference._tempPoint;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

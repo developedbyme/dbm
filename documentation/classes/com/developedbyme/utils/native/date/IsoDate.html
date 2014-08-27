@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>IsoDate</h1>
-		<div class="classPath">com.developedbyme.utils.native.date.IsoDate</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var IsoDate = dbm.importClass("com.developedbyme.utils.native.date.IsoDate");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.native.date.IsoDate", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>IsoDate</h1>
+					<div class="classPath">com.developedbyme.utils.native.date.IsoDate</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.native.number.NumberFunctions" href="../number/NumberFunctions.html">NumberFunctions</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var IsoDate = dbm.importClass("com.developedbyme.utils.native.date.IsoDate");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.native.date.IsoDate", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.native.date.IsoDate");
 	
 	//Self reference
@@ -78,19 +100,30 @@
 		return ClassReference.getCompactIsoDate(aDate) + "T" + NumberFunctions.getPaddedNumber(aDate.getUTCHours(), 2) + "" + NumberFunctions.getPaddedNumber(aDate.getUTCMinutes(), 2) + "" + NumberFunctions.getPaddedNumber(aDate.getUTCSeconds(), 2);
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">dateFromIsoString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.dateFromIsoString = function(aString, aLocalTimeZoneOffset) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.dateFromIsoString = function(aString, aLocalTimeZoneOffset) {
 		
 		aLocalTimeZoneOffset = VariableAliases.valueWithDefault(aLocalTimeZoneOffset, 0);
 		
@@ -123,39 +156,89 @@
 		
 		return currentDate;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getIsoDate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getIsoDate = function(aDate) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getIsoDate = function(aDate) {
 		return aDate.getUTCFullYear() + "-" + NumberFunctions.getPaddedNumber(aDate.getUTCMonth()+1, 2) + "-" + NumberFunctions.getPaddedNumber(aDate.getUTCDate()+1, 2);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getIsoDateAndTime</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getIsoDateAndTime = function(aDate) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getIsoDateAndTime = function(aDate) {
 		return ClassReference.getIsoDate(aDate) + "T" + NumberFunctions.getPaddedNumber(aDate.getUTCHours(), 2) + ":" + NumberFunctions.getPaddedNumber(aDate.getUTCMinutes(), 2) + ":" + NumberFunctions.getPaddedNumber(aDate.getUTCSeconds(), 2);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getCompactIsoDate</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getCompactIsoDate = function(aDate) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getCompactIsoDate = function(aDate) {
 		return aDate.getUTCFullYear() + "" + NumberFunctions.getPaddedNumber(aDate.getUTCMonth()+1, 2) + "" + NumberFunctions.getPaddedNumber(aDate.getUTCDate()+1, 2);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getCompactIsoDateAndTime</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.getCompactIsoDateAndTime = function(aDate) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.getCompactIsoDateAndTime = function(aDate) {
 		return ClassReference.getCompactIsoDate(aDate) + "T" + NumberFunctions.getPaddedNumber(aDate.getUTCHours(), 2) + "" + NumberFunctions.getPaddedNumber(aDate.getUTCMinutes(), 2) + "" + NumberFunctions.getPaddedNumber(aDate.getUTCSeconds(), 2);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

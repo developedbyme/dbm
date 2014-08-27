@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>TreeStructureItemLink</h1>
-		<div class="classPath">com.developedbyme.utils.data.treestructure.TreeStructureItemLink</div>
-		<div class="classInheritance"></div>
-		<div class="description">A tree strucure item link.</div>
-		<div class="importSnippet">var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink", "com.developedbyme.utils.data.treestructure.TreeStructureItem", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>TreeStructureItemLink</h1>
+					<div class="classPath">com.developedbyme.utils.data.treestructure.TreeStructureItemLink</div>
+					<div class="classInheritance"><a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="TreeStructureItem.html">TreeStructureItem</a> &gt; <a title="com.developedbyme.utils.data.retainableobjects.RetainableDataHolder" href="../retainableobjects/RetainableDataHolder.html">RetainableDataHolder</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">A tree strucure item link.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.treestructure.TreeStructureItemTypes" href="TreeStructureItemTypes.html">TreeStructureItemTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink", "com.developedbyme.utils.data.treestructure.TreeStructureItem", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	//"use strict";
 	
@@ -124,15 +146,26 @@
 		return newItem;
 	}; //End function create
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItemLink::_init");
 		
 		this.superCall();
@@ -142,66 +175,126 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addChild</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Adds a child.</div>
-			<div class="code">objectFunctions.addChild = function(aItem) {
+			<div class="descriptionHolder">
+				<div class="description">Adds a child.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.addChild = function(aItem) {
 		//console.log("addChild");
 		
 		var linkedItem =  this._root.getItemByPath(this.link, this);
 		linkedItem.addChild(aItem);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">removeChild</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Removes a child.</div>
-			<div class="code">objectFunctions.removeChild = function(aItem) {
+			<div class="descriptionHolder">
+				<div class="description">Removes a child.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.removeChild = function(aItem) {
 		//console.log("removeChild");
 		
 		var linkedItem =  this._root.getItemByPath(this.link, this);
 		linkedItem.removeChild(aItem);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">changeChildName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Changes the name of a child.</div>
-			<div class="code">objectFunctions.changeChildName = function(aItem, aNewName) {
+			<div class="descriptionHolder">
+				<div class="description">Changes the name of a child.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.changeChildName = function(aItem, aNewName) {
 		//console.log("changeChildName");
 		var linkedItem =  this._root.getItemByPath(this.link, this);
 		linkedItem.changeChildName(aItem, aNewName);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getChildByName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Gets a child by it's name.</div>
-			<div class="code">objectFunctions.getChildByName = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description">Gets a child by it's name.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getChildByName = function(aName) {
 		//console.log("getChildByName");
 		var linkedItem =  this._root.getItemByPath(this.link, this);
 		return linkedItem.getChildByName(aName);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">resolvePath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Resolves a path from this item.</div>
-			<div class="code">objectFunctions.resolvePath = function(aPath) {
+			<div class="descriptionHolder">
+				<div class="description">Resolves a path from this item.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.resolvePath = function(aPath) {
 		//console.log("resolvePath");
 		if(VariableAliases.isNull(aPath)) {
 			return this.link;
 		}
 		return this.link + "/" + aPath;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">debugTraceStructure</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Traces out the full structure.</div>
-			<div class="code">objectFunctions.debugTraceStructure = function(aTabString, aResolveLinksLevel) {
+			<div class="descriptionHolder">
+				<div class="description">Traces out the full structure.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.debugTraceStructure = function(aTabString, aResolveLinksLevel) {
 		//console.log("debugTraceStructure");
 		console.log(aTabString + this.toString() + "\n");
 		
@@ -221,33 +314,63 @@
 			linkedItem.debugTraceChildren(newTabString, newLevel);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Gets the parameters for this class. Part of the toString function.</div>
-			<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+			<div class="descriptionHolder">
+				<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("link: " + this.link);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new link.</div>
-			<div class="code">staticFunctions.create = function(aName, aLink) {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new link.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aName, aLink) {
 		//console.log("create");
 		var newItem = (new TreeStructureItemLink()).init();
 		newItem.setName(aName);
 		newItem.link = aLink;
 		return newItem;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

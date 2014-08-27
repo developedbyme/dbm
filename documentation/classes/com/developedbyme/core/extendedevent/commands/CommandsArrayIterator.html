@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>CommandsArrayIterator</h1>
-		<div class="classPath">com.developedbyme.core.extendedevent.commands.CommandsArrayIterator</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var CommandsArrayIterator = dbm.importClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator", "com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>CommandsArrayIterator</h1>
+					<div class="classPath">com.developedbyme.core.extendedevent.commands.CommandsArrayIterator</div>
+					<div class="classInheritance"><a title="com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator" href="../../../utils/data/iterator/ActiveRetainArrayIterator.html">ActiveRetainArrayIterator</a> &gt; <a title="com.developedbyme.utils.data.iterator.ActiveArrayIterator" href="../../../utils/data/iterator/ActiveArrayIterator.html">ActiveArrayIterator</a> &gt; <a title="com.developedbyme.utils.data.iterator.ArrayIterator" href="../../../utils/data/iterator/ArrayIterator.html">ArrayIterator</a> &gt; <a title="com.developedbyme.utils.data.ArrayHolder" href="../../../utils/data/ArrayHolder.html">ArrayHolder</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CommandsArrayIterator = dbm.importClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator", "com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator");
 	
 	var CommandsArrayIterator = dbm.importClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator");
@@ -91,48 +113,89 @@
 		}
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator::_init");
 		
 		this.superCall();
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_createCommandsForCommandQueue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._createCommandsForCommandQueue = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._createCommandsForCommandQueue = function() {
 		this.superCall();
 		
 		this._commandQueue.createFunctionTypeCommand("removeItemById", this, this.push, true);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_verifyItem</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Verifies that an item can be added</div>
-			<div class="code">objectFunctions._verifyItem = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description">Verifies that an item can be added</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._verifyItem = function(aObject) {
 		
 		//METODO
 		
 		return true;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">hasItemWithId</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if an item from the list has the id.</div>
-			<div class="code">objectFunctions.hasItemWithId = function(aId) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if an item from the list has the id.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.hasItemWithId = function(aId) {
 		var currentArray = this.array;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i &lt; currentArrayLength; i++) {
@@ -142,12 +205,22 @@
 		}
 		return false;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">removeItemById</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Removes an item from the list by id.</div>
-			<div class="code">objectFunctions.removeItemById = function(aId) {
+			<div class="descriptionHolder">
+				<div class="description">Removes an item from the list by id.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.removeItemById = function(aId) {
 		//console.log("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator::removeItemById");
 		//console.log(this._isActive, this._canRemoveItemsWhileActive);
 		if(!this._lock.isLocked() || this._canRemoveItemsWhileActive) {
@@ -173,10 +246,20 @@
 			this._commandQueue.createQueuedCommand("removeItemById", aId);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

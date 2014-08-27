@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>CurveCreatorDefaultSetup</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.curvecreator.setup.CurveCreatorDefaultSetup</div>
-		<div class="classInheritance"></div>
-		<div class="description">Default setup for the global curve creator.</div>
-		<div class="importSnippet">var CurveCreatorDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.setup.CurveCreatorDefaultSetup");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.setup.CurveCreatorDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>CurveCreatorDefaultSetup</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.curvecreator.setup.CurveCreatorDefaultSetup</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description">Default setup for the global curve creator.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.reevaluation.logicreevaluation.AndObject" href="../../../../utils/reevaluation/logicreevaluation/AndObject.html">AndObject</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="../../../../utils/reevaluation/objectreevaluation/CallFunctionObject.html">CallFunctionObject</a>, <a title="com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject" href="../../../../utils/reevaluation/logicreevaluation/ConditionAnyOfMultipleValuesObject.html">ConditionAnyOfMultipleValuesObject</a>, <a title="com.developedbyme.utils.reevaluation.logicreevaluation.ConditionObject" href="../../../../utils/reevaluation/logicreevaluation/ConditionObject.html">ConditionObject</a>, <a title="com.developedbyme.core.globalobjects.curvecreator.CurveCreator" href="../CurveCreator.html">CurveCreator</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject" href="../../../../utils/reevaluation/logicreevaluation/InstanceOfClassObject.html">InstanceOfClassObject</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart" href="../../animationmanager/timeline/parts/InterpolationTimelinePart.html">InterpolationTimelinePart</a>, <a title="com.developedbyme.constants.InterpolationTypes" href="../../../../constants/InterpolationTypes.html">InterpolationTypes</a>, <a title="com.developedbyme.core.globalobjects.curvecreator.timeline.LinearInterpolationTimelineCurveCreator" href="../timeline/LinearInterpolationTimelineCurveCreator.html">LinearInterpolationTimelineCurveCreator</a>, <a title="com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject" href="../../../../utils/reevaluation/staticreevaluation/SelectBaseObjectObject.html">SelectBaseObjectObject</a>, <a title="com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator" href="../timeline/TangentRoundedTimelineCurveCreator.html">TangentRoundedTimelineCurveCreator</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CurveCreatorDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.setup.CurveCreatorDefaultSetup");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.setup.CurveCreatorDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curvecreator.setup.CurveCreatorDefaultSetup");
 	//"use strict";
 	
@@ -102,19 +124,30 @@
 		);
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets up the default timeline curve creators.</div>
-			<div class="code">staticFunctions.setup = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets up the default timeline curve creators.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.setup = function() {
 		
 		var isInterpolationTimelinePartCommand = InstanceOfClassObject.createCommand(
 			SelectBaseObjectObject.createCommand(),
@@ -177,7 +210,17 @@
 			TangentRoundedTimelineCurveCreator.create(2)
 		);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>CreateMultiSegmentBezierCurveFromPoints2d</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d</div>
-		<div class="classInheritance"></div>
-		<div class="description">Object for creating a multi segment bezier curve from an array of points.</div>
-		<div class="importSnippet">var CreateMultiSegmentBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>CreateMultiSegmentBezierCurveFromPoints2d</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Object for creating a multi segment bezier curve from an array of points.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.data.points.Point" href="../../../data/points/Point.html">Point</a>, <a title="com.developedbyme.utils.math.VectorFunctions" href="../../../../utils/math/VectorFunctions.html">VectorFunctions</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CreateMultiSegmentBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
 	
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
@@ -196,15 +218,26 @@
 		}
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
 		
 		this.superCall();
@@ -228,12 +261,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_createFromCurrentPoint</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Adds points from the current vectors.</div>
-			<div class="code">objectFunctions._createFromCurrentPoint = function(aTypeFlag) {
+			<div class="descriptionHolder">
+				<div class="description">Adds points from the current vectors.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._createFromCurrentPoint = function(aTypeFlag) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_createFromCurrentPoint");
 		var theLength = Math.min(this._inVectorLength, this._outVectorLength);
 		var useStraight = Boolean(aTypeFlag &amp; ClassReference.SKIP_VECTORS_FLAG);
@@ -291,24 +334,44 @@
 			}
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_moveOutVectorToInVector</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Changes so that the out vector is now the reverse in vector.</div>
-			<div class="code">objectFunctions._moveOutVectorToInVector = function() {
+			<div class="descriptionHolder">
+				<div class="description">Changes so that the out vector is now the reverse in vector.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._moveOutVectorToInVector = function() {
 		//console.log("_moveOutVectorToInVector");
 		
 		this._inVector.x = -1*this._outVector.x;
 		this._inVector.y = -1*this._outVector.y;
 		this._inVectorLength = this._outVectorLength;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_setupVector</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets up a vector from 2 points.</div>
-			<div class="code">objectFunctions._setupVector = function(aCurrentPoint, aVectorPointingPoint, aOutputVector) {
+			<div class="descriptionHolder">
+				<div class="description">Sets up a vector from 2 points.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._setupVector = function(aCurrentPoint, aVectorPointingPoint, aOutputVector) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_setupVector");
 		//console.log(aCurrentPoint, aVectorPointingPoint, aOutputVector);
 		aOutputVector.x = aVectorPointingPoint.x-aCurrentPoint.x;
@@ -319,12 +382,22 @@
 		}
 		return theLength;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates the curve.</div>
-			<div class="code">objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aIsRound) {
+			<div class="descriptionHolder">
+				<div class="description">Creates the curve.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aIsRound) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::createCurve");
 		//console.log(aPointsArray, aReturnCurve, aIsRound);
 		this._isCompact = aReturnCurve.isCompact();
@@ -371,10 +444,20 @@
 			this._createFromCurrentPoint(ClassReference.TYPE_FLAG_IN | ClassReference.SKIP_VECTORS_FLAG);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

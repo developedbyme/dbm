@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>PrintInConsoleHandler</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler</div>
-		<div class="classInheritance"></div>
-		<div class="description">Error handler that prints reports in the console.</div>
-		<div class="importSnippet">var PrintInConsoleHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>PrintInConsoleHandler</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Error handler that prints reports in the console.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var PrintInConsoleHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
 	//"use strict";
 	
@@ -90,27 +112,48 @@
 		console.error(aObject, aFunctionName+":", aError, errorString);
 	}; //End function reportError
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Initializes the object.</div>
-			<div class="code">objectFunctions._init = function _init() {
+			<div class="descriptionHolder">
+				<div class="description">Initializes the object.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function _init() {
 		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::_init");
 		
 		this.superCall();
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">report</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Reports errors, warning and log messages.</div>
-			<div class="code">objectFunctions.report = function report(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
+			<div class="descriptionHolder">
+				<div class="description">Reports errors, warning and log messages.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.report = function report(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
 		switch(aType) {
 			case ReportTypes.ERROR:
 				console.error(aObject, aFunctionName+":", aData);
@@ -126,12 +169,22 @@
 				break;
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">reportError</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Reports an error catched from a try statement.</div>
-			<div class="code">objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
+			<div class="descriptionHolder">
+				<div class="description">Reports an error catched from a try statement.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
 		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
 		var errorProperties = new Array();
 		if(aError.fileName) {
@@ -154,10 +207,20 @@
 		
 		console.error(aObject, aFunctionName+":", aError, errorString);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

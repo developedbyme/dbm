@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>TransformedPathAssetCreator</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator</div>
-		<div class="classInheritance"></div>
-		<div class="description">Creates an asset and sets the path after transforming it.</div>
-		<div class="importSnippet">var TransformedPathAssetCreator = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator", "com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>TransformedPathAssetCreator</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator" href="PathAssetCreator.html">PathAssetCreator</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Creates an asset and sets the path after transforming it.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var TransformedPathAssetCreator = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator", "com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator");
 	//"use strict";
 	
@@ -87,15 +109,26 @@
 		return newTransformedPathAssetCreator;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.assetcreators.TransformedPathAssetCreator::_init");
 		
 		this.superCall();
@@ -104,52 +137,102 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setPathReevaluator</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Set the reevaluator for the path.</div>
-			<div class="code">objectFunctions.setPathReevaluator = function(aPathReevaluator) {
+			<div class="descriptionHolder">
+				<div class="description">Set the reevaluator for the path.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setPathReevaluator = function(aPathReevaluator) {
 		this._pathReevaluator = aPathReevaluator;
 		this.addDestroyableObject(this._pathReevaluator);
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createAsset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new asset.</div>
-			<div class="code">objectFunctions.createAsset = function(aPath, aType) {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new asset.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createAsset = function(aPath, aType) {
 		return this.superCall(this._pathReevaluator.reevaluate(aPath), aType);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets all the references to null.</div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets all the references to null.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._pathReevaluator = null;
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new transformed path asset creator.</div>
-			<div class="code">staticFunctions.create = function(aClass, aPathReevaluator) {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new transformed path asset creator.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aClass, aPathReevaluator) {
 		var newTransformedPathAssetCreator = ClassReference._createAndInitClass(ClassReference);
 		newTransformedPathAssetCreator.setClass(aClass);
 		newTransformedPathAssetCreator.setPathReevaluator(aPathReevaluator);
 		return newTransformedPathAssetCreator;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

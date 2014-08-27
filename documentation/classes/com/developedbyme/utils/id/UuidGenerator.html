@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>UuidGenerator</h1>
-		<div class="classPath">com.developedbyme.utils.id.UuidGenerator</div>
-		<div class="classInheritance"></div>
-		<div class="description">Generates UUID</div>
-		<div class="importSnippet">var UuidGenerator = dbm.importClass("com.developedbyme.utils.id.UuidGenerator");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.id.UuidGenerator", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>UuidGenerator</h1>
+					<div class="classPath">com.developedbyme.utils.id.UuidGenerator</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Generates UUID</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.random.MersenneTwister" href="../random/MersenneTwister.html">MersenneTwister</a>, <a title="com.developedbyme.utils.native.number.NumberFunctions" href="../native/number/NumberFunctions.html">NumberFunctions</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var UuidGenerator = dbm.importClass("com.developedbyme.utils.id.UuidGenerator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.id.UuidGenerator", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.id.UuidGenerator");
 	
 	//Self reference
@@ -79,36 +101,67 @@
 		return newUuidGenerator;
 	}
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.id.UuidGenerator");
 		
 		this.randomGenerator = (new MersenneTwister()).init();
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_getRandomPart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Gets a random part (4 hexadecimal numbers)</div>
-			<div class="code">objectFunctions._getRandomPart = function(aMax) {
+			<div class="descriptionHolder">
+				<div class="description">Gets a random part (4 hexadecimal numbers)</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._getRandomPart = function(aMax) {
 		//console.log("getRandomPart");
 		return Math.floor(this.randomGenerator.generateRealClosedOpen()*(aMax+1));
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">generateV4</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Generates a version 4 UUID (random)</div>
-			<div class="code">objectFunctions.generateV4 = function() {
+			<div class="descriptionHolder">
+				<div class="description">Generates a version 4 UUID (random)</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.generateV4 = function() {
 		//console.log("generateV4");
 		
 		var returnString = "";
@@ -133,20 +186,40 @@
 		
 		return returnString;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.create = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function() {
 		var newUuidGenerator = (new UuidGenerator()).init();
 		return newUuidGenerator;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

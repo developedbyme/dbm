@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>VariableAliases</h1>
-		<div class="classPath">com.developedbyme.utils.data.VariableAliases</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>VariableAliases</h1>
+					<div class="classPath">com.developedbyme.utils.data.VariableAliases</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.JavascriptObjectTypes" href="../../constants/JavascriptObjectTypes.html">JavascriptObjectTypes</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.VariableAliases");
 	//"use strict";
 	
@@ -158,19 +180,30 @@
 		return true;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">stringIsAlias</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.stringIsAlias = function(aString, aArray) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.stringIsAlias = function(aString, aArray) {
 		var lowerCaseString = aString.toLowerCase();
 		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
@@ -181,12 +214,22 @@
 		}
 		return false;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">determinIfStringIsBoolean</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.determinIfStringIsBoolean = function(aString) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.determinIfStringIsBoolean = function(aString) {
 		if(ClassReference.stringIsAlias(aString, ClassReference.TRUE_STRINGS)) {
 			return ClassReference.IS_TRUE;
 		}
@@ -195,12 +238,22 @@
 		}
 		return ClassReference.INDETERMINATE;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">determinIfVariableIsBoolean</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.determinIfVariableIsBoolean = function(aVariable) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.determinIfVariableIsBoolean = function(aVariable) {
 		switch(typeof(aVariable)) {
 			case JavascriptObjectTypes.TYPE_BOOLEAN:
 				return (aVariable ? ClassReference.IS_TRUE : ClassReference.IS_FALSE);
@@ -226,28 +279,58 @@
 				return ClassReference.INDETERMINATE;
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">isTrue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if the variable is true.</div>
-			<div class="code">staticFunctions.isTrue = function(aVariable) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if the variable is true.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.isTrue = function(aVariable) {
 		return (ClassReference.determinIfVariableIsBoolean(aVariable) === ClassReference.IS_TRUE);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">isFalse</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if the variable is false.</div>
-			<div class="code">staticFunctions.isFalse = function(aVariable) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if the variable is false.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.isFalse = function(aVariable) {
 		return (ClassReference.determinIfVariableIsBoolean(aVariable) === ClassReference.IS_FALSE);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">isNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if the variable is null.</div>
-			<div class="code">staticFunctions.isNull = function(aVariable) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if the variable is null.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.isNull = function(aVariable) {
 		if(typeof(aVariable) === JavascriptObjectTypes.TYPE_BOOLEAN) {
 			return false;
 		}
@@ -264,23 +347,43 @@
 		//ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isNull", "No case for object type (" + typeof(aVariable) + ") for variable " + aVariable);
 		return false;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">isEmptyText</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if a text is empty.</div>
-			<div class="code">staticFunctions.isEmptyText = function(aString) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if a text is empty.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.isEmptyText = function(aString) {
 		//trace("breel.utils.data.VariableAliases.isEmptyText");
 		var regExpString = "^[ \t\f\n\r]*$";
 		var regExp = new RegExp(regExpString);
 		return regExp.test(aString);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">valueWithDefault</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.valueWithDefault = function(aValue, aDefaultValue) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.valueWithDefault = function(aValue, aDefaultValue) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::valueWithDefault");
 		//console.log(aValue, aDefaultValue);
 		if(!ClassReference.isSet(aValue)) {
@@ -288,19 +391,39 @@
 		}
 		return aValue;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">isSet</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.isSet = function(aValue) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.isSet = function(aValue) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::isSet");
 		if(aValue === null || aValue === undefined) {
 			return false;
 		}
 		return true;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

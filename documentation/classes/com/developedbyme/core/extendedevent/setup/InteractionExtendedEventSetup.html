@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>InteractionExtendedEventSetup</h1>
-		<div class="classPath">com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>InteractionExtendedEventSetup</h1>
+					<div class="classPath">com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand" href="../commands/events/ActivateEventLinkCommand.html">ActivateEventLinkCommand</a>, <a title="com.developedbyme.constants.extendedevents.ButtonExtendedEventIds" href="../../../constants/extendedevents/ButtonExtendedEventIds.html">ButtonExtendedEventIds</a>, <a title="com.developedbyme.utils.htmldom.DomReferenceFunctions" href="../../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.JavascriptEventIds" href="../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="com.developedbyme.constants.extendedevents.MouseExtendedEventIds" href="../../../constants/extendedevents/MouseExtendedEventIds.html">MouseExtendedEventIds</a>, <a title="com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand" href="../commands/native/PreventDefaultCommand.html">PreventDefaultCommand</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.constants.extendedevents.TouchExtendedEventIds" href="../../../constants/extendedevents/TouchExtendedEventIds.html">TouchExtendedEventIds</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
 	
 	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
@@ -174,31 +196,52 @@
 		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::_init");
 		
 		this.superCall();
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">addClickEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addClickEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addClickEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
 		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
@@ -207,12 +250,22 @@
 			aExtendedEventController.activateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addMouseOverEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addMouseOverEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addMouseOverEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
 		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
@@ -222,12 +275,22 @@
 			aExtendedEventController.activateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addPressEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addPressEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addPressEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		//console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::addPressEvents");
 		//console.log(aExtendedEventController, aHtmlElement, aActivate);
 		//console.log(DomReferenceFunctions.getDocument(aHtmlElement));
@@ -246,12 +309,22 @@
 			aExtendedEventController.activateJavascriptEventLink(ButtonExtendedEventIds.PRESS);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addPressWithMoveEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		//(console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::addPressWithMoveEvents");
 		
 		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
@@ -263,12 +336,22 @@
 		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE, ActivateEventLinkCommand.createCommand(aExtendedEventController, MouseExtendedEventIds.MOVE, false));
 		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController, MouseExtendedEventIds.MOVE, false));
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addMoveEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
 		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
@@ -279,12 +362,22 @@
 			aExtendedEventController.activateJavascriptEventLink(MouseExtendedEventIds.MOVE);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addLocalMoveEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addLocalMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addLocalMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
 		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
@@ -294,24 +387,44 @@
 			aExtendedEventController.activateJavascriptEventLink(MouseExtendedEventIds.MOVE);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addTouchMoveEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
 		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		ClassReference.addLocalTouchMoveEvents(aExtendedEventController, DomReferenceFunctions.getDocument(aHtmlElement), aActivate, aUseCapture);
 		
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addLocalTouchMoveEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addLocalTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addLocalTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		
 		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
@@ -321,12 +434,22 @@
 			aExtendedEventController.activateJavascriptEventLink(TouchExtendedEventIds.MOVE);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addTouchPressEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addTouchPressEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addTouchPressEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		//console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::addTouchPressEvents");
 		//console.log(aExtendedEventController, aHtmlElement, aActivate);
 		//console.log(DomReferenceFunctions.getDocument(aHtmlElement));
@@ -347,12 +470,22 @@
 			aExtendedEventController.activateJavascriptEventLink(TouchExtendedEventIds.START);
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addTouchPressWithMoveEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.addTouchPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.addTouchPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		//console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::addTouchPressWithMoveEvents");
 		//console.log(aExtendedEventController, aHtmlElement, aActivate);
 		
@@ -365,17 +498,37 @@
 		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, false));
 		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, false));
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">preventDefaultForEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
 		//(console.log("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup::preventDefaultForEvent");
 		
 		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

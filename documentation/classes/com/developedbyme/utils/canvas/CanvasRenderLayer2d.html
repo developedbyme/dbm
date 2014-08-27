@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>CanvasRenderLayer2d</h1>
-		<div class="classPath">com.developedbyme.utils.canvas.CanvasRenderLayer2d</div>
-		<div class="classInheritance"></div>
-		<div class="description">Canvas layer that renders it's children in a separate canvas before drawing it to the current canvas.</div>
-		<div class="importSnippet">var CanvasRenderLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.developedbyme.utils.canvas.CanvasLayer2d", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>CanvasRenderLayer2d</h1>
+					<div class="classPath">com.developedbyme.utils.canvas.CanvasRenderLayer2d</div>
+					<div class="classInheritance"><a title="com.developedbyme.utils.canvas.CanvasLayer2d" href="CanvasLayer2d.html">CanvasLayer2d</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Canvas layer that renders it's children in a separate canvas before drawing it to the current canvas.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CanvasRenderLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.developedbyme.utils.canvas.CanvasLayer2d", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.canvas.CanvasRenderLayer2d");
 	
 	//Self reference
@@ -111,15 +133,26 @@
 		return newCanvasRenderLayer2d;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor.</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.canvas.CanvasRenderLayer2d::_init");
 		
 		this.superCall();
@@ -134,12 +167,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_drawGraphicsAndChildren</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Draws the graphics and children of this layer.</div>
-			<div class="code">objectFunctions._drawGraphicsAndChildren = function(aContext, aNumberOfLinksToResolve) {
+			<div class="descriptionHolder">
+				<div class="description">Draws the graphics and children of this layer.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._drawGraphicsAndChildren = function(aContext, aNumberOfLinksToResolve) {
 		
 		var renderCanvas = this._renderCanvas.getValue();
 		var renderWidth = this._renderWidth.getValue();
@@ -161,12 +204,22 @@
 		
 		aContext.drawImage(renderCanvas, 0, 0, renderWidth, renderHeight, renderOffsetX, renderOffsetY, renderWidth, renderHeight);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets all the references to null. Part of the destroy function.</div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets all the references to null. Part of the destroy function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._renderCanvas = null;
 		this._renderWidth = null;
@@ -176,16 +229,26 @@
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new instance of this class.</div>
-			<div class="code">staticFunctions.create = function(aOffsetX, aOffsetY, aWidth, aHeight, aCanvas) {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new instance of this class.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aOffsetX, aOffsetY, aWidth, aHeight, aCanvas) {
 		var newCanvasRenderLayer2d = (new ClassReference()).init();
 		
 		newCanvasRenderLayer2d.setPropertyInputWithoutNull("renderOffsetX", aOffsetX);
@@ -196,7 +259,17 @@
 		
 		return newCanvasRenderLayer2d;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

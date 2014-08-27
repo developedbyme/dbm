@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>ArrayIterator</h1>
-		<div class="classPath">com.developedbyme.utils.data.iterator.ArrayIterator</div>
-		<div class="classInheritance"></div>
-		<div class="description">An array that can securly be iterated over.</div>
-		<div class="importSnippet">var ArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ArrayIterator");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.developedbyme.utils.data.ArrayHolder", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>ArrayIterator</h1>
+					<div class="classPath">com.developedbyme.utils.data.iterator.ArrayIterator</div>
+					<div class="classInheritance"><a title="com.developedbyme.utils.data.ArrayHolder" href="../ArrayHolder.html">ArrayHolder</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">An array that can securly be iterated over.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="com.developedbyme.utils.data.iterator.ActiveArrayIterator" href="ActiveArrayIterator.html">ActiveArrayIterator</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ArrayIterator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.developedbyme.utils.data.ArrayHolder", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.iterator.ArrayIterator");
 	
 	//Self reference
@@ -276,15 +298,26 @@
 		return this.superCall(aName);
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::_init");
 		
 		this.superCall();
@@ -296,12 +329,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_internalFunctionality_setArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets the array</div>
-			<div class="code">objectFunctions._internalFunctionality_setArray = function(aArray, aOwnsObjects) {
+			<div class="descriptionHolder">
+				<div class="description">Sets the array</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._internalFunctionality_setArray = function(aArray, aOwnsObjects) {
 		
 		this.array = aArray;
 		this.ownsObjects = (aOwnsObjects !== false);
@@ -310,60 +353,120 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_verifyItem</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._verifyItem = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._verifyItem = function(aObject) {
 		return true;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_itemAdded</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._itemAdded = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._itemAdded = function(aObject) {
 		//MENOTE: should be overridden
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_itemRemoved</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._itemRemoved = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._itemRemoved = function(aObject) {
 		if(aObject === this._currentItem) {
 			this._currentItem = null;
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createIterationData</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new iteration data for this array.</div>
-			<div class="code">objectFunctions.createIterationData = function() {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new iteration data for this array.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.createIterationData = function() {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::createIterationData");
 		
 		var newIterationData = IterationData.create(this.array);
 		this.addIterationData(newIterationData);
 		return newIterationData;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addIterationData</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Adds an iteration data.</div>
-			<div class="code">objectFunctions.addIterationData = function(aIterationData) {
+			<div class="descriptionHolder">
+				<div class="description">Adds an iteration data.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.addIterationData = function(aIterationData) {
 		this._iteratorDatas.push(aIterationData);
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">removeIterationData</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Reomves an iteration data.</div>
-			<div class="code">objectFunctions.removeIterationData = function(aIterationData) {
+			<div class="descriptionHolder">
+				<div class="description">Reomves an iteration data.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.removeIterationData = function(aIterationData) {
 		var index = ArrayFunctions.indexOfInArray(this._iteratorDatas, aIterationData);
 		if(index !== -1) {
 			this._iteratorDatas.splice(index, 1);
@@ -374,12 +477,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">stopUsingIterationData</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Stop using iteration data.</div>
-			<div class="code">objectFunctions.stopUsingIterationData = function(aIterationData) {
+			<div class="descriptionHolder">
+				<div class="description">Stop using iteration data.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.stopUsingIterationData = function(aIterationData) {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
 		
 		//METODO: would this be better as a retained object
@@ -388,12 +501,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_updateAllIterationDatas</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Updates all the iteration datas after update.</div>
-			<div class="code">objectFunctions._updateAllIterationDatas = function(aFromPosition, aAdjustment, aNewLength) {
+			<div class="descriptionHolder">
+				<div class="description">Updates all the iteration datas after update.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._updateAllIterationDatas = function(aFromPosition, aAdjustment, aNewLength) {
 		var currentArray = this._iteratorDatas;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i &lt; currentArrayLength; i++) {
@@ -405,56 +528,106 @@
 			currentIterationData.length = aNewLength;
 		};
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">push</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Pushes an object to the list.</div>
-			<div class="code">objectFunctions.push = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description">Pushes an object to the list.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.push = function(aObject) {
 		if(!this._verifyItem(aObject)) return;
 		var newLength = this.array.push(aObject);
 		this._itemAdded(aObject);
 		
 		this._updateAllIterationDatas(newLength, 1, newLength);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">pop</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Pops an item from the list.</div>
-			<div class="code">objectFunctions.pop = function() {
+			<div class="descriptionHolder">
+				<div class="description">Pops an item from the list.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.pop = function() {
 		this._itemRemoved(this.array.pop());
 		
 		this._updateAllIterationDatas(newLength+1, -1, this.array.length);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">unshift</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Inserts an item in the beginning of the list.</div>
-			<div class="code">objectFunctions.unshift = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description">Inserts an item in the beginning of the list.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.unshift = function(aObject) {
 		if(!this.verifyItem(aObject)) return;
 		var newLength = this.array.unshift(aObject);
 		this._itemAdded(aObject);
 		
 		this._updateAllIterationDatas(0, 1, newLength);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">shift</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Shifts an object from the list.</div>
-			<div class="code">objectFunctions.shift = function() {
+			<div class="descriptionHolder">
+				<div class="description">Shifts an object from the list.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.shift = function() {
 		this.itemRemoved(this.array.shift());
 		
 		this._updateAllIterationDatas(0, -1, this.array.length);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">removeItem</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Removes an item from the list.</div>
-			<div class="code">objectFunctions.removeItem = function(aObject) {
+			<div class="descriptionHolder">
+				<div class="description">Removes an item from the list.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.removeItem = function(aObject) {
 		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::removeItem");
 		
 		var currentArray = this.array;
@@ -470,12 +643,22 @@
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeItem", "Item " + aObject + " doesn't exist in " + this + ".");
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">removeItemAt</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Removes an object at a specified index.</div>
-			<div class="code">objectFunctions.removeItemAt = function(aIndex) {
+			<div class="descriptionHolder">
+				<div class="description">Removes an object at a specified index.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.removeItemAt = function(aIndex) {
 		if(aIndex &lt; this.array.length) {
 			this._itemRemoved(this.array[aIndex]);
 			this.array.splice(aIndex, 1);
@@ -487,12 +670,22 @@
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "removeItemAt", "Index " + aIndex + " is larger than array " + this + ".");
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">addItemAt</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Adds an item at the specifed index, moving every item after it.</div>
-			<div class="code">objectFunctions.addItemAt = function(aObject, aIndex) {
+			<div class="descriptionHolder">
+				<div class="description">Adds an item at the specifed index, moving every item after it.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.addItemAt = function(aObject, aIndex) {
 		if(!this.verifyItem(aObject)) return;
 		if(aIndex &gt;= this.array.length) {
 			var newLength = this.array.push(aObject);
@@ -505,12 +698,22 @@
 		}
 		this._itemAdded(aObject);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets all the references to null. Part of the destroy function.</div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets all the references to null. Part of the destroy function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		ClassReference._reuseArray(this._iteratorDatas);
 		this._iteratorDatas = null;
@@ -518,22 +721,42 @@
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
-			<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "_currentItem":
 				return false;
 		}
 		return this.superCall(aName);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

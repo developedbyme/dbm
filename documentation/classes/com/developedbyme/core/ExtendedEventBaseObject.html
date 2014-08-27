@@ -1,22 +1,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>ExtendedEventBaseObject</h1>
-		<div class="classPath">com.developedbyme.core.ExtendedEventBaseObject</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var ExtendedEventBaseObject = dbm.importClass("com.developedbyme.core.ExtendedEventBaseObject");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.ExtendedEventBaseObject", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>ExtendedEventBaseObject</h1>
+					<div class="classPath">com.developedbyme.core.ExtendedEventBaseObject</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Base object for objects that emits extended events.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="com.developedbyme.core.globalobjects.assetrepository.assets.Asset" href="globalobjects/assetrepository/assets/Asset.html">Asset</a>, <a title="com.developedbyme.workspace.gui.parts.BaseWorkspacePart" href="../workspace/gui/parts/BaseWorkspacePart.html">BaseWorkspacePart</a>, <a title="com.developedbyme.core.globalobjects.datamanager.objects.DataObject" href="globalobjects/datamanager/objects/DataObject.html">DataObject</a>, <a title="com.developedbyme.gui.DisplayBaseObject" href="../gui/DisplayBaseObject.html">DisplayBaseObject</a>, <a title="com.developedbyme.flow.nodes.browser.DocumentForElementNode" href="../flow/nodes/browser/DocumentForElementNode.html">DocumentForElementNode</a>, <a title="com.developedbyme.flow.nodes.animation.EvaluateTimelineNode" href="../flow/nodes/animation/EvaluateTimelineNode.html">EvaluateTimelineNode</a>, <a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="globalobjects/GlobalObjectBaseObject.html">GlobalObjectBaseObject</a>, <a title="com.developedbyme.flow.nodes.browser.LayoutChangeNode" href="../flow/nodes/browser/LayoutChangeNode.html">LayoutChangeNode</a>, <a title="com.developedbyme.workspace.gui.LayoutController" href="../workspace/gui/LayoutController.html">LayoutController</a>, <a title="com.developedbyme.flow.nodes.userinput.MousePositionNode" href="../flow/nodes/userinput/MousePositionNode.html">MousePositionNode</a>, <a title="com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController" href="../gui/abstract/touch/movablepoints/MovablePointsController.html">MovablePointsController</a>, <a title="com.developedbyme.utils.logic.MultipleLock" href="../utils/logic/MultipleLock.html">MultipleLock</a>, <a title="com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject" href="globalobjects/datamanager/objects/ParserResultDataObject.html">ParserResultDataObject</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assetcreators.PathAssetCreator" href="globalobjects/assetrepository/assetcreators/PathAssetCreator.html">PathAssetCreator</a>, <a title="com.developedbyme.core.globalobjects.audiomanager.audio.PlayingAudio" href="globalobjects/audiomanager/audio/PlayingAudio.html">PlayingAudio</a>, <a title="com.developedbyme.flow.nodes.browser.ScreenSizeNode" href="../flow/nodes/browser/ScreenSizeNode.html">ScreenSizeNode</a>, <a title="com.developedbyme.gui.abstract.touch.TouchData" href="../gui/abstract/touch/TouchData.html">TouchData</a>, <a title="com.developedbyme.gui.abstract.touch.TouchDetector" href="../gui/abstract/touch/TouchDetector.html">TouchDetector</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructure" href="../utils/data/treestructure/TreeStructure.html">TreeStructure</a>, <a title="com.developedbyme.core.globalobjects.windowmanager.objects.Window" href="globalobjects/windowmanager/objects/Window.html">Window</a>, <a title="com.developedbyme.flow.nodes.browser.WindowForElementNode" href="../flow/nodes/browser/WindowForElementNode.html">WindowForElementNode</a>, <a title="com.developedbyme.flow.nodes.browser.WindowSizeNode" href="../flow/nodes/browser/WindowSizeNode.html">WindowSizeNode</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.DelayedExtendedEventController" href="extendedevent/DelayedExtendedEventController.html">DelayedExtendedEventController</a>, <a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="extendedevent/ExtendedEventController.html">ExtendedEventController</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ExtendedEventBaseObject = dbm.importClass("com.developedbyme.core.ExtendedEventBaseObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.ExtendedEventBaseObject", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.ExtendedEventBaseObject");
 	//"use strict";
 	
+	//Self reference
 	var ExtendedEventBaseObject = dbm.importClass("com.developedbyme.core.ExtendedEventBaseObject");
 	
+	//Error report
+	
+	//Dependencies
 	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
 	var DelayedExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.DelayedExtendedEventController");
 	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.ExtendedEventBaseObject::_init");
 		
@@ -26,8 +60,13 @@
 		this._delayedExtendedEvent = null;
 		
 		return this;
-	};
+	}; //End function _init
 	
+	/**
+	 * Gets the extended event controller. If it doesn't exist already it's created.
+	 *
+	 * @return	ExtendedEventController		The extended event controller.
+	 */
 	objectFunctions.getExtendedEvent = function() {
 		if(this._extendedEvent === null) {
 			this._extendedEvent = ExtendedEventController.create(this);
@@ -35,8 +74,13 @@
 		}
 		
 		return this._extendedEvent;
-	};
+	}; //End function getExtendedEvent
 	
+	/**
+	 * Gets the controller for delayed events. If it doesn't exist already it's created.
+	 *
+	 * @return	DelayedExtendedEventController	The delayed exended event controller.
+	 */
 	objectFunctions.getDelayedExtendedEvent = function() {
 		if(this._delayedExtendedEvent === null) {
 			this._delayedExtendedEvent = DelayedExtendedEventController.create(this);
@@ -44,38 +88,62 @@
 		}
 		
 		return this._delayedExtendedEvent;
-	};
+	}; //End function getDelayedExtendedEvent
 	
+	/**
+	 * If a node is changing document, all listeners needs to be reactivated.
+	 */
 	objectFunctions.reactivateForNewDocument = function() {
 		if(this._extendedEvent !== null) {
 			this._extendedEvent.reactivateEventListeners();
 		}
-	};
+	}; //End function reactivateForNewDocument
 	
+	/**
+	 * Checks if an event is expected for this object, so that warnings doesn't shown when new events are created.
+	 *
+	 * @param	aName	String	The name of the event.
+	 *
+	 * @return	Boolean		True if the event is expected.
+	 */
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
 		//MENOTE: should be overridden
 		
 		return false;
-	};
+	}; //End function _extendedEvent_eventIsExpected
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._extendedEvent = null;
 		this._delayedExtendedEvent = null;
 		
 		this.superCall();
-	};
+	}; //End function setAllReferencesToNull
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.ExtendedEventBaseObject::_init");
 		
 		this.superCall();
@@ -85,12 +153,22 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getExtendedEvent = function() {
+			<div class="descriptionHolder">
+				<div class="description">Gets the extended event controller. If it doesn't exist already it's created.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getExtendedEvent = function() {
 		if(this._extendedEvent === null) {
 			this._extendedEvent = ExtendedEventController.create(this);
 			this.addDestroyableObject(this._extendedEvent);
@@ -98,12 +176,22 @@
 		
 		return this._extendedEvent;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getDelayedExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getDelayedExtendedEvent = function() {
+			<div class="descriptionHolder">
+				<div class="description">Gets the controller for delayed events. If it doesn't exist already it's created.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getDelayedExtendedEvent = function() {
 		if(this._delayedExtendedEvent === null) {
 			this._delayedExtendedEvent = DelayedExtendedEventController.create(this);
 			this.addDestroyableObject(this._delayedExtendedEvent);
@@ -111,43 +199,83 @@
 		
 		return this._delayedExtendedEvent;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">reactivateForNewDocument</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.reactivateForNewDocument = function() {
+			<div class="descriptionHolder">
+				<div class="description">If a node is changing document, all listeners needs to be reactivated.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.reactivateForNewDocument = function() {
 		if(this._extendedEvent !== null) {
 			this._extendedEvent.reactivateEventListeners();
 		}
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if an event is expected for this object, so that warnings doesn't shown when new events are created.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
 		//MENOTE: should be overridden
 		
 		return false;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._extendedEvent = null;
 		this._delayedExtendedEvent = null;
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
+				</div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
 		</div>
 		
 		

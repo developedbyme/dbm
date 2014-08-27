@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>SpatialCurveTimelinePart</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart</div>
-		<div class="classInheritance"></div>
-		<div class="description"></div>
-		<div class="importSnippet">var SpatialCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart", "com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>SpatialCurveTimelinePart</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject" href="TimelinePartBaseObject.html">TimelinePartBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode" href="../../../../../flow/nodes/curves/CreateArcLengthCurveNode.html">CreateArcLengthCurveNode</a>, <a title="com.developedbyme.flow.nodes.math.DivisionNode" href="../../../../../flow/nodes/math/DivisionNode.html">DivisionNode</a>, <a title="com.developedbyme.constants.ExtrapolationTypes" href="../../../../../constants/ExtrapolationTypes.html">ExtrapolationTypes</a>, <a title="com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode" href="../../../../../flow/nodes/curves/GetMaxParameterOnCurveNode.html">GetMaxParameterOnCurveNode</a>, <a title="com.developedbyme.flow.nodes.curves.GetPointOnCurveNode" href="../../../../../flow/nodes/curves/GetPointOnCurveNode.html">GetPointOnCurveNode</a>, <a title="com.developedbyme.flow.nodes.math.MultiplicationNode" href="../../../../../flow/nodes/math/MultiplicationNode.html">MultiplicationNode</a>, <a title="com.developedbyme.flow.nodes.curves.ParameterFromValueNode" href="../../../../../flow/nodes/curves/ParameterFromValueNode.html">ParameterFromValueNode</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var SpatialCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart", "com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart");
 	
 	//Self reference
@@ -109,15 +131,26 @@
 		return newPart;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart::_init");
 		
 		this.superCall();
@@ -139,24 +172,44 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.setCurve = function(aCurve, aPointProperty) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setCurve = function(aCurve, aPointProperty) {
 		
 		this.curve = aCurve;
 		this.pointProperty = aPointProperty;
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_createArcLengthEvaluator</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions._createArcLengthEvaluator = function() {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._createArcLengthEvaluator = function() {
 		
 		this._curveMaxNode = this.addDestroyableObject(GetMaxParameterOnCurveNode.create(this.curve));
 		this._arcLengthCurveNode = this.addDestroyableObject(CreateArcLengthCurveNode.create(this.curve, 0, this._curveMaxNode.getProperty("outputParameter")));
@@ -173,12 +226,22 @@
 		this._pointNode = this.addDestroyableObject(GetPointOnCurveNode.create(this.curve, this._parameterMultiplierNode.getProperty("outputValue")));
 		
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">getValueByParameter</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">objectFunctions.getValueByParameter = function(aParameter) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.getValueByParameter = function(aParameter) {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart::getValueByParameter");
 		
 		var parameter = (aParameter-this.startParameter)/(this.endParameter-this.startParameter);  //METODO: this doesn't seem to be the correct calculation
@@ -194,16 +257,26 @@
 		return returnValue;
 		
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.create = function(aCurve, aStartTime, aLength) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aCurve, aStartTime, aLength) {
 		var newPart = (new ClassReference()).init();
 		
 		newPart.curve = aCurve;
@@ -211,7 +284,17 @@
 		
 		return newPart;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

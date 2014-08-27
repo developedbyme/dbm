@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>MovablePoint</h1>
-		<div class="classPath">com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint</div>
-		<div class="classInheritance"></div>
-		<div class="description">Data for a point that is movable with touch interactions.</div>
-		<div class="importSnippet">var MovablePoint = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>MovablePoint</h1>
+					<div class="classPath">com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Data for a point that is movable with touch interactions.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.flow.nodes.math.AdditionNode" href="../../../../flow/nodes/math/AdditionNode.html">AdditionNode</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.constants.extendedevents.GenericExtendedEventIds" href="../../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.flow.nodes.math.SubtractionNode" href="../../../../flow/nodes/math/SubtractionNode.html">SubtractionNode</a>, <a title="com.developedbyme.constants.extendedevents.TouchExtendedEventIds" href="../../../../constants/extendedevents/TouchExtendedEventIds.html">TouchExtendedEventIds</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var MovablePoint = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint");
 	
 	//Self reference
@@ -161,15 +183,26 @@
 		return newMovablePoint;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Constructor</div>
-			<div class="code">objectFunctions._init = function() {
+			<div class="descriptionHolder">
+				<div class="description">Constructor</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint::_init");
 		
 		this.superCall();
@@ -192,32 +225,62 @@
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">lock</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Locks the current position of this points, and disables user interactions.</div>
-			<div class="code">objectFunctions.lock = function() {
+			<div class="descriptionHolder">
+				<div class="description">Locks the current position of this points, and disables user interactions.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.lock = function() {
 		this._isLocked.setValue(true);
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">unlock</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Unlocks the current position of this point.</div>
-			<div class="code">objectFunctions.unlock = function() {
+			<div class="descriptionHolder">
+				<div class="description">Unlocks the current position of this point.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.unlock = function() {
 		this._isLocked.setValue(false);
 		
 		return this;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">checkForControlStart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Checks if the point should start moving for interaction at a certain coordinate.</div>
-			<div class="code">objectFunctions.checkForControlStart = function(aX, aY) {
+			<div class="descriptionHolder">
+				<div class="description">Checks if the point should start moving for interaction at a certain coordinate.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.checkForControlStart = function(aX, aY) {
 		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint::checkForControlStart");
 		if(this._touch === null &amp;&amp; !(this._isLocked.getValue())) {
 			if(Math.sqrt(Math.pow(this._x.getValue()-aX, 2)+Math.pow(this._y.getValue()-aY, 2)) &lt;= this._radius.getValue()) {
@@ -226,12 +289,22 @@
 		}
 		return false;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">startTouchControl</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Starts the interaction of this point.</div>
-			<div class="code">objectFunctions.startTouchControl = function(aTouchData) {
+			<div class="descriptionHolder">
+				<div class="description">Starts the interaction of this point.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.startTouchControl = function(aTouchData) {
 		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint::startTouchControl");
 		//console.log(aTouchData);
 		
@@ -244,12 +317,22 @@
 		this._touchMoveYNode.getProperty("inputValue1").connectInput(this._touch.getProperty("currentY"));
 		this._touchMoveYNode.getProperty("inputValue2").connectInput(this._touch.getProperty("startY"));
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_stopTouchControl</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Stops the interaction of this point.</div>
-			<div class="code">objectFunctions._stopTouchControl = function(aTouchData) {
+			<div class="descriptionHolder">
+				<div class="description">Stops the interaction of this point.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions._stopTouchControl = function(aTouchData) {
 		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint::_stopTouchControl");
 		
 		this._orignalX.setValue(this._x.getValue());
@@ -264,25 +347,45 @@
 		//this._touch.getExtendedEvent().removeCommandFromEvent(TouchExtendedEventIds.CANCEL, this._touchEndCommand);
 		this._touch = null;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets all reference to null. Part of the destroy function.</div>
-			<div class="code">objectFunctions.setAllReferencesToNull = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets all reference to null. Part of the destroy function.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this.superCall();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates a new instance of this class.</div>
-			<div class="code">staticFunctions.create = function(aX, aY, aRadius) {
+			<div class="descriptionHolder">
+				<div class="description">Creates a new instance of this class.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.create = function(aX, aY, aRadius) {
 		
 		var newMovablePoint = (new MovablePoint()).init();
 		
@@ -292,7 +395,17 @@
 		
 		return newMovablePoint;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

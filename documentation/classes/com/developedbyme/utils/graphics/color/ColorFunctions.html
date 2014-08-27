@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>ColorFunctions</h1>
-		<div class="classPath">com.developedbyme.utils.graphics.color.ColorFunctions</div>
-		<div class="classInheritance"></div>
-		<div class="description">Function for creating and modifying colors.</div>
-		<div class="importSnippet">var ColorFunctions = dbm.importClass("com.developedbyme.utils.graphics.color.ColorFunctions");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.utils.graphics.color.ColorFunctions", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>ColorFunctions</h1>
+					<div class="classPath">com.developedbyme.utils.graphics.color.ColorFunctions</div>
+					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Function for creating and modifying colors.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.utils.native.string.CssLanguageFunctions" href="../../native/string/CssLanguageFunctions.html">CssLanguageFunctions</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.data.color.HslaColor" href="../../../core/data/color/HslaColor.html">HslaColor</a>, <a title="com.developedbyme.utils.graphics.color.HtmlColorNames" href="HtmlColorNames.html">HtmlColorNames</a>, <a title="com.developedbyme.utils.native.string.ProgrammingLanguageFunctions" href="../../native/string/ProgrammingLanguageFunctions.html">ProgrammingLanguageFunctions</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.core.data.color.RgbaColor" href="../../../core/data/color/RgbaColor.html">RgbaColor</a>, <a title="com.developedbyme.utils.native.string.ScopeFunctions" href="../../native/string/ScopeFunctions.html">ScopeFunctions</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ColorFunctions = dbm.importClass("com.developedbyme.utils.graphics.color.ColorFunctions");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.utils.graphics.color.ColorFunctions", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.graphics.color.ColorFunctions");
 	
 	//Self reference
@@ -195,31 +217,52 @@
 		return null;
 	};
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">_getValueArrayFromCssFunctionString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Creates an array from the values in a css color string (eg. rgba(r, g, b, a), hsl(h, s, l)).</div>
-			<div class="code">staticFunctions._getValueArrayFromCssFunctionString = function(aCssString) {
+			<div class="descriptionHolder">
+				<div class="description">Creates an array from the values in a css color string (eg. rgba(r, g, b, a), hsl(h, s, l)).</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions._getValueArrayFromCssFunctionString = function(aCssString) {
 		var scopeStart = aCssString.indexOf("(");
 		var scope = ScopeFunctions.getScope(aCssString, scopeStart, "(", ")");
 		var data = aCssString.substring(scopeStart+1, scope.end);
 		
 		return ProgrammingLanguageFunctions.getSeparatedArray(data);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromRgbaString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createColorFromRgbaString = function(aRgbaString) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromRgbaString = function(aRgbaString) {
 		var newColor = RgbaColor.create();
 		
 		var dataArray = ClassReference._getValueArrayFromCssFunctionString(aRgbaString);
@@ -230,12 +273,22 @@
 		
 		return newColor;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromRgbString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createColorFromRgbString = function(aRgbString) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromRgbString = function(aRgbString) {
 		var newColor = RgbaColor.create();
 		
 		var dataArray = ClassReference._getValueArrayFromCssFunctionString(aRgbString);
@@ -245,23 +298,43 @@
 		
 		return newColor;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromHexString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createColorFromHexString = function(aHexString) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromHexString = function(aHexString) {
 		var dataString = aHexString.substring(1, 7);
 		var dataValue = parseInt(dataString, 16);
 		
 		return ClassReference.createColorFromValue(dataValue);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromHexWithOptionalAlphaString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Gets a color for the format #RRGGBB[AA]</div>
-			<div class="code">staticFunctions.createColorFromHexWithOptionalAlphaString = function(aHexString) {
+			<div class="descriptionHolder">
+				<div class="description">Gets a color for the format #RRGGBB[AA]</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromHexWithOptionalAlphaString = function(aHexString) {
 		//console.log("com.developedbyme.utils.graphics.color.ColorFunctions::createColorFromHexWithOptionalAlphaString");
 		//console.log(aHexString);
 		
@@ -276,12 +349,22 @@
 		
 		return returnColor;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromShortHexString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Gets a color for the format #RRGGBB</div>
-			<div class="code">staticFunctions.createColorFromShortHexString = function(aHexString) {
+			<div class="descriptionHolder">
+				<div class="description">Gets a color for the format #RRGGBB</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromShortHexString = function(aHexString) {
 		
 		var dataString = aHexString.substring(1, 4);
 		var dataValue = parseInt(dataString, 16);
@@ -297,21 +380,41 @@
 		
 		return newColor;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createColorFromValue = function(aValue) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromValue = function(aValue) {
 		var newColor = RgbaColor.create(((aValue &gt;&gt; 16) &amp; 0xFF)/0xFF, ((aValue &gt;&gt; 8) &amp; 0xFF)/0xFF, ((aValue) &amp; 0xFF)/0xFF);
 		return newColor;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createColorFromName = function(aName) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromName = function(aName) {
 		
 		var lowerCaseName = aName.toLowerCase();
 		
@@ -322,12 +425,22 @@
 		
 		return ClassReference.createColorFromValue(HtmlColorNames[lowerCaseName]);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromHslString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createColorFromHslString = function(aHslString) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromHslString = function(aHslString) {
 		var newColor = HslaColor.create();
 		
 		var dataArray = ClassReference._getValueArrayFromCssFunctionString(aHslString);
@@ -337,12 +450,22 @@
 		
 		return newColor;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromHslaString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createColorFromHslaString = function(aHslaString) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromHslaString = function(aHslaString) {
 		var newColor = HslaColor.create();
 		
 		var dataArray = ClassReference._getValueArrayFromCssFunctionString(aHslaString);
@@ -353,12 +476,22 @@
 		
 		return newColor;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">createColorFromCssString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions.createColorFromCssString = function(aCssString) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.createColorFromCssString = function(aCssString) {
 		var currentType = CssLanguageFunctions.getColorType(aCssString);
 		switch(currentType) {
 			case "hex":
@@ -387,7 +520,17 @@
 		}
 		return null;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	

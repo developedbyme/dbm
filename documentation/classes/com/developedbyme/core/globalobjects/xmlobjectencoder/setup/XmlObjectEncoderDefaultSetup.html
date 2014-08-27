@@ -1,14 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
-		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
 	</head>
 	<body>
-		<h1>XmlObjectEncoderDefaultSetup</h1>
-		<div class="classPath">com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup</div>
-		<div class="classInheritance"></div>
-		<div class="description">Default setup for the global xml object encoder.</div>
-		<div class="importSnippet">var XmlObjectEncoderDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");</div>
-		<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+		<div class="page">
+			<div class="documentationTitle">Documentation</div>
+			<article>
+				<div class="mainInfo">
+					<h1>XmlObjectEncoderDefaultSetup</h1>
+					<div class="classPath">com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description">Default setup for the global xml object encoder.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject" href="../encoders/EncodingBaseObject.html">EncodingBaseObject</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder" href="../encoders/data/ExportMetaDataEncoder.html">ExportMetaDataEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder" href="../encoders/graphics/gradient/GradientEncoder.html">GradientEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.timeline.InterpolationTimelinePartEncoder" href="../encoders/timeline/InterpolationTimelinePartEncoder.html">InterpolationTimelinePartEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder" href="../encoders/data/NamedArrayEncoder.html">NamedArrayEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder" href="../encoders/data/points/PointsArrayEncoder.html">PointsArrayEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.timeline.TimelineEncoder" href="../encoders/timeline/TimelineEncoder.html">TimelineEncoder</a>, <a title="com.developedbyme.constants.XmlEncoderCustomTypes" href="../../../../constants/XmlEncoderCustomTypes.html">XmlEncoderCustomTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var XmlObjectEncoderDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");
 	//"use strict";
 	
@@ -97,27 +119,48 @@
 		return aEncoder;
 	}
 })</div>
-		<h2>Local functions</h2>
-		<div class="localFunctions">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h2>Local functions</h2>
+				<div class="localFunctions">
 			
-		</div>
-		<h2>Static functions</h2>
-		<div class="staticFunctions">
+				</div>
+				<h2>Static functions</h2>
+				<div class="staticFunctions">
 			
-		<div>
+				<div>
 			<div class="definition">
 				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets up the default encoders.</div>
-			<div class="code">staticFunctions.setup = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets up the default encoders.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.setup = function() {
 		ClassReference.setupTimeline();
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">setupTimeline</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description">Sets up encoders for timeline encoders.</div>
-			<div class="code">staticFunctions.setupTimeline = function() {
+			<div class="descriptionHolder">
+				<div class="description">Sets up encoders for timeline encoders.</div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions.setupTimeline = function() {
 		
 		//Custom type encoders
 		dbm.singletons.dbmXmlObjectEncoder.addCustomTypeEncoder(XmlEncoderCustomTypes.POINTS_ARRAY, PointsArrayEncoder.create());
@@ -157,30 +200,60 @@
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.RgbaColor", ["r", "g", "b", "a"]);
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.HslaColor", ["h", "s", "l", "a"]);
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_createEncodingBaseObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions._createEncodingBaseObject = function(aClassPath, aVariables) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions._createEncodingBaseObject = function(aClassPath, aVariables) {
 		var newEncoder = EncodingBaseObject.create();
 		
 		ClassReference._addEncodingObject(newEncoder, aClassPath, aVariables);
 		
 		return newEncoder;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div><div>
 			<div class="definition">
 				<span class="functionName">_addEncodingObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
-			<div class="description"></div>
-			<div class="code">staticFunctions._addEncodingObject = function(aEncoder, aClassPath, aVariables) {
+			<div class="descriptionHolder">
+				<div class="description"></div>
+				<div class="argumentDescriptions spacedContent"></div>
+				<div class="foldableCode spacedContent">
+					<div class="boxWithTitle">
+						<div class="smallTitle">Full code</div>
+						<div class="codeBox fullCode">
+							<div class="code">staticFunctions._addEncodingObject = function(aEncoder, aClassPath, aVariables) {
 		aEncoder.addVariablesToEncode(aVariables);
 		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder(aClassPath, aEncoder);
 		
 		return aEncoder;
 	}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div></div>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
 		
 		
 	
