@@ -32,12 +32,15 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	var RebaseDocumentLinksCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.htmldom.RebaseDocumentLinksCommand");
 	var QuerySelectorObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject");
 	var SnippetsGenerator = dbm.importClass("com.developedbyme.compiler.snippets.SnippetsGenerator");
+	var DocumentationFunctions = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentationFunctions");
 	var DocumentationTreeStructureFunctions = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentationTreeStructureFunctions");
 	var IsoDate = dbm.importClass("com.developedbyme.utils.native.date.IsoDate");
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var ArraySortingFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArraySortingFunctions");
 	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
+	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
@@ -60,8 +63,12 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		this._rootFolderForSaving = "documentation/" + dateString;
 		this._currentFilePath = UrlResolver.create();
 		
-		this._assetsLoader.addAssetsByPath(this._classTemplatePath, this._functionTemplatePath);
+		this._externalTypes = NamedArray.create(false);
+		this._externalTypes.addObject("Document", "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model");
+		this._externalTypes.addObject("HTMLElement", "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement");
+		this._externalTypes.addObject("Element", "https://developer.mozilla.org/en-US/docs/Web/API/Element");
 		
+		this._assetsLoader.addAssetsByPath(this._classTemplatePath, this._functionTemplatePath);
 		this._addStartFunction(this._createPage, []);
 		
 		return this;
@@ -147,6 +154,8 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		this._createSetTextContentCommand(functionTemplate, ".functionName", GetVariableObject.createCommand(selectDefinitionReevaluator, "functionName"));
 		this._createSetTextContentCommand(functionTemplate, ".description", GetVariableObject.createCommand(selectDocumentationReevaluator, "_description")); //METODO: do not access private variable
 		this._createSetTextContentCommand(functionTemplate, ".fullCode .code", GetVariableObject.createCommand(selectDataReevaluator, "fullCode"));
+		functionTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertArgumentsDefinition, [QuerySelectorObject.createOnTemplateOutputCommand(".arguments"), QuerySelectorObject.createOnTemplateOutputCommand(".argumentsDescription"), GetVariableObject.createCommand(selectDefinitionReevaluator, "argumentNames"), selectDocumentationReevaluator, classHierarchyGraph.getNamesArray()]));
+		
 		
 		//Rebase all the links at the end
 		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RebaseDocumentLinksCommand.createOnTemplateOutputCommand(this._currentFilePath));
@@ -258,10 +267,10 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	/**
 	 * Inserts a list of class links.
 	 *
-	 * @param	aHolderElement		Element		The element to insert the links in.
-	 * @param	aClassPaths			Array		Array of class paths.
-	 * @param	aSpacingElement		Element		The element to insert between links.
-	 * @param	aNoDataText			String		The text to display if there are no links.
+	 * @param	aHolderElement		HTMLElement		The element to insert the links in.
+	 * @param	aClassPaths			Array<String>	Array of class paths.
+	 * @param	aSpacingElement		HTMLElement		The element to insert between links.
+	 * @param	aNoDataText			String			The text to display if there are no links.
 	 */
 	objectFunctions.insertClassLinks = function(aHolderElement, aClassPaths, aSpacingElement, aNoDataText) {
 		
@@ -283,9 +292,110 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	};
 	
 	/**
+	 * Inserts arguments in a function definition.
+	 *
+	 * @param	aHolderElement				HTMLElement			The element to insert the definition in.
+	 * @param	aDescriptionHolderElement	HTMLElement			The element to insert the description in.
+	 * @param	aArguments					Array<String>		The names of the arguments to insert.
+	 * @param	aDocumentation				DocumentationData	The documentation data for the function.
+	 * @param	aClassPaths					Array<String>		List of all the class paths.
+	 */
+	objectFunctions.insertArgumentsDefinition = function(aHolderElement, aDescriptionHolderElement, aArguments, aDocumentation, aClassPaths) {
+		//console.log("com.developedbyme.projects.examples.compiler.DocumentFilesApplication::insertArgumentsDefinition");
+		//console.log(aHolderElement, aArguments, aDocumentation, aClassPaths);
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(aHolderElement.ownerDocument);
+		
+		var documentationFlags = aDocumentation.getFlags();
+		
+		var currentArray = aArguments;
+		var currentArrayLength = currentArray.length;
+		if(currentArrayLength > 0) {
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentArgumentName = currentArray[i];
+				var currentDescription = htmlCreator.createDiv({"class": "argumentDescription"});
+				aDescriptionHolderElement.appendChild(currentDescription);
+				if(i !== 0) {
+					aHolderElement.appendChild(htmlCreator.createText(", "));
+				}
+				aHolderElement.appendChild(htmlCreator.createText(currentArgumentName));
+				currentDescription.appendChild(htmlCreator.createText(currentArgumentName));
+				var documentationFlag = this._getParamFlagByName(currentArgumentName, documentationFlags);
+				//console.log(currentArgumentName, documentationFlag, documentationFlags);
+				if(documentationFlag !== null) {
+					if(documentationFlag.arguments.length > 2) {
+						var objectTypes = documentationFlag.arguments[1];
+					
+						var currentArray2 = StringFunctions.splitSeparatedString(objectTypes, "|");
+						var currentArray2Length = currentArray2.length;
+						for(var j = 0; j < currentArray2Length; j++) {
+							var currentType = currentArray2[j];
+						
+							if(j === 0) {
+								aHolderElement.appendChild(htmlCreator.createText(":"));
+								currentDescription.appendChild(htmlCreator.createText(":"));
+							}
+							else {
+								aHolderElement.appendChild(htmlCreator.createText(" | "));
+								currentDescription.appendChild(htmlCreator.createText(" | "));
+							}
+						
+							if(this._externalTypes.select(currentType)) {
+								aHolderElement.appendChild(htmlCreator.createNode("a", {"href": this._externalTypes.currentSelectedItem, "rel": "external"}, htmlCreator.createText(currentType)));
+								currentDescription.appendChild(htmlCreator.createNode("a", {"href": this._externalTypes.currentSelectedItem, "rel": "external"}, htmlCreator.createText(currentType)));
+							}
+							else {
+								//METODO: typed arrays
+								var matchingClassPaths = DocumentationFunctions.getFullClassPathsByName(currentType, aClassPaths);
+							
+								if(matchingClassPaths.length === 1) {
+									aHolderElement.appendChild(this.createClassLink(matchingClassPaths[0], htmlCreator));
+									currentDescription.appendChild(this.createClassLink(matchingClassPaths[0], htmlCreator));
+								}
+								else if(matchingClassPaths.length > 1) {
+									//METODO: multiple matches
+									//METODO: error message
+								}
+								else {
+									var spanClassType = "unknownType";
+									if(JavascriptLanguageFunctions.isTypeNative(currentType)) {
+										spanClassType = "nativeType";
+									}
+									aHolderElement.appendChild(htmlCreator.createNode("span", {"class": spanClassType}, htmlCreator.createText(currentType)));
+									currentDescription.appendChild(htmlCreator.createNode("span", {"class": spanClassType}, htmlCreator.createText(currentType)));
+								}
+							}
+						}
+					}
+				
+					if(documentationFlag.arguments.length > 1) {
+						currentDescription.appendChild(htmlCreator.createText(" - "));
+						currentDescription.appendChild(htmlCreator.createText(documentationFlag.arguments[documentationFlag.arguments.length-1]));
+					}
+				}
+			}
+		}
+		else {
+			aDescriptionHolderElement.appendChild(htmlCreator.createNode("span", {"class": "noData"}, htmlCreator.createText("Function has no arguments")));
+		}
+	};
+	
+	objectFunctions._getParamFlagByName = function(aName, aFlags) {
+		var currentArray = aFlags;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentFlag = currentArray[i];
+			if(currentFlag.type === "param" && currentFlag.arguments.length > 0 && currentFlag.arguments[0] === aName) {
+				return currentFlag;
+			}
+		}
+		return null;
+	};
+	
+	/**
 	 * Creates a new link to a class.
 	 *
-	 * @param	aClassPath		String 			The path to the class.
+	 * @param	aClassPath		String			The path to the class.
 	 * @param	aHtmlCreator	HtmlCreator		The creator for new nodes.
 	 *
 	 * @return	Element	The a tag that links to the class.

@@ -15,6 +15,12 @@ dbm.registerClass("com.developedbyme.utils.native.regexp.RegExpFunctions", null,
 	
 	//Constants
 	
+	
+	staticFunctions.getSafeText = function(aText) {
+		var safeRegExp = new RegExp("([\\.\\*\\?\\+\\{\\}\\[\\]\\(\\)\\\\\\|\\^\\$])", "g");
+		return aText.replace(safeRegExp, "\\$1");
+	};
+	
 	staticFunctions.matchTextInRegExpArray = function(aText, aRegExpArray) {
 		var currentArray = aRegExpArray;
 		var currentArrayLength = currentArray.length;

@@ -109,7 +109,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		this._objectsArray.push(aObject);
 		this._namesArray.push(aName);
 	};
-
+	
+	/**
+	 * Adds an object to the beginning of this array. It replaces the object with the same name if it exists.
+	 *
+	 * @param	aName	String	The name of the object.
+	 * @param	aObject	*		The object to store.
+	 */
 	objectFunctions.addObjectToBeginning = function(aName, aObject) {
 		if(!VariableAliases.isSet(aName)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
@@ -124,6 +130,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		this._namesArray.unshift(aName);
 	};
 	
+	/**
+	 * Selects an object in this array. Can later be accessed with currentSelectedItem.
+	 *
+	 * @param	aName	String	The anme of the object to select.
+	 *
+	 * @return	Boolean		True if the object exists.
+	 */
 	objectFunctions.select = function(aName) {
 		if(!VariableAliases.isSet(this._objectsObject[aName])) {
 			this.currentSelectedItem = null;
@@ -144,6 +157,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		return (VariableAliases.isSet(this._objectsObject[aName]));
 	};
 	
+	/**
+	 * Checks if this array has all objects in a list.
+	 *
+	 * @param	aNamesArray		Array<String>	The list of names to check for.
+	 *
+	 * @return	Boolean		True if all objects exist in this array.
+	 */
 	objectFunctions.hasObjects = function(aNamesArray) {
 		var currentArray = aNamesArray;
 		var currentArrayLength = currentArray.length;
@@ -153,6 +173,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		return true;
 	};
 	
+	/**
+	 * Gets an object in this array.
+	 *
+	 * @param	aName	String	The name of the object to get.
+	 *
+	 * @return	*	The object that corresponds to the given name. Null if no object has that name.
+	 */
 	objectFunctions.getObject = function(aName) {
 		//console.log("com.developedbyme.utils.data.NamedArray::getObject");
 		if(this._objectsObject[aName] === undefined) {
@@ -162,6 +189,11 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		return this._objectsObject[aName];
 	};
 	
+	/**
+	 * Removes an object from this array.
+	 *
+	 * @param	aName	String	The name of the object to remove.
+	 */
 	objectFunctions.removeObject = function(aName) {
 		if(this._objectsObject[aName] === undefined) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MAJOR, this, "removeObject", "Object " + aName + " doesn't exist.");
@@ -187,8 +219,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		}
 	};
 	
+	/**
+	 * Makes a copy of this array.
+	 *
+	 * @return	NamedArray	The copy of this array.
+	 */
 	objectFunctions.copy = function() {
-		var copiedNamedArray = new NamedArray();
+		var copiedNamedArray = (new NamedArray()).init();
 		
 		var currentArray = this._objectsArray;
 		var theLength = currentArray.length;
@@ -261,6 +298,9 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		return this.superCall(aName);
 	};
 	
+	/**
+	 * Performs the destruction of the object if they are owned by this array.
+	 */
 	objectFunctions._performDestroyObjects = function() {
 		if(this.ownsObjects) {
 			ClassReference.softDestroyArrayIfExists(this._objectsArray);
@@ -297,7 +337,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	/**
 	 * Creates a new instance of this class.
 	 *
-	 * @praam	aOwnsObjects	Boolean		True if this array owns the objects and should destroy them when the array is destroyed.
+	 * @param	aOwnsObjects	Boolean		True if this array owns the objects and should destroy them when the array is destroyed.
 	 *
 	 * @return	ClassDefinition	The newly created instance.
 	 */

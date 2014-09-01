@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.Document
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var BreakdownFunctions = dbm.importClass("com.developedbyme.compiler.breakdown.BreakdownFunctions");
+	var RegExpFunctions = dbm.importClass("com.developedbyme.utils.native.regexp.RegExpFunctions");
 	
 	//Constants
 	var DocumentationTypes = dbm.importClass("com.developedbyme.constants.compiler.DocumentationTypes");
@@ -104,5 +105,33 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.Document
 		//METODO: verify order of arguments
 		
 		return returnData;
-	};
+	}; //End function documentNamedFunction
+	
+	
+	/**
+	 * Gets the full class path for a name.
+	 * 
+	 * @param	aName			String			The name of the class.
+	 * @param	aClassPaths		Array<String>	List of the full class paths.
+	 *
+	 * @return	Array	The array of matching class paths.
+	 */
+	staticFunctions.getFullClassPathsByName = function(aName, aClassPaths) {
+		//console.log("com.developedbyme.compiler.compiledata.documentation.DocumentationFunctions::getFullClassPathsByName");
+		var returnArray = new Array();
+		
+		var nameOfClassRegExpString = "^(.*\\.)?" + RegExpFunctions.getSafeText(aName) + "$";
+		var nameOfClassRegExp = new RegExp(nameOfClassRegExpString);
+		
+		var currentArray = aClassPaths;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentClassPath = currentArray[i];
+			if(nameOfClassRegExp.test(currentClassPath)) {
+				returnArray.push(currentClassPath);
+			}
+		}
+		
+		return returnArray;
+	}; //End function getFullClassPathsByName
 });

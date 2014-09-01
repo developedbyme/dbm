@@ -31,10 +31,18 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.Document
 		this.superCall();
 		
 		this._description = null;
-		
 		this._flags = new Array();
 		
 		return this;
+	};
+	
+	/**
+	 * Gets the flags of this documentation.
+	 *
+	 * @return	Array<DocumentationFlagData>	The flags.
+	 */
+	objectFunctions.getFlags = function() {
+		return this._flags;
 	};
 	
 	/**
@@ -50,7 +58,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.Document
 		var description = "";
 		var lineStartRegExp = new RegExp("^[\\s]*\\/?[\\*]*[\\s]*");
 		var lineEndRegExp = new RegExp("[\\s]*[\*]*\\/?[\\s]*$");
-		var argumentsSplitRegExp = new RegExp("[\\t]+");
+		var argumentsSplitRegExp = new RegExp("[\\s]*[\\t]+[\\s]*");
 		
 		var currentArray = aCode.split("\n");
 		var currentArrayLength = currentArray.length;
@@ -85,6 +93,9 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.Document
 	 * Sets all the references to null. Part of the destroy function.
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._description = null;
+		this._flags = null;
 		
 		this.superCall();
 	};

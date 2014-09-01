@@ -16,6 +16,8 @@ dbm.registerClass("com.developedbyme.utils.native.string.JavascriptLanguageFunct
 	var RegExpFunctions = dbm.importClass("com.developedbyme.utils.native.regexp.RegExpFunctions");
 	
 	//Constants
+	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
+	
 	
 	staticFunctions.KEWWORD_REG_EXPS = [
 		new RegExp("^if[\\s]*\\("),
@@ -157,5 +159,20 @@ dbm.registerClass("com.developedbyme.utils.native.string.JavascriptLanguageFunct
 		}
 		
 		return aText.match(ClassReference.KEWWORD_REG_EXPS[currentIndex]);
+	};
+	
+	staticFunctions.isTypeNative = function(aType) {
+		switch(aType.toLowerCase()) {
+			case JavascriptObjectTypes.TYPE_OBJECT:
+			case JavascriptObjectTypes.TYPE_BOOLEAN:
+			case JavascriptObjectTypes.TYPE_NUMBER:
+			case JavascriptObjectTypes.TYPE_STRING:
+			case JavascriptObjectTypes.TYPE_FUNCTION:
+			case JavascriptObjectTypes.TYPE_XML:
+			case JavascriptObjectTypes.NON_REAL_TYPE_ARRAY:
+			case JavascriptObjectTypes.NON_REAL_TYPE_ANY:
+				return true;
+		}
+		return false;
 	};
 });

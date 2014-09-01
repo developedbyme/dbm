@@ -1,15 +1,29 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Object that makes it simple to create new html elements.
+ */
 dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator");
 	//"use strict";
 	
+	//Self reference
 	var HtmlCreator = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	//Constants
 	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
 	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator::_init");
 		
@@ -20,6 +34,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		return this;
 	};
 	
+	/**
+	 * Sets the document to use for creating new nodes.
+	 *
+	 * @param	aDocument	Document	The document.
+	 */
 	objectFunctions.setDocument = function(aDocument) {
 		//console.log("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator::setDocument");
 		
@@ -29,6 +48,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		
 	};
 	
+	/**
+	 * Sets attribute to a node.
+	 *
+	 * @param	aElement		Element		The element to set the attributes on.
+	 * @param	aAttributes		Object		Accosiative array with names and values of all attributes to set.
+	 */
 	objectFunctions.setAttributesToNode = function(aElement, aAttributes) {
 		if(aAttributes !== null) {
 			for(var objectName in aAttributes) {
@@ -37,11 +62,27 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.objects.H
 		}
 	};
 	
+	/**
+	 * Creates a text node.
+	 *
+	 * @param	aText	String	The text for the new text node.
+	 *
+	 * @return	Native<Text>	The newly created text node.
+	 */
 	objectFunctions.createText = function(aText) {
 		return this.ownerDocument.createTextNode(aText);
 	};
 	
-	objectFunctions.createNode = function(aTagName, aAttributes /*, ... childs */) {
+	/**
+	 * Creates a HTML element.
+	 *
+	 * @param	aTagName		String			The name/type for the element.
+	 * @param	aAttributes		Object			The attributes to add to the element.
+	 * @rest	aChilds			Array<Node>		The childnodes to add to this element.
+	 *
+	 * @param	Element		The newly created element.
+	 */
+	objectFunctions.createNode = function(aTagName, aAttributes /*, ... aChilds */) {
 		var newElement = this.ownerDocument.createElement(aTagName);
 		this.setAttributesToNode(newElement, aAttributes);
 		var currentArray = arguments;

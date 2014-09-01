@@ -49,17 +49,31 @@ dbm.registerClass("com.developedbyme.core.extendedevent.commands.htmldom.RebaseD
 		
 		this._rebaseAttributeOnElements(theElement.querySelectorAll("link"), "href", urlResolver);
 		this._rebaseAttributeOnElements(theElement.querySelectorAll("a"), "href", urlResolver);
+		this._rebaseAttributeOnElements(theElement.querySelectorAll("script"), "src", urlResolver);
+		this._rebaseAttributeOnElements(theElement.querySelectorAll("img"), "src", urlResolver);
 		
 		return CommandStatusTypes.CONTINUE;
 	};
 	
+	/**
+	 * Rebases an attribute with URL value on every element in an array.
+	 *
+	 * @param	aArray			Array<Element>	The arrray of elements to change the attribute on.
+	 * @param	aAttributeName	String			The name of the attribute to change.
+	 * @param	aUrlResolver	UrlResolver		The resolver to rebase all the paths to.
+	 */
 	objectFunctions._rebaseAttributeOnElements = function(aArray, aAttributeName, aUrlResolver) {
 		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentElement = currentArray[i];
 			if(currentElement.hasAttribute(aAttributeName)) {
-				currentElement.setAttribute(aAttributeName, aUrlResolver.getRelativePath(currentElement.getAttribute(aAttributeName)));
+				
+				var currentUrl = currentElement.getAttribute(aAttributeName);
+				
+				if(currentUrl.indexOf("://") === -1) {
+					currentElement.setAttribute(aAttributeName, aUrlResolver.getRelativePath(currentUrl));
+				}
 			}
 		}
 	};

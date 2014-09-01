@@ -1,9 +1,25 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Resolver for relative file paths.
+ */
 dbm.registerClass("com.developedbyme.utils.file.UrlResolver", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.file.UrlResolver");
 	
+	//Self reference
 	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.file.UrlResolver::_init");
 		
@@ -15,6 +31,12 @@ dbm.registerClass("com.developedbyme.utils.file.UrlResolver", "com.developedbyme
 		return this;
 	};
 	
+	/**
+	 * Sets up the base url for where paths should be resolved.
+	 *
+	 * @param	aBasePath	String	The base part of the URL (eg. http://www.example.com).
+	 * @param	aFolders	String	The path to the current folder (eg. path/to/folder).
+	 */
 	objectFunctions.setupBaseUrl = function(aBasePath, aFolders) {
 		this._basePath = aBasePath;
 		if(aFolders !== null) {
@@ -123,10 +145,9 @@ dbm.registerClass("com.developedbyme.utils.file.UrlResolver", "com.developedbyme
 				//METODO: error message
 				return null;
 			}
-		
+			
 			workPath = workPath.substring(this._basePath.length + 1, workPath.length);
 		}
-		
 		
 		var questionMarkPosition = workPath.indexOf("?");
 		var queryString = ""; //MENOTE: should include ? if exists

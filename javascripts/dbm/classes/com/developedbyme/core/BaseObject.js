@@ -1,4 +1,7 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Base object for other objects. Implementes the interface for destroy() and dynamic data.
+ */
 dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	//"use strict";
@@ -81,6 +84,13 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return aObject;
 	};
 	
+	/**
+	 * Removes an object that has been previously been marked for deletion with this object.
+	 *
+	 * @param	aObject		BaseObject	The object that should no longer be owned by this object.
+	 *
+	 * @return	BaseObject	The object that is passed in.
+	 */
 	objectFunctions.removeDestroyableObject = function(aObject) {
 		if(this._destroyableObjects !== null) {
 			var objectIndex = ArrayFunctions.indexOfInArray(this._destroyableObjects, aObject);
@@ -98,6 +108,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return aObject;
 	};
 	
+	/**
+	 * Gets the array of destroyable objects.
+	 *
+	 * @param	Array<BaseObject>	The array of objects that are marked for destruction.
+	 */
 	objectFunctions.getDestroyableObjectsArray = function() {
 		if(this._destroyableObjects === null) {
 			this._destroyableObjects = new Array();
@@ -105,6 +120,14 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return this._destroyableObjects;
 	};
 	
+	/**
+	 * Adds a dynamic meta data to this object.
+	 *
+	 * @param	aName	String	The name of the data.
+	 * @param	aData	*		The data to store.
+	 *
+	 * @param	*	The data that is passed in.
+	 */
 	objectFunctions.setDynamicVariable = function(aName, aData) {
 		if(this._dynamicVariables === null) {
 			this._dynamicVariables = ClassReference._createObject();
@@ -114,6 +137,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return aData;
 	};
 	
+	/**
+	 * Removes a dynamic meta data from this object.
+	 *
+	 * @param	aName	String	The name of the data.
+	 */
 	objectFunctions.removeDynamicVariable = function(aName) {
 		if(this._dynamicVariables === null) return;
 		delete this._dynamicVariables[aName];
@@ -121,6 +149,13 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return this;
 	};
 	
+	/**
+	 * Gets a dynamic meta data from this object.
+	 *
+	 * @param	aName	String	The name of the data.
+	 *
+	 * @return	*	The stored data that corresponds to the name. Null if not found.
+	 */
 	objectFunctions.getDynamicVariable = function(aName) {
 		if(this._dynamicVariables === null || this._dynamicVariables[aName] === undefined) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getDynamicVariable", "Object " + this + " doesn't have dynamic variable " + aName + ".");
@@ -129,10 +164,20 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return this._dynamicVariables[aName];
 	};
 	
+	/**
+	 * Checks if this object has a dynamic meta data
+	 *
+	 * @param	aName	String	The name of the data.
+	 *
+	 * @return	Boolean		True if it exists.
+	 */
 	objectFunctions.hasDynamicVariable = function(aName) {
 		return (this._dynamicVariables !== null && this._dynamicVariables[aName] !== undefined);
 	};
 	
+	/**
+	 * Function that calls the super function of the function that called this function.
+	 */
 	objectFunctions.superCall = function() {
 		//console.log("com.developedbyme.core.BaseObject::superCall");
 		
@@ -148,6 +193,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
+	/**
+	 * Checks if the object is destroyed.
+	 *
+	 * @return	Boolean		True if the object is destroyed.
+	 */
 	objectFunctions.isDestroyed = function() {
 		//console.log("com.developedbyme.core.BaseObject::isDestroyed");
 		return this._isDestroyed;
@@ -214,6 +264,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return true;
 	};
 	
+	/**
+	 * Override of native function toString.
+	 *
+	 * @return	String	Information about this object.
+	 */
 	objectFunctions.toString = function() {
 		var attributesArray = new Array();
 		this._toString_getAttributes(attributesArray);
@@ -234,6 +289,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		//MENOTE: should be overridden
 	};
 	
+	/**
+	 * Releases an object from this ownership and detroys the object if it doesn't have any other retains.
+	 *
+	 * @param	aObject		The object to release/destroy.
+	 */
 	staticFunctions.softDestroyIfExists = function(aObject) {
 		if(aObject !== null) {
 			if(aObject.releaseAndDestroy !== undefined) {
@@ -297,6 +357,14 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
+	/**
+	 * Creates an instance of a class and calls the init function.
+	 * Object pool is used if it is set up for the class.
+	 *
+	 * @param	aClass	Function	The constructor function.
+	 *
+	 * @param	*	The newly created object.
+	 */
 	staticFunctions._createAndInitClass = function(aClass) {
 		//console.log("com.developedbyme.core.BaseObject::_createAndInitClass");
 		//console.log(aClass);
