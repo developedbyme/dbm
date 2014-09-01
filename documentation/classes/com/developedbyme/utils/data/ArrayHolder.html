@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -22,13 +23,13 @@ The purpose of this object is that it implements and destroy() function and dest
 							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
@@ -129,18 +130,26 @@ The purpose of this object is that it implements and destroy() function and dest
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					<div class="function">
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Constructor</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._init = function() {
@@ -157,15 +166,22 @@ The purpose of this object is that it implements and destroy() function and dest
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Performs the destruction of this object. Part of the destroy function.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.performDestroy = function() {
@@ -180,15 +196,22 @@ The purpose of this object is that it implements and destroy() function and dest
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Sets all the refernences to null. Part of the destroy function.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.setAllReferencesToNull = function() {
@@ -201,15 +224,22 @@ The purpose of this object is that it implements and destroy() function and dest
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Checks if this object owns a specific variable. Part of the destroy function.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
@@ -224,18 +254,27 @@ The purpose of this object is that it implements and destroy() function and dest
 				</div>
 			</div>
 		</div></div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				<div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					<div class="function">
 			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">create</span>(<span class="arguments">aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Creates a new instance of this class.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aOwnsObjects:<span class="nativeType">Boolean</span> - If the array is owned by the new holder and should be destroyed when the holder is destroyed.</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.create = function(aOwnsObjects) {
@@ -248,15 +287,22 @@ The purpose of this object is that it implements and destroy() function and dest
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createFromArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">createFromArray</span>(<span class="arguments">aArray:<span class="nativeType">Array</span>, aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Creates a new holder from an existing array.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array that the new holder will hold.</div><div class="argumentDescription">aOwnsObjects:<span class="nativeType">Boolean</span> - If the array is owned by the new holder and should be destroyed when the holder is destroyed.</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.createFromArray = function(aArray, aOwnsObjects) {
@@ -271,6 +317,7 @@ The purpose of this object is that it implements and destroy() function and dest
 				</div>
 			</div>
 		</div></div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

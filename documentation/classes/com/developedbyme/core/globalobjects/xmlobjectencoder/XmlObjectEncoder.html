@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject" href="encodingdata/EncodingDataObject.html">EncodingDataObject</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject" href="encodingdata/ExportMetaDataObject.html">ExportMetaDataObject</a>, <a title="com.developedbyme.utils.native.date.IsoDate" href="../../../utils/native/date/IsoDate.html">IsoDate</a>, <a title="com.developedbyme.constants.JavascriptObjectTypes" href="../../../constants/JavascriptObjectTypes.html">JavascriptObjectTypes</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.utils.native.object.ObjectFunctions" href="../../../utils/native/object/ObjectFunctions.html">ObjectFunctions</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a>, <a title="com.developedbyme.utils.xml.XmlCreator" href="../../../utils/xml/XmlCreator.html">XmlCreator</a>, <a title="com.developedbyme.utils.xml.XmlModifier" href="../../../utils/xml/XmlModifier.html">XmlModifier</a>, <a title="com.developedbyme.constants.XmlNodeTypes" href="../../../constants/XmlNodeTypes.html">XmlNodeTypes</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.formatencoders.XmlStringFormatEncoder" href="formatencoders/XmlStringFormatEncoder.html">XmlStringFormatEncoder</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var XmlObjectEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
@@ -234,18 +235,26 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					<div class="function">
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Constructor</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._init = function() {
@@ -264,15 +273,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addClassEncoder</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addClassEncoder</span>(<span class="arguments">aClassName, aEncoder</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aClassName</div><div class="argumentDescription">aEncoder</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.addClassEncoder = function(aClassName, aEncoder) {
@@ -282,15 +298,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addCustomTypeEncoder</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addCustomTypeEncoder</span>(<span class="arguments">aType, aEncoder</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aType</div><div class="argumentDescription">aEncoder</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.addCustomTypeEncoder = function(aType, aEncoder) {
@@ -300,15 +323,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createExportDataObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">createExportDataObject</span>(<span class="arguments">aType</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aType</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.createExportDataObject = function(aType) {
@@ -328,15 +358,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeXmlFromObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeXmlFromObject</span>(<span class="arguments">aObject</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeXmlFromObject = function(aObject) {
@@ -357,15 +394,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeValue</span>(<span class="arguments">aValue, aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeValue = function(aValue, aParentNode) {
@@ -380,15 +424,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeValueWithType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeValueWithType</span>(<span class="arguments">aValue, aType, aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aType</div><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeValueWithType = function(aValue, aType, aParentNode) {
@@ -420,15 +471,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeSimpleValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeSimpleValue</span>(<span class="arguments">aValue, aType, aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aType</div><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeSimpleValue = function(aValue, aType, aParentNode) {
@@ -442,15 +500,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeNullValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeNullValue</span>(<span class="arguments">aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeNullValue = function(aParentNode) {
@@ -461,15 +526,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeArray</span>(<span class="arguments">aValue, aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeArray = function(aValue, aParentNode) {
@@ -485,15 +557,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeObject</span>(<span class="arguments">aValue, aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeObject = function(aValue, aParentNode) {
@@ -528,15 +607,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeFunction</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeFunction</span>(<span class="arguments">aValue, aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeFunction = function(aValue, aParentNode) {
@@ -547,15 +633,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeXml</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeXml</span>(<span class="arguments">aValue, aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeXml = function(aValue, aParentNode) {
@@ -567,15 +660,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeCustomValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeCustomValue</span>(<span class="arguments">aValue, aType, aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aType</div><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeCustomValue = function(aValue, aType, aParentNode) {
@@ -593,15 +693,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">encodeUnknownValue</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">encodeUnknownValue</span>(<span class="arguments">aValue, aParentNode</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aParentNode</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.encodeUnknownValue = function(aValue, aParentNode) {
@@ -613,10 +720,13 @@
 				</div>
 			</div>
 		</div></div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				</div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					</div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

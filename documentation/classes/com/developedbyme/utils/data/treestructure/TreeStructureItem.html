@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -21,13 +22,13 @@
 							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a>, <a title="com.developedbyme.constants.extendedevents.GenericExtendedEventIds" href="../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../NamedArray.html">NamedArray</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItemTypes" href="TreeStructureItemTypes.html">TreeStructureItemTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem", "com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", function(objectFunctions, staticFunctions, ClassReference) {
@@ -443,18 +444,26 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					<div class="function">
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Constructor</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._init = function() {
@@ -477,15 +486,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getExtendedEvent = function() {
@@ -500,15 +516,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the name of the item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getName = function() {
@@ -519,15 +542,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">setName</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Sets the name of the item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.setName = function(aName) {
@@ -543,15 +573,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getAttribute</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getAttribute = function(aName) {
@@ -569,15 +606,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">setAttribute</span>(<span class="arguments">aName, aValue</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.setAttribute = function(aName, aValue) {
@@ -591,15 +635,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">changeAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">changeAttribute</span>(<span class="arguments">aName, aValue</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.changeAttribute = function(aName, aValue) {
@@ -616,15 +667,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">hasAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">hasAttribute</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.hasAttribute = function(aName) {
@@ -634,15 +692,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getInheritedAttribute</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getInheritedAttribute</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getInheritedAttribute = function(aName) {
@@ -666,15 +731,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getPath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the path of the item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getPath = function() {
@@ -691,15 +763,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the type of the item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getType = function() {
@@ -710,15 +789,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the parent of this item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getParent = function() {
@@ -729,15 +815,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getRoot</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the root of this tree structure.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getRoot = function() {
@@ -748,15 +841,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">isLink</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the item is a link or not</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.isLink = function() {
@@ -767,15 +867,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getChildNames</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the names of the childs.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getChildNames = function() {
@@ -786,15 +893,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getChildren</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the children.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getChildren = function() {
@@ -805,15 +919,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getNumberOfChildren</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the number of children directly 1 level under this item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getNumberOfChildren = function() {
@@ -823,15 +944,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_linkRegistration_setName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_linkRegistration_setName</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Sets the name of the item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._linkRegistration_setName = function(aName) {
@@ -849,15 +977,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_linkRegistration_setParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_linkRegistration_setParent</span>(<span class="arguments">aParent</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Sets the parent of this item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aParent</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._linkRegistration_setParent = function(aParent) {
@@ -872,15 +1007,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_internalFunctionality_setRoot</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_internalFunctionality_setRoot</span>(<span class="arguments">aRoot</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Sets the root</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aRoot</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._internalFunctionality_setRoot = function(aRoot) {
@@ -898,15 +1040,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">_linkRegistration_removeParent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Removes the parent of this item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._linkRegistration_removeParent = function() {
@@ -918,15 +1067,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addChild</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addChild</span>(<span class="arguments">aItem</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Adds a child.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aItem</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.addChild = function(aItem) {
@@ -945,15 +1101,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">removeChild</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">removeChild</span>(<span class="arguments">aItem</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Removes a child.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aItem</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.removeChild = function(aItem) {
@@ -969,15 +1132,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">changeChildName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">changeChildName</span>(<span class="arguments">aItem, aNewName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Changes the name of a child.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aItem</div><div class="argumentDescription">aNewName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.changeChildName = function(aItem, aNewName) {
@@ -995,15 +1165,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getChildByName</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getChildByName</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets a child by it's name.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getChildByName = function(aName) {
@@ -1017,15 +1194,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">resolvePath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">resolvePath</span>(<span class="arguments">aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Resolves a path from this item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.resolvePath = function(aPath) {
@@ -1036,15 +1220,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">debugTraceStructure</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">debugTraceStructure</span>(<span class="arguments">aTabString, aResolveLinksLevel</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Traces out the full structure.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aTabString</div><div class="argumentDescription">aResolveLinksLevel</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.debugTraceStructure = function(aTabString, aResolveLinksLevel) {
@@ -1059,15 +1250,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">debugTraceChildren</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">debugTraceChildren</span>(<span class="arguments">aTabString, aResolveLinksLevel</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Traces out the full structure.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aTabString</div><div class="argumentDescription">aResolveLinksLevel</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.debugTraceChildren = function(aTabString, aResolveLinksLevel) {
@@ -1083,15 +1281,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the parameters for this class. Part of the toString function.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aReturnArray</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
@@ -1107,15 +1312,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
@@ -1131,15 +1343,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Destroys all the data of the object.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.performDestroy = function() {
@@ -1163,15 +1382,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
@@ -1186,15 +1412,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Sets all the references to null</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.setAllReferencesToNull = function() {
@@ -1211,18 +1444,27 @@
 				</div>
 			</div>
 		</div></div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				<div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					<div class="function">
 			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">create</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Creates a new item.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.create = function(aName) {
@@ -1236,6 +1478,7 @@
 				</div>
 			</div>
 		</div></div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

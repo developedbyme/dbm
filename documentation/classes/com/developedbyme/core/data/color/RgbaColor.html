@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description">A RGBA color.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
@@ -110,18 +111,26 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					<div class="function">
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Constructor</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._init = function() {
@@ -140,15 +149,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getCssString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getCssString = function() {
@@ -163,15 +179,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getSvgColorStopString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getSvgColorStopString = function() {
@@ -181,15 +204,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">getSvgColorStopOpacityString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getSvgColorStopOpacityString = function() {
@@ -204,15 +234,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_toString_getAttributes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aReturnArray</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
@@ -228,18 +265,27 @@
 				</div>
 			</div>
 		</div></div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				<div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					<div class="function">
 			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">create</span>(<span class="arguments">aR, aG, aB, aA</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aR</div><div class="argumentDescription">aG</div><div class="argumentDescription">aB</div><div class="argumentDescription">aA</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.create = function create(aR, aG, aB, aA) {
@@ -258,6 +304,7 @@
 				</div>
 			</div>
 		</div></div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand" href="../commands/events/ActivateEventLinkCommand.html">ActivateEventLinkCommand</a>, <a title="com.developedbyme.utils.htmldom.DomReferenceFunctions" href="../../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="com.developedbyme.constants.extendedevents.DragAndDropExtendedEventIds" href="../../../constants/extendedevents/DragAndDropExtendedEventIds.html">DragAndDropExtendedEventIds</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.JavascriptEventIds" href="../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand" href="../commands/native/PreventDefaultCommand.html">PreventDefaultCommand</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand" href="../commands/native/StopPropagationCommand.html">StopPropagationCommand</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var DragAndDropExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
@@ -82,22 +83,32 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				</div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					</div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					<div class="function">
 			<div class="definition">
-				<span class="functionName">addDropEvents</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addDropEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.addDropEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
@@ -119,15 +130,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">preventDefaultForEvent</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">preventDefaultForEvent</span>(<span class="arguments">aExtendedEventController, aEventName</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aEventName</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
@@ -141,6 +159,7 @@
 				</div>
 			</div>
 		</div></div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

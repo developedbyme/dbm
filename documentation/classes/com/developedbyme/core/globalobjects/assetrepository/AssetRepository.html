@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.assetrepository.assets.ArrayBufferAsset" href="assets/ArrayBufferAsset.html">ArrayBufferAsset</a>, <a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset" href="assets/AudioAsset.html">AudioAsset</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.browser.FeatureCheck" href="../../../utils/browser/FeatureCheck.html">FeatureCheck</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset" href="assets/ImageAsset.html">ImageAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.JsonAsset" href="assets/JsonAsset.html">JsonAsset</a>, <a title="com.developedbyme.utils.file.MimeTypeFunctions" href="../../../utils/file/MimeTypeFunctions.html">MimeTypeFunctions</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.utils.file.PathFunctions" href="../../../utils/file/PathFunctions.html">PathFunctions</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.TextAsset" href="assets/TextAsset.html">TextAsset</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructure" href="../../../utils/data/treestructure/TreeStructure.html">TreeStructure</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="../../../utils/data/treestructure/TreeStructureItem.html">TreeStructureItem</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItemLink" href="../../../utils/data/treestructure/TreeStructureItemLink.html">TreeStructureItemLink</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset" href="assets/VideoAsset.html">VideoAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset" href="assets/XmlAsset.html">XmlAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.XmlIdElementAsset" href="assets/XmlIdElementAsset.html">XmlIdElementAsset</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var AssetRepository = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.AssetRepository");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.AssetRepository", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
@@ -254,18 +255,26 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					<div class="function">
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Constructor</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._init = function() {
@@ -287,15 +296,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
 				<span class="functionName">setupDefaultExtensions</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.setupDefaultExtensions = function() {
@@ -306,15 +322,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setRoot</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">setRoot</span>(<span class="arguments">aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.setRoot = function(aPath) {
@@ -334,15 +357,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getRootPath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getRootPath</span>(<span class="arguments">aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getRootPath = function(aPath) {
@@ -354,15 +384,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getAbsoultePath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getAbsoultePath</span>(<span class="arguments">aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getAbsoultePath = function(aPath) {
@@ -374,15 +411,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">linkFolderToServer</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">linkFolderToServer</span>(<span class="arguments">aPath, aServerPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div><div class="argumentDescription">aServerPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.linkFolderToServer = function(aPath, aServerPath) {
@@ -395,15 +439,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addAssetCreatorForTypes</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addAssetCreatorForTypes</span>(<span class="arguments">aCreator, aTypes</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aCreator</div><div class="argumentDescription">aTypes</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.addAssetCreatorForTypes = function(aCreator, aTypes) {
@@ -417,15 +468,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_createAssetForTreeStructure</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_createAssetForTreeStructure</span>(<span class="arguments">aTreeStructureItem</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aTreeStructureItem</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._createAssetForTreeStructure = function(aTreeStructureItem) {
@@ -450,15 +508,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getAsset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getAsset</span>(<span class="arguments">aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getAsset = function(aPath) {
@@ -502,15 +567,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getAssetData</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getAssetData</span>(<span class="arguments">aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getAssetData = function(aPath) {
@@ -521,15 +593,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addAsset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addAsset</span>(<span class="arguments">aPath, aAsset</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div><div class="argumentDescription">aAsset</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.addAsset = function(aPath, aAsset) {
@@ -548,15 +627,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">hasAsset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">hasAsset</span>(<span class="arguments">aPath, aAsset</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div><div class="argumentDescription">aAsset</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.hasAsset = function(aPath, aAsset) {
@@ -570,15 +656,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createFileAsset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">createFileAsset</span>(<span class="arguments">aPath, aFilePath, aType</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div><div class="argumentDescription">aFilePath</div><div class="argumentDescription">aType</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.createFileAsset = function(aPath, aFilePath, aType) {
@@ -592,15 +685,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getVideoPath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getVideoPath</span>(<span class="arguments">aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getVideoPath = function(aPath) {
@@ -610,15 +710,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getAudioPath</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getAudioPath</span>(<span class="arguments">aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getAudioPath = function(aPath) {
@@ -628,15 +735,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_createAsset</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_createAsset</span>(<span class="arguments">aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._createAsset = function(aPath) {
@@ -648,15 +762,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_createAssetOfType</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_createAssetOfType</span>(<span class="arguments">aPath, aType</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPath</div><div class="argumentDescription">aType</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._createAssetOfType = function(aPath, aType) {
@@ -673,10 +794,13 @@
 				</div>
 			</div>
 		</div></div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				</div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					</div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

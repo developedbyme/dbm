@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description">Global manager for handling errors.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
@@ -112,18 +113,26 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					<div class="function">
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Initializes the object.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._init = function _init() {
@@ -140,15 +149,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addHandler</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addHandler</span>(<span class="arguments">aHandler:<span class="unknownType">{ErrorHandlerInterface}</span></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Adds a handler that gets called with every message.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aHandler:<span class="unknownType">{ErrorHandlerInterface}</span> - The handler.</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.addHandler = function addHandler(aHandler) {
@@ -159,15 +175,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">report</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">report</span>(<span class="arguments">aType:<span class="unknownType">{enum: ReportTypes}</span>, aLevel:<span class="unknownType">{enum: ReportLevelTypes}</span>, aObject:<span class="unknownType">{*}</span>, aFunctionName:<span class="unknownType">{String}</span>, aData:<span class="unknownType">{*}</span></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Reports errors, warning and log messages.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aType:<span class="unknownType">{enum: ReportTypes}</span> - The type of report.</div><div class="argumentDescription">aLevel:<span class="unknownType">{enum: ReportLevelTypes}</span> - The level of severety.</div><div class="argumentDescription">aObject:<span class="unknownType">{*}</span> - The object that sends the report.</div><div class="argumentDescription">aFunctionName:<span class="unknownType">{String}</span> - The name of the function that sends the report.</div><div class="argumentDescription">aData:<span class="unknownType">{*}</span> - The data for the report.</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.report = function report(aType, aLevel, aObject, aFunctionName, aData) {
@@ -186,15 +209,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">reportError</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">reportError</span>(<span class="arguments">aObject:<span class="unknownType">{*}</span>, aFunctionName:<span class="unknownType">{String}</span>, aError:<span class="unknownType">{Error}</span></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Reports an error catched from a try statement.</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aObject:<span class="unknownType">{*}</span> - The object that sends the report.</div><div class="argumentDescription">aFunctionName:<span class="unknownType">{String}</span> - The name of the function that sends the report.</div><div class="argumentDescription">aError:<span class="unknownType">{Error}</span> - The error that occured.</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.reportError = function reportError(aObject, aFunctionName, aError) {
@@ -215,10 +245,13 @@
 				</div>
 			</div>
 		</div></div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				</div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					</div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

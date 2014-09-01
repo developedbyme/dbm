@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description">Global class that evaluates curves</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d" href="creators/CreateBezierCurveFromPoints2d.html">CreateBezierCurveFromPoints2d</a>, <a title="com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d" href="creators/CreateMultiSegmentBezierCurveFromPoints2d.html">CreateMultiSegmentBezierCurveFromPoints2d</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ExtrapolationTypes" href="../../../constants/ExtrapolationTypes.html">ExtrapolationTypes</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var CurveEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
@@ -448,18 +449,26 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					<div class="function">
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._init = function() {
@@ -476,15 +485,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addEvaluator</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addEvaluator</span>(<span class="arguments">aEvaluator</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aEvaluator</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.addEvaluator = function(aEvaluator) {
@@ -496,15 +512,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getPartOfCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getPartOfCurve</span>(<span class="arguments">aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPointSet</div><div class="argumentDescription">aStartParameter</div><div class="argumentDescription">aEndParameter</div><div class="argumentDescription">aExactness</div><div class="argumentDescription">aReturnCurve</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
@@ -535,15 +558,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getPointOnBezierSegment3d</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getPointOnBezierSegment3d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {
@@ -572,15 +602,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getPointOnBezierSegment2d</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getPointOnBezierSegment2d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getPointOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
@@ -604,15 +641,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getTangentOnBezierSegment2d</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getTangentOnBezierSegment2d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getTangentOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
@@ -665,15 +709,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getBezierMultipliersArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getBezierMultipliersArray</span>(<span class="arguments">aCurveDegree</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aCurveDegree</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getBezierMultipliersArray = function(aCurveDegree) {
@@ -696,15 +747,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">calculateBernsteinPolynomialWithoutMultiplier</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">calculateBernsteinPolynomialWithoutMultiplier</span>(<span class="arguments">aParameter, aPointNr, aDegree</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Calculates the berstein polynominal for a parameter</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aParameter - The parameter (Valid range: 0 to 1).</div><div class="argumentDescription">aPointNr - The point of the curve.</div><div class="argumentDescription">aDegree - The curve degree.</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.calculateBernsteinPolynomialWithoutMultiplier = function(aParameter, aPointNr, aDegree) {
@@ -715,15 +773,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_evaluateAnimationCurveSegment</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_evaluateAnimationCurveSegment</span>(<span class="arguments">aPointsArray, aSegment, aEvaluationValue, aExactness</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aSegment</div><div class="argumentDescription">aEvaluationValue</div><div class="argumentDescription">aExactness</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._evaluateAnimationCurveSegment = function(aPointsArray, aSegment, aEvaluationValue, aExactness) {
@@ -773,15 +838,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getValueOfAnimationCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getValueOfAnimationCurve</span>(<span class="arguments">aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aCurve</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aPreInfinityMethod</div><div class="argumentDescription">aPostInfinityMethod</div><div class="argumentDescription">aExactness</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.getValueOfAnimationCurve = function(aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness) {
@@ -870,15 +942,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createBezierCurveFromPoints3d</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">createBezierCurveFromPoints3d</span>(<span class="arguments">aPointsArray, aReturnCurve</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Creates a bezier curve that passes through a set of points</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.createBezierCurveFromPoints3d = function(aPointsArray, aReturnCurve) {
@@ -948,15 +1027,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createBezierCurveFromPoints2d</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">createBezierCurveFromPoints2d</span>(<span class="arguments">aPointsArray, aReturnCurve, aParametersArray</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Creates a bezier curve that passes through a set of points</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div><div class="argumentDescription">aParametersArray</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.createBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aParametersArray) {
@@ -968,15 +1054,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createMultiSegmentBezierCurveFromPoints2d</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">createMultiSegmentBezierCurveFromPoints2d</span>(<span class="arguments">aPointsArray, aReturnCurve, aIsRound</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Creates a multisegment bezier curve that passes through a set of points</div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div><div class="argumentDescription">aIsRound</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.createMultiSegmentBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aIsRound) {
@@ -994,15 +1087,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">recycleCurve</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">recycleCurve</span>(<span class="arguments">aCurve</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aCurve</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions.recycleCurve = function(aCurve) {
@@ -1015,10 +1115,13 @@
 				</div>
 			</div>
 		</div></div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				</div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					</div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

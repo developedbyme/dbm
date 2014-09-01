@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><a title="com.developedbyme.flow.nodes.logic.BooleanSwitchedNode" href="../../../../../flow/nodes/logic/BooleanSwitchedNode.html">BooleanSwitchedNode</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea" href="../../../../../gui/abstract/switchablearea/InDomSwitchableArea.html">InDomSwitchableArea</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.gui.abstract.switchablearea.SwitchableAreaHolder" href="../../../../../gui/abstract/switchablearea/SwitchableAreaHolder.html">SwitchableAreaHolder</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var SwitchableAreaCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.commands.switchablearea.SwitchableAreaCommandFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
@@ -83,22 +84,32 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				</div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					</div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					<div class="function">
 			<div class="definition">
-				<span class="functionName">createInDomSwitchableArea</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">createInDomSwitchableArea</span>(<span class="arguments">aHolder</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aHolder</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.createInDomSwitchableArea = function(aHolder) {
@@ -112,15 +123,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addArea</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addArea</span>(<span class="arguments">aObject, aName, aOwnsObject</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aObject</div><div class="argumentDescription">aName</div><div class="argumentDescription">aOwnsObject</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.addArea = function(aObject, aName, aOwnsObject) {
@@ -137,15 +155,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">visibleAreaFromBooleanProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">visibleAreaFromBooleanProperty</span>(<span class="arguments">aHolder, aProperty, aTrueValue, aFalseValue</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aHolder</div><div class="argumentDescription">aProperty</div><div class="argumentDescription">aTrueValue</div><div class="argumentDescription">aFalseValue</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.visibleAreaFromBooleanProperty = function(aHolder, aProperty, aTrueValue, aFalseValue) {
@@ -161,6 +186,7 @@
 				</div>
 			</div>
 		</div></div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

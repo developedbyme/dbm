@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
@@ -320,22 +321,32 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				</div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					</div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					<div class="function">
 			<div class="definition">
-				<span class="functionName">getScopeStart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getScopeStart</span>(<span class="arguments">aText, aFromPosition, aScopeStarts</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aFromPosition</div><div class="argumentDescription">aScopeStarts</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.getScopeStart = function(aText, aFromPosition, aScopeStarts) {
@@ -362,15 +373,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">splitEvaluation</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">splitEvaluation</span>(<span class="arguments">aText, aReturnOperators</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aReturnOperators</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.splitEvaluation = function(aText, aReturnOperators) {
@@ -434,15 +452,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getTypeOfScopeStart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getTypeOfScopeStart</span>(<span class="arguments">aText, aPosition, aScopeStarts</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aPosition</div><div class="argumentDescription">aScopeStarts</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.getTypeOfScopeStart = function(aText, aPosition, aScopeStarts) {
@@ -474,15 +499,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getTypeOfScopeEndForScopeStart</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getTypeOfScopeEndForScopeStart</span>(<span class="arguments">aStart, aScopeStarts, aScopeEnds</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aStart</div><div class="argumentDescription">aScopeStarts</div><div class="argumentDescription">aScopeEnds</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.getTypeOfScopeEndForScopeStart = function(aStart, aScopeStarts, aScopeEnds) {
@@ -505,15 +537,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getAnyScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getAnyScope</span>(<span class="arguments">aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aStartPosition</div><div class="argumentDescription">aStartType</div><div class="argumentDescription">aEndType</div><div class="argumentDescription">aScopeStarts</div><div class="argumentDescription">aScopeEnds</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.getAnyScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
@@ -540,15 +579,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getScope</span>(<span class="arguments">aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aStartPosition</div><div class="argumentDescription">aStartType</div><div class="argumentDescription">aEndType</div><div class="argumentDescription">aScopeStarts</div><div class="argumentDescription">aScopeEnds</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.getScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
@@ -600,15 +646,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getCommentScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getCommentScope</span>(<span class="arguments">aText, aStartPosition, aStartType, aEndType</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aStartPosition</div><div class="argumentDescription">aStartType</div><div class="argumentDescription">aEndType</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.getCommentScope = function(aText, aStartPosition, aStartType, aEndType) {
@@ -630,15 +683,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getTextScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getTextScope</span>(<span class="arguments">aText, aStartPosition, aStartType, aEndType</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aStartPosition</div><div class="argumentDescription">aStartType</div><div class="argumentDescription">aEndType</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.getTextScope = function(aText, aStartPosition, aStartType, aEndType) {
@@ -681,15 +741,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getLegacyEscapedTextScope</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getLegacyEscapedTextScope</span>(<span class="arguments">aText, aStartPosition, aStartType, aEndType</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aStartPosition</div><div class="argumentDescription">aStartType</div><div class="argumentDescription">aEndType</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.getLegacyEscapedTextScope = function(aText, aStartPosition, aStartType, aEndType) {
@@ -727,6 +794,7 @@
 				</div>
 			</div>
 		</div></div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

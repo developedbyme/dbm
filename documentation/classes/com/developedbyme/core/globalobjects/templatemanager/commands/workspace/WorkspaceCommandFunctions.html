@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><a title="com.developedbyme.workspace.gui.parts.BaseWorkspacePart" href="../../../../../workspace/gui/parts/BaseWorkspacePart.html">BaseWorkspacePart</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.workspace.gui.LayoutController" href="../../../../../workspace/gui/LayoutController.html">LayoutController</a>, <a title="com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode" href="../../../../../flow/nodes/math/geometry/RectangleFromValuesNode.html">RectangleFromValuesNode</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart" href="../../../../../workspace/gui/parts/areas/SizedElementAreaPart.html">SizedElementAreaPart</a>, <a title="com.developedbyme.flow.nodes.display.SizeOfElementNode" href="../../../../../flow/nodes/display/SizeOfElementNode.html">SizeOfElementNode</a>, <a title="com.developedbyme.workspace.gui.parts.areas.layout.SplitLayoutAreaPart" href="../../../../../workspace/gui/parts/areas/layout/SplitLayoutAreaPart.html">SplitLayoutAreaPart</a>, <a title="com.developedbyme.workspace.gui.Workspace" href="../../../../../workspace/gui/Workspace.html">Workspace</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var WorkspaceCommandFunctions = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
@@ -130,22 +131,32 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				</div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					</div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					<div class="function">
 			<div class="definition">
-				<span class="functionName">createLayoutSplit</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">createLayoutSplit</span>(<span class="arguments">aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aWorkspace</div><div class="argumentDescription">aSplitType</div><div class="argumentDescription">aPercentageParameter</div><div class="argumentDescription">aOffset</div><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.createLayoutSplit = function(aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath) {
@@ -179,15 +190,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createSizedElementArea</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">createSizedElementArea</span>(<span class="arguments">aObject, aPath</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aObject</div><div class="argumentDescription">aPath</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.createSizedElementArea = function(aObject, aPath) {
@@ -210,15 +228,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addLayoutController</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">addLayoutController</span>(<span class="arguments">aObject</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.addLayoutController = function(aObject) {
@@ -240,15 +265,22 @@
 					</div>
 				</div>
 			</div>
-		</div><div>
+		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setSizeAsInputArea</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">setSizeAsInputArea</span>(<span class="arguments">aObject</span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.setSizeAsInputArea = function(aObject) {
@@ -264,6 +296,7 @@
 				</div>
 			</div>
 		</div></div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />

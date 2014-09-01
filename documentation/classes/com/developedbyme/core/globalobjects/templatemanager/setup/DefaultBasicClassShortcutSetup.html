@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../../styles/dbm/documentation/main.css" />
+		<script type="application/javascript" src="../../../../../../../javascripts/documentation/foldableCode.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -14,20 +15,20 @@
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><span class="noData">Class has no sub classes.</span></div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
 							<div class="dependencies linkList"><a title="com.developedbyme.gui.buttons.BaseButton" href="../../../../gui/buttons/BaseButton.html">BaseButton</a>, <a title="com.developedbyme.gui.canvas.CanvasView" href="../../../../gui/canvas/CanvasView.html">CanvasView</a>, <a title="com.developedbyme.gui.DisplayBaseObject" href="../../../../gui/DisplayBaseObject.html">DisplayBaseObject</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.gui.buttons.FileUploadButton" href="../../../../gui/buttons/FileUploadButton.html">FileUploadButton</a>, <a title="com.developedbyme.gui.form.sliders.HorizontalPlayheadSlider" href="../../../../gui/form/sliders/HorizontalPlayheadSlider.html">HorizontalPlayheadSlider</a>, <a title="com.developedbyme.gui.form.sliders.HorizontalScaleSlider" href="../../../../gui/form/sliders/HorizontalScaleSlider.html">HorizontalScaleSlider</a>, <a title="com.developedbyme.gui.form.InputField" href="../../../../gui/form/InputField.html">InputField</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.gui.images.StateImage" href="../../../../gui/images/StateImage.html">StateImage</a>, <a title="com.developedbyme.gui.images.StaticImage" href="../../../../gui/images/StaticImage.html">StaticImage</a>, <a title="com.developedbyme.gui.abstract.switchablearea.SwitchableAreaHolder" href="../../../../gui/abstract/switchablearea/SwitchableAreaHolder.html">SwitchableAreaHolder</a>, <a title="com.developedbyme.constants.TemplateClassShortcutNames" href="../../../../constants/TemplateClassShortcutNames.html">TemplateClassShortcutNames</a>, <a title="com.developedbyme.gui.data.treestructure.TreeStructureItemView" href="../../../../gui/data/treestructure/TreeStructureItemView.html">TreeStructureItemView</a>, <a title="com.developedbyme.gui.data.treestructure.TreeStructureView" href="../../../../gui/data/treestructure/TreeStructureView.html">TreeStructureView</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
 									<div class="code">var DefaultBasicClassShortcutSetup = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultBasicClassShortcutSetup");</div>
 								</div>
 							</div>
-							<div class="boxWithTitle">
+							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
 									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.setup.DefaultBasicClassShortcutSetup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
@@ -87,18 +88,26 @@
 						</div>
 					</div>
 				</div>
-				<h2>Local functions</h2>
-				<div class="localFunctions">
-			
-				<div>
+				<section class="section">
+					<h2>Local functions</h2>
+					<div class="localFunctions">
+						
+					<div class="function">
 			<div class="definition">
 				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">objectFunctions._init = function() {
@@ -113,18 +122,27 @@
 				</div>
 			</div>
 		</div></div>
-				<h2>Static functions</h2>
-				<div class="staticFunctions">
-			
-				<div>
+				</section>
+				<section class="section">
+					<h2>Static functions</h2>
+					<div class="staticFunctions">
+						
+					<div class="function">
 			<div class="definition">
 				<span class="functionName">setup</span>(<span class="arguments"></span>)<span class="returnValue"></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
-				<div class="argumentDescriptions spacedContent"></div>
+				<div class="spacedContent">
+					<div class="smallTitle">Arguments</div>
+					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				</div>
+				<div class="spacedContent">
+					<div class="smallTitle">Return value</div>
+					<div class="returnValueDescription"></div>
+				</div>
 				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle">
+					<div class="boxWithTitle foldable">
 						<div class="smallTitle">Full code</div>
 						<div class="codeBox fullCode">
 							<div class="code">staticFunctions.setup = function() {
@@ -151,6 +169,7 @@
 				</div>
 			</div>
 		</div></div>
+				</section>
 			</article>
 			<footer class="footer">
 				<hr />
