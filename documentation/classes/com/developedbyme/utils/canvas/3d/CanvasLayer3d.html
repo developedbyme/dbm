@@ -218,29 +218,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_init");
 		
 		this.superCall();
@@ -264,110 +270,110 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_linkRegistration_setTransformationNode</span>(<span class="arguments">aTransformationNode</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aTransformationNode</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_linkRegistration_setTransformationNode</span>(<span class="arguments">aTransformationNode</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._linkRegistration_setTransformationNode = function(aTransformationNode) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTransformationNode</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._linkRegistration_setTransformationNode = function(aTransformationNode) {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_linkRegistration_setTransformationNode");
 		//console.log(aTransformationNode);
 		this._transformationNode = aTransformationNode;
 		this._transformationMatrix.connectInput(this._transformationNode.getProperty("outputMatrix"));
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_linkRegistration_setTreeStructureItem</span>(<span class="arguments">aItem</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aItem</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_linkRegistration_setTreeStructureItem</span>(<span class="arguments">aItem</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._linkRegistration_setTreeStructureItem = function(aItem) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aItem</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._linkRegistration_setTreeStructureItem = function(aItem) {
 		this._treeStructureItem = aItem;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addGraphics</span>(<span class="arguments">aGraphics</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aGraphics</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addGraphics</span>(<span class="arguments">aGraphics</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.addGraphics = function(aGraphics) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aGraphics</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addGraphics = function(aGraphics) {
 		
 		this._graphicsUpdate.connectInput(aGraphics.getProperty("graphicsUpdate"));
 		
 		this._graphics.push(aGraphics);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">draw</span>(<span class="arguments">aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aCurrentMatrix</div><div class="argumentDescription">aPerspectiveMatrix</div><div class="argumentDescription">aNumberOfLinksToResolve</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">draw</span>(<span class="arguments">aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.draw = function(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aCurrentMatrix</div><div class="argumentDescription">aPerspectiveMatrix</div><div class="argumentDescription">aNumberOfLinksToResolve</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.draw = function(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::draw");
 		//console.log(aNumberOfLinksToResolve);
 		
@@ -384,55 +390,55 @@
 		//METODO: reuse maticeies
 		newMatrix.destroy();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_drawGraphicsAndChildren</span>(<span class="arguments">aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aCurrentMatrix</div><div class="argumentDescription">aPerspectiveMatrix</div><div class="argumentDescription">aNumberOfLinksToResolve</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_drawGraphicsAndChildren</span>(<span class="arguments">aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._drawGraphicsAndChildren = function(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aCurrentMatrix</div><div class="argumentDescription">aPerspectiveMatrix</div><div class="argumentDescription">aNumberOfLinksToResolve</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._drawGraphicsAndChildren = function(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
 		this._drawGraphics(aContext, aCurrentMatrix, aPerspectiveMatrix);
 		this._drawChildren(aContext, this._treeStructureItem.getChildren(), aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_drawGraphics</span>(<span class="arguments">aContext, aCurrentMatrix, aPerspectiveMatrix</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aCurrentMatrix</div><div class="argumentDescription">aPerspectiveMatrix</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_drawGraphics</span>(<span class="arguments">aContext, aCurrentMatrix, aPerspectiveMatrix</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._drawGraphics = function(aContext, aCurrentMatrix, aPerspectiveMatrix) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aCurrentMatrix</div><div class="argumentDescription">aPerspectiveMatrix</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._drawGraphics = function(aContext, aCurrentMatrix, aPerspectiveMatrix) {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_drawGraphics");
 		//console.log(this._graphics);
 		
@@ -443,29 +449,29 @@
 			currentGraphics.draw(aContext, aPerspectiveMatrix, aCurrentMatrix);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_drawChildren</span>(<span class="arguments">aContext, aChildren, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aChildren</div><div class="argumentDescription">aCurrentMatrix</div><div class="argumentDescription">aPerspectiveMatrix</div><div class="argumentDescription">aNumberOfLinksToResolve</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_drawChildren</span>(<span class="arguments">aContext, aChildren, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._drawChildren = function(aContext, aChildren, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aChildren</div><div class="argumentDescription">aCurrentMatrix</div><div class="argumentDescription">aPerspectiveMatrix</div><div class="argumentDescription">aNumberOfLinksToResolve</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._drawChildren = function(aContext, aChildren, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
 		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_drawChildren");
 		//console.log(aNumberOfLinksToResolve);
 		
@@ -491,29 +497,29 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getProperty</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getProperty</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getProperty = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
 		
 		switch(aName) {
@@ -536,29 +542,29 @@
 		
 		return this.superCall(aName);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "_treeStructureItem":
 			case "_transformationNode":
@@ -566,29 +572,29 @@
 		}
 		return this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets all the references to null</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAllReferencesToNull = function() {
+				<div class="descriptionHolder">
+					<div class="description">Sets all the references to null</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._treeStructureItem = null;
 		this._transformationMatrix = null;
@@ -602,44 +608,50 @@
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.create = function() {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function() {
 		var newCanvasLayer3d = (new ClassReference()).init();
 		
 		return newCanvasLayer3d;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

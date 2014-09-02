@@ -208,29 +208,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.workspace.gui.Workspace::_init");
 		
 		this.superCall();
@@ -261,29 +267,29 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setElement</span>(<span class="arguments">aElement</span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aElement</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElement</span>(<span class="arguments">aElement</span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setElement = function(aElement) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElement = function(aElement) {
 		
 		this.superCall(aElement);
 		
@@ -292,376 +298,382 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">linkElementSizeToWorkspaceArea</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">linkElementSizeToWorkspaceArea</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.linkElementSizeToWorkspaceArea = function() {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.linkElementSizeToWorkspaceArea = function() {
 		this._workspaceAreaRectangleGenerator.setPropertyInput("width", this.getProperty("width"));
 		this._workspaceAreaRectangleGenerator.setPropertyInput("height", this.getProperty("height"));
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setWorkspaceSize</span>(<span class="arguments">aWidth, aHeight</span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aWidth</div><div class="argumentDescription">aHeight</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setWorkspaceSize</span>(<span class="arguments">aWidth, aHeight</span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setWorkspaceSize = function(aWidth, aHeight) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aWidth</div><div class="argumentDescription">aHeight</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setWorkspaceSize = function(aWidth, aHeight) {
 		this._workspaceAreaRectangleGenerator.setPropertyValue("width", aWidth);
 		this._workspaceAreaRectangleGenerator.setPropertyValue("height", aHeight);
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addPart</span>(<span class="arguments">aPath, aPart</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPath</div><div class="argumentDescription">aPart</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addPart</span>(<span class="arguments">aPath, aPart</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.addPart = function(aPath, aPart) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPath</div><div class="argumentDescription">aPart</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addPart = function(aPath, aPart) {
 		//console.log("com.developedbyme.workspace.gui.Workspace::addPart");
 		
 		this._layoutController.addPart(aPath, aPart);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addToSelection</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addToSelection</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.addToSelection = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addToSelection = function(aObject) {
 		console.log("com.developedbyme.workspace.gui.Workspace::addToSelection");
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeFromSelection</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeFromSelection</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.removeFromSelection = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeFromSelection = function(aObject) {
 		console.log("com.developedbyme.workspace.gui.Workspace::removeFromSelection");
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setSelection</span>(<span class="arguments">aObjectsArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObjectsArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setSelection</span>(<span class="arguments">aObjectsArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setSelection = function(aObjectsArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObjectsArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setSelection = function(aObjectsArray) {
 		console.log("com.developedbyme.workspace.gui.Workspace::setSelection");
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_startTouch</span>(<span class="arguments">aTouchData</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aTouchData</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_startTouch</span>(<span class="arguments">aTouchData</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._startTouch = function(aTouchData) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTouchData</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._startTouch = function(aTouchData) {
 		console.log("com.developedbyme.workspace.gui.Workspace::_startTouch");
 		var result = this._currentTool.startTouch(this, this._currentSelection);
 		console.log(result);
 		
 		if(result) this._touchDetector.stopEvent();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_updateTouch</span>(<span class="arguments">aTouchData</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aTouchData</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_updateTouch</span>(<span class="arguments">aTouchData</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._updateTouch = function(aTouchData) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTouchData</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._updateTouch = function(aTouchData) {
 		console.log("com.developedbyme.workspace.gui.Workspace::_updateTouch");
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_endTouch</span>(<span class="arguments">aTouchData</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aTouchData</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_endTouch</span>(<span class="arguments">aTouchData</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._endTouch = function(aTouchData) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTouchData</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._endTouch = function(aTouchData) {
 		console.log("com.developedbyme.workspace.gui.Workspace::_endTouch");
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_cancelTouch</span>(<span class="arguments">aTouchData</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aTouchData</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_cancelTouch</span>(<span class="arguments">aTouchData</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._cancelTouch = function(aTouchData) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTouchData</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._cancelTouch = function(aTouchData) {
 		console.log("com.developedbyme.workspace.gui.Workspace::_cancelTouch");
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAllReferencesToNull = function() {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._inputArea = null;
 		this._graphicsUpdate = null;
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments">aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aAttributes</div></div>
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.create = function(aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aAttributes) {
 		return ClassReference._create(ClassReference, aAttributes);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createOnParent</span>(<span class="arguments">aParentOrDocument, aAddToParent, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aParentOrDocument</div><div class="argumentDescription">aAddToParent</div><div class="argumentDescription">aAttributes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createOnParent</span>(<span class="arguments">aParentOrDocument, aAddToParent, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParentOrDocument</div><div class="argumentDescription">aAddToParent</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes) {
 		return ClassReference._createOnParent(ClassReference, aParentOrDocument, aAddToParent, aAttributes);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_create</span>(<span class="arguments">aClass, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aClass</div><div class="argumentDescription">aAttributes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_create</span>(<span class="arguments">aClass, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._create = function(aClass, aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aClass</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._create = function(aClass, aAttributes) {
 		var newNode = (new aClass()).init();
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
@@ -670,29 +682,29 @@
 		
 		return newNode;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_createOnParent</span>(<span class="arguments">aClass, aParentOrDocument, aAddToParent, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aClass</div><div class="argumentDescription">aParentOrDocument</div><div class="argumentDescription">aAddToParent</div><div class="argumentDescription">aAttributes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_createOnParent</span>(<span class="arguments">aClass, aParentOrDocument, aAddToParent, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._createOnParent = function(aClass, aParentOrDocument, aAddToParent, aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aClass</div><div class="argumentDescription">aParentOrDocument</div><div class="argumentDescription">aAddToParent</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._createOnParent = function(aClass, aParentOrDocument, aAddToParent, aAttributes) {
 		var newNode = (new aClass()).init();
 		
 		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
@@ -709,11 +721,11 @@
 		
 		return newNode;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

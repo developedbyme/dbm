@@ -152,29 +152,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::_init");
 		
 		this.superCall();
@@ -186,85 +192,85 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setClass</span>(<span class="arguments">aClass</span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aClass</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setClass</span>(<span class="arguments">aClass</span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setClass = function(aClass) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aClass</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setClass = function(aClass) {
 		this._class = aClass;
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setMaxNumberOfObjects</span>(<span class="arguments">aMaxNumberOfObjects</span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aMaxNumberOfObjects</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setMaxNumberOfObjects</span>(<span class="arguments">aMaxNumberOfObjects</span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setMaxNumberOfObjects = function(aMaxNumberOfObjects) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aMaxNumberOfObjects</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setMaxNumberOfObjects = function(aMaxNumberOfObjects) {
 		this._maxNumberOfObjects = aMaxNumberOfObjects;
 		
 		//METODO: cut down array if it's too long
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createObject</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createObject</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createObject = function() {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createObject = function() {
 		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::createObject");
 		//console.log(this._numberOfObjects);
 		
@@ -278,57 +284,57 @@
 		this._objects[this._numberOfObjects] = null;
 		return newObject;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createAndInitObject</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createAndInitObject</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createAndInitObject = function() {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createAndInitObject = function() {
 		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::createAndInitObject");
 		//console.log(this._numberOfObjects);
 		
 		return this.createObject().init();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">reuseObject</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">reuseObject</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.reuseObject = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.reuseObject = function(aObject) {
 		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::reuseObject");
 		
 		if(this._maxNumberOfObjects !== -1 &amp;&amp; this._numberOfObjects &gt;= this._maxNumberOfObjects) {
@@ -339,64 +345,77 @@
 		this._objects[this._numberOfObjects] = aObject;
 		this._numberOfObjects++;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAllReferencesToNull = function() {
+				<div class="descriptionHolder">
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._class = null;
 		this._objects = null;
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DEFAULT_MAX_NUMBER_OF_OBJECTS</span><span class="type"></span> = <span class="value">512</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments">aClass, aMaxNumberOfObjects</span>)<span class="returnValue">:<a title="com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool" href="ObjectPool.html">ObjectPool</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aClass - The class that the pool will be creating.</div><div class="argumentDescription">aMaxNumberOfObjects - The max number of items to store before destroying the rest.</div></div>
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aClass, aMaxNumberOfObjects</span>)<span class="returnValue">:<a title="com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool" href="ObjectPool.html">ObjectPool</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool" href="ObjectPool.html">ObjectPool</a> - The newly created object pool.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.create = function(aClass, aMaxNumberOfObjects) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aClass - The class that the pool will be creating.</div><div class="argumentDescription">aMaxNumberOfObjects - The max number of items to store before destroying the rest.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool" href="ObjectPool.html">ObjectPool</a> - The newly created object pool.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aClass, aMaxNumberOfObjects) {
 		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::create");
 		
 		aMaxNumberOfObjects = VariableAliases.valueWithDefault(aMaxNumberOfObjects, ClassReference.DEFAULT_MAX_NUMBER_OF_OBJECTS);
@@ -407,11 +426,11 @@
 		
 		return returnObject;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

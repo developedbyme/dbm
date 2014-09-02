@@ -341,62 +341,88 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">WARN_FOR_NO_XML</span><span class="type"></span> = <span class="value">false</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">WARN_FOR_NO_RESULT</span><span class="type"></span> = <span class="value">false</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_reportWarning</span>(<span class="arguments">aShouldWarn, aFunctionName, aText</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aShouldWarn</div><div class="argumentDescription">aFunctionName</div><div class="argumentDescription">aText</div></div>
+				<div class="definition">
+					<span class="functionName">_reportWarning</span>(<span class="arguments">aShouldWarn, aFunctionName, aText</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._reportWarning = function(aShouldWarn, aFunctionName, aText) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aShouldWarn</div><div class="argumentDescription">aFunctionName</div><div class="argumentDescription">aText</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._reportWarning = function(aShouldWarn, aFunctionName, aText) {
 		if(aShouldWarn) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[XmlChildRetreiver]", aFunctionName, aText);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getFirstChild</span>(<span class="arguments">aXml</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getFirstChild</span>(<span class="arguments">aXml</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getFirstChild = function(aXml) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getFirstChild = function(aXml) {
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getFirstChild", "Xml is null");
 			return null;
@@ -414,29 +440,29 @@
 		ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getFirstChild", "No result in " + aXml);
 		return null;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getChild</span>(<span class="arguments">aXml, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aChildName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getChild</span>(<span class="arguments">aXml, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getChild = function(aXml, aChildName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aChildName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getChild = function(aXml, aChildName) {
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChild (static)");
 		//console.log(aXml, aChildName);
 		if(aXml === null) {
@@ -455,29 +481,29 @@
 		}
 		return returnArray[0];
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getNamespacedChild</span>(<span class="arguments">aXml, aChildNamespace, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aChildNamespace</div><div class="argumentDescription">aChildName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getNamespacedChild</span>(<span class="arguments">aXml, aChildNamespace, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getNamespacedChild = function(aXml, aChildNamespace, aChildName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aChildNamespace</div><div class="argumentDescription">aChildName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getNamespacedChild = function(aXml, aChildNamespace, aChildName) {
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getNamespacedChild (static)");
 		//console.log(aXml, aChildNamespace, aChildName);
 		if(aXml === null) {
@@ -504,29 +530,29 @@
 		}
 		return returnArray[0];
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getChilds</span>(<span class="arguments">aXml, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aChildName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getChilds</span>(<span class="arguments">aXml, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getChilds = function(aXml, aChildName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aChildName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getChilds = function(aXml, aChildName) {
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChilds (static)");
 		aChildName = VariableAliases.valueWithDefault(aChildName, "*");
 		//console.log(aXml, ChildName);
@@ -554,29 +580,29 @@
 		}
 		return returnArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getChildByAttribute</span>(<span class="arguments">aXml, aAttributeName, aValue, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeName</div><div class="argumentDescription">aValue</div><div class="argumentDescription">aChildName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getChildByAttribute</span>(<span class="arguments">aXml, aAttributeName, aValue, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getChildByAttribute = function(aXml, aAttributeName, aValue, aChildName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeName</div><div class="argumentDescription">aValue</div><div class="argumentDescription">aChildName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getChildByAttribute = function(aXml, aAttributeName, aValue, aChildName) {
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChildByAttribute (static)");
 		aChildName = VariableAliases.valueWithDefault(aChildName, "*");
 		//console.log(aXml, aAttributeName, aValue, aChildName);
@@ -610,29 +636,29 @@
 		}
 		return returnArray[0];
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getNamespacedChildByNamespacedAttribute</span>(<span class="arguments">aXml, aAttributeNamespace, aAttributeName, aValue, aChildNamespace, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeNamespace</div><div class="argumentDescription">aAttributeName</div><div class="argumentDescription">aValue</div><div class="argumentDescription">aChildNamespace</div><div class="argumentDescription">aChildName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getNamespacedChildByNamespacedAttribute</span>(<span class="arguments">aXml, aAttributeNamespace, aAttributeName, aValue, aChildNamespace, aChildName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getNamespacedChildByNamespacedAttribute = function(aXml, aAttributeNamespace, aAttributeName, aValue, aChildNamespace, aChildName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeNamespace</div><div class="argumentDescription">aAttributeName</div><div class="argumentDescription">aValue</div><div class="argumentDescription">aChildNamespace</div><div class="argumentDescription">aChildName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getNamespacedChildByNamespacedAttribute = function(aXml, aAttributeNamespace, aAttributeName, aValue, aChildNamespace, aChildName) {
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getNamespacedChildByNamespacedAttribute (static)");
 		
 		if(aXml === null) {
@@ -664,29 +690,29 @@
 		}
 		return returnArray[0];
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getNodeValue</span>(<span class="arguments">aXml</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getNodeValue</span>(<span class="arguments">aXml</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getNodeValue = function(aXml) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getNodeValue = function(aXml) {
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNodeValue", "Xml is null");
 			return null;
@@ -705,29 +731,29 @@
 		
 		return null;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getAttribute</span>(<span class="arguments">aXml, aAttributeName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getAttribute</span>(<span class="arguments">aXml, aAttributeName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getAttribute = function(aXml, aAttributeName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getAttribute = function(aXml, aAttributeName) {
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getAttribute", "Xml is null");
 			return null;
@@ -757,29 +783,29 @@
 			return null;
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getNamespacedAttribute</span>(<span class="arguments">aXml, aAttributeNamespace, aAttributeName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeNamespace</div><div class="argumentDescription">aAttributeName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getNamespacedAttribute</span>(<span class="arguments">aXml, aAttributeNamespace, aAttributeName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getNamespacedAttribute = function(aXml, aAttributeNamespace, aAttributeName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeNamespace</div><div class="argumentDescription">aAttributeName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getNamespacedAttribute = function(aXml, aAttributeNamespace, aAttributeName) {
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNamespacedAttribute", "Xml is null");
 			return null;
@@ -796,29 +822,29 @@
 		return aXml.getAttributeNS(aAttributeNamespace, aAttributeName);
 		
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">hasSimpleContent</span>(<span class="arguments">aXml</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">hasSimpleContent</span>(<span class="arguments">aXml</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.hasSimpleContent = function(aXml) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.hasSimpleContent = function(aXml) {
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "hasSimpleContent", "Xml is null");
 			return false;
@@ -828,29 +854,29 @@
 		}
 		return false;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getFirstTextNode</span>(<span class="arguments">aXml</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getFirstTextNode</span>(<span class="arguments">aXml</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getFirstTextNode = function(aXml) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getFirstTextNode = function(aXml) {
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getTextNode (static)");
 		
 		var currentArray = aXml.childNodes;
@@ -866,29 +892,29 @@
 		//METODO: error message
 		return null;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getAllValuesForAttribute</span>(<span class="arguments">aXml, aAttributeName, aReturnArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeName</div><div class="argumentDescription">aReturnArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getAllValuesForAttribute</span>(<span class="arguments">aXml, aAttributeName, aReturnArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getAllValuesForAttribute = function(aXml, aAttributeName, aReturnArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aXml</div><div class="argumentDescription">aAttributeName</div><div class="argumentDescription">aReturnArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getAllValuesForAttribute = function(aXml, aAttributeName, aReturnArray) {
 		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getAllValuesForAttribute (static)");
 		
 		var currentAttribute = ClassReference.getAttribute(aXml, aAttributeName);
@@ -903,11 +929,11 @@
 			ClassReference.getAllValuesForAttribute(currentChild, aAttributeName, aReturnArray);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

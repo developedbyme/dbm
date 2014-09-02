@@ -449,29 +449,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::_init");
 		
 		//METODO: switch this to qualifiers instead of interface
@@ -481,56 +487,56 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addEvaluator</span>(<span class="arguments">aEvaluator</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aEvaluator</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addEvaluator</span>(<span class="arguments">aEvaluator</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.addEvaluator = function(aEvaluator) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aEvaluator</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addEvaluator = function(aEvaluator) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::addEvaluator");
 		//console.log(aEvaluator);
 		this._evaluatorsArray.push(aEvaluator);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getPartOfCurve</span>(<span class="arguments">aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPointSet</div><div class="argumentDescription">aStartParameter</div><div class="argumentDescription">aEndParameter</div><div class="argumentDescription">aExactness</div><div class="argumentDescription">aReturnCurve</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPartOfCurve</span>(<span class="arguments">aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointSet</div><div class="argumentDescription">aStartParameter</div><div class="argumentDescription">aEndParameter</div><div class="argumentDescription">aExactness</div><div class="argumentDescription">aReturnCurve</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPartOfCurve");
 		//console.log(aPointSet, this._evaluatorsArray);
 		
@@ -554,29 +560,29 @@
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPartOfCurve", aPointSet + " can't be evaluated.");
 		return;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getPointOnBezierSegment3d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPointOnBezierSegment3d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPointOnBezierSegment3d");
 		//console.log(aPointsArray, aParameter, aOutputPoint);
 		var curveDegree = aPointsArray.length-1;
@@ -598,29 +604,29 @@
 		aOutputPoint.y = newYValue;
 		aOutputPoint.z = newZValue;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getPointOnBezierSegment2d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPointOnBezierSegment2d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getPointOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getPointOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
 		var curveDegree = aPointsArray.length-1;
 		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
 		var invertedParameter = (1-aParameter);
@@ -637,29 +643,29 @@
 		aOutputPoint.x = newXValue;
 		aOutputPoint.y = newYValue;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getTangentOnBezierSegment2d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getTangentOnBezierSegment2d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getTangentOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getTangentOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator.getTangentOnBezierSegment2d");
 		
 		var curveDegree = aPointsArray.length-1;
@@ -705,29 +711,29 @@
 		aOutputPoint.x = newXValue;
 		aOutputPoint.y = newYValue;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getBezierMultipliersArray</span>(<span class="arguments">aCurveDegree</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCurveDegree</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getBezierMultipliersArray</span>(<span class="arguments">aCurveDegree</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getBezierMultipliersArray = function(aCurveDegree) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCurveDegree</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getBezierMultipliersArray = function(aCurveDegree) {
 		//MENOTE: generates constants for cv-points
 		var currentArray = this._bezierMultipliersArraysArray;
 		var previousArray = currentArray[currentArray.length-1];
@@ -743,55 +749,55 @@
 		}
 		return currentArray[aCurveDegree];
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">calculateBernsteinPolynomialWithoutMultiplier</span>(<span class="arguments">aParameter, aPointNr, aDegree</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Calculates the berstein polynominal for a parameter</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aParameter - The parameter (Valid range: 0 to 1).</div><div class="argumentDescription">aPointNr - The point of the curve.</div><div class="argumentDescription">aDegree - The curve degree.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">calculateBernsteinPolynomialWithoutMultiplier</span>(<span class="arguments">aParameter, aPointNr, aDegree</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.calculateBernsteinPolynomialWithoutMultiplier = function(aParameter, aPointNr, aDegree) {
+				<div class="descriptionHolder">
+					<div class="description">Calculates the berstein polynominal for a parameter</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParameter - The parameter (Valid range: 0 to 1).</div><div class="argumentDescription">aPointNr - The point of the curve.</div><div class="argumentDescription">aDegree - The curve degree.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.calculateBernsteinPolynomialWithoutMultiplier = function(aParameter, aPointNr, aDegree) {
 		//console.log("calculateBernsteinPolynomialWithoutMultiplier");
 		return Math.pow((1-aParameter), (aDegree-aPointNr))*Math.pow(aParameter, aPointNr);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_evaluateAnimationCurveSegment</span>(<span class="arguments">aPointsArray, aSegment, aEvaluationValue, aExactness</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aSegment</div><div class="argumentDescription">aEvaluationValue</div><div class="argumentDescription">aExactness</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_evaluateAnimationCurveSegment</span>(<span class="arguments">aPointsArray, aSegment, aEvaluationValue, aExactness</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._evaluateAnimationCurveSegment = function(aPointsArray, aSegment, aEvaluationValue, aExactness) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aSegment</div><div class="argumentDescription">aEvaluationValue</div><div class="argumentDescription">aExactness</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._evaluateAnimationCurveSegment = function(aPointsArray, aSegment, aEvaluationValue, aExactness) {
 		var point1 = aPointsArray[4*aSegment];
 		var point2 = aPointsArray[4*aSegment+1];
 		var point3 = aPointsArray[4*aSegment+2];
@@ -834,29 +840,29 @@
 			return (Math.pow(1-currentParameter, 3)*point1.y+3*(Math.pow(1-currentParameter, 2))*(currentParameter)*point2.y+3*(Math.pow(currentParameter, 2))*(1-currentParameter)*point3.y+Math.pow(currentParameter, 3)*point4.y);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getValueOfAnimationCurve</span>(<span class="arguments">aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCurve</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aPreInfinityMethod</div><div class="argumentDescription">aPostInfinityMethod</div><div class="argumentDescription">aExactness</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getValueOfAnimationCurve</span>(<span class="arguments">aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getValueOfAnimationCurve = function(aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCurve</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aPreInfinityMethod</div><div class="argumentDescription">aPostInfinityMethod</div><div class="argumentDescription">aExactness</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getValueOfAnimationCurve = function(aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness) {
 		aPreInfinityMethod = VariableAliases.valueWithDefault(aPreInfinityMethod, ExtrapolationTypes.CONSTANT);
 		aPostInfinityMethod = VariableAliases.valueWithDefault(aPostInfinityMethod, ExtrapolationTypes.CONSTANT);
 		aExactness = VariableAliases.valueWithDefault(aExactness, ClassReference.DEFAULT_EXACTNESS);
@@ -938,29 +944,29 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createBezierCurveFromPoints3d</span>(<span class="arguments">aPointsArray, aReturnCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a bezier curve that passes through a set of points</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createBezierCurveFromPoints3d</span>(<span class="arguments">aPointsArray, aReturnCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createBezierCurveFromPoints3d = function(aPointsArray, aReturnCurve) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a bezier curve that passes through a set of points</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createBezierCurveFromPoints3d = function(aPointsArray, aReturnCurve) {
 		//console.log("createBezierCurveFromPoints3d");
 		var curveDegree = aPointsArray.length-1;
 		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
@@ -1023,56 +1029,56 @@
 			currentPoint.z = eliminationArray[i][arrayLength+2];
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createBezierCurveFromPoints2d</span>(<span class="arguments">aPointsArray, aReturnCurve, aParametersArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a bezier curve that passes through a set of points</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div><div class="argumentDescription">aParametersArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createBezierCurveFromPoints2d</span>(<span class="arguments">aPointsArray, aReturnCurve, aParametersArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aParametersArray) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a bezier curve that passes through a set of points</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div><div class="argumentDescription">aParametersArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aParametersArray) {
 		
 		var curveCreator = (new CreateBezierCurveFromPoints2d()).init();
 		curveCreator.createCurve(aPointsArray, aReturnCurve, aParametersArray);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createMultiSegmentBezierCurveFromPoints2d</span>(<span class="arguments">aPointsArray, aReturnCurve, aIsRound</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a multisegment bezier curve that passes through a set of points</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div><div class="argumentDescription">aIsRound</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createMultiSegmentBezierCurveFromPoints2d</span>(<span class="arguments">aPointsArray, aReturnCurve, aIsRound</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createMultiSegmentBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aIsRound) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a multisegment bezier curve that passes through a set of points</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div><div class="argumentDescription">aIsRound</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createMultiSegmentBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aIsRound) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator.createMultiSegmentBezierCurveFromPoints2d");
 		if(aReturnCurve.getCurveDegree() !== 3) {
 			//METODO
@@ -1083,42 +1089,55 @@
 		curveCreator.createCurve(aPointsArray, aReturnCurve, aIsRound);
 		
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">recycleCurve</span>(<span class="arguments">aCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCurve</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">recycleCurve</span>(<span class="arguments">aCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.recycleCurve = function(aCurve) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCurve</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.recycleCurve = function(aCurve) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::recycleCurve");
 		
 		this._recyclePointsArray.push(aCurve.pointsArray);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DEFAULT_EXACTNESS</span><span class="type"></span> = <span class="value">0.01</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					</div>
 				</section>

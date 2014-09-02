@@ -275,35 +275,47 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">indexOfInArray</span>(<span class="arguments">aArray, aData</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aData</div></div>
+				<div class="definition">
+					<span class="functionName">indexOfInArray</span>(<span class="arguments">aArray, aData</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.indexOfInArray = function(aArray, aData) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aData</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.indexOfInArray = function(aArray, aData) {
 		if(aArray === null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "indexOfInArray", "Array is " + aArray + ". Can't get index of " + aData + ".");
 			return -1;
@@ -324,29 +336,29 @@
 		}
 		return -1;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">lastIndexOfInArray</span>(<span class="arguments">aArray, aData</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aData</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">lastIndexOfInArray</span>(<span class="arguments">aArray, aData</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.lastIndexOfInArray = function(aArray, aData) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aData</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.lastIndexOfInArray = function(aArray, aData) {
 		if(aArray === null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "lastIndexOfInArray", "Array is " + aArray + ". Can't get index of " + aData + ".");
 			return -1;
@@ -367,29 +379,29 @@
 		}
 		return -1;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeFromArray</span>(<span class="arguments">aArray, aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aValue</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeFromArray</span>(<span class="arguments">aArray, aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.removeFromArray = function(aArray, aValue) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.removeFromArray = function(aArray, aValue) {
 		if(aArray === null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "removeFromArray", "Array is " + aArray + ". Can't remove " + aValue + ".");
 			return;
@@ -402,29 +414,29 @@
 		}
 		aArray.splice(index, 1);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">hasDuplicates</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">hasDuplicates</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.hasDuplicates = function(aArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.hasDuplicates = function(aArray) {
 		if(aArray === null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "hasDuplicates", "Array is " + aArray + ".");
 			return -1;
@@ -443,29 +455,29 @@
 		}
 		return -1;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeDuplicates</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeDuplicates</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.removeDuplicates = function(aArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.removeDuplicates = function(aArray) {
 		if(aArray === null) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[ArrayFunctions]", "hasDuplicates", "Array is " + aArray + ".");
 			return 0;
@@ -488,29 +500,29 @@
 		
 		return numberOfDuplicates;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">copyArray</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">copyArray</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.copyArray = function(aArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.copyArray = function(aArray) {
 		var currentArray = new Array(aArray.length);
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i &lt; currentArrayLength; i++) {
@@ -518,29 +530,29 @@
 		}
 		return currentArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">copyPartOfArray</span>(<span class="arguments">aArray, aStart, aEnd</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aStart</div><div class="argumentDescription">aEnd</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">copyPartOfArray</span>(<span class="arguments">aArray, aStart, aEnd</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.copyPartOfArray = function(aArray, aStart, aEnd) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aStart</div><div class="argumentDescription">aEnd</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.copyPartOfArray = function(aArray, aStart, aEnd) {
 		
 		var length = aEnd-aStart;
 		
@@ -550,58 +562,58 @@
 		}
 		return currentArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">concatToArray</span>(<span class="arguments">aReturnArray, aArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aReturnArray</div><div class="argumentDescription">aArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">concatToArray</span>(<span class="arguments">aReturnArray, aArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.concatToArray = function(aReturnArray, aArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aReturnArray</div><div class="argumentDescription">aArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.concatToArray = function(aReturnArray, aArray) {
 		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i &lt; currentArrayLength; i++) {
 			aReturnArray.push(currentArray[i]);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getPositionInOrder</span>(<span class="arguments">aValue, aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPositionInOrder</span>(<span class="arguments">aValue, aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getPositionInOrder = function(aValue, aArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getPositionInOrder = function(aValue, aArray) {
 		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i &lt; currentArrayLength; i++) {
@@ -611,29 +623,29 @@
 		}
 		return currentArrayLength;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">randomizeArray</span>(<span class="arguments">aArray, aNumberOfTimes</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Randomizes an array.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aNumberOfTimes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">randomizeArray</span>(<span class="arguments">aArray, aNumberOfTimes</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.randomizeArray = function(aArray, aNumberOfTimes) {
+				<div class="descriptionHolder">
+					<div class="description">Randomizes an array.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aNumberOfTimes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.randomizeArray = function(aArray, aNumberOfTimes) {
 		var currentArray = aArray;
 		var currentArrayLength= currentArray.length;
 		for(var i = 0; i &lt; aNumberOfTimes; i++) {
@@ -645,29 +657,29 @@
 			currentArray[randomIndex2] = tempValue;
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">controlledRandomizeArray</span>(<span class="arguments">aArray, aNumberOfTimes, aRandomGenerator</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Randomizes an array with a random number generator.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aNumberOfTimes</div><div class="argumentDescription">aRandomGenerator</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">controlledRandomizeArray</span>(<span class="arguments">aArray, aNumberOfTimes, aRandomGenerator</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.controlledRandomizeArray = function(aArray, aNumberOfTimes, aRandomGenerator) {
+				<div class="descriptionHolder">
+					<div class="description">Randomizes an array with a random number generator.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aNumberOfTimes</div><div class="argumentDescription">aRandomGenerator</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.controlledRandomizeArray = function(aArray, aNumberOfTimes, aRandomGenerator) {
 		var currentArray = aArray;
 		var currentArrayLength= currentArray.length;
 		for(var i = 0; i &lt; aNumberOfTimes; i++) {
@@ -679,29 +691,29 @@
 			currentArray[randomIndex2] = tempValue;
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">trim</span>(<span class="arguments">aArray, aTrimLeft, aTrimRight</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aTrimLeft</div><div class="argumentDescription">aTrimRight</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">trim</span>(<span class="arguments">aArray, aTrimLeft, aTrimRight</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.trim = function(aArray, aTrimLeft, aTrimRight) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aTrimLeft</div><div class="argumentDescription">aTrimRight</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.trim = function(aArray, aTrimLeft, aTrimRight) {
 		
 		aTrimLeft = VariableAliases.valueWithDefault(aTrimLeft, true);
 		aTrimRight = VariableAliases.valueWithDefault(aTrimRight, true);
@@ -714,29 +726,29 @@
 		
 		return aArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeEmptyPositions</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeEmptyPositions</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.removeEmptyPositions = function(aArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.removeEmptyPositions = function(aArray) {
 		
 		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
@@ -751,29 +763,29 @@
 		
 		return aArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeEmptyStringPositions</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeEmptyStringPositions</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.removeEmptyStringPositions = function(aArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.removeEmptyStringPositions = function(aArray) {
 		
 		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
@@ -788,11 +800,11 @@
 		
 		return aArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

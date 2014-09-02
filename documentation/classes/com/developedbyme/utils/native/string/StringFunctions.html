@@ -170,110 +170,122 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">leftTrim</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Trims all the white space on the left side of a string.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to trim.</div></div>
+				<div class="definition">
+					<span class="functionName">leftTrim</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">String</span> - The trimmed text.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.leftTrim = function(aText) {
+				<div class="descriptionHolder">
+					<div class="description">Trims all the white space on the left side of a string.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to trim.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">String</span> - The trimmed text.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.leftTrim = function(aText) {
 		return aText.replace(new RegExp("^[\\s]+", "g"), "");
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">rightTrim</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Trims all the white space on the right side of a string.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to trim.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">rightTrim</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">String</span> - The trimmed text.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.rightTrim = function(aText) {
+				<div class="descriptionHolder">
+					<div class="description">Trims all the white space on the right side of a string.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to trim.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">String</span> - The trimmed text.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.rightTrim = function(aText) {
 		return aText.replace(new RegExp("[\\s]+$", "g"), "");
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">trim</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Trims all the white space on both sides of a string.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to trim.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">trim</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">String</span> - The trimmed text.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.trim = function(aText) {
+				<div class="descriptionHolder">
+					<div class="description">Trims all the white space on both sides of a string.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to trim.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">String</span> - The trimmed text.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.trim = function(aText) {
 		return StringFunctions.leftTrim(StringFunctions.rightTrim(aText));
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">splitSeparatedString</span>(<span class="arguments">aText:<span class="nativeType">String</span>, aSeparator:<span class="nativeType">String</span>, aTrimLeft:<span class="nativeType">Boolean</span>, aTrimRight:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<span class="unknownType">Array&lt;String&gt;</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Splits a separated string, with options to trim all the results</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to split up.</div><div class="argumentDescription">aSeparator:<span class="nativeType">String</span> - The string to split on. (Optional, default ",")</div><div class="argumentDescription">aTrimLeft:<span class="nativeType">Boolean</span> - If the resulting strings should be trimed on the left side. (Optional, default true)</div><div class="argumentDescription">aTrimRight:<span class="nativeType">Boolean</span> - If the resulting strings should be trimed on the right side. (Optional, default true)</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">splitSeparatedString</span>(<span class="arguments">aText:<span class="nativeType">String</span>, aSeparator:<span class="nativeType">String</span>, aTrimLeft:<span class="nativeType">Boolean</span>, aTrimRight:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<span class="unknownType">Array&lt;String&gt;</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Array&lt;String&gt;</span> - The splitted string.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.splitSeparatedString = function(aText, aSeparator, aTrimLeft, aTrimRight) {
+				<div class="descriptionHolder">
+					<div class="description">Splits a separated string, with options to trim all the results</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to split up.</div><div class="argumentDescription">aSeparator:<span class="nativeType">String</span> - The string to split on. (Optional, default ",")</div><div class="argumentDescription">aTrimLeft:<span class="nativeType">Boolean</span> - If the resulting strings should be trimed on the left side. (Optional, default true)</div><div class="argumentDescription">aTrimRight:<span class="nativeType">Boolean</span> - If the resulting strings should be trimed on the right side. (Optional, default true)</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Array&lt;String&gt;</span> - The splitted string.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.splitSeparatedString = function(aText, aSeparator, aTrimLeft, aTrimRight) {
 		
 		aSeparator = VariableAliases.valueWithDefault(aSeparator, ",");
 		aTrimLeft = VariableAliases.valueWithDefault(aTrimLeft, true);
@@ -294,57 +306,57 @@
 		
 		return currentArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">splitToCharCodes</span>(<span class="arguments">aString:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="unknownType">Array&lt;Number&gt;</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Splits a string into an array of char codes.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aString:<span class="nativeType">String</span> - The string to get the char codes from.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">splitToCharCodes</span>(<span class="arguments">aString:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="unknownType">Array&lt;Number&gt;</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Array&lt;Number&gt;</span> - The array containing all the char codes.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.splitToCharCodes = function(aString) {
+				<div class="descriptionHolder">
+					<div class="description">Splits a string into an array of char codes.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aString:<span class="nativeType">String</span> - The string to get the char codes from.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Array&lt;Number&gt;</span> - The array containing all the char codes.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.splitToCharCodes = function(aString) {
 		var returnArray = new Array();
 		ClassReference.getCharCodes(aString, returnArray);
 		
 		return returnArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getCharCodes</span>(<span class="arguments">aString:<span class="nativeType">String</span>, aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets all the char codes from a string.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aString:<span class="nativeType">String</span> - The string to get the char codes from.</div><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with the charcodes.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getCharCodes</span>(<span class="arguments">aString:<span class="nativeType">String</span>, aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getCharCodes = function(aString, aReturnArray) {
+				<div class="descriptionHolder">
+					<div class="description">Gets all the char codes from a string.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aString:<span class="nativeType">String</span> - The string to get the char codes from.</div><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with the charcodes.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getCharCodes = function(aString, aReturnArray) {
 		//console.log("com.developedbyme.utils.native.string.StringFunctions::getCharCodes");
 		//console.log(aString, aReturnArray);
 		var currentArray = aReturnArray;
@@ -353,29 +365,29 @@
 			currentArray.push(aString.charCodeAt(i));
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">convertToCamelCase</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Converts a text to camel case (eg. This is an example text -&gt; thisIsAnExampleText).</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to convert.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">convertToCamelCase</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">String</span> - The converted text.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.convertToCamelCase = function(aText) {
+				<div class="descriptionHolder">
+					<div class="description">Converts a text to camel case (eg. This is an example text -&gt; thisIsAnExampleText).</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text to convert.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">String</span> - The converted text.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.convertToCamelCase = function(aText) {
 		
 		var currentArray = aText.split(" ");
 		var currentArrayLength = currentArray.length;
@@ -389,11 +401,11 @@
 		
 		return returnText;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

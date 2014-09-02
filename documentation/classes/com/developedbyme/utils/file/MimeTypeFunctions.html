@@ -88,35 +88,47 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">getFileExtensionForMimeType</span>(<span class="arguments">aMimeType</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aMimeType</div></div>
+				<div class="definition">
+					<span class="functionName">getFileExtensionForMimeType</span>(<span class="arguments">aMimeType</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getFileExtensionForMimeType = function(aMimeType) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aMimeType</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getFileExtensionForMimeType = function(aMimeType) {
 		//console.log("com.developedbyme.utils.file.MimeTypeFunctions::getFileExtensionForMimeType");
 		if(aMimeType === null) {
 			//METODO: error message
@@ -145,29 +157,29 @@
 		//METODO: error message
 		return null;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getMimeTypeForFileExtension</span>(<span class="arguments">aExtension</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aExtension</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getMimeTypeForFileExtension</span>(<span class="arguments">aExtension</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getMimeTypeForFileExtension = function(aExtension) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtension</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getMimeTypeForFileExtension = function(aExtension) {
 		switch(aExtension.toLowerCase()) {
 			case "mp4":
 				return "video/mp4";
@@ -183,11 +195,11 @@
 		//METODO: error message
 		return null;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

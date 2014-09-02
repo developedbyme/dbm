@@ -71,35 +71,47 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">parseQueryString</span>(<span class="arguments">aQueryString, aReturnNamedArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aQueryString</div><div class="argumentDescription">aReturnNamedArray</div></div>
+				<div class="definition">
+					<span class="functionName">parseQueryString</span>(<span class="arguments">aQueryString, aReturnNamedArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.parseQueryString = function(aQueryString, aReturnNamedArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aQueryString</div><div class="argumentDescription">aReturnNamedArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.parseQueryString = function(aQueryString, aReturnNamedArray) {
 		var currentArray = aQueryString.split("&amp;");
 		var currentArrayLength = currentArray.length;
 		
@@ -113,36 +125,36 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getDataFromDataUrl</span>(<span class="arguments">aDataUrl</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aDataUrl</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getDataFromDataUrl</span>(<span class="arguments">aDataUrl</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getDataFromDataUrl = function(aDataUrl) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aDataUrl</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getDataFromDataUrl = function(aDataUrl) {
 		return aDataUrl.substring(aDataUrl.indexOf(",")+1, aDataUrl.length);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

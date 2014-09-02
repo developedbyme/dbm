@@ -130,29 +130,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.ExtendedEventBaseObject::_init");
 		
 		this.superCall();
@@ -162,29 +168,29 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="extendedevent/ExtendedEventController.html">ExtendedEventController</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the extended event controller. If it doesn't exist already it's created.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="extendedevent/ExtendedEventController.html">ExtendedEventController</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="extendedevent/ExtendedEventController.html">ExtendedEventController</a> - The extended event controller.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getExtendedEvent = function() {
+				<div class="descriptionHolder">
+					<div class="description">Gets the extended event controller. If it doesn't exist already it's created.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="extendedevent/ExtendedEventController.html">ExtendedEventController</a> - The extended event controller.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getExtendedEvent = function() {
 		if(this._extendedEvent === null) {
 			this._extendedEvent = ExtendedEventController.create(this);
 			this.addDestroyableObject(this._extendedEvent);
@@ -192,29 +198,29 @@
 		
 		return this._extendedEvent;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getDelayedExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.extendedevent.DelayedExtendedEventController" href="extendedevent/DelayedExtendedEventController.html">DelayedExtendedEventController</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the controller for delayed events. If it doesn't exist already it's created.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getDelayedExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.extendedevent.DelayedExtendedEventController" href="extendedevent/DelayedExtendedEventController.html">DelayedExtendedEventController</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.extendedevent.DelayedExtendedEventController" href="extendedevent/DelayedExtendedEventController.html">DelayedExtendedEventController</a> - The delayed exended event controller.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getDelayedExtendedEvent = function() {
+				<div class="descriptionHolder">
+					<div class="description">Gets the controller for delayed events. If it doesn't exist already it's created.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.extendedevent.DelayedExtendedEventController" href="extendedevent/DelayedExtendedEventController.html">DelayedExtendedEventController</a> - The delayed exended event controller.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getDelayedExtendedEvent = function() {
 		if(this._delayedExtendedEvent === null) {
 			this._delayedExtendedEvent = DelayedExtendedEventController.create(this);
 			this.addDestroyableObject(this._delayedExtendedEvent);
@@ -222,99 +228,105 @@
 		
 		return this._delayedExtendedEvent;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">reactivateForNewDocument</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">If a node is changing document, all listeners needs to be reactivated.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">reactivateForNewDocument</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.reactivateForNewDocument = function() {
+				<div class="descriptionHolder">
+					<div class="description">If a node is changing document, all listeners needs to be reactivated.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.reactivateForNewDocument = function() {
 		if(this._extendedEvent !== null) {
 			this._extendedEvent.reactivateEventListeners();
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Checks if an event is expected for this object, so that warnings doesn't shown when new events are created.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the event.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if the event is expected.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description">Checks if an event is expected for this object, so that warnings doesn't shown when new events are created.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the event.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if the event is expected.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		
 		//MENOTE: should be overridden
 		
 		return false;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAllReferencesToNull = function() {
+				<div class="descriptionHolder">
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._extendedEvent = null;
 		this._delayedExtendedEvent = null;
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					</div>
 				</section>

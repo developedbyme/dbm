@@ -90,15 +90,81 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">getGlobalPositionForNode</span><span class="type"></span> = <span class="value">(function(aElement, aReturnPoint) {
+		//console.log("com.developedbyme.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
+		var currentElement = aElement;
+		aReturnPoint.x = 0;
+		aReturnPoint.y = 0;
+		var debugBreakCounter = 0;
+		while(currentElement !== null) {
+			if(debugBreakCounter++ &gt; 1000) {
+				//METODO: error message
+				break;
+			}
+			//console.log({x: currentElement}, currentElement.offsetLeft, currentElement.offsetTop);
+			aReturnPoint.x += currentElement.offsetLeft;
+			aReturnPoint.y += currentElement.offsetTop;
+			currentElement = currentElement.offsetParent;
+		}
+		
+		return aReturnPoint;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">getParentPositionForNode</span><span class="type"></span> = <span class="value">(function(aElement, aParentElement, aReturnPoint) {
+		//console.log("com.developedbyme.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
+		var currentElement = aElement;
+		aReturnPoint.x = 0;
+		aReturnPoint.y = 0;
+		var debugBreakCounter = 0;
+		while(currentElement !== null) {
+			if(debugBreakCounter++ &gt; 1000) {
+				//METODO: error message
+				break;
+			}
+			//console.log({x: currentElement}, currentElement.offsetLeft, currentElement.offsetTop);
+			aReturnPoint.x += currentElement.offsetLeft;
+			aReturnPoint.y += currentElement.offsetTop;
+			currentElement = currentElement.offsetParent;
+			if(aParentElement === currentElement) {
+				return aReturnPoint;
+			}
+		}
+		
+		//METODO: error message
+		return aReturnPoint;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					</div>
 				</section>

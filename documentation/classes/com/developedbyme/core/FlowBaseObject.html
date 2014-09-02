@@ -287,29 +287,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::_init");
 		
 		this.superCall();
@@ -323,58 +329,58 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_createObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates an object property for this object. Needed when simple values are combined to an object (eg. values to a point).</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_createObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._createObjectProperty = function() {
+				<div class="descriptionHolder">
+					<div class="description">Creates an object property for this object. Needed when simple values are combined to an object (eg. values to a point).</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._createObjectProperty = function() {
 		this._objectProperty = ObjectProperty.create(this);
 		this._objectProperty.name = this.__nodeId + "::object(o)";
 		this.addDestroyableObject(this._objectProperty);
 		this._addObjectPropertyToAllProperties();
 		this._objectProperty.setAsDirty();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_addObjectPropertyToAllProperties</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds the object property to all the exisitng properties.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_addObjectPropertyToAllProperties</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._addObjectPropertyToAllProperties = function() {
+				<div class="descriptionHolder">
+					<div class="description">Adds the object property to all the exisitng properties.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._addObjectPropertyToAllProperties = function() {
 		var currentArray = this._properties.getObjectsArray();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i &lt; currentArrayLength; i++) {
@@ -383,166 +389,166 @@
 			currentProperty._linkRegistration_setObjectInputConnection(this._objectProperty);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the object property for this object. The property is created if it doesn't alread exists.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a> - The object property.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getObjectProperty = function() {
+				<div class="descriptionHolder">
+					<div class="description">Gets the object property for this object. The property is created if it doesn't alread exists.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a> - The object property.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getObjectProperty = function() {
 		if(this._objectProperty === null) {
 			this._createObjectProperty();
 		}
 		return this._objectProperty;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getObjectPropertyIfExists</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the object property if it exists.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getObjectPropertyIfExists</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a> - The object property. Null if the property doesn't exist.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getObjectPropertyIfExists = function() {
+				<div class="descriptionHolder">
+					<div class="description">Gets the object property if it exists.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a> - The object property. Null if the property doesn't exist.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getObjectPropertyIfExists = function() {
 		return this._objectProperty;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createUpdateFunction</span>(<span class="arguments">aName, aUpdateFunction, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aUpdateFunction</div><div class="argumentDescription">aInputsArray</div><div class="argumentDescription">aOutputsArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createUpdateFunction</span>(<span class="arguments">aName, aUpdateFunction, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createUpdateFunction = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aUpdateFunction</div><div class="argumentDescription">aInputsArray</div><div class="argumentDescription">aOutputsArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createUpdateFunction = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunction.create(this, aUpdateFunction, aInputsArray, aOutputsArray);
 		newUpdateFunction.name = this.__nodeId + "::" + aName + "(f)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createUpdateFunctionWithArguments</span>(<span class="arguments">aName, aUpdateFunction, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aUpdateFunction</div><div class="argumentDescription">aInputsArray</div><div class="argumentDescription">aOutputsArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createUpdateFunctionWithArguments</span>(<span class="arguments">aName, aUpdateFunction, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createUpdateFunctionWithArguments = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aUpdateFunction</div><div class="argumentDescription">aInputsArray</div><div class="argumentDescription">aOutputsArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createUpdateFunctionWithArguments = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunctionWithArguments.create(this, aUpdateFunction, aInputsArray, aOutputsArray);
 		newUpdateFunction.name = this.__nodeId + "::" + aName + "(f)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createGhostUpdateFunction</span>(<span class="arguments">aName, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aInputsArray</div><div class="argumentDescription">aOutputsArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createGhostUpdateFunction</span>(<span class="arguments">aName, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createGhostUpdateFunction = function(aName, aInputsArray, aOutputsArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aInputsArray</div><div class="argumentDescription">aOutputsArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createGhostUpdateFunction = function(aName, aInputsArray, aOutputsArray) {
 		var newUpdateFunction = UpdateFunction.createGhostFunction(aInputsArray, aOutputsArray);
 		newUpdateFunction.name = this.__nodeId + "::" + aName + "(gf)";
 		this._updateFunctions.addObject(aName, newUpdateFunction);
 		return newUpdateFunction;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates (and adds) a property on this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value that the property should have.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The newly created property.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createProperty = function(aName, aValue) {
+				<div class="descriptionHolder">
+					<div class="description">Creates (and adds) a property on this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value that the property should have.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The newly created property.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createProperty = function(aName, aValue) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createProperty");
 		//console.log(aName, aValue);
 		var newProperty = Property.create(this._objectProperty, aValue);
@@ -550,29 +556,29 @@
 		this._properties.addObject(aName, newProperty);
 		return newProperty;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aProperty:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds a property to this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div><div class="argumentDescription">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The property to add.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aProperty:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The property that is passed in.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.addProperty = function(aName, aProperty) {
+				<div class="descriptionHolder">
+					<div class="description">Adds a property to this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div><div class="argumentDescription">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The property to add.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The property that is passed in.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addProperty = function(aName, aProperty) {
 		//console.log("com.developedbyme.core.FlowBaseObject::addProperty");
 		//console.log(aName, aProperty);
 		aProperty.name = this.__nodeId + "::" + aName;
@@ -580,58 +586,58 @@
 		//console.log("//com.developedbyme.core.FlowBaseObject::addProperty");
 		return aProperty;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createGhostProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.GhostProperty" href="objectparts/GhostProperty.html">GhostProperty</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates (and adds) a ghost property (a property without value) on this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createGhostProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.GhostProperty" href="objectparts/GhostProperty.html">GhostProperty</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.GhostProperty" href="objectparts/GhostProperty.html">GhostProperty</a> - The newly created property.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createGhostProperty = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description">Creates (and adds) a ghost property (a property without value) on this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.GhostProperty" href="objectparts/GhostProperty.html">GhostProperty</a> - The newly created property.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createGhostProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createGhostProperty");
 		var newProperty = GhostProperty.create(this._objectProperty);
 		newProperty.name = this.__nodeId + "::" + aName + "(g)";
 		this._properties.addObject(aName, newProperty);
 		return newProperty;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets a property by name.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The property that matches the name. Null if property doesn't exist.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getProperty = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description">Gets a property by name.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The property that matches the name. Null if property doesn't exist.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
 		//console.log(this, aName);
 		if(this._properties !== null &amp;&amp; this._properties.select(aName)) {
@@ -640,29 +646,29 @@
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getProperty", "Property " + aName + " doesn't exist on " + this + ".");
 		return null;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getUpdateFunction</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.UpdateFunction" href="objectparts/UpdateFunction.html">UpdateFunction</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets an update function on this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the update function to get.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getUpdateFunction</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.UpdateFunction" href="objectparts/UpdateFunction.html">UpdateFunction</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.UpdateFunction" href="objectparts/UpdateFunction.html">UpdateFunction</a> - The update function that matches the name. Null if update function doesn't exist.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getUpdateFunction = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description">Gets an update function on this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the update function to get.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.UpdateFunction" href="objectparts/UpdateFunction.html">UpdateFunction</a> - The update function that matches the name. Null if update function doesn't exist.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getUpdateFunction = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getUpdateFunction");
 		//console.log(this, aName);
 		if(this._updateFunctions.select(aName)) {
@@ -671,29 +677,29 @@
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getUpdateFunction", "Update function " + aName + " doesn't exist on " + this + ".");
 		return null;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setPropertyInput</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Set the value to a property, or connects the input if it is a property.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property to set.</div><div class="argumentDescription">aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span> - The value to set or the property to connect.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setPropertyInput</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setPropertyInput = function(aName, aInput) {
+				<div class="descriptionHolder">
+					<div class="description">Set the value to a property, or connects the input if it is a property.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property to set.</div><div class="argumentDescription">aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span> - The value to set or the property to connect.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setPropertyInput = function(aName, aInput) {
 		var theProperty = this.getProperty(aName);
 		if(theProperty === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setPropertyInput", "Property " + aName + " doesn't exist.");
@@ -702,86 +708,86 @@
 		dbm.singletons.dbmFlowManager.setPropertyInput(theProperty, aInput);
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setPropertyInputWithoutNull</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Set the value to a property, or connects the input if it is a property. Current value is not overridden if input is null/undefined.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property to set.</div><div class="argumentDescription">aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span> - The value to set or the property to connect.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setPropertyInputWithoutNull</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setPropertyInputWithoutNull = function(aName, aInput) {
+				<div class="descriptionHolder">
+					<div class="description">Set the value to a property, or connects the input if it is a property. Current value is not overridden if input is null/undefined.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property to set.</div><div class="argumentDescription">aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span> - The value to set or the property to connect.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setPropertyInputWithoutNull = function(aName, aInput) {
 		if(VariableAliases.isSet(aInput)) {
 			this.setPropertyInput(aName, aInput);
 		}
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the parameters for this class. Part of the toString function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with the parameters description.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+				<div class="descriptionHolder">
+					<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with the parameters description.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
 		if(this._properties !== null &amp;&amp; this._properties !== undefined) {
 			aReturnArray.push("properties: [" + this._properties.getNamesArray().join(", ") + "]");
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets all the references to null. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAllReferencesToNull = function() {
+				<div class="descriptionHolder">
+					<div class="description">Sets all the references to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._objectProperty = null;
 		this._properties = null;
@@ -789,15 +795,21 @@
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					</div>
 				</section>

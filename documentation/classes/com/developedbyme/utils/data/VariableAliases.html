@@ -186,35 +186,89 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TRUE_STRINGS</span><span class="type"></span> = <span class="value">"true", "yes", "y", "1"</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">FALSE_STRINGS</span><span class="type"></span> = <span class="value">"false", "no", "n","0"</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">NULL_STRINGS</span><span class="type"></span> = <span class="value">"null", "undefined", "none",  ""</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">IS_TRUE</span><span class="type"></span> = <span class="value">1</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">IS_FALSE</span><span class="type"></span> = <span class="value">0</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">INDETERMINATE</span><span class="type"></span> = <span class="value">-1</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">stringIsAlias</span>(<span class="arguments">aString, aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aString</div><div class="argumentDescription">aArray</div></div>
+				<div class="definition">
+					<span class="functionName">stringIsAlias</span>(<span class="arguments">aString, aArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.stringIsAlias = function(aString, aArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aString</div><div class="argumentDescription">aArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.stringIsAlias = function(aString, aArray) {
 		var lowerCaseString = aString.toLowerCase();
 		var currentArray = aArray;
 		var currentArrayLength = currentArray.length;
@@ -225,29 +279,29 @@
 		}
 		return false;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">determinIfStringIsBoolean</span>(<span class="arguments">aString</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aString</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">determinIfStringIsBoolean</span>(<span class="arguments">aString</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.determinIfStringIsBoolean = function(aString) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aString</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.determinIfStringIsBoolean = function(aString) {
 		if(ClassReference.stringIsAlias(aString, ClassReference.TRUE_STRINGS)) {
 			return ClassReference.IS_TRUE;
 		}
@@ -256,29 +310,29 @@
 		}
 		return ClassReference.INDETERMINATE;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">determinIfVariableIsBoolean</span>(<span class="arguments">aVariable</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aVariable</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">determinIfVariableIsBoolean</span>(<span class="arguments">aVariable</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.determinIfVariableIsBoolean = function(aVariable) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aVariable</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.determinIfVariableIsBoolean = function(aVariable) {
 		switch(typeof(aVariable)) {
 			case JavascriptObjectTypes.TYPE_BOOLEAN:
 				return (aVariable ? ClassReference.IS_TRUE : ClassReference.IS_FALSE);
@@ -304,79 +358,79 @@
 				return ClassReference.INDETERMINATE;
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">isTrue</span>(<span class="arguments">aVariable</span>)<span class="returnValue">:<span class="unknownType">True if the varaible is true.</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Checks if the variable is true.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aVariable - The variable to check.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">isTrue</span>(<span class="arguments">aVariable</span>)<span class="returnValue">:<span class="unknownType">True if the varaible is true.</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">True if the varaible is true.</span> - True if the varaible is true.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.isTrue = function(aVariable) {
+				<div class="descriptionHolder">
+					<div class="description">Checks if the variable is true.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aVariable - The variable to check.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">True if the varaible is true.</span> - True if the varaible is true.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.isTrue = function(aVariable) {
 		return (ClassReference.determinIfVariableIsBoolean(aVariable) === ClassReference.IS_TRUE);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">isFalse</span>(<span class="arguments">aVariable</span>)<span class="returnValue">:<span class="unknownType">True if the varaible is false.</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Checks if the variable is false.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aVariable - The variable to check.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">isFalse</span>(<span class="arguments">aVariable</span>)<span class="returnValue">:<span class="unknownType">True if the varaible is false.</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">True if the varaible is false.</span> - True if the varaible is false.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.isFalse = function(aVariable) {
+				<div class="descriptionHolder">
+					<div class="description">Checks if the variable is false.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aVariable - The variable to check.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">True if the varaible is false.</span> - True if the varaible is false.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.isFalse = function(aVariable) {
 		return (ClassReference.determinIfVariableIsBoolean(aVariable) === ClassReference.IS_FALSE);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">isNull</span>(<span class="arguments">aVariable</span>)<span class="returnValue">:<span class="unknownType">True if the varaible is false.</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Checks if the variable is null.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aVariable - The variable to check.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">isNull</span>(<span class="arguments">aVariable</span>)<span class="returnValue">:<span class="unknownType">True if the varaible is false.</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">True if the varaible is false.</span> - True if the varaible is false.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.isNull = function(aVariable) {
+				<div class="descriptionHolder">
+					<div class="description">Checks if the variable is null.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aVariable - The variable to check.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">True if the varaible is false.</span> - True if the varaible is false.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.isNull = function(aVariable) {
 		if(typeof(aVariable) === JavascriptObjectTypes.TYPE_BOOLEAN) {
 			return false;
 		}
@@ -393,57 +447,57 @@
 		//ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[VariableAliases]", "isNull", "No case for object type (" + typeof(aVariable) + ") for variable " + aVariable);
 		return false;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">isEmptyText</span>(<span class="arguments">aString</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Checks if a text is empty.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aString</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">isEmptyText</span>(<span class="arguments">aString</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.isEmptyText = function(aString) {
+				<div class="descriptionHolder">
+					<div class="description">Checks if a text is empty.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aString</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.isEmptyText = function(aString) {
 		//trace("breel.utils.data.VariableAliases.isEmptyText");
 		var regExpString = "^[ \t\f\n\r]*$";
 		var regExp = new RegExp(regExpString);
 		return regExp.test(aString);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">valueWithDefault</span>(<span class="arguments">aValue, aDefaultValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aDefaultValue</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">valueWithDefault</span>(<span class="arguments">aValue, aDefaultValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.valueWithDefault = function(aValue, aDefaultValue) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aDefaultValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.valueWithDefault = function(aValue, aDefaultValue) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::valueWithDefault");
 		//console.log(aValue, aDefaultValue);
 		if(!ClassReference.isSet(aValue)) {
@@ -451,40 +505,40 @@
 		}
 		return aValue;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">isSet</span>(<span class="arguments">aValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aValue</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">isSet</span>(<span class="arguments">aValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.isSet = function(aValue) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.isSet = function(aValue) {
 		//console.log("com.developedbyme.utils.data.VariableAliases::isSet");
 		if(aValue === null || aValue === undefined) {
 			return false;
 		}
 		return true;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

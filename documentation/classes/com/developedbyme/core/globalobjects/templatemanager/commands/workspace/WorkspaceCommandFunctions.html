@@ -131,35 +131,47 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">createLayoutSplit</span>(<span class="arguments">aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aWorkspace</div><div class="argumentDescription">aSplitType</div><div class="argumentDescription">aPercentageParameter</div><div class="argumentDescription">aOffset</div><div class="argumentDescription">aPath</div></div>
+				<div class="definition">
+					<span class="functionName">createLayoutSplit</span>(<span class="arguments">aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createLayoutSplit = function(aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aWorkspace</div><div class="argumentDescription">aSplitType</div><div class="argumentDescription">aPercentageParameter</div><div class="argumentDescription">aOffset</div><div class="argumentDescription">aPath</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createLayoutSplit = function(aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions::createLayoutSplit");
 		//console.log(aWorkspace, aSplitType, aPercentageParameter, aOffset, aPath);
 		
@@ -186,29 +198,29 @@
 		
 		layoutArea.addPart(aPath, splitLayout);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createSizedElementArea</span>(<span class="arguments">aObject, aPath</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div><div class="argumentDescription">aPath</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createSizedElementArea</span>(<span class="arguments">aObject, aPath</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createSizedElementArea = function(aObject, aPath) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject</div><div class="argumentDescription">aPath</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createSizedElementArea = function(aObject, aPath) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions::createSizedElementArea");
 		
 		var parentController = dbm.singletons.dbmHtmlDomManager.getParentControllerThatHasDynamicVariable(aObject.getElement(), "layoutArea");
@@ -224,29 +236,29 @@
 		aObject.setDynamicVariable("layoutArea", newArea);
 		layoutArea.addPart(aPath, newArea);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addLayoutController</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addLayoutController</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.addLayoutController = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addLayoutController = function(aObject) {
 		console.log("com.developedbyme.core.globalobjects.templatemanager.commands.workspace.WorkspaceCommandFunctions::addLayoutController");
 		console.log(aObject);
 		
@@ -261,29 +273,29 @@
 		aObject.setDynamicVariable("layoutArea", layoutArea);
 		
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setSizeAsInputArea</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setSizeAsInputArea</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.setSizeAsInputArea = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.setSizeAsInputArea = function(aObject) {
 		var sizeNode = aObject.addDestroyableObject(SizeOfElementNode.create(aObject.getProperty("element"), aObject.getProperty("inDomOutput")));
 		sizeNode.checkForLayoutChange();
 		var createRectangleNode = aObject.addDestroyableObject(RectangleFromValuesNode.create(0, 0, sizeNode.getProperty("width"), sizeNode.getProperty("height")));
@@ -291,11 +303,11 @@
 		var layoutArea = aObject.getDynamicVariable("layoutArea");
 		layoutArea.getTreeStructureItem().getAttribute("properties").setPropertyInput("inputArea", createRectangleNode.getProperty("outputRectangle"));
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

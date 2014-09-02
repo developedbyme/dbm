@@ -130,29 +130,35 @@ The purpose of this object is that it implements and destroy() function and dest
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.ArrayHolder::_init");
 		
 		this.superCall();
@@ -162,29 +168,29 @@ The purpose of this object is that it implements and destroy() function and dest
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Performs the destruction of this object. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.performDestroy = function() {
+				<div class="descriptionHolder">
+					<div class="description">Performs the destruction of this object. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.performDestroy = function() {
 		
 		if(this.ownsObjects) {
 			ClassReference.destroyArrayIfExists(this.array);
@@ -192,131 +198,137 @@ The purpose of this object is that it implements and destroy() function and dest
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets all the refernences to null. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAllReferencesToNull = function() {
+				<div class="descriptionHolder">
+					<div class="description">Sets all the refernences to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this.array = null;
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Checks if this object owns a specific variable. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description">Checks if this object owns a specific variable. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "array":
 				return this.ownsObjects;
 		}
 		return this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments">aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new instance of this class.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aOwnsObjects:<span class="nativeType">Boolean</span> - If the array is owned by the new holder and should be destroyed when the holder is destroyed.</div></div>
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a> - The newly created object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.create = function(aOwnsObjects) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new instance of this class.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aOwnsObjects:<span class="nativeType">Boolean</span> - If the array is owned by the new holder and should be destroyed when the holder is destroyed.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aOwnsObjects) {
 		//trace("breel.utils.data.ArrayHolder.create");
 		var newArrayHolder = (new ArrayHolder()).init();
 		newArrayHolder.ownsObjects = aOwnsObjects;
 		return newArrayHolder;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createFromArray</span>(<span class="arguments">aArray:<span class="nativeType">Array</span>, aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new holder from an existing array.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array that the new holder will hold.</div><div class="argumentDescription">aOwnsObjects:<span class="nativeType">Boolean</span> - If the array is owned by the new holder and should be destroyed when the holder is destroyed.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createFromArray</span>(<span class="arguments">aArray:<span class="nativeType">Array</span>, aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a> - The newly created object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createFromArray = function(aArray, aOwnsObjects) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new holder from an existing array.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array that the new holder will hold.</div><div class="argumentDescription">aOwnsObjects:<span class="nativeType">Boolean</span> - If the array is owned by the new holder and should be destroyed when the holder is destroyed.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createFromArray = function(aArray, aOwnsObjects) {
 		//trace("breel.utils.data.ArrayHolder.createFromArray");
 		var newArrayHolder = (new ArrayHolder()).init();
 		newArrayHolder.array = aArray;
 		newArrayHolder.ownsObjects = aOwnsObjects;
 		return newArrayHolder;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

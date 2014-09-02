@@ -12,7 +12,7 @@
 					<div class="classPath">com.developedbyme.constants.UnitTypes</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
-						<div class="description"></div>
+						<div class="description">Css unit types and conversion to svg types.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
 							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
@@ -35,9 +35,18 @@
 	//console.log("com.developedbyme.constants.UnitTypes");
 	//"use strict";
 	
+	//Self refernce
 	var UnitTypes = dbm.importClass("com.developedbyme.constants.UnitTypes");
 	
+	//Error report
+	
+	//Dependencies
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	
+	//Utils
+	
+	//Constants
+	
 	
 	staticFunctions.NONE = "none";
 	staticFunctions.UNKNOWN = "unknown";
@@ -52,10 +61,23 @@
 	staticFunctions.PC = "pc";
 	staticFunctions.DEGREE = "deg";
 	
+	/**
+	 * Array with names that correlates to svgUnitTypes.
+	 */
 	staticFunctions.unitTypes = [staticFunctions.UNKNOWN, staticFunctions.NONE, staticFunctions.PX, staticFunctions.PERCENTAGE, staticFunctions.EM, staticFunctions.EX, staticFunctions.IN, staticFunctions.CM, staticFunctions.MM, staticFunctions.PT, staticFunctions.PC];
 	
+	/**
+	 * Array with values that correlates to unitTypes.
+	 */
 	staticFunctions.svgUnitTypes = [0, 1, 5, 2, 3, 4, 8, 6, 7, 9, 10];
 	
+	/**
+	 * Converts a css unit type to the integer representation in svg.
+	 *
+	 * @param	aUnitType	UnitTypes	The css unit type.
+	 *
+	 * @return	Number	The integer type that represents the same type in css. 0 (unknown) is returned if no match is found.
+	 */
 	staticFunctions.getSvgUnitType = function(aUnitType) {
 		
 		var unitTypeIndex = ArrayFunctions.indexOfInArray(ClassReference.unitTypes, aUnitType);
@@ -72,35 +94,145 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">NONE</span><span class="type"></span> = <span class="value">none</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">UNKNOWN</span><span class="type"></span> = <span class="value">unknown</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">PX</span><span class="type"></span> = <span class="value">px</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">PERCENTAGE</span><span class="type"></span> = <span class="value">%</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">EM</span><span class="type"></span> = <span class="value">em</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">EX</span><span class="type"></span> = <span class="value">ex</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">IN</span><span class="type"></span> = <span class="value">in</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">CM</span><span class="type"></span> = <span class="value">cm</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">MM</span><span class="type"></span> = <span class="value">mm</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">PT</span><span class="type"></span> = <span class="value">pt</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">PC</span><span class="type"></span> = <span class="value">pc</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DEGREE</span><span class="type"></span> = <span class="value">deg</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">unitTypes</span><span class="type"></span> = <span class="value">staticFunctions.UNKNOWN, staticFunctions.NONE, staticFunctions.PX, staticFunctions.PERCENTAGE, staticFunctions.EM, staticFunctions.EX, staticFunctions.IN, staticFunctions.CM, staticFunctions.MM, staticFunctions.PT, staticFunctions.PC</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Array with names that correlates to svgUnitTypes.</div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">svgUnitTypes</span><span class="type"></span> = <span class="value">0, 1, 5, 2, 3, 4, 8, 6, 7, 9, 10</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Array with values that correlates to unitTypes.</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">getSvgUnitType</span>(<span class="arguments">aUnitType</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aUnitType</div></div>
+				<div class="definition">
+					<span class="functionName">getSvgUnitType</span>(<span class="arguments">aUnitType:<a title="com.developedbyme.constants.UnitTypes" href="UnitTypes.html">UnitTypes</a></span>)<span class="returnValue">:<span class="nativeType">Number</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getSvgUnitType = function(aUnitType) {
+				<div class="descriptionHolder">
+					<div class="description">Converts a css unit type to the integer representation in svg.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aUnitType:<a title="com.developedbyme.constants.UnitTypes" href="UnitTypes.html">UnitTypes</a> - The css unit type.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Number</span> - The integer type that represents the same type in css. 0 (unknown) is returned if no match is found.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getSvgUnitType = function(aUnitType) {
 		
 		var unitTypeIndex = ArrayFunctions.indexOfInArray(ClassReference.unitTypes, aUnitType);
 		if(unitTypeIndex &gt;= 0) {
@@ -110,11 +242,11 @@
 		//METODO: error message
 		return 0;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

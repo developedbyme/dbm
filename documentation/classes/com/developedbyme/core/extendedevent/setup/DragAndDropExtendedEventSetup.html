@@ -83,35 +83,47 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">addDropEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+				<div class="definition">
+					<span class="functionName">addDropEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.addDropEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addDropEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
 		
 		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.DRAG_ENTER, DragAndDropExtendedEventIds.DRAG_ENTER, aUseCapture, DragAndDropExtendedEventIds.DROP, true, true);
@@ -126,39 +138,39 @@
 			aExtendedEventController.activateJavascriptEventLink(DragAndDropExtendedEventIds.DROP);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">preventDefaultForEvent</span>(<span class="arguments">aExtendedEventController, aEventName</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aEventName</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">preventDefaultForEvent</span>(<span class="arguments">aExtendedEventController, aEventName</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aEventName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
 		//(console.log("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup::preventDefaultForEvent");
 		
 		aExtendedEventController.addCommandToEvent(aEventName, StopPropagationCommand.createCommandWithDataAsEvent());
 		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

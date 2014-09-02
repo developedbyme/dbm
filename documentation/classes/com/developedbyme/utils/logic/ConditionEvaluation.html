@@ -105,35 +105,47 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">evaluateCondition</span>(<span class="arguments">aInputValue1:<span class="unknownType">Any</span>, aConditionType:<span class="nativeType">String</span>, aInputValue2:<span class="unknownType">Any</span></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Evaluates a contition</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aInputValue1:<span class="unknownType">Any</span> - The first value check a with the condition.</div><div class="argumentDescription">aConditionType:<span class="nativeType">String</span> - The condition to evaluate the values against</div><div class="argumentDescription">aInputValue2:<span class="unknownType">Any</span> - The second value check a with the condition.</div></div>
+				<div class="definition">
+					<span class="functionName">evaluateCondition</span>(<span class="arguments">aInputValue1:<span class="unknownType">Any</span>, aConditionType:<span class="nativeType">String</span>, aInputValue2:<span class="unknownType">Any</span></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">Boolean</span> - The result of the evaluation. Null if the condition type doesn't exist.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.evaluateCondition = function(aInputValue1, aConditionType, aInputValue2) {
+				<div class="descriptionHolder">
+					<div class="description">Evaluates a contition</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aInputValue1:<span class="unknownType">Any</span> - The first value check a with the condition.</div><div class="argumentDescription">aConditionType:<span class="nativeType">String</span> - The condition to evaluate the values against</div><div class="argumentDescription">aInputValue2:<span class="unknownType">Any</span> - The second value check a with the condition.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - The result of the evaluation. Null if the condition type doesn't exist.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.evaluateCondition = function(aInputValue1, aConditionType, aInputValue2) {
 		var returnValue;
 		switch(aConditionType) {
 			case ConditionOperationTypes.EQUAL:
@@ -174,11 +186,11 @@
 		
 		return returnValue;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

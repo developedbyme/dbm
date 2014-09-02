@@ -58,15 +58,47 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">getDocument</span><span class="type"></span> = <span class="value">(function(aElementOrDocument) {
+		//console.log("com.developedbyme.utils.htmldom.DomReferenceFunctions::getDocument (static)");
+		return (aElementOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aElementOrDocument : aElementOrDocument.ownerDocument;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">getDocumentVisualParent</span><span class="type"></span> = <span class="value">(function(aElementOrDocument) {
+		//console.log("com.developedbyme.utils.htmldom.DomReferenceFunctions::getDocumentVisualParent (static)");
+		return (aElementOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aElementOrDocument.body : aElementOrDocument;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					</div>
 				</section>

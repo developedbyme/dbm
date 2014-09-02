@@ -262,60 +262,72 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">createChainForConnection</span>(<span class="arguments">aConnection, aInputConnection, aOutputConnection</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aConnection</div><div class="argumentDescription">aInputConnection</div><div class="argumentDescription">aOutputConnection</div></div>
+				<div class="definition">
+					<span class="functionName">createChainForConnection</span>(<span class="arguments">aConnection, aInputConnection, aOutputConnection</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createChainForConnection = function(aConnection, aInputConnection, aOutputConnection) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aConnection</div><div class="argumentDescription">aInputConnection</div><div class="argumentDescription">aOutputConnection</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createChainForConnection = function(aConnection, aInputConnection, aOutputConnection) {
 		return FlowUpdateChain.create().setInputConnection(aInputConnection).setOutputConnection(aOutputConnection).addConnection(aConnection);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createChainsForConnections</span>(<span class="arguments">aConnections, aInputConnection, aOutputConnection, aOutputArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aConnections</div><div class="argumentDescription">aInputConnection</div><div class="argumentDescription">aOutputConnection</div><div class="argumentDescription">aOutputArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createChainsForConnections</span>(<span class="arguments">aConnections, aInputConnection, aOutputConnection, aOutputArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createChainsForConnections = function(aConnections, aInputConnection, aOutputConnection, aOutputArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aConnections</div><div class="argumentDescription">aInputConnection</div><div class="argumentDescription">aOutputConnection</div><div class="argumentDescription">aOutputArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createChainsForConnections = function(aConnections, aInputConnection, aOutputConnection, aOutputArray) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::createChainsForConnections");
 		//console.log(aConnections, aOutputConnection, aOutputArray);
 		
@@ -325,29 +337,29 @@
 			aOutputArray.push(ClassReference.createChainForConnection(currentArray[i], aInputConnection, aOutputConnection));
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">doesInputAlreadyExistsInChainArray</span>(<span class="arguments">aArray, aInputConnection, aEndNumber</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aInputConnection</div><div class="argumentDescription">aEndNumber</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">doesInputAlreadyExistsInChainArray</span>(<span class="arguments">aArray, aInputConnection, aEndNumber</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.doesInputAlreadyExistsInChainArray = function(aArray, aInputConnection, aEndNumber) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aInputConnection</div><div class="argumentDescription">aEndNumber</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.doesInputAlreadyExistsInChainArray = function(aArray, aInputConnection, aEndNumber) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::doesInputAlreadyExistsInChainArray");
 		
 		var currentArrayLength = aArray.length;
@@ -359,29 +371,29 @@
 		}
 		return false;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">doesOutputAlreadyExistsInChainArray</span>(<span class="arguments">aArray, aOutputConnection, aEndNumber</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aOutputConnection</div><div class="argumentDescription">aEndNumber</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">doesOutputAlreadyExistsInChainArray</span>(<span class="arguments">aArray, aOutputConnection, aEndNumber</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.doesOutputAlreadyExistsInChainArray = function(aArray, aOutputConnection, aEndNumber) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aOutputConnection</div><div class="argumentDescription">aEndNumber</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.doesOutputAlreadyExistsInChainArray = function(aArray, aOutputConnection, aEndNumber) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::doesOutputAlreadyExistsInChainArray");
 		
 		var currentArrayLength = aArray.length;
@@ -392,29 +404,29 @@
 		}
 		return false;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_removeChainFromUnsortedArray</span>(<span class="arguments">aArray, aChain</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aChain</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_removeChainFromUnsortedArray</span>(<span class="arguments">aArray, aChain</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._removeChainFromUnsortedArray = function(aArray, aChain) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray</div><div class="argumentDescription">aChain</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._removeChainFromUnsortedArray = function(aArray, aChain) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::_removeChainFromUnsortedArray");
 		//console.log(aArray, aChain);
 		
@@ -437,110 +449,110 @@
 		
 		return (aChain.outputConnection !== null) ? count : -1;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createAllChainsForOutputConnection</span>(<span class="arguments">aConnection</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aConnection</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createAllChainsForOutputConnection</span>(<span class="arguments">aConnection</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createAllChainsForOutputConnection = function(aConnection) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aConnection</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createAllChainsForOutputConnection = function(aConnection) {
 		var unsortedArray = new Array(1);
 		unsortedArray[0] = ClassReference.createChainForConnection(aConnection, null, null);
 		return ClassReference._createAllInputChains(unsortedArray);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createAllChainsForMultipleOutputConnections</span>(<span class="arguments">aConnections</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aConnections</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createAllChainsForMultipleOutputConnections</span>(<span class="arguments">aConnections</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createAllChainsForMultipleOutputConnections = function(aConnections) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aConnections</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createAllChainsForMultipleOutputConnections = function(aConnections) {
 		var unsortedArray = new Array();
 		ClassReference.createChainsForConnections(aConnections, null, null, unsortedArray);
 		return ClassReference._createAllInputChains(unsortedArray);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createAllChainsForInputConnection</span>(<span class="arguments">aConnection</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aConnection</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createAllChainsForInputConnection</span>(<span class="arguments">aConnection</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createAllChainsForInputConnection = function(aConnection) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aConnection</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createAllChainsForInputConnection = function(aConnection) {
 		var unsortedArray = new Array(1);
 		unsortedArray[0] = ClassReference.createChainForConnection(aConnection, null, null);
 		return ClassReference._createAllOutputChains(unsortedArray);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_createAllInputChains</span>(<span class="arguments">aStartChainsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aStartChainsArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_createAllInputChains</span>(<span class="arguments">aStartChainsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._createAllInputChains = function(aStartChainsArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStartChainsArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._createAllInputChains = function(aStartChainsArray) {
 		var sortedArray = new Array();
 		var unsortedArray = aStartChainsArray;
 		
@@ -586,29 +598,29 @@
 		
 		return sortedArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_createAllOutputChains</span>(<span class="arguments">aStartChainsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aStartChainsArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_createAllOutputChains</span>(<span class="arguments">aStartChainsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._createAllOutputChains = function(aStartChainsArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStartChainsArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._createAllOutputChains = function(aStartChainsArray) {
 		var sortedArray = new Array();
 		var unsortedArray = aStartChainsArray;
 		
@@ -663,29 +675,29 @@
 		
 		return sortedArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_sortChains</span>(<span class="arguments">aSortedArray, aUnsortedArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aSortedArray</div><div class="argumentDescription">aUnsortedArray</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_sortChains</span>(<span class="arguments">aSortedArray, aUnsortedArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._sortChains = function(aSortedArray, aUnsortedArray) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aSortedArray</div><div class="argumentDescription">aUnsortedArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._sortChains = function(aSortedArray, aUnsortedArray) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator::_sortChains");
 		//console.log(aSortedArray, aUnsortedArray);
 		
@@ -709,11 +721,11 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

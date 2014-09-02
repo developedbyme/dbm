@@ -249,29 +249,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::_init");
 		
 		this.superCall();
@@ -282,110 +288,110 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">registerClassShortcut</span>(<span class="arguments">aName, aClass</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aClass</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">registerClassShortcut</span>(<span class="arguments">aName, aClass</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.registerClassShortcut = function(aName, aClass) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aClass</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.registerClassShortcut = function(aName, aClass) {
 		this._classShortcuts.addObject(aName, aClass);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">registerTextCreator</span>(<span class="arguments">aName, aCreator</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aCreator</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">registerTextCreator</span>(<span class="arguments">aName, aCreator</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.registerTextCreator = function(aName, aCreator) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aCreator</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.registerTextCreator = function(aName, aCreator) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::registerTextCreator");
 		//console.log(aName, aCreator);
 		this._textCreators.addObject(aName, aCreator);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addCommand</span>(<span class="arguments">aName, aCommand</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aCommand</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addCommand</span>(<span class="arguments">aName, aCommand</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.addCommand = function(aName, aCommand) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aCommand</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addCommand = function(aName, aCommand) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::addCommand");
 		//console.log(aName, aCommand);
 		
 		aCommand.retain();
 		this._commands.addObject(aName, aCommand);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createControllersForTemplate</span>(<span class="arguments">aTemplate, aDynamicData</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aTemplate</div><div class="argumentDescription">aDynamicData</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createControllersForTemplate</span>(<span class="arguments">aTemplate, aDynamicData</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createControllersForTemplate = function(aTemplate, aDynamicData) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTemplate</div><div class="argumentDescription">aDynamicData</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createControllersForTemplate = function(aTemplate, aDynamicData) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
 		//console.log(aTemplate);
 		
@@ -400,29 +406,29 @@
 		
 		return templateResult;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createControllersForAsset</span>(<span class="arguments">aPath, aDynamicData, aRemoveId, aDocumentOrParent, aAddToParent</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPath</div><div class="argumentDescription">aDynamicData</div><div class="argumentDescription">aRemoveId</div><div class="argumentDescription">aDocumentOrParent</div><div class="argumentDescription">aAddToParent</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createControllersForAsset</span>(<span class="arguments">aPath, aDynamicData, aRemoveId, aDocumentOrParent, aAddToParent</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createControllersForAsset = function(aPath, aDynamicData, aRemoveId, aDocumentOrParent, aAddToParent) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPath</div><div class="argumentDescription">aDynamicData</div><div class="argumentDescription">aRemoveId</div><div class="argumentDescription">aDocumentOrParent</div><div class="argumentDescription">aAddToParent</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createControllersForAsset = function(aPath, aDynamicData, aRemoveId, aDocumentOrParent, aAddToParent) {
 		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForAsset");
 		//console.log(aPath, aRemoveId, aDocument);
 		
@@ -451,29 +457,29 @@
 		
 		return this.createControllersForTemplate(copiedTemplate, aDynamicData);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_executeCommandsForObject</span>(<span class="arguments">aObject, aCommandsString, aDynamicData</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div><div class="argumentDescription">aCommandsString</div><div class="argumentDescription">aDynamicData</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_executeCommandsForObject</span>(<span class="arguments">aObject, aCommandsString, aDynamicData</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._executeCommandsForObject = function(aObject, aCommandsString, aDynamicData) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject</div><div class="argumentDescription">aCommandsString</div><div class="argumentDescription">aDynamicData</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._executeCommandsForObject = function(aObject, aCommandsString, aDynamicData) {
 		var currentArray = StringFunctions.splitSeparatedString(aCommandsString, ";", true, true);
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i &lt; currentArrayLength; i++) {
@@ -503,29 +509,29 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_createControllersForTemplateNode</span>(<span class="arguments">aNode, aBasePath, aDynamicData, aTemplateResult</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aNode</div><div class="argumentDescription">aBasePath</div><div class="argumentDescription">aDynamicData</div><div class="argumentDescription">aTemplateResult</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_createControllersForTemplateNode</span>(<span class="arguments">aNode, aBasePath, aDynamicData, aTemplateResult</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._createControllersForTemplateNode = function(aNode, aBasePath, aDynamicData, aTemplateResult) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNode</div><div class="argumentDescription">aBasePath</div><div class="argumentDescription">aDynamicData</div><div class="argumentDescription">aTemplateResult</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._createControllersForTemplateNode = function(aNode, aBasePath, aDynamicData, aTemplateResult) {
 		var currentClassName = XmlChildRetreiver.getAttribute(aNode, TemplateManager.CLASS_ATTRIBUTE);
 		var currentName = XmlChildRetreiver.getAttribute(aNode, TemplateManager.NAME_ATTRIBUTE);
 		var currentTextClassName = XmlChildRetreiver.getAttribute(aNode, TemplateManager.TEXT_CLASS_ATTRIBUTE);
@@ -599,15 +605,70 @@
 		
 		return newObject;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">CLASS_ATTRIBUTE</span><span class="type"></span> = <span class="value">data-dbm-class</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">NAME_ATTRIBUTE</span><span class="type"></span> = <span class="value">data-dbm-name</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TEXT_CLASS_ATTRIBUTE</span><span class="type"></span> = <span class="value">data-dbm-text-class</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TEXT_NAME_ATTRIBUTE</span><span class="type"></span> = <span class="value">data-dbm-text-name</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">IGNORE_CHILDREN_ATTRIBUTE</span><span class="type"></span> = <span class="value">data-dbm-ignore-children</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">COMMANDS_ATTRIBUTE</span><span class="type"></span> = <span class="value">data-dbm-commands</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TEXT_COMMANDS_ATTRIBUTE</span><span class="type"></span> = <span class="value">data-dbm-text-commands</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					</div>
 				</section>

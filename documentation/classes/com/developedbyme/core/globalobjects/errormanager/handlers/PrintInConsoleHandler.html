@@ -118,58 +118,64 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Initializes the object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function _init() {
+				<div class="descriptionHolder">
+					<div class="description">Initializes the object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function _init() {
 		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::_init");
 		
 		this.superCall();
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">report</span>(<span class="arguments">aId:<span class="unknownType">{Uint}</span>, aTimeStamp:<span class="unknownType">{Uint}</span>, aType:<span class="unknownType">{enum: ReportTypes}</span>, aLevel:<span class="unknownType">{enum: ReportLevelTypes}</span>, aObject:<span class="unknownType">{*}</span>, aFunctionName:<span class="unknownType">{String}</span>, aData:<span class="unknownType">{*}</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Reports errors, warning and log messages.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aId:<span class="unknownType">{Uint}</span> - The id for the call.</div><div class="argumentDescription">aTimeStamp:<span class="unknownType">{Uint}</span> - The time stamp for the report.</div><div class="argumentDescription">aType:<span class="unknownType">{enum: ReportTypes}</span> - The type of report.</div><div class="argumentDescription">aLevel:<span class="unknownType">{enum: ReportLevelTypes}</span> - The level of severety.</div><div class="argumentDescription">aObject:<span class="unknownType">{*}</span> - The object that sends the report.</div><div class="argumentDescription">aFunctionName:<span class="unknownType">{String}</span> - The name of the function that sends the report.</div><div class="argumentDescription">aData:<span class="unknownType">{*}</span> - The data for the report.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">report</span>(<span class="arguments">aId:<span class="unknownType">{Uint}</span>, aTimeStamp:<span class="unknownType">{Uint}</span>, aType:<span class="unknownType">{enum: ReportTypes}</span>, aLevel:<span class="unknownType">{enum: ReportLevelTypes}</span>, aObject:<span class="unknownType">{*}</span>, aFunctionName:<span class="unknownType">{String}</span>, aData:<span class="unknownType">{*}</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.report = function report(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
+				<div class="descriptionHolder">
+					<div class="description">Reports errors, warning and log messages.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aId:<span class="unknownType">{Uint}</span> - The id for the call.</div><div class="argumentDescription">aTimeStamp:<span class="unknownType">{Uint}</span> - The time stamp for the report.</div><div class="argumentDescription">aType:<span class="unknownType">{enum: ReportTypes}</span> - The type of report.</div><div class="argumentDescription">aLevel:<span class="unknownType">{enum: ReportLevelTypes}</span> - The level of severety.</div><div class="argumentDescription">aObject:<span class="unknownType">{*}</span> - The object that sends the report.</div><div class="argumentDescription">aFunctionName:<span class="unknownType">{String}</span> - The name of the function that sends the report.</div><div class="argumentDescription">aData:<span class="unknownType">{*}</span> - The data for the report.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.report = function report(aId, aTimeStamp, aType, aLevel, aObject, aFunctionName, aData) {
 		switch(aType) {
 			case ReportTypes.ERROR:
 				console.error(aObject, aFunctionName+":", aData);
@@ -185,29 +191,29 @@
 				break;
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">reportError</span>(<span class="arguments">aId:<span class="unknownType">{Uint}</span>, aTimeStamp:<span class="unknownType">{Uint}</span>, aObject:<span class="unknownType">{*}</span>, aFunctionName:<span class="unknownType">{String}</span>, aError:<span class="unknownType">{Error}</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Reports an error catched from a try statement.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aId:<span class="unknownType">{Uint}</span> - The id for the call.</div><div class="argumentDescription">aTimeStamp:<span class="unknownType">{Uint}</span> - The time stamp for the report.</div><div class="argumentDescription">aObject:<span class="unknownType">{*}</span> - The object that sends the report.</div><div class="argumentDescription">aFunctionName:<span class="unknownType">{String}</span> - The name of the function that sends the report.</div><div class="argumentDescription">aError:<span class="unknownType">{Error}</span> - The error that occured.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">reportError</span>(<span class="arguments">aId:<span class="unknownType">{Uint}</span>, aTimeStamp:<span class="unknownType">{Uint}</span>, aObject:<span class="unknownType">{*}</span>, aFunctionName:<span class="unknownType">{String}</span>, aError:<span class="unknownType">{Error}</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
+				<div class="descriptionHolder">
+					<div class="description">Reports an error catched from a try statement.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aId:<span class="unknownType">{Uint}</span> - The id for the call.</div><div class="argumentDescription">aTimeStamp:<span class="unknownType">{Uint}</span> - The time stamp for the report.</div><div class="argumentDescription">aObject:<span class="unknownType">{*}</span> - The object that sends the report.</div><div class="argumentDescription">aFunctionName:<span class="unknownType">{String}</span> - The name of the function that sends the report.</div><div class="argumentDescription">aError:<span class="unknownType">{Error}</span> - The error that occured.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
 		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
 		var errorProperties = new Array();
 		if(aError.fileName) {
@@ -230,15 +236,21 @@
 		
 		console.error(aObject, aFunctionName+":", aError, errorString);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					</div>
 				</section>

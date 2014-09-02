@@ -172,60 +172,100 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">COLOR_REG_EXPS</span><span class="type"></span> = <span class="value">
+		new RegExp("#[0-9a-fA-F]{6}"),
+		new RegExp("#[0-9a-fA-F]{3}"),
+		new RegExp("rgba\\("),
+		new RegExp("rgb\\("),
+		new RegExp("hsla\\("),
+		new RegExp("hsl\\(")
+	</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Regular expressions for color formats.</div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">COLOR_REG_EXP_NAMES</span><span class="type"></span> = <span class="value">
+		"hex",
+		"shortHex",
+		"rgba",
+		"rgb",
+		"hsla",
+		"hsl"
+	</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Names matching the regular expressions for color formats.</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">getColorType</span>(<span class="arguments">aCssString:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the type of format that a color is described in.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCssString:<span class="nativeType">String</span> - The css color string.</div></div>
+				<div class="definition">
+					<span class="functionName">getColorType</span>(<span class="arguments">aCssString:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">String</span> - The name for the format that the color is specified in.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getColorType = function(aCssString) {
+				<div class="descriptionHolder">
+					<div class="description">Gets the type of format that a color is described in.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCssString:<span class="nativeType">String</span> - The css color string.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">String</span> - The name for the format that the color is specified in.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getColorType = function(aCssString) {
 		return RegExpFunctions.matchTextInRegExpArrayWithNames(aCssString, ClassReference.COLOR_REG_EXPS, ClassReference.COLOR_REG_EXP_NAMES);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getPercentageValue</span>(<span class="arguments">aCssString, aMax</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCssString</div><div class="argumentDescription">aMax</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPercentageValue</span>(<span class="arguments">aCssString, aMax</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getPercentageValue = function(aCssString, aMax) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCssString</div><div class="argumentDescription">aMax</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getPercentageValue = function(aCssString, aMax) {
 		
 		aMax = VariableAliases.valueWithDefault(aMax, 0xFF);
 		
@@ -236,29 +276,29 @@
 		}
 		return parseFloat(aCssString)/aMax;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createGradientFromCss</span>(<span class="arguments">aCssString</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCssString</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createGradientFromCss</span>(<span class="arguments">aCssString</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createGradientFromCss = function(aCssString) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCssString</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createGradientFromCss = function(aCssString) {
 		
 		aCssString = ProgrammingLanguageFunctions.getUncommentedCode(aCssString);
 		
@@ -300,29 +340,29 @@
 		
 		return newGradient;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_addColorStopsToGradient</span>(<span class="arguments">aCssStrings, aGradient, aStartPosition, aEndPosition</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCssStrings</div><div class="argumentDescription">aGradient</div><div class="argumentDescription">aStartPosition</div><div class="argumentDescription">aEndPosition</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_addColorStopsToGradient</span>(<span class="arguments">aCssStrings, aGradient, aStartPosition, aEndPosition</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._addColorStopsToGradient = function(aCssStrings, aGradient, aStartPosition, aEndPosition) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCssStrings</div><div class="argumentDescription">aGradient</div><div class="argumentDescription">aStartPosition</div><div class="argumentDescription">aEndPosition</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._addColorStopsToGradient = function(aCssStrings, aGradient, aStartPosition, aEndPosition) {
 		//console.log("com.developedbyme.utils.native.string.CssLanguageFunctions::_addColorStopsToGradient");
 		//console.log(aCssStrings, aGradient, aStartPosition, aEndPosition);
 		
@@ -331,29 +371,29 @@
 			this._addColorStopToGradient(currentArray[i], aGradient, (i-aStartPosition)/(aEndPosition-1));
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_addColorStopToGradient</span>(<span class="arguments">aCssString, aGradient, aDefaultPosition</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCssString</div><div class="argumentDescription">aGradient</div><div class="argumentDescription">aDefaultPosition</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_addColorStopToGradient</span>(<span class="arguments">aCssString, aGradient, aDefaultPosition</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._addColorStopToGradient = function(aCssString, aGradient, aDefaultPosition) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCssString</div><div class="argumentDescription">aGradient</div><div class="argumentDescription">aDefaultPosition</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._addColorStopToGradient = function(aCssString, aGradient, aDefaultPosition) {
 		//console.log("com.developedbyme.utils.native.string.CssLanguageFunctions::_addColorStopToGradient");
 		//console.log(aCssString, aGradient, aDefaultPosition);
 		
@@ -362,11 +402,11 @@
 		
 		aGradient.createColorStopFromCssString(position, dataArray[0]);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

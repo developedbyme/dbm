@@ -168,35 +168,68 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">commentStarters</span><span class="type"></span> = <span class="value">"//", "/*"</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">commentReplace</span><span class="type"></span> = <span class="value">"\n", ""</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">defaultSpearators</span><span class="type"></span> = <span class="value">","</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">getUncommentedCode</span>(<span class="arguments">aCode, aScopeStarts, aScopeEnds, aCommentScopeStarts, aCommentReplace</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCode</div><div class="argumentDescription">aScopeStarts</div><div class="argumentDescription">aScopeEnds</div><div class="argumentDescription">aCommentScopeStarts</div><div class="argumentDescription">aCommentReplace</div></div>
+				<div class="definition">
+					<span class="functionName">getUncommentedCode</span>(<span class="arguments">aCode, aScopeStarts, aScopeEnds, aCommentScopeStarts, aCommentReplace</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getUncommentedCode = function(aCode, aScopeStarts, aScopeEnds, aCommentScopeStarts, aCommentReplace) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCode</div><div class="argumentDescription">aScopeStarts</div><div class="argumentDescription">aScopeEnds</div><div class="argumentDescription">aCommentScopeStarts</div><div class="argumentDescription">aCommentReplace</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getUncommentedCode = function(aCode, aScopeStarts, aScopeEnds, aCommentScopeStarts, aCommentReplace) {
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ScopeFunctions.scopeStarters);
 		aScopeEnds = VariableAliases.valueWithDefault(aScopeEnds, ScopeFunctions.scopeEnders);
@@ -237,29 +270,29 @@
 		
 		return returnText;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_getUncommentedCodeFromScope</span>(<span class="arguments">aCode, aScope, aCommentScopeStarts, aCommentReplace</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aCode</div><div class="argumentDescription">aScope</div><div class="argumentDescription">aCommentScopeStarts</div><div class="argumentDescription">aCommentReplace</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_getUncommentedCodeFromScope</span>(<span class="arguments">aCode, aScope, aCommentScopeStarts, aCommentReplace</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._getUncommentedCodeFromScope = function(aCode, aScope, aCommentScopeStarts, aCommentReplace) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCode</div><div class="argumentDescription">aScope</div><div class="argumentDescription">aCommentScopeStarts</div><div class="argumentDescription">aCommentReplace</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._getUncommentedCodeFromScope = function(aCode, aScope, aCommentScopeStarts, aCommentReplace) {
 		
 		var commentPosition = ArrayFunctions.indexOfInArray(aCommentScopeStarts, aScope.type);
 		
@@ -285,29 +318,29 @@
 		
 		return returnText;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getSeparatedArray</span>(<span class="arguments">aText, aSeparators, aScopeStarts, aScopeEnds</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aSeparators</div><div class="argumentDescription">aScopeStarts</div><div class="argumentDescription">aScopeEnds</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getSeparatedArray</span>(<span class="arguments">aText, aSeparators, aScopeStarts, aScopeEnds</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getSeparatedArray = function(aText, aSeparators, aScopeStarts, aScopeEnds) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aText</div><div class="argumentDescription">aSeparators</div><div class="argumentDescription">aScopeStarts</div><div class="argumentDescription">aScopeEnds</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getSeparatedArray = function(aText, aSeparators, aScopeStarts, aScopeEnds) {
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ScopeFunctions.scopeStarters);
 		aScopeEnds = VariableAliases.valueWithDefault(aScopeEnds, ScopeFunctions.scopeEnders);
@@ -355,11 +388,11 @@
 		
 		return returnArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

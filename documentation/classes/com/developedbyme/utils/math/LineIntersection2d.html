@@ -293,87 +293,93 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.init = function() {
 		//console.log("com.developedbyme.utils.math.LineIntersection2d::_init");
 		
 		this._setAsNullResult();
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_setAsNullResult</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets the result to null</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_setAsNullResult</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._setAsNullResult = function() {
+				<div class="descriptionHolder">
+					<div class="description">Sets the result to null</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._setAsNullResult = function() {
 		this.x = NaN;
 		this.y = NaN;
 		this.parameter1 = NaN;
 		this.parameter2 = NaN;
 		this.theResult = false;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">findLineIntersection</span>(<span class="arguments">aPoint1, aVector1, aPoint2, aVector2</span>)<span class="returnValue">:<span class="unknownType">If the operation was successful.</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Finds the intersection using two points and two vectors.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aPoint1 - A point on the first line.</div><div class="argumentDescription">aVector1 - The vector that represents the first line.</div><div class="argumentDescription">aPoint2 - A point of the second line.</div><div class="argumentDescription">aVector2 - The vector that represents the second line.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">findLineIntersection</span>(<span class="arguments">aPoint1, aVector1, aPoint2, aVector2</span>)<span class="returnValue">:<span class="unknownType">If the operation was successful.</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">If the operation was successful.</span> - If the operation was successful.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.findLineIntersection = function(aPoint1, aVector1, aPoint2, aVector2) {
+				<div class="descriptionHolder">
+					<div class="description">Finds the intersection using two points and two vectors.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPoint1 - A point on the first line.</div><div class="argumentDescription">aVector1 - The vector that represents the first line.</div><div class="argumentDescription">aPoint2 - A point of the second line.</div><div class="argumentDescription">aVector2 - The vector that represents the second line.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">If the operation was successful.</span> - If the operation was successful.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.findLineIntersection = function(aPoint1, aVector1, aPoint2, aVector2) {
 		//console.log("com.developedbyme.utils.math.LineIntersection::findLineIntersection");
 		//console.log(aPoint1, aVector1, aPoint2, aVector2);
 		
@@ -435,35 +441,90 @@
 		}
 		return true;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">QUALIFY_TYPE_ALL</span><span class="type"></span> = <span class="value">all</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">QUALIFY_TYPE_ALL_AND_NULL_RESULTS</span><span class="type"></span> = <span class="value">allAndNullResults</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">QUALIFY_TYPE_ON_LINE</span><span class="type"></span> = <span class="value">onLine</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">QUALIFY_TYPE_ON_POINT_SET</span><span class="type"></span> = <span class="value">onPointSet</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">QUALIFY_TYPE_ON_ALL</span><span class="type"></span> = <span class="value">onAll</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">_tempLineIntersection</span><span class="type"></span> = <span class="value">null</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">_tempVector</span><span class="type"></span> = <span class="value">null</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">findLineIntersectionsWithPointSet</span>(<span class="arguments">aLinePoint, aLineVector, aPointSet, aIsRound, aType, aReturnArray</span>)<span class="returnValue">:<span class="unknownType">The filled aReturnArray (new array if null was passed).</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Finds all the collisions between a line and a point set.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aLinePoint - The start point of the line.</div><div class="argumentDescription">aLineVector - The vector for the line.</div><div class="argumentDescription">aPointSet - The pointset to test against.</div><div class="argumentDescription">aIsRound</div><div class="argumentDescription">aType - The to to qualify the hits.</div><div class="argumentDescription">aReturnArray - The array to fill with the results.</div></div>
+				<div class="definition">
+					<span class="functionName">findLineIntersectionsWithPointSet</span>(<span class="arguments">aLinePoint, aLineVector, aPointSet, aIsRound, aType, aReturnArray</span>)<span class="returnValue">:<span class="unknownType">The filled aReturnArray (new array if null was passed).</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">The filled aReturnArray (new array if null was passed).</span> - The filled aReturnArray (new array if null was passed).</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.findLineIntersectionsWithPointSet = function(aLinePoint, aLineVector, aPointSet, aIsRound, aType, aReturnArray) {
+				<div class="descriptionHolder">
+					<div class="description">Finds all the collisions between a line and a point set.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aLinePoint - The start point of the line.</div><div class="argumentDescription">aLineVector - The vector for the line.</div><div class="argumentDescription">aPointSet - The pointset to test against.</div><div class="argumentDescription">aIsRound</div><div class="argumentDescription">aType - The to to qualify the hits.</div><div class="argumentDescription">aReturnArray - The array to fill with the results.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">The filled aReturnArray (new array if null was passed).</span> - The filled aReturnArray (new array if null was passed).</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.findLineIntersectionsWithPointSet = function(aLinePoint, aLineVector, aPointSet, aIsRound, aType, aReturnArray) {
 		//console.log("findLineIntersectionsWithPointSet");
 		if(aType === undefined) {
 			aType = ClassReference.QUALIFY_TYPE_ON_POINT_SET;
@@ -514,29 +575,29 @@
 		}
 		return aReturnArray;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">findClosestParameterToPoint</span>(<span class="arguments">aLinePoint, aLineVector, aPoint</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Finds the parameter where a line is closest to a point.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aLinePoint</div><div class="argumentDescription">aLineVector</div><div class="argumentDescription">aPoint</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">findClosestParameterToPoint</span>(<span class="arguments">aLinePoint, aLineVector, aPoint</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.findClosestParameterToPoint = function(aLinePoint, aLineVector, aPoint) {
+				<div class="descriptionHolder">
+					<div class="description">Finds the parameter where a line is closest to a point.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aLinePoint</div><div class="argumentDescription">aLineVector</div><div class="argumentDescription">aPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.findClosestParameterToPoint = function(aLinePoint, aLineVector, aPoint) {
 		
 		var tempLineIntersection = ClassReference.getTempLineIntersection();
 		var tempVector = ClassReference.getTempVector();
@@ -548,29 +609,29 @@
 		
 		return tempLineIntersection.parameter1;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">findClosestParameterToPointInRange</span>(<span class="arguments">aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Finds the parameter where a line is closest to a point in a range.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aLinePoint</div><div class="argumentDescription">aLineVector</div><div class="argumentDescription">aPoint</div><div class="argumentDescription">aMinAngle</div><div class="argumentDescription">aMaxAngle</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">findClosestParameterToPointInRange</span>(<span class="arguments">aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.findClosestParameterToPointInRange = function(aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle) {
+				<div class="descriptionHolder">
+					<div class="description">Finds the parameter where a line is closest to a point in a range.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aLinePoint</div><div class="argumentDescription">aLineVector</div><div class="argumentDescription">aPoint</div><div class="argumentDescription">aMinAngle</div><div class="argumentDescription">aMaxAngle</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.findClosestParameterToPointInRange = function(aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle) {
 		//console.log("com.developedbyme.utils.math.LineIntersection2d::findClosestParameterToPointInRange");
 		
 		var tempLineIntersection = ClassReference.getTempLineIntersection();
@@ -616,67 +677,67 @@
 		
 		return returnParameter;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getTempLineIntersection</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getTempLineIntersection</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getTempLineIntersection = function() {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getTempLineIntersection = function() {
 		if(ClassReference._tempLineIntersection === null) {
 			ClassReference._tempLineIntersection = (new LineIntersection2d()).init();
 		}
 		return ClassReference._tempLineIntersection;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getTempVector</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getTempVector</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.getTempVector = function() {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.getTempVector = function() {
 		if(ClassReference._tempVector === null) {
 			ClassReference._tempVector = Point.create();
 		}
 		return ClassReference._tempVector;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

@@ -139,29 +139,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.canvas.CanvasRenderLayer2d::_init");
 		
 		this.superCall();
@@ -176,29 +182,29 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_drawGraphicsAndChildren</span>(<span class="arguments">aContext, aNumberOfLinksToResolve</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Draws the graphics and children of this layer.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aContext - The canvas context to draw on.</div><div class="argumentDescription">aNumberOfLinksToResolve - The number of links to use before recursion stops.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_drawGraphicsAndChildren</span>(<span class="arguments">aContext, aNumberOfLinksToResolve</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._drawGraphicsAndChildren = function(aContext, aNumberOfLinksToResolve) {
+				<div class="descriptionHolder">
+					<div class="description">Draws the graphics and children of this layer.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aContext - The canvas context to draw on.</div><div class="argumentDescription">aNumberOfLinksToResolve - The number of links to use before recursion stops.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._drawGraphicsAndChildren = function(aContext, aNumberOfLinksToResolve) {
 		
 		var renderCanvas = this._renderCanvas.getValue();
 		var renderWidth = this._renderWidth.getValue();
@@ -220,29 +226,29 @@
 		
 		aContext.drawImage(renderCanvas, 0, 0, renderWidth, renderHeight, renderOffsetX, renderOffsetY, renderWidth, renderHeight);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets all the references to null. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAllReferencesToNull = function() {
+				<div class="descriptionHolder">
+					<div class="description">Sets all the references to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._renderCanvas = null;
 		this._renderWidth = null;
@@ -252,35 +258,41 @@
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments">aOffsetX:<span class="nativeType">Number</span>, aOffsetY:<span class="nativeType">Number</span>, aWidth:<span class="nativeType">Number</span>, aHeight:<span class="nativeType">Number</span>, aCanvas</span>)<span class="returnValue">:<a title="com.developedbyme.utils.canvas.CanvasRenderLayer2d" href="CanvasRenderLayer2d.html">CanvasRenderLayer2d</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new instance of this class.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aOffsetX:<span class="nativeType">Number</span> - The number of pixels to x offset the rendered result. (optional)</div><div class="argumentDescription">aOffsetY:<span class="nativeType">Number</span> - The number of pixels to y offset the rendered result. (optional)</div><div class="argumentDescription">aWidth:<span class="nativeType">Number</span> - The width (in pixels) to render. (optional)</div><div class="argumentDescription">aHeight:<span class="nativeType">Number</span> - The height (in pixels) to render. (optional)</div><div class="argumentDescription">aCanvas - The canvas to render on. (optional)</div></div>
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aOffsetX:<span class="nativeType">Number</span>, aOffsetY:<span class="nativeType">Number</span>, aWidth:<span class="nativeType">Number</span>, aHeight:<span class="nativeType">Number</span>, aCanvas</span>)<span class="returnValue">:<a title="com.developedbyme.utils.canvas.CanvasRenderLayer2d" href="CanvasRenderLayer2d.html">CanvasRenderLayer2d</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.utils.canvas.CanvasRenderLayer2d" href="CanvasRenderLayer2d.html">CanvasRenderLayer2d</a> - The newly created instance.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.create = function(aOffsetX, aOffsetY, aWidth, aHeight, aCanvas) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new instance of this class.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aOffsetX:<span class="nativeType">Number</span> - The number of pixels to x offset the rendered result. (optional)</div><div class="argumentDescription">aOffsetY:<span class="nativeType">Number</span> - The number of pixels to y offset the rendered result. (optional)</div><div class="argumentDescription">aWidth:<span class="nativeType">Number</span> - The width (in pixels) to render. (optional)</div><div class="argumentDescription">aHeight:<span class="nativeType">Number</span> - The height (in pixels) to render. (optional)</div><div class="argumentDescription">aCanvas - The canvas to render on. (optional)</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.canvas.CanvasRenderLayer2d" href="CanvasRenderLayer2d.html">CanvasRenderLayer2d</a> - The newly created instance.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aOffsetX, aOffsetY, aWidth, aHeight, aCanvas) {
 		var newCanvasRenderLayer2d = (new ClassReference()).init();
 		
 		newCanvasRenderLayer2d.setPropertyInputWithoutNull("renderOffsetX", aOffsetX);
@@ -291,11 +303,11 @@
 		
 		return newCanvasRenderLayer2d;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

@@ -266,29 +266,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator::_init");
 		
 		this.superCall();
@@ -297,29 +303,29 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setDocument</span>(<span class="arguments">aDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets the document to use for creating new nodes.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a> - The document.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setDocument</span>(<span class="arguments">aDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setDocument = function(aDocument) {
+				<div class="descriptionHolder">
+					<div class="description">Sets the document to use for creating new nodes.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a> - The document.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setDocument = function(aDocument) {
 		//console.log("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator::setDocument");
 		
 		this.ownerDocument = aDocument;
@@ -327,83 +333,83 @@
 		return this;
 		
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAttributesToNode</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets attribute to a node.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The element to set the attributes on.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - Accosiative array with names and values of all attributes to set.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAttributesToNode</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAttributesToNode = function(aElement, aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description">Sets attribute to a node.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The element to set the attributes on.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - Accosiative array with names and values of all attributes to set.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAttributesToNode = function(aElement, aAttributes) {
 		if(aAttributes !== null) {
 			for(var objectName in aAttributes) {
 				aElement.setAttribute(objectName, aAttributes[objectName]);
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createText</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="unknownType">Native&lt;Text&gt;</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a text node.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text for the new text node.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createText</span>(<span class="arguments">aText:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="unknownType">Native&lt;Text&gt;</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Native&lt;Text&gt;</span> - The newly created text node.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createText = function(aText) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a text node.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aText:<span class="nativeType">String</span> - The text for the new text node.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Native&lt;Text&gt;</span> - The newly created text node.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createText = function(aText) {
 		return this.ownerDocument.createTextNode(aText);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createNode</span>(<span class="arguments">aTagName:<span class="nativeType">String</span>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a HTML element.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aTagName:<span class="nativeType">String</span> - The name/type for the element.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attributes to add to the element.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createNode</span>(<span class="arguments">aTagName:<span class="nativeType">String</span>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createNode = function(aTagName, aAttributes /*, ... aChilds */) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a HTML element.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTagName:<span class="nativeType">String</span> - The name/type for the element.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attributes to add to the element.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createNode = function(aTagName, aAttributes /*, ... aChilds */) {
 		var newElement = this.ownerDocument.createElement(aTagName);
 		this.setAttributesToNode(newElement, aAttributes);
 		var currentArray = arguments;
@@ -420,29 +426,29 @@
 		
 		return newElement;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createDiv</span>(<span class="arguments">aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aAttributes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createDiv</span>(<span class="arguments">aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createDiv = function(aAttributes /*, ... childs */) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createDiv = function(aAttributes /*, ... childs */) {
 		var newElement = this.ownerDocument.createElement("div");
 		this.setAttributesToNode(newElement, aAttributes);
 		var currentArray = arguments;
@@ -459,57 +465,57 @@
 		
 		return newElement;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createImage</span>(<span class="arguments">aSrc, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aSrc</div><div class="argumentDescription">aAttributes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createImage</span>(<span class="arguments">aSrc, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createImage = function(aSrc, aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aSrc</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createImage = function(aSrc, aAttributes) {
 		var newElement = this.ownerDocument.createElement("img");
 		newElement.src = aSrc;
 		this.setAttributesToNode(newElement, aAttributes);
 		return newElement;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createLink</span>(<span class="arguments">aHref, aTarget, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aHref</div><div class="argumentDescription">aTarget</div><div class="argumentDescription">aAttributes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createLink</span>(<span class="arguments">aHref, aTarget, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createLink = function(aHref, aTarget, aAttributes /*, ... childs */) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aHref</div><div class="argumentDescription">aTarget</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createLink = function(aHref, aTarget, aAttributes /*, ... childs */) {
 		var newElement = this.ownerDocument.createElement("a");
 		newElement.href = aHref;
 		if(aTarget !== null) {
@@ -532,29 +538,29 @@
 		}
 		return newElement;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createForm</span>(<span class="arguments">aAction, aMethod, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aAction</div><div class="argumentDescription">aMethod</div><div class="argumentDescription">aAttributes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createForm</span>(<span class="arguments">aAction, aMethod, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createForm = function(aAction, aMethod, aAttributes /*, ... childs */) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aAction</div><div class="argumentDescription">aMethod</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createForm = function(aAction, aMethod, aAttributes /*, ... childs */) {
 		var newElement = this.ownerDocument.createElement("form");
 		newElement.action = aAction;
 		newElement.method = aMethod;
@@ -572,29 +578,29 @@
 		}
 		return newElement;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createInput</span>(<span class="arguments">aName, aType, aValue, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aType</div><div class="argumentDescription">aValue</div><div class="argumentDescription">aAttributes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createInput</span>(<span class="arguments">aName, aType, aValue, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createInput = function(aName, aType, aValue, aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aType</div><div class="argumentDescription">aValue</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createInput = function(aName, aType, aValue, aAttributes) {
 		var newElement = this.ownerDocument.createElement("input");
 		newElement.type = aType;
 		newElement.name = aName;
@@ -602,29 +608,29 @@
 		this.setAttributesToNode(newElement, aAttributes);
 		return newElement;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createSelect</span>(<span class="arguments">aName, aValues, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValues</div><div class="argumentDescription">aAttributes</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createSelect</span>(<span class="arguments">aName, aValues, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createSelect = function(aName, aValues, aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValues</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createSelect = function(aName, aValues, aAttributes) {
 		var newElement = this.ownerDocument.createElement("select");
 		newElement.name = aName;
 		
@@ -652,29 +658,29 @@
 		this.setAttributesToNode(newElement, aAttributes);
 		return newElement;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createFromTemplate</span>(<span class="arguments">aHtmlString, aFragment</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aHtmlString</div><div class="argumentDescription">aFragment</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createFromTemplate</span>(<span class="arguments">aHtmlString, aFragment</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createFromTemplate = function(aHtmlString, aFragment) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aHtmlString</div><div class="argumentDescription">aFragment</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createFromTemplate = function(aHtmlString, aFragment) {
 		var newElement = this.ownerDocument.createElement("div");
 		newElement.innerHTML = aHtmlString;
 		var documentFragment;
@@ -693,44 +699,50 @@
 		
 		return documentFragment;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments">aDocument</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aDocument</div></div>
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aDocument</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.create = function(aDocument) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aDocument</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aDocument) {
 		
 		return (new HtmlCreator()).init().setDocument(aDocument);
 		
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

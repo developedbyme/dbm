@@ -105,35 +105,47 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">reevaluationOrStaticValue</span>(<span class="arguments">aValue:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a static reevaluation if the value isn't already an reevaluator.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aValue:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span> - The value to return a reevaluation object for.</div></div>
+				<div class="definition">
+					<span class="functionName">reevaluationOrStaticValue</span>(<span class="arguments">aValue:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> - The new (or passed) reevalution object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.reevaluationOrStaticValue = function(aValue) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a static reevaluation if the value isn't already an reevaluator.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span> - The value to return a reevaluation object for.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> - The new (or passed) reevalution object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.reevaluationOrStaticValue = function(aValue) {
 		//console.log("com.developedbyme.utils.reevaluation.ReevaluationCreator::reevaluationOrStaticValue");
 		
 		if(aValue instanceof ReevaluationBaseObject) {
@@ -143,29 +155,29 @@
 			return StaticVariableObject.createReevaluationObject(aValue);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">arrayReevaluationOrStaticValue</span>(<span class="arguments">aValue:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates an array reevaluation if the value isn't already an reevaluator.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aValue:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span> - The value to return a reevaluation object for.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">arrayReevaluationOrStaticValue</span>(<span class="arguments">aValue:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> - The new (or passed) reevalution object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.arrayReevaluationOrStaticValue = function(aValue) {
+				<div class="descriptionHolder">
+					<div class="description">Creates an array reevaluation if the value isn't already an reevaluator.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span> - The value to return a reevaluation object for.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="ReevaluationBaseObject.html">ReevaluationBaseObject</a> - The new (or passed) reevalution object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.arrayReevaluationOrStaticValue = function(aValue) {
 		//console.log("com.developedbyme.utils.reevaluation.ReevaluationCreator::arrayReevaluationOrStaticValue");
 		
 		if(aValue instanceof ReevaluationBaseObject) {
@@ -190,11 +202,11 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

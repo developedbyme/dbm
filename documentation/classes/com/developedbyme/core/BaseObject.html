@@ -485,29 +485,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Consructor</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Consructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.BaseObject::_init");
 		
 		this._isDestroyed = false;
@@ -520,56 +526,56 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_initSeal</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Seals the object as part of the init function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_initSeal</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._initSeal = function() {
+				<div class="descriptionHolder">
+					<div class="description">Seals the object as part of the init function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._initSeal = function() {
 		if(Object.seal !== undefined) {
 			Object.seal(this);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Public constructor</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Public constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.init = function() {
 		//console.log("com.developedbyme.core.BaseObject::init");
 		
 		this._init();
@@ -577,29 +583,29 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addDestroyableObject</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds an object that should be destroyed when this object is destroyed.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that should be owned by this object.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addDestroyableObject</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that is passed in.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.addDestroyableObject = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description">Adds an object that should be destroyed when this object is destroyed.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that should be owned by this object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that is passed in.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addDestroyableObject = function(aObject) {
 		//console.log("com.developedbyme.core.BaseObject::addDestroyableObject");
 		
 		if(!(aObject instanceof BaseObject)) {
@@ -614,29 +620,29 @@
 		
 		return aObject;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeDestroyableObject</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Removes an object that has been previously been marked for deletion with this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that should no longer be owned by this object.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeDestroyableObject</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that is passed in.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.removeDestroyableObject = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description">Removes an object that has been previously been marked for deletion with this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that should no longer be owned by this object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that is passed in.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeDestroyableObject = function(aObject) {
 		if(this._destroyableObjects !== null) {
 			var objectIndex = ArrayFunctions.indexOfInArray(this._destroyableObjects, aObject);
 			if(objectIndex !== -1) {
@@ -652,57 +658,57 @@
 		
 		return aObject;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getDestroyableObjectsArray</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Array&lt;BaseObject&gt;</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the array of destroyable objects.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getDestroyableObjectsArray</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Array&lt;BaseObject&gt;</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Array&lt;BaseObject&gt;</span> - The array of objects that are marked for destruction.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getDestroyableObjectsArray = function() {
+				<div class="descriptionHolder">
+					<div class="description">Gets the array of destroyable objects.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Array&lt;BaseObject&gt;</span> - The array of objects that are marked for destruction.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getDestroyableObjectsArray = function() {
 		if(this._destroyableObjects === null) {
 			this._destroyableObjects = new Array();
 		}
 		return this._destroyableObjects;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aData:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds a dynamic meta data to this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the data.</div><div class="argumentDescription">aData:<span class="nativeType">*</span> - The data to store.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aData:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">*</span> - The data that is passed in.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setDynamicVariable = function(aName, aData) {
+				<div class="descriptionHolder">
+					<div class="description">Adds a dynamic meta data to this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the data.</div><div class="argumentDescription">aData:<span class="nativeType">*</span> - The data to store.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The data that is passed in.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setDynamicVariable = function(aName, aData) {
 		if(this._dynamicVariables === null) {
 			this._dynamicVariables = ClassReference._createObject();
 		}
@@ -710,111 +716,111 @@
 		
 		return aData;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Removes a dynamic meta data from this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the data.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.removeDynamicVariable = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description">Removes a dynamic meta data from this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the data.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeDynamicVariable = function(aName) {
 		if(this._dynamicVariables === null) return;
 		delete this._dynamicVariables[aName];
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets a dynamic meta data from this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the data.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">*</span> - The stored data that corresponds to the name. Null if not found.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getDynamicVariable = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description">Gets a dynamic meta data from this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the data.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The stored data that corresponds to the name. Null if not found.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getDynamicVariable = function(aName) {
 		if(this._dynamicVariables === null || this._dynamicVariables[aName] === undefined) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getDynamicVariable", "Object " + this + " doesn't have dynamic variable " + aName + ".");
 			return null;
 		}
 		return this._dynamicVariables[aName];
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">hasDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Checks if this object has a dynamic meta data</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the data.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">hasDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if it exists.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.hasDynamicVariable = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description">Checks if this object has a dynamic meta data</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the data.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if it exists.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.hasDynamicVariable = function(aName) {
 		return (this._dynamicVariables !== null &amp;&amp; this._dynamicVariables[aName] !== undefined);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">superCall</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Function that calls the super function of the function that called this function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">superCall</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">*</span> - The return value of the super function.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.superCall = function() {
+				<div class="descriptionHolder">
+					<div class="description">Function that calls the super function of the function that called this function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The return value of the super function.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.superCall = function() {
 		//console.log("com.developedbyme.core.BaseObject::superCall");
 		
 		var callerFunction = arguments.callee.caller;
@@ -828,55 +834,55 @@
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "superCall", "Function " + callerFunction + " doesn't have a super function.");
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">isDestroyed</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Checks if the object is destroyed.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">isDestroyed</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if the object is destroyed.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.isDestroyed = function() {
+				<div class="descriptionHolder">
+					<div class="description">Checks if the object is destroyed.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if the object is destroyed.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.isDestroyed = function() {
 		//console.log("com.developedbyme.core.BaseObject::isDestroyed");
 		return this._isDestroyed;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">destroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Destroys the object</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">destroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.destroy = function() {
+				<div class="descriptionHolder">
+					<div class="description">Destroys the object</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.destroy = function() {
 		//console.log("com.developedbyme.core.BaseObject::destroy");
 		//console.log(this.toString());
 		this._isDestroyed = true;
@@ -903,109 +909,109 @@
 			ErrorManager.getInstance().reportError(this, "destroy", theError);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Performs the destruction of all the properties in the object. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.performDestroy = function() {
+				<div class="descriptionHolder">
+					<div class="description">Performs the destruction of all the properties in the object. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.performDestroy = function() {
 		//this._setFunctionSavedThis(null); MENOTE: not implemented yet
 		ClassReference.softDestroyArrayIfExists(this._destroyableObjects);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAllReferencesToNull = function() {
+				<div class="descriptionHolder">
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		ClassReference._reuseArray(this._destroyableObjects);
 		this._destroyableObjects = null;
 		
 		ClassReference._reuseObject(this._dynamicVariables);
 		this._dynamicVariables = null;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName - The name of the variable.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if this object is the owner of a variable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+				<div class="descriptionHolder">
+					<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName - The name of the variable.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if this object is the owner of a variable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		return true;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">toString</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Override of native function toString.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">toString</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">String</span> - Information about this object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.toString = function() {
+				<div class="descriptionHolder">
+					<div class="description">Override of native function toString.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">String</span> - Information about this object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.toString = function() {
 		var attributesArray = new Array();
 		this._toString_getAttributes(attributesArray);
 		var attributesString = "";
@@ -1015,60 +1021,66 @@
 		var destroyedString = (this._isDestroyed) ? "*** Destroyed *** " : "";
 		return "[" + destroyedString + this.__className + attributesString + "]";
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the parameters for this class. Part of the toString function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with the parameters description.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
+				<div class="descriptionHolder">
+					<div class="description">Gets the parameters for this class. Part of the toString function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with the parameters description.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._toString_getAttributes = function(aReturnArray) {
 		//MENOTE: should be overridden
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">softDestroyIfExists</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Releases an object from this ownership and detroys the object if it doesn't have any other retains.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject - The object to release/destroy.</div></div>
+				<div class="definition">
+					<span class="functionName">softDestroyIfExists</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.softDestroyIfExists = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description">Releases an object from this ownership and detroys the object if it doesn't have any other retains.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject - The object to release/destroy.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.softDestroyIfExists = function(aObject) {
 		if(aObject !== null) {
 			if(aObject.releaseAndDestroy !== undefined) {
 				aObject.releaseAndDestroy();
@@ -1078,83 +1090,83 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">destroyIfExists</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Destroys an object if it exists.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object to destroy or null/undefined.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">destroyIfExists</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.destroyIfExists = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description">Destroys an object if it exists.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object to destroy or null/undefined.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.destroyIfExists = function(aObject) {
 		if(aObject !== null &amp;&amp; aObject !== undefined) {
 			aObject.destroy();
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">releaseAndDestroyIfExists</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Releases a retainable object and destroys if it doesn't have any other retainers.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject - The object to release or null/undefined.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">releaseAndDestroyIfExists</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.releaseAndDestroyIfExists = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description">Releases a retainable object and destroys if it doesn't have any other retainers.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject - The object to release or null/undefined.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.releaseAndDestroyIfExists = function(aObject) {
 		if(aObject !== null &amp;&amp; aObject !== undefined) {
 			aObject.releaseAndDestroy();
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">softDestroyArrayIfExists</span>(<span class="arguments">aArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Goes through an array and soft destroys every object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array of objects to soft destroy.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">softDestroyArrayIfExists</span>(<span class="arguments">aArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.softDestroyArrayIfExists = function(aArray) {
+				<div class="descriptionHolder">
+					<div class="description">Goes through an array and soft destroys every object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array of objects to soft destroy.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.softDestroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
@@ -1165,29 +1177,29 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">destroyArrayIfExists</span>(<span class="arguments">aArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Goes through an array and destroys every object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array of objects to destroy.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">destroyArrayIfExists</span>(<span class="arguments">aArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.destroyArrayIfExists = function(aArray) {
+				<div class="descriptionHolder">
+					<div class="description">Goes through an array and destroys every object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array of objects to destroy.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.destroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
@@ -1200,29 +1212,29 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">releaseAndDestroyArrayIfExists</span>(<span class="arguments">aArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Goes through an array and releases every object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array of objects to release and destroy.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">releaseAndDestroyArrayIfExists</span>(<span class="arguments">aArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.releaseAndDestroyArrayIfExists = function(aArray) {
+				<div class="descriptionHolder">
+					<div class="description">Goes through an array and releases every object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array of objects to release and destroy.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.releaseAndDestroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
 			var currentArrayLength = currentArray.length;
@@ -1235,30 +1247,30 @@
 			}
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_createAndInitClass</span>(<span class="arguments">aClass:<span class="nativeType">Function</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates an instance of a class and calls the init function.
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_createAndInitClass</span>(<span class="arguments">aClass:<span class="nativeType">Function</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates an instance of a class and calls the init function.
 Object pool is used if it is set up for the class.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aClass:<span class="nativeType">Function</span> - The constructor function.</div></div>
-				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">*</span> - The newly created object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._createAndInitClass = function(aClass) {
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aClass:<span class="nativeType">Function</span> - The constructor function.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._createAndInitClass = function(aClass) {
 		//console.log("com.developedbyme.core.BaseObject::_createAndInitClass");
 		//console.log(aClass);
 		if(aClass.__objectPool) {
@@ -1268,121 +1280,121 @@ Object pool is used if it is set up for the class.</div>
 		newClass.init();
 		return newClass;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_createArray</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Array</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new array or reusing one if object pool is used.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_createArray</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Array</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">Array</span> - An empty array.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._createArray = function() {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new array or reusing one if object pool is used.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Array</span> - An empty array.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._createArray = function() {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			return dbm.singletons.dbmObjectPoolManager.createArray();
 		}
 		return new Array();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_createObject</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Object</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new object or reusing one if object pool is used.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_createObject</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Object</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">Object</span> - An empty object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._createObject = function() {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object or reusing one if object pool is used.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Object</span> - An empty object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._createObject = function() {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			return dbm.singletons.dbmObjectPoolManager.createObject();
 		}
 		return new Object();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_reuseArray</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Marks an array to be reused by the object pool.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray - The array to reuse.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_reuseArray</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._reuseArray = function(aArray) {
+				<div class="descriptionHolder">
+					<div class="description">Marks an array to be reused by the object pool.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aArray - The array to reuse.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._reuseArray = function(aArray) {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			dbm.singletons.dbmObjectPoolManager.reuseArray(aArray);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_reuseObject</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Marks an object to be reused by the object pool.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject - The object to reuse.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_reuseObject</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._reuseObject = function(aObject) {
+				<div class="descriptionHolder">
+					<div class="description">Marks an object to be reused by the object pool.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject - The object to reuse.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._reuseObject = function(aObject) {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			dbm.singletons.dbmObjectPoolManager.reuseObject(aObject);
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

@@ -152,35 +152,144 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
-					<h2>Local functions</h2>
-					<div class="localFunctions">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
 						
 					</div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">createXmlLoader</span><span class="type"></span> = <span class="value">(function() {
+		var returnLoader;
+		
+		if (window.XMLHttpRequest) {
+			//console.log("standard");
+			returnLoader = new XMLHttpRequest();
+		}
+		else {// for IE 5/6
+			//console.log("ie");
+			returnLoader = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		return returnLoader;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">loadXmlFile</span><span class="type"></span> = <span class="value">(function(aPath) {
+		var xmlLoader = ClassReference.createXmlLoader();
+		
+		var returnDocument = null;
+		
+		try {
+			xmlLoader.open("GET", aPath, false);
+			xmlLoader.send();
+			//returnDocument = xmlLoader.responseXML; //MENOTE: ie9 doesn't like this
+			returnDocument = ClassReference.createXmlFromString(xmlLoader.responseText);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().reportError("[XmlCreator]", "loadXmlFile", theError);
+			return null;
+		}
+		
+		return returnDocument;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">loadXmlFileWithPost</span><span class="type"></span> = <span class="value">(function(aPath, aParameters) {
+		var xmlLoader = ClassReference.createXmlLoader();
+		
+		var returnDocument = null;
+		
+		try {
+			xmlLoader.open("POST", aPath, false);
+			xmlLoader.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlLoader.setRequestHeader("Content-length", aParameters.length);
+			xmlLoader.setRequestHeader("Connection", "close");
+			xmlLoader.send(aParameters);
+			//console.log(xmlLoader);
+			//returnDocument = xmlLoader.responseXML; //MENOTE: ie9 doesn't like this
+			returnDocument = ClassReference.createXmlFromString(xmlLoader.responseText);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().reportError("[XmlCreator]", "loadXmlFileWithPost", theError);
+			return null;
+		}
+		
+		return returnDocument;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">createEmptyXml</span><span class="type"></span> = <span class="value">(function() {
+		//console.log("com.developedbyme.utils.xml.XmlCreator::createEmptyXml");
+		var returnDocument;
+		if (dbm.getWindow() !== null &amp;&amp; dbm.getWindow().DOMParser) {
+			//console.log("standard");
+			var parser = new DOMParser();
+			returnDocument = parser.parseFromString("&lt;temp /&gt;", "text/xml");
+			returnDocument.removeChild(returnDocument.firstChild);
+		}
+		else {// Internet Explorer
+			//console.log("ie");
+			returnDocument = new ActiveXObject("Microsoft.XMLDOM");
+			returnDocument.async = "false";
+			returnDocument.loadXML("&lt;temp /&gt;");
+			returnDocument.removeChild(returnDocument.firstChild);
+		}
+		
+		return returnDocument;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">createXmlFromString</span>(<span class="arguments">aText</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aText</div></div>
+				<div class="definition">
+					<span class="functionName">createXmlFromString</span>(<span class="arguments">aText</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createXmlFromString = function(aText) {
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aText</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createXmlFromString = function(aText) {
 		var returnDocument;
 		if (dbm.getWindow() !== null &amp;&amp; dbm.getWindow().DOMParser) {
 			//console.log("standard");
@@ -196,29 +305,29 @@
 		
 		return returnDocument;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createStringFromXml</span>(<span class="arguments">aNode</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description"></div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aNode</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createStringFromXml</span>(<span class="arguments">aNode</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createStringFromXml = function(aNode){
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNode</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createStringFromXml = function(aNode){
 		if(window.XMLSerializer) {
 			//console.log("standard");
 			var serializer = new XMLSerializer();
@@ -229,11 +338,11 @@
 			return aNode.xml;
 		}
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">

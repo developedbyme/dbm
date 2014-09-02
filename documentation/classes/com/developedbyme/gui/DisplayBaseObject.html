@@ -496,29 +496,35 @@
 						</div>
 					</div>
 				</div>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Local functions</h2>
-					<div class="localFunctions">
+					<div class="localFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Constructor</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._init = function() {
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::_init");
 		
 		this.superCall();
@@ -535,54 +541,54 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">_updateDisplayFlow</span>(<span class="arguments">aFlowUpdateNumber:<span class="nativeType">Number</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Function that should be overriden when a function needs to be called to update the display of this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aFlowUpdateNumber:<span class="nativeType">Number</span> - The integer to keep track of flow updates.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_updateDisplayFlow</span>(<span class="arguments">aFlowUpdateNumber:<span class="nativeType">Number</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
+				<div class="descriptionHolder">
+					<div class="description">Function that should be overriden when a function needs to be called to update the display of this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aFlowUpdateNumber:<span class="nativeType">Number</span> - The integer to keep track of flow updates.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
 		//MENOTE: should be overridden
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setElement</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets the view (Element) for this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for this object.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElement</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setElement = function(aElement) {
+				<div class="descriptionHolder">
+					<div class="description">Sets the view (Element) for this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for this object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElement = function(aElement) {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::setElement");
 		if(aElement === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setElement", "Trying to set element to null. Use removeElement() to remove element.");
@@ -607,29 +613,29 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeElement</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Removes the view for this object</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeElement</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.removeElement = function() {
+				<div class="descriptionHolder">
+					<div class="description">Removes the view for this object</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeElement = function() {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::removeElement");
 		
 		var currentElement = this.getElement();
@@ -646,83 +652,83 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getElement</span>(<span class="arguments"></span>)<span class="returnValue">:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the view for this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getElement</span>(<span class="arguments"></span>)<span class="returnValue">:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for this object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getElement = function() {
+				<div class="descriptionHolder">
+					<div class="description">Gets the view for this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for this object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getElement = function() {
 		return this._element.getValue();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setElementAsPositioned</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds properties x and y to control the css for left and top.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElementAsPositioned</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setElementAsPositioned = function() {
+				<div class="descriptionHolder">
+					<div class="description">Adds properties x and y to control the css for left and top.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElementAsPositioned = function() {
 		
 		this.createRoundedCssProperty("x", "roundedX", "left", UnitTypes.PX, 0);
 		this.createRoundedCssProperty("y", "roundedY", "top", UnitTypes.PX, 0);
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setElementAsTransformed</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds properties to control the css transform of this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElementAsTransformed</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setElementAsTransformed = function() {
+				<div class="descriptionHolder">
+					<div class="description">Adds properties to control the css transform of this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElementAsTransformed = function() {
 		
 		var x = this.createProperty("x", 0);
 		var y = this.createProperty("y", 0);
@@ -738,58 +744,58 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setElementAsSized</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds properties width and height to control the css for size.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElementAsSized</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setElementAsSized = function() {
+				<div class="descriptionHolder">
+					<div class="description">Adds properties width and height to control the css for size.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElementAsSized = function() {
 		
 		this.createCssProperty("width", "width", UnitTypes.PX, null);
 		this.createCssProperty("height", "height", UnitTypes.PX, null);
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setParent</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets the parent of this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The parent of this object.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setParent</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setParent = function(aElement) {
+				<div class="descriptionHolder">
+					<div class="description">Sets the parent of this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The parent of this object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setParent = function(aElement) {
 		
 		if(aElement instanceof DisplayBaseObject) {
 			this.setPropertyInput("parentElement", aElement.getProperty("element"));
@@ -800,57 +806,57 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addToParent</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets the parent of this object and adds the view to DOM.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The parent of this object.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addToParent</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.addToParent = function(aElement) {
+				<div class="descriptionHolder">
+					<div class="description">Sets the parent of this object and adds the view to DOM.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The parent of this object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addToParent = function(aElement) {
 		this.setParent(aElement);
 		this.addToDom();
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">addToDom</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds the view to the DOM. This function can be called before either the lement or the parent is set.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addToDom</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.addToDom = function() {
+				<div class="descriptionHolder">
+					<div class="description">Adds the view to the DOM. This function can be called before either the lement or the parent is set.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addToDom = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::addToDom");
 		//console.log(this._element.getValue());
 		
@@ -859,168 +865,168 @@
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeFromDom</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Removes the view from the DOM. This function can be called before either the lement or the parent is set.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeFromDom</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.removeFromDom = function() {
+				<div class="descriptionHolder">
+					<div class="description">Removes the view from the DOM. This function can be called before either the lement or the parent is set.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeFromDom = function() {
 		
 		this._inDom.setValue(false);
 		this._inDomOutput.update();
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setStyleProperty</span>(<span class="arguments">aStyleProperty:<span class="nativeType">String</span>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets a css style property on the element of this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aStyleProperty:<span class="nativeType">String</span> - The name of the property to set.</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value to set the property to.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setStyleProperty</span>(<span class="arguments">aStyleProperty:<span class="nativeType">String</span>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
+				<div class="descriptionHolder">
+					<div class="description">Sets a css style property on the element of this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStyleProperty:<span class="nativeType">String</span> - The name of the property to set.</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value to set the property to.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
 		
 		this._element.getValue().style.setProperty(aStyleProperty, aValue, "");
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">removeStyleProperty</span>(<span class="arguments">aStyleProperty:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Removes a css style property from the element of this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aStyleProperty:<span class="nativeType">String</span> - The name of the property to remove.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeStyleProperty</span>(<span class="arguments">aStyleProperty:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.removeStyleProperty = function(aStyleProperty) {
+				<div class="descriptionHolder">
+					<div class="description">Removes a css style property from the element of this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStyleProperty:<span class="nativeType">String</span> - The name of the property to remove.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeStyleProperty = function(aStyleProperty) {
 		
 		this._element.getValue().style.removeProperty(aStyleProperty);
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">enableAlpha</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds a property (alpha) to control the css opacity.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">enableAlpha</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.enableAlpha = function() {
+				<div class="descriptionHolder">
+					<div class="description">Adds a property (alpha) to control the css opacity.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.enableAlpha = function() {
 		this.createCssProperty("alpha", "opacity", null, 1);
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">enableZIndex</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Adds a property (z) to control the css z-index.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">enableZIndex</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription">Self. Function is linkable.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.enableZIndex = function() {
+				<div class="descriptionHolder">
+					<div class="description">Adds a property (z) to control the css z-index.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.enableZIndex = function() {
 		this.createRoundedCssProperty("z", "roundedZ", "z-index", null, 0);
 		
 		return this;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createRoundedCssProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aRoundedName:<span class="nativeType">String</span>, aCssProperty:<span class="nativeType">String</span>, aUnit:<a title="com.developedbyme.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a>, aDefaultValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a property that controls a css style property after being rounded.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the new property.</div><div class="argumentDescription">aRoundedName:<span class="nativeType">String</span> - The name of the rounded value property.</div><div class="argumentDescription">aCssProperty:<span class="nativeType">String</span> - The name of the css style property to set.</div><div class="argumentDescription">aUnit:<a title="com.developedbyme.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a> - The unit for the css style property. (Optional, default UnitTypes.PX)</div><div class="argumentDescription">aDefaultValue:<span class="nativeType">*</span> - The default value. (Optional)</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createRoundedCssProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aRoundedName:<span class="nativeType">String</span>, aCssProperty:<span class="nativeType">String</span>, aUnit:<a title="com.developedbyme.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a>, aDefaultValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a> - The newly created property.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createRoundedCssProperty = function(aName, aRoundedName, aCssProperty, aUnit, aDefaultValue) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a property that controls a css style property after being rounded.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the new property.</div><div class="argumentDescription">aRoundedName:<span class="nativeType">String</span> - The name of the rounded value property.</div><div class="argumentDescription">aCssProperty:<span class="nativeType">String</span> - The name of the css style property to set.</div><div class="argumentDescription">aUnit:<a title="com.developedbyme.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a> - The unit for the css style property. (Optional, default UnitTypes.PX)</div><div class="argumentDescription">aDefaultValue:<span class="nativeType">*</span> - The default value. (Optional)</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a> - The newly created property.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createRoundedCssProperty = function(aName, aRoundedName, aCssProperty, aUnit, aDefaultValue) {
 		var inputProperty = this.createProperty(aName, aDefaultValue);
 		var roundedProperty = this.createCssProperty(aRoundedName, aCssProperty, aUnit, aDefaultValue);
 		
@@ -1029,29 +1035,29 @@
 		
 		return inputProperty;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createCssProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aCssProperty:<span class="nativeType">String</span>, aUnit:<a title="com.developedbyme.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a>, aDefaultValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a property that controls a css style property.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the new property.</div><div class="argumentDescription">aCssProperty:<span class="nativeType">String</span> - The name of the css style property to set.</div><div class="argumentDescription">aUnit:<a title="com.developedbyme.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a> - The unit for the css style property. (Optional, default UnitTypes.PX)</div><div class="argumentDescription">aDefaultValue:<span class="nativeType">*</span> - The default value. (Optional)</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createCssProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aCssProperty:<span class="nativeType">String</span>, aUnit:<a title="com.developedbyme.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a>, aDefaultValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a> - The newly created property.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.createCssProperty = function(aName, aCssProperty, aUnit, aDefaultValue) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a property that controls a css style property.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the new property.</div><div class="argumentDescription">aCssProperty:<span class="nativeType">String</span> - The name of the css style property to set.</div><div class="argumentDescription">aUnit:<a title="com.developedbyme.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a> - The unit for the css style property. (Optional, default UnitTypes.PX)</div><div class="argumentDescription">aDefaultValue:<span class="nativeType">*</span> - The default value. (Optional)</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a> - The newly created property.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createCssProperty = function(aName, aCssProperty, aUnit, aDefaultValue) {
 		if(!VariableAliases.isSet(aUnit)) {
 			aUnit = CssFunctions.isLengthProperty(aCssProperty) ? UnitTypes.PX : null;
 		}
@@ -1075,29 +1081,29 @@
 		
 		return newProperty;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">getHtmlCreator</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator" href="../core/globalobjects/htmldommanager/objects/HtmlCreator.html">HtmlCreator</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Gets the HtmlCreator that can generate new elements in the same document as this object.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getHtmlCreator</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator" href="../core/globalobjects/htmldommanager/objects/HtmlCreator.html">HtmlCreator</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator" href="../core/globalobjects/htmldommanager/objects/HtmlCreator.html">HtmlCreator</a> - The HtmlCreator for the document that this object is located in. Null if this object doesn't have either element or parent.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.getHtmlCreator = function() {
+				<div class="descriptionHolder">
+					<div class="description">Gets the HtmlCreator that can generate new elements in the same document as this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator" href="../core/globalobjects/htmldommanager/objects/HtmlCreator.html">HtmlCreator</a> - The HtmlCreator for the document that this object is located in. Null if this object doesn't have either element or parent.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getHtmlCreator = function() {
 		//console.log("com.developedbyme.core.FlowBaseObject::getHtmlCreator");
 		var element = this._element.getValue();
 		if(element !== null) {
@@ -1111,29 +1117,29 @@
 		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getHtmlCreator", "Element or parent must be set before getting the html creator.");
 		return null;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Performs the destruction of all the properties in the object. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.performDestroy = function() {
+				<div class="descriptionHolder">
+					<div class="description">Performs the destruction of all the properties in the object. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.performDestroy = function() {
 		
 		if(this._inDom !== null &amp;&amp; this._inDom.getValue()) {
 			this.removeFromDom();
@@ -1141,29 +1147,29 @@
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Sets all the references to null. Part of the destroy function.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">objectFunctions.setAllReferencesToNull = function() {
+				<div class="descriptionHolder">
+					<div class="description">Sets all the references to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
 		
 		this._element = null;
 		this._parentElement = null;
@@ -1173,140 +1179,146 @@
 		
 		this.superCall();
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
-				<section class="section">
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
 					<h2>Static functions</h2>
-					<div class="staticFunctions">
+					<div class="staticFunctions list">
 						
 					<div class="function">
-			<div class="definition">
-				<span class="functionName">_createAndInitClassWithElement</span>(<span class="arguments">aClass:<span class="nativeType">Function</span>, aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new object of a class and sets an element as the view.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aClass:<span class="nativeType">Function</span> - The class constructor function.</div><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for the new object.</div></div>
+				<div class="definition">
+					<span class="functionName">_createAndInitClassWithElement</span>(<span class="arguments">aClass:<span class="nativeType">Function</span>, aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="nativeType">*</span> - The newly created object of the class.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions._createAndInitClassWithElement = function(aClass, aElement) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of a class and sets an element as the view.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aClass:<span class="nativeType">Function</span> - The class constructor function.</div><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for the new object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The newly created object of the class.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._createAndInitClassWithElement = function(aClass, aElement) {
 		return ClassReference._createAndInitClass(aClass).setElement(aElement);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">create</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>)<span class="returnValue">:<a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new object of this class.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for the new object.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>)<span class="returnValue">:<a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.create = function(aElement) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of this class.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for the new object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aElement) {
 		//console.log("com.developedbyme.gui.DisplayBaseObject::create");
 		//console.log(aElement);
 		
 		return ClassReference._createAndInitClassWithElement(ClassReference, aElement);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createNewDiv</span>(<span class="arguments">aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new object of this class, using the master HtmlCreator to create a new div for the view.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attriburtes to add to the new div.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createNewDiv</span>(<span class="arguments">aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createNewDiv = function(aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of this class, using the master HtmlCreator to create a new div for the view.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attriburtes to add to the new div.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createNewDiv = function(aAttributes) {
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
 		
 		return ClassReference._createAndInitClassWithElement(ClassReference, htmlCreator.createDiv(aAttributes));
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createDiv</span>(<span class="arguments">aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a>, aAddToParent:<span class="nativeType">Boolean</span>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new object of this class, and a new div on a parent element.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a> - The parent or document to create the new di in.</div><div class="argumentDescription">aAddToParent:<span class="nativeType">Boolean</span> - If the element should be added to the DOM.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attriburtes to add to the new div.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createDiv</span>(<span class="arguments">aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a>, aAddToParent:<span class="nativeType">Boolean</span>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of this class, and a new div on a parent element.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a> - The parent or document to create the new di in.</div><div class="argumentDescription">aAddToParent:<span class="nativeType">Boolean</span> - If the element should be added to the DOM.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attriburtes to add to the new div.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
 		return ClassReference.createNode("div", aParentOrDocument, aAddToParent, aAttributes);
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div><div class="function">
-			<div class="definition">
-				<span class="functionName">createNode</span>(<span class="arguments">aType:<span class="nativeType">String</span>, aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a>, aAddToParent:<span class="nativeType">Boolean</span>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
-			</div>
-			<div class="descriptionHolder">
-				<div class="description">Creates a new object of this class, and a new node on a parent element.</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aType:<span class="nativeType">String</span> - The type of node to create.</div><div class="argumentDescription">aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a> - The parent or document to create the new di in.</div><div class="argumentDescription">aAddToParent:<span class="nativeType">Boolean</span> - If the element should be added to the DOM.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attriburtes to add to the new div.</div></div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createNode</span>(<span class="arguments">aType:<span class="nativeType">String</span>, aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a>, aAddToParent:<span class="nativeType">Boolean</span>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
 				</div>
-				<div class="spacedContent">
-					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
-				</div>
-				<div class="foldableCode spacedContent">
-					<div class="boxWithTitle foldable">
-						<div class="smallTitle">Full code</div>
-						<div class="codeBox fullCode">
-							<div class="code">staticFunctions.createNode = function(aType, aParentOrDocument, aAddToParent, aAttributes) {
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of this class, and a new node on a parent element.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aType:<span class="nativeType">String</span> - The type of node to create.</div><div class="argumentDescription">aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a> - The parent or document to create the new di in.</div><div class="argumentDescription">aAddToParent:<span class="nativeType">Boolean</span> - If the element should be added to the DOM.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attriburtes to add to the new div.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="com.developedbyme.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createNode = function(aType, aParentOrDocument, aAddToParent, aAttributes) {
 		var newNode = ClassReference._createAndInitClass(ClassReference);
 		
 		newNode.setParent(DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument));
@@ -1318,11 +1330,11 @@
 		
 		return newNode;
 	}</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div></div>
+			</div></div>
 				</section>
 			</article>
 			<footer class="footer">
