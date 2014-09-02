@@ -129,6 +129,14 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return newProperty;
 	};
 	
+	/**
+	 * Adds a property to this object.
+	 *
+	 * @param	aName		String		The name of the property.
+	 * @param	aProperty	Property	The property to add.
+	 *
+	 * @return	Property	The property that is passed in.
+	 */
 	objectFunctions.addProperty = function(aName, aProperty) {
 		//console.log("com.developedbyme.core.FlowBaseObject::addProperty");
 		//console.log(aName, aProperty);
@@ -138,6 +146,13 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return aProperty;
 	};
 	
+	/**
+	 * Creates (and adds) a ghost property (a property without value) on this object.
+	 *
+	 * @param	aName	String	The name of the property.
+	 *
+	 * @return	GhostProperty	The newly created property.
+	 */
 	objectFunctions.createGhostProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createGhostProperty");
 		var newProperty = GhostProperty.create(this._objectProperty);
@@ -146,6 +161,13 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return newProperty;
 	};
 	
+	/**
+	 * Gets a property by name.
+	 *
+	 * @param	aName	String	The name of the property.
+	 *
+	 * @return	Property	The property that matches the name. Null if property doesn't exist.
+	 */
 	objectFunctions.getProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
 		//console.log(this, aName);
@@ -156,6 +178,13 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return null;
 	};
 	
+	/**
+	 * Gets an update function on this object.
+	 *
+	 * @param	aName	String	The name of the update function to get.
+	 *
+	 * @return	UpdateFunction	The update function that matches the name. Null if update function doesn't exist.
+	 */
 	objectFunctions.getUpdateFunction = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getUpdateFunction");
 		//console.log(this, aName);
@@ -166,6 +195,14 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return null;
 	};
 	
+	/**
+	 * Set the value to a property, or connects the input if it is a property.
+	 *
+	 * @param	aName	String		The name of the property to set.
+	 * @param	aInput	Property|*	The value to set or the property to connect.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.setPropertyInput = function(aName, aInput) {
 		var theProperty = this.getProperty(aName);
 		if(theProperty === null) {
@@ -176,6 +213,14 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return this;
 	};
 	
+	/**
+	 * Set the value to a property, or connects the input if it is a property. Current value is not overridden if input is null/undefined.
+	 *
+	 * @param	aName	String		The name of the property to set.
+	 * @param	aInput	Property|*	The value to set or the property to connect.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.setPropertyInputWithoutNull = function(aName, aInput) {
 		if(VariableAliases.isSet(aInput)) {
 			this.setPropertyInput(aName, aInput);

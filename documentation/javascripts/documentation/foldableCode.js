@@ -7,11 +7,11 @@
 			isShowing = !isShowing;
 			if(isShowing) {
 				aHolder.classList.remove("folded");
-				aButton.textContent = "Hide code";
+				aButton.innerHTML = "Hide code &#9660;";
 			}
 			else {
 				aHolder.classList.add("folded");
-				aButton.textContent = "Show code";
+				aButton.innerHTML = "Show code &#9654;";
 			}
 		};
 		
@@ -19,7 +19,7 @@
 	}
 	
 	var documentLoaded = function() {
-		console.log("documentLoaded");
+		//console.log("documentLoaded");
 		document.removeEventListener("DOMContentLoaded", documentLoaded, false);
 		
 		var currentArray = document.querySelectorAll(".foldableCode");
@@ -28,7 +28,7 @@
 			var currentElement = currentArray[i];
 			
 			var newButton = document.createElement("div");
-			newButton.textContent = "Show code";
+			newButton.innerHTML = "Show code &#9654;";
 			newButton.classList.add("foldButton");
 			
 			addListenersToButton(newButton, currentElement);

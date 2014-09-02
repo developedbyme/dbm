@@ -158,6 +158,14 @@
 		return newProperty;
 	};
 	
+	/**
+	 * Adds a property to this object.
+	 *
+	 * @param	aName		String		The name of the property.
+	 * @param	aProperty	Property	The property to add.
+	 *
+	 * @return	Property	The property that is passed in.
+	 */
 	objectFunctions.addProperty = function(aName, aProperty) {
 		//console.log("com.developedbyme.core.FlowBaseObject::addProperty");
 		//console.log(aName, aProperty);
@@ -167,6 +175,13 @@
 		return aProperty;
 	};
 	
+	/**
+	 * Creates (and adds) a ghost property (a property without value) on this object.
+	 *
+	 * @param	aName	String	The name of the property.
+	 *
+	 * @return	GhostProperty	The newly created property.
+	 */
 	objectFunctions.createGhostProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createGhostProperty");
 		var newProperty = GhostProperty.create(this._objectProperty);
@@ -175,6 +190,13 @@
 		return newProperty;
 	};
 	
+	/**
+	 * Gets a property by name.
+	 *
+	 * @param	aName	String	The name of the property.
+	 *
+	 * @return	Property	The property that matches the name. Null if property doesn't exist.
+	 */
 	objectFunctions.getProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
 		//console.log(this, aName);
@@ -185,6 +207,13 @@
 		return null;
 	};
 	
+	/**
+	 * Gets an update function on this object.
+	 *
+	 * @param	aName	String	The name of the update function to get.
+	 *
+	 * @return	UpdateFunction	The update function that matches the name. Null if update function doesn't exist.
+	 */
 	objectFunctions.getUpdateFunction = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::getUpdateFunction");
 		//console.log(this, aName);
@@ -195,6 +224,14 @@
 		return null;
 	};
 	
+	/**
+	 * Set the value to a property, or connects the input if it is a property.
+	 *
+	 * @param	aName	String		The name of the property to set.
+	 * @param	aInput	Property|*	The value to set or the property to connect.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.setPropertyInput = function(aName, aInput) {
 		var theProperty = this.getProperty(aName);
 		if(theProperty === null) {
@@ -205,6 +242,14 @@
 		return this;
 	};
 	
+	/**
+	 * Set the value to a property, or connects the input if it is a property. Current value is not overridden if input is null/undefined.
+	 *
+	 * @param	aName	String		The name of the property to set.
+	 * @param	aInput	Property|*	The value to set or the property to connect.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.setPropertyInputWithoutNull = function(aName, aInput) {
 		if(VariableAliases.isSet(aInput)) {
 			this.setPropertyInput(aName, aInput);
@@ -511,17 +556,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addProperty</span>(<span class="arguments">aName, aProperty</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				<span class="functionName">addProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aProperty:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Adds a property to this object.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aProperty</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div><div class="argumentDescription">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The property to add.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The property that is passed in.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -541,17 +586,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createGhostProperty</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				<span class="functionName">createGhostProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.GhostProperty" href="objectparts/GhostProperty.html">GhostProperty</a></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Creates (and adds) a ghost property (a property without value) on this object.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.GhostProperty" href="objectparts/GhostProperty.html">GhostProperty</a> - The newly created property.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -570,17 +615,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getProperty</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				<span class="functionName">getProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Gets a property by name.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The property that matches the name. Null if property doesn't exist.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -601,17 +646,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getUpdateFunction</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				<span class="functionName">getUpdateFunction</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.UpdateFunction" href="objectparts/UpdateFunction.html">UpdateFunction</a></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Gets an update function on this object.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the update function to get.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.UpdateFunction" href="objectparts/UpdateFunction.html">UpdateFunction</a> - The update function that matches the name. Null if update function doesn't exist.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -632,13 +677,13 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setPropertyInput</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				<span class="functionName">setPropertyInput</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Set the value to a property, or connects the input if it is a property.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aInput</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property to set.</div><div class="argumentDescription">aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span> - The value to set or the property to connect.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
@@ -663,13 +708,13 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setPropertyInputWithoutNull</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				<span class="functionName">setPropertyInputWithoutNull</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Set the value to a property, or connects the input if it is a property. Current value is not overridden if input is null/undefined.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aInput</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property to set.</div><div class="argumentDescription">aInput:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> | <span class="nativeType">*</span> - The value to set or the property to connect.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
