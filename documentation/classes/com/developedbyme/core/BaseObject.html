@@ -140,7 +140,7 @@
 	/**
 	 * Gets the array of destroyable objects.
 	 *
-	 * @param	Array&lt;BaseObject&gt;	The array of objects that are marked for destruction.
+	 * @return	Array&lt;BaseObject&gt;	The array of objects that are marked for destruction.
 	 */
 	objectFunctions.getDestroyableObjectsArray = function() {
 		if(this._destroyableObjects === null) {
@@ -155,7 +155,7 @@
 	 * @param	aName	String	The name of the data.
 	 * @param	aData	*		The data to store.
 	 *
-	 * @param	*	The data that is passed in.
+	 * @return	*	The data that is passed in.
 	 */
 	objectFunctions.setDynamicVariable = function(aName, aData) {
 		if(this._dynamicVariables === null) {
@@ -170,6 +170,8 @@
 	 * Removes a dynamic meta data from this object.
 	 *
 	 * @param	aName	String	The name of the data.
+	 *
+	 * @return	self
 	 */
 	objectFunctions.removeDynamicVariable = function(aName) {
 		if(this._dynamicVariables === null) return;
@@ -206,6 +208,8 @@
 	
 	/**
 	 * Function that calls the super function of the function that called this function.
+	 *
+	 * @return	*	The return value of the super function.
 	 */
 	objectFunctions.superCall = function() {
 		//console.log("com.developedbyme.core.BaseObject::superCall");
@@ -334,18 +338,33 @@
 		}
 	};
 	
+	/**
+	 * Destroys an object if it exists.
+	 *
+	 * @param	aObject		BaseObject	The object to destroy or null/undefined.
+	 */
 	staticFunctions.destroyIfExists = function(aObject) {
 		if(aObject !== null &amp;&amp; aObject !== undefined) {
 			aObject.destroy();
 		}
 	};
 	
+	/**
+	 * Releases a retainable object and destroys if it doesn't have any other retainers.
+	 *
+	 * @param	aObject		The object to release or null/undefined.
+	 */
 	staticFunctions.releaseAndDestroyIfExists = function(aObject) {
 		if(aObject !== null &amp;&amp; aObject !== undefined) {
 			aObject.releaseAndDestroy();
 		}
 	};
 	
+	/**
+	 * Goes through an array and soft destroys every object.
+	 *
+	 * @param	aArray	Array	The array of objects to soft destroy.
+	 */
 	staticFunctions.softDestroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
@@ -358,6 +377,11 @@
 		}
 	};
 	
+	/**
+	 * Goes through an array and destroys every object.
+	 *
+	 * @param	aArray	Array	The array of objects to destroy.
+	 */
 	staticFunctions.destroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
@@ -372,6 +396,11 @@
 		}
 	};
 	
+	/**
+	 * Goes through an array and releases every object.
+	 *
+	 * @param	aArray	Array	The array of objects to release and destroy.
+	 */
 	staticFunctions.releaseAndDestroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
@@ -392,7 +421,7 @@
 	 *
 	 * @param	aClass	Function	The constructor function.
 	 *
-	 * @param	*	The newly created object.
+	 * @return	*	The newly created object.
 	 */
 	staticFunctions._createAndInitClass = function(aClass) {
 		//console.log("com.developedbyme.core.BaseObject::_createAndInitClass");
@@ -405,6 +434,11 @@
 		return newClass;
 	};
 	
+	/**
+	 * Creates a new array or reusing one if object pool is used.
+	 *
+	 * @return	Array	An empty array.
+	 */
 	staticFunctions._createArray = function() {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			return dbm.singletons.dbmObjectPoolManager.createArray();
@@ -412,6 +446,11 @@
 		return new Array();
 	};
 	
+	/**
+	 * Creates a new object or reusing one if object pool is used.
+	 *
+	 * @return	Object	An empty object.
+	 */
 	staticFunctions._createObject = function() {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			return dbm.singletons.dbmObjectPoolManager.createObject();
@@ -419,12 +458,22 @@
 		return new Object();
 	};
 	
+	/**
+	 * Marks an array to be reused by the object pool.
+	 *
+	 * @param	aArray	The array to reuse.
+	 */
 	staticFunctions._reuseArray = function(aArray) {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			dbm.singletons.dbmObjectPoolManager.reuseArray(aArray);
 		}
 	};
 	
+	/**
+	 * Marks an object to be reused by the object pool.
+	 *
+	 * @param	aObject	The object to reuse.
+	 */
 	staticFunctions._reuseObject = function(aObject) {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			dbm.singletons.dbmObjectPoolManager.reuseObject(aObject);
@@ -442,7 +491,7 @@
 						
 					<div class="function">
 			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Consructor</div>
@@ -452,7 +501,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription">Self. Function is linkable.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -477,7 +526,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_initSeal</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_initSeal</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Seals the object as part of the init function.</div>
@@ -487,7 +536,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -504,7 +553,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Public constructor</div>
@@ -514,7 +563,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription">Self. Function is linkable.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -534,7 +583,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addDestroyableObject</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue"></span>
+				<span class="functionName">addDestroyableObject</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Adds an object that should be destroyed when this object is destroyed.</div>
@@ -544,7 +593,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that is passed in.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -571,7 +620,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">removeDestroyableObject</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue"></span>
+				<span class="functionName">removeDestroyableObject</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Removes an object that has been previously been marked for deletion with this object.</div>
@@ -581,7 +630,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object that is passed in.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -609,7 +658,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getDestroyableObjectsArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getDestroyableObjectsArray</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Array&lt;BaseObject&gt;</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the array of destroyable objects.</div>
@@ -619,7 +668,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="unknownType">Array&lt;BaseObject&gt;</span> - The array of objects that are marked for destruction.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -637,7 +686,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aData:<span class="nativeType">*</span></span>)<span class="returnValue"></span>
+				<span class="functionName">setDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aData:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Adds a dynamic meta data to this object.</div>
@@ -647,7 +696,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">*</span> - The data that is passed in.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -667,7 +716,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">removeDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue"></span>
+				<span class="functionName">removeDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Removes a dynamic meta data from this object.</div>
@@ -677,7 +726,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription">Self. Function is linkable.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -695,7 +744,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue"></span>
+				<span class="functionName">getDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets a dynamic meta data from this object.</div>
@@ -705,7 +754,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">*</span> - The stored data that corresponds to the name. Null if not found.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -724,7 +773,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">hasDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue"></span>
+				<span class="functionName">hasDynamicVariable</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Checks if this object has a dynamic meta data</div>
@@ -734,7 +783,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if it exists.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -749,7 +798,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">superCall</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">superCall</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Function that calls the super function of the function that called this function.</div>
@@ -759,7 +808,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">*</span> - The return value of the super function.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -785,7 +834,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">isDestroyed</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">isDestroyed</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Checks if the object is destroyed.</div>
@@ -795,7 +844,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if the object is destroyed.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -811,7 +860,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">destroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">destroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Destroys the object</div>
@@ -821,7 +870,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -860,7 +909,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Performs the destruction of all the properties in the object. Part of the destroy function.</div>
@@ -870,7 +919,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -886,7 +935,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
@@ -896,7 +945,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -915,7 +964,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
+				<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
@@ -925,7 +974,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if this object is the owner of a variable.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -940,7 +989,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">toString</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">toString</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Override of native function toString.</div>
@@ -950,7 +999,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">String</span> - Information about this object.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -972,7 +1021,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue"></span>
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the parameters for this class. Part of the toString function.</div>
@@ -982,7 +1031,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1003,7 +1052,7 @@
 						
 					<div class="function">
 			<div class="definition">
-				<span class="functionName">softDestroyIfExists</span>(<span class="arguments">aObject</span>)<span class="returnValue"></span>
+				<span class="functionName">softDestroyIfExists</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Releases an object from this ownership and detroys the object if it doesn't have any other retains.</div>
@@ -1013,7 +1062,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1035,17 +1084,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">destroyIfExists</span>(<span class="arguments">aObject</span>)<span class="returnValue"></span>
+				<span class="functionName">destroyIfExists</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Destroys an object if it exists.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.core.BaseObject" href="BaseObject.html">BaseObject</a> - The object to destroy or null/undefined.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1062,17 +1111,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">releaseAndDestroyIfExists</span>(<span class="arguments">aObject</span>)<span class="returnValue"></span>
+				<span class="functionName">releaseAndDestroyIfExists</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Releases a retainable object and destroys if it doesn't have any other retainers.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aObject - The object to release or null/undefined.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1089,17 +1138,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">softDestroyArrayIfExists</span>(<span class="arguments">aArray</span>)<span class="returnValue"></span>
+				<span class="functionName">softDestroyArrayIfExists</span>(<span class="arguments">aArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Goes through an array and soft destroys every object.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array of objects to soft destroy.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1122,17 +1171,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">destroyArrayIfExists</span>(<span class="arguments">aArray</span>)<span class="returnValue"></span>
+				<span class="functionName">destroyArrayIfExists</span>(<span class="arguments">aArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Goes through an array and destroys every object.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array of objects to destroy.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1157,17 +1206,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">releaseAndDestroyArrayIfExists</span>(<span class="arguments">aArray</span>)<span class="returnValue"></span>
+				<span class="functionName">releaseAndDestroyArrayIfExists</span>(<span class="arguments">aArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Goes through an array and releases every object.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aArray:<span class="nativeType">Array</span> - The array of objects to release and destroy.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1192,7 +1241,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_createAndInitClass</span>(<span class="arguments">aClass:<span class="nativeType">Function</span></span>)<span class="returnValue"></span>
+				<span class="functionName">_createAndInitClass</span>(<span class="arguments">aClass:<span class="nativeType">Function</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Creates an instance of a class and calls the init function.
@@ -1203,7 +1252,7 @@ Object pool is used if it is set up for the class.</div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">*</span> - The newly created object.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1225,17 +1274,17 @@ Object pool is used if it is set up for the class.</div>
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_createArray</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_createArray</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Array</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Creates a new array or reusing one if object pool is used.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
 					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">Array</span> - An empty array.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1253,17 +1302,17 @@ Object pool is used if it is set up for the class.</div>
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_createObject</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_createObject</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Object</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Creates a new object or reusing one if object pool is used.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
 					<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="nativeType">Object</span> - An empty object.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1281,17 +1330,17 @@ Object pool is used if it is set up for the class.</div>
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_reuseArray</span>(<span class="arguments">aArray</span>)<span class="returnValue"></span>
+				<span class="functionName">_reuseArray</span>(<span class="arguments">aArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Marks an array to be reused by the object pool.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aArray</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aArray - The array to reuse.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -1308,17 +1357,17 @@ Object pool is used if it is set up for the class.</div>
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_reuseObject</span>(<span class="arguments">aObject</span>)<span class="returnValue"></span>
+				<span class="functionName">_reuseObject</span>(<span class="arguments">aObject</span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Marks an object to be reused by the object pool.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aObject</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aObject - The object to reuse.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">

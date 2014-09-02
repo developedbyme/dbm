@@ -141,6 +141,14 @@
 		return newUpdateFunction;
 	};
 	
+	/**
+	 * Creates (and adds) a property on this object.
+	 *
+	 * @param	aName	String	The name of the property.
+	 * @param	aValue	*		The value that the property should have.
+	 *
+	 * @return	Property	The newly created property.
+	 */
 	objectFunctions.createProperty = function(aName, aValue) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createProperty");
 		//console.log(aName, aValue);
@@ -240,7 +248,7 @@
 						
 					<div class="function">
 			<div class="definition">
-				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Constructor</div>
@@ -250,7 +258,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription">Self. Function is linkable.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -276,7 +284,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_createObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_createObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Creates an object property for this object. Needed when simple values are combined to an object (eg. values to a point).</div>
@@ -286,7 +294,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -305,7 +313,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_addObjectPropertyToAllProperties</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">_addObjectPropertyToAllProperties</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Adds the object property to all the exisitng properties.</div>
@@ -315,7 +323,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -336,7 +344,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getObjectProperty</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the object property for this object. The property is created if it doesn't alread exists.</div>
@@ -346,7 +354,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a> - The object property.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -364,7 +372,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getObjectPropertyIfExists</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">getObjectPropertyIfExists</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the object property if it exists.</div>
@@ -374,7 +382,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ObjectProperty" href="objectparts/ObjectProperty.html">ObjectProperty</a> - The object property. Null if the property doesn't exist.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -389,7 +397,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createUpdateFunction</span>(<span class="arguments">aName, aUpdateFunction, aInputsArray, aOutputsArray</span>)<span class="returnValue"></span>
+				<span class="functionName">createUpdateFunction</span>(<span class="arguments">aName, aUpdateFunction, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
@@ -399,7 +407,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -417,7 +425,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createUpdateFunctionWithArguments</span>(<span class="arguments">aName, aUpdateFunction, aInputsArray, aOutputsArray</span>)<span class="returnValue"></span>
+				<span class="functionName">createUpdateFunctionWithArguments</span>(<span class="arguments">aName, aUpdateFunction, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
@@ -427,7 +435,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -445,7 +453,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createGhostUpdateFunction</span>(<span class="arguments">aName, aInputsArray, aOutputsArray</span>)<span class="returnValue"></span>
+				<span class="functionName">createGhostUpdateFunction</span>(<span class="arguments">aName, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
@@ -455,7 +463,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -473,17 +481,17 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createProperty</span>(<span class="arguments">aName, aValue</span>)<span class="returnValue"></span>
+				<span class="functionName">createProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a></span>
 			</div>
 			<div class="descriptionHolder">
-				<div class="description"></div>
+				<div class="description">Creates (and adds) a property on this object.</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Arguments</div>
-					<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+					<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value that the property should have.</div></div>
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="objectparts/Property.html">Property</a> - The newly created property.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -503,7 +511,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">addProperty</span>(<span class="arguments">aName, aProperty</span>)<span class="returnValue"></span>
+				<span class="functionName">addProperty</span>(<span class="arguments">aName, aProperty</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
@@ -513,7 +521,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -533,7 +541,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">createGhostProperty</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
+				<span class="functionName">createGhostProperty</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
@@ -543,7 +551,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -562,7 +570,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getProperty</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
+				<span class="functionName">getProperty</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
@@ -572,7 +580,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -593,7 +601,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">getUpdateFunction</span>(<span class="arguments">aName</span>)<span class="returnValue"></span>
+				<span class="functionName">getUpdateFunction</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
@@ -603,7 +611,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -624,7 +632,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setPropertyInput</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue"></span>
+				<span class="functionName">setPropertyInput</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue">:<span class="noData">self</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
@@ -634,7 +642,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription">Self. Function is linkable.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -655,7 +663,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setPropertyInputWithoutNull</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue"></span>
+				<span class="functionName">setPropertyInputWithoutNull</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue">:<span class="noData">self</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description"></div>
@@ -665,7 +673,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription">Self. Function is linkable.</div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -683,7 +691,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue"></span>
+				<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Gets the parameters for this class. Part of the toString function.</div>
@@ -693,7 +701,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
@@ -712,7 +720,7 @@
 			</div>
 		</div><div class="function">
 			<div class="definition">
-				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue"></span>
+				<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 			</div>
 			<div class="descriptionHolder">
 				<div class="description">Sets all the references to null. Part of the destroy function.</div>
@@ -722,7 +730,7 @@
 				</div>
 				<div class="spacedContent">
 					<div class="smallTitle">Return value</div>
-					<div class="returnValueDescription"></div>
+					<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
 				</div>
 				<div class="foldableCode spacedContent">
 					<div class="boxWithTitle foldable">
