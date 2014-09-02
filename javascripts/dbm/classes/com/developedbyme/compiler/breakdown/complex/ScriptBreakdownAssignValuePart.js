@@ -2,11 +2,11 @@
 /**
  * Script breakdown for a decalared function.
  */
-dbm.registerClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownNamedFunctionDeclarationPart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownNamedFunctionDeclarationPart");
+dbm.registerClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownAssignValuePart", "com.developedbyme.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownAssignValuePart");
 	
 	//Self reference
-	var ScriptBreakdownNamedFunctionDeclarationPart = dbm.importClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownNamedFunctionDeclarationPart");
+	var ScriptBreakdownAssignValuePart = dbm.importClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownAssignValuePart");
 	
 	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
@@ -24,13 +24,13 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownN
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownNamedFunctionDeclarationPart::_init");
+		//console.log("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownAssignValuePart::_init");
 		
 		this.superCall();
 		
-		this._type = BreakdownTypes.NAMED_FUNCTION_DECLARATION;
+		this._type = BreakdownTypes.ASSIGN_VALUE;
 		this._name = null;
-		this._declarationFunction = null;
+		this._value = null;
 		
 		return this;
 	};
@@ -45,35 +45,35 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownN
 	};
 	
 	/**
-	 * Gets the function breakdown of this declaration.
+	 * Gets the value breakdown of this declaration.
 	 *
-	 * @return	ScriptBreakdownFunctionPart		The name part of this breakdown.
+	 * @return	ScriptBreakdownFunctionPart		The value part of this breakdown.
 	 */
-	objectFunctions.getFunctionBreakdown = function() {
-		return this._declarationFunction;
+	objectFunctions.getValueBreakdown = function() {
+		return this._value;
 	};
 	
-	objectFunctions.setupFunction = function(aName, aDeclarationFunction) {
+	objectFunctions.setupFunction = function(aName, aValue) {
 		this._name = aName;
 		this._name.changeParent(this);
 		this._childBreakdowns.push(this._name);
 		
-		this._declarationFunction = aDeclarationFunction;
-		this._declarationFunction.changeParent(this);
-		this._childBreakdowns.push(this._declarationFunction);
+		this._value = aValue;
+		this._value.changeParent(this);
+		this._childBreakdowns.push(this._value);
 	};
 	
 	objectFunctions._breakdown = function() {
-		//console.log("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownNamedFunctionDeclarationPart::_breakdown");
+		//console.log("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownAssignValuePart::_breakdown");
 		
 		//METODO: some kind of error message here?
 	};
 	
 	objectFunctions.compile = function(aCompileData) {
-		//console.log("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownNamedFunctionDeclarationPart::compile");
+		//console.log("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownAssignValuePart::compile");
 		//console.log(aCompileData);
 		
-		var returnString = this._name.compile(aCompileData) + "=" + this._declarationFunction.compile(aCompileData);
+		var returnString = this._name.compile(aCompileData) + "=" + this._value.compile(aCompileData);
 		
 		return returnString;
 	};
@@ -84,16 +84,16 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownN
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._name = null;
-		this._declarationFunction = null;
+		this._value = null;
 		
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aParent, aScript, aName, aDeclarationFunction) {
+	staticFunctions.create = function(aParent, aScript, aName, aValue) {
 		var newScriptBreakDown = (new ClassReference()).init();
 		newScriptBreakDown.setParent(aParent);
 		newScriptBreakDown.setScript(aScript);
-		newScriptBreakDown.setupFunction(aName, aDeclarationFunction);
+		newScriptBreakDown.setupFunction(aName, aValue);
 		return newScriptBreakDown;
 	};
 });

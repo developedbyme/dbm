@@ -25,6 +25,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 	var ScriptBreakdownNumberPart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownNumberPart");
 	var ScriptBreakdownDbmRegisterClassPart = dbm.importClass("com.developedbyme.compiler.breakdown.dbm.ScriptBreakdownDbmRegisterClassPart");
 	var ScriptBreakdownNamedFunctionDeclarationPart = dbm.importClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownNamedFunctionDeclarationPart");
+	var ScriptBreakdownAssignValuePart = dbm.importClass("com.developedbyme.compiler.breakdown.complex.ScriptBreakdownAssignValuePart");
 	
 	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
@@ -158,7 +159,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownEvaluatio
 			if(evaluationBreakdown.getType() === BreakdownTypes.FUNCTION_DECLARATION) {
 				this._replaceablePart = ScriptBreakdownNamedFunctionDeclarationPart.create(this._parent, this._script, childBreakdowns[0], childBreakdowns[1]);
 			}
-			//METODO: check for static variable declaration
+			else {
+				this._replaceablePart = ScriptBreakdownAssignValuePart.create(this._parent, this._script, childBreakdowns[0], childBreakdowns[1]);
+			}
 		}
 	};
 	

@@ -285,6 +285,15 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 					newTreeStructureItem.data = newDocumentation;
 					this._constructDocumentation(currentBreakdown.getChildBreakdowns(), newTreeStructureItem);
 					break;
+				case BreakdownTypes.ASSIGN_VALUE:
+					//METODO: check that it should be documented
+					var newDocumentation = DocumentationFunctions.documentVariable(currentBreakdown, currentDocumentationData);
+					if(newDocumentation !== null) {
+						var newTreeStructureItem = aParentTreeStructureItem.getRoot().getItemByPath("variable_" + aParentTreeStructureItem.getNumberOfChildren(), aParentTreeStructureItem);
+						newTreeStructureItem.data = newDocumentation;
+						this._constructDocumentation(currentBreakdown.getChildBreakdowns(), newTreeStructureItem);
+					}
+					break;
 				case BreakdownTypes.CODE:
 				case BreakdownTypes.EVALUATION:
 				case BreakdownTypes.CALL_FUNCTION:

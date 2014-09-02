@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.Document
 	var DocumentationData = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentationData");
 	var ClassDefinition = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.definitions.ClassDefinition");
 	var FunctionDefinition = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.definitions.FunctionDefinition");
+	var VariableDefinition = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.definitions.VariableDefinition");
 	
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
@@ -106,6 +107,59 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.Document
 		
 		return returnData;
 	}; //End function documentNamedFunction
+	
+	/**
+	 * Documents a variable.
+	 *
+	 * @param	aBreakdown			ScriptBreakdownNamedAssignValuePart		The code breakdown to document.
+	 * @param	aDocumentationData	DocumentationData						The documentation that has been set for this breakdown.
+	 *
+	 * @return	DocumentedItem	The new documentation.
+	 */
+	staticFunctions.documentVariable = function(aBreakdown, aDocumentationData) {
+		//console.log("com.developedbyme.compiler.compiledata.documentation.DocumentationFunctions::documentVariable");
+		//console.log(aBreakdown, aDocumentationData);
+		
+		var type = DocumentationTypes.VARIABLE;
+		
+		var nameBreakdown = aBreakdown.getNameBreakdown();
+		
+		var parentClassBreakdown = BreakdownFunctions.getParentByType(aBreakdown, DbmBreakdownTypes.REGISTER_CLASS);
+		if(parentClassBreakdown !== null) {
+			var staticFunctionsVariableName = parentClassBreakdown.getStaticFunctionsVariableName();
+			
+			if(nameBreakdown.getType() === BreakdownTypes.VARIABLE_ON_OBJECT_REFERENCE) {
+				var objectBreakdown = nameBreakdown.getObject();
+				if(objectBreakdown.getType() === BreakdownTypes.VARIABLE_REFERENCE) {
+					var objectName = objectBreakdown.getVariableName();
+					if(objectName === "this") {
+						type = DocumentationTypes.LOCAL_CLASS_VARIABLE;
+					}
+					else if(objectName === staticFunctionsVariableName) {
+						type = DocumentationTypes.STATIC_CLASS_VARIABLE;
+					}
+				}
+			}
+		}
+		else {
+			console.log(aBreakdown);
+		}
+		
+		if(type === DocumentationTypes.VARIABLE) {
+			return null;
+		}
+		
+		var returnData = DocumentedItem.create(type, aBreakdown.getScript());
+		
+		if(!VariableAliases.isSet(aDocumentationData)) {
+			aDocumentationData = DocumentationData.createEmpty();
+		}
+		returnData.documentation = aDocumentationData;
+		
+		returnData.definition = VariableDefinition.create(nameBreakdown.getVariableName(), aBreakdown.getValueBreakdown().getScript());
+		
+		return returnData;
+	}; //End function documentVariable
 	
 	
 	/**

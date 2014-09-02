@@ -49,7 +49,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.definiti
 	/**
 	 * Creates a new instance of this class.
 	 *
-	 * @praam	aFunctionName		String		The name of the function.
+	 * @param	aFunctionName		String		The name of the function.
 	 * @param	aArgumentsArray		Array		The array of argument names.
 	 * @param	aReturnType			String		The type of return.
 	 *

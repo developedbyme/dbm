@@ -57,6 +57,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		
 		this._classTemplatePath = "../assets/examples/compiler/documentationTemplates.html#class";
 		this._functionTemplatePath = "../assets/examples/compiler/documentationTemplates.html#function";
+		this._variableTemplatePath = "../assets/examples/compiler/documentationTemplates.html#variable";
 		
 		var currentDate = new Date();
 		var dateString = IsoDate.getCompactIsoDateAndTime(currentDate);
@@ -68,7 +69,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		this._externalTypes.addObject("HTMLElement", "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement");
 		this._externalTypes.addObject("Element", "https://developer.mozilla.org/en-US/docs/Web/API/Element");
 		
-		this._assetsLoader.addAssetsByPath(this._classTemplatePath, this._functionTemplatePath);
+		this._assetsLoader.addAssetsByPath(this._classTemplatePath, this._functionTemplatePath, this._variableTemplatePath);
 		this._addStartFunction(this._createPage, []);
 		
 		return this;
@@ -109,12 +110,13 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		
 		var classTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._classTemplatePath));
 		var functionTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._functionTemplatePath));
+		var variableTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._variableTemplatePath));
 		
 		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveIdCommand.createOnTemplateOutputCommand());
 		
 		
 		this._createSetTextContentCommand(classTemplate, "h1", CallFunctionObject.createCommand(SnippetsGenerator, SnippetsGenerator.getClassNameFromPath, [GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath")]));
-		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveElementCommand.createOnTemplateOutputWithQueryCommand("#function"));
+		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveElementCommand.createOnTemplateOutputWithQueryCommand("#templates"));
 		this._createSetTextContentCommand(classTemplate, ".classPath", GetVariableObject.createCommand(selectDefinitionReevaluator, "classPath"));
 		this._createSetTextContentCommand(classTemplate, ".description", GetVariableObject.createCommand(selectDocumentationReevaluator, "_description")); //METODO: do not access private variable
 		this._createSetTextContentCommand(classTemplate, ".fullCode .code", GetVariableObject.createCommand(selectDataReevaluator, "fullCode"));
@@ -140,12 +142,38 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		classTemplate.getExtendedEvent().addCommandToEvent(
 			GenericExtendedEventIds.NEW,
 			InsertTemplatedArrayCommand.createOnTemplateOutputWithQueryCommand(
+				".localVariables",
+				variableTemplate,
+				CallFunctionObject.createCommand(
+					DocumentationTreeStructureFunctions,
+					DocumentationTreeStructureFunctions.getChildrenByType,
+					[selectTreeStructureReevaluator, DocumentationTypes.LOCAL_CLASS_VARIABLE]
+				)
+			)
+		);
+		
+		classTemplate.getExtendedEvent().addCommandToEvent(
+			GenericExtendedEventIds.NEW,
+			InsertTemplatedArrayCommand.createOnTemplateOutputWithQueryCommand(
 				".staticFunctions",
 				functionTemplate,
 				CallFunctionObject.createCommand(
 					DocumentationTreeStructureFunctions,
 					DocumentationTreeStructureFunctions.getChildrenByType,
 					[selectTreeStructureReevaluator, DocumentationTypes.STATIC_CLASS_FUNCTION]
+				)
+			)
+		);
+		
+		classTemplate.getExtendedEvent().addCommandToEvent(
+			GenericExtendedEventIds.NEW,
+			InsertTemplatedArrayCommand.createOnTemplateOutputWithQueryCommand(
+				".staticVariables",
+				variableTemplate,
+				CallFunctionObject.createCommand(
+					DocumentationTreeStructureFunctions,
+					DocumentationTreeStructureFunctions.getChildrenByType,
+					[selectTreeStructureReevaluator, DocumentationTypes.STATIC_CLASS_VARIABLE]
 				)
 			)
 		);
@@ -157,6 +185,9 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		functionTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertArgumentsDefinition, [QuerySelectorObject.createOnTemplateOutputCommand(".arguments"), QuerySelectorObject.createOnTemplateOutputCommand(".argumentsDescription"), GetVariableObject.createCommand(selectDefinitionReevaluator, "argumentNames"), selectDocumentationReevaluator, classHierarchyGraph.getNamesArray()]));
 		functionTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertReturnValueDefinition, [QuerySelectorObject.createOnTemplateOutputCommand(".returnValue"), QuerySelectorObject.createOnTemplateOutputCommand(".returnValueDescription"), GetVariableObject.createCommand(selectDefinitionReevaluator, "returnType"), selectDocumentationReevaluator, classHierarchyGraph.getNamesArray()]));
 		
+		this._createSetTextContentCommand(variableTemplate, ".variableName", GetVariableObject.createCommand(selectDefinitionReevaluator, "variableName"));
+		this._createSetTextContentCommand(variableTemplate, ".value", GetVariableObject.createCommand(selectDefinitionReevaluator, "value"));
+		this._createSetTextContentCommand(variableTemplate, ".description", GetVariableObject.createCommand(selectDocumentationReevaluator, "_description")); //METODO: do not access private variable
 		
 		//Rebase all the links at the end
 		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RebaseDocumentLinksCommand.createOnTemplateOutputCommand(this._currentFilePath));

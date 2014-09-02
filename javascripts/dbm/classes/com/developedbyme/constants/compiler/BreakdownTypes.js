@@ -8,6 +8,7 @@ dbm.registerClass("com.developedbyme.constants.compiler.BreakdownTypes", null, f
 	//Self reference
 	var BreakdownTypes = dbm.importClass("com.developedbyme.constants.compiler.BreakdownTypes");
 	
+	staticFunctions.ASSIGN_VALUE = "assignValue";
 	staticFunctions.ASSOCIATIVE_VARIABLE_ON_OBJECT_REFERENCE = "associativeVariableOnObjectReference";
 	staticFunctions.CALL_FUNCTION = "callFunction";
 	staticFunctions.CASE = "case";
