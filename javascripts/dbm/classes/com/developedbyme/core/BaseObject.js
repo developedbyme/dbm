@@ -111,7 +111,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	/**
 	 * Gets the array of destroyable objects.
 	 *
-	 * @param	Array<BaseObject>	The array of objects that are marked for destruction.
+	 * @return	Array<BaseObject>	The array of objects that are marked for destruction.
 	 */
 	objectFunctions.getDestroyableObjectsArray = function() {
 		if(this._destroyableObjects === null) {
@@ -126,7 +126,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	 * @param	aName	String	The name of the data.
 	 * @param	aData	*		The data to store.
 	 *
-	 * @param	*	The data that is passed in.
+	 * @return	*	The data that is passed in.
 	 */
 	objectFunctions.setDynamicVariable = function(aName, aData) {
 		if(this._dynamicVariables === null) {
@@ -141,6 +141,8 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	 * Removes a dynamic meta data from this object.
 	 *
 	 * @param	aName	String	The name of the data.
+	 *
+	 * @return	self
 	 */
 	objectFunctions.removeDynamicVariable = function(aName) {
 		if(this._dynamicVariables === null) return;
@@ -177,6 +179,8 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	
 	/**
 	 * Function that calls the super function of the function that called this function.
+	 *
+	 * @return	*	The return value of the super function.
 	 */
 	objectFunctions.superCall = function() {
 		//console.log("com.developedbyme.core.BaseObject::superCall");
@@ -305,18 +309,33 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
+	/**
+	 * Destroys an object if it exists.
+	 *
+	 * @param	aObject		BaseObject	The object to destroy or null/undefined.
+	 */
 	staticFunctions.destroyIfExists = function(aObject) {
 		if(aObject !== null && aObject !== undefined) {
 			aObject.destroy();
 		}
 	};
 	
+	/**
+	 * Releases a retainable object and destroys if it doesn't have any other retainers.
+	 *
+	 * @param	aObject		The object to release or null/undefined.
+	 */
 	staticFunctions.releaseAndDestroyIfExists = function(aObject) {
 		if(aObject !== null && aObject !== undefined) {
 			aObject.releaseAndDestroy();
 		}
 	};
 	
+	/**
+	 * Goes through an array and soft destroys every object.
+	 *
+	 * @param	aArray	Array	The array of objects to soft destroy.
+	 */
 	staticFunctions.softDestroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
@@ -329,6 +348,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
+	/**
+	 * Goes through an array and destroys every object.
+	 *
+	 * @param	aArray	Array	The array of objects to destroy.
+	 */
 	staticFunctions.destroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
@@ -343,6 +367,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		}
 	};
 	
+	/**
+	 * Goes through an array and releases every object.
+	 *
+	 * @param	aArray	Array	The array of objects to release and destroy.
+	 */
 	staticFunctions.releaseAndDestroyArrayIfExists = function(aArray) {
 		if(aArray !== null) {
 			var currentArray = aArray;
@@ -363,7 +392,7 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	 *
 	 * @param	aClass	Function	The constructor function.
 	 *
-	 * @param	*	The newly created object.
+	 * @return	*	The newly created object.
 	 */
 	staticFunctions._createAndInitClass = function(aClass) {
 		//console.log("com.developedbyme.core.BaseObject::_createAndInitClass");
@@ -376,6 +405,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return newClass;
 	};
 	
+	/**
+	 * Creates a new array or reusing one if object pool is used.
+	 *
+	 * @return	Array	An empty array.
+	 */
 	staticFunctions._createArray = function() {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			return dbm.singletons.dbmObjectPoolManager.createArray();
@@ -383,6 +417,11 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return new Array();
 	};
 	
+	/**
+	 * Creates a new object or reusing one if object pool is used.
+	 *
+	 * @return	Object	An empty object.
+	 */
 	staticFunctions._createObject = function() {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			return dbm.singletons.dbmObjectPoolManager.createObject();
@@ -390,12 +429,22 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 		return new Object();
 	};
 	
+	/**
+	 * Marks an array to be reused by the object pool.
+	 *
+	 * @param	aArray	The array to reuse.
+	 */
 	staticFunctions._reuseArray = function(aArray) {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			dbm.singletons.dbmObjectPoolManager.reuseArray(aArray);
 		}
 	};
 	
+	/**
+	 * Marks an object to be reused by the object pool.
+	 *
+	 * @param	aObject	The object to reuse.
+	 */
 	staticFunctions._reuseObject = function(aObject) {
 		if(dbm.singletons.dbmObjectPoolManager) {
 			dbm.singletons.dbmObjectPoolManager.reuseObject(aObject);

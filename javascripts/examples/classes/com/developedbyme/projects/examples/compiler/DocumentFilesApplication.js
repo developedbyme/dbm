@@ -155,6 +155,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		this._createSetTextContentCommand(functionTemplate, ".description", GetVariableObject.createCommand(selectDocumentationReevaluator, "_description")); //METODO: do not access private variable
 		this._createSetTextContentCommand(functionTemplate, ".fullCode .code", GetVariableObject.createCommand(selectDataReevaluator, "fullCode"));
 		functionTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertArgumentsDefinition, [QuerySelectorObject.createOnTemplateOutputCommand(".arguments"), QuerySelectorObject.createOnTemplateOutputCommand(".argumentsDescription"), GetVariableObject.createCommand(selectDefinitionReevaluator, "argumentNames"), selectDocumentationReevaluator, classHierarchyGraph.getNamesArray()]));
+		functionTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertReturnValueDefinition, [QuerySelectorObject.createOnTemplateOutputCommand(".returnValue"), QuerySelectorObject.createOnTemplateOutputCommand(".returnValueDescription"), GetVariableObject.createCommand(selectDefinitionReevaluator, "returnType"), selectDocumentationReevaluator, classHierarchyGraph.getNamesArray()]));
 		
 		
 		//Rebase all the links at the end
@@ -378,8 +379,18 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		else {
 			aDescriptionHolderElement.appendChild(htmlCreator.createNode("span", {"class": "noData"}, htmlCreator.createText("Function has no arguments")));
 		}
+		
+		//METODO: add rest parameter
 	};
 	
+	/**
+	 * Gets a param flag by its name.
+	 *
+	 * @param	aName	String							The name of param.
+	 * @param	aFlags	Array<DocumentationFlagData>	Array of the flags to search in.
+	 *
+	 * @return	DocumentationFlagData	The first flag that matches the name.
+	 */
 	objectFunctions._getParamFlagByName = function(aName, aFlags) {
 		var currentArray = aFlags;
 		var currentArrayLength = currentArray.length;
@@ -390,6 +401,105 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 			}
 		}
 		return null;
+	};
+	
+	/**
+	 * Gets a flag by its type.
+	 *
+	 * @param	aType	String							The type of param.
+	 * @param	aFlags	Array<DocumentationFlagData>	Array of the flags to search in.
+	 *
+	 * @return	DocumentationFlagData	The first flag that matches the type.
+	 */
+	objectFunctions._getFlagByType = function(aType, aFlags) {
+		var currentArray = aFlags;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentFlag = currentArray[i];
+			if(currentFlag.type === aType) {
+				return currentFlag;
+			}
+		}
+		return null;
+	};
+	
+	/**
+	 * Inserts a return value in a function definition.
+	 *
+	 * @param	aHolderElement				HTMLElement			The element to insert the definition in.
+	 * @param	aDescriptionHolderElement	HTMLElement			The element to insert the description in.
+	 * @param	aHasReturnValue				String				The type of return value.
+	 * @param	aDocumentation				DocumentationData	The documentation data for the function.
+	 * @param	aClassPaths					Array<String>		List of all the class paths.
+	 */
+	objectFunctions.insertReturnValueDefinition = function(aHolderElement, aDescriptionHolderElement, aReturnValueType, aDocumentation, aClassPaths) {
+		//console.log("com.developedbyme.projects.examples.compiler.DocumentFilesApplication::insertReturnValueDefinition");
+		//console.log(aHolderElement, aDescriptionHolderElement, aReturnValueType, aDocumentation, aClassPaths);
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(aHolderElement.ownerDocument);
+		
+		var documentationFlags = aDocumentation.getFlags();
+		
+		aHolderElement.appendChild(htmlCreator.createText(":"));
+		
+		if(aReturnValueType === "none") {
+			aHolderElement.appendChild(htmlCreator.createNode("span", {"class": "noData"}, htmlCreator.createText("void")));
+			aDescriptionHolderElement.appendChild(htmlCreator.createNode("span", {"class": "noData"}, htmlCreator.createText("Function has no return value.")));
+		}
+		else if(aReturnValueType === "self") {
+			aHolderElement.appendChild(htmlCreator.createNode("span", {"class": "noData"}, htmlCreator.createText("self")));
+			aDescriptionHolderElement.appendChild(htmlCreator.createText("Self. Function is linkable."));
+		}
+		else {
+			var documentationFlag = this._getFlagByType("return", documentationFlags);
+			if(documentationFlag !== null) {
+				var objectTypes = documentationFlag.arguments[0];
+			
+				var currentArray2 = StringFunctions.splitSeparatedString(objectTypes, "|");
+				var currentArray2Length = currentArray2.length;
+				for(var j = 0; j < currentArray2Length; j++) {
+					var currentType = currentArray2[j];
+				
+					if(j !== 0) {
+						aHolderElement.appendChild(htmlCreator.createText(" | "));
+						aDescriptionHolderElement.appendChild(htmlCreator.createText(" | "));
+					}
+				
+					if(this._externalTypes.select(currentType)) {
+						aHolderElement.appendChild(htmlCreator.createNode("a", {"href": this._externalTypes.currentSelectedItem, "rel": "external"}, htmlCreator.createText(currentType)));
+						aDescriptionHolderElement.appendChild(htmlCreator.createNode("a", {"href": this._externalTypes.currentSelectedItem, "rel": "external"}, htmlCreator.createText(currentType)));
+					}
+					else {
+						//METODO: typed arrays
+						var matchingClassPaths = DocumentationFunctions.getFullClassPathsByName(currentType, aClassPaths);
+					
+						if(matchingClassPaths.length === 1) {
+							aHolderElement.appendChild(this.createClassLink(matchingClassPaths[0], htmlCreator));
+							aDescriptionHolderElement.appendChild(this.createClassLink(matchingClassPaths[0], htmlCreator));
+						}
+						else if(matchingClassPaths.length > 1) {
+							//METODO: multiple matches
+							//METODO: error message
+						}
+						else {
+							var spanClassType = "unknownType";
+							if(JavascriptLanguageFunctions.isTypeNative(currentType)) {
+								spanClassType = "nativeType";
+							}
+							aHolderElement.appendChild(htmlCreator.createNode("span", {"class": spanClassType}, htmlCreator.createText(currentType)));
+							aDescriptionHolderElement.appendChild(htmlCreator.createNode("span", {"class": spanClassType}, htmlCreator.createText(currentType)));
+						}
+					}
+				}
+				
+				//METODO: description
+				aDescriptionHolderElement.appendChild(htmlCreator.createText(" - " + documentationFlag.arguments[documentationFlag.arguments.length-1]));
+			}
+			else {
+				aHolderElement.appendChild(htmlCreator.createNode("span", {"class": "unknownType"}, htmlCreator.createText("Unknown")));
+				aDescriptionHolderElement.appendChild(htmlCreator.createNode("span", {"class": "unknownType"}, htmlCreator.createText("Unknown")));
+			}
+		}
 	};
 	
 	/**

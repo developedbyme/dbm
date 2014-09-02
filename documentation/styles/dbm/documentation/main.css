@@ -82,11 +82,11 @@ h1, h2 {
 	font-weight: bold;
 }
 
-.arguments .unknownType {
+.unknownType {
 	color: #FF6666;
 }
 
-.argumentsDescription {
+.argumentsDescription, .returnValueDescription {
 	line-height: 1.4em;
 	font-size: 10px;
 }
@@ -96,6 +96,7 @@ h1, h2 {
 }
 
 .foldButton {
+	display: inline-block;
 	color: #0000CC;
 	cursor: pointer;
 	text-transform: uppercase;

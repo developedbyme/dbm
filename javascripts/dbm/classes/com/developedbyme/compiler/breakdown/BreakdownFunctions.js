@@ -59,7 +59,6 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.BreakdownFunctions", "co
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentBreakdown = ClassReference.getBreakdownWithoutComments(currentArray[i]);
-				console.log(">", currentBreakdown);
 				if(currentBreakdown.getType() !== BreakdownTypes.COMMENT) {
 					return currentBreakdown;
 					//METODO: need to check that there is only one valid breakdown
@@ -99,7 +98,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.BreakdownFunctions", "co
 	 *
 	 * @param	aBreakdownPart	ScriptBreakdownPart		The breakdown to start searching in.
 	 *
-	 * @param	Boolean	True if the breakdown has a return statement.
+	 * @param	String	The type of return statement.
 	 */
 	staticFunctions.checkForReturnStatement = function(aBreakdownPart) {
 		//console.log("com.developedbyme.compiler.breakdown.BreakdownFunctions::checkForReturnStatement");
@@ -111,15 +110,25 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.BreakdownFunctions", "co
 			var currentBreakdown = currentArray[i];
 			var currentType = currentBreakdown.getType();
 			if(currentType === BreakdownTypes.RETURN) {
-				//METODO: check that it's actually returning a value
-				return true;
+				
+				var childBreakdowns = currentBreakdown.getChildBreakdowns();
+				if(childBreakdowns.length === 0) {
+					return "none";
+				}
+				
+				var valueBreakdown = ClassReference.getBreakdownWithoutComments(childBreakdowns[0]);
+				if(valueBreakdown.getType() === BreakdownTypes.VARIABLE_REFERENCE && valueBreakdown.getVariableName() === "this") {
+					return "self";
+				}
+				return "value";
 			}
 			if(currentType !== BreakdownTypes.FUNCTION_DECLARATION) {
-				if(ClassReference.checkForReturnStatement(currentBreakdown)) {
-					return true;
+				var currentChildReturnType = ClassReference.checkForReturnStatement(currentBreakdown)
+				if(currentChildReturnType !== "none") {
+					return currentChildReturnType;
 				}
 			}
 		}
-		return false;
+		return "none";
 	};
 });

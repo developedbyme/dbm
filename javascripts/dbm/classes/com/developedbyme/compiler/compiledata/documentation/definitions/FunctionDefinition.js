@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.definiti
 		
 		this.functionName = null;
 		this.argumentNames = null;
-		this.hasReturn = false;
+		this.returnType = "none";
 		
 		return this;
 	};
@@ -51,16 +51,16 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.documentation.definiti
 	 *
 	 * @praam	aFunctionName		String		The name of the function.
 	 * @param	aArgumentsArray		Array		The array of argument names.
-	 * @param	aHasReturn			Boolean		True if the function returns a value.
+	 * @param	aReturnType			String		The type of return.
 	 *
 	 * @return	FunctionDefinition	The newly created instance.
 	 */
-	staticFunctions.create = function(aFunctionName, aArgumentsArray, aHasReturn) {
+	staticFunctions.create = function(aFunctionName, aArgumentsArray, aReturnType) {
 		var newFunctionDefinition = (new ClassReference()).init();
 		
 		newFunctionDefinition.functionName = aFunctionName;
 		newFunctionDefinition.argumentNames = aArgumentsArray;
-		newFunctionDefinition.hasReturn = aHasReturn;
+		newFunctionDefinition.returnType = aReturnType;
 		
 		return newFunctionDefinition;
 	};

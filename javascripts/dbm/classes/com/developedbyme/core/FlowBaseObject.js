@@ -112,6 +112,14 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		return newUpdateFunction;
 	};
 	
+	/**
+	 * Creates (and adds) a property on this object.
+	 *
+	 * @param	aName	String	The name of the property.
+	 * @param	aValue	*		The value that the property should have.
+	 *
+	 * @return	Property	The newly created property.
+	 */
 	objectFunctions.createProperty = function(aName, aValue) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createProperty");
 		//console.log(aName, aValue);
