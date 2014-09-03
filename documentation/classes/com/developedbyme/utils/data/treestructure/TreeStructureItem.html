@@ -1,12 +1,30 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/class.css" />
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/hideEmptySections.js"></script>
 	</head>
 	<body>
 		<div class="page">
-			<div class="documentationTitle">Documentation</div>
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle">Documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="007826195105171803720:ousgq6osc70" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
 			<article>
 				<div class="mainInfo">
 					<h1>TreeStructureItem</h1>
@@ -20,7 +38,7 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a>, <a title="com.developedbyme.constants.extendedevents.GenericExtendedEventIds" href="../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../NamedArray.html">NamedArray</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItemTypes" href="TreeStructureItemTypes.html">TreeStructureItemTypes</a></div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a>, <a title="com.developedbyme.constants.extendedevents.GenericExtendedEventIds" href="../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../NamedArray.html">NamedArray</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItemTypes" href="TreeStructureItemTypes.html">TreeStructureItemTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
@@ -40,6 +58,9 @@
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
 	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
@@ -71,6 +92,11 @@
 		return this;
 	}; //End function _init
 	
+	/**
+	 * Interface to use extended event whithout inheriting from ExtendedEventBaseObject.
+	 *
+	 * @return	ExtendedEventController		The extended event controller for this object. 
+	 */
 	objectFunctions.getExtendedEvent = function() {
 		if(this._extendedEvent === null) {
 			this._extendedEvent = ExtendedEventController.create(this);
@@ -82,6 +108,8 @@
 	
 	/**
 	 * Gets the name of the item.
+	 *
+	 * @return	String	The name of this item.
 	 */
 	objectFunctions.getName = function() {
 		//console.log("getName");
@@ -90,6 +118,8 @@
 	
 	/**
 	 * Sets the name of the item.
+	 *
+	 * @param	aName	The new name of this item.
 	 */
 	objectFunctions.setName = function(aName) {
 		//console.log("set name");
@@ -99,20 +129,38 @@
 		else {
 			this._linkRegistration_setName(aName);
 		}
-	}; //End function set name
+	}; //End function setName
 	
+	/**
+	 * Gets an attribute on this item.
+	 *
+	 * @param	aName	String	The name of the attribute.
+	 *
+	 * @return	*	The value of the attribute. Null if attribute doesn't exist.
+	 */
 	objectFunctions.getAttribute = function(aName) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::getAttribute");
+		//console.log(aName);
+		
 		if(this._attributes === null) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getAttribute", "Item doesn't have any attributes. Can't get " + aName);
+			
 			return null;
 		}
 		if(this._attributes.select(aName)) {
 			return this._attributes.currentSelectedItem;
 		}
-		//METODO: error message
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getAttribute", "Item doesn't have attribute " + aName);
+		
 		return null;
 	};
 	
+	/**
+	 * Sets an attribute on this item.
+	 *
+	 * @param	aName	String	The name of the attribute.
+	 * @param	aValue	*		The value of the attribute.
+	 */
 	objectFunctions.setAttribute = function(aName, aValue) {
 		if(this._attributes === null) {
 			this._attributes = NamedArray.create(false);
@@ -121,6 +169,12 @@
 		this._attributes.addObject(aName, aValue);
 	};
 	
+	/**
+	 * Changes the value of an attribute on this item.
+	 *
+	 * @param	aName	String	The name of the attribute.
+	 * @param	aValue	*		The new value of the attribute.
+	 */
 	objectFunctions.changeAttribute = function(aName, aValue) {
 		if(this._attributes === null) {
 			this._attributes = NamedArray.create(false);
@@ -431,7 +485,11 @@
 	};
 	
 	/**
-	 * Creates a new item.
+	 * Creates a new object of this class.
+	 *
+	 * @param	aName	String	The name for the new object.
+	 *
+	 * @return	Property	The newly created object.
 	 */
 	staticFunctions.create = function(aName) {
 		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::create");
@@ -495,17 +553,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Interface to use extended event whithout inheriting from ExtendedEventBaseObject.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a> - The extended event controller for this object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -525,7 +583,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getName</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">getName</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">String</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Gets the name of the item.</div>
@@ -535,7 +593,7 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">String</span> - The name of this item.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -557,7 +615,7 @@
 					<div class="description">Sets the name of the item.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName - The new name of this item.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -582,31 +640,36 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getAttribute</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">getAttribute</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Gets an attribute on this item.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the attribute.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The value of the attribute. Null if attribute doesn't exist.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getAttribute = function(aName) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::getAttribute");
+		//console.log(aName);
+		
 		if(this._attributes === null) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getAttribute", "Item doesn't have any attributes. Can't get " + aName);
+			
 			return null;
 		}
 		if(this._attributes.select(aName)) {
 			return this._attributes.currentSelectedItem;
 		}
-		//METODO: error message
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getAttribute", "Item doesn't have attribute " + aName);
+		
 		return null;
 	}</div>
 							</div>
@@ -615,13 +678,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">setAttribute</span>(<span class="arguments">aName, aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">setAttribute</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Sets an attribute on this item.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the attribute.</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value of the attribute.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -644,13 +707,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">changeAttribute</span>(<span class="arguments">aName, aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">changeAttribute</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Changes the value of an attribute on this item.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the attribute.</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The new value of the attribute.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -1464,17 +1527,17 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">create</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description">Creates a new item.</div>
+					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name for the new object.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">

@@ -1,19 +1,37 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/class.css" />
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/hideEmptySections.js"></script>
 	</head>
 	<body>
 		<div class="page">
-			<div class="documentationTitle">Documentation</div>
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle">Documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="007826195105171803720:ousgq6osc70" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
 			<article>
 				<div class="mainInfo">
 					<h1>ObjectReevaluationBaseObject</h1>
 					<div class="classPath">com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject</div>
 					<div class="classInheritance"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
-						<div class="description"></div>
+						<div class="description">Base object for reevalution objects that needs to reference an object.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
 							<div class="subClasses linkList"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject" href="GetPropertyObject.html">GetPropertyObject</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="GetVariableObject.html">GetVariableObject</a></div>
@@ -35,10 +53,23 @@
 									<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
 	
+	//Self reference
 	var ObjectReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
+	
+	//Error report
+	
+	//Dependnecies
 	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	var NoChangeObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject");
 	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject::_init");
 		
@@ -74,6 +105,9 @@
 		return this;
 	};
 	
+	/**
+	 * Performs the destruction of all the properties in the object. Part of the destroy function.
+	 */
 	objectFunctions.performDestroy = function() {
 		
 		ClassReference.destroyIfExists(this.objectReevaluator);
@@ -81,6 +115,9 @@
 		this.superCall();
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.objectReevaluator = null;
@@ -108,7 +145,7 @@
 					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Constructor</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -196,7 +233,7 @@
 					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Performs the destruction of all the properties in the object. Part of the destroy function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -224,7 +261,7 @@
 					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>

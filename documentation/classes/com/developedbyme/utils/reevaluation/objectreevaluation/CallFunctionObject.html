@@ -1,12 +1,30 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/class.css" />
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/hideEmptySections.js"></script>
 	</head>
 	<body>
 		<div class="page">
-			<div class="documentationTitle">Documentation</div>
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle">Documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="007826195105171803720:ousgq6osc70" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
 			<article>
 				<div class="mainInfo">
 					<h1>CallFunctionObject</h1>
@@ -20,7 +38,7 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
@@ -39,6 +57,9 @@
 	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
 	
 	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
@@ -64,6 +85,13 @@
 		return this;
 	};
 	
+	/**
+	 * The function that reevalutes this reference. Should be overridden.
+	 *
+	 * @param	aBaseObject		*	The object to base the reevaluation from.
+	 *
+	 * @return	*	The result of the reevaluation.
+	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
 		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::reevaluate");
 		//console.log(this);
@@ -82,6 +110,9 @@
 		return theFunction.apply(theObject, argumentsArray);
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.functionReevaluator = null;
@@ -90,8 +121,17 @@
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new command of this class.
+	 *
+	 * @param	aObject				ReevaluationBaseObject|*			The object to call the function on.
+	 * @param	aFunction			ReevaluationBaseObject|Function		The function to call.
+	 * @param	aArgumentsArray		ReevaluationBaseObject|Array		The arguemnts to call the function with.
+	 *
+	 * @return	CallFunctionObject	The newly created command.
+	 */
 	staticFunctions.createCommand = function(aObject, aFunction, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand (static)");
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
 		
 		if(!VariableAliases.isSet(aFunction)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[CallFunctionObject]", "createCommand", "Function is null. Can't create call for " + aFunction + " on object " + aObject + " with arguments " + aArgumentsArray);
@@ -107,8 +147,17 @@
 		return newCommand;
 	};
 	
+	/**
+	 * Creates a new command of this class, that calls a function by name.
+	 *
+	 * @param	aObject				ReevaluationBaseObject|*		The object to call the function on.
+	 * @param	aFunction			ReevaluationBaseObject|String	The name function to call.
+	 * @param	aArgumentsArray		ReevaluationBaseObject|Array	The arguemnts to call the function with.
+	 *
+	 * @return	CallFunctionObject	The newly created command.
+	 */
 	staticFunctions.createFunctionOnObjectCommand = function(aObject, aFunctionName, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand (static)");
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
 		
 		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray);
 	};
@@ -162,17 +211,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">reevaluate</span>(<span class="arguments">aBaseObject</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">reevaluate</span>(<span class="arguments">aBaseObject:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">The function that reevalutes this reference. Should be overridden.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aBaseObject</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aBaseObject:<span class="nativeType">*</span> - The object to base the reevaluation from.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The result of the reevaluation.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -204,7 +253,7 @@
 					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -242,24 +291,24 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">createCommand</span>(<span class="arguments">aObject, aFunction, aArgumentsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">createCommand</span>(<span class="arguments">aObject:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span>, aFunction:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Function</span>, aArgumentsArray:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Creates a new command of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObject</div><div class="argumentDescription">aFunction</div><div class="argumentDescription">aArgumentsArray</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span> - The object to call the function on.</div><div class="argumentDescription">aFunction:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Function</span> - The function to call.</div><div class="argumentDescription">aArgumentsArray:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span> - The arguemnts to call the function with.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a> - The newly created command.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createCommand = function(aObject, aFunction, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand (static)");
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
 		
 		if(!VariableAliases.isSet(aFunction)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[CallFunctionObject]", "createCommand", "Function is null. Can't create call for " + aFunction + " on object " + aObject + " with arguments " + aArgumentsArray);
@@ -280,24 +329,24 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createFunctionOnObjectCommand</span>(<span class="arguments">aObject, aFunctionName, aArgumentsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">createFunctionOnObjectCommand</span>(<span class="arguments">aObject:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span>, aFunctionName, aArgumentsArray:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Creates a new command of this class, that calls a function by name.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObject</div><div class="argumentDescription">aFunctionName</div><div class="argumentDescription">aArgumentsArray</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span> - The object to call the function on.</div><div class="argumentDescription">aFunctionName</div><div class="argumentDescription">aArgumentsArray:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span> - The arguemnts to call the function with.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a> - The newly created command.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createFunctionOnObjectCommand = function(aObject, aFunctionName, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand (static)");
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
 		
 		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray);
 	}</div>

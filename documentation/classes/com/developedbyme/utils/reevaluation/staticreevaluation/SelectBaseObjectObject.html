@@ -1,19 +1,37 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/class.css" />
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/hideEmptySections.js"></script>
 	</head>
 	<body>
 		<div class="page">
-			<div class="documentationTitle">Documentation</div>
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle">Documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="007826195105171803720:ousgq6osc70" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
 			<article>
 				<div class="mainInfo">
 					<h1>SelectBaseObjectObject</h1>
 					<div class="classPath">com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject</div>
 					<div class="classInheritance"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
-						<div class="description"></div>
+						<div class="description">Reevaluation that just returns the base object.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
 							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
@@ -63,19 +81,18 @@
 	/**
 	 * The function that reevalutes this reference.
 	 *
-	 * @param	aBaseObject	Any	The object to base the reevaluation from.
+	 * @param	aBaseObject		*	The object to base the reevaluation from.
 	 *
-	 * @return	Any	The base object
+	 * @return	*	The base object
 	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
 		
 		return aBaseObject;
 	};
 	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
-	};
-	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.reevaluationData = null;
@@ -83,6 +100,11 @@
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new command of this class.
+	 *
+	 * @return	SelectBaseObjectObject	The newly created command.
+	 */
 	staticFunctions.createCommand = function() {
 		return ClassReference._createAndInitClass(ClassReference);
 	};
@@ -135,17 +157,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">reevaluate</span>(<span class="arguments">aBaseObject:<span class="unknownType">Any</span></span>)<span class="returnValue">:<span class="unknownType">Any</span></span>
+					<span class="functionName">reevaluate</span>(<span class="arguments">aBaseObject:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">The function that reevalutes this reference.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aBaseObject:<span class="unknownType">Any</span> - The object to base the reevaluation from.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aBaseObject:<span class="nativeType">*</span> - The object to base the reevaluation from.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Any</span> - The base object</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The base object</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -161,35 +183,10 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
-				</div>
-				<div class="descriptionHolder">
-					<div class="description"></div>
-					<div class="spacedContent">
-						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
-					</div>
-					<div class="spacedContent">
-						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
-					</div>
-					<div class="foldableCode spacedContent">
-						<div class="boxWithTitle foldable">
-							<div class="smallTitle">Full code</div>
-							<div class="codeBox fullCode">
-								<div class="code">objectFunctions.performDestroy = function() {
-		this.superCall();
-	}</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div><div class="function">
-				<div class="definition">
 					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -226,17 +223,17 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">createCommand</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject" href="SelectBaseObjectObject.html">SelectBaseObjectObject</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Creates a new command of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject" href="SelectBaseObjectObject.html">SelectBaseObjectObject</a> - The newly created command.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">

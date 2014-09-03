@@ -1,19 +1,37 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/class.css" />
 		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
 		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
 	</head>
 	<body>
 		<div class="page">
-			<div class="documentationTitle">Documentation</div>
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle">Documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="007826195105171803720:ousgq6osc70" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
 			<article>
 				<div class="mainInfo">
 					<h1>ReevaluationBaseObject</h1>
 					<div class="classPath">com.developedbyme.utils.reevaluation.ReevaluationBaseObject</div>
 					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
-						<div class="description"></div>
+						<div class="description">Base object for all reevaluation objects. Implements the reevaluate() interface.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
 							<div class="subClasses linkList"><a title="com.developedbyme.utils.reevaluation.logicreevaluation.AndObject" href="logicreevaluation/AndObject.html">AndObject</a>, <a title="com.developedbyme.utils.reevaluation.manipulationreevaluation.CombineArraysObject" href="manipulationreevaluation/CombineArraysObject.html">CombineArraysObject</a>, <a title="com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject" href="logicreevaluation/ConditionAnyOfMultipleValuesObject.html">ConditionAnyOfMultipleValuesObject</a>, <a title="com.developedbyme.utils.reevaluation.logicreevaluation.ConditionObject" href="logicreevaluation/ConditionObject.html">ConditionObject</a>, <a title="com.developedbyme.utils.reevaluation.encodingreevaluation.FormUrlEncodeReevaluationObject" href="encodingreevaluation/FormUrlEncodeReevaluationObject.html">FormUrlEncodeReevaluationObject</a>, <a title="com.developedbyme.utils.reevaluation.logicreevaluation.InstanceOfClassObject" href="logicreevaluation/InstanceOfClassObject.html">InstanceOfClassObject</a>, <a title="com.developedbyme.utils.reevaluation.staticreevaluation.NoChangeObject" href="staticreevaluation/NoChangeObject.html">NoChangeObject</a>, <a title="com.developedbyme.utils.reevaluation.verificationreevaluation.NotNullObject" href="verificationreevaluation/NotNullObject.html">NotNullObject</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject" href="objectreevaluation/ObjectReevaluationBaseObject.html">ObjectReevaluationBaseObject</a>, <a title="com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject" href="complexreevaluation/ReevaluateArrayObject.html">ReevaluateArrayObject</a>, <a title="com.developedbyme.utils.reevaluation.manipulationreevaluation.ReplaceStringObject" href="manipulationreevaluation/ReplaceStringObject.html">ReplaceStringObject</a>, <a title="com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject" href="staticreevaluation/SelectBaseObjectObject.html">SelectBaseObjectObject</a>, <a title="com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject" href="manipulationreevaluation/SplitStringObject.html">SplitStringObject</a>, <a title="com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject" href="staticreevaluation/StaticVariableObject.html">StaticVariableObject</a></div>
@@ -35,8 +53,12 @@
 									<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	
+	//Self reference
 	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.reevaluation.ArrayHolder::_init");
 		
@@ -54,8 +76,9 @@
 	/**
 	 * The function that reevalutes this reference. Should be overridden.
 	 *
-	 * @param	aBaseObject	The object to base the reevaluation from.
-	 * @return	null
+	 * @param	aBaseObject		*	The object to base the reevaluation from.
+	 *
+	 * @return	*	The result of the reevaluation.
 	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
 		
@@ -64,6 +87,9 @@
 		return null;
 	}; //End function reevaluate
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		this.superCall();
 	};
@@ -88,7 +114,7 @@
 					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Constructor</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -141,17 +167,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">reevaluate</span>(<span class="arguments">aBaseObject</span>)<span class="returnValue">:<span class="unknownType">null</span></span>
+					<span class="functionName">reevaluate</span>(<span class="arguments">aBaseObject:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">The function that reevalutes this reference. Should be overridden.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aBaseObject - The object to base the reevaluation from.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aBaseObject:<span class="nativeType">*</span> - The object to base the reevaluation from.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">null</span> - null</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The result of the reevaluation.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -172,7 +198,7 @@
 					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>

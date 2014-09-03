@@ -1,19 +1,37 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/class.css" />
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/hideEmptySections.js"></script>
 	</head>
 	<body>
 		<div class="page">
-			<div class="documentationTitle">Documentation</div>
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle">Documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="007826195105171803720:ousgq6osc70" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
 			<article>
 				<div class="mainInfo">
 					<h1>GetVariableObject</h1>
 					<div class="classPath">com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject</div>
 					<div class="classInheritance"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject" href="ObjectReevaluationBaseObject.html">ObjectReevaluationBaseObject</a> &gt; <a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
-						<div class="description"></div>
+						<div class="description">Reevalutor that selects a variable on an object.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
 							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
@@ -49,6 +67,7 @@
 	
 	//Constants
 	
+	
 	/**
 	 * Constructor
 	 */
@@ -65,7 +84,8 @@
 	/**
 	 * Sets the property name that should be returned on reevaluated.
 	 *
-	 * @param	aName	The name of the property.
+	 * @param	aName	String	The name of the property.
+	 *
 	 * @return	self
 	 */
 	objectFunctions.setPropertyName = function(aName) {
@@ -81,8 +101,9 @@
 	/**
 	 * The function that reevalutes this reference.
 	 *
-	 * @param	aBaseObject	The object to base the reevaluation from.
-	 * @return	The property on the base object.
+	 * @param	aBaseObject		*	The object to base the reevaluation from.
+	 *
+	 * @return	*	The property on the base object.
 	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
 		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject::reevaluate");
@@ -117,8 +138,9 @@
 	/**
 	 * Creates a command that gets a property on a static object.
 	 * 
-	 * @param	aObject			The object to get the property on
-	 * @param	aPropertyName	The name of the property to get.
+	 * @param	aObject			ReevalutionBaseObject|*		The object to get the property on
+	 * @param	aPropertyName	ReevalutionBaseObject|String	The name of the property to get.
+	 *
 	 * @return	The new command.
 	 */
 	staticFunctions.createCommand = function(aObject, aPropertyName) {
@@ -168,6 +190,8 @@
 	
 	/**
 	 * Creates a command that gets an argument of an event data.
+	 *
+	 * @param	aIndex	ReevalutionBaseObject|Number	The index of the arguments to get.
 	 * 
 	 * @return	The new command.
 	 */
@@ -223,13 +247,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">setPropertyName</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="noData">self</span></span>
+					<span class="functionName">setPropertyName</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Sets the property name that should be returned on reevaluated.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aName - The name of the property.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the property.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -254,17 +278,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">reevaluate</span>(<span class="arguments">aBaseObject</span>)<span class="returnValue">:<span class="unknownType">The property on the base object.</span></span>
+					<span class="functionName">reevaluate</span>(<span class="arguments">aBaseObject:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">The function that reevalutes this reference.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aBaseObject - The object to base the reevaluation from.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aBaseObject:<span class="nativeType">*</span> - The object to base the reevaluation from.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">The property on the base object.</span> - The property on the base object.</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The property on the base object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -353,13 +377,13 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">createCommand</span>(<span class="arguments">aObject, aPropertyName</span>)<span class="returnValue">:<span class="unknownType">The new command.</span></span>
+					<span class="functionName">createCommand</span>(<span class="arguments">aObject:<span class="unknownType">ReevalutionBaseObject</span> | <span class="nativeType">*</span>, aPropertyName:<span class="unknownType">ReevalutionBaseObject</span> | <span class="nativeType">String</span></span>)<span class="returnValue">:<span class="unknownType">The new command.</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a command that gets a property on a static object.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObject - The object to get the property on</div><div class="argumentDescription">aPropertyName - The name of the property to get.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<span class="unknownType">ReevalutionBaseObject</span> | <span class="nativeType">*</span> - The object to get the property on</div><div class="argumentDescription">aPropertyName:<span class="unknownType">ReevalutionBaseObject</span> | <span class="nativeType">String</span> - The name of the property to get.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -488,13 +512,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createSelectMultipleArgumentDataCommand</span>(<span class="arguments">aIndex</span>)<span class="returnValue">:<span class="unknownType">The new command.</span></span>
+					<span class="functionName">createSelectMultipleArgumentDataCommand</span>(<span class="arguments">aIndex:<span class="unknownType">ReevalutionBaseObject</span> | <span class="nativeType">Number</span></span>)<span class="returnValue">:<span class="unknownType">The new command.</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a command that gets an argument of an event data.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aIndex</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aIndex:<span class="unknownType">ReevalutionBaseObject</span> | <span class="nativeType">Number</span> - The index of the arguments to get.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>

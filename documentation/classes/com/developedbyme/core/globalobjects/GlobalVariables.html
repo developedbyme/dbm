@@ -1,19 +1,37 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/class.css" />
 		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
 		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
 	</head>
 	<body>
 		<div class="page">
-			<div class="documentationTitle">Documentation</div>
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle">Documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="007826195105171803720:ousgq6osc70" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
 			<article>
 				<div class="mainInfo">
 					<h1>GlobalVariables</h1>
 					<div class="classPath">com.developedbyme.core.globalobjects.GlobalVariables</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
-						<div class="description"></div>
+						<div class="description">Static object with global variables that can be used by all classes.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
 							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
@@ -36,10 +54,24 @@
 	//console.log("com.developedbyme.core.globalobjects.GlobalVariables");
 	//"use strict";
 	
+	//Self reference
 	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
 	
+	/**
+	 * The global flow update number.
+	 */
 	staticFunctions.FLOW_UPDATE_NUMBER = 1;
+	
+	/**
+	 * Array of random values generated at startup to have a unique seed for the shared random generator.
+	 * @type	Array
+	 */
 	staticFunctions.RANDOM_VALUES = new Array();
+	
+	/**
+	 * A shared random generator that gets seeded with the initial random values.
+	 * @type	MersenneTwister
+	 */
 	staticFunctions.SHARED_RANDOM_NUMBER_GENERATOR = null;
 })</div>
 								</div>
@@ -68,21 +100,21 @@
 					<span class="variableName">FLOW_UPDATE_NUMBER</span><span class="type"></span> = <span class="value">1</span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">The global flow update number.</div>
 				</div>
 			</div><div id="variable" class="variable">
 				<div class="definition">
 					<span class="variableName">RANDOM_VALUES</span><span class="type"></span> = <span class="value">new Array()</span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Array of random values generated at startup to have a unique seed for the shared random generator.</div>
 				</div>
 			</div><div id="variable" class="variable">
 				<div class="definition">
 					<span class="variableName">SHARED_RANDOM_NUMBER_GENERATOR</span><span class="type"></span> = <span class="value">null</span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">A shared random generator that gets seeded with the initial random values.</div>
 				</div>
 			</div></div>
 				</section>

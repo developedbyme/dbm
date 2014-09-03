@@ -1,12 +1,30 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/class.css" />
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
 		<script type="application/javascript" src="../../../../../../javascripts/documentation/hideEmptySections.js"></script>
 	</head>
 	<body>
 		<div class="page">
-			<div class="documentationTitle">Documentation</div>
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle">Documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="007826195105171803720:ousgq6osc70" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
 			<article>
 				<div class="mainInfo">
 					<h1>TreeStructure</h1>
@@ -71,6 +89,8 @@
 	
 	/**
 	 * Gets the root of the tree structure.
+	 *
+	 * @return	TreeStructureItem	The root item of this tree structure.
 	 */
 	objectFunctions.getRoot = function() {
 		return this._root;
@@ -209,6 +229,11 @@
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @return	TreeStructure	The newly created object.
+	 */
 	staticFunctions.create = function() {
 		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::create");
 		var newTreeStructure = (new ClassReference()).init();
@@ -270,7 +295,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getRoot</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">getRoot</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="TreeStructureItem.html">TreeStructureItem</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Gets the root of the tree structure.</div>
@@ -280,7 +305,7 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="TreeStructureItem.html">TreeStructureItem</a> - The root item of this tree structure.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -569,17 +594,17 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.treestructure.TreeStructure" href="TreeStructure.html">TreeStructure</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.treestructure.TreeStructure" href="TreeStructure.html">TreeStructure</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
