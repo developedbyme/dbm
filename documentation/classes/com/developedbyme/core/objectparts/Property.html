@@ -2,6 +2,7 @@
 		<title>Documentation of {{className}}</title>
 		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
 		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -84,18 +85,38 @@
 		return this;
 	};
 	
+	/**
+	 * Gets the property that is inputting to this property.
+	 *
+	 * @return	Property	The inpurt property. Null if it doesn't have any input.
+	 */ 
 	objectFunctions.getInputProperty = function() {
 		return this._inputConnection;
 	}
 	
+	/**
+	 * Performs setting the value of this property. Used in subclasses that affects functionality.
+	 *
+	 * @param	aValue	*	The value to set to this property.
+	 */ 
 	objectFunctions._performSetValue = function(aValue) {
 		this._value = aValue;
 	};
 	
+	/**
+	 * Performs getting the value of this property. Used in subclasses where the value is not just stored on the property.
+	 *
+	 * @return	*	The value of this property.
+	 */ 
 	objectFunctions._performGetValue = function() {
 		return this._value;
 	};
 	
+	/**
+	 * An external change is happening to the value. Used by subclasses that can have external functionality working togheter with the flow.
+	 *
+	 * @return	*	The value to set to this property.
+	 */
 	objectFunctions.externalChangeToValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.Property::externalChangeToValue");
 		if(aValue === this._performGetValue()) return;
@@ -104,6 +125,11 @@
 		this.setDependentConnectionsAsDirty();
 	};
 	
+	/**
+	 * Sets the value of this property. If this property is connected to an animation controller (or if the system is recording) the value is added to that timeline.
+	 *
+	 * @param	aValue	*	The value to set to this property.
+	 */
 	objectFunctions.setValue = function(aValue) {
 		if(this._inputConnection !== null &amp;&amp; (this._animationController === null || !this._canSetValueInAnimation)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Can't set value when property has input.");
@@ -121,27 +147,48 @@
 		this._animationController.setValue(aValue);
 	};
 	
+	/**
+	 * Sets the value on the timeline control with a delay.
+	 *
+	 * @param	aValue	*		The value to set to this property.
+	 * @param	aDelay	Number	The time (in seconds) to delay the value change.
+	 */
 	objectFunctions.setValueWithDelay = function(aValue, aDelay) {
-		if(this._inputConnection !== null &amp;&amp; this._animationController === null) {
+		if(!this.canBeSet()) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValueWithDelay", "Can't set value when property has input.");
 			return;
 		}
-		if(this._animationController === null) {
-			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
-		}
+		this.createTimelineControl();
 		this._animationController.setValue(aValue, aDelay);
 	};
 	
+	/**
+	 * Animates the value of this property (from the curent value) on the timeline control.
+	 *
+	 * @param	aValue			*									The value to animate this property to.
+	 * @param	aTime			Number								The time (in seconds) to animate.
+	 * @param	aInterpolation	InterpolationTypes|String|Function	The interpolation to use over the animation time.
+	 * @param	aDelay			Number								The time in seconds to wait before starting the animation.
+	 */
 	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
+		if(!this.canBeSet()) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValue", "Can't set value when property has input.");
+			return;
+		}
 		this.createTimelineControl();
 		this._animationController.animateValue(aValue, aTime, aInterpolation, aDelay);
 	};
 	
+	/**
+	 * Creates timeline control for this property.
+	 *
+	 * @return	Timeline	The timeline control for this property. Null if the property already has an input connection and can't be controlled.
+	 */
 	objectFunctions.createTimelineControl = function() {
 		if(this._animationController === null) {
 			if(this._inputConnection !== null) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "createTimelineControl", "Can't set value when property has input.");
-				return;
+				return null;
 			}
 			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
 		}
@@ -149,12 +196,24 @@
 		return this._animationController;
 	};
 	
+	/**
+	 * Sets the animation controller for this object.
+	 *
+	 * @param	aController		Timeline	The timeline controller.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.setAnimationController = function(aController) {
 		this._animationController = aController;
 		
 		return this;
 	};
 	
+	/**
+	 * Gets the animation controller for this object. A new controller is created if it doesn't already exist, unless the property already has an input connection.
+	 *
+	 * @return	Timeline	The animation controller. Null if it doesn't exist and can't be created.
+	 */
 	objectFunctions.getAnimationController = function() {
 		if(this._animationController !== null) {
 			return this._animationController;
@@ -167,10 +226,21 @@
 		return this._animationController;
 	};
 	
+	/**
+	 * Checkes if the value of this property can be set. Either direct or on a timeline.
+	 *
+	 * @return	Boolean		True if the value can be set.
+	 */
 	objectFunctions.canBeSet = function() {
 		return (this._inputConnection === null || (this._animationController !== null &amp;&amp; this._canSetValueInAnimation));
 	};
 	
+	/**
+	 * Sets the value when the whole flow is evaluated.
+	 *
+	 * @param	aValue				*		The value to set this property to.
+	 * @param	aFlowUpdateNumber	Number	The integer for keeping track of flow updates.
+	 */
 	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.objectparts.Property::setValueWithFlow");
 		//console.log(this.name);
@@ -183,12 +253,22 @@
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
+	/**
+	 * Sets the flow status of this property to updated.
+	 *
+	 * @param	aFlowUpdateNumber	Number	The integer for keeping track of flow updates.
+	 */
 	objectFunctions.setFlowAsUpdated = function(aFlowUpdateNumber) {
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._mustUpdate = false;
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
+	/**
+	 * Gets the value of this property. A flow update is triggered if this property has an input connection.
+	 *
+	 * @return	*	The value of this property.
+	 */ 
 	objectFunctions.getValue = function() {
 		
 		if(this._status === FlowStatusTypes.NEEDS_UPDATE) {
@@ -198,22 +278,38 @@
 		return this._performGetValue();
 	};
 	
+	/**
+	 * Gets the value of this property without triggering the flow update.
+	 *
+	 * @return	*	The value of this property.
+	 */ 
 	objectFunctions.getValueWithoutFlow = function() {
 		return this._performGetValue();
 	};
 	
-	objectFunctions.getAnimationController = function() {
-		return this._animationController;
-	};
-	
+	/**
+	 * Checks if this property has an animation controller.
+	 *
+	 * @return	Boolean		True if this property is connected to a timeline control.
+	 */
 	objectFunctions.hasAnimationController = function() {
 		return (this._animationController !== null);
 	};
 	
+	/**
+	 * Sets the flow status of this property.
+	 *
+	 * @param	aStatus		FlowStatusTypes		The status for this property.
+	 */
 	objectFunctions.setStatus = function(aStatus) {
 		this._status = aStatus;
 	};
 	
+	/**
+	 * Gets the flow status of this property.
+	 *
+	 * @return	FlowStatusTypes		The status for this property.
+	 */
 	objectFunctions.getStatus = function() {
 		return this._status;
 	};
@@ -242,6 +338,11 @@
 		return this._isUpdating;
 	};
 	
+	/**
+	 * Updates the value of this property.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.update = function() {
 		dbm.singletons.dbmFlowManager.updateProperty(this);
 		
@@ -456,6 +557,11 @@
 		this._cachedDependentNodeChains = aNodeChains;
 	};
 	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with the parameters description.
+	 */
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
@@ -463,6 +569,9 @@
 		aReturnArray.push("value: " + this._performGetValue());
 	};
 	
+	/**
+	 * Performs the destruction of all the properties in the object. Part of the destroy function.
+	 */
 	objectFunctions.performDestroy = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::performDestroy");
 		//console.log(this.toString());
@@ -492,6 +601,13 @@
 		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
 	};
 	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "_value":
@@ -500,6 +616,9 @@
 		return this.superCall();
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._value = null;
@@ -522,6 +641,13 @@
 		return newProperty;
 	};
 	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aValue	*	The value for the new property.
+	 *
+	 * @return	Property	The newly created object.
+	 */
 	staticFunctions.create = function(aObjectInput, aValue) {
 		//console.log("com.developedbyme.core.objectparts.Property::create");
 		return ClassReference._createWithInputValue(Property, aObjectInput, aValue);
@@ -602,17 +728,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getInputProperty</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">getInputProperty</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Gets the property that is inputting to this property.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> - The inpurt property. Null if it doesn't have any input.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -627,13 +753,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_performSetValue</span>(<span class="arguments">aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">_performSetValue</span>(<span class="arguments">aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Performs setting the value of this property. Used in subclasses that affects functionality.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aValue</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value to set to this property.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -652,17 +778,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_performGetValue</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">_performGetValue</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Performs getting the value of this property. Used in subclasses where the value is not just stored on the property.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The value of this property.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -680,7 +806,7 @@
 					<span class="functionName">externalChangeToValue</span>(<span class="arguments">aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">An external change is happening to the value. Used by subclasses that can have external functionality working togheter with the flow.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><div class="argumentDescription">aValue</div></div>
@@ -706,13 +832,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">setValue</span>(<span class="arguments">aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">setValue</span>(<span class="arguments">aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Sets the value of this property. If this property is connected to an animation controller (or if the system is recording) the value is added to that timeline.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aValue</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value to set to this property.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -744,13 +870,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">setValueWithDelay</span>(<span class="arguments">aValue, aDelay</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">setValueWithDelay</span>(<span class="arguments">aValue:<span class="nativeType">*</span>, aDelay:<span class="nativeType">Number</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Sets the value on the timeline control with a delay.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aDelay</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value to set to this property.</div><div class="argumentDescription">aDelay:<span class="nativeType">Number</span> - The time (in seconds) to delay the value change.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -761,13 +887,11 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setValueWithDelay = function(aValue, aDelay) {
-		if(this._inputConnection !== null &amp;&amp; this._animationController === null) {
+		if(!this.canBeSet()) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValueWithDelay", "Can't set value when property has input.");
 			return;
 		}
-		if(this._animationController === null) {
-			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
-		}
+		this.createTimelineControl();
 		this._animationController.setValue(aValue, aDelay);
 	}</div>
 							</div>
@@ -776,13 +900,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">animateValue</span>(<span class="arguments">aValue, aTime, aInterpolation, aDelay</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">animateValue</span>(<span class="arguments">aValue:<span class="nativeType">*</span>, aTime:<span class="nativeType">Number</span>, aInterpolation:<a title="com.developedbyme.constants.InterpolationTypes" href="../../constants/InterpolationTypes.html">InterpolationTypes</a> | <span class="nativeType">String</span> | <span class="nativeType">Function</span>, aDelay:<span class="nativeType">Number</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Animates the value of this property (from the curent value) on the timeline control.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aTime</div><div class="argumentDescription">aInterpolation</div><div class="argumentDescription">aDelay</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value to animate this property to.</div><div class="argumentDescription">aTime:<span class="nativeType">Number</span> - The time (in seconds) to animate.</div><div class="argumentDescription">aInterpolation:<a title="com.developedbyme.constants.InterpolationTypes" href="../../constants/InterpolationTypes.html">InterpolationTypes</a> | <span class="nativeType">String</span> | <span class="nativeType">Function</span> - The interpolation to use over the animation time.</div><div class="argumentDescription">aDelay:<span class="nativeType">Number</span> - The time in seconds to wait before starting the animation.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -793,6 +917,10 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
+		if(!this.canBeSet()) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValue", "Can't set value when property has input.");
+			return;
+		}
 		this.createTimelineControl();
 		this._animationController.animateValue(aValue, aTime, aInterpolation, aDelay);
 	}</div>
@@ -802,17 +930,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createTimelineControl</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">createTimelineControl</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline" href="../globalobjects/animationmanager/timeline/Timeline.html">Timeline</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Creates timeline control for this property.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline" href="../globalobjects/animationmanager/timeline/Timeline.html">Timeline</a> - The timeline control for this property. Null if the property already has an input connection and can't be controlled.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -822,7 +950,7 @@
 		if(this._animationController === null) {
 			if(this._inputConnection !== null) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "createTimelineControl", "Can't set value when property has input.");
-				return;
+				return null;
 			}
 			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
 		}
@@ -835,13 +963,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">setAnimationController</span>(<span class="arguments">aController</span>)<span class="returnValue">:<span class="noData">self</span></span>
+					<span class="functionName">setAnimationController</span>(<span class="arguments">aController:<a title="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline" href="../globalobjects/animationmanager/timeline/Timeline.html">Timeline</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Sets the animation controller for this object.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aController</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aController:<a title="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline" href="../globalobjects/animationmanager/timeline/Timeline.html">Timeline</a> - The timeline controller.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -862,17 +990,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getAnimationController</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">getAnimationController</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline" href="../globalobjects/animationmanager/timeline/Timeline.html">Timeline</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Gets the animation controller for this object. A new controller is created if it doesn't already exist, unless the property already has an input connection.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline" href="../globalobjects/animationmanager/timeline/Timeline.html">Timeline</a> - The animation controller. Null if it doesn't exist and can't be created.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -895,17 +1023,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">canBeSet</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">canBeSet</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Checkes if the value of this property can be set. Either direct or on a timeline.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if the value can be set.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -920,13 +1048,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">setValueWithFlow</span>(<span class="arguments">aValue, aFlowUpdateNumber</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">setValueWithFlow</span>(<span class="arguments">aValue:<span class="nativeType">*</span>, aFlowUpdateNumber:<span class="nativeType">Number</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Sets the value when the whole flow is evaluated.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aFlowUpdateNumber</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value to set this property to.</div><div class="argumentDescription">aFlowUpdateNumber:<span class="nativeType">Number</span> - The integer for keeping track of flow updates.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -953,13 +1081,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">setFlowAsUpdated</span>(<span class="arguments">aFlowUpdateNumber</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">setFlowAsUpdated</span>(<span class="arguments">aFlowUpdateNumber:<span class="nativeType">Number</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Sets the flow status of this property to updated.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aFlowUpdateNumber</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aFlowUpdateNumber:<span class="nativeType">Number</span> - The integer for keeping track of flow updates.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -980,17 +1108,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getValue</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">getValue</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Gets the value of this property. A flow update is triggered if this property has an input connection.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The value of this property.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -1010,17 +1138,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getValueWithoutFlow</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">getValueWithoutFlow</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Gets the value of this property without triggering the flow update.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The value of this property.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -1035,42 +1163,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getAnimationController</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">hasAnimationController</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Checks if this property has an animation controller.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
-					</div>
-					<div class="foldableCode spacedContent">
-						<div class="boxWithTitle foldable">
-							<div class="smallTitle">Full code</div>
-							<div class="codeBox fullCode">
-								<div class="code">objectFunctions.getAnimationController = function() {
-		return this._animationController;
-	}</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div><div class="function">
-				<div class="definition">
-					<span class="functionName">hasAnimationController</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
-				</div>
-				<div class="descriptionHolder">
-					<div class="description"></div>
-					<div class="spacedContent">
-						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
-					</div>
-					<div class="spacedContent">
-						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if this property is connected to a timeline control.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -1085,13 +1188,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">setStatus</span>(<span class="arguments">aStatus</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">setStatus</span>(<span class="arguments">aStatus:<a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Sets the flow status of this property.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aStatus</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStatus:<a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a> - The status for this property.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -1110,17 +1213,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getStatus</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">getStatus</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Gets the flow status of this property.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a> - The status for this property.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -1267,7 +1370,7 @@
 					<span class="functionName">update</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Updates the value of this property.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -1961,13 +2064,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">_toString_getAttributes</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Gets the parameters for this class. Part of the toString function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aReturnArray</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with the parameters description.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -1992,7 +2095,7 @@
 					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Performs the destruction of all the properties in the object. Part of the destroy function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -2039,17 +2142,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName - The name of the variable.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if this object is the owner of a variable.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -2071,7 +2174,7 @@
 					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -2144,17 +2247,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aObjectInput, aValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">create</span>(<span class="arguments">aObjectInput, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObjectInput</div><div class="argumentDescription">aValue</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObjectInput</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value for the new property.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
