@@ -52,18 +52,38 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this;
 	};
 	
+	/**
+	 * Gets the property that is inputting to this property.
+	 *
+	 * @return	Property	The inpurt property. Null if it doesn't have any input.
+	 */ 
 	objectFunctions.getInputProperty = function() {
 		return this._inputConnection;
 	}
 	
+	/**
+	 * Performs setting the value of this property. Used in subclasses that affects functionality.
+	 *
+	 * @param	aValue	*	The value to set to this property.
+	 */ 
 	objectFunctions._performSetValue = function(aValue) {
 		this._value = aValue;
 	};
 	
+	/**
+	 * Performs getting the value of this property. Used in subclasses where the value is not just stored on the property.
+	 *
+	 * @return	*	The value of this property.
+	 */ 
 	objectFunctions._performGetValue = function() {
 		return this._value;
 	};
 	
+	/**
+	 * An external change is happening to the value. Used by subclasses that can have external functionality working togheter with the flow.
+	 *
+	 * @return	*	The value to set to this property.
+	 */
 	objectFunctions.externalChangeToValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.Property::externalChangeToValue");
 		if(aValue === this._performGetValue()) return;
@@ -72,6 +92,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.setDependentConnectionsAsDirty();
 	};
 	
+	/**
+	 * Sets the value of this property. If this property is connected to an animation controller (or if the system is recording) the value is added to that timeline.
+	 *
+	 * @param	aValue	*	The value to set to this property.
+	 */
 	objectFunctions.setValue = function(aValue) {
 		if(this._inputConnection !== null && (this._animationController === null || !this._canSetValueInAnimation)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Can't set value when property has input.");
@@ -89,27 +114,48 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._animationController.setValue(aValue);
 	};
 	
+	/**
+	 * Sets the value on the timeline control with a delay.
+	 *
+	 * @param	aValue	*		The value to set to this property.
+	 * @param	aDelay	Number	The time (in seconds) to delay the value change.
+	 */
 	objectFunctions.setValueWithDelay = function(aValue, aDelay) {
-		if(this._inputConnection !== null && this._animationController === null) {
+		if(!this.canBeSet()) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValueWithDelay", "Can't set value when property has input.");
 			return;
 		}
-		if(this._animationController === null) {
-			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
-		}
+		this.createTimelineControl();
 		this._animationController.setValue(aValue, aDelay);
 	};
 	
+	/**
+	 * Animates the value of this property (from the curent value) on the timeline control.
+	 *
+	 * @param	aValue			*									The value to animate this property to.
+	 * @param	aTime			Number								The time (in seconds) to animate.
+	 * @param	aInterpolation	InterpolationTypes|String|Function	The interpolation to use over the animation time.
+	 * @param	aDelay			Number								The time in seconds to wait before starting the animation.
+	 */
 	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
+		if(!this.canBeSet()) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValue", "Can't set value when property has input.");
+			return;
+		}
 		this.createTimelineControl();
 		this._animationController.animateValue(aValue, aTime, aInterpolation, aDelay);
 	};
 	
+	/**
+	 * Creates timeline control for this property.
+	 *
+	 * @return	Timeline	The timeline control for this property. Null if the property already has an input connection and can't be controlled.
+	 */
 	objectFunctions.createTimelineControl = function() {
 		if(this._animationController === null) {
 			if(this._inputConnection !== null) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "createTimelineControl", "Can't set value when property has input.");
-				return;
+				return null;
 			}
 			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
 		}
@@ -117,12 +163,24 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._animationController;
 	};
 	
+	/**
+	 * Sets the animation controller for this object.
+	 *
+	 * @param	aController		Timeline	The timeline controller.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.setAnimationController = function(aController) {
 		this._animationController = aController;
 		
 		return this;
 	};
 	
+	/**
+	 * Gets the animation controller for this object. A new controller is created if it doesn't already exist, unless the property already has an input connection.
+	 *
+	 * @return	Timeline	The animation controller. Null if it doesn't exist and can't be created.
+	 */
 	objectFunctions.getAnimationController = function() {
 		if(this._animationController !== null) {
 			return this._animationController;
@@ -135,10 +193,21 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._animationController;
 	};
 	
+	/**
+	 * Checkes if the value of this property can be set. Either direct or on a timeline.
+	 *
+	 * @return	Boolean		True if the value can be set.
+	 */
 	objectFunctions.canBeSet = function() {
 		return (this._inputConnection === null || (this._animationController !== null && this._canSetValueInAnimation));
 	};
 	
+	/**
+	 * Sets the value when the whole flow is evaluated.
+	 *
+	 * @param	aValue				*		The value to set this property to.
+	 * @param	aFlowUpdateNumber	Number	The integer for keeping track of flow updates.
+	 */
 	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.objectparts.Property::setValueWithFlow");
 		//console.log(this.name);
@@ -151,12 +220,22 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
+	/**
+	 * Sets the flow status of this property to updated.
+	 *
+	 * @param	aFlowUpdateNumber	Number	The integer for keeping track of flow updates.
+	 */
 	objectFunctions.setFlowAsUpdated = function(aFlowUpdateNumber) {
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._mustUpdate = false;
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
+	/**
+	 * Gets the value of this property. A flow update is triggered if this property has an input connection.
+	 *
+	 * @return	*	The value of this property.
+	 */ 
 	objectFunctions.getValue = function() {
 		
 		if(this._status === FlowStatusTypes.NEEDS_UPDATE) {
@@ -166,22 +245,38 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._performGetValue();
 	};
 	
+	/**
+	 * Gets the value of this property without triggering the flow update.
+	 *
+	 * @return	*	The value of this property.
+	 */ 
 	objectFunctions.getValueWithoutFlow = function() {
 		return this._performGetValue();
 	};
 	
-	objectFunctions.getAnimationController = function() {
-		return this._animationController;
-	};
-	
+	/**
+	 * Checks if this property has an animation controller.
+	 *
+	 * @return	Boolean		True if this property is connected to a timeline control.
+	 */
 	objectFunctions.hasAnimationController = function() {
 		return (this._animationController !== null);
 	};
 	
+	/**
+	 * Sets the flow status of this property.
+	 *
+	 * @param	aStatus		FlowStatusTypes		The status for this property.
+	 */
 	objectFunctions.setStatus = function(aStatus) {
 		this._status = aStatus;
 	};
 	
+	/**
+	 * Gets the flow status of this property.
+	 *
+	 * @return	FlowStatusTypes		The status for this property.
+	 */
 	objectFunctions.getStatus = function() {
 		return this._status;
 	};
@@ -206,16 +301,31 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._isUpdating = aIsUpdating;
 	};
 	
+	/**
+	 * Checks if this property is updated every frame.
+	 *
+	 * @return	Boolean		True if the property is updated every frame.
+	 */
 	objectFunctions.isUpdating = function() {
 		return this._isUpdating;
 	};
 	
+	/**
+	 * Updates the value of this property.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.update = function() {
 		dbm.singletons.dbmFlowManager.updateProperty(this);
 		
 		return this;
 	};
 	
+	/**
+	 * Starts updating this property on every frame update from the UpdateManager.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.startUpdating = function() {
 		if(this._isUpdating) return this;
 		
@@ -224,6 +334,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this;
 	};
 	
+	/**
+	 * Stops updating this property on every frame update from the UpdateManager.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.stopUpdating = function() {
 		if(!this._isUpdating) return this;
 		
@@ -424,6 +539,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._cachedDependentNodeChains = aNodeChains;
 	};
 	
+	/**
+	 * Gets the parameters for this class. Part of the toString function.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with the parameters description.
+	 */
 	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
@@ -431,6 +551,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		aReturnArray.push("value: " + this._performGetValue());
 	};
 	
+	/**
+	 * Performs the destruction of all the properties in the object. Part of the destroy function.
+	 */
 	objectFunctions.performDestroy = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::performDestroy");
 		//console.log(this.toString());
@@ -460,6 +583,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
 	};
 	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "_value":
@@ -468,6 +598,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this.superCall();
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._value = null;
@@ -490,6 +623,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return newProperty;
 	};
 	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aValue	*	The value for the new property.
+	 *
+	 * @return	Property	The newly created object.
+	 */
 	staticFunctions.create = function(aObjectInput, aValue) {
 		//console.log("com.developedbyme.core.objectparts.Property::create");
 		return ClassReference._createWithInputValue(Property, aObjectInput, aValue);
