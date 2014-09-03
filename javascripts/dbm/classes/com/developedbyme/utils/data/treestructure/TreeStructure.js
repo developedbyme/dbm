@@ -41,6 +41,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	
 	/**
 	 * Gets the root of the tree structure.
+	 *
+	 * @return	TreeStructureItem	The root item of this tree structure.
 	 */
 	objectFunctions.getRoot = function() {
 		return this._root;
@@ -179,6 +181,11 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @return	TreeStructure	The newly created object.
+	 */
 	staticFunctions.create = function() {
 		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::create");
 		var newTreeStructure = (new ClassReference()).init();

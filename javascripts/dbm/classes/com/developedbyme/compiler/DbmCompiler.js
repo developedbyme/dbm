@@ -263,15 +263,6 @@ dbm.registerClass("com.developedbyme.compiler.DbmCompiler", "com.developedbyme.c
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentBreakdown = currentArray[i];
 			var currentBreakdownType = currentBreakdown.getType();
-			//if(currentDocumentationData !== null) {
-			//	
-			//	if(currentBreakdownType !== BreakdownTypes.COMMENT) {
-			//		var newDocumentedItem = DocumentedItem.create(currentBreakdown.getScript());
-			//		newDocumentedItem.documentation = currentDocumentationData;
-			//		console.log(newDocumentedItem, currentBreakdown);
-			//		currentDocumentationData = null;
-			//	}
-			//}
 			switch(currentBreakdownType) {
 				case DbmBreakdownTypes.REGISTER_CLASS:
 					var newTreeStructureItem = aParentTreeStructureItem.getRoot().getItemByPath("class_" + aParentTreeStructureItem.getNumberOfChildren(), aParentTreeStructureItem);

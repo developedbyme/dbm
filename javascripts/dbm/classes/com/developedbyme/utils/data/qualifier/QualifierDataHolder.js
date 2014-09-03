@@ -40,9 +40,9 @@ dbm.registerClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder", 
 	/**
 	 * Qualifies a base object to be valid for this data.
 	 *
-	 * @param	aBaseObject	Any	The base data for the reevaluation of the quailification.
+	 * @param	aBaseObject		*	The base data for the reevaluation of the quailification.
 	 *
-	 * @return	Boolean	True if the base object is qualified for this data.
+	 * @return	Boolean		True if the base object is qualified for this data.
 	 */
 	objectFunctions.qualify = function(aBaseObject) {
 		return this.qualifierReevaluator.reevaluate(aBaseObject);
@@ -63,6 +63,13 @@ dbm.registerClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder", 
 		this.superCall();
 	};
 	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
 	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "data":
@@ -82,6 +89,15 @@ dbm.registerClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder", 
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aReevaluator	ReevaluationBaseObject	The qualifier reevalutor for the new objects.
+	 * @param	aData			*						The result data for this object.
+	 * @param	aOwnsData		Boolean					If the new object should own the data and destroy it when it is destroyed.
+	 *
+	 * @return	Property	The newly created object.
+	 */
 	staticFunctions.create = function(aReevaluator, aData, aOwnsData) {
 		var newQualifierDataHolder = (new ClassReference()).init();
 		

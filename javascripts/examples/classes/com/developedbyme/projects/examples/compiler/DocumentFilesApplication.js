@@ -19,6 +19,8 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	var JsonAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.JsonAsset");
 	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
+	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -31,6 +33,9 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	var RemoveElementCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.htmldom.RemoveElementCommand");
 	var RebaseDocumentLinksCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.htmldom.RebaseDocumentLinksCommand");
 	var QuerySelectorObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject");
+	var CreateClassObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.CreateClassObject");
+	var ArgumentFromCallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.ArgumentFromCallFunctionObject");
+	
 	var SnippetsGenerator = dbm.importClass("com.developedbyme.compiler.snippets.SnippetsGenerator");
 	var DocumentationFunctions = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentationFunctions");
 	var DocumentationTreeStructureFunctions = dbm.importClass("com.developedbyme.compiler.compiledata.documentation.DocumentationTreeStructureFunctions");
@@ -41,6 +46,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
 	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	var TreeStructureFunctions = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureFunctions");
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
@@ -54,6 +60,10 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		//console.log("com.developedbyme.projects.examples.compiler.DocumentFilesApplication::_init");
 		
 		this.superCall();
+		
+		this._packageIndexTemplatePath = "../assets/examples/compiler/documentationIndexTemplates.html#package";
+		this._packageIndexSubPackageTemplatePath = "../assets/examples/compiler/documentationIndexTemplates.html#subPackage";
+		this._packageIndexClassTemplatePath = "../assets/examples/compiler/documentationIndexTemplates.html#class";
 		
 		this._classTemplatePath = "../assets/examples/compiler/documentationTemplates.html#class";
 		this._functionTemplatePath = "../assets/examples/compiler/documentationTemplates.html#function";
@@ -69,7 +79,7 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		this._externalTypes.addObject("HTMLElement", "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement");
 		this._externalTypes.addObject("Element", "https://developer.mozilla.org/en-US/docs/Web/API/Element");
 		
-		this._assetsLoader.addAssetsByPath(this._classTemplatePath, this._functionTemplatePath, this._variableTemplatePath);
+		this._assetsLoader.addAssetsByPath(this._packageIndexTemplatePath, this._packageIndexSubPackageTemplatePath, this._packageIndexClassTemplatePath, this._classTemplatePath, this._functionTemplatePath, this._variableTemplatePath);
 		this._addStartFunction(this._createPage, []);
 		
 		return this;
@@ -108,6 +118,62 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		var selectDefinitionReevaluator = GetVariableObject.createCommand(selectDataReevaluator, "definition");
 		var selectDocumentationReevaluator = GetVariableObject.createCommand(selectDataReevaluator, "documentation");
 		
+		//Index page
+		var packageIndexTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._packageIndexTemplatePath));
+		var packageIndexSubPackageTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._packageIndexSubPackageTemplatePath));
+		var packageIndexClassTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._packageIndexClassTemplatePath));
+		
+		packageIndexTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveIdCommand.createOnTemplateOutputCommand());
+		packageIndexTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RemoveElementCommand.createOnTemplateOutputWithQueryCommand("#templates"));
+		this._createSetTextContentCommand(packageIndexTemplate, "h1", CallFunctionObject.createFunctionOnObjectCommand(selectTreeStructureReevaluator, "getAttribute", ["packagePath"]));
+		
+		var createClassListCommand = InsertTemplatedArrayCommand.createOnTemplateOutputWithQueryCommand(
+			".classList",
+			packageIndexClassTemplate,
+			ArgumentFromCallFunctionObject.createCommand(
+				TreeStructureFunctions,
+				TreeStructureFunctions.getItemsByAttribute,
+				[
+					CallFunctionObject.createFunctionOnObjectCommand(selectTreeStructureReevaluator, "getChildren", []),
+					"type",
+					"class",
+					CreateClassObject.createCommand(Array)
+				],
+				3
+			)
+		);
+		var createSubPackageListCommand = InsertTemplatedArrayCommand.createOnTemplateOutputWithQueryCommand(
+			".classList",
+			packageIndexSubPackageTemplate,
+			ArgumentFromCallFunctionObject.createCommand(
+				TreeStructureFunctions,
+				TreeStructureFunctions.getItemsWithoutAttribute,
+				[
+					CallFunctionObject.createFunctionOnObjectCommand(selectTreeStructureReevaluator, "getChildren", []),
+					"type",
+					CreateClassObject.createCommand(Array)
+				],
+				2
+			)
+		);
+		
+		packageIndexTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, createClassListCommand);
+		packageIndexTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, createSubPackageListCommand);
+		
+		
+		
+		this._createSetTextContentCommand(packageIndexSubPackageTemplate, ".packageName", CallFunctionObject.createFunctionOnObjectCommand(selectTreeStructureReevaluator, "getName", []));
+		//packageIndexSubPackageTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertClassLink, [QuerySelectorObject.createOnTemplateOutputCommand(".packageName"), CallFunctionObject.createFunctionOnObjectCommand(selectTreeStructureReevaluator, "getName", [])]));
+		packageIndexSubPackageTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, createClassListCommand);
+		packageIndexSubPackageTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, createSubPackageListCommand);
+		
+		
+		packageIndexClassTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, CallFunctionCommand.createCommand(this, this.insertClassLink, [GetNamedArrayValueObject.createCommand(GetVariableObject.createSelectDataCommand(), "output"), CallFunctionObject.createFunctionOnObjectCommand(selectTreeStructureReevaluator, "getAttribute", ["classPath"])]));
+		
+		
+		packageIndexTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RebaseDocumentLinksCommand.createOnTemplateOutputCommand(this._currentFilePath));
+		
+		//Class page
 		var classTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._classTemplatePath));
 		var functionTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._functionTemplatePath));
 		var variableTemplate = TemplateWithCommands.create(dbm.singletons.dbmAssetRepository.getAssetData(this._variableTemplatePath));
@@ -192,27 +258,84 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		//Rebase all the links at the end
 		classTemplate.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NEW, RebaseDocumentLinksCommand.createOnTemplateOutputCommand(this._currentFilePath));
 		
+		var outputTreeStructure = TreeStructure.create();
+		
 		var currentArray = documentationTree.getRoot().getChildren();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentFile = currentArray[i];
-			var outputData = this._generateDocumentationForFile(currentFile, classTemplate);
+			this._generateDocumentationForFile(currentFile, classTemplate, outputTreeStructure);
 		}
+		
+		this._generatePackageIndexes(outputTreeStructure.getItemByPath("classes"), packageIndexTemplate, "(root)");
+		console.log(">>>>>", outputTreeStructure);
+		
+		var saveFilesLoadingSequence = LoadingSequence.create();
+		this._createLoaders(outputTreeStructure.getRoot(), saveFilesLoadingSequence);
+		
+		console.log(saveFilesLoadingSequence);
+		saveFilesLoadingSequence.load();
 	};
 	
-	objectFunctions._generateDocumentationForFile = function(aTreeStructureItem, aClassTemplate) {
+	objectFunctions._generateDocumentationForFile = function(aTreeStructureItem, aClassTemplate, aOutputTreeStructure) {
 		var currentChildren = aTreeStructureItem.getChildren();
 		if(currentChildren.length === 1 && currentChildren[0].data.type === DocumentationTypes.CLASS) {
 			var currentClassPath = currentChildren[0].data.definition.classPath;
 			var currentFilePath = "classes/" + currentClassPath.split(".").join("/")  + ".html";
 			this._currentFilePath.setupBaseUrl("", currentFilePath.substring(0, currentFilePath.lastIndexOf("/")));
 			
-			var returnValue = aClassTemplate.createNewItem(currentChildren[0]);
-			
-			this._saveClassDocumentation(currentFilePath, returnValue);
-			return returnValue;
+			var currentTreeStructureItem = aOutputTreeStructure.getItemByPath(currentFilePath);
+			currentTreeStructureItem.data = aClassTemplate.createNewItem(currentChildren[0]);
+			currentTreeStructureItem.setAttribute("type", "class");
+			currentTreeStructureItem.setAttribute("classPath", currentClassPath);
 		}
-		return null;
+	};
+	
+	objectFunctions._generatePackageIndexes = function(aTreeStructureItem, aIndexTemplate, aCurrentPackage) {
+		
+		var currentType = "none";
+		
+		if(aTreeStructureItem.hasAttribute("type")) {
+			currentType = aTreeStructureItem.getAttribute("type");
+		}
+		if(currentType !== "class") {
+			var basePath = aTreeStructureItem.getPath();
+			
+			this._currentFilePath.setupBaseUrl("", basePath.substring(1, basePath.length));
+			
+			aTreeStructureItem.setAttribute("type", "packageIndex");
+			aTreeStructureItem.setAttribute("packagePath", aCurrentPackage);
+			aTreeStructureItem.data = aIndexTemplate.createNewItem(aTreeStructureItem);
+			
+		}
+		
+		var currentArray = aTreeStructureItem.getChildren();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentItem = currentArray[i];
+			var newPath = (aCurrentPackage === "(root)") ? currentItem.getName() : aCurrentPackage + "." + currentItem.getName();
+			this._generatePackageIndexes(currentArray[i], aIndexTemplate, newPath);
+		}
+	}
+	
+	objectFunctions._createLoaders = function(aTreeStructureItem, aLoadingSequence) {
+		
+		var currentType = "none";
+		if(aTreeStructureItem.hasAttribute("type")) {
+			currentType = aTreeStructureItem.getAttribute("type");
+		}
+		if(currentType === "class") {
+			aLoadingSequence.addLoader(this._saveClassDocumentation(this._rootFolderForSaving + aTreeStructureItem.getPath(), aTreeStructureItem.data));
+		}
+		else if(currentType === "packageIndex") {
+			aLoadingSequence.addLoader(this._saveClassDocumentation(this._rootFolderForSaving + aTreeStructureItem.getPath() + "/index.html", aTreeStructureItem.data));
+		}
+		
+		var currentArray = aTreeStructureItem.getChildren();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			this._createLoaders(currentArray[i], aLoadingSequence);
+		}
 	};
 	
 	objectFunctions._saveClassDocumentation = function(aFilePath, aHtmlDocument) {
@@ -220,9 +343,9 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 		
 		var loader = JsonAsset.create("http://localhost:8080/dbm/examples/saveFile");
 		
-		loader.setupAsFormObjectPost({"fileName": this._rootFolderForSaving + "/" + aFilePath, "dataEncoding": "ascii", "data": XmlCreator.createStringFromXml(aHtmlDocument)});
+		loader.setupAsFormObjectPost({"fileName": aFilePath, "dataEncoding": "ascii", "data": "<!DOCTYPE html>\n" + XmlCreator.createStringFromXml(aHtmlDocument)});
 		
-		loader.load();
+		return loader;
 	};
 	
 	/**
@@ -531,6 +654,11 @@ dbm.registerClass("com.developedbyme.projects.examples.compiler.DocumentFilesApp
 				aDescriptionHolderElement.appendChild(htmlCreator.createNode("span", {"class": "unknownType"}, htmlCreator.createText("Unknown")));
 			}
 		}
+	};
+	
+	objectFunctions.insertClassLink = function(aHolderElement, aClassPath) {
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(aHolderElement.ownerDocument);
+		aHolderElement.appendChild(this.createClassLink(aClassPath, htmlCreator));
 	};
 	
 	/**

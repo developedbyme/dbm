@@ -1,0 +1,13 @@
+.classList {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.subPackage {
+	margin-top: 5px;
+}
+
+.packageName {
+	font-weight: bold;
+	font-size: 6pt;
+}

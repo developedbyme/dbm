@@ -281,22 +281,44 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this._status;
 	};
 	
+	/**
+	 * Sets the property to always update. Objects are tested with a shallow compare, so they will need this setting unless a new object is generated every update.
+	 *
+	 * @param	aUpdate		Boolean		Setting if the property should always update. (Optional, default true)
+	 *
+	 * @return	self
+	 */
 	objectFunctions.setAlwaysUpdateFlow = function(aUpdate) {
 		this._alwaysUpdateFlow = !VariableAliases.isFalse(aUpdate);
 		
 		return this;
 	};
 	
+	/**
+	 * Gets the flow update number when this property was last updated.
+	 *
+	 * @return	Number	The interger that keeps track of when the flow was latest updated for this property.
+	 */
 	objectFunctions.getFlowUpdateNumber = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::getFlowUpdateNumber");
 		return this._flowUpdateNumber;
 	};
 	
+	/**
+	 * Internal functionality for changing the flow update number
+	 *
+	 * @param	aFlowUpdateNumber	Number	The interger that keeps track of when the flow was latest updated for this property.
+	 */
 	objectFunctions._internalFunctionality_setFlowUpdateNumber = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.objectparts.Property::_internalFunctionality_setFlowUpdateNumber");
 		this._flowUpdateNumber = aFlowUpdateNumber;
 	};
 	
+	/**
+	 * Link registation to set the updating flag.
+	 *
+	 * @param	aIsUpdating		Boolean		If the property is updating or not.
+	 */
 	objectFunctions._linkRegistration_setAsUpdating = function(aIsUpdating) {
 		this._isUpdating = aIsUpdating;
 	};
@@ -347,6 +369,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this;
 	};
 	
+	/**
+	 * Interface to update the the flow of this property.
+	 */
 	objectFunctions.updateFlow = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::updateFlow");
 		//console.log(this.name);
@@ -366,20 +391,38 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
+	/**
+	 * Link registation to set the object input connection.
+	 *
+	 * @param	aInputConnection	ObjectProperty	The input object property.
+	 */
 	objectFunctions._linkRegistration_setObjectInputConnection = function(aInputConnection) {
 		this._objectInputConnection = aInputConnection;
 	};
 	
+	/**
+	 * Link registration to remove the object input property.
+	 */
 	objectFunctions._linkRegistration_removeObjectInputConnection = function() {
 		this._objectInputConnection = null;
 	};
 	
+	/**
+	 * Connects another property to be the input of this property.
+	 *
+	 * @param	aProeprty	Proeprty	The input property.
+	 */
 	objectFunctions.connectInput = function(aProperty) {
 		dbm.singletons.dbmFlowManager.connectProperties(aProperty, this);
 		
 		return this;
 	};
 	
+	/**
+	 * Disconnects the input from this property.
+	 *
+	 * @return self
+	 */
 	objectFunctions.disconnectInput = function() {
 		if(this._inputConnection === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "disconnectInput", "Property " + this + " doesn't have any input.");
@@ -390,18 +433,33 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return this;
 	};
 	
+	/**
+	 * Connects another property to be an output for this property.
+	 *
+	 * @param	aProeprty	Proeprty	The output property.
+	 */
 	objectFunctions.connectOutput = function(aProperty) {
 		dbm.singletons.dbmFlowManager.connectProperties(this, aProperty);
 		
 		return this;
 	};
 	
+	/**
+	 * Disconnects a property that has been an output for this property.
+	 *
+	 * @param	aProeprty	Proeprty	The output property to disconnect.
+	 */
 	objectFunctions.disconnectOutput = function(aProperty) {
 		dbm.singletons.dbmFlowManager.disconnectProperties(this, aProperty);
 		
 		return this;
 	};
 	
+	/**
+	 * Link registation to set the input connection.
+	 *
+	 * @param	aInputConnection	Property	The input property.
+	 */
 	objectFunctions._linkRegistration_setInputConnection = function(aInputConnection) {
 		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_setInputConnection");
 		//console.log(this.name);
@@ -409,7 +467,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			this.disconnectInput();
 		}
 		this._inputConnection = aInputConnection;
-		if(aInputConnection instanceof Timeline) {
+		if(aInputConnection instanceof Timeline) { //METODO: fix this to check if it's a timline evaluator
 			this._animationController = aInputConnection;
 		}
 		this.setStatus(FlowStatusTypes.NEEDS_UPDATE);
@@ -422,15 +480,28 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._outputConnections.push(aOutputConnection);
 	};
 	
+	/**
+	 * Link registration to set the input update function.
+	 *
+	 * @param	aUpdateFunction		UpdateFunction	The input update function.
+	 */
 	objectFunctions._linkRegistration_setInputUpdateFunction = function(aUpdateFunction) {
 		this._inputUpdateFunction = aUpdateFunction;
 		this.setAsDirty();
 	};
 	
+	/**
+	 * Link registation to remove the input update function.
+	 */
 	objectFunctions._linkRegistration_removeInputUpdateFunction = function() {
 		this._inputUpdateFunction = null;
 	};
 	
+	/**
+	 * Link registation for removing an input property.
+	 *
+	 * @param	aOutputConnection	Property	The input to remove.
+	 */
 	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
 		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeInputConnection");
 		//console.log(this.name);
@@ -450,6 +521,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
+	/**
+	 * Link registation for removing an output connection.
+	 *
+	 * @param	aOutputConnection	Property|UpdateFunction		The output to remove.
+	 */
 	objectFunctions._linkRegistration_removeConnectedOutput = function(aOutputConnection) {
 		
 		var index = ArrayFunctions.indexOfInArray(this._outputConnections, aOutputConnection);
@@ -460,6 +536,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._outputConnections.splice(index, 1);
 	};
 	
+	/**
+	 * Fills an array with all the clean (status: updated) output properties and update functions.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with connections.
+	 */
 	objectFunctions.fillWithCleanOutputConnections = function(aReturnArray) {
 		var currentArray = this._outputConnections;
 		var currentArrayLength = currentArray.length;
@@ -474,6 +555,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
+	/**
+	 * Fills an array with all the dirty (status: needs update) input properties and update functions.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with connections.
+	 */
 	objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
 		if(this._inputConnection !== null && this._inputConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
 			aReturnArray.push(this._inputConnection);
@@ -486,6 +572,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
+	/**
+	 * Fills an array with all the all input properties and update functions.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with connections.
+	 */
 	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
 		if(this._inputConnection !== null) {
 			aReturnArray.push(this._inputConnection);
@@ -498,6 +589,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
+	/**
+	 * Fills an array with all the output properties and update functions.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with connections.
+	 */
 	objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
 		//console.log("com.developedbyme.core.objectparts.Property::fillWithAllOutputConnections");
 		
@@ -512,6 +608,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
+	/**
+	 * Sets the status of this property to need update, and marks the rest of the down stream flow to also need update.
+	 */
 	objectFunctions.setAsDirty = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::setAsDirty");
 		//console.log(this.name);
@@ -520,6 +619,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.setDependentConnectionsAsDirty();
 	};
 	
+	/**
+	 * Marks the rest of the down stream flow to need update.
+	 */
 	objectFunctions.setDependentConnectionsAsDirty = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::setDependentConnectionsAsDirty");
 		//console.log(this, this._cachedDependentNodeChains);
@@ -532,6 +634,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 	};
 	
+	/**
+	 * Sets a cashed list of nodes to be used for dependent nodes instead of dynamically generate a new one for every change.
+	 *
+	 * @param	aNodeChains		Array	The array of chains to use as cache.
+	 */
 	objectFunctions.setCachedDependentNodeChains = function(aNodeChains) {
 		//console.log("com.developedbyme.core.objectparts.Property::setCachedDependentNodeChains");
 		//console.log(this, aNodeChains);
@@ -613,9 +720,18 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new object of a certain class (Property or subclasses) and sets the object and value.
+	 *
+	 * @param	aClass			Function		The constructor function of the class.
+	 * @param	aObjectInput	ObjectProperty	The object property for this property. (Optional)
+	 * @param	aValue			Property|*		The input connection or value to set to the property. (Optional)
+	 *
+	 * @return	Property	The newly created property.
+	 */
 	staticFunctions._createWithInputValue = function(aClass, aObjectInput, aValue) {
 		var newProperty = ClassReference._createAndInitClass(aClass);
-		if(aObjectInput !== null) {
+		if(VariableAliases.isSet(aObjectInput)) {
 			aObjectInput._linkRegistration_addObjectProperty(newProperty);
 			newProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		}
@@ -635,6 +751,14 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		return ClassReference._createWithInputValue(Property, aObjectInput, aValue);
 	};
 	
+	/**
+	 * Connects the input or sets the value of a property depending on the input.
+	 *
+	 * @param	aProperty	Property	The property to set the input connection or value to.
+	 * @param	aValue		Property|*	The input property or value to use for the input of the property.
+	 *
+	 * @return	Property	The property that is passed in.
+	 */
 	staticFunctions.setInputOrValueToProperty = function(aProperty, aValue) {
 		if(aValue instanceof Property) {
 			aProperty.connectInput(aValue);

@@ -1,7 +1,7 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * A tree structure item.
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem", "com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	//"use strict";
@@ -10,6 +10,9 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
 	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
@@ -41,6 +44,11 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		return this;
 	}; //End function _init
 	
+	/**
+	 * Interface to use extended event whithout inheriting from ExtendedEventBaseObject.
+	 *
+	 * @return	ExtendedEventController		The extended event controller for this object. 
+	 */
 	objectFunctions.getExtendedEvent = function() {
 		if(this._extendedEvent === null) {
 			this._extendedEvent = ExtendedEventController.create(this);
@@ -52,6 +60,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	
 	/**
 	 * Gets the name of the item.
+	 *
+	 * @return	String	The name of this item.
 	 */
 	objectFunctions.getName = function() {
 		//console.log("getName");
@@ -60,6 +70,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	
 	/**
 	 * Sets the name of the item.
+	 *
+	 * @param	aName	The new name of this item.
 	 */
 	objectFunctions.setName = function(aName) {
 		//console.log("set name");
@@ -69,20 +81,38 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		else {
 			this._linkRegistration_setName(aName);
 		}
-	}; //End function set name
+	}; //End function setName
 	
+	/**
+	 * Gets an attribute on this item.
+	 *
+	 * @param	aName	String	The name of the attribute.
+	 *
+	 * @return	*	The value of the attribute. Null if attribute doesn't exist.
+	 */
 	objectFunctions.getAttribute = function(aName) {
+		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::getAttribute");
+		//console.log(aName);
+		
 		if(this._attributes === null) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getAttribute", "Item doesn't have any attributes. Can't get " + aName);
+			
 			return null;
 		}
 		if(this._attributes.select(aName)) {
 			return this._attributes.currentSelectedItem;
 		}
-		//METODO: error message
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getAttribute", "Item doesn't have attribute " + aName);
+		
 		return null;
 	};
 	
+	/**
+	 * Sets an attribute on this item.
+	 *
+	 * @param	aName	String	The name of the attribute.
+	 * @param	aValue	*		The value of the attribute.
+	 */
 	objectFunctions.setAttribute = function(aName, aValue) {
 		if(this._attributes === null) {
 			this._attributes = NamedArray.create(false);
@@ -91,6 +121,12 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 		this._attributes.addObject(aName, aValue);
 	};
 	
+	/**
+	 * Changes the value of an attribute on this item.
+	 *
+	 * @param	aName	String	The name of the attribute.
+	 * @param	aValue	*		The new value of the attribute.
+	 */
 	objectFunctions.changeAttribute = function(aName, aValue) {
 		if(this._attributes === null) {
 			this._attributes = NamedArray.create(false);
@@ -401,7 +437,11 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	};
 	
 	/**
-	 * Creates a new item.
+	 * Creates a new object of this class.
+	 *
+	 * @param	aName	String	The name for the new object.
+	 *
+	 * @return	Property	The newly created object.
 	 */
 	staticFunctions.create = function(aName) {
 		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::create");

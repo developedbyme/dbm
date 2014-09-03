@@ -1,12 +1,12 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
- * Reevaluation that returns the value of a function call.
+ * Reevaluation that returns an argument from the function call.
  */
-dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject", "com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.ArgumentFromCallFunctionObject", "com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
 	
 	//Self reference
-	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
+	var ArgumentFromCallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.ArgumentFromCallFunctionObject");
 	
 	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
+	
 	
 	//Utils
 	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
@@ -27,12 +28,11 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::_init");
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ArgumentFromCallFunctionObject::_init");
 		
 		this.superCall();
 		
-		this.functionReevaluator = null;
-		this.argumentsArrayReevaluator = null;
+		this.returnArgumentsReevaluator = null;
 		
 		return this;
 	};
@@ -45,21 +45,21 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 	 * @return	*	The result of the reevaluation.
 	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::reevaluate");
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ArgumentFromCallFunctionObject::reevaluate");
 		//console.log(this);
 		
 		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
 		var theFunction = this.functionReevaluator.reevaluate(aBaseObject);
 		var argumentsArray = this.argumentsArrayReevaluator.reevaluate(aBaseObject);
 		
-		//console.log(theObject, theFunction, argumentsArray);
-		
 		if(!VariableAliases.isSet(theFunction)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "reevaluate", "Function is null. Can't create call on object " + theObject + " with arguments " + argumentsArray);
 			return null;
 		}
 		
-		return theFunction.apply(theObject, argumentsArray);
+		theFunction.apply(theObject, argumentsArray);
+		
+		return this.returnArgumentsReevaluator.reevaluate(argumentsArray);
 	};
 	
 	/**
@@ -67,8 +67,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this.functionReevaluator = null;
-		this.argumentsArrayReevaluator = null;
+		this.returnArgumentsReevaluator = null;
 		
 		this.superCall();
 	};
@@ -79,22 +78,25 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 	 * @param	aObject				ReevaluationBaseObject|*			The object to call the function on.
 	 * @param	aFunction			ReevaluationBaseObject|Function		The function to call.
 	 * @param	aArgumentsArray		ReevaluationBaseObject|Array		The arguemnts to call the function with.
+	 * @param	aArgumentIndex		ReevaluationBaseObject|Number		The index of the argument to return.
 	 *
-	 * @return	CallFunctionObject	The newly created command.
+	 * @return	ArgumentFromCallFunctionObject	The newly created command.
 	 */
-	staticFunctions.createCommand = function(aObject, aFunction, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
+	staticFunctions.createCommand = function(aObject, aFunction, aArgumentsArray, aArgumentIndex) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ArgumentFromCallFunctionObject::createCommand");
 		
 		if(!VariableAliases.isSet(aFunction)) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[CallFunctionObject]", "createCommand", "Function is null. Can't create call for " + aFunction + " on object " + aObject + " with arguments " + aArgumentsArray);
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[ArgumentFromCallFunctionObject]", "createCommand", "Function is null. Can't create call for " + aFunction + " on object " + aObject + " with arguments " + aArgumentsArray);
 			return null;
 		}
 		
-		var newCommand = (new CallFunctionObject()).init();
+		var newCommand = (new ArgumentFromCallFunctionObject()).init();
 		
 		newCommand.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
 		newCommand.functionReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aFunction);
 		newCommand.argumentsArrayReevaluator = ReevaluationCreator.arrayReevaluationOrStaticValue(aArgumentsArray);
+		
+		newCommand.returnArgumentsReevaluator = GetVariableObject.createSelectOnBaseObjectCommand(aArgumentIndex);
 		
 		return newCommand;
 	};
@@ -105,12 +107,13 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallF
 	 * @param	aObject				ReevaluationBaseObject|*		The object to call the function on.
 	 * @param	aFunction			ReevaluationBaseObject|String	The name function to call.
 	 * @param	aArgumentsArray		ReevaluationBaseObject|Array	The arguemnts to call the function with.
+	 * @param	aArgumentIndex		ReevaluationBaseObject|Number	The index of the argument to return.
 	 *
-	 * @return	CallFunctionObject	The newly created command.
+	 * @return	ArgumentFromCallFunctionObject	The newly created command.
 	 */
-	staticFunctions.createFunctionOnObjectCommand = function(aObject, aFunctionName, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
+	staticFunctions.createFunctionOnObjectCommand = function(aObject, aFunctionName, aArgumentsArray, aArgumentIndex) {
+		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ArgumentFromCallFunctionObject::createCommand");
 		
-		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray);
+		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray, aArgumentIndex);
 	};
 });

@@ -1,4 +1,7 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Reevalutor that selects a variable on an object.
+ */
 dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject", "com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
 	
@@ -16,6 +19,7 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 	
 	//Constants
 	
+	
 	/**
 	 * Constructor
 	 */
@@ -32,7 +36,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 	/**
 	 * Sets the property name that should be returned on reevaluated.
 	 *
-	 * @param	aName	The name of the property.
+	 * @param	aName	String	The name of the property.
+	 *
 	 * @return	self
 	 */
 	objectFunctions.setPropertyName = function(aName) {
@@ -48,8 +53,9 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 	/**
 	 * The function that reevalutes this reference.
 	 *
-	 * @param	aBaseObject	The object to base the reevaluation from.
-	 * @return	The property on the base object.
+	 * @param	aBaseObject		*	The object to base the reevaluation from.
+	 *
+	 * @return	*	The property on the base object.
 	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
 		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject::reevaluate");
@@ -84,8 +90,9 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 	/**
 	 * Creates a command that gets a property on a static object.
 	 * 
-	 * @param	aObject			The object to get the property on
-	 * @param	aPropertyName	The name of the property to get.
+	 * @param	aObject			ReevalutionBaseObject|*		The object to get the property on
+	 * @param	aPropertyName	ReevalutionBaseObject|String	The name of the property to get.
+	 *
 	 * @return	The new command.
 	 */
 	staticFunctions.createCommand = function(aObject, aPropertyName) {
@@ -135,6 +142,8 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVa
 	
 	/**
 	 * Creates a command that gets an argument of an event data.
+	 *
+	 * @param	aIndex	ReevalutionBaseObject|Number	The index of the arguments to get.
 	 * 
 	 * @return	The new command.
 	 */
