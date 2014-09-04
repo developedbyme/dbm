@@ -19,6 +19,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.devel
 	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
+	
 	/**
 	 * Constructor
 	 */
@@ -30,6 +31,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.devel
 		return this;
 	};
 	
+	/**
+	 * Interface functions. Only changes the status of this property.
+	 *
+	 * @param	aValue	*	Ignored.
+	 */
 	objectFunctions.setValue = function(aValue) {
 		//MENOTE: do nothing
 		
@@ -37,26 +43,52 @@ dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.devel
 		this.setDependentConnectionsAsDirty();
 	};
 	
+	/**
+	 * Interface functions. Only changes the status of this property.
+	 *
+	 * @param	aValue				*		Ignored.
+	 * @param	aFlowUpdateNumber	Number	The interger that keeps track of when the flow was latest updated.
+	 */
 	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.objectparts.GhostProperty::setValueWithFlow");
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
+	/**
+	 * Interface function. Returns null.
+	 *
+	 * @return	*	Returns null.
+	 */
 	objectFunctions.getValue = function() {
 		return null;
 	};
 	
+	/**
+	 * Interface function. Returns null.
+	 *
+	 * @return	*	Returns null.
+	 */
 	objectFunctions.getValueWithoutFlow = function() {
 		return null;
 	};
 	
+	/**
+	 * Interface function to update the flow. Only changes the status of this property.
+	 */
 	objectFunctions.updateFlow = function() {
 		//console.log("com.developedbyme.core.objectparts.GhostProperty::updateFlow");
 		this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 		this._status = FlowStatusTypes.UPDATED;
 	};
 	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aObjectInput	ObjectProperty	The object property for this property. (Optional)
+	 *
+	 * @return	GhostProperty	The newly created object.
+	 */
 	staticFunctions.create = function(aObjectInput) {
 		var newGhostProperty = ClassReference._createAndInitClass(ClassReference);
 		if(aObjectInput !== null) {

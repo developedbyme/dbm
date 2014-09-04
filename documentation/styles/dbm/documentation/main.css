@@ -38,6 +38,20 @@ a:visited {
 	color: #000099;
 }
 
+.dbmLogo {
+	
+}
+
+.dbmLogo.w14 {
+	background-image: url("../../../images/dbm/logo/logo_w14.png");
+	width: 14px;
+	height: 12px;
+}
+
+.documentationTitle {
+	vertical-align: top;
+}
+
 .page {
 	margin-top: 30px;
 	margin-left: 40px;

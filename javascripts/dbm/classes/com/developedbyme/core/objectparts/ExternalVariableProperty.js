@@ -33,12 +33,22 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		return this;
 	};
 	
+	/**
+	 * Gets the external object where the value is stored.
+	 *
+	 * @return	*	The object where the variable is stored.
+	 */
 	objectFunctions.getExternalObject = function() {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::getExternalObject");
 		
 		return this._externalObject;
 	};
 	
+	/**
+	 * Sets the value of this proprety. Value is stored internally if the external object is not set yet.
+	 *
+	 * @param	aValue	*	The value of this property.
+	 */
 	objectFunctions._performSetValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performSetValue");
 		if(this._externalObject === null) {
@@ -48,6 +58,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		this._externalObject[this._externalVariableName] = aValue;
 	};
 	
+	/**
+	 * Gets the value of this property. Internal value is used if the external object is not set yet.
+	 *
+	 * @return	*	The value of the property.
+	 */
 	objectFunctions._performGetValue = function() {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performGetValue");
 		if(this._externalObject === null) {
@@ -56,6 +71,12 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		return this._externalObject[this._externalVariableName];
 	};
 	
+	/**
+	 * Sets up the storage on the external object.
+	 *
+	 * @param	aObject			*		The object where the variable is stored.
+	 * @param	aVariableName	String	The name of the variable to store the value in.
+	 */
 	objectFunctions.setupExternalObject = function(aObject, aVariableName) {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::setupExternalObject");
 		
@@ -77,10 +98,18 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		}
 	};
 	
+	/**
+	 * Internal functionality to set the name of the external variable.
+	 *
+	 * @param	aVariableName	String	The name of the variable to store the value in.
+	 */
 	objectFunctions._internalFunctionality_setExternalVariableName = function(aVariableName) {
 		this._externalVariableName = aVariableName;
 	};
 	
+	/**
+	 * Removes the external object from this property.
+	 */
 	objectFunctions.removeExternalObject = function() {
 		
 		if(this._externalObject !== null) {
@@ -95,6 +124,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._externalObject = null;
@@ -103,10 +135,19 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		this.superCall();
 	};
 	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aObjectInput		ObjectProperty	The object property for this property.
+	 * @param	aExternalObject		*				The object where the variable is stored.
+	 * @param	aVariableName		String			The name of the variable to store the value in.
+	 *
+	 * @return	ExternalVariableProperty	The newly created object.
+	 */
 	staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::create (static)");
+		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::create");
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
-		if(aObjectInput !== null) {
+		if(VariableAliases.isSet(aObjectInput)) {
 			aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
 			newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		}
@@ -114,10 +155,18 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		return newExternalVariableProperty;
 	};
 	
+	/**
+	 * Creates a new object of this class, without setting the external object.
+	 *
+	 * @param	aObjectInput	ObjectProperty	The object property for this property. (Optional)
+	 * @param	aValue			*				The value for the new property. (Optional)
+	 *
+	 * @return	ExternalVariableProperty	The newly created object.
+	 */
 	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::createWithoutExternalObject (static)");
+		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::createWithoutExternalObject");
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
-		if(aObjectInput !== null) {
+		if(VariableAliases.isSet(aObjectInput)) {
 			aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
 			newExternalVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
 		}

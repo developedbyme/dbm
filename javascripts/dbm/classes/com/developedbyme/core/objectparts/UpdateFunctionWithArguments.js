@@ -1,4 +1,8 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Update function that calls a function after getting arguments from input properties.
+ * This enables calls directly to static functions, without having to get property values within the function.
+ */
 dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArguments", "com.developedbyme.core.objectparts.UpdateFunction", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments");
 	//"use strict";
@@ -35,6 +39,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 		return this;
 	};
 	
+	/**
+	 * Interface function for updating the flow. Performs the update function.
+	 */
 	objectFunctions.updateFlow = function() {
 		
 		var inputLength = this._inputConnections.length;
@@ -56,6 +63,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 		}
 	};
 	
+	/**
+	 * Updates the output properties with the result of the function call.
+	 *
+	 * @rest	Property	The properties to set the output to.
+	 */
 	objectFunctions.updateFlowOutput = function(/* rest */) {
 		var argumentsArray = arguments;
 		var currentArray = this._outputConnections;
@@ -65,6 +77,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 		}
 	};
 	
+	/**
+	 * Gets all the values from the input properties into an array to be applied as arguments.
+	 *
+	 * @param	aReturnArray	Array	The array where the input values are being set.
+	 *
+	 * @return	Number	The highest flow update number of the properties.
+	 */
 	objectFunctions._getInputFlowUpdateParameters = function(aReturnArray) {
 		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_getInputFlowUpdateParameters");
 		var returnNumber = 0;
@@ -78,6 +97,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 		return returnNumber;
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._cachedInputArray = null;
@@ -85,9 +107,19 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray) {
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aOwnerObject		FlowBaseObject		The owner of this function.
+	 * @param	aUpdateFunction		Function			The function that is performing transformation the input to the output.
+	 * @param	aInputsArray		Array<Property>		The properties that is used when performing the update.
+	 * @param	aOutputsArray		Array<Property>		The properties that are being updated with this function.
+	 *
+	 * @return	UpdateFunctionWithArguments		The newly created object.
+	 */
+	staticFunctions.create = function(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunctionWithArguments = ClassReference._createAndInitClass(ClassReference);
-		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray);
+		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray);
 		return newUpdateFunctionWithArguments;
 	};
 	

@@ -307,7 +307,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	/**
 	 * Internal functionality for changing the flow update number
 	 *
-	 * @param	aFlowUpdateNumber	Number	The interger that keeps track of when the flow was latest updated for this property.
+	 * @param	aFlowUpdateNumber	Number	The interger that keeps track of when the flow was latest updated.
 	 */
 	objectFunctions._internalFunctionality_setFlowUpdateNumber = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.objectparts.Property::_internalFunctionality_setFlowUpdateNumber");
@@ -742,7 +742,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	/**
 	 * Creates a new object of this class.
 	 *
-	 * @param	aValue	*	The value for the new property.
+	 * @param	aObjectInput	ObjectProperty	The object property for this property. (Optional)
+	 * @param	aValue			*				The value for the new property. (Optional)
 	 *
 	 * @return	Property	The newly created object.
 	 */
