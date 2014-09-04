@@ -10,7 +10,7 @@
 		<div class="page">
 			<header>
 				<div class="floatLeft">
-					<div class="documentationTitle">Documentation</div>
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
 				</div>
 				<div class="floatRight">
 					<div class="inlineBlock">
@@ -18,7 +18,7 @@
 					</div>
 					<div class="searchBox inlineBlock">
 						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
-							<input type="hidden" name="cx" value="007826195105171803720:ousgq6osc70" />
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
 							<input type="text" name="q" value="" />
 						</form>
 					</div>
@@ -31,7 +31,8 @@
 					<div class="classPath">com.developedbyme.core.objectparts.UpdateFunctionWithArguments</div>
 					<div class="classInheritance"><a title="com.developedbyme.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
-						<div class="description"></div>
+						<div class="description">Update function that calls a function after getting arguments from input properties.
+This enables calls directly to static functions, without having to get property values within the function.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
 							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
@@ -86,6 +87,9 @@
 		return this;
 	};
 	
+	/**
+	 * Interface function for updating the flow. Performs the update function.
+	 */
 	objectFunctions.updateFlow = function() {
 		
 		var inputLength = this._inputConnections.length;
@@ -107,6 +111,11 @@
 		}
 	};
 	
+	/**
+	 * Updates the output properties with the result of the function call.
+	 *
+	 * @rest	Property	The properties to set the output to.
+	 */
 	objectFunctions.updateFlowOutput = function(/* rest */) {
 		var argumentsArray = arguments;
 		var currentArray = this._outputConnections;
@@ -116,6 +125,13 @@
 		}
 	};
 	
+	/**
+	 * Gets all the values from the input properties into an array to be applied as arguments.
+	 *
+	 * @param	aReturnArray	Array	The array where the input values are being set.
+	 *
+	 * @return	Number	The highest flow update number of the properties.
+	 */
 	objectFunctions._getInputFlowUpdateParameters = function(aReturnArray) {
 		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_getInputFlowUpdateParameters");
 		var returnNumber = 0;
@@ -129,6 +145,9 @@
 		return returnNumber;
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._cachedInputArray = null;
@@ -136,9 +155,19 @@
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray) {
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aOwnerObject		FlowBaseObject		The owner of this function.
+	 * @param	aUpdateFunction		Function			The function that is performing transformation the input to the output.
+	 * @param	aInputsArray		Array&lt;Property&gt;		The properties that is used when performing the update.
+	 * @param	aOutputsArray		Array&lt;Property&gt;		The properties that are being updated with this function.
+	 *
+	 * @return	UpdateFunctionWithArguments		The newly created object.
+	 */
+	staticFunctions.create = function(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunctionWithArguments = ClassReference._createAndInitClass(ClassReference);
-		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray);
+		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray);
 		return newUpdateFunctionWithArguments;
 	};
 	
@@ -194,7 +223,7 @@
 					<span class="functionName">updateFlow</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Interface function for updating the flow. Performs the update function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -236,7 +265,7 @@
 					<span class="functionName">updateFlowOutput</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Updates the output properties with the result of the function call.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -263,17 +292,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_getInputFlowUpdateParameters</span>(<span class="arguments">aReturnArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">_getInputFlowUpdateParameters</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="nativeType">Number</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Gets all the values from the input properties into an array to be applied as arguments.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aReturnArray</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array where the input values are being set.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><span class="nativeType">Number</span> - The highest flow update number of the properties.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -300,7 +329,7 @@
 					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
 						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
@@ -337,25 +366,25 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+					<span class="functionName">create</span>(<span class="arguments">aOwnerObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a>, aUpdateFunction:<span class="nativeType">Function</span>, aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span>, aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.UpdateFunctionWithArguments" href="UpdateFunctionWithArguments.html">UpdateFunctionWithArguments</a></span>
 				</div>
 				<div class="descriptionHolder">
-					<div class="description"></div>
+					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aOwnerObject</div><div class="argumentDescription">aUpdateFunctionWithArguments</div><div class="argumentDescription">aInputsArray</div><div class="argumentDescription">aOutputsArray</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aOwnerObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner of this function.</div><div class="argumentDescription">aUpdateFunction:<span class="nativeType">Function</span> - The function that is performing transformation the input to the output.</div><div class="argumentDescription">aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that is used when performing the update.</div><div class="argumentDescription">aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that are being updated with this function.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.UpdateFunctionWithArguments" href="UpdateFunctionWithArguments.html">UpdateFunctionWithArguments</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
-								<div class="code">staticFunctions.create = function(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray) {
+								<div class="code">staticFunctions.create = function(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunctionWithArguments = ClassReference._createAndInitClass(ClassReference);
-		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunctionWithArguments, aInputsArray, aOutputsArray);
+		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray);
 		return newUpdateFunctionWithArguments;
 	}</div>
 							</div>
@@ -370,6 +399,16 @@
 				Documentation exported with dbm.
 			</footer>
 		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
 		
 		
 	
