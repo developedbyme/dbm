@@ -115,6 +115,6 @@ dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function
 	staticFunctions.lengthFromVectorValues3d = function(aX, aY, aZ) {
 		//console.log("com.developedbyme.utils.math.VectorFunctions::lengthFromVectorValues3d (static)");
 		//console.log(aX, aY, aZ);
-		return Math.sqrt(Math.pow(aX, 2)+Math.pow(Math.sqrt(Math.pow(aY, 2)+Math.pow(aY, 2)), 2));
+		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aZ, 2));
 	};
 });

@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.Defaul
 	var ExportMetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject");
 	var AnimationCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart");
 	var SpatialCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart");
+	var MultiplePartsTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart");
 	var ColorStop = dbm.importClass("com.developedbyme.utils.graphics.gradient.ColorStop");
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");

@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		this.superCall();
 		
 		this._graphLayoutTemplatePath = "../assets/examples/development/commandLineTemplates.html#bottomGraph";
-		this._dataAssetPath = "../assets/examples/animation/aftereffectsimport/playbackAnimation.xml";
+		this._dataAssetPath = "../assets/examples/animation/aftereffectsimport/playbackAnimation2.xml";
 		
 		this.addCssLink("../styles/utils/centeredContent.css");
 		this.addCssLink("../styles/utils/boxes.css");
@@ -75,7 +75,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		this._contentHolder = templateResult.getController("visual").getElement();
 		
-		var videoView = VideoView.create(this._contentHolder, true, ["../assets/examples/animation/aftereffectsimport/playbackAnimationReference.mp4"], true, {"style": "position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;"});
+		var videoView = VideoView.create(this._contentHolder, true, ["../assets/examples/animation/aftereffectsimport/playbackAnimationReference2.mp4"], true, {"style": "position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;"});
 		videoView.setPlaybackNode(playbackNode);
 		videoView.play();
 		playbackNode.play();

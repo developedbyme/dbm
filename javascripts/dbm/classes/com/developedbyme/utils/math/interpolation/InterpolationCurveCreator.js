@@ -1,10 +1,7 @@
-/**
- * Curve creator for interpolations
- *
- * @authur Mattias Ekendahl (mattias@developedbyme.com)
- * @version 0.0.01
- */
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Curve creator for interpolations.
+ */
 dbm.registerClass("com.developedbyme.utils.math.interpolation.InterpolationCurveCreator", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.interpolation.InterpolationCurveCreator");
 	

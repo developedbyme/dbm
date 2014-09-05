@@ -1,9 +1,6 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * A point.
- *
- * @author	Mattias Ekendahl (mattias@developedbyme.com)
- * @version	0.3.01
  */
 dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.points.Point");
@@ -106,12 +103,14 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 	
 	staticFunctions.getLengthOfVectorValues2d = function(aX, aY) {
 		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues2d (static)");
+		//console.log(aX, aY);
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2));
 	};
 	
 	staticFunctions.getLengthOfVectorValues3d = function(aX, aY, aZ) {
 		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues3d (static)");
-		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aY, 3));
+		//console.log(aX, aY, aZ);
+		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aZ, 2));
 	};
 	
 	staticFunctions.copyPointValues3d = function(aInputPoint, aOutputPoint) {

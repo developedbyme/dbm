@@ -24,6 +24,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
 	var SpatialCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart");
+	var CreateArcLengthCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode");
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var MultiplePartsTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart");
 	
 	//Utils
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
@@ -111,7 +114,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	objectFunctions.createTimelinesForProprety = function(aProperty, aTimelineName, aReturnArray) {
 		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::createTimelinesForProprety");
 		//console.log(aProperty, aTimelineName, aReturnArray);
-		console.log(aProperty.unitsText);
+		//console.log(aProperty.unitsText);
 		
 		var namesArray = null;
 		var pointProperties = null;
@@ -173,11 +176,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				aReturnArray.addObject(namesArray[i], newTimeline);
 			}
 			
-			//METODO: pass in multiplier
 			if(isSpatial) {
 				this.setupTimelinesForSpatialProperty(aProperty, pointProperties, returnArray);
 			}
 			else {
+				//METODO: pass in multiplier
 				this.setupTimelinesForProperty(aProperty, returnArray);
 			}
 		}
@@ -251,8 +254,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		if(numberOfKeys > 1) {
 			var lastTime = aProperty.keyTime(1);
 			var lastValue = aProperty.keyValue(1);
-			var lastInEasing = aProperty.keyInTemporalEase(1);
-			var lastOutEasing = aProperty.keyOutTemporalEase(1);
+			var lastInEasing = aProperty.keyInTemporalEase(1)[0];
+			var lastOutEasing = aProperty.keyOutTemporalEase(1)[0];
+			var lastInInterpolationType = aProperty.keyInInterpolationType(1);
+			var lastOutInterpolationType = aProperty.keyOutInterpolationType(1);
 			var lastInTangent = aProperty.keyInSpatialTangent(1);
 			var lastOutTangent = aProperty.keyOutSpatialTangent(1);
 			this.setStartValuesForTimelines(lastValue, aReturnTimelines);
@@ -260,21 +265,27 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				//console.log(">>>>>>>", i);
 				var currentTime = aProperty.keyTime(i);
 				var currentValue = aProperty.keyValue(i);
-				var currentInEasing = aProperty.keyInTemporalEase(i);
-				var currentOutEasing = aProperty.keyOutTemporalEase(i);
+				var currentInEasing = aProperty.keyInTemporalEase(i)[0];
+				var currentOutEasing = aProperty.keyOutTemporalEase(i)[0];
+				var currentInInterpolationType = aProperty.keyInInterpolationType(i);
+				var currentOutInterpolationType = aProperty.keyOutInterpolationType(i);
 				var currentInTangent = aProperty.keyInSpatialTangent(i);
 				var currentOutTangent = aProperty.keyOutSpatialTangent(i);
 				
 				var spatialCurve = BezierCurve.createWithLength(3, true, 4);
 				this._fillSpacialCurveWithValues(lastValue, lastOutTangent, currentValue, currentInTangent, spatialCurve.pointsArray);
-				//METODO: check taht it's actually moving
+				//METODO: check that it's actually moving
 				
-				this.addSpatialPartToTimelines(lastTime, lastValue, lastInEasing, lastOutEasing, currentTime, currentValue, currentInEasing, currentOutEasing, spatialCurve, aPointProperties, aReturnTimelines);
+				var hasEasing = (currentInInterpolationType === KeyframeInterpolationType.BEZIER || lastOutInterpolationType === KeyframeInterpolationType.BEZIER);
+				
+				this.addSpatialPartToTimelines(lastTime, lastValue, lastInEasing, lastOutEasing, currentTime, currentValue, currentInEasing, currentOutEasing, spatialCurve, aPointProperties, hasEasing, aReturnTimelines);
 				
 				lastTime =  currentTime;
 				lastValue = currentValue;
 				lastInEasing = currentInEasing;
 				lastOutEasing = currentOutEasing;
+				lastInInterpolationType = currentInInterpolationType;
+				lastOutInterpolationType = currentOutInterpolationType;
 				lastInTangent = currentInTangent;
 				lastOutTangent = currentOutTangent;
 			}
@@ -335,24 +346,59 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		}
 	};
 	
-	objectFunctions.addSpatialPartToTimelines = function(aStartTime, aStartValues, aStartInEasing, aStartOutEasing, aEndTime, aEndValues, aEndInEasing, aEndOutEasing, aSpatialCurve, aPointProperties, aReturnTimelines) {
+	objectFunctions.addSpatialPartToTimelines = function(aStartTime, aStartValues, aStartInEasing, aStartOutEasing, aEndTime, aEndValues, aEndInEasing, aEndOutEasing, aSpatialCurve, aPointProperties, aHasEasing, aReturnTimelines) {
 		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::addSpatialPartToTimelines");
-		//console.log(aStartTime, aStartValues, aStartInTangents, aStartOutTangents, aEndTime, aEndValues, aEndInTangents, aEndOutTangents, aReturnTimelines);
+		//console.log(aStartTime, aStartValues, aStartInEasing, aStartOutEasing, aEndTime, aEndValues, aEndInEasing, aEndOutEasing, aSpatialCurve, aPointProperties, aHasEasing, aReturnTimelines);
 		
 		var isLinear = false; //METODO: find out if it's linear
+		var easingPart = null;
+		
+		var duration = aEndTime-aStartTime;
+		
+		if(aHasEasing) {
+			
+			var createArcLengthCurve = CreateArcLengthCurveNode.create(aSpatialCurve, 0, 1, 0.01);
+			var arcLengthsCurve = createArcLengthCurve.getProperty("outputCurve").getValue();
+			var tempPoint = Point.create();
+			arcLengthsCurve.getPointOnCurve(arcLengthsCurve.getMaxParameter(), tempPoint);
+			var arcLength = tempPoint.y;
+			var linearSpeed = arcLength/duration;
+			
+			var speedMultiplier = 1/linearSpeed;
+			
+			var startInfluence = 0.01*aStartOutEasing.influence;
+			var endInfluence = 0.01*aEndInEasing.influence;
+			
+			var curvePoints = [
+				0, 0,
+				startInfluence, speedMultiplier*aStartOutEasing.speed*startInfluence,
+				1-endInfluence, 1-(speedMultiplier*aEndInEasing.speed)*endInfluence,
+				1, 1
+			];
+			
+			console.log(curvePoints);
+			
+			easingPart = AnimationCurveTimelinePart.create(dbm.singletons.dbmCurveCreator.createCurveFromValuesArray(3, true, curvePoints), aStartTime, duration);
+		};
 		
 		var currentArray = aReturnTimelines;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var newPart = null;
-			//METODO: temporal ease
+			
 			if(isLinear) {
-				newPart = InterpolationTimelinePart.create(aStartValues[i], aEndValues[i], dbm.singletons.dbmAnimationMananger.getInterpolationObject(InterpolationTypes.LINEAR), aStartTime, aEndTime-aStartTime);
+				newPart = InterpolationTimelinePart.create(aStartValues[i], aEndValues[i], dbm.singletons.dbmAnimationMananger.getInterpolationObject(InterpolationTypes.LINEAR), aStartTime, duration);
 			}
 			else {
-				//var curvePoints = [0, 0, 1/3, 1/3, 2/3, 2/3, 1, 1];
-				newPart = SpatialCurveTimelinePart.create(aSpatialCurve, aStartTime, aEndTime-aStartTime);
+				newPart = SpatialCurveTimelinePart.create(aSpatialCurve, aStartTime, duration);
 				newPart.pointProperty = aPointProperties[i];
+				
+			}
+			
+			if(aHasEasing) {
+				var curvePart = newPart;
+				
+				newPart = MultiplePartsTimelinePart.create([easingPart, curvePart], aStartTime, duration);
 			}
 			
 			currentArray[i].addPart(newPart);
