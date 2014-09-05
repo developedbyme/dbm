@@ -9,3 +9,6 @@ user.properties
 ehthumbs.db
 Icon?
 Thumbs.db
+assets/temp
+node_modules
+javascripts/tools/classes/com/developedbyme/projects/tools/work
