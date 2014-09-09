@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 	//Dependencies
 	var LayerBaseObject = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.LayerBaseObject");
 	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
+	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	
 	//Utils
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
@@ -37,6 +38,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 		this._frameRate = this.addProperty("frameRate", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
 		
 		return this;
+	};
+	
+	objectFunctions.getBackgroundColor = function() {
+		var colorArray = this._nativeItem.bgColor;
+		return RgbaColor.create(colorArray[0], colorArray[1], colorArray[2]);
 	};
 	
 	objectFunctions.setupItem = function(aNativeItem) {

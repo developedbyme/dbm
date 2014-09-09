@@ -26,6 +26,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	var SpatialCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart");
 	var CreateArcLengthCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode");
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	var MultiplePartsTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart");
 	
 	//Utils
@@ -68,6 +69,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		compositionMetaData.metaData.addObject("height", this._activeComposition.getProperty("height").getValue());
 		compositionMetaData.metaData.addObject("duration", this._activeComposition.getProperty("duration").getValue());
 		compositionMetaData.metaData.addObject("frameRate", this._activeComposition.getProperty("frameRate").getValue());
+		compositionMetaData.metaData.addObject("backgroundColor", this._activeComposition.getBackgroundColor());
 		compositionMetaData.data = new Array();
 		
 		var currentArray = layers;
@@ -83,7 +85,19 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				layerMetaData.metaData.addObject("width", currentLayer.getProperty("width").getValue());
 				layerMetaData.metaData.addObject("height", currentLayer.getProperty("height").getValue());
 				layerMetaData.metaData.addObject("blendingMode", currentLayer.getProperty("blendingMode").getValue());
+				
+				var nativeSource = currentLayer.getSource();
+				if(nativeSource instanceof FootageItem) {
+					var nativeMainSource = nativeSource.mainSource;
+					if(nativeMainSource instanceof SolidSource) {
+						layerMetaData.metaData.addObject("footageType", "solid");
+						var colorArray = nativeMainSource.color;
+						layerMetaData.metaData.addObject("color", RgbaColor.create(colorArray[0], colorArray[1], colorArray[2]));
+					}
+					//METODO: add other types
+				}
 			}
+			layerMetaData.metaData.addObject("masks", currentLayer.getMasks());
 			compositionMetaData.data.push(layerMetaData);
 			
 			var timelinesArray = NamedArray.create(false);
@@ -234,7 +248,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			var lastInEasing = aProperty.keyInTemporalEase(1);
 			var lastOutEasing = aProperty.keyOutTemporalEase(1);
 			if(aReturnTimelines.length === 1) {
-				aReturnTimelines[0].getProperty("startValue").setValue(lastValue);
+				aReturnTimelines[0].getProperty("startValue").setValue(aMultiplier*lastValue);
 			}
 			else {
 				this.setStartValuesForTimelines(lastValue, aReturnTimelines, aMultiplier);

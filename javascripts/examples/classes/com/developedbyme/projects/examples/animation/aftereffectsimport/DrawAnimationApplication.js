@@ -89,7 +89,10 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		var scale = 0.5;
 		
-		var mainCanvasView = CanvasView.create(this._contentHolder, true, "2d", {"width": Math.ceil(scale*parsedAnimationData.metaData.getObject("width")), "height": Math.ceil(scale*parsedAnimationData.metaData.getObject("height"))});
+		var width = parsedAnimationData.metaData.getObject("width");
+		var height = parsedAnimationData.metaData.getObject("height");
+		
+		var mainCanvasView = CanvasView.create(this._contentHolder, true, "2d", {"width": Math.ceil(scale*width), "height": Math.ceil(scale*height)});
 		var mainCanvasController = mainCanvasView.getController();
 		
 		
@@ -97,12 +100,17 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		mainLayer.getProperty("scaleX").setValue(scale);
 		mainLayer.getProperty("scaleY").setValue(scale);
 		
+		var backgroundLayer = mainCanvasController.getLayer("main/background");
+		backgroundLayer.setFillStyle(parsedAnimationData.metaData.getObject("backgroundColor").getCssString());
+		backgroundLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, width, height));
+		
 		var currentArray = parsedAnimationData.data;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			var currentLayerData = currentArray[i];
+			var currentIndex = currentArrayLength-i-1;
+			var currentLayerData = currentArray[currentIndex];
 			console.log(currentLayerData);
-			var layerName = "main/layer_" + i;
+			var layerName = "main/layer_" + currentIndex;
 			var currentLayer = mainCanvasController.getLayer(layerName);
 			this.setupLayer(currentLayer, currentLayerData, playbackNode);
 		}
@@ -137,8 +145,23 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	};
 	
 	objectFunctions.setupLayer = function(aLayer, aAnimationData, aPlaybackNode) {
-		aLayer.setFillStyle("rgba(0, 0, 0, 0.1)");
-		aLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, aAnimationData.metaData.getObject("width"), aAnimationData.metaData.getObject("height")));
+		
+		var graphicsLayer = aLayer.getChildByPath("graphics");
+		
+		var footageType = aAnimationData.metaData.getObject("footageType");
+		if(footageType === "solid") {
+			var color = aAnimationData.metaData.getObject("color");
+			graphicsLayer.setFillStyle(color.getCssString());
+		}
+		else {
+			console.log("Using default color");
+			graphicsLayer.setFillStyle("rgba(0, 0, 0, 0.1)");
+		}
+		
+		var layerWidth = aAnimationData.metaData.getObject("width");
+		var layerHeight = aAnimationData.metaData.getObject("height");
+		
+		graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
 		
 		var timelines = aAnimationData.data;
 		
@@ -156,16 +179,64 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/anchorPoint/x"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("pivotX"));
 		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/anchorPoint/y"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("pivotY"));
 		
-		if(timelines.select("masks/mask1/maskPath")) {
-			var mask = aLayer.setMaskUsage(true).getMask();
+		var masks = aAnimationData.metaData.getObject("masks");
+		var currentArray = masks;
+		var currentArrayLength = currentArray.length;
+		if(currentArrayLength > 0) {
+			var mask = graphicsLayer.setMaskUsage(true).getMask();
 			
-			var maskCurveDrawer = CurveDrawer2d.create(null);
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentMaskData = currentArray[i];
+				var currentMaskPath = currentMaskData.getObject("path");
+				var currentMaskMode = currentMaskData.getObject("maskMode");
+				
+				if(currentMaskMode === 6414) {
+					var outSideMaskCurveDrawer = CurveDrawer2d.create(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
+					outSideMaskCurveDrawer.getProperty("endParameter").setValue(4);
+					mask.addCurve(outSideMaskCurveDrawer);
+				}
+				
+				var maskCurveDrawer = CurveDrawer2d.create(null);
+				
+				dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject(currentMaskPath + "/maskPath"), aPlaybackNode.getProperty("outputTime"), maskCurveDrawer.getProperty("curve"));
+				var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
+				maskCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
+				
+				mask.addCurve(maskCurveDrawer);
+			}
+		}
+		
+		if(timelines.select("effects/stroke/path")) {
+			console.log(">>>>>");
 			
-			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.currentSelectedItem, aPlaybackNode.getProperty("outputTime"), maskCurveDrawer.getProperty("curve"));
+			var strokeLayer = aLayer.getChildByPath("effects/stroke");
+			
+			var strokeCurveDrawer = CurveDrawer2d.create(null);
+			
+			var maskIndexTimeline = timelines.currentSelectedItem;
+			//METODO: can this switch?
+			var currentMaskData = masks[maskIndexTimeline.getValueAt(0)-1];
+			var currentMaskPath = currentMaskData.getObject("path");
+			
+			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject(currentMaskPath + "/maskPath"), aPlaybackNode.getProperty("outputTime"), strokeCurveDrawer.getProperty("curve"));
 			var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
-			maskCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
 			
-			mask.addCurve(maskCurveDrawer);
+			//METODO: add parameter animation
+			var startMultiplierNode = MultiplicationNode.create(0, maxParameterNode.getProperty("outputParameter"));
+			var endMultiplierNode = MultiplicationNode.create(1, maxParameterNode.getProperty("outputParameter"));
+			
+			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("effects/stroke/start"), aPlaybackNode.getProperty("outputTime"), startMultiplierNode.getProperty("inputValue1"));
+			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("effects/stroke/end"), aPlaybackNode.getProperty("outputTime"), endMultiplierNode.getProperty("inputValue1"));
+			
+			//MENOTE: start can be higher than end
+			
+			strokeCurveDrawer.getProperty("startParameter").connectInput(startMultiplierNode.getProperty("outputValue"));
+			strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));
+			
+			strokeLayer.setStrokeStyle(1, "#000000");
+			
+			var currentGraphics = strokeLayer._getCurrentDrawingLayer();
+			currentGraphics.addCurve(strokeCurveDrawer);
 		}
 	};
 	

@@ -1,10 +1,7 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * Controller for a 2d canvas.
- *
- * @authur Mattias Ekendahl (mattias@developedbyme.com)
- * @version 0.0.01
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.canvas.CanvasController2d");
 	
@@ -15,7 +12,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	var CanvasRenderLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d");
+	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
@@ -37,6 +37,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		
 		this._hierarchy = TreeStructure.create();
 		this._hierarchy.ownsData = true;
+		this._hierarchy.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ITEM_CREATED, CallFunctionCommand.createCommand(this, this._setupTreeStructureItem, [GetVariableObject.createSelectDataCommand()]));
+		
 		var rootNode = this._hierarchy.getRoot();
 		rootNode.ownsData = true;
 		this.addDestroyableObject(this._hierarchy);
@@ -53,14 +55,21 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		return this._hierarchy.getRoot().data;
 	};
 	
-	objectFunctions.getLayer = function(aPath) {
-		var currentItem = this._hierarchy.getItemByPath(aPath);
-		if(currentItem.data === null) {
+	objectFunctions._setupTreeStructureItem = function(aTreeStructureItem) {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_setupTreeStructureItem");
+		//console.log(aTreeStructureItem.getPath());
+		
+		if(aTreeStructureItem.data === null) {
 			var newLayer = CanvasLayer2d.create();
-			currentItem.data = newLayer;
-			newLayer._linkRegistration_setTreeStructureItem(currentItem);
+			aTreeStructureItem.data = newLayer;
+			newLayer._linkRegistration_setTreeStructureItem(aTreeStructureItem);
 			this._graphicsUpdate.connectInput(newLayer.getProperty("graphicsUpdate"));
 		}
+	};
+	
+	objectFunctions.getLayer = function(aPath) {
+		var currentItem = this._hierarchy.getItemByPath(aPath);
+		
 		return currentItem.data;
 	};
 	

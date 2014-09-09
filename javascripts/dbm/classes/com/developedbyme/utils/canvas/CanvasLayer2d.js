@@ -61,6 +61,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		return this;
 	};
 	
+	objectFunctions.getChildByPath = function(aPath) {
+		return this._treeStructureItem.getRoot().getItemByPath(aPath, this._treeStructureItem).data;
+	};
+	
 	objectFunctions.getMask = function() {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::getMask");
 		if(this._mask === null) {

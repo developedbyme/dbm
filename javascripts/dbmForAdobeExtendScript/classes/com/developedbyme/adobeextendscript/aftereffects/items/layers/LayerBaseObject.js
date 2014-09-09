@@ -32,6 +32,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		this._nativeItem = null;
 		this._animationProperties = NamedArray.create(false);
 		
+		this._masks = new Array();
+		
 		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
 		this._inPoint = this.addProperty("inPoint", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
 		this._outPoint = this.addProperty("outPoint", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
@@ -41,6 +43,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 	
 	objectFunctions.getAnimationProperties = function() {
 		return this._animationProperties;
+	};
+	
+	objectFunctions.getMasks = function() {
+		return this._masks;
 	};
 	
 	objectFunctions.setupItem = function(aNativeItem) {
@@ -56,21 +62,36 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 	};
 	
 	objectFunctions.setupAnimationProperties = function() {
-		ClassReference.getPropertiesForLayer(this._nativeItem, "", this._animationProperties);
+		ClassReference.getPropertiesForLayer(this._nativeItem, "", this._animationProperties, this._masks);
 		
 		return this;
 	};
 	
-	staticFunctions.getPropertiesForLayer = function(aLayer, aPrefix, aReturnArray) {
+	staticFunctions.getPropertiesForLayer = function(aLayer, aPrefix, aReturnArray, aReturnMaskArray) {
 		
 		var numberOfProperties = aLayer.numProperties;
 		
 		for(var i = 1; i <= numberOfProperties; i++) { //MENOTE: count starts at 1
 			var currentProperty = aLayer.property(i);
 			var currentName = StringFunctions.convertToCamelCase(currentProperty.name);
-			//METODO: take care of mask properties
-			if(currentProperty instanceof PropertyGroup || currentProperty instanceof MaskPropertyGroup) {
-				this.getPropertiesForLayer(currentProperty, aPrefix + currentName + "/", aReturnArray);
+			
+			if(currentProperty instanceof MaskPropertyGroup) {
+				
+				var holderPath = aPrefix + currentName;
+				
+				var maskProperties = NamedArray.create(false);
+				maskProperties.addObject("path", holderPath);
+				maskProperties.addObject("maskMode", currentProperty.maskMode);
+				maskProperties.addObject("inverted", currentProperty.inverted);
+				maskProperties.addObject("rotoBezier", currentProperty.rotoBezier);
+				maskProperties.addObject("maskMotionBlur", currentProperty.maskMotionBlur);
+				maskProperties.addObject("maskFeatherFalloff", currentProperty.maskFeatherFalloff);
+				aReturnMaskArray.push(maskProperties);
+				
+				this.getPropertiesForLayer(currentProperty, holderPath + "/", aReturnArray, aReturnMaskArray);
+			}
+			else if(currentProperty instanceof PropertyGroup) {
+				this.getPropertiesForLayer(currentProperty, aPrefix + currentName + "/", aReturnArray, aReturnMaskArray);
 			}
 			else {
 				//console.log(aPrefix + currentName);

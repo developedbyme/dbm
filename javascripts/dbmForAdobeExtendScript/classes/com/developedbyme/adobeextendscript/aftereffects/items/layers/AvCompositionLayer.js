@@ -51,6 +51,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		return this;
 	};
 	
+	objectFunctions.getSource = function() {
+		return this._nativeItem.source;
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.superCall();

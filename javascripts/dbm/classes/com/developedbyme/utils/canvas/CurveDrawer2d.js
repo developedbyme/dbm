@@ -47,7 +47,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::getStartPoint");
 		var curve = this._curve.getValue();
 		var startParameter = this._startParameter.getValue();
-		curve.getPointOnCurve(startParameter, aReturnPoint);
+		var endParameter = this._endParameter.getValue();
+		curve.getPointOnCurve(Math.min(startParameter, endParameter), aReturnPoint);
 	};
 	
 	staticFunctions.create = function(aCurve) {
@@ -69,6 +70,12 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 	staticFunctions.drawBezierCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
 		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawBezierCurve (static)");
 		//console.log(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
+		
+		if(aStartParameter > aEndParameter) {
+			var tempParameter = aEndParameter;
+			aEndParameter = aStartParameter;
+			aStartParameter = tempParameter;
+		}
 		
 		var tempCurve = aCurve.createSameTypeOfCurve();
 		dbm.singletons.dbmCurveEvaluator.getPartOfCurve(aCurve, aStartParameter, aEndParameter, aExactness, tempCurve);
