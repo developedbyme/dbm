@@ -1,10 +1,7 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * A layer in a 2d canvas.
- *
- * @authur Mattias Ekendahl (mattias@developedbyme.com)
- * @version 0.0.01
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.canvas.CanvasLayer2d");
 	
@@ -25,6 +22,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	var CanvasImageGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d");
 	var CanvasTextGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d");
 	var CanvasTextWithCustomSpacingGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d");
+	var PivotTransformation2dNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.PivotTransformation2dNode");
 	
 	var TransformationTo2dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo2dMatrixNode");
 	
@@ -38,6 +36,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		this._treeStructureItem = null;
 		
+		this._transformationNode = null;
 		this._transformationMatrix = this.createProperty("transformationMatrix", null);
 		this._transformationMatrix.setAlwaysUpdateFlow(true);
 		this._alpha = this.createProperty("alpha", 1);
@@ -49,8 +48,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		this._graphicsUpdate.connectInput(this._compositionOperation);
 		this._graphicsUpdate.connectInput(this._useMask);
 		
-		var transformationMatrix = TransformationTo2dMatrixNode.create(0, 0, 0, 1, 1);
-		this.addDestroyableObject(transformationMatrix);
+		var transformationMatrix = this.addDestroyableObject(TransformationTo2dMatrixNode.create(0, 0, 0, 1, 1));
 		this._linkRegistration_setTransformationNode(transformationMatrix);
 		
 		this._mask = null;
@@ -324,8 +322,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		
 		currentDrawingLayer.addCurve(newCurveDrawer);
 		
-		newCurveDrawer.getProperty("startParameter").setValue(aStartParameter);
-		newCurveDrawer.getProperty("endParameter").setValue(aEndParameter);
+		newCurveDrawer.getPropertyInput("startParameter", aStartParameter);
+		newCurveDrawer.getPropertyInput("endParameter", aEndParameter);
 		
 		newCurveDrawer.getProperty("curve").setAsDirty();
 		
@@ -411,7 +409,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	};
 	
 	/**
-	 * Sets all the references to null
+	 * Sets all the references to null. Part of the destroy function.
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
@@ -432,5 +430,19 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		var newCanvasLayer2d = (new ClassReference()).init();
 		
 		return newCanvasLayer2d;
+	};
+	
+	staticFunctions.addPivotToLayer = function(aLayer, aPivotX, aPivotY) {
+		
+		var transformationMatrixProperty = aLayer.getProperty("transformationMatrix");
+		var transformationMatrixInputProperty = transformationMatrixProperty.getInputProperty();
+		
+		transformationMatrixInputProperty.disconnectOutput(transformationMatrixProperty);
+		
+		var pivotXProperty = aLayer.createProperty("pivotX", aPivotX);
+		var pivotYProperty = aLayer.createProperty("pivotY", aPivotY);
+		
+		var pivotNode = aLayer.addDestroyableObject(PivotTransformation2dNode.create(pivotXProperty, pivotYProperty, transformationMatrixInputProperty));
+		transformationMatrixProperty.connectInput(pivotNode.getProperty("outputMatrix"));
 	};
 });

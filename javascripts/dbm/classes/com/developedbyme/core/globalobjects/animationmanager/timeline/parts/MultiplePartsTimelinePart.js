@@ -30,15 +30,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 	};
 	
 	objectFunctions.getValueByParameter = function(aParameter) {
-		console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart::getValueByParameter");
-		console.log(aParameter);
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart::getValueByParameter");
+		//console.log(aParameter);
 		
 		var currentParameter = aParameter;
 		var currentArray = this.parts;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentPart = currentArray[i];
-			console.log(currentParameter, currentPart);
+			//console.log(currentParameter, currentPart);
 			currentParameter = currentPart.getValueByParameter(currentParameter);
 		} 
 		

@@ -198,7 +198,12 @@
 			fullText = fullText.split("this.superCall()").join("arguments.callee.superFunction.call(this)");
 			fullText = fullText.split("this.superCall(").join("arguments.callee.superFunction.call(this, ");
 			
-			eval(fullText);
+			try{
+				eval(fullText);
+			}
+			catch(theError) {
+				console.log("Couldn't eval " + aFilePath);
+			}
 			
 			this._onFileLoaded();
 		};
@@ -209,14 +214,16 @@
 		};
 		
 		dbmObject._clearCurrentFileLoad = function() {
-			
+			//console.log("dbm._clearCurrentFileLoad");
 			this._filesToLoad[this._currentFile] = null;
 		};
 		
 		dbmObject._loadFiles = function() {
+			//console.log("dbm::_loadFiles");
 			
 			while(this._currentFile < this._filesToLoad.length) {
 				//console.log(this._currentFile, this._filesToLoad.length);
+				//console.log(this._filesToLoad[this._currentFile]);
 				this._performLoadFile(this._filesToLoad[this._currentFile]);
 				this._currentFile++;
 			}

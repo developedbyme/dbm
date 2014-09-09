@@ -1,21 +1,19 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * Static class for calculating gauss distributions.
- *
- * @authur Mattias Ekendahl (mattias@developedbyme.com)
- * @version 0.0.01
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.math.MatrixTransformation", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.MatrixTransformation");
 	
+	//Self reference
 	var MatrixTransformation = dbm.importClass("com.developedbyme.utils.math.MatrixTransformation");
 	
 	/**
 	 * Transforms a point with a matrix.
 	 *
-	 * @param	aMatrix			The matrix to transform the point with. Should be a 3x3 matrix.
-	 * @param	aInputPoint		The point to transform.
-	 * @param	aOutputPoint	The point that gets the transformed values.
+	 * @param	aMatrix			Matrix	The matrix to transform the point with. Should be a 3x3 matrix.
+	 * @param	aInputPoint		Point	The point to transform.
+	 * @param	aOutputPoint	Point	The point that gets the transformed values.
 	 */
 	staticFunctions.transform2dPoint = function(aMatrix, aInputPoint, aOutputPoint) {
 		var matrixValuesArray = aMatrix.valuesArray;
@@ -29,9 +27,9 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixTransformation", null, fun
 	/**
 	 * Transform a point set with a matrix.
 	 *
-	 * @param	aMatrix		The matrix to transform the point set with. The matrix should be a 3x3 matrix.
-	 * @param	aInputSet	The set of points to be transform.
-	 * @param	aOutputSet	The set that gets all the transformed points.
+	 * @param	aMatrix		Matrix		The matrix to transform the point set with. The matrix should be a 3x3 matrix.
+	 * @param	aInputSet	PointSet	The set of points to be transform.
+	 * @param	aOutputSet	PointSet	The set that gets all the transformed points.
 	 */
 	staticFunctions.transform2dPointSet = function(aMatrix, aInputSet, aOutputSet) {
 		var valuesArray = aMatrix.valuesArray;
@@ -46,10 +44,10 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixTransformation", null, fun
 	/**
 	 * Blends two point sets into one.
 	 *
-	 * @param	aParameter	The parameter of how the blend is performed.
-	 * @param	aInputSet1	The first set of points to be blended from.
-	 * @param	aInputSet2	The secon set of points to be blended from.
-	 * @param	aOutputSet	The set that gets all the blended points.
+	 * @param	aParameter	Number		The parameter of how the blend is performed.
+	 * @param	aInputSet1	PointSet	The first set of points to be blended from.
+	 * @param	aInputSet2	PointSet	The secon set of points to be blended from.
+	 * @param	aOutputSet	PointSet	The set that gets all the blended points.
 	 */
 	staticFunctions.blend2dPointSets = function(aParameter, aInputSet1, aInputSet2, aOutputSet) {
 		var invertedParameter = (1-aParameter);

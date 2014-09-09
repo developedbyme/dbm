@@ -1,9 +1,9 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimport.PlaybackAnimationApplication", "com.developedbyme.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication", "com.developedbyme.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	
 	//Self reference
-	var PlaybackAnimationApplication = dbm.importClass("com.developedbyme.projects.examples.animation.aftereffectsimport.PlaybackAnimationApplication");
+	var DrawAnimationApplication = dbm.importClass("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication");
 	
 	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
@@ -19,6 +19,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var DivisionNode = dbm.importClass("com.developedbyme.flow.nodes.math.DivisionNode");
 	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
 	var VideoView = dbm.importClass("com.developedbyme.gui.media.video.VideoView");
+	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
+	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
+	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -34,12 +37,12 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.PlaybackAnimationApplication::_init");
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_init");
 		
 		this.superCall();
 		
 		this._graphLayoutTemplatePath = "../assets/examples/development/commandLineTemplates.html#bottomGraph";
-		this._dataAssetPath = "../assets/examples/animation/aftereffectsimport/playbackAnimation2.xml";
+		this._dataAssetPath = "../assets/examples/animation/aftereffectsimport/drawAnimation.xml";
 		
 		this.addCssLink("../styles/utils/centeredContent.css");
 		this.addCssLink("../styles/utils/boxes.css");
@@ -57,7 +60,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	};
 	
 	objectFunctions._createPage = function() {
-		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.PlaybackAnimationApplication::_createPage");
+		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_createPage");
 		
 		var playbackNode = PlaybackNode.createWithGlobalInput();
 		playbackNode.setupPlayback(0, 10, true);
@@ -69,18 +72,11 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		graphSlider.getProperty("minValue").connectInput(playbackNode.getProperty("minTime"));
 		graphSlider.getProperty("maxValue").connectInput(playbackNode.getProperty("maxTime"));
 		
-		var canvasView = templateResult.getController("graph/canvas");
-		CanvasView.set2dControllerToView(canvasView); //METODO: move this to template
-		var canvasController = canvasView.getController();
+		//var canvasView = templateResult.getController("graph/canvas");
+		//CanvasView.set2dControllerToView(canvasView); //METODO: move this to template
+		//var canvasController = canvasView.getController();
 		
 		this._contentHolder = templateResult.getController("visual").getElement();
-		
-		var videoView = VideoView.create(this._contentHolder, true, ["../assets/examples/animation/aftereffectsimport/playbackAnimationReference2.mp4"], true, {"style": "position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;"});
-		videoView.setPlaybackNode(playbackNode);
-		videoView.play();
-		playbackNode.play();
-		
-		videoView.getProperty("display").startUpdating();
 		
 		var animationData = dbm.singletons.dbmAssetRepository.getAssetData(this._dataAssetPath);
 		
@@ -89,30 +85,32 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var parsedAnimationData = dbm.singletons.dbmDataManager.getData(dataName).data;
 		
 		playbackNode.getProperty("maxTime").setValue(parsedAnimationData.metaData.getObject("duration"));
+		playbackNode.play();
 		
-		var currentLayerData = parsedAnimationData.data[0];
-		var animatedObject = DisplayBaseObject.createDiv(this._contentHolder, true, {"style": "position: absolute; left: 0px; top: 0px; background-color: rgba(255, 0, 0, 0.5)"});
-		animatedObject.setElementAsSized();
-		animatedObject.setElementAsTransformed();
-		animatedObject.enableAlpha();
+		var scale = 0.5;
 		
-		animatedObject.getProperty("width").setValue(currentLayerData.metaData.getObject("width"));
-		animatedObject.getProperty("height").setValue(currentLayerData.metaData.getObject("height"));
-		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/position/x"), playbackNode.getProperty("outputTime"), animatedObject.getProperty("x"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/position/y"), playbackNode.getProperty("outputTime"), animatedObject.getProperty("y"));
-		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/scale/x"), playbackNode.getProperty("outputTime"), animatedObject.getProperty("scaleX"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/scale/y"), playbackNode.getProperty("outputTime"), animatedObject.getProperty("scaleY"));
-		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/rotation"), playbackNode.getProperty("outputTime"), animatedObject.getProperty("rotate"));
-		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(currentLayerData.data.getObject("transform/opacity"), playbackNode.getProperty("outputTime"), animatedObject.getProperty("alpha"));
-		
-		animatedObject.getProperty("display").startUpdating();
+		var mainCanvasView = CanvasView.create(this._contentHolder, true, "2d", {"width": Math.ceil(scale*parsedAnimationData.metaData.getObject("width")), "height": Math.ceil(scale*parsedAnimationData.metaData.getObject("height"))});
+		var mainCanvasController = mainCanvasView.getController();
 		
 		
+		var mainLayer = mainCanvasController.getLayer("main");
+		mainLayer.getProperty("scaleX").setValue(scale);
+		mainLayer.getProperty("scaleY").setValue(scale);
 		
+		var currentArray = parsedAnimationData.data;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentLayerData = currentArray[i];
+			console.log(currentLayerData);
+			var layerName = "main/layer_" + i;
+			var currentLayer = mainCanvasController.getLayer(layerName);
+			this.setupLayer(currentLayer, currentLayerData, playbackNode);
+		}
+		
+		mainCanvasController.getProperty("display").startUpdating();
+		
+		
+		/*
 		var maxTimeProperty = playbackNode.getProperty("maxTime");
 		var canvasWidthProperty = canvasView.getProperty("canvasWidth");
 		var curveCreatorRotationNode = CreateCurveFromTimelineNode.create(currentLayerData.data.getObject("transform/rotation"), 0, maxTimeProperty, canvasWidthProperty, 0);
@@ -135,6 +133,40 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		console.log(parsedAnimationData);
 		console.log(curveDrawerRotation);
+		*/
+	};
+	
+	objectFunctions.setupLayer = function(aLayer, aAnimationData, aPlaybackNode) {
+		aLayer.setFillStyle("rgba(0, 0, 0, 0.1)");
+		aLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, aAnimationData.metaData.getObject("width"), aAnimationData.metaData.getObject("height")));
+		
+		var timelines = aAnimationData.data;
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/position/x"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("x"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/position/y"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("y"));
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/scale/x"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("scaleX"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/scale/y"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("scaleY"));
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/rotation"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("rotate"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/opacity"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("alpha"));
+		
+		CanvasLayer2d.addPivotToLayer(aLayer);
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/anchorPoint/x"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("pivotX"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/anchorPoint/y"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("pivotY"));
+		
+		if(timelines.select("masks/mask1/maskPath")) {
+			var mask = aLayer.setMaskUsage(true).getMask();
+			
+			var maskCurveDrawer = CurveDrawer2d.create(null);
+			
+			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.currentSelectedItem, aPlaybackNode.getProperty("outputTime"), maskCurveDrawer.getProperty("curve"));
+			var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
+			maskCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
+			
+			mask.addCurve(maskCurveDrawer);
+		}
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

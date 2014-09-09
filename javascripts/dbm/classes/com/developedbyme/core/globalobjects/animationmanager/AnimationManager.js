@@ -164,6 +164,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 	};
 	
 	objectFunctions.setupTimelineConnection = function(aTimeline, aConenctedInput, aConnectedOutput) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::createTimeline");
+		//console.log(aTimeline, aConenctedInput, aConnectedOutput);
+		
 		var newEvaluator = EvaluateTimelineNode.create(aTimeline, aConenctedInput);
 		aTimeline.addDestroyableObject(newEvaluator);
 		aTimeline._internalFunctionality_setReferenceTime(newEvaluator.getProperty("inputValue"));

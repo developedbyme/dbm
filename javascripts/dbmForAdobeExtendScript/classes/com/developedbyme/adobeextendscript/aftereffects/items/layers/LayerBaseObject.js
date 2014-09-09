@@ -68,7 +68,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		for(var i = 1; i <= numberOfProperties; i++) { //MENOTE: count starts at 1
 			var currentProperty = aLayer.property(i);
 			var currentName = StringFunctions.convertToCamelCase(currentProperty.name);
-			if(currentProperty instanceof PropertyGroup) {
+			//METODO: take care of mask properties
+			if(currentProperty instanceof PropertyGroup || currentProperty instanceof MaskPropertyGroup) {
 				this.getPropertiesForLayer(currentProperty, aPrefix + currentName + "/", aReturnArray);
 			}
 			else {

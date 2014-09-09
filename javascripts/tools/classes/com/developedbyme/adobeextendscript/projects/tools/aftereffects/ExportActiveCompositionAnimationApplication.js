@@ -94,6 +94,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			for(var j = 0; j < currentArray2Length; j++) {
 				var currentName = currentArray2[j];
 				var currentProperty = currentAnimationProperties.getObject(currentName);
+				//console.log(currentName);
 				this.createTimelinesForProprety(currentProperty, currentName, timelinesArray);
 			}
 			
@@ -157,13 +158,31 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				dimensionLength = 4;
 				namesArray = [aTimelineName + "/" + "r", aTimelineName + "/" + "g", aTimelineName + "/" + "b", aTimelineName + "/" + "a"];
 				break;
-			case PropertyValueType.NO_VALUE:
-			case PropertyValueType.CUSTOM_VALUE:
-			case PropertyValueType.MARKER:
-			case PropertyValueType.LAYER_INDEX:
 			case PropertyValueType.MASK_INDEX:
+				dimensionLength = 1;
+				namesArray = [aTimelineName];
+				break;
 			case PropertyValueType.SHAPE:
+				var newTimeline = Timeline.create(null);
+				returnArray.push(newTimeline);
+				aReturnArray.addObject(aTimelineName, newTimeline);
+				this.setupTimelineForShapeProperty(aProperty, newTimeline);
+				break;
+			case PropertyValueType.NO_VALUE:
+				//MENOTE: do nothing
+				break;
+			case PropertyValueType.CUSTOM_VALUE:
+				console.log("Custom value", aProperty);
+				break;
+			case PropertyValueType.MARKER:
+				console.log("Marker", aProperty);
+				break;
+			case PropertyValueType.LAYER_INDEX:
+				console.log("Layer index", aProperty);
+				break;
 			case PropertyValueType.TEXT_DOCUMENT:
+				console.log("Text document", aProperty);
+				break;
 			default:
 				//METODO: how to handle these
 				break;
@@ -180,8 +199,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				this.setupTimelinesForSpatialProperty(aProperty, pointProperties, returnArray);
 			}
 			else {
-				//METODO: pass in multiplier
-				this.setupTimelinesForProperty(aProperty, returnArray);
+				this.setupTimelinesForProperty(aProperty, returnArray, multiplier);
 			}
 		}
 		
@@ -205,7 +223,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		}
 	};
 	
-	objectFunctions.setupTimelinesForProperty = function(aProperty, aReturnTimelines) {
+	objectFunctions.setupTimelinesForProperty = function(aProperty, aReturnTimelines, aMultiplier) {
 		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::setupTimelinesForProperty");
 		//console.log(aProperty, aReturnTimelines);
 		
@@ -219,7 +237,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				aReturnTimelines[0].getProperty("startValue").setValue(lastValue);
 			}
 			else {
-				this.setStartValuesForTimelines(lastValue, aReturnTimelines);
+				this.setStartValuesForTimelines(lastValue, aReturnTimelines, aMultiplier);
 			}
 			
 			for(var i = 2; i <= numberOfKeys; i++) { //MENOTE: count starts at 1, items are processed 2 by 2
@@ -228,7 +246,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				var currentInEasing = aProperty.keyInTemporalEase(i);
 				var currentOutEasing = aProperty.keyOutTemporalEase(i);
 				
-				this.addPartToTimelines(lastTime, lastValue, lastInEasing, lastOutEasing, currentTime, currentValue, currentInEasing, currentOutEasing, aReturnTimelines);
+				this.addPartToTimelines(lastTime, lastValue, lastInEasing, lastOutEasing, currentTime, currentValue, currentInEasing, currentOutEasing, aReturnTimelines, aMultiplier);
 				
 				lastTime =  currentTime;
 				lastValue = currentValue;
@@ -238,10 +256,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		}
 		else {
 			if(aReturnTimelines.length === 1) {
-				aReturnTimelines[0].getProperty("startValue").setValue(aProperty.value);
+				aReturnTimelines[0].getProperty("startValue").setValue(aMultiplier*aProperty.value);
 			}
 			else {
-				this.setStartValuesForTimelines(aProperty.value, aReturnTimelines);
+				this.setStartValuesForTimelines(aProperty.value, aReturnTimelines, aMultiplier);
 			}
 		}
 	};
@@ -260,7 +278,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			var lastOutInterpolationType = aProperty.keyOutInterpolationType(1);
 			var lastInTangent = aProperty.keyInSpatialTangent(1);
 			var lastOutTangent = aProperty.keyOutSpatialTangent(1);
-			this.setStartValuesForTimelines(lastValue, aReturnTimelines);
+			this.setStartValuesForTimelines(lastValue, aReturnTimelines, 1);
 			for(var i = 2; i <= numberOfKeys; i++) { //MENOTE: count starts at 1, items are processed 2 by 2
 				//console.log(">>>>>>>", i);
 				var currentTime = aProperty.keyTime(i);
@@ -291,11 +309,74 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			}
 		}
 		else {
-			this.setStartValuesForTimelines(aProperty.value, aReturnTimelines);
+			this.setStartValuesForTimelines(aProperty.value, aReturnTimelines, 1);
 		}
 	};
 	
-	objectFunctions.addPartToTimelines = function(aStartTime, aStartValues, aStartInEasing, aStartOutEasing, aEndTime, aEndValues, aEndInEasing, aEndOutEasing, aReturnTimelines) {
+	objectFunctions.setupTimelineForShapeProperty = function(aProperty, aReturnTimeline) {
+		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::setupTimelineForShapeProperty");
+		//console.log(aProperty, aReturnTimeline);
+		
+		var numberOfKeys = aProperty.numKeys;
+		if(numberOfKeys > 1) {
+			aReturnTimeline.getProperty("startValue").setValue(this.createCurveFromShape(aProperty.keyValue(1)));
+			
+			for(var i = 2; i <= numberOfKeys; i++) {
+				aReturnTimeline.setValueAt(this.createCurveFromShape(aProperty.keyValue(i), aProperty.keyTime(i)));
+			}
+		}
+		else {
+			aReturnTimeline.getProperty("startValue").setValue(this.createCurveFromShape(aProperty.value));
+		}
+	};
+	
+	objectFunctions.createCurveFromShape = function(aShape) {
+		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::createCurveFromShape");
+		//console.log(aShape);
+		
+		var currentArray = aShape.vertices;
+		var inTangentsArray = aShape.inTangents;
+		var outTangentsArray = aShape.outTangents;
+		var currentArrayLength = currentArray.length;
+		
+		var numberOfPoints = 1+3*(currentArrayLength-1);
+		if(aShape.closed) {
+			numberOfPoints += 3;
+		}
+		
+		var returnCurve = BezierCurve.createWithLength(3, true, numberOfPoints);
+		
+		var pointsArray = returnCurve.pointsArray;
+		pointsArray[0].x = currentArray[0][0];
+		pointsArray[0].y = currentArray[0][1];
+		
+		for(var i = 1; i < currentArrayLength; i++) {
+			var currentPointIndex = 3*i;
+			
+			pointsArray[currentPointIndex].x = currentArray[i][0];
+			pointsArray[currentPointIndex].y = currentArray[i][1];
+			pointsArray[currentPointIndex-1].x = currentArray[i][0]+inTangentsArray[i][0];
+			pointsArray[currentPointIndex-1].y = currentArray[i][1]+inTangentsArray[i][1];
+			pointsArray[currentPointIndex-2].x = currentArray[i-1][0]+outTangentsArray[i-1][0];
+			pointsArray[currentPointIndex-2].y = currentArray[i-1][1]+outTangentsArray[i-1][1];
+		}
+		
+		if(aShape.closed) {
+			var lastPointIndex = 3*currentArrayLength;
+			
+			pointsArray[lastPointIndex].x = currentArray[0][0];
+			pointsArray[lastPointIndex].y = currentArray[0][1];
+			
+			pointsArray[lastPointIndex-1].x = currentArray[0][0]+inTangentsArray[0][0];
+			pointsArray[lastPointIndex-1].y = currentArray[0][1]+inTangentsArray[0][1];
+			pointsArray[lastPointIndex-2].x = currentArray[currentArrayLength-1][0]+outTangentsArray[currentArrayLength-1][0];
+			pointsArray[lastPointIndex-2].y = currentArray[currentArrayLength-1][1]+outTangentsArray[currentArrayLength-1][1];
+		}
+		
+		return returnCurve;
+	}
+	
+	objectFunctions.addPartToTimelines = function(aStartTime, aStartValues, aStartInEasing, aStartOutEasing, aEndTime, aEndValues, aEndInEasing, aEndOutEasing, aReturnTimelines, aMultiplier) {
 		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::addPartToTimelines");
 		//console.log(aStartTime, aStartValues, aStartInEasing, aStartOutEasing, aEndTime, aEndValues, aEndInEasing, aEndOutEasing, aReturnTimelines);
 		
@@ -310,12 +391,12 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			var startValue;
 			var endValue;
 			if(currentArrayLength === 1) {
-				startValue = aStartValues;
-				endValue = aEndValues;
+				startValue = aMultiplier*aStartValues;
+				endValue = aMultiplier*aEndValues;
 			}
 			else {
-				startValue = aStartValues[i];
-				endValue = aEndValues[i];
+				startValue = aMultiplier*aStartValues[i];
+				endValue = aMultiplier*aEndValues[i];
 			}
 			
 			var isLinear = false; //METODO: find out if it's linear
@@ -331,8 +412,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				
 				var curvePoints = [
 					0, startValue,
-					startInfluence, startValue+startInfluence*duration*aStartOutEasing[i].speed,
-					endInfluence, endValue-(1-endInfluence)*duration*aEndInEasing[i].speed,
+					startInfluence, startValue+aMultiplier*startInfluence*duration*aStartOutEasing[i].speed,
+					endInfluence, endValue-aMultiplier*(1-endInfluence)*duration*aEndInEasing[i].speed,
 					1, endValue
 				];
 				
@@ -369,14 +450,27 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			var startInfluence = 0.01*aStartOutEasing.influence;
 			var endInfluence = 0.01*aEndInEasing.influence;
 			
+			var startSpeed = speedMultiplier*aStartOutEasing.speed;
+			var endSpeed = speedMultiplier*aEndInEasing.speed;
+			
+			var startValue = startSpeed*startInfluence;
+			var endValue = endSpeed*endInfluence
+			
+			if(startValue > 1) {
+				startInfluence /= startValue;
+				startValue = 1;
+			}
+			if(endValue > 1) {
+				endInfluence /= endValue;
+				endValue = 1;
+			}
+			
 			var curvePoints = [
 				0, 0,
-				startInfluence, speedMultiplier*aStartOutEasing.speed*startInfluence,
-				1-endInfluence, 1-(speedMultiplier*aEndInEasing.speed)*endInfluence,
+				startInfluence, startValue,
+				1-endInfluence, 1-endValue,
 				1, 1
 			];
-			
-			console.log(curvePoints);
 			
 			easingPart = AnimationCurveTimelinePart.create(dbm.singletons.dbmCurveCreator.createCurveFromValuesArray(3, true, curvePoints), aStartTime, duration);
 		};
@@ -405,7 +499,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		}
 	};
 	
-	objectFunctions.setStartValuesForTimelines = function(aValues, aReturnTimelines) {
+	objectFunctions.setStartValuesForTimelines = function(aValues, aReturnTimelines, aMultiplier) {
 		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::setStartValuesForTimelines");
 		//console.log(aValues, aReturnTimelines);
 		
@@ -413,7 +507,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentTimeline = aReturnTimelines[i];
-			currentTimeline.getProperty("startValue").setValue(currentArray[i]);
+			currentTimeline.getProperty("startValue").setValue(aMultiplier*currentArray[i]);
 		}
 	};
 	
