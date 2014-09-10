@@ -32,6 +32,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 		this.ownsData = false;
 		
 		this._root = TreeStructureItem.create("");
+		this._root.retain();
 		this._root._internalFunctionality_setRoot(this);
 		
 		this._itemClass = TreeStructureItem;
@@ -47,6 +48,14 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "c
 	objectFunctions.getRoot = function() {
 		return this._root;
 	}; //End function getRoot
+	
+	objectFunctions._internalFunctionality_replaceRoot = function(aRoot) {
+		
+		this._root.releaseAndDestroy();
+		
+		this._root = aRoot;
+		this._root._internalFunctionality_setRoot(this);
+	};
 	
 	/**
 	 * Adds an item.

@@ -15,6 +15,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.Defaul
 	var ObjectParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ObjectParser");
 	var NullParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.NullParser");
 	var PointsArrayParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.data.PointsArrayParser");
+	var TreeStructureParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.data.TreeStructureParser");
+	var TreeStructureItemParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.data.TreeStructureItemParser");
 	
 	//Utils
 	
@@ -33,6 +35,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.Defaul
 		dbm.singletons.dbmDataManager.addParser(DataParserTypes.NULL, NullParser.create());
 		
 		dbm.singletons.dbmDataManager.addParser(DataParserTypes.POINTS_ARRAY, PointsArrayParser.create());
+		dbm.singletons.dbmDataManager.addParser(DataParserTypes.TREE_STRUCTURE, TreeStructureParser.create());
+		dbm.singletons.dbmDataManager.addParser(DataParserTypes.TREE_STRUCTURE_ITEM, TreeStructureItemParser.create());
 		
 	};
 });

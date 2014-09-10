@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	var FileWriter = dbm.importClass("com.developedbyme.adobeextendscript.utils.file.FileWriter");
 	var MetaDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject");
 	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
+	var ShapeCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.ShapeCompositionLayer");
 	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
 	var SpatialCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart");
 	var CreateArcLengthCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode");
@@ -86,16 +87,23 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				layerMetaData.metaData.addObject("height", currentLayer.getProperty("height").getValue());
 				layerMetaData.metaData.addObject("blendingMode", currentLayer.getProperty("blendingMode").getValue());
 				
-				var nativeSource = currentLayer.getSource();
-				if(nativeSource instanceof FootageItem) {
-					var nativeMainSource = nativeSource.mainSource;
-					if(nativeMainSource instanceof SolidSource) {
-						layerMetaData.metaData.addObject("footageType", "solid");
-						var colorArray = nativeMainSource.color;
-						layerMetaData.metaData.addObject("color", RgbaColor.create(colorArray[0], colorArray[1], colorArray[2]));
-					}
-					//METODO: add other types
+				if(currentLayer instanceof ShapeCompositionLayer) {
+					layerMetaData.metaData.addObject("footageType", "shape");
+					layerMetaData.metaData.addObject("shapes", currentLayer.getShapes());
 				}
+				else {
+					var nativeSource = currentLayer.getSource();
+					if(nativeSource instanceof FootageItem) {
+						var nativeMainSource = nativeSource.mainSource;
+						if(nativeMainSource instanceof SolidSource) {
+							layerMetaData.metaData.addObject("footageType", "solid");
+							var colorArray = nativeMainSource.color;
+							layerMetaData.metaData.addObject("color", RgbaColor.create(colorArray[0], colorArray[1], colorArray[2]));
+						}
+						//METODO: add other types
+					}
+				}
+				
 			}
 			layerMetaData.metaData.addObject("masks", currentLayer.getMasks());
 			compositionMetaData.data.push(layerMetaData);

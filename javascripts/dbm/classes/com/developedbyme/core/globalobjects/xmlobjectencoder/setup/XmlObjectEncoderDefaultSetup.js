@@ -19,6 +19,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 	var NamedArrayEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder");
 	var ExportMetaDataEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder");
 	var GradientEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder");
+	var TreeStructureEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.treestructure.TreeStructureEncoder");
+	var TreeStructureItemEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.treestructure.TreeStructureItemEncoder");
 	
 	//Utils
 	
@@ -39,6 +41,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 		
 		//Custom type encoders
 		dbm.singletons.dbmXmlObjectEncoder.addCustomTypeEncoder(XmlEncoderCustomTypes.POINTS_ARRAY, PointsArrayEncoder.create());
+		dbm.singletons.dbmXmlObjectEncoder.addClassCustomType("com.developedbyme.utils.data.treestructure.TreeStructure", XmlEncoderCustomTypes.TREE_STRUCTURE, TreeStructureEncoder.create().addVariablesToEncode(["createMissingItems", "ownsData"]));
+		dbm.singletons.dbmXmlObjectEncoder.addClassCustomType("com.developedbyme.utils.data.treestructure.TreeStructureItem", XmlEncoderCustomTypes.TREE_STRUCTURE_ITEM, TreeStructureItemEncoder.create().addVariablesToEncode(["data"]));
 		
 		//Class encoders
 		var namedArrayEncoder = NamedArrayEncoder.create();

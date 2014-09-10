@@ -41,6 +41,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 		this._encodeSimpleValuesAsAttributes = true;
 		this._useCdata = true;
 		this._classEncoders = this.addDestroyableObject(NamedArray.create(true));
+		this._classCustomTypeEncoders = this.addDestroyableObject(NamedArray.create(true));
 		this._customTypeEncoders = this.addDestroyableObject(NamedArray.create(true));
 		
 		return this;
@@ -48,6 +49,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	
 	objectFunctions.addClassEncoder = function(aClassName, aEncoder) {
 		this._classEncoders.addObject(aClassName, aEncoder);
+	};
+	
+	objectFunctions.addClassCustomType = function(aClassName, aType, aEncoder) {
+		this._classCustomTypeEncoders.addObject(aClassName, aType);
+		
+		if(VariableAliases.isSet(aEncoder)) {
+			this.addCustomTypeEncoder(aType, aEncoder);
+		}
 	};
 	
 	objectFunctions.addCustomTypeEncoder = function(aType, aEncoder) {
@@ -77,6 +86,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 		rootObject.nodeValue = new Array();
 		
 		this.encodeValue(aObject, rootObject);
+		
 		var xmlEncoder = XmlStringFormatEncoder.create();
 		var returnString = xmlEncoder.encode(rootObject);
 		
@@ -148,6 +158,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 			if(this._classEncoders.select(className)) {
 				return this._classEncoders.currentSelectedItem.encodeClass(aValue, className, aParentNode);
 			}
+			if(this._classCustomTypeEncoders.select(className)) {
+				return this.encodeValueWithType(aValue, this._classCustomTypeEncoders.currentSelectedItem, aParentNode);
+			}
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "encodeObject", "Object " + className + " has no encoder.");
 			return this.encodeUnknownValue(aValue, aParentNode);
 		}
@@ -194,7 +207,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObje
 	};
 	
 	objectFunctions.encodeUnknownValue = function(aValue, aParentNode) {
-		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.NON_REAL_TYPE_UNKNOWN, aValue, aParentNode);
+		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.XmlObjectEncoder::encodeUnknownValue");
+		var newNode = EncodingDataObject.createSimpleValue(JavascriptObjectTypes.NON_REAL_TYPE_UNKNOWN, aValue.toString(), aParentNode);
 		return newNode;
 	};
 });

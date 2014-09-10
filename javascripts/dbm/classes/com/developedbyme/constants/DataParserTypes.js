@@ -14,6 +14,8 @@ dbm.registerClass("com.developedbyme.constants.DataParserTypes", null, function(
 	staticFunctions.NULL = "null";
 	
 	staticFunctions.POINTS_ARRAY = "pointsArray";
+	staticFunctions.TREE_STRUCTURE = "treeStructure";
+	staticFunctions.TREE_STRUCTURE_ITEM = "treeStructureItem";
 	
 	//Text
 	staticFunctions.UPPER_CASE_TEXT = "upperCaseText";

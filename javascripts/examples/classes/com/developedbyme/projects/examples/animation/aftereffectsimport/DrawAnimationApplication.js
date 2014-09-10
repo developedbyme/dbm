@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
 	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
+	var CreateCircleCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateCircleCurveNode");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -146,12 +147,20 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	
 	objectFunctions.setupLayer = function(aLayer, aAnimationData, aPlaybackNode) {
 		
+		var timelines = aAnimationData.data;
+		
 		var graphicsLayer = aLayer.getChildByPath("graphics");
 		
 		var footageType = aAnimationData.metaData.getObject("footageType");
 		if(footageType === "solid") {
 			var color = aAnimationData.metaData.getObject("color");
 			graphicsLayer.setFillStyle(color.getCssString());
+		}
+		else if(footageType === "shape") {
+			console.log(">>>>");
+			var shapes = aAnimationData.metaData.getObject("shapes");
+			console.log(shapes);
+			this.generateShapes(aLayer, shapes.getRoot(), timelines, aPlaybackNode);
 		}
 		else {
 			console.log("Using default color");
@@ -163,21 +172,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
 		
-		var timelines = aAnimationData.data;
-		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/position/x"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("x"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/position/y"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("y"));
-		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/scale/x"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("scaleX"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/scale/y"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("scaleY"));
-		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/rotation"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("rotate"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/opacity"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("alpha"));
-		
-		CanvasLayer2d.addPivotToLayer(aLayer);
-		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/anchorPoint/x"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("pivotX"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("transform/anchorPoint/y"), aPlaybackNode.getProperty("outputTime"), aLayer.getProperty("pivotY"));
+		this.applyTransformToLayer(aLayer, timelines, "", aPlaybackNode.getProperty("outputTime"));
 		
 		var masks = aAnimationData.metaData.getObject("masks");
 		var currentArray = masks;
@@ -207,7 +202,6 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		}
 		
 		if(timelines.select("effects/stroke/path")) {
-			console.log(">>>>>");
 			
 			var strokeLayer = aLayer.getChildByPath("effects/stroke");
 			
@@ -239,6 +233,78 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			currentGraphics.addCurve(strokeCurveDrawer);
 		}
 	};
+	
+	objectFunctions.applyTransformToLayer = function(aLayer, aTimelines, aPrefix, aTimeProperty) {
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/position/x"), aTimeProperty, aLayer.getProperty("x"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/position/y"), aTimeProperty, aLayer.getProperty("y"));
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/x"), aTimeProperty, aLayer.getProperty("scaleX"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/y"), aTimeProperty, aLayer.getProperty("scaleY"));
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/rotation"), aTimeProperty, aLayer.getProperty("rotate"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/opacity"), aTimeProperty, aLayer.getProperty("alpha"));
+		
+		CanvasLayer2d.addPivotToLayer(aLayer);
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/anchorPoint/x"), aTimeProperty, aLayer.getProperty("pivotX"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/anchorPoint/y"), aTimeProperty, aLayer.getProperty("pivotY"));
+		
+	};
+	
+	objectFunctions.generateShapes = function(aCurrentLayer, aCurrentGroup, aTimelines, aPlaybackNode) {
+		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::generateShapes");
+		console.log(aCurrentLayer, aCurrentGroup, aTimelines, aPlaybackNode);
+		
+		var currentGraphics = aCurrentLayer._getCurrentDrawingLayer();
+		currentGraphics.scaleStrokes = true;
+		
+		var currentArray = aCurrentGroup.getChildren();
+		var currnetArrayLength = currentArray.length;
+		for(var i = 0; i < currnetArrayLength; i++) {
+			var currentData = currentArray[i];
+			var currentType = currentData.getAttribute("type");
+			var currentPathPrefix = currentData.data;
+			
+			console.log(currentType);
+			switch(currentType) {
+				case "group":
+					var newLayer = aCurrentLayer.getChildByPath(currentData.getName());
+					this.generateShapes(newLayer, currentData, aTimelines, aPlaybackNode);
+					this.applyTransformToLayer(newLayer, aTimelines, currentPathPrefix + "/", aPlaybackNode.getProperty("outputTime"));
+					break;
+				case "ellipse":
+					var currentCurveCreator = CreateCircleCurveNode.create(); //METODO: do ellipse instead of circle
+					var currentCurveDrawer = CurveDrawer2d.create(currentCurveCreator.getProperty("outputCurve"));
+					
+					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/position/x"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("x"));
+					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/position/y"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("y"));
+					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/size/x"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("radius"));
+					
+					var maxParameterNode = GetMaxParameterOnCurveNode.create(currentCurveCreator.getProperty("outputCurve"));
+					currentCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
+					
+					currentGraphics.addCurve(currentCurveDrawer);
+					break;
+				case "stroke":
+					//METODO: set correct color
+					currentGraphics.getProperty("strokeStyle").setValue("#FFFFFF");
+					
+					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/strokeWidth"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineWidth"));
+					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/lineCap"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineCap"));
+					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/lineJoin"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineJoin"));
+					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/miterLimit"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("miterLimit"));
+					
+					break;
+				case "fill":
+					//METODO: set correct color
+					currentGraphics.getProperty("fillStyle").setValue("#666666");
+					break;
+				default:
+					//METODO: error message
+					break;
+			}
+		}
+	}
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

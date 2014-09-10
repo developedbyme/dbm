@@ -43,6 +43,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.formate
 	objectFunctions._encodePart = function(aPart) {
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.formatencoders.XmlStringFormatEncoder::_encodePart");
 		//console.log(aPart);
+		//console.log(aPart.name, aPart.type, aPart.dataType);
+		
 		var returnString = "";
 		switch(aPart.type) {
 			case "root":
@@ -60,6 +62,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.formate
 				break;
 			default:
 				//METODO: error message
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_encodePart", "Unknown type " + aPart.type + ".");
+				break;
 		}
 		return returnString;
 	};

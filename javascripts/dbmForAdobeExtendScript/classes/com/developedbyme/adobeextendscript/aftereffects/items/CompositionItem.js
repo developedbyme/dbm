@@ -14,6 +14,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 	//Dependencies
 	var LayerBaseObject = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.LayerBaseObject");
 	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
+	var ShapeCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.ShapeCompositionLayer");
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	
 	//Utils
@@ -64,7 +65,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 			var currentNativeLayer = this._nativeItem.layer(i);
 			
 			var currentLayer;
-			if(currentNativeLayer instanceof AVLayer) {
+			
+			if(currentNativeLayer instanceof ShapeLayer) {
+				currentLayer = ShapeCompositionLayer.create(currentNativeLayer);
+			}
+			else if(currentNativeLayer instanceof AVLayer) {
 				currentLayer = AvCompositionLayer.create(currentNativeLayer);
 			}
 			else {

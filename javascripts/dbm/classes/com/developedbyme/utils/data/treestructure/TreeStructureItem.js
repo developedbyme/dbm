@@ -59,6 +59,15 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	};
 	
 	/**
+	 * Internal functionality to get all the attributes.
+	 *
+	 * @return	NamedArray	The attributes. Null if there are no attributes.
+	 */
+	objectFunctions._internalFunctionality_getAttributes = function() {
+		return this._attributes;
+	}; //End function _internalFunctionality_getAttributes
+	
+	/**
 	 * Gets the name of the item.
 	 *
 	 * @return	String	The name of this item.
@@ -402,7 +411,8 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 			this._parent.removeChild(this);
 		}
 		if(this._children) {
-			ClassReference.releaseAndDestroyArrayIfExists(this._children.objectsArray);
+			//METODO: should we not destroy the whole children instead of going to the array?
+			ClassReference.releaseAndDestroyArrayIfExists(this._children.getObjectsArray());
 		}
 		
 		if(this.ownsData) {

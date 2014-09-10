@@ -23,6 +23,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 		
 		this._curves = new Array();
 		this.moveWhenSwitchingCurves = false;
+		this.scaleStrokes = false;
 		
 		this._fillStyle = this.createProperty("fillStyle", null);
 		this._lineWidth = this.createProperty("lineWidth", 1);
@@ -84,10 +85,14 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 	objectFunctions._strokePath = function(aContext, aStyle) {
 		if(aStyle !== null) {
 			aContext.strokeStyle = aStyle;
-			aContext.save();
-			aContext.setTransform(1, 0, 0, 1, 0, 0);
+			if(!this.scaleStrokes) {
+				aContext.save();
+				aContext.setTransform(1, 0, 0, 1, 0, 0);
+			}
 			aContext.stroke();
-			aContext.restore();
+			if(!this.scaleStrokes) {
+				aContext.restore();
+			}
 		}
 	};
 	

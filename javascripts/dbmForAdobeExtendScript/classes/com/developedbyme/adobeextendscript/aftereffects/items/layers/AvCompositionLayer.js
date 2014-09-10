@@ -74,7 +74,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 	
 	staticFunctions.create = function(aNativeItem) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer::create");
-		//console.log(aPort);
+		//console.log(aNativeItem);
 		
 		var newAvCompositionLayer = (new ClassReference()).init();
 		

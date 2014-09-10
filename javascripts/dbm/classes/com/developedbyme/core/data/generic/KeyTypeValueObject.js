@@ -1,9 +1,13 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.core.data.generic.KeyTypeValueObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+/**
+ * A named value with a type.
+ */
+dbm.registerClass("com.developedbyme.core.data.generic.KeyTypeValueObject", "com.developedbyme.core.data.generic.KeyValueObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.generic.KeyTypeValueObject");
 	
+	//Self reference
 	var KeyTypeValueObject = dbm.importClass("com.developedbyme.core.data.generic.KeyTypeValueObject");
-
+	
 	/**
 	 * Constructor
 	 */
@@ -12,23 +16,19 @@ dbm.registerClass("com.developedbyme.core.data.generic.KeyTypeValueObject", "com
 		
 		this.superCall();
 		
-		this.name = null;
 		this.type = null;
-		this.value = null;
 		
 		return this;
 	};
 	
-	objectFunctions._toString_getAttributes = function _toString_getAttributes(aReturnArray) {
+	objectFunctions._toString_getAttributes = function(aReturnArray) {
 		this.superCall(aReturnArray);
 		
-		aReturnArray.push("name: " + this.name);
 		aReturnArray.push("type: " + this.type);
-		aReturnArray.push("value: " + this.value);
 		
 	};
 	
-	staticFunctions.create = function create(aName, aType, aValue) {
+	staticFunctions.create = function(aName, aType, aValue) {
 		//console.log("com.developedbyme.core.data.generic.KeyTypeValueObject::create (static)");
 		//console.log(aName, aType, aValue);
 		var newKeyTypeValueObject = (new KeyTypeValueObject()).init();

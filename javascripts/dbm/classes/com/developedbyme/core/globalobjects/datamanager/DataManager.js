@@ -134,6 +134,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		var parseResult = this._parseNode(definitionXml, aDataObject.getHierarchyItem().getPath());
 		if(parseResult === null) {
 			//METODO: error message
+			console.log(definitionXml);
 			console.error("Null result for " + aDataObject.getHierarchyItem().getPath());
 			return;
 		}
@@ -170,7 +171,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 				if(parseResult.childrenIsProperties === 1) {
 					var dataNamespace = dbm.xmlNamespaces.dbmData;
 					nodeName = XmlChildRetreiver.getNamespacedAttribute(currentNode, dataNamespace, "name");
-					requestName = encodeURIComponent(nodeName);
+					if(nodeName !== null) {
+						requestName = encodeURIComponent(nodeName);
+					}
+					else {
+						nodeName = i;
+						requestName = "child[" + nodeName + "]";
+					}
 				}
 				else if(parseResult.childrenIsProperties === 2) {
 					nodeName = i;
@@ -205,6 +212,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 								for(var j = 0; j < currentArray2Length; j++) {
 									ownerObject.addColorStop(currentArray2[j]);
 								}
+								break;
+							case "treeStructure/setAttribute":
+								ownerObject.setAttribute(nodeName, currentData.data.getProperty("data").getValue());
+								break;
+							case "treeStructure/addChild":
+								ownerObject.addChild(currentData.data.getProperty("data").getValue());
+								break;
+							case "treeStructure/root":
+								ownerObject._internalFunctionality_replaceRoot(currentData.data.getProperty("data").getValue());
 								break;
 							default:
 								//METODO: error message

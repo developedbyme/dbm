@@ -6,5 +6,7 @@ dbm.registerClass("com.developedbyme.constants.XmlEncoderCustomTypes", null, fun
 	var XmlEncoderCustomTypes = dbm.importClass("com.developedbyme.constants.XmlEncoderCustomTypes");
 	
 	staticFunctions.POINTS_ARRAY = "pointsArray";
+	staticFunctions.TREE_STRUCTURE = "treeStructure";
+	staticFunctions.TREE_STRUCTURE_ITEM = "treeStructureItem";
 	
 });
