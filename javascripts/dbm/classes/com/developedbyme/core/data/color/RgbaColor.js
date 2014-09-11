@@ -65,15 +65,19 @@ dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedb
 		aReturnArray.push("a: " + this.a);
 	};
 	
-	staticFunctions.create = function create(aR, aG, aB, aA) {
+	staticFunctions.create = function(aR, aG, aB, aA) {
 		//console.log("com.developedbyme.core.data.color.RgbaColor::create (static)");
 		//console.log(aR, aG, aB, aA);
 		var newRgbaColor = (new RgbaColor()).init();
-		newRgbaColor.r = VariableAliases.valueWithDefault(aR, 0);
-		newRgbaColor.g = VariableAliases.valueWithDefault(aG, 0);
-		newRgbaColor.b = VariableAliases.valueWithDefault(aB, 0);
-		newRgbaColor.a = VariableAliases.valueWithDefault(aA, 1);
+		ClassReference.setValuesToColor(newRgbaColor, aR, aG, aB, aA);
 		
 		return newRgbaColor;
+	};
+	
+	staticFunctions.setValuesToColor = function(aColor, aR, aG, aB, aA) {
+		aColor.r = VariableAliases.valueWithDefault(aR, 0);
+		aColor.g = VariableAliases.valueWithDefault(aG, 0);
+		aColor.b = VariableAliases.valueWithDefault(aB, 0);
+		aColor.a = VariableAliases.valueWithDefault(aA, 1);
 	};
 });

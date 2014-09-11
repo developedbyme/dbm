@@ -29,10 +29,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	var MultiplePartsTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart");
+	var BlendCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.complex.BlendCurveTimelinePart");
+	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	
 	//Utils
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
+	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	
 	//Constants
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
@@ -61,6 +64,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		this._activeComposition = this._project.getActiveItem();
 		
 		var layers = this._activeComposition.getLayers();
+		
+		var filesToCopy = NamedArray.create(false);
 		
 		var exportObject = dbm.singletons.dbmXmlObjectEncoder.createExportDataObject("afterEffectsComposition");
 		
@@ -100,7 +105,44 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 							var colorArray = nativeMainSource.color;
 							layerMetaData.metaData.addObject("color", RgbaColor.create(colorArray[0], colorArray[1], colorArray[2]));
 						}
+						else if(nativeMainSource instanceof FileSource) {
+							if(nativeMainSource.missingFootagePath === "") {
+								
+								var currentFile = nativeMainSource.file;
+								var fileName = currentFile.name;
+								var fileExtension = PathFunctions.getFileExtension(fileName);
+								
+								switch(fileExtension) {
+									case "png":
+									case "jpg":
+									case "jpeg":
+									case "gif":
+										layerMetaData.metaData.addObject("footageType", "image");
+										//METODO: handle duplicates of filename
+										var newFileName = fileName;
+										filesToCopy.addObject(newFileName, currentFile);
+										layerMetaData.metaData.addObject("file", newFileName);
+										break;
+									default:
+										//MENOTE: add video
+										layerMetaData.metaData.addObject("footageType", "missingFile");
+										console.error("Unsupported file type " + fileExtension);
+										break;
+								}
+							}
+							else {
+								layerMetaData.metaData.addObject("footageType", "missingFile");
+							}
+						}
+						else {
+							//METODO: add other types
+							console.error("Unknown main source " + nativeMainSource.toString());
+							layerMetaData.metaData.addObject("footageType", "unknown");
+						}
+					}
+					else {
 						//METODO: add other types
+						console.error("Unknown source " + nativeSource.toString());
 					}
 				}
 				
@@ -116,7 +158,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			for(var j = 0; j < currentArray2Length; j++) {
 				var currentName = currentArray2[j];
 				var currentProperty = currentAnimationProperties.getObject(currentName);
-				//console.log(currentName);
 				this.createTimelinesForProprety(currentProperty, currentName, timelinesArray);
 			}
 			
@@ -129,6 +170,18 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		if(saveFile !== null) {
 			saveFile.setData(encodedXml);
 			saveFile.write();
+			
+			var saveUrlResolver = UrlResolver.createFromFilePath(saveFile._url); //METODO: do not access private variable
+			
+			var currentArray = filesToCopy.getNamesArray();
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentName = currentArray[i];
+				var currentFile = filesToCopy.getObject(currentName);
+				
+				var newFilePath = saveUrlResolver.getAbsolutePath(currentName);
+				var result = currentFile.copy(newFilePath);
+			}
 		}
 		
 		this._debugData = compositionMetaData;
@@ -341,10 +394,21 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		
 		var numberOfKeys = aProperty.numKeys;
 		if(numberOfKeys > 1) {
-			aReturnTimeline.getProperty("startValue").setValue(this.createCurveFromShape(aProperty.keyValue(1)));
+			var lastTime = aProperty.keyTime(1);
+			var lastCurve = this.createCurveFromShape(aProperty.keyValue(1));
+			aReturnTimeline.getProperty("startValue").setValue(lastCurve);
 			
 			for(var i = 2; i <= numberOfKeys; i++) {
-				aReturnTimeline.setValueAt(this.createCurveFromShape(aProperty.keyValue(i), aProperty.keyTime(i)));
+				
+				var currentTime = aProperty.keyTime(i);
+				var currentCurve = this.createCurveFromShape(aProperty.keyValue(i));
+				
+				var duration = currentTime-lastTime;
+				
+				//METODO: interpolation
+				var blendCurvePart = BlendCurveTimelinePart.create(lastCurve, currentCurve, lastTime, duration);
+				
+				aReturnTimeline.addPart(blendCurvePart);
 			}
 		}
 		else {

@@ -23,6 +23,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
 	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
 	var CreateCircleCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateCircleCurveNode");
+	var RgbaColorFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.data.color.RgbaColorFromValuesNode");
+	var CssStringFromColorNode = dbm.importClass("com.developedbyme.flow.nodes.data.color.CssStringFromColorNode");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -88,7 +90,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		playbackNode.getProperty("maxTime").setValue(parsedAnimationData.metaData.getObject("duration"));
 		playbackNode.play();
 		
-		var scale = 0.5;
+		var scale = 0.25;
 		
 		var width = parsedAnimationData.metaData.getObject("width");
 		var height = parsedAnimationData.metaData.getObject("height");
@@ -149,28 +151,34 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		var timelines = aAnimationData.data;
 		
+		var layerWidth = aAnimationData.metaData.getObject("width");
+		var layerHeight = aAnimationData.metaData.getObject("height");
+		
 		var graphicsLayer = aLayer.getChildByPath("graphics");
 		
 		var footageType = aAnimationData.metaData.getObject("footageType");
 		if(footageType === "solid") {
 			var color = aAnimationData.metaData.getObject("color");
 			graphicsLayer.setFillStyle(color.getCssString());
+			graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
 		}
 		else if(footageType === "shape") {
-			console.log(">>>>");
 			var shapes = aAnimationData.metaData.getObject("shapes");
-			console.log(shapes);
 			this.generateShapes(aLayer, shapes.getRoot(), timelines, aPlaybackNode);
+		}
+		else if(footageType === "missingFile") {
+			graphicsLayer.setStrokeStyle(1, "rgba(0, 0, 0, 1)");
+			graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
+			graphicsLayer.moveTo(0, 0);
+			graphicsLayer.lineTo(layerWidth, layerHeight);
+			graphicsLayer.moveTo(0, layerHeight);
+			graphicsLayer.lineTo(layerWidth, 0);
 		}
 		else {
 			console.log("Using default color");
 			graphicsLayer.setFillStyle("rgba(0, 0, 0, 0.1)");
+			graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
 		}
-		
-		var layerWidth = aAnimationData.metaData.getObject("width");
-		var layerHeight = aAnimationData.metaData.getObject("height");
-		
-		graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
 		
 		this.applyTransformToLayer(aLayer, timelines, "", aPlaybackNode.getProperty("outputTime"));
 		
@@ -252,8 +260,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	};
 	
 	objectFunctions.generateShapes = function(aCurrentLayer, aCurrentGroup, aTimelines, aPlaybackNode) {
-		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::generateShapes");
-		console.log(aCurrentLayer, aCurrentGroup, aTimelines, aPlaybackNode);
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::generateShapes");
+		//console.log(aCurrentLayer, aCurrentGroup, aTimelines, aPlaybackNode);
 		
 		var currentGraphics = aCurrentLayer._getCurrentDrawingLayer();
 		currentGraphics.scaleStrokes = true;
@@ -265,7 +273,6 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			var currentType = currentData.getAttribute("type");
 			var currentPathPrefix = currentData.data;
 			
-			console.log(currentType);
 			switch(currentType) {
 				case "group":
 					var newLayer = aCurrentLayer.getChildByPath(currentData.getName());
@@ -276,9 +283,13 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					var currentCurveCreator = CreateCircleCurveNode.create(); //METODO: do ellipse instead of circle
 					var currentCurveDrawer = CurveDrawer2d.create(currentCurveCreator.getProperty("outputCurve"));
 					
+					var radiusMultiplierNode = MultiplicationNode.create(1, 0.5);
+					currentCurveCreator.getProperty("radius").connectInput(radiusMultiplierNode.getProperty("outputValue"));
+					currentCurveCreator.getProperty("radius").addDestroyableObject(radiusMultiplierNode);
+					
 					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/position/x"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("x"));
 					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/position/y"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("y"));
-					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/size/x"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("radius"));
+					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/size/x"), aPlaybackNode.getProperty("outputTime"), radiusMultiplierNode.getProperty("inputValue1"));
 					
 					var maxParameterNode = GetMaxParameterOnCurveNode.create(currentCurveCreator.getProperty("outputCurve"));
 					currentCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
@@ -286,8 +297,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					currentGraphics.addCurve(currentCurveDrawer);
 					break;
 				case "stroke":
-					//METODO: set correct color
-					currentGraphics.getProperty("strokeStyle").setValue("#FFFFFF");
+					this.applyColor(currentGraphics.getProperty("strokeStyle"), aTimelines, currentPathPrefix, aPlaybackNode.getProperty("outputTime"));
 					
 					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/strokeWidth"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineWidth"));
 					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/lineCap"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineCap"));
@@ -296,15 +306,36 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					
 					break;
 				case "fill":
-					//METODO: set correct color
-					currentGraphics.getProperty("fillStyle").setValue("#666666");
+					this.applyColor(currentGraphics.getProperty("fillStyle"), aTimelines, currentPathPrefix, aPlaybackNode.getProperty("outputTime"));
 					break;
 				default:
+					console.log(currentType);
 					//METODO: error message
 					break;
 			}
 		}
-	}
+	};
+	
+	objectFunctions.applyColor = function(aOutputProperty, aTimelines, aPrefix, aTimeProperty) {
+		
+		var colorCreatorNode = RgbaColorFromValuesNode.create();
+		var cssStringNode = CssStringFromColorNode.create(colorCreatorNode.getProperty("outputColor"));
+		aOutputProperty.connectInput(cssStringNode.getProperty("outputValue"));
+		
+		var opacityMultiplierNode = MultiplicationNode.create(1, 1);
+		
+		colorCreatorNode.getProperty("alpha").connectInput(opacityMultiplierNode.getProperty("outputValue"));
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/color/r"), aTimeProperty, colorCreatorNode.getProperty("red"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/color/g"), aTimeProperty, colorCreatorNode.getProperty("green"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/color/b"), aTimeProperty, colorCreatorNode.getProperty("blue"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/color/a"), aTimeProperty, opacityMultiplierNode.getProperty("inputValue1"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/opacity"), aTimeProperty, opacityMultiplierNode.getProperty("inputValue2"));
+		
+		aOutputProperty.addDestroyableObject(colorCreatorNode);
+		aOutputProperty.addDestroyableObject(cssStringNode);
+		aOutputProperty.addDestroyableObject(colorCreatorNode);
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
