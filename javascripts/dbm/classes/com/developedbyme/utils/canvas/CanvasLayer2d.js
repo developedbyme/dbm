@@ -42,11 +42,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		this._alpha = this.createProperty("alpha", 1);
 		this._compositionOperation = this.createProperty("compositeOperation", null);
 		this._useMask = this.createProperty("useMask", false);
+		this._render = this.createProperty("render", true);
 		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
 		this._graphicsUpdate.connectInput(this._transformationMatrix);
 		this._graphicsUpdate.connectInput(this._alpha);
 		this._graphicsUpdate.connectInput(this._compositionOperation);
 		this._graphicsUpdate.connectInput(this._useMask);
+		this._graphicsUpdate.connectInput(this._render);
 		
 		var transformationMatrix = this.addDestroyableObject(TransformationTo2dMatrixNode.create(0, 0, 0, 1, 1));
 		this._linkRegistration_setTransformationNode(transformationMatrix);
@@ -100,6 +102,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	objectFunctions.draw = function(aContext, aNumberOfLinksToResolve) {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::draw");
 		//console.log(aNumberOfLinksToResolve);
+		
+		if(!this._render.getValue()) {
+			return;
+		}
 		
 		aContext.save();
 		

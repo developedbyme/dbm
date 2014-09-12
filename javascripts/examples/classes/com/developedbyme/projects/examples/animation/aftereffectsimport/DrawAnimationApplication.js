@@ -20,11 +20,14 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
 	var VideoView = dbm.importClass("com.developedbyme.gui.media.video.VideoView");
 	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
+	var CanvasImageGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d");
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
 	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
 	var CreateCircleCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateCircleCurveNode");
 	var RgbaColorFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.data.color.RgbaColorFromValuesNode");
 	var CssStringFromColorNode = dbm.importClass("com.developedbyme.flow.nodes.data.color.CssStringFromColorNode");
+	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
+	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -46,6 +49,10 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		this._graphLayoutTemplatePath = "../assets/examples/development/commandLineTemplates.html#bottomGraph";
 		this._dataAssetPath = "../assets/examples/animation/aftereffectsimport/drawAnimation.xml";
+		
+		this._dataAssetUrlResolver = UrlResolver.createFromFilePath(this._dataAssetPath);
+		
+		this._showMissingFiles = true;
 		
 		this.addCssLink("../styles/utils/centeredContent.css");
 		this.addCssLink("../styles/utils/boxes.css");
@@ -86,8 +93,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var dataName = "playbackData";
 		dbm.singletons.dbmDataManager.addXmlDefinition(XmlChildRetreiver.getFirstChild(animationData), dataName);
 		var parsedAnimationData = dbm.singletons.dbmDataManager.getData(dataName).data;
+		var duration = parsedAnimationData.metaData.getObject("duration");
 		
-		playbackNode.getProperty("maxTime").setValue(parsedAnimationData.metaData.getObject("duration"));
+		playbackNode.getProperty("maxTime").setValue(duration);
 		playbackNode.play();
 		
 		var scale = 0.25;
@@ -115,44 +123,29 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			console.log(currentLayerData);
 			var layerName = "main/layer_" + currentIndex;
 			var currentLayer = mainCanvasController.getLayer(layerName);
-			this.setupLayer(currentLayer, currentLayerData, playbackNode);
+			this.setupLayer(currentLayer, currentLayerData, playbackNode, duration);
 		}
 		
 		mainCanvasController.getProperty("display").startUpdating();
-		
-		
-		/*
-		var maxTimeProperty = playbackNode.getProperty("maxTime");
-		var canvasWidthProperty = canvasView.getProperty("canvasWidth");
-		var curveCreatorRotationNode = CreateCurveFromTimelineNode.create(currentLayerData.data.getObject("transform/rotation"), 0, maxTimeProperty, canvasWidthProperty, 0);
-		
-		var scaleXNode = DivisionNode.create(canvasWidthProperty, maxTimeProperty);
-		
-		var centerLayer = canvasController.getLayer("/center");
-		centerLayer.getProperty("y").setValue(90);
-		centerLayer.getProperty("scaleX").connectInput(scaleXNode.getProperty("outputValue"));
-		centerLayer.getProperty("scaleY").setValue(-1);
-		
-		var rotationMaxParameterNode = GetMaxParameterOnCurveNode.create(curveCreatorRotationNode.getProperty("outputCurve"));
-		var drawLayerRotation = canvasController.getLayer("/center/lineRotation");
-		drawLayerRotation.setStrokeStyle(0, "#00FF00");
-		var curveDrawerRotation = drawLayerRotation.drawCurve(curveCreatorRotationNode.getProperty("outputCurve").getValue());
-		curveDrawerRotation.getProperty("curve").connectInput(curveCreatorRotationNode.getProperty("outputCurve"));
-		curveDrawerRotation.getProperty("endParameter").connectInput(rotationMaxParameterNode.getProperty("outputParameter"));
-		
-		canvasController.getProperty("display").startUpdating();
-		
-		console.log(parsedAnimationData);
-		console.log(curveDrawerRotation);
-		*/
 	};
 	
-	objectFunctions.setupLayer = function(aLayer, aAnimationData, aPlaybackNode) {
+	objectFunctions.setupLayer = function(aLayer, aAnimationData, aPlaybackNode, aFullDuration) {
 		
 		var timelines = aAnimationData.data;
 		
 		var layerWidth = aAnimationData.metaData.getObject("width");
 		var layerHeight = aAnimationData.metaData.getObject("height");
+		
+		var inPoint = aAnimationData.metaData.getObject("inPoint");
+		var outPoint = aAnimationData.metaData.getObject("outPoint");
+		if(inPoint !== 0 || outPoint !== aFullDuration) {
+			var renderProperty = aLayer.getProperty("render");
+			var retnderTimeline = Timeline.create(false);
+			dbm.singletons.dbmAnimationManager.setupTimelineConnection(retnderTimeline, aPlaybackNode.getProperty("outputTime"), renderProperty);
+			
+			retnderTimeline.setValueAt(true, inPoint);
+			retnderTimeline.setValueAt(false, outPoint);
+		}
 		
 		var graphicsLayer = aLayer.getChildByPath("graphics");
 		
@@ -166,13 +159,23 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			var shapes = aAnimationData.metaData.getObject("shapes");
 			this.generateShapes(aLayer, shapes.getRoot(), timelines, aPlaybackNode);
 		}
+		else if(footageType === "image") {
+			var filePath = this._dataAssetUrlResolver.getAbsolutePath(aAnimationData.metaData.getObject("file"));
+			var imageAsset = dbm.singletons.dbmAssetRepository.getAsset(filePath);
+			imageAsset.load();
+			
+			var graphicsPart = CanvasImageGraphics2d.createConnectedImage(imageAsset.getProperty("data"), layerWidth, layerHeight);
+			graphicsLayer.addDrawingPart(graphicsPart);
+		}
 		else if(footageType === "missingFile") {
-			graphicsLayer.setStrokeStyle(1, "rgba(0, 0, 0, 1)");
-			graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
-			graphicsLayer.moveTo(0, 0);
-			graphicsLayer.lineTo(layerWidth, layerHeight);
-			graphicsLayer.moveTo(0, layerHeight);
-			graphicsLayer.lineTo(layerWidth, 0);
+			if(this._showMissingFiles) {
+				graphicsLayer.setStrokeStyle(1, "rgba(0, 0, 0, 1)");
+				graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
+				graphicsLayer.moveTo(0, 0);
+				graphicsLayer.lineTo(layerWidth, layerHeight);
+				graphicsLayer.moveTo(0, layerHeight);
+				graphicsLayer.lineTo(layerWidth, 0);
+			}
 		}
 		else {
 			console.log("Using default color");
@@ -249,7 +252,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/x"), aTimeProperty, aLayer.getProperty("scaleX"));
 		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/y"), aTimeProperty, aLayer.getProperty("scaleY"));
 		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/rotation"), aTimeProperty, aLayer.getProperty("rotate"));
+		if(aTimelines.select(aPrefix + "transform/rotation") || aTimelines.select(aPrefix + "transform/zRotation")) {
+			dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.currentSelectedItem, aTimeProperty, aLayer.getProperty("rotate"));
+		}
 		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/opacity"), aTimeProperty, aLayer.getProperty("alpha"));
 		
 		CanvasLayer2d.addPivotToLayer(aLayer);
@@ -264,6 +269,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		//console.log(aCurrentLayer, aCurrentGroup, aTimelines, aPlaybackNode);
 		
 		var currentGraphics = aCurrentLayer._getCurrentDrawingLayer();
+		currentGraphics.moveWhenSwitchingCurves = true;
 		currentGraphics.scaleStrokes = true;
 		
 		var currentArray = aCurrentGroup.getChildren();
@@ -278,6 +284,16 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					var newLayer = aCurrentLayer.getChildByPath(currentData.getName());
 					this.generateShapes(newLayer, currentData, aTimelines, aPlaybackNode);
 					this.applyTransformToLayer(newLayer, aTimelines, currentPathPrefix + "/", aPlaybackNode.getProperty("outputTime"));
+					break;
+				case "shape":
+					console.log(">>>>>");
+					var currentCurveDrawer = CurveDrawer2d.create(null);
+					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/path"), aPlaybackNode.getProperty("outputTime"), currentCurveDrawer.getProperty("curve"));
+					
+					var maxParameterNode = GetMaxParameterOnCurveNode.create(currentCurveDrawer.getProperty("curve"));
+					currentCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
+					
+					currentGraphics.addCurve(currentCurveDrawer);
 					break;
 				case "ellipse":
 					var currentCurveCreator = CreateCircleCurveNode.create(); //METODO: do ellipse instead of circle

@@ -121,7 +121,7 @@ dbm.runTempFunction(function() {
 	}; //End function importClass
 	
 	classManager.getClassIfExists = function(aName) {
-		if(this._classes[aName] !== undefined) {
+		if(this._classes[aName] !== undefined && this._classes[aName].isRegistered) {
 			return this._classes[aName].classFunction;
 		}
 		

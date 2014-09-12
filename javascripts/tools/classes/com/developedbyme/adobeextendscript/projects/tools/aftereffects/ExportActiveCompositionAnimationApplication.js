@@ -82,6 +82,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentLayer = currentArray[i];
+			
+			console.log(">", currentLayer.getNativeItem().parent);
+			
 			currentLayer.setupAnimationProperties();
 			var layerMetaData = MetaDataObject.create();
 			layerMetaData.metaData.addObject("name", currentLayer.getProperty("name").getValue());

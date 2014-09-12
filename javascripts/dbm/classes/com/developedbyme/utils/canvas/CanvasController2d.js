@@ -132,6 +132,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
 		var canvas = this._canvas.getValue();
 		var currentContext = canvas.getContext("2d");
+		currentContext.setTransform(1, 0, 0, 1, 0, 0);
 		var currentLayer = this.getRootLayer();
 		
 		if(this._clearBeforeDrawing) {

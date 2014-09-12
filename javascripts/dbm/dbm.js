@@ -172,8 +172,8 @@
 		};
 		
 		dbmObject.loadFile = function(aFilePath) {
-			console.log("dbm::loadFile");
-			console.log(aFilePath);
+			//console.log("dbm::loadFile");
+			//console.log(aFilePath);
 			
 			var colonPosition = aFilePath.indexOf(":");
 			var questionMarkPosition = aFilePath.indexOf("?");

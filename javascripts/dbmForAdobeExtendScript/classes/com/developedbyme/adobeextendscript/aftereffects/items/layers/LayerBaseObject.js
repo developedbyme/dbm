@@ -41,6 +41,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		return this;
 	};
 	
+	objectFunctions.getNativeItem = function() {
+		return this._nativeItem;
+	};
+	
 	objectFunctions.getAnimationProperties = function() {
 		return this._animationProperties;
 	};
@@ -99,6 +103,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 					switch(currentProperty.matchName) {
 						case "ADBE Vector Group":
 							newShape = ClassReference.createChildShape(aCurrentShape, "group", holderPath);
+							break;
+						case "ADBE Vector Shape - Group":
+							ClassReference.createChildShape(aCurrentShape, "shape", holderPath);
 							break;
 						case "ADBE Vector Shape - Ellipse":
 							ClassReference.createChildShape(aCurrentShape, "ellipse", holderPath);

@@ -9,11 +9,16 @@ dbm.runTempFunction(function() {
 		dbm.importClass(classPath);
 		
 		dbm.addStartFunction(function() {
-			var RunningClass = dbm.importClass(classPath);
+			var RunningClass = dbm.singletons.dbmClassManager.getClassIfExists(classPath);
 			
-			var runningInstance = (new RunningClass()).init();
-			console.log(runningInstance);
-			runningInstance.start();
+			if(RunningClass !== null) {
+				var runningInstance = (new RunningClass()).init();
+				console.log(runningInstance);
+				runningInstance.start();
+			}
+			else {
+				//METODO: error message
+			}
 		});
 		
 		dbm.restartLoading();
