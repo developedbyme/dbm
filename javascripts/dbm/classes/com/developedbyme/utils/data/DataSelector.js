@@ -1,4 +1,7 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Functions for dynamically select data in an array.
+ */
 dbm.registerClass("com.developedbyme.utils.data.DataSelector", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.data.DataSelector");
 	//"use strict";
@@ -25,24 +28,43 @@ dbm.registerClass("com.developedbyme.utils.data.DataSelector", "com.developedbym
 	/**
 	 * Selects the first base object that matches a dynamic variable to a value.
 	 *
-	 * @param	aVariableName	String	The name of the dynamic variable to match.
-	 * @param	aMatchValue		Any		The value that the dynamiv variable should match.
-	 * @param	aSearchArray	Array	The array of objects to search in.
+	 * @param	aVariableName	ReevaluationBaseObject|String	The name of the dynamic variable to match.
+	 * @param	aMatchValue		ReevaluationBaseObject|Any		The value that the dynamiv variable should match.
+	 * @param	aSearchArray	Array							The array of objects to search in.
 	 *
 	 * @return	BaseObject	The matching object. Null if no item is matched.
 	 */
 	staticFunctions.selectObjectByDynamicVariable = function(aVariableName, aMatchValue, aSearchArray) {
-		var qualifier = ConditionObject.createCommand(
+		return ClassReference.getFirstEqualMatch(
 			CallFunctionObject.createFunctionOnObjectCommand(
 				SelectBaseObjectObject.createCommand(),
 				"getDynamicVariable",
 				[aVariableName]
 			),
+			aMatchValue,
+			aSearchArray
+		);
+	};
+	
+	/**
+	 * Gets the first match that has to equal values.
+	 *
+	 * @param	aValue1			ReevaluationBaseObject|Any		The first value in the comparison.
+	 * @param	aValue2			ReevaluationBaseObject|Any		The second value in the comparison.
+	 * @param	aSearchArray	Array							The array of objects to search in.
+	 *
+	 * @return	Any	The matching object. Null if no item is matched.
+	 */
+	staticFunctions.getFirstEqualMatch = function(aValue1, aValue2, aSearchArray) {
+		//console.log("com.developedbyme.utils.data.DataSelector::getFirstEqualMatch");
+		var qualifier = ConditionObject.createCommand(
+			aValue1,
 			"===",
-			aMatchValue
+			aValue2
 		);
 		return ClassReference.getFirstMatch(qualifier, aSearchArray);
-	};
+	}
+	
 	
 	/**
 	 * Selects the first object that matches a reevaluation.
@@ -53,6 +75,8 @@ dbm.registerClass("com.developedbyme.utils.data.DataSelector", "com.developedbym
 	 * @return	Any	The matching object. Null if no item is matched.
 	 */
 	staticFunctions.getFirstMatch = function(aQualifyReevaluator, aSearchArray) {
+		//console.log("com.developedbyme.utils.data.DataSelector::getFirstMatch");
+		//console.log(aQualifyReevaluator, aSearchArray);
 		
 		var currentArray = aSearchArray;
 		var currentArrayLength = currentArray.length;

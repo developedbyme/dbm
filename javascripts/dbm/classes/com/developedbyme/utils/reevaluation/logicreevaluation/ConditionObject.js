@@ -34,9 +34,12 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.logicreevaluation.Condit
 	
 	objectFunctions.reevaluate = function(aBaseObject) {
 		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionObject::reevaluate");
+		//console.log(aBaseObject);
+		
 		var inputValue1 = this.inputValue1Reevaluator.reevaluate(aBaseObject);
 		var inputValue2 = this.inputValue2Reevaluator.reevaluate(aBaseObject);
 		var conditionType = this.conditionTypeReevaluator.reevaluate(aBaseObject);
+		
 		return ConditionEvaluation.evaluateCondition(inputValue1, conditionType, inputValue2);
 	};
 	

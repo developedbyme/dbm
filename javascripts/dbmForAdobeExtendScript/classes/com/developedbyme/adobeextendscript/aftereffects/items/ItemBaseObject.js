@@ -58,7 +58,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.ItemBa
 	
 	staticFunctions.create = function(aNativeItem) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.items.ItemBaseObject::create");
-		//console.log(aPort);
+		//console.log(aNativeItem);
 		
 		var newItemBaseObject = (new ClassReference()).init();
 		

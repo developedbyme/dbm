@@ -68,6 +68,19 @@ dbm.registerClass("com.developedbyme.utils.reevaluation.staticreevaluation.Stati
 	 *
 	 * @return	StaticVariableObject	The new object.
 	 */
+	staticFunctions.createCommand = function(aData) {
+		var newObject = (new StaticVariableObject()).init();
+		newObject.reevaluationData = aData;
+		return newObject;
+	};
+	
+	/**
+	 * Creates a new reevaluator that returns a static value.
+	 * 
+	 * @param	aData	*	The data to return when beeing resolved.
+	 *
+	 * @return	StaticVariableObject	The new object.
+	 */
 	staticFunctions.createReevaluationObject = function(aData) {
 		var newObject = (new StaticVariableObject()).init();
 		newObject.reevaluationData = aData;

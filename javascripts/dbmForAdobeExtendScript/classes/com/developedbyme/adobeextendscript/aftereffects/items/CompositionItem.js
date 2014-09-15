@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
 	var ShapeCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.ShapeCompositionLayer");
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
+	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	
 	//Utils
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
@@ -32,6 +33,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 		this.superCall();
 		
 		this._layers = null;
+		this._layersTreeStructure = this.addDestroyableObject(TreeStructure.create());
 		
 		this._width = this.addProperty("width", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
 		this._height = this.addProperty("height", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
@@ -78,6 +80,14 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 			
 			this._layers.push(currentLayer);
 		}
+		
+		for(var i = 0; i < numberOfLayers; i++) {
+			var currentLayer = this._layers[i];
+			var currentParent = LayerBaseObject.selectParentByNativeParent(currentLayer, this._layers);
+			
+			var parentNode = (currentParent !== null) ? currentParent.getTreeStructureItem() : this._layersTreeStructure.getRoot();
+			parentNode.addChild(currentLayer.getTreeStructureItem());
+		}
 	};
 	
 	objectFunctions.getLayers = function() {
@@ -85,7 +95,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 			this.setupLayers();
 		}
 		
-		return this._layers;
+		return this._layersTreeStructure.getRoot().getChildren();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

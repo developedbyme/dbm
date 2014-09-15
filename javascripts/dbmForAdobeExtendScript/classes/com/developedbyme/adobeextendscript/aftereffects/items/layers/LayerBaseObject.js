@@ -13,10 +13,15 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 	
 	//Dependencies
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	//Utils
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
+	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
+	var SelectBaseObjectObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject");
+	var DataSelector = dbm.importClass("com.developedbyme.utils.data.DataSelector");
 	
 	//Constants
 	
@@ -30,7 +35,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		this.superCall();
 		
 		this._nativeItem = null;
-		this._animationProperties = NamedArray.create(false);
+		this._treeStructureItem = TreeStructureItem.create(dbm.singletons.dbmIdManager.getNewId("layer"));
+		this._treeStructureItem.data = this;
+		this._animationProperties = this.addDestroyableObject(NamedArray.create(false));
 		
 		this._masks = new Array();
 		
@@ -43,6 +50,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 	
 	objectFunctions.getNativeItem = function() {
 		return this._nativeItem;
+	};
+	
+	objectFunctions.getTreeStructureItem = function() {
+		return this._treeStructureItem;
 	};
 	
 	objectFunctions.getAnimationProperties = function() {
@@ -185,5 +196,20 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		newLayerBaseObject.setupItem(aNativeItem);
 		
 		return newLayerBaseObject;
+	};
+	
+	staticFunctions.selectParentByNativeParent = function(aLayer, aSearchArray) {
+		//console.log("com.developedbyme.adobeextendscript.aftereffects.items.layers.LayerBaseObject::selectParentByNativeParent");
+		//console.log(aLayer, aLayer.getNativeItem());
+		
+		var nativeParentLayer = aLayer.getNativeItem().parent;
+		if(nativeParentLayer === null) {
+			return null;
+		}
+		
+		var parentMatchValue = StaticVariableObject.createCommand(nativeParentLayer);
+		var parentSelector = CallFunctionObject.createFunctionOnObjectCommand(SelectBaseObjectObject.createCommand(), "getNativeItem", []);
+		
+		return DataSelector.getFirstEqualMatch(parentMatchValue, parentSelector, aSearchArray);
 	};
 });

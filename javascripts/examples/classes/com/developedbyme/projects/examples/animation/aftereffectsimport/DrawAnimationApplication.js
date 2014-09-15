@@ -226,18 +226,16 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject(currentMaskPath + "/maskPath"), aPlaybackNode.getProperty("outputTime"), strokeCurveDrawer.getProperty("curve"));
 			var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
 			
-			//METODO: add parameter animation
 			var startMultiplierNode = MultiplicationNode.create(0, maxParameterNode.getProperty("outputParameter"));
 			var endMultiplierNode = MultiplicationNode.create(1, maxParameterNode.getProperty("outputParameter"));
 			
 			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("effects/stroke/start"), aPlaybackNode.getProperty("outputTime"), startMultiplierNode.getProperty("inputValue1"));
 			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("effects/stroke/end"), aPlaybackNode.getProperty("outputTime"), endMultiplierNode.getProperty("inputValue1"));
 			
-			//MENOTE: start can be higher than end
-			
 			strokeCurveDrawer.getProperty("startParameter").connectInput(startMultiplierNode.getProperty("outputValue"));
 			strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));
 			
+			//METODO: set correct color
 			strokeLayer.setStrokeStyle(1, "#000000");
 			
 			var currentGraphics = strokeLayer._getCurrentDrawingLayer();
