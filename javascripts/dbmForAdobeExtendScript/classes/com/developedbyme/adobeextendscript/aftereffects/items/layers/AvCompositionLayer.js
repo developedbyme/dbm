@@ -48,6 +48,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		this._height.setupExternalObject(aNativeItem, "height");
 		this._blendingMode.setupExternalObject(aNativeItem, "blendingMode");
 		
+		console.log(aNativeItem.name, aNativeItem.nullLayer);
+		
 		return this;
 	};
 	

@@ -62,9 +62,15 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 					if(nativeSource instanceof FootageItem) {
 						var nativeMainSource = nativeSource.mainSource;
 						if(nativeMainSource instanceof SolidSource) {
-							layerMetaData.addObject("footageType", "solid");
-							var colorArray = nativeMainSource.color;
-							layerMetaData.addObject("color", RgbaColor.create(colorArray[0], colorArray[1], colorArray[2]));
+							console.log(currentLayer.getNativeItem().nullLayer);
+							if(!currentLayer.getNativeItem().nullLayer) {
+								layerMetaData.addObject("footageType", "solid");
+								var colorArray = nativeMainSource.color;
+								layerMetaData.addObject("color", RgbaColor.create(colorArray[0], colorArray[1], colorArray[2]));
+							}
+							else {
+								layerMetaData.addObject("footageType", "none");
+							}
 						}
 						else if(nativeMainSource instanceof FileSource) {
 							if(nativeMainSource.missingFootagePath === "") {
@@ -87,7 +93,12 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 									default:
 										//MENOTE: add video
 										layerMetaData.addObject("footageType", "missingFile");
-										console.error("Unsupported file type " + fileExtension);
+										console.error("Unsupported file type " + fileExtension + ". Can't export " + fileName);
+										//console.log(nativeSource.name);
+										//console.log(nativeSource.comment);
+										//console.log(nativeSource.id);
+										//console.log(currentFile);
+										//console.log("-", nativeMainSource);
 										break;
 								}
 							}

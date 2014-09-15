@@ -36,7 +36,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 	staticFunctions.createTimelinesForProprety = function(aProperty, aTimelineName, aReturnArray) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.TimelineGenerator::createTimelinesForProprety");
 		//console.log(aProperty, aTimelineName, aReturnArray);
-		//console.log(aProperty.unitsText);
+		//console.log(aTimelineName, aProperty.unitsText);
 		
 		var namesArray = null;
 		var pointProperties = null;
@@ -117,7 +117,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 			}
 			
 			if(isSpatial) {
-				ClassReference.setupTimelinesForSpatialProperty(aProperty, pointProperties, returnArray);
+				ClassReference.setupTimelinesForSpatialProperty(aProperty, pointProperties, returnArray, multiplier);
 			}
 			else {
 				ClassReference.setupTimelinesForProperty(aProperty, returnArray, multiplier);
@@ -147,6 +147,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 	staticFunctions.setupTimelinesForProperty = function(aProperty, aReturnTimelines, aMultiplier) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.TimelineGenerator::setupTimelinesForProperty");
 		//console.log(aProperty, aReturnTimelines);
+		//console.log(aMultiplier);
 		
 		var numberOfKeys = aProperty.numKeys;
 		if(numberOfKeys > 1) {
@@ -185,7 +186,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		}
 	};
 	
-	staticFunctions.setupTimelinesForSpatialProperty = function(aProperty, aPointProperties, aReturnTimelines) {
+	staticFunctions.setupTimelinesForSpatialProperty = function(aProperty, aPointProperties, aReturnTimelines, aMultiplier) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.TimelineGenerator::setupTimelinesForSpatialProperty");
 		//console.log(aProperty, aReturnTimelines);
 		
@@ -199,7 +200,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 			var lastOutInterpolationType = aProperty.keyOutInterpolationType(1);
 			var lastInTangent = aProperty.keyInSpatialTangent(1);
 			var lastOutTangent = aProperty.keyOutSpatialTangent(1);
-			ClassReference.setStartValuesForTimelines(lastValue, aReturnTimelines, 1);
+			ClassReference.setStartValuesForTimelines(lastValue, aReturnTimelines, aMultiplier);
 			for(var i = 2; i <= numberOfKeys; i++) { //MENOTE: count starts at 1, items are processed 2 by 2
 				//console.log(">>>>>>>", i);
 				var currentTime = aProperty.keyTime(i);
@@ -211,6 +212,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 				var currentInTangent = aProperty.keyInSpatialTangent(i);
 				var currentOutTangent = aProperty.keyOutSpatialTangent(i);
 				
+				//METODO: use multiplier
 				var spatialCurve = BezierCurve.createWithLength(3, true, 4);
 				ClassReference._fillSpacialCurveWithValues(lastValue, lastOutTangent, currentValue, currentInTangent, spatialCurve.pointsArray);
 				//METODO: check that it's actually moving
@@ -230,7 +232,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 			}
 		}
 		else {
-			ClassReference.setStartValuesForTimelines(aProperty.value, aReturnTimelines, 1);
+			ClassReference.setStartValuesForTimelines(aProperty.value, aReturnTimelines, aMultiplier);
 		}
 	};
 	

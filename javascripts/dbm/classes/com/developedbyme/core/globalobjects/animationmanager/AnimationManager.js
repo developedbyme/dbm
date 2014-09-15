@@ -163,14 +163,29 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		return aTimeline;
 	};
 	
-	objectFunctions.setupTimelineConnection = function(aTimeline, aConenctedInput, aConnectedOutput) {
+	objectFunctions.setupTimelineConnection = function(aTimeline, aConnectedInput, aConnectedOutput) {
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::createTimeline");
-		//console.log(aTimeline, aConenctedInput, aConnectedOutput);
+		//console.log(aTimeline, aConnectedInput, aConnectedOutput);
 		
-		var newEvaluator = EvaluateTimelineNode.create(aTimeline, aConenctedInput);
+		var newEvaluator = EvaluateTimelineNode.create(aTimeline, aConnectedInput);
 		aTimeline.addDestroyableObject(newEvaluator);
 		aTimeline._internalFunctionality_setReferenceTime(newEvaluator.getProperty("inputValue"));
 		
+		aConnectedOutput.connectInput(newEvaluator.getProperty("outputValue"));
+		aConnectedOutput.setAnimationController(aTimeline);
+		
+		return aTimeline;
+	};
+	
+	objectFunctions.setupTimelineConnectionWithComplexValue = function(aTimeline, aConnectedInput, aConnectedOutput) {
+		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::createTimeline");
+		//console.log(aTimeline, aConnectedInput, aConnectedOutput);
+		
+		var newEvaluator = EvaluateTimelineNode.create(aTimeline, aConnectedInput);
+		aTimeline.addDestroyableObject(newEvaluator);
+		aTimeline._internalFunctionality_setReferenceTime(newEvaluator.getProperty("inputValue"));
+		
+		newEvaluator.getProperty("outputValue").setAlwaysUpdateFlow();
 		aConnectedOutput.connectInput(newEvaluator.getProperty("outputValue"));
 		aConnectedOutput.setAnimationController(aTimeline);
 		
