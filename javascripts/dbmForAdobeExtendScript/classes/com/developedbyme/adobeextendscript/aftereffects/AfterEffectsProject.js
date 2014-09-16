@@ -134,7 +134,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.AfterEffects
 	
 	staticFunctions.create = function() {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.AfterEffectsProject::create");
-		//console.log(aPort);
 		
 		var newAfterEffectsProject = (new ClassReference()).init();
 		

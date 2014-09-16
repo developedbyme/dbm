@@ -103,7 +103,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.file.FileWriter", "
 	
 	staticFunctions.create = function(aUrl) {
 		//console.log("com.developedbyme.adobeextendscript.utils.file.FileWriter::create");
-		//console.log(aElement);
+		//console.log(aUrl);
 		
 		var newFileWriter = (new ClassReference()).init();
 		

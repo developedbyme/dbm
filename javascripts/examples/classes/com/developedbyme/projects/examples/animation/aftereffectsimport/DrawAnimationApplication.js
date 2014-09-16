@@ -28,6 +28,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var CssStringFromColorNode = dbm.importClass("com.developedbyme.flow.nodes.data.color.CssStringFromColorNode");
 	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -215,7 +216,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
 		}
 		
-		this.applyTransformToLayer(aLayer, timelines, "", aPlaybackNode.getProperty("outputTime"));
+		this.applyTransformToLayerWithOrientation(aLayer, timelines, "", aPlaybackNode.getProperty("outputTime"));
 		this.applyAlphaToLayer(contentLayer, timelines, "", aPlaybackNode.getProperty("outputTime"));
 		
 		var masks = aAnimationData.metaData.getObject("masks");
@@ -274,6 +275,29 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			var currentGraphics = strokeLayer._getCurrentDrawingLayer();
 			currentGraphics.addCurve(strokeCurveDrawer);
 		}
+	};
+	
+	objectFunctions.applyTransformToLayerWithOrientation = function(aLayer, aTimelines, aPrefix, aTimeProperty) {
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/position/x"), aTimeProperty, aLayer.getProperty("x"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/position/y"), aTimeProperty, aLayer.getProperty("y"));
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/x"), aTimeProperty, aLayer.getProperty("scaleX"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/y"), aTimeProperty, aLayer.getProperty("scaleY"));
+		
+		if(aTimelines.select(aPrefix + "transform/rotation") || aTimelines.select(aPrefix + "transform/zRotation")) {
+			
+			var orientationRotateAdditionNode = AdditionNode.create(0, 0);
+			aLayer.getProperty("rotate").connectInput(orientationRotateAdditionNode.getProperty("outputValue"));
+			
+			dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.currentSelectedItem, aTimeProperty, orientationRotateAdditionNode.getProperty("inputValue1"));
+			dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/orientation/z"), aTimeProperty, orientationRotateAdditionNode.getProperty("inputValue2"));
+		}
+		
+		CanvasLayer2d.addPivotToLayer(aLayer);
+		
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/anchorPoint/x"), aTimeProperty, aLayer.getProperty("pivotX"));
+		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/anchorPoint/y"), aTimeProperty, aLayer.getProperty("pivotY"));
+		
 	};
 	
 	objectFunctions.applyTransformToLayer = function(aLayer, aTimelines, aPrefix, aTimeProperty) {

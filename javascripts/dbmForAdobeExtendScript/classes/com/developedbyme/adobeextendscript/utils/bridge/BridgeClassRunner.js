@@ -1,0 +1,128 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassRunner", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassRunner");
+	//"use strict";
+	
+	//Self reference
+	var BridgeClassRunner = dbm.importClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassRunner");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassRunner::_init");
+		
+		this.superCall();
+		
+		this._target = null;
+		this._class = "com.developedbyme.projects.tests.setup.HelloWorldApplication";
+		this._data = null;
+		
+		this._call = null;
+		this._timeoutLength = 100;
+		
+		return this;
+	};
+	
+	objectFunctions.setTarget = function(aTarget) {
+		this._target = aTarget;
+		
+		return this;
+	};
+	
+	objectFunctions.perform = function() {
+		this._performCall();
+	};
+	
+	objectFunctions._performCall = function() {
+		if(!BridgeTalk.isRunning(this._target)) {
+			//METODO: error message
+			return;
+		}
+		
+		this._call = new BridgeTalk();
+		this._call.target = this._target;
+		
+		var generatedScript = "var dbm = null; var global = new Object();var console = new Object();" + "\n";
+		generatedScript += "console.dir = function(){};console.log = function(){var joinArray = new Array();$.writeln(joinArray.join.apply(arguments, [\", \"]));};console.debug = function(){};console.info = function(){};console.warn = function(){var joinArray = new Array();$.writeln(\"WARNING: \" + joinArray.join.apply(arguments, [\", \"]));};console.error = function(){var joinArray = new Array();$.writeln(\"ERROR: \" + joinArray.join.apply(arguments, [\", \"]));};console.trace = function(){};" + "\n";
+		generatedScript += "(function() {" + "\n";
+		generatedScript += "	var javasciptsFolder = \"" + dbm._javascriptsFolder + "\";" + "\n";
+		generatedScript += "	var classPath = \"" + this._class + "\";" + "\n";
+		generatedScript += "	var importScript = function(aFilePath) {var dbmFile = new File(javasciptsFolder + \"/\" + aFilePath);dbmFile.open(\"r\");var fullText = dbmFile.read();dbmFile.close();eval(fullText);};" + "\n";
+		generatedScript += "	importScript(\"dbmForAdobeExtendScript/dbmForAdobeExtendScript.js\");" + "\n";
+		generatedScript += "	dbm = global.dbm;" + "\n";
+		generatedScript += "	importScript(\"dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js\");" + "\n";
+		generatedScript += "	dbm.setup(null, null, javasciptsFolder, \"" + dbm._classesFolder + "\");" + "\n";
+		var specificFolders = dbm._specificClassesFolders;
+		for(var objectName in specificFolders) {
+			generatedScript += "	dbm.addSpecificClassesFolder(\"" + objectName + "\", \"" + specificFolders[objectName] + "\");" + "\n";
+		}
+		generatedScript += "	importScript(\"dbmForAdobeExtendScript/setup/defaultSetup.js\");" + "\n";
+		
+		generatedScript += "	dbm.addStartFunction(function() {" + "\n";
+		generatedScript += "		alert(\"Start function\");" + "\n";
+		generatedScript += "		dbm.importClass(classPath);" + "\n";
+		generatedScript += "		dbm.addStartFunction(function() {" + "\n";
+		generatedScript += "			var RunningClass = dbm.importClass(classPath);" + "\n";
+		generatedScript += "			var runningInstance = (new RunningClass()).init();" + "\n";
+		generatedScript += "			runningInstance.start();" + "\n";
+		generatedScript += "		});" + "\n";
+		generatedScript += "		dbm.restartLoading();" + "\n";
+		generatedScript += "	});" + "\n";
+		generatedScript += "	dbm.startLoading();" + "\n";
+		generatedScript += "	return \"Hello world\";" + "\n";
+		generatedScript += "})()";
+		
+		console.log(generatedScript);
+		this._call.body = generatedScript;
+		this._call.onResult = function(aResponseData) {
+			console.log(">>>>>>>>>>>>>>>");
+			console.log(aResponseData.body);
+		}
+		this._call.onError = function(aError) {
+			console.error("Call failed");
+			console.log(aError.headers["Error-Code"]);
+			console.log(aError.body);
+		}
+		this._call.send(this._timeoutLength);
+		console.log(this._call);
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		/*
+		switch(aName) {
+			case LoadingExtendedEventIds.SAVED:
+				return true;
+		}
+		*/
+		
+		return this.superCall(aName);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aTarget) {
+		//console.log("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassRunner::create");
+		
+		var newBridgeClassRunner = (new ClassReference()).init();
+		newBridgeClassRunner.setTarget(aTarget);
+		
+		return newBridgeClassRunner;
+	};
+});
