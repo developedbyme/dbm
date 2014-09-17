@@ -32,6 +32,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	var BlendCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.complex.BlendCurveTimelinePart");
 	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
+	var BridgeClassRunner = dbm.importClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassRunner");
 	
 	//Utils
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
@@ -53,7 +54,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		
 		this._project = null;
 		this._activeComposition = null;
-		this._debugData = null;
 		
 		this._addStartFunction(this._createPage, []);
 		
@@ -67,6 +67,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		this._activeComposition = this._project.getActiveItem();
 		
 		var filesToCopy = NamedArray.create(false);
+		var photoshopLayersToExport = NamedArray.create(false);
 		
 		var exportObject = dbm.singletons.dbmXmlObjectEncoder.createExportDataObject("afterEffectsComposition");
 		
@@ -78,7 +79,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		var exportedLayerData = TreeStructure.create();
 		compositionMetaData.data = exportedLayerData;
 		
-		LayerExporter.exportLayers(this._activeComposition.getLayers(), exportedLayerData.getRoot(), filesToCopy);
+		LayerExporter.exportLayers(this._activeComposition.getLayers(), exportedLayerData.getRoot(), filesToCopy, photoshopLayersToExport);
 		
 		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(exportObject);
 		
@@ -98,9 +99,34 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				var newFilePath = saveUrlResolver.getAbsolutePath(currentName);
 				var result = currentFile.copy(newFilePath);
 			}
+			this._exportPhotoshopLayers(photoshopLayersToExport, saveUrlResolver);
+		}
+	};
+	
+	objectFunctions._exportPhotoshopLayers = function(aPhotoshopLayersToExport, aUrlResolver) {
+		//console.log("com.developedbyme.adobeextendscript.projects.tools.aftereffects.ExportActiveCompositionAnimationApplication::_exportPhotoshopLayers");
+		//console.log(aPhotoshopLayersToExport, aUrlResolver);
+		
+		var dataObject = new Object();
+		
+		var currentArray = aPhotoshopLayersToExport.getNamesArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0 ; i < currentArrayLength; i++) {
+			var currentName = currentArray[i];
+			var currentFileData = aPhotoshopLayersToExport.getObject(currentName);
+			var fileData = new Object();
+			dataObject[currentName] = fileData;
+			
+			var currentArray2 = currentFileData.getNamesArray();
+			var currentArray2Length = currentArray2.length;
+			for(var j = 0; j < currentArray2Length; j++) {
+				var currentLayerName = currentArray2[j];
+				fileData[currentLayerName] = aUrlResolver.getAbsolutePath(currentFileData.getObject(currentLayerName));
+			}
 		}
 		
-		this._debugData = compositionMetaData;
+		var bridgeConnection = BridgeClassRunner.create("photoshop", "com.developedbyme.adobeextendscript.projects.tools.photoshop.ExportLayersFromFilesApplication", dataObject);
+		bridgeConnection.perform();
 	};
 	
 	/**

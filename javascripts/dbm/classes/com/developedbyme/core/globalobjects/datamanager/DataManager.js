@@ -320,6 +320,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 		return returnArray;
 	};
 	
+	objectFunctions.setData = function(aPath, aData) {
+		this.getDataItem(aPath).setData(aData);
+	};
+	
+	objectFunctions.getDataItem = function(aPath) {
+		var currentTreeStructureItem = this._hierarchy.getItemByPath(aPath, this._rootNode);
+		return currentTreeStructureItem.data;
+	};
+	
 	objectFunctions.getData = function(aPath) {
 		//console.log("com.developedbyme.core.globalobjects.datamanager.DataManager::getData");
 		//console.log(aPath);

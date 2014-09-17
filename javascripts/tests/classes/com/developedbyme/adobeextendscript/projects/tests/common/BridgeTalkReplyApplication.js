@@ -1,12 +1,12 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
- * Test of using bridge talk between applications.
+ * Test of replying to a bridge talk message between applications.
  */
-dbm.registerClass("com.developedbyme.adobeextendscript.projects.tests.common.BridgeTalkApplication", "com.developedbyme.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.adobeextendscript.projects.tests.common.BridgeTalkReplyApplication", "com.developedbyme.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	
 	//Self reference
-	var BridgeTalkApplication = dbm.importClass("com.developedbyme.adobeextendscript.projects.tests.common.BridgeTalkApplication");
+	var BridgeTalkReplyApplication = dbm.importClass("com.developedbyme.adobeextendscript.projects.tests.common.BridgeTalkReplyApplication");
 	
 	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
@@ -24,11 +24,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tests.common.Bri
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.adobeextendscript.projects.tests.common.BridgeTalkApplication::_init");
+		//console.log("com.developedbyme.adobeextendscript.projects.tests.common.BridgeTalkReplyApplication::_init");
 		
 		this.superCall();
-		
-		this._bridgeClassRunner = null;
 		
 		this._addStartFunction(this._createPage, []);
 		
@@ -36,10 +34,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tests.common.Bri
 	};
 	
 	objectFunctions._createPage = function() {
-		console.log("com.developedbyme.adobeextendscript.projects.tests.common.BridgeTalkApplication::_createPage");
+		console.log("com.developedbyme.adobeextendscript.projects.tests.common.BridgeTalkReplyApplication::_createPage");
 		
-		this._bridgeClassRunner = BridgeClassRunner.create("photoshop", "com.developedbyme.adobeextendscript.projects.tests.common.BridgeTalkReplyApplication", {"testData": "test"});
-		this._bridgeClassRunner.perform();
+		var communicationType = dbm.singletons.dbmDataManager.getData("configuration/communicationType");
+		console.log(communicationType);
+		if(communicationType === "adobeBridgeTalk") {
+			dbm.singletons.dbmDataManager.setData("configuration/bridge/outputValue", {"replyTo": dbm.singletons.dbmDataManager.getData("configuration/bridge/inputValue")});
+		}
 	};
 	
 	/**

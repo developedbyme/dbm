@@ -27,8 +27,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 		this.superCall();
 		
 		this._target = null;
-		this._class = "com.developedbyme.projects.tests.setup.HelloWorldApplication";
+		this._class = null;
 		this._data = null;
+		this._communicationType = "adobeBridgeTalk";
+		
+		this._communicationTypePath = "configuration/communicationType";
+		this._inputPath = "configuration/bridge/inputValue";
+		this._outputPath = "configuration/bridge/outputValue";
 		
 		this._call = null;
 		this._timeoutLength = 100;
@@ -38,6 +43,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 	
 	objectFunctions.setTarget = function(aTarget) {
 		this._target = aTarget;
+		
+		return this;
+	};
+	
+	objectFunctions.setupCall = function(aClass, aData) {
+		this._class = aClass;
+		this._data = aData;
 		
 		return this;
 	};
@@ -54,6 +66,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 		
 		this._call = new BridgeTalk();
 		this._call.target = this._target;
+		
+		var dataSourceString = (VariableAliases.isSet(this._data)) ? this._data.toSource() : "null";
+		console.log(dataSourceString);
 		
 		var generatedScript = "var dbm = null; var global = new Object();var console = new Object();" + "\n";
 		generatedScript += "console.dir = function(){};console.log = function(){var joinArray = new Array();$.writeln(joinArray.join.apply(arguments, [\", \"]));};console.debug = function(){};console.info = function(){};console.warn = function(){var joinArray = new Array();$.writeln(\"WARNING: \" + joinArray.join.apply(arguments, [\", \"]));};console.error = function(){var joinArray = new Array();$.writeln(\"ERROR: \" + joinArray.join.apply(arguments, [\", \"]));};console.trace = function(){};" + "\n";
@@ -72,9 +87,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 		generatedScript += "	importScript(\"dbmForAdobeExtendScript/setup/defaultSetup.js\");" + "\n";
 		
 		generatedScript += "	dbm.addStartFunction(function() {" + "\n";
-		generatedScript += "		alert(\"Start function\");" + "\n";
 		generatedScript += "		dbm.importClass(classPath);" + "\n";
 		generatedScript += "		dbm.addStartFunction(function() {" + "\n";
+		generatedScript += "			dbm.singletons.dbmDataManager.setData(\"" + this._communicationTypePath + "\", \"" + this._communicationType + "\");" + "\n";
+		generatedScript += "			dbm.singletons.dbmDataManager.setData(\"" + this._inputPath + "\", " + dataSourceString + ");" + "\n";
 		generatedScript += "			var RunningClass = dbm.importClass(classPath);" + "\n";
 		generatedScript += "			var runningInstance = (new RunningClass()).init();" + "\n";
 		generatedScript += "			runningInstance.start();" + "\n";
@@ -82,14 +98,17 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 		generatedScript += "		dbm.restartLoading();" + "\n";
 		generatedScript += "	});" + "\n";
 		generatedScript += "	dbm.startLoading();" + "\n";
-		generatedScript += "	return \"Hello world\";" + "\n";
+		generatedScript += "	var returnData = dbm.singletons.dbmDataManager.getData(\"" + this._outputPath + "\");" + "\n";
+		generatedScript += "	var returnDataSourceString = (returnData !== null && returnData !== undefined) ? returnData.toSource() : \"null\";" + "\n";
+		generatedScript += "	return returnDataSourceString;" + "\n";
 		generatedScript += "})()";
 		
-		console.log(generatedScript);
+		//console.log(generatedScript);
 		this._call.body = generatedScript;
 		this._call.onResult = function(aResponseData) {
 			console.log(">>>>>>>>>>>>>>>");
 			console.log(aResponseData.body);
+			console.log(typeof(aResponseData.body));
 		}
 		this._call.onError = function(aError) {
 			console.error("Call failed");
@@ -117,11 +136,12 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aTarget) {
+	staticFunctions.create = function(aTarget, aClass, aData) {
 		//console.log("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassRunner::create");
 		
 		var newBridgeClassRunner = (new ClassReference()).init();
 		newBridgeClassRunner.setTarget(aTarget);
+		newBridgeClassRunner.setupCall(aClass, aData);
 		
 		return newBridgeClassRunner;
 	};

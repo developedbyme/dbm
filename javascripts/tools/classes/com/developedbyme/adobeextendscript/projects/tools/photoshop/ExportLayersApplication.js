@@ -86,7 +86,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.photoshop.
 				this._exportLayers(children, aDocument, newPath);
 			}
 			
-			nativeDocument.activeHistoryState = nativeDocument.historyStates[nativeDocument.historyStates.length-1];
+			nativeDocument.activeHistoryState = nativeDocument.historyStates[nativeDocument.historyStates.length-2];
 			currentLayer.getProperty("visible").setValue(false);
 		}
 	}

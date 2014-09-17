@@ -26,12 +26,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	var MetaDataFunctions = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.utils.export.MetaDataFunctions");
 	var TimelineGenerator = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.utils.export.TimelineGenerator");
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
 	//Constants
 	
 	
-	staticFunctions.exportLayers = function(aTreeStructureItems, aReturnParentTreeStructureItem, aFilesToCopy) {
-		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter::exportLayers");
+	staticFunctions.exportLayers = function(aTreeStructureItems, aReturnParentTreeStructureItem, aFilesToCopy, aPhotoshopLayersToExport) {
+		console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter::exportLayers");
 		//console.log(aTreeStructureItems, aReturnParentTreeStructureItem);
 		
 		var currentArray = aTreeStructureItems;
@@ -62,7 +63,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 					if(nativeSource instanceof FootageItem) {
 						var nativeMainSource = nativeSource.mainSource;
 						if(nativeMainSource instanceof SolidSource) {
-							console.log(currentLayer.getNativeItem().nullLayer);
 							if(!currentLayer.getNativeItem().nullLayer) {
 								layerMetaData.addObject("footageType", "solid");
 								var colorArray = nativeMainSource.color;
@@ -89,6 +89,25 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 										var newFileName = fileName;
 										aFilesToCopy.addObject(newFileName, currentFile);
 										layerMetaData.addObject("file", newFileName);
+										break;
+									case "psd":
+										layerMetaData.addObject("footageType", "image");
+										var sourceName = nativeSource.name;
+										var photoshopLayerArray = null;
+										var sourceFilePath = currentFile.absoluteURI;
+										if(aPhotoshopLayersToExport.select(sourceFilePath)) {
+											photoshopLayerArray = aPhotoshopLayersToExport.currentSelectedItem;
+										}
+										else {
+											photoshopLayerArray = NamedArray.create(true);
+											aPhotoshopLayersToExport.addObject(sourceFilePath, photoshopLayerArray);
+										}
+										
+										var layerName = sourceName.substring(0, sourceName.lastIndexOf("/"));
+										var folderName = fileName.substring(0, fileName.lastIndexOf("."));
+										var outputName = StringFunctions.convertToSafeFileName(folderName) + "/" + StringFunctions.convertToSafeFileName(layerName) + ".png";
+										photoshopLayerArray.addObject(layerName, outputName);
+										layerMetaData.addObject("file", outputName);
 										break;
 									default:
 										//MENOTE: add video
@@ -126,7 +145,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 			layerData.data = timelinesArray;
 			ClassReference.exportLayerProperties(currentLayer, timelinesArray);
 			
-			ClassReference.exportLayers(currentTreeStructureItem.getChildren(), newItem, aFilesToCopy);
+			ClassReference.exportLayers(currentTreeStructureItem.getChildren(), newItem, aFilesToCopy, aPhotoshopLayersToExport);
 		}
 	};
 	

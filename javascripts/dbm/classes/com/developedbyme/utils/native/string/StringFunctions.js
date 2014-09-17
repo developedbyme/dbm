@@ -135,4 +135,15 @@ dbm.registerClass("com.developedbyme.utils.native.string.StringFunctions", null,
 		
 		return returnText;
 	};
+	
+	/**
+	 * Converts a string to a safe file name.
+	 *
+	 * @param	aText	String	The text to convert.
+	 *
+	 * @return	String	The converted text.
+	 */
+	staticFunctions.convertToSafeFileName = function(aText) {
+		return aText.replace(new RegExp("[^A-Za-z0-9\\-_\\.\\~]+", "g"), "-");
+	};
 });

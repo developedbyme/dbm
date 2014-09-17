@@ -28,6 +28,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.objects.Data
 		return this;
 	};
 	
+	objectFunctions.setData = function(aData) {
+		this._data.setValue(aData);
+	};
+	
 	objectFunctions.getData = function() {
 		return this._data.getValue();
 	};

@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	
@@ -209,7 +210,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 				break;
 			}
 		}
-		var nameIndex = this._namesArray.indexOf(aName);
+		var nameIndex = ArrayFunctions.indexOfInArray(this._namesArray, aName);
 		if(nameIndex !== -1) {
 			this._namesArray.splice(nameIndex, 1);
 		}
@@ -345,5 +346,25 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		var newNamedArray = ClassReference._createAndInitClass(ClassReference);
 		newNamedArray.ownsObjects = VariableAliases.isTrue(aOwnsObjects);
 		return newNamedArray;
+	};
+	
+	/**
+	 * Creates a native object from a named array.
+	 *
+	 * @param	aNamedArray		NamedArray	The array to get values from.
+	 *
+	 * @param	Object	An object with all the fields set to the same values as the named array.
+	 */
+	staticFunctions.getNativeObjectFromNamedArray = function(aNamedArray) {
+		var returnObject = new Object();
+		
+		var currentArray = aNamedArray.getNamesArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0 ; i < currentArrayLength; i++) {
+			var currentName = currentArray[i];
+			returnObject[currentName] = aNamedArray.getObject(currentName);
+		}
+		
+		return returnObject;
 	};
 });

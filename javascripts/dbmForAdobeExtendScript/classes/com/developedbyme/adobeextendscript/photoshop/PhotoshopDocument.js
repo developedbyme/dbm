@@ -32,6 +32,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.photoshop.PhotoshopDocume
 		
 		this._nativeDocument = null;
 		this._layers = this.addDestroyableObject(TreeStructure.create());
+		this._layers.createMissingItems = false;
 		
 		return this;
 	};
@@ -48,6 +49,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.photoshop.PhotoshopDocume
 	
 	objectFunctions.getLayers = function() {
 		return this._layers.getRoot().getChildren();
+	};
+	
+	objectFunctions.getLayerTreeStructure = function() {
+		return this._layers;
 	};
 	
 	objectFunctions.setupLayers = function() {
@@ -98,11 +103,20 @@ dbm.registerClass("com.developedbyme.adobeextendscript.photoshop.PhotoshopDocume
 		}
 	};
 	
+	objectFunctions._ensureFolderExists = function(aFolder) {
+		if(aFolder === null || aFolder.exists) {
+			return;
+		}
+		this._ensureFolderExists(aFolder.parent);
+		aFolder.create();
+	};
+	
 	objectFunctions.savePng = function(aPath) {
 		//console.log("com.developedbyme.adobeextendscript.photoshop.PhotoshopDocument::savePng");
 		//console.log(aPath);
 		
 		var file = new File(aPath);
+		this._ensureFolderExists(file.parent);
 		
 		var exportOptions = new ExportOptionsSaveForWeb();
 		exportOptions.format = SaveDocumentType.PNG;
