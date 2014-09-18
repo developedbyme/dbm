@@ -271,7 +271,7 @@ dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem"
 	 * Sets the root
 	 */
 	objectFunctions._internalFunctionality_setRoot = function(aRoot) {
-		//console.log("setRoot");
+		//console.log("_internalFunctionality_setRoot");
 		this._root = aRoot;
 		
 		var currentArray = this._children.getObjectsArray();

@@ -17,9 +17,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 	var ShapeCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.ShapeCompositionLayer");
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
+	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	//Utils
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
+	var ConstantConverter = dbm.importClass("com.developedbyme.adobeextendscript.utils.data.ConstantConverter");
 	
 	//Constants
 	
@@ -86,7 +88,26 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 			var currentParent = LayerBaseObject.selectParentByNativeParent(currentLayer, this._layers);
 			
 			var parentNode = (currentParent !== null) ? currentParent.getTreeStructureItem() : this._layersTreeStructure.getRoot();
-			parentNode.addChild(currentLayer.getTreeStructureItem());
+			
+			if(!currentLayer.isTrackMatte()) {
+				parentNode.addChild(currentLayer.getTreeStructureItem());
+			}
+			else {
+				console.log(">>>>>");
+				var contentLayer = this._layers[i+1];
+				
+				//METODO: check that the content layer has the same parent
+				var holderTreeStructureItem = TreeStructureItem.create(dbm.singletons.dbmIdManager.getNewId("group"));
+				holderTreeStructureItem.setAttribute("type", "trackMatte");
+				holderTreeStructureItem.setAttribute("trackMatteType", ConstantConverter.convertTrackMatteToName(contentLayer.getTrackMatteType()));
+				parentNode.addChild(holderTreeStructureItem);
+				
+				holderTreeStructureItem.addChild(currentLayer.getTreeStructureItem());
+				holderTreeStructureItem.addChild(contentLayer.getTreeStructureItem());
+				
+				i++;
+				console.log(">");
+			}
 		}
 	};
 	

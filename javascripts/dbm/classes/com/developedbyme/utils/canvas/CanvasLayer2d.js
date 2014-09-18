@@ -78,6 +78,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		return this._mask;
 	};
 	
+	objectFunctions.getTreeStructureItem = function() {
+		return this._treeStructureItem;
+	};
+	
 	objectFunctions.setMaskUsage = function(aUse) {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::setMaskUsage");
 		

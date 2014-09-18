@@ -37,6 +37,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		this._nativeItem = null;
 		this._treeStructureItem = TreeStructureItem.create(dbm.singletons.dbmIdManager.getNewId("layer"));
 		this._treeStructureItem.data = this;
+		this._treeStructureItem.setAttribute("type", "layer");
 		this._animationProperties = this.addDestroyableObject(NamedArray.create(false));
 		
 		this._masks = new Array();
@@ -62,6 +63,14 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 	
 	objectFunctions.getMasks = function() {
 		return this._masks;
+	};
+	
+	objectFunctions.isTrackMatte = function() {
+		return this._nativeItem.isTrackMatte;
+	};
+	
+	objectFunctions.getTrackMatteType = function() {
+		return this._nativeItem.trackMatteType;
 	};
 	
 	objectFunctions.setupItem = function(aNativeItem) {

@@ -43,107 +43,114 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 			var newItem = TreeStructureItem.create(currentTreeStructureItem.getName());
 			aReturnParentTreeStructureItem.addChild(newItem);
 			
-			currentLayer.setupAnimationProperties();
 			var layerData = MetaDataObject.create();
 			newItem.data = layerData;
-			
 			var layerMetaData = layerData.metaData;
 			
-			if(currentLayer instanceof AvCompositionLayer) {
-				layerMetaData.addObject("width", currentLayer.getProperty("width").getValue());
-				layerMetaData.addObject("height", currentLayer.getProperty("height").getValue());
-				layerMetaData.addObject("blendingMode", currentLayer.getProperty("blendingMode").getValue());
+			var currentType = currentTreeStructureItem.getAttribute("type");
+			layerMetaData.addObject("type", currentType);
+			if(currentType === "layer") {
+				currentLayer.setupAnimationProperties();
 				
-				if(currentLayer instanceof ShapeCompositionLayer) {
-					layerMetaData.addObject("footageType", "shape");
-					layerMetaData.addObject("shapes", currentLayer.getShapes());
-				}
-				else {
-					var nativeSource = currentLayer.getSource();
-					if(nativeSource instanceof FootageItem) {
-						var nativeMainSource = nativeSource.mainSource;
-						if(nativeMainSource instanceof SolidSource) {
-							if(!currentLayer.getNativeItem().nullLayer) {
-								layerMetaData.addObject("footageType", "solid");
-								var colorArray = nativeMainSource.color;
-								layerMetaData.addObject("color", RgbaColor.create(colorArray[0], colorArray[1], colorArray[2]));
+				if(currentLayer instanceof AvCompositionLayer) {
+					layerMetaData.addObject("width", currentLayer.getProperty("width").getValue());
+					layerMetaData.addObject("height", currentLayer.getProperty("height").getValue());
+					layerMetaData.addObject("blendingMode", currentLayer.getProperty("blendingMode").getValue());
+					
+					if(currentLayer instanceof ShapeCompositionLayer) {
+						layerMetaData.addObject("footageType", "shape");
+						layerMetaData.addObject("shapes", currentLayer.getShapes());
+					}
+					else {
+						var nativeSource = currentLayer.getSource();
+						if(nativeSource instanceof FootageItem) {
+							var nativeMainSource = nativeSource.mainSource;
+							if(nativeMainSource instanceof SolidSource) {
+								if(!currentLayer.getNativeItem().nullLayer) {
+									layerMetaData.addObject("footageType", "solid");
+									var colorArray = nativeMainSource.color;
+									layerMetaData.addObject("color", RgbaColor.create(colorArray[0], colorArray[1], colorArray[2]));
+								}
+								else {
+									layerMetaData.addObject("footageType", "none");
+								}
 							}
-							else {
-								layerMetaData.addObject("footageType", "none");
-							}
-						}
-						else if(nativeMainSource instanceof FileSource) {
-							if(nativeMainSource.missingFootagePath === "") {
+							else if(nativeMainSource instanceof FileSource) {
+								if(nativeMainSource.missingFootagePath === "") {
 								
-								var currentFile = nativeMainSource.file;
-								var fileName = currentFile.name;
-								var fileExtension = PathFunctions.getFileExtension(fileName);
+									var currentFile = nativeMainSource.file;
+									var fileName = currentFile.name;
+									var fileExtension = PathFunctions.getFileExtension(fileName);
 								
-								switch(fileExtension) {
-									case "png":
-									case "jpg":
-									case "jpeg":
-									case "gif":
-										layerMetaData.addObject("footageType", "image");
-										//METODO: handle duplicates of filename
-										var newFileName = fileName;
-										aFilesToCopy.addObject(newFileName, currentFile);
-										layerMetaData.addObject("file", newFileName);
-										break;
-									case "psd":
-										layerMetaData.addObject("footageType", "image");
-										var sourceName = nativeSource.name;
-										var photoshopLayerArray = null;
-										var sourceFilePath = currentFile.absoluteURI;
-										if(aPhotoshopLayersToExport.select(sourceFilePath)) {
-											photoshopLayerArray = aPhotoshopLayersToExport.currentSelectedItem;
-										}
-										else {
-											photoshopLayerArray = NamedArray.create(true);
-											aPhotoshopLayersToExport.addObject(sourceFilePath, photoshopLayerArray);
-										}
+									switch(fileExtension) {
+										case "png":
+										case "jpg":
+										case "jpeg":
+										case "gif":
+											layerMetaData.addObject("footageType", "image");
+											//METODO: handle duplicates of filename
+											var newFileName = fileName;
+											aFilesToCopy.addObject(newFileName, currentFile);
+											layerMetaData.addObject("file", newFileName);
+											break;
+										case "psd":
+											layerMetaData.addObject("footageType", "image");
+											var sourceName = nativeSource.name;
+											var photoshopLayerArray = null;
+											var sourceFilePath = currentFile.absoluteURI;
+											if(aPhotoshopLayersToExport.select(sourceFilePath)) {
+												photoshopLayerArray = aPhotoshopLayersToExport.currentSelectedItem;
+											}
+											else {
+												photoshopLayerArray = NamedArray.create(true);
+												aPhotoshopLayersToExport.addObject(sourceFilePath, photoshopLayerArray);
+											}
 										
-										var layerName = sourceName.substring(0, sourceName.lastIndexOf("/"));
-										var folderName = fileName.substring(0, fileName.lastIndexOf("."));
-										var outputName = StringFunctions.convertToSafeFileName(folderName) + "/" + StringFunctions.convertToSafeFileName(layerName) + ".png";
-										photoshopLayerArray.addObject(layerName, outputName);
-										layerMetaData.addObject("file", outputName);
-										break;
-									default:
-										//MENOTE: add video
-										layerMetaData.addObject("footageType", "missingFile");
-										console.error("Unsupported file type " + fileExtension + ". Can't export " + fileName);
-										//console.log(nativeSource.name);
-										//console.log(nativeSource.comment);
-										//console.log(nativeSource.id);
-										//console.log(currentFile);
-										//console.log("-", nativeMainSource);
-										break;
+											var layerName = sourceName.substring(0, sourceName.lastIndexOf("/"));
+											var folderName = fileName.substring(0, fileName.lastIndexOf("."));
+											var outputName = StringFunctions.convertToSafeFileName(folderName) + "/" + StringFunctions.convertToSafeFileName(layerName) + ".png";
+											photoshopLayerArray.addObject(layerName, outputName);
+											layerMetaData.addObject("file", outputName);
+											break;
+										default:
+											//MENOTE: add video
+											layerMetaData.addObject("footageType", "missingFile");
+											console.error("Unsupported file type " + fileExtension + ". Can't export " + fileName);
+											//console.log(nativeSource.name);
+											//console.log(nativeSource.comment);
+											//console.log(nativeSource.id);
+											//console.log(currentFile);
+											//console.log("-", nativeMainSource);
+											break;
+									}
+								}
+								else {
+									layerMetaData.addObject("footageType", "missingFile");
 								}
 							}
 							else {
-								layerMetaData.addObject("footageType", "missingFile");
+								//METODO: add other types
+								console.error("Unknown main source " + nativeMainSource.toString());
+								layerMetaData.addObject("footageType", "unknown");
 							}
 						}
 						else {
 							//METODO: add other types
-							console.error("Unknown main source " + nativeMainSource.toString());
-							layerMetaData.addObject("footageType", "unknown");
+							console.error("Unknown source " + nativeSource.toString());
 						}
 					}
-					else {
-						//METODO: add other types
-						console.error("Unknown source " + nativeSource.toString());
-					}
 				}
+				layerMetaData.addObject("masks", currentLayer.getMasks());
+				
+				MetaDataFunctions.setLayerMetaData(currentLayer, layerMetaData);
+				
+				var timelinesArray = NamedArray.create(false);
+				layerData.data = timelinesArray;
+				ClassReference.exportLayerProperties(currentLayer, timelinesArray);
 			}
-			layerMetaData.addObject("masks", currentLayer.getMasks());
-			
-			MetaDataFunctions.setLayerMetaData(currentLayer, layerMetaData);
-			
-			var timelinesArray = NamedArray.create(false);
-			layerData.data = timelinesArray;
-			ClassReference.exportLayerProperties(currentLayer, timelinesArray);
+			else if(currentType === "trackMatte") {
+				layerMetaData.addObject("trackMatteType", currentTreeStructureItem.getAttribute("trackMatteType"));
+			}
 			
 			ClassReference.exportLayers(currentTreeStructureItem.getChildren(), newItem, aFilesToCopy, aPhotoshopLayersToExport);
 		}

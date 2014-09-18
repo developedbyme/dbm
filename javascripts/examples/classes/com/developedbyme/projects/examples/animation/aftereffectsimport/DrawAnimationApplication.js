@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
 	var CanvasImageGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d");
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
+	var CanvasRenderLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d");
 	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
 	var CreateCircleCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateCircleCurveNode");
 	var RgbaColorFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.data.color.RgbaColorFromValuesNode");
@@ -29,6 +30,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
 	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
 	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
+	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -39,6 +41,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	var PlaybackMetaDataTypes = dbm.importClass("com.developedbyme.constants.metadata.PlaybackMetaDataTypes");
+	var TrackMatteTypes = dbm.importClass("com.developedbyme.constants.thirdparty.adobe.aftereffects.TrackMatteTypes");
 	
 	/**
 	 * Constructor
@@ -122,24 +125,12 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, playbackNode, duration);
 		
-		/*
-		var currentArray = parsedAnimationData.data;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentIndex = currentArrayLength-i-1;
-			var currentLayerData = currentArray[currentIndex];
-			console.log(currentLayerData);
-			var layerName = "main/layer_" + currentIndex;
-			var currentLayer = mainCanvasController.getLayer(layerName);
-			this.setupLayer(currentLayer, currentLayerData, playbackNode, duration);
-		}
-		*/
-		
 		mainCanvasController.getProperty("display").startUpdating();
 	};
 	
 	objectFunctions.setupLayerTreeStructure = function(aTreeStructureItem, aLayer, aPlaybackNode, aDuration) {
 		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::setupLayerTreeStructure");
+		//console.log(aTreeStructureItem, aLayer);
 		
 		var currentArray = aTreeStructureItem.getChildren();
 		var currentArrayLength = currentArray.length;
@@ -147,14 +138,71 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			var currentIndex = currentArrayLength-i-1;
 			var currentLayerTreeStructureItem = currentArray[currentIndex];
 			var currentLayerData = currentLayerTreeStructureItem.data;
+			
 			var layerName = currentLayerTreeStructureItem.getName();
-			var currentLayer = aLayer.getChildByPath(layerName);
 			
-			var childLayer = currentLayer.getChildByPath("children");
-			var contentLayer = currentLayer.getChildByPath("content");
 			
-			this.setupLayer(currentLayer, currentLayerData, aPlaybackNode, aDuration);
-			this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aPlaybackNode, aDuration);
+			
+			var currentType = currentLayerData.metaData.getObject("type");
+			if(currentType === "layer") {
+				var currentLayer = aLayer.getChildByPath(layerName);
+				var childLayer = currentLayer.getChildByPath("children");
+				var contentLayer = currentLayer.getChildByPath("content");
+				this.setupLayer(currentLayer, currentLayerData, aPlaybackNode, aDuration);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aPlaybackNode, aDuration);
+			}
+			else if(currentType === "trackMatte") {
+				
+				var newTreeStrcutureItem = TreeStructureItem.create(layerName);
+				
+				//METODO: set size dynamically
+				var renderWidth = 500;
+				var renderHeight = 500;
+				var renderOffsetX = -0.5*renderWidth;
+				var renderOffsetY = -0.5*renderHeight;
+				
+				var currentLayer = CanvasRenderLayer2d.create(renderOffsetX, renderOffsetY, renderWidth, renderHeight);
+				newTreeStrcutureItem.data = currentLayer;
+				currentLayer._linkRegistration_setTreeStructureItem(newTreeStrcutureItem);
+				aLayer.getTreeStructureItem().addChild(newTreeStrcutureItem);
+				
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aPlaybackNode, aDuration);
+				
+				
+				var renderedChildren = newTreeStrcutureItem.getChildren();
+				
+				var renderedMaskLayer = renderedChildren[1];
+				var renderedContentLayer = renderedChildren[0];
+				
+				renderedContentLayer.retain();
+				newTreeStrcutureItem.removeChild(renderedContentLayer);
+				newTreeStrcutureItem.addChild(renderedContentLayer);
+				renderedContentLayer.release();
+				
+				var trackMatteType = currentLayerData.metaData.getObject("trackMatteType");
+				switch(trackMatteType) {
+					case TrackMatteTypes.ALPHA:
+						renderedContentLayer.data.setPropertyInput("compositeOperation", "source-in");
+						break;
+					case TrackMatteTypes.ALPHA_INVERTED:
+						renderedContentLayer.data.setPropertyInput("compositeOperation", "source-out");
+						break;
+					case TrackMatteTypes.LUMA:
+					case TrackMatteTypes.LUMA_INVERTED:
+						//METODO: error message
+						break;
+					default:
+						//METODO: error message
+						break;
+				}
+			}
+			else {
+				//METODO: error message
+				var currentLayer = aLayer.getChildByPath(layerName);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aPlaybackNode, aDuration);
+			}
+			
+			
 		}
 	};
 	
@@ -347,7 +395,6 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					this.applyAlphaToLayer(newLayer, aTimelines, currentPathPrefix + "/", aPlaybackNode.getProperty("outputTime"));
 					break;
 				case "shape":
-					console.log(">>>>>");
 					var currentCurveDrawer = CurveDrawer2d.create(null);
 					dbm.singletons.dbmAnimationManager.setupTimelineConnectionWithComplexValue(aTimelines.getObject(currentPathPrefix + "/path"), aPlaybackNode.getProperty("outputTime"), currentCurveDrawer.getProperty("curve"));
 					
