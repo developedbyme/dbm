@@ -8,7 +8,7 @@ dbm.registerClass("com.developedbyme.thirdparty.google.maps.StreetView", "com.de
 	//Error report
 	
 	//Dependencies
-	var MapsEventListener = dbm.importClass("com.developedbyme.projects.thirdparty.google.maps.MapsEventListener");
+	var MapsEventListener = dbm.importClass("com.developedbyme.thirdparty.google.maps.MapsEventListener");
 	
 	//Utils
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");

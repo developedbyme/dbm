@@ -1,9 +1,9 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.projects.thirdparty.google.maps.MapsEventListener", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.thirdparty.google.maps.MapsEventListener", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.BaseObject");
 	
 	//Self reference
-	var MapsEventListener = dbm.importClass("com.developedbyme.projects.thirdparty.google.maps.MapsEventListener");
+	var MapsEventListener = dbm.importClass("com.developedbyme.thirdparty.google.maps.MapsEventListener");
 	
 	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
@@ -20,7 +20,7 @@ dbm.registerClass("com.developedbyme.projects.thirdparty.google.maps.MapsEventLi
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.projects.thirdparty.google.maps.MapsEventListener::_init");
+		//console.log("com.developedbyme.thirdparty.google.maps.MapsEventListener::_init");
 		
 		this.superCall();
 		
@@ -36,13 +36,13 @@ dbm.registerClass("com.developedbyme.projects.thirdparty.google.maps.MapsEventLi
 	};
 	
 	objectFunctions.addEventListener = function(aEventName, aListener, aUseCapture) {
-		console.log("com.developedbyme.projects.thirdparty.google.maps.MapsEventListener::addEventListener");
+		console.log("com.developedbyme.thirdparty.google.maps.MapsEventListener::addEventListener");
 		
 		google.maps.event.addListener(this._object, aEventName, aListener);
 	};
 	
 	objectFunctions.removeEventListener = function(aEventName, aListener, aUseCapture) {
-		console.log("com.developedbyme.projects.thirdparty.google.maps.MapsEventListener::removeEventListener");
+		console.log("com.developedbyme.thirdparty.google.maps.MapsEventListener::removeEventListener");
 		
 		google.maps.event.removeListener(this._object, aEventName, aListener);
 	};
