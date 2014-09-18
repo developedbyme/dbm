@@ -63,7 +63,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 			ClassReference.drawBezierCurve(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
 		}
 		else {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawCurve", "Curve is not of correect type.");
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawCurve", "Curve is not of correct type.");
 		}
 	};
 	
@@ -80,28 +80,51 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 		var tempCurve = aCurve.createSameTypeOfCurve();
 		dbm.singletons.dbmCurveEvaluator.getPartOfCurve(aCurve, aStartParameter, aEndParameter, aExactness, tempCurve);
 		
-		var currentArray = tempCurve.pointsArray;
-		var degree = tempCurve.getCurveDegree();
-		var maxParameter = tempCurve.getMaxParameter();
-		for(var i = degree; i <= maxParameter*degree; i += degree) {
-			switch(degree) {
-				case 1:
-					aContext.lineTo(currentArray[i].x, currentArray[i].y);
-					break;
-				case 2:
-					aContext.quadraticCurveTo(currentArray[i-1].x, currentArray[i-1].y, currentArray[i].x, currentArray[i].y);
-					break;
-				case 3:
-					aContext.bezierCurveTo(currentArray[i-2].x, currentArray[i-2].y, currentArray[i-1].x, currentArray[i-1].y, currentArray[i].x, currentArray[i].y);
-					break;
-				default:
-					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawBezierCurve", "Can't draw bezier curve of degree " + degree + ".");
-					break;
-			}
+		switch(tempCurve.getCurveDegree()) {
+			case 1:
+				ClassReference._drawPoints1stDegree(aContext, tempCurve.pointsArray);
+				break;
+			case 2:
+				ClassReference._drawPointsCompact2ndDegree(aContext, tempCurve.pointsArray);
+				break;
+			case 3:
+				ClassReference._drawPointsCompact3rdDegree(aContext, tempCurve.pointsArray);
+				break;
+			default:
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawBezierCurve", "Can't draw bezier curve of degree " + degree + ".");
+				break;
 		}
 		
-		//dbm.singletons.dbmCurveEvaluator.recycleCurve(tempCurve);
-		
 		tempCurve.destroy();
+	};
+	
+	staticFunctions._drawPoints1stDegree = function(aContext, aPointsArray) {
+		var currentArray = aPointsArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 1; i < currentArrayLength; i++) { //MENOTE: first point is skipped
+			var endPoint = currentArray[i];
+			aContext.lineTo(endPoint.x, endPoint.y);
+		}
+	};
+	
+	staticFunctions._drawPointsCompact2ndDegree = function(aContext, aPointsArray) {
+		var currentArray = aPointsArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 1; i < currentArrayLength;) { //MENOTE: first point is skipped, i is incremented inside the loop
+			var anchorPoint1 = currentArray[i++];
+			var endPoint = currentArray[i++];
+			aContext.quadraticCurveTo(anchorPoint1.x, anchorPoint1.y, endPoint.x, endPoint.y);
+		}
+	};
+	
+	staticFunctions._drawPointsCompact3rdDegree = function(aContext, aPointsArray) {
+		var currentArray = aPointsArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 1; i < currentArrayLength;) { //MENOTE: first point is skipped, i is incremented inside the loop
+			var anchorPoint1 = currentArray[i++];
+			var anchorPoint2 = currentArray[i++];
+			var endPoint = currentArray[i++];
+			aContext.bezierCurveTo(anchorPoint1.x, anchorPoint1.y, anchorPoint2.x, anchorPoint2.y, endPoint.x, endPoint.y);
+		}
 	};
 });
