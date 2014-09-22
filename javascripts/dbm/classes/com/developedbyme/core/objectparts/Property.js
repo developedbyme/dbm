@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		
 		this.name = null;
 		
-		this._status = FlowStatusTypes.UPDATED;
+		this.status = FlowStatusTypes.UPDATED;
 		this._flowUpdateNumber = 0;
 		this._alwaysUpdateFlow = false;
 		this._canSetValueInAnimation = true;
@@ -216,7 +216,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			this._flowUpdateNumber = aFlowUpdateNumber;
 			this._mustUpdate = false;
 		}
-		this._status = FlowStatusTypes.UPDATED;
+		this.status = FlowStatusTypes.UPDATED;
 	};
 	
 	/**
@@ -227,7 +227,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions.setFlowAsUpdated = function(aFlowUpdateNumber) {
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._mustUpdate = false;
-		this._status = FlowStatusTypes.UPDATED;
+		this.status = FlowStatusTypes.UPDATED;
 	};
 	
 	/**
@@ -237,7 +237,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	 */ 
 	objectFunctions.getValue = function() {
 		
-		if(this._status === FlowStatusTypes.NEEDS_UPDATE) {
+		if(this.status === FlowStatusTypes.NEEDS_UPDATE) {
 			dbm.singletons.dbmFlowManager.updateProperty(this);
 		}
 		
@@ -268,7 +268,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	 * @param	aStatus		FlowStatusTypes		The status for this property.
 	 */
 	objectFunctions.setStatus = function(aStatus) {
-		this._status = aStatus;
+		this.status = aStatus;
 	};
 	
 	/**
@@ -277,7 +277,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	 * @return	FlowStatusTypes		The status for this property.
 	 */
 	objectFunctions.getStatus = function() {
-		return this._status;
+		return this.status;
 	};
 	
 	/**
@@ -374,7 +374,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions.updateFlow = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::updateFlow");
 		//console.log(this.name);
-		this._status = FlowStatusTypes.UPDATED;
+		this.status = FlowStatusTypes.UPDATED;
 		if(this._inputConnection !== null) {
 			var newFlowUpdateNumber = this._inputConnection.getFlowUpdateNumber();
 			//console.log(newFlowUpdateNumber, this._flowUpdateNumber);
@@ -529,7 +529,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.getStatus === undefined || currentObject.getStatus() === FlowStatusTypes.UPDATED) {
+			if(currentObject.status === undefined || currentObject.status === FlowStatusTypes.UPDATED) {
 				aReturnArray.push(currentObject);
 			}
 		}
@@ -541,7 +541,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	 * @param	aReturnArray	Array	The array that gets filled with connections.
 	 */
 	objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
-		if(this._inputConnection !== null && this._inputConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
+		if(this._inputConnection !== null && this._inputConnection.status === FlowStatusTypes.NEEDS_UPDATE) {
 			aReturnArray.push(this._inputConnection);
 		}
 		if(this._inputUpdateFunction !== null) {

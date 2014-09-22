@@ -154,7 +154,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		//var nodeNames = new Array();
 		for(var i = currentArray.length-1; i >= 0; i--) {
 			var currentConnection = currentArray[i];
-			if(VariableAliases.isSet(currentConnection.getStatus) && currentConnection.getStatus() === 1) {
+			if(currentConnection.status === FlowStatusTypes.UPDATED) {
 				//nodeNames.push(currentConnection.name + " (skip)");
 				//numberOfSkipped++;
 				continue;
@@ -248,7 +248,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		for(;iterationData.position < iterationData.length; iterationData.position++) {
 			var currentProperty = iterationData.array[iterationData.position];
 			//console.log(currentProperty, currentProperty.getStatus());
-			if(currentProperty.getStatus() !== FlowStatusTypes.UPDATED) {
+			if(currentProperty.status !== FlowStatusTypes.UPDATED) {
 				numberOfPropertiesUpdated++;
 				if(currentProperty.isDestroyed()) {
 					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "_performUpdateUncachedProperties", "Property (" + currentProperty + ") is destroyed, removing.");

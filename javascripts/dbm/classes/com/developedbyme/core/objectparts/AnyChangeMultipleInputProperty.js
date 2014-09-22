@@ -79,7 +79,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 			this._performSetValue(dbm.singletons.dbmFlowManager.getFlowUpdateNumber());
 			this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
 		}
-		this._status = FlowStatusTypes.UPDATED;
+		this.status = FlowStatusTypes.UPDATED;
 	};
 	
 	objectFunctions.disconnectInput = function(aProperty) {
@@ -118,7 +118,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentConnection = currentArray[i];
-			if(currentConnection !== null && currentConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
+			if(currentConnection !== null && currentConnection.status === FlowStatusTypes.NEEDS_UPDATE) {
 				aReturnArray.push(currentConnection);
 			}
 		}

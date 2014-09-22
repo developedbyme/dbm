@@ -52,7 +52,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.devel
 	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
 		//console.log("com.developedbyme.core.objectparts.GhostProperty::setValueWithFlow");
 		this._flowUpdateNumber = aFlowUpdateNumber;
-		this._status = FlowStatusTypes.UPDATED;
+		this.status = FlowStatusTypes.UPDATED;
 	};
 	
 	/**
@@ -79,7 +79,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.devel
 	objectFunctions.updateFlow = function() {
 		//console.log("com.developedbyme.core.objectparts.GhostProperty::updateFlow");
 		this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-		this._status = FlowStatusTypes.UPDATED;
+		this.status = FlowStatusTypes.UPDATED;
 	};
 	
 	/**
