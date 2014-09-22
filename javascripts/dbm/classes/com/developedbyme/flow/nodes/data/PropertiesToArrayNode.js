@@ -56,7 +56,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.data.PropertiesToArrayNode", "co
 		var newLength = outputArray.length;
 		this._outputLength.setValue(newLength);
 		
-		var newProperty = ExternalVariableProperty.create(this._objectProperty, outputArray, newLength-1);
+		var newProperty = ExternalVariableProperty.create(outputArray, newLength-1);
 		ExternalVariableProperty.setInputOrValueToProperty(newProperty, aValue);
 		
 		this._updateFunction.addInputConnection(newProperty);

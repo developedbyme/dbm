@@ -37,7 +37,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 		this._getPartOfCurveNode = this.addDestroyableObject(GetPartOfCurveNode.create(this._curve, this._startParameter, this._endParameter));
 		this._drawCurve = this.createProperty("drawCurve", this._getPartOfCurveNode.getProperty("outputCurve")).setAlwaysUpdateFlow(true);
 		
-		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
 		this._graphicsUpdate.connectInput(this._drawCurve);
 		
 		return this;

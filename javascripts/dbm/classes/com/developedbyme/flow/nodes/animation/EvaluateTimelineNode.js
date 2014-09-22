@@ -39,12 +39,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode",
 	staticFunctions.create = function(aTimeline, aInputValue) {
 		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::create");
 		var newNode = (new ClassReference()).init();
-		if(aTimeline instanceof Timeline) {
-			newNode.setPropertyInputWithoutNull("timeline", aTimeline.getObjectProperty());
-		}
-		else {
-			newNode.setPropertyInputWithoutNull("timeline", aTimeline);
-		}
+		newNode.setPropertyInputWithoutNull("timeline", aTimeline);
 		
 		newNode.setPropertyInputWithoutNull("inputValue", aInputValue);
 		

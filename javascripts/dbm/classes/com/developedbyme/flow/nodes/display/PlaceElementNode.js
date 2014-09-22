@@ -23,18 +23,18 @@ dbm.registerClass("com.developedbyme.flow.nodes.display.PlaceElementNode", "com.
 		
 		this._x = this.createProperty("x", null);
 		var roundXNode = this.addDestroyableObject(RoundNode.create(this._x));
-		this._roundedX = this.addProperty("roundedX", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty)).setup("left", UnitTypes.PX, null).connectInput(roundXNode.getProperty("outputValue"));
+		this._roundedX = this.addProperty("roundedX", ExternalCssVariableProperty.createWithoutExternalObject()).setup("left", UnitTypes.PX, null).connectInput(roundXNode.getProperty("outputValue"));
 		this._y = this.createProperty("y", null);
 		var roundYNode = this.addDestroyableObject(RoundNode.create(this._y));
-		this._roundedY = this.addProperty("roundedY", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty)).setup("top", UnitTypes.PX, null).connectInput(roundYNode.getProperty("outputValue"));
+		this._roundedY = this.addProperty("roundedY", ExternalCssVariableProperty.createWithoutExternalObject()).setup("top", UnitTypes.PX, null).connectInput(roundYNode.getProperty("outputValue"));
 		this._z = this.createProperty("z", null);
 		var roundZNode = this.addDestroyableObject(RoundNode.create(this._z));
-		this._roundedZ = this.addProperty("roundedZ", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty)).setup("z-index", null, null).connectInput(roundZNode.getProperty("outputValue"));
-		this._width = this.addProperty("width", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty).setup("width", UnitTypes.PX, null));
-		this._height = this.addProperty("height", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty).setup("height", UnitTypes.PX, null));
+		this._roundedZ = this.addProperty("roundedZ", ExternalCssVariableProperty.createWithoutExternalObject()).setup("z-index", null, null).connectInput(roundZNode.getProperty("outputValue"));
+		this._width = this.addProperty("width", ExternalCssVariableProperty.createWithoutExternalObject().setup("width", UnitTypes.PX, null));
+		this._height = this.addProperty("height", ExternalCssVariableProperty.createWithoutExternalObject().setup("height", UnitTypes.PX, null));
 		this._element = this.createProperty("element", null);
 		this._elementSet = this.createGhostProperty("elementSet");
-		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
 		
 		this.createUpdateFunction("elementSet", this._updateElementSet, [this._element], [this._elementSet]);
 		

@@ -23,6 +23,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.comp
 		
 		var keyValuePair = KeyValuePropertyPair.create(keyParserResult.result, dataParserResult.result);
 		
+		//METODO: fix this since getObjectProperty() doesn't exist anymore
 		keyValuePair.getObjectProperty().setAsDirty();
 		return ParserResultDataObject.createLinked(keyValuePair.getObjectProperty(), []);
 	};

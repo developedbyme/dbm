@@ -324,10 +324,10 @@ dbm.registerClass("com.developedbyme.gui.DisplayBaseObject", "com.developedbyme.
 		
 		var newProperty;
 		if(CssFunctions.isPrefixedProperty(aCssProperty)) {
-			newProperty = ExternalPrefixedCssVariableProperty.createWithoutExternalObject(this._objectProperty);
+			newProperty = ExternalPrefixedCssVariableProperty.createWithoutExternalObject();
 		}
 		else {
-			newProperty = ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty);
+			newProperty = ExternalCssVariableProperty.createWithoutExternalObject();
 		}
 		
 		newProperty.setup(aCssProperty, aUnit, aDefaultValue);

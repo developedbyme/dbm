@@ -13,7 +13,7 @@ dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme
 		
 		this.superCall();
 		
-		this._source = this.addProperty("source", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty));
+		this._source = this.addProperty("source", ExternalVariableProperty.createWithoutExternalObject());
 		this._updateFunctions.getObject("display").addInputConnection(this._source);
 		
 		return this;

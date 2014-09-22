@@ -47,6 +47,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventValueProperty
 		return this;
 	};
 	
+	/**
+	 * Performs the event if the name exists.
+	 *
+	 * @param	aValue	*	The data to send out with the event.
+	 */
 	objectFunctions._performValueChangeExtendedEvent = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.ExtendedEventValueProperty::_performValueChangeExtendedEvent");
 		if(this._extendedEvent.hasEvent(this._extendedEventName)) {
@@ -54,10 +59,20 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventValueProperty
 		}
 	};
 	
+	/**
+	 * Checks if an event is expected for this object, so that warnings doesn't shown when new events are created.
+	 *
+	 * @param	aName	String	The name of the event.
+	 *
+	 * @return	Boolean		True if the event is expected.
+	 */
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		return (aName === this._extendedEventName);
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._extendedEventName = null;
@@ -65,11 +80,19 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventValueProperty
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aObjectInput, aValue, aExtendedEventName) {
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aValue				*		The value for the new property.
+	 * @param	aExtendedEventName	String	The name of the event to dispatch.
+	 *
+	 * @return	ExtendedEventValueProperty	The newly created object.
+	 */
+	staticFunctions.create = function(aValue, aExtendedEventName) {
 		
 		aExtendedEventName = VariableAliases.valueWithDefault(aExtendedEventName, GenericExtendedEventIds.UPDATE);
 		
-		var newExtendedEventValueProperty = ClassReference._createWithInputValue(ClassReference, aObjectInput, aValue);
+		var newExtendedEventValueProperty = ClassReference._createWithInputValue(ClassReference, aValue);
 		newExtendedEventValueProperty.setExtendedEventName(aExtendedEventName);
 		return newExtendedEventValueProperty;
 	};

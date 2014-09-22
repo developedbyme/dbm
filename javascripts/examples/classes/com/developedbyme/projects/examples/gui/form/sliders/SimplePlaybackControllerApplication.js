@@ -76,7 +76,7 @@ dbm.registerClass("com.developedbyme.projects.examples.gui.form.sliders.SimplePl
 		buttonStateController.addCommandToEvent(PlaybackStateTypes.getName(PlaybackStateTypes.PLAYING), ButtonExtendedEventIds.CLICK, CallFunctionCommand.createCommand(this._playbackNode, this._playbackNode.pause, []));
 		this._playButton.addDestroyableObject(buttonStateController);
 		
-		var stateTriggerProperty = ExtendedEventValueProperty.create(this._playButton.getObjectPropertyIfExists(), stateNameNode.getProperty("outputValue"));
+		var stateTriggerProperty = ExtendedEventValueProperty.create(stateNameNode.getProperty("outputValue"));
 		this._playButton.addProperty("stateTrigger", stateTriggerProperty);
 		stateTriggerProperty.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.UPDATE, CallFunctionCommand.createCommand(buttonStateController, buttonStateController.setActiveState, [GetVariableObject.createSelectDataCommand()]));
 		stateTriggerProperty.startUpdating();

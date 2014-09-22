@@ -37,10 +37,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 		this._layers = null;
 		this._layersTreeStructure = this.addDestroyableObject(TreeStructure.create());
 		
-		this._width = this.addProperty("width", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._height = this.addProperty("height", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._duration = this.addProperty("duration", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._frameRate = this.addProperty("frameRate", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._width = this.addProperty("width", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._height = this.addProperty("height", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._duration = this.addProperty("duration", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._frameRate = this.addProperty("frameRate", ExternalVariableProperty.createWithoutExternalObject(null));
 		
 		return this;
 	};

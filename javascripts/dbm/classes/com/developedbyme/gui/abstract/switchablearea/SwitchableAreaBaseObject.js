@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.switchablearea.SwitchableAreaB
 		this._areas = NamedArray.create(true);
 		this.addDestroyableObject(this._areas);
 		
-		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
 		
 		return this;
 	};

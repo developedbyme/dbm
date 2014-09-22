@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgView", "com.developedbyme.gui.Di
 		this._definitions = NamedArray.create(true);
 		this.addDestroyableObject(this._definitions);
 		
-		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
 		this._updateFunctions.getObject("display").addInputConnection(this._graphicsUpdate);
 		
 		return this;

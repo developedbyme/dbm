@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNod
 		
 		this.superCall();
 		
-		this._anyUpdate = this.addProperty("anyUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._anyUpdate = this.addProperty("anyUpdate", AnyChangeMultipleInputProperty.create());
 		this._outputPointSet = this.createProperty("outputPointSet", null);
 		
 		this._pointAdjustments = ArrayHolder.create(true);

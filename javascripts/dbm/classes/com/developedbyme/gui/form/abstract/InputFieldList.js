@@ -33,11 +33,11 @@ dbm.registerClass("com.developedbyme.gui.form.abstract.InputFieldList", "com.dev
 		
 		this._inputFieldsInputNode = this.addDestroyableObject(PropertiesToArrayNode.create());
 		
-		this._value = this.addProperty("value", ExtendedEventValueProperty.create(this._objectProperty, this._inputFieldsInputNode.getProperty("array"), FormFieldExtendedEventIds.CHANGE));
+		this._value = this.addProperty("value", ExtendedEventValueProperty.create(this._inputFieldsInputNode.getProperty("array"), FormFieldExtendedEventIds.CHANGE));
 		this._value.changeToExternalEventController(this.getExtendedEvent());
 		this._value.setAlwaysUpdateFlow(true);
 		
-		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
 		this._display.connectInput(this._value);
 		
 		return this;

@@ -21,9 +21,6 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 		
 		this.superCall();
 		
-		this._objectProperty = ObjectProperty.create(this);
-		this._objectProperty.name = this.__className + "::object(o)";
-		this.addDestroyableObject(this._objectProperty);
 		this._inputProperties = NamedArray.create(true);
 		this.addDestroyableObject(this._inputProperties);
 		this._outputProperties = NamedArray.create(true);
@@ -34,14 +31,14 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 	};
 	
 	objectFunctions.createInputProperty = function(aName, aValue) {
-		var newProperty = Property.create(this._objectProperty, aValue);
+		var newProperty = Property.create(aValue);
 		newProperty.name = "input::" + aName;
 		this._inputProperties.addObject(aName, newProperty);
 		return newProperty;
 	};
 	
 	objectFunctions.createOutputProperty = function(aName, aValue) {
-		var newProperty = Property.create(this._objectProperty, aValue);
+		var newProperty = Property.create(aValue);
 		newProperty.name = "output::" + aName;
 		this._outputProperties.addObject(aName, newProperty);
 		return newProperty;
@@ -118,7 +115,6 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this._objectProperty = null;
 		this._inputProperties = null;
 		this._outputProperties = null;
 		

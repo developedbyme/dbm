@@ -33,6 +33,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		return this;
 	};
 	
+	/**
+	 * Changes the event controller so that events can be dispatched on another object.
+	 *
+	 * @param	aExtendedEventController	ExtendedEventController		The controller to dispatch events from.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.changeToExternalEventController = function(aExtendedEventController) {
 		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::changeToExternalEventController");
 		
@@ -45,8 +52,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		return this;
 	};
 	
+	/**
+	 * Performs the event if the name exists.
+	 *
+	 * @param	aValue	String	The anme of the event to perform. Null if no event should be dispatched.
+	 */
 	objectFunctions._performValueChangeExtendedEvent = function(aValue) {
-		console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performValueChangeExtendedEvent");
+		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performValueChangeExtendedEvent");
 		if(aValue !== null) {
 			if(this._extendedEvent.hasEvent(aValue)) {
 				this._extendedEvent.perform(aValue, null);
@@ -54,6 +66,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		}
 	};
 	
+	/**
+	 * Sets the value of this property (which dispatches the event).
+	 *
+	 * @param	aValue	*	The value of this property.
+	 */
 	objectFunctions._performSetValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
 		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
@@ -61,14 +78,29 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		this._performValueChangeExtendedEvent(aValue);
 	};
 	
+	/**
+	 * Gets the extended event controller.
+	 *
+	 * @return	ExtendedEventController		The extended event controller.
+	 */
 	objectFunctions.getExtendedEvent = function() {
 		return this._extendedEvent;
 	};
 	
+	/**
+	 * Checks if an event is expected for this object, so that warnings doesn't shown when new events are created.
+	 *
+	 * @param	aName	String	The name of the event.
+	 *
+	 * @return	Boolean		True if the event is expected. All events are extected for this property.
+	 */
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		return true;
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._extendedEvent = null;
@@ -76,8 +108,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aObjectInput, aValue) {
-		return ClassReference._createWithInputValue(ExtendedEventProperty, aObjectInput, aValue);
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aValue	*	The value for the new property. (Optional)
+	 *
+	 * @return	ExtendedEventProperty	The newly created object.
+	 */
+	staticFunctions.create = function(aValue) {
+		return ClassReference._createWithInputValue(ExtendedEventProperty, aValue);
 	};
 	
 });

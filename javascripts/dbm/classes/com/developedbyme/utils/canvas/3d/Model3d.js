@@ -21,7 +21,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.Model3d", "com.developedbym
 		
 		this.superCall();
 		
-		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
 		
 		this._hierarchy = TreeStructure.create();
 		this._hierarchy.ownsData = true;

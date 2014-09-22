@@ -38,9 +38,9 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.LayerItem", "c
 		this._frames = null;
 		this._elements = new Array();
 		
-		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._layerType = this.addProperty("layerType", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._animationType = this.addProperty("animationType", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._layerType = this.addProperty("layerType", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._animationType = this.addProperty("animationType", ExternalVariableProperty.createWithoutExternalObject(null));
 		
 		return this;
 	};

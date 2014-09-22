@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d", "com.d
 		this._destinationWidth = this.createProperty("destinationWidth", 0);
 		this._destinationHeight = this.createProperty("destinationHeight", 0);
 		
-		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
 		this._graphicsUpdate.connectInput(this._image);
 		this._graphicsUpdate.connectInput(this._sourceX);
 		this._graphicsUpdate.connectInput(this._sourceY);

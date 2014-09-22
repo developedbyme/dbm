@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.TimelineItem",
 		this._nativeItem = null;
 		this._layers = null;
 		
-		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(null));
 		
 		return this;
 	};

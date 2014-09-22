@@ -39,7 +39,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d", "com.de
 		
 		this._strokeOverFill = true;
 		
-		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
 		this._graphicsUpdate.connectInput(this._font);
 		this._graphicsUpdate.connectInput(this._align);
 		this._graphicsUpdate.connectInput(this._baseline);

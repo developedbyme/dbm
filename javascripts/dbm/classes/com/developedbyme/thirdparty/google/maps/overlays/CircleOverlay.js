@@ -24,7 +24,7 @@ dbm.registerClass("com.developedbyme.thirdparty.google.maps.overlays.CircleOverl
 		
 		this.superCall();
 		
-		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
 		
 		this._object = this.createProperty("object", null);
 		this._map = this.createProperty("map", null);

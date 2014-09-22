@@ -20,7 +20,6 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	var UpdateFunctionWithArguments = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunctionWithArguments");
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
@@ -38,57 +37,10 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 		
 		this.__nodeId = (dbm.singletons.dbmIdManager) ? dbm.singletons.dbmIdManager.getNewId(this.__className) : this.__className;
 		
-		this._objectProperty = null;
-		
 		this._properties = this.addDestroyableObject(NamedArray.create(true));
 		this._updateFunctions = this.addDestroyableObject(NamedArray.create(true));
 		
 		return this;
-	};
-	
-	/**
-	 * Creates an object property for this object. Needed when simple values are combined to an object (eg. values to a point).
-	 */
-	objectFunctions._createObjectProperty = function() {
-		this._objectProperty = ObjectProperty.create(this);
-		this._objectProperty.name = this.__nodeId + "::object(o)";
-		this.addDestroyableObject(this._objectProperty);
-		this._addObjectPropertyToAllProperties();
-		this._objectProperty.setAsDirty();
-	};
-	
-	/**
-	 * Adds the object property to all the exisitng properties.
-	 */
-	objectFunctions._addObjectPropertyToAllProperties = function() {
-		var currentArray = this._properties.getObjectsArray();
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentProperty = currentArray[i];
-			this._objectProperty._linkRegistration_addObjectProperty(currentProperty);
-			currentProperty._linkRegistration_setObjectInputConnection(this._objectProperty);
-		}
-	};
-	
-	/**
-	 * Gets the object property for this object. The property is created if it doesn't alread exists.
-	 *
-	 * @return	ObjectProperty	The object property.
-	 */
-	objectFunctions.getObjectProperty = function() {
-		if(this._objectProperty === null) {
-			this._createObjectProperty();
-		}
-		return this._objectProperty;
-	};
-	
-	/**
-	 * Gets the object property if it exists.
-	 *
-	 * @return	ObjectProperty	The object property. Null if the property doesn't exist.
-	 */
-	objectFunctions.getObjectPropertyIfExists = function() {
-		return this._objectProperty;
 	};
 	
 	objectFunctions.createUpdateFunction = function(aName, aUpdateFunction, aInputsArray, aOutputsArray) {
@@ -123,7 +75,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	objectFunctions.createProperty = function(aName, aValue) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createProperty");
 		//console.log(aName, aValue);
-		var newProperty = Property.create(this._objectProperty, aValue);
+		var newProperty = Property.create(aValue);
 		newProperty.name = this.__nodeId + "::" + aName;
 		this._properties.addObject(aName, newProperty);
 		return newProperty;
@@ -155,7 +107,7 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	 */
 	objectFunctions.createGhostProperty = function(aName) {
 		//console.log("com.developedbyme.core.FlowBaseObject::createGhostProperty");
-		var newProperty = GhostProperty.create(this._objectProperty);
+		var newProperty = GhostProperty.create();
 		newProperty.name = this.__nodeId + "::" + aName + "(g)";
 		this._properties.addObject(aName, newProperty);
 		return newProperty;
@@ -246,7 +198,6 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this._objectProperty = null;
 		this._properties = null;
 		this._updateFunctions = null;
 		

@@ -40,7 +40,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.browser.LayoutChangeNode", "com.
 		this._width = this.createProperty("width", this._windowSizeNode.getProperty("width"));
 		this._height = this.createProperty("height", this._windowSizeNode.getProperty("height"));
 		
-		this._change = this.addProperty("change", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._change = this.addProperty("change", AnyChangeMultipleInputProperty.create());
 		this._change.connectInput(this._updateDocument);
 		this._change.connectInput(this._domChange);
 		this._change.connectInput(this._width);

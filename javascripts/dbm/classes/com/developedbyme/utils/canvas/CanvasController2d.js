@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		this._canvas = this.createProperty("canvas", null);
 		this._clearBeforeDrawing = true;
 		this._display = this.createGhostProperty("display");
-		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
 		
 		this._hierarchy = TreeStructure.create();
 		this._hierarchy.ownsData = true;

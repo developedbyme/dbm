@@ -38,9 +38,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.photoshop.items.layers.La
 		this._treeStructureItem = TreeStructureItem.create(dbm.singletons.dbmIdManager.getNewId("layer"));
 		this._treeStructureItem.data = this;
 		
-		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._alpha = this.addProperty("alpha", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._visible = this.addProperty("visible", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._alpha = this.addProperty("alpha", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._visible = this.addProperty("visible", ExternalVariableProperty.createWithoutExternalObject(null));
 		
 		return this;
 	};

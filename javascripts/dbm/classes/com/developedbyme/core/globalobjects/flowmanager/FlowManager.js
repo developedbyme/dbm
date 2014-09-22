@@ -201,9 +201,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		if(aInput instanceof Property) {
 			this.connectProperties(aInput, aProperty);
 		}
-		else if(aInput instanceof FlowBaseObject) {
-			this.connectProperties(aInput.getObjectProperty(), aProperty);
-		}
+		//else if(aInput instanceof FlowBaseObject) {
+		//	//METODO: should this have add a node to check for any change
+		//}
 		else {
 			aProperty.setValue(aInput);
 		}

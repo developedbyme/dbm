@@ -57,10 +57,10 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 		this._createMixerChannel();
 		
 		this._volume = this.createProperty("volume", 1);
-		this._outputVolume = this.addProperty("outputVolume", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._outputVolume = this.addProperty("outputVolume", ExternalVariableProperty.createWithoutExternalObject(null));
 		this._mixerChannel.setPropertyInput("input", this._volume);
 		this._outputVolume.connectInput(this._mixerChannel.getProperty("output"));
-		this._muted = this.addProperty("muted", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, false));
+		this._muted = this.addProperty("muted", ExternalVariableProperty.createWithoutExternalObject(false));
 		
 		this._outputTime = this.createProperty("outputTime", 0);
 		
@@ -69,7 +69,7 @@ dbm.registerClass("com.developedbyme.gui.media.MediaElementBaseObject", "com.dev
 		
 		this._hasEnded = this.createProperty("hasEnded", false);
 		this._loop = this.createProperty("loop", false);
-		this._loopPlayback = this.addProperty("loopPlayback", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null)); //MENOTE: since firefox doesn't suppert the loop attribute yet this needs to be linked
+		this._loopPlayback = this.addProperty("loopPlayback", ExternalVariableProperty.createWithoutExternalObject(null)); //MENOTE: since firefox doesn't suppert the loop attribute yet this needs to be linked
 		this._loopPlayback.connectInput(this._loop);
 		
 		this.createUpdateFunction("default", this._updateFlow, [this._stateTimelineEvaluator.getProperty("outputValue"), this._startTimeTimelineEvaluator.getProperty("outputValue"), this._startPositionTimelineEvaluator.getProperty("outputValue"), this._currentTime, this._playbackState, this._playbackSpeed, this._outputVolume, this._loop, this._loopPlayback], [this._outputTime, this._playback, this._hasEnded]);

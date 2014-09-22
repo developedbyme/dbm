@@ -76,7 +76,7 @@ dbm.registerClass("com.developedbyme.projects.examples.gui.form.InputFieldListWi
 		var removeStateNode = BooleanSwitchedNode.create(secondToLastValueIsEmptyNode.getProperty("outputValue"), "remove", "normal");
 		var addStateNode = BooleanSwitchedNode.create(lastValueIsNotEmptyNode.getProperty("outputValue"), "add", removeStateNode.getProperty("outputValue"));
 		
-		var commandProperty = ExtendedEventProperty.create(this._objectProperty, addStateNode.getProperty("outputValue")).startUpdating();
+		var commandProperty = ExtendedEventProperty.create(addStateNode.getProperty("outputValue")).startUpdating();
 		this.addProperty("commands", commandProperty);
 		
 		commandProperty.getExtendedEvent().addCommandToEvent("add", CallFunctionCommand.createCommand(this, this.createNewField, []));

@@ -26,7 +26,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.text.TextReplacementNode", "com.
 		
 		this._inputValue = this.createProperty("inputValue", "");
 		this._outputValue = this.createProperty("outputValue", "");
-		this._replacementUpdate = this.addProperty("replacementUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._replacementUpdate = this.addProperty("replacementUpdate", AnyChangeMultipleInputProperty.create());
 		
 		this._textReplacements = ArrayHolder.create(true);
 		this.addDestroyableObject(this._textReplacements);

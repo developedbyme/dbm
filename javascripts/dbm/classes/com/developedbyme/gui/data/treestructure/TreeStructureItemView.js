@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureItemVie
 		this._isOpen = this.createProperty("isOpen", false);
 		var switchNode = this.addDestroyableObject(BooleanSwitchedNode.create(this._isOpen, GenericExtendedEventIds.OPEN, GenericExtendedEventIds.CLOSE));
 		this._outputState = this.createProperty("outputState", switchNode.getProperty("outputValue"));
-		this._isOpenCommands = this.addProperty("isOpenCommands", ExtendedEventProperty.create(this._objectProperty, GenericExtendedEventIds.CLOSE).changeToExternalEventController(this.getExtendedEvent()));
+		this._isOpenCommands = this.addProperty("isOpenCommands", ExtendedEventProperty.create(GenericExtendedEventIds.CLOSE).changeToExternalEventController(this.getExtendedEvent()));
 		this._isOpenCommands.connectInput(this._outputState);
 		this._updateFunctions.getObject("display").addInputConnection(this._isOpenCommands);
 		this._childItems = new Array();

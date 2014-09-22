@@ -33,14 +33,14 @@ dbm.registerClass("com.developedbyme.adobeflashscript.flash.items.FrameItem", "c
 		this._nativeItem = null;
 		this._elements = null;
 		
-		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._labelType = this.addProperty("labelType", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._actionScript = this.addProperty("actionScript", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._labelType = this.addProperty("labelType", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._actionScript = this.addProperty("actionScript", ExternalVariableProperty.createWithoutExternalObject(null));
 		
-		this._tweenType = this.addProperty("tweenType", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._tweenEasing = this.addProperty("tweenEasing", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._useSingleEaseCurve = this.addProperty("useSingleEaseCurve", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._hasCustomEase = this.addProperty("hasCustomEase", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._tweenType = this.addProperty("tweenType", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._tweenEasing = this.addProperty("tweenEasing", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._useSingleEaseCurve = this.addProperty("useSingleEaseCurve", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._hasCustomEase = this.addProperty("hasCustomEase", ExternalVariableProperty.createWithoutExternalObject(null));
 		
 		return this;
 	};

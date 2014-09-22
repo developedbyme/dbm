@@ -47,8 +47,7 @@ dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbym
 	
 	objectFunctions._createInputPropertyWithoutUpdate = function(aName, aValue) {
 		//console.log("com.developedbyme.flow.IterativeFlowGroup::_createInputPropertyWithoutUpdate");
-		//console.log(this._objectProperty);
-		var newProperty = Property.create(this._objectProperty, aValue);
+		var newProperty = Property.create(aValue);
 		newProperty.name = "input::" + aName;
 		this._inputProperties.addObject(aName, newProperty);
 		//console.log("//com.developedbyme.flow.IterativeFlowGroup::_createInputPropertyWithoutUpdate");
@@ -57,7 +56,7 @@ dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbym
 	
 	objectFunctions._createOutputPropertyWithoutUpdate = function(aName, aValue) {
 		//console.log("com.developedbyme.flow.IterativeFlowGroup::_createOutputPropertyWithoutUpdate");
-		var newProperty = Property.create(this._objectProperty, aValue);
+		var newProperty = Property.create(aValue);
 		newProperty.name = "output::" + aName;
 		this._outputProperties.addObject(aName, newProperty);
 		return newProperty;

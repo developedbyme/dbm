@@ -18,9 +18,9 @@ dbm.registerClass("com.developedbyme.gui.svg.SvgPath", "com.developedbyme.gui.sv
 		
 		this.superCall();
 		
-		this._stroke = this.addProperty("stroke", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty));
+		this._stroke = this.addProperty("stroke", ExternalCssVariableProperty.createWithoutExternalObject());
 		this._updateFunctions.getObject("display").addInputConnection(this._stroke);
-		this._fill = this.addProperty("fill", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty));
+		this._fill = this.addProperty("fill", ExternalCssVariableProperty.createWithoutExternalObject());
 		this._updateFunctions.getObject("display").addInputConnection(this._fill);
 		
 		this._curve = this.createProperty("curve");

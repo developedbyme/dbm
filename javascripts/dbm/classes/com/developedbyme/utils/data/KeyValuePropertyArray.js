@@ -24,8 +24,8 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 		this._objectsArray = new Array();
 		this._namesArray = this.createProperty("namesArray", new Array());
 		
-		this._nameChangeProperty = this.addProperty("nameChange", AnyChangeMultipleInputProperty.create(this._objectProperty));
-		this._anyChangeProperty = this.addProperty("anyChange", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._nameChangeProperty = this.addProperty("nameChange", AnyChangeMultipleInputProperty.create());
+		this._anyChangeProperty = this.addProperty("anyChange", AnyChangeMultipleInputProperty.create());
 		
 		this.createUpdateFunction("updateNamesArray", this._updateNamesArray, [this._nameChangeProperty], [this._namesArray]);
 		

@@ -48,7 +48,7 @@ dbm.registerClass("com.developedbyme.thirdparty.codemirror.CodeMirrorView", "com
 		
 		this._editor = null;
 		
-		this._value = this.addProperty("value", ExtendedEventValueProperty.create(this._objectProperty, ""));
+		this._value = this.addProperty("value", ExtendedEventValueProperty.create(""));
 		this._updateFunctions.getObject("display").addInputConnection(this._value);
 		this._options.addObject(CodeMirrorOptionIds.VALUE, this._value);
 		
@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.thirdparty.codemirror.CodeMirrorView", "com
 	};
 	
 	objectFunctions._createOptionProperty = function(aName, aValue) {
-		var newProperty = this.addProperty(aName, ExtendedEventValueProperty.create(this._objectProperty, aValue));
+		var newProperty = this.addProperty(aName, ExtendedEventValueProperty.create(aValue));
 		newProperty.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.UPDATE, CallFunctionCommand.createCommand(this, this._optionChanged, [aName, GetVariableObject.createSelectDataCommand()]));
 		this._options.addObject(aName, newProperty);
 		this._updateFunctions.getObject("display").addInputConnection(newProperty);

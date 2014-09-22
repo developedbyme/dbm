@@ -16,7 +16,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.splineselection.gui.Ca
 		
 		this.superCall();
 		
-		this._zIndex = this.addProperty("zIndex", ExternalCssVariableProperty.createWithoutExternalObject(this._objectProperty));
+		this._zIndex = this.addProperty("zIndex", ExternalCssVariableProperty.createWithoutExternalObject());
 		this._updateFunctions.getObject("display").addInputConnection(this._zIndex);
 		
 		return this;

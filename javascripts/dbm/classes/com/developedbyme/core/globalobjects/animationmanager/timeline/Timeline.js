@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timelin
 		
 		this._startValue = this.createProperty("startValue", null);
 		this._partChange = this.createGhostProperty("partChange");
-		this._anyChange = this.addProperty("anyChange", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._anyChange = this.addProperty("anyChange", AnyChangeMultipleInputProperty.create());
 		this._anyChange.connectInput(this._startValue);
 		this._anyChange.connectInput(this._partChange);
 		

@@ -42,9 +42,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		
 		this._masks = new Array();
 		
-		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._inPoint = this.addProperty("inPoint", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._outPoint = this.addProperty("outPoint", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._inPoint = this.addProperty("inPoint", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._outPoint = this.addProperty("outPoint", ExternalVariableProperty.createWithoutExternalObject(null));
 		
 		return this;
 	};

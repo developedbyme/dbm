@@ -1,4 +1,7 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Property that updates a style property of an element.
+ */
 dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
 	//"use strict";
@@ -15,6 +18,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	
 	//Utils
 	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	//Constants
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
@@ -35,6 +39,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		return this;
 	};
 	
+	/**
+	 * Sets the value of this property (which updates the style of the external object). Value is stored internally if the external object is not set yet.
+	 *
+	 * @param	aValue	*	The value of this property.
+	 */
 	objectFunctions._performSetValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::_performSetValue");
 		//console.log(aValue);
@@ -47,6 +56,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		CssFunctions.setStyleProperty(this._externalObject, this._externalVariableName, aValue, this._unit, this._priority);
 	};
 	
+	/**
+	 * Gets the value of this property. Internal value is used if the external object is not set yet.
+	 *
+	 * @return	*	The value of the property.
+	 */
 	objectFunctions._performGetValue = function() {
 		
 		if(this._externalObject === null) {
@@ -68,6 +82,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		return cssValue;
 	};
 	
+	/**
+	 * Sets up the storage, without knowing the external object.
+	 *
+	 * @param	aVariableName	String	The name of the variable to store the value in.
+	 * @param	aUnit			String	The css unit for the value.
+	 * @param	aDefaultValue	*		The default value to set the property to if it doesn't already have a value. (Optional)
+	 *
+	 * @return	self
+	 */
 	objectFunctions.setup = function(aVariableName, aUnit, aDefaultValue) {
 		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::setup");
 		//console.log(aVariableName, aUnit, aDefaultValue);
@@ -76,11 +99,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		this._unit = aUnit;
 		
 		var startValue = this.getValue();
-		if(startValue !== null) {
+		if(VariableAliases.isSet(startValue)) {
 			this._performSetValue(startValue);
 		}
 		else {
-			if(this.getValue() === null && aDefaultValue !== null) {
+			if(this.getValue() === null && VariableAliases.isSet(aDefaultValue)) {
 				this._performSetValue(aDefaultValue);
 			}
 		}
@@ -90,6 +113,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		return this;
 	};
 	
+	/**
+	 * Sets the external object for this property.
+	 *
+	 * @param	aObject		HTMLElement		The element to set the style property on.
+	 *
+	 * @return	self
+	 */
 	objectFunctions.setExternalObject = function(aObject) {
 		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::setExternalObject");
 		//console.log(aObject);
@@ -112,6 +142,14 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		return this;
 	};
 	
+	/**
+	 * Sets up the storage on the external object.
+	 *
+	 * @param	aObject			*		The object where the variable is stored.
+	 * @param	aVariableName	String	The name of the variable to store the value in.
+	 * @param	aUnit			String	The css unit for the value.
+	 * @param	aDefaultValue	*		The default value to set the property to if it doesn't already have a value. (Optional)
+	 */
 	objectFunctions.setupExternalObject = function(aObject, aVariableName, aUnit, aDefaultValue) {
 		
 		this.setup(aVariableName, aUnit, aDefaultValue);
@@ -120,6 +158,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		return this;
 	};
 	
+	/**
+	 * Removes the external object from this property.
+	 */
 	objectFunctions.removeExternalObject = function() {
 		
 		if(this._externalObject !== null) {
@@ -133,6 +174,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		
 	};
 	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._externalObject = null;
@@ -142,25 +186,30 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName, aUnit) {
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aExternalObject		*				The object where the variable is stored.
+	 * @param	aVariableName		String			The name of the variable to store the value in.
+	 * @param	aUnit				String			The css unit for the value.
+	 *
+	 * @return	ExternalCssVariableProperty		The newly created object.
+	 */
+	staticFunctions.create = function(aExternalObject, aVariableName, aUnit) {
 		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
-		if(aObjectInput !== null) {
-			aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
-			newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
-		}
 		newExternalCssVariableProperty.setupExternalObject(aExternalObject, aVariableName, aUnit);
 		return newExternalCssVariableProperty;
 	};
 	
-	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
-		var newExternalCssVariableProperty = (new ExternalCssVariableProperty()).init();
-		if(aObjectInput !== null) {
-			aObjectInput._linkRegistration_addObjectProperty(newExternalCssVariableProperty);
-			newExternalCssVariableProperty._linkRegistration_setObjectInputConnection(aObjectInput);
-		}
-		if(aValue !== null && aValue !== undefined) {
-			newExternalCssVariableProperty.setValue(aValue);
-		}
+	/**
+	 * Creates a new object of this class, without setting the external object.
+	 *
+	 * @param	aValue	*	The value for the new property. (Optional)
+	 *
+	 * @return	ExternalCssVariableProperty		The newly created object.
+	 */
+	staticFunctions.createWithoutExternalObject = function(aValue) {
+		var newExternalCssVariableProperty = ClassReference._createWithInputValue(ClassReference, aValue);
 		return newExternalCssVariableProperty;
 	};
 	

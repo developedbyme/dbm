@@ -45,7 +45,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.audio.Playi
 		this._mixerChannel = aMixerChannel;
 		this.addDestroyableObject(this._mixerChannel);
 		
-		this._outputVolume = this.addProperty("outputVolume", ExternalVariableProperty.create(this._objectProperty, this._element, "volume"));
+		this._outputVolume = this.addProperty("outputVolume", ExternalVariableProperty.create(this._element, "volume"));
 		this._outputVolume.setValue(0);
 		this._outputVolume.connectInput(this._mixerChannel.getProperty("output"));
 		this._outputVolume.startUpdating();

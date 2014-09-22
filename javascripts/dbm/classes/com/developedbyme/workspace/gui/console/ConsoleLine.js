@@ -65,7 +65,7 @@ dbm.registerClass("com.developedbyme.workspace.gui.console.ConsoleLine", "com.de
 		
 		newConsoleLine.setElement(aElement);
 		newConsoleLine.setParent(aConsole);
-		newConsoleLine.setPropertyInput("console", aConsole.getObjectProperty());
+		newConsoleLine.setPropertyInput("console", aConsole);
 		
 		return newConsoleLine;
 	};

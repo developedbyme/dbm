@@ -122,10 +122,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 				aReturnArray.push(currentConnection);
 			}
 		}
-		
-		if(this._objectInputConnection !== null && !this._objectInputConnection.isOutput() && this._objectInputConnection.getStatus() === FlowStatusTypes.NEEDS_UPDATE) {
-			aReturnArray.push(this._objectInputConnection);
-		}
 	};
 	
 	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
@@ -138,10 +134,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 			if(currentConnection !== null) {
 				aReturnArray.push(currentConnection);
 			}
-		}
-		
-		if(this._objectInputConnection !== null && !this._objectInputConnection.isOutput()) {
-			aReturnArray.push(this._objectInputConnection);
 		}
 	};
 	
@@ -165,14 +157,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 		this.superCall();
 	};
 	
-	staticFunctions.create = function(aObjectInput) {
+	staticFunctions.create = function() {
 		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::create");
 		//console.log(aObjectInput);
 		var newAnyChangeMultipleInputProperty = (new AnyChangeMultipleInputProperty()).init();
-		if(aObjectInput !== null) {
-			aObjectInput._linkRegistration_addObjectProperty(newAnyChangeMultipleInputProperty);
-			newAnyChangeMultipleInputProperty._linkRegistration_setObjectInputConnection(aObjectInput);
-		}
 		return newAnyChangeMultipleInputProperty;
 	};
 	

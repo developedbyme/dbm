@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 		this._display = this.createGhostProperty("display");
 		this._iconDisplay = this.createGhostProperty("iconDisplay");
 		
-		this._title = this.addProperty("title", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._title = this.addProperty("title", ExternalVariableProperty.createWithoutExternalObject(null));
 		this._icon = null;
 		
 		this.createUpdateFunction("position", this._updateFlowPosition, [this._x, this._y], [this._position]);
@@ -255,7 +255,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Wi
 	};
 	
 	objectFunctions.useIcon = function() {
-		this._icon = this.addProperty("icon", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._icon = this.addProperty("icon", ExternalVariableProperty.createWithoutExternalObject(null));
 		this.createUpdateFunction("icon", this._updateIconFlow, [this._icon], [this._iconDisplay]);
 		
 		if(this._documentReady.getValue()) {

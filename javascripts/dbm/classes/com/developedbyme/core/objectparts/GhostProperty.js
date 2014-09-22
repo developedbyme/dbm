@@ -85,16 +85,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.devel
 	/**
 	 * Creates a new object of this class.
 	 *
-	 * @param	aObjectInput	ObjectProperty	The object property for this property. (Optional)
-	 *
 	 * @return	GhostProperty	The newly created object.
 	 */
-	staticFunctions.create = function(aObjectInput) {
+	staticFunctions.create = function() {
 		var newGhostProperty = ClassReference._createAndInitClass(ClassReference);
-		if(aObjectInput !== null) {
-			aObjectInput._linkRegistration_addObjectProperty(newGhostProperty);
-			newGhostProperty._linkRegistration_setObjectInputConnection(aObjectInput);
-		}
 		return newGhostProperty;
 	};
 });

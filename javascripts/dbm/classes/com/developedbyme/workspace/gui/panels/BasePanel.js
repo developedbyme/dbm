@@ -19,7 +19,7 @@ dbm.registerClass("com.developedbyme.workspace.gui.panels.BasePanel", "com.devel
 		
 		this._inputArea = this.createProperty("inputArea").setAlwaysUpdateFlow();
 		this._updateFunctions.getObject("display").addInputConnection(this._inputArea);
-		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
 		this._updateFunctions.getObject("display").addInputConnection(this._graphicsUpdate);
 		
 		return this;

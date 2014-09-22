@@ -32,9 +32,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		this._nativeItem = null;
 		this._animationProperties = NamedArray.create(false);
 		
-		this._width = this.addProperty("width", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._height = this.addProperty("height", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
-		this._blendingMode = this.addProperty("blendingMode", ExternalVariableProperty.createWithoutExternalObject(this._objectProperty, null));
+		this._width = this.addProperty("width", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._height = this.addProperty("height", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._blendingMode = this.addProperty("blendingMode", ExternalVariableProperty.createWithoutExternalObject(null));
 		
 		return this;
 	};

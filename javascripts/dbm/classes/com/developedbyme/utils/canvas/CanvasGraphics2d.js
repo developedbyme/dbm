@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 		this._miterLimit = this.createProperty("miterLimit", 10);
 		this._strokeStyle = this.createProperty("strokeStyle", null);
 		
-		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
 		this._graphicsUpdate.connectInput(this._fillStyle);
 		this._graphicsUpdate.connectInput(this._lineWidth);
 		this._graphicsUpdate.connectInput(this._lineCap);

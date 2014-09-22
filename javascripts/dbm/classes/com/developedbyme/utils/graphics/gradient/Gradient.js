@@ -30,7 +30,7 @@ dbm.registerClass("com.developedbyme.utils.graphics.gradient.Gradient", "com.dev
 		
 		this.superCall();
 		
-		this._colorStopChange = this.addProperty("colorStopChange", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._colorStopChange = this.addProperty("colorStopChange", AnyChangeMultipleInputProperty.create());
 		this._colorStops = ArrayHolder.create(true);
 		this.addDestroyableObject(this._colorStops);
 		
@@ -74,6 +74,7 @@ dbm.registerClass("com.developedbyme.utils.graphics.gradient.Gradient", "com.dev
 	objectFunctions.addColorStop = function(aColorStop) {
 		
 		this._colorStops.array.push(aColorStop);
+		//METODO: fix this since getObjectProperty() doesn't exist anymore
 		this._colorStopChange.connectInput(aColorStop.getObjectProperty());
 		aColorStop.getObjectProperty().setAsDirty();
 		

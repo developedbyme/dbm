@@ -43,7 +43,7 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.SharedPropert
 		
 		var encoder = this._namedEncoders.getObject(BinaryCommandPaths.FLOW_UPDATE_PROPERTY);
 		encoder.setDataTypeForIndex(aIndex, aDataType);
-		var newProperty = SharedProperty.create(this._objectProperty, aValue, this, encoder, aIndex);
+		var newProperty = SharedProperty.create(aValue, this, encoder, aIndex);
 		this.addProperty(aName, newProperty);
 		this._sharedProperties.push(newProperty);
 		

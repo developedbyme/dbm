@@ -20,7 +20,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.3d.drawcommands.BaseRenderPart
 		
 		this.superCall();
 		
-		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create(this._objectProperty));
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
 		
 		return this;
 	};

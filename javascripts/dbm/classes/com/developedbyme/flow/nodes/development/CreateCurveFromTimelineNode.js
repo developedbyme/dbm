@@ -57,12 +57,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.development.CreateCurveFromTimel
 	staticFunctions.create = function(aTimeline, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset) {
 		//console.log("com.developedbyme.flow.nodes.development.CreateCurveFromTimelineNode::create");
 		var newNode = (new ClassReference()).init();
-		if(aTimeline instanceof Timeline) {
-			newNode.setPropertyInputWithoutNull("timeline", aTimeline.getObjectProperty());
-		}
-		else {
-			newNode.setPropertyInputWithoutNull("timeline", aTimeline);
-		}
+		newNode.setPropertyInputWithoutNull("timeline", aTimeline);
 		
 		newNode.setPropertyInputWithoutNull("timelineChange", newNode.getProperty("timeline").getValue().getProperty("partChange"));
 		
