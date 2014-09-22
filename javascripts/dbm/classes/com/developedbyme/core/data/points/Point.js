@@ -92,7 +92,7 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 	staticFunctions.create = function(aX, aY, aZ, aW) {
 		//console.log("com.developedbyme.core.data.points.Point::create (static)");
 		//console.log(aX, aY, aZ, aW);
-		var newPoint = (new Point()).init();
+		var newPoint = ClassReference._createAndInitClass(ClassReference);
 		newPoint.x = VariableAliases.valueWithDefault(aX, 0);
 		newPoint.y = VariableAliases.valueWithDefault(aY, 0);
 		newPoint.z = VariableAliases.valueWithDefault(aZ, 0);

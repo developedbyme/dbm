@@ -40,7 +40,12 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Requ
 	};
 	
 	objectFunctions._requestNextFrame = function() {
-		this._updateRequestFunction.call(this._updateRequestObject, this._callbackFunction);
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.RequestAnimationFrameTimer::_requestNextFrame");
+		//console.log(this._isStarted);
+		if(this._isStarted) {
+			//METODO: can this be better, so it doesn't have to check every loop?
+			this._updateRequestFunction.call(this._updateRequestObject, this._callbackFunction);
+		}
 	};
 	
 	objectFunctions._performStart = function() {
@@ -48,6 +53,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Requ
 	};
 	
 	objectFunctions._performStop = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.RequestAnimationFrameTimer::_performStop");
 		//METODO
 	};
 	

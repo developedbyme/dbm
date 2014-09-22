@@ -67,7 +67,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.UpdateMana
 	};
 	
 	objectFunctions.stop = function() {
-		if(!this._updateTimer.getStatus()) {
+		if(this._updateTimer.getStatus()) {
 			this._updateTimer.stop();
 		}
 	};

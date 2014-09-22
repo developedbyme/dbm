@@ -21,8 +21,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.objectpoolmanager.setup.
 	 * Sets up the default pooled objects.
 	 */
 	staticFunctions.setup = function() {
-		var mainTimer;
 		
 		dbm.singletons.dbmObjectPoolManager.setupObjectPoolIfClassExists("com.developedbyme.core.extendedevent.EventDataObject");
+		dbm.singletons.dbmObjectPoolManager.setupObjectPoolIfClassExists("com.developedbyme.core.data.points.Point");
 	};
 });

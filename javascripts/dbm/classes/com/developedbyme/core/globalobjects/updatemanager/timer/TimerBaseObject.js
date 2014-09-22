@@ -58,6 +58,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.Time
 	};
 	
 	objectFunctions.stop = function() {
+		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::stop");
 		if(this._isStarted) {
 			this._isStarted = false;
 			this._performStop();

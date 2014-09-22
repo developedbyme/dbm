@@ -2,16 +2,32 @@
 dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator", "com.developedbyme.core.globalobjects.curveevaluator.evaluators.EvaluatorBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
+	//Self reference
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	//Error report
 	
+	//Dependencies
+	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var PositionedArrayHolder = dbm.importClass("com.developedbyme.utils.data.PositionedArrayHolder");
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::_init")
 		
 		this.superCall();
 		
 		this._halfSplitPoints = new Array();
+		
+		this._tempPoint1 = Point.create();
+		this._tempPoint2 = Point.create();
 		
 		return this;
 	};
@@ -23,6 +39,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 			return true;
 		}
 		return false;
+	};
+	
+	objectFunctions._ensureReturnLength = function(aReturnArrayPositioning, aLength) {
+		var pointsToAdd = aReturnArrayPositioning.position+aLength-aReturnArrayPositioning.numberOfItems;
+		if(pointsToAdd > 0) {
+			var currentArray = aReturnArrayPositioning.array;
+			for(var i = 0; i < pointsToAdd; i++) {
+				currentArray.push(Point.create());
+			}
+			aReturnArrayPositioning.numberOfItems += pointsToAdd;
+		}
 	};
 	
 	objectFunctions._ensureSlipPointLength = function(aLength) {
@@ -51,6 +78,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 			var newSplitArray = this._halfSplitPoints[segmentLength-i-1];
 			var newSplitArrayLength = newSplitArray.length;
 			for(var j = 0; j < newSplitArrayLength; j++) {
+				//METODO: store points in local variables
+				//METODO: simplify math
 				newSplitArray[j].x = 0.5*currentSplitPointArray[j].x+0.5*currentSplitPointArray[j+1].x;
 				newSplitArray[j].y = 0.5*currentSplitPointArray[j].y+0.5*currentSplitPointArray[j+1].y;
 				newSplitArray[j].z = 0.5*currentSplitPointArray[j].z+0.5*currentSplitPointArray[j+1].z;
@@ -69,9 +98,11 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 		}
 	};
 	
-	objectFunctions.getPartOfSegment = function(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArray, aStartLoop, aIsCompact) {
+	objectFunctions.getPartOfSegment = function(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArrayPositioning, aStartLoop, aIsCompact) {
 		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::getPartOfSegment");
-		//console.log(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArray, aStartLoop, aIsCompact);
+		//console.log(aSegmentPoints, aStartParameter, aEndParameter, aExactness, aReturnArrayPositioning, aStartLoop, aIsCompact);
+		
+		var aReturnArray = aReturnArrayPositioning.array;
 		
 		if(aStartParameter === aEndParameter) {
 			return;
@@ -80,49 +111,59 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 		if(aStartParameter <= aExactness && aEndParameter >= 1-aExactness) {
 			var currentArray = aSegmentPoints;
 			var currentArrayLength = currentArray.length;
+			
+			var addLength = currentArrayLength-aStartLoop;
+			this._ensureReturnLength(aReturnArrayPositioning, addLength);
+			var startReturnPosition = aReturnArrayPositioning.position-aStartLoop;
+			
 			for(var i = aStartLoop; i < currentArrayLength; i++) {
 				var currentPoint = currentArray[i];
-				var newPoint = Point.create(currentPoint.x, currentPoint.y); //METODO: this needs to work in 3d
-				aReturnArray.push(newPoint);
+				aReturnArray[startReturnPosition+i].setValues(currentPoint.x, currentPoint.y, currentPoint.z);
 			}
+			
+			aReturnArrayPositioning.position += addLength;
 		}
 		else if(aSegmentPoints.length === 4) {
-			var newPoint4 = Point.create(0, 0);
+			
+			var addLength = 4-aStartLoop;
+			this._ensureReturnLength(aReturnArrayPositioning, addLength);
+			var startPosition = aReturnArrayPositioning.position;
+			
+			var newPoint2 = aReturnArray[startPosition+addLength-3];
+			var newPoint3 = aReturnArray[startPosition+addLength-2];
+			var newPoint4 = aReturnArray[startPosition+addLength-1];
 			dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(aSegmentPoints, aEndParameter, newPoint4);
 		
-			var newPoint1 = Point.create(0, 0);
+			var newPoint1 = this._tempPoint1;
 			dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(aSegmentPoints, aStartParameter, newPoint1);
 			
 			var scale = aEndParameter-aStartParameter;
 			
-			var tangent = Point.create(0, 0);
+			var tangent = this._tempPoint2;
 			
 			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aStartParameter, tangent); //METODO: this needs to work in 3d
-			var newPoint2 = Point.create(newPoint1.x+(((scale)/3)*tangent.x), newPoint1.y+(((scale)/3)*tangent.y), newPoint1.z+(((scale)/3)*tangent.z));
+			newPoint2.setValues(newPoint1.x+(((scale)/3)*tangent.x), newPoint1.y+(((scale)/3)*tangent.y), newPoint1.z+(((scale)/3)*tangent.z));
 			
 			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aEndParameter, tangent); //METODO: this needs to work in 3d
-			var newPoint3 = Point.create(newPoint4.x-(((scale)/3)*tangent.x), newPoint4.y-(((scale)/3)*tangent.y), newPoint4.z-(((scale)/3)*tangent.z));
+			newPoint3.setValuesnewPoint3.setValues(newPoint4.x-(((scale)/3)*tangent.x), newPoint4.y-(((scale)/3)*tangent.y), newPoint4.z-(((scale)/3)*tangent.z));
 			
 			if(!aStartLoop) {
 				aReturnArray.push(newPoint1);
+				Point.copyPointValues3d(newPoint1, aReturnArray[startPosition]);
 			}
-			else {
-				newPoint1.destroy();
-			}
-			aReturnArray.push(newPoint2);
-			aReturnArray.push(newPoint3);
-			aReturnArray.push(newPoint4);
+			
+			aReturnArrayPositioning.position += addLength;
 		}
 		else {
 			var firstHalfArray = new Array(aSegmentPoints.length);
 			var lastHalfArray = new Array(aSegmentPoints.length);
 			this._getHalfsOfSegment(aSegmentPoints, firstHalfArray, lastHalfArray);
 			if(aStartParameter < 0.5) {
-				this.getPartOfSegment(firstHalfArray, Math.max(0, Math.min(1, 2*aStartParameter)), Math.max(0, Math.min(1, 2*aEndParameter)), 2*aExactness, aReturnArray, aStartLoop, aIsCompact);
+				this.getPartOfSegment(firstHalfArray, Math.max(0, Math.min(1, 2*aStartParameter)), Math.max(0, Math.min(1, 2*aEndParameter)), 2*aExactness, aReturnArrayPositioning, aStartLoop, aIsCompact);
 				aStartLoop = aIsCompact;
 			}
 			if(aEndParameter > 0.5) {
-				this.getPartOfSegment(lastHalfArray, Math.max(0, Math.min(1, 2*(aStartParameter-0.5))), Math.max(0, Math.min(1, 2*(aEndParameter-0.5))), 2*aExactness, aReturnArray, aStartLoop, aIsCompact);
+				this.getPartOfSegment(lastHalfArray, Math.max(0, Math.min(1, 2*(aStartParameter-0.5))), Math.max(0, Math.min(1, 2*(aEndParameter-0.5))), 2*aExactness, aReturnArrayPositioning, aStartLoop, aIsCompact);
 			}
 		}
 	};
@@ -133,6 +174,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 		
 		var isCompact = aReturnCurve.isCompact() ? 1 : 0;
 		
+		var returnArrayPositioning = PositionedArrayHolder.createFromArray(aReturnCurve.pointsArray, false);
+		
 		var segmentStart = Math.floor(aStartParameter);
 		var segmentEnd = Math.floor(aEndParameter);
 		if((segmentEnd === aEndParameter) && (segmentStart !== segmentEnd)) {
@@ -140,18 +183,21 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 		}
 		if(segmentStart === segmentEnd) {
 			aCurve._getSegmentArray(segmentStart, segmentPointsArray);
-			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, aEndParameter-segmentEnd, aExactness, aReturnCurve.pointsArray, 0, isCompact);
+			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, aEndParameter-segmentEnd, aExactness, returnArrayPositioning, 0, isCompact);
 		}
 		else {
 			//console.log(segmentStart, segmentEnd);
 			aCurve._getSegmentArray(segmentStart, segmentPointsArray);
-			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, 1, aExactness, aReturnCurve.pointsArray, 0, isCompact);
+			this.getPartOfSegment(segmentPointsArray, aStartParameter-segmentStart, 1, aExactness, returnArrayPositioning, 0, isCompact);
 			for(var i = segmentStart; ++i < segmentEnd;) {
 				aCurve._getSegmentArray(i, segmentPointsArray);
-				this.getPartOfSegment(segmentPointsArray, 0, 1, aExactness, aReturnCurve.pointsArray, isCompact, isCompact);
+				this.getPartOfSegment(segmentPointsArray, 0, 1, aExactness, returnArrayPositioning, isCompact, isCompact);
 			}
 			aCurve._getSegmentArray(segmentEnd, segmentPointsArray);
-			this.getPartOfSegment(segmentPointsArray, 0, aEndParameter-segmentEnd, aExactness, aReturnCurve.pointsArray, isCompact, isCompact);
+			this.getPartOfSegment(segmentPointsArray, 0, aEndParameter-segmentEnd, aExactness, returnArrayPositioning, isCompact, isCompact);
 		}
+		
+		//METODO: cut end of curve
+		returnArrayPositioning.destroy();
 	};
 });
