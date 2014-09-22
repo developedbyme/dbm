@@ -21,6 +21,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 	var GradientEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder");
 	var TreeStructureEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.treestructure.TreeStructureEncoder");
 	var TreeStructureItemEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.treestructure.TreeStructureItemEncoder");
+	var PropertiesHolderEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.flow.PropertiesHolderEncoder");
 	
 	//Utils
 	
@@ -53,6 +54,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 		
 		var interpolationTimelinePartEncoder = InterpolationTimelinePartEncoder.create();
 		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart", interpolationTimelinePartEncoder);
+		
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.flow.PropertiesHolder", PropertiesHolderEncoder.create());
 		
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.complex.BlendCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "startValue", "endValue"]);
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "value"]);

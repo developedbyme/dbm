@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.Defaul
 	var ColorStop = dbm.importClass("com.developedbyme.utils.graphics.gradient.ColorStop");
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");
+	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	
 	//Utils
 	

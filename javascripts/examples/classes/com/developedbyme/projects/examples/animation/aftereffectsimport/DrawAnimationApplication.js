@@ -208,6 +208,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	
 	objectFunctions.setupLayer = function(aLayer, aAnimationData, aPlaybackNode, aFullDuration) {
 		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::setupLayer");
+		//console.log(aLayer, aAnimationData, aPlaybackNode, aFullDuration);
 		
 		var timelines = aAnimationData.data;
 		
@@ -258,6 +259,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				graphicsLayer.lineTo(layerWidth, 0);
 			}
 		}
+		else if(footageType === "none") {
+			//MENOTE: do nothing
+		}
 		else {
 			console.log("Using default color");
 			graphicsLayer.setFillStyle("rgba(0, 0, 0, 0.1)");
@@ -286,7 +290,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				
 				var maskCurveDrawer = CurveDrawer2d.create(null);
 				
-				dbm.singletons.dbmAnimationManager.setupTimelineConnectionWithComplexValue(timelines.getObject(currentMaskPath + "/maskPath"), aPlaybackNode.getProperty("outputTime"), maskCurveDrawer.getProperty("curve"));
+				this._linkComplexDataToProperty(timelines.getProperty(currentMaskPath + "/maskPath"), aPlaybackNode.getProperty("outputTime"), maskCurveDrawer.getProperty("curve"));
+				console.log(maskCurveDrawer);
+				
 				var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
 				maskCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
 				
@@ -294,25 +300,25 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			}
 		}
 		
-		if(timelines.select("effects/stroke/path")) {
+		if(timelines.hasProperty("effects/stroke/path")) {
 			
 			var strokeLayer = contentLayer.getChildByPath("effects/stroke");
 			
 			var strokeCurveDrawer = CurveDrawer2d.create(null);
 			
-			var maskIndexTimeline = timelines.currentSelectedItem;
+			var maskIndexTimeline = timelines.getProperty("effects/stroke/path");
 			//METODO: can this switch?
-			var currentMaskData = masks[maskIndexTimeline.getValueAt(0)-1];
+			var currentMaskData = masks[maskIndexTimeline.getValue()-1];
 			var currentMaskPath = currentMaskData.getObject("path");
 			
-			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject(currentMaskPath + "/maskPath"), aPlaybackNode.getProperty("outputTime"), strokeCurveDrawer.getProperty("curve"));
+			this._linkComplexDataToProperty(timelines.getProperty(currentMaskPath + "/maskPath"), aPlaybackNode.getProperty("outputTime"), strokeCurveDrawer.getProperty("curve"));
 			var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
 			
 			var startMultiplierNode = MultiplicationNode.create(0, maxParameterNode.getProperty("outputParameter"));
 			var endMultiplierNode = MultiplicationNode.create(1, maxParameterNode.getProperty("outputParameter"));
 			
-			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("effects/stroke/start"), aPlaybackNode.getProperty("outputTime"), startMultiplierNode.getProperty("inputValue1"));
-			dbm.singletons.dbmAnimationManager.setupTimelineConnection(timelines.getObject("effects/stroke/end"), aPlaybackNode.getProperty("outputTime"), endMultiplierNode.getProperty("inputValue1"));
+			this._linkDataToProperty(timelines.getProperty(aPrefix + "effects/stroke/start"), aPlaybackNode.getProperty("outputTime"), startMultiplierNode.getProperty("inputValue1"));
+			this._linkDataToProperty(timelines.getProperty(aPrefix + "effects/stroke/end"), aPlaybackNode.getProperty("outputTime"), endMultiplierNode.getProperty("inputValue1"));
 			
 			strokeCurveDrawer.getProperty("startParameter").connectInput(startMultiplierNode.getProperty("outputValue"));
 			strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));
@@ -326,49 +332,47 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	};
 	
 	objectFunctions.applyTransformToLayerWithOrientation = function(aLayer, aTimelines, aPrefix, aTimeProperty) {
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/position/x"), aTimeProperty, aLayer.getProperty("x"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/position/y"), aTimeProperty, aLayer.getProperty("y"));
 		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/x"), aTimeProperty, aLayer.getProperty("scaleX"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/y"), aTimeProperty, aLayer.getProperty("scaleY"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/position/x"), aTimeProperty, aLayer.getProperty("x"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/position/y"), aTimeProperty, aLayer.getProperty("y"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/scale/x"), aTimeProperty, aLayer.getProperty("scaleX"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/scale/y"), aTimeProperty, aLayer.getProperty("scaleY"));
 		
-		if(aTimelines.select(aPrefix + "transform/rotation") || aTimelines.select(aPrefix + "transform/zRotation")) {
-			
-			var orientationRotateAdditionNode = AdditionNode.create(0, 0);
-			aLayer.getProperty("rotate").connectInput(orientationRotateAdditionNode.getProperty("outputValue"));
-			
-			dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.currentSelectedItem, aTimeProperty, orientationRotateAdditionNode.getProperty("inputValue1"));
-			dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/orientation/z"), aTimeProperty, orientationRotateAdditionNode.getProperty("inputValue2"));
-		}
+		var rotationProperty = (aTimelines.hasProperty(aPrefix + "transform/rotation")) ? aTimelines.getProperty(aPrefix + "transform/rotation") : aTimelines.getProperty(aPrefix + "transform/zRotation");
+		
+		var orientationRotateAdditionNode = AdditionNode.create(0, 0);
+		aLayer.getProperty("rotate").connectInput(orientationRotateAdditionNode.getProperty("outputValue"));
+		
+		this._linkDataToProperty(rotationProperty, aTimeProperty, orientationRotateAdditionNode.getProperty("inputValue1"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/orientation/z"), aTimeProperty, orientationRotateAdditionNode.getProperty("inputValue2"));
 		
 		CanvasLayer2d.addPivotToLayer(aLayer);
 		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/anchorPoint/x"), aTimeProperty, aLayer.getProperty("pivotX"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/anchorPoint/y"), aTimeProperty, aLayer.getProperty("pivotY"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/anchorPoint/x"), aTimeProperty, aLayer.getProperty("pivotX"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/anchorPoint/y"), aTimeProperty, aLayer.getProperty("pivotY"));
 		
 	};
 	
 	objectFunctions.applyTransformToLayer = function(aLayer, aTimelines, aPrefix, aTimeProperty) {
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/position/x"), aTimeProperty, aLayer.getProperty("x"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/position/y"), aTimeProperty, aLayer.getProperty("y"));
 		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/x"), aTimeProperty, aLayer.getProperty("scaleX"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/scale/y"), aTimeProperty, aLayer.getProperty("scaleY"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/position/x"), aTimeProperty, aLayer.getProperty("x"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/position/y"), aTimeProperty, aLayer.getProperty("y"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/scale/x"), aTimeProperty, aLayer.getProperty("scaleX"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/scale/y"), aTimeProperty, aLayer.getProperty("scaleY"));
 		
-		if(aTimelines.select(aPrefix + "transform/rotation") || aTimelines.select(aPrefix + "transform/zRotation")) {
-			dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.currentSelectedItem, aTimeProperty, aLayer.getProperty("rotate"));
-		}
+		var rotationProperty = (aTimelines.hasProperty(aPrefix + "transform/rotation")) ? aTimelines.getProperty(aPrefix + "transform/rotation") : aTimelines.getProperty(aPrefix + "transform/zRotation");
+		this._linkDataToProperty(rotationProperty, aTimeProperty, aTimeProperty, aLayer.getProperty("rotate"));
 		
 		CanvasLayer2d.addPivotToLayer(aLayer);
 		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/anchorPoint/x"), aTimeProperty, aLayer.getProperty("pivotX"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/anchorPoint/y"), aTimeProperty, aLayer.getProperty("pivotY"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/anchorPoint/x"), aTimeProperty, aLayer.getProperty("pivotX"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/anchorPoint/y"), aTimeProperty, aLayer.getProperty("pivotY"));
 		
 	};
 	
 	objectFunctions.applyAlphaToLayer = function(aLayer, aTimelines, aPrefix, aTimeProperty) {
 		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "transform/opacity"), aTimeProperty, aLayer.getProperty("alpha"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/opacity"), aTimeProperty, aLayer.getProperty("alpha"));
 		
 	};
 	
@@ -396,7 +400,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					break;
 				case "shape":
 					var currentCurveDrawer = CurveDrawer2d.create(null);
-					dbm.singletons.dbmAnimationManager.setupTimelineConnectionWithComplexValue(aTimelines.getObject(currentPathPrefix + "/path"), aPlaybackNode.getProperty("outputTime"), currentCurveDrawer.getProperty("curve"));
+					this._linkComplexDataToProperty(aTimelines.getProperty(currentPathPrefix + "/path"), aPlaybackNode.getProperty("outputTime"), currentCurveDrawer.getProperty("curve"));
+					
 					
 					var maxParameterNode = GetMaxParameterOnCurveNode.create(currentCurveDrawer.getProperty("curve"));
 					currentCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
@@ -411,9 +416,10 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					currentCurveCreator.getProperty("radius").connectInput(radiusMultiplierNode.getProperty("outputValue"));
 					currentCurveCreator.getProperty("radius").addDestroyableObject(radiusMultiplierNode);
 					
-					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/position/x"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("x"));
-					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/position/y"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("y"));
-					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/size/x"), aPlaybackNode.getProperty("outputTime"), radiusMultiplierNode.getProperty("inputValue1"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/position/x"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("x"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/position/y"), aPlaybackNode.getProperty("outputTime"), currentCurveCreator.getProperty("y"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/size/x"), aPlaybackNode.getProperty("outputTime"), radiusMultiplierNode.getProperty("inputValue1"));
+					
 					
 					var maxParameterNode = GetMaxParameterOnCurveNode.create(currentCurveCreator.getProperty("outputCurve"));
 					currentCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
@@ -423,10 +429,10 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				case "stroke":
 					this.applyColor(currentGraphics.getProperty("strokeStyle"), aTimelines, currentPathPrefix, aPlaybackNode.getProperty("outputTime"));
 					
-					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/strokeWidth"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineWidth"));
-					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/lineCap"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineCap"));
-					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/lineJoin"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineJoin"));
-					dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(currentPathPrefix + "/miterLimit"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("miterLimit"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/strokeWidth"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineWidth"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/lineCap"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineCap"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/lineJoin"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("lineJoin"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/miterLimit"), aPlaybackNode.getProperty("outputTime"), currentGraphics.getProperty("miterLimit"));
 					
 					break;
 				case "fill":
@@ -450,15 +456,36 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		colorCreatorNode.getProperty("alpha").connectInput(opacityMultiplierNode.getProperty("outputValue"));
 		
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/color/r"), aTimeProperty, colorCreatorNode.getProperty("red"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/color/g"), aTimeProperty, colorCreatorNode.getProperty("green"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/color/b"), aTimeProperty, colorCreatorNode.getProperty("blue"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/color/a"), aTimeProperty, opacityMultiplierNode.getProperty("inputValue1"));
-		dbm.singletons.dbmAnimationManager.setupTimelineConnection(aTimelines.getObject(aPrefix + "/opacity"), aTimeProperty, opacityMultiplierNode.getProperty("inputValue2"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "/color/r"), aTimeProperty, colorCreatorNode.getProperty("red"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "/color/g"), aTimeProperty, colorCreatorNode.getProperty("green"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "/color/b"), aTimeProperty, colorCreatorNode.getProperty("blue"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "/color/a"), aTimeProperty, opacityMultiplierNode.getProperty("inputValue1"));
+		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "/opacity"), aTimeProperty, opacityMultiplierNode.getProperty("inputValue2"));
 		
 		aOutputProperty.addDestroyableObject(colorCreatorNode);
 		aOutputProperty.addDestroyableObject(cssStringNode);
 		aOutputProperty.addDestroyableObject(colorCreatorNode);
+	};
+	
+	objectFunctions._linkDataToProperty = function(aDataProperty, aTimeProperty, aOutputProperty) {
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_linkDataToPropert");
+		//console.log(aDataProperty, aTimeProperty, aOutputProperty);
+		
+		if(aDataProperty.hasAnimationController()) {
+			dbm.singletons.dbmAnimationManager.setupTimelineConnection(aDataProperty.getAnimationController(), aTimeProperty, aDataProperty);
+		}
+		aOutputProperty.connectInput(aDataProperty);
+	};
+	
+	objectFunctions._linkComplexDataToProperty = function(aDataProperty, aTimeProperty, aOutputProperty) {
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_linkDataToPropert");
+		//console.log(aDataProperty, aTimeProperty, aOutputProperty);
+		
+		if(aDataProperty.hasAnimationController()) {
+			dbm.singletons.dbmAnimationManager.setupTimelineConnectionWithComplexValue(aDataProperty.getAnimationController(), aTimeProperty, aDataProperty);
+		}
+		aDataProperty.setAlwaysUpdateFlow(true);
+		aOutputProperty.connectInput(aDataProperty);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

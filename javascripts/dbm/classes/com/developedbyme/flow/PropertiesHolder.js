@@ -31,6 +31,15 @@ dbm.registerClass("com.developedbyme.flow.PropertiesHolder", "com.developedbyme.
 	};
 	
 	/**
+	 * Gets the names of all the properties.
+	 *
+	 * @return	Array<String>	The array of names.
+	 */
+	objectFunctions.getPropertyNames = function() {
+		return this._properties.getNamesArray();
+	};
+	
+	/**
 	 * Creates a new object of this class.
 	 *
 	 * @param	aProperties		Object	An associative array with properties to add to this holder.

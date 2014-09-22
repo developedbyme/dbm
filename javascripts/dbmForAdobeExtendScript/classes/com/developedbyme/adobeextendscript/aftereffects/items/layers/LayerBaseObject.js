@@ -159,8 +159,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 					}
 				}
 				
-				
-				this.getPropertiesForLayer(currentProperty, holderPath + "/", aReturnArray, aReturnMaskArray, newShape);
+				ClassReference.getPropertiesForLayer(currentProperty, holderPath + "/", aReturnArray, aReturnMaskArray, newShape);
 			}
 			else {
 				//console.log(aPrefix + currentName);

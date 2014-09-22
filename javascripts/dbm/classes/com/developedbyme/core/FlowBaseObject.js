@@ -131,6 +131,19 @@ dbm.registerClass("com.developedbyme.core.FlowBaseObject", "com.developedbyme.co
 	};
 	
 	/**
+	 * Checks if a property exists.
+	 *
+	 * @param	aName	String	The name of the property.
+	 *
+	 * @return	Boolean	True if property exist.
+	 */
+	objectFunctions.hasProperty = function(aName) {
+		//console.log("com.developedbyme.core.FlowBaseObject::hasProperty");
+		//console.log(this, aName);
+		return (this._properties !== null && this._properties.select(aName));
+	};
+	
+	/**
 	 * Gets an update function on this object.
 	 *
 	 * @param	aName	String	The name of the update function to get.

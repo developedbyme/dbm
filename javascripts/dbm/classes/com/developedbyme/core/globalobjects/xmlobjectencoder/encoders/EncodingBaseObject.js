@@ -108,7 +108,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 			if(currentProperty !== null) {
 				var newNode = this._encodeProperty(currentProperty, aNode);
 				newNode.name = currentPropertyName;
-				newNode.parentApplyType = "setPropertyInput";
 			}
 			else {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_encodeProperties", "Property " + currentPropertyName + " does not exist on " + aValue + ".");
@@ -140,8 +139,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoder
 		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
 		//console.log(aProperty, aParentNode);
 		
-		if(aProperty._inputConnection === null && aProperty._inputUpdateFunction === null) {
-			return dbm.singletons.dbmXmlObjectEncoder.encodeValue(aProperty.getValue(), aParentNode);
+		if(aProperty.hasAnimationController()) {
+			var returnNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(aProperty.getAnimationController(), aParentNode);
+			returnNode.parentApplyType = "animatedProperty";
+			//METODO: might not be linked to this
+			return returnNode;
+		}
+		else if(aProperty._inputConnection === null && aProperty._inputUpdateFunction === null) {
+			var returnNode = dbm.singletons.dbmXmlObjectEncoder.encodeValue(aProperty.getValue(), aParentNode);
+			returnNode.parentApplyType = "setPropertyInput";
+			return returnNode;
 		}
 		else {
 			//METODO: link up property

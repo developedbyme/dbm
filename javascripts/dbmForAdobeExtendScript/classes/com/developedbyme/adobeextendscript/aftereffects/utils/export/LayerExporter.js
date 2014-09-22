@@ -21,6 +21,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
 	var ShapeCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.ShapeCompositionLayer");
+	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	
 	//Utils
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
@@ -144,8 +145,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 				
 				MetaDataFunctions.setLayerMetaData(currentLayer, layerMetaData);
 				
-				var timelinesArray = NamedArray.create(false);
+				var timelinesArray = PropertiesHolder.create();
 				layerData.data = timelinesArray;
+				
+				
 				ClassReference.exportLayerProperties(currentLayer, timelinesArray);
 			}
 			else if(currentType === "trackMatte") {
@@ -156,7 +159,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		}
 	};
 	
-	staticFunctions.exportLayerProperties = function(aLayer, aReturnNamedArray) {
+	staticFunctions.exportLayerProperties = function(aLayer, aReturnPropertiesHolder) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter::exportLayerProperties");
 		var currentAnimationProperties = aLayer.getAnimationProperties();
 		var currentArray = currentAnimationProperties.getNamesArray();
@@ -164,7 +167,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentName = currentArray[i];
 			var currentProperty = currentAnimationProperties.getObject(currentName);
-			TimelineGenerator.createTimelinesForProprety(currentProperty, currentName, aReturnNamedArray);
+			TimelineGenerator.createTimelinesForProprety(currentProperty, currentName, aReturnPropertiesHolder);
 		}
 	};
 });

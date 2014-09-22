@@ -201,7 +201,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.DataManager"
 								ownerObject.addObject(nodeName, currentData.data.getProperty("data").getValue());
 								break;
 							case "setPropertyInput":
+								if(!ownerObject.hasProperty(nodeName)) {
+									ownerObject.createProperty(nodeName);
+								}
 								ownerObject.getProperty(nodeName).setValue(currentData.data.getProperty("data").getValue());
+								break;
+							case "animatedProperty":
+								var newProperty = ownerObject.createProperty(nodeName);
+								newProperty.setAnimationController(currentData.data.getProperty("data").getValue());
 								break;
 							case "timeline/applyParts":
 								ownerObject.setParts(currentData.data.getProperty("data").getValue());

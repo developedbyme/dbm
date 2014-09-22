@@ -93,7 +93,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 				parentNode.addChild(currentLayer.getTreeStructureItem());
 			}
 			else {
-				console.log(">>>>>");
 				var contentLayer = this._layers[i+1];
 				
 				//METODO: check that the content layer has the same parent
@@ -106,7 +105,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 				holderTreeStructureItem.addChild(contentLayer.getTreeStructureItem());
 				
 				i++;
-				console.log(">");
 			}
 		}
 	};
