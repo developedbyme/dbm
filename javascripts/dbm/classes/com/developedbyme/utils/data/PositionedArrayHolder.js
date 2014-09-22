@@ -32,6 +32,18 @@ dbm.registerClass("com.developedbyme.utils.data.PositionedArrayHolder", "com.dev
 		return this;
 	}; //End function _init
 	
+	objectFunctions.push = function(aValue) {
+		
+		if(this.position === this.numberOfItems) {
+			this.array.push(aValue);
+			this.numberOfItems++;
+		}
+		else {
+			this.array[this.position] = aValue;
+		}
+		this.position++;
+	};
+	
 	/**
 	 * Creates a new instance of this class.
 	 *

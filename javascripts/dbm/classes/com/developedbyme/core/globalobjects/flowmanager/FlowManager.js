@@ -1,30 +1,42 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Global object for controlling flow through the application.
+ */
 dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager");
 	//"use strict";
 	
+	//Self refernce
 	var FlowManager = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var ActiveArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator");
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
-	
 	var FlowBaseObject = dbm.importClass("com.developedbyme.core.FlowBaseObject");
 	var FlowUpdater = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdater");
+	
+	var PositionedArrayHolder = dbm.importClass("com.developedbyme.utils.data.PositionedArrayHolder");
+	
+	//Utils
 	var FlowUpdateChainCreator = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
 	
+	//Constants
 	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
-	
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-	
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	
 	
 	dbm.setClassAsSingleton("dbmFlowManager");
 	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::_init");
 		
@@ -85,21 +97,24 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		}
 	};
 	
+	objectFunctions._setDependentConnectionsAsDirtyForConnection = function(aConnection, aReturnArray) {
+		if(VariableAliases.isSet(aConnection.setStatus)) {
+			aConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
+		}
+		aConnection.fillWithCleanOutputConnections(aReturnArray);
+	};
+	
 	objectFunctions.setDependentConnectionsAsDirty = function(aConnection) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::setDependentConnectionsAsDirty");
 		
-		var currentArray = ClassReference._createArray();
-		aConnection.fillWithCleanOutputConnections(currentArray);
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentConnection = currentArray[i];
-			if(VariableAliases.isSet(currentConnection.setStatus)) {
-				currentConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
-			}
-			currentConnection.fillWithCleanOutputConnections(currentArray);
-			currentArrayLength = currentArray.length;
+		var positionedArrayHolder = PositionedArrayHolder.create(false);
+		
+		var currentArray = positionedArrayHolder.array;
+		
+		aConnection.fillWithCleanOutputConnections(positionedArrayHolder);
+		for(var i = 0; i < positionedArrayHolder.numberOfItems; i++) {
+			this._setDependentConnectionsAsDirtyForConnection(currentArray[i], positionedArrayHolder);
 		}
-		ClassReference._reuseArray(currentArray);
 	};
 	
 	objectFunctions.setUpdateChainsAsDirty = function(aUpdateChains) {
@@ -132,16 +147,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		GlobalVariables.FLOW_UPDATE_NUMBER++;
 		
-		var currentArray = ClassReference._createArray();
-		currentArray.push(aProperty);
-		for(var i = 0; i < currentArray.length; i++) {
+		var positionedArrayHolder = PositionedArrayHolder.create(false);
+		
+		var currentArray = positionedArrayHolder.array;
+		positionedArrayHolder.push(aProperty);
+		for(var i = 0; i < positionedArrayHolder.numberOfItems; i++) {
 			var currentConnection = currentArray[i];
-			if(currentConnection === null) {
-				currentArray.splice(i, 1);
-				i--;
-				continue;
-			}
-			currentConnection.fillWithDirtyInputConnections(currentArray);
+			//if(currentConnection === null) {
+			//	currentArray.splice(i, 1);
+			//	i--;
+			//	continue;
+			//}
+			currentConnection.fillWithDirtyInputConnections(positionedArrayHolder);
 			if(i > 10000) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperty", "Number of properties to update has reached max.");
 				break;

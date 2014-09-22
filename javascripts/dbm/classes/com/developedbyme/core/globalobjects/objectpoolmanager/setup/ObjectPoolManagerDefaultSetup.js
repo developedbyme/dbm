@@ -24,5 +24,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.objectpoolmanager.setup.
 		
 		dbm.singletons.dbmObjectPoolManager.setupObjectPoolIfClassExists("com.developedbyme.core.extendedevent.EventDataObject");
 		dbm.singletons.dbmObjectPoolManager.setupObjectPoolIfClassExists("com.developedbyme.core.data.points.Point");
+		dbm.singletons.dbmObjectPoolManager.setupObjectPoolIfClassExists("com.developedbyme.utils.data.iterator.IterationData");
+		
 	};
 });
