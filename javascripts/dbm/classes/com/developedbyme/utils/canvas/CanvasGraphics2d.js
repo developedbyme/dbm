@@ -107,10 +107,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 			currentArray[0].getStartPoint(tempPoint);
 			aContext.moveTo(tempPoint.x, tempPoint.y);
 			aContext.beginPath();
-			aContext.lineWidth = this._lineWidth.getValue();
-			aContext.lineCap = this._lineCap.getValue();
-			aContext.lineJoin = this._lineJoin.getValue();
-			aContext.miterLimit = this._miterLimit.getValue();
+			aContext.lineWidth = this._lineWidth.getValueWithoutFlow();
+			aContext.lineCap = this._lineCap.getValueWithoutFlow();
+			aContext.lineJoin = this._lineJoin.getValueWithoutFlow();
+			aContext.miterLimit = this._miterLimit.getValueWithoutFlow();
 			for(var i = 0; i < currentArrayLength; i++) {
 				var currentCurve = currentArray[i];
 				currentCurve.getStartPoint(tempPoint);
@@ -126,12 +126,12 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 				aContext.closePath();
 			}
 			if(this._strokeOverFill) {
-				this._fillPath(aContext, this._fillStyle.getValue());
-				this._strokePath(aContext, this._strokeStyle.getValue());
+				this._fillPath(aContext, this._fillStyle.getValueWithoutFlow());
+				this._strokePath(aContext, this._strokeStyle.getValueWithoutFlow());
 			}
 			else {
-				this._strokePath(aContext, this._strokeStyle.getValue());
-				this._fillPath(aContext, this._fillStyle.getValue());
+				this._strokePath(aContext, this._strokeStyle.getValueWithoutFlow());
+				this._fillPath(aContext, this._fillStyle.getValueWithoutFlow());
 			}
 		}
 		

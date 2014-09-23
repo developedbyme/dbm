@@ -47,11 +47,11 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.dev
 	 */
 	objectFunctions._drawGraphicsAndChildren = function(aContext, aNumberOfLinksToResolve) {
 		
-		var renderCanvas = this._renderCanvas.getValue();
-		var renderWidth = this._renderWidth.getValue();
-		var renderHeight = this._renderHeight.getValue();
-		var renderOffsetX = this._renderOffsetX.getValue();
-		var renderOffsetY = this._renderOffsetY.getValue();
+		var renderCanvas = this._renderCanvas.getValueWithoutFlow();
+		var renderWidth = this._renderWidth.getValueWithoutFlow();
+		var renderHeight = this._renderHeight.getValueWithoutFlow();
+		var renderOffsetX = this._renderOffsetX.getValueWithoutFlow();
+		var renderOffsetY = this._renderOffsetY.getValueWithoutFlow();
 		
 		var renderContext = renderCanvas.getContext("2d");
 		

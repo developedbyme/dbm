@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 	objectFunctions.draw = function(aContext) {
 		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::draw");
 		
-		var drawCurve = this._drawCurve.getValue();
+		var drawCurve = this._drawCurve.getValueWithoutFlow();
 		
 		switch(drawCurve.getCurveDegree()) {
 			case 1:
@@ -67,21 +67,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "draw", "Can't draw bezier curve of degree " + degree + ".");
 				break;
 		}
-		
-		/*
-		var startParameter = this._startParameter.getValue();
-		var endParameter = this._endParameter.getValue();
-		
-		//console.log(this, curve, startParameter, endParameter, 0.01, aContext, aContext.strokeStyle);
-		ClassReference.drawCurve(curve, startParameter, endParameter, 0.01, aContext);
-		*/
 	};
 	
 	objectFunctions.getStartPoint = function(aReturnPoint) {
 		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::getStartPoint");
-		var curve = this._curve.getValue();
-		var startParameter = this._startParameter.getValue();
-		var endParameter = this._endParameter.getValue();
+		var curve = this._curve.getValueWithoutFlow();
+		var startParameter = this._startParameter.getValueWithoutFlow();
+		var endParameter = this._endParameter.getValueWithoutFlow();
 		curve.getPointOnCurve(Math.min(startParameter, endParameter), aReturnPoint);
 	};
 	
@@ -90,49 +82,6 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 		newCurveDrawer2d.setPropertyInput("curve", aCurve);
 		return newCurveDrawer2d;
 	};
-	
-	/*
-	staticFunctions.drawCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawCurve (static)");
-		if(aCurve.isSetType("bezierCurve")) {
-			ClassReference.drawBezierCurve(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
-		}
-		else {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawCurve", "Curve is not of correct type.");
-		}
-	};
-	
-	staticFunctions.drawBezierCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawBezierCurve (static)");
-		//console.log(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
-		
-		if(aStartParameter > aEndParameter) {
-			var tempParameter = aEndParameter;
-			aEndParameter = aStartParameter;
-			aStartParameter = tempParameter;
-		}
-		
-		var tempCurve = aCurve.createSameTypeOfCurve();
-		dbm.singletons.dbmCurveEvaluator.getPartOfCurve(aCurve, aStartParameter, aEndParameter, aExactness, tempCurve);
-		
-		switch(tempCurve.getCurveDegree()) {
-			case 1:
-				ClassReference._drawPoints1stDegree(aContext, tempCurve.pointsArray);
-				break;
-			case 2:
-				ClassReference._drawPointsCompact2ndDegree(aContext, tempCurve.pointsArray);
-				break;
-			case 3:
-				ClassReference._drawPointsCompact3rdDegree(aContext, tempCurve.pointsArray);
-				break;
-			default:
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "drawBezierCurve", "Can't draw bezier curve of degree " + degree + ".");
-				break;
-		}
-		
-		tempCurve.destroy();
-	};
-	*/
 	
 	staticFunctions._drawPoints1stDegree = function(aContext, aPointsArray) {
 		var currentArray = aPointsArray;

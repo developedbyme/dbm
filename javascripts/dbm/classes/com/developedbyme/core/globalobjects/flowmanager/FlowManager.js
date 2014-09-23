@@ -97,13 +97,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		}
 	};
 	
-	objectFunctions._setDependentConnectionsAsDirtyForConnection = function(aConnection, aReturnArray) {
-		if(VariableAliases.isSet(aConnection.setStatus)) {
-			aConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
-		}
-		aConnection.fillWithCleanOutputConnections(aReturnArray);
-	};
-	
 	objectFunctions.setDependentConnectionsAsDirty = function(aConnection) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::setDependentConnectionsAsDirty");
 		
@@ -111,10 +104,22 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		var currentArray = positionedArrayHolder.array;
 		
-		aConnection.fillWithCleanOutputConnections(positionedArrayHolder);
+		aConnection.propagateDirtyStatus(positionedArrayHolder);
+		//if(VariableAliases.isSet(aConnection.setStatus)) {
+		//	aConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
+		//}
 		for(var i = 0; i < positionedArrayHolder.numberOfItems; i++) {
-			this._setDependentConnectionsAsDirtyForConnection(currentArray[i], positionedArrayHolder);
+			currentArray[i].propagateDirtyStatus(positionedArrayHolder);
 		}
+		
+		/*
+		if(positionedArrayHolder.numberOfItems > 0) {
+			console.log(positionedArrayHolder.numberOfItems);
+			if(positionedArrayHolder.numberOfItems > 500) {
+				dbm.singletons.dbmUpdateManager.stop();
+			}
+		}
+		*/
 	};
 	
 	objectFunctions.setUpdateChainsAsDirty = function(aUpdateChains) {
@@ -138,7 +143,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.updateProperty = function(aProperty) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperty");
-		//console.log(aProperty.toString());
+		//console.log(aProperty);
 		
 		if(aProperty.isDestroyed()) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperty", "Property " + aProperty.toString() + " is destroyed and can't be updated.");
@@ -152,46 +157,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		var currentArray = positionedArrayHolder.array;
 		positionedArrayHolder.push(aProperty);
 		for(var i = 0; i < positionedArrayHolder.numberOfItems; i++) {
-			var currentConnection = currentArray[i];
-			//if(currentConnection === null) {
-			//	currentArray.splice(i, 1);
-			//	i--;
-			//	continue;
-			//}
-			currentConnection.fillWithDirtyInputConnections(positionedArrayHolder);
+			 currentArray[i].fillWithDirtyInputConnections(positionedArrayHolder);
 			if(i > 10000) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperty", "Number of properties to update has reached max.");
 				break;
 			}
 		}
 		
-		var currentArrayLength = currentArray.length;
-		
-		//var numberOfSkipped = 0;
-		//var nodeNames = new Array();
-		for(var i = currentArray.length-1; i >= 0; i--) {
+		for(var i = positionedArrayHolder.numberOfItems-1; i >= 0; i--) {
 			var currentConnection = currentArray[i];
 			if(currentConnection.status === FlowStatusTypes.UPDATED) {
-				//nodeNames.push(currentConnection.name + " (skip)");
-				//numberOfSkipped++;
 				continue;
 			}
-			//try {
-				currentConnection.updateFlow();
-			//}
-			//catch(theError) {
-			//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "updateProperty", "Un error occured while updating " + currentConnection + " started from " + aProperty + ".");
-			//	ErrorManager.getInstance().reportError(this, "updateProperty", theError);
-			//}
-			//nodeNames.push(currentConnection.name);
+			
+			currentConnection.updateFlow();
 		}
 		
 		GlobalVariables.FLOW_UPDATE_NUMBER++;
-		
-		//console.log(nodeNames.join(", "));
-		
-		//console.log(currentArray.length, numberOfSkipped);
-		//console.log("+++", aProperty);
 	};
 	
 	objectFunctions.connectProperties = function(aOutputProperty, aInputProperty) {

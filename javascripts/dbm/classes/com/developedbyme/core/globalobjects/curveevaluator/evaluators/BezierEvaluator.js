@@ -118,7 +118,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 			
 			for(var i = aStartLoop; i < currentArrayLength; i++) {
 				var currentPoint = currentArray[i];
-				aReturnArray[startReturnPosition+i].setValues(currentPoint.x, currentPoint.y, currentPoint.z);
+				Point.setValues3d(aReturnArray[startReturnPosition+i], currentPoint.x, currentPoint.y, currentPoint.z);
 			}
 			
 			aReturnArrayPositioning.position += addLength;
@@ -142,10 +142,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 			var tangent = this._tempPoint2;
 			
 			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aStartParameter, tangent); //METODO: this needs to work in 3d
-			newPoint2.setValues(newPoint1.x+(((scale)/3)*tangent.x), newPoint1.y+(((scale)/3)*tangent.y), newPoint1.z+(((scale)/3)*tangent.z));
+			Point.setValues3d(newPoint2, newPoint1.x+(((scale)/3)*tangent.x), newPoint1.y+(((scale)/3)*tangent.y), newPoint1.z+(((scale)/3)*tangent.z));
 			
 			dbm.singletons.dbmCurveEvaluator.getTangentOnBezierSegment2d(aSegmentPoints, aEndParameter, tangent); //METODO: this needs to work in 3d
-			newPoint3.setValuesnewPoint3.setValues(newPoint4.x-(((scale)/3)*tangent.x), newPoint4.y-(((scale)/3)*tangent.y), newPoint4.z-(((scale)/3)*tangent.z));
+			Point.setValues3d(newPoint3, newPoint4.x-(((scale)/3)*tangent.x), newPoint4.y-(((scale)/3)*tangent.y), newPoint4.z-(((scale)/3)*tangent.z));
 			
 			if(!aStartLoop) {
 				aReturnArray.push(newPoint1);

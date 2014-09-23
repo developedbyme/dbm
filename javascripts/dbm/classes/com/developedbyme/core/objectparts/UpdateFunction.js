@@ -224,6 +224,23 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	};
 	
 	/**
+	 * Propagates a dirty message spreading through the flow. The difference from fillWithCleanOutputConnections is that the status is updated as the connections are collected.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with connections.
+	 */
+	objectFunctions.propagateDirtyStatus = function(aReturnArray) {
+		var currentArray = this._outputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.status === FlowStatusTypes.UPDATED) {
+				currentObject.setStatus(FlowStatusTypes.NEEDS_UPDATE);
+				aReturnArray.push(currentObject);
+			}
+		}
+	};
+	
+	/**
 	 * Fills an array with all the dirty (status: needs update) input properties and update functions.
 	 *
 	 * @param	aReturnArray	Array	The array that gets filled with connections.

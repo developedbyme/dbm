@@ -123,12 +123,12 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		console.log(">>>>", layerTreeStructure);
 		
-		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, playbackNode, duration);
+		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, playbackNode, duration, mainCanvasController);
 		
 		mainCanvasController.getProperty("display").startUpdating();
 	};
 	
-	objectFunctions.setupLayerTreeStructure = function(aTreeStructureItem, aLayer, aPlaybackNode, aDuration) {
+	objectFunctions.setupLayerTreeStructure = function(aTreeStructureItem, aLayer, aPlaybackNode, aDuration, aCanvasController) {
 		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::setupLayerTreeStructure");
 		//console.log(aTreeStructureItem, aLayer);
 		
@@ -149,7 +149,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				var childLayer = currentLayer.getChildByPath("children");
 				var contentLayer = currentLayer.getChildByPath("content");
 				this.setupLayer(currentLayer, currentLayerData, aPlaybackNode, aDuration);
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aPlaybackNode, aDuration);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aPlaybackNode, aDuration, aCanvasController);
 			}
 			else if(currentType === "trackMatte") {
 				
@@ -165,8 +165,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				newTreeStrcutureItem.data = currentLayer;
 				currentLayer._linkRegistration_setTreeStructureItem(newTreeStrcutureItem);
 				aLayer.getTreeStructureItem().addChild(newTreeStrcutureItem);
+				aCanvasController.getProperty("graphicsUpdate").connectInput(currentLayer.getProperty("graphicsUpdate"));
 				
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aPlaybackNode, aDuration);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aPlaybackNode, aDuration, aCanvasController);
 				
 				
 				var renderedChildren = newTreeStrcutureItem.getChildren();
@@ -199,7 +200,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			else {
 				//METODO: error message
 				var currentLayer = aLayer.getChildByPath(layerName);
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aPlaybackNode, aDuration);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aPlaybackNode, aDuration, aCanvasController);
 			}
 			
 			

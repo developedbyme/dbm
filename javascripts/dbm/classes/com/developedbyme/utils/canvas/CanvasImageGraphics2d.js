@@ -75,16 +75,16 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d", "com.d
 		//console.log("com.developedbyme.utils.canvas.CanvasImageGraphics2d::draw");
 		//console.log(this._image.getValue(), this._sourceX.getValue(), this._sourceY.getValue(), this._sourceWidth.getValue(), this._sourceHeight.getValue(), this._destinationX.getValue(), this._destinationY.getValue(), this._destinationWidth.getValue(), this._destinationHeight.getValue());
 		
-		var image = this._image.getValue();
+		var image = this._image.getValueWithoutFlow();
 		
 		if(image !== null) {
-			var sourceX = Math.max(0, this._sourceX.getValue());
-			var sourceY = Math.max(0, this._sourceY.getValue());
-			var sourceWidth = Math.min(image.width, this._sourceWidth.getValue());
-			var sourceHeight = Math.min(image.height, this._sourceHeight.getValue());
+			var sourceX = Math.max(0, this._sourceX.getValueWithoutFlow());
+			var sourceY = Math.max(0, this._sourceY.getValueWithoutFlow());
+			var sourceWidth = Math.min(image.width, this._sourceWidth.getValueWithoutFlow());
+			var sourceHeight = Math.min(image.height, this._sourceHeight.getValueWithoutFlow());
 			
 			if(sourceWidth !== 0 && sourceHeight !== 0) {
-				aContext.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, this._destinationX.getValue(), this._destinationY.getValue(), this._destinationWidth.getValue(), this._destinationHeight.getValue());
+				aContext.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, this._destinationX.getValueWithoutFlow(), this._destinationY.getValueWithoutFlow(), this._destinationWidth.getValueWithoutFlow(), this._destinationHeight.getValueWithoutFlow());
 			}
 		}
 	};

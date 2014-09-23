@@ -93,10 +93,7 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 		//console.log("com.developedbyme.core.data.points.Point::create (static)");
 		//console.log(aX, aY, aZ, aW);
 		var newPoint = ClassReference._createAndInitClass(ClassReference);
-		newPoint.x = VariableAliases.valueWithDefault(aX, 0);
-		newPoint.y = VariableAliases.valueWithDefault(aY, 0);
-		newPoint.z = VariableAliases.valueWithDefault(aZ, 0);
-		newPoint.w = VariableAliases.valueWithDefault(aW, 1);
+		newPoint.setValues(aX, aY, aZ, aW);
 		
 		return newPoint;
 	};
@@ -133,5 +130,11 @@ dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme
 				aArray.push(ClassReference.create());
 			}
 		}
+	};
+	
+	staticFunctions.setValues3d = function(aPoint, aX, aY, aZ) {
+		aPoint.x = aX;
+		aPoint.y = aY;
+		aPoint.z = aZ;
 	};
 });

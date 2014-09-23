@@ -45,6 +45,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		var rootLayer = CanvasLayer2d.create();
 		rootNode.data = rootLayer;
 		rootLayer._linkRegistration_setTreeStructureItem(rootNode);
+		this._graphicsUpdate.connectInput(rootLayer.getProperty("graphicsUpdate"));
 		
 		this.createUpdateFunction("default", this._updateFlow, [this._graphicsUpdate, this._canvas], [this._display]);
 		
@@ -128,9 +129,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		return gradient;
 	};
 	
-	objectFunctions.draw = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
-		var canvas = this._canvas.getValue();
+	objectFunctions._draw = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_draw");
+		
+		var canvas = this._canvas.getValueWithoutFlow();
 		var currentContext = canvas.getContext("2d");
 		currentContext.setTransform(1, 0, 0, 1, 0, 0);
 		var currentLayer = this.getRootLayer();
@@ -139,12 +141,16 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 			currentContext.clearRect(0, 0, canvas.width, canvas.height);
 		}
 		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
-		//console.log("//com.developedbyme.utils.canvas.CanvasController2d::draw");
+	};
+	
+	objectFunctions.draw = function() {
+		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
+		this._display.update();
 	};
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_updateFlow");
-		this.draw();
+		this._draw();
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

@@ -105,23 +105,24 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	
 	objectFunctions.draw = function(aContext, aNumberOfLinksToResolve) {
 		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::draw");
-		//console.log(aNumberOfLinksToResolve);
+		//console.log(this);
+		//console.log(aContext, aNumberOfLinksToResolve);
 		
-		if(!this._render.getValue()) {
+		if(!this._render.getValueWithoutFlow()) {
 			return;
 		}
 		
 		aContext.save();
 		
-		var alpha = this._alpha.getValue();
-		var compositionOperation = this._compositionOperation.getValue();
+		var alpha = this._alpha.getValueWithoutFlow();
+		var compositionOperation = this._compositionOperation.getValueWithoutFlow();
 		
 		aContext.globalAlpha = aContext.globalAlpha*alpha;
 		if(compositionOperation !== null) {
 			aContext.globalCompositeOperation = compositionOperation;
 		}
 		
-		var transformationMatrix = this._transformationMatrix.getValue();
+		var transformationMatrix = this._transformationMatrix.getValueWithoutFlow();
 		
 		if((transformationMatrix.getValue(0, 0) === 0 && transformationMatrix.getValue(1, 0) === 0) || (transformationMatrix.getValue(0, 1) === 0 && transformationMatrix.getValue(1, 1) === 0)) {
 			aContext.restore();
@@ -129,7 +130,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		}
 		
 		aContext.transform(transformationMatrix.getValue(0, 0), transformationMatrix.getValue(0, 1), transformationMatrix.getValue(1, 0), transformationMatrix.getValue(1, 1), transformationMatrix.getValue(2, 0), transformationMatrix.getValue(2, 1));
-		if(this._mask !== null && this._useMask.getValue()) {
+		if(this._mask !== null && this._useMask.getValueWithoutFlow()) {
 			this._mask.draw(aContext);
 		}
 		

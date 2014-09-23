@@ -379,7 +379,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			var newFlowUpdateNumber = this._inputConnection.getFlowUpdateNumber();
 			//console.log(newFlowUpdateNumber, this._flowUpdateNumber);
 			if(newFlowUpdateNumber > this._flowUpdateNumber) {
-				var newValue = this._inputConnection.getValue();
+				var newValue = this._inputConnection.getValueWithoutFlow();
 				//console.log(newValue, this._value, newValue !== this._value);
 				if(this._alwaysUpdateFlow || this._mustUpdate || (newValue !== this._performGetValue())) {
 					this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
@@ -530,6 +530,26 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
 			if(currentObject.status === undefined || currentObject.status === FlowStatusTypes.UPDATED) {
+				aReturnArray.push(currentObject);
+			}
+		}
+	};
+	
+	/**
+	 * Propagates a dirty message spreading through the flow. The difference from fillWithCleanOutputConnections is that the status is updated as the connections are collected.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with connections.
+	 */
+	objectFunctions.propagateDirtyStatus = function(aReturnArray) {
+		var currentArray = this._outputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.status === undefined) {
+				aReturnArray.push(currentObject);
+			}
+			else if(currentObject.status === FlowStatusTypes.UPDATED) {
+				currentObject.setStatus(FlowStatusTypes.NEEDS_UPDATE);
 				aReturnArray.push(currentObject);
 			}
 		}
