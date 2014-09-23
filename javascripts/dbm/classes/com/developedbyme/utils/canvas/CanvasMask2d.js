@@ -17,6 +17,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasMask2d", "com.developedb
 		
 		this.superCall();
 		
+		this._tempPoint = Point.create();
+		
 		return this;
 	};
 	
@@ -27,7 +29,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasMask2d", "com.developedb
 		var currentArray = this._curves;
 		var currentArrayLength = currentArray.length;
 		if(currentArrayLength > 0) {
-			var tempPoint = Point.create();
+			var tempPoint = this._tempPoint;
 			currentArray[0].getStartPoint(tempPoint);
 			aContext.moveTo(tempPoint.x, tempPoint.y);
 			aContext.beginPath();

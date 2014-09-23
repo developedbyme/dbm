@@ -44,18 +44,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 	 */
 	objectFunctions.updateFlow = function() {
 		
-		var inputLength = this._inputConnections.length;
-		if(this._cachedInputArray.length !== inputLength) {
-			this._cachedInputArray = new Array(inputLength);
-		}
+		this.status = FlowStatusTypes.UPDATED;
 		
 		var newFlowUpdateNumber = this._getInputFlowUpdateParameters(this._cachedInputArray);
 		var globalUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-		if(newFlowUpdateNumber > this._flowUpdateNumber) {
-			this._flowUpdateNumber = globalUpdateNumber;
+		if(newFlowUpdateNumber > this.flowUpdateNumber) {
+			this.flowUpdateNumber = globalUpdateNumber;
 			var returnValue = this._updateFunction.apply(this, this._cachedInputArray);
 			if(returnValue !== undefined) {
-				this._outputConnections[0].setValueWithFlow(returnValue, this._flowUpdateNumber);
+				this._outputConnections[0].setValueWithFlow(returnValue, globalUpdateNumber);
 			}
 		}
 		if(!this._isDestroyed) {
@@ -73,7 +70,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 		var currentArray = this._outputConnections;
 		var currentArrayLength = Math.min(argumentsArray.length, currentArray.length);
 		for(var i = 0; i < currentArrayLength; i++) {
-			currentArray[i].setValueWithFlow(argumentsArray[i], this._flowUpdateNumber);
+			currentArray[i].setValueWithFlow(argumentsArray[i], this.flowUpdateNumber);
 		}
 	};
 	
@@ -92,7 +89,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
 			aReturnArray[i] = currentObject.getValueWithoutFlow();
-			returnNumber = Math.max(returnNumber, currentObject.getFlowUpdateNumber());
+			returnNumber = Math.max(returnNumber, currentObject.flowUpdateNumber);
 		}
 		return returnNumber;
 	};
@@ -120,6 +117,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 	staticFunctions.create = function(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray) {
 		var newUpdateFunctionWithArguments = ClassReference._createAndInitClass(ClassReference);
 		newUpdateFunctionWithArguments.setup(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray);
+		newUpdateFunctionWithArguments._cachedInputArray = new Array(aInputsArray.length); //METODO: do not access private variable
 		return newUpdateFunctionWithArguments;
 	};
 	

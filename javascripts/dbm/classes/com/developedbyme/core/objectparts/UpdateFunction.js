@@ -2,7 +2,7 @@
 /**
  * Function taht has a number of input properties to generates values for another set of properties.
  */
-dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.developedbyme.core.objectparts.FlowStatusBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.UpdateFunction");
 	//"use strict";
 	
@@ -34,8 +34,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		this.superCall();
 		
 		this.name = null;
-		
-		this._flowUpdateNumber = 0;
 		
 		this._updateFunction = null;
 		this._ownerObject = null;
@@ -132,7 +130,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	objectFunctions._linkRegistration_addInputConnection = function(aProperty) {
 		this._inputConnections.push(aProperty);
 		
-		this._flowUpdateNumber = 0;
+		this.flowUpdateNumber = 0;
 		dbm.singletons.dbmFlowManager.setDependentConnectionsAsDirty(this);
 	};
 	
@@ -170,10 +168,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	 * Interface function for updating the flow. Performs the update function.
 	 */
 	objectFunctions.updateFlow = function() {
+		
+		this.status = FlowStatusTypes.UPDATED;
+		
 		var newFlowUpdateNumber = this._getInputFlowUpdateNumber();
 		var globalUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-		if(newFlowUpdateNumber > this._flowUpdateNumber) {
-			this._flowUpdateNumber = globalUpdateNumber;
+		if(newFlowUpdateNumber > this.flowUpdateNumber) {
+			this.flowUpdateNumber = globalUpdateNumber;
 			this._updateFunction.call(this._ownerObject, globalUpdateNumber);
 		}
 		if(!this._isDestroyed) {
@@ -234,8 +235,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
 			if(currentObject.status === FlowStatusTypes.UPDATED) {
-				currentObject.setStatus(FlowStatusTypes.NEEDS_UPDATE);
-				aReturnArray.push(currentObject);
+				currentObject.status = FlowStatusTypes.NEEDS_UPDATE;
+				//aReturnArray.push(currentObject);
+				currentObject.propagateDirtyStatus(aReturnArray);
 			}
 		}
 	};
@@ -283,7 +285,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			returnNumber = Math.max(returnNumber, currentObject.getFlowUpdateNumber());
+			returnNumber = Math.max(returnNumber, currentObject.flowUpdateNumber);
 		}
 		return returnNumber;
 	};
@@ -308,7 +310,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 			}
 		}
 		
-		this._flowUpdateNumber = 0;
+		this.flowUpdateNumber = 0;
 		dbm.singletons.dbmFlowManager.setDependentConnectionsAsDirty(this);
 	};
 	

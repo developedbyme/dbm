@@ -123,6 +123,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		console.log(">>>>", layerTreeStructure);
 		
+		console.log(playbackNode);
+		
 		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, playbackNode, duration, mainCanvasController);
 		
 		mainCanvasController.getProperty("display").startUpdating();

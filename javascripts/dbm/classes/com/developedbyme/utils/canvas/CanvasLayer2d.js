@@ -117,7 +117,9 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		var alpha = this._alpha.getValueWithoutFlow();
 		var compositionOperation = this._compositionOperation.getValueWithoutFlow();
 		
-		aContext.globalAlpha = aContext.globalAlpha*alpha;
+		if(alpha !== 1) {
+			aContext.globalAlpha = aContext.globalAlpha*alpha;
+		}
 		if(compositionOperation !== null) {
 			aContext.globalCompositeOperation = compositionOperation;
 		}

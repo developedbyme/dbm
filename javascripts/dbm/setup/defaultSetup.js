@@ -43,6 +43,7 @@ dbm.runTempFunction(function() {
 	var DefaultAssetRepositoryBrowserSetup = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.setup.DefaultAssetRepositoryBrowserSetup");
 	var XmlObjectEncoderDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");
 	var CurveCreatorDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.setup.CurveCreatorDefaultSetup");
+	var ObjectPoolManagerDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.objectpoolmanager.setup.ObjectPoolManagerDefaultSetup");
 	
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
@@ -93,6 +94,7 @@ dbm.runTempFunction(function() {
 		DefaultTemplateCommandsSetup.setup();
 		XmlObjectEncoderDefaultSetup.setup();
 		CurveCreatorDefaultSetup.setup();
+		ObjectPoolManagerDefaultSetup.setup();
 		
 		dbm.xmlNamespaces.dbmData = "http://developedbyme.com/schemas/xml/data/";
 		dbm.xmlNamespaces.dbmTreeStructureAttribute = "http://developedbyme.com/schemas/xml/tree-structure-attribute/";

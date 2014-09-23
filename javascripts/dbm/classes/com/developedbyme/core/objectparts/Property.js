@@ -1,5 +1,5 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedbyme.core.objectparts.FlowStatusBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.objectparts.Property");
 	//"use strict";
 	
@@ -32,8 +32,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		
 		this.name = null;
 		
-		this.status = FlowStatusTypes.UPDATED;
-		this._flowUpdateNumber = 0;
 		this._alwaysUpdateFlow = false;
 		this._canSetValueInAnimation = true;
 		
@@ -44,7 +42,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._animationController = null;
 		
 		this._isUpdating = false;
-		this._mustUpdate = true;
 		
 		this._cachedDependentNodeChains = null;
 		
@@ -87,7 +84,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("com.developedbyme.core.objectparts.Property::externalChangeToValue");
 		if(aValue === this._performGetValue()) return;
 		this._performSetValue(aValue);
-		this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+		this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 		this.setDependentConnectionsAsDirty();
 	};
 	
@@ -104,7 +101,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		if(this._animationController === null) {
 			if(!dbm.singletons.dbmAnimationManager.isRecording()) {
 				this._performSetValue(aValue);
-				this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+				this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 				this.setDependentConnectionsAsDirty();
 				return;
 			}
@@ -211,22 +208,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("com.developedbyme.core.objectparts.Property::setValueWithFlow");
 		//console.log(this.name);
 		//console.log(aValue, this._value);
-		if(this._alwaysUpdateFlow || this._mustUpdate || (aValue !== this._value)) {
+		if(this._alwaysUpdateFlow || (aValue !== this._value)) {
 			this._performSetValue(aValue);
-			this._flowUpdateNumber = aFlowUpdateNumber;
-			this._mustUpdate = false;
+			this.flowUpdateNumber = aFlowUpdateNumber;
 		}
-		this.status = FlowStatusTypes.UPDATED;
-	};
-	
-	/**
-	 * Sets the flow status of this property to updated.
-	 *
-	 * @param	aFlowUpdateNumber	Number	The integer for keeping track of flow updates.
-	 */
-	objectFunctions.setFlowAsUpdated = function(aFlowUpdateNumber) {
-		this._flowUpdateNumber = aFlowUpdateNumber;
-		this._mustUpdate = false;
 		this.status = FlowStatusTypes.UPDATED;
 	};
 	
@@ -263,24 +248,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	/**
-	 * Sets the flow status of this property.
-	 *
-	 * @param	aStatus		FlowStatusTypes		The status for this property.
-	 */
-	objectFunctions.setStatus = function(aStatus) {
-		this.status = aStatus;
-	};
-	
-	/**
-	 * Gets the flow status of this property.
-	 *
-	 * @return	FlowStatusTypes		The status for this property.
-	 */
-	objectFunctions.getStatus = function() {
-		return this.status;
-	};
-	
-	/**
 	 * Sets the property to always update. Objects are tested with a shallow compare, so they will need this setting unless a new object is generated every update.
 	 *
 	 * @param	aUpdate		Boolean		Setting if the property should always update. (Optional, default true)
@@ -291,26 +258,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._alwaysUpdateFlow = !VariableAliases.isFalse(aUpdate);
 		
 		return this;
-	};
-	
-	/**
-	 * Gets the flow update number when this property was last updated.
-	 *
-	 * @return	Number	The interger that keeps track of when the flow was latest updated for this property.
-	 */
-	objectFunctions.getFlowUpdateNumber = function() {
-		//console.log("com.developedbyme.core.objectparts.Property::getFlowUpdateNumber");
-		return this._flowUpdateNumber;
-	};
-	
-	/**
-	 * Internal functionality for changing the flow update number
-	 *
-	 * @param	aFlowUpdateNumber	Number	The interger that keeps track of when the flow was latest updated.
-	 */
-	objectFunctions._internalFunctionality_setFlowUpdateNumber = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.objectparts.Property::_internalFunctionality_setFlowUpdateNumber");
-		this._flowUpdateNumber = aFlowUpdateNumber;
 	};
 	
 	/**
@@ -375,17 +322,14 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("com.developedbyme.core.objectparts.Property::updateFlow");
 		//console.log(this.name);
 		this.status = FlowStatusTypes.UPDATED;
-		if(this._inputConnection !== null) {
-			var newFlowUpdateNumber = this._inputConnection.getFlowUpdateNumber();
-			//console.log(newFlowUpdateNumber, this._flowUpdateNumber);
-			if(newFlowUpdateNumber > this._flowUpdateNumber) {
-				var newValue = this._inputConnection.getValueWithoutFlow();
-				//console.log(newValue, this._value, newValue !== this._value);
-				if(this._alwaysUpdateFlow || this._mustUpdate || (newValue !== this._performGetValue())) {
-					this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-					this._mustUpdate = false;
-					this._performSetValue(newValue);
-				}
+		
+		var inputConnection = this._inputConnection;
+		if(inputConnection !== null && inputConnection.flowUpdateNumber > this.flowUpdateNumber) {
+			var newValue = inputConnection.getValueWithoutFlow();
+			//console.log(newValue, this._value, newValue !== this._value);
+			if(this._alwaysUpdateFlow || (newValue !== this._performGetValue())) {
+				this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+				this._performSetValue(newValue);
 			}
 		}
 	};
@@ -456,7 +400,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.setStatus(FlowStatusTypes.NEEDS_UPDATE);
 		this.setDependentConnectionsAsDirty();
 		
-		this._flowUpdateNumber = 0;
+		this.flowUpdateNumber = 0;
 	};
 	
 	objectFunctions._linkRegistration_addConnectedOutput = function(aOutputConnection) {
@@ -529,7 +473,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.status === undefined || currentObject.status === FlowStatusTypes.UPDATED) {
+			if(currentObject.status === FlowStatusTypes.UPDATED) {
 				aReturnArray.push(currentObject);
 			}
 		}
@@ -541,16 +485,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	 * @param	aReturnArray	Array	The array that gets filled with connections.
 	 */
 	objectFunctions.propagateDirtyStatus = function(aReturnArray) {
+		//console.log("com.developedbyme.core.objectparts.Property::propagateDirtyStatus");
 		var currentArray = this._outputConnections;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentObject = currentArray[i];
-			if(currentObject.status === undefined) {
-				aReturnArray.push(currentObject);
-			}
-			else if(currentObject.status === FlowStatusTypes.UPDATED) {
-				currentObject.setStatus(FlowStatusTypes.NEEDS_UPDATE);
-				aReturnArray.push(currentObject);
+			if(currentObject.status === FlowStatusTypes.UPDATED) {
+				currentObject.status = FlowStatusTypes.NEEDS_UPDATE;
+				//aReturnArray.push(currentObject);
+				currentObject.propagateDirtyStatus(aReturnArray);
 			}
 		}
 	};
@@ -606,7 +549,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("com.developedbyme.core.objectparts.Property::setAsDirty");
 		//console.log(this.name);
 		this.setStatus(FlowStatusTypes.NEEDS_UPDATE);
-		this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+		this.flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
 		this.setDependentConnectionsAsDirty();
 	};
 	

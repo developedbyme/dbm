@@ -75,9 +75,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 			highestFlowUpdateNumber = Math.max(highestFlowUpdateNumber, currentConnection.getFlowUpdateNumber());
 		}
 		
-		if(highestFlowUpdateNumber > this._flowUpdateNumber) {
+		if(highestFlowUpdateNumber > this.flowUpdateNumber) {
 			this._performSetValue(dbm.singletons.dbmFlowManager.getFlowUpdateNumber());
-			this._flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+			this.flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
 		}
 		this.status = FlowStatusTypes.UPDATED;
 	};
@@ -95,7 +95,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 		this.setStatus(FlowStatusTypes.NEEDS_UPDATE);
 		this.setDependentConnectionsAsDirty();
 		
-		this._flowUpdateNumber = 0;
+		this.flowUpdateNumber = 0;
 	};
 	
 	objectFunctions._linkRegistration_setInputUpdateFunction = function(aUpdateFunction) {

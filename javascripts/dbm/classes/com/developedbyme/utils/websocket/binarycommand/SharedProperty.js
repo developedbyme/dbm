@@ -54,7 +54,7 @@ dbm.registerClass("com.developedbyme.utils.websocket.binarycommand.SharedPropert
 	
 	objectFunctions.setValueFromConnection = function(aValue) {
 		this._value = aValue;
-		this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+		this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 		this.setDependentConnectionsAsDirty();
 	};
 	

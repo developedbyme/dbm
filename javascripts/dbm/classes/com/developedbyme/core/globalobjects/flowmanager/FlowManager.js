@@ -99,18 +99,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.setDependentConnectionsAsDirty = function(aConnection) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::setDependentConnectionsAsDirty");
+		//console.log(aConnection);
 		
 		var positionedArrayHolder = PositionedArrayHolder.create(false);
 		
 		var currentArray = positionedArrayHolder.array;
 		
 		aConnection.propagateDirtyStatus(positionedArrayHolder);
-		//if(VariableAliases.isSet(aConnection.setStatus)) {
-		//	aConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
+		//for(var i = 0; i < positionedArrayHolder.numberOfItems; i++) {
+		//	currentArray[i].propagateDirtyStatus(positionedArrayHolder);
 		//}
-		for(var i = 0; i < positionedArrayHolder.numberOfItems; i++) {
-			currentArray[i].propagateDirtyStatus(positionedArrayHolder);
-		}
 		
 		/*
 		if(positionedArrayHolder.numberOfItems > 0) {
@@ -120,6 +118,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 			}
 		}
 		*/
+		
+		positionedArrayHolder.destroy();
 	};
 	
 	objectFunctions.setUpdateChainsAsDirty = function(aUpdateChains) {
@@ -134,10 +134,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 			for(var j = 0; j < currentArray2Length; j++) {
 				var currentConnection = currentArray2[j];
 				//console.log(currentConnection);
-				if(VariableAliases.isSet(currentConnection.setStatus)) {
-					currentConnection.setStatus(FlowStatusTypes.NEEDS_UPDATE);
-				}
+				currentConnection.status = FlowStatusTypes.NEEDS_UPDATE;
 			}
+		}
+	};
+	
+	objectFunctions._fillWithDirtyInputFromConnection = function(aConnection, aReturnArray) {
+		aConnection.fillWithDirtyInputConnections(aReturnArray);
+	};
+	
+	objectFunctions._cleanConnection = function(aConnection) {
+		if(aConnection.status !== FlowStatusTypes.UPDATED) {
+			aConnection.updateFlow();
 		}
 	};
 	
@@ -156,24 +164,17 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		var currentArray = positionedArrayHolder.array;
 		positionedArrayHolder.push(aProperty);
-		for(var i = 0; i < positionedArrayHolder.numberOfItems; i++) {
-			 currentArray[i].fillWithDirtyInputConnections(positionedArrayHolder);
-			if(i > 10000) {
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperty", "Number of properties to update has reached max.");
-				break;
-			}
-		}
 		
-		for(var i = positionedArrayHolder.numberOfItems-1; i >= 0; i--) {
-			var currentConnection = currentArray[i];
-			if(currentConnection.status === FlowStatusTypes.UPDATED) {
-				continue;
-			}
-			
-			currentConnection.updateFlow();
+		for(var i = 0; i < positionedArrayHolder.position;) {
+			this._fillWithDirtyInputFromConnection(currentArray[i++], positionedArrayHolder);
+		}
+		for(var i = positionedArrayHolder.position-1; i >= 0;) {
+			this._cleanConnection(currentArray[i--]);
 		}
 		
 		GlobalVariables.FLOW_UPDATE_NUMBER++;
+		
+		positionedArrayHolder.destroy();
 	};
 	
 	objectFunctions.connectProperties = function(aOutputProperty, aInputProperty) {

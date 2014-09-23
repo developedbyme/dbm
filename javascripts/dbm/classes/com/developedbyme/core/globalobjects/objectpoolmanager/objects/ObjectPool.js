@@ -72,7 +72,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.objectpoolmanager.object
 		//console.log("com.developedbyme.core.globalobjects.objectpoolmanager.objects.ObjectPool::createAndInitObject");
 		//console.log(this._numberOfObjects);
 		
-		return this.createObject().init();
+		if(this._numberOfObjects === 0) {
+			var theClass = this._class;
+			return (new theClass()).init();
+		}
+		
+		this._numberOfObjects--;
+		var newObject = this._objects[this._numberOfObjects];
+		this._objects[this._numberOfObjects] = null;
+		return newObject.initWithoutSeal();
 	};
 	
 	objectFunctions.reuseObject = function(aObject) {

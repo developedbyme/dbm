@@ -12,8 +12,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.IterativeUpdateFunction", 
 		
 		this.name = null;
 		
-		this._flowUpdateNumber = 0;
-		
 		this._updateFunction = null;
 		this._ownerObject = null;
 		

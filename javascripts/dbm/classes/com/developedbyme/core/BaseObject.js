@@ -62,6 +62,17 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	};
 	
 	/**
+	 * Public constructor that doesn't seal the object.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.initWithoutSeal = function() {
+		this._init();
+		
+		return this;
+	};
+	
+	/**
 	 * Adds an object that should be destroyed when this object is destroyed.
 	 *
 	 * @param	aObject		BaseObject	The object that should be owned by this object.
