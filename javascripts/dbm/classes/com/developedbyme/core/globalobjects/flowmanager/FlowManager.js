@@ -22,6 +22,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	var FlowUpdater = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdater");
 	
 	var PositionedArrayHolder = dbm.importClass("com.developedbyme.utils.data.PositionedArrayHolder");
+	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
 	
 	//Utils
 	var FlowUpdateChainCreator = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
@@ -42,8 +43,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		this.superCall();
 		
-		this._updatedProperties = (new ActiveArrayIterator()).init();
-		this._updatedProperties.setAddRemoveWhileActive(true, true);
+		this._updateProperty = this.addProperty("update", AnyChangeMultipleInputProperty.create());
 		
 		this._cachedFlowUpdater = null;
 		
@@ -72,10 +72,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		if(this._cachedFlowUpdater === null) {
 			
-			console.log(this._updatedProperties, this._updatedProperties.array);
 			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updatedProperties.array);
 			
-			console.log(updateChains);
 			this._cachedFlowUpdater = FlowUpdater.create(updateChains);
 		}
 		else {
@@ -87,7 +85,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	objectFunctions.recacheUpdatedProperties = function() {
 		if(this._cachedFlowUpdater !== null) {
 			
-			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updatedProperties.array);
+			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updateProperty._inputConnections);
 			
 			this._cachedFlowUpdater.setChains(updateChains);
 		}
@@ -101,25 +99,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::setDependentConnectionsAsDirty");
 		//console.log(aConnection);
 		
-		var positionedArrayHolder = PositionedArrayHolder.create(false);
-		
-		var currentArray = positionedArrayHolder.array;
-		
-		aConnection.propagateDirtyStatus(positionedArrayHolder);
-		//for(var i = 0; i < positionedArrayHolder.numberOfItems; i++) {
-		//	currentArray[i].propagateDirtyStatus(positionedArrayHolder);
-		//}
-		
-		/*
-		if(positionedArrayHolder.numberOfItems > 0) {
-			console.log(positionedArrayHolder.numberOfItems);
-			if(positionedArrayHolder.numberOfItems > 500) {
-				dbm.singletons.dbmUpdateManager.stop();
-			}
-		}
-		*/
-		
-		positionedArrayHolder.destroy();
+		ClassReference.propagateDirtyStatus(aConnection);
 	};
 	
 	objectFunctions.setUpdateChainsAsDirty = function(aUpdateChains) {
@@ -219,57 +199,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
 		
 		if(this._cachedFlowUpdater !== null) {
-			this._performUpdateCachedProperties();
+			GlobalVariables.FLOW_UPDATE_NUMBER++;
+			this._cachedFlowUpdater.update();
+			GlobalVariables.FLOW_UPDATE_NUMBER++;
 		}
 		else {
-			this._performUpdateUncachedProperties();
+			this.updateProperty(this._updateProperty);
 		}
 		
 		//console.log("//com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperties");
-	};
-	
-	objectFunctions._performUpdateCachedProperties = function() {
-		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::_performUpdateCachedProperties");
-		
-		GlobalVariables.FLOW_UPDATE_NUMBER++;
-		
-		this._cachedFlowUpdater.update();
-		
-		GlobalVariables.FLOW_UPDATE_NUMBER++;
-	};
-	
-	objectFunctions._performUpdateUncachedProperties = function() {
-		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::_performUpdateUncachedProperties");
-		
-		var numberOfPropertiesUpdated = 0;
-		var numberOfPropertiesSkipped = 0;
-		
-		var iterationData = this._updatedProperties.createIterationData();
-		for(;iterationData.position < iterationData.length; iterationData.position++) {
-			var currentProperty = iterationData.array[iterationData.position];
-			//console.log(currentProperty, currentProperty.getStatus());
-			if(currentProperty.status !== FlowStatusTypes.UPDATED) {
-				numberOfPropertiesUpdated++;
-				if(currentProperty.isDestroyed()) {
-					ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "_performUpdateUncachedProperties", "Property (" + currentProperty + ") is destroyed, removing.");
-					this._updatedProperties.removeItem(currentProperty);
-					continue;
-				}
-				//try {
-					this.updateProperty(currentProperty);
-				//}
-				//catch(theError) {
-				//	ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_performUpdateUncachedProperties", "Un error occured while updating " + currentProperty +".");
-				//	ErrorManager.getInstance().reportError(this, "_performUpdateUncachedProperties", theError);
-				//}
-			}
-			else {
-				numberOfPropertiesSkipped++;
-			}
-		}
-		this._updatedProperties.stopUsingIterationData(iterationData);
-		
-		//console.log("Updated:", numberOfPropertiesUpdated, "Skipped:", numberOfPropertiesSkipped);
 	};
 	
 	objectFunctions.addUpdatedProperty = function(aProperty) {
@@ -279,14 +217,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NOTICE, this, "addUpdatedProperty", "Property (" + aProperty + ") is already updating.");
 			return;
 		}
-		this._updatedProperties.push(aProperty);
+		this._updateProperty.connectInput(aProperty);
+		//this._updatedProperties.push(aProperty);
 		aProperty._linkRegistration_setAsUpdating(true);
 	};
 	
 	objectFunctions.removeUpdatedProperty = function(aProperty) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::removeUpdatedProperty");
 		//console.log(aProperty.toString());
-		this._updatedProperties.removeItem(aProperty);
+		this._updateProperty.disconnectInput(aProperty);
+		//this._updatedProperties.removeItem(aProperty);
 		aProperty._linkRegistration_setAsUpdating(false);
 	};
 	
@@ -296,5 +236,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		this.superCall();
+	};
+	
+	/**
+	 * Propagates a dirty message spreading through the flow. The difference from fillWithCleanOutputConnections is that the status is updated as the connections are collected.
+	 *
+	 * @param	aConnection		Property|UpdateFunction		The connection to propagate through.
+	 */
+	staticFunctions.propagateDirtyStatus = function(aConnection) {
+		//console.log("com.developedbyme.core.objectparts.Property::propagateDirtyStatus");
+		var currentArray = aConnection._outputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.status === FlowStatusTypes.UPDATED) {
+				currentObject.status = FlowStatusTypes.NEEDS_UPDATE;
+				ClassReference.propagateDirtyStatus(currentObject);
+			}
+		}
 	};
 });

@@ -59,6 +59,10 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.GetPartOfCurveNode", "com
 			aStartParameter = tempParameter;
 		}
 		
+		if(aStartParameter === 0 && aEndParameter >= aCurve.getMaxParameter()) {
+			return aCurve;
+		}
+		
 		dbm.singletons.dbmCurveEvaluator.getPartOfCurve(aCurve, aStartParameter, aEndParameter, aExactness, aCreatedCurve);
 		return aCreatedCurve;
 	};
