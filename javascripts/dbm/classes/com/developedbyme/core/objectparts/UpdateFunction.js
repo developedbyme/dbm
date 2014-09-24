@@ -169,18 +169,12 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	 */
 	objectFunctions.updateFlow = function() {
 		
-		this.status = FlowStatusTypes.UPDATED;
-		
-		var newFlowUpdateNumber = this._getInputFlowUpdateNumber();
 		var globalUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-		if(newFlowUpdateNumber > this.flowUpdateNumber) {
-			this.flowUpdateNumber = globalUpdateNumber;
-			this._updateFunction.call(this._ownerObject, globalUpdateNumber);
-		}
+		//this.flowUpdateNumber = globalUpdateNumber;
+		this._updateFunction.call(this._ownerObject, globalUpdateNumber);
 		if(!this._isDestroyed) {
 			this._cleanGhostPropertyOutput(globalUpdateNumber);
 		}
-		
 	};
 	
 	/**
@@ -193,7 +187,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentProperty = currentArray[i];
-			currentProperty.setValueWithFlow(null, aFlowUpdateNumber);
+			currentProperty.setFlowAsUpdated(aFlowUpdateNumber);
 		}
 	};
 	
@@ -253,23 +247,6 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.deve
 	objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
 		
 		ArrayFunctions.concatToArray(aReturnArray, this._outputConnections);
-	};
-	
-	/**
-	 * Gets the highest flow update number from the input connections.
-	 *
-	 * @return	Number	The interger that keeps track of when the flow was latest updated.
-	 */
-	objectFunctions._getInputFlowUpdateNumber = function() {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::_getInputFlowUpdateNumber");
-		var returnNumber = 0;
-		var currentArray = this._inputConnections;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentObject = currentArray[i];
-			returnNumber = Math.max(returnNumber, currentObject.flowUpdateNumber);
-		}
-		return returnNumber;
 	};
 	
 	/**

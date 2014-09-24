@@ -58,7 +58,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.Transformati
 		theMatrix.setValue(2, 0, this._x.getValueWithoutFlow());
 		theMatrix.setValue(2, 1, this._y.getValueWithoutFlow());
 		
-		this._outputMatrix._internalFunctionality_setFlowUpdateNumber(aFlowUpdateNumber);
+		this._outputMatrix.setFlowAsUpdated(aFlowUpdateNumber);
 	};
 	
 	/**

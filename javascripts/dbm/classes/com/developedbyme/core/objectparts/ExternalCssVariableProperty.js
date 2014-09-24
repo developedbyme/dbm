@@ -61,7 +61,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	 *
 	 * @return	*	The value of the property.
 	 */
-	objectFunctions._performGetValue = function() {
+	objectFunctions.getValueWithoutFlow = function() {
 		
 		if(this._externalObject === null) {
 			return this._value;
@@ -164,7 +164,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariablePropert
 	objectFunctions.removeExternalObject = function() {
 		
 		if(this._externalObject !== null) {
-			this._value = this._performGetValue();
+			this._value = this.getValueWithoutFlow();
 		}
 		else {
 			//METODO: error message

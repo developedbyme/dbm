@@ -12,7 +12,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.GetPartOfCurveNode", "com
 	//Utils
 	
 	//Constants
-	
+	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	/**
 	 * Constructor
@@ -47,6 +47,9 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.GetPartOfCurveNode", "com
 		else if(curve.getCurveDegree() !== createdCurve.getCurveDegree()) {
 			createdCurve.destroy();
 			this._createdCurve.setValueWithFlow(curve.createSameTypeOfCurve(), aFlowUpdateNumber);
+		}
+		else {
+			this._createdCurve.status = FlowStatusTypes.UPDATED;
 		}
 	};
 	

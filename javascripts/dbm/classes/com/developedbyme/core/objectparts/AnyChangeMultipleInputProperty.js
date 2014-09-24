@@ -21,6 +21,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 	
 	//Constants
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
 	
 	/**
 	 * Constructor
@@ -67,19 +68,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProp
 		//console.log("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty::updateFlow");
 		//console.log(this.name);
 		
-		var highestFlowUpdateNumber = 0;
-		var currentArray = this._inputConnections;
-		var currentArrayLength = currentArray.length;
-		for(var i = 0; i < currentArrayLength; i++) {
-			var currentConnection = currentArray[i];
-			highestFlowUpdateNumber = Math.max(highestFlowUpdateNumber, currentConnection.getFlowUpdateNumber());
-		}
-		
-		if(highestFlowUpdateNumber > this.flowUpdateNumber) {
-			this._performSetValue(dbm.singletons.dbmFlowManager.getFlowUpdateNumber());
-			this.flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
-		}
-		this.status = FlowStatusTypes.UPDATED;
+		//var globalFlowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+		this._performSetValue(GlobalVariables.FLOW_UPDATE_NUMBER);
+		//this.flowUpdateNumber = globalFlowUpdateNumber;
 	};
 	
 	objectFunctions.disconnectInput = function(aProperty) {

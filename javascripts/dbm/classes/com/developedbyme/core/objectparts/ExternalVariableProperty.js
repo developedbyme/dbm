@@ -63,8 +63,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	 *
 	 * @return	*	The value of the property.
 	 */
-	objectFunctions._performGetValue = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performGetValue");
+	objectFunctions.getValueWithoutFlow = function() {
+		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::getValueWithoutFlow");
 		if(this._externalObject === null) {
 			return this._value;
 		}

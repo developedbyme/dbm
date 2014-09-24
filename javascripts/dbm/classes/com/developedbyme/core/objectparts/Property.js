@@ -38,6 +38,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this._value = null;
 		this._inputConnection = null;
 		this._inputUpdateFunction = null;
+		this._inputConnections = new Array();
 		this._outputConnections = new Array();
 		this._animationController = null;
 		
@@ -67,11 +68,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	};
 	
 	/**
-	 * Performs getting the value of this property. Used in subclasses where the value is not just stored on the property.
+	 * Gets the value of this property without triggering the flow update.
 	 *
 	 * @return	*	The value of this property.
-	 */ 
-	objectFunctions._performGetValue = function() {
+	 */
+	objectFunctions.getValueWithoutFlow = function() {
 		return this._value;
 	};
 	
@@ -82,7 +83,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	 */
 	objectFunctions.externalChangeToValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.Property::externalChangeToValue");
-		if(aValue === this._performGetValue()) return;
+		if(aValue === this.getValueWithoutFlow()) return;
 		this._performSetValue(aValue);
 		this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 		this.setDependentConnectionsAsDirty();
@@ -105,7 +106,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 				this.setDependentConnectionsAsDirty();
 				return;
 			}
-			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
+			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this.getValueWithoutFlow(), this);
 		}
 		this._animationController.setValue(aValue);
 	};
@@ -153,7 +154,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "createTimelineControl", "Can't set value when property has input.");
 				return null;
 			}
-			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
+			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this.getValueWithoutFlow(), this);
 		}
 		
 		return this._animationController;
@@ -185,7 +186,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getAnimationController", "Property doesn't have an animation controller as input.");
 			return null;
 		}
-		this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this._performGetValue(), this);
+		this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this.getValueWithoutFlow(), this);
 		return this._animationController;
 	};
 	
@@ -208,7 +209,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("com.developedbyme.core.objectparts.Property::setValueWithFlow");
 		//console.log(this.name);
 		//console.log(aValue, this._value);
-		if(this._alwaysUpdateFlow || (aValue !== this._value)) {
+		if(this._alwaysUpdateFlow || (aValue !== this.getValueWithoutFlow())) {
 			this._performSetValue(aValue);
 			this.flowUpdateNumber = aFlowUpdateNumber;
 		}
@@ -226,16 +227,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			dbm.singletons.dbmFlowManager.updateProperty(this);
 		}
 		
-		return this._performGetValue();
-	};
-	
-	/**
-	 * Gets the value of this property without triggering the flow update.
-	 *
-	 * @return	*	The value of this property.
-	 */ 
-	objectFunctions.getValueWithoutFlow = function() {
-		return this._performGetValue();
+		return this.getValueWithoutFlow();
 	};
 	
 	/**
@@ -321,17 +313,15 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions.updateFlow = function() {
 		//console.log("com.developedbyme.core.objectparts.Property::updateFlow");
 		//console.log(this.name);
-		this.status = FlowStatusTypes.UPDATED;
 		
-		var inputConnection = this._inputConnection;
-		if(inputConnection !== null && inputConnection.flowUpdateNumber > this.flowUpdateNumber) {
-			var newValue = inputConnection.getValueWithoutFlow();
-			//console.log(newValue, this._value, newValue !== this._value);
-			if(this._alwaysUpdateFlow || (newValue !== this._performGetValue())) {
-				this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-				this._performSetValue(newValue);
-			}
+		if(this._inputConnection === null) {
+			return;
 		}
+		//var newValue = this._inputConnection.getValueWithoutFlow();
+		//if(this._alwaysUpdateFlow || (newValue !== this.getValueWithoutFlow())) {
+			//this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+			this._performSetValue(this._inputConnection.getValueWithoutFlow());
+		//}
 	};
 	
 	/**
@@ -394,6 +384,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 			this.disconnectInput();
 		}
 		this._inputConnection = aInputConnection;
+		this._inputConnections.push(aInputConnection);
 		if(aInputConnection instanceof Timeline) { //METODO: fix this to check if it's a timline evaluator
 			this._animationController = aInputConnection;
 		}
@@ -414,6 +405,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	 */
 	objectFunctions._linkRegistration_setInputUpdateFunction = function(aUpdateFunction) {
 		this._inputUpdateFunction = aUpdateFunction;
+		this._inputConnections.push(aUpdateFunction);
 		this.setAsDirty();
 	};
 	
@@ -422,6 +414,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	 */
 	objectFunctions._linkRegistration_removeInputUpdateFunction = function() {
 		this._inputUpdateFunction = null;
+		this._inputConnections.pop();
 	};
 	
 	/**
@@ -441,6 +434,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		
 		var oldInput = this._inputConnection;
 		this._inputConnection = null;
+		this._inputConnections.pop();
 		this._animationController = null;
 		
 		if(shouldUpdate) {
@@ -530,7 +524,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("com.developedbyme.core.objectparts.Property::setAsDirty");
 		//console.log(this.name);
 		this.setStatus(FlowStatusTypes.NEEDS_UPDATE);
-		this.flowUpdateNumber = dbm.singletons.dbmFlowManager.getFlowUpdateNumber();
+		this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 		this.setDependentConnectionsAsDirty();
 	};
 	
@@ -570,7 +564,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("name: " + this.name);
-		aReturnArray.push("value: " + this._performGetValue());
+		aReturnArray.push("value: " + this.getValueWithoutFlow());
 	};
 	
 	/**

@@ -78,8 +78,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.devel
 	 */
 	objectFunctions.updateFlow = function() {
 		//console.log("com.developedbyme.core.objectparts.GhostProperty::updateFlow");
-		this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-		this.status = FlowStatusTypes.UPDATED;
+		
+		//this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 	};
 	
 	/**

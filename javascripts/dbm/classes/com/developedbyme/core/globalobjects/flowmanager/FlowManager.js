@@ -15,10 +15,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var ActiveArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator");
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
-	var FlowBaseObject = dbm.importClass("com.developedbyme.core.FlowBaseObject");
 	var FlowUpdater = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdater");
 	
 	var PositionedArrayHolder = dbm.importClass("com.developedbyme.utils.data.PositionedArrayHolder");
@@ -26,10 +24,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	
 	//Utils
 	var FlowUpdateChainCreator = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	
 	//Constants
 	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
 	
@@ -72,7 +70,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		if(this._cachedFlowUpdater === null) {
 			
-			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updatedProperties.array);
+			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updateProperty._inputConnections);
 			
 			this._cachedFlowUpdater = FlowUpdater.create(updateChains);
 		}
@@ -119,16 +117,6 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		}
 	};
 	
-	objectFunctions._fillWithDirtyInputFromConnection = function(aConnection, aReturnArray) {
-		aConnection.fillWithDirtyInputConnections(aReturnArray);
-	};
-	
-	objectFunctions._cleanConnection = function(aConnection) {
-		if(aConnection.status !== FlowStatusTypes.UPDATED) {
-			aConnection.updateFlow();
-		}
-	};
-	
 	objectFunctions.updateProperty = function(aProperty) {
 		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperty");
 		//console.log(aProperty);
@@ -140,21 +128,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		
 		GlobalVariables.FLOW_UPDATE_NUMBER++;
 		
-		var positionedArrayHolder = PositionedArrayHolder.create(false);
-		
-		var currentArray = positionedArrayHolder.array;
-		positionedArrayHolder.push(aProperty);
-		
-		for(var i = 0; i < positionedArrayHolder.position;) {
-			this._fillWithDirtyInputFromConnection(currentArray[i++], positionedArrayHolder);
-		}
-		for(var i = positionedArrayHolder.position-1; i >= 0;) {
-			this._cleanConnection(currentArray[i--]);
-		}
+		ClassReference.propagateFlowUpdate(aProperty);
 		
 		GlobalVariables.FLOW_UPDATE_NUMBER++;
-		
-		positionedArrayHolder.destroy();
+		//console.log("//com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateProperty");
 	};
 	
 	objectFunctions.connectProperties = function(aOutputProperty, aInputProperty) {
@@ -245,6 +222,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	 */
 	staticFunctions.propagateDirtyStatus = function(aConnection) {
 		//console.log("com.developedbyme.core.objectparts.Property::propagateDirtyStatus");
+		
 		var currentArray = aConnection._outputConnections;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
@@ -253,6 +231,30 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 				currentObject.status = FlowStatusTypes.NEEDS_UPDATE;
 				ClassReference.propagateDirtyStatus(currentObject);
 			}
+		}
+	};
+	
+	staticFunctions.propagateFlowUpdate = function(aConnection) {
+		
+		var newFlowNumber = 0;
+		var currentArray = aConnection._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.status === FlowStatusTypes.NEEDS_UPDATE) {
+				ClassReference.propagateFlowUpdate(currentObject);
+			}
+			var currentFlowNumber = currentObject.flowUpdateNumber;
+			if(currentFlowNumber > newFlowNumber) {
+				newFlowNumber = currentFlowNumber;
+			}
+		}
+		if(aConnection.status === FlowStatusTypes.NEEDS_UPDATE) {
+			if(newFlowNumber > aConnection.flowUpdateNumber) {
+				aConnection.updateFlow();
+				aConnection.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+			}
+			aConnection.status = FlowStatusTypes.UPDATED;
 		}
 	};
 });

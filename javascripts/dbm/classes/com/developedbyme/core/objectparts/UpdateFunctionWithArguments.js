@@ -26,6 +26,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
 	
+	var FlowManager = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager");
+	
 	/**
 	 * Constructor
 	 */
@@ -44,16 +46,12 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 	 */
 	objectFunctions.updateFlow = function() {
 		
-		this.status = FlowStatusTypes.UPDATED;
-		
-		var newFlowUpdateNumber = this._getInputFlowUpdateParameters(this._cachedInputArray);
+		this._getInputFlowUpdateParameters(this._inputConnections, this._cachedInputArray);
 		var globalUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-		if(newFlowUpdateNumber > this.flowUpdateNumber) {
-			this.flowUpdateNumber = globalUpdateNumber;
-			var returnValue = this._updateFunction.apply(this, this._cachedInputArray);
-			if(returnValue !== undefined) {
-				this._outputConnections[0].setValueWithFlow(returnValue, globalUpdateNumber);
-			}
+		//this.flowUpdateNumber = globalUpdateNumber;
+		var returnValue = this._updateFunction.apply(this, this._cachedInputArray);
+		if(returnValue !== undefined) {
+			this._outputConnections[0].setValueWithFlow(returnValue, globalUpdateNumber);
 		}
 		if(!this._isDestroyed) {
 			this._cleanGhostPropertyOutput(globalUpdateNumber);
@@ -81,17 +79,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArgument
 	 *
 	 * @return	Number	The highest flow update number of the properties.
 	 */
-	objectFunctions._getInputFlowUpdateParameters = function(aReturnArray) {
+	objectFunctions._getInputFlowUpdateParameters = function(aInputArray, aReturnArray) {
 		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_getInputFlowUpdateParameters");
-		var returnNumber = 0;
-		var currentArray = this._inputConnections;
+		var currentArray = aInputArray;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			var currentObject = currentArray[i];
-			aReturnArray[i] = currentObject.getValueWithoutFlow();
-			returnNumber = Math.max(returnNumber, currentObject.flowUpdateNumber);
+			aReturnArray[i] = currentArray[i].getValueWithoutFlow();
 		}
-		return returnNumber;
 	};
 	
 	/**

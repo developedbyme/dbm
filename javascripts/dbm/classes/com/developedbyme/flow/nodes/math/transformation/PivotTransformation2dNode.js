@@ -57,7 +57,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.transformation.PivotTransfo
 		
 		Matrix.multiplyMatrices(transformationMatrix, this._tempMatrix, this._outputMatrix.getValueWithoutFlow());
 		
-		this._outputMatrix._internalFunctionality_setFlowUpdateNumber(aFlowUpdateNumber);
+		this._outputMatrix.setFlowAsUpdated(aFlowUpdateNumber);
 	};
 	
 	/**
