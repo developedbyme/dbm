@@ -101,9 +101,11 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		}
 		if(this._animationController === null) {
 			if(!dbm.singletons.dbmAnimationManager.isRecording()) {
-				this._performSetValue(aValue);
-				this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-				this.setDependentConnectionsAsDirty();
+				if(this._alwaysUpdateFlow || (aValue !== this.getValueWithoutFlow())) {
+					this._performSetValue(aValue);
+					this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+					this.setDependentConnectionsAsDirty();
+				}
 				return;
 			}
 			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this.getValueWithoutFlow(), this);
@@ -314,14 +316,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 		//console.log("com.developedbyme.core.objectparts.Property::updateFlow");
 		//console.log(this.name);
 		
-		if(this._inputConnection === null) {
-			return;
-		}
-		//var newValue = this._inputConnection.getValueWithoutFlow();
-		//if(this._alwaysUpdateFlow || (newValue !== this.getValueWithoutFlow())) {
-			//this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+		if(this._inputConnection !== null) {
 			this._performSetValue(this._inputConnection.getValueWithoutFlow());
-		//}
+		}
 	};
 	
 	/**

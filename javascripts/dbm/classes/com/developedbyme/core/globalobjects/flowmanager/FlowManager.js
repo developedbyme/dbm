@@ -29,6 +29,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 	//Constants
 	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
 	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	var UpdaterTypes = dbm.importClass("com.developedbyme.constants.UpdaterTypes");
 	
 	
 	dbm.setClassAsSingleton("dbmFlowManager");
@@ -42,27 +43,23 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 		this.superCall();
 		
 		this._updateProperty = this.addProperty("update", AnyChangeMultipleInputProperty.create());
+		this._flowGates = new Array();
 		
 		this._cachedFlowUpdater = null;
 		
 		return this;
 	};
 	
-	objectFunctions.getFlowUpdateNumber = function() {
-		return GlobalVariables.FLOW_UPDATE_NUMBER;
-	};
-	
-	objectFunctions.increaseFlowUpdateNumber = function() {
-		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::increaseFlowUpdateNumber");
-		return (++GlobalVariables.FLOW_UPDATE_NUMBER);
-	};
-	
 	objectFunctions.start = function() {
-		dbm.singletons.dbmUpdateManager.addUpdater(this, "updateFlow");
+		dbm.singletons.dbmUpdateManager.addUpdater(this, UpdaterTypes.UPDATE_FLOW);
 	};
 	
 	objectFunctions.stop = function() {
-		dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateFlow");
+		dbm.singletons.dbmUpdateManager.removeUpdater(this, UpdaterTypes.UPDATE_FLOW);
+	};
+	
+	objectFunctions.addFlowGate = function(aFlowGate) {
+		this._flowGates.push(aFlowGate);
 	};
 	
 	objectFunctions.cacheUpdatedProperties = function() {
@@ -114,6 +111,16 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 				//console.log(currentConnection);
 				currentConnection.status = FlowStatusTypes.NEEDS_UPDATE;
 			}
+		}
+	};
+	
+	objectFunctions.updateFlowGates = function() {
+		//console.log("com.developedbyme.core.globalobjects.flowmanager.FlowManager::updateFlowGates");
+		
+		var currentArray = this._flowGates;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			currentArray[i].updateFlow(GlobalVariables.FLOW_UPDATE_NUMBER);
 		}
 	};
 	
@@ -181,6 +188,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.flowmanager.FlowManager"
 			GlobalVariables.FLOW_UPDATE_NUMBER++;
 		}
 		else {
+			this.updateFlowGates();
 			this.updateProperty(this._updateProperty);
 		}
 		

@@ -2,15 +2,25 @@
 dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbyme.flow.FlowGroup", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.IterativeFlowGroup");
 
+	//Self refernce
+	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependnecies
 	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
 	var IterativeUpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.IterativeUpdateFunction");
 	var ActiveArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator");
 	var IterationObject = dbm.importClass("com.developedbyme.flow.data.IterationObject");
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	
+	//Utils
+	
+	//Constants
+	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
+	
 	
 	/**
 	 * Constructor
@@ -89,7 +99,7 @@ dbm.registerClass("com.developedbyme.flow.IterativeFlowGroup", "com.developedbym
 		var iterationData = this._iterator.createIterationData();
 		for(;iterationData.position < iterationData.length; iterationData.position++) {
 			var currentData = iterationData.array[iterationData.position];
-			dbm.singletons.dbmFlowManager.increaseFlowUpdateNumber();
+			GlobalVariables.FLOW_UPDATE_NUMBER++;
 			this._index.setValue(currentIndex);
 			currentData.updateInputs();
 			currentData.updateOutputs();

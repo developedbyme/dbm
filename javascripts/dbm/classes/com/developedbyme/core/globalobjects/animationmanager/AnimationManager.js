@@ -20,6 +20,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 	var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");
 	var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");
 	var EvaluateTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
+	var EvaluateComplexTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateComplexTimelineNode");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -181,7 +182,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.Animati
 		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::createTimeline");
 		//console.log(aTimeline, aConnectedInput, aConnectedOutput);
 		
-		var newEvaluator = EvaluateTimelineNode.create(aTimeline, aConnectedInput);
+		var newEvaluator = EvaluateComplexTimelineNode.create(aTimeline, aConnectedInput);
 		aTimeline.addDestroyableObject(newEvaluator);
 		aTimeline._internalFunctionality_setReferenceTime(newEvaluator.getProperty("inputValue"));
 		
