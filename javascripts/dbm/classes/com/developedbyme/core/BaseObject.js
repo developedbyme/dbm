@@ -42,9 +42,10 @@ dbm.registerClass("com.developedbyme.core.BaseObject", null, function(objectFunc
 	 * Seals the object as part of the init function.
 	 */
 	objectFunctions._initSeal = function() {
-		if(Object.seal !== undefined) {
-			Object.seal(this);
-		}
+		//MENOTE: sealing the object gets much lower perfomance
+		//if(Object.seal !== undefined) {
+		//	Object.seal(this);
+		//}
 	};
 	
 	/**

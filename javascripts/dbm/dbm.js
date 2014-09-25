@@ -39,9 +39,10 @@
 			this._restartAfterStart = false;
 			
 			this.isCreated = true;
-			if(Object.seal !== undefined) {
-				Object.seal(this);
-			}
+			//MENOTE: sealing the object gets much lower perfomance
+			//if(Object.seal !== undefined) {
+			//	Object.seal(this);
+			//}
 		};
 		
 		dbmObject.getEnvironmentName = function() {

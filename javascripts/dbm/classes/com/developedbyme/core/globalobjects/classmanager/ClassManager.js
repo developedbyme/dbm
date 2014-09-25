@@ -17,9 +17,10 @@ dbm.runTempFunction(function() {
 		this._staticMethodsClass = this._createClassFunction("StaticFunctions");
 		//this._staticMethodsClass.prototype.toString = function() {return "[StaticFunctions]"};
 		
-		if(Object.seal !== undefined) {
-			Object.seal(this);
-		}
+		//MENOTE: sealing the object gets much lower perfomance
+		//if(Object.seal !== undefined) {
+		//	Object.seal(this);
+		//}
 		
 		return this;
 	}; //End function init
@@ -53,9 +54,10 @@ dbm.runTempFunction(function() {
 		newClassHolder.objectMethods = new (this._objectMethodsClass)();
 		newClassHolder.staticMethods = new (this._staticMethodsClass)();
 		
-		if(Object.seal !== undefined) {
-			Object.seal(newClassHolder);
-		}
+		//MENOTE: sealing the object gets much lower perfomance
+		//if(Object.seal !== undefined) {
+		//	Object.seal(newClassHolder);
+		//}
 		
 		this._classes[aName] = newClassHolder;
 		
@@ -296,9 +298,10 @@ dbm.runTempFunction(function() {
 			else {
 				extendPrototypeObject = new Object();
 			}
-			if(Object.freeze !== undefined) {
-				Object.freeze(extendPrototypeObject);
-			}
+			//MENOTE: sealing the object gets much lower perfomance
+			//if(Object.freeze !== undefined) {
+			//	Object.freeze(extendPrototypeObject);
+			//}
 			
 			var prototypeClass = this._createClassFunction(aName + "Prototype");
 			prototypeClass.prototype = extendPrototypeObject;
@@ -311,17 +314,20 @@ dbm.runTempFunction(function() {
 				currentClassHolder.prototypeObject[objectMethodName] = currentClassHolder.objectMethods[objectMethodName];
 				delete currentClassHolder.objectMethods[objectMethodName];
 			}
-			if(Object.seal !== undefined) {
-				Object.seal(currentClassHolder.objectMethods);
-			}
+			
+			//MENOTE: sealing the object gets much lower perfomance
+			//if(Object.seal !== undefined) {
+			//	Object.seal(currentClassHolder.objectMethods);
+			//}
 			
 			currentClassHolder.prototypeObject.__className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
 			currentClassHolder.prototypeObject.__fullClassName = aName;
 			currentClassHolder.prototypeObject.__objectPool = null;
 			
-			if(Object.seal !== undefined) {
-				Object.seal(currentClassHolder.prototypeObject); //MENOTE: this should be freeze but firefox doesn't seem to like that
-			}
+			//MENOTE: sealing the object gets much lower perfomance
+			//if(Object.seal !== undefined) {
+			//	Object.seal(currentClassHolder.prototypeObject); //MENOTE: this should be freeze but firefox doesn't seem to like that
+			//}
 			
 			currentClassHolder.classFunction.prototype = currentClassHolder.prototypeObject;
 			
@@ -333,10 +339,11 @@ dbm.runTempFunction(function() {
 			currentClassHolder.classFunction.__fullClassName = aName;
 			currentClassHolder.classFunction.__objectPool = null;
 			
-			if(Object.seal !== undefined) {
-				Object.seal(currentClassHolder.staticMethods);
-				Object.seal(currentClassHolder.classFunction);
-			}
+			//MENOTE: sealing the object gets much lower perfomance
+			//if(Object.seal !== undefined) {
+			//	Object.seal(currentClassHolder.staticMethods);
+			//	Object.seal(currentClassHolder.classFunction);
+			//}
 		}
 		
 		return currentClassHolder;
