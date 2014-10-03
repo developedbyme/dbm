@@ -34,8 +34,6 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.canvas.DrawGradi
 		
 		this.superCall();
 		
-		this._dataAssetPath = "../assets/examples/graphics/flashimport/shapeData.xml";
-		
 		this.addCssLink("../styles/utils/centeredContent.css");
 		this.addCssLink("../styles/utils/boxes.css");
 		this.addCssLink("../styles/utils/spacing.css");

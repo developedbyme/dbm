@@ -82,6 +82,10 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 		
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.RgbaColor", ["r", "g", "b", "a"]);
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.HslaColor", ["h", "s", "l", "a"]);
+		
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.graphics.ShapeData", ["stroke", "fill", "strokeOverFill", "curves"]);
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.graphics.FillData", ["definition"]);
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.graphics.StrokeData", ["definition", "lineWidth", "lineCap", "lineJoin", "miterLimit"]);
 	};
 	
 	staticFunctions._createEncodingBaseObject = function(aClassPath, aVariables) {

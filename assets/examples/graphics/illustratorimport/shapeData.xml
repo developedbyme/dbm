@@ -1,0 +1,1569 @@
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject" xmlns:data="http://developedbyme.com/schemas/xml/data/">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="exportDate" data:parentApplyType="namedArray/addObject"><![CDATA[2014-10-04T15:24:50]]></data:item>
+<data:item data:type="string" data:name="exportType" data:parentApplyType="namedArray/addObject"><![CDATA[illustratorDocument]]></data:item>
+<data:item data:type="string" data:name="environment" data:parentApplyType="namedArray/addObject"><![CDATA[extendScript]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[2000]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[2000]]></data:item>
+</data:item>
+<data:item data:type="treeStructure" data:name="data">
+<data:item data:type="boolean" data:name="createMissingItems"><![CDATA[true]]></data:item>
+<data:item data:type="boolean" data:name="ownsData"><![CDATA[false]]></data:item>
+<data:item data:type="treeStructureItem" data:parentApplyType="treeStructure/root">
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+<data:item data:type="treeStructureItem" data:name="layer_0" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_1" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.33725490196078]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.69411764705882]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.81960784313725]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1046.47617578125,-969.003602246094,0,1;1046.47617578125,-969.003602246094,0,1;974.97777578125,-983.198602246093,0,1;974.18767578125,-1023.76620224609,0,1;973.39737578125,-1064.33360224609,0,1;1008.87247578125,-1080.93730224609,0,1;1008.87247578125,-1080.93730224609,0,1;1008.87247578125,-1080.93730224609,0,1;1021.25347578125,-1077.24930224609,0,1;1021.25347578125,-1077.24930224609,0,1;1021.25347578125,-1077.24930224609,0,1;990.16907578125,-1048.00900224609,0,1;1001.23307578125,-1025.09100224609,0,1;1012.29677578125,-1002.17300224609,0,1;1049.96677578125,-997.168002246093,0,1;1064.45507578125,-996.904702246095,0,1;1078.94347578125,-996.641102246094,0,1;1080.52417578125,-991.372702246094,0,1;1080.26077578125,-981.889402246094,0,1;1079.99737578125,-972.406002246094,0,1;1077.55157578125,-967.558302246094,0,1;1077.55157578125,-967.558302246094,0,1;1077.55157578125,-967.558302246094,0,1;1046.47617578125,-969.003602246094,0,1;1046.47617578125,-969.003602246094,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_2" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[998.07207578125,-1069.87340224609,0,1;998.86217578125,-1070.13700224609,0,1;1013.11347578125,-1086.37250224609,0,1;1018.38177578125,-1090.32380224609,0,1;1023.65037578125,-1094.27520224609,0,1;1031.38517578125,-1090.98960224609,0,1;1027.84687578125,-1087.36230224609,0,1;1019.85027578125,-1079.16450224609,0,1;1010.18947578125,-1064.86830224609,0,1;1010.18947578125,-1064.86830224609,0,1;1010.18947578125,-1064.86830224609,0,1;998.07207578125,-1069.87340224609,0,1;998.07207578125,-1069.87340224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_3" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_4" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1031.48917578125,-1096.31080224609,0,1;1031.77887578125,-1097.61400224609,0,1;1030.78737578125,-1098.85030224609,0,1;1029.45207578125,-1098.85030224609,0,1;1029.45207578125,-1098.85030224609,0,1;989.64247578125,-1098.85030224609,0,1;989.64247578125,-1098.85030224609,0,1;984.37377578125,-1098.85030224609,0,1;985.11847578125,-1095.04060224609,0,1;986.92517578125,-1094.58910224609,0,1;988.73187578125,-1094.13730224609,0,1;1007.16867578125,-1089.38290224609,0,1;1013.35047578125,-1088.31330224609,0,1;1019.66587578125,-1087.22030224609,0,1;1016.51177578125,-1091.73770224609,0,1;1022.57047578125,-1091.73770224609,0,1;1024.73417578125,-1091.73770224609,0,1;1026.32877578125,-1089.09960224609,0,1;1027.35257578125,-1088.32200224609,0,1;1028.52337578125,-1087.43280224609,0,1;1030.23807578125,-1088.18530224609,0,1;1030.55697578125,-1089.62050224609,0,1;1030.55697578125,-1089.62050224609,0,1;1031.48917578125,-1096.31080224609,0,1;1031.48917578125,-1096.31080224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_5" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1009.40147578125,-1102.23510224609,0,1;1009.40147578125,-1103.79170224609,0,1;1010.66327578125,-1105.05350224609,0,1;1012.21987578125,-1105.05350224609,0,1;1012.21987578125,-1105.05350224609,0,1;1031.54677578125,-1105.05350224609,0,1;1031.54677578125,-1105.05350224609,0,1;1033.10337578125,-1105.05350224609,0,1;1034.36517578125,-1103.79170224609,0,1;1034.36517578125,-1102.23510224609,0,1;1034.36517578125,-1102.23510224609,0,1;1034.36517578125,-1102.23510224609,0,1;1034.36517578125,-1102.23510224609,0,1;1034.36517578125,-1100.67840224609,0,1;1033.10337578125,-1099.41660224609,0,1;1031.54677578125,-1099.41660224609,0,1;1031.54677578125,-1099.41660224609,0,1;1012.21987578125,-1099.41660224609,0,1;1012.21987578125,-1099.41660224609,0,1;1010.66327578125,-1099.41660224609,0,1;1009.40147578125,-1100.67840224609,0,1;1009.40147578125,-1102.23510224609,0,1;1009.40147578125,-1102.23510224609,0,1;1009.40147578125,-1102.23510224609,0,1;1009.40147578125,-1102.23510224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_6" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_7" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[6.44231]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1021.88327578125,-1102.98460224609,0,1;1021.88327578125,-1102.98460224609,0,1;1021.88327578125,-1140.43060224609,0,1;1021.88327578125,-1140.43060224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_8" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_9" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[4.02644]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1025.53607578125,-1163.35350224609,0,1;1010.43687578125,-1166.37310224609,0,1;997.36367578125,-1152.68350224609,0,1;997.36367578125,-1138.79210224609,0,1;997.36367578125,-1124.90070224609,0,1;1008.63047578125,-1114.03850224609,0,1;1022.51607578125,-1113.63960224609,0,1;1029.96497578125,-1113.42570224609,0,1;1111.23197578125,-1111.64990224609,0,1;1116.96987578125,-1112.16850224609,0,1;1122.84727578125,-1112.70010224609,0,1;1127.65517578125,-1116.95270224609,0,1;1127.65517578125,-1122.85410224609,0,1;1127.65517578125,-1128.75550224609,0,1;1123.34907578125,-1132.92740224609,0,1;1117.74137578125,-1134.76560224609,0,1;1102.74277578125,-1139.68250224609,0,1;1039.63097578125,-1160.53450224609,0,1;1025.53607578125,-1163.35350224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_10" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[compoundPath]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_11" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1003.99457578125,-1138.79210224609,0,1;1003.99457578125,-1128.57950224609,0,1;1012.30287578125,-1120.27030224609,0,1;1022.51607578125,-1120.27030224609,0,1;1032.72937578125,-1120.27030224609,0,1;1041.03757578125,-1128.57950224609,0,1;1041.03757578125,-1138.79210224609,0,1;1041.03757578125,-1149.00480224609,0,1;1032.72937578125,-1157.31360224609,0,1;1022.51607578125,-1157.31360224609,0,1;1012.30287578125,-1157.31360224609,0,1;1003.99457578125,-1149.00480224609,0,1;1003.99457578125,-1138.79210224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_12" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[999.16277578125,-1138.79210224609,0,1;999.16277578125,-1151.68970224609,0,1;1009.61857578125,-1162.14550224609,0,1;1022.51607578125,-1162.14550224609,0,1;1035.41367578125,-1162.14550224609,0,1;1045.86947578125,-1151.68970224609,0,1;1045.86947578125,-1138.79210224609,0,1;1045.86947578125,-1125.89450224609,0,1;1035.41367578125,-1115.43880224609,0,1;1022.51607578125,-1115.43880224609,0,1;1009.61857578125,-1115.43880224609,0,1;999.16277578125,-1125.89450224609,0,1;999.16277578125,-1138.79210224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_13" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1032.58217578125,-1138.38940224609,0,1;1032.58217578125,-1144.17120224609,0,1;1027.89517578125,-1148.85820224609,0,1;1022.11337578125,-1148.85820224609,0,1;1016.33167578125,-1148.85820224609,0,1;1011.64467578125,-1144.17120224609,0,1;1011.64467578125,-1138.38940224609,0,1;1011.64467578125,-1132.60770224609,0,1;1016.33167578125,-1127.92070224609,0,1;1022.11337578125,-1127.92070224609,0,1;1027.89517578125,-1127.92070224609,0,1;1032.58217578125,-1132.60770224609,0,1;1032.58217578125,-1138.38940224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_14" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_15" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[7.24758]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[913.75357578125,-994.171802246094,0,1;912.10377578125,-993.929502246094,0,1;910.49507578125,-993.683502246095,0,1;908.97057578125,-993.437502246094,0,1;896.48867578125,-991.424402246094,0,1;881.11117578125,-991.899402246094,0,1;878.740175781249,-1004.80740224609,0,1;875.97257578125,-1019.87620224609,0,1;884.28717578125,-1025.09100224609,0,1;904.02917578125,-1025.09100224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_16" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.4078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.3921568627451]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[6.44231]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[930.31077578125,-1011.95930224609,0,1;930.31077578125,-1011.95930224609,0,1;909.37327578125,-1088.46160224609,0,1;905.346775781251,-1098.52770224609,0,1;901.32027578125,-1108.59380224609,0,1;887.22787578125,-1123.08910224609,0,1;887.22787578125,-1123.08910224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_17" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.4078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.3921568627451]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[6.44231]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[928.09617578125,-1020.01230224609,0,1;928.09617578125,-1020.01230224609,0,1;1055.13017578125,-1020.01230224609,0,1;1055.13017578125,-1020.01230224609,0,1;1055.13017578125,-1020.01230224609,0,1;1115.52677578125,-1119.86800224609,0,1;1115.52677578125,-1119.86800224609,0,1;1115.52677578125,-1119.86800224609,0,1;1020.90537578125,-1136.77870224609,0,1;1020.90537578125,-1136.77870224609,0,1;1020.90537578125,-1136.77870224609,0,1;924.469383672228,-1033.11649271345,0,1;924.469383672228,-1033.11649271345,0,1;924.469383672228,-1033.11649271345,0,1;928.09617578125,-1020.01230224609,0,1;928.09617578125,-1020.01230224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_18" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.8]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.70588235294118]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.66274509803922]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[4.2148]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[939.57147578125,-997.464002246094,0,1;939.57147578125,-997.464002246094,0,1;925.60847578125,-995.912602246093,0,1;913.75357578125,-994.171802246094,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_19" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.8]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.70588235294118]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.66274509803922]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[4.2148]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[934.32307578125,-997.343802246094,0,1;934.32307578125,-997.343802246094,0,1;932.70517578125,-1003.28770224609,0,1;929.78237578125,-1013.82590224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_20" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1077.81057578125,-991.411102246093,0,1;1077.81057578125,-991.411102246093,0,1;1054.99317578125,-991.732602246095,0,1;1043.42387578125,-991.732602246095,0,1;1031.85427578125,-991.732602246095,0,1;1027.03377578125,-992.053802246093,0,1;1027.03377578125,-996.553202246094,0,1;1027.03377578125,-1001.05230224609,0,1;1038.58507578125,-1001.57900224609,0,1;1044.70937578125,-1002.01640224609,0,1;1058.20677578125,-1002.98040224609,0,1;1064.12817578125,-1006.81730224609,0,1;1070.09747578125,-1009.40800224609,0,1;1087.13027578125,-1016.79960224609,0,1;1090.34397578125,-991.411102246093,0,1;1077.81057578125,-991.411102246093,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_21" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.4078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.3921568627451]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[6.44231]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1056.33817578125,-1016.38850224609,0,1;1056.33817578125,-1016.38850224609,0,1;1021.50957578125,-1136.98020224609,0,1;1021.50957578125,-1136.98020224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_22" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.8]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.70588235294118]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.66274509803922]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[4.02644]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1061.99657578125,-997.168002246093,0,1;1061.99657578125,-997.168002246093,0,1;1055.13017578125,-1020.01230224609,0,1;1055.13017578125,-1020.01230224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_23" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[compoundPath]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_24" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1047.81777578125,-1122.95470224609,0,1;1047.81777578125,-1086.43380224609,0,1;1077.52937578125,-1056.72200224609,0,1;1114.05047578125,-1056.72200224609,0,1;1150.57137578125,-1056.72200224609,0,1;1180.28287578125,-1086.43380224609,0,1;1180.28287578125,-1122.95470224609,0,1;1180.28287578125,-1159.47590224609,0,1;1150.57137578125,-1189.18770224609,0,1;1114.05047578125,-1189.18770224609,0,1;1077.52937578125,-1189.18770224609,0,1;1047.81777578125,-1159.47590224609,0,1;1047.81777578125,-1122.95470224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_25" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1042.98627578125,-1122.95470224609,0,1;1042.98627578125,-1162.13970224609,0,1;1074.86577578125,-1194.01950224609,0,1;1114.05047578125,-1194.01950224609,0,1;1153.23517578125,-1194.01950224609,0,1;1185.11477578125,-1162.13970224609,0,1;1185.11477578125,-1122.95470224609,0,1;1185.11477578125,-1083.76970224609,0,1;1153.23517578125,-1051.89010224609,0,1;1114.05047578125,-1051.89010224609,0,1;1074.86577578125,-1051.89010224609,0,1;1042.98627578125,-1083.76970224609,0,1;1042.98627578125,-1122.95470224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_26" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[compoundPath]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_27" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[5.78146]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1042.98627578125,-1122.95470224609,0,1;1042.98627578125,-1083.76970224609,0,1;1074.86577578125,-1051.89010224609,0,1;1114.05047578125,-1051.89010224609,0,1;1153.23517578125,-1051.89010224609,0,1;1185.11477578125,-1083.76970224609,0,1;1185.11477578125,-1122.95470224609,0,1;1185.11477578125,-1162.13970224609,0,1;1153.23517578125,-1194.01950224609,0,1;1114.05047578125,-1194.01950224609,0,1;1074.86577578125,-1194.01950224609,0,1;1042.98627578125,-1162.13970224609,0,1;1042.98627578125,-1122.95470224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_28" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[5.78146]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1038.15437578125,-1122.95470224609,0,1;1038.15437578125,-1164.87110224609,0,1;1072.13427578125,-1198.85110224609,0,1;1114.05047578125,-1198.85110224609,0,1;1155.96667578125,-1198.85110224609,0,1;1189.94657578125,-1164.87110224609,0,1;1189.94657578125,-1122.95470224609,0,1;1189.94657578125,-1081.03850224609,0,1;1155.96667578125,-1047.05860224609,0,1;1114.05047578125,-1047.05860224609,0,1;1072.13427578125,-1047.05860224609,0,1;1038.15437578125,-1081.03850224609,0,1;1038.15437578125,-1122.95470224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_29" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[compoundPath]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_30" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[821.12937578125,-1123.62590224609,0,1;821.12937578125,-1087.10470224609,0,1;850.84087578125,-1057.39290224609,0,1;887.36207578125,-1057.39290224609,0,1;923.88297578125,-1057.39290224609,0,1;953.59447578125,-1087.10470224609,0,1;953.59447578125,-1123.62590224609,0,1;953.59447578125,-1160.14680224609,0,1;923.88297578125,-1189.85890224609,0,1;887.36207578125,-1189.85890224609,0,1;850.84087578125,-1189.85890224609,0,1;821.12937578125,-1160.14680224609,0,1;821.12937578125,-1123.62590224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_31" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[816.29777578125,-1123.62590224609,0,1;816.29777578125,-1162.81090224609,0,1;848.17737578125,-1194.69040224609,0,1;887.36207578125,-1194.69040224609,0,1;926.54677578125,-1194.69040224609,0,1;958.42627578125,-1162.81090224609,0,1;958.42627578125,-1123.62590224609,0,1;958.42627578125,-1084.44090224609,0,1;926.54677578125,-1052.56110224609,0,1;887.36207578125,-1052.56110224609,0,1;848.17737578125,-1052.56110224609,0,1;816.29777578125,-1084.44090224609,0,1;816.29777578125,-1123.62590224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_32" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[compoundPath]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_33" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[5.78146]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[816.29777578125,-1123.62590224609,0,1;816.29777578125,-1084.44090224609,0,1;848.17737578125,-1052.56110224609,0,1;887.36207578125,-1052.56110224609,0,1;926.54677578125,-1052.56110224609,0,1;958.42627578125,-1084.44090224609,0,1;958.42627578125,-1123.62590224609,0,1;958.42627578125,-1162.81090224609,0,1;926.54677578125,-1194.69040224609,0,1;887.36207578125,-1194.69040224609,0,1;848.17737578125,-1194.69040224609,0,1;816.29777578125,-1162.81090224609,0,1;816.29777578125,-1123.62590224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_34" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[5.78146]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[811.46597578125,-1123.62590224609,0,1;811.46597578125,-1165.54210224609,0,1;845.44587578125,-1199.52200224609,0,1;887.36207578125,-1199.52200224609,0,1;929.27827578125,-1199.52200224609,0,1;963.258175781249,-1165.54210224609,0,1;963.258175781249,-1123.62590224609,0,1;963.258175781249,-1081.70940224609,0,1;929.27827578125,-1047.72950224609,0,1;887.36207578125,-1047.72950224609,0,1;845.44587578125,-1047.72950224609,0,1;811.46597578125,-1081.70940224609,0,1;811.46597578125,-1123.62590224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_35" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1124.51927578125,-1122.95470224609,0,1;1124.51927578125,-1128.73640224609,0,1;1119.83227578125,-1133.42350224609,0,1;1114.05047578125,-1133.42350224609,0,1;1108.26877578125,-1133.42350224609,0,1;1103.58167578125,-1128.73640224609,0,1;1103.58167578125,-1122.95470224609,0,1;1103.58167578125,-1117.17290224609,0,1;1108.26877578125,-1112.48590224609,0,1;1114.05047578125,-1112.48590224609,0,1;1119.83227578125,-1112.48590224609,0,1;1124.51927578125,-1117.17290224609,0,1;1124.51927578125,-1122.95470224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_36" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.96470588235294]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[897.83087578125,-1123.62590224609,0,1;897.83087578125,-1129.40760224609,0,1;893.14377578125,-1134.09470224609,0,1;887.36207578125,-1134.09470224609,0,1;881.58027578125,-1134.09470224609,0,1;876.89327578125,-1129.40760224609,0,1;876.89327578125,-1123.62590224609,0,1;876.89327578125,-1117.84420224609,0,1;881.58027578125,-1113.15710224609,0,1;887.36207578125,-1113.15710224609,0,1;893.14377578125,-1113.15710224609,0,1;897.83087578125,-1117.84420224609,0,1;897.83087578125,-1123.62590224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_37" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_38" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[6.44231]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1022.11337578125,-1138.28880224609,0,1;1022.11337578125,-1138.28880224609,0,1;1022.11337578125,-1175.73480224609,0,1;1022.11337578125,-1175.73480224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_39" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_40" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.25098039215686]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.57254901960784]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.65882352941176]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1032.05377578125,-971.089002246094,0,1;1032.05377578125,-971.089002246094,0,1;1014.66777578125,-1024.56430224609,0,1;1014.93107578125,-1074.61500224609,0,1;1015.19477578125,-1124.66600224609,0,1;1018.35577578125,-1158.64770224609,0,1;1018.35577578125,-1158.64770224609,0,1;1018.35577578125,-1158.64770224609,0,1;1031.52707578125,-1157.59400224609,0,1;1031.52707578125,-1157.59400224609,0,1;1031.52707578125,-1157.59400224609,0,1;1034.95147578125,-1074.87870224609,0,1;1046.80577578125,-1042.21370224609,0,1;1058.65977578125,-1009.54900224609,0,1;1074.99207578125,-994.270402246093,0,1;1074.99207578125,-994.270402246093,0,1;1074.99207578125,-994.270402246093,0,1;1076.57277578125,-967.664402246093,0,1;1076.57277578125,-967.664402246093,0,1;1076.57277578125,-967.664402246093,0,1;1032.05377578125,-971.089002246094,0,1;1032.05377578125,-971.089002246094,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_41" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.92941176470588]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1016.77507578125,-1141.78860224609,0,1;1016.77507578125,-1141.78860224609,0,1;1018.75357578125,-1162.34870224609,0,1;1019.80727578125,-1165.77330224609,0,1;1020.86057578125,-1169.19770224609,0,1;1029.78197578125,-1171.07930224609,0,1;1031.09897578125,-1163.96660224609,0,1;1032.41597578125,-1156.85430224609,0,1;1032.31707578125,-1139.94460224609,0,1;1032.31707578125,-1139.94460224609,0,1;1032.31707578125,-1139.94460224609,0,1;1016.77507578125,-1141.78860224609,0,1;1016.77507578125,-1141.78860224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_42" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_43" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1009.63157578125,-1178.15060224609,0,1;1009.63157578125,-1179.70720224609,0,1;1010.89337578125,-1180.96900224609,0,1;1012.44997578125,-1180.96900224609,0,1;1012.44997578125,-1180.96900224609,0,1;1031.77687578125,-1180.96900224609,0,1;1031.77687578125,-1180.96900224609,0,1;1033.33347578125,-1180.96900224609,0,1;1034.59527578125,-1179.70720224609,0,1;1034.59527578125,-1178.15060224609,0,1;1034.59527578125,-1178.15060224609,0,1;1034.59527578125,-1178.15060224609,0,1;1034.59527578125,-1178.15060224609,0,1;1034.59527578125,-1176.59390224609,0,1;1033.33347578125,-1175.33210224609,0,1;1031.77687578125,-1175.33210224609,0,1;1031.77687578125,-1175.33210224609,0,1;1012.44997578125,-1175.33210224609,0,1;1012.44997578125,-1175.33210224609,0,1;1010.89337578125,-1175.33210224609,0,1;1009.63157578125,-1176.59390224609,0,1;1009.63157578125,-1178.15060224609,0,1;1009.63157578125,-1178.15060224609,0,1;1009.63157578125,-1178.15060224609,0,1;1009.63157578125,-1178.15060224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_44" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1034.56057578125,-1172.46330224609,0,1;1034.85027578125,-1173.76680224609,0,1;1033.85877578125,-1175.00280224609,0,1;1032.52357578125,-1175.00280224609,0,1;1032.52357578125,-1175.00280224609,0,1;992.71387578125,-1175.00280224609,0,1;992.71387578125,-1175.00280224609,0,1;987.44517578125,-1175.00280224609,0,1;988.18987578125,-1171.19340224609,0,1;989.99657578125,-1170.74160224609,0,1;991.80327578125,-1170.29010224609,0,1;1010.24007578125,-1165.53570224609,0,1;1016.42187578125,-1164.46580224609,0,1;1022.73727578125,-1163.37310224609,0,1;1019.58317578125,-1167.89020224609,0,1;1025.64187578125,-1167.89020224609,0,1;1027.80557578125,-1167.89020224609,0,1;1029.40007578125,-1165.25240224609,0,1;1030.42397578125,-1164.47480224609,0,1;1031.59477578125,-1163.58530224609,0,1;1033.30947578125,-1164.33780224609,0,1;1033.62837578125,-1165.77330224609,0,1;1033.62837578125,-1165.77330224609,0,1;1034.56057578125,-1172.46330224609,0,1;1034.56057578125,-1172.46330224609,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_45" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_46" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[992.80347578125,-867.299402246094,0,1;992.80347578125,-867.299402246094,0,1;961.54367578125,-908.305802246094,0,1;961.54367578125,-908.305802246094,0,1;961.54367578125,-908.305802246094,0,1;979.10547578125,-917.437902246094,0,1;979.10547578125,-917.437902246094,0,1;979.10547578125,-917.437902246094,0,1;997.720875781249,-897.417602246094,0,1;997.720875781249,-897.417602246094,0,1;997.720875781249,-897.417602246094,0,1;1030.20977578125,-922.882102246094,0,1;1031.52707578125,-951.068702246093,0,1;1032.05377578125,-967.401002246093,0,1;1032.05377578125,-971.089002246094,0,1;1032.05377578125,-971.089002246094,0,1;1032.05377578125,-971.089002246094,0,1;1078.68007578125,-967.927702246094,0,1;1078.68007578125,-967.927702246094,0,1;1078.68007578125,-967.927702246094,0,1;1065.50877578125,-907.603402246094,0,1;1043.90807578125,-884.422002246094,0,1;1021.52627578125,-860.402402246094,0,1;1003.63707578125,-856.645902246093,0,1;992.80347578125,-867.299402246094,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_47" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_48" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96078431372549]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.67843137254902]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[997.01817578125,-896.012702246095,0,1;995.96447578125,-895.661502246094,0,1;920.80057578125,-979.957502246094,0,1;915.18067578125,-985.928602246095,0,1;909.56107578125,-991.899402246094,0,1;917.38687578125,-985.986702246093,0,1;918.47097578125,-992.129502246094,0,1;918.67587578125,-993.290402246093,0,1;915.88087578125,-992.031802246094,0,1;914.40597578125,-992.490802246093,0,1;910.44657578125,-993.722302246093,0,1;906.09887578125,-994.769602246093,0,1;913.77577578125,-996.816802246094,0,1;924.31277578125,-999.626602246093,0,1;920.09807578125,-1005.59770224609,0,1;907.45347578125,-1002.43670224609,0,1;894.80917578125,-999.275402246094,0,1;906.75107578125,-984.523702246093,0,1;907.10227578125,-983.470002246093,0,1;907.45347578125,-982.416302246094,0,1;991.04737578125,-870.372502246093,0,1;991.04737578125,-870.372502246093,0,1;991.04737578125,-870.372502246093,0,1;997.01817578125,-896.012702246095,0,1;997.01817578125,-896.012702246095,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_49" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_50" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.11372549019608]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.11372549019608]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.10588235294118]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[986.12987578125,-875.992402246095,0,1;986.12987578125,-875.992402246095,0,1;965.40717578125,-907.252202246094,0,1;965.40717578125,-907.252202246094,0,1;965.40717578125,-907.252202246094,0,1;985.07627578125,-917.437902246094,0,1;985.07627578125,-917.437902246094,0,1;985.07627578125,-917.437902246094,0,1;1002.63797578125,-898.822502246094,0,1;1002.63797578125,-898.822502246094,0,1;1002.63797578125,-898.822502246094,0,1;986.12987578125,-875.992402246095,0,1;986.12987578125,-875.992402246095,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_51" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_52" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.95294117647059]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.59607843137255]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.55294117647059]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1005.09657578125,-891.797702246095,0,1;1009.24767578125,-887.224902246093,0,1;931.21847578125,-978.978402246094,0,1;925.42687578125,-985.264002246095,0,1;918.29747578125,-993.001002246094,0,1;926.239775781251,-989.058102246094,0,1;926.87227578125,-992.942402246094,0,1;927.79787578125,-998.628102246094,0,1;914.82947578125,-993.304602246093,0,1;925.36647578125,-996.114402246094,0,1;935.90347578125,-998.924102246094,0,1;931.68877578125,-1004.89520224609,0,1;919.04447578125,-1001.73390224609,0,1;906.39977578125,-998.572902246095,0,1;918.34197578125,-983.821202246094,0,1;918.69327578125,-982.767602246095,0,1;919.04447578125,-981.713602246095,0,1;999.12577578125,-866.157802246094,0,1;999.12577578125,-866.157802246094,0,1;999.12577578125,-866.157802246094,0,1;1005.09657578125,-891.797702246095,0,1;1005.09657578125,-891.797702246095,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_53" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_54" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_55" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.23529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.23137254901961]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[954.75597578125,-824.891502246093,0,1;953.98387578125,-827.085902246094,0,1;955.35607578125,-829.429702246094,0,1;957.64607578125,-829.837802246093,0,1;963.89677578125,-830.951402246093,0,1;975.50847578125,-832.989302246093,0,1;979.53727578125,-833.493202246094,0,1;985.15717578125,-834.195602246094,0,1;989.72307578125,-837.883302246093,0,1;989.19637578125,-844.205602246093,0,1;989.19637578125,-844.205602246093,0,1;988.97557578125,-846.855302246095,0,1;988.97557578125,-846.855302246095,0,1;988.80527578125,-848.897602246094,0,1;990.29607578125,-850.702802246095,0,1;992.33377578125,-850.922002246094,0,1;992.33377578125,-850.922002246094,0,1;1001.78147578125,-851.937802246093,0,1;1001.78147578125,-851.937802246093,0,1;1003.66217578125,-852.140102246094,0,1;1005.39517578125,-850.924302246094,0,1;1005.85047578125,-849.088402246094,0,1;1007.93787578125,-840.672602246094,0,1;1012.85127578125,-822.318502246093,0,1;1005.98577578125,-814.911002246094,0,1;995.39097578125,-803.479902246094,0,1;966.18677578125,-799.075602246094,0,1;959.51317578125,-812.422402246093,0,1;956.92807578125,-817.593002246094,0,1;955.64567578125,-822.362702246093,0,1;954.75597578125,-824.891502246093,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_56" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.43921568627451]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.43529411764706]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.43529411764706]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[990.19717578125,-847.683202246093,0,1;990.19717578125,-847.683202246093,0,1;982.12707578125,-866.834302246094,0,1;977.18887578125,-868.641002246093,0,1;981.52497578125,-869.002302246094,0,1;983.33167578125,-868.099002246094,0,1;983.33167578125,-868.099002246094,0,1;983.33167578125,-868.099002246094,0,1;991.43987578125,-857.098902246095,0,1;993.81057578125,-848.405902246093,0,1;993.81057578125,-848.405902246093,0,1;990.19717578125,-847.683202246093,0,1;990.19717578125,-847.683202246093,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_57" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96078431372549]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.67843137254902]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[980.65167578125,-839.697002246094,0,1;980.65167578125,-839.697002246094,0,1;980.79937578125,-835.564702246094,0,1;984.04627578125,-836.155002246094,0,1;987.29317578125,-836.745202246093,0,1;989.80197578125,-839.697002246094,0,1;987.14537578125,-845.895602246093,0,1;984.48917578125,-852.094102246094,0,1;981.38967578125,-849.880402246094,0,1;980.65167578125,-848.404402246093,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_58" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96078431372549]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.67843137254902]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[998.41777578125,-856.987902246094,0,1;998.41777578125,-856.987902246094,0,1;998.41777578125,-856.987902246094,0,1;998.41777578125,-856.987902246094,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_59" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.84705882352941]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.39607843137255]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.34901960784314]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[958.06787578125,-828.441902246093,0,1;958.06787578125,-828.441902246093,0,1;958.91117578125,-830.850802246094,0,1;964.93337578125,-833.862002246095,0,1;964.33127578125,-832.778002246094,0,1;963.96987578125,-831.934802246095,0,1;963.96987578125,-831.934802246095,0,1;963.96987578125,-831.934802246095,0,1;965.77657578125,-833.380102246094,0,1;968.06517578125,-834.223402246094,0,1;967.22197578125,-833.018802246093,0,1;966.74007578125,-832.055302246094,0,1;966.74007578125,-832.055302246094,0,1;966.74007578125,-832.055302246094,0,1;969.51047578125,-833.982302246093,0,1;972.16017578125,-834.584702246093,0,1;970.35347578125,-832.898302246094,0,1;971.19677578125,-831.694002246093,0,1;971.19677578125,-831.694002246093,0,1;971.19677578125,-831.694002246093,0,1;978.90537578125,-832.055302246094,0,1;978.90537578125,-832.055302246094,0,1;978.90537578125,-832.055302246094,0,1;977.70087578125,-838.679702246094,0,1;981.91637578125,-843.256902246094,0,1;983.89707578125,-845.407302246094,0,1;985.00047578125,-847.238602246094,0,1;985.61337578125,-848.576102246094,0,1;986.21087578125,-849.879302246094,0,1;987.708275781249,-850.484602246093,0,1;989.05737578125,-849.998902246094,0,1;989.05737578125,-849.998902246094,0,1;992.39527578125,-848.797302246094,0,1;992.39527578125,-848.797302246094,0,1;992.39527578125,-848.797302246094,0,1;996.12927578125,-856.024102246094,0,1;998.899375781249,-857.228702246093,0,1;1001.18807578125,-854.458502246094,0,1;1002.15147578125,-847.954302246093,0,1;1002.15147578125,-847.954302246093,0,1;1002.15147578125,-847.954302246093,0,1;994.92467578125,-822.780702246095,0,1;993.84067578125,-822.780702246095,0,1;992.75657578125,-822.780702246095,0,1;965.77657578125,-823.142002246093,0,1;965.77657578125,-823.142002246093,0,1;965.77657578125,-823.142002246093,0,1;958.06787578125,-828.441902246093,0,1;958.06787578125,-828.441902246093,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_60" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.91372549019608]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.47058823529412]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.41176470588235]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[1.38604]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[963.55617578125,-858.957602246093,0,1;963.55617578125,-858.957602246093,0,1;970.22977578125,-859.660102246095,0,1;973.03957578125,-855.972102246094,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_61" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96078431372549]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.67843137254902]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[956.56237578125,-833.560802246095,0,1;956.56237578125,-833.560802246095,0,1;951.42347578125,-845.791202246093,0,1;950.89687578125,-847.723102246095,0,1;950.36987578125,-849.655002246094,0,1;957.02397578125,-849.780402246093,0,1;957.02397578125,-849.780402246093,0,1;957.02397578125,-849.780402246093,0,1;956.56237578125,-833.560802246095,0,1;956.56237578125,-833.560802246095,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_62" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.100006]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.100006]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.100006]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[963.94707578125,-839.301502246093,0,1;963.94707578125,-840.902102246095,0,1;963.43597578125,-842.199202246095,0,1;962.80547578125,-842.199202246095,0,1;962.17497578125,-842.199202246095,0,1;961.66397578125,-840.902102246095,0,1;961.66397578125,-839.301502246093,0,1;961.66397578125,-837.701202246093,0,1;962.17497578125,-836.403802246094,0,1;962.80547578125,-836.403802246094,0,1;963.43597578125,-836.403802246094,0,1;963.94707578125,-837.701202246093,0,1;963.94707578125,-839.301502246093,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_63" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96078431372549]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.67843137254902]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[990.95247578125,-864.665102246094,0,1;990.95247578125,-864.665102246094,0,1;997.27487578125,-873.094702246093,0,1;997.27487578125,-873.094702246093,0,1;997.27487578125,-873.094702246093,0,1;1005.17747578125,-866.509102246095,0,1;1005.17747578125,-866.509102246095,0,1;1005.17747578125,-866.509102246095,0,1;997.81537578125,-855.662802246094,0,1;997.81537578125,-855.662802246094,0,1;997.81537578125,-855.662802246094,0,1;988.31817578125,-858.869702246095,0,1;988.31817578125,-858.869702246095,0,1;988.31817578125,-858.869702246095,0,1;990.95247578125,-864.665102246094,0,1;990.95247578125,-864.665102246094,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_64" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.96078431372549]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.67843137254902]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1001.66527578125,-842.273802246094,0,1;1001.66527578125,-856.822502246094,0,1;991.28637578125,-868.616402246094,0,1;978.48367578125,-868.616402246094,0,1;965.680875781251,-868.616402246094,0,1;955.302275781251,-856.822502246094,0,1;955.302275781251,-842.273802246094,0,1;955.302275781251,-827.725302246094,0,1;965.680875781251,-815.931402246093,0,1;978.48367578125,-815.931402246093,0,1;991.28637578125,-815.931402246093,0,1;1001.66527578125,-827.725302246094,0,1;1001.66527578125,-842.273802246094,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
