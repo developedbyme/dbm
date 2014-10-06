@@ -33,6 +33,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.items.layers.
 		return this;
 	};
 	
+	objectFunctions.isClipping = function() {
+		return this._nativeItem.pathItems[0].clipping;
+	};
+	
 	objectFunctions.setupItem = function(aNativeItem) {
 		//console.log("com.developedbyme.adobeextendscript.illustrator.items.layers.CompoundPathLayer::setupItem");
 		

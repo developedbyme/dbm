@@ -86,6 +86,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 	};
 	
 	objectFunctions.setupAnimationProperties = function() {
+		
+		console.log(">>>>", this._nativeItem.audioEnabled, this._nativeItem.hasAudio, this._nativeItem.effectsActive, this._nativeItem.threeDLayer, this._nativeItem.timeRemapEnabled);
+		
 		ClassReference.getPropertiesForLayer(this._nativeItem, "", this._animationProperties, this._masks, null);
 		
 		return this;
@@ -101,6 +104,12 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 			var currentName = StringFunctions.convertToCamelCase(currentProperty.name);
 			
 			var holderPath = aPrefix + currentName;
+			if(!currentProperty.enabled || !currentProperty.active || currentProperty.elided) {
+				console.log(holderPath, currentProperty.enabled, currentProperty.active, currentProperty.elided);
+			}
+			if(!currentProperty.enabled || !currentProperty.active) {
+				continue;
+			}
 			
 			if(currentProperty instanceof MaskPropertyGroup) {
 				

@@ -59,8 +59,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 	};
 	
 	objectFunctions._performCall = function() {
+		//console.log("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassRunner::_performCall");
+		
 		if(!BridgeTalk.isRunning(this._target)) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MAJOR, this, "_performCall", "Target " + this._target + " isn't running.");
 			return;
 		}
 		
@@ -68,7 +70,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 		this._call.target = this._target;
 		
 		var dataSourceString = (VariableAliases.isSet(this._data)) ? this._data.toSource() : "null";
-		console.log(dataSourceString);
+		//console.log(dataSourceString);
 		
 		var generatedScript = "var dbm = null; var global = new Object();var console = new Object();" + "\n";
 		generatedScript += "console.dir = function(){};console.log = function(){var joinArray = new Array();$.writeln(joinArray.join.apply(arguments, [\", \"]));};console.debug = function(){};console.info = function(){};console.warn = function(){var joinArray = new Array();$.writeln(\"WARNING: \" + joinArray.join.apply(arguments, [\", \"]));};console.error = function(){var joinArray = new Array();$.writeln(\"ERROR: \" + joinArray.join.apply(arguments, [\", \"]));};console.trace = function(){};" + "\n";
@@ -106,7 +108,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 		//console.log(generatedScript);
 		this._call.body = generatedScript;
 		this._call.onResult = function(aResponseData) {
-			console.log(">>>>>>>>>>>>>>>");
+			console.log("Call response");
 			console.log(aResponseData.body);
 			console.log(typeof(aResponseData.body));
 		}
@@ -115,6 +117,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.utils.bridge.BridgeClassR
 			console.log(aError.headers["Error-Code"]);
 			console.log(aError.body);
 		}
+		BridgeTalk.bringToFront(this._target);
 		this._call.send(this._timeoutLength);
 		console.log(this._call);
 	};

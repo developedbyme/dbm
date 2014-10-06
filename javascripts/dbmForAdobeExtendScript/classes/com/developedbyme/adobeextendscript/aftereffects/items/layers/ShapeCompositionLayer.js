@@ -38,6 +38,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 	
 	objectFunctions.setupAnimationProperties = function() {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.items.layers.ShapeCompositionLayer::setupAnimationProperties");
+		
+		console.log(">>>>", this._nativeItem.audioEnabled, this._nativeItem.hasAudio, this._nativeItem.effectsActive, this._nativeItem.threeDLayer, this._nativeItem.timeRemapEnabled);
+		
 		ClassReference.getPropertiesForLayer(this._nativeItem, "", this._animationProperties, this._masks, this._shapes.getRoot());
 		
 		return this;

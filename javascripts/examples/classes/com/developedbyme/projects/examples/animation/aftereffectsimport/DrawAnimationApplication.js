@@ -37,12 +37,17 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var LogCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
 	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var GetNamedArrayValueObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetNamedArrayValueObject");
 	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
+	var IllustratorFileGenerator = dbm.importClass("com.developedbyme.utils.canvas.generators.IllustratorFileGenerator");
+	var DataSelector = dbm.importClass("com.developedbyme.utils.data.DataSelector");
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
 	var PlaybackMetaDataTypes = dbm.importClass("com.developedbyme.constants.metadata.PlaybackMetaDataTypes");
 	var TrackMatteTypes = dbm.importClass("com.developedbyme.constants.thirdparty.adobe.aftereffects.TrackMatteTypes");
+	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
+	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	
 	/**
 	 * Constructor
@@ -58,6 +63,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		this._dataAssetUrlResolver = UrlResolver.createFromFilePath(this._dataAssetPath);
 		
 		this._showMissingFiles = true;
+		this._canvasController = null;
 		
 		this.addCssLink("../styles/utils/centeredContent.css");
 		this.addCssLink("../styles/utils/boxes.css");
@@ -113,7 +119,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		var mainCanvasView = CanvasView.create(this._contentHolder, true, "2d", {"width": Math.ceil(scale*width), "height": Math.ceil(scale*height)});
 		var mainCanvasController = mainCanvasView.getController();
-		
+		this._canvasController = mainCanvasController;
 		
 		var mainLayer = mainCanvasController.getLayer("main");
 		mainLayer.getProperty("scaleX").setValue(scale);
@@ -255,6 +261,13 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			
 			var graphicsPart = CanvasImageGraphics2d.createConnectedImage(imageAsset.getProperty("data"), layerWidth, layerHeight);
 			graphicsLayer.addDrawingPart(graphicsPart);
+		}
+		else if(footageType === "vectorGraphics") {
+			var filePath = this._dataAssetUrlResolver.getAbsolutePath(aAnimationData.metaData.getObject("file"));
+			var vectorAsset = dbm.singletons.dbmAssetRepository.getAsset(filePath);
+			
+			this.drawVectorLayer(vectorAsset, aAnimationData.metaData.getObject("layer"), graphicsLayer);
+			vectorAsset.load();
 		}
 		else if(footageType === "missingFile") {
 			if(this._showMissingFiles) {
@@ -450,6 +463,45 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					break;
 			}
 		}
+	};
+	
+	objectFunctions.drawVectorLayer = function(aAsset, aLayerName, aParentLayer) {
+		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::drawVectorLayer");
+		console.log(aAsset, aLayerName, aParentLayer);
+		
+		if(aAsset.getStatus() === AssetStatusTypes.LOADED) {
+			this._performDrawVectorLayer(aAsset, aLayerName, aParentLayer);
+		}
+		else {
+			aAsset.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._performDrawVectorLayer, [aAsset, aLayerName, aParentLayer]));
+		}
+	};
+	
+	objectFunctions._performDrawVectorLayer = function(aAsset, aLayerName, aParentLayer) {
+		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_performDrawVectorLayer");
+		console.log(aAsset, aLayerName, aParentLayer);
+		
+		
+		//METODO: don't parse the file multiple times
+		var dataName = dbm.singletons.dbmIdManager.getNewId("graphics");
+		dbm.singletons.dbmDataManager.addXmlDefinition(XmlChildRetreiver.getFirstChild(aAsset.getData()), dataName);
+		var parsedGraphicsData = dbm.singletons.dbmDataManager.getData(dataName).data;
+		
+		var treeStructure = parsedGraphicsData.data;
+		
+		var selectedLayer = DataSelector.getFirstEqualMatch(
+			GetNamedArrayValueObject.createCommand(
+				GetVariableObject.createCommand(
+					GetVariableObject.createSelectOnBaseObjectCommand("data"),
+					"metaData"
+				),
+				"name"
+			),
+			aLayerName,
+			treeStructure.getRoot().getChildren()
+		);
+		
+		IllustratorFileGenerator.drawLayers(selectedLayer.getChildren(), aParentLayer, this._canvasController);
 	};
 	
 	objectFunctions.applyColor = function(aOutputProperty, aTimelines, aPrefix, aTimeProperty) {

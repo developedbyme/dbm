@@ -20,14 +20,15 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.utils.export.
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	var PathLayer = dbm.importClass("com.developedbyme.adobeextendscript.illustrator.items.layers.PathLayer");
 	var CompoundPathLayer = dbm.importClass("com.developedbyme.adobeextendscript.illustrator.items.layers.CompoundPathLayer");
+	var TransformedObjectData = dbm.importClass("com.developedbyme.core.data.graphics.TransformedObjectData");
 	
 	//Utils
 	
 	//Constants
 	
 	
-	staticFunctions.exportLayers = function(aTreeStructureItems, aReturnParentTreeStructureItem) {
-		//console.log("com.developedbyme.adobeextendscript.illustrator.utils.export.LayerExporter::exportLayers");
+	staticFunctions.exportLayers = function(aTreeStructureItems, aReturnParentTreeStructureItem, aOffsetX, aOffsetY) {
+		console.log("com.developedbyme.adobeextendscript.illustrator.utils.export.LayerExporter::exportLayers");
 		//console.log(aTreeStructureItems, aReturnParentTreeStructureItem);
 		
 		var currentArray = aTreeStructureItems;
@@ -42,17 +43,38 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.utils.export.
 			newItem.data = layerData;
 			var layerMetaData = layerData.metaData;
 			
+			var positionArray = currentLayer.getNativeItem().position;
+			
+			var newOffsetX = aOffsetX;
+			var newOffsetY = aOffsetY;
+			
+			if(positionArray !== undefined) {
+				
+				newOffsetX = positionArray[0];
+				newOffsetY = -1*positionArray[1];
+			}
+			
+			var x = newOffsetX-aOffsetX;
+			var y = newOffsetY-aOffsetY;
+			
+			layerMetaData.addObject("name", currentLayer.getProperty("name").getValue());
+			
 			currentType = "layer";
+			
+			var transformedObject = TransformedObjectData.create(null, x, y);
+			layerData.data = transformedObject;
+			
 			if(currentLayer instanceof PathLayer) {
-				layerData.data = currentLayer.generateShapeData();
+				transformedObject.object = currentLayer.generateShapeData(newOffsetX, newOffsetY);
 				currentType = "path";
 			}
 			else if(currentLayer instanceof CompoundPathLayer) {
 				currentType = "compoundPath";
+				layerMetaData.addObject("isClipping", currentLayer.isClipping());
 			};
 			layerMetaData.addObject("type", currentType);
 			
-			ClassReference.exportLayers(currentTreeStructureItem.getChildren(), newItem);
+			ClassReference.exportLayers(currentTreeStructureItem.getChildren(), newItem, newOffsetX, newOffsetY);
 		}
 	};
 });

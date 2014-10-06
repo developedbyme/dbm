@@ -108,25 +108,44 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		//console.log(aPhotoshopLayersToExport, aUrlResolver);
 		
 		var dataObject = new Object();
+		var illustratorDataObject = new Object();
+		var exportPhotoshop = false;
+		var exportIllustrator = false;
 		
 		var currentArray = aPhotoshopLayersToExport.getNamesArray();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0 ; i < currentArrayLength; i++) {
 			var currentName = currentArray[i];
 			var currentFileData = aPhotoshopLayersToExport.getObject(currentName);
-			var fileData = new Object();
-			dataObject[currentName] = fileData;
+			var exportType = currentFileData.getDynamicVariable("exportType");
 			
-			var currentArray2 = currentFileData.getNamesArray();
-			var currentArray2Length = currentArray2.length;
-			for(var j = 0; j < currentArray2Length; j++) {
-				var currentLayerName = currentArray2[j];
-				fileData[currentLayerName] = aUrlResolver.getAbsolutePath(currentFileData.getObject(currentLayerName));
+			if(exportType === "psdLayers") {
+				exportPhotoshop = true;
+				var fileData = new Object();
+				dataObject[currentName] = fileData;
+			
+				var currentArray2 = currentFileData.getNamesArray();
+				var currentArray2Length = currentArray2.length;
+				for(var j = 0; j < currentArray2Length; j++) {
+					var currentLayerName = currentArray2[j];
+					fileData[currentLayerName] = aUrlResolver.getAbsolutePath(currentFileData.getObject(currentLayerName));
+				}
+			}
+			else if(exportType === "aiFile") {
+				exportIllustrator = true;
+				illustratorDataObject[currentName] = aUrlResolver.getAbsolutePath(currentFileData.getObject("main"));
 			}
 		}
 		
-		var bridgeConnection = BridgeClassRunner.create("photoshop", "com.developedbyme.adobeextendscript.projects.tools.photoshop.ExportLayersFromFilesApplication", dataObject);
-		bridgeConnection.perform();
+		if(exportPhotoshop) {
+			var bridgeConnection = BridgeClassRunner.create("photoshop", "com.developedbyme.adobeextendscript.projects.tools.photoshop.ExportLayersFromFilesApplication", dataObject);
+			bridgeConnection.perform();
+		}
+		if(exportIllustrator) {
+			var bridgeConnection = BridgeClassRunner.create("illustrator", "com.developedbyme.adobeextendscript.projects.tools.illustrator.ExportFilesApplication", illustratorDataObject);
+			bridgeConnection.perform();
+		}
+		
 	};
 	
 	/**

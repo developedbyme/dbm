@@ -21,6 +21,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.Defaul
 	var ShapeData = dbm.importClass("com.developedbyme.core.data.graphics.ShapeData");
 	var FillData = dbm.importClass("com.developedbyme.core.data.graphics.FillData");
 	var StrokeData = dbm.importClass("com.developedbyme.core.data.graphics.StrokeData");
+	var TransformedObjectData = dbm.importClass("com.developedbyme.core.data.graphics.TransformedObjectData");
 	
 	//Utils
 	

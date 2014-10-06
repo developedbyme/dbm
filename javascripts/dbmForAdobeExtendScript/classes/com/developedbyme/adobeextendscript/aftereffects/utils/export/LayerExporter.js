@@ -104,6 +104,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 											}
 											else {
 												photoshopLayerArray = NamedArray.create(true);
+												photoshopLayerArray.setDynamicVariable("exportType", "psdLayers");
 												aPhotoshopLayersToExport.addObject(sourceFilePath, photoshopLayerArray);
 											}
 										
@@ -112,6 +113,26 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 											var outputName = StringFunctions.convertToSafeFileName(folderName) + "/" + StringFunctions.convertToSafeFileName(layerName) + ".png";
 											photoshopLayerArray.addObject(layerName, outputName);
 											layerMetaData.addObject("file", outputName);
+											break;
+										case "ai":
+											layerMetaData.addObject("footageType", "vectorGraphics");
+											var sourceName = nativeSource.name;
+											var sourceFilePath = currentFile.absoluteURI;
+											
+											var layerName = sourceName.substring(0, sourceName.lastIndexOf("/"));
+											var folderName = fileName.substring(0, fileName.lastIndexOf("."));
+											var outputName = StringFunctions.convertToSafeFileName(folderName) + ".xml";
+											
+											if(!aPhotoshopLayersToExport.select(sourceFilePath)) {
+												var newLayerArray = NamedArray.create(true);
+												newLayerArray.setDynamicVariable("exportType", "aiFile");
+												aPhotoshopLayersToExport.addObject(sourceFilePath, newLayerArray);
+												newLayerArray.addObject("main", outputName);
+											}
+											
+											layerMetaData.addObject("file", outputName);
+											layerMetaData.addObject("layer", layerName);
+											//METODO
 											break;
 										default:
 											//MENOTE: add video

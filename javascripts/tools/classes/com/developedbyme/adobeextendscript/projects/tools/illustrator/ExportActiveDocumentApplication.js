@@ -56,7 +56,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.illustrato
 		var exportedLayerData = TreeStructure.create();
 		documentMetaData.data = exportedLayerData;
 		
-		LayerExporter.exportLayers(this._workDocument.getLayers(), exportedLayerData.getRoot());
+		LayerExporter.exportLayers(this._workDocument.getLayers(), exportedLayerData.getRoot(), 0, 0);
 		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(exportObject);
 		
 		var saveFile = FileWriter.createWithPrompt("~/export.xml");

@@ -86,6 +86,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.X
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.graphics.ShapeData", ["stroke", "fill", "strokeOverFill", "curves"]);
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.graphics.FillData", ["definition"]);
 		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.graphics.StrokeData", ["definition", "lineWidth", "lineCap", "lineJoin", "miterLimit"]);
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.graphics.TransformedObjectData", ["object", "transformation"]);
+		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.graphics.TransformationData", ["x", "y", "rotation", "scaleX", "scaleY"]);
 	};
 	
 	staticFunctions._createEncodingBaseObject = function(aClassPath, aVariables) {
