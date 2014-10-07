@@ -50,6 +50,9 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixTransformation", null, fun
 	 * @param	aOutputSet	PointSet	The set that gets all the blended points.
 	 */
 	staticFunctions.blend2dPointSets = function(aParameter, aInputSet1, aInputSet2, aOutputSet) {
+		//console.log("com.developedbyme.utils.math.MatrixTransformation::blend2dPointSets");
+		//console.log(aParameter);
+		
 		var invertedParameter = (1-aParameter);
 		var input1Array = aInputSet1.pointsArray;
 		var input2Array = aInputSet2.pointsArray;
@@ -76,7 +79,7 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixTransformation", null, fun
 	};
 	
 	staticFunctions.transform3dPointSet = function(aMatrix, aInputSet, aOutputSet) {
-		//console.log("com.developedbyme.core.data.points.PointSet3d.transformWithMatrix");
+		//console.log("com.developedbyme.utils.math.MatrixTransformation::transform3dPointSet");
 		var valuesArray = aMatrix.valuesArray;
 		var currentArray = aInputSet.pointsArray;
 		var outputArray = aOutputSet.pointsArray;
@@ -87,6 +90,9 @@ dbm.registerClass("com.developedbyme.utils.math.MatrixTransformation", null, fun
 	};
 		
 	staticFunctions.blend3dPointSets = function(aParameter, aInputSet1, aInputSet2, aOutputSet) {
+		//console.log("com.developedbyme.utils.math.MatrixTransformation::blend3dPointSets");
+		//console.log(aParameter);
+		
 		var invertedParameter = (1-aParameter);
 		var input1Array = aInputSet1.pointsArray;
 		var input2Array = aInputSet2.pointsArray;

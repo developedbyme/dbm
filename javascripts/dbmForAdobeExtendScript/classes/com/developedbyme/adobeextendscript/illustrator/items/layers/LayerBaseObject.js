@@ -58,6 +58,22 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.items.layers.
 		return returnValue;
 	};
 	
+	objectFunctions.getX = function() {
+		return this._nativeItem.position[0];
+	};
+	
+	objectFunctions.getY = function() {
+		return -1*this._nativeItem.position[1];
+	};
+	
+	objectFunctions.getWidth = function() {
+		return this._nativeItem.width;
+	};
+	
+	objectFunctions.getHeight = function() {
+		return this._nativeItem.height;
+	};
+	
 	objectFunctions.setupItem = function(aNativeItem) {
 		//console.log("com.developedbyme.adobeextendscript.illustrator.items.layers.LayerBaseObject::setupItem");
 		

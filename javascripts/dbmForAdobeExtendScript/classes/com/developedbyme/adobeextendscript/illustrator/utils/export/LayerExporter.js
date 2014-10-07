@@ -43,21 +43,15 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.utils.export.
 			newItem.data = layerData;
 			var layerMetaData = layerData.metaData;
 			
-			var positionArray = currentLayer.getNativeItem().position;
-			
-			var newOffsetX = aOffsetX;
-			var newOffsetY = aOffsetY;
-			
-			if(positionArray !== undefined) {
-				
-				newOffsetX = positionArray[0];
-				newOffsetY = -1*positionArray[1];
-			}
+			var newOffsetX = currentLayer.getX();
+			var newOffsetY = currentLayer.getY();
 			
 			var x = newOffsetX-aOffsetX;
 			var y = newOffsetY-aOffsetY;
 			
 			layerMetaData.addObject("name", currentLayer.getProperty("name").getValue());
+			layerMetaData.addObject("width", currentLayer.getWidth());
+			layerMetaData.addObject("height", currentLayer.getHeight());
 			
 			currentType = "layer";
 			

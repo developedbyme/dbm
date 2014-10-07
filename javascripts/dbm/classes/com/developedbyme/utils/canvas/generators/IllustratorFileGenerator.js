@@ -21,7 +21,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.generators.IllustratorFileGene
 	
 	
 	staticFunctions.drawLayers = function(aLayers, aParentLayer, aCanvasController) {
-		console.log("com.developedbyme.utils.canvas.generators.IllustratorFileGenerator::drawLayers");
+		//console.log("com.developedbyme.utils.canvas.generators.IllustratorFileGenerator::drawLayers");
 		
 		var currentArray = aLayers;
 		var currentArrayLength = currentArray.length;
@@ -32,7 +32,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.generators.IllustratorFileGene
 	};
 	
 	staticFunctions.drawLayer = function(aTreestructureItem, aParentLayer, aCanvasController) {
-		console.log("com.developedbyme.utils.canvas.generators.IllustratorFileGenerator::drawLayer");
+		//console.log("com.developedbyme.utils.canvas.generators.IllustratorFileGenerator::drawLayer");
 		
 		var currentLayerMetaData = aTreestructureItem.data.metaData;
 		var currentLayerData = aTreestructureItem.data.data;

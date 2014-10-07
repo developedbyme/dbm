@@ -112,16 +112,27 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var timeFlowGate = FlowGate.create(playbackNode.getProperty("outputTime"));
 		dbm.singletons.dbmFlowManager.addFlowGate(timeFlowGate);
 		
-		var scale = 0.25;
+		var scale = 1;
 		
 		var width = parsedAnimationData.metaData.getObject("width");
 		var height = parsedAnimationData.metaData.getObject("height");
 		
-		var mainCanvasView = CanvasView.create(this._contentHolder, true, "2d", {"width": Math.ceil(scale*width), "height": Math.ceil(scale*height)});
+		var scaledWidth = Math.ceil(scale*width);
+		var scaledHeight = Math.ceil(scale*height);
+		
+		var maxWidth = 1024;
+		var maxHeight = 768;
+		
+		var renderWidth = Math.min(scaledWidth, maxWidth);
+		var renderHeight = Math.min(scaledHeight, maxHeight);
+		
+		var mainCanvasView = CanvasView.create(this._contentHolder, true, "2d", {"width": renderWidth, "height": renderHeight});
 		var mainCanvasController = mainCanvasView.getController();
 		this._canvasController = mainCanvasController;
 		
 		var mainLayer = mainCanvasController.getLayer("main");
+		mainLayer.getProperty("x").setValue(Math.round(0.5*(renderWidth-scaledWidth)));
+		mainLayer.getProperty("y").setValue(Math.round(0.5*(renderHeight-scaledHeight)));
 		mainLayer.getProperty("scaleX").setValue(scale);
 		mainLayer.getProperty("scaleY").setValue(scale);
 		
@@ -158,8 +169,10 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			var currentType = currentLayerData.metaData.getObject("type");
 			if(currentType === "layer") {
 				var currentLayer = aLayer.getChildByPath(layerName);
-				var childLayer = currentLayer.getChildByPath("children");
 				var contentLayer = currentLayer.getChildByPath("content");
+				var childLayer = currentLayer.getChildByPath("children");
+				
+				
 				this.setupLayer(currentLayer, currentLayerData, aTimeProperty, aDuration);
 				this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aTimeProperty, aDuration, aCanvasController);
 			}
@@ -266,7 +279,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			var filePath = this._dataAssetUrlResolver.getAbsolutePath(aAnimationData.metaData.getObject("file"));
 			var vectorAsset = dbm.singletons.dbmAssetRepository.getAsset(filePath);
 			
-			this.drawVectorLayer(vectorAsset, aAnimationData.metaData.getObject("layer"), graphicsLayer);
+			this.drawVectorLayer(vectorAsset, aAnimationData.metaData.getObject("layer"), graphicsLayer, layerWidth, layerHeight);
 			vectorAsset.load();
 		}
 		else if(footageType === "missingFile") {
@@ -465,21 +478,21 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		}
 	};
 	
-	objectFunctions.drawVectorLayer = function(aAsset, aLayerName, aParentLayer) {
-		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::drawVectorLayer");
-		console.log(aAsset, aLayerName, aParentLayer);
+	objectFunctions.drawVectorLayer = function(aAsset, aLayerName, aParentLayer, aHolderWidth, aHolderHeight) {
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::drawVectorLayer");
+		//console.log(aAsset, aLayerName, aParentLayer);
 		
 		if(aAsset.getStatus() === AssetStatusTypes.LOADED) {
-			this._performDrawVectorLayer(aAsset, aLayerName, aParentLayer);
+			this._performDrawVectorLayer(aAsset, aLayerName, aParentLayer, aHolderWidth, aHolderHeight);
 		}
 		else {
-			aAsset.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._performDrawVectorLayer, [aAsset, aLayerName, aParentLayer]));
+			aAsset.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._performDrawVectorLayer, [aAsset, aLayerName, aParentLayer, aHolderWidth, aHolderHeight]));
 		}
 	};
 	
-	objectFunctions._performDrawVectorLayer = function(aAsset, aLayerName, aParentLayer) {
-		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_performDrawVectorLayer");
-		console.log(aAsset, aLayerName, aParentLayer);
+	objectFunctions._performDrawVectorLayer = function(aAsset, aLayerName, aParentLayer, aHolderWidth, aHolderHeight) {
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_performDrawVectorLayer");
+		//console.log(aAsset, aLayerName, aParentLayer);
 		
 		
 		//METODO: don't parse the file multiple times
@@ -501,7 +514,15 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			treeStructure.getRoot().getChildren()
 		);
 		
-		IllustratorFileGenerator.drawLayers(selectedLayer.getChildren(), aParentLayer, this._canvasController);
+		var layerMetaData = selectedLayer.data.metaData;
+		var layerWidth = layerMetaData.getObject("width");
+		var layerHeight = layerMetaData.getObject("height");
+		
+		var centertedLayer = aParentLayer.getChildByPath("center");
+		centertedLayer.getProperty("x").setValue(0.5*(aHolderWidth-layerWidth));
+		centertedLayer.getProperty("y").setValue(0.5*(aHolderHeight-layerHeight));
+		
+		IllustratorFileGenerator.drawLayers(selectedLayer.getChildren(), centertedLayer, this._canvasController);
 	};
 	
 	objectFunctions.applyColor = function(aOutputProperty, aTimelines, aPrefix, aTimeProperty) {

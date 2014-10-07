@@ -257,9 +257,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 				var duration = currentTime-lastTime;
 				
 				//METODO: interpolation
+				//METODO: chack that curve has changed
 				var blendCurvePart = BlendCurveTimelinePart.create(lastCurve, currentCurve, lastTime, duration);
 				
 				aReturnTimeline.getAnimationController().addPart(blendCurvePart);
+				
+				lastTime = currentTime;
+				lastCurve = currentCurve;
 			}
 		}
 		else {

@@ -59,7 +59,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.animation.EvaluateComplexTimelin
 		
 		var thePart = this._part.getValueWithoutFlow();
 		if(thePart !== null) {
-			this._outputValue.setValueWithFlow(thePart.getValueAt(this._partParameter.getValueWithoutFlow()), aFlowUpdateNumber);
+			var parameter = this._partParameter.getValueWithoutFlow();
+			this._outputValue.setValueWithFlow(thePart.getValueAt(parameter), aFlowUpdateNumber);
 		}
 		else {
 			var theTimeline = this._timeline.getValueWithoutFlow();

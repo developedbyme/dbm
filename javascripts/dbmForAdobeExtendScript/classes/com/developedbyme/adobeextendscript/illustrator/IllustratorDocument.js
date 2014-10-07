@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.IllustratorDo
 	var LayerBaseObject = dbm.importClass("com.developedbyme.adobeextendscript.illustrator.items.layers.LayerBaseObject");
 	var PathLayer = dbm.importClass("com.developedbyme.adobeextendscript.illustrator.items.layers.PathLayer");
 	var CompoundPathLayer = dbm.importClass("com.developedbyme.adobeextendscript.illustrator.items.layers.CompoundPathLayer");
+	var AbstractLayer = dbm.importClass("com.developedbyme.adobeextendscript.illustrator.items.layers.AbstractLayer");
 	
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
@@ -90,6 +91,9 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.IllustratorDo
 			}
 			else if(currentNativeLayer.typename === "CompoundPathItem") {
 				newLayer = CompoundPathLayer.create(currentNativeLayer);
+			}
+			else if(currentNativeLayer.typename === "Layer") {
+				newLayer = AbstractLayer.create(currentNativeLayer);
 			}
 			else {
 				newLayer = LayerBaseObject.create(currentNativeLayer);
