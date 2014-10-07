@@ -17,6 +17,7 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.canvas.PixelEffe
 	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
 	var PixelEffectLayer2d = dbm.importClass("com.developedbyme.utils.canvas.PixelEffectLayer2d");
 	var GrayscaleEffect = dbm.importClass("com.developedbyme.utils.canvas.pixeleffects.color.GrayscaleEffect");
+	var PolarCoordinatesEffect = dbm.importClass("com.developedbyme.utils.canvas.pixeleffects.distort.PolarCoordinatesEffect");
 	
 	//Utils
 	
@@ -62,11 +63,10 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.canvas.PixelEffe
 		displayLayer.getProperty("scaleY").setValue(1);
 		
 		var image = dbm.singletons.dbmAssetRepository.getAssetData(this._imagePath);
-		console.log(image);
 		
-		var pixelEffect = GrayscaleEffect.create();
+		//var pixelEffect = GrayscaleEffect.create();
+		var pixelEffect = PolarCoordinatesEffect.create(200, 200, 200, 0, 0, 0, image.naturalWidth, image.naturalHeight);
 		var pixelEffectLayer = PixelEffectLayer2d.create(pixelEffect, 0, 0, 1024, 768);
-		console.log(pixelEffectLayer);
 		pixelEffectLayer.createTreeStructureItem().setName("pixelEffect");
 		displayLayer.getTreeStructureItem().addChild(pixelEffectLayer.getTreeStructureItem());
 		canvasController.getProperty("graphicsUpdate").connectInput(pixelEffectLayer.getProperty("graphicsUpdate"));

@@ -33,6 +33,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.pixeleffects.PixelEffectBaseOb
 		return this;
 	};
 	
+	objectFunctions._getDataPosition = function(aX, aY, aWidth, aHeight) {
+		return 4*((aWidth*aY)+aX);
+	};
+	
 	objectFunctions.applyEffect = function(aInputGraphics, aOutputGraphics, aWidth, aHeight, aOffsetX, aOffsetY) {
 		//console.log("com.developedbyme.utils.canvas.pixeleffects.PixelEffectBaseObject::applyEffect");
 		
