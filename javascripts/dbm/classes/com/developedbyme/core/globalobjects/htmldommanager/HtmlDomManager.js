@@ -22,7 +22,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 		this._htmlCreators = new Array();
 		this._svgCreators = new Array();
 		
-		this._tempCanvas = document.createElement("canvas");
+		this._tempCanvas = dbm.getDocument().createElement("canvas");
 		this._masterWindowHtmlCreator = HtmlCreator.create(dbm.getDocument());
 		this._htmlCreators.push(this._masterWindowHtmlCreator);
 		this._masterWindowSvgCreator = SvgCreator.create(dbm.getDocument());
@@ -238,5 +238,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomMa
 	
 	objectFunctions.getTempCanvas = function() {
 		return this._tempCanvas;
+	};
+	
+	objectFunctions.createTempCanvas = function() {
+		return dbm.getDocument().createElement("canvas");
 	};
 });

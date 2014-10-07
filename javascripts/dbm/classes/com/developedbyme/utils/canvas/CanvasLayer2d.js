@@ -23,6 +23,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	var CanvasTextGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextGraphics2d");
 	var CanvasTextWithCustomSpacingGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasTextWithCustomSpacingGraphics2d");
 	var PivotTransformation2dNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.PivotTransformation2dNode");
+	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	
 	var TransformationTo2dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo2dMatrixNode");
 	
@@ -76,6 +77,15 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		}
 		
 		return this._mask;
+	};
+	
+	objectFunctions.createTreeStructureItem = function() {
+		if(this._treeStructureItem === null) {
+			this._treeStructureItem = TreeStructureItem.create(dbm.singletons.dbmIdManager.getNewId("autoNamedLayer"));
+			this._treeStructureItem.data = this;
+			this._linkRegistration_setTreeStructureItem(this._treeStructureItem);
+		}
+		return this._treeStructureItem;
 	};
 	
 	objectFunctions.getTreeStructureItem = function() {

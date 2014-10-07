@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.dev
 		
 		this.superCall();
 		
-		this._renderCanvas = this.createProperty("renderCanvas", dbm.singletons.dbmHtmlDomManager.getTempCanvas());
+		this._renderCanvas = this.createProperty("renderCanvas", dbm.singletons.dbmHtmlDomManager.createTempCanvas());
 		this._renderWidth = this.createProperty("renderWidth", 320);
 		this._renderHeight = this.createProperty("renderHeight", 240);
 		this._renderOffsetX = this.createProperty("renderOffsetX", 0);
@@ -37,6 +37,42 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.dev
 		//METODO: Add render scale
 		
 		return this;
+	};
+	
+	objectFunctions._sizeRenderCanvas = function(aCanvas, aWidth, aHeight) {
+		//console.log("com.developedbyme.utils.canvas.CanvasRenderLayer2d::_sizeRenderCanvas");
+		//console.log(aCanvas, aWidth, aHeight);
+		
+		var theContext = aCanvas.getContext("2d");
+		
+		theContext.setTransform(1, 0, 0, 1, 0, 0);
+		aCanvas.width = aWidth;
+		aCanvas.height = aHeight;
+		theContext.clearRect(0, 0, aWidth, aHeight);
+	};
+	
+	/**
+	 * Renders this layer into a canvas
+	 *
+	 * @param	aCanvas						Canvas	The context to draw in.
+	 * @param	aWidth						Number	The width (in pixels) to render.
+	 * @param	aHeight						Number	The height (in pixels) to render.
+	 * @param	aOffsetX					Number	The number of pixels to x offset the rendered result.
+	 * @param	aOffsetY					Number	The number of pixels to y offset the rendered result.
+	 * @param	aNumberOfLinksToResolve		Number	The number of links to use before recursion stops.
+	 */
+	objectFunctions._renderInCanvas = function(aCanvas, aWidth, aHeight, aOffsetX, aOffsetY, aNumberOfLinksToResolve) {
+		//console.log("com.developedbyme.utils.canvas.CanvasRenderLayer2d::_renderInCanvas");
+		//console.log(aCanvas, aWidth, aHeight, aOffsetX, aOffsetY, aNumberOfLinksToResolve);
+		
+		this._sizeRenderCanvas(aCanvas, aWidth, aHeight);
+		
+		var theContext = aCanvas.getContext("2d");
+		theContext.setTransform(1, 0, 0, 1, -1*aOffsetX, -1*aOffsetY);
+		
+		this._drawGraphics(theContext);
+		this._drawChildren(theContext, this._treeStructureItem.getChildren(), aNumberOfLinksToResolve);
+		
 	};
 	
 	/**
@@ -53,17 +89,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d", "com.dev
 		var renderOffsetX = this._renderOffsetX.getValueWithoutFlow();
 		var renderOffsetY = this._renderOffsetY.getValueWithoutFlow();
 		
-		var renderContext = renderCanvas.getContext("2d");
-		
-		renderContext.setTransform(1, 0, 0, 1, 0, 0);
-		renderCanvas.width = renderWidth;
-		renderCanvas.height = renderHeight;
-		renderContext.clearRect(0, 0, renderWidth, renderHeight);
-		
-		renderContext.setTransform(1, 0, 0, 1, -1*renderOffsetX, -1*renderOffsetY);
-		
-		this._drawGraphics(renderContext);
-		this._drawChildren(renderContext, this._treeStructureItem.getChildren(), aNumberOfLinksToResolve);
+		this._renderInCanvas(renderCanvas, renderWidth, renderHeight, renderOffsetX, renderOffsetY, aNumberOfLinksToResolve);
 		
 		aContext.drawImage(renderCanvas, 0, 0, renderWidth, renderHeight, renderOffsetX, renderOffsetY, renderWidth, renderHeight);
 	};
