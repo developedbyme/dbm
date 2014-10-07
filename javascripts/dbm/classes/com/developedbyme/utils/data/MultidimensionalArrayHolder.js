@@ -3,14 +3,24 @@ dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "c
 	//console.log("com.developedbyme.utils.data.MultidimensionalArrayHolder");
 	//"use strict";
 	
+	//Self reference
 	var MultidimensionalArrayHolder = dbm.importClass("com.developedbyme.utils.data.MultidimensionalArrayHolder");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependnecies
+	
+	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.utils.data.MultidimensionalArrayHolder::_init");
 		
