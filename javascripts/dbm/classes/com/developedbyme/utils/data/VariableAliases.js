@@ -126,7 +126,6 @@ dbm.registerClass("com.developedbyme.utils.data.VariableAliases", "com.developed
 	 * Checks if a text is empty.
 	 */
 	staticFunctions.isEmptyText = function(aString) {
-		//trace("breel.utils.data.VariableAliases.isEmptyText");
 		var regExpString = "^[ \t\f\n\r]*$";
 		var regExp = new RegExp(regExpString);
 		return regExp.test(aString);

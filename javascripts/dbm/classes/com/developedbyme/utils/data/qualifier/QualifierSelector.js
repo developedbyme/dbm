@@ -70,7 +70,6 @@ dbm.registerClass("com.developedbyme.utils.data.qualifier.QualifierSelector", "c
 	 * Creates a new selector.
 	 */
 	staticFunctions.create = function() {
-		//trace("breel.utils.data.ArrayHolder.create");
 		var newQualifierSelector = (new ClassReference()).init();
 		return newQualifierSelector;
 	}; //End function create

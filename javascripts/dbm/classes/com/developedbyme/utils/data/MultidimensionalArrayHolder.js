@@ -64,9 +64,10 @@ dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "c
 	};
 	
 	objectFunctions.setValue = function(/* ... aPositions, aValue */) {
+		//console.log("com.developedbyme.utils.data.MultidimensionalArrayHolder::setValue");
 		
 		if(arguments.length !== this._lengths.length+1) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Number of positions (" + arguments.length + ") doesn't match dimensions of this array (" + this._lengths.length + ").");
 			return;
 		}
 		
@@ -96,7 +97,7 @@ dbm.registerClass("com.developedbyme.utils.data.MultidimensionalArrayHolder", "c
 	 * Creates a new holder
 	 */
 	staticFunctions.create = function(/* ... aLengths */) {
-		//trace("breel.utils.data.MultidimensionalArrayHolder.create");
+		//console.log("com.developedbyme.utils.data.MultidimensionalArrayHolder::create");
 		
 		var aLengths = arguments;
 		

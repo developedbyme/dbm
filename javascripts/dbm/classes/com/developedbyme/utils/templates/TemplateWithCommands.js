@@ -91,7 +91,6 @@ dbm.registerClass("com.developedbyme.utils.templates.TemplateWithCommands", "com
 	 * @return	TemplateWithCommands	The newly created object.
 	 */
 	staticFunctions.create = function(aTemplate) {
-		//trace("breel.utils.data.TemplateWithCommands.create");
 		var newTemplateWithCommands = (new TemplateWithCommands()).init();
 		newTemplateWithCommands.setTemplate(aTemplate);
 		return newTemplateWithCommands;

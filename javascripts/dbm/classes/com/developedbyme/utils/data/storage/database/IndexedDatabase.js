@@ -192,7 +192,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 	 * Creates a new local storage
 	 */
 	staticFunctions.create = function(aName, aStructure, aVersion) {
-		//trace("com.developedbyme.utils.data.IndexedDatabase.create");
+		//console.log("com.developedbyme.utils.data.IndexedDatabase.create");
 		
 		aVersion = VariableAliases.valueWithDefault(aVersion, 0);
 		

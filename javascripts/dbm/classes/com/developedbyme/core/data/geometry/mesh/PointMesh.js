@@ -34,7 +34,11 @@ dbm.registerClass("com.developedbyme.core.data.geometry.mesh.PointMesh", "com.de
 		
 		for(var i = 0; i < aNumberOfPointsX; i++) {
 			for(var j = 0; j < aNumberOfPointsY; j++) {
-				newPointMesh.setValue(i, j, Point.create(i/(aNumberOfPointsX-1)*aWidth+aX), j/(aNumberOfPointsY-1)*aHeight+aY));
+				newPointMesh.setValue(
+					i,
+					j,
+					Point.create(i/(aNumberOfPointsX-1)*aWidth+aX, j/(aNumberOfPointsY-1)*aHeight+aY)
+				);
 			}
 		}
 		

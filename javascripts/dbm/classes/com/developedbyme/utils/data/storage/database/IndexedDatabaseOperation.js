@@ -161,7 +161,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 	 * Creates a new local storage
 	 */
 	staticFunctions.create = function(aTransaction) {
-		//trace("com.developedbyme.utils.data.IndexedDatabaseOperation.create");
+		//console.log("com.developedbyme.utils.data.IndexedDatabaseOperation.create");
 		
 		var newIndexedDatabaseOperation  = (new IndexedDatabaseOperation()).init();
 		

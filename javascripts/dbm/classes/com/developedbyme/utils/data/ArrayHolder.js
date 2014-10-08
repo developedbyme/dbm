@@ -74,7 +74,6 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 	 * @return	ArrayHolder	The newly created object.
 	 */
 	staticFunctions.create = function(aOwnsObjects) {
-		//trace("breel.utils.data.ArrayHolder.create");
 		var newArrayHolder = (new ArrayHolder()).init();
 		newArrayHolder.ownsObjects = aOwnsObjects;
 		return newArrayHolder;
@@ -89,7 +88,6 @@ dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme
 	 * @return	ArrayHolder	The newly created object.
 	 */
 	staticFunctions.createFromArray = function(aArray, aOwnsObjects) {
-		//trace("breel.utils.data.ArrayHolder.createFromArray");
 		var newArrayHolder = (new ArrayHolder()).init();
 		newArrayHolder.array = aArray;
 		newArrayHolder.ownsObjects = aOwnsObjects;

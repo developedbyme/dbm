@@ -1,19 +1,23 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * Class for determin where two lines collide.
- *
- * @authur Mattias Ekendahl (mattias@developedbyme.com)
- * @version 0.2.01
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.LineIntersection2d");
 	
+	//Self reference
 	var LineIntersection2d = dbm.importClass("com.developedbyme.utils.math.LineIntersection2d");
 	
+	//Error report
+	
+	//Dependencies
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	
+	//Utils
 	var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");
 	var AngleFunctions = dbm.importClass("com.developedbyme.utils.math.AngleFunctions");
 	
+	//Constants
 	staticFunctions.QUALIFY_TYPE_ALL = "all";
 	staticFunctions.QUALIFY_TYPE_ALL_AND_NULL_RESULTS = "allAndNullResults";
 	staticFunctions.QUALIFY_TYPE_ON_LINE = "onLine";

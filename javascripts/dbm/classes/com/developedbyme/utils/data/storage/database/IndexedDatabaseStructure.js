@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.database.IndexedDatabase
 	 * Creates a new local storage
 	 */
 	staticFunctions.create = function() {
-		//trace("com.developedbyme.utils.data.IndexedDatabaseStructure.create");
+		//console.log("com.developedbyme.utils.data.IndexedDatabaseStructure.create");
 		var newIndexedDatabaseStructure = (new IndexedDatabaseStructure()).init();
 		
 		return newIndexedDatabaseStructure;

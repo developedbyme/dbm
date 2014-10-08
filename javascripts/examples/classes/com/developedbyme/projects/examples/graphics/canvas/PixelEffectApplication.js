@@ -18,6 +18,8 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.canvas.PixelEffe
 	var PixelEffectLayer2d = dbm.importClass("com.developedbyme.utils.canvas.PixelEffectLayer2d");
 	var GrayscaleEffect = dbm.importClass("com.developedbyme.utils.canvas.pixeleffects.color.GrayscaleEffect");
 	var PolarCoordinatesEffect = dbm.importClass("com.developedbyme.utils.canvas.pixeleffects.distort.PolarCoordinatesEffect");
+	var MeshDeformationEffect = dbm.importClass("com.developedbyme.utils.canvas.pixeleffects.distort.MeshDeformationEffect");
+	var PointMesh = dbm.importClass("com.developedbyme.core.data.geometry.mesh.PointMesh");
 	
 	//Utils
 	
@@ -65,7 +67,16 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.canvas.PixelEffe
 		var image = dbm.singletons.dbmAssetRepository.getAssetData(this._imagePath);
 		
 		//var pixelEffect = GrayscaleEffect.create();
-		var pixelEffect = PolarCoordinatesEffect.create(200, 200, 200, 0, 0, 0, image.naturalWidth, image.naturalHeight);
+		
+		//var pixelEffect = PolarCoordinatesEffect.create(200, 200, 200, 0, 0, 0, image.naturalWidth, image.naturalHeight);
+		
+		var meshGridLength = 4;
+		var pointMesh = PointMesh.create2d(meshGridLength, meshGridLength, 0, 0, 200, 200);
+		var pixelEffect = MeshDeformationEffect.create(pointMesh, 0, 0, image.naturalWidth, image.naturalHeight);
+		var cornerPoint = pointMesh.getValue(meshGridLength-1, meshGridLength-1);
+		cornerPoint.x = 300;
+		cornerPoint.y = 300;
+		
 		var pixelEffectLayer = PixelEffectLayer2d.create(pixelEffect, 0, 0, 1024, 768);
 		pixelEffectLayer.createTreeStructureItem().setName("pixelEffect");
 		displayLayer.getTreeStructureItem().addChild(pixelEffectLayer.getTreeStructureItem());

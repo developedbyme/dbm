@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.pixeleffects.distort.PolarCoor
 				var distanceParameter = VectorFunctions.lengthFromVectorValues2d(currentX, currentY)/radius;
 				
 				if(distanceParameter < 1) {
-					var outputPoistion = this._getDataPosition(i, j, aWidth, aHeight);
+					var outputPosition = this._getDataPosition(i, j, aWidth, aHeight);
 					var angle = AngleFunctions.normalizeAngle(VectorFunctions.angleFromVectorValues(currentX, currentY)+startAngle);
 					
 					if(angle < 0) {
@@ -99,10 +99,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.pixeleffects.distort.PolarCoor
 					
 					var inputPosition = this._getDataPosition(Math.round(inputX), Math.round(inputY), aWidth, aHeight);
 					
-					outputData[outputPoistion] = inputData[inputPosition];
-					outputData[outputPoistion+1] = inputData[inputPosition+1];
-					outputData[outputPoistion+2] = inputData[inputPosition+2];
-					outputData[outputPoistion+3] = inputData[inputPosition+3];
+					outputData[outputPosition] = inputData[inputPosition];
+					outputData[outputPosition+1] = inputData[inputPosition+1];
+					outputData[outputPosition+2] = inputData[inputPosition+2];
+					outputData[outputPosition+3] = inputData[inputPosition+3];
 				}
 			}
 		}

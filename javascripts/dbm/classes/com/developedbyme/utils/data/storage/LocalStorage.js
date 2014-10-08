@@ -47,7 +47,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.LocalStorage", "com.deve
 	 * Creates a new local storage
 	 */
 	staticFunctions.createLocalStorage = function(aPrefix, aSuffix) {
-		//trace("com.developedbyme.utils.data.LocalStorage.createLocalStorage");
+		//console.log("com.developedbyme.utils.data.LocalStorage.createLocalStorage");
 		var newLocalStorage = (new LocalStorage()).init();
 		
 		aPrefix = VariableAliases.valueWithDefault(aPrefix, "");
@@ -62,7 +62,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.LocalStorage", "com.deve
 	 * Creates a new session storage
 	 */
 	staticFunctions.createSessionStorage = function(aPrefix, aSuffix) {
-		//trace("com.developedbyme.utils.data.LocalStorage.createSessionStorage");
+		//console.log("com.developedbyme.utils.data.LocalStorage.createSessionStorage");
 		var newLocalStorage = (new LocalStorage()).init();
 		
 		aPrefix = VariableAliases.valueWithDefault(aPrefix, "");
@@ -77,7 +77,7 @@ dbm.registerClass("com.developedbyme.utils.data.storage.LocalStorage", "com.deve
 	 * Gets local data
 	 */
 	staticFunctions.getLocalStorageData = function(aPath) {
-		//trace("com.developedbyme.utils.data.LocalStorage.getLocalStorageData");
+		//console.log("com.developedbyme.utils.data.LocalStorage.getLocalStorageData");
 		return dbm.getWindow().localStorage.getItem(aPath);
 	}; //End function getLocalStorageData
 });
