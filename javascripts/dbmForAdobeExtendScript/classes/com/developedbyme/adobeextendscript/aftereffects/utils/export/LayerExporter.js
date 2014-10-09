@@ -132,7 +132,24 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 											
 											layerMetaData.addObject("file", outputName);
 											layerMetaData.addObject("layer", layerName);
-											//METODO
+											break;
+										case "mov":
+											layerMetaData.addObject("footageType", "video");
+											var sourceName = nativeSource.name;
+											var sourceFilePath = currentFile.absoluteURI;
+											
+											var folderName = fileName.substring(0, fileName.lastIndexOf("."));
+											var outputName = StringFunctions.convertToSafeFileName(folderName) + ".[video]";
+											
+											if(!aPhotoshopLayersToExport.select(sourceFilePath)) {
+												var newLayerArray = NamedArray.create(true);
+												newLayerArray.setDynamicVariable("exportType", "video");
+												aPhotoshopLayersToExport.addObject(sourceFilePath, newLayerArray);
+												newLayerArray.addObject("main", outputName);
+												newLayerArray.addObject("item", nativeSource);
+											}
+											
+											layerMetaData.addObject("file", outputName);
 											break;
 										default:
 											//MENOTE: add video

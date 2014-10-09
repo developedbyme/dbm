@@ -18,6 +18,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.AfterEffects
 	
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	
@@ -111,6 +112,14 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.AfterEffects
 		
 		return this._activeItem;
 	};
+	
+	objectFunctions.deselectAllItems = function() {
+		var currentArray = ArrayFunctions.copyArray(this._nativeProject.selection);
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			currentArray[i].selected = false;
+		}
+	}
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		

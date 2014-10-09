@@ -31,6 +31,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.ItemBa
 		return this;
 	};
 	
+	objectFunctions.getNativeItem = function() {
+		return this._nativeItem;
+	};
+	
 	objectFunctions.setupItem = function(aNativeItem) {
 		this._nativeItem = aNativeItem;
 		

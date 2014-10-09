@@ -66,6 +66,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		this._project = AfterEffectsProject.create();
 		this._activeComposition = this._project.getActiveItem();
 		
+		
 		var filesToCopy = NamedArray.create(false);
 		var photoshopLayersToExport = NamedArray.create(false);
 		
@@ -85,6 +86,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		
 		var saveFile = FileWriter.createWithPrompt("~/export.xml");
 		if(saveFile !== null) {
+			this._project.deselectAllItems();
+			
 			saveFile.setData(encodedXml);
 			saveFile.write();
 			
@@ -100,7 +103,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				var result = currentFile.copy(newFilePath);
 			}
 			this._exportPhotoshopLayers(photoshopLayersToExport, saveUrlResolver);
+			
+			this._activeComposition.getNativeItem().selected = true;
 		}
+		
+		
 	};
 	
 	objectFunctions._exportPhotoshopLayers = function(aPhotoshopLayersToExport, aUrlResolver) {
@@ -111,6 +118,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		var illustratorDataObject = new Object();
 		var exportPhotoshop = false;
 		var exportIllustrator = false;
+		var render = false;
 		
 		var currentArray = aPhotoshopLayersToExport.getNamesArray();
 		var currentArrayLength = currentArray.length;
@@ -135,6 +143,33 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				exportIllustrator = true;
 				illustratorDataObject[currentName] = aUrlResolver.getAbsolutePath(currentFileData.getObject("main"));
 			}
+			else if(exportType === "video") {
+				render = true;
+				
+				//METODO: check if output already exists
+				
+				var filePath = aUrlResolver.getAbsolutePath(currentFileData.getObject("main"));
+				var videoItem = currentFileData.getObject("item");
+				videoItem.selected = true;
+				app.executeCommand(app.findMenuCommandId("Add to Render Queue"));
+				
+				var renderQueueItem = app.project.renderQueue.item(app.project.renderQueue.numItems);
+				
+				var outputModule = renderQueueItem.outputModule(1);
+				outputModule.applyTemplate("dbmExport-h264");
+				
+				var outputFile = new File(filePath.split("[video]").join("mov"));
+				outputModule.file = outputFile;
+				
+				videoItem.selected = false;
+				
+				app.project.renderQueue.render();
+				renderQueueItem.comp.remove();
+				
+				var newFileName = filePath.split("[video]").join("mp4");
+				newFileName = newFileName.substring(newFileName.lastIndexOf("/")+1, newFileName.length);
+				outputFile.rename(newFileName);
+			}
 		}
 		
 		if(exportPhotoshop) {
@@ -145,6 +180,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 			var bridgeConnection = BridgeClassRunner.create("illustrator", "com.developedbyme.adobeextendscript.projects.tools.illustrator.ExportFilesApplication", illustratorDataObject);
 			bridgeConnection.perform();
 		}
+		//if(render) {
+		//	app.project.renderQueue.render();
+		//	console.log(">>>>>>>");
+		//}
 		
 	};
 	
