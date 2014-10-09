@@ -32,6 +32,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var FlowGate = dbm.importClass("com.developedbyme.flow.FlowGate");
+	var VideoView = dbm.importClass("com.developedbyme.gui.media.video.VideoView");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -48,6 +49,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var TrackMatteTypes = dbm.importClass("com.developedbyme.constants.thirdparty.adobe.aftereffects.TrackMatteTypes");
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
 	
 	/**
 	 * Constructor
@@ -64,6 +66,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		this._showMissingFiles = true;
 		this._canvasController = null;
+		this._playbackNode = null;
 		
 		this.addCssLink("../styles/utils/centeredContent.css");
 		this.addCssLink("../styles/utils/boxes.css");
@@ -107,7 +110,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var duration = parsedAnimationData.metaData.getObject("duration");
 		
 		playbackNode.getProperty("maxTime").setValue(duration);
-		playbackNode.play();
+		//playbackNode.play();
 		
 		var timeFlowGate = FlowGate.create(playbackNode.getProperty("outputTime"));
 		dbm.singletons.dbmFlowManager.addFlowGate(timeFlowGate);
@@ -145,6 +148,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		console.log(">>>>", layerTreeStructure);
 		
 		console.log(playbackNode);
+		this._playbackNode = playbackNode;
 		
 		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, timeFlowGate.getProperty("outputValue"), duration, mainCanvasController);
 		
@@ -281,6 +285,22 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			
 			this.drawVectorLayer(vectorAsset, aAnimationData.metaData.getObject("layer"), graphicsLayer, layerWidth, layerHeight);
 			vectorAsset.load();
+		}
+		else if(footageType === "video") {
+			
+			var filePath = this._dataAssetUrlResolver.getAbsolutePath(aAnimationData.metaData.getObject("file"));
+			
+			//METODO: set dimensions dynamically
+			var playbackView = VideoView.createFromAsset(this._contentHolder, false, filePath, {"width": 800, "height": 600});
+			playbackView.setPlaybackNode(this._playbackNode);
+			
+			playbackView._stateTimeline.setValueAt(PlaybackStateTypes.PLAYING, inPoint);
+			playbackView._startTimeTimeline.setValueAt(inPoint, inPoint);
+			playbackView._startPositionTimeline.setValueAt(0, inPoint);
+			
+			var graphicsPart = CanvasImageGraphics2d.createConnectedImage(playbackView.getProperty("element"), 800, 600);
+			graphicsPart.getProperty("graphicsUpdate").connectInput(playbackView.getProperty("display"));
+			graphicsLayer.addDrawingPart(graphicsPart);
 		}
 		else if(footageType === "missingFile") {
 			if(this._showMissingFiles) {
