@@ -112,7 +112,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var timeFlowGate = FlowGate.create(playbackNode.getProperty("outputTime"));
 		dbm.singletons.dbmFlowManager.addFlowGate(timeFlowGate);
 		
-		var scale = 1;
+		var scale = 0.25;
 		
 		var width = parsedAnimationData.metaData.getObject("width");
 		var height = parsedAnimationData.metaData.getObject("height");
@@ -393,7 +393,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		this._linkDataToProperty(aTimelines.getProperty(aPrefix + "transform/scale/y"), aTimeProperty, aLayer.getProperty("scaleY"));
 		
 		var rotationProperty = (aTimelines.hasProperty(aPrefix + "transform/rotation")) ? aTimelines.getProperty(aPrefix + "transform/rotation") : aTimelines.getProperty(aPrefix + "transform/zRotation");
-		this._linkDataToProperty(rotationProperty, aTimeProperty, aTimeProperty, aLayer.getProperty("rotate"));
+		this._linkDataToProperty(rotationProperty, aTimeProperty, aLayer.getProperty("rotate"));
 		
 		CanvasLayer2d.addPivotToLayer(aLayer);
 		
@@ -426,7 +426,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			switch(currentType) {
 				case "group":
 					var newLayer = aCurrentLayer.getChildByPath(currentData.getName());
-					this.generateShapes(newLayer, currentData, aTimelines, aPlaybackNode);
+					this.generateShapes(newLayer, currentData, aTimelines, aTimeProperty);
 					this.applyTransformToLayer(newLayer, aTimelines, currentPathPrefix + "/", aTimeProperty);
 					this.applyAlphaToLayer(newLayer, aTimelines, currentPathPrefix + "/", aTimeProperty);
 					break;

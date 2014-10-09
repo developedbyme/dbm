@@ -19,6 +19,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	//Utils
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
 	
 	//Constants
 	
@@ -77,11 +78,11 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 */
 	objectFunctions.addObject = function(aName, aObject) {
 		if(!VariableAliases.isSet(aName)) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + StringFunctions.convertObjectToString(aObject) + ".");
 			return;
 		}
 		if(VariableAliases.isSet(this._objectsObject[aName])) {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + StringFunctions.convertObjectToString(this._objectsObject[aName]) + ") already exists, replacing with " + StringFunctions.convertObjectToString(aObject) + ".");
 			this.removeObject(aName);
 		}
 		this._objectsObject[aName] = aObject;
@@ -97,14 +98,14 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 */
 	objectFunctions.replaceObject = function(aName, aObject) {
 		if(!VariableAliases.isSet(aName)) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "replaceObject", "Name is null for object" + aObject + ".");
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "replaceObject", "Name is null for object" + StringFunctions.convertObjectToString(aObject) + ".");
 			return;
 		}
 		if(VariableAliases.isSet(this._objectsObject[aName])) {
 			this.removeObject(aName);
 		}
 		else {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "replaceObject", "Object " + aName + " (" + this._objectsObject[aName] + ") doesn't exist.");
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "replaceObject", "Object " + aName + " (" + StringFunctions.convertObjectToString(this._objectsObject[aName]) + ") doesn't exist.");
 		}
 		this._objectsObject[aName] = aObject;
 		this._objectsArray.push(aObject);
@@ -119,11 +120,11 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 */
 	objectFunctions.addObjectToBeginning = function(aName, aObject) {
 		if(!VariableAliases.isSet(aName)) {
-			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + aObject + ".");
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + StringFunctions.convertObjectToString(aObject) + ".");
 			return;
 		}
 		if(VariableAliases.isSet(this._objectsObject[aName])) {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + this._objectsObject[aName] + ") already exists, replacing with " + aObject + ".");
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + StringFunctions.convertObjectToString(this._objectsObject[aName]) + ") already exists, replacing with " + StringFunctions.convertObjectToString(aObject) + ".");
 			this.removeObject(aName);
 		}
 		this._objectsObject[aName] = aObject;
@@ -249,7 +250,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 				return objectName;
 			}
 		}
-		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "identifyObject", "Object " + aObject + " doesn't exist.");
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "identifyObject", "Object " + StringFunctions.convertObjectToString(aObject) + " doesn't exist.");
 		return null;
 	};
 	

@@ -146,4 +146,21 @@ dbm.registerClass("com.developedbyme.utils.native.string.StringFunctions", null,
 	staticFunctions.convertToSafeFileName = function(aText) {
 		return aText.replace(new RegExp("[^A-Za-z0-9\\-_\\.\\~]+", "g"), "-");
 	};
+	
+	/**
+	 * Gets the object as a string. Some environments are not able to combine strings and object, so this is a safe way of generating debug data.
+	 *
+	 * @param	aObject		*	The object to convert to a string.
+	 *
+	 * @return	String	The string representation of the object.
+	 */
+	staticFunctions.convertObjectToString = function(aObject) {
+		if(aObject === undefined) {
+			return "undefined";
+		}
+		if(aObject === null) {
+			return "null";
+		}
+		return aObject.toString();
+	}
 });
