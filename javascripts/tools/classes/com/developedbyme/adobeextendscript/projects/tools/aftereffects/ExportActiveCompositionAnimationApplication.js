@@ -152,6 +152,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				var videoItem = currentFileData.getObject("item");
 				videoItem.selected = true;
 				app.executeCommand(app.findMenuCommandId("Add to Render Queue"));
+				videoItem.selected = false;
 				
 				var renderQueueItem = app.project.renderQueue.item(app.project.renderQueue.numItems);
 				
@@ -161,7 +162,21 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 				var outputFile = new File(filePath.split("[video]").join("mov"));
 				outputModule.file = outputFile;
 				
-				videoItem.selected = false;
+				renderQueueItem.comp.selected = true;
+				app.executeCommand(app.findMenuCommandId("Add to Render Queue"));
+				renderQueueItem.selected = false;
+				
+				var renderQueueItem = app.project.renderQueue.item(app.project.renderQueue.numItems);
+				
+				var outputModule = renderQueueItem.outputModule(1);
+				outputModule.applyTemplate("dbmExport-pngSequence");
+				
+				var imageSequenceFolderPath = filePath.split("[video]").join("imageSequence");
+				var imageSequenceFolder = new Folder(imageSequenceFolderPath);
+				imageSequenceFolder.create();
+				
+				var outputFile = new File(imageSequenceFolderPath + "/image.[#####].png");
+				outputModule.file = outputFile;
 				
 				app.project.renderQueue.render();
 				renderQueueItem.comp.remove();
