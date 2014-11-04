@@ -2,8 +2,20 @@
 dbm.registerClass("com.developedbyme.flow.nodes.curves.CreateCircleCurveNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.curves.CreateCircleCurveNode");
 	
+	//Self reference
 	var CreateCircleCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateCircleCurveNode");
 	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.curves.CreateCircleCurveNode::_init");
 		
@@ -14,7 +26,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.CreateCircleCurveNode", "
 		this._radius = this.createProperty("radius", 1);
 		this._numberOfSegments = this.createProperty("numberOfSegments", 8);
 		this._startAngle = this.createProperty("startAngle", 0);
-		this._outputCurve = this.createProperty("outputCurve", null);
+		this._outputCurve = this.createProperty("outputCurve", null).setAlwaysUpdateFlow(true);
 		
 		this.createUpdateFunction("default", this._update, [this._x, this._y, this._radius, this._numberOfSegments, this._startAngle], [this._outputCurve]);
 		

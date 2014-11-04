@@ -392,6 +392,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 	};
 	
 	objectFunctions.addDrawingPart = function(aPart) {
+		//console.log("com.developedbyme.utils.canvas.CanvasLayer2d::addDrawingPart");
 		
 		this._graphicsUpdate.connectInput(aPart.getProperty("graphicsUpdate"));
 		this._graphics.push(aPart);

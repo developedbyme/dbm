@@ -1,9 +1,6 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * Global class that create curves
- *
- * @authur	Mattias Ekendahl (mattias@developedbyme.com)
- * @version	0.0.01
  */
 dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreator", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.globalobjects.curvecreator.CurveCreator");
@@ -472,6 +469,22 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.CurveCreato
 		var pointsToAdd = 1+aPositionOnCurve+3*aNumberOfSegments-currentNumberOfPoints;
 		if(pointsToAdd > 0) {
 			aReturnCurve.createPoints(pointsToAdd);
+		}
+	};
+	
+	objectFunctions.createLinesBetweenAllPoints = function(aPoints, aReturnArray) {
+		
+		var currentArray = aPoints;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength-1; i++) { //MENOTE: last point is skipped as a line needs 2 points
+			var startPoint = currentArray[i];
+			for(var j = i+1; j < currentArrayLength; j++) {
+				var endPoint = currentArray[j];
+				var newLine = BezierCurve.create(1, true);
+				newLine.pointsArray.push(startPoint);
+				newLine.pointsArray.push(endPoint);
+				aReturnArray.push(newLine);
+			}
 		}
 	};
 });

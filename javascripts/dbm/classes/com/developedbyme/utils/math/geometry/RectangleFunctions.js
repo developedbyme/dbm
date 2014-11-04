@@ -1,15 +1,24 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Functions for maniplulating rectangles.
+ */
 dbm.registerClass("com.developedbyme.utils.math.geometry.RectangleFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.utils.math.geometry.RectangleFunctions");
 	
+	//Self reference
 	var RectangleFunctions = dbm.importClass("com.developedbyme.utils.math.geometry.RectangleFunctions");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependencies
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
 	
+	//Utils
+	
+	//Constants
 	var FitTypes = dbm.importClass("com.developedbyme.constants.FitTypes");
 	
 	staticFunctions._tempPoint = null;

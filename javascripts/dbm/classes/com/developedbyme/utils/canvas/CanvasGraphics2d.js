@@ -85,6 +85,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 	};
 	
 	objectFunctions._strokePath = function(aContext, aStyle) {
+		//console.log("com.developedbyme.utils.canvas.CanvasGraphics2d::_strokePath");
+		
 		if(aStyle !== null) {
 			aContext.strokeStyle = aStyle;
 			if(!this.scaleStrokes) {
@@ -141,6 +143,19 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 	
 	staticFunctions.create = function() {
 		var newCanvasGraphics2d = (new ClassReference()).init();
+		
+		return newCanvasGraphics2d;
+	};
+	
+	staticFunctions.createWithSettings = function(aLineWidth, aStrokeStyle, aFillStyle, aLineCap, aLineJoin, aMiterLimit) {
+		var newCanvasGraphics2d = (new ClassReference()).init();
+		
+		newCanvasGraphics2d.setPropertyInputWithoutNull("lineWidth", aLineWidth);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("strokeStyle", aStrokeStyle);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("fillStyle", aFillStyle);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("lineCap", aLineCap);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("lineJoin", aLineJoin);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("miterLimit", aMiterLimit);
 		
 		return newCanvasGraphics2d;
 	};

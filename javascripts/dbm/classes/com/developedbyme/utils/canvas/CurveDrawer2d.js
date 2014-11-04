@@ -77,9 +77,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 		curve.getPointOnCurve(Math.min(startParameter, endParameter), aReturnPoint);
 	};
 	
-	staticFunctions.create = function(aCurve) {
+	staticFunctions.create = function(aCurve, aStartParameter, aEndParameter) {
 		var newCurveDrawer2d = (new ClassReference()).init();
-		newCurveDrawer2d.setPropertyInput("curve", aCurve);
+		
+		newCurveDrawer2d.setPropertyInputWithoutNull("curve", aCurve);
+		newCurveDrawer2d.setPropertyInputWithoutNull("startParameter", aStartParameter);
+		newCurveDrawer2d.setPropertyInputWithoutNull("endParameter", aEndParameter);
+		
 		return newCurveDrawer2d;
 	};
 	
