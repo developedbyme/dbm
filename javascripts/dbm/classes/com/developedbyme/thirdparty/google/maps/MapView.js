@@ -29,6 +29,16 @@ dbm.registerClass("com.developedbyme.thirdparty.google.maps.MapView", "com.devel
 		this._longitude = this.createProperty("longitude", 0);
 		this._zoom = this.createProperty("zoom", 8);
 		
+		this._mapStyles = this.createProperty("mapStyles", new Array());
+		this._showMapTypeControl = this.createProperty("showMapTypeControl", true);
+		this._showPanControl = this.createProperty("showPanControl", true);
+		this._showZoomControl = this.createProperty("showZoomControl", true);
+		this._showScaleControl = this.createProperty("showScaleControl", false);
+		this._showRotateControl = this.createProperty("showRotateControl", true);
+		this._showOverviewMapControl = this.createProperty("showOverviewMapControl", false);
+		this._showStreetViewControl = this.createProperty("showStreetViewControl", true);
+		//METODO: link options to update
+		
 		this._locationUpdate = this.createGhostProperty("locationUpdate");
 		this._zoomUpdate = this.createGhostProperty("zoomUpdate");
 		
@@ -52,7 +62,15 @@ dbm.registerClass("com.developedbyme.thirdparty.google.maps.MapView", "com.devel
 		
 		var mapOptions = {
 			center: new google.maps.LatLng(this._latitude.getValue(), this._longitude.getValue()),
-			zoom: this._zoom.getValue()
+			zoom: this._zoom.getValue(),
+			styles: this._mapStyles.getValue(),
+			mapTypeControl: this._showMapTypeControl.getValue(),
+			panControl: this._showPanControl.getValue(),
+			zoomControl: this._showZoomControl.getValue(),
+			scaleControl: this._showScaleControl.getValue(),
+			rotateControl: this._showRotateControl.getValue(),
+			overviewMapControl: this._showOverviewMapControl.getValue(),
+			streetViewControl: this._showStreetViewControl.getValue()
 		};
 		var map = new google.maps.Map(this.getElement(), mapOptions);
 		this._map.setValue(map);
