@@ -95,6 +95,9 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart"
 					this._addCodeLine(currentLine, (this._script.charAt(endLinePosition) !== ";"));
 				}
 				else {
+					if(this.keepBlankLines) {
+						this._addCodeLine(currentLine, false);
+					}
 					this._lastLineIsOpen = false;
 				}
 				

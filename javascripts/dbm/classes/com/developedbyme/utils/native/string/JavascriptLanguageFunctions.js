@@ -104,6 +104,7 @@ dbm.registerClass("com.developedbyme.utils.native.string.JavascriptLanguageFunct
 		"false",
 		"Float32Array",
 		"Float64Array",
+		"FileReader",
 		"Function",
 		"Image",
 		"Infinity",

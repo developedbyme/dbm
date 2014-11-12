@@ -56,7 +56,7 @@ dbm.registerClass("com.developedbyme.utils.data.KeyValuePropertyArray", "com.dev
 		return this._objectsArray;
 	};
 	
-	objectFunctions.getObjectsObject = function() {
+	objectFunctions.generateObjectsObject = function() {
 		//MENOTE: should this be implemented
 		return null;
 	};

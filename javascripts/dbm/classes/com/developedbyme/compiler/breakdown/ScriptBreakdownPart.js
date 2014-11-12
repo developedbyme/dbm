@@ -41,6 +41,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 		this._childBreakdowns = new Array();
 		this.executesDirectly = true;
 		this.declaresVariables = null;
+		this.keepBlankLines = false;
 		this._replaceablePart = null;
 		
 		return this;
@@ -300,7 +301,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 			var currentPart = currentArray[i];
 			if(currentPart.executesDirectly) {
 				var newString = currentPart.compile(aCompileData);
-				if(returnString.length !== 0 && newString.length !== 0 && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "else") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "catch") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "finally")) {
+				if((returnString.length !== 0 || (this.keepBlankLines && i !== 0)) && (newString.length !== 0 || this.keepBlankLines) && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "else") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "catch") && !JavascriptLanguageFunctions.startsWithSpecifiedKeyword(newString, "finally")) {
 					returnString += ";";
 				}
 				returnString += newString;

@@ -167,7 +167,7 @@ dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.de
 	objectFunctions.pop = function() {
 		this._itemRemoved(this.array.pop());
 		
-		this._updateAllIterationDatas(newLength+1, -1, this.array.length);
+		this._updateAllIterationDatas(this.array.length+1, -1, this.array.length);
 	};
 	
 	/**

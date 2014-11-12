@@ -311,6 +311,7 @@ dbm.registerClass("com.developedbyme.compiler.compiledata.CompileData", "com.dev
 		var globalScope = ClassReference.getJavascriptDefaultScopeData();
 		globalScope.addVariableReference("dbm", "dbm");
 		globalScope.addVariableReference("_gaq", "_gaq");
+		globalScope.addVariableReference("google", "google");
 		newCompileData.addScope(globalScope);
 		return newCompileData;
 	};

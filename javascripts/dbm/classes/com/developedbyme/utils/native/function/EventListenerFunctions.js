@@ -53,9 +53,9 @@ dbm.registerClass("com.developedbyme.utils.native.function.EventListenerFunction
 	staticFunctions.createSingleEventObjectCallback = function(aObject) {
 		var thisPointer = aObject;
 		var eventCallback = function _eventCallback(aEvent) {
-			//console.log("com.developedbyme.utils.native.function.EventListenerFunctions");
+			//console.log("com.developedbyme.utils.native.function.EventListenerFunctions::createSingleEventObjectCallback (_eventCallback)");
 			//console.log(aEvent);
-			//console.log(thisPointer._javascriptEventName);
+			//console.log(thisPointer);
 			if(thisPointer === null || thisPointer._performerObject === null) {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, thisPointer, "_eventCallback", "Performer object is null.");
 				return true;

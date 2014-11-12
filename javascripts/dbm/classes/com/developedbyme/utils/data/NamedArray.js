@@ -32,7 +32,6 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		
 		this.superCall();
 		
-		this._objectsObject = ClassReference._createObject();
 		this._objectsArray = ClassReference._createArray();
 		this._namesArray = ClassReference._createArray();
 		
@@ -57,8 +56,8 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 *
 	 * @return	Object	The accosiative array of all the values.
 	 */
-	objectFunctions.getObjectsObject = function() {
-		return this._objectsObject;
+	objectFunctions.generateObjectsObject = function() {
+		return ClassReference.getNativeObjectFromNamedArray(this);
 	};
 	
 	/**
@@ -81,11 +80,12 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + StringFunctions.convertObjectToString(aObject) + ".");
 			return;
 		}
-		if(VariableAliases.isSet(this._objectsObject[aName])) {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + StringFunctions.convertObjectToString(this._objectsObject[aName]) + ") already exists, replacing with " + StringFunctions.convertObjectToString(aObject) + ".");
+		
+		var itemIndex = ArrayFunctions.indexOfInArray(this._namesArray, aName);
+		if(itemIndex !== -1) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + StringFunctions.convertObjectToString(this._objectsArray[itemIndex]) + ") already exists, replacing with " + StringFunctions.convertObjectToString(aObject) + ".");
 			this.removeObject(aName);
 		}
-		this._objectsObject[aName] = aObject;
 		this._objectsArray.push(aObject);
 		this._namesArray.push(aName);
 	};
@@ -101,15 +101,16 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "replaceObject", "Name is null for object" + StringFunctions.convertObjectToString(aObject) + ".");
 			return;
 		}
-		if(VariableAliases.isSet(this._objectsObject[aName])) {
-			this.removeObject(aName);
+		
+		var itemIndex = ArrayFunctions.indexOfInArray(this._namesArray, aName);
+		if(itemIndex !== -1) {
+			this._objectsArray[itemIndex] = aObject;
 		}
 		else {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "replaceObject", "Object " + aName + " (" + StringFunctions.convertObjectToString(this._objectsObject[aName]) + ") doesn't exist.");
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "replaceObject", "Object " + aName + " doesn't exist. Adding.");
+			this._objectsArray.push(aObject);
+			this._namesArray.push(aName);
 		}
-		this._objectsObject[aName] = aObject;
-		this._objectsArray.push(aObject);
-		this._namesArray.push(aName);
 	};
 	
 	/**
@@ -123,11 +124,12 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addObject", "Name is null for object" + StringFunctions.convertObjectToString(aObject) + ".");
 			return;
 		}
-		if(VariableAliases.isSet(this._objectsObject[aName])) {
+		
+		var itemIndex = ArrayFunctions.indexOfInArray(this._namesArray, aName);
+		if(itemIndex !== -1) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addObject", "Object " + aName + " (" + StringFunctions.convertObjectToString(this._objectsObject[aName]) + ") already exists, replacing with " + StringFunctions.convertObjectToString(aObject) + ".");
 			this.removeObject(aName);
 		}
-		this._objectsObject[aName] = aObject;
 		this._objectsArray.unshift(aObject);
 		this._namesArray.unshift(aName);
 	};
@@ -140,11 +142,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 * @return	Boolean		True if the object exists.
 	 */
 	objectFunctions.select = function(aName) {
-		if(!VariableAliases.isSet(this._objectsObject[aName])) {
+		var itemIndex = ArrayFunctions.indexOfInArray(this._namesArray, aName);
+		
+		if(itemIndex === -1) {
 			this.currentSelectedItem = null;
 			return false;
 		}
-		this.currentSelectedItem = this._objectsObject[aName];
+		this.currentSelectedItem = this._objectsArray[itemIndex];
 		return true;
 	};
 	
@@ -156,7 +160,9 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 * @return	Boolean		True if the object exists.
 	 */
 	objectFunctions.hasObject = function(aName) {
-		return (VariableAliases.isSet(this._objectsObject[aName]));
+		var itemIndex = ArrayFunctions.indexOfInArray(this._namesArray, aName);
+		
+		return (itemIndex !== -1);
 	};
 	
 	/**
@@ -184,11 +190,14 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 */
 	objectFunctions.getObject = function(aName) {
 		//console.log("com.developedbyme.utils.data.NamedArray::getObject");
-		if(this._objectsObject[aName] === undefined) {
+		
+		var itemIndex = ArrayFunctions.indexOfInArray(this._namesArray, aName);
+		
+		if(itemIndex === -1) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MINOR, this, "getObject", "Object " + aName + " doesn't exist.");
 			return null;
 		}
-		return this._objectsObject[aName];
+		return this._objectsArray[itemIndex];
 	};
 	
 	/**
@@ -197,24 +206,16 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 * @param	aName	String	The name of the object to remove.
 	 */
 	objectFunctions.removeObject = function(aName) {
-		if(this._objectsObject[aName] === undefined) {
+		
+		var itemIndex = ArrayFunctions.indexOfInArray(this._namesArray, aName);
+		
+		if(itemIndex === -1) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MAJOR, this, "removeObject", "Object " + aName + " doesn't exist.");
 			return;
 		}
-		var currentObject = this._objectsObject[aName];
-		var currentArray = this._objectsArray;
-		var theLength = currentArray.length;
-		for(var i = 0; i < theLength; i++) {
-			if(currentArray[i] === currentObject) {
-				currentArray.splice(i, 1);
-				delete this._objectsObject[aName];
-				break;
-			}
-		}
-		var nameIndex = ArrayFunctions.indexOfInArray(this._namesArray, aName);
-		if(nameIndex !== -1) {
-			this._namesArray.splice(nameIndex, 1);
-		}
+		var currentObject = this._objectsArray[itemIndex];
+		this._namesArray.splice(itemIndex, 1);
+		this._objectsArray.splice(itemIndex, 1);
 		
 		if(this.currentSelectedItem === currentObject) {
 			this.currentSelectedItem = null;
@@ -245,13 +246,13 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 * @return	String	The name of the first matching record. Null if it's not found.
 	 */
 	objectFunctions.identifyObject = function(aObject) {
-		for(var objectName in this._objectsObject) {
-			if(this._objectsObject[objectName] === aObject) {
-				return objectName;
-			}
+		
+		var itemIndex = ArrayFunctions.indexOfInArray(this._objectsArray, aObject);
+		if(itemIndex === -1) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "identifyObject", "Object " + StringFunctions.convertObjectToString(aObject) + " doesn't exist.");
+			return null;
 		}
-		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "identifyObject", "Object " + StringFunctions.convertObjectToString(aObject) + " doesn't exist.");
-		return null;
+		return this._namesArray[itemIndex];
 	};
 	
 	/**
@@ -261,9 +262,11 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 * @param	aReturnArray	Array	The array to fill with the matching names.
 	 */
 	objectFunctions.identifyObjectWithMultipleResults = function(aObject, aReturnArray) {
-		for(var objectName in this._objectsObject) {
-			if(this._objectsObject[objectName] === aObject) {
-				aReturnArray.push(objectName);
+		var currentArray = this._objectsArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			if(currentArray[i] === aObject) {
+				aReturnArray.push(this._namesArray[i]);
 			}
 		}
 	};
@@ -277,8 +280,8 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		this.superCall(aReturnArray);
 		
 		aReturnArray.push("ownsObjects: " + this.ownsObjects);
-		if(this._namesArray !== null && this._namesArray !== undefined) {
-			aReturnArray.push("properties: [" + this._namesArray.join(", ") + "]");
+		if(VariableAliases.isSet(this._namesArray)) {
+			aReturnArray.push("itemNames: [" + this._namesArray.join(", ") + "]");
 		}
 	};
 	
@@ -293,7 +296,6 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		switch(aName) {
 			case "currentSelectedItem":
 				return false;
-			case "_objectsObject":
 			case "_objectsArray":
 				return this.ownsObjects;
 		}
@@ -307,7 +309,6 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		if(this.ownsObjects) {
 			ClassReference.softDestroyArrayIfExists(this._objectsArray);
 		}
-		ClassReference._reuseObject(this._objectsObject);
 		ClassReference._reuseArray(this._objectsArray);
 		ClassReference._reuseArray(this._namesArray);
 	};
@@ -327,7 +328,6 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	 */
 	objectFunctions.setAllReferencesToNull = function() {
 		
-		this._objectsObject = null;
 		this._objectsArray = null;
 		this._namesArray = null;
 		

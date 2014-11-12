@@ -65,7 +65,7 @@ dbm.registerClass("com.developedbyme.nodejs.projects.examples.basic.server.SaveF
 		
 		var parameters = NamedArray.create(false);
 		UrlFunctions.parseQueryString(aData, parameters);
-		//console.log(parameters.getObjectsObject());
+		//console.log(parameters.generateObjectsObject());
 		
 		var requiredFields = ["fileName", "dataEncoding", "data"];
 		if(!parameters.hasObjects(requiredFields)) {

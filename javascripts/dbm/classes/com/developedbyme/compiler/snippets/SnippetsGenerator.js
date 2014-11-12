@@ -32,9 +32,12 @@ dbm.registerClass("com.developedbyme.compiler.snippets.SnippetsGenerator", "com.
 		var returnString = "";
 		
 		returnString += "dbm.runTempFunction(function() {";
+		//returnString += "	console.log(\"import (snippet)\");";
 		returnString += "	var RunningClass = dbm.importClass(\"" + aClassPath + "\");";
 		returnString += "	dbm.addStartFunction(function() {";
+		//returnString += "		console.log(\"starting (snippet)\");";
 		returnString += "		var runningInstance = (new RunningClass()).init();";
+		//returnString += "		console.log(runningInstance);";
 		returnString += "		runningInstance.start();";
 		returnString += "	});";
 		returnString += "});";

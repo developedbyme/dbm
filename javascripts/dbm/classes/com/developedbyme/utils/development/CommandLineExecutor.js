@@ -74,7 +74,7 @@ dbm.registerClass("com.developedbyme.utils.development.CommandLineExecutor", "co
 		fullCode += this._exportClosureVariablesScript + "\n";
 		
 		var excecuteFunction = new Function(this._closureVariablesName, fullCode);
-		excecuteFunction.call(this._thisObject, this._closureVariables.getObjectsObject());
+		excecuteFunction.call(this._thisObject, this._closureVariables.generateObjectsObject());
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {

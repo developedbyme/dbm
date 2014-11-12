@@ -82,7 +82,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.formate
 	};
 	
 	objectFunctions._getAttributesString = function(aPart) {
-		returnString = this._encodeAttribute("data:type", aPart.dataType);
+		var returnString = this._encodeAttribute("data:type", aPart.dataType);
 		if(aPart.name !== null) {
 			returnString += " " + this._encodeAttribute("data:name", aPart.name);
 		}

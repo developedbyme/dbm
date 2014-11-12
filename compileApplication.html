@@ -6,7 +6,12 @@
 		<script type="application/javascript" src="javascripts/dbm/dbm.js"></script>
 		<script type="application/javascript">
 			dbm.setup(window, document, "javascripts", "classes");
+			
+			dbm.addSpecificClassesFolder("com.developedbyme.broadcast", "broadcast/classes");
 			dbm.addSpecificClassesFolder("com.developedbyme.projects.experiments", "experiments/classes");
+			dbm.addSpecificClassesFolder("com.developedbyme.projects.tests", "tests/classes");
+			dbm.addSpecificClassesFolder("com.developedbyme.projects.tools", "tools/classes");
+			dbm.addSpecificClassesFolder("com.developedbyme.projects.examples", "examples/classes")
 		</script>
 		<script type="application/javascript" src="javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js"></script>
 		<script type="application/javascript" src="javascripts/dbm/setup/defaultSetup.js"></script>

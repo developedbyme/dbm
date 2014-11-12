@@ -2,12 +2,25 @@
 dbm.registerClass("com.developedbyme.gui.media.audio.AudioPlayer", "com.developedbyme.gui.media.MediaElementBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.gui.media.audio.AudioPlayer");
 	
+	//Self reference
 	var AudioPlayer = dbm.importClass("com.developedbyme.gui.media.audio.AudioPlayer");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
+	//Dependnecies
+	
+	//Utils
+	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.media.audio.AudioPlayer::_init");
 		

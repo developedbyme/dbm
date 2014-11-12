@@ -71,7 +71,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	};
 	
 	objectFunctions._createCallbackFunction = function() {
-		dbm.singletons[this._callbackFunctionId] = this._callbackEventLink.getCallbackFunction()
+		dbm.singletons[this._callbackFunctionId] = this._callbackEventLink.getCallbackFunction();
 	};
 	
 	objectFunctions._removeCallbackFunction = function() {
@@ -80,12 +80,15 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 	
 	objectFunctions.load = function() {
 		//console.log("com.developedbyme.core.globalobjects.assetrepository.loaders.JavascriptWithCallbackLoader::load");
+		//console.log(this);
 		
 		if(this._status !== AssetStatusTypes.NOT_LOADED) {
 			return this;
 		}
 		
 		this._status = AssetStatusTypes.LOADING;
+		
+		this._createCallbackFunction();
 		
 		this._scriptTag = dbm.getDocument().createElement("script");
 		
@@ -97,9 +100,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.loaders.
 		this._scriptTag.src = this._url;
 		this._scriptTag.async = this._asynchronous;
 		
-		this._createCallbackFunction();
 		this.getExtendedEvent().linkJavascriptEvent(this._scriptTag, "error", LoadingExtendedEventIds.LOADING_ERROR, "default", true, true);
-		
 		this.getExtendedEvent().activateJavascriptEventLink("default");
 		
 		var headTags = dbm.getDocument().getElementsByTagName("head");
