@@ -26,14 +26,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 	
 	
 	staticFunctions.exportCompositions = function(aCompositions, aProject, aFilesToCopy, aPhotoshopLayersToExport, aReturnArray) {
-		console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.CompositionExporter::exportCompositions");
+		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.CompositionExporter::exportCompositions");
 		
 		var currentArray = aCompositions;
 		for(var i = 0; i < currentArray.length; i++) { //MENOTE: array can change in the 
 			var currentNativeComposition = currentArray[i];
 			
 			var currentComposition = aProject.getItemByNativeItem(currentNativeComposition);
-			console.log(currentComposition);
 			
 			var compositionMetaData = MetaDataObject.create();
 			aReturnArray.push(compositionMetaData);

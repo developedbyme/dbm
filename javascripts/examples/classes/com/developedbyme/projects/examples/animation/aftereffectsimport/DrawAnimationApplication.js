@@ -107,7 +107,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var dataName = "playbackData";
 		dbm.singletons.dbmDataManager.addXmlDefinition(XmlChildRetreiver.getFirstChild(animationData), dataName);
 		var exportData = dbm.singletons.dbmDataManager.getData(dataName);
-		var parsedAnimationData = exportData.data[exportData.metaData.getObject("mainComposition")];
+		var compositionsData = exportData.data;
+		var parsedAnimationData = compositionsData[exportData.metaData.getObject("mainComposition")];
 		var duration = parsedAnimationData.metaData.getObject("duration");
 		
 		playbackNode.getProperty("maxTime").setValue(duration);
@@ -151,12 +152,12 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		console.log(playbackNode);
 		this._playbackNode = playbackNode;
 		
-		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, timeFlowGate.getProperty("outputValue"), duration, mainCanvasController);
+		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, timeFlowGate.getProperty("outputValue"), duration, compositionsData);
 		
 		mainCanvasController.getProperty("display").startUpdating();
 	};
 	
-	objectFunctions.setupLayerTreeStructure = function(aTreeStructureItem, aLayer, aTimeProperty, aDuration, aCanvasController) {
+	objectFunctions.setupLayerTreeStructure = function(aTreeStructureItem, aLayer, aTimeProperty, aDuration, aCompositions) {
 		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::setupLayerTreeStructure");
 		//console.log(aTreeStructureItem, aLayer);
 		
@@ -178,8 +179,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				var childLayer = currentLayer.getChildByPath("children");
 				
 				
-				this.setupLayer(currentLayer, currentLayerData, aTimeProperty, aDuration);
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aTimeProperty, aDuration, aCanvasController);
+				this.setupLayer(currentLayer, currentLayerData, aTimeProperty, aDuration, aCompositions);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aTimeProperty, aDuration, aCompositions);
 			}
 			else if(currentType === "trackMatte") {
 				
@@ -195,9 +196,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				newTreeStrcutureItem.data = currentLayer;
 				currentLayer._linkRegistration_setTreeStructureItem(newTreeStrcutureItem);
 				aLayer.getTreeStructureItem().addChild(newTreeStrcutureItem);
-				aCanvasController.getProperty("graphicsUpdate").connectInput(currentLayer.getProperty("graphicsUpdate"));
+				aLayer.getTreeStructureItem().getInheritedAttribute("graphicsUpdate").connectInput(currentLayer.getProperty("graphicsUpdate"));
 				
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aTimeProperty, aDuration, aCanvasController);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aTimeProperty, aDuration, aCompositions);
 				
 				
 				var renderedChildren = newTreeStrcutureItem.getChildren();
@@ -230,14 +231,14 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			else {
 				//METODO: error message
 				var currentLayer = aLayer.getChildByPath(layerName);
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aTimeProperty, aDuration, aCanvasController);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aTimeProperty, aDuration, aCompositions);
 			}
 			
 			
 		}
 	};
 	
-	objectFunctions.setupLayer = function(aLayer, aAnimationData, aTimeProperty, aFullDuration) {
+	objectFunctions.setupLayer = function(aLayer, aAnimationData, aTimeProperty, aFullDuration, aCompositions) {
 		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::setupLayer");
 		//console.log(aLayer, aAnimationData, aPlaybackNode, aFullDuration);
 		
@@ -302,6 +303,14 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			var graphicsPart = CanvasImageGraphics2d.createConnectedImage(playbackView.getProperty("element"), 800, 600);
 			graphicsPart.getProperty("graphicsUpdate").connectInput(playbackView.getProperty("display"));
 			graphicsLayer.addDrawingPart(graphicsPart);
+		}
+		else if(footageType === "composition") {
+			
+			var compositionIndex = aAnimationData.metaData.getObject("composition");
+			
+			//METODO: adjust time and duration
+			this.setupLayerTreeStructure(aCompositions[compositionIndex].data.getRoot(), contentLayer, aTimeProperty, aFullDuration, aCompositions);
+			
 		}
 		else if(footageType === "missingFile") {
 			if(this._showMissingFiles) {

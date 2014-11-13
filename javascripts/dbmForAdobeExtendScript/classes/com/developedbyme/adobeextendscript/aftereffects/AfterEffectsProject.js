@@ -114,13 +114,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.AfterEffects
 	};
 	
 	objectFunctions.getItemByNativeItem = function(aNativeItem) {
-		console.log("com.developedbyme.adobeextendscript.aftereffects.AfterEffectsProject::getItemByNativeItem");
+		//console.log("com.developedbyme.adobeextendscript.aftereffects.AfterEffectsProject::getItemByNativeItem");
 		
 		return this._getItemByNativeItemRecursive(this._items.getRoot().getChildren(), aNativeItem);
 	};
 	
 	objectFunctions._getItemByNativeItemRecursive = function(aTreeStructureItems, aNativeItem) {
-		console.log("com.developedbyme.adobeextendscript.aftereffects.AfterEffectsProject::_getItemByNativeItemRecursive");
+		//console.log("com.developedbyme.adobeextendscript.aftereffects.AfterEffectsProject::_getItemByNativeItemRecursive");
 		
 		var currentArray = aTreeStructureItems;
 		var currentArrayLength = currentArray.length;

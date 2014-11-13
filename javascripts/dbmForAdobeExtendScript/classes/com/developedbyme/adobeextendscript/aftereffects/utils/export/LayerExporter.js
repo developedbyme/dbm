@@ -64,11 +64,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 						layerMetaData.addObject("shapes", currentLayer.getShapes());
 					}
 					else {
-						console.log("-------------------->");
-						console.log(currentLayer);
-						
 						var nativeSource = currentLayer.getSource();
-						console.log(nativeSource);
 						if(nativeSource instanceof FootageItem) {
 							var nativeMainSource = nativeSource.mainSource;
 							if(nativeMainSource instanceof SolidSource) {
@@ -179,8 +175,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 							}
 						}
 						else if(nativeSource instanceof CompItem) {
-							console.log("--------------------->");
-							console.log(nativeSource.name);
 							layerMetaData.addObject("footageType", "composition");
 							
 							var compositionIndex = ArrayFunctions.indexOfInArray(aNestedCompositions, nativeSource);
@@ -193,7 +187,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 						else {
 							//METODO: add other types
 							console.error("Unknown source " + nativeSource.toString());
-							console.log(">", nativeSource.typeName);
 						}
 					}
 				}
