@@ -20,6 +20,7 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	var JavascriptLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.JavascriptLanguageFunctions");
 	
 	//Constants
 	
@@ -363,6 +364,10 @@ dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.
 		var currentArrayLength = currentArray.length;
 		for(var i = 0 ; i < currentArrayLength; i++) {
 			var currentName = currentArray[i];
+			var isReserved = (ArrayFunctions.indexOfInArray(JavascriptLanguageFunctions.RESERVED_PROPERTY_NAMES, currentName) === -1);
+			if(isReserved) {
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[NamedArray]", "getNativeObjectFromNamedArray", currentName + " is reserved and might not be able to be set on a native object.");
+			}
 			returnObject[currentName] = aNamedArray.getObject(currentName);
 		}
 		

@@ -64,7 +64,7 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 				ClassReference._drawPointsCompact3rdDegree(aContext, drawCurve.pointsArray);
 				break;
 			default:
-				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "draw", "Can't draw bezier curve of degree " + degree + ".");
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "draw", "Can't draw bezier curve of degree " + drawCurve.getCurveDegree() + ".");
 				break;
 		}
 	};

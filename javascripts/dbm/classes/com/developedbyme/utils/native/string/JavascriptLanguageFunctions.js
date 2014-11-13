@@ -147,6 +147,21 @@ dbm.registerClass("com.developedbyme.utils.native.string.JavascriptLanguageFunct
 		"window"
 	];
 	
+	staticFunctions.RESERVED_PROPERTY_NAMES = [
+		"__defineGetter__",
+		"__defineSetter__",
+		"__lookupGetter__",
+		"__lookupSetter__",
+		"__proto__",
+		"constructor",
+		"hasOwnProperty",
+		"isPrototypeOf",
+		"propertyIsEnumerable",
+		"toLocaleString",
+		"toString",
+		"valueOf"
+	];
+	
 	staticFunctions.startsWithKeyword = function(aText) {
 		return RegExpFunctions.matchTextInRegExpArrayWithNames(aText, ClassReference.KEWWORD_REG_EXPS, ClassReference.KEWWORD_REG_EXP_NAMES);
 	};
