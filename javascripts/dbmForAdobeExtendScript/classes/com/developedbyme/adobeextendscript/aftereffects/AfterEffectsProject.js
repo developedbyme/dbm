@@ -113,6 +113,33 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.AfterEffects
 		return this._activeItem;
 	};
 	
+	objectFunctions.getItemByNativeItem = function(aNativeItem) {
+		console.log("com.developedbyme.adobeextendscript.aftereffects.AfterEffectsProject::getItemByNativeItem");
+		
+		return this._getItemByNativeItemRecursive(this._items.getRoot().getChildren(), aNativeItem);
+	};
+	
+	objectFunctions._getItemByNativeItemRecursive = function(aTreeStructureItems, aNativeItem) {
+		console.log("com.developedbyme.adobeextendscript.aftereffects.AfterEffectsProject::_getItemByNativeItemRecursive");
+		
+		var currentArray = aTreeStructureItems;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentTreeStructureItem = currentArray[i];
+			var currentItem = currentTreeStructureItem.data;
+			if(currentItem.getNativeItem() === aNativeItem) {
+				return currentItem;
+			}
+			
+			var childResult = this._getItemByNativeItemRecursive(currentTreeStructureItem.getChildren(), aNativeItem);
+			if(childResult !== null) {
+				return childResult;
+			}
+		}
+		
+		return null;
+	};
+	
 	objectFunctions.deselectAllItems = function() {
 		var currentArray = ArrayFunctions.copyArray(this._nativeProject.selection);
 		var currentArrayLength = currentArray.length;

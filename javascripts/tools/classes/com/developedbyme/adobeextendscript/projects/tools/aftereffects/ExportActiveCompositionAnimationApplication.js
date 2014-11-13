@@ -40,6 +40,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
 	var MetaDataFunctions = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.utils.export.MetaDataFunctions");
 	var LayerExporter = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter");
+	var CompositionExporter = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.utils.export.CompositionExporter");
 	
 	//Constants
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
@@ -71,17 +72,28 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		var photoshopLayersToExport = NamedArray.create(false);
 		
 		var exportObject = dbm.singletons.dbmXmlObjectEncoder.createExportDataObject("afterEffectsComposition");
+		exportObject.metaData.addObject("mainComposition", 0);
 		
+		var compositions = new Array();
+		exportObject.data = compositions;
+		
+		var nativeCompositions = new Array();
+		nativeCompositions.push(this._activeComposition.getNativeItem());
+		
+		CompositionExporter.exportCompositions(nativeCompositions, this._project, filesToCopy, photoshopLayersToExport, compositions);
+		
+		/*
 		var compositionMetaData = MetaDataObject.create();
-		exportObject.data = compositionMetaData;
+		compositions.push(compositionMetaData);
+		
 		
 		MetaDataFunctions.setCompositionMetaData(this._activeComposition, compositionMetaData.metaData);
 		
 		var exportedLayerData = TreeStructure.create();
 		compositionMetaData.data = exportedLayerData;
 		
-		LayerExporter.exportLayers(this._activeComposition.getLayers(), exportedLayerData.getRoot(), filesToCopy, photoshopLayersToExport);
-		
+		LayerExporter.exportLayers(this._activeComposition.getLayers(), exportedLayerData.getRoot(), nativeCompositions, filesToCopy, photoshopLayersToExport);
+		*/
 		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(exportObject);
 		
 		var saveFile = FileWriter.createWithPrompt("~/export.xml");

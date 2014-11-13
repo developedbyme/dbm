@@ -86,7 +86,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		var dataName = "playbackData";
 		dbm.singletons.dbmDataManager.addXmlDefinition(XmlChildRetreiver.getFirstChild(animationData), dataName);
-		var parsedAnimationData = dbm.singletons.dbmDataManager.getData(dataName).data;
+		var exportData = dbm.singletons.dbmDataManager.getData(dataName);
+		var parsedAnimationData = exportData.data[exportData.metaData.getObject("mainComposition")];
+		var duration = parsedAnimationData.metaData.getObject("duration");
 		
 		playbackNode.getProperty("maxTime").setValue(parsedAnimationData.metaData.getObject("duration"));
 		

@@ -28,11 +28,12 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 	var MetaDataFunctions = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.utils.export.MetaDataFunctions");
 	var TimelineGenerator = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.utils.export.TimelineGenerator");
 	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	
 	
-	staticFunctions.exportLayers = function(aTreeStructureItems, aReturnParentTreeStructureItem, aFilesToCopy, aPhotoshopLayersToExport) {
+	staticFunctions.exportLayers = function(aTreeStructureItems, aReturnParentTreeStructureItem, aNestedCompositions, aFilesToCopy, aPhotoshopLayersToExport) {
 		console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter::exportLayers");
 		//console.log(aTreeStructureItems, aReturnParentTreeStructureItem);
 		
@@ -63,7 +64,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 						layerMetaData.addObject("shapes", currentLayer.getShapes());
 					}
 					else {
+						console.log("-------------------->");
+						console.log(currentLayer);
+						
 						var nativeSource = currentLayer.getSource();
+						console.log(nativeSource);
 						if(nativeSource instanceof FootageItem) {
 							var nativeMainSource = nativeSource.mainSource;
 							if(nativeMainSource instanceof SolidSource) {
@@ -173,9 +178,22 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 								layerMetaData.addObject("footageType", "unknown");
 							}
 						}
+						else if(nativeSource instanceof CompItem) {
+							console.log("--------------------->");
+							console.log(nativeSource.name);
+							layerMetaData.addObject("footageType", "composition");
+							
+							var compositionIndex = ArrayFunctions.indexOfInArray(aNestedCompositions, nativeSource);
+							if(compositionIndex === -1) {
+								compositionIndex = aNestedCompositions.length;
+								aNestedCompositions.push(nativeSource);
+							}
+							layerMetaData.addObject("composition", compositionIndex);
+						}
 						else {
 							//METODO: add other types
 							console.error("Unknown source " + nativeSource.toString());
+							console.log(">", nativeSource.typeName);
 						}
 					}
 				}
@@ -193,7 +211,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 				layerMetaData.addObject("trackMatteType", currentTreeStructureItem.getAttribute("trackMatteType"));
 			}
 			
-			ClassReference.exportLayers(currentTreeStructureItem.getChildren(), newItem, aFilesToCopy, aPhotoshopLayersToExport);
+			ClassReference.exportLayers(currentTreeStructureItem.getChildren(), newItem, aNestedCompositions, aFilesToCopy, aPhotoshopLayersToExport);
 		}
 	};
 	
