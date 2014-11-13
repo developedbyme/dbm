@@ -44,10 +44,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.deve
 		
 		this._hierarchy = TreeStructure.create();
 		this._hierarchy.ownsData = true;
+		
 		this._hierarchy.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.ITEM_CREATED, CallFunctionCommand.createCommand(this, this._setupTreeStructureItem, [GetVariableObject.createSelectDataCommand()]));
 		
 		var rootNode = this._hierarchy.getRoot();
 		rootNode.ownsData = true;
+		rootNode.setAttribute("owner", this);
+		rootNode.setAttribute("graphicsUpdate", this._graphicsUpdate);
 		this.addDestroyableObject(this._hierarchy);
 		var rootLayer = CanvasLayer2d.create();
 		rootNode.data = rootLayer;
