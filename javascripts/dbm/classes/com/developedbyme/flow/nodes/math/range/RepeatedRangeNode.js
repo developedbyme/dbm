@@ -2,7 +2,7 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions) {
 	//console.log("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
 	
-	var RepeadedRange = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
+	var RepeatedRangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
 	
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode::_init");
@@ -44,7 +44,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode", "
 	};
 	
 	staticFunctions.create = function(aInput, aMin, aMax) {
-		var newNode = (new RepeadedRange()).init();
+		var newNode = (new RepeatedRangeNode()).init();
 		newNode.setPropertyInputWithoutNull("inputValue", aInput);
 		newNode.setPropertyInputWithoutNull("minValue", aMin);
 		newNode.setPropertyInputWithoutNull("maxValue", aMax);

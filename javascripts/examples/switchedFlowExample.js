@@ -6,7 +6,7 @@ dbm.runTempFunction(function() {
 	var PrintTextNode = dbm.importClass("com.developedbyme.flow.nodes.display.PrintTextNode");
 	var IndexSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode");
 	var FloorNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.FloorNode");
-	var RepeatedRangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
+	var RepeatedRangeNodeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
 	var RoundToNumberOfDecimalsNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundToNumberOfDecimalsNode");
 	
 	dbm.addStartFunction(function() {
@@ -19,7 +19,7 @@ dbm.runTempFunction(function() {
 		divisionNode.getProperty("divisor").setValue(2);
 		dbm.singletons.dbmFlowManager.connectProperties(timeNode.getProperty("time"), divisionNode.getProperty("inputValue"));
 		
-		var repeadedRangeNode = (new RepeatedRangeNode()).init();
+		var repeadedRangeNode = (new RepeatedRangeNodeNode()).init();
 		repeadedRangeNode.getProperty("maxValue").setValue(9);
 		dbm.singletons.dbmFlowManager.connectProperties(divisionNode.getProperty("outputValue"), repeadedRangeNode.getProperty("inputValue"));
 		

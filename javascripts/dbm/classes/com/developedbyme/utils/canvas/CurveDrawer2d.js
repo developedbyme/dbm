@@ -107,8 +107,19 @@ dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developed
 	};
 	
 	staticFunctions._drawPointsCompact3rdDegree = function(aContext, aPointsArray) {
+		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::_drawPointsCompact3rdDegree");
+		//console.log(aPointsArray);
 		var currentArray = aPointsArray;
 		var currentArrayLength = currentArray.length;
+		
+		if(currentArrayLength === 0) {
+			return;
+		}
+		else if((currentArrayLength-1)%3 !== 0) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[CurveDrawer2d]", "_drawPointsCompact3rdDegree", "Number of points " + currentArrayLength + " are incorrect.");
+			return;
+		}
+		
 		for(var i = 1; i < currentArrayLength;) { //MENOTE: first point is skipped, i is incremented inside the loop
 			var anchorPoint1 = currentArray[i++];
 			var anchorPoint2 = currentArray[i++];

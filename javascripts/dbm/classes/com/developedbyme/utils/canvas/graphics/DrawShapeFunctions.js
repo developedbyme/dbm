@@ -17,6 +17,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.graphics.DrawShapeFunctions", 
 	var GetMaxParameterOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetMaxParameterOnCurveNode");
 	var CreateLineFromCenterNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateLineFromCenterNode");
 	var CreateLineFromPointNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateLineFromPointNode");
+	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
+	var CreateRectangleCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateRectangleCurveNode");
 	
 	//Utils
 	
@@ -39,6 +41,26 @@ dbm.registerClass("com.developedbyme.utils.canvas.graphics.DrawShapeFunctions", 
 		
 		var graphics = CanvasGraphics2d.createWithSettings(aLineWidth, aStrokeStyle, aFillStyle);
 		graphics.addCurve(ClassReference.createCircleCurveDrawer(aX, aY, aRadius));
+		
+		aLayer.addDrawingPart(graphics);
+		
+		return aLayer;
+	};
+	
+	staticFunctions.createRectangleCurveDrawer = function(aX, aY, aWidth, aHeight) {
+		var curveCreatorNode = CreateRectangleCurveNode.create(aX, aY, aWidth, aHeight);
+		var maxParameterNode = GetMaxParameterOnCurveNode.create(curveCreatorNode.getProperty("outputCurve"));
+		
+		var newCurveDrawer = CurveDrawer2d.create(curveCreatorNode.getProperty("outputCurve"), 0, maxParameterNode.getProperty("outputParameter"));
+		newCurveDrawer.addDestroyableObject(curveCreatorNode);
+		newCurveDrawer.addDestroyableObject(maxParameterNode);
+		
+		return newCurveDrawer;
+	};
+	
+	staticFunctions.drawRectangle = function(aLayer, aX, aY, aWidth, aHeight, aLineWidth, aStrokeStyle, aFillStyle) {
+		var graphics = CanvasGraphics2d.createWithSettings(aLineWidth, aStrokeStyle, aFillStyle);
+		graphics.addCurve(ClassReference.createRectangleCurveDrawer(aX, aY, aWidth, aHeight));
 		
 		aLayer.addDrawingPart(graphics);
 		
@@ -73,7 +95,11 @@ dbm.registerClass("com.developedbyme.utils.canvas.graphics.DrawShapeFunctions", 
 		graphics.moveWhenSwitchingCurves = true;
 		
 		graphics.addCurve(ClassReference.createCurveDrawerForLine(aX, aY, aWidth, aAngle));
-		graphics.addCurve(ClassReference.createCurveDrawerForLine(aX, aY, aHeight, aAngle+0.5*Math.PI));
+		
+		var angleAdditionNode = AdditionNode.create(aAngle, 0.5*Math.PI);
+		var verticalLineDrawer = ClassReference.createCurveDrawerForLine(aX, aY, aHeight, angleAdditionNode.getProperty("outputValue"));
+		verticalLineDrawer.addDestroyableObject(angleAdditionNode);
+		graphics.addCurve(verticalLineDrawer);
 		
 		aLayer.addDrawingPart(graphics);
 		

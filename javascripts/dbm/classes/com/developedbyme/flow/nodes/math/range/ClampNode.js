@@ -2,6 +2,21 @@
 dbm.registerClass("com.developedbyme.flow.nodes.math.range.ClampNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.flow.nodes.math.range.ClampNode");
 	
+	//Self reference
+	var ClampNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.ClampNode");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constrcutor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.flow.nodes.math.range.ClampNode::_init");
 		
@@ -19,15 +34,32 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.range.ClampNode", "com.deve
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.math.range.ClampNode::_update");
-		this._outputValue.setValueWithFlow(Math.max(Math.min(this._inputValue1.getValueWithoutFlow()+this._maxValue.getValueWithoutFlow()), this._minValue.getValueWithoutFlow()), aFlowUpdateNumber);
-	};
-	
-	
-	objectFunctions.performDestroy = function() {
-		this.superCall();
+		this._outputValue.setValueWithFlow(
+			Math.max(
+				Math.min(
+					this._inputValue.getValueWithoutFlow(),
+					this._maxValue.getValueWithoutFlow()
+				),
+				this._minValue.getValueWithoutFlow()
+			),
+			aFlowUpdateNumber
+		);
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		this.superCall();
+		
+		this._inputValue = null;
+		this._minValue = null;
+		this._maxValue = null;
+		this._outputValue = null;
+	};
+	
+	staticFunctions.create = function(aInput, aMin, aMax) {
+		var newNode = (new ClampNode()).init();
+		newNode.setPropertyInputWithoutNull("inputValue", aInput);
+		newNode.setPropertyInputWithoutNull("minValue", aMin);
+		newNode.setPropertyInputWithoutNull("maxValue", aMax);
+		return newNode;
 	};
 });

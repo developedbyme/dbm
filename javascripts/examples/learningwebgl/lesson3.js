@@ -3,7 +3,7 @@ dbm.runTempFunction(function() {
 	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
 	
 	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
-	var RepeadedRange = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
+	var RepeatedRangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
 	
 	var CanvasGraphics3d = dbm.importClass("com.developedbyme.utils.canvas.3d.CanvasGraphics3d");
 	var Camera3d = dbm.importClass("com.developedbyme.utils.canvas.3d.Camera3d");
@@ -38,7 +38,7 @@ dbm.runTempFunction(function() {
 			
 			var animationTime = 2;
 
-			var repeatedRangeNode = RepeadedRange.create(dbm.singletons.dbmAnimationManager.globalTimeProperty, 0, animationTime+1);
+			var repeatedRangeNode = RepeatedRangeNode.create(dbm.singletons.dbmAnimationManager.globalTimeProperty, 0, animationTime+1);
 			dbm.singletons.dbmAnimationManager.globalTimeProperty = repeatedRangeNode.getProperty("outputValue");
 			
 			var fragmentShaderAsset = dbm.singletons.dbmAssetRepository.getAsset(fragmentShaderPath);

@@ -340,7 +340,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions.disconnectInput = function() {
 		if(this._inputConnection === null) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "disconnectInput", "Property " + this + " doesn't have any input.");
-			return;
+			return this;
 		}
 		dbm.singletons.dbmFlowManager.disconnectProperties(this._inputConnection, this);
 		

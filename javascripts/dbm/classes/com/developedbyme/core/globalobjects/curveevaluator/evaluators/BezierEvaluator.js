@@ -6,6 +6,9 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 	var BezierEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator");
 	
 	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
 	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
@@ -42,6 +45,8 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 	};
 	
 	objectFunctions._ensureReturnLength = function(aReturnArrayPositioning, aLength) {
+		//console.log("com.developedbyme.core.globalobjects.curveevaluator.evaluators.BezierEvaluator::_ensureReturnLength");
+		
 		var pointsToAdd = aReturnArrayPositioning.position+aLength-aReturnArrayPositioning.numberOfItems;
 		if(pointsToAdd > 0) {
 			var currentArray = aReturnArrayPositioning.array;
@@ -109,6 +114,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 		}
 		
 		if(aStartParameter <= aExactness && aEndParameter >= 1-aExactness) {
+			
 			var currentArray = aSegmentPoints;
 			var currentArrayLength = currentArray.length;
 			
@@ -148,7 +154,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 			Point.setValues3d(newPoint3, newPoint4.x-(((scale)/3)*tangent.x), newPoint4.y-(((scale)/3)*tangent.y), newPoint4.z-(((scale)/3)*tangent.z));
 			
 			if(!aStartLoop) {
-				aReturnArray.push(newPoint1);
+				newPoint1 = aReturnArray[startPosition+addLength-4];
 				Point.copyPointValues3d(newPoint1, aReturnArray[startPosition]);
 			}
 			
@@ -175,6 +181,18 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 		var isCompact = aReturnCurve.isCompact() ? 1 : 0;
 		
 		var returnArrayPositioning = PositionedArrayHolder.createFromArray(aReturnCurve.pointsArray, false);
+		
+		var maxParameter = (aCurve.pointsArray.length-isCompact)/(aCurve.getCurveDegree()-isCompact);
+		if(aStartParameter > maxParameter) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPartOfCurve", "Start parameter is out of range " + aStartParameter + " > " + maxParameter + ".");
+			
+			aStartParameter = maxParameter;
+		}
+		if(aEndParameter > maxParameter) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPartOfCurve", "End parameter is out of range " + aEndParameter + " > " + maxParameter + ".");
+			
+			aEndParameter = maxParameter;
+		}
 		
 		var segmentStart = Math.floor(aStartParameter);
 		var segmentEnd = Math.floor(aEndParameter);

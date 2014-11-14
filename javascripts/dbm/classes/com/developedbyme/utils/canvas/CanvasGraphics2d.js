@@ -57,6 +57,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasGraphics2d", "com.develo
 		return;
 	};
 	
+	objectFunctions.getCurves = function() {
+		return this._curves;
+	};
+	
 	objectFunctions.getLastCurve = function() {
 		if(this._curves.length > 0) {
 			return this._curves[this._curves.length-1];

@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	
 	var PlaceElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
-	var RepeadedRange = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
+	var RepeatedRangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
 	
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
@@ -12,7 +12,7 @@ dbm.runTempFunction(function() {
 		
 		var numberOfItems = 15;
 		
-		var repeatedRangeNode = RepeadedRange.create(dbm.singletons.dbmAnimationManager.globalTimeProperty, 0, ((numberOfItems-1)*0.5*0.25+1+1));
+		var repeatedRangeNode = RepeatedRangeNode.create(dbm.singletons.dbmAnimationManager.globalTimeProperty, 0, ((numberOfItems-1)*0.5*0.25+1+1));
 		dbm.singletons.dbmAnimationManager.globalTimeProperty = repeatedRangeNode.getProperty("outputValue");
 		
 		for(var i = 0; i < numberOfItems; i++) {

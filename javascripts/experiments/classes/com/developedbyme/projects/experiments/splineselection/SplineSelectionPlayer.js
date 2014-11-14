@@ -17,7 +17,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.splineselection.Spline
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
 	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
 	
-	var RepeadedRange = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
+	var RepeatedRangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
 	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
 	var TransformElement3dNode = dbm.importClass("com.developedbyme.flow.nodes.display.TransformElement3dNode");
 	var GetPointOnCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.GetPointOnCurveNode");
@@ -66,7 +66,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.splineselection.Spline
 		
 		var offsetNode = AdditionNode.create(this._position, aOffset);
 		
-		var repeatedRangeNode = RepeadedRange.create(offsetNode.getProperty("outputValue"), 0, 3);
+		var repeatedRangeNode = RepeatedRangeNode.create(offsetNode.getProperty("outputValue"), 0, 3);
 		var zPositionNode = RangeNode.create(repeatedRangeNode.getProperty("outputValue"), 0, 3, -1400, 1400);
 		var zIndexNode = RangeNode.create(repeatedRangeNode.getProperty("outputValue"), 0, 3, 1, 60);
 		var zIndexRoundNode = RoundNode.create(zIndexNode.getProperty("outputValue"));

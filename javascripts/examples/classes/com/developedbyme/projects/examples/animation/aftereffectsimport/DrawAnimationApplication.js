@@ -33,6 +33,11 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
 	var FlowGate = dbm.importClass("com.developedbyme.flow.FlowGate");
 	var VideoView = dbm.importClass("com.developedbyme.gui.media.video.VideoView");
+	var ClampNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.ClampNode");
+	var RepeatedRangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
+	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
+	var CanvasGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasGraphics2d");
+	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -42,6 +47,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
 	var IllustratorFileGenerator = dbm.importClass("com.developedbyme.utils.canvas.generators.IllustratorFileGenerator");
 	var DataSelector = dbm.importClass("com.developedbyme.utils.data.DataSelector");
+	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var CanvasControllerModificationFunctions = dbm.importClass("com.developedbyme.utils.canvas.modify.CanvasControllerModificationFunctions");
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
@@ -308,9 +315,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			
 			var compositionIndex = aAnimationData.metaData.getObject("composition");
 			var usedComposition = aCompositions[compositionIndex];
-			console.log(usedComposition);
 			
-			//METODO: adjust time and duration
 			var duration = usedComposition.metaData.getObject("duration");
 			
 			var timeAdjustmentNode = AdditionNode.create(aTimeProperty, -1*inPoint);
@@ -449,9 +454,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 	};
 	
-	objectFunctions.generateShapes = function(aCurrentLayer, aCurrentGroup, aTimelines, aTimeProperty) {
+	objectFunctions.generateShapes = function(aCurrentLayer, aCurrentGroup, aTimelines, aTimeProperty, aCurves) {
 		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::generateShapes");
-		//console.log(aCurrentLayer, aCurrentGroup, aTimelines, aPlaybackNode);
+		//console.log(aCurrentLayer, aCurrentGroup, aTimelines, aTimeProperty);
 		
 		var currentGraphics = aCurrentLayer._getCurrentDrawingLayer();
 		currentGraphics.moveWhenSwitchingCurves = true;
@@ -511,10 +516,66 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				case "fill":
 					this.applyColor(currentGraphics.getProperty("fillStyle"), aTimelines, currentPathPrefix, aTimeProperty);
 					break;
+				case "trim":
+					var inputProperties = PropertiesHolder.create({"startParameter": 0, "endParameter": 0, "offset": 0, "trimMultipleShapes": 0});
+					
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/start"), aTimeProperty, inputProperties.getProperty("startParameter"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/end"), aTimeProperty, inputProperties.getProperty("endParameter"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/offset"), aTimeProperty, inputProperties.getProperty("offset"));
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/trimMultipleShapes"), aTimeProperty, inputProperties.getProperty("trimMultipleShapes"));
+					
+					var offsetDivisionNode = MultiplicationNode.create(inputProperties.getProperty("offset"), 1/(2*Math.PI));
+					var startParameterNode = AdditionNode.create(inputProperties.getProperty("startParameter"), offsetDivisionNode.getProperty("outputValue"));
+					var lengthNode = SubtractionNode.create(inputProperties.getProperty("endParameter"), inputProperties.getProperty("startParameter"));
+					
+					var startRepeatedRangeNode = RepeatedRangeNode.create(startParameterNode.getProperty("outputValue"), 0, 1);
+					
+					
+					var endNode = AdditionNode.create(startRepeatedRangeNode.getProperty("outputValue"), lengthNode.getProperty("outputValue"));
+					var firstEndNode = ClampNode.create(endNode.getProperty("outputValue"), 0, 1);
+					var secondEndOffsetNode = SubtractionNode.create(endNode.getProperty("outputValue"), 1);
+					var secondEndNode = ClampNode.create(secondEndOffsetNode.getProperty("outputValue"), 0, 1);
+					
+					var graphicsArray = new Array();
+					CanvasControllerModificationFunctions.getAllGraphics(aCurrentLayer, graphicsArray);
+					
+					this._trimCurves(graphicsArray, startRepeatedRangeNode.getProperty("outputValue"), firstEndNode.getProperty("outputValue"), secondEndNode.getProperty("outputValue"));
+					
+					break;
 				default:
 					console.log(currentType);
 					//METODO: error message
 					break;
+			}
+		}
+	};
+	
+	objectFunctions._trimCurves = function(aGraphicsArray, aStartParameter, aEndParameter, aLoopEndParameter) {
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_trimCurves");
+		var currentArray = aGraphicsArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentGraphics = currentArray[i];
+			if(currentGraphics instanceof CanvasGraphics2d) {
+				var currentArray2 = currentGraphics.getCurves();
+				var currentArray2Length = currentArray2.length;
+				for(var j = 0; j < currentArray2Length; j++) {
+					var currentCurveDrawer = currentArray2[j];
+					
+					var curveEndParameter = currentCurveDrawer.getProperty("endParameter");
+					var fullLength = curveEndParameter.getInputProperty();
+					if(fullLength === null) {
+						fullLength = curveEndParameter.getValue();
+					}
+					
+					var startMultiplier = MultiplicationNode.create(aStartParameter, fullLength);
+					var endMultiplier = MultiplicationNode.create(aEndParameter, fullLength);
+					var loopEndMultiplier = MultiplicationNode.create(aLoopEndParameter, fullLength);
+					
+					currentCurveDrawer.getProperty("startParameter").connectInput(startMultiplier.getProperty("outputValue"));
+					currentCurveDrawer.getProperty("endParameter").disconnectInput().connectInput(endMultiplier.getProperty("outputValue"));
+					//METODO: duplicate for loop curve
+				}
 			}
 		}
 	};
@@ -600,6 +661,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			var flowGate = FlowGate.create();
 			dbm.singletons.dbmFlowManager.addFlowGate(flowGate);
 			aOutputProperty.connectInput(flowGate.getProperty("outputValue"));
+			aOutputProperty.setAnimationController(aDataProperty.getAnimationController());
 			dbm.singletons.dbmAnimationManager.setupTimelineConnection(aDataProperty.getAnimationController(), aTimeProperty, flowGate.getProperty("inputValue"));
 		}
 		else {
@@ -616,6 +678,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			dbm.singletons.dbmFlowManager.addFlowGate(flowGate);
 			flowGate.getProperty("outputValue").setAlwaysUpdateFlow(true);
 			aOutputProperty.connectInput(flowGate.getProperty("outputValue"));
+			aOutputProperty.setAnimationController(aDataProperty.getAnimationController());
 			dbm.singletons.dbmAnimationManager.setupTimelineConnectionWithComplexValue(aDataProperty.getAnimationController(), aTimeProperty, flowGate.getProperty("inputValue"));
 			//dbm.singletons.dbmAnimationManager.setupTimelineConnectionWithComplexValue(aDataProperty.getAnimationController(), aTimeProperty, aOutputProperty);
 		}

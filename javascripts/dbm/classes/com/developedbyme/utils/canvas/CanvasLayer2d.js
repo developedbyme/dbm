@@ -88,6 +88,10 @@ dbm.registerClass("com.developedbyme.utils.canvas.CanvasLayer2d", "com.developed
 		return this._treeStructureItem;
 	};
 	
+	objectFunctions.getGraphics = function() {
+		return this._graphics;
+	};
+	
 	objectFunctions.getTreeStructureItem = function() {
 		return this._treeStructureItem;
 	};
