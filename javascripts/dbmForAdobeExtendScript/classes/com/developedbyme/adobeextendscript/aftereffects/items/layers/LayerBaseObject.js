@@ -87,7 +87,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 	
 	objectFunctions.setupAnimationProperties = function() {
 		
-		console.log(">>>>", this._nativeItem.audioEnabled, this._nativeItem.hasAudio, this._nativeItem.effectsActive, this._nativeItem.threeDLayer, this._nativeItem.timeRemapEnabled);
+		//console.log(">>>>", this._nativeItem.audioEnabled, this._nativeItem.hasAudio, this._nativeItem.effectsActive, this._nativeItem.threeDLayer, this._nativeItem.timeRemapEnabled);
 		
 		ClassReference.getPropertiesForLayer(this._nativeItem, "", this._animationProperties, this._masks, null);
 		
@@ -147,6 +147,12 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 							break;
 						case "ADBE Vector Stroke Dashes":
 							ClassReference.createChildShape(aCurrentShape, "dashes", holderPath);
+							break;
+						case "ADBE Vector Filter - Trim":
+							ClassReference.createChildShape(aCurrentShape, "trim", holderPath);
+							break;
+						case "ADBE Vector Filter - Repeater":
+							ClassReference.createChildShape(aCurrentShape, "repeater", holderPath);
 							break;
 						case "ADBE Root Vectors Group":
 						case "ADBE Vectors Group":

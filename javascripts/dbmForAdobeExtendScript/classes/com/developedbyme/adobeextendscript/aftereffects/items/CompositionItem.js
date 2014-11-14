@@ -15,6 +15,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 	var LayerBaseObject = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.LayerBaseObject");
 	var AvCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.AvCompositionLayer");
 	var ShapeCompositionLayer = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.ShapeCompositionLayer");
+	var Camera = dbm.importClass("com.developedbyme.adobeextendscript.aftereffects.items.layers.Camera");
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
 	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
 	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
@@ -51,6 +52,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 	};
 	
 	objectFunctions.setupItem = function(aNativeItem) {
+		//console.log("com.developedbyme.adobeextendscript.aftereffects.items.CompositionItem::setupItem");
+		
 		this.superCall(aNativeItem);
 		
 		this._width.setupExternalObject(aNativeItem, "width");
@@ -58,6 +61,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 		this._duration.setupExternalObject(aNativeItem, "duration");
 		this._frameRate.setupExternalObject(aNativeItem, "frameRate");
 		
+		//console.log("//com.developedbyme.adobeextendscript.aftereffects.items.CompositionItem::setupItem");
 		return this;
 	};
 	
@@ -75,6 +79,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 			}
 			else if(currentNativeLayer instanceof AVLayer) {
 				currentLayer = AvCompositionLayer.create(currentNativeLayer);
+			}
+			else if(currentNativeLayer instanceof CameraLayer) {
+				console.log("--------------------------> Camera");
+				currentLayer = Camera.create(currentNativeLayer);
 			}
 			else {
 				currentLayer = LayerBaseObject.create(currentNativeLayer);
@@ -136,7 +144,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 	
 	staticFunctions.create = function(aNativeItem) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.items.CompositionItem::create");
-		//console.log(aPort);
+		//console.log(aNativeItem);
 		
 		var newCompositionItem = (new ClassReference()).init();
 		

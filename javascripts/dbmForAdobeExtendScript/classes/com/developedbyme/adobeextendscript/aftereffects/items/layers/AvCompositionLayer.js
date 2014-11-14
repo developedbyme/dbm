@@ -29,9 +29,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		
 		this.superCall();
 		
-		this._nativeItem = null;
-		this._animationProperties = NamedArray.create(false);
-		
 		this._width = this.addProperty("width", ExternalVariableProperty.createWithoutExternalObject(null));
 		this._height = this.addProperty("height", ExternalVariableProperty.createWithoutExternalObject(null));
 		this._blendingMode = this.addProperty("blendingMode", ExternalVariableProperty.createWithoutExternalObject(null));

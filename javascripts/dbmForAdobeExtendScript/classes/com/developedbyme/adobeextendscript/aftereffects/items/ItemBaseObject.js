@@ -12,6 +12,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.ItemBa
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
+	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	
 	//Utils
 	
@@ -28,6 +29,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.ItemBa
 		
 		this._nativeItem = null;
 		
+		this._name = this.addProperty("name", ExternalVariableProperty.createWithoutExternalObject(null));
+		
 		return this;
 	};
 	
@@ -37,6 +40,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.ItemBa
 	
 	objectFunctions.setupItem = function(aNativeItem) {
 		this._nativeItem = aNativeItem;
+		
+		this._name.setupExternalObject(aNativeItem, "name");
 		
 		return this;
 	};

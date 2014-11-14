@@ -117,7 +117,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var timeFlowGate = FlowGate.create(playbackNode.getProperty("outputTime"));
 		dbm.singletons.dbmFlowManager.addFlowGate(timeFlowGate);
 		
-		var scale = 0.25;
+		var scale = 0.5;
 		
 		var width = parsedAnimationData.metaData.getObject("width");
 		var height = parsedAnimationData.metaData.getObject("height");
@@ -307,9 +307,14 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		else if(footageType === "composition") {
 			
 			var compositionIndex = aAnimationData.metaData.getObject("composition");
+			var usedComposition = aCompositions[compositionIndex];
+			console.log(usedComposition);
 			
 			//METODO: adjust time and duration
-			this.setupLayerTreeStructure(aCompositions[compositionIndex].data.getRoot(), contentLayer, aTimeProperty, aFullDuration, aCompositions);
+			var duration = usedComposition.metaData.getObject("duration");
+			
+			var timeAdjustmentNode = AdditionNode.create(aTimeProperty, -1*inPoint);
+			this.setupLayerTreeStructure(usedComposition.data.getRoot(), contentLayer, timeAdjustmentNode.getProperty("outputValue"), duration, aCompositions);
 			
 		}
 		else if(footageType === "missingFile") {
@@ -369,27 +374,33 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			var strokeCurveDrawer = CurveDrawer2d.create(null);
 			
 			var maskIndexTimeline = timelines.getProperty("effects/stroke/path");
-			//METODO: can this switch?
-			var currentMaskData = masks[maskIndexTimeline.getValue()-1];
-			var currentMaskPath = currentMaskData.getObject("path");
 			
-			this._linkComplexDataToProperty(timelines.getProperty(currentMaskPath + "/maskPath"), aTimeProperty, strokeCurveDrawer.getProperty("curve"));
-			var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
+			var maskIndex = maskIndexTimeline.getValue()-1; //METODO: can this switch?
+			if(maskIndex >= 0) { //METODO: what does mask index -1 mean?
+				var currentMaskData = masks[maskIndex];
+				var currentMaskPath = currentMaskData.getObject("path");
 			
-			var startMultiplierNode = MultiplicationNode.create(0, maxParameterNode.getProperty("outputParameter"));
-			var endMultiplierNode = MultiplicationNode.create(1, maxParameterNode.getProperty("outputParameter"));
+				this._linkComplexDataToProperty(timelines.getProperty(currentMaskPath + "/maskPath"), aTimeProperty, strokeCurveDrawer.getProperty("curve"));
+				var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
 			
-			this._linkDataToProperty(timelines.getProperty(aPrefix + "effects/stroke/start"), aTimeProperty, startMultiplierNode.getProperty("inputValue1"));
-			this._linkDataToProperty(timelines.getProperty(aPrefix + "effects/stroke/end"), aTimeProperty, endMultiplierNode.getProperty("inputValue1"));
+				var startMultiplierNode = MultiplicationNode.create(0, maxParameterNode.getProperty("outputParameter"));
+				var endMultiplierNode = MultiplicationNode.create(1, maxParameterNode.getProperty("outputParameter"));
 			
-			strokeCurveDrawer.getProperty("startParameter").connectInput(startMultiplierNode.getProperty("outputValue"));
-			strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));
+				this._linkDataToProperty(timelines.getProperty("effects/stroke/start"), aTimeProperty, startMultiplierNode.getProperty("inputValue1"));
+				this._linkDataToProperty(timelines.getProperty("effects/stroke/end"), aTimeProperty, endMultiplierNode.getProperty("inputValue1"));
 			
-			//METODO: set correct color
-			strokeLayer.setStrokeStyle(1, "#000000");
+				strokeCurveDrawer.getProperty("startParameter").connectInput(startMultiplierNode.getProperty("outputValue"));
+				strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));
 			
-			var currentGraphics = strokeLayer._getCurrentDrawingLayer();
-			currentGraphics.addCurve(strokeCurveDrawer);
+				//METODO: set correct color
+				strokeLayer.setStrokeStyle(1, "#000000");
+			
+				var currentGraphics = strokeLayer._getCurrentDrawingLayer();
+				currentGraphics.addCurve(strokeCurveDrawer);
+			}
+			else {
+				//METODO: error message
+			}
 		}
 	};
 	
@@ -544,15 +555,20 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			treeStructure.getRoot().getChildren()
 		);
 		
-		var layerMetaData = selectedLayer.data.metaData;
-		var layerWidth = layerMetaData.getObject("width");
-		var layerHeight = layerMetaData.getObject("height");
+		if(selectedLayer !== null) {
+			var layerMetaData = selectedLayer.data.metaData;
+			var layerWidth = layerMetaData.getObject("width");
+			var layerHeight = layerMetaData.getObject("height");
 		
-		var centertedLayer = aParentLayer.getChildByPath("center");
-		centertedLayer.getProperty("x").setValue(0.5*(aHolderWidth-layerWidth));
-		centertedLayer.getProperty("y").setValue(0.5*(aHolderHeight-layerHeight));
+			var centertedLayer = aParentLayer.getChildByPath("center");
+			centertedLayer.getProperty("x").setValue(0.5*(aHolderWidth-layerWidth));
+			centertedLayer.getProperty("y").setValue(0.5*(aHolderHeight-layerHeight));
 		
-		IllustratorFileGenerator.drawLayers(selectedLayer.getChildren(), centertedLayer, this._canvasController);
+			IllustratorFileGenerator.drawLayers(selectedLayer.getChildren(), centertedLayer, this._canvasController);
+		}
+		else {
+			//METODO: error message
+		}
 	};
 	
 	objectFunctions.applyColor = function(aOutputProperty, aTimelines, aPrefix, aTimeProperty) {

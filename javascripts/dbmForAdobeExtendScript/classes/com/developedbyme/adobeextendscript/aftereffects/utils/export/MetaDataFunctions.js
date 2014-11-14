@@ -28,6 +28,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.MetaDataFunctions::setCompositionMetaData");
 		//console.log(aComposition, aReturnNamedArray);
 		
+		aReturnNamedArray.addObject(GeneralMetaDataTypes.NAME, aComposition.getProperty("name").getValue());
 		aReturnNamedArray.addObject(DisplayMetaDataTypes.WIDTH, aComposition.getProperty("width").getValue());
 		aReturnNamedArray.addObject(DisplayMetaDataTypes.HEIGHT, aComposition.getProperty("height").getValue());
 		aReturnNamedArray.addObject(PlaybackMetaDataTypes.DURATION, aComposition.getProperty("duration").getValue());

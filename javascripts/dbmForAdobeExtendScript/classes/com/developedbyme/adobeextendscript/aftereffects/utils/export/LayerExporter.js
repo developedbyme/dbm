@@ -34,7 +34,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 	
 	
 	staticFunctions.exportLayers = function(aTreeStructureItems, aReturnParentTreeStructureItem, aNestedCompositions, aFilesToCopy, aPhotoshopLayersToExport) {
-		console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter::exportLayers");
+		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter::exportLayers");
 		//console.log(aTreeStructureItems, aReturnParentTreeStructureItem);
 		
 		var currentArray = aTreeStructureItems;
@@ -51,7 +51,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 			
 			var currentType = currentTreeStructureItem.getAttribute("type");
 			layerMetaData.addObject("type", currentType);
-			if(currentType === "layer") {
+			if(currentType === "layer" || currentType === "camera") {
 				currentLayer.setupAnimationProperties();
 				
 				if(currentLayer instanceof AvCompositionLayer) {
@@ -178,6 +178,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 							layerMetaData.addObject("footageType", "composition");
 							
 							var compositionIndex = ArrayFunctions.indexOfInArray(aNestedCompositions, nativeSource);
+							console.log(compositionIndex, nativeSource.name);
 							if(compositionIndex === -1) {
 								compositionIndex = aNestedCompositions.length;
 								aNestedCompositions.push(nativeSource);

@@ -54,6 +54,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.AfterEffects
 		this._createItem(currentFolder, currentItem);
 		this._setupItemsInFolder(currentFolder, currentItem);
 		
+		//console.log("//com.developedbyme.adobeextendscript.aftereffects.AfterEffectsProject::setupItems");
 		return this;
 	};
 	
@@ -64,7 +65,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.AfterEffects
 		var numberOfItems = aFolder.numItems;
 		for(var i = 1; i <= numberOfItems; i++) { //MENOTE: count starts at 1
 			var currentItem = aFolder.item(i);
-			var newTreeStructureItem = this._items.getItemByPath(currentItem.name, aTreeStructureItem);
+			var encodedName = encodeURIComponent(currentItem.name);
+			var newTreeStructureItem = this._items.getItemByPath(encodedName, aTreeStructureItem);
 			
 			if(this._nativeProject.activeItem === currentItem) {
 				if(this._activeItem === null) {
@@ -102,6 +104,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.AfterEffects
 			aTreeStructureItem.data = newItem;
 		}
 		
+		//console.log("//com.developedbyme.adobeextendscript.aftereffects.AfterEffectsProject::_createItem");
 		return newItem;
 	};
 	

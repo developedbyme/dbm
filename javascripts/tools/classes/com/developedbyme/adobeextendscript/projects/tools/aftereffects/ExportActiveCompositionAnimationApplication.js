@@ -94,6 +94,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.aftereffec
 		
 		LayerExporter.exportLayers(this._activeComposition.getLayers(), exportedLayerData.getRoot(), nativeCompositions, filesToCopy, photoshopLayersToExport);
 		*/
+		console.log("Generate xml");
 		var encodedXml = dbm.singletons.dbmXmlObjectEncoder.encodeXmlFromObject(exportObject);
 		
 		var saveFile = FileWriter.createWithPrompt("~/export.xml");
