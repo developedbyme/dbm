@@ -38,6 +38,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
 	var CanvasGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasGraphics2d");
 	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
+	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -487,7 +488,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					currentGraphics.addCurve(currentCurveDrawer);
 					break;
 				case "ellipse":
-					var currentCurveCreator = CreateCircleCurveNode.create(); //METODO: do ellipse instead of circle
+					var currentCurveCreator = CreateCircleCurveNode.create(0, 0, 1, 8, -0.5*Math.PI); //METODO: do ellipse instead of circle
 					var currentCurveDrawer = CurveDrawer2d.create(currentCurveCreator.getProperty("outputCurve"));
 					
 					var radiusMultiplierNode = MultiplicationNode.create(1, 0.5);
@@ -574,7 +575,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					
 					currentCurveDrawer.getProperty("startParameter").connectInput(startMultiplier.getProperty("outputValue"));
 					currentCurveDrawer.getProperty("endParameter").disconnectInput().connectInput(endMultiplier.getProperty("outputValue"));
-					//METODO: duplicate for loop curve
+					
+					var loopCurveDrawer = CurveDrawer2d.create(currentCurveDrawer.getProperty("curve"), 0, loopEndMultiplier.getProperty("outputValue"));
+					currentGraphics.addCurve(loopCurveDrawer);
 				}
 			}
 		}

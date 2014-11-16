@@ -215,7 +215,13 @@ dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.evaluator
 			this.getPartOfSegment(segmentPointsArray, 0, aEndParameter-segmentEnd, aExactness, returnArrayPositioning, isCompact, isCompact);
 		}
 		
-		//METODO: cut end of curve
+		var currentArray = aReturnCurve.pointsArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = returnArrayPositioning.position; i < currentArrayLength; i++) {
+			currentArray[i].destroy();
+		}
+		currentArray.splice(returnArrayPositioning.position, currentArrayLength-returnArrayPositioning.position);
+		
 		returnArrayPositioning.destroy();
 	};
 });
