@@ -596,8 +596,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	};
 	
 	objectFunctions._performDrawVectorLayer = function(aAsset, aLayerName, aParentLayer, aHolderWidth, aHolderHeight) {
-		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_performDrawVectorLayer");
-		//console.log(aAsset, aLayerName, aParentLayer);
+		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_performDrawVectorLayer");
+		console.log(aAsset, aLayerName, aParentLayer);
 		
 		
 		//METODO: don't parse the file multiple times
@@ -606,33 +606,47 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var parsedGraphicsData = dbm.singletons.dbmDataManager.getData(dataName).data;
 		
 		var treeStructure = parsedGraphicsData.data;
+		console.log(treeStructure);
 		
-		var selectedLayer = DataSelector.getFirstEqualMatch(
-			GetNamedArrayValueObject.createCommand(
-				GetVariableObject.createCommand(
-					GetVariableObject.createSelectOnBaseObjectCommand("data"),
-					"metaData"
-				),
-				"name"
-			),
-			aLayerName,
-			treeStructure.getRoot().getChildren()
-		);
-		
-		if(selectedLayer !== null) {
-			var layerMetaData = selectedLayer.data.metaData;
-			var layerWidth = layerMetaData.getObject("width");
-			var layerHeight = layerMetaData.getObject("height");
-		
-			var centertedLayer = aParentLayer.getChildByPath("center");
-			centertedLayer.getProperty("x").setValue(0.5*(aHolderWidth-layerWidth));
-			centertedLayer.getProperty("y").setValue(0.5*(aHolderHeight-layerHeight));
-		
-			IllustratorFileGenerator.drawLayers(selectedLayer.getChildren(), centertedLayer, this._canvasController);
+		if(aLayerName === "") {
+			var currentArray = treeStructure.getRoot().getChildren();
+			var currentArrayLength = currentArray.length;
+			for(var i = 0; i < currentArrayLength; i++) {
+				this._performDrawSingleVectorLayer(currentArray[i], aParentLayer, aHolderWidth, aHolderHeight);
+			}
 		}
 		else {
-			//METODO: error message
+			var selectedLayer = DataSelector.getFirstEqualMatch(
+				GetNamedArrayValueObject.createCommand(
+					GetVariableObject.createCommand(
+						GetVariableObject.createSelectOnBaseObjectCommand("data"),
+						"metaData"
+					),
+					"name"
+				),
+				aLayerName,
+				treeStructure.getRoot().getChildren()
+			);
+			
+			if(selectedLayer !== null) {
+				this._performDrawSingleVectorLayer(selectedLayer, aParentLayer, aHolderWidth, aHolderHeight);
+			}
+			else {
+				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_performDrawVectorLayer", "No layer matched name " +  aLayerName + ".");
+			}
 		}
+	};
+	
+	objectFunctions._performDrawSingleVectorLayer = function(aLayerData, aParentLayer, aHolderWidth, aHolderHeight) {
+		var layerMetaData = aLayerData.data.metaData;
+		var layerWidth = layerMetaData.getObject("width");
+		var layerHeight = layerMetaData.getObject("height");
+	
+		var centertedLayer = aParentLayer.getChildByPath("center");
+		centertedLayer.getProperty("x").setValue(0.5*(aHolderWidth-layerWidth));
+		centertedLayer.getProperty("y").setValue(0.5*(aHolderHeight-layerHeight));
+	
+		IllustratorFileGenerator.drawLayers(aLayerData.getChildren(), centertedLayer, this._canvasController);
 	};
 	
 	objectFunctions.applyColor = function(aOutputProperty, aTimelines, aPrefix, aTimeProperty) {
