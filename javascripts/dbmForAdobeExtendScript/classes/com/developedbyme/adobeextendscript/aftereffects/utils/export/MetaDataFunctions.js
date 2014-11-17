@@ -43,5 +43,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		aReturnNamedArray.addObject(GeneralMetaDataTypes.NAME, aLayer.getProperty("name").getValue());
 		aReturnNamedArray.addObject(PlaybackMetaDataTypes.START_TIME, aLayer.getProperty("inPoint").getValue());
 		aReturnNamedArray.addObject(PlaybackMetaDataTypes.END_TIME, aLayer.getProperty("outPoint").getValue());
+		
+		aReturnNamedArray.addObject("palybackOffset", aLayer.getProperty("startTime").getValue());
+		aReturnNamedArray.addObject("playbackStretch", 0.01*aLayer.getProperty("stretch").getValue());
+		aReturnNamedArray.addObject("active", aLayer.getProperty("active").getValue());
+		aReturnNamedArray.addObject("enabled", aLayer.getProperty("enabled").getValue());
 	};
 });

@@ -46,6 +46,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		this._inPoint = this.addProperty("inPoint", ExternalVariableProperty.createWithoutExternalObject(null));
 		this._outPoint = this.addProperty("outPoint", ExternalVariableProperty.createWithoutExternalObject(null));
 		
+		this._startTime = this.addProperty("startTime", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._stretch = this.addProperty("stretch", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._active = this.addProperty("active", ExternalVariableProperty.createWithoutExternalObject(null));
+		this._enabled = this.addProperty("enabled", ExternalVariableProperty.createWithoutExternalObject(null));
+		
 		return this;
 	};
 	
@@ -81,6 +86,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		this._name.setupExternalObject(aNativeItem, "name");
 		this._inPoint.setupExternalObject(aNativeItem, "inPoint");
 		this._outPoint.setupExternalObject(aNativeItem, "outPoint");
+		
+		this._startTime.setupExternalObject(aNativeItem, "startTime");
+		this._stretch.setupExternalObject(aNativeItem, "stretch");
+		this._active.setupExternalObject(aNativeItem, "active");
+		this._enabled.setupExternalObject(aNativeItem, "enabled");
 		
 		return this;
 	};

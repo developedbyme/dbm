@@ -160,12 +160,12 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		console.log(playbackNode);
 		this._playbackNode = playbackNode;
 		
-		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, timeFlowGate.getProperty("outputValue"), duration, compositionsData);
+		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, timeFlowGate.getProperty("outputValue"), duration, compositionsData, false);
 		
 		mainCanvasController.getProperty("display").startUpdating();
 	};
 	
-	objectFunctions.setupLayerTreeStructure = function(aTreeStructureItem, aLayer, aTimeProperty, aDuration, aCompositions) {
+	objectFunctions.setupLayerTreeStructure = function(aTreeStructureItem, aLayer, aTimeProperty, aDuration, aCompositions, aShowHiddenLayers) {
 		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::setupLayerTreeStructure");
 		//console.log(aTreeStructureItem, aLayer);
 		
@@ -187,8 +187,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				var childLayer = currentLayer.getChildByPath("children");
 				
 				
-				this.setupLayer(currentLayer, currentLayerData, aTimeProperty, aDuration, aCompositions);
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aTimeProperty, aDuration, aCompositions);
+				this.setupLayer(currentLayer, currentLayerData, aTimeProperty, aDuration, aCompositions, aShowHiddenLayers);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aTimeProperty, aDuration, aCompositions, false);
 			}
 			else if(currentType === "trackMatte") {
 				
@@ -206,7 +206,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				aLayer.getTreeStructureItem().addChild(newTreeStrcutureItem);
 				aLayer.getTreeStructureItem().getInheritedAttribute("graphicsUpdate").connectInput(currentLayer.getProperty("graphicsUpdate"));
 				
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aTimeProperty, aDuration, aCompositions);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aTimeProperty, aDuration, aCompositions, true);
 				
 				
 				var renderedChildren = newTreeStrcutureItem.getChildren();
@@ -228,8 +228,12 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 						renderedContentLayer.data.setPropertyInput("compositeOperation", "source-out");
 						break;
 					case TrackMatteTypes.LUMA:
+						ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayerTreeStructure", "Luma mask is not implemented.");
+						//MEDEBUG
+						renderedContentLayer.data.setPropertyInput("compositeOperation", "source-in");
+						break;
 					case TrackMatteTypes.LUMA_INVERTED:
-						//METODO: error message
+						ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayerTreeStructure", "Inverted luma mask is not implemented.");
 						break;
 					default:
 						//METODO: error message
@@ -239,14 +243,14 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			else {
 				//METODO: error message
 				var currentLayer = aLayer.getChildByPath(layerName);
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aTimeProperty, aDuration, aCompositions);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, currentLayer, aTimeProperty, aDuration, aCompositions, false);
 			}
 			
 			
 		}
 	};
 	
-	objectFunctions.setupLayer = function(aLayer, aAnimationData, aTimeProperty, aFullDuration, aCompositions) {
+	objectFunctions.setupLayer = function(aLayer, aAnimationData, aTimeProperty, aFullDuration, aCompositions, aShowHiddenLayers) {
 		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::setupLayer");
 		//console.log(aLayer, aAnimationData, aPlaybackNode, aFullDuration);
 		
@@ -269,9 +273,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			renderTimeline.setValueAt(false, outPoint);
 		}
 		
+		var isShowing = aShowHiddenLayers || (aAnimationData.metaData.getObject("active") && aAnimationData.metaData.getObject("enabled"));
 		
-		
-		var footageType = aAnimationData.metaData.getObject("footageType");
+		var footageType = isShowing ? aAnimationData.metaData.getObject("footageType") : "none";
 		if(footageType === "solid") {
 			var color = aAnimationData.metaData.getObject("color");
 			graphicsLayer.setFillStyle(color.getCssString());
@@ -399,13 +403,15 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));
 			
 				//METODO: set correct color
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Stroke color is not implemented.");
 				strokeLayer.setStrokeStyle(1, "#000000");
 			
 				var currentGraphics = strokeLayer._getCurrentDrawingLayer();
 				currentGraphics.addCurve(strokeCurveDrawer);
 			}
 			else {
-				//METODO: error message
+				//METODO: what does mask index -1 mean?
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Mask path is not set.");
 			}
 		}
 	};
@@ -544,8 +550,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					
 					break;
 				default:
-					console.log(currentType);
-					//METODO: error message
+					ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "generateShapes", "Vector type " + currentType + " is not implemented.");
 					break;
 			}
 		}
