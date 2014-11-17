@@ -11,12 +11,13 @@ dbm.registerClass("com.developedbyme.utils.canvas.modify.CanvasControllerModific
 	//Error report
 	
 	//Dependencies
+	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
 	
 	//Utils
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	
-	
 	//Constants
+	
 	
 	staticFunctions.getAllGraphics = function(aLayer, aReturnArray) {
 		ArrayFunctions.concatToArray(aReturnArray, aLayer.getGraphics());
@@ -28,5 +29,33 @@ dbm.registerClass("com.developedbyme.utils.canvas.modify.CanvasControllerModific
 			var currentTreeStructureItem = currentArray[i];
 			ClassReference.getAllGraphics(currentTreeStructureItem.data, aReturnArray);
 		}
+	};
+	
+	staticFunctions.createInsertedLayer = function(aContentLayer) {
+		var newLayer = CanvasLayer2d.create();
+		newLayer.createTreeStructureItem();
+		aContentLayer.getTreeStructureItem().getInheritedAttribute("graphicsUpdate").connectInput(newLayer.getProperty("graphicsUpdate"));
+		
+		ClassReference.insertLayer(aContentLayer, newLayer);
+		
+		return newLayer;
+	};
+	
+	staticFunctions.insertLayer = function(aContentLayer, aNewLayer) {
+		var contentTreeStructureItem = aContentLayer.getTreeStructureItem();
+		var newTreeStructureItem = aNewLayer.getTreeStructureItem();
+		var currentArray = ArrayFunctions.copyArray(contentTreeStructureItem.getChildren());
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentTreeStructureItem = currentArray[i];
+			currentTreeStructureItem.retain();
+			
+			contentTreeStructureItem.removeChild(currentTreeStructureItem);
+			newTreeStructureItem.addChild(currentTreeStructureItem);
+			
+			currentTreeStructureItem.release();
+		}
+		
+		contentTreeStructureItem.addChild(newTreeStructureItem);
 	};
 });

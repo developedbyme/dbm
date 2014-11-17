@@ -32,12 +32,6 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.CreateRectangleCurveNode"
 		return this;
 	};
 	
-	objectFunctions.setOutputCurve = function(aCurve) {
-		this._outputCurve.setValue(aCurve);
-		
-		return this;
-	};
-	
 	objectFunctions._update = function(aFlowUpdateNumber) {
 		//console.log("com.developedbyme.flow.nodes.curves.CreateRectangleCurveNode::_update");
 		//console.log(this);

@@ -39,6 +39,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var CanvasGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasGraphics2d");
 	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
+	var CreateWedgeInBoxCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateWedgeInBoxCurveNode");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -155,12 +156,11 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		var layerTreeStructure = parsedAnimationData.data;
 		
-		console.log(">>>>", layerTreeStructure);
-		
-		console.log(playbackNode);
 		this._playbackNode = playbackNode;
 		
 		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, timeFlowGate.getProperty("outputValue"), duration, compositionsData, false);
+		
+		console.log(mainCanvasController);
 		
 		mainCanvasController.getProperty("display").startUpdating();
 	};
@@ -194,13 +194,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				
 				var newTreeStrcutureItem = TreeStructureItem.create(layerName);
 				
-				//METODO: set size dynamically
-				var renderWidth = 500;
-				var renderHeight = 500;
-				var renderOffsetX = -0.5*renderWidth;
-				var renderOffsetY = -0.5*renderHeight;
-				
-				var currentLayer = CanvasRenderLayer2d.create(renderOffsetX, renderOffsetY, renderWidth, renderHeight);
+				var currentLayer = CanvasRenderLayer2d.create(0, 0, 0, 0); //MENOTE: sized and position is set by mask layer
 				newTreeStrcutureItem.data = currentLayer;
 				currentLayer._linkRegistration_setTreeStructureItem(newTreeStrcutureItem);
 				aLayer.getTreeStructureItem().addChild(newTreeStrcutureItem);
@@ -212,6 +206,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				var renderedChildren = newTreeStrcutureItem.getChildren();
 				
 				var renderedMaskLayer = renderedChildren[1];
+				currentLayer.getProperty("renderWidth").setValue(renderedMaskLayer.data.getDynamicVariable("width"));
+				currentLayer.getProperty("renderHeight").setValue(renderedMaskLayer.data.getDynamicVariable("height"));
+				//METODO: link render offset
 				var renderedContentLayer = renderedChildren[0];
 				
 				renderedContentLayer.retain();
@@ -229,8 +226,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 						break;
 					case TrackMatteTypes.LUMA:
 						ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayerTreeStructure", "Luma mask is not implemented.");
-						//MEDEBUG
-						renderedContentLayer.data.setPropertyInput("compositeOperation", "source-in");
+						
+						renderedContentLayer.data.setPropertyInput("compositeOperation", "source-in"); //MEDEBUG
 						break;
 					case TrackMatteTypes.LUMA_INVERTED:
 						ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayerTreeStructure", "Inverted luma mask is not implemented.");
@@ -277,6 +274,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		var footageType = isShowing ? aAnimationData.metaData.getObject("footageType") : "none";
 		if(footageType === "solid") {
+			//console.log(footageType, layerWidth, layerHeight);
+			
 			var color = aAnimationData.metaData.getObject("color");
 			graphicsLayer.setFillStyle(color.getCssString());
 			graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
@@ -346,6 +345,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			graphicsLayer.drawCurve(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
 		}
 		
+		aLayer.setDynamicVariable("width", layerWidth);
+		aLayer.setDynamicVariable("height", layerHeight);
+		
 		this.applyTransformToLayerWithOrientation(aLayer, timelines, "", aTimeProperty);
 		this.applyAlphaToLayer(contentLayer, timelines, "", aTimeProperty);
 		
@@ -413,6 +415,32 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				//METODO: what does mask index -1 mean?
 				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Mask path is not set.");
 			}
+		}
+		
+		if(timelines.hasProperty("effects/radialWipe/transitionCompletion")) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Radial wipe is not implemented yet.");
+			
+			var maskedLayer = CanvasControllerModificationFunctions.createInsertedLayer(aLayer);
+			//METODO: implement mask
+			
+			var mask = graphicsLayer.setMaskUsage(true).getMask();
+			var maskCurveNode = CreateWedgeInBoxCurveNode.create(0, 0, 0.5, 0.5, 0, 0, layerWidth, layerHeight);
+			
+			var maskCurveDrawer = CurveDrawer2d.create(maskCurveNode.getProperty("outputCurve"));
+			
+			//this._linkComplexDataToProperty(timelines.getProperty(currentMaskPath + "/maskPath"), aTimeProperty, maskCurveDrawer.getProperty("curve"));
+			
+			var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
+			maskCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
+			
+			mask.addCurve(maskCurveDrawer);
+			
+			console.log(aLayer, maskedLayer);
+		}
+		
+		if(timelines.hasProperty("effects/levels/channel:")) {
+			//METODO: find out if histogram data can be accessed somehow
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Levels can't be used as histogram data is not accessible in AE.");
 		}
 	};
 	
