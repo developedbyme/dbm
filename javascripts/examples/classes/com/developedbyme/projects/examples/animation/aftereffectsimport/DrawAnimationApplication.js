@@ -404,11 +404,11 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 				strokeCurveDrawer.getProperty("startParameter").connectInput(startMultiplierNode.getProperty("outputValue"));
 				strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));
 			
-				//METODO: set correct color
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Stroke color is not implemented.");
-				strokeLayer.setStrokeStyle(1, "#000000");
-			
 				var currentGraphics = strokeLayer._getCurrentDrawingLayer();
+				
+				this._linkDataToProperty(timelines.getProperty("effects/stroke/brushSize"), aTimeProperty, currentGraphics.getProperty("lineWidth"));
+				this.applyColor(currentGraphics.getProperty("strokeStyle"), timelines, "effects/stroke", aTimeProperty);
+				
 				currentGraphics.addCurve(strokeCurveDrawer);
 			}
 			else {
