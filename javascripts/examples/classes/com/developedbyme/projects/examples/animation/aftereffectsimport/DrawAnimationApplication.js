@@ -418,24 +418,33 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		}
 		
 		if(timelines.hasProperty("effects/radialWipe/transitionCompletion")) {
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Radial wipe is not implemented yet.");
 			
 			var maskedLayer = CanvasControllerModificationFunctions.createInsertedLayer(aLayer);
-			//METODO: implement mask
+			
+			var startAngleOffsetNode = AdditionNode.create(0, -0.5*Math.PI);
+			this._linkComplexDataToProperty(timelines.getProperty("effects/radialWipe/startAngle"), aTimeProperty, startAngleOffsetNode.getProperty("inputValue1"));
+			
+			var invertParameterNode = SubtractionNode.create(1, 0);
+			this._linkComplexDataToProperty(timelines.getProperty("effects/radialWipe/transitionCompletion"), aTimeProperty, invertParameterNode.getProperty("inputValue2"));
+			var endAngleMultiplierNode = MultiplicationNode.create(invertParameterNode.getProperty("outputValue"), 2*Math.PI);
+			var endDirectionNode = MultiplicationNode.create(endAngleMultiplierNode.getProperty("outputValue"), 1); //METODO
+			var endAngleNode = AdditionNode.create(startAngleOffsetNode.getProperty("outputValue"), endDirectionNode.getProperty("outputValue"));
+			
+			var pivotScaleWidthNode = MultiplicationNode.create(0, 1/layerWidth);
+			this._linkComplexDataToProperty(timelines.getProperty("effects/radialWipe/wipeCenter/x"), aTimeProperty, pivotScaleWidthNode.getProperty("inputValue1"));
+			var pivotScaleHeightNode = MultiplicationNode.create(0, 1/layerHeight);
+			this._linkComplexDataToProperty(timelines.getProperty("effects/radialWipe/wipeCenter/y"), aTimeProperty, pivotScaleHeightNode.getProperty("inputValue1"));
+			
 			
 			var mask = graphicsLayer.setMaskUsage(true).getMask();
-			var maskCurveNode = CreateWedgeInBoxCurveNode.create(0, 0, 0.5, 0.5, 0, 0, layerWidth, layerHeight);
+			var maskCurveNode = CreateWedgeInBoxCurveNode.create(0, 0, pivotScaleWidthNode.getProperty("outputValue"), pivotScaleHeightNode.getProperty("outputValue"), startAngleOffsetNode.getProperty("outputValue"), endAngleNode.getProperty("outputValue"), layerWidth, layerHeight);
 			
 			var maskCurveDrawer = CurveDrawer2d.create(maskCurveNode.getProperty("outputCurve"));
-			
-			//this._linkComplexDataToProperty(timelines.getProperty(currentMaskPath + "/maskPath"), aTimeProperty, maskCurveDrawer.getProperty("curve"));
 			
 			var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
 			maskCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
 			
 			mask.addCurve(maskCurveDrawer);
-			
-			console.log(aLayer, maskedLayer);
 		}
 		
 		if(timelines.hasProperty("effects/levels/channel:")) {

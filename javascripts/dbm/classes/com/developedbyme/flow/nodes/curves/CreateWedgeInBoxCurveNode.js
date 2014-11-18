@@ -35,14 +35,14 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.CreateWedgeInBoxCurveNode
 		this._height = this.createProperty("height", 1);
 		this._outputCurve = this.createProperty("outputCurve", null).setAlwaysUpdateFlow(true);
 		
-		this.createUpdateFunction("default", this._update, [this._x, this._y, this._width, this._height], [this._outputCurve]);
+		this.createUpdateFunction("default", this._update, [this._x, this._y, this._pivotX, this._pivotY, this._startAngle, this._endAngle, this._width, this._height], [this._outputCurve]);
 		
 		return this;
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		console.log("com.developedbyme.flow.nodes.curves.CreateWedgeInBoxCurveNode::_update");
-		console.log(this);
+		//console.log("com.developedbyme.flow.nodes.curves.CreateWedgeInBoxCurveNode::_update");
+		//console.log(this);
 		
 		var x = this._x.getValueWithoutFlow();
 		var y = this._y.getValueWithoutFlow();
@@ -61,8 +61,14 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.CreateWedgeInBoxCurveNode
 		
 		var centerPoint = Point.create(centerPointX, centerPointY);
 		
-		var tempVector1 = Point.create(Math.cos(startAngle), Math.sin(startAngle));
+		var startVector = Point.create(Math.cos(startAngle), Math.sin(startAngle));
+		var endVector = Point.create(Math.cos(endAngle), Math.sin(endAngle));
 		var tempVector2 = Point.create(0, 0);
+		
+		var startIndex = -1;
+		var endIndex = -1;
+		var startEdgePoint = Point.create();
+		var endEdgePoint = Point.create();
 		
 		var currentArray = returnCurve.pointsArray;
 		var currentArrayLength = currentArray.length-1;
@@ -72,10 +78,52 @@ dbm.registerClass("com.developedbyme.flow.nodes.curves.CreateWedgeInBoxCurveNode
 			tempVector2.x = nextPoint.x-currentPoint.x;
 			tempVector2.y = nextPoint.y-currentPoint.y;
 			
-			this._lineIntersection.findLineIntersection(centerPoint, tempVector1, currentPoint, tempVector2);
-			console.log(this._lineIntersection.parameter1, this._lineIntersection.parameter2);
+			if(startIndex === -1) {
+				var theResult = this._lineIntersection.findLineIntersection(centerPoint, startVector, currentPoint, tempVector2);
+			
+				if(theResult && this._lineIntersection.parameter2 >= 0 && this._lineIntersection.parameter2 <= 1 && this._lineIntersection.parameter1 >= 0) {
+					startIndex = i;
+					startEdgePoint.x = this._lineIntersection.x;
+					startEdgePoint.y = this._lineIntersection.y;
+				}
+			}
+			if(endIndex === -1) {
+				var theResult = this._lineIntersection.findLineIntersection(centerPoint, endVector, currentPoint, tempVector2);
+			
+				if(theResult && this._lineIntersection.parameter2 >= 0 && this._lineIntersection.parameter2 <= 1 && this._lineIntersection.parameter1 >= 0) {
+					endIndex = i;
+					endEdgePoint.x = this._lineIntersection.x;
+					endEdgePoint.y = this._lineIntersection.y;
+				}
+			}
 		}
-		//METODO: setup cut
+		
+		var newPointsArray = new Array();
+		newPointsArray.push(centerPoint);
+		newPointsArray.push(startEdgePoint);
+		if(startAngle > endAngle) {
+			if(startIndex < endIndex) {
+				startIndex += 4;
+			}
+			var currentArray = returnCurve.pointsArray;
+			for(var i = startIndex; i > endIndex; i--) {
+				newPointsArray.push(currentArray[i%4]);
+			}
+		}
+		else if(startAngle < endAngle) {
+			if(startIndex > endIndex) {
+				endIndex += 4;
+			}
+			var currentArray = returnCurve.pointsArray;
+			for(var i = startIndex+1; i <= endIndex; i++) {
+				newPointsArray.push(currentArray[i%4]);
+			}
+		}
+		
+		newPointsArray.push(endEdgePoint);
+		newPointsArray.push(centerPoint.duplicate());
+		
+		returnCurve.pointsArray = newPointsArray;
 		
 		this._outputCurve.setValueWithFlow(returnCurve, aFlowUpdateNumber);
 	};
