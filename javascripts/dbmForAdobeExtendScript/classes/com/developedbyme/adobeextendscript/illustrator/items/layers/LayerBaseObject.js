@@ -63,7 +63,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.items.layers.
 	};
 	
 	objectFunctions.getY = function() {
-		return -1*this._nativeItem.position[1];
+		var relativeY = this._treeStructureItem.getInheritedAttribute("owner").getPositionRelativeY();
+		return relativeY-this._nativeItem.position[1];
 	};
 	
 	objectFunctions.getWidth = function() {

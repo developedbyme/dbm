@@ -48,31 +48,33 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.items.layers.
 	objectFunctions.generateCurve = function(aOffsetX, aOffsetY) {
 		var returnCurve = BezierCurve.create(3, true);
 		
+		var relativeY = this._treeStructureItem.getInheritedAttribute("owner").getPositionRelativeY();
+		
 		var currentArray = this._nativeItem.pathPoints;
 		var currentArrayLength = currentArray.length-1; //MENOTE: first and last point is done outside the loop
 		
 		var lastNativePoint = currentArray[0];
-		returnCurve.createPoint(lastNativePoint.anchor[0]-aOffsetX, -1*lastNativePoint.anchor[1]-aOffsetY);
-		returnCurve.createPoint(lastNativePoint.rightDirection[0]-aOffsetX, -1*lastNativePoint.rightDirection[1]-aOffsetY);
+		returnCurve.createPoint(lastNativePoint.anchor[0]-aOffsetX, relativeY-lastNativePoint.anchor[1]-aOffsetY);
+		returnCurve.createPoint(lastNativePoint.rightDirection[0]-aOffsetX, relativeY-lastNativePoint.rightDirection[1]-aOffsetY);
 		
 		for(var i = 1; i < currentArrayLength; i++) { //MENOTE: first and last point is done outside the loop
 			var currentNativePoint = currentArray[i];
-			returnCurve.createPoint(currentNativePoint.leftDirection[0]-aOffsetX, -1*currentNativePoint.leftDirection[1]-aOffsetY);
-			returnCurve.createPoint(currentNativePoint.anchor[0]-aOffsetX, -1*currentNativePoint.anchor[1]-aOffsetY);
-			returnCurve.createPoint(currentNativePoint.rightDirection[0]-aOffsetX, -1*currentNativePoint.rightDirection[1]-aOffsetY);
+			returnCurve.createPoint(currentNativePoint.leftDirection[0]-aOffsetX, relativeY-currentNativePoint.leftDirection[1]-aOffsetY);
+			returnCurve.createPoint(currentNativePoint.anchor[0]-aOffsetX, relativeY-currentNativePoint.anchor[1]-aOffsetY);
+			returnCurve.createPoint(currentNativePoint.rightDirection[0]-aOffsetX, relativeY-currentNativePoint.rightDirection[1]-aOffsetY);
 			lastNativePoint = currentNativePoint;
 		}
 		
 		var currentNativePoint = currentArray[currentArrayLength];
-		returnCurve.createPoint(currentNativePoint.leftDirection[0]-aOffsetX, -1*currentNativePoint.leftDirection[1]-aOffsetY);
-		returnCurve.createPoint(currentNativePoint.anchor[0]-aOffsetX, -1*currentNativePoint.anchor[1]-aOffsetY);
+		returnCurve.createPoint(currentNativePoint.leftDirection[0]-aOffsetX, relativeY-currentNativePoint.leftDirection[1]-aOffsetY);
+		returnCurve.createPoint(currentNativePoint.anchor[0]-aOffsetX, relativeY-currentNativePoint.anchor[1]-aOffsetY);
 		
 		if(this._nativeItem.closed) {
-			returnCurve.createPoint(currentNativePoint.rightDirection[0]-aOffsetX, -1*currentNativePoint.rightDirection[1]-aOffsetY);
+			returnCurve.createPoint(currentNativePoint.rightDirection[0]-aOffsetX, relativeY-currentNativePoint.rightDirection[1]-aOffsetY);
 			lastNativePoint = currentNativePoint;
 			var currentNativePoint = currentArray[0];
-			returnCurve.createPoint(currentNativePoint.leftDirection[0]-aOffsetX, -1*currentNativePoint.leftDirection[1]-aOffsetY);
-			returnCurve.createPoint(currentNativePoint.anchor[0]-aOffsetX, -1*currentNativePoint.anchor[1]-aOffsetY);
+			returnCurve.createPoint(currentNativePoint.leftDirection[0]-aOffsetX, relativeY-currentNativePoint.leftDirection[1]-aOffsetY);
+			returnCurve.createPoint(currentNativePoint.anchor[0]-aOffsetX, relativeY-currentNativePoint.anchor[1]-aOffsetY);
 		}
 		
 		return returnCurve;

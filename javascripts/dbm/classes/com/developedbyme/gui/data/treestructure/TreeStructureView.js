@@ -196,10 +196,21 @@ dbm.registerClass("com.developedbyme.gui.data.treestructure.TreeStructureView", 
 		InteractionExtendedEventSetup.addClickEvents(newItem.getExtendedEvent(), newItem.getElement(), true);
 		newItem.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.CLICK, CallFunctionCommand.createCommand(newItem, newItem.toggleOpenClose, []));
 		
+		
+		
+		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_CREATED)) {
+			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_CREATED, newItem);
+		}
+		
 		return newItem;
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case GenericExtendedEventIds.ITEM_CREATED:
+				return true;
+		}
 		
 		return this.superCall(aName);
 	};

@@ -231,6 +231,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 						break;
 					case TrackMatteTypes.LUMA_INVERTED:
 						ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayerTreeStructure", "Inverted luma mask is not implemented.");
+						
+						renderedContentLayer.data.setPropertyInput("compositeOperation", "source-out"); //MEDEBUG
 						break;
 					default:
 						//METODO: error message
@@ -270,7 +272,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			renderTimeline.setValueAt(false, outPoint);
 		}
 		
-		var isShowing = aShowHiddenLayers || (aAnimationData.metaData.getObject("active") && aAnimationData.metaData.getObject("enabled"));
+		var isShowing = aShowHiddenLayers || aAnimationData.metaData.getObject("enabled");
 		
 		var footageType = isShowing ? aAnimationData.metaData.getObject("footageType") : "none";
 		if(footageType === "solid") {

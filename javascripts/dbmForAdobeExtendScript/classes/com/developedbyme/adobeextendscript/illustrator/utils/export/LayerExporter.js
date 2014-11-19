@@ -28,7 +28,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.utils.export.
 	
 	
 	staticFunctions.exportLayers = function(aTreeStructureItems, aReturnParentTreeStructureItem, aOffsetX, aOffsetY) {
-		console.log("com.developedbyme.adobeextendscript.illustrator.utils.export.LayerExporter::exportLayers");
+		//console.log("com.developedbyme.adobeextendscript.illustrator.utils.export.LayerExporter::exportLayers");
 		//console.log(aTreeStructureItems, aReturnParentTreeStructureItem);
 		
 		var currentArray = aTreeStructureItems;

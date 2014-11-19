@@ -614,10 +614,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.Property", "com.developedb
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._value = null;
-		this._objectInputConnection = null;
 		this._inputConnection = null;
 		this._animationController = null;
 		this._inputUpdateFunction = null;
+		this._inputConnections = null;
 		this._outputConnections = null;
 		
 		this.superCall();

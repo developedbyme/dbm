@@ -75,7 +75,8 @@ dbm.registerClass("com.developedbyme.utils.canvas.generators.IllustratorFileGene
 			var strokeData = currentLayerData.object.stroke;
 			if(strokeData !== null) {
 				//METODO: use all settings
-				newLayer.setStrokeStyle(strokeData.lineWidth, strokeData.definition.getCssString());
+				newLayer.setStrokeStyle(strokeData.lineWidth, strokeData.definition.getCssString()); //MEDEBUG: //
+				//newLayer.setStrokeStyle(1, "#000000"); //MEDEBUG
 			}
 			var fillData = currentLayerData.object.fill;
 			if(fillData !== null) {

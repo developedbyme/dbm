@@ -35,6 +35,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.IllustratorDo
 		this._nativeDocument = null;
 		this._layers = this.addDestroyableObject(TreeStructure.create());
 		this._layers.createMissingItems = false;
+		this._layers.getRoot().setAttribute("owner", this);
 		
 		return this;
 	};
@@ -63,6 +64,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.IllustratorDo
 	
 	objectFunctions.getHeight = function() {
 		return this._nativeDocument.height;
+	};
+	
+	objectFunctions.getPositionRelativeY = function() {
+		return this._nativeDocument.height-this._nativeDocument.rulerOrigin[1];
 	};
 	
 	objectFunctions.setupLayers = function() {

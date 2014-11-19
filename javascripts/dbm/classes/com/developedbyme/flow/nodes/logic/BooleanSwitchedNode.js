@@ -27,6 +27,8 @@ dbm.registerClass("com.developedbyme.flow.nodes.logic.BooleanSwitchedNode", "com
 	
 	objectFunctions.setAllReferencesToNull = function() {
 		
+		this.superCall();
+		
 		this._switchValue = null;
 		this._trueValue = null;
 		this._falseValue = null;

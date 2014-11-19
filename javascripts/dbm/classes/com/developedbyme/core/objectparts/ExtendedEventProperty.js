@@ -28,6 +28,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 		this.superCall();
 		
 		this._extendedEvent = ExtendedEventController.create(this);
+		this._ownsExtendedEvent = true;
 		this.addDestroyableObject(this._extendedEvent);
 		
 		return this;
@@ -43,11 +44,13 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 	objectFunctions.changeToExternalEventController = function(aExtendedEventController) {
 		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::changeToExternalEventController");
 		
-		//METODO: Fix so this function can be called a second time
-		this._extendedEvent.destroy();
-		this.removeDestroyableObject(this._extendedEvent);
+		if(this._ownsExtendedEvent) {
+			this._extendedEvent.destroy();
+			this.removeDestroyableObject(this._extendedEvent);
+		}
 		
 		this._extendedEvent = aExtendedEventController;
+		this._ownsExtendedEvent = false;
 		
 		return this;
 	};
@@ -96,6 +99,21 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "c
 	 */
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
 		return true;
+	};
+	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_extendedEvent":
+				return this._ownsExtendedEvent;
+		}
+		return this.superCall();
 	};
 	
 	/**

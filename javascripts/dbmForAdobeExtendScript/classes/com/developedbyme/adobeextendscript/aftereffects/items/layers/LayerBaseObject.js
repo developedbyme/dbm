@@ -115,7 +115,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 			
 			var holderPath = aPrefix + currentName;
 			if(!currentProperty.enabled || !currentProperty.active) {
-				console.log("Ignoring " + currentProperty.enabled, currentProperty.active, currentProperty.elided);
+				console.log("Ignoring " + holderPath, currentProperty.enabled, currentProperty.active, currentProperty.elided);
 				continue;
 			}
 			

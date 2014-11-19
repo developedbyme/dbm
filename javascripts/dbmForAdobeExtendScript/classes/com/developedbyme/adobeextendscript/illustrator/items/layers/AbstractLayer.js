@@ -36,6 +36,8 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.items.layers.
 	};
 	
 	objectFunctions._getPosition = function() {
+		//console.log("com.developedbyme.adobeextendscript.illustrator.items.layers.AbstractLayer::_getPosition");
+		//console.log(this);
 		
 		var minX = NaN;
 		var minY = NaN;
