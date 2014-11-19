@@ -44,15 +44,26 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		var isSpatial = false;
 		var dimensionLength = 0;
 		var multiplier = 1;
-		switch(aProperty.unitsText) {
-			case "percent":
-				multiplier = 0.01;
-				break;
-			case "degrees":
-				multiplier = Math.PI/180;
+		
+		switch(aTimelineName) {
+			case "effects/stroke/opacity":
+			case "effects/stroke/brushHardness":
+				//MENOTE: After effects gives out these values in parametric range instead of percentage
+				multiplier = 1;
 				break;
 			default:
-				//MENOTE: do nothing
+				switch(aProperty.unitsText) {
+					case "percent":
+						multiplier = 0.01;
+				
+						break;
+					case "degrees":
+						multiplier = Math.PI/180;
+						break;
+					default:
+						//MENOTE: do nothing
+						break;
+				}
 				break;
 		}
 		

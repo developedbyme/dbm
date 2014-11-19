@@ -272,7 +272,15 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			renderTimeline.setValueAt(false, outPoint);
 		}
 		
-		var isShowing = aShowHiddenLayers || aAnimationData.metaData.getObject("enabled");
+		
+		var overrideLayerVisuals = false;
+		
+		var hasStroke = timelines.hasProperty("effects/stroke/path");
+		if(hasStroke) {
+			var strokeEffectType = timelines.getProperty("effects/stroke/paintStyle").getValue(); //METODO: this can change over time. How to handle that?
+			overrideLayerVisuals |= (strokeEffectType === 2);
+		}
+		var isShowing = (!overrideLayerVisuals) && (aShowHiddenLayers || aAnimationData.metaData.getObject("enabled"));
 		
 		var footageType = isShowing ? aAnimationData.metaData.getObject("footageType") : "none";
 		if(footageType === "solid") {
@@ -354,69 +362,83 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		this.applyAlphaToLayer(contentLayer, timelines, "", aTimeProperty);
 		
 		var masks = aAnimationData.metaData.getObject("masks");
-		var currentArray = masks;
-		var currentArrayLength = currentArray.length;
-		if(currentArrayLength > 0) {
-			var mask = graphicsLayer.setMaskUsage(true).getMask();
+		if(!overrideLayerVisuals) {
+			var currentArray = masks;
+			var currentArrayLength = currentArray.length;
+			if(currentArrayLength > 0) {
+				var mask = graphicsLayer.setMaskUsage(true).getMask();
 			
-			for(var i = 0; i < currentArrayLength; i++) {
-				var currentMaskData = currentArray[i];
-				var currentMaskPath = currentMaskData.getObject("path");
-				var currentMaskMode = currentMaskData.getObject("maskMode");
+				for(var i = 0; i < currentArrayLength; i++) {
+					var currentMaskData = currentArray[i];
+					var currentMaskPath = currentMaskData.getObject("path");
+					var currentMaskMode = currentMaskData.getObject("maskMode");
 				
-				if(currentMaskMode === 6414) {
-					var outSideMaskCurveDrawer = CurveDrawer2d.create(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
-					outSideMaskCurveDrawer.getProperty("endParameter").setValue(4);
-					mask.addCurve(outSideMaskCurveDrawer);
+					if(currentMaskMode === 6414) {
+						var outSideMaskCurveDrawer = CurveDrawer2d.create(dbm.singletons.dbmCurveCreator.createRectangle(0, 0, layerWidth, layerHeight));
+						outSideMaskCurveDrawer.getProperty("endParameter").setValue(4);
+						mask.addCurve(outSideMaskCurveDrawer);
+					}
+				
+					var maskCurveDrawer = CurveDrawer2d.create(null);
+				
+					this._linkComplexDataToProperty(timelines.getProperty(currentMaskPath + "/maskPath"), aTimeProperty, maskCurveDrawer.getProperty("curve"));
+				
+					var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
+					maskCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
+				
+					mask.addCurve(maskCurveDrawer);
 				}
-				
-				var maskCurveDrawer = CurveDrawer2d.create(null);
-				
-				this._linkComplexDataToProperty(timelines.getProperty(currentMaskPath + "/maskPath"), aTimeProperty, maskCurveDrawer.getProperty("curve"));
-				
-				var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
-				maskCurveDrawer.getProperty("endParameter").connectInput(maxParameterNode.getProperty("outputParameter"));
-				
-				mask.addCurve(maskCurveDrawer);
 			}
 		}
 		
-		if(timelines.hasProperty("effects/stroke/path")) {
+		if(hasStroke) {
 			
 			var strokeLayer = contentLayer.getChildByPath("effects/stroke");
 			
-			var strokeCurveDrawer = CurveDrawer2d.create(null);
+			var currentGraphics = strokeLayer._getCurrentDrawingLayer();
+			currentGraphics.moveWhenSwitchingCurves = true;
 			
-			var maskIndexTimeline = timelines.getProperty("effects/stroke/path");
+			var allMasks = timelines.getProperty("effects/stroke/allMasks").getValue() === 1;
 			
-			var maskIndex = maskIndexTimeline.getValue()-1; //METODO: can this switch?
-			if(maskIndex >= 0) { //METODO: what does mask index -1 mean?
-				var currentMaskData = masks[maskIndex];
-				var currentMaskPath = currentMaskData.getObject("path");
+			var inputProperties = PropertiesHolder.create({"startParameter": 0, "endParameter": 0, "lineWidth": 0, "strokeStyle": null});
+			this._linkDataToProperty(timelines.getProperty("effects/stroke/start"), aTimeProperty, inputProperties.getProperty("startParameter"));
+			this._linkDataToProperty(timelines.getProperty("effects/stroke/end"), aTimeProperty, inputProperties.getProperty("endParameter"));
+			this._linkDataToProperty(timelines.getProperty("effects/stroke/brushSize"), aTimeProperty, inputProperties.getProperty("lineWidth"));
+			this.applyColor(inputProperties.getProperty("strokeStyle"), timelines, "effects/stroke", aTimeProperty);
 			
-				this._linkComplexDataToProperty(timelines.getProperty(currentMaskPath + "/maskPath"), aTimeProperty, strokeCurveDrawer.getProperty("curve"));
-				var maxParameterNode = GetMaxParameterOnCurveNode.create(maskCurveDrawer.getProperty("curve"));
+			if(!allMasks) {
+				var maskIndexTimeline = timelines.getProperty("effects/stroke/path");
 			
-				var startMultiplierNode = MultiplicationNode.create(0, maxParameterNode.getProperty("outputParameter"));
-				var endMultiplierNode = MultiplicationNode.create(1, maxParameterNode.getProperty("outputParameter"));
-			
-				this._linkDataToProperty(timelines.getProperty("effects/stroke/start"), aTimeProperty, startMultiplierNode.getProperty("inputValue1"));
-				this._linkDataToProperty(timelines.getProperty("effects/stroke/end"), aTimeProperty, endMultiplierNode.getProperty("inputValue1"));
-			
-				strokeCurveDrawer.getProperty("startParameter").connectInput(startMultiplierNode.getProperty("outputValue"));
-				strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));
-			
-				var currentGraphics = strokeLayer._getCurrentDrawingLayer();
-				
-				this._linkDataToProperty(timelines.getProperty("effects/stroke/brushSize"), aTimeProperty, currentGraphics.getProperty("lineWidth"));
-				this.applyColor(currentGraphics.getProperty("strokeStyle"), timelines, "effects/stroke", aTimeProperty);
-				
-				currentGraphics.addCurve(strokeCurveDrawer);
+				var maskIndex = maskIndexTimeline.getValue()-1; //MENOTE: this can't switch in time
+				if(maskIndex >= 0) { //METODO: what does mask index -1 mean?
+					var currentMaskData = masks[maskIndex];
+					var currentMaskPath = currentMaskData.getObject("path");
+					
+					var pathProperty = timelines.getProperty(currentMaskPath + "/maskPath");
+					
+					this._addStrokeEffect(currentGraphics, pathProperty, inputProperties.getProperty("startParameter"), inputProperties.getProperty("endParameter"), inputProperties.getProperty("lineWidth"), inputProperties.getProperty("strokeStyle"), aTimeProperty);
+					
+				}
+				else {
+					//METODO: what does mask index -1 mean?
+					ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Mask path is not set.");
+				}
 			}
 			else {
-				//METODO: what does mask index -1 mean?
-				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Mask path is not set.");
+				
+				var currentArray = masks;
+				var currentArrayLength = currentArray.length;
+				for(var i = 0; i < currentArrayLength; i++) {
+					var currentMaskData = masks[i];
+					var currentMaskPath = currentMaskData.getObject("path");
+					
+					var pathProperty = timelines.getProperty(currentMaskPath + "/maskPath");
+					
+					this._addStrokeEffect(currentGraphics, pathProperty, inputProperties.getProperty("startParameter"), inputProperties.getProperty("endParameter"), inputProperties.getProperty("lineWidth"), inputProperties.getProperty("strokeStyle"), aTimeProperty);
+					
+				}
 			}
+			
 		}
 		
 		if(timelines.hasProperty("effects/radialWipe/transitionCompletion")) {
@@ -453,6 +475,26 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			//METODO: find out if histogram data can be accessed somehow
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Levels can't be used as histogram data is not accessible in AE.");
 		}
+	};
+	
+	objectFunctions._addStrokeEffect = function(aGraphics, aPath, aStartParameter, aEndParameter, aLineWidth, aStrokeStyle, aTimeProperty) {
+		
+		var strokeCurveDrawer = CurveDrawer2d.create(null);
+		aGraphics.addCurve(strokeCurveDrawer);
+		
+		this._linkComplexDataToProperty(aPath, aTimeProperty, strokeCurveDrawer.getProperty("curve"));
+		var maxParameterNode = GetMaxParameterOnCurveNode.create(strokeCurveDrawer.getProperty("curve"));
+
+		var startMultiplierNode = MultiplicationNode.create(aStartParameter, maxParameterNode.getProperty("outputParameter"));
+		var endMultiplierNode = MultiplicationNode.create(aEndParameter, maxParameterNode.getProperty("outputParameter"));
+		
+		
+		
+		strokeCurveDrawer.getProperty("startParameter").connectInput(startMultiplierNode.getProperty("outputValue"));
+		strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));
+		
+		aGraphics.getProperty("lineWidth").connectInput(aLineWidth);
+		aGraphics.getProperty("strokeStyle").connectInput(aStrokeStyle);
 	};
 	
 	objectFunctions.applyTransformToLayerWithOrientation = function(aLayer, aTimelines, aPrefix, aTimeProperty) {
@@ -640,8 +682,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	};
 	
 	objectFunctions._performDrawVectorLayer = function(aAsset, aLayerName, aParentLayer, aHolderWidth, aHolderHeight) {
-		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_performDrawVectorLayer");
-		console.log(aAsset, aLayerName, aParentLayer);
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_performDrawVectorLayer");
+		//console.log(aAsset, aLayerName, aParentLayer);
 		
 		
 		//METODO: don't parse the file multiple times
@@ -650,7 +692,6 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var parsedGraphicsData = dbm.singletons.dbmDataManager.getData(dataName).data;
 		
 		var treeStructure = parsedGraphicsData.data;
-		console.log(treeStructure);
 		
 		if(aLayerName === "") {
 			var currentArray = treeStructure.getRoot().getChildren();
@@ -682,6 +723,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	};
 	
 	objectFunctions._performDrawSingleVectorLayer = function(aLayerData, aParentLayer, aHolderWidth, aHolderHeight) {
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_performDrawSingleVectorLayer");
+		//console.log(aLayerData, aParentLayer, aHolderWidth, aHolderHeight);
+		
 		var layerMetaData = aLayerData.data.metaData;
 		var layerWidth = layerMetaData.getObject("width");
 		var layerHeight = layerMetaData.getObject("height");

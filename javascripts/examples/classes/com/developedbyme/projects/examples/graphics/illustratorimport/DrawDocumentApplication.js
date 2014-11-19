@@ -72,7 +72,7 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.illustratorimpor
 		dbm.singletons.dbmDataManager.addXmlDefinition(XmlChildRetreiver.getFirstChild(shapeData), dataName);
 		var parsedShapeData = dbm.singletons.dbmDataManager.getData(dataName);
 		
-		console.log(parsedShapeData);
+		//console.log(parsedShapeData);
 		
 		var canvasView = CanvasView.create(this._contentHolder, true, "2d");
 		var canvasController = canvasView.getController();
@@ -92,7 +92,6 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.illustratorimpor
 		displayLayer.getProperty("y").setValue(Math.round(-0.5*(documentHeight-canvasHeight)));
 		displayLayer.getProperty("scaleX").setValue(1);
 		displayLayer.getProperty("scaleY").setValue(1);
-		console.log(displayLayer, documentWidth, documentHeight);
 		
 		
 		var layersTreeStructure = parsedShapeData.data.data;
@@ -100,14 +99,13 @@ dbm.registerClass("com.developedbyme.projects.examples.graphics.illustratorimpor
 		
 		
 		canvasController.getProperty("display").update();
-		console.log(canvasController);
 		
 		treeStructureView.setTreeStructure(canvasController._hierarchy);
 	};
 	
 	objectFunctions._setupTreeStructureItem = function(aItem) {
-		console.log("com.developedbyme.projects.examples.graphics.illustratorimport.DrawDocumentApplication::_setupTreeStructureItem");
-		console.log(aItem);
+		//console.log("com.developedbyme.projects.examples.graphics.illustratorimport.DrawDocumentApplication::_setupTreeStructureItem");
+		//console.log(aItem);
 		
 		aItem.getProperty("ownHeight").setValue(110);
 		
