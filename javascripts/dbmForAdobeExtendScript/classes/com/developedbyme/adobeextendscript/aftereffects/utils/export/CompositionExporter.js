@@ -29,7 +29,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.CompositionExporter::exportCompositions");
 		
 		var currentArray = aCompositions;
-		for(var i = 0; i < currentArray.length; i++) { //MENOTE: array can change in the 
+		for(var i = 0; i < currentArray.length; i++) { //MENOTE: array can change in the loop
 			var currentNativeComposition = currentArray[i];
 			
 			var currentComposition = aProject.getItemByNativeItem(currentNativeComposition);

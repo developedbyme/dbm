@@ -42,6 +42,16 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentTreeStructureItem = currentArray[i];
 			var currentLayer = currentTreeStructureItem.data;
+			
+			if(currentLayer !== null) {
+				var layerName = currentLayer.getProperty("name").getValue();
+				if(layerName.indexOf("_Slave") !== -1) {
+					console.log("Ignoring slave layer " + layerName);
+					continue;
+				}
+			}
+			
+			
 			var newItem = TreeStructureItem.create(currentTreeStructureItem.getName());
 			aReturnParentTreeStructureItem.addChild(newItem);
 			
@@ -207,6 +217,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 			
 			ClassReference.exportLayers(currentTreeStructureItem.getChildren(), newItem, aNestedCompositions, aFilesToCopy, aPhotoshopLayersToExport);
 		}
+		//console.log("//com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter::exportLayers");
 	};
 	
 	staticFunctions.exportLayerProperties = function(aLayer, aReturnPropertiesHolder) {

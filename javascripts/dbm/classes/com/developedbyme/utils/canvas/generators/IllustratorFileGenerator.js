@@ -88,8 +88,6 @@ dbm.registerClass("com.developedbyme.utils.canvas.generators.IllustratorFileGene
 			}
 			//METODO: stroke over fill setting
 			
-			
-			
 			var currentArray2 = currentLayerData.object.curves;
 			var currentArray2Length = currentArray2.length;
 			for(var j = 0; j < currentArray2Length; j++) {
