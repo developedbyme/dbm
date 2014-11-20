@@ -488,7 +488,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var startMultiplierNode = MultiplicationNode.create(aStartParameter, maxParameterNode.getProperty("outputParameter"));
 		var endMultiplierNode = MultiplicationNode.create(aEndParameter, maxParameterNode.getProperty("outputParameter"));
 		
-		
+		strokeCurveDrawer.addDestroyableObject(maxParameterNode);
+		strokeCurveDrawer.addDestroyableObject(startMultiplierNode);
+		strokeCurveDrawer.addDestroyableObject(endMultiplierNode);
 		
 		strokeCurveDrawer.getProperty("startParameter").connectInput(startMultiplierNode.getProperty("outputValue"));
 		strokeCurveDrawer.getProperty("endParameter").connectInput(endMultiplierNode.getProperty("outputValue"));

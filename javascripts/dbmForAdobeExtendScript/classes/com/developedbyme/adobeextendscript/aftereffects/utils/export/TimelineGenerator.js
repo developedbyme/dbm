@@ -406,7 +406,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 			var endSpeed = speedMultiplier*aEndInEasing.speed;
 			
 			var startValue = startSpeed*startInfluence;
-			var endValue = endSpeed*endInfluence
+			var endValue = endSpeed*endInfluence;
 			
 			if(startValue > 1) {
 				startInfluence /= startValue;
@@ -482,9 +482,20 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 	};
 	
 	staticFunctions._fillSpacialCurveWithValues = function(aStartPoint, aStartTangent, aEndPoint, aEndTangent, aPointsArray) {
-		aPointsArray[0].setValues(aStartPoint[0], aStartPoint[1], aStartPoint[2]);
-		aPointsArray[1].setValues(aStartPoint[0]+aStartTangent[0], aStartPoint[1]+aStartTangent[1], aStartPoint[2]+aStartTangent[2]);
-		aPointsArray[2].setValues(aEndPoint[0]+aEndTangent[0], aEndPoint[1]+aEndTangent[1], aEndPoint[2]+aEndTangent[2]);
-		aPointsArray[3].setValues(aEndPoint[0], aEndPoint[1], aEndPoint[2]);
+		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.TimelineGenerator::_fillSpacialCurveWithValue");
+		//console.log(aPointsArray);
+		if(aStartPoint.length > 2) {
+			aPointsArray[0].setValues(aStartPoint[0], aStartPoint[1], aStartPoint[2]);
+			aPointsArray[1].setValues(aStartPoint[0]+aStartTangent[0], aStartPoint[1]+aStartTangent[1], aStartPoint[2]+aStartTangent[2]);
+			aPointsArray[2].setValues(aEndPoint[0]+aEndTangent[0], aEndPoint[1]+aEndTangent[1], aEndPoint[2]+aEndTangent[2]);
+			aPointsArray[3].setValues(aEndPoint[0], aEndPoint[1], aEndPoint[2]);
+		}
+		else {
+			aPointsArray[0].setValues(aStartPoint[0], aStartPoint[1]);
+			aPointsArray[1].setValues(aStartPoint[0]+aStartTangent[0], aStartPoint[1]+aStartTangent[1]);
+			aPointsArray[2].setValues(aEndPoint[0]+aEndTangent[0], aEndPoint[1]+aEndTangent[1]);
+			aPointsArray[3].setValues(aEndPoint[0], aEndPoint[1]);
+		}
+		
 	};
 });
