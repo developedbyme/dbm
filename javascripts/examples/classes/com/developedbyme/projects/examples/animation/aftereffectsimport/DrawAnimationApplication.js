@@ -41,6 +41,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
 	var CreateWedgeInBoxCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateWedgeInBoxCurveNode");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
+	var IndexSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -60,6 +61,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
 	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
+	var LineCapTypes = dbm.importClass("com.developedbyme.constants.LineCapTypes");
+	var LineJoinTypes = dbm.importClass("com.developedbyme.constants.LineJoinTypes");
 	
 	/**
 	 * Constructor
@@ -599,8 +602,18 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					this.applyColor(currentGraphics.getProperty("strokeStyle"), aTimelines, currentPathPrefix, aTimeProperty);
 					
 					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/strokeWidth"), aTimeProperty, currentGraphics.getProperty("lineWidth"));
-					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/lineCap"), aTimeProperty, currentGraphics.getProperty("lineCap"));
-					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/lineJoin"), aTimeProperty, currentGraphics.getProperty("lineJoin"));
+					
+					
+					var lineCapNode = IndexSwitchedNode.create(1, -1, [LineCapTypes.BUTT, LineCapTypes.ROUND, LineCapTypes.SQUARE]);
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/lineCap"), aTimeProperty, lineCapNode.getProperty("index"));
+					currentGraphics.addDestroyableObject(lineCapNode);
+					currentGraphics.getProperty("lineCap").connectInput(lineCapNode.getProperty("outputValue"));
+					
+					var lineJoinNode = IndexSwitchedNode.create(1, -1, [LineJoinTypes.MITER, LineJoinTypes.ROUND, LineJoinTypes.BEVEL]);
+					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/lineJoin"), aTimeProperty, lineJoinNode.getProperty("index"));
+					currentGraphics.addDestroyableObject(lineCapNode);
+					currentGraphics.getProperty("lineJoin").connectInput(lineJoinNode.getProperty("outputValue"));
+					
 					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/miterLimit"), aTimeProperty, currentGraphics.getProperty("miterLimit"));
 					
 					break;
@@ -710,11 +723,6 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		dbm.singletons.dbmDataManager.addXmlDefinition(XmlChildRetreiver.getFirstChild(aAsset.getData()), dataName);
 		var parsedGraphicsData = dbm.singletons.dbmDataManager.getData(dataName).data;
 		
-		var documentWidth = parsedGraphicsData.metaData.getObject("width");
-		var documentHeight = parsedGraphicsData.metaData.getObject("height");
-		
-		var isFullSize = (Math.abs(aHolderWidth-documentWidth) < 1) && (Math.abs(aHolderHeight-documentHeight) < 1)
-		
 		var treeStructure = parsedGraphicsData.data;
 		
 		if(aLayerName === "") {
@@ -738,7 +746,11 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			);
 			
 			if(selectedLayer !== null) {
-				//METODO: check if layer width is the same as the document size
+				var documentWidth = parsedGraphicsData.metaData.getObject("width");
+				var documentHeight = parsedGraphicsData.metaData.getObject("height");
+		
+				var isFullSize = (Math.abs(aHolderWidth-documentWidth) < 1) && (Math.abs(aHolderHeight-documentHeight) < 1);
+				
 				this._performDrawSingleVectorLayer(selectedLayer, aParentLayer, aHolderWidth, aHolderHeight, isFullSize);
 			}
 			else {
