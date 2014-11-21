@@ -182,17 +182,14 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			
 			var layerName = currentLayerTreeStructureItem.getName();
 			
-			
-			
 			var currentType = currentLayerData.metaData.getObject("type");
 			if(currentType === "layer") {
 				var currentLayer = aLayer.getChildByPath(layerName);
 				var contentLayer = currentLayer.getChildByPath("content");
-				var childLayer = currentLayer.getChildByPath("children");
-				
 				
 				this.setupLayer(currentLayer, currentLayerData, aTimeProperty, aDuration, aCompositions, aShowHiddenLayers);
-				this.setupLayerTreeStructure(currentLayerTreeStructureItem, childLayer, aTimeProperty, aDuration, aCompositions, false);
+				this.setupLayerTreeStructure(currentLayerTreeStructureItem, contentLayer, aTimeProperty, aDuration, aCompositions, false);
+				this._sortLayerZIndex(contentLayer.getTreeStructureItem());
 			}
 			else if(currentType === "trackMatte") {
 				
@@ -258,15 +255,19 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		//console.log(aLayer, aAnimationData, aPlaybackNode, aFullDuration);
 		
 		var timelines = aAnimationData.data;
+		var layerMetaData = aAnimationData.metaData;
 		
-		var layerWidth = aAnimationData.metaData.getObject("width");
-		var layerHeight = aAnimationData.metaData.getObject("height");
+		var layerWidth = layerMetaData.getObject("width");
+		var layerHeight = layerMetaData.getObject("height");
 		
 		var contentLayer = aLayer.getChildByPath("content");
 		var graphicsLayer = contentLayer.getChildByPath("graphics");
 		
-		var inPoint = aAnimationData.metaData.getObject(PlaybackMetaDataTypes.START_TIME);
-		var outPoint = aAnimationData.metaData.getObject(PlaybackMetaDataTypes.END_TIME);
+		aLayer.getTreeStructureItem().setAttribute("zIndex", layerMetaData.getObject("zIndex"));
+		graphicsLayer.getTreeStructureItem().setAttribute("zIndex", layerMetaData.getObject("zIndex"));
+		
+		var inPoint = layerMetaData.getObject(PlaybackMetaDataTypes.START_TIME);
+		var outPoint = layerMetaData.getObject(PlaybackMetaDataTypes.END_TIME);
 		if(inPoint !== 0 || outPoint !== aFullDuration) {
 			var renderProperty = contentLayer.getProperty("render");
 			var renderTimeline = Timeline.create(false);
@@ -481,6 +482,45 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		}
 	};
 	
+	objectFunctions._sortLayerZIndex = function(aTreeStructureItem) {
+		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_sortLayerZIndex");
+		//console.log(aTreeStructureItem);
+		
+		var namesArray = aTreeStructureItem._children.getNamesArray(); //METODO: do not access private variable
+		var currentArray = aTreeStructureItem._children.getObjectsArray(); //METODO: do not access private variable
+		var currentArrayLength = currentArray.length;
+		
+		if(currentArrayLength > 1) {
+			var lastZ = -1;
+			for(var i = 0; i < currentArrayLength; i++) {
+				var currentObject = currentArray[i];
+				var currentZ = currentObject.getAttribute("zIndex");
+				if(currentZ < lastZ) {
+					var currentName = namesArray[i];
+					currentArray.splice(i, 1);
+					namesArray.splice(i, 1);
+					var isFound = false;
+					for(var j = i; j > 0; j--) {
+						var testObject = currentArray[j-1];
+						if(testObject.getAttribute("zIndex") < currentZ) {
+							currentArray.splice(j, 0, currentObject);
+							namesArray.splice(j, 0, currentName);
+							isFound = true;
+							break;
+						}
+					}
+					if(!isFound) {
+						currentArray.unshift(currentObject);
+						namesArray.unshift(currentName);
+					}
+				}
+				else {
+					lastZ = currentZ;
+				}
+			}
+		}
+	};
+	
 	objectFunctions._addStrokeEffect = function(aGraphics, aPath, aStartParameter, aEndParameter, aLineWidth, aStrokeStyle, aTimeProperty) {
 		
 		var strokeCurveDrawer = CurveDrawer2d.create(null);
@@ -602,7 +642,6 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					this.applyColor(currentGraphics.getProperty("strokeStyle"), aTimelines, currentPathPrefix, aTimeProperty);
 					
 					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/strokeWidth"), aTimeProperty, currentGraphics.getProperty("lineWidth"));
-					
 					
 					var lineCapNode = IndexSwitchedNode.create(1, -1, [LineCapTypes.BUTT, LineCapTypes.ROUND, LineCapTypes.SQUARE]);
 					this._linkDataToProperty(aTimelines.getProperty(currentPathPrefix + "/lineCap"), aTimeProperty, lineCapNode.getProperty("index"));

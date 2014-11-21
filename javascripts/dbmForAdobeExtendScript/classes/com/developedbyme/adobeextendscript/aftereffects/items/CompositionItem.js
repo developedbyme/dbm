@@ -81,13 +81,13 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 				currentLayer = AvCompositionLayer.create(currentNativeLayer);
 			}
 			else if(currentNativeLayer instanceof CameraLayer) {
-				console.log("--------------------------> Camera");
 				currentLayer = Camera.create(currentNativeLayer);
 			}
 			else {
 				currentLayer = LayerBaseObject.create(currentNativeLayer);
 			}
 			
+			currentLayer.getTreeStructureItem().setAttribute("zIndex", numberOfLayers-i);
 			this._layers.push(currentLayer);
 		}
 		
@@ -108,6 +108,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.Compos
 				holderTreeStructureItem.setAttribute("type", "trackMatte");
 				holderTreeStructureItem.setAttribute("trackMatteType", ConstantConverter.convertTrackMatteToName(contentLayer.getTrackMatteType()));
 				parentNode.addChild(holderTreeStructureItem);
+				currentLayer.getTreeStructureItem().setAttribute("zIndex", currentLayer.getTreeStructureItem().getAttribute("zIndex"));
 				
 				holderTreeStructureItem.addChild(currentLayer.getTreeStructureItem());
 				holderTreeStructureItem.addChild(contentLayer.getTreeStructureItem());

@@ -206,18 +206,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.items.layers
 		this.superCall();
 	};
 	
-	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
-		
-		/*
-		switch(aName) {
-			case "":
-				return true;
-		}
-		*/
-		
-		return this.superCall(aName);
-	};
-	
 	staticFunctions.create = function(aNativeItem) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.items.layers.LayerBaseObject::create");
 		//console.log(aNativeItem);

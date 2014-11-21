@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.setup.Defaul
 	var BlendCurveTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.complex.BlendCurveTimelinePart");
 	var ColorStop = dbm.importClass("com.developedbyme.utils.graphics.gradient.ColorStop");
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
+	var CmykColor = dbm.importClass("com.developedbyme.core.data.color.CmykColor");
 	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");
 	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	var ShapeData = dbm.importClass("com.developedbyme.core.data.graphics.ShapeData");

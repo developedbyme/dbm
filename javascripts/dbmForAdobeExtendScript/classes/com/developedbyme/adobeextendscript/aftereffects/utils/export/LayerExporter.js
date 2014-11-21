@@ -43,6 +43,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 			var currentTreeStructureItem = currentArray[i];
 			var currentLayer = currentTreeStructureItem.data;
 			
+			//MENOTE: remove this when expressions are implemented
 			if(currentLayer !== null) {
 				var layerName = currentLayer.getProperty("name").getValue();
 				if(layerName.indexOf("_Slave") !== -1) {
@@ -188,7 +189,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 							layerMetaData.addObject("footageType", "composition");
 							
 							var compositionIndex = ArrayFunctions.indexOfInArray(aNestedCompositions, nativeSource);
-							console.log(compositionIndex, nativeSource.name);
 							if(compositionIndex === -1) {
 								compositionIndex = aNestedCompositions.length;
 								aNestedCompositions.push(nativeSource);
