@@ -396,6 +396,15 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			}
 		}
 		
+		var expressions = aAnimationData.metaData.getObject("expressions");
+		var currentArray = expressions.getNamesArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentPropertyName = currentArray[i];
+			var currentExpression = expressions.getObject(currentPropertyName);
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Expressions are not implemented. Can't link up expression (" + currentExpression + ") to " + currentPropertyName);
+		}
+		
 		if(hasStroke) {
 			
 			var strokeLayer = contentLayer.getChildByPath("effects/stroke");

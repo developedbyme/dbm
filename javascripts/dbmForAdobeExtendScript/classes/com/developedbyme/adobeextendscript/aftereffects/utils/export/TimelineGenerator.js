@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
 	
 	
-	staticFunctions.createTimelinesForProprety = function(aProperty, aTimelineName, aReturnPropertiesHolder) {
+	staticFunctions.createTimelinesForProprety = function(aProperty, aTimelineName, aReturnPropertiesHolder, aExpressions) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.TimelineGenerator::createTimelinesForProprety");
 		//console.log(aProperty, aTimelineName, aReturnPropertiesHolder);
 		//console.log(aTimelineName, aProperty.unitsText);
@@ -45,6 +45,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		var dimensionLength = 0;
 		var multiplier = 1;
 		
+		if(aProperty.expression !== "") {
+			aExpressions.addObject(aTimelineName, aProperty.expression);
+		}
+		
 		switch(aTimelineName) {
 			case "effects/stroke/opacity":
 			case "effects/stroke/brushHardness":
@@ -55,7 +59,6 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 				switch(aProperty.unitsText) {
 					case "percent":
 						multiplier = 0.01;
-				
 						break;
 					case "degrees":
 						multiplier = Math.PI/180;

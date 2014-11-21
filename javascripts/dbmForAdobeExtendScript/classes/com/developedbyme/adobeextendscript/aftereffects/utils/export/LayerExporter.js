@@ -208,8 +208,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 				var timelinesArray = PropertiesHolder.create();
 				layerData.data = timelinesArray;
 				
+				var expressions = NamedArray.create(false);
+				layerMetaData.addObject("expressions", expressions);
 				
-				ClassReference.exportLayerProperties(currentLayer, timelinesArray);
+				ClassReference.exportLayerProperties(currentLayer, timelinesArray, expressions);
 			}
 			else if(currentType === "trackMatte") {
 				layerMetaData.addObject("trackMatteType", currentTreeStructureItem.getAttribute("trackMatteType"));
@@ -220,7 +222,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		//console.log("//com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter::exportLayers");
 	};
 	
-	staticFunctions.exportLayerProperties = function(aLayer, aReturnPropertiesHolder) {
+	staticFunctions.exportLayerProperties = function(aLayer, aReturnPropertiesHolder, aExpressions) {
 		//console.log("com.developedbyme.adobeextendscript.aftereffects.utils.export.LayerExporter::exportLayerProperties");
 		var currentAnimationProperties = aLayer.getAnimationProperties();
 		var currentArray = currentAnimationProperties.getNamesArray();
@@ -228,7 +230,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.aftereffects.utils.export
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentName = currentArray[i];
 			var currentProperty = currentAnimationProperties.getObject(currentName);
-			TimelineGenerator.createTimelinesForProprety(currentProperty, currentName, aReturnPropertiesHolder);
+			TimelineGenerator.createTimelinesForProprety(currentProperty, currentName, aReturnPropertiesHolder, aExpressions);
 		}
 	};
 });
