@@ -40,6 +40,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
 	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
 	var CreateWedgeInBoxCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateWedgeInBoxCurveNode");
+	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -630,6 +631,22 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 					CanvasControllerModificationFunctions.getAllGraphics(aCurrentLayer, graphicsArray);
 					
 					this._trimCurves(graphicsArray, startRepeatedRangeNode.getProperty("outputValue"), firstEndNode.getProperty("outputValue"), secondEndNode.getProperty("outputValue"));
+					
+					break;
+				case "repeater":
+					
+					var currentTreeStructureItem = aCurrentLayer.getTreeStructureItem();
+					var parentLayer = currentTreeStructureItem.getParent().data;
+					
+					var repeaterLayer = parentLayer.getChildByPath("repeater");
+					var repeaterTreeStructureItem = repeaterLayer.getTreeStructureItem();
+					
+					this.applyTransformToLayer(repeaterLayer, aTimelines, currentPathPrefix + "/", aTimeProperty);
+					
+					var link = TreeStructureItemLink.create("link", "../..");
+					repeaterTreeStructureItem.addChild(link);
+					
+					//METODO: implement number of repeats
 					
 					break;
 				default:
