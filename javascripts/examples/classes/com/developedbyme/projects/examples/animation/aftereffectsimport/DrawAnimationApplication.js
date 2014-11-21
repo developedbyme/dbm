@@ -710,13 +710,18 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		dbm.singletons.dbmDataManager.addXmlDefinition(XmlChildRetreiver.getFirstChild(aAsset.getData()), dataName);
 		var parsedGraphicsData = dbm.singletons.dbmDataManager.getData(dataName).data;
 		
+		var documentWidth = parsedGraphicsData.metaData.getObject("width");
+		var documentHeight = parsedGraphicsData.metaData.getObject("height");
+		
+		var isFullSize = (Math.abs(aHolderWidth-documentWidth) < 1) && (Math.abs(aHolderHeight-documentHeight) < 1)
+		
 		var treeStructure = parsedGraphicsData.data;
 		
 		if(aLayerName === "") {
 			var currentArray = treeStructure.getRoot().getChildren();
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
-				this._performDrawSingleVectorLayer(currentArray[i], aParentLayer, aHolderWidth, aHolderHeight);
+				this._performDrawSingleVectorLayer(currentArray[i], aParentLayer, aHolderWidth, aHolderHeight, true);
 			}
 		}
 		else {
@@ -733,7 +738,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			);
 			
 			if(selectedLayer !== null) {
-				this._performDrawSingleVectorLayer(selectedLayer, aParentLayer, aHolderWidth, aHolderHeight);
+				//METODO: check if layer width is the same as the document size
+				this._performDrawSingleVectorLayer(selectedLayer, aParentLayer, aHolderWidth, aHolderHeight, isFullSize);
 			}
 			else {
 				ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "_performDrawVectorLayer", "No layer matched name " +  aLayerName + ".");
@@ -741,7 +747,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		}
 	};
 	
-	objectFunctions._performDrawSingleVectorLayer = function(aLayerData, aParentLayer, aHolderWidth, aHolderHeight) {
+	objectFunctions._performDrawSingleVectorLayer = function(aLayerData, aParentLayer, aHolderWidth, aHolderHeight, aIsFullSize) {
 		//console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_performDrawSingleVectorLayer");
 		//console.log(aLayerData, aParentLayer, aHolderWidth, aHolderHeight);
 		
@@ -750,9 +756,16 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		var layerHeight = layerMetaData.getObject("height");
 	
 		var centertedLayer = aParentLayer.getChildByPath("center");
-		centertedLayer.getProperty("x").setValue(0.5*(aHolderWidth-layerWidth));
-		centertedLayer.getProperty("y").setValue(0.5*(aHolderHeight-layerHeight));
-	
+		if(!aIsFullSize) {
+			centertedLayer.getProperty("x").setValue(0.5*(aHolderWidth-layerWidth));
+			centertedLayer.getProperty("y").setValue(0.5*(aHolderHeight-layerHeight));
+		}
+		else {
+			var transfomationData = aLayerData.data.data.transformation;
+			centertedLayer.getProperty("x").setValue(transfomationData.x);
+			centertedLayer.getProperty("y").setValue(transfomationData.y);
+		}
+		
 		IllustratorFileGenerator.drawLayers(aLayerData.getChildren(), centertedLayer, this._canvasController);
 	};
 	

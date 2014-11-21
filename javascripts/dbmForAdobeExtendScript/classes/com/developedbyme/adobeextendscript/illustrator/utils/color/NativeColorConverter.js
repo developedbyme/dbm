@@ -16,6 +16,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.utils.color.N
 	
 	//Dependencies
 	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
+	var CmykColor = dbm.importClass("com.developedbyme.core.data.color.CmykColor");
 	
 	//Utils
 	
@@ -32,9 +33,11 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.utils.color.N
 				return ClassReference.convertNativeGrayColor(aNativeObject);
 			case "SpotColor":
 				return ClassReference.convertNativeSpotColor(aNativeObject);
+			case "CMYKColor":
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, "[NativeColorConverter]", "convertNativeObject", "Color space is not implemented, so CMYK colors can't be represented correctly.");
+				return ClassReference.convertNativeCmykColor(aNativeObject);
 			case "NoColor":
 				return null;
-			case "CMYKColor":
 			case "GradientColor":
 			case "LabColor":
 			case "PatternColor":
@@ -52,6 +55,10 @@ dbm.registerClass("com.developedbyme.adobeextendscript.illustrator.utils.color.N
 	staticFunctions.convertNativeGrayColor = function(aNativeObject) {
 		var value = 1-0.01*aNativeObject.gray; //MENOTE: documentation is wrong, value is K in CMYK
 		return RgbaColor.create(value, value, value);
+	};
+	
+	staticFunctions.convertNativeCmykColor = function(aNativeObject) {
+		return CmykColor.create(aNativeObject.cyan/100, aNativeObject.magenta/100, aNativeObject.yellow/100, aNativeObject.black/100);
 	};
 	
 	staticFunctions.convertNativeSpotColor = function(aNativeObject) {
