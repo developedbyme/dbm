@@ -63,7 +63,7 @@ dbm.registerClass("com.developedbyme.utils.data.DataSelector", "com.developedbym
 			aValue2
 		);
 		return ClassReference.getFirstMatch(qualifier, aSearchArray);
-	}
+	};
 	
 	
 	/**
@@ -87,6 +87,52 @@ dbm.registerClass("com.developedbyme.utils.data.DataSelector", "com.developedbym
 			}
 		}
 		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, "[DataSelector]", "getFirstMatch", "No match for " + aQualifyReevaluator + " searching " + aSearchArray);
+		return null;
+	};
+	
+	/**
+	 * Gets the first match that has to equal values in a tree structure.
+	 *
+	 * @param	aValue1				ReevaluationBaseObject|Any		The first value in the comparison.
+	 * @param	aValue2				ReevaluationBaseObject|Any		The second value in the comparison.
+	 * @param	aTreeStructureItem	Array							The tree structure item to search from.
+	 *
+	 * @return	TreeStructureItem	The matching object. Null if no item is matched.
+	 */
+	staticFunctions.getFirstEqualMatchInTreeStructure = function(aValue1, aValue2, aTreeStructureItem) {
+		//console.log("com.developedbyme.utils.data.DataSelector::getFirstEqualMatch");
+		var qualifier = ConditionObject.createCommand(
+			aValue1,
+			"===",
+			aValue2
+		);
+		return ClassReference.getFirstMatchInTreeStructure(qualifier, aTreeStructureItem);
+	};
+	
+	/**
+	 * Selects the first object that matches a reevaluation in a tree structure.
+	 *
+	 * @param	aQualifyReevaluator	ReevaluationBaseObject	The reevalutor that matches the object.
+	 * @param	aTreeStructureItem	TreeStructureItem		The tree structure item to search from.
+	 *
+	 * @return	TreeStructureItem	The matching object. Null if no item is matched.
+	 */
+	staticFunctions.getFirstMatchInTreeStructure = function(aQualifyReevaluator, aTreeStructureItem) {
+		//console.log("com.developedbyme.utils.data.DataSelector::getFirstMatchInTreeStructure");
+		//console.log(aQualifyReevaluator, aTreeStructureItem);
+		
+		var currentArray = aTreeStructureItem.getChildren();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(aQualifyReevaluator.reevaluate(currentObject)) {
+				return currentObject;
+			}
+			var returnValue = ClassReference.getFirstMatchInTreeStructure(aQualifyReevaluator, currentObject);
+			if(returnValue !== null) {
+				return returnValue;
+			}
+		}
 		return null;
 	};
 });

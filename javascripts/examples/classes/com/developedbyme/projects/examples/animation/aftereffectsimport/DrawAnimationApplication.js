@@ -42,6 +42,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var CreateWedgeInBoxCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateWedgeInBoxCurveNode");
 	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
 	var IndexSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode");
+	var ScriptBreakdownCodePart = dbm.importClass("com.developedbyme.compiler.breakdown.ScriptBreakdownCodePart");
+	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -53,6 +55,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	var DataSelector = dbm.importClass("com.developedbyme.utils.data.DataSelector");
 	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
 	var CanvasControllerModificationFunctions = dbm.importClass("com.developedbyme.utils.canvas.modify.CanvasControllerModificationFunctions");
+	var ExpressionCompiler = dbm.importClass("com.developedbyme.utils.canvas.generators.aftereffectsexpressions.ExpressionCompiler");
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
@@ -80,6 +83,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		this._showMissingFiles = true;
 		this._canvasController = null;
 		this._playbackNode = null;
+		this._expressionCompiler = null;
 		
 		this.addCssLink("../styles/utils/centeredContent.css");
 		this.addCssLink("../styles/utils/boxes.css");
@@ -98,6 +102,8 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 	
 	objectFunctions._createPage = function() {
 		console.log("com.developedbyme.projects.examples.animation.aftereffectsimport.DrawAnimationApplication::_createPage");
+		
+		this._expressionCompiler = ExpressionCompiler.create();
 		
 		var playbackNode = PlaybackNode.createWithGlobalInput();
 		playbackNode.setupPlayback(0, 10, true);
@@ -121,7 +127,9 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		dbm.singletons.dbmDataManager.addXmlDefinition(XmlChildRetreiver.getFirstChild(animationData), dataName);
 		var exportData = dbm.singletons.dbmDataManager.getData(dataName);
 		var compositionsData = exportData.data;
+		this._expressionCompiler.setCompositions(compositionsData);
 		var parsedAnimationData = compositionsData[exportData.metaData.getObject("mainComposition")];
+		this._expressionCompiler.setCurrentComposition(parsedAnimationData); //METODO: this needs to be supported on nested compositions
 		var duration = parsedAnimationData.metaData.getObject("duration");
 		
 		playbackNode.getProperty("maxTime").setValue(duration);
@@ -162,6 +170,7 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 		
 		this._playbackNode = playbackNode;
 		
+		this._expressionCompiler.setTime(timeFlowGate.getProperty("outputValue")); //METODO: this needs to be supported on nested compositions
 		this.setupLayerTreeStructure(layerTreeStructure.getRoot(), mainLayer, timeFlowGate.getProperty("outputValue"), duration, compositionsData, false);
 		
 		console.log(mainCanvasController);
@@ -396,13 +405,30 @@ dbm.registerClass("com.developedbyme.projects.examples.animation.aftereffectsimp
 			}
 		}
 		
+		this._expressionCompiler.setCurrentLayer(aAnimationData);
 		var expressions = aAnimationData.metaData.getObject("expressions");
 		var currentArray = expressions.getNamesArray();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentPropertyName = currentArray[i];
+			var currentProperty = timelines.getProperty(currentPropertyName); //METODO: fix this for multidimensional properties
 			var currentExpression = expressions.getObject(currentPropertyName);
-			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Expressions are not implemented. Can't link up expression (" + currentExpression + ") to " + currentPropertyName);
+			
+			var compiledBreakdown = ScriptBreakdownCodePart.create(null, currentExpression);
+			compiledBreakdown.breakdownForInitialExecution();
+			var childBreakdowns = compiledBreakdown.getChildBreakdowns();
+			if(childBreakdowns.length === 1) {
+				//MENOTE: simple link
+				var linkBreakdown = childBreakdowns[0];
+				var reference = this._expressionCompiler.getReference(linkBreakdown);
+				
+				var originalPropertyName = reference.selectionPath.substring(1, reference.selectionPath.length);
+				this._linkComplexDataToProperty(reference.value.data.getProperty(originalPropertyName), aTimeProperty, currentProperty);
+			}
+			else {
+				ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "setupLayer", "Only simple expression links are implemented. Can't link up expression (" + currentExpression + ") to " + currentPropertyName);
+				//METODO: complex expressions
+			}
 		}
 		
 		if(hasStroke) {

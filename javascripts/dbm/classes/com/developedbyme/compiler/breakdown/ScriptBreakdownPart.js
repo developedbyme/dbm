@@ -311,7 +311,7 @@ dbm.registerClass("com.developedbyme.compiler.breakdown.ScriptBreakdownPart", "c
 		return returnString;
 	};
 	
-	objectFunctions._internalFunctionality_ownsVariable = function _internalFunctionality_ownsVariable(aName) {
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
 		switch(aName) {
 			case "_parent":
 			case "_replaceablePart":
