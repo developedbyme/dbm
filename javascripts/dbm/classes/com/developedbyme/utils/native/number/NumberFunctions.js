@@ -27,6 +27,11 @@ dbm.registerClass("com.developedbyme.utils.native.number.NumberFunctions", null,
 		return Math.round(multiplicationValue*aNumber)/multiplicationValue;
 	};
 	
+	staticFunctions.floatModulus = function(aValue, aModulus) {
+		var times = Math.floor(aValue/aModulus);
+		return aValue-times*aModulus;
+	};
+	
 	staticFunctions.getBitsRequiredForValue = function(aValue) {
 		var debugCounter = 0;
 		var length = 0;

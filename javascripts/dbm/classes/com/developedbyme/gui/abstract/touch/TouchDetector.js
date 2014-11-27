@@ -80,12 +80,12 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	objectFunctions.stopEvent = function() {
-		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::stopEvent");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::stopEvent");
 		if(this._currentEvent !== null) {
 			this._currentEvent.stopImmediatePropagation();
 			this._currentEvent.preventDefault();
 			this._currentEvent.cancelBubble = true;
-			console.log(this._currentEvent, this._currentEvent.eventPhase, this._currentEvent.cancelBubble);
+			//console.log(this._currentEvent, this._currentEvent.eventPhase, this._currentEvent.cancelBubble);
 		}
 		else {
 			//METODO: error message
@@ -100,7 +100,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	objectFunctions._startTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_startTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_startTouch");
 		
 		var newTouch = this._createTouch(aIdentifier);
 		
@@ -121,7 +121,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	objectFunctions._updateTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_updateTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_updateTouch");
 		
 		if(this._touches.select(aIdentifier)) {
 			var currentTouch = this._touches.currentSelectedItem;
@@ -161,7 +161,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	objectFunctions._stopTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_stopTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_stopTouch");
 		
 		if(this._touches.select(aIdentifier)) {
 			var currentTouch = this._touches.currentSelectedItem;
@@ -184,7 +184,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	objectFunctions._cancelTouch = function(aIdentifier, aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_cancelTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_cancelTouch");
 		
 		if(this._touches.select(aIdentifier)) {
 			var currentTouch = this._touches.currentSelectedItem;
@@ -207,7 +207,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	objectFunctions._callback_startTouch = function(aEvent) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_startTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_startTouch");
 		
 		var currentArray = aEvent.changedTouches;
 		var currentArrayLength = currentArray.length;
@@ -218,7 +218,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	objectFunctions._callback_updateTouch = function(aEvent) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_updateTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_updateTouch");
 		
 		this._currentEvent = aEvent;
 		
@@ -233,7 +233,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	objectFunctions._callback_stopTouch = function(aEvent) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_stopTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_stopTouch");
 		
 		this._currentEvent = aEvent;
 		
@@ -248,7 +248,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchDetector", "com.dev
 	};
 	
 	objectFunctions._callback_cancelTouch = function(aEvent) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_cancelTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.TouchDetector::_callback_cancelTouch");
 		
 		this._currentEvent = aEvent;
 		

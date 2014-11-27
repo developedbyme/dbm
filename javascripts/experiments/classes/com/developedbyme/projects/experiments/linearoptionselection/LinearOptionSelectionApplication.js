@@ -20,6 +20,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
 	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
 	var OneTouchOrMouseDetector = dbm.importClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector");
+	var OptionSelector = dbm.importClass("com.developedbyme.projects.experiments.linearoptionselection.gui.OptionSelector");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -42,7 +43,9 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		this._addButton = null;
 		this._touchDetector = null;
 		
-		this._startItem = -1;
+		this._showingItemIndex = -1;
+		this._interactiveItemIndex = -1;
+		this._touchStartItemIndex = -1;
 		
 		this._centerX = this.createProperty("centerX", 0);
 		this._centerY = this.createProperty("centerY", 0);
@@ -62,6 +65,8 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 	};
 	
 	objectFunctions._createPage = function() {
+		
+		dbm.getDocument().body.style["overflow"] = "hidden";
 		
 		//Center of page
 		var windowSizeNode = (new WindowSizeNode()).init();
@@ -94,14 +99,32 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		this._touchDetector.activate();
 	};
 	
+	objectFunctions._changeShowingItem = function(aIndex, aDelay) {
+		//console.log("com.developedbyme.projects.experiments.linearoptionselection.LinearOptionSelectionApplication::_changeShowingItem");
+		//console.log(aIndex);
+		
+		if(aIndex === this._showingItemIndex) return;
+		
+		if(this._showingItemIndex !== -1) {
+			this._options[this._showingItemIndex].hideOptions(0);
+		}
+		this._showingItemIndex = aIndex;
+		if(this._showingItemIndex !== -1) {
+			this._options[this._showingItemIndex].showOptions(aDelay);
+		}
+	};
+	
 	objectFunctions._createNewOption = function() {
 		console.log("com.developedbyme.projects.experiments.linearoptionselection.LinearOptionSelectionApplication::_createNewOption");
 		
 		var position = this._options.length;
 		
-		var newItem = DisplayBaseObject.createDiv(dbm.getDocument(), true, {"style": "position: absolute; left: 0px; top: 0px; width: 320px; height: 180px; border: 1px solid #000000;"});
+		var newItem = OptionSelector.createDiv(dbm.getDocument(), true, {"style": "position: absolute; left: 0px; top: 0px;"});
+		newItem.setOptionsData([1, 2, 3, 4, 5, 6, 7]); //METODO: set good data
 		newItem.setElementAsTransformed();
 		newItem.enableAlpha();
+		newItem.getProperty("width").setValue(320);
+		newItem.getProperty("height").setValue(180);
 		
 		var offsetNode = SubtractionNode.create(position, this._selectedItem);
 		var multipledOffsetNode = MultiplicationNode.create(offsetNode.getProperty("outputValue"), this._spacing);
@@ -122,12 +145,33 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		this._selectedItem.animateValue(position, 0.3, InterpolationTypes.INVERTED_QUADRATIC, 0);
 		
 		this._options.push(newItem);
+		
+		this._changeShowingItem(position, 0.3);
 	};
 	
 	objectFunctions._touchStarted = function() {
 		//console.log("com.developedbyme.projects.experiments.linearoptionselection.LinearOptionSelectionApplication::_touchStarted");
 		
-		this._startItem = this._selectedItem.getValue();
+		this._touchStartItemIndex = this._selectedItem.getValue();
+		
+		var touchPoint = this._touchDetector.getSelectionPoint();
+		var x = touchPoint.getProperty("startX").getValue();
+		
+		var centerX = this._centerX.getValue();
+		var spacing = this._spacing.getValue();
+		var selectedItem = Math.round(this._touchStartItemIndex+(x-centerX)/spacing);
+		
+		var minItem = 0;
+		var maxItem = this._options.length-1;
+		
+		if(selectedItem >= minItem && selectedItem <= maxItem) {
+			this._interactiveItemIndex = selectedItem;
+			this._changeShowingItem(this._interactiveItemIndex, 0);
+			this._options[this._interactiveItemIndex].stopMoving();
+		}
+		else {
+			this._interactiveItemIndex = -1;
+		}
 	};
 	
 	objectFunctions._touchUpdate = function() {
@@ -138,7 +182,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		var y = touchPoint.getProperty("currentY").getValue()-touchPoint.getProperty("startY").getValue();
 		
 		var spacing = this._spacing.getValue();
-		var selectedItem = this._startItem-x/spacing;
+		var selectedItem = this._touchStartItemIndex-x/spacing;
 		
 		var minItem = 0;
 		var maxItem = this._options.length-1;
@@ -151,6 +195,10 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		}
 		
 		this._selectedItem.setValue(selectedItem);
+		
+		if(this._interactiveItemIndex !== -1) {
+			this._options[this._interactiveItemIndex].updateMoving(y);
+		}
 	};
 	
 	objectFunctions._touchEnded = function() {
@@ -161,20 +209,30 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		var y = touchPoint.getProperty("currentY").getValue()-touchPoint.getProperty("startY").getValue();
 		
 		var spacing = this._spacing.getValue();
-		var selectedItem = this._startItem-x/spacing;
+		var selectedItem = this._touchStartItemIndex-x/spacing;
 		
 		var minItem = 0;
 		var maxItem = this._options.length-1;
 		
+		if(this._interactiveItemIndex !== -1) {
+			this._options[this._interactiveItemIndex].stopMoving(y);
+		}
+		
 		if(selectedItem < minItem) {
 			this._selectedItem.animateValue(minItem, 0.3, InterpolationTypes.QUADRATIC, 0);
+			this._changeShowingItem(minItem, 0);
 		}
 		else if(selectedItem > maxItem) {
 			this._selectedItem.animateValue(maxItem, 0.3, InterpolationTypes.QUADRATIC, 0);
+			this._changeShowingItem(maxItem, 0);
 		}
 		else if(x !== 0) {
 			this._selectedItem.animateValue(Math.round(selectedItem), 0.3, InterpolationTypes.INVERTED_QUADRATIC, 0);
+			this._changeShowingItem(Math.round(selectedItem), 0);
 		}
+		
+		this._touchStartItemIndex = -1;
+		this._interactiveItemIndex = -1;
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {

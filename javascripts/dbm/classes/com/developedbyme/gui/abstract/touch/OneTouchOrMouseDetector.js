@@ -92,7 +92,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector"
 	};
 	
 	objectFunctions._startMouseTouch = function() {
-		console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_startMouseTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_startMouseTouch");
 		
 		var xPosition = this._mousePositionNode.getProperty("x").getValue();
 		var yPosition = this._mousePositionNode.getProperty("y").getValue();
@@ -102,7 +102,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector"
 	};
 	
 	objectFunctions._stopMouseTouch = function() {
-		console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_stopMouseTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_stopMouseTouch");
 		
 		var xPosition = this._mousePositionNode.getProperty("x").getValue();
 		var yPosition = this._mousePositionNode.getProperty("y").getValue();
@@ -112,7 +112,7 @@ dbm.registerClass("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector"
 	};
 	
 	objectFunctions._updateMouseTouch = function() {
-		console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_updateMouseTouch");
+		//console.log("com.developedbyme.gui.abstract.touch.OneTouchOrMouseDetector::_updateMouseTouch");
 		
 		var xPosition = this._mousePositionNode.getProperty("x").getValue();
 		var yPosition = this._mousePositionNode.getProperty("y").getValue();
