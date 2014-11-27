@@ -10,7 +10,6 @@ dbm.registerClass("com.developedbyme.flow.FlowGroup", "com.developedbyme.core.Ba
 	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
 	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
 	
 	/**

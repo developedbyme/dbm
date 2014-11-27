@@ -48,11 +48,14 @@ dbm.registerClass("com.developedbyme.core.globalobjects.performancemanager.Perfo
 			aValuesArray.push(timingsData.loadEventStart);
 			aValuesArray.push(timingsData.loadEventEnd);
 			
-			var currentTime = perfomanceData.now();
-			var flooredValue = Math.floor(currentTime);
+			if(perfomanceData.now) {
+				var currentTime = perfomanceData.now();
+				var flooredValue = Math.floor(currentTime);
+				
+				aValuesArray.push(flooredValue);
+				aValuesArray.push(Math.floor((currentTime-flooredValue)*Math.pow(10, 12)));
+			}
 			
-			aValuesArray.push(flooredValue);
-			aValuesArray.push(Math.floor((currentTime-flooredValue)*Math.pow(10, 12)));
 		}
 		
 		return this;

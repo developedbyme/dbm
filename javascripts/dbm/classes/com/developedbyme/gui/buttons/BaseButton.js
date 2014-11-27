@@ -9,6 +9,9 @@ dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme
 	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
 	
 	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
 	var TextElement = dbm.importClass("com.developedbyme.gui.text.TextElement");
