@@ -16,6 +16,9 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
 	var CircularDistanceNode = dbm.importClass("com.developedbyme.flow.nodes.math.CircularDistanceNode");
 	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
+	var StaticImage = dbm.importClass("com.developedbyme.gui.images.StaticImage");
+	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
+	var AbsNode = dbm.importClass("com.developedbyme.flow.nodes.math.AbsNode");
 	
 	//Utils
 	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
@@ -66,10 +69,11 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 	objectFunctions._createOption = function(aData, aIndex) {
 		//console.log("com.developedbyme.projects.experiments.linearoptionselection.gui.OptionSelector::_createOption");
 		
-		var newItem = DisplayBaseObject.createDiv(this.getElement(), true, {"style": "position: absolute; left: 0px; top: 0px; border: 1px solid #000000;"});
+		var newItem = DisplayBaseObject.createDiv(this.getElement(), true, {"style": "position: absolute; left: 0px; top: 0px; pointer-events: none; -moz-user-select: none; -webkit-user-select: none; user-select: none;"});
 		newItem.setElementAsTransformed();
 		newItem.setElementAsSized();
 		newItem.enableAlpha();
+		newItem.enableZIndex();
 		newItem.getProperty("width").setValue(320);
 		newItem.getProperty("height").setValue(180);
 		
@@ -80,11 +84,19 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		var envelopedPosition = MultiplicationNode.create(multipledOffsetNode.getProperty("outputValue"), this._envelope);
 		var centeredPositionNode = AdditionNode.create(this._centerY, envelopedPosition.getProperty("outputValue"));
 		
+		var zIndexAbsNode = AbsNode.create(offsetNode.getProperty("outputValue"));
+		var zIndexMultiplierNode = MultiplicationNode.create(zIndexAbsNode.getProperty("outputValue"), 2);
+		var zIndexResverseNode = SubtractionNode.create(this._numberOfItems, zIndexMultiplierNode.getProperty("outputValue"));
+		
 		newItem.getProperty("x").connectInput(this._centerX);
 		newItem.getProperty("y").connectInput(centeredPositionNode.getProperty("outputValue"));
+		newItem.getProperty("z").connectInput(zIndexResverseNode.getProperty("outputValue"));
 		
 		newItem.getProperty("display").startUpdating();
 		newItem.getProperty("display").update();
+		
+		var image = StaticImage.create(newItem.getElement(), true, aData, {"style": "width: 320px; height: 180px; pointer-events: none; -moz-user-select: none; -webkit-user-select: none; user-select: none;"});
+		newItem.addDestroyableObject(image);
 		
 		return newItem;
 	};
@@ -122,6 +134,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 	
 	objectFunctions.updateMoving = function(aLength) {
 		//console.log("com.developedbyme.projects.experiments.linearoptionselection.gui.OptionSelector::updateMoving");
+		//console.log(aLength);
 		
 		var newItemIndex = this._startMovingItemIndex-this._moveSpeed.getValue()*aLength/this._spacing.getValue();
 		

@@ -115,12 +115,19 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 	};
 	
 	objectFunctions._createNewOption = function() {
-		console.log("com.developedbyme.projects.experiments.linearoptionselection.LinearOptionSelectionApplication::_createNewOption");
+		//console.log("com.developedbyme.projects.experiments.linearoptionselection.LinearOptionSelectionApplication::_createNewOption");
 		
 		var position = this._options.length;
 		
 		var newItem = OptionSelector.createDiv(dbm.getDocument(), true, {"style": "position: absolute; left: 0px; top: 0px;"});
-		newItem.setOptionsData([1, 2, 3, 4, 5, 6, 7]); //METODO: set good data
+		newItem.setOptionsData([
+			"../assets/copyrightMaterial/car_640x360/car.001.jpg",
+			"../assets/copyrightMaterial/car_640x360/car.002.jpg",
+			"../assets/copyrightMaterial/car_640x360/car.003.jpg",
+			"../assets/copyrightMaterial/car_640x360/car.004.jpg",
+			"../assets/copyrightMaterial/car_640x360/car.001.jpg",
+			"../assets/copyrightMaterial/car_640x360/car.002.jpg"
+		]);
 		newItem.setElementAsTransformed();
 		newItem.enableAlpha();
 		newItem.getProperty("width").setValue(320);
@@ -133,11 +140,11 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		newItem.getProperty("x").connectInput(centeredPositionNode.getProperty("outputValue"));
 		newItem.getProperty("y").connectInput(this._centerY);
 		newItem.getProperty("alpha").setValue(0);
-		newItem.getProperty("alpha").animateValue(1, 0.3, InterpolationTypes.INVERTED_QUADRATIC, 0);
+		newItem.getProperty("alpha").animateValue(1, 0.3, InterpolationTypes.INVERTED_QUADRATIC, 0.15);
 		newItem.getProperty("scaleX").setValue(0.5);
-		newItem.getProperty("scaleX").animateValue(1, 0.3, InterpolationTypes.INVERTED_QUADRATIC, 0);
+		newItem.getProperty("scaleX").animateValue(1, 0.3, InterpolationTypes.INVERTED_QUADRATIC, 0.15);
 		newItem.getProperty("scaleY").setValue(0.5);
-		newItem.getProperty("scaleY").animateValue(1, 0.3, InterpolationTypes.INVERTED_QUADRATIC, 0);
+		newItem.getProperty("scaleY").animateValue(1, 0.3, InterpolationTypes.INVERTED_QUADRATIC, 0.15);
 		newItem.getProperty("display").startUpdating();
 		newItem.getProperty("display").update();
 		
@@ -167,7 +174,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		if(selectedItem >= minItem && selectedItem <= maxItem) {
 			this._interactiveItemIndex = selectedItem;
 			this._changeShowingItem(this._interactiveItemIndex, 0);
-			this._options[this._interactiveItemIndex].stopMoving();
+			this._options[this._interactiveItemIndex].startMoving();
 		}
 		else {
 			this._interactiveItemIndex = -1;

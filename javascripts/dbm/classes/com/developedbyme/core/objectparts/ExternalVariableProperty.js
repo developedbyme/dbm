@@ -10,6 +10,9 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
 	
 	//Error report
+	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
@@ -51,6 +54,8 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	 */
 	objectFunctions._performSetValue = function(aValue) {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performSetValue");
+		//console.log(aValue);
+		
 		if(this._externalObject === null) {
 			this._value = aValue;
 			return;
@@ -79,9 +84,10 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 	 */
 	objectFunctions.setupExternalObject = function(aObject, aVariableName) {
 		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::setupExternalObject");
+		//console.log(aObject, aVariableName);
 		
 		if(this._externalObject !== null) {
-			//METODO: warning message
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.MINOR, this, "setupExternalObject", "Property already has external object. Replacing.");
 			this.removeExternalObject();
 		}
 		
@@ -90,7 +96,7 @@ dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty",
 		this._externalObject = aObject;
 		this._externalVariableName = aVariableName;
 		
-		if(startValue !== null) {
+		if(VariableAliases.isSet(startValue)) {
 			this._performSetValue(startValue);
 		}
 		else {

@@ -33,7 +33,7 @@ dbm.registerClass("com.developedbyme.flow.nodes.math.CircularDistanceNode", "com
 	};
 	
 	staticFunctions._update = function(aInputValue, aBaseValue, aLength) {
-		console.log("com.developedbyme.flow.nodes.math.CircularDistanceNode::_update");
+		//console.log("com.developedbyme.flow.nodes.math.CircularDistanceNode::_update");
 		
 		var inputValue = NumberFunctions.floatModulus(aInputValue, aLength);
 		var baseValue = NumberFunctions.floatModulus(aBaseValue, aLength);

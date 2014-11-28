@@ -3,11 +3,23 @@ dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme
 	//console.log("com.developedbyme.core.BaseObject");
 	//"use strict";
 	
+	//Self reference
 	var StaticImage = dbm.importClass("com.developedbyme.gui.images.StaticImage");
 	
+	//Error report
+	
+	//Dependencies
 	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
+	
+	//Utils
+	
+	//Constants
 	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
 	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("com.developedbyme.gui.images.StaticImage::_init");
 		
@@ -20,6 +32,8 @@ dbm.registerClass("com.developedbyme.gui.images.StaticImage", "com.developedbyme
 	};
 	
 	objectFunctions.setElement = function(aElement) {
+		//console.log("com.developedbyme.gui.images.StaticImage::setElement");
+		//console.log(aElement, aElement.src);
 		
 		this.superCall(aElement);
 		
