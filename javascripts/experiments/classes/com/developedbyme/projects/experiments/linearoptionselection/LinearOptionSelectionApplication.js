@@ -58,6 +58,9 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		
 		this._spacing = this.createProperty("spacing", 330);
 		
+		this.addCssLink("../styles/utils/display.css");
+		this.addCssLink("../styles/experiments/linearOptionSelection/main.css");
+		
 		//this._assetsLoader.addAssetsByPath();
 		this._addStartFunction(this._createPage, []);
 		
@@ -65,8 +68,6 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 	};
 	
 	objectFunctions._createPage = function() {
-		
-		dbm.getDocument().body.style["overflow"] = "hidden";
 		
 		//Center of page
 		var windowSizeNode = (new WindowSizeNode()).init();
@@ -78,10 +79,20 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		this._centerX.connectInput(scaleXNode.getProperty("outputValue"));
 		this._centerY.connectInput(scaleYNode.getProperty("outputValue"));
 		
-		this._addButton = BaseButton.createDiv(dbm.getDocument(), true, {"style": "position: absolute; left: 0px; top: 0px; width: 280px; height: 70px; border: 1px solid #000000;"});
+		this._addButton = BaseButton.createDiv(dbm.getDocument(), true, {"class": "nextButton", "style": "position: absolute; left: 0px; top: 0px;"});
 		this._addButton.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.CLICK, CallFunctionCommand.createCommand(this, this._createNewOption, []));
 		this._addButton.setElementAsTransformed();
 		this._addButton.activate();
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		var buttonContent = htmlCreator.createDiv({"class": "content nonInteractive"},
+			htmlCreator.createDiv({"class": "icon"}),
+			htmlCreator.createDiv({"class": "text"},
+				htmlCreator.createDiv({"class": "title"}, htmlCreator.createText("Select")),
+				htmlCreator.createDiv({"class": "description"}, htmlCreator.createText("and move to next item"))
+			)
+		);
+		this._addButton.getElement().appendChild(buttonContent);
 		
 		var buttonMultipledOffsetNode = MultiplicationNode.create(this._positionOffset, this._spacing);
 		var buttonCenteredPositionNode = AdditionNode.create(this._centerX, buttonMultipledOffsetNode.getProperty("outputValue"));
@@ -125,8 +136,8 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 			"../assets/copyrightMaterial/car_640x360/car.002.jpg",
 			"../assets/copyrightMaterial/car_640x360/car.003.jpg",
 			"../assets/copyrightMaterial/car_640x360/car.004.jpg",
-			"../assets/copyrightMaterial/car_640x360/car.001.jpg",
-			"../assets/copyrightMaterial/car_640x360/car.002.jpg"
+			"../assets/copyrightMaterial/car_640x360/car.005.jpg",
+			"../assets/copyrightMaterial/car_640x360/car.006.jpg"
 		]);
 		newItem.setElementAsTransformed();
 		newItem.enableAlpha();

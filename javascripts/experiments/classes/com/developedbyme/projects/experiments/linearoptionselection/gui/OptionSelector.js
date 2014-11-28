@@ -69,7 +69,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 	objectFunctions._createOption = function(aData, aIndex) {
 		//console.log("com.developedbyme.projects.experiments.linearoptionselection.gui.OptionSelector::_createOption");
 		
-		var newItem = DisplayBaseObject.createDiv(this.getElement(), true, {"style": "position: absolute; left: 0px; top: 0px; pointer-events: none; -moz-user-select: none; -webkit-user-select: none; user-select: none;"});
+		var newItem = DisplayBaseObject.createDiv(this.getElement(), true, {"class": "nonInteractive", "style": "position: absolute; left: 0px; top: 0px;"});
 		newItem.setElementAsTransformed();
 		newItem.setElementAsSized();
 		newItem.enableAlpha();
@@ -95,7 +95,7 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		newItem.getProperty("display").startUpdating();
 		newItem.getProperty("display").update();
 		
-		var image = StaticImage.create(newItem.getElement(), true, aData, {"style": "width: 320px; height: 180px; pointer-events: none; -moz-user-select: none; -webkit-user-select: none; user-select: none;"});
+		var image = StaticImage.create(newItem.getElement(), true, aData, {"style": "width: 320px; height: 180px;"});
 		newItem.addDestroyableObject(image);
 		
 		return newItem;
