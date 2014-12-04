@@ -18,20 +18,28 @@
 			
 			this.singletons = new Object();
 			this.xmlNamespaces = new Object();
+			
+			this._baseFolders = new Object();
 			this._specificClassesFolders = new Object();
+			
 			this._filesToLoad = new Array();
 			this._currentFile = -1;
 			this._currentScriptTag = null;
 			this._htmlLoaded = false;
+			
 			this._startFunctions = new Array();
 			this._classManager = null;
+			
 			this._window = null;
 			this._document = null;
+			
 			this._javascriptsFolder = null;
 			this._classesFolder = null;
 			this._javascriptVersion = null;
+			
 			this.tempObject = null;
 			this.tempClassFunction = null;
+			
 			this._startupSeed = new Array();
 			this._startupSeed.push(Date.now());
 			
@@ -75,11 +83,22 @@
 			this._javascriptsFolder = aJavascriptsFolder;
 			this._classesFolder = aClassesFolder;
 			
+			this._baseFolders["default"] = this._javascriptsFolder;
+			
 			return this;
 		};
 		
-		dbmObject.addSpecificClassesFolder = function(aClassPathPrefix, aClassesFolder) {
-			this._specificClassesFolders[aClassPathPrefix] = aClassesFolder;
+		dbmObject.addSpecificClassesFolder = function(aClassPathPrefix, aClassesFolder, aBaseFolder) {
+			//console.log("dbm.addSpecificClassesFolder");
+			//console.log(aClassPathPrefix, aClassesFolder, aBaseFolder);
+			
+			if(aBaseFolder === null || aBaseFolder === undefined) {
+				aBaseFolder = "default";
+			}
+			
+			var basePath = (aBaseFolder !== "none") ? this._baseFolders[aBaseFolder] : "";
+			
+			this._specificClassesFolders[aClassPathPrefix] = basePath + "/" + aClassesFolder;
 			
 			return this;
 		};
@@ -137,7 +156,10 @@
 		};
 		
 		dbmObject.getFileForClass = function(aClassPath) {
-			var classesFolder = this._classesFolder;
+			//console.log("dbm.getFileForClass");
+			
+			var classesFolder = this._javascriptsFolder + "/" + this._classesFolder;
+			
 			for(var objectName in this._specificClassesFolders) {
 				if(aClassPath.indexOf(objectName) === 0) {
 					classesFolder = this._specificClassesFolders[objectName];
@@ -145,7 +167,7 @@
 				}
 			}
 			
-			var fileName = this._javascriptsFolder + "/" + classesFolder + "/" + aClassPath.split(".").join("/") + ".js";
+			var fileName = classesFolder + "/" + aClassPath.split(".").join("/") + ".js";
 			return fileName;
 		};
 		
