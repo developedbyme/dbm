@@ -58,7 +58,6 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		
 		this._spacing = this.createProperty("spacing", 330);
 		
-		this.addCssLink("../styles/utils/display.css");
 		this.addCssLink("../styles/experiments/linearOptionSelection/main.css");
 		
 		//this._assetsLoader.addAssetsByPath();
@@ -68,6 +67,8 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 	};
 	
 	objectFunctions._createPage = function() {
+		
+		//document.querySelector("title").innerHTML = "Selection";
 		
 		//Center of page
 		var windowSizeNode = (new WindowSizeNode()).init();
@@ -174,15 +175,17 @@ dbm.registerClass("com.developedbyme.projects.experiments.linearoptionselection.
 		
 		var touchPoint = this._touchDetector.getSelectionPoint();
 		var x = touchPoint.getProperty("startX").getValue();
+		var y = touchPoint.getProperty("startY").getValue();
 		
 		var centerX = this._centerX.getValue();
+		var centerY = this._centerY.getValue();
 		var spacing = this._spacing.getValue();
 		var selectedItem = Math.round(this._touchStartItemIndex+(x-centerX)/spacing);
 		
 		var minItem = 0;
 		var maxItem = this._options.length-1;
 		
-		if(selectedItem >= minItem && selectedItem <= maxItem) {
+		if(selectedItem >= minItem && selectedItem <= maxItem && (Math.abs(y-centerY) < 90 || selectedItem === this._showingItemIndex)) {
 			this._interactiveItemIndex = selectedItem;
 			this._changeShowingItem(this._interactiveItemIndex, 0);
 			this._options[this._interactiveItemIndex].startMoving();

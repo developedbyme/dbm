@@ -21,8 +21,7 @@ html, body {
 	left: 6px;
 	width: 48px;
 	height: 48px;
-	/* MENOTE: uncomment when proper credits are given */
-	/*background: url("../../../images/icons/gentleface/white/round_checkmark_icon&48.png");*/
+	background: url("../../../images/icons/gentleface/white/round_checkmark_icon&48.png");
 }
 
 .nextButton .text {

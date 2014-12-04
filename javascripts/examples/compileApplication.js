@@ -34,7 +34,7 @@ dbm.runTempFunction(function() {
 		compiler.setNumberOfFilesBeforeImport(3);
 		compiler.setNotice("/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */");
 		compiler.addFiles("javascripts/dbm/dbm.js", "javascripts/dbm/setup/defaultDocumentSetup.js", "javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js", "javascripts/dbm/setup/defaultSetup.js");
-		compiler.addScript(SnippetsGenerator.createApplicationStart("com.developedbyme.projects.examples.thirdparty.google.maps.CreateStyledMapApplication"));
+		compiler.addScript(SnippetsGenerator.createApplicationStart("com.developedbyme.projects.experiments.linearoptionselection.LinearOptionSelectionApplication"));
 		compiler.addFiles("javascripts/dbm/setup/compiledStart.js");
 		compiler._loader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(compiler, compiler.compileFiles, []));
 		compiler.load();

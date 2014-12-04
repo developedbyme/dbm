@@ -43,6 +43,7 @@ dbm.registerClass("com.developedbyme.adobeextendscript.projects.tools.illustrato
 	objectFunctions._createPage = function() {
 		console.log("com.developedbyme.adobeextendscript.projects.tools.illustrator.ExportActiveDocumentApplication::_createPage");
 		
+		//METODO: solve CMYK
 		this._workDocument = IllustratorDocument.create(app.activeDocument);
 		
 		var exportObject = dbm.singletons.dbmXmlObjectEncoder.createExportDataObject("illustratorDocument");
