@@ -1,13 +1,26 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("com.developedbyme.core.data.geometry.mesh.Mesh", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+/**
+ * A mesh of faces.
+ */
+dbm.registerClass("com.developedbyme.core.data.geometry.mesh.Mesh", "com.developedbyme.core.data.points.PointSet", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.geometry.mesh.Mesh");
 	
+	//Self reference
 	var Mesh = dbm.importClass("com.developedbyme.core.data.geometry.mesh.Mesh");
 	
-	var Face = dbm.importClass("com.developedbyme.core.data.geometry.mesh.Face");
+	//Error report
 	
+	//Dependencies
+	var Face = dbm.importClass("com.developedbyme.core.data.geometry.mesh.Face");
+	var Edge = dbm.importClass("com.developedbyme.core.data.geometry.mesh.Edge");
+	
+	//Utils
 	var TypedArrayFunctions = dbm.importClass("com.developedbyme.utils.native.typedarray.TypedArrayFunctions");
-
+	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	
+	//Constants
+	
+	
 	/**
 	 * Constructor
 	 */
@@ -17,42 +30,59 @@ dbm.registerClass("com.developedbyme.core.data.geometry.mesh.Mesh", "com.develop
 		this.superCall();
 		
 		this.faces = new Array();
+		this._edges = new Array();
 		
-		this.points = new Array();
-		this.uvPoints = new Array();
+		this.setType = "mesh";
 		
 		return this;
 	};
 	
-	objectFunctions.getNumberOfPoints = function() {
-		return this.points.length/3;
+	objectFunctions.getEdge = function(aVertexIndex1, aVertexIndex2) {
+		
+		var firstIndex;
+		var secondIndex;
+		if(aVertex1 < aVertex2) {
+			firstIndex = aVertex1;
+			secondIndex = aVertex2-aVertex1-1;
+		}
+		else {
+			firstIndex = aVertex2;
+			secondIndex = aVertex1-aVertex2-1;
+		}
+		
+		var firstArray;
+		if(VariableAliases.isSet(this._edges[firstIndex])) {
+			firstArray = this._edges[firstIndex];
+		}
+		else {
+			firstArray = new Array();
+			this._edges[firstIndex] = firstArray;
+		}
+		
+		var returnValue = firstArray[secondIndex];
+		if(!VariableAliases.isSet(returnValue)) {
+			returnValue = Edge.create();
+			firstArray[secondIndex] = returnValue;
+		}
+		
+		return returnValue;
 	};
 	
-	objectFunctions.createVertex = function(aX, aY, aZ, aU, aV) {
-		var returnIndex = this.points.length/3;
-		this.points.push(aX, aY, aZ);
-		this.uvPoints.push(aU, aV);
-		return returnIndex;
+	objectFunctions.addFaceToEdge = function(aFace, aVertexIndex1, aVertexIndex2) {
+		this.getEdge(aVertexIndex1, aVertexIndex2).addFace(aFace);
 	};
 	
-	objectFunctions.createVertexes = function(aPoints, aUvPoints) {
+	objectFunctions.createVertecies = function(aPoints) {
 		var currentArray = aPoints;
-		var currentArrayLength = currentArray.length/3;
+		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			var currentPointIndex = 3*i;
-			this.points.push(currentArray[currentPointIndex], currentArray[currentPointIndex+1], currentArray[currentPointIndex+2]);
-			var currentUvPointIndex = 2*i;
-			if(aUvPoints.length > currentUvPointIndex+1) {
-				this.uvPoints.push(currentArray[currentUvPointIndex], currentArray[currentUvPointIndex+1]);
-			}
-			else {
-				this.uvPoints.push(0, 0);
-			}
+			var currentPointIndex = i;
+			this.pointsArray.push(currentArray[currentPointIndex]);
 		}
 	};
 	
-	objectFunctions.createFace = function(aVertex1, aVertex2, aVertex3) {
-		var newFace = Face.create(this, aVertex1, aVertex2, aVertex3);
+	objectFunctions.createFace = function(aVertexIndex1, aVertexIndex2, aVertexIndex3) {
+		var newFace = Face.create(this, aVertexIndex1, aVertexIndex2, aVertexIndex3);
 		this.faces.push(newFace);
 		return newFace;
 	};

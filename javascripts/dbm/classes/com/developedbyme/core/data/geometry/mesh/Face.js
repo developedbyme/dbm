@@ -1,9 +1,22 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * A face in a mesh.
+ */
 dbm.registerClass("com.developedbyme.core.data.geometry.mesh.Face", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("com.developedbyme.core.data.geometry.mesh.Face");
 	
+	//Self reference
 	var Face = dbm.importClass("com.developedbyme.core.data.geometry.mesh.Face");
-
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
 	/**
 	 * Constructor
 	 */
@@ -21,14 +34,20 @@ dbm.registerClass("com.developedbyme.core.data.geometry.mesh.Face", "com.develop
 		return this;
 	};
 	
-	
 	staticFunctions.create = function(aParentMesh, aVertex1, aVertex2, aVertex3) {
 		//console.log("com.developedbyme.core.data.geometry.mesh.Face::create (static)");
 		var newFace = (new Face()).init();
+		
 		newFace.parentMesh = aParentMesh;
 		newFace.vertex1 = aVertex1;
 		newFace.vertex2 = aVertex2;
 		newFace.vertex3 = aVertex3;
+		
+		aParentMesh.addFaceToEdge(newFace, aVertex1, aVertex2);
+		aParentMesh.addFaceToEdge(newFace, aVertex2, aVertex3);
+		aParentMesh.addFaceToEdge(newFace, aVertex3, aVertex1);
+		
 		return newFace;
 	};
+	
 });
