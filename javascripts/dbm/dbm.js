@@ -83,7 +83,13 @@
 			this._javascriptsFolder = aJavascriptsFolder;
 			this._classesFolder = aClassesFolder;
 			
-			this._baseFolders["default"] = this._javascriptsFolder;
+			this.addBaseFolder("default", this._javascriptsFolder);
+			
+			return this;
+		};
+		
+		dbmObject.addBaseFolder = function(aName, aPath) {
+			this._baseFolders[aName] = aPath;
 			
 			return this;
 		};

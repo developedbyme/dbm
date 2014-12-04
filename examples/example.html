@@ -3,16 +3,17 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>DBM Example</title>
-		<link rel="stylesheet" href="../styles/dbm/main.css" />
+		<link rel="stylesheet" href="../styles/all.css" />
+		
 		<script type="application/javascript" src="../javascripts/dbm/dbm.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/classes/dbm/core/globalobjects/classmanager/ClassManager.js"></script>
 		<script type="application/javascript">
 			dbm.setup(window, document, "../javascripts", "classes");
-			dbm.addSpecificClassesFolder("dbm.broadcast", "broadcast/classes");
-			dbm.addSpecificClassesFolder("dbm.projects.experiments", "experiments/classes");
-			dbm.addSpecificClassesFolder("dbm.projects.tests", "tests/classes");
-			dbm.addSpecificClassesFolder("dbm.projects.tools", "tools/classes");
+			dbm.addBaseFolder("dbm", "../javascripts");
+			
+			dbm.addLibrary("CodeMirror", ["../javascripts/libraries/codemirror/lib/codemirror.js", "../javascripts/libraries/codemirror/mode/javascript/javascript.js"], "CodeMirror", ["../javascripts/libraries/codemirror/lib/codemirror.css"]);
 		</script>
-		<script type="application/javascript" src="../javascripts/dbm/classes/dbm/core/globalobjects/classmanager/ClassManager.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/setup/defaultPathsSetup.js"></script>
 		<script type="application/javascript" src="../javascripts/dbm/setup/defaultSetup.js"></script>
 		<script type="application/javascript" src="../javascripts/dbm/setup/defaultStart.js"></script>
 		<script type="application/javascript" src="../javascripts/dbm/examples/exampleRunner.js"></script>

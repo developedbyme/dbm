@@ -1,6 +1,6 @@
 dbm.runTempFunction(function() {
 	
-	dbm.addSpecificClassesFolder("dbm", "dbm/classes");
+	dbm.addSpecificClassesFolder("dbm", "dbm/classes", "dbm");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
 	var UpdateManager = dbm.importClass("dbm.core.globalobjects.updatemanager.UpdateManager");
