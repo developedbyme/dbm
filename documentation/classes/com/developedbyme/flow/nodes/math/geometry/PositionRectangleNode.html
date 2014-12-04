@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>PositionRectangleNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.math.geometry.PositionRectangleNode</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,31 +38,31 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.data.points.Point" href="../../../../core/data/points/Point.html">Point</a>, <a title="com.developedbyme.core.data.geometry.Rectangle" href="../../../../core/data/geometry/Rectangle.html">Rectangle</a>, <a title="com.developedbyme.utils.math.geometry.RectangleFunctions" href="../../../../utils/math/geometry/RectangleFunctions.html">RectangleFunctions</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.data.points.Point" href="../../../../core/data/points/Point.html">Point</a>, <a title="dbm.core.data.geometry.Rectangle" href="../../../../core/data/geometry/Rectangle.html">Rectangle</a>, <a title="dbm.utils.math.geometry.RectangleFunctions" href="../../../../utils/math/geometry/RectangleFunctions.html">RectangleFunctions</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var PositionRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode");</div>
+									<div class="code">var PositionRectangleNode = dbm.importClass("dbm.flow.nodes.math.geometry.PositionRectangleNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.math.geometry.PositionRectangleNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.math.geometry.PositionRectangleNode");
 	//"use strict";
 	
-	var PositionRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode");
+	var PositionRectangleNode = dbm.importClass("dbm.flow.nodes.math.geometry.PositionRectangleNode");
 	
-	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var Rectangle = dbm.importClass("dbm.core.data.geometry.Rectangle");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
 	
-	var RectangleFunctions = dbm.importClass("com.developedbyme.utils.math.geometry.RectangleFunctions");
+	var RectangleFunctions = dbm.importClass("dbm.utils.math.geometry.RectangleFunctions");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode::_init");
+		//console.log("dbm.flow.nodes.math.geometry.PositionRectangleNode::_init");
 		
 		this.superCall();
 		
@@ -84,7 +84,7 @@
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode::_update");
+		//console.log("dbm.flow.nodes.math.geometry.PositionRectangleNode::_update");
 		
 		var outputRectangle = this._outputRectangle.getValueWithoutFlow();
 		
@@ -114,7 +114,7 @@
 	};
 	
 	staticFunctions.create = function(aOuterRectangle, aInnerRectangle, aOuterParameterX, aOuterParameterY, aInnerParameterX, aInnerParameterY, aOffsetX, aOffsetY) {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode::create");
+		//console.log("dbm.flow.nodes.math.geometry.PositionRectangleNode::create");
 		//console.log(aOuterRectangle, aInnerRectangle, aOuterParameterX, aOuterParameterY, aInnerParameterX, aInnerParameterY, aOffsetX, aOffsetY);
 		
 		var newNode = (new ClassReference()).init();
@@ -163,7 +163,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode::_init");
+		//console.log("dbm.flow.nodes.math.geometry.PositionRectangleNode::_init");
 		
 		this.superCall();
 		
@@ -206,7 +206,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode::_update");
+		//console.log("dbm.flow.nodes.math.geometry.PositionRectangleNode::_update");
 		
 		var outputRectangle = this._outputRectangle.getValueWithoutFlow();
 		
@@ -290,7 +290,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function(aOuterRectangle, aInnerRectangle, aOuterParameterX, aOuterParameterY, aInnerParameterX, aInnerParameterY, aOffsetX, aOffsetY) {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode::create");
+		//console.log("dbm.flow.nodes.math.geometry.PositionRectangleNode::create");
 		//console.log(aOuterRectangle, aInnerRectangle, aOuterParameterX, aOuterParameterY, aInnerParameterX, aInnerParameterY, aOffsetX, aOffsetY);
 		
 		var newNode = (new ClassReference()).init();

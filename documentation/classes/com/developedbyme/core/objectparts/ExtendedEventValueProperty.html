@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ExtendedEventValueProperty</h1>
-					<div class="classPath">com.developedbyme.core.objectparts.ExtendedEventValueProperty</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.objectparts.ExtendedEventProperty" href="ExtendedEventProperty.html">ExtendedEventProperty</a> &gt; <a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.objectparts.ExtendedEventValueProperty</div>
+					<div class="classInheritance"><a title="dbm.core.objectparts.ExtendedEventProperty" href="ExtendedEventProperty.html">ExtendedEventProperty</a> &gt; <a title="dbm.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A property that sends out to value to an extended when changed.</div>
 						<div class="spacedContent">
@@ -38,42 +38,42 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../extendedevent/ExtendedEventController.html">ExtendedEventController</a>, <a title="com.developedbyme.constants.extendedevents.GenericExtendedEventIds" href="../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.ExtendedEventController" href="../extendedevent/ExtendedEventController.html">ExtendedEventController</a>, <a title="dbm.constants.extendedevents.GenericExtendedEventIds" href="../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="dbm.core.objectparts.Property" href="Property.html">Property</a>, <a title="dbm.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ExtendedEventValueProperty = dbm.importClass("com.developedbyme.core.objectparts.ExtendedEventValueProperty");</div>
+									<div class="code">var ExtendedEventValueProperty = dbm.importClass("dbm.core.objectparts.ExtendedEventValueProperty");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventValueProperty", "com.developedbyme.core.objectparts.ExtendedEventProperty", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.objectparts.ExtendedEventValueProperty");
+									<div class="code">dbm.registerClass("dbm.core.objectparts.ExtendedEventValueProperty", "dbm.core.objectparts.ExtendedEventProperty", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.ExtendedEventValueProperty");
 	//"use strict";
 	
 	//Self reference
-	var ExtendedEventValueProperty = dbm.importClass("com.developedbyme.core.objectparts.ExtendedEventValueProperty");
+	var ExtendedEventValueProperty = dbm.importClass("dbm.core.objectparts.ExtendedEventValueProperty");
 	
 	//Error report
 	
 	//Dependencies
-	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
-	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	var ExtendedEventController = dbm.importClass("dbm.core.extendedevent.ExtendedEventController");
+	var Property = dbm.importClass("dbm.core.objectparts.Property");
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventValueProperty::_init");
+		//console.log("dbm.core.objectparts.ExtendedEventValueProperty::_init");
 		
 		this.superCall();
 		
@@ -96,7 +96,7 @@
 	};
 	
 	objectFunctions._performValueChangeExtendedEvent = function(aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventValueProperty::_performValueChangeExtendedEvent");
+		//console.log("dbm.core.objectparts.ExtendedEventValueProperty::_performValueChangeExtendedEvent");
 		if(this._extendedEvent.hasEvent(this._extendedEventName)) {
 			this._extendedEvent.perform(this._extendedEventName, aValue);
 		}
@@ -156,7 +156,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventValueProperty::_init");
+		//console.log("dbm.core.objectparts.ExtendedEventValueProperty::_init");
 		
 		this.superCall();
 		
@@ -214,7 +214,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._performValueChangeExtendedEvent = function(aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventValueProperty::_performValueChangeExtendedEvent");
+		//console.log("dbm.core.objectparts.ExtendedEventValueProperty::_performValueChangeExtendedEvent");
 		if(this._extendedEvent.hasEvent(this._extendedEventName)) {
 			this._extendedEvent.perform(this._extendedEventName, aValue);
 		}

@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CreateArcLengthCurveNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.curves.CreateArcLengthCurveNode</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,32 +38,32 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.data.curves.BezierCurve" href="../../../core/data/curves/BezierCurve.html">BezierCurve</a>, <a title="com.developedbyme.core.data.points.Point" href="../../../core/data/points/Point.html">Point</a>, <a title="com.developedbyme.utils.math.VectorFunctions" href="../../../utils/math/VectorFunctions.html">VectorFunctions</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.data.curves.BezierCurve" href="../../../core/data/curves/BezierCurve.html">BezierCurve</a>, <a title="dbm.core.data.points.Point" href="../../../core/data/points/Point.html">Point</a>, <a title="dbm.utils.math.VectorFunctions" href="../../../utils/math/VectorFunctions.html">VectorFunctions</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CreateArcLengthCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode");</div>
+									<div class="code">var CreateArcLengthCurveNode = dbm.importClass("dbm.flow.nodes.curves.CreateArcLengthCurveNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.curves.CreateArcLengthCurveNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode");
 	
 	//Self reference
-	var CreateArcLengthCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode");
+	var CreateArcLengthCurveNode = dbm.importClass("dbm.flow.nodes.curves.CreateArcLengthCurveNode");
 	
 	//Error report
 	
 	//Dependencies
-	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var BezierCurve = dbm.importClass("dbm.core.data.curves.BezierCurve");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
 	
 	//Utils
-	var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");
+	var VectorFunctions = dbm.importClass("dbm.utils.math.VectorFunctions");
 	
 	//Constants
 	
@@ -72,7 +72,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode::_init");
+		//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode::_init");
 		
 		this.superCall();
 		
@@ -91,7 +91,7 @@
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode::_update");
+		//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode::_update");
 		
 		var inputCurve = this._inputCurve.getValueWithoutFlow();
 		var startParameter = this._startParameter.getValueWithoutFlow();
@@ -153,7 +153,7 @@
 	};
 	
 	staticFunctions.create = function(aInputCurve, aStartParameter, aEndParameter, aStepLength) {
-		//console.log("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode::create");
+		//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode::create");
 		//console.log(aInputPoints, aIsRound);
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("inputCurve", aInputCurve);
@@ -197,7 +197,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode::_init");
+		//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode::_init");
 		
 		this.superCall();
 		
@@ -237,7 +237,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode::_update");
+		//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode::_update");
 		
 		var inputCurve = this._inputCurve.getValueWithoutFlow();
 		var startParameter = this._startParameter.getValueWithoutFlow();
@@ -353,7 +353,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function(aInputCurve, aStartParameter, aEndParameter, aStepLength) {
-		//console.log("com.developedbyme.flow.nodes.curves.CreateArcLengthCurveNode::create");
+		//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode::create");
 		//console.log(aInputPoints, aIsRound);
 		var newNode = (new ClassReference()).init();
 		newNode.setPropertyInputWithoutNull("inputCurve", aInputCurve);

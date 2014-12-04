@@ -1,11 +1,11 @@
 dbm.runTempFunction(function() {
 	
-	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
-	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
-	var PrintTextNode = dbm.importClass("com.developedbyme.flow.nodes.display.PrintTextNode");
-	var IterativeFlowGroup = dbm.importClass("com.developedbyme.flow.IterativeFlowGroup");
-	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
-	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
+	var PropertiesHolder = dbm.importClass("dbm.flow.PropertiesHolder");
+	var MultiplicationNode = dbm.importClass("dbm.flow.nodes.math.MultiplicationNode");
+	var PrintTextNode = dbm.importClass("dbm.flow.nodes.display.PrintTextNode");
+	var IterativeFlowGroup = dbm.importClass("dbm.flow.IterativeFlowGroup");
+	var MousePositionNode = dbm.importClass("dbm.flow.nodes.userinput.MousePositionNode");
+	var AdditionNode = dbm.importClass("dbm.flow.nodes.math.AdditionNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

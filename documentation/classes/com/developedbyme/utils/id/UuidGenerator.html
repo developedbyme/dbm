@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>UuidGenerator</h1>
-					<div class="classPath">com.developedbyme.utils.id.UuidGenerator</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.id.UuidGenerator</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Generates UUID</div>
 						<div class="spacedContent">
@@ -38,31 +38,31 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.random.MersenneTwister" href="../random/MersenneTwister.html">MersenneTwister</a>, <a title="com.developedbyme.utils.native.number.NumberFunctions" href="../native/number/NumberFunctions.html">NumberFunctions</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.random.MersenneTwister" href="../random/MersenneTwister.html">MersenneTwister</a>, <a title="dbm.utils.native.number.NumberFunctions" href="../native/number/NumberFunctions.html">NumberFunctions</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var UuidGenerator = dbm.importClass("com.developedbyme.utils.id.UuidGenerator");</div>
+									<div class="code">var UuidGenerator = dbm.importClass("dbm.utils.id.UuidGenerator");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.id.UuidGenerator", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.id.UuidGenerator");
+									<div class="code">dbm.registerClass("dbm.utils.id.UuidGenerator", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.id.UuidGenerator");
 	
 	//Self reference
-	var UuidGenerator = dbm.importClass("com.developedbyme.utils.id.UuidGenerator");
+	var UuidGenerator = dbm.importClass("dbm.utils.id.UuidGenerator");
 	
 	//Error report
 	
 	//Dependencies
-	var MersenneTwister = dbm.importClass("com.developedbyme.utils.random.MersenneTwister");
+	var MersenneTwister = dbm.importClass("dbm.utils.random.MersenneTwister");
 	
 	//Utils
-	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
+	var NumberFunctions = dbm.importClass("dbm.utils.native.number.NumberFunctions");
 	
 	//Constants
 	
@@ -70,7 +70,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.id.UuidGenerator");
+		//console.log("dbm.utils.id.UuidGenerator");
 		
 		this.randomGenerator = (new MersenneTwister()).init();
 		
@@ -155,7 +155,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.id.UuidGenerator");
+		//console.log("dbm.utils.id.UuidGenerator");
 		
 		this.randomGenerator = (new MersenneTwister()).init();
 		

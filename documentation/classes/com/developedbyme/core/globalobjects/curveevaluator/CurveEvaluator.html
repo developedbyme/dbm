@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CurveEvaluator</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.curveevaluator.CurveEvaluator</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Global class that evaluates curves</div>
 						<div class="spacedContent">
@@ -38,40 +38,40 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d" href="creators/CreateBezierCurveFromPoints2d.html">CreateBezierCurveFromPoints2d</a>, <a title="com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d" href="creators/CreateMultiSegmentBezierCurveFromPoints2d.html">CreateMultiSegmentBezierCurveFromPoints2d</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ExtrapolationTypes" href="../../../constants/ExtrapolationTypes.html">ExtrapolationTypes</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d" href="creators/CreateBezierCurveFromPoints2d.html">CreateBezierCurveFromPoints2d</a>, <a title="dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d" href="creators/CreateMultiSegmentBezierCurveFromPoints2d.html">CreateMultiSegmentBezierCurveFromPoints2d</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ExtrapolationTypes" href="../../../constants/ExtrapolationTypes.html">ExtrapolationTypes</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CurveEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator");</div>
+									<div class="code">var CurveEvaluator = dbm.importClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator");
 	
-	var CurveEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator");
+	var CurveEvaluator = dbm.importClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var CreateBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
-	var CreateMultiSegmentBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
+	var CreateBezierCurveFromPoints2d = dbm.importClass("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
+	var CreateMultiSegmentBezierCurveFromPoints2d = dbm.importClass("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
 	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var ExtrapolationTypes = dbm.importClass("com.developedbyme.constants.ExtrapolationTypes");
+	var ExtrapolationTypes = dbm.importClass("dbm.constants.ExtrapolationTypes");
 	
 	dbm.setClassAsSingleton("dbmCurveEvaluator");
 	
 	staticFunctions.DEFAULT_EXACTNESS = 0.01;
 		
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::_init");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::_init");
 		
 		//METODO: switch this to qualifiers instead of interface
 		this._evaluatorsArray = new Array();
@@ -82,13 +82,13 @@
 	};
 	
 	objectFunctions.addEvaluator = function(aEvaluator) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::addEvaluator");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::addEvaluator");
 		//console.log(aEvaluator);
 		this._evaluatorsArray.push(aEvaluator);
 	};
 	
 	objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPartOfCurve");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::getPartOfCurve");
 		//console.log(aPointSet, this._evaluatorsArray);
 		
 		var isForward = (aEndParameter &gt;= aStartParameter);
@@ -113,7 +113,7 @@
 	};
 	
 	objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPointOnBezierSegment3d");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::getPointOnBezierSegment3d");
 		//console.log(aPointsArray, aParameter, aOutputPoint);
 		var curveDegree = aPointsArray.length-1;
 		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
@@ -154,7 +154,7 @@
 	};
 	
 	objectFunctions.getTangentOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator.getTangentOnBezierSegment2d");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator.getTangentOnBezierSegment2d");
 		
 		var curveDegree = aPointsArray.length-1;
 		
@@ -446,7 +446,7 @@
 	 * @param	aReturnCurve	The curve that is created.
 	 */
 	objectFunctions.createMultiSegmentBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aIsRound) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator.createMultiSegmentBezierCurveFromPoints2d");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator.createMultiSegmentBezierCurveFromPoints2d");
 		if(aReturnCurve.getCurveDegree() !== 3) {
 			//METODO
 			//return;
@@ -458,7 +458,7 @@
 	};
 	
 	objectFunctions.recycleCurve = function(aCurve) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::recycleCurve");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::recycleCurve");
 		
 		this._recyclePointsArray.push(aCurve.pointsArray);
 	};
@@ -497,7 +497,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::_init");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::_init");
 		
 		//METODO: switch this to qualifiers instead of interface
 		this._evaluatorsArray = new Array();
@@ -529,7 +529,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addEvaluator = function(aEvaluator) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::addEvaluator");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::addEvaluator");
 		//console.log(aEvaluator);
 		this._evaluatorsArray.push(aEvaluator);
 	}</div>
@@ -556,7 +556,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPartOfCurve");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::getPartOfCurve");
 		//console.log(aPointSet, this._evaluatorsArray);
 		
 		var isForward = (aEndParameter &gt;= aStartParameter);
@@ -602,7 +602,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::getPointOnBezierSegment3d");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::getPointOnBezierSegment3d");
 		//console.log(aPointsArray, aParameter, aOutputPoint);
 		var curveDegree = aPointsArray.length-1;
 		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
@@ -685,7 +685,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getTangentOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator.getTangentOnBezierSegment2d");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator.getTangentOnBezierSegment2d");
 		
 		var curveDegree = aPointsArray.length-1;
 		
@@ -1098,7 +1098,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createMultiSegmentBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aIsRound) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator.createMultiSegmentBezierCurveFromPoints2d");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator.createMultiSegmentBezierCurveFromPoints2d");
 		if(aReturnCurve.getCurveDegree() !== 3) {
 			//METODO
 			//return;
@@ -1131,7 +1131,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.recycleCurve = function(aCurve) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator::recycleCurve");
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::recycleCurve");
 		
 		this._recyclePointsArray.push(aCurve.pointsArray);
 	}</div>

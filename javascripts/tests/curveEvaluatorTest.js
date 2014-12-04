@@ -1,8 +1,8 @@
 dbm.runTempFunction(function() {
 	
-	var CurveEvaluator = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.CurveEvaluator");
-	var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");
-	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
+	var CurveEvaluator = dbm.importClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator");
+	var PointSet = dbm.importClass("dbm.core.data.points.PointSet");
+	var BezierCurve = dbm.importClass("dbm.core.data.curves.BezierCurve");
 	
 	var startFunction = function() {
 		console.log("startFunction");

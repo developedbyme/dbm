@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ObjectProperty</h1>
-					<div class="classPath">com.developedbyme.core.objectparts.ObjectProperty</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.objectparts.ObjectProperty</div>
+					<div class="classInheritance"><a title="dbm.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Property for a FlowBaseObject that enables to combine all input properties into a more complex object.</div>
 						<div class="spacedContent">
@@ -38,40 +38,40 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");</div>
+									<div class="code">var ObjectProperty = dbm.importClass("dbm.core.objectparts.ObjectProperty");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.ObjectProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.objectparts.ObjectProperty");
+									<div class="code">dbm.registerClass("dbm.core.objectparts.ObjectProperty", "dbm.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.ObjectProperty");
 	//"use strict";
 	
 	//Self reference
-	var ObjectProperty = dbm.importClass("com.developedbyme.core.objectparts.ObjectProperty");
+	var ObjectProperty = dbm.importClass("dbm.core.objectparts.ObjectProperty");
 	
 	//Error report
 	
 	//Dependnecies
 	
 	//Utils
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	//Constants
-	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_init");
+		//console.log("dbm.core.objectparts.ObjectProperty::_init");
 		
 		this.superCall();
 		this._isOutput = true;
@@ -117,7 +117,7 @@
 	 * @param	aFlowUpdateNumber	Number	The integer for keeping track of flow updates.
 	 */
 	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::setValueWithFlow");
+		//console.log("dbm.core.objectparts.ObjectProperty::setValueWithFlow");
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._status = FlowStatusTypes.UPDATED;
 	};
@@ -137,12 +137,12 @@
 	 * @param	aProperty	Property	The property to remove.
 	 */
 	objectFunctions._linkRegistration_removeObjectProperty = function(aProperty) {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
+		//console.log("dbm.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
 		var objectIndex = ArrayFunctions.indexOfInArray(this._objectProperties, aProperty);
 		if(objectIndex !== -1) {
 			this._objectProperties.splice(objectIndex, 1);
 		}
-		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
+		//console.log("//dbm.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
 	};
 	
 	/**
@@ -189,7 +189,7 @@
 	 * @param	aReturnArray	Array	The array that gets filled with connections.
 	 */
 	objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllOutputConnections");
+		//console.log("dbm.core.objectparts.ObjectProperty::fillWithAllOutputConnections");
 		//console.log(this._isOutput, this._objectProperties);
 		
 		if(!this._isOutput) {
@@ -211,7 +211,7 @@
 	 * @param	aReturnArray	Array	The array that gets filled with connections.
 	 */
 	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllInputConnections");
+		//console.log("dbm.core.objectparts.ObjectProperty::fillWithAllInputConnections");
 		
 		if(this._isOutput) {
 			var currentArray = this._objectProperties;
@@ -230,7 +230,7 @@
 	 * Performs the destruction of all the properties in the object. Part of the destroy function.
 	 */
 	objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
+		//console.log("dbm.core.objectparts.ObjectProperty::performDestroy");
 		//console.log(this.toString());
 		
 		if(this._objectProperties !== null) {
@@ -244,7 +244,7 @@
 		}
 		
 		this.superCall();
-		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
+		//console.log("//dbm.core.objectparts.ObjectProperty::performDestroy");
 	};
 	
 	/**
@@ -305,7 +305,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_init");
+		//console.log("dbm.core.objectparts.ObjectProperty::_init");
 		
 		this.superCall();
 		this._isOutput = true;
@@ -412,7 +412,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::setValueWithFlow");
+		//console.log("dbm.core.objectparts.ObjectProperty::setValueWithFlow");
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._status = FlowStatusTypes.UPDATED;
 	}</div>
@@ -422,13 +422,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_linkRegistration_addObjectProperty</span>(<span class="arguments">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">_linkRegistration_addObjectProperty</span>(<span class="arguments">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Link registation to add a property on the object.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> - The property to add.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a> - The property to add.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -447,13 +447,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_linkRegistration_removeObjectProperty</span>(<span class="arguments">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">_linkRegistration_removeObjectProperty</span>(<span class="arguments">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Link registation to remove a property from the object.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> - The property to remove.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a> - The property to remove.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -464,12 +464,12 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._linkRegistration_removeObjectProperty = function(aProperty) {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
+		//console.log("dbm.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
 		var objectIndex = ArrayFunctions.indexOfInArray(this._objectProperties, aProperty);
 		if(objectIndex !== -1) {
 			this._objectProperties.splice(objectIndex, 1);
 		}
-		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
+		//console.log("//dbm.core.objectparts.ObjectProperty::_linkRegistration_removeObjectProperty");
 	}</div>
 							</div>
 						</div>
@@ -564,7 +564,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllOutputConnections");
+		//console.log("dbm.core.objectparts.ObjectProperty::fillWithAllOutputConnections");
 		//console.log(this._isOutput, this._objectProperties);
 		
 		if(!this._isOutput) {
@@ -602,7 +602,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::fillWithAllInputConnections");
+		//console.log("dbm.core.objectparts.ObjectProperty::fillWithAllInputConnections");
 		
 		if(this._isOutput) {
 			var currentArray = this._objectProperties;
@@ -639,7 +639,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
+		//console.log("dbm.core.objectparts.ObjectProperty::performDestroy");
 		//console.log(this.toString());
 		
 		if(this._objectProperties !== null) {
@@ -653,7 +653,7 @@
 		}
 		
 		this.superCall();
-		//console.log("//com.developedbyme.core.objectparts.ObjectProperty::performDestroy");
+		//console.log("//dbm.core.objectparts.ObjectProperty::performDestroy");
 	}</div>
 							</div>
 						</div>
@@ -701,17 +701,17 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a></span>
+					<span class="functionName">create</span>(<span class="arguments">aObject:<a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a></span>)<span class="returnValue">:<a title="dbm.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner for the new property.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner for the new property.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">

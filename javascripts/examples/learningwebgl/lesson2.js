@@ -1,25 +1,25 @@
 dbm.runTempFunction(function() {
 	
-	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
+	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
 	
-	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
+	var LoadingSequence = dbm.importClass("dbm.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	
-	var CanvasGraphics3d = dbm.importClass("com.developedbyme.utils.canvas.3d.CanvasGraphics3d");
-	var Camera3d = dbm.importClass("com.developedbyme.utils.canvas.3d.Camera3d");
-	var UseShaderProgramCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.UseShaderProgramCommand");
-	var BindVertexAttribPointerCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand");
-	var DrawArraysCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.DrawArraysCommand");
-	var SetProjectionMatrixCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.SetProjectionMatrixCommand");
-	var SetTransformationMatrixCommand = dbm.importClass("com.developedbyme.utils.canvas.3d.drawcommands.SetTransformationMatrixCommand");
-	var GetShaderVariablesNode = dbm.importClass("com.developedbyme.flow.nodes.canvas.webgl.GetShaderVariablesNode");
+	var CanvasGraphics3d = dbm.importClass("dbm.utils.canvas.3d.CanvasGraphics3d");
+	var Camera3d = dbm.importClass("dbm.utils.canvas.3d.Camera3d");
+	var UseShaderProgramCommand = dbm.importClass("dbm.utils.canvas.3d.drawcommands.UseShaderProgramCommand");
+	var BindVertexAttribPointerCommand = dbm.importClass("dbm.utils.canvas.3d.drawcommands.BindVertexAttribPointerCommand");
+	var DrawArraysCommand = dbm.importClass("dbm.utils.canvas.3d.drawcommands.DrawArraysCommand");
+	var SetProjectionMatrixCommand = dbm.importClass("dbm.utils.canvas.3d.drawcommands.SetProjectionMatrixCommand");
+	var SetTransformationMatrixCommand = dbm.importClass("dbm.utils.canvas.3d.drawcommands.SetTransformationMatrixCommand");
+	var GetShaderVariablesNode = dbm.importClass("dbm.flow.nodes.canvas.webgl.GetShaderVariablesNode");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
-	var ShaderVariableTypes = dbm.importClass("com.developedbyme.constants.webgl.ShaderVariableTypes");
-	var WebglDrawTypes = dbm.importClass("com.developedbyme.constants.webgl.WebglDrawTypes");
-	var WebglBufferTypes = dbm.importClass("com.developedbyme.constants.webgl.WebglBufferTypes");
-	var WebglBeginModeTypes = dbm.importClass("com.developedbyme.constants.webgl.WebglBeginModeTypes");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
+	var ShaderVariableTypes = dbm.importClass("dbm.constants.webgl.ShaderVariableTypes");
+	var WebglDrawTypes = dbm.importClass("dbm.constants.webgl.WebglDrawTypes");
+	var WebglBufferTypes = dbm.importClass("dbm.constants.webgl.WebglBufferTypes");
+	var WebglBeginModeTypes = dbm.importClass("dbm.constants.webgl.WebglBeginModeTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

@@ -28,44 +28,44 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ArrayIterator</h1>
-					<div class="classPath">com.developedbyme.utils.data.iterator.ArrayIterator</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.data.ArrayHolder" href="../ArrayHolder.html">ArrayHolder</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.data.iterator.ArrayIterator</div>
+					<div class="classInheritance"><a title="dbm.utils.data.ArrayHolder" href="../ArrayHolder.html">ArrayHolder</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">An array that can securly be iterated over.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.utils.data.iterator.ActiveArrayIterator" href="ActiveArrayIterator.html">ActiveArrayIterator</a></div>
+							<div class="subClasses linkList"><a title="dbm.utils.data.iterator.ActiveArrayIterator" href="ActiveArrayIterator.html">ActiveArrayIterator</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ArrayIterator");</div>
+									<div class="code">var ArrayIterator = dbm.importClass("dbm.utils.data.iterator.ArrayIterator");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.data.iterator.ArrayIterator", "com.developedbyme.utils.data.ArrayHolder", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.data.iterator.ArrayIterator");
+									<div class="code">dbm.registerClass("dbm.utils.data.iterator.ArrayIterator", "dbm.utils.data.ArrayHolder", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.iterator.ArrayIterator");
 	
 	//Self reference
-	var ArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ArrayIterator");
+	var ArrayIterator = dbm.importClass("dbm.utils.data.iterator.ArrayIterator");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var IterationData = dbm.importClass("com.developedbyme.utils.data.iterator.IterationData");
+	var IterationData = dbm.importClass("dbm.utils.data.iterator.IterationData");
 	
 	//Utils
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	
@@ -74,7 +74,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::_init");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::_init");
 		
 		this.superCall();
 		
@@ -122,7 +122,7 @@
 	 * @return	IterationData	The newly created object.
 	 */
 	objectFunctions.createIterationData = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::createIterationData");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::createIterationData");
 		
 		var newIterationData = IterationData.create(this.array);
 		this.addIterationData(newIterationData);
@@ -169,7 +169,7 @@
 	 * @return	self
 	 */
 	objectFunctions.stopUsingIterationData = function(aIterationData) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
 		
 		//METODO: would this be better as a retained object
 		this.removeIterationData(aIterationData);
@@ -242,7 +242,7 @@
 	 * Removes an item from the list.
 	 */
 	objectFunctions.removeItem = function(aObject) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::removeItem");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::removeItem");
 		
 		var currentArray = this.array;
 		var index = ArrayFunctions.indexOfInArray(currentArray, aObject);
@@ -352,7 +352,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::_init");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::_init");
 		
 		this.superCall();
 		
@@ -477,7 +477,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createIterationData</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a></span>
+					<span class="functionName">createIterationData</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new iteration data for this array.</div>
@@ -487,14 +487,14 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createIterationData = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::createIterationData");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::createIterationData");
 		
 		var newIterationData = IterationData.create(this.array);
 		this.addIterationData(newIterationData);
@@ -506,13 +506,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">addIterationData</span>(<span class="arguments">aIterationData:<a title="com.developedbyme.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
+					<span class="functionName">addIterationData</span>(<span class="arguments">aIterationData:<a title="dbm.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Adds an iteration data.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aIterationData:<a title="com.developedbyme.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a> - The iteration data to add to this iterator.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aIterationData:<a title="dbm.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a> - The iteration data to add to this iterator.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -583,7 +583,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.stopUsingIterationData = function(aIterationData) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
 		
 		//METODO: would this be better as a retained object
 		this.removeIterationData(aIterationData);
@@ -760,7 +760,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.removeItem = function(aObject) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::removeItem");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::removeItem");
 		
 		var currentArray = this.array;
 		var index = ArrayFunctions.indexOfInArray(currentArray, aObject);

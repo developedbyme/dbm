@@ -1,6 +1,6 @@
 dbm.runTempFunction(function() {
 	
-	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
+	var BaseObject = dbm.importClass("dbm.core.BaseObject");
 	
 	var startFunction = function() {
 		console.log("startFunction");

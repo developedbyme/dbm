@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CanvasMask2d</h1>
-					<div class="classPath">com.developedbyme.utils.canvas.CanvasMask2d</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.canvas.CanvasGraphics2d" href="CanvasGraphics2d.html">CanvasGraphics2d</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.canvas.CanvasMask2d</div>
+					<div class="classInheritance"><a title="dbm.utils.canvas.CanvasGraphics2d" href="CanvasGraphics2d.html">CanvasGraphics2d</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A mask in a 2d canvas.</div>
 						<div class="spacedContent">
@@ -38,30 +38,30 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.data.points.Point" href="../../core/data/points/Point.html">Point</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.data.points.Point" href="../../core/data/points/Point.html">Point</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CanvasMask2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasMask2d");</div>
+									<div class="code">var CanvasMask2d = dbm.importClass("dbm.utils.canvas.CanvasMask2d");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasMask2d", "com.developedbyme.utils.canvas.CanvasGraphics2d", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.canvas.CanvasMask2d");
+									<div class="code">dbm.registerClass("dbm.utils.canvas.CanvasMask2d", "dbm.utils.canvas.CanvasGraphics2d", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.canvas.CanvasMask2d");
 	
-	var CanvasMask2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasMask2d");
+	var CanvasMask2d = dbm.importClass("dbm.utils.canvas.CanvasMask2d");
 	
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
 	
 	/**
 	 * Constructor.
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::_init");
+		//console.log("dbm.utils.canvas.CanvasMask2d::_init");
 		
 		this.superCall();
 		
@@ -69,7 +69,7 @@
 	};
 	
 	objectFunctions.draw = function(aContext) {
-		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::draw");
+		//console.log("dbm.utils.canvas.CanvasMask2d::draw");
 		//console.log(this, this._curves);
 		
 		var currentArray = this._curves;
@@ -132,7 +132,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::_init");
+		//console.log("dbm.utils.canvas.CanvasMask2d::_init");
 		
 		this.superCall();
 		
@@ -161,7 +161,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.draw = function(aContext) {
-		//console.log("com.developedbyme.utils.canvas.CanvasMask2d::draw");
+		//console.log("dbm.utils.canvas.CanvasMask2d::draw");
 		//console.log(this, this._curves);
 		
 		var currentArray = this._curves;

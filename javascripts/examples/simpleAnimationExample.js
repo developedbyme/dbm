@@ -1,9 +1,9 @@
 dbm.runTempFunction(function() {
 	
-	var PlaceElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
-	var RepeatedRangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
+	var PlaceElementNode = dbm.importClass("dbm.flow.nodes.display.PlaceElementNode");
+	var RepeatedRangeNode = dbm.importClass("dbm.flow.nodes.math.range.RepeatedRangeNode");
 	
-	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

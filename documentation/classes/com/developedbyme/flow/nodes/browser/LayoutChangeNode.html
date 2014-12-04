@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>LayoutChangeNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.browser.LayoutChangeNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.browser.LayoutChangeNode</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,35 +38,35 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.flow.nodes.browser.DocumentForElementNode" href="DocumentForElementNode.html">DocumentForElementNode</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.flow.nodes.browser.WindowForElementNode" href="WindowForElementNode.html">WindowForElementNode</a>, <a title="com.developedbyme.flow.nodes.browser.WindowSizeNode" href="WindowSizeNode.html">WindowSizeNode</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.flow.nodes.browser.DocumentForElementNode" href="DocumentForElementNode.html">DocumentForElementNode</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.flow.nodes.browser.WindowForElementNode" href="WindowForElementNode.html">WindowForElementNode</a>, <a title="dbm.flow.nodes.browser.WindowSizeNode" href="WindowSizeNode.html">WindowSizeNode</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var LayoutChangeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.LayoutChangeNode");</div>
+									<div class="code">var LayoutChangeNode = dbm.importClass("dbm.flow.nodes.browser.LayoutChangeNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.browser.LayoutChangeNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.browser.LayoutChangeNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.browser.LayoutChangeNode", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.browser.LayoutChangeNode");
 	
 	//Self reference
-	var LayoutChangeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.LayoutChangeNode");
+	var LayoutChangeNode = dbm.importClass("dbm.flow.nodes.browser.LayoutChangeNode");
 	
 	//Error report
 	
 	//Dependencies
-	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
-	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
-	var WindowForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowForElementNode");
-	var DocumentForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.DocumentForElementNode");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
+	var WindowForElementNode = dbm.importClass("dbm.flow.nodes.browser.WindowForElementNode");
+	var DocumentForElementNode = dbm.importClass("dbm.flow.nodes.browser.DocumentForElementNode");
 	
 	//Utils
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	//Constants
 	
@@ -75,7 +75,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.LayoutChangeNode::_init");
+		//console.log("dbm.flow.nodes.browser.LayoutChangeNode::_init");
 		
 		this.superCall();
 		
@@ -105,7 +105,7 @@
 	};
 	
 	objectFunctions._documentUpdated = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.browser.LayoutChangeNode::_documentUpdated");
+		//console.log("dbm.flow.nodes.browser.LayoutChangeNode::_documentUpdated");
 		
 		//METODO: set mutation
 	};
@@ -171,7 +171,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.LayoutChangeNode::_init");
+		//console.log("dbm.flow.nodes.browser.LayoutChangeNode::_init");
 		
 		this.superCall();
 		
@@ -222,7 +222,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._documentUpdated = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.browser.LayoutChangeNode::_documentUpdated");
+		//console.log("dbm.flow.nodes.browser.LayoutChangeNode::_documentUpdated");
 		
 		//METODO: set mutation
 	}</div>

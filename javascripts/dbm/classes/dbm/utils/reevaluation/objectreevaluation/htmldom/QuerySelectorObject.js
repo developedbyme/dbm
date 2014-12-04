@@ -1,0 +1,94 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Reevaluation that selects an element based on a query from another element.
+ */
+dbm.registerClass("dbm.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject", "dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.reevaluation.objectreevaluation.htmldom.ObjectReevaluationBaseObject");
+	
+	//Self reference
+	var QuerySelectorObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject");
+	
+	//Error report
+	
+	//Dependnecies
+	var GetNamedArrayValueObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetNamedArrayValueObject");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	
+	//Utils
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject::_init");
+		
+		this.superCall();
+		
+		this.queryReevaluator = null;
+		
+		return this;
+	};
+	
+	/**
+	 * The function that reevalutes this reference.
+	 *
+	 * @param	aBaseObject	The object to base the reevaluation from.
+	 *
+	 * @return	The selected value in the named array.
+	 */
+	objectFunctions.reevaluate = function(aBaseObject) {
+		//console.log("dbm.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject::reevaluate");
+		//console.log(this);
+		
+		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
+		var queryPath = this.queryReevaluator.reevaluate(aBaseObject);
+		
+		//console.log(theObject, queryPath);
+		
+		return theObject.querySelector(queryPath);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this.queryReevaluator = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a command that executes a query selector on an element.
+	 * 
+	 * @param	aObject		Element		The element to search from.
+	 * @param	aQuery		String		The name of the value to get.
+	 *
+	 * @return	The new command.
+	 */
+	staticFunctions.createCommand = function(aObject, aQuery) {
+		//console.log("dbm.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject::createCommand (static)");
+		//console.log(aName);
+		var newCommand = (new QuerySelectorObject()).init();
+		
+		newCommand.objectReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aObject);
+		newCommand.queryReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aQuery);
+		
+		return newCommand;
+	};
+	
+	/**
+	 * Creates a command that executes a query selector on the output from a template
+	 * 
+	 * @param	aObject		Element		The element to search from.
+	 *
+	 * @return	The new command.
+	 */
+	staticFunctions.createOnTemplateOutputCommand = function(aQuery) {
+		//console.log("dbm.utils.reevaluation.objectreevaluation.htmldom.QuerySelectorObject::createOnTemplateOutputCommand");
+		//console.log(aQuery);
+		
+		return ClassReference.createCommand(GetNamedArrayValueObject.createCommand(GetVariableObject.createSelectDataCommand(), "output"), aQuery);
+	};
+});

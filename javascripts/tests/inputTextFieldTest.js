@@ -1,9 +1,9 @@
 dbm.runTempFunction(function() {
 	
-	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
-	var InputField = dbm.importClass("com.developedbyme.gui.form.InputField");
-	var HtmlInputTypes = dbm.importClass("com.developedbyme.constants.HtmlInputTypes");
-	var ParseFloatNode = dbm.importClass("com.developedbyme.flow.nodes.parse.ParseFloatNode");
+	var AdditionNode = dbm.importClass("dbm.flow.nodes.math.AdditionNode");
+	var InputField = dbm.importClass("dbm.gui.form.InputField");
+	var HtmlInputTypes = dbm.importClass("dbm.constants.HtmlInputTypes");
+	var ParseFloatNode = dbm.importClass("dbm.flow.nodes.parse.ParseFloatNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

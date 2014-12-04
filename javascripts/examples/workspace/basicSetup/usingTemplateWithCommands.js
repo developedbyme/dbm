@@ -1,18 +1,18 @@
 dbm.runTempFunction(function() {
 	//"use strict";
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var SplitLayoutAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.layout.SplitLayoutAreaPart");
-	var SizedElementAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart");
+	var SplitLayoutAreaPart = dbm.importClass("dbm.workspace.gui.parts.areas.layout.SplitLayoutAreaPart");
+	var SizedElementAreaPart = dbm.importClass("dbm.workspace.gui.parts.areas.SizedElementAreaPart");
 	
-	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
+	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

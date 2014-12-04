@@ -1,6 +1,6 @@
 dbm.runTempFunction(function() {
 	
-	var FlowBaseObject = dbm.importClass("com.developedbyme.core.FlowBaseObject");
+	var FlowBaseObject = dbm.importClass("dbm.core.FlowBaseObject");
 	
 	var SizzleLibrary = dbm.importLibrary("sizzle", function() {SizzleLibrary = SizzleLibrary.realLibrary});
 	var EaselLibrary = dbm.importLibrary("easel", function() {EaselLibrary = EaselLibrary.realLibrary});

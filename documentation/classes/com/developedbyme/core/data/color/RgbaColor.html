@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>RgbaColor</h1>
-					<div class="classPath">com.developedbyme.core.data.color.RgbaColor</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.data.color.RgbaColor</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A RGBA color.</div>
 						<div class="spacedContent">
@@ -38,30 +38,30 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");</div>
+									<div class="code">var RgbaColor = dbm.importClass("dbm.core.data.color.RgbaColor");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.data.color.RgbaColor", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.data.color.RgbaColor");
+									<div class="code">dbm.registerClass("dbm.core.data.color.RgbaColor", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.data.color.RgbaColor");
 	
 	//Self reference
-	var RgbaColor = dbm.importClass("com.developedbyme.core.data.color.RgbaColor");
+	var RgbaColor = dbm.importClass("dbm.core.data.color.RgbaColor");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -70,7 +70,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.color.RgbaColor");
+		//console.log("dbm.core.data.color.RgbaColor");
 		
 		this.superCall();
 		
@@ -114,7 +114,7 @@
 	};
 	
 	staticFunctions.create = function create(aR, aG, aB, aA) {
-		//console.log("com.developedbyme.core.data.color.RgbaColor::create (static)");
+		//console.log("dbm.core.data.color.RgbaColor::create (static)");
 		//console.log(aR, aG, aB, aA);
 		var newRgbaColor = (new RgbaColor()).init();
 		newRgbaColor.r = VariableAliases.valueWithDefault(aR, 0);
@@ -159,7 +159,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.color.RgbaColor");
+		//console.log("dbm.core.data.color.RgbaColor");
 		
 		this.superCall();
 		
@@ -320,7 +320,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function create(aR, aG, aB, aA) {
-		//console.log("com.developedbyme.core.data.color.RgbaColor::create (static)");
+		//console.log("dbm.core.data.color.RgbaColor::create (static)");
 		//console.log(aR, aG, aB, aA);
 		var newRgbaColor = (new RgbaColor()).init();
 		newRgbaColor.r = VariableAliases.valueWithDefault(aR, 0);

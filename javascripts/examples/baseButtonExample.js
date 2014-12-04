@@ -1,8 +1,8 @@
 dbm.runTempFunction(function() {
 	//"use strict";
 	
-	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

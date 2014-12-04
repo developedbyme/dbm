@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
-	dbm.addSpecificClassesFolder("com.developedbyme.broadcast", "broadcast/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.projects.experiments", "experiments/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.projects.tests", "tests/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.projects.tools", "tools/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.projects.examples", "examples/classes");
+	dbm.addSpecificClassesFolder("dbm.broadcast", "broadcast/classes");
+	dbm.addSpecificClassesFolder("dbm.projects.experiments", "experiments/classes");
+	dbm.addSpecificClassesFolder("dbm.projects.tests", "tests/classes");
+	dbm.addSpecificClassesFolder("dbm.projects.tools", "tools/classes");
+	dbm.addSpecificClassesFolder("dbm.projects.examples", "examples/classes");
 });

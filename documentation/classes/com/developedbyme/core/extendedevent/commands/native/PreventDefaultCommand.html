@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>PreventDefaultCommand</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.extendedevent.commands.CommandBaseObject" href="../CommandBaseObject.html">CommandBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.extendedevent.commands.native.PreventDefaultCommand</div>
+					<div class="classInheritance"><a title="dbm.core.extendedevent.commands.CommandBaseObject" href="../CommandBaseObject.html">CommandBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,35 +38,35 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.CommandStatusTypes" href="../../../../constants/CommandStatusTypes.html">CommandStatusTypes</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../../../../utils/reevaluation/ReevaluationCreator.html">ReevaluationCreator</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.CommandStatusTypes" href="../../../../constants/CommandStatusTypes.html">CommandStatusTypes</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.utils.reevaluation.ReevaluationCreator" href="../../../../utils/reevaluation/ReevaluationCreator.html">ReevaluationCreator</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var PreventDefaultCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand");</div>
+									<div class="code">var PreventDefaultCommand = dbm.importClass("dbm.core.extendedevent.commands.native.PreventDefaultCommand");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.commands.native.PreventDefaultCommand", "dbm.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.commands.native.PreventDefaultCommand");
 	
-	var PreventDefaultCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand");
+	var PreventDefaultCommand = dbm.importClass("dbm.core.extendedevent.commands.native.PreventDefaultCommand");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
 	
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand::_init");
+		//console.log("dbm.core.extendedevent.commands.native.PreventDefaultCommand::_init");
 		
 		this.superCall();
 		
@@ -76,7 +76,7 @@
 	};
 	
 	objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand::perform");
+		//console.log("dbm.core.extendedevent.commands.native.PreventDefaultCommand::perform");
 		//console.log(aEventDataObject);
 		
 		var theEvent = this.eventReevaluator.reevaluate(aEventDataObject);
@@ -150,7 +150,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand::_init");
+		//console.log("dbm.core.extendedevent.commands.native.PreventDefaultCommand::_init");
 		
 		this.superCall();
 		
@@ -181,7 +181,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand::perform");
+		//console.log("dbm.core.extendedevent.commands.native.PreventDefaultCommand::perform");
 		//console.log(aEventDataObject);
 		
 		var theEvent = this.eventReevaluator.reevaluate(aEventDataObject);

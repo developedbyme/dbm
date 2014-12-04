@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>SplitStringObject</h1>
-					<div class="classPath">com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject</div>
+					<div class="classInheritance"><a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Reevaluator that splits a string into an array.</div>
 						<div class="spacedContent">
@@ -38,32 +38,32 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a>, <a title="com.developedbyme.utils.native.string.StringFunctions" href="../../native/string/StringFunctions.html">StringFunctions</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a>, <a title="dbm.utils.native.string.StringFunctions" href="../../native/string/StringFunctions.html">StringFunctions</a>, <a title="dbm.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var SplitStringObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject");</div>
+									<div class="code">var SplitStringObject = dbm.importClass("dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.ObjectReevaluationBaseObject");
+									<div class="code">dbm.registerClass("dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject", "dbm.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.reevaluation.manipulationreevaluation.ObjectReevaluationBaseObject");
 	
 	//Self reference
-	var SplitStringObject = dbm.importClass("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject");
+	var SplitStringObject = dbm.importClass("dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
-	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
+	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -72,7 +72,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject::_init");
+		//console.log("dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject::_init");
 		
 		this.superCall();
 		
@@ -92,7 +92,7 @@
 	 * @return	Any	The reevaluated value.
 	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject::reevaluate");
 		//console.log(this, aBaseObject);
 		
 		var string = this.stringReevaluator.reevaluate(aBaseObject);
@@ -117,7 +117,7 @@
 	};
 	
 	staticFunctions.createCommand = function(aString, aSeparator, aTrimLeft, aTrimRight) {
-		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject::createCommand (static)");
+		//console.log("dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject::createCommand (static)");
 		var newCommand = ClassReference._createAndInitClass(ClassReference);
 		
 		aSeparator = VariableAliases.valueWithDefault(aSeparator, ",");
@@ -166,7 +166,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject::_init");
+		//console.log("dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject::_init");
 		
 		this.superCall();
 		
@@ -200,7 +200,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject::reevaluate");
 		//console.log(this, aBaseObject);
 		
 		var string = this.stringReevaluator.reevaluate(aBaseObject);
@@ -276,7 +276,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createCommand = function(aString, aSeparator, aTrimLeft, aTrimRight) {
-		//console.log("com.developedbyme.utils.reevaluation.manipulationreevaluation.SplitStringObject::createCommand (static)");
+		//console.log("dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject::createCommand (static)");
 		var newCommand = ClassReference._createAndInitClass(ClassReference);
 		
 		aSeparator = VariableAliases.valueWithDefault(aSeparator, ",");

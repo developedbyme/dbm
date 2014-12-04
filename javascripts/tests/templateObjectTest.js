@@ -1,8 +1,8 @@
 dbm.runTempFunction(function() {
 	
-	var ObjectFromFunctionCreator = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.objects.ObjectFromFunctionCreator");
-	var DbmXmlEncoder = dbm.importClass("com.developedbyme.utils.xml.DbmXmlEncoder");
-	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
+	var ObjectFromFunctionCreator = dbm.importClass("dbm.core.globalobjects.templatemanager.objects.ObjectFromFunctionCreator");
+	var DbmXmlEncoder = dbm.importClass("dbm.utils.xml.DbmXmlEncoder");
+	var XmlCreator = dbm.importClass("dbm.utils.xml.XmlCreator");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

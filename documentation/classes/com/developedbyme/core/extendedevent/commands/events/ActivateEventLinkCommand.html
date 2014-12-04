@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ActivateEventLinkCommand</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.extendedevent.commands.CommandBaseObject" href="../CommandBaseObject.html">CommandBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.extendedevent.commands.events.ActivateEventLinkCommand</div>
+					<div class="classInheritance"><a title="dbm.core.extendedevent.commands.CommandBaseObject" href="../CommandBaseObject.html">CommandBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,36 +38,36 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="../../../../utils/reevaluation/objectreevaluation/CallFunctionObject.html">CallFunctionObject</a>, <a title="com.developedbyme.constants.CommandStatusTypes" href="../../../../constants/CommandStatusTypes.html">CommandStatusTypes</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject" href="../../../../utils/reevaluation/complexreevaluation/ReevaluateArrayObject.html">ReevaluateArrayObject</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../../../../utils/reevaluation/ReevaluationBaseObject.html">ReevaluationBaseObject</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject" href="../../../../utils/reevaluation/staticreevaluation/StaticVariableObject.html">StaticVariableObject</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.reevaluation.objectreevaluation.CallFunctionObject" href="../../../../utils/reevaluation/objectreevaluation/CallFunctionObject.html">CallFunctionObject</a>, <a title="dbm.constants.CommandStatusTypes" href="../../../../constants/CommandStatusTypes.html">CommandStatusTypes</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject" href="../../../../utils/reevaluation/complexreevaluation/ReevaluateArrayObject.html">ReevaluateArrayObject</a>, <a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../../../../utils/reevaluation/ReevaluationBaseObject.html">ReevaluationBaseObject</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.reevaluation.staticreevaluation.StaticVariableObject" href="../../../../utils/reevaluation/staticreevaluation/StaticVariableObject.html">StaticVariableObject</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ActivateEventLinkCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand");</div>
+									<div class="code">var ActivateEventLinkCommand = dbm.importClass("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand", "dbm.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand");
 	
-	var ActivateEventLinkCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand");
+	var ActivateEventLinkCommand = dbm.importClass("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
 	
-	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
-	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
-	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
-	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
+	var StaticVariableObject = dbm.importClass("dbm.utils.reevaluation.staticreevaluation.StaticVariableObject");
+	var ReevaluateArrayObject = dbm.importClass("dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
+	var ReevaluationBaseObject = dbm.importClass("dbm.utils.reevaluation.ReevaluationBaseObject");
+	var CallFunctionObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand::_init");
+		//console.log("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand::_init");
 		
 		this.superCall();
 		
@@ -79,7 +79,7 @@
 	};
 	
 	objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand::perform");
+		//console.log("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand::perform");
 		//console.log(aEventDataObject);
 		
 		var extendedEventController = this.extendedEventControllerReevaluator.reevaluate(aEventDataObject);
@@ -170,7 +170,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand::_init");
+		//console.log("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand::_init");
 		
 		this.superCall();
 		
@@ -203,7 +203,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand::perform");
+		//console.log("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand::perform");
 		//console.log(aEventDataObject);
 		
 		var extendedEventController = this.extendedEventControllerReevaluator.reevaluate(aEventDataObject);

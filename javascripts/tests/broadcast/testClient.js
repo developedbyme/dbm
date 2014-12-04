@@ -1,6 +1,6 @@
 dbm.runTempFunction(function() {
 	
-	var DbmBroadcastClient = dbm.importClass("com.developedbyme.broadcast.client.DbmBroadcastClient");
+	var DbmBroadcastClient = dbm.importClass("dbm.broadcast.client.DbmBroadcastClient");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CanvasController2d</h1>
-					<div class="classPath">com.developedbyme.utils.canvas.CanvasController2d</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.canvas.CanvasController2d</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Controller for a 2d canvas.</div>
 						<div class="spacedContent">
@@ -38,37 +38,37 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="com.developedbyme.utils.canvas.CanvasLayer2d" href="CanvasLayer2d.html">CanvasLayer2d</a>, <a title="com.developedbyme.utils.canvas.CanvasRenderLayer2d" href="CanvasRenderLayer2d.html">CanvasRenderLayer2d</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructure" href="../data/treestructure/TreeStructure.html">TreeStructure</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="../data/treestructure/TreeStructureItem.html">TreeStructureItem</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItemLink" href="../data/treestructure/TreeStructureItemLink.html">TreeStructureItemLink</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.utils.canvas.CanvasLayer2d" href="CanvasLayer2d.html">CanvasLayer2d</a>, <a title="dbm.utils.canvas.CanvasRenderLayer2d" href="CanvasRenderLayer2d.html">CanvasRenderLayer2d</a>, <a title="dbm.utils.data.treestructure.TreeStructure" href="../data/treestructure/TreeStructure.html">TreeStructure</a>, <a title="dbm.utils.data.treestructure.TreeStructureItem" href="../data/treestructure/TreeStructureItem.html">TreeStructureItem</a>, <a title="dbm.utils.data.treestructure.TreeStructureItemLink" href="../data/treestructure/TreeStructureItemLink.html">TreeStructureItemLink</a>, <a title="dbm.utils.data.VariableAliases" href="../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CanvasController2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasController2d");</div>
+									<div class="code">var CanvasController2d = dbm.importClass("dbm.utils.canvas.CanvasController2d");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasController2d", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.canvas.CanvasController2d");
+									<div class="code">dbm.registerClass("dbm.utils.canvas.CanvasController2d", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.canvas.CanvasController2d");
 	
-	var CanvasController2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasController2d");
+	var CanvasController2d = dbm.importClass("dbm.utils.canvas.CanvasController2d");
 	
-	var CanvasLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasLayer2d");
-	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
-	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
-	var TreeStructureItemLink = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemLink");
-	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
-	var CanvasRenderLayer2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasRenderLayer2d");
+	var CanvasLayer2d = dbm.importClass("dbm.utils.canvas.CanvasLayer2d");
+	var TreeStructure = dbm.importClass("dbm.utils.data.treestructure.TreeStructure");
+	var TreeStructureItem = dbm.importClass("dbm.utils.data.treestructure.TreeStructureItem");
+	var TreeStructureItemLink = dbm.importClass("dbm.utils.data.treestructure.TreeStructureItemLink");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	var CanvasRenderLayer2d = dbm.importClass("dbm.utils.canvas.CanvasRenderLayer2d");
 	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	/**
 	 * Constructor.
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_init");
+		//console.log("dbm.utils.canvas.CanvasController2d::_init");
 		
 		this.superCall();
 		
@@ -121,7 +121,7 @@
 	};
 	
 	objectFunctions.createLink = function(aFrom, aTo) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLink");
+		//console.log("dbm.utils.canvas.CanvasController2d::createLink");
 		var tempArray = aFrom.split("/");
 		
 		var newLink = TreeStructureItemLink.create(tempArray.pop(), aTo);
@@ -130,7 +130,7 @@
 	};
 	
 	objectFunctions.createPattern = function(aImage, aRepeat) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createPattern");
+		//console.log("dbm.utils.canvas.CanvasController2d::createPattern");
 		
 		aRepeat = VariableAliases.valueWithDefault(aRepeat, "repeat");
 		
@@ -139,7 +139,7 @@
 	};
 	
 	objectFunctions.getWidthOfText = function(aText, aFont) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::getWidthOfText");
+		//console.log("dbm.utils.canvas.CanvasController2d::getWidthOfText");
 		
 		var canvas = this._canvas.getValue();
 		canvas.getContext("2d").font = aFont;
@@ -147,7 +147,7 @@
 	};
 	
 	objectFunctions.createLinearGradient = function(aX1, aY1, aX2, aY2, aGradient) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		//console.log("dbm.utils.canvas.CanvasController2d::createLinearGradient");
 		
 		var canvas = this._canvas.getValue();
 		var gradient = canvas.getContext("2d").createLinearGradient(aX1, aY1, aX2, aY2);
@@ -156,7 +156,7 @@
 	};
 	
 	objectFunctions.createRadialGradient = function(aX1, aY1, aRadius1, aX2, aY2, aRadius2, aGradient) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		//console.log("dbm.utils.canvas.CanvasController2d::createLinearGradient");
 		
 		var canvas = this._canvas.getValue();
 		var gradient = canvas.getContext("2d").createRadialGradient(aX1, aY1, aRadius1, aX2, aY2, aRadius2);
@@ -165,7 +165,7 @@
 	};
 	
 	objectFunctions.draw = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
+		//console.log("dbm.utils.canvas.CanvasController2d::draw");
 		var canvas = this._canvas.getValue();
 		var currentContext = canvas.getContext("2d");
 		var currentLayer = this.getRootLayer();
@@ -174,11 +174,11 @@
 			currentContext.clearRect(0, 0, canvas.width, canvas.height);
 		}
 		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
-		//console.log("//com.developedbyme.utils.canvas.CanvasController2d::draw");
+		//console.log("//dbm.utils.canvas.CanvasController2d::draw");
 	};
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_updateFlow");
+		//console.log("dbm.utils.canvas.CanvasController2d::_updateFlow");
 		this.draw();
 	};
 	
@@ -244,7 +244,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_init");
+		//console.log("dbm.utils.canvas.CanvasController2d::_init");
 		
 		this.superCall();
 		
@@ -381,7 +381,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createLink = function(aFrom, aTo) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLink");
+		//console.log("dbm.utils.canvas.CanvasController2d::createLink");
 		var tempArray = aFrom.split("/");
 		
 		var newLink = TreeStructureItemLink.create(tempArray.pop(), aTo);
@@ -411,7 +411,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createPattern = function(aImage, aRepeat) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createPattern");
+		//console.log("dbm.utils.canvas.CanvasController2d::createPattern");
 		
 		aRepeat = VariableAliases.valueWithDefault(aRepeat, "repeat");
 		
@@ -441,7 +441,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getWidthOfText = function(aText, aFont) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::getWidthOfText");
+		//console.log("dbm.utils.canvas.CanvasController2d::getWidthOfText");
 		
 		var canvas = this._canvas.getValue();
 		canvas.getContext("2d").font = aFont;
@@ -470,7 +470,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createLinearGradient = function(aX1, aY1, aX2, aY2, aGradient) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		//console.log("dbm.utils.canvas.CanvasController2d::createLinearGradient");
 		
 		var canvas = this._canvas.getValue();
 		var gradient = canvas.getContext("2d").createLinearGradient(aX1, aY1, aX2, aY2);
@@ -500,7 +500,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createRadialGradient = function(aX1, aY1, aRadius1, aX2, aY2, aRadius2, aGradient) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::createLinearGradient");
+		//console.log("dbm.utils.canvas.CanvasController2d::createLinearGradient");
 		
 		var canvas = this._canvas.getValue();
 		var gradient = canvas.getContext("2d").createRadialGradient(aX1, aY1, aRadius1, aX2, aY2, aRadius2);
@@ -530,7 +530,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.draw = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::draw");
+		//console.log("dbm.utils.canvas.CanvasController2d::draw");
 		var canvas = this._canvas.getValue();
 		var currentContext = canvas.getContext("2d");
 		var currentLayer = this.getRootLayer();
@@ -539,7 +539,7 @@
 			currentContext.clearRect(0, 0, canvas.width, canvas.height);
 		}
 		currentLayer.draw(currentContext, this._numberOfLinksToResolve);
-		//console.log("//com.developedbyme.utils.canvas.CanvasController2d::draw");
+		//console.log("//dbm.utils.canvas.CanvasController2d::draw");
 	}</div>
 							</div>
 						</div>
@@ -564,7 +564,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.utils.canvas.CanvasController2d::_updateFlow");
+		//console.log("dbm.utils.canvas.CanvasController2d::_updateFlow");
 		this.draw();
 	}</div>
 							</div>

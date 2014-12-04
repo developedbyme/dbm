@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>PlaybackNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.time.PlaybackNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.time.PlaybackNode</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,41 +38,41 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.PlaybackStateTypes" href="../../../constants/PlaybackStateTypes.html">PlaybackStateTypes</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.PlaybackStateTypes" href="../../../constants/PlaybackStateTypes.html">PlaybackStateTypes</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");</div>
+									<div class="code">var PlaybackNode = dbm.importClass("dbm.flow.nodes.time.PlaybackNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.time.PlaybackNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.time.PlaybackNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.time.PlaybackNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.time.PlaybackNode");
 	
 	//Self reference
-	var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");
+	var PlaybackNode = dbm.importClass("dbm.flow.nodes.time.PlaybackNode");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
 	//Utils
 	
 	//Constants
-	var PlaybackStateTypes = dbm.importClass("com.developedbyme.constants.PlaybackStateTypes");
+	var PlaybackStateTypes = dbm.importClass("dbm.constants.PlaybackStateTypes");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::_init");
+		//console.log("dbm.flow.nodes.time.PlaybackNode::_init");
 		
 		this.superCall();
 		
@@ -123,7 +123,7 @@
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::_update");
+		//console.log("dbm.flow.nodes.time.PlaybackNode::_update");
 		var inputTime = this._inputTime.getValueWithoutFlow();
 		if(this._state.getValueWithoutFlow() === PlaybackStateTypes.PLAYING) {
 			var timeDiff = inputTime-this._lastInputTime;
@@ -245,7 +245,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::_init");
+		//console.log("dbm.flow.nodes.time.PlaybackNode::_init");
 		
 		this.superCall();
 		
@@ -401,7 +401,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.time.PlaybackNode::_update");
+		//console.log("dbm.flow.nodes.time.PlaybackNode::_update");
 		var inputTime = this._inputTime.getValueWithoutFlow();
 		if(this._state.getValueWithoutFlow() === PlaybackStateTypes.PLAYING) {
 			var timeDiff = inputTime-this._lastInputTime;

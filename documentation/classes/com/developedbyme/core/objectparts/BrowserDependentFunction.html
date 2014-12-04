@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>BrowserDependentFunction</h1>
-					<div class="classPath">com.developedbyme.core.objectparts.BrowserDependentFunction</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.objectparts.ExtendedFunctionBaseObject" href="ExtendedFunctionBaseObject.html">ExtendedFunctionBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.objectparts.BrowserDependentFunction</div>
+					<div class="classInheritance"><a title="dbm.core.objectparts.ExtendedFunctionBaseObject" href="ExtendedFunctionBaseObject.html">ExtendedFunctionBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,28 +38,28 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.NamedArray" href="../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.utils.native.number.VersionNumber" href="../../utils/native/number/VersionNumber.html">VersionNumber</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.data.NamedArray" href="../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.utils.native.number.VersionNumber" href="../../utils/native/number/VersionNumber.html">VersionNumber</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var BrowserDependentFunction = dbm.importClass("com.developedbyme.core.objectparts.BrowserDependentFunction");</div>
+									<div class="code">var BrowserDependentFunction = dbm.importClass("dbm.core.objectparts.BrowserDependentFunction");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.BrowserDependentFunction", "com.developedbyme.core.objectparts.ExtendedFunctionBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction");
+									<div class="code">dbm.registerClass("dbm.core.objectparts.BrowserDependentFunction", "dbm.core.objectparts.ExtendedFunctionBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.BrowserDependentFunction");
 	//"use strict";
 	
-	var BrowserDependentFunction = dbm.importClass("com.developedbyme.core.objectparts.BrowserDependentFunction");
-	var VersionNumber = dbm.importClass("com.developedbyme.utils.native.number.VersionNumber");
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var BrowserDependentFunction = dbm.importClass("dbm.core.objectparts.BrowserDependentFunction");
+	var VersionNumber = dbm.importClass("dbm.utils.native.number.VersionNumber");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::_init");
+		//console.log("dbm.core.objectparts.BrowserDependentFunction::_init");
 		
 		this.superCall();
 		
@@ -72,7 +72,7 @@
 	};
 	
 	objectFunctions.setDefaultFunction = function(aFunction) {
-		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::setDefaultFunction");
+		//console.log("dbm.core.objectparts.BrowserDependentFunction::setDefaultFunction");
 		
 		this._defaultFunction = aFunction;
 		
@@ -80,7 +80,7 @@
 	};
 	
 	objectFunctions.addBrowserSpecificFunction = function(aBrowserName, aBrowserVersion, aFunction) {
-		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::addBrowserSpecificFunction");
+		//console.log("dbm.core.objectparts.BrowserDependentFunction::addBrowserSpecificFunction");
 		
 		var browserName = aBrowserName.toLowerCase();
 		
@@ -104,7 +104,7 @@
 	};
 	
 	objectFunctions._performCallFunction = function(aArguments) {
-		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::_performCallFunction");
+		//console.log("dbm.core.objectparts.BrowserDependentFunction::_performCallFunction");
 		var browserName = dbm.singletons.dbmBrowserDetector.browserName.toLowerCase();
 		var browserVersion = dbm.singletons.dbmBrowserDetector.browserVersion;
 		
@@ -176,7 +176,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::_init");
+		//console.log("dbm.core.objectparts.BrowserDependentFunction::_init");
 		
 		this.superCall();
 		
@@ -210,7 +210,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setDefaultFunction = function(aFunction) {
-		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::setDefaultFunction");
+		//console.log("dbm.core.objectparts.BrowserDependentFunction::setDefaultFunction");
 		
 		this._defaultFunction = aFunction;
 		
@@ -239,7 +239,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addBrowserSpecificFunction = function(aBrowserName, aBrowserVersion, aFunction) {
-		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::addBrowserSpecificFunction");
+		//console.log("dbm.core.objectparts.BrowserDependentFunction::addBrowserSpecificFunction");
 		
 		var browserName = aBrowserName.toLowerCase();
 		
@@ -284,7 +284,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._performCallFunction = function(aArguments) {
-		//console.log("com.developedbyme.core.objectparts.BrowserDependentFunction::_performCallFunction");
+		//console.log("dbm.core.objectparts.BrowserDependentFunction::_performCallFunction");
 		var browserName = dbm.singletons.dbmBrowserDetector.browserName.toLowerCase();
 		var browserVersion = dbm.singletons.dbmBrowserDetector.browserVersion;
 		

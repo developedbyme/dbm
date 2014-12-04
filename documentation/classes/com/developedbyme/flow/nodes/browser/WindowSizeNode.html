@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>WindowSizeNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.browser.WindowSizeNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.browser.WindowSizeNode</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,31 +38,31 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");</div>
+									<div class="code">var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowSizeNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.browser.WindowSizeNode", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.browser.WindowSizeNode");
 	
 	//Self reference
-	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
+	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	//Constants
 	
@@ -70,7 +70,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_init");
+		//console.log("dbm.flow.nodes.browser.WindowSizeNode::_init");
 		
 		this.superCall();
 		
@@ -89,7 +89,7 @@
 	};
 	
 	objectFunctions.start = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::start");
+		//console.log("dbm.flow.nodes.browser.WindowSizeNode::start");
 		this.getExtendedEvent().linkJavascriptEvent(this._window.getValue(), "resize", "resize", "resize", true).activate();
 	};
 	
@@ -99,7 +99,7 @@
 	};
 	
 	objectFunctions._windowUpdated = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_windowUpdated");
+		//console.log("dbm.flow.nodes.browser.WindowSizeNode::_windowUpdated");
 		//console.log(aEvent);
 		
 		var theWindow = this._window.getValueWithoutFlow();
@@ -116,7 +116,7 @@
 	};
 	
 	objectFunctions._updateSize = function(aEvent) {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_updateSize");
+		//console.log("dbm.flow.nodes.browser.WindowSizeNode::_updateSize");
 		//console.log(aEvent);
 		
 		var theWindow = this._window.getValue();
@@ -176,7 +176,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_init");
+		//console.log("dbm.flow.nodes.browser.WindowSizeNode::_init");
 		
 		this.superCall();
 		
@@ -216,7 +216,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.start = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::start");
+		//console.log("dbm.flow.nodes.browser.WindowSizeNode::start");
 		this.getExtendedEvent().linkJavascriptEvent(this._window.getValue(), "resize", "resize", "resize", true).activate();
 	}</div>
 							</div>
@@ -268,7 +268,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._windowUpdated = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_windowUpdated");
+		//console.log("dbm.flow.nodes.browser.WindowSizeNode::_windowUpdated");
 		//console.log(aEvent);
 		
 		var theWindow = this._window.getValueWithoutFlow();
@@ -306,7 +306,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateSize = function(aEvent) {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowSizeNode::_updateSize");
+		//console.log("dbm.flow.nodes.browser.WindowSizeNode::_updateSize");
 		//console.log(aEvent);
 		
 		var theWindow = this._window.getValue();

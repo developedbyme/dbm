@@ -1,19 +1,19 @@
 dbm.runTempFunction(function() {
 	//"use strict";
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var HtmlPanel = dbm.importClass("com.developedbyme.workspace.gui.panels.HtmlPanel");
-	var Console = dbm.importClass("com.developedbyme.workspace.gui.console.Console");
+	var HtmlPanel = dbm.importClass("dbm.workspace.gui.panels.HtmlPanel");
+	var Console = dbm.importClass("dbm.workspace.gui.console.Console");
 	
-	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
-	var RectangleFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.RectangleFromValuesNode");
-	var FlowHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.FlowHandler");
+	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
+	var RectangleFromValuesNode = dbm.importClass("dbm.flow.nodes.math.geometry.RectangleFromValuesNode");
+	var FlowHandler = dbm.importClass("dbm.core.globalobjects.errormanager.handlers.FlowHandler");
 	
-	var SetupPlacementFunctions = dbm.importClass("com.developedbyme.flow.setup.display.SetupPlacementFunctions");
-	var SetupErrorReportFunctions = dbm.importClass("com.developedbyme.flow.setup.workspace.SetupErrorReportFunctions");
+	var SetupPlacementFunctions = dbm.importClass("dbm.flow.setup.display.SetupPlacementFunctions");
+	var SetupErrorReportFunctions = dbm.importClass("dbm.flow.setup.workspace.SetupErrorReportFunctions");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

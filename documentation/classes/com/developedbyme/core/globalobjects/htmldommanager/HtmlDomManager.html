@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>HtmlDomManager</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.htmldommanager.HtmlDomManager</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,34 +38,34 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator" href="objects/HtmlCreator.html">HtmlCreator</a>, <a title="com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink" href="data/HtmlElementControllerLink.html">HtmlElementControllerLink</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.core.globalobjects.htmldommanager.objects.SvgCreator" href="objects/SvgCreator.html">SvgCreator</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.globalobjects.htmldommanager.objects.HtmlCreator" href="objects/HtmlCreator.html">HtmlCreator</a>, <a title="dbm.core.globalobjects.htmldommanager.data.HtmlElementControllerLink" href="data/HtmlElementControllerLink.html">HtmlElementControllerLink</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.globalobjects.htmldommanager.objects.SvgCreator" href="objects/SvgCreator.html">SvgCreator</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var HtmlDomManager = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager");</div>
+									<div class="code">var HtmlDomManager = dbm.importClass("dbm.core.globalobjects.htmldommanager.HtmlDomManager");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.htmldommanager.HtmlDomManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager");
 	//"use strict";
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var HtmlElementControllerLink = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.data.HtmlElementControllerLink");
-	var HtmlCreator = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.objects.HtmlCreator");
-	var SvgCreator = dbm.importClass("com.developedbyme.core.globalobjects.htmldommanager.objects.SvgCreator");
+	var HtmlElementControllerLink = dbm.importClass("dbm.core.globalobjects.htmldommanager.data.HtmlElementControllerLink");
+	var HtmlCreator = dbm.importClass("dbm.core.globalobjects.htmldommanager.objects.HtmlCreator");
+	var SvgCreator = dbm.importClass("dbm.core.globalobjects.htmldommanager.objects.SvgCreator");
 	
 	dbm.setClassAsSingleton("dbmHtmlDomManager");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::_init");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::_init");
 		
 		this.superCall();
 		
@@ -83,13 +83,13 @@
 	};
 	
 	objectFunctions.addDisplayObject = function(aController, aHtmlElement) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::addDisplayObject");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::addDisplayObject");
 		//console.log(aController, aHtmlElement.nodeName);
 		this._displayObjects.push(HtmlElementControllerLink.create(aController, aHtmlElement));
 	};
 	
 	objectFunctions.removeHtmlElement = function(aHtmlElement) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::removeHtmlElement");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::removeHtmlElement");
 		
 		var currentArray = this._displayObjects;
 		var currentArrayLength = currentArray.length;
@@ -105,7 +105,7 @@
 	};
 	
 	objectFunctions.getControllerForHtmlElement = function(aHtmlElement) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElement");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElement");
 		
 		var returnObject = this.getControllerForHtmlElementIfExists(aHtmlElement);
 		
@@ -116,7 +116,7 @@
 	};
 	
 	objectFunctions.getControllerForHtmlElementIfExists = function(aHtmlElement) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElementIfExists");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElementIfExists");
 		
 		var currentArray = this._displayObjects;
 		var currentArrayLength = currentArray.length;
@@ -193,7 +193,7 @@
 	};
 	
 	objectFunctions.reactivateForNewDocument = function(aDocument) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::reactivateForNewDocument");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::reactivateForNewDocument");
 		//console.log(aDocument)
 		
 		var currentArray = this._displayObjects;
@@ -214,7 +214,7 @@
 	};
 	
 	objectFunctions.fullAdopt = function(aFromDocument, aToDocument) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::fullAdopt");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::fullAdopt");
 		//console.log(aFromDocument, aToDocument)
 		
 		var currentArray = this._displayObjects;
@@ -325,7 +325,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::_init");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::_init");
 		
 		this.superCall();
 		
@@ -364,7 +364,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addDisplayObject = function(aController, aHtmlElement) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::addDisplayObject");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::addDisplayObject");
 		//console.log(aController, aHtmlElement.nodeName);
 		this._displayObjects.push(HtmlElementControllerLink.create(aController, aHtmlElement));
 	}</div>
@@ -391,7 +391,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.removeHtmlElement = function(aHtmlElement) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::removeHtmlElement");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::removeHtmlElement");
 		
 		var currentArray = this._displayObjects;
 		var currentArrayLength = currentArray.length;
@@ -428,7 +428,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getControllerForHtmlElement = function(aHtmlElement) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElement");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElement");
 		
 		var returnObject = this.getControllerForHtmlElementIfExists(aHtmlElement);
 		
@@ -460,7 +460,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getControllerForHtmlElementIfExists = function(aHtmlElement) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElementIfExists");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::getControllerForHtmlElementIfExists");
 		
 		var currentArray = this._displayObjects;
 		var currentArrayLength = currentArray.length;
@@ -621,7 +621,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reactivateForNewDocument = function(aDocument) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::reactivateForNewDocument");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::reactivateForNewDocument");
 		//console.log(aDocument)
 		
 		var currentArray = this._displayObjects;
@@ -663,7 +663,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.fullAdopt = function(aFromDocument, aToDocument) {
-		//console.log("com.developedbyme.core.globalobjects.htmldommanager.HtmlDomManager::fullAdopt");
+		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::fullAdopt");
 		//console.log(aFromDocument, aToDocument)
 		
 		var currentArray = this._displayObjects;

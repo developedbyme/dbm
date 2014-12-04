@@ -1,0 +1,32 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("dbm.flow.nodes.debug.ReportCountNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.debug.ReportCountNode");
+	
+	var ReportCountNode = dbm.importClass("dbm.flow.nodes.debug.ReportCountNode");
+	
+	objectFunctions._init = function() {
+		//console.log("dbm.flow.nodes.debug.ReportCountNode::_init");
+		
+		this.superCall();
+		
+		this._numberOfErrors = this.createProperty("numberOfErrors", 0);
+		this._numberOfWarnings = this.createProperty("numberOfWarnings", 0);
+		this._numberOfLogs = this.createProperty("numberOfLogs", 0);
+		
+		return this;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._numberOfErrors = null;
+		this._numberOfWarnings = null;
+		this._numberOfLogs = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		var newNode = (new ClassReference()).init();
+		return newNode;
+	};
+});

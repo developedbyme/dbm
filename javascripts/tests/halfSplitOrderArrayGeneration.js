@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	
-	var ArrayGenerator = dbm.importClass("com.developedbyme.utils.native.array.ArrayGenerator");
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var ArrayGenerator = dbm.importClass("dbm.utils.native.array.ArrayGenerator");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	var startFunction = function() {
 		console.log("startFunction");

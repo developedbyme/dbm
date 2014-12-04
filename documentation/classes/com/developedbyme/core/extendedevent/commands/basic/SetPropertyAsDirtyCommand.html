@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>SetPropertyAsDirtyCommand</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.extendedevent.commands.CommandBaseObject" href="../CommandBaseObject.html">CommandBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand</div>
+					<div class="classInheritance"><a title="dbm.core.extendedevent.commands.CommandBaseObject" href="../CommandBaseObject.html">CommandBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,35 +38,35 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.CommandStatusTypes" href="../../../../constants/CommandStatusTypes.html">CommandStatusTypes</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject" href="../../../../utils/reevaluation/objectreevaluation/GetPropertyObject.html">GetPropertyObject</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../../../../utils/reevaluation/ReevaluationBaseObject.html">ReevaluationBaseObject</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject" href="../../../../utils/reevaluation/staticreevaluation/StaticVariableObject.html">StaticVariableObject</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.CommandStatusTypes" href="../../../../constants/CommandStatusTypes.html">CommandStatusTypes</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetPropertyObject" href="../../../../utils/reevaluation/objectreevaluation/GetPropertyObject.html">GetPropertyObject</a>, <a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../../../../utils/reevaluation/ReevaluationBaseObject.html">ReevaluationBaseObject</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.reevaluation.staticreevaluation.StaticVariableObject" href="../../../../utils/reevaluation/staticreevaluation/StaticVariableObject.html">StaticVariableObject</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");</div>
+									<div class="code">var SetPropertyAsDirtyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand", "dbm.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
 	
-	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
+	var SetPropertyAsDirtyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
 	
-	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
-	var GetPropertyObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject");
-	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	var StaticVariableObject = dbm.importClass("dbm.utils.reevaluation.staticreevaluation.StaticVariableObject");
+	var GetPropertyObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject");
+	var ReevaluationBaseObject = dbm.importClass("dbm.utils.reevaluation.ReevaluationBaseObject");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::_init");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::_init");
 		
 		this.superCall();
 		
@@ -76,7 +76,7 @@
 	};
 	
 	objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::perform");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::perform");
 		//console.log(aEventDataObject);
 		
 		var theProperty = this.propertyReevaluator.reevaluate(aEventDataObject);
@@ -111,7 +111,7 @@
 	 * @return	The new command.
 	 */
 	staticFunctions.createCommand = function(aProperty) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createCommand (static)");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createCommand (static)");
 		//console.log(aProperty);
 		var newCommand = (new SetPropertyAsDirtyCommand()).init();
 		
@@ -130,7 +130,7 @@
 	 * @return	The new command.
 	 */
 	staticFunctions.createSetPropertyOnObjectCommand = function(aObject, aPropertyName) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createSetPropertyOnObjectCommand (static)");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createSetPropertyOnObjectCommand (static)");
 		//console.log(aObject, aPropertyName);
 		var newCommand = (new SetPropertyAsDirtyCommand()).init();
 		
@@ -173,7 +173,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::_init");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::_init");
 		
 		this.superCall();
 		
@@ -204,7 +204,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::perform");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::perform");
 		//console.log(aEventDataObject);
 		
 		var theProperty = this.propertyReevaluator.reevaluate(aEventDataObject);
@@ -305,7 +305,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createCommand = function(aProperty) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createCommand (static)");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createCommand (static)");
 		//console.log(aProperty);
 		var newCommand = (new SetPropertyAsDirtyCommand()).init();
 		
@@ -336,7 +336,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createSetPropertyOnObjectCommand = function(aObject, aPropertyName) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createSetPropertyOnObjectCommand (static)");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand::createSetPropertyOnObjectCommand (static)");
 		//console.log(aObject, aPropertyName);
 		var newCommand = (new SetPropertyAsDirtyCommand()).init();
 		

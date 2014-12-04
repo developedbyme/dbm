@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>QualifierDataHolder</h1>
-					<div class="classPath">com.developedbyme.utils.data.qualifier.QualifierDataHolder</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.data.qualifier.QualifierDataHolder</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Data holder that can be qualified to certain conditions.</div>
 						<div class="spacedContent">
@@ -38,31 +38,31 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../../reevaluation/ReevaluationCreator.html">ReevaluationCreator</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.reevaluation.ReevaluationCreator" href="../../reevaluation/ReevaluationCreator.html">ReevaluationCreator</a>, <a title="dbm.utils.data.VariableAliases" href="../VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var QualifierDataHolder = dbm.importClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder");</div>
+									<div class="code">var QualifierDataHolder = dbm.importClass("dbm.utils.data.qualifier.QualifierDataHolder");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.data.qualifier.QualifierDataHolder");
+									<div class="code">dbm.registerClass("dbm.utils.data.qualifier.QualifierDataHolder", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.qualifier.QualifierDataHolder");
 	
 	//Self reference
-	var QualifierDataHolder = dbm.importClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder");
+	var QualifierDataHolder = dbm.importClass("dbm.utils.data.qualifier.QualifierDataHolder");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -71,7 +71,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.qualifier.QualifierDataHolder::_init");
+		//console.log("dbm.utils.data.qualifier.QualifierDataHolder::_init");
 		
 		this.superCall();
 		
@@ -97,7 +97,7 @@
 	 * Destroys all the data of the object.
 	 */
 	objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
+		//console.log("dbm.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
 		//console.log(this.ownsData, this.data !== null, this.data.destroy);
 		
 		ClassReference.destroyIfExists(this.qualifierReevaluator);
@@ -187,7 +187,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.qualifier.QualifierDataHolder::_init");
+		//console.log("dbm.utils.data.qualifier.QualifierDataHolder::_init");
 		
 		this.superCall();
 		
@@ -245,7 +245,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
+		//console.log("dbm.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
 		//console.log(this.ownsData, this.data !== null, this.data.destroy);
 		
 		ClassReference.destroyIfExists(this.qualifierReevaluator);
@@ -331,17 +331,17 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aReevaluator:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../../reevaluation/ReevaluationBaseObject.html">ReevaluationBaseObject</a>, aData:<span class="nativeType">*</span>, aOwnsData:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a></span>
+					<span class="functionName">create</span>(<span class="arguments">aReevaluator:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../../reevaluation/ReevaluationBaseObject.html">ReevaluationBaseObject</a>, aData:<span class="nativeType">*</span>, aOwnsData:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="dbm.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aReevaluator:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../../reevaluation/ReevaluationBaseObject.html">ReevaluationBaseObject</a> - The qualifier reevalutor for the new objects.</div><div class="argumentDescription">aData:<span class="nativeType">*</span> - The result data for this object.</div><div class="argumentDescription">aOwnsData:<span class="nativeType">Boolean</span> - If the new object should own the data and destroy it when it is destroyed.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aReevaluator:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../../reevaluation/ReevaluationBaseObject.html">ReevaluationBaseObject</a> - The qualifier reevalutor for the new objects.</div><div class="argumentDescription">aData:<span class="nativeType">*</span> - The result data for this object.</div><div class="argumentDescription">aOwnsData:<span class="nativeType">Boolean</span> - If the new object should own the data and destroy it when it is destroyed.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">

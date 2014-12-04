@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>SetPropertyInputCommand</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.extendedevent.commands.CommandBaseObject" href="../CommandBaseObject.html">CommandBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.extendedevent.commands.basic.SetPropertyInputCommand</div>
+					<div class="classInheritance"><a title="dbm.core.extendedevent.commands.CommandBaseObject" href="../CommandBaseObject.html">CommandBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,43 +38,43 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.CommandStatusTypes" href="../../../../constants/CommandStatusTypes.html">CommandStatusTypes</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject" href="../../../../utils/reevaluation/objectreevaluation/GetPropertyObject.html">GetPropertyObject</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.core.objectparts.Property" href="../../../objectparts/Property.html">Property</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../../../../utils/reevaluation/ReevaluationCreator.html">ReevaluationCreator</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.CommandStatusTypes" href="../../../../constants/CommandStatusTypes.html">CommandStatusTypes</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetPropertyObject" href="../../../../utils/reevaluation/objectreevaluation/GetPropertyObject.html">GetPropertyObject</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.core.objectparts.Property" href="../../../objectparts/Property.html">Property</a>, <a title="dbm.utils.reevaluation.ReevaluationCreator" href="../../../../utils/reevaluation/ReevaluationCreator.html">ReevaluationCreator</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var SetPropertyInputCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand");</div>
+									<div class="code">var SetPropertyInputCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyInputCommand");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand", "com.developedbyme.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.commands.basic.SetPropertyInputCommand", "dbm.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.commands.basic.SetPropertyInputCommand");
 	
 	//Self reference
-	var SetPropertyInputCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand");
+	var SetPropertyInputCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyInputCommand");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var GetPropertyObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject");
-	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
-	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var GetPropertyObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject");
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
+	var Property = dbm.importClass("dbm.core.objectparts.Property");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand::_init");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyInputCommand::_init");
 		
 		this.superCall();
 		
@@ -85,7 +85,7 @@
 	};
 	
 	objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand::perform");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyInputCommand::perform");
 		//console.log(this, aEventDataObject);
 		
 		var inputValue = this.inputValueReevaluator.reevaluate(aEventDataObject);
@@ -180,7 +180,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand::_init");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyInputCommand::_init");
 		
 		this.superCall();
 		
@@ -212,7 +212,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.commands.basic.SetPropertyInputCommand::perform");
+		//console.log("dbm.core.extendedevent.commands.basic.SetPropertyInputCommand::perform");
 		//console.log(this, aEventDataObject);
 		
 		var inputValue = this.inputValueReevaluator.reevaluate(aEventDataObject);

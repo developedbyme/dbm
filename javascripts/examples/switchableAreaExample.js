@@ -1,11 +1,11 @@
 dbm.runTempFunction(function() {
 	//"use strict";
 	
-	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
-	var InDomSwitchableArea = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea");
+	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
+	var InDomSwitchableArea = dbm.importClass("dbm.gui.abstract.switchablearea.InDomSwitchableArea");
 	
-	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var SetPropertyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

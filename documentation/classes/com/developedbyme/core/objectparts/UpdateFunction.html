@@ -28,56 +28,56 @@
 			<article>
 				<div class="mainInfo">
 					<h1>UpdateFunction</h1>
-					<div class="classPath">com.developedbyme.core.objectparts.UpdateFunction</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.objectparts.UpdateFunction</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Function taht has a number of input properties to generates values for another set of properties.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.core.objectparts.UpdateFunctionWithArguments" href="UpdateFunctionWithArguments.html">UpdateFunctionWithArguments</a></div>
+							<div class="subClasses linkList"><a title="dbm.core.objectparts.UpdateFunctionWithArguments" href="UpdateFunctionWithArguments.html">UpdateFunctionWithArguments</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="com.developedbyme.core.objectparts.GhostProperty" href="GhostProperty.html">GhostProperty</a>, <a title="com.developedbyme.core.globalobjects.GlobalVariables" href="../globalobjects/GlobalVariables.html">GlobalVariables</a>, <a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="dbm.core.objectparts.GhostProperty" href="GhostProperty.html">GhostProperty</a>, <a title="dbm.core.globalobjects.GlobalVariables" href="../globalobjects/GlobalVariables.html">GlobalVariables</a>, <a title="dbm.core.objectparts.Property" href="Property.html">Property</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");</div>
+									<div class="code">var UpdateFunction = dbm.importClass("dbm.core.objectparts.UpdateFunction");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunction", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.objectparts.UpdateFunction");
+									<div class="code">dbm.registerClass("dbm.core.objectparts.UpdateFunction", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.UpdateFunction");
 	//"use strict";
 	
 	//Self reference
-	var UpdateFunction = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunction");
+	var UpdateFunction = dbm.importClass("dbm.core.objectparts.UpdateFunction");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
-	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
+	var Property = dbm.importClass("dbm.core.objectparts.Property");
+	var GhostProperty = dbm.importClass("dbm.core.objectparts.GhostProperty");
 	
 	//Utils
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	//Constants
-	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
-	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::_init");
+		//console.log("dbm.core.objectparts.UpdateFunction::_init");
 		
 		this.superCall();
 		
@@ -106,7 +106,7 @@
 	 * @return	self
 	 */
 	objectFunctions.setup = function(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray) {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::setup");
+		//console.log("dbm.core.objectparts.UpdateFunction::setup");
 		//console.log(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray);
 		this._updateFunction = aUpdateFunction;
 		this._ownerObject = aOwnerObject;
@@ -277,7 +277,7 @@
 	 * @param	aReturnArray	Array	The array that gets filled with connections.
 	 */
 	objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::fillWithDirtyInputConnections");
+		//console.log("dbm.core.objectparts.UpdateFunction::fillWithDirtyInputConnections");
 		this._fillWithPropertiesOfStatus(this._inputConnections, FlowStatusTypes.NEEDS_UPDATE, aReturnArray);
 	};
 	
@@ -287,7 +287,7 @@
 	 * @param	aReturnArray	Array	The array that gets filled with connections.
 	 */
 	objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::fillWithAllInputConnections");
+		//console.log("dbm.core.objectparts.UpdateFunction::fillWithAllInputConnections");
 		
 		ArrayFunctions.concatToArray(aReturnArray, this._inputConnections);
 	};
@@ -308,7 +308,7 @@
 	 * @return	Number	The interger that keeps track of when the flow was latest updated.
 	 */
 	objectFunctions._getInputFlowUpdateNumber = function() {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::_getInputFlowUpdateNumber");
+		//console.log("dbm.core.objectparts.UpdateFunction::_getInputFlowUpdateNumber");
 		var returnNumber = 0;
 		var currentArray = this._inputConnections;
 		var currentArrayLength = currentArray.length;
@@ -325,7 +325,7 @@
 	 * @param	aProeprty	Property	The property to remove.
 	 */
 	objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
-		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeInputConnection");
+		//console.log("dbm.core.objectparts.Property::_linkRegistration_removeInputConnection");
 		
 		var index = ArrayFunctions.indexOfInArray(this._inputConnections, aProperty);
 		if(index !== -1) {
@@ -349,7 +349,7 @@
 	 * @param	aProeprty	Property	The property to remove.
 	 */
 	objectFunctions._linkRegistration_removeOutputConnection = function(aProperty) {
-		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeOutputConnection");
+		//console.log("dbm.core.objectparts.Property::_linkRegistration_removeOutputConnection");
 		
 		var index = ArrayFunctions.indexOfInArray(this._outputConnections, aProperty);
 		if(index !== -1) {
@@ -390,7 +390,7 @@
 		}
 		
 		this.superCall();
-		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
+		//console.log("//dbm.core.objectparts.Property::performDestroy");
 	};
 	
 	/**
@@ -481,7 +481,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::_init");
+		//console.log("dbm.core.objectparts.UpdateFunction::_init");
 		
 		this.superCall();
 		
@@ -504,13 +504,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">setup</span>(<span class="arguments">aOwnerObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a>, aUpdateFunction:<span class="nativeType">Function</span>, aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span>, aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
+					<span class="functionName">setup</span>(<span class="arguments">aOwnerObject:<a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a>, aUpdateFunction:<span class="nativeType">Function</span>, aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span>, aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Sets up the function.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aOwnerObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner of this function.</div><div class="argumentDescription">aUpdateFunction:<span class="nativeType">Function</span> - The function that is performing transformation the input to the output.</div><div class="argumentDescription">aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that is used when performing the update.</div><div class="argumentDescription">aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that are being updated with this function.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aOwnerObject:<a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner of this function.</div><div class="argumentDescription">aUpdateFunction:<span class="nativeType">Function</span> - The function that is performing transformation the input to the output.</div><div class="argumentDescription">aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that is used when performing the update.</div><div class="argumentDescription">aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that are being updated with this function.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -521,7 +521,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setup = function(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray) {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::setup");
+		//console.log("dbm.core.objectparts.UpdateFunction::setup");
 		//console.log(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray);
 		this._updateFunction = aUpdateFunction;
 		this._ownerObject = aOwnerObject;
@@ -563,7 +563,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getOwnerObject</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a></span>
+					<span class="functionName">getOwnerObject</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Gets the owner object of this function.</div>
@@ -573,7 +573,7 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner of this function.</div>
+						<div class="returnValueDescription"><a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner of this function.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -588,13 +588,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">addInputConnection</span>(<span class="arguments">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">addInputConnection</span>(<span class="arguments">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Adds an input property that is used when the function is updating.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> - The input property to add.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a> - The input property to add.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -614,13 +614,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">removeInputConnection</span>(<span class="arguments">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">removeInputConnection</span>(<span class="arguments">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Removes an input property that no longer is used when the function is updating.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> - The input property to remove.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a> - The input property to remove.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -640,13 +640,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_linkRegistration_addInputConnection</span>(<span class="arguments">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">_linkRegistration_addInputConnection</span>(<span class="arguments">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Link registation for adding an input property.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> - The input property to add.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a> - The input property to add.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -720,13 +720,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_linkRegistration_addOutputConnection</span>(<span class="arguments">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">_linkRegistration_addOutputConnection</span>(<span class="arguments">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Link registation for adding an output property.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> - The output property to add.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty:<a title="dbm.core.objectparts.Property" href="Property.html">Property</a> - The output property to add.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -810,13 +810,13 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">_fillWithPropertiesOfStatus</span>(<span class="arguments">aProperties:<span class="unknownType">Array&lt;Property&gt;</span>, aStatus:<a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
+					<span class="functionName">_fillWithPropertiesOfStatus</span>(<span class="arguments">aProperties:<span class="unknownType">Array&lt;Property&gt;</span>, aStatus:<a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Fills an array with properties of a ceratin status.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aProperties:<span class="unknownType">Array&lt;Property&gt;</span> - The list of properties to search in.</div><div class="argumentDescription">aStatus:<a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a> - The status that qualifies the property.</div><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with the matching properties.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperties:<span class="unknownType">Array&lt;Property&gt;</span> - The list of properties to search in.</div><div class="argumentDescription">aStatus:<a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a> - The status that qualifies the property.</div><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with the matching properties.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
@@ -884,7 +884,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.fillWithDirtyInputConnections = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::fillWithDirtyInputConnections");
+		//console.log("dbm.core.objectparts.UpdateFunction::fillWithDirtyInputConnections");
 		this._fillWithPropertiesOfStatus(this._inputConnections, FlowStatusTypes.NEEDS_UPDATE, aReturnArray);
 	}</div>
 							</div>
@@ -910,7 +910,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.fillWithAllInputConnections = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::fillWithAllInputConnections");
+		//console.log("dbm.core.objectparts.UpdateFunction::fillWithAllInputConnections");
 		
 		ArrayFunctions.concatToArray(aReturnArray, this._inputConnections);
 	}</div>
@@ -963,7 +963,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._getInputFlowUpdateNumber = function() {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunction::_getInputFlowUpdateNumber");
+		//console.log("dbm.core.objectparts.UpdateFunction::_getInputFlowUpdateNumber");
 		var returnNumber = 0;
 		var currentArray = this._inputConnections;
 		var currentArrayLength = currentArray.length;
@@ -996,7 +996,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._linkRegistration_removeInputConnection = function(aProperty) {
-		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeInputConnection");
+		//console.log("dbm.core.objectparts.Property::_linkRegistration_removeInputConnection");
 		
 		var index = ArrayFunctions.indexOfInArray(this._inputConnections, aProperty);
 		if(index !== -1) {
@@ -1036,7 +1036,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._linkRegistration_removeOutputConnection = function(aProperty) {
-		//console.log("com.developedbyme.core.objectparts.Property::_linkRegistration_removeOutputConnection");
+		//console.log("dbm.core.objectparts.Property::_linkRegistration_removeOutputConnection");
 		
 		var index = ArrayFunctions.indexOfInArray(this._outputConnections, aProperty);
 		if(index !== -1) {
@@ -1111,7 +1111,7 @@
 		}
 		
 		this.superCall();
-		//console.log("//com.developedbyme.core.objectparts.Property::performDestroy");
+		//console.log("//dbm.core.objectparts.Property::performDestroy");
 	}</div>
 							</div>
 						</div>
@@ -1189,17 +1189,17 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aOwnerObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a>, aUpdateFunction:<span class="nativeType">Function</span>, aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span>, aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a></span>
+					<span class="functionName">create</span>(<span class="arguments">aOwnerObject:<a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a>, aUpdateFunction:<span class="nativeType">Function</span>, aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span>, aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span></span>)<span class="returnValue">:<a title="dbm.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aOwnerObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner of this function.</div><div class="argumentDescription">aUpdateFunction:<span class="nativeType">Function</span> - The function that is performing transformation the input to the output.</div><div class="argumentDescription">aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that is used when performing the update.</div><div class="argumentDescription">aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that are being updated with this function.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aOwnerObject:<a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner of this function.</div><div class="argumentDescription">aUpdateFunction:<span class="nativeType">Function</span> - The function that is performing transformation the input to the output.</div><div class="argumentDescription">aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that is used when performing the update.</div><div class="argumentDescription">aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that are being updated with this function.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -1216,7 +1216,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createGhostFunction</span>(<span class="arguments">aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span>, aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a></span>
+					<span class="functionName">createGhostFunction</span>(<span class="arguments">aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span>, aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span></span>)<span class="returnValue">:<a title="dbm.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class, that doesn't perform a function when updated.
@@ -1227,7 +1227,7 @@ This has been depreciated, use a AnyChangeMultipleInputProperty instead.</div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">

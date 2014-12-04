@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CallFunctionObject</h1>
-					<div class="classPath">com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject" href="ObjectReevaluationBaseObject.html">ObjectReevaluationBaseObject</a> &gt; <a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.reevaluation.objectreevaluation.CallFunctionObject</div>
+					<div class="classInheritance"><a title="dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject" href="ObjectReevaluationBaseObject.html">ObjectReevaluationBaseObject</a> &gt; <a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Reevaluation that returns the value of a function call.</div>
 						<div class="spacedContent">
@@ -38,35 +38,35 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="GetVariableObject.html">GetVariableObject</a>, <a title="dbm.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");</div>
+									<div class="code">var CallFunctionObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject", "com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
+									<div class="code">dbm.registerClass("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject", "dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
 	
 	//Self reference
-	var CallFunctionObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject");
+	var CallFunctionObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
 	//Utils
-	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -75,7 +75,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::_init");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject::_init");
 		
 		this.superCall();
 		
@@ -93,7 +93,7 @@
 	 * @return	*	The result of the reevaluation.
 	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject::reevaluate");
 		//console.log(this);
 		
 		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
@@ -131,7 +131,7 @@
 	 * @return	CallFunctionObject	The newly created command.
 	 */
 	staticFunctions.createCommand = function(aObject, aFunction, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
 		
 		if(!VariableAliases.isSet(aFunction)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[CallFunctionObject]", "createCommand", "Function is null. Can't create call for " + aFunction + " on object " + aObject + " with arguments " + aArgumentsArray);
@@ -157,7 +157,7 @@
 	 * @return	CallFunctionObject	The newly created command.
 	 */
 	staticFunctions.createFunctionOnObjectCommand = function(aObject, aFunctionName, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
 		
 		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray);
 	};
@@ -196,7 +196,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::_init");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject::_init");
 		
 		this.superCall();
 		
@@ -228,7 +228,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject::reevaluate");
 		//console.log(this);
 		
 		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
@@ -291,24 +291,24 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">createCommand</span>(<span class="arguments">aObject:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span>, aFunction:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Function</span>, aArgumentsArray:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a></span>
+					<span class="functionName">createCommand</span>(<span class="arguments">aObject:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span>, aFunction:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Function</span>, aArgumentsArray:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span></span>)<span class="returnValue">:<a title="dbm.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new command of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span> - The object to call the function on.</div><div class="argumentDescription">aFunction:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Function</span> - The function to call.</div><div class="argumentDescription">aArgumentsArray:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span> - The arguemnts to call the function with.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span> - The object to call the function on.</div><div class="argumentDescription">aFunction:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Function</span> - The function to call.</div><div class="argumentDescription">aArgumentsArray:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span> - The arguemnts to call the function with.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a> - The newly created command.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a> - The newly created command.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createCommand = function(aObject, aFunction, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
 		
 		if(!VariableAliases.isSet(aFunction)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, "[CallFunctionObject]", "createCommand", "Function is null. Can't create call for " + aFunction + " on object " + aObject + " with arguments " + aArgumentsArray);
@@ -329,24 +329,24 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createFunctionOnObjectCommand</span>(<span class="arguments">aObject:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span>, aFunctionName, aArgumentsArray:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a></span>
+					<span class="functionName">createFunctionOnObjectCommand</span>(<span class="arguments">aObject:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span>, aFunctionName, aArgumentsArray:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span></span>)<span class="returnValue">:<a title="dbm.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new command of this class, that calls a function by name.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span> - The object to call the function on.</div><div class="argumentDescription">aFunctionName</div><div class="argumentDescription">aArgumentsArray:<a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span> - The arguemnts to call the function with.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">*</span> - The object to call the function on.</div><div class="argumentDescription">aFunctionName</div><div class="argumentDescription">aArgumentsArray:<a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> | <span class="nativeType">Array</span> - The arguemnts to call the function with.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a> - The newly created command.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.reevaluation.objectreevaluation.CallFunctionObject" href="CallFunctionObject.html">CallFunctionObject</a> - The newly created command.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createFunctionOnObjectCommand = function(aObject, aFunctionName, aArgumentsArray) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject::createCommand");
 		
 		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray);
 	}</div>

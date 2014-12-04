@@ -28,14 +28,14 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ArrayHolder</h1>
-					<div class="classPath">com.developedbyme.utils.data.ArrayHolder</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.data.ArrayHolder</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Holder of an array.
 The purpose of this object is that it implements and destroy() function and destroys the array if it owns it.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.utils.data.iterator.ArrayIterator" href="iterator/ArrayIterator.html">ArrayIterator</a>, <a title="com.developedbyme.utils.data.qualifier.QualifierSelector" href="qualifier/QualifierSelector.html">QualifierSelector</a></div>
+							<div class="subClasses linkList"><a title="dbm.utils.data.iterator.ArrayIterator" href="iterator/ArrayIterator.html">ArrayIterator</a>, <a title="dbm.utils.data.qualifier.QualifierSelector" href="qualifier/QualifierSelector.html">QualifierSelector</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
@@ -45,18 +45,18 @@ The purpose of this object is that it implements and destroy() function and dest
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");</div>
+									<div class="code">var ArrayHolder = dbm.importClass("dbm.utils.data.ArrayHolder");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.data.ArrayHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.data.ArrayHolder");
+									<div class="code">dbm.registerClass("dbm.utils.data.ArrayHolder", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.ArrayHolder");
 	//"use strict";
 	
 	//Self reference
-	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
+	var ArrayHolder = dbm.importClass("dbm.utils.data.ArrayHolder");
 	
 	//Error report
 	
@@ -71,7 +71,7 @@ The purpose of this object is that it implements and destroy() function and dest
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.ArrayHolder::_init");
+		//console.log("dbm.utils.data.ArrayHolder::_init");
 		
 		this.superCall();
 		
@@ -178,7 +178,7 @@ The purpose of this object is that it implements and destroy() function and dest
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.ArrayHolder::_init");
+		//console.log("dbm.utils.data.ArrayHolder::_init");
 		
 		this.superCall();
 		
@@ -292,7 +292,7 @@ The purpose of this object is that it implements and destroy() function and dest
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a></span>
+					<span class="functionName">create</span>(<span class="arguments">aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="dbm.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new instance of this class.</div>
@@ -302,7 +302,7 @@ The purpose of this object is that it implements and destroy() function and dest
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -320,7 +320,7 @@ The purpose of this object is that it implements and destroy() function and dest
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createFromArray</span>(<span class="arguments">aArray:<span class="nativeType">Array</span>, aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a></span>
+					<span class="functionName">createFromArray</span>(<span class="arguments">aArray:<span class="nativeType">Array</span>, aOwnsObjects:<span class="nativeType">Boolean</span></span>)<span class="returnValue">:<a title="dbm.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new holder from an existing array.</div>
@@ -330,7 +330,7 @@ The purpose of this object is that it implements and destroy() function and dest
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.data.ArrayHolder" href="ArrayHolder.html">ArrayHolder</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">

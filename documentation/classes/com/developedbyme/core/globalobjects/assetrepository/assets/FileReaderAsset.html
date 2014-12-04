@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>FileReaderAsset</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.assetrepository.assets.Asset" href="Asset.html">Asset</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.assetrepository.assets.FileReaderAsset</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.assetrepository.assets.Asset" href="Asset.html">Asset</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">An asset that is loaded from the users local system.</div>
 						<div class="spacedContent">
@@ -38,44 +38,44 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.AssetStatusTypes" href="../../../../constants/AssetStatusTypes.html">AssetStatusTypes</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.constants.JavascriptEventIds" href="../../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="com.developedbyme.constants.extendedevents.LoadingExtendedEventIds" href="../../../../constants/extendedevents/LoadingExtendedEventIds.html">LoadingExtendedEventIds</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.AssetStatusTypes" href="../../../../constants/AssetStatusTypes.html">AssetStatusTypes</a>, <a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.constants.JavascriptEventIds" href="../../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="dbm.constants.extendedevents.LoadingExtendedEventIds" href="../../../../constants/extendedevents/LoadingExtendedEventIds.html">LoadingExtendedEventIds</a>, <a title="dbm.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var FileReaderAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset");</div>
+									<div class="code">var FileReaderAsset = dbm.importClass("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset", "com.developedbyme.core.globalobjects.assetrepository.assets.Asset", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset", "dbm.core.globalobjects.assetrepository.assets.Asset", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset");
 	//"use strict";
 	
 	//Self reference
-	var FileReaderAsset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset");
+	var FileReaderAsset = dbm.importClass("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
-	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
-	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset::_init");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset::_init");
 		
 		this.superCall();
 		
@@ -102,7 +102,7 @@
 	};
 	
 	objectFunctions.setFile = function(aFile) {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset::setFile");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset::setFile");
 		//console.log(aUrl);
 		
 		this._file = aFile;
@@ -121,14 +121,14 @@
 	};
 	
 	objectFunctions._setupData = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset::_setupData");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset::_setupData");
 		//console.log(this._loader.result);
 		
 		this._data.setValue(this._loader.result);
 	};
 	
 	objectFunctions.load = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset::load");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset::load");
 		
 		if(this._status.getValue() !== AssetStatusTypes.NOT_LOADED) {
 			return this;
@@ -204,7 +204,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset::_init");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset::_init");
 		
 		this.superCall();
 		
@@ -294,7 +294,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setFile = function(aFile) {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset::setFile");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset::setFile");
 		//console.log(aUrl);
 		
 		this._file = aFile;
@@ -376,7 +376,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._setupData = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset::_setupData");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset::_setupData");
 		//console.log(this._loader.result);
 		
 		this._data.setValue(this._loader.result);
@@ -404,7 +404,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.load = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset::load");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset::load");
 		
 		if(this._status.getValue() !== AssetStatusTypes.NOT_LOADED) {
 			return this;

@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>EvaluateTimelineNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.animation.EvaluateTimelineNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.animation.EvaluateTimelineNode</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A node that evaluates a timeline.</div>
 						<div class="spacedContent">
@@ -38,29 +38,29 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline" href="../../../core/globalobjects/animationmanager/timeline/Timeline.html">Timeline</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.animationmanager.timeline.Timeline" href="../../../core/globalobjects/animationmanager/timeline/Timeline.html">Timeline</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var EvaluateTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");</div>
+									<div class="code">var EvaluateTimelineNode = dbm.importClass("dbm.flow.nodes.animation.EvaluateTimelineNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.animation.EvaluateTimelineNode", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.animation.EvaluateTimelineNode");
 	//"use strict";
 	
 	//Self reference
-	var EvaluateTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
+	var EvaluateTimelineNode = dbm.importClass("dbm.flow.nodes.animation.EvaluateTimelineNode");
 	
 	//Error report
 	
 	//Dependencies
-	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+	var Timeline = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.Timeline");
 	
 	//Utils
 	
@@ -71,7 +71,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::_init");
+		//console.log("dbm.flow.nodes.animation.EvaluateTimelineNode::_init");
 		
 		this.superCall();
 		
@@ -85,7 +85,7 @@
 	};
 	
 	staticFunctions.create = function(aTimeline, aInputValue) {
-		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::create");
+		//console.log("dbm.flow.nodes.animation.EvaluateTimelineNode::create");
 		var newNode = (new ClassReference()).init();
 		if(aTimeline instanceof Timeline) {
 			newNode.setPropertyInputWithoutNull("timeline", aTimeline.getObjectProperty());
@@ -102,7 +102,7 @@
 	};
 	
 	staticFunctions._update = function(aTimeline, aInputValue) {
-		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::_update");
+		//console.log("dbm.flow.nodes.animation.EvaluateTimelineNode::_update");
 		//console.log(aTimeline, aInputValue);
 		
 		if(aTimeline === null) {
@@ -145,7 +145,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::_init");
+		//console.log("dbm.flow.nodes.animation.EvaluateTimelineNode::_init");
 		
 		this.superCall();
 		
@@ -192,7 +192,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function(aTimeline, aInputValue) {
-		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::create");
+		//console.log("dbm.flow.nodes.animation.EvaluateTimelineNode::create");
 		var newNode = (new ClassReference()).init();
 		if(aTimeline instanceof Timeline) {
 			newNode.setPropertyInputWithoutNull("timeline", aTimeline.getObjectProperty());
@@ -230,7 +230,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions._update = function(aTimeline, aInputValue) {
-		//console.log("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode::_update");
+		//console.log("dbm.flow.nodes.animation.EvaluateTimelineNode::_update");
 		//console.log(aTimeline, aInputValue);
 		
 		if(aTimeline === null) {

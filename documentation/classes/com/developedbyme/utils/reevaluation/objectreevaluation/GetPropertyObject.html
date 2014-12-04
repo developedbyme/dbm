@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>GetPropertyObject</h1>
-					<div class="classPath">com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject" href="ObjectReevaluationBaseObject.html">ObjectReevaluationBaseObject</a> &gt; <a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.reevaluation.objectreevaluation.GetPropertyObject</div>
+					<div class="classInheritance"><a title="dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject" href="ObjectReevaluationBaseObject.html">ObjectReevaluationBaseObject</a> &gt; <a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,32 +38,32 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a>, <a title="com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject" href="../staticreevaluation/SelectBaseObjectObject.html">SelectBaseObjectObject</a>, <a title="com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject" href="../staticreevaluation/StaticVariableObject.html">StaticVariableObject</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a>, <a title="dbm.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a>, <a title="dbm.utils.reevaluation.staticreevaluation.SelectBaseObjectObject" href="../staticreevaluation/SelectBaseObjectObject.html">SelectBaseObjectObject</a>, <a title="dbm.utils.reevaluation.staticreevaluation.StaticVariableObject" href="../staticreevaluation/StaticVariableObject.html">StaticVariableObject</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var GetPropertyObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject");</div>
+									<div class="code">var GetPropertyObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject", "com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
+									<div class="code">dbm.registerClass("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject", "dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
 	
-	var GetPropertyObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject");
+	var GetPropertyObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject");
 	
-	var StaticVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.StaticVariableObject");
-	var SelectBaseObjectObject = dbm.importClass("com.developedbyme.utils.reevaluation.staticreevaluation.SelectBaseObjectObject");
+	var StaticVariableObject = dbm.importClass("dbm.utils.reevaluation.staticreevaluation.StaticVariableObject");
+	var SelectBaseObjectObject = dbm.importClass("dbm.utils.reevaluation.staticreevaluation.SelectBaseObjectObject");
 	
-	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
 	
-	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	var ReevaluationBaseObject = dbm.importClass("dbm.utils.reevaluation.ReevaluationBaseObject");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject::_init");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject::_init");
 		
 		this.superCall();
 		
@@ -95,7 +95,7 @@
 	 * @return	The property on the base object.
 	 */
 	objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject::reevaluate");
 		//console.log(this);
 		
 		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
@@ -121,7 +121,7 @@
 	 * @return	The new command.
 	 */
 	staticFunctions.createCommand = function(aObject, aPropertyName) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject::createCommand (static)");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject::createCommand (static)");
 		//console.log(aPropertyName);
 		var newCommand = (new GetPropertyObject()).init();
 		
@@ -165,7 +165,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject::_init");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject::_init");
 		
 		this.superCall();
 		
@@ -227,7 +227,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject::reevaluate");
 		//console.log(this);
 		
 		var theObject = this.objectReevaluator.reevaluate(aBaseObject);
@@ -300,7 +300,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createCommand = function(aObject, aPropertyName) {
-		//console.log("com.developedbyme.utils.reevaluation.objectreevaluation.GetPropertyObject::createCommand (static)");
+		//console.log("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject::createCommand (static)");
 		//console.log(aPropertyName);
 		var newCommand = (new GetPropertyObject()).init();
 		

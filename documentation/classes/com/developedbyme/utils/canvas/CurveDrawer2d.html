@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CurveDrawer2d</h1>
-					<div class="classPath">com.developedbyme.utils.canvas.CurveDrawer2d</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.canvas.CurveDrawer2d</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A graphics in a 2d canvas.</div>
 						<div class="spacedContent">
@@ -38,33 +38,33 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");</div>
+									<div class="code">var CurveDrawer2d = dbm.importClass("dbm.utils.canvas.CurveDrawer2d");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CurveDrawer2d", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.canvas.CurveDrawer2d");
+									<div class="code">dbm.registerClass("dbm.utils.canvas.CurveDrawer2d", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.canvas.CurveDrawer2d");
 	
-	var CurveDrawer2d = dbm.importClass("com.developedbyme.utils.canvas.CurveDrawer2d");
-	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var CurveDrawer2d = dbm.importClass("dbm.utils.canvas.CurveDrawer2d");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	/**
 	 * Constructor.
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::_init");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::_init");
 		
 		this.superCall();
 		
@@ -81,7 +81,7 @@
 	};
 	
 	objectFunctions.draw = function(aContext) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::draw");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::draw");
 		
 		var curve = this._curve.getValue();
 		var startParameter = this._startParameter.getValue();
@@ -92,7 +92,7 @@
 	};
 	
 	objectFunctions.getStartPoint = function(aReturnPoint) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::getStartPoint");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::getStartPoint");
 		var curve = this._curve.getValue();
 		var startParameter = this._startParameter.getValue();
 		curve.getPointOnCurve(startParameter, aReturnPoint);
@@ -105,7 +105,7 @@
 	};
 	
 	staticFunctions.drawCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawCurve (static)");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::drawCurve (static)");
 		if(aCurve.isSetType("bezierCurve")) {
 			ClassReference.drawBezierCurve(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
 		}
@@ -115,7 +115,7 @@
 	};
 	
 	staticFunctions.drawBezierCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawBezierCurve (static)");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::drawBezierCurve (static)");
 		//console.log(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
 		
 		var tempCurve = aCurve.createSameTypeOfCurve();
@@ -180,7 +180,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::_init");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::_init");
 		
 		this.superCall();
 		
@@ -218,7 +218,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.draw = function(aContext) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::draw");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::draw");
 		
 		var curve = this._curve.getValue();
 		var startParameter = this._startParameter.getValue();
@@ -250,7 +250,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getStartPoint = function(aReturnPoint) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::getStartPoint");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::getStartPoint");
 		var curve = this._curve.getValue();
 		var startParameter = this._startParameter.getValue();
 		curve.getPointOnCurve(startParameter, aReturnPoint);
@@ -317,7 +317,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.drawCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawCurve (static)");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::drawCurve (static)");
 		if(aCurve.isSetType("bezierCurve")) {
 			ClassReference.drawBezierCurve(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
 		}
@@ -348,7 +348,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.drawBezierCurve = function(aCurve, aStartParameter, aEndParameter, aExactness, aContext) {
-		//console.log("com.developedbyme.utils.canvas.CurveDrawer2d::drawBezierCurve (static)");
+		//console.log("dbm.utils.canvas.CurveDrawer2d::drawBezierCurve (static)");
 		//console.log(aCurve, aStartParameter, aEndParameter, aExactness, aContext);
 		
 		var tempCurve = aCurve.createSameTypeOfCurve();

@@ -1,13 +1,13 @@
 dbm.runTempFunction(function() {
 	
-	var DbmCompiler = dbm.importClass("com.developedbyme.compiler.DbmCompiler");
+	var DbmCompiler = dbm.importClass("dbm.compiler.DbmCompiler");
 	
-	var CompileData = dbm.importClass("com.developedbyme.compiler.compiledata.CompileData");
+	var CompileData = dbm.importClass("dbm.compiler.compiledata.CompileData");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var SnippetsGenerator = dbm.importClass("com.developedbyme.compiler.snippets.SnippetsGenerator");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var SnippetsGenerator = dbm.importClass("dbm.compiler.snippets.SnippetsGenerator");
 	
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
@@ -34,7 +34,7 @@ dbm.runTempFunction(function() {
 		compiler.setNumberOfFilesBeforeImport(3);
 		compiler.setNotice("/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */");
 		compiler.addFiles("javascripts/dbm/dbm.js", "javascripts/dbm/setup/defaultDocumentSetup.js", "javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js", "javascripts/dbm/setup/defaultSetup.js");
-		compiler.addScript(SnippetsGenerator.createApplicationStart("com.developedbyme.projects.experiments.linearoptionselection.LinearOptionSelectionApplication"));
+		compiler.addScript(SnippetsGenerator.createApplicationStart("dbm.projects.experiments.linearoptionselection.LinearOptionSelectionApplication"));
 		compiler.addFiles("javascripts/dbm/setup/compiledStart.js");
 		compiler._loader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(compiler, compiler.compileFiles, []));
 		compiler.load();

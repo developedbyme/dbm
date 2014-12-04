@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	
-	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
-	var PrintTextNode = dbm.importClass("com.developedbyme.flow.nodes.display.PrintTextNode");
+	var MousePositionNode = dbm.importClass("dbm.flow.nodes.userinput.MousePositionNode");
+	var PrintTextNode = dbm.importClass("dbm.flow.nodes.display.PrintTextNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

@@ -1,12 +1,12 @@
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject" xmlns:data="http://developedbyme.com/schemas/xml/data/">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject" xmlns:data="http://developedbyme.com/schemas/xml/data/">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="exportDate" data:parentApplyType="namedArray/addObject"><![CDATA[2014-09-06T16:19:04]]></data:item>
 <data:item data:type="string" data:name="exportType" data:parentApplyType="namedArray/addObject"><![CDATA[afterEffectsComposition]]></data:item>
 <data:item data:type="string" data:name="environment" data:parentApplyType="namedArray/addObject"><![CDATA[extendScript]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[1920]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[1080]]></data:item>
@@ -14,8 +14,8 @@
 <data:item data:type="number" data:name="frameRate" data:parentApplyType="namedArray/addObject"><![CDATA[25]]></data:item>
 </data:item>
 <data:item data:type="array" data:name="data">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[Dark Gray Solid 1]]></data:item>
 <data:item data:type="number" data:name="inPoint" data:parentApplyType="namedArray/addObject"><![CDATA[0]]></data:item>
@@ -24,9 +24,9 @@
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[808]]></data:item>
 <data:item data:type="number" data:name="blendingMode" data:parentApplyType="namedArray/addObject"><![CDATA[4812]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-<data:item data:type="dbmObject" data:name="timeRemap" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="timeRemap" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -35,7 +35,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/anchorPoint/x" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/anchorPoint/x" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -44,7 +44,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/anchorPoint/y" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/anchorPoint/y" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -53,7 +53,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/anchorPoint/z" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/anchorPoint/z" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -62,25 +62,25 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/position/x" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/position/x" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
 <data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[624]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="array" data:name="parts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.72]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0.67,0.00364107125311,0,1;0.51,-1.39658570540314,0,1;1,1,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -92,12 +92,12 @@
 <data:item data:type="number" data:name="startParameter"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endParameter"><![CDATA[1]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.72]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[624,338,0,1;1119.66665649414,460,0,1;1463.25682067871,857.208445549011,0,1;1546,842,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -109,18 +109,18 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="array" data:name="parts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0.34,0,0,1;0.83333333333,0.83333059629963,0,1;1,1,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -132,12 +132,12 @@
 <data:item data:type="number" data:name="startParameter"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endParameter"><![CDATA[1]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1546,842,0,1;1726.67001342773,817.767171859741,0,1;1120.45909118652,246.749328613281,0,1;1120.45909118652,246.749328613281,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -149,12 +149,12 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[28.48]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[28.48]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1120.45909118652,246.749328613281,0,1;1120.45909118652,246.749328613281,0,1;335.585571289062,469.172775268555,0,1;335.585571289062,469.172775268555,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -166,25 +166,25 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/position/y" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/position/y" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
 <data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[338]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="array" data:name="parts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.72]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0.67,0.00364107125311,0,1;0.51,-1.39658570540314,0,1;1,1,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -196,12 +196,12 @@
 <data:item data:type="number" data:name="startParameter"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endParameter"><![CDATA[1]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.72]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[624,338,0,1;1119.66665649414,460,0,1;1463.25682067871,857.208445549011,0,1;1546,842,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -213,18 +213,18 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="array" data:name="parts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0.34,0,0,1;0.83333333333,0.83333059629963,0,1;1,1,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -236,12 +236,12 @@
 <data:item data:type="number" data:name="startParameter"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endParameter"><![CDATA[1]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1546,842,0,1;1726.67001342773,817.767171859741,0,1;1120.45909118652,246.749328613281,0,1;1120.45909118652,246.749328613281,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -253,12 +253,12 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[28.48]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[28.48]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1120.45909118652,246.749328613281,0,1;1120.45909118652,246.749328613281,0,1;335.585571289062,469.172775268555,0,1;335.585571289062,469.172775268555,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -270,25 +270,25 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/position/z" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/position/z" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
 <data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="array" data:name="parts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.72]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0.67,0.00364107125311,0,1;0.51,-1.39658570540314,0,1;1,1,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -300,12 +300,12 @@
 <data:item data:type="number" data:name="startParameter"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endParameter"><![CDATA[1]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.72]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[624,338,0,1;1119.66665649414,460,0,1;1463.25682067871,857.208445549011,0,1;1546,842,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -317,18 +317,18 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="array" data:name="parts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0.34,0,0,1;0.83333333333,0.83333059629963,0,1;1,1,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -340,12 +340,12 @@
 <data:item data:type="number" data:name="startParameter"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endParameter"><![CDATA[1]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[17.72]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1546,842,0,1;1726.67001342773,817.767171859741,0,1;1120.45909118652,246.749328613281,0,1;1120.45909118652,246.749328613281,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -357,12 +357,12 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[28.48]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[28.48]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[1120.45909118652,246.749328613281,0,1;1120.45909118652,246.749328613281,0,1;335.585571289062,469.172775268555,0,1;335.585571289062,469.172775268555,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -374,7 +374,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/xPosition" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/xPosition" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -383,7 +383,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/yPosition" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/yPosition" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -392,7 +392,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/zPosition" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/zPosition" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -401,19 +401,19 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/scale/x" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/scale/x" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
 <data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[40.4663923182442]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[5.68]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[5.68]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,40.4663923182442,0,1;0.16666666667,48.6053955191385,0,1;0.83333333333,81.1614083217394,0,1;1,89.3004115226337,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -425,12 +425,12 @@
 <data:item data:type="number" data:name="startParameter"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endParameter"><![CDATA[1]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[5.68]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.68]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[5.68]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.68]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,89.3004115226337,0,1;0.16666666667,106.495488707622,0,1;0.83333333333,40.1920438957476,0,1;1,40.1920438957476,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -444,19 +444,19 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/scale/y" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/scale/y" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
 <data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[37.6237623762376]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[5.68]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[5.68]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,37.6237623762376,0,1;0.16666666667,46.1221122113911,0,1;0.83333333333,80.1155115509852,0,1;1,88.6138613861386,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -468,12 +468,12 @@
 <data:item data:type="number" data:name="startParameter"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endParameter"><![CDATA[1]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[5.68]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[17.68]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[5.68]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[17.68]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,88.6138613861386,0,1;0.16666666667,106.568121601252,0,1;0.83333333333,35.1485148514852,0,1;1,35.1485148514852,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -487,7 +487,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/scale/z" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/scale/z" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -496,7 +496,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/orientation/x" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/orientation/x" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -505,7 +505,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/orientation/y" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/orientation/y" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -514,7 +514,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/orientation/z" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/orientation/z" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -523,7 +523,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/xRotation" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/xRotation" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -532,7 +532,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/yRotation" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/yRotation" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -541,19 +541,19 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/rotation" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/rotation" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
 <data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[0]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[16.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[11.96]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[16.32]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0.16666,4.66648,0,1;0.50603450566563,47.9481655812345,0,1;1,28,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -565,12 +565,12 @@
 <data:item data:type="number" data:name="startParameter"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endParameter"><![CDATA[1]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[16.32]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[16.32]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[23.32]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,28,0,1;0.20607921055385,93.0722262228344,0,1;0.49656813485282,111.710253488849,0,1;1,-1,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -584,19 +584,19 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[Infinity]]></data:item>
 <data:item data:type="number" data:name="startValue" data:parentApplyType="setPropertyInput"><![CDATA[100]]></data:item>
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart">
 <data:item data:type="number" data:name="startTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[28.56]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[23.32]]></data:item>
 <data:item data:type="number" data:name="endApplyTime"><![CDATA[28.56]]></data:item>
-<data:item data:type="dbmObject" data:name="curve" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:name="curve" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,100,0,1;0.16666666667,83.333333333,0,1;0.83333333333,16.666666667,0,1;1,0,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -610,7 +610,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transform/appearsInReflections" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="transform/appearsInReflections" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -619,7 +619,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/globalLightAngle" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/globalLightAngle" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -628,7 +628,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/globalLightAltitude" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/globalLightAltitude" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -637,7 +637,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/fillOpacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/fillOpacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -646,7 +646,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/red" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/red" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -655,7 +655,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/green" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/green" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -664,7 +664,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/blue" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/blue" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -673,7 +673,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/blendInteriorStylesAsGroup" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/blendInteriorStylesAsGroup" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -682,7 +682,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/useBlendRangesFromSource" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/blendingOptions/advancedBlending/useBlendRangesFromSource" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -691,7 +691,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/blendMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/blendMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -700,7 +700,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/color/r" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/color/r" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -709,7 +709,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/color/g" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/color/g" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -718,7 +718,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/color/b" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/color/b" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -727,7 +727,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/color/a" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/color/a" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -736,7 +736,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -745,7 +745,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/useGlobalLight" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/useGlobalLight" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -754,7 +754,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/angle" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/angle" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -763,7 +763,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/distance" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/distance" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -772,7 +772,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/spread" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/spread" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -781,7 +781,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/size" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/size" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -790,7 +790,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/noise" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/noise" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -799,7 +799,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/layerKnocksOutDropShadow" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/dropShadow/layerKnocksOutDropShadow" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -808,7 +808,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/blendMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/blendMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -817,7 +817,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/color/r" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/color/r" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -826,7 +826,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/color/g" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/color/g" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -835,7 +835,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/color/b" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/color/b" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -844,7 +844,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/color/a" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/color/a" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -853,7 +853,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -862,7 +862,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/useGlobalLight" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/useGlobalLight" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -871,7 +871,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/angle" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/angle" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -880,7 +880,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/distance" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/distance" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -889,7 +889,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/choke" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/choke" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -898,7 +898,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/size" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/size" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -907,7 +907,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/noise" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerShadow/noise" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -916,7 +916,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/blendMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/blendMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -925,7 +925,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -934,7 +934,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/noise" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/noise" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -943,7 +943,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/colorType" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/colorType" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -952,7 +952,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/color/r" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/color/r" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -961,7 +961,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/color/g" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/color/g" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -970,7 +970,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/color/b" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/color/b" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -979,7 +979,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/color/a" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/color/a" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -988,7 +988,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/gradientSmoothness" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/gradientSmoothness" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -997,7 +997,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/technique" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/technique" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1006,7 +1006,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/spread" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/spread" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1015,7 +1015,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/size" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/size" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1024,7 +1024,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/range" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/range" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1033,7 +1033,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/jitter" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/outerGlow/jitter" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1042,7 +1042,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/blendMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/blendMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1051,7 +1051,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1060,7 +1060,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/noise" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/noise" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1069,7 +1069,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/colorType" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/colorType" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1078,7 +1078,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/color/r" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/color/r" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1087,7 +1087,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/color/g" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/color/g" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1096,7 +1096,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/color/b" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/color/b" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1105,7 +1105,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/color/a" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/color/a" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1114,7 +1114,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/gradientSmoothness" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/gradientSmoothness" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1123,7 +1123,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/technique" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/technique" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1132,7 +1132,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/source" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/source" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1141,7 +1141,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/choke" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/choke" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1150,7 +1150,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/size" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/size" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1159,7 +1159,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/range" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/range" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1168,7 +1168,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/jitter" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/innerGlow/jitter" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1177,7 +1177,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/style" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/style" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1186,7 +1186,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/technique" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/technique" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1195,7 +1195,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/depth" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/depth" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1204,7 +1204,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/direction" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/direction" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1213,7 +1213,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/size" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/size" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1222,7 +1222,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/soften" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/soften" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1231,7 +1231,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/useGlobalLight" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/useGlobalLight" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1240,7 +1240,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/angle" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/angle" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1249,7 +1249,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/altitude" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/altitude" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1258,7 +1258,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1267,7 +1267,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightColor/r" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightColor/r" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1276,7 +1276,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightColor/g" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightColor/g" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1285,7 +1285,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightColor/b" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightColor/b" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1294,7 +1294,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightColor/a" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightColor/a" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1303,7 +1303,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightOpacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/highlightOpacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1312,7 +1312,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1321,7 +1321,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowColor/r" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowColor/r" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1330,7 +1330,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowColor/g" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowColor/g" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1339,7 +1339,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowColor/b" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowColor/b" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1348,7 +1348,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowColor/a" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowColor/a" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1357,7 +1357,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowOpacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/bevelAndEmboss/shadowOpacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1366,7 +1366,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/blendMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/blendMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1375,7 +1375,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/color/r" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/color/r" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1384,7 +1384,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/color/g" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/color/g" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1393,7 +1393,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/color/b" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/color/b" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1402,7 +1402,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/color/a" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/color/a" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1411,7 +1411,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1420,7 +1420,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/angle" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/angle" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1429,7 +1429,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/distance" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/distance" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1438,7 +1438,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/size" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/size" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1447,7 +1447,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/satin/invert" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/satin/invert" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1456,7 +1456,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/blendMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/blendMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1465,7 +1465,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/color/r" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/color/r" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1474,7 +1474,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/color/g" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/color/g" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1483,7 +1483,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/color/b" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/color/b" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1492,7 +1492,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/color/a" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/color/a" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1501,7 +1501,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/colorOverlay/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1510,7 +1510,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/blendMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/blendMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1519,7 +1519,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1528,7 +1528,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/gradientSmoothness" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/gradientSmoothness" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1537,7 +1537,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/angle" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/angle" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1546,7 +1546,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/style" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/style" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1555,7 +1555,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/reverse" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/reverse" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1564,7 +1564,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/alignWithLayer" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/alignWithLayer" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1573,7 +1573,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/scale" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/scale" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1582,7 +1582,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/offset/x" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/offset/x" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1591,7 +1591,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/offset/y" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/gradientOverlay/offset/y" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1600,7 +1600,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/blendMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/blendMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1609,7 +1609,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1618,7 +1618,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/linkWithLayer" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/linkWithLayer" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1627,7 +1627,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/scale" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/scale" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1636,7 +1636,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/offset/x" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/offset/x" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1645,7 +1645,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/offset/y" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/patternOverlay/offset/y" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1654,7 +1654,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/stroke/blendMode" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/stroke/blendMode" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1663,7 +1663,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/stroke/color/r" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/stroke/color/r" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1672,7 +1672,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/stroke/color/g" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/stroke/color/g" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1681,7 +1681,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/stroke/color/b" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/stroke/color/b" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1690,7 +1690,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/stroke/color/a" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/stroke/color/a" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1699,7 +1699,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/stroke/size" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/stroke/size" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1708,7 +1708,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/stroke/opacity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/stroke/opacity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1717,7 +1717,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="layerStyles/stroke/position" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="layerStyles/stroke/position" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1726,7 +1726,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="geometryOptions/curvature" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="geometryOptions/curvature" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1735,7 +1735,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="geometryOptions/segments" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="geometryOptions/segments" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1744,7 +1744,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="geometryOptions/bevelStyle" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="geometryOptions/bevelStyle" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1753,7 +1753,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="geometryOptions/bevelDirection" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="geometryOptions/bevelDirection" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1762,7 +1762,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="geometryOptions/bevelDepth" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="geometryOptions/bevelDepth" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1771,7 +1771,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="geometryOptions/holeBevelDepth" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="geometryOptions/holeBevelDepth" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1780,7 +1780,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="geometryOptions/extrusionDepth" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="geometryOptions/extrusionDepth" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1789,7 +1789,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/castsShadows" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/castsShadows" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1798,7 +1798,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/lightTransmission" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/lightTransmission" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1807,7 +1807,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/acceptsShadows" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/acceptsShadows" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1816,7 +1816,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/acceptsLights" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/acceptsLights" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1825,7 +1825,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/appearsInReflections" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/appearsInReflections" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1834,7 +1834,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/ambient" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/ambient" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1843,7 +1843,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/diffuse" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/diffuse" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1852,7 +1852,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/specularIntensity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/specularIntensity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1861,7 +1861,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/specularShininess" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/specularShininess" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1870,7 +1870,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/metal" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/metal" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1879,7 +1879,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/reflectionIntensity" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/reflectionIntensity" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1888,7 +1888,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/reflectionSharpness" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/reflectionSharpness" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1897,7 +1897,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/reflectionRolloff" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/reflectionRolloff" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1906,7 +1906,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/transparency" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/transparency" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1915,7 +1915,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/transparencyRolloff" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/transparencyRolloff" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1924,7 +1924,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="materialOptions/indexOfRefraction" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="materialOptions/indexOfRefraction" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1933,7 +1933,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="audio/audioLevels/x" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="audio/audioLevels/x" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>
@@ -1942,7 +1942,7 @@
 <data:item data:type="array" data:name="parts" data:parentApplyType="timeline/applyParts">
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="audio/audioLevels/y" data:parentApplyType="namedArray/addObject" data:class="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline">
+<data:item data:type="dbmObject" data:name="audio/audioLevels/y" data:parentApplyType="namedArray/addObject" data:class="dbm.core.globalobjects.animationmanager.timeline.Timeline">
 <data:item data:type="number" data:name="startTime"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="endTime"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="startApplyTime"><![CDATA[-Infinity]]></data:item>

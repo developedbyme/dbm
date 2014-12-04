@@ -1,4 +1,4 @@
-﻿var dbm = null;
+var dbm = null;
 var global = new Object();
 
 var console = new Object();
@@ -24,7 +24,7 @@ console.trace = function(){};
 
 (function() {
 	var javasciptsFolder = "file:///Library/WebServer/Documents/tests/dbm/javascripts";
-	var classPath = "com.developedbyme.adobeflashscript.projects.tools.flash.ExportShapeDataApplication";
+	var classPath = "dbm.adobeflashscript.projects.tools.flash.ExportShapeDataApplication";
 	
 	var importScript = function(aFilePath) {
 		var fullText = FLfile.read(javasciptsFolder + "/" + aFilePath);
@@ -36,19 +36,19 @@ console.trace = function(){};
 	importScript ("dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js");
 	
 	dbm.setup(null, null, javasciptsFolder, "classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.broadcast", "broadcast/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.projects.experiments", "experiments/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.projects.tests", "tests/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.projects.tools", "tools/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.projects.examples", "examples/classes");
+	dbm.addSpecificClassesFolder("dbm.broadcast", "broadcast/classes");
+	dbm.addSpecificClassesFolder("dbm.projects.experiments", "experiments/classes");
+	dbm.addSpecificClassesFolder("dbm.projects.tests", "tests/classes");
+	dbm.addSpecificClassesFolder("dbm.projects.tools", "tools/classes");
+	dbm.addSpecificClassesFolder("dbm.projects.examples", "examples/classes");
 	
-	dbm.addSpecificClassesFolder("com.developedbyme.adobeextendscript.projects.tests", "tests/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.adobeextendscript.projects.tools", "tools/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.adobeextendscript", "dbmForAdobeExtendScript/classes");
+	dbm.addSpecificClassesFolder("dbm.adobeextendscript.projects.tests", "tests/classes");
+	dbm.addSpecificClassesFolder("dbm.adobeextendscript.projects.tools", "tools/classes");
+	dbm.addSpecificClassesFolder("dbm.adobeextendscript", "dbmForAdobeExtendScript/classes");
 	
-	dbm.addSpecificClassesFolder("com.developedbyme.adobeflashscript.projects.tests", "tests/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.adobeflashscript.projects.tools", "tools/classes");
-	dbm.addSpecificClassesFolder("com.developedbyme.adobeflashscript", "dbmForAdobeFlashScript/classes");
+	dbm.addSpecificClassesFolder("dbm.adobeflashscript.projects.tests", "tests/classes");
+	dbm.addSpecificClassesFolder("dbm.adobeflashscript.projects.tools", "tools/classes");
+	dbm.addSpecificClassesFolder("dbm.adobeflashscript", "dbmForAdobeFlashScript/classes");
 	
 	importScript("dbmForAdobeFlashScript/setup/defaultSetup.js");
 	

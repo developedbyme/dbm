@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ScopeFunctions</h1>
-					<div class="classPath">com.developedbyme.utils.native.string.ScopeFunctions</div>
+					<div class="classPath">dbm.utils.native.string.ScopeFunctions</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
@@ -38,32 +38,32 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");</div>
+									<div class="code">var ScopeFunctions = dbm.importClass("dbm.utils.native.string.ScopeFunctions");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.native.string.ScopeFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.native.string.ScopeFunctions");
+									<div class="code">dbm.registerClass("dbm.utils.native.string.ScopeFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.native.string.ScopeFunctions");
 	//"use strict";
 	
-	var ScopeFunctions = dbm.importClass("com.developedbyme.utils.native.string.ScopeFunctions");
+	var ScopeFunctions = dbm.importClass("dbm.utils.native.string.ScopeFunctions");
 	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	staticFunctions.scopeStarters = ["(", "{", "[", "\"", "\'", "//", "/*"];
 	staticFunctions.scopeEnders = [")", "}", "]", "\"", "\'", "\n", "*/"];
 	staticFunctions.operatorTypes = [" instanceof ", "===", "&lt;&lt;&lt;=", "&gt;&gt;&gt;=", "!==", "&lt;&lt;&lt;", "&gt;&gt;&gt;", "==", "!=", "&lt;&lt;=", "&gt;&gt;=", "&amp;&amp;", "||", "&amp;=", "|=", "&lt;&lt;", "&gt;&gt;", "&gt;=", "&lt;=", "&lt;", "&gt;", ".", "%", "+", "-", "*", "/", "=", "&amp;", "|", "^", "!", "?", ":"];
 	
 	staticFunctions.getScopeStart = function(aText, aFromPosition, aScopeStarts) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getScopeStart");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getScopeStart");
 		//console.log(aText.substring(aFromPosition), aScopeStarts);
 		
 		aFromPosition = VariableAliases.valueWithDefault(aFromPosition, 0);
@@ -84,7 +84,7 @@
 	};
 	
 	staticFunctions.splitEvaluation = function(aText, aReturnOperators) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::splitEvaluation");
+		//console.log("dbm.utils.native.string.ScopeFunctions::splitEvaluation");
 		
 		var returnArray = new Array();
 		
@@ -142,7 +142,7 @@
 	};
 	
 	staticFunctions.getTypeOfScopeStart = function(aText, aPosition, aScopeStarts) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getTypeOfScopeStart");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getTypeOfScopeStart");
 		
 		aPosition = VariableAliases.valueWithDefault(aPosition, 0);
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
@@ -168,7 +168,7 @@
 	};
 	
 	staticFunctions.getTypeOfScopeEndForScopeStart = function(aStart, aScopeStarts, aScopeEnds) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getTypeOfScopeEndForScopeStart");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getTypeOfScopeEndForScopeStart");
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
 		aScopeEnds = VariableAliases.valueWithDefault(aScopeEnds, ClassReference.scopeEnders);
@@ -185,7 +185,7 @@
 	};
 	
 	staticFunctions.getAnyScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getAnyScope");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getAnyScope");
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
 		aScopeEnds = VariableAliases.valueWithDefault(aScopeEnds, ClassReference.scopeEnders);
@@ -206,7 +206,7 @@
 	};
 	
 	staticFunctions.getScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getScope");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getScope");
 		//console.log(aStartPosition, aStartType, aEndType, aText.substring(Math.max(0, aStartPosition-4), aStartPosition+1));
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
@@ -402,7 +402,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getScopeStart = function(aText, aFromPosition, aScopeStarts) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getScopeStart");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getScopeStart");
 		//console.log(aText.substring(aFromPosition), aScopeStarts);
 		
 		aFromPosition = VariableAliases.valueWithDefault(aFromPosition, 0);
@@ -444,7 +444,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.splitEvaluation = function(aText, aReturnOperators) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::splitEvaluation");
+		//console.log("dbm.utils.native.string.ScopeFunctions::splitEvaluation");
 		
 		var returnArray = new Array();
 		
@@ -523,7 +523,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getTypeOfScopeStart = function(aText, aPosition, aScopeStarts) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getTypeOfScopeStart");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getTypeOfScopeStart");
 		
 		aPosition = VariableAliases.valueWithDefault(aPosition, 0);
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
@@ -570,7 +570,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getTypeOfScopeEndForScopeStart = function(aStart, aScopeStarts, aScopeEnds) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getTypeOfScopeEndForScopeStart");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getTypeOfScopeEndForScopeStart");
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
 		aScopeEnds = VariableAliases.valueWithDefault(aScopeEnds, ClassReference.scopeEnders);
@@ -608,7 +608,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getAnyScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getAnyScope");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getAnyScope");
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);
 		aScopeEnds = VariableAliases.valueWithDefault(aScopeEnds, ClassReference.scopeEnders);
@@ -650,7 +650,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getScope = function(aText, aStartPosition, aStartType, aEndType, aScopeStarts, aScopeEnds) {
-		//console.log("com.developedbyme.utils.native.string.ScopeFunctions::getScope");
+		//console.log("dbm.utils.native.string.ScopeFunctions::getScope");
 		//console.log(aStartPosition, aStartType, aEndType, aText.substring(Math.max(0, aStartPosition-4), aStartPosition+1));
 		
 		aScopeStarts = VariableAliases.valueWithDefault(aScopeStarts, ClassReference.scopeStarters);

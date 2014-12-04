@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>XmlChildRetreiver</h1>
-					<div class="classPath">com.developedbyme.utils.xml.XmlChildRetreiver</div>
+					<div class="classPath">dbm.utils.xml.XmlChildRetreiver</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
@@ -38,36 +38,36 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../data/VariableAliases.html">VariableAliases</a>, <a title="com.developedbyme.constants.XmlNodeTypes" href="../../constants/XmlNodeTypes.html">XmlNodeTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../data/VariableAliases.html">VariableAliases</a>, <a title="dbm.constants.XmlNodeTypes" href="../../constants/XmlNodeTypes.html">XmlNodeTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");</div>
+									<div class="code">var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.xml.XmlChildRetreiver", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.xml.XmlChildRetreiver");
+									<div class="code">dbm.registerClass("dbm.utils.xml.XmlChildRetreiver", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.xml.XmlChildRetreiver");
 	
 	//Self reference
-	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
+	var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
 	
 	staticFunctions.WARN_FOR_NO_XML = false;
 	staticFunctions.WARN_FOR_NO_RESULT = false;
@@ -98,7 +98,7 @@
 	};
 	
 	staticFunctions.getChild = function(aXml, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChild (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getChild (static)");
 		//console.log(aXml, aChildName);
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getChild", "Xml is null");
@@ -118,7 +118,7 @@
 	};
 	
 	staticFunctions.getNamespacedChild = function(aXml, aChildNamespace, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getNamespacedChild (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getNamespacedChild (static)");
 		//console.log(aXml, aChildNamespace, aChildName);
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNamespacedChild", "Xml is null");
@@ -146,7 +146,7 @@
 	};
 	
 	staticFunctions.getChilds = function(aXml, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChilds (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getChilds (static)");
 		aChildName = VariableAliases.valueWithDefault(aChildName, "*");
 		//console.log(aXml, ChildName);
 		
@@ -175,7 +175,7 @@
 	};
 	
 	staticFunctions.getChildByAttribute = function(aXml, aAttributeName, aValue, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChildByAttribute (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getChildByAttribute (static)");
 		aChildName = VariableAliases.valueWithDefault(aChildName, "*");
 		//console.log(aXml, aAttributeName, aValue, aChildName);
 		
@@ -210,7 +210,7 @@
 	};
 	
 	staticFunctions.getNamespacedChildByNamespacedAttribute = function(aXml, aAttributeNamespace, aAttributeName, aValue, aChildNamespace, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getNamespacedChildByNamespacedAttribute (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getNamespacedChildByNamespacedAttribute (static)");
 		
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNamespacedChildByNamespacedAttribute", "Xml is null");
@@ -323,7 +323,7 @@
 	};
 	
 	staticFunctions.getFirstTextNode = function(aXml) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getTextNode (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getTextNode (static)");
 		
 		var currentArray = aXml.childNodes;
 		var currentArrayLength = currentArray.length;
@@ -340,7 +340,7 @@
 	};
 	
 	staticFunctions.getAllValuesForAttribute = function(aXml, aAttributeName, aReturnArray) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getAllValuesForAttribute (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getAllValuesForAttribute (static)");
 		
 		var currentAttribute = ClassReference.getAttribute(aXml, aAttributeName);
 		if(currentAttribute !== null) {
@@ -482,7 +482,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getChild = function(aXml, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChild (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getChild (static)");
 		//console.log(aXml, aChildName);
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getChild", "Xml is null");
@@ -523,7 +523,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getNamespacedChild = function(aXml, aChildNamespace, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getNamespacedChild (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getNamespacedChild (static)");
 		//console.log(aXml, aChildNamespace, aChildName);
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNamespacedChild", "Xml is null");
@@ -572,7 +572,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getChilds = function(aXml, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChilds (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getChilds (static)");
 		aChildName = VariableAliases.valueWithDefault(aChildName, "*");
 		//console.log(aXml, ChildName);
 		
@@ -622,7 +622,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getChildByAttribute = function(aXml, aAttributeName, aValue, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getChildByAttribute (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getChildByAttribute (static)");
 		aChildName = VariableAliases.valueWithDefault(aChildName, "*");
 		//console.log(aXml, aAttributeName, aValue, aChildName);
 		
@@ -678,7 +678,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getNamespacedChildByNamespacedAttribute = function(aXml, aAttributeNamespace, aAttributeName, aValue, aChildNamespace, aChildName) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getNamespacedChildByNamespacedAttribute (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getNamespacedChildByNamespacedAttribute (static)");
 		
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNamespacedChildByNamespacedAttribute", "Xml is null");
@@ -896,7 +896,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getFirstTextNode = function(aXml) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getTextNode (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getTextNode (static)");
 		
 		var currentArray = aXml.childNodes;
 		var currentArrayLength = currentArray.length;
@@ -934,7 +934,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getAllValuesForAttribute = function(aXml, aAttributeName, aReturnArray) {
-		//console.log("com.developedbyme.utils.xml.XmlChildRetreiver::getAllValuesForAttribute (static)");
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getAllValuesForAttribute (static)");
 		
 		var currentAttribute = ClassReference.getAttribute(aXml, aAttributeName);
 		if(currentAttribute !== null) {

@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ExponentialInterpolationCreator</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator</div>
+					<div class="classPath">dbm.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
@@ -38,24 +38,24 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.math.interpolation.ExponentialInterpolation" href="../../../../utils/math/interpolation/ExponentialInterpolation.html">ExponentialInterpolation</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.math.interpolation.ExponentialInterpolation" href="../../../../utils/math/interpolation/ExponentialInterpolation.html">ExponentialInterpolation</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ExponentialInterpolationCreator = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator");</div>
+									<div class="code">var ExponentialInterpolationCreator = dbm.importClass("dbm.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator");
 	
-	var ExponentialInterpolationCreator = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator");
+	var ExponentialInterpolationCreator = dbm.importClass("dbm.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator");
 	
-	var ExponentialInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.ExponentialInterpolation");
+	var ExponentialInterpolation = dbm.importClass("dbm.utils.math.interpolation.ExponentialInterpolation");
 	
 	objectFunctions.init = function() {
 		this._init();
@@ -74,7 +74,7 @@
 	
 	
 	objectFunctions.create = function(aType, aExponent) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator::create");
+		//console.log("dbm.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator::create");
 		//console.log(aExponent, parseFloat(aExponent), ExponentialInterpolation.create(parseFloat(aExponent)));
 		return ExponentialInterpolation.create(parseFloat(aExponent));
 	};
@@ -167,7 +167,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.create = function(aType, aExponent) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator::create");
+		//console.log("dbm.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator::create");
 		//console.log(aExponent, parseFloat(aExponent), ExponentialInterpolation.create(parseFloat(aExponent)));
 		return ExponentialInterpolation.create(parseFloat(aExponent));
 	}</div>

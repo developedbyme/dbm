@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>InterpolationDefaultSetup</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup</div>
+					<div class="classPath">dbm.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
@@ -38,35 +38,35 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.math.interpolation.ExponentialInterpolation" href="../../../../utils/math/interpolation/ExponentialInterpolation.html">ExponentialInterpolation</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator" href="../interpolationcreators/ExponentialInterpolationCreator.html">ExponentialInterpolationCreator</a>, <a title="com.developedbyme.constants.InterpolationTypes" href="../../../../constants/InterpolationTypes.html">InterpolationTypes</a>, <a title="com.developedbyme.utils.math.interpolation.InvertedInterpolation" href="../../../../utils/math/interpolation/InvertedInterpolation.html">InvertedInterpolation</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator" href="../interpolationcreators/InvertedInterpolationCreator.html">InvertedInterpolationCreator</a>, <a title="com.developedbyme.utils.math.interpolation.LinearInterpolation" href="../../../../utils/math/interpolation/LinearInterpolation.html">LinearInterpolation</a>, <a title="com.developedbyme.utils.math.interpolation.OffsettedInterpolation" href="../../../../utils/math/interpolation/OffsettedInterpolation.html">OffsettedInterpolation</a>, <a title="com.developedbyme.utils.math.interpolation.SineInterpolation" href="../../../../utils/math/interpolation/SineInterpolation.html">SineInterpolation</a>, <a title="com.developedbyme.utils.math.interpolation.StepInterpolation" href="../../../../utils/math/interpolation/StepInterpolation.html">StepInterpolation</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.math.interpolation.ExponentialInterpolation" href="../../../../utils/math/interpolation/ExponentialInterpolation.html">ExponentialInterpolation</a>, <a title="dbm.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator" href="../interpolationcreators/ExponentialInterpolationCreator.html">ExponentialInterpolationCreator</a>, <a title="dbm.constants.InterpolationTypes" href="../../../../constants/InterpolationTypes.html">InterpolationTypes</a>, <a title="dbm.utils.math.interpolation.InvertedInterpolation" href="../../../../utils/math/interpolation/InvertedInterpolation.html">InvertedInterpolation</a>, <a title="dbm.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator" href="../interpolationcreators/InvertedInterpolationCreator.html">InvertedInterpolationCreator</a>, <a title="dbm.utils.math.interpolation.LinearInterpolation" href="../../../../utils/math/interpolation/LinearInterpolation.html">LinearInterpolation</a>, <a title="dbm.utils.math.interpolation.OffsettedInterpolation" href="../../../../utils/math/interpolation/OffsettedInterpolation.html">OffsettedInterpolation</a>, <a title="dbm.utils.math.interpolation.SineInterpolation" href="../../../../utils/math/interpolation/SineInterpolation.html">SineInterpolation</a>, <a title="dbm.utils.math.interpolation.StepInterpolation" href="../../../../utils/math/interpolation/StepInterpolation.html">StepInterpolation</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");</div>
+									<div class="code">var InterpolationDefaultSetup = dbm.importClass("dbm.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
 	
-	var InterpolationDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
+	var InterpolationDefaultSetup = dbm.importClass("dbm.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
 	
-	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
-	var StepInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.StepInterpolation");
-	var LinearInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.LinearInterpolation");
-	var ExponentialInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.ExponentialInterpolation");
-	var SineInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.SineInterpolation");
+	var StepInterpolation = dbm.importClass("dbm.utils.math.interpolation.StepInterpolation");
+	var LinearInterpolation = dbm.importClass("dbm.utils.math.interpolation.LinearInterpolation");
+	var ExponentialInterpolation = dbm.importClass("dbm.utils.math.interpolation.ExponentialInterpolation");
+	var SineInterpolation = dbm.importClass("dbm.utils.math.interpolation.SineInterpolation");
 	
-	var InvertedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.InvertedInterpolation");
-	var OffsettedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.OffsettedInterpolation");
+	var InvertedInterpolation = dbm.importClass("dbm.utils.math.interpolation.InvertedInterpolation");
+	var OffsettedInterpolation = dbm.importClass("dbm.utils.math.interpolation.OffsettedInterpolation");
 	
-	var ExponentialInterpolationCreator = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator");
-	var InvertedInterpolationCreator = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator");
+	var ExponentialInterpolationCreator = dbm.importClass("dbm.core.globalobjects.animationmanager.interpolationcreators.ExponentialInterpolationCreator");
+	var InvertedInterpolationCreator = dbm.importClass("dbm.core.globalobjects.animationmanager.interpolationcreators.InvertedInterpolationCreator");
 	
 	staticFunctions.setup = function() {
 		

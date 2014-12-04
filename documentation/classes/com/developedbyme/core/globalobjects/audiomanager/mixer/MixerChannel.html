@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>MixerChannel</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.audiomanager.mixer.MixerChannel</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,27 +38,27 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var MixerChannel = dbm.importClass("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel");</div>
+									<div class="code">var MixerChannel = dbm.importClass("dbm.core.globalobjects.audiomanager.mixer.MixerChannel");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.audiomanager.mixer.MixerChannel", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.audiomanager.mixer.MixerChannel");
 	
-	var MixerChannel = dbm.importClass("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel");
+	var MixerChannel = dbm.importClass("dbm.core.globalobjects.audiomanager.mixer.MixerChannel");
 	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel::_init");
+		//console.log("dbm.core.globalobjects.audiomanager.mixer.MixerChannel::_init");
 		
 		this.superCall();
 		
@@ -82,7 +82,7 @@
 	};
 	
 	objectFunctions._updateFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel::_updateFlow");
+		//console.log("dbm.core.globalobjects.audiomanager.mixer.MixerChannel::_updateFlow");
 		//console.log(this._name, this._input.getValueWithoutFlow(), this._masterInput.getValueWithoutFlow());
 		this._output.setValueWithFlow(this._input.getValueWithoutFlow()*this._masterInput.getValueWithoutFlow(), aFlowUpdateNumber);
 	};
@@ -140,7 +140,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel::_init");
+		//console.log("dbm.core.globalobjects.audiomanager.mixer.MixerChannel::_init");
 		
 		this.superCall();
 		
@@ -227,7 +227,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.audiomanager.mixer.MixerChannel::_updateFlow");
+		//console.log("dbm.core.globalobjects.audiomanager.mixer.MixerChannel::_updateFlow");
 		//console.log(this._name, this._input.getValueWithoutFlow(), this._masterInput.getValueWithoutFlow());
 		this._output.setValueWithFlow(this._input.getValueWithoutFlow()*this._masterInput.getValueWithoutFlow(), aFlowUpdateNumber);
 	}</div>

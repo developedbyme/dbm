@@ -1,15 +1,15 @@
 dbm.runTempFunction(function() {
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
-	var BinaryStreamReader = dbm.importClass("com.developedbyme.utils.file.BinaryStreamReader");
-	var MidiFileParser = dbm.importClass("com.developedbyme.utils.file.parsers.MidiFileParser");
+	var BinaryStreamReader = dbm.importClass("dbm.utils.file.BinaryStreamReader");
+	var MidiFileParser = dbm.importClass("dbm.utils.file.parsers.MidiFileParser");
 	
-	var MidiPlayer = dbm.importClass("com.developedbyme.utils.audio.midiplayer.MidiPlayer");
+	var MidiPlayer = dbm.importClass("dbm.utils.audio.midiplayer.MidiPlayer");
 	
-	var MidiMetadataTypes = dbm.importClass("com.developedbyme.constants.fileformats.midi.MidiMetadataTypes");
+	var MidiMetadataTypes = dbm.importClass("dbm.constants.fileformats.midi.MidiMetadataTypes");
 	
 	dbm.addStartFunction(function() {
 		//console.log("startFunction");

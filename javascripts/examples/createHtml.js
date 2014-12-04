@@ -1,9 +1,9 @@
 dbm.runTempFunction(function() {
 	
-	//var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
-	//var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	//var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
+	//var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var HtmlInputTypes = dbm.importClass("com.developedbyme.constants.HtmlInputTypes");
+	var HtmlInputTypes = dbm.importClass("dbm.constants.HtmlInputTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

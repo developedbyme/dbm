@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	
-	var DeviceLocation = dbm.importClass("com.developedbyme.utils.device.DeviceLocation");
-	var DeviceOrientation = dbm.importClass("com.developedbyme.utils.device.DeviceOrientation");
+	var DeviceLocation = dbm.importClass("dbm.utils.device.DeviceLocation");
+	var DeviceOrientation = dbm.importClass("dbm.utils.device.DeviceOrientation");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

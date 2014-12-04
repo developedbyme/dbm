@@ -1,17 +1,17 @@
 dbm.runTempFunction(function() {
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
-	var ProcessExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ProcessExtendedEventIds");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
+	var ProcessExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ProcessExtendedEventIds");
 	
-	var AudioApiPlayer = dbm.importClass("com.developedbyme.utils.audio.audioapiplayer.AudioApiPlayer");
-	var FixedPositionsSequencerController = dbm.importClass("com.developedbyme.utils.audio.audioapiplayer.sequencer.FixedPositionsSequencerController");
+	var AudioApiPlayer = dbm.importClass("dbm.utils.audio.audioapiplayer.AudioApiPlayer");
+	var FixedPositionsSequencerController = dbm.importClass("dbm.utils.audio.audioapiplayer.sequencer.FixedPositionsSequencerController");
 	
-	var BpmFunctions = dbm.importClass("com.developedbyme.utils.math.music.BpmFunctions");
-	var NoteLengths = dbm.importClass("com.developedbyme.utils.math.music.NoteLengths");
-	var ScaleFunctions = dbm.importClass("com.developedbyme.utils.audio.audioapiplayer.notes.ScaleFunctions");
-	var ChromaticScaleFunctions = dbm.importClass("com.developedbyme.utils.math.music.scales.ChromaticScaleFunctions");
+	var BpmFunctions = dbm.importClass("dbm.utils.math.music.BpmFunctions");
+	var NoteLengths = dbm.importClass("dbm.utils.math.music.NoteLengths");
+	var ScaleFunctions = dbm.importClass("dbm.utils.audio.audioapiplayer.notes.ScaleFunctions");
+	var ChromaticScaleFunctions = dbm.importClass("dbm.utils.math.music.scales.ChromaticScaleFunctions");
 	
 	dbm.addStartFunction(function() {
 		//console.log("startFunction");

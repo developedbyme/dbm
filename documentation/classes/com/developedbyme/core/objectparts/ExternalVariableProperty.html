@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ExternalVariableProperty</h1>
-					<div class="classPath">com.developedbyme.core.objectparts.ExternalVariableProperty</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.objectparts.ExternalVariableProperty</div>
+					<div class="classInheritance"><a title="dbm.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A property that stores it value on an external object.</div>
 						<div class="spacedContent">
@@ -38,40 +38,40 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");</div>
+									<div class="code">var ExternalVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalVariableProperty");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.ExternalVariableProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty");
+									<div class="code">dbm.registerClass("dbm.core.objectparts.ExternalVariableProperty", "dbm.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.ExternalVariableProperty");
 	//"use strict";
 	
 	//Self reference
-	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
+	var ExternalVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalVariableProperty");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
 	
 	/**
 	 * Constants
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_init");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::_init");
 		
 		this.superCall();
 		
@@ -87,7 +87,7 @@
 	 * @return	*	The object where the variable is stored.
 	 */
 	objectFunctions.getExternalObject = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::getExternalObject");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::getExternalObject");
 		
 		return this._externalObject;
 	};
@@ -98,7 +98,7 @@
 	 * @param	aValue	*	The value of this property.
 	 */
 	objectFunctions._performSetValue = function(aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performSetValue");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::_performSetValue");
 		if(this._externalObject === null) {
 			this._value = aValue;
 			return;
@@ -112,7 +112,7 @@
 	 * @return	*	The value of the property.
 	 */
 	objectFunctions._performGetValue = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performGetValue");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::_performGetValue");
 		if(this._externalObject === null) {
 			return this._value;
 		}
@@ -126,7 +126,7 @@
 	 * @param	aVariableName	String	The name of the variable to store the value in.
 	 */
 	objectFunctions.setupExternalObject = function(aObject, aVariableName) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::setupExternalObject");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::setupExternalObject");
 		
 		if(this._externalObject !== null) {
 			//METODO: warning message
@@ -193,7 +193,7 @@
 	 * @return	ExternalVariableProperty	The newly created object.
 	 */
 	staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::create");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::create");
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
 		if(VariableAliases.isSet(aObjectInput)) {
 			aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
@@ -212,7 +212,7 @@
 	 * @return	ExternalVariableProperty	The newly created object.
 	 */
 	staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::createWithoutExternalObject");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::createWithoutExternalObject");
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
 		if(VariableAliases.isSet(aObjectInput)) {
 			aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
@@ -259,7 +259,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_init");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::_init");
 		
 		this.superCall();
 		
@@ -291,7 +291,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getExternalObject = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::getExternalObject");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::getExternalObject");
 		
 		return this._externalObject;
 	}</div>
@@ -318,7 +318,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._performSetValue = function(aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performSetValue");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::_performSetValue");
 		if(this._externalObject === null) {
 			this._value = aValue;
 			return;
@@ -348,7 +348,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._performGetValue = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::_performGetValue");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::_performGetValue");
 		if(this._externalObject === null) {
 			return this._value;
 		}
@@ -377,7 +377,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setupExternalObject = function(aObject, aVariableName) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::setupExternalObject");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::setupExternalObject");
 		
 		if(this._externalObject !== null) {
 			//METODO: warning message
@@ -503,24 +503,24 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aObjectInput:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a>, aExternalObject:<span class="nativeType">*</span>, aVariableName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ExternalVariableProperty" href="ExternalVariableProperty.html">ExternalVariableProperty</a></span>
+					<span class="functionName">create</span>(<span class="arguments">aObjectInput:<a title="dbm.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a>, aExternalObject:<span class="nativeType">*</span>, aVariableName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="dbm.core.objectparts.ExternalVariableProperty" href="ExternalVariableProperty.html">ExternalVariableProperty</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObjectInput:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a> - The object property for this property.</div><div class="argumentDescription">aExternalObject:<span class="nativeType">*</span> - The object where the variable is stored.</div><div class="argumentDescription">aVariableName:<span class="nativeType">String</span> - The name of the variable to store the value in.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObjectInput:<a title="dbm.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a> - The object property for this property.</div><div class="argumentDescription">aExternalObject:<span class="nativeType">*</span> - The object where the variable is stored.</div><div class="argumentDescription">aVariableName:<span class="nativeType">String</span> - The name of the variable to store the value in.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ExternalVariableProperty" href="ExternalVariableProperty.html">ExternalVariableProperty</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.ExternalVariableProperty" href="ExternalVariableProperty.html">ExternalVariableProperty</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function(aObjectInput, aExternalObject, aVariableName) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::create");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::create");
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
 		if(VariableAliases.isSet(aObjectInput)) {
 			aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);
@@ -535,24 +535,24 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createWithoutExternalObject</span>(<span class="arguments">aObjectInput:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.ExternalVariableProperty" href="ExternalVariableProperty.html">ExternalVariableProperty</a></span>
+					<span class="functionName">createWithoutExternalObject</span>(<span class="arguments">aObjectInput:<a title="dbm.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="dbm.core.objectparts.ExternalVariableProperty" href="ExternalVariableProperty.html">ExternalVariableProperty</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class, without setting the external object.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObjectInput:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a> - The object property for this property. (Optional)</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value for the new property. (Optional)</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObjectInput:<a title="dbm.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a> - The object property for this property. (Optional)</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value for the new property. (Optional)</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.ExternalVariableProperty" href="ExternalVariableProperty.html">ExternalVariableProperty</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.ExternalVariableProperty" href="ExternalVariableProperty.html">ExternalVariableProperty</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createWithoutExternalObject = function(aObjectInput, aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExternalVariableProperty::createWithoutExternalObject");
+		//console.log("dbm.core.objectparts.ExternalVariableProperty::createWithoutExternalObject");
 		var newExternalVariableProperty = (new ExternalVariableProperty()).init();
 		if(VariableAliases.isSet(aObjectInput)) {
 			aObjectInput._linkRegistration_addObjectProperty(newExternalVariableProperty);

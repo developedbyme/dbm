@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>PositionFunctions</h1>
-					<div class="classPath">com.developedbyme.utils.htmldom.PositionFunctions</div>
+					<div class="classPath">dbm.utils.htmldom.PositionFunctions</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
@@ -38,29 +38,29 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var PositionFunctions = dbm.importClass("com.developedbyme.utils.htmldom.PositionFunctions");</div>
+									<div class="code">var PositionFunctions = dbm.importClass("dbm.utils.htmldom.PositionFunctions");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.htmldom.PositionFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.htmldom.PositionFunctions");
+									<div class="code">dbm.registerClass("dbm.utils.htmldom.PositionFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.htmldom.PositionFunctions");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var PositionFunctions = dbm.importClass("com.developedbyme.utils.htmldom.PositionFunctions");
+	var PositionFunctions = dbm.importClass("dbm.utils.htmldom.PositionFunctions");
 	
 	staticFunctions.getGlobalPositionForNode = (function(aElement, aReturnPoint) {
-		//console.log("com.developedbyme.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
+		//console.log("dbm.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
 		var currentElement = aElement;
 		aReturnPoint.x = 0;
 		aReturnPoint.y = 0;
@@ -80,7 +80,7 @@
 	});
 	
 	staticFunctions.getParentPositionForNode = (function(aElement, aParentElement, aReturnPoint) {
-		//console.log("com.developedbyme.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
+		//console.log("dbm.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
 		var currentElement = aElement;
 		aReturnPoint.x = 0;
 		aReturnPoint.y = 0;
@@ -128,7 +128,7 @@
 					<div id="variable" class="variable">
 				<div class="definition">
 					<span class="variableName">getGlobalPositionForNode</span><span class="type"></span> = <span class="value">(function(aElement, aReturnPoint) {
-		//console.log("com.developedbyme.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
+		//console.log("dbm.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
 		var currentElement = aElement;
 		aReturnPoint.x = 0;
 		aReturnPoint.y = 0;
@@ -153,7 +153,7 @@
 			</div><div id="variable" class="variable">
 				<div class="definition">
 					<span class="variableName">getParentPositionForNode</span><span class="type"></span> = <span class="value">(function(aElement, aParentElement, aReturnPoint) {
-		//console.log("com.developedbyme.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
+		//console.log("dbm.utils.htmldom.PositionFunctions::getGlobalPositionForNode (static)");
 		var currentElement = aElement;
 		aReturnPoint.x = 0;
 		aReturnPoint.y = 0;

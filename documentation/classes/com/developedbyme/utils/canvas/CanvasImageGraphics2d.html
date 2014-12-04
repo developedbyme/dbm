@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CanvasImageGraphics2d</h1>
-					<div class="classPath">com.developedbyme.utils.canvas.CanvasImageGraphics2d</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.canvas.CanvasImageGraphics2d</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A graphics in a 2d canvas.</div>
 						<div class="spacedContent">
@@ -38,30 +38,30 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CanvasImageGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d");</div>
+									<div class="code">var CanvasImageGraphics2d = dbm.importClass("dbm.utils.canvas.CanvasImageGraphics2d");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.canvas.CanvasImageGraphics2d");
+									<div class="code">dbm.registerClass("dbm.utils.canvas.CanvasImageGraphics2d", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.canvas.CanvasImageGraphics2d");
 	
-	var CanvasImageGraphics2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasImageGraphics2d");
+	var CanvasImageGraphics2d = dbm.importClass("dbm.utils.canvas.CanvasImageGraphics2d");
 	
-	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
 	
 	/**
 	 * Constructor.
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasImageGraphics2d::_init");
+		//console.log("dbm.utils.canvas.CanvasImageGraphics2d::_init");
 		
 		this.superCall();
 		
@@ -120,7 +120,7 @@
 	};
 	
 	objectFunctions.draw = function(aContext) {
-		//console.log("com.developedbyme.utils.canvas.CanvasImageGraphics2d::draw");
+		//console.log("dbm.utils.canvas.CanvasImageGraphics2d::draw");
 		//console.log(this._image.getValue(), this._sourceX.getValue(), this._sourceY.getValue(), this._sourceWidth.getValue(), this._sourceHeight.getValue(), this._destinationX.getValue(), this._destinationY.getValue(), this._destinationWidth.getValue(), this._destinationHeight.getValue());
 		
 		var image = this._image.getValue();
@@ -191,7 +191,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.CanvasImageGraphics2d::_init");
+		//console.log("dbm.utils.canvas.CanvasImageGraphics2d::_init");
 		
 		this.superCall();
 		
@@ -376,7 +376,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.draw = function(aContext) {
-		//console.log("com.developedbyme.utils.canvas.CanvasImageGraphics2d::draw");
+		//console.log("dbm.utils.canvas.CanvasImageGraphics2d::draw");
 		//console.log(this._image.getValue(), this._sourceX.getValue(), this._sourceY.getValue(), this._sourceWidth.getValue(), this._sourceHeight.getValue(), this._destinationX.getValue(), this._destinationY.getValue(), this._destinationWidth.getValue(), this._destinationHeight.getValue());
 		
 		var image = this._image.getValue();

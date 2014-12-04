@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>OffsettedInterpolation</h1>
-					<div class="classPath">com.developedbyme.utils.math.interpolation.OffsettedInterpolation</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.math.interpolation.OffsettedInterpolation</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Interpolataion for offseted interpolation</div>
 						<div class="spacedContent">
@@ -38,29 +38,29 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var OffsettedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.OffsettedInterpolation");</div>
+									<div class="code">var OffsettedInterpolation = dbm.importClass("dbm.utils.math.interpolation.OffsettedInterpolation");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.math.interpolation.OffsettedInterpolation", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.math.interpolation.OffsettedInterpolation");
+									<div class="code">dbm.registerClass("dbm.utils.math.interpolation.OffsettedInterpolation", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.math.interpolation.OffsettedInterpolation");
 	
-	var OffsettedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.OffsettedInterpolation");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var OffsettedInterpolation = dbm.importClass("dbm.utils.math.interpolation.OffsettedInterpolation");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 		
 	/**
 	 * Constructor.
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.math.interpolation.OffsettedInterpolation");
+		//console.log("dbm.utils.math.interpolation.OffsettedInterpolation");
 		
 		this.interpolationObject = null;
 		this.multiplier = 1;
@@ -87,7 +87,7 @@
 	 * Create a new interpolation
 	 */
 	staticFunctions.create = function(aInterpolationObject, aMultiplier, aOffset) {
-		//console.log("com.developedbyme.utils.math.interpolation.OffsettedInterpolation::create");
+		//console.log("dbm.utils.math.interpolation.OffsettedInterpolation::create");
 		//console.log(aInterpolationObject, aMultiplier, aOffset);
 		var newInterpolation = (new ClassReference()).init();
 		
@@ -132,7 +132,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.math.interpolation.OffsettedInterpolation");
+		//console.log("dbm.utils.math.interpolation.OffsettedInterpolation");
 		
 		this.interpolationObject = null;
 		this.multiplier = 1;
@@ -225,7 +225,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function(aInterpolationObject, aMultiplier, aOffset) {
-		//console.log("com.developedbyme.utils.math.interpolation.OffsettedInterpolation::create");
+		//console.log("dbm.utils.math.interpolation.OffsettedInterpolation::create");
 		//console.log(aInterpolationObject, aMultiplier, aOffset);
 		var newInterpolation = (new ClassReference()).init();
 		

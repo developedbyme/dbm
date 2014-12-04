@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>SetElementToCssPropertiesNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.internal.SetElementToCssPropertiesNode</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,31 +38,31 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.ArrayHolder" href="../../../utils/data/ArrayHolder.html">ArrayHolder</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.data.ArrayHolder" href="../../../utils/data/ArrayHolder.html">ArrayHolder</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var SetElementToCssPropertiesNode = dbm.importClass("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode");</div>
+									<div class="code">var SetElementToCssPropertiesNode = dbm.importClass("dbm.flow.nodes.internal.SetElementToCssPropertiesNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.internal.SetElementToCssPropertiesNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.internal.SetElementToCssPropertiesNode");
 	
-	var SetElementToCssPropertiesNode = dbm.importClass("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode");
+	var SetElementToCssPropertiesNode = dbm.importClass("dbm.flow.nodes.internal.SetElementToCssPropertiesNode");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
+	var ArrayHolder = dbm.importClass("dbm.utils.data.ArrayHolder");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode::_init");
+		//console.log("dbm.flow.nodes.internal.SetElementToCssPropertiesNode::_init");
 		
 		this.superCall();
 		
@@ -77,7 +77,7 @@
 	};
 	
 	objectFunctions._updateElementSet = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode::_updateElementSet");
+		//console.log("dbm.flow.nodes.internal.SetElementToCssPropertiesNode::_updateElementSet");
 		//console.log(this);
 		
 		var htmlElement = this._element.getValueWithoutFlow();
@@ -147,7 +147,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode::_init");
+		//console.log("dbm.flow.nodes.internal.SetElementToCssPropertiesNode::_init");
 		
 		this.superCall();
 		
@@ -183,7 +183,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateElementSet = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.internal.SetElementToCssPropertiesNode::_updateElementSet");
+		//console.log("dbm.flow.nodes.internal.SetElementToCssPropertiesNode::_updateElementSet");
 		//console.log(this);
 		
 		var htmlElement = this._element.getValueWithoutFlow();

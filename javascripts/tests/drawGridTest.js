@@ -1,12 +1,12 @@
 dbm.runTempFunction(function() {
 	
-	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
-	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
-	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
-	var SimpleSpeedNode = dbm.importClass("com.developedbyme.flow.nodes.incrementation.SimpleSpeedNode");
-	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
+	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
+	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
+	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var MultiplicationNode = dbm.importClass("dbm.flow.nodes.math.MultiplicationNode");
+	var SimpleSpeedNode = dbm.importClass("dbm.flow.nodes.incrementation.SimpleSpeedNode");
+	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
 	var startFunction = function() {
 		console.log("startFunction");

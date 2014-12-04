@@ -1,11 +1,11 @@
 dbm.runTempFunction(function() {
 	
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var PrintTextHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintTextHandler");
+	var PrintTextHandler = dbm.importClass("dbm.core.globalobjects.errormanager.handlers.PrintTextHandler");
 	
 	var startFunction = function() {
 		

@@ -1,12 +1,12 @@
 dbm.runTempFunction(function() {
 	
-	var ProcessGroup = dbm.importClass("com.developedbyme.utils.process.ProcessGroup");
-	var WaitProcess = dbm.importClass("com.developedbyme.utils.process.WaitProcess");
-	var ExtendedEventProcess = dbm.importClass("com.developedbyme.utils.process.ExtendedEventProcess");
+	var ProcessGroup = dbm.importClass("dbm.utils.process.ProcessGroup");
+	var WaitProcess = dbm.importClass("dbm.utils.process.WaitProcess");
+	var ExtendedEventProcess = dbm.importClass("dbm.utils.process.ExtendedEventProcess");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var ProcessStatusTypes = dbm.importClass("com.developedbyme.constants.ProcessStatusTypes");
+	var ProcessStatusTypes = dbm.importClass("dbm.constants.ProcessStatusTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

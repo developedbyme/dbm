@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>TextReplacementParser</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject" href="../ParserBaseObject.html">ParserBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.datamanager.parsers.ParserBaseObject" href="../ParserBaseObject.html">ParserBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,30 +38,30 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject" href="../../objects/ParserResultDataObject.html">ParserResultDataObject</a>, <a title="com.developedbyme.flow.nodes.text.TextReplacementNode" href="../../../../../flow/nodes/text/TextReplacementNode.html">TextReplacementNode</a>, <a title="com.developedbyme.utils.xml.XmlChildRetreiver" href="../../../../../utils/xml/XmlChildRetreiver.html">XmlChildRetreiver</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.datamanager.objects.ParserResultDataObject" href="../../objects/ParserResultDataObject.html">ParserResultDataObject</a>, <a title="dbm.flow.nodes.text.TextReplacementNode" href="../../../../../flow/nodes/text/TextReplacementNode.html">TextReplacementNode</a>, <a title="dbm.utils.xml.XmlChildRetreiver" href="../../../../../utils/xml/XmlChildRetreiver.html">XmlChildRetreiver</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var TextReplacementParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser");</div>
+									<div class="code">var TextReplacementParser = dbm.importClass("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser", "com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser", "dbm.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser");
 	
-	var TextReplacementParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser");
+	var TextReplacementParser = dbm.importClass("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser");
 	
-	var TextReplacementNode = dbm.importClass("com.developedbyme.flow.nodes.text.TextReplacementNode");
-	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	var TextReplacementNode = dbm.importClass("dbm.flow.nodes.text.TextReplacementNode");
+	var ParserResultDataObject = dbm.importClass("dbm.core.globalobjects.datamanager.objects.ParserResultDataObject");
 	
-	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
+	var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_init");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_init");
 		
 		this.superCall();
 		
@@ -69,7 +69,7 @@
 	};
 	
 	objectFunctions._setupReplacement = function(aReplacementNode, aXml, aPathReference) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_setupReplacement");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_setupReplacement");
 		var dataNamespace = dbm.xmlNamespaces.dbmData;
 		var currentArray = dbm.singletons.dbmDataManager.getDataChildren(aXml);
 		var currentArrayLength = currentArray.length;
@@ -89,7 +89,7 @@
 	};
 	
 	objectFunctions._createInputLink = function(aInputProperty, aXml, aPathReference) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createInputLink");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createInputLink");
 		var parseNode = TextReplacementNode.create(aInputProperty);
 		
 		this._setupReplacement(parseNode, aXml, aPathReference);
@@ -98,7 +98,7 @@
 	};
 	
 	objectFunctions._createResult = function(aValue, aXml, aPathReference) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createResult");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createResult");
 		var parseNode = TextReplacementNode.create(aValue);
 		
 		this._setupReplacement(parseNode, aXml, aPathReference);
@@ -107,7 +107,7 @@
 	};
 	
 	staticFunctions.create = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::create");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::create");
 		var newTextReplacementParser = (new ClassReference()).init();
 		return newTextReplacementParser;
 	};
@@ -146,7 +146,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_init");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_init");
 		
 		this.superCall();
 		
@@ -175,7 +175,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._setupReplacement = function(aReplacementNode, aXml, aPathReference) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_setupReplacement");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_setupReplacement");
 		var dataNamespace = dbm.xmlNamespaces.dbmData;
 		var currentArray = dbm.singletons.dbmDataManager.getDataChildren(aXml);
 		var currentArrayLength = currentArray.length;
@@ -216,7 +216,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._createInputLink = function(aInputProperty, aXml, aPathReference) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createInputLink");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createInputLink");
 		var parseNode = TextReplacementNode.create(aInputProperty);
 		
 		this._setupReplacement(parseNode, aXml, aPathReference);
@@ -246,7 +246,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._createResult = function(aValue, aXml, aPathReference) {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createResult");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::_createResult");
 		var parseNode = TextReplacementNode.create(aValue);
 		
 		this._setupReplacement(parseNode, aXml, aPathReference);
@@ -288,7 +288,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.text.TextReplacementParser::create");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser::create");
 		var newTextReplacementParser = (new ClassReference()).init();
 		return newTextReplacementParser;
 	}</div>

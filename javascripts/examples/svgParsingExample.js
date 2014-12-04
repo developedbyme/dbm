@@ -1,18 +1,18 @@
 dbm.runTempFunction(function() {
 	//"use strict";
 	
-	var SvgView = dbm.importClass("com.developedbyme.gui.svg.SvgView");
-	var SvgPath = dbm.importClass("com.developedbyme.gui.svg.SvgPath");
-	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");
-	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
-	var MatrixTransformation = dbm.importClass("com.developedbyme.utils.math.MatrixTransformation");
+	var SvgView = dbm.importClass("dbm.gui.svg.SvgView");
+	var SvgPath = dbm.importClass("dbm.gui.svg.SvgPath");
+	var Gradient = dbm.importClass("dbm.utils.graphics.gradient.Gradient");
+	var Matrix = dbm.importClass("dbm.core.data.matrices.Matrix");
+	var MatrixTransformation = dbm.importClass("dbm.utils.math.MatrixTransformation");
 	
-	var SvgPathFunctions = dbm.importClass("com.developedbyme.utils.svg.SvgPathFunctions");
-	var SvgColorFunctions = dbm.importClass("com.developedbyme.utils.svg.SvgColorFunctions");
-	var CssLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.CssLanguageFunctions");
-	var CurveMergeTypes = dbm.importClass("com.developedbyme.constants.CurveMergeTypes");
+	var SvgPathFunctions = dbm.importClass("dbm.utils.svg.SvgPathFunctions");
+	var SvgColorFunctions = dbm.importClass("dbm.utils.svg.SvgColorFunctions");
+	var CssLanguageFunctions = dbm.importClass("dbm.utils.native.string.CssLanguageFunctions");
+	var CurveMergeTypes = dbm.importClass("dbm.constants.CurveMergeTypes");
 	
-	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
+	var XmlCreator = dbm.importClass("dbm.utils.xml.XmlCreator");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

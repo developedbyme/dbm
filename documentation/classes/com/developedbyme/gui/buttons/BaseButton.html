@@ -28,53 +28,53 @@
 			<article>
 				<div class="mainInfo">
 					<h1>BaseButton</h1>
-					<div class="classPath">com.developedbyme.gui.buttons.BaseButton</div>
-					<div class="classInheritance"><a title="com.developedbyme.gui.DisplayBaseObject" href="../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.gui.buttons.BaseButton</div>
+					<div class="classInheritance"><a title="dbm.gui.DisplayBaseObject" href="../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Base object for all buttons.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.gui.buttons.FileUploadButton" href="FileUploadButton.html">FileUploadButton</a></div>
+							<div class="subClasses linkList"><a title="dbm.gui.buttons.FileUploadButton" href="FileUploadButton.html">FileUploadButton</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.extendedevents.ButtonExtendedEventIds" href="../../constants/extendedevents/ButtonExtendedEventIds.html">ButtonExtendedEventIds</a>, <a title="com.developedbyme.constants.CssCursorTypes" href="../../constants/CssCursorTypes.html">CssCursorTypes</a>, <a title="com.developedbyme.utils.htmldom.DomReferenceFunctions" href="../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup" href="../../core/extendedevent/setup/InteractionExtendedEventSetup.html">InteractionExtendedEventSetup</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand" href="../../core/extendedevent/commands/basic/SetPropertyCommand.html">SetPropertyCommand</a>, <a title="com.developedbyme.gui.text.TextElement" href="../text/TextElement.html">TextElement</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.extendedevents.ButtonExtendedEventIds" href="../../constants/extendedevents/ButtonExtendedEventIds.html">ButtonExtendedEventIds</a>, <a title="dbm.constants.CssCursorTypes" href="../../constants/CssCursorTypes.html">CssCursorTypes</a>, <a title="dbm.utils.htmldom.DomReferenceFunctions" href="../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="dbm.core.extendedevent.setup.InteractionExtendedEventSetup" href="../../core/extendedevent/setup/InteractionExtendedEventSetup.html">InteractionExtendedEventSetup</a>, <a title="dbm.core.extendedevent.commands.basic.SetPropertyCommand" href="../../core/extendedevent/commands/basic/SetPropertyCommand.html">SetPropertyCommand</a>, <a title="dbm.gui.text.TextElement" href="../text/TextElement.html">TextElement</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");</div>
+									<div class="code">var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.gui.buttons.BaseButton", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.BaseObject");
+									<div class="code">dbm.registerClass("dbm.gui.buttons.BaseButton", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.BaseObject");
 	
 	//Self reference
-	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
+	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
 	
 	//Error report
 	
 	//Dependencies
-	var TextElement = dbm.importClass("com.developedbyme.gui.text.TextElement");
+	var TextElement = dbm.importClass("dbm.gui.text.TextElement");
 	
 	//Utils
-	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
-	var InteractionExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.InteractionExtendedEventSetup");
-	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
+	var SetPropertyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyCommand");
+	var InteractionExtendedEventSetup = dbm.importClass("dbm.core.extendedevent.setup.InteractionExtendedEventSetup");
+	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
 	
 	//Constants
-	var ButtonExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.ButtonExtendedEventIds");
-	var CssCursorTypes = dbm.importClass("com.developedbyme.constants.CssCursorTypes");
+	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
+	var CssCursorTypes = dbm.importClass("dbm.constants.CssCursorTypes");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.buttons.BaseButton::_init");
+		//console.log("dbm.gui.buttons.BaseButton::_init");
 		
 		this.superCall();
 		
@@ -231,7 +231,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.buttons.BaseButton::_init");
+		//console.log("dbm.gui.buttons.BaseButton::_init");
 		
 		this.superCall();
 		

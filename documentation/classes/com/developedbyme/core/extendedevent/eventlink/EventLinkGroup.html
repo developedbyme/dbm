@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>EventLinkGroup</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.eventlink.EventLinkGroup</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.extendedevent.eventlink.EventLinkGroup</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -44,19 +44,19 @@
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var EventLinkGroup = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup");</div>
+									<div class="code">var EventLinkGroup = dbm.importClass("dbm.core.extendedevent.eventlink.EventLinkGroup");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.eventlink.EventLinkGroup", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup");
 	
 	
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::_init");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::_init");
 		
 		this.superCall();
 		
@@ -76,7 +76,7 @@
 	};
 	
 	objectFunctions.activateAll = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::activateAll");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::activateAll");
 		this._isActive = true;
 		
 		var currentArray = this.linksArray;
@@ -88,7 +88,7 @@
 	};
 	
 	objectFunctions.deactivateAll = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::deactivateAll");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::deactivateAll");
 		this._isActive = false;
 		
 		var currentArray = this.linksArray;
@@ -100,7 +100,7 @@
 	};
 	
 	objectFunctions.reactivateAll = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::reactivateAll");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::reactivateAll");
 		if(this._isActive) {
 			var currentArray = this.linksArray;
 			var currentArrayLength = currentArray.length;
@@ -112,7 +112,7 @@
 	};
 	
 	objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::performDestroy");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::performDestroy");
 		if(this._isActive) {
 			this.deactivateAll();
 		}
@@ -163,7 +163,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::_init");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::_init");
 		
 		this.superCall();
 		
@@ -225,7 +225,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.activateAll = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::activateAll");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::activateAll");
 		this._isActive = true;
 		
 		var currentArray = this.linksArray;
@@ -258,7 +258,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.deactivateAll = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::deactivateAll");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::deactivateAll");
 		this._isActive = false;
 		
 		var currentArray = this.linksArray;
@@ -291,7 +291,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reactivateAll = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::reactivateAll");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::reactivateAll");
 		if(this._isActive) {
 			var currentArray = this.linksArray;
 			var currentArrayLength = currentArray.length;
@@ -324,7 +324,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup::performDestroy");
+		//console.log("dbm.core.extendedevent.eventlink.EventLinkGroup::performDestroy");
 		if(this._isActive) {
 			this.deactivateAll();
 		}

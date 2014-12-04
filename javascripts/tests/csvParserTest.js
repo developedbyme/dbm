@@ -1,14 +1,14 @@
 dbm.runTempFunction(function() {
 	
-	var CsvParser = dbm.importClass("com.developedbyme.utils.file.formats.csv.CsvParser");
+	var CsvParser = dbm.importClass("dbm.utils.file.formats.csv.CsvParser");
 	
-	var TableElement = dbm.importClass("com.developedbyme.gui.table.TableElement");
+	var TableElement = dbm.importClass("dbm.gui.table.TableElement");
 	
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

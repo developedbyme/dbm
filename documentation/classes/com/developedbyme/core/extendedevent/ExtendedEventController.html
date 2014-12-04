@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ExtendedEventController</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.ExtendedEventController</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.extendedevent.ExtendedEventController</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,38 +38,38 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.extendedevent.EventDataObject" href="EventDataObject.html">EventDataObject</a>, <a title="com.developedbyme.core.extendedevent.eventlink.EventLink" href="eventlink/EventLink.html">EventLink</a>, <a title="com.developedbyme.core.extendedevent.eventlink.EventLinkGroup" href="eventlink/EventLinkGroup.html">EventLinkGroup</a>, <a title="com.developedbyme.core.extendedevent.eventperformer.EventPerformer" href="eventperformer/EventPerformer.html">EventPerformer</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.extendedevent.EventDataObject" href="EventDataObject.html">EventDataObject</a>, <a title="dbm.core.extendedevent.eventlink.EventLink" href="eventlink/EventLink.html">EventLink</a>, <a title="dbm.core.extendedevent.eventlink.EventLinkGroup" href="eventlink/EventLinkGroup.html">EventLinkGroup</a>, <a title="dbm.core.extendedevent.eventperformer.EventPerformer" href="eventperformer/EventPerformer.html">EventPerformer</a>, <a title="dbm.utils.data.NamedArray" href="../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");</div>
+									<div class="code">var ExtendedEventController = dbm.importClass("dbm.core.extendedevent.ExtendedEventController");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.ExtendedEventController", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.ExtendedEventController");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.ExtendedEventController", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.ExtendedEventController");
 	
 	//Self reference
-	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
+	var ExtendedEventController = dbm.importClass("dbm.core.extendedevent.ExtendedEventController");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");
-	var EventLinkGroup = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.EventLinkGroup");
-	var EventLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.EventLink");
-	var EventPerformer = dbm.importClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var EventDataObject = dbm.importClass("dbm.core.extendedevent.EventDataObject");
+	var EventLinkGroup = dbm.importClass("dbm.core.extendedevent.eventlink.EventLinkGroup");
+	var EventLink = dbm.importClass("dbm.core.extendedevent.eventlink.EventLink");
+	var EventPerformer = dbm.importClass("dbm.core.extendedevent.eventperformer.EventPerformer");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -78,7 +78,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::_init");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::_init");
 		
 		this.superCall();
 		
@@ -100,7 +100,7 @@
 	};
 	
 	objectFunctions.perform = function(aEventName, aData) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::perform");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::perform");
 		//console.log(aEventName, aData);
 		
 		if(this._isDestroyed) {
@@ -193,7 +193,7 @@
 	};
 	
 	objectFunctions.linkJavascriptEventWithCapture = function(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aUseCapture, aGroupName, aDontWarnOnCreation, aCreateEvent) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::_linkJavascriptEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::_linkJavascriptEvent");
 		//console.log(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent);
 		if(!VariableAliases.isSet(aJavascriptEventName)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEventWithCapture", "Javascript event is null for " + aExtendedEventName + " on " + this._owner + ".");
@@ -217,14 +217,14 @@
 	};
 	
 	objectFunctions.linkJavascriptEvent = function(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::linkJavascriptEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::linkJavascriptEvent");
 		//console.log(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent);
 		
 		return this.linkJavascriptEventWithCapture(aEventDispatcher, aJavascriptEventName, aExtendedEventName, false, aGroupName, aDontWarnOnCreation, aCreateEvent);
 	};
 	
 	objectFunctions.activateJavascriptEventLink = function(aName) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::activateJavascriptEventLink");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::activateJavascriptEventLink");
 		//console.log(aName);
 		if(!VariableAliases.isSet(aName)) {
 			aName = this._defaultEventLinkGroupName;
@@ -240,7 +240,7 @@
 	};
 	
 	objectFunctions.deactivateJavascriptEventLink = function(aName) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::deactivateJavascriptEventLink");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::deactivateJavascriptEventLink");
 		//console.log(aName);
 		//console.log("this._eventLinkGroups.select(aName) : ", this._eventLinkGroups.select(aName));
 		if(this._eventLinkGroups.select(aName)) {
@@ -252,7 +252,7 @@
 	};
 	
 	objectFunctions.createEvent = function(aName) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::createEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::createEvent");
 		var newPerformer = (new EventPerformer()).init();
 		
 		this.addEvent(aName, newPerformer);
@@ -261,7 +261,7 @@
 	};
 	
 	objectFunctions.addEvent = function(aName, aPerformer) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::addEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::addEvent");
 		if(this._eventPerformers.select(aName)) {
 			var oldPerformer = this._eventPerformers.currentSelectedItem;
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addEvent", "Event " + aName + " already exist. Replacing.");
@@ -273,7 +273,7 @@
 	};
 	
 	objectFunctions.removeEvent = function(aName) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::removeEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::removeEvent");
 		this._eventPerformers.removeObject(aName);
 		
 		if(this._groupsController !== null) {
@@ -282,7 +282,7 @@
 	};
 	
 	objectFunctions.getEvent = function(aName, aDontWarnOnCreation) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::getEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::getEvent");
 		var thePerformer;
 		
 		//console.log(aName, this._eventPerformers.select(aName), aDontWarnOnCreation);
@@ -304,7 +304,7 @@
 	};
 	
 	objectFunctions.addCommandToEvent = function(aEventName, aCommand) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::addCommandToEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::addCommandToEvent");
 		
 		if(!VariableAliases.isSet(aCommand)) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addCommandToEvent", "Command is null.");
@@ -415,7 +415,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::_init");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::_init");
 		
 		this.superCall();
 		
@@ -479,7 +479,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.perform = function(aEventName, aData) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::perform");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::perform");
 		//console.log(aEventName, aData);
 		
 		if(this._isDestroyed) {
@@ -718,7 +718,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.linkJavascriptEventWithCapture = function(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aUseCapture, aGroupName, aDontWarnOnCreation, aCreateEvent) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::_linkJavascriptEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::_linkJavascriptEvent");
 		//console.log(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent);
 		if(!VariableAliases.isSet(aJavascriptEventName)) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "linkJavascriptEventWithCapture", "Javascript event is null for " + aExtendedEventName + " on " + this._owner + ".");
@@ -763,7 +763,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.linkJavascriptEvent = function(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::linkJavascriptEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::linkJavascriptEvent");
 		//console.log(aEventDispatcher, aJavascriptEventName, aExtendedEventName, aGroupName, aDontWarnOnCreation, aCreateEvent);
 		
 		return this.linkJavascriptEventWithCapture(aEventDispatcher, aJavascriptEventName, aExtendedEventName, false, aGroupName, aDontWarnOnCreation, aCreateEvent);
@@ -791,7 +791,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.activateJavascriptEventLink = function(aName) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::activateJavascriptEventLink");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::activateJavascriptEventLink");
 		//console.log(aName);
 		if(!VariableAliases.isSet(aName)) {
 			aName = this._defaultEventLinkGroupName;
@@ -828,7 +828,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.deactivateJavascriptEventLink = function(aName) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::deactivateJavascriptEventLink");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::deactivateJavascriptEventLink");
 		//console.log(aName);
 		//console.log("this._eventLinkGroups.select(aName) : ", this._eventLinkGroups.select(aName));
 		if(this._eventLinkGroups.select(aName)) {
@@ -861,7 +861,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createEvent = function(aName) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::createEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::createEvent");
 		var newPerformer = (new EventPerformer()).init();
 		
 		this.addEvent(aName, newPerformer);
@@ -891,7 +891,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addEvent = function(aName, aPerformer) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::addEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::addEvent");
 		if(this._eventPerformers.select(aName)) {
 			var oldPerformer = this._eventPerformers.currentSelectedItem;
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addEvent", "Event " + aName + " already exist. Replacing.");
@@ -924,7 +924,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.removeEvent = function(aName) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::removeEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::removeEvent");
 		this._eventPerformers.removeObject(aName);
 		
 		if(this._groupsController !== null) {
@@ -954,7 +954,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getEvent = function(aName, aDontWarnOnCreation) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::getEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::getEvent");
 		var thePerformer;
 		
 		//console.log(aName, this._eventPerformers.select(aName), aDontWarnOnCreation);
@@ -1018,7 +1018,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addCommandToEvent = function(aEventName, aCommand) {
-		//console.log("com.developedbyme.core.extendedevent.ExtendedEventController::addCommandToEvent");
+		//console.log("dbm.core.extendedevent.ExtendedEventController::addCommandToEvent");
 		
 		if(!VariableAliases.isSet(aCommand)) {
 			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "addCommandToEvent", "Command is null.");

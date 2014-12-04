@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ConditionAnyOfMultipleValuesObject</h1>
-					<div class="classPath">com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject</div>
+					<div class="classInheritance"><a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,32 +38,32 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.logic.ConditionEvaluation" href="../../logic/ConditionEvaluation.html">ConditionEvaluation</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.logic.ConditionEvaluation" href="../../logic/ConditionEvaluation.html">ConditionEvaluation</a>, <a title="dbm.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ConditionAnyOfMultipleValuesObject = dbm.importClass("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject");</div>
+									<div class="code">var ConditionAnyOfMultipleValuesObject = dbm.importClass("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ObjectReevaluationBaseObject");
+									<div class="code">dbm.registerClass("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject", "dbm.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.reevaluation.logicreevaluation.ObjectReevaluationBaseObject");
 	//"use strict";
 	
 	//Self reference
-	var ConditionAnyOfMultipleValuesObject = dbm.importClass("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject");
+	var ConditionAnyOfMultipleValuesObject = dbm.importClass("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
-	var ConditionEvaluation = dbm.importClass("com.developedbyme.utils.logic.ConditionEvaluation");
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
+	var ConditionEvaluation = dbm.importClass("dbm.utils.logic.ConditionEvaluation");
 	
 	//Constants
 	
@@ -72,7 +72,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::_init");
+		//console.log("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::_init");
 		
 		this.superCall();
 		
@@ -84,7 +84,7 @@
 	};
 	
 	objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::reevaluate");
 		var inputValue = this.inputValueReevaluator.reevaluate(aBaseObject);
 		var currentArray = this.matchedValuesReevaluator.reevaluate(aBaseObject);
 		var conditionType = this.conditionTypeReevaluator.reevaluate(aBaseObject);
@@ -111,7 +111,7 @@
 	};
 	
 	staticFunctions.createCommand = function(aInputValue, aConditionType, aMatchedValues) {
-		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::createCommand (static)");
+		//console.log("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::createCommand (static)");
 		var newCommand = (new ConditionAnyOfMultipleValuesObject()).init();
 		
 		newCommand.inputValueReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aInputValue);
@@ -155,7 +155,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::_init");
+		//console.log("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::_init");
 		
 		this.superCall();
 		
@@ -188,7 +188,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::reevaluate");
 		var inputValue = this.inputValueReevaluator.reevaluate(aBaseObject);
 		var currentArray = this.matchedValuesReevaluator.reevaluate(aBaseObject);
 		var conditionType = this.conditionTypeReevaluator.reevaluate(aBaseObject);
@@ -269,7 +269,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createCommand = function(aInputValue, aConditionType, aMatchedValues) {
-		//console.log("com.developedbyme.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::createCommand (static)");
+		//console.log("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject::createCommand (static)");
 		var newCommand = (new ConditionAnyOfMultipleValuesObject()).init();
 		
 		newCommand.inputValueReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aInputValue);

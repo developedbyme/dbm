@@ -1,0 +1,27 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("dbm.utils.geometry.bufferpackers.VertexPacker", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.geometry.bufferpackers.VertexPacker");
+	
+	var VertexPacker = dbm.importClass("dbm.utils.geometry.bufferpackers.VertexPacker");
+	
+	var Point = dbm.importClass("dbm.core.data.points.Point");
+	
+	var VectorFunctions = dbm.importClass("dbm.utils.math.VectorFunctions");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	
+	staticFunctions.packFaces = function(aMesh) {
+		
+		var returnArray = new Array(3*aMesh.faces.length);
+		
+		var currentArray = aMesh.faces;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentFace = currentArray[i];
+			returnArray[3*i]   = currentFace.vertex1;
+			returnArray[3*i+1] = currentFace.vertex2;
+			returnArray[3*i+2] = currentFace.vertex3;
+		}
+		
+		return returnArray;
+	};
+});

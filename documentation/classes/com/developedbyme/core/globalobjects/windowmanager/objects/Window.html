@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>Window</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.windowmanager.objects.Window</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.windowmanager.objects.Window</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Controller for a window
 
@@ -40,43 +40,43 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.BrowserDependentFunction" href="../../../objectparts/BrowserDependentFunction.html">BrowserDependentFunction</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.flow.nodes.browser.DocumentForElementNode" href="../../../../flow/nodes/browser/DocumentForElementNode.html">DocumentForElementNode</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.objectparts.ExternalVariableProperty" href="../../../objectparts/ExternalVariableProperty.html">ExternalVariableProperty</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.constants.JavascriptEventIds" href="../../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="com.developedbyme.core.globalobjects.windowmanager.data.Margins" href="../data/Margins.html">Margins</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand" href="../../../extendedevent/commands/basic/SetPropertyCommand.html">SetPropertyCommand</a>, <a title="com.developedbyme.constants.extendedevents.WindowExtendedEventIds" href="../../../../constants/extendedevents/WindowExtendedEventIds.html">WindowExtendedEventIds</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.BrowserDependentFunction" href="../../../objectparts/BrowserDependentFunction.html">BrowserDependentFunction</a>, <a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.flow.nodes.browser.DocumentForElementNode" href="../../../../flow/nodes/browser/DocumentForElementNode.html">DocumentForElementNode</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.objectparts.ExternalVariableProperty" href="../../../objectparts/ExternalVariableProperty.html">ExternalVariableProperty</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.constants.JavascriptEventIds" href="../../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="dbm.core.globalobjects.windowmanager.data.Margins" href="../data/Margins.html">Margins</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.extendedevent.commands.basic.SetPropertyCommand" href="../../../extendedevent/commands/basic/SetPropertyCommand.html">SetPropertyCommand</a>, <a title="dbm.constants.extendedevents.WindowExtendedEventIds" href="../../../../constants/extendedevents/WindowExtendedEventIds.html">WindowExtendedEventIds</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var Window = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.objects.Window");</div>
+									<div class="code">var Window = dbm.importClass("dbm.core.globalobjects.windowmanager.objects.Window");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.objects.Window", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.windowmanager.objects.Window", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.windowmanager.objects.Window");
 	
 	//Self reference
-	var Window = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.objects.Window");
+	var Window = dbm.importClass("dbm.core.globalobjects.windowmanager.objects.Window");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var DocumentForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.DocumentForElementNode");
+	var DocumentForElementNode = dbm.importClass("dbm.flow.nodes.browser.DocumentForElementNode");
 	
 	//Utils
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var SetPropertyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	var BrowserDependentFunction = dbm.importClass("com.developedbyme.core.objectparts.BrowserDependentFunction");
-	var ExternalVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalVariableProperty");
-	var Margins = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.data.Margins");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var SetPropertyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var BrowserDependentFunction = dbm.importClass("dbm.core.objectparts.BrowserDependentFunction");
+	var ExternalVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalVariableProperty");
+	var Margins = dbm.importClass("dbm.core.globalobjects.windowmanager.data.Margins");
 	
 	//Constants
-	var WindowExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.WindowExtendedEventIds");
-	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var WindowExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.WindowExtendedEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
 	
 	staticFunctions._MOUSE_POSITION_UPDATE = "mousePositionUpdate";
 	
@@ -86,7 +86,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_init");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_init");
 		
 		this.superCall();
 		
@@ -208,7 +208,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions.setUrl = function(aUrl) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setUrl");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setUrl");
 		
 		this._url = aUrl;
 		
@@ -220,7 +220,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions.setPosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setPosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setPosition");
 		
 		if(this._x.canBeSet()) {
 			this._x.setValue(Math.round(aX));
@@ -242,7 +242,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions.setSize = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setSize");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setSize");
 		//console.log(this.name, aWidth, this._width.getValue(), aHeight, this._height.getValue());
 		
 		if(this._width.canBeSet()) {
@@ -309,7 +309,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._updateFlowSize = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
 		
 		var innerWidth;
 		var innerHeight;
@@ -335,7 +335,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 				innerHeight = this._window.innerHeight;
 				
 				if(newWidth !== innerWidth || newHeight !== innerHeight) {
-					//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
+					//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
 					this._updateSize(newWidth, newHeight);
 				}
 			}
@@ -343,12 +343,12 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._updateFlowPosition = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
 		if(this._isOpen) {
 			var newX = Math.round(this._x.getValueWithoutFlow());
 			var newY = Math.round(this._y.getValueWithoutFlow());
 			if(newX !== this._cachedScreenX || newY !== this._cachedScreenY) {
-				//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
+				//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
 				//console.log(newX + " " + this._cachedScreenX + " " + newY + " " + this._cachedScreenY);
 				this._updatePosition(newX, newY);
 			}
@@ -356,7 +356,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._updateIconFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateIconFlow");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateIconFlow");
 		if(this._isOpen) {
 			var icon = this._icon.getExternalObject();
 			if(icon !== null) {
@@ -369,7 +369,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	
 	
 	objectFunctions._updateSize = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateSize");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateSize");
 		//console.log(this.name);
 		
 		//this._horizontalMargin = this._window.outerWidth-this._window.innerWidth;
@@ -401,7 +401,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._updateSizeBy = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateSizeBy");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateSizeBy");
 		//console.log(aWidth, aHeight, this._margins.horizontalMargin, this._margins.verticalMargin);
 		
 		//this._horizontalMargin = this._window.outerWidth-this._window.innerWidth;
@@ -411,17 +411,17 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._updatePosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updatePosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updatePosition");
 		this._updatePositionFunction.callFunction(arguments);
 	};
 	
 	objectFunctions._browser_firefox_updatePosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_firefox_updatePosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_firefox_updatePosition");
 		this._window.moveTo(aX, aY);
 	};
 	
 	objectFunctions._browser_msie_updatePosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_msie_updatePosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_msie_updatePosition");
 		//MENOTE: MSIE doesn't have availLeft or availTop
 		try {
 			this._window.moveTo(aX, aY);
@@ -433,7 +433,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._browser_default_updatePosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_default_updatePosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_default_updatePosition");
 		try {
 			this._window.moveTo(aX-dbm.singletons.dbmWindowManager.getScreenSizeNode().getProperty("availLeft").getValue(), aY-dbm.singletons.dbmWindowManager.getScreenSizeNode().getProperty("availTop").getValue());
 		}
@@ -444,7 +444,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._sizeUpdated = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
 		//console.log(this.name, ", ", this._window.outerWidth, ", ", this._window.innerWidth, ", ", this._width.getValue(), ", ", this._window.outerHeight, ", ", this._window.innerHeight, ", ", this._height.getValue());
 		
 		//console.log(this._hasMargins, this._window.outerWidth, this._window.outerHeight, this._window.innerWidth, this._window.innerHeight, this._horizontalMargin, this._verticalMargin);
@@ -486,11 +486,11 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 		
 		dbm.singletons.dbmFlowManager.updateProperties();
 		
-		//console.log("//com.developedbyme.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
+		//console.log("//dbm.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
 	};
 	
 	objectFunctions._positionUpdated = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_positionUpdated");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_positionUpdated");
 		//console.log(aX, aY);
 		
 		this._cachedScreenX = aX;
@@ -506,7 +506,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._mousePositionUpdate = function(aEvent) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_mousePositionUpdate");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_mousePositionUpdate");
 		
 		//MENOTE: this._window.screenX and this._window.screenY are really slow
 		var marginTop = (aEvent.screenX-(this._window.screenX))-aEvent.pageX;
@@ -521,7 +521,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._documentReadyCallback = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentReadyCallback");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_documentReadyCallback");
 		
 		var theDocument = this._window.document;
 		
@@ -543,19 +543,19 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._documentLoadedCallback = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentLoadedCallback");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_documentLoadedCallback");
 		//console.log(this.name, this);
 		this._documentReady.setValue(true);
 	};
 	
 	objectFunctions._documentUnloadedCallback = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentUnloadedCallback");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_documentUnloadedCallback");
 		//console.log(this.name, this);
 		this._documentLoaded.setValue(true);
 	};
 	
 	objectFunctions._checkForLastPosition = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_checkForLastPosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_checkForLastPosition");
 		
 		if(this._window !== null) {
 			if(this._window.closed) {
@@ -575,7 +575,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._setupIconLink = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_setupIconLink");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_setupIconLink");
 		
 		var linkTag = null;
 		var currentArray = this.getDocument().getElementsByTagName("link");
@@ -598,7 +598,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions.setFeatures = function(aStatus, aToolbar, aLocation, aMenubar, aDirectories, aResizable, aScrollbars) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setFeatures");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setFeatures");
 		
 		this._status = aStatus;
 		this._toolbar = aToolbar;
@@ -612,7 +612,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions.open = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::open");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::open");
 		//console.log(this._width.getValue(), this._height.getValue());
 		if(this._isOpen) return this;
 		
@@ -678,18 +678,18 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions._browser_default_windowReadyDirectly = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_default_windowReadyDirectly");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_default_windowReadyDirectly");
 		//MENOTE: do nothing
 	};
 	
 	objectFunctions._browser_msie_windowReadyDirectly = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_msie_windowReadyDirectly");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_msie_windowReadyDirectly");
 		this.getExtendedEvent().perform(WindowExtendedEventIds.DOCUMENT_READY);
 		this.getExtendedEvent().perform(WindowExtendedEventIds.DOCUMENT_LOADED);
 	};
 	
 	objectFunctions.close = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::close");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::close");
 		
 		if(!this._isOpen) return this;
 		
@@ -731,7 +731,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::updateTime");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::updateTime");
 		
 		if(this._window.closed) {
 			this._isOpen = false;
@@ -834,7 +834,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::performDestroy");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::performDestroy");
 		if(this._isOpen) {
 			this.close();
 		}
@@ -844,7 +844,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setAllReferencesToNull");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setAllReferencesToNull");
 		
 		this._window = null;
 		this._x = null;
@@ -924,7 +924,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_init");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_init");
 		
 		this.superCall();
 		
@@ -1088,7 +1088,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setUrl = function(aUrl) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setUrl");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setUrl");
 		
 		this._url = aUrl;
 		
@@ -1142,7 +1142,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setPosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setPosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setPosition");
 		
 		if(this._x.canBeSet()) {
 			this._x.setValue(Math.round(aX));
@@ -1185,7 +1185,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setSize = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setSize");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setSize");
 		//console.log(this.name, aWidth, this._width.getValue(), aHeight, this._height.getValue());
 		
 		if(this._width.canBeSet()) {
@@ -1399,7 +1399,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateFlowSize = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
 		
 		var innerWidth;
 		var innerHeight;
@@ -1425,7 +1425,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 				innerHeight = this._window.innerHeight;
 				
 				if(newWidth !== innerWidth || newHeight !== innerHeight) {
-					//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
+					//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateFlowSize");
 					this._updateSize(newWidth, newHeight);
 				}
 			}
@@ -1454,12 +1454,12 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateFlowPosition = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
 		if(this._isOpen) {
 			var newX = Math.round(this._x.getValueWithoutFlow());
 			var newY = Math.round(this._y.getValueWithoutFlow());
 			if(newX !== this._cachedScreenX || newY !== this._cachedScreenY) {
-				//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
+				//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateFlowPosition");
 				//console.log(newX + " " + this._cachedScreenX + " " + newY + " " + this._cachedScreenY);
 				this._updatePosition(newX, newY);
 			}
@@ -1488,7 +1488,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateIconFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateIconFlow");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateIconFlow");
 		if(this._isOpen) {
 			var icon = this._icon.getExternalObject();
 			if(icon !== null) {
@@ -1521,7 +1521,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateSize = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateSize");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateSize");
 		//console.log(this.name);
 		
 		//this._horizontalMargin = this._window.outerWidth-this._window.innerWidth;
@@ -1574,7 +1574,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateSizeBy = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updateSizeBy");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updateSizeBy");
 		//console.log(aWidth, aHeight, this._margins.horizontalMargin, this._margins.verticalMargin);
 		
 		//this._horizontalMargin = this._window.outerWidth-this._window.innerWidth;
@@ -1605,7 +1605,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updatePosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_updatePosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_updatePosition");
 		this._updatePositionFunction.callFunction(arguments);
 	}</div>
 							</div>
@@ -1631,7 +1631,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._browser_firefox_updatePosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_firefox_updatePosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_firefox_updatePosition");
 		this._window.moveTo(aX, aY);
 	}</div>
 							</div>
@@ -1657,7 +1657,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._browser_msie_updatePosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_msie_updatePosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_msie_updatePosition");
 		//MENOTE: MSIE doesn't have availLeft or availTop
 		try {
 			this._window.moveTo(aX, aY);
@@ -1690,7 +1690,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._browser_default_updatePosition = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_default_updatePosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_default_updatePosition");
 		try {
 			this._window.moveTo(aX-dbm.singletons.dbmWindowManager.getScreenSizeNode().getProperty("availLeft").getValue(), aY-dbm.singletons.dbmWindowManager.getScreenSizeNode().getProperty("availTop").getValue());
 		}
@@ -1722,7 +1722,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._sizeUpdated = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
 		//console.log(this.name, ", ", this._window.outerWidth, ", ", this._window.innerWidth, ", ", this._width.getValue(), ", ", this._window.outerHeight, ", ", this._window.innerHeight, ", ", this._height.getValue());
 		
 		//console.log(this._hasMargins, this._window.outerWidth, this._window.outerHeight, this._window.innerWidth, this._window.innerHeight, this._horizontalMargin, this._verticalMargin);
@@ -1764,7 +1764,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 		
 		dbm.singletons.dbmFlowManager.updateProperties();
 		
-		//console.log("//com.developedbyme.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
+		//console.log("//dbm.core.globalobjects.windowmanager.objects.Window::_sizeUpdate");
 	}</div>
 							</div>
 						</div>
@@ -1789,7 +1789,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._positionUpdated = function(aX, aY) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_positionUpdated");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_positionUpdated");
 		//console.log(aX, aY);
 		
 		this._cachedScreenX = aX;
@@ -1826,7 +1826,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._mousePositionUpdate = function(aEvent) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_mousePositionUpdate");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_mousePositionUpdate");
 		
 		//MENOTE: this._window.screenX and this._window.screenY are really slow
 		var marginTop = (aEvent.screenX-(this._window.screenX))-aEvent.pageX;
@@ -1862,7 +1862,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._documentReadyCallback = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentReadyCallback");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_documentReadyCallback");
 		
 		var theDocument = this._window.document;
 		
@@ -1905,7 +1905,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._documentLoadedCallback = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentLoadedCallback");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_documentLoadedCallback");
 		//console.log(this.name, this);
 		this._documentReady.setValue(true);
 	}</div>
@@ -1932,7 +1932,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._documentUnloadedCallback = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_documentUnloadedCallback");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_documentUnloadedCallback");
 		//console.log(this.name, this);
 		this._documentLoaded.setValue(true);
 	}</div>
@@ -1959,7 +1959,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._checkForLastPosition = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_checkForLastPosition");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_checkForLastPosition");
 		
 		if(this._window !== null) {
 			if(this._window.closed) {
@@ -2000,7 +2000,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._setupIconLink = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_setupIconLink");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_setupIconLink");
 		
 		var linkTag = null;
 		var currentArray = this.getDocument().getElementsByTagName("link");
@@ -2044,7 +2044,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setFeatures = function(aStatus, aToolbar, aLocation, aMenubar, aDirectories, aResizable, aScrollbars) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setFeatures");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setFeatures");
 		
 		this._status = aStatus;
 		this._toolbar = aToolbar;
@@ -2079,7 +2079,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.open = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::open");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::open");
 		//console.log(this._width.getValue(), this._height.getValue());
 		if(this._isOpen) return this;
 		
@@ -2166,7 +2166,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._browser_default_windowReadyDirectly = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_default_windowReadyDirectly");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_default_windowReadyDirectly");
 		//MENOTE: do nothing
 	}</div>
 							</div>
@@ -2192,7 +2192,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._browser_msie_windowReadyDirectly = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::_browser_msie_windowReadyDirectly");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::_browser_msie_windowReadyDirectly");
 		this.getExtendedEvent().perform(WindowExtendedEventIds.DOCUMENT_READY);
 		this.getExtendedEvent().perform(WindowExtendedEventIds.DOCUMENT_LOADED);
 	}</div>
@@ -2219,7 +2219,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.close = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::close");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::close");
 		
 		if(!this._isOpen) return this;
 		
@@ -2324,7 +2324,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.updateTime = function(aTime, aFrame) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::updateTime");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::updateTime");
 		
 		if(this._window.closed) {
 			this._isOpen = false;
@@ -2511,7 +2511,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::performDestroy");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::performDestroy");
 		if(this._isOpen) {
 			this.close();
 		}
@@ -2542,7 +2542,7 @@ Notes: Chrome 13.0.782.215 doesn't have the outer and inner width directly when 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setAllReferencesToNull = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.objects.Window::setAllReferencesToNull");
+		//console.log("dbm.core.globalobjects.windowmanager.objects.Window::setAllReferencesToNull");
 		
 		this._window = null;
 		this._x = null;

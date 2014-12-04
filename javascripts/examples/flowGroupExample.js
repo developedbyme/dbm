@@ -1,9 +1,9 @@
 dbm.runTempFunction(function() {
 	
-	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
-	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
-	var PrintTextNode = dbm.importClass("com.developedbyme.flow.nodes.display.PrintTextNode");
-	var FlowGroup = dbm.importClass("com.developedbyme.flow.FlowGroup");
+	var PropertiesHolder = dbm.importClass("dbm.flow.PropertiesHolder");
+	var MultiplicationNode = dbm.importClass("dbm.flow.nodes.math.MultiplicationNode");
+	var PrintTextNode = dbm.importClass("dbm.flow.nodes.display.PrintTextNode");
+	var FlowGroup = dbm.importClass("dbm.flow.FlowGroup");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

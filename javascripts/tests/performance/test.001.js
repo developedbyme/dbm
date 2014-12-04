@@ -4,9 +4,9 @@
  */
 dbm.runTempFunction(function() {
 	
-	dbm.addSpecificClassesFolder("com.developedbyme", "dbm/classes");
+	dbm.addSpecificClassesFolder("dbm", "dbm/classes");
 	
-	var RequestAnimationFrameTimer = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.RequestAnimationFrameTimer");
+	var RequestAnimationFrameTimer = dbm.importClass("dbm.core.globalobjects.updatemanager.timer.RequestAnimationFrameTimer");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>FileInputField</h1>
-					<div class="classPath">com.developedbyme.gui.form.FileInputField</div>
-					<div class="classInheritance"><a title="com.developedbyme.gui.DisplayBaseObject" href="../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.gui.form.FileInputField</div>
+					<div class="classInheritance"><a title="dbm.gui.DisplayBaseObject" href="../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A generic input field for selecting files.</div>
 						<div class="spacedContent">
@@ -38,37 +38,37 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.constants.extendedevents.FormFieldExtendedEventIds" href="../../constants/extendedevents/FormFieldExtendedEventIds.html">FormFieldExtendedEventIds</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.constants.JavascriptEventIds" href="../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a>, <a title="com.developedbyme.constants.XmlNodeTypes" href="../../constants/XmlNodeTypes.html">XmlNodeTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.constants.extendedevents.FormFieldExtendedEventIds" href="../../constants/extendedevents/FormFieldExtendedEventIds.html">FormFieldExtendedEventIds</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.constants.JavascriptEventIds" href="../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="dbm.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a>, <a title="dbm.constants.XmlNodeTypes" href="../../constants/XmlNodeTypes.html">XmlNodeTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var FileInputField = dbm.importClass("com.developedbyme.gui.form.FileInputField");</div>
+									<div class="code">var FileInputField = dbm.importClass("dbm.gui.form.FileInputField");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.gui.form.FileInputField", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.gui.form.FileInputField");
+									<div class="code">dbm.registerClass("dbm.gui.form.FileInputField", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.gui.form.FileInputField");
 	
 	//Self reference
-	var FileInputField = dbm.importClass("com.developedbyme.gui.form.FileInputField");
+	var FileInputField = dbm.importClass("dbm.gui.form.FileInputField");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 		
 	//Constants
-	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
-	var FormFieldExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.FormFieldExtendedEventIds");
-	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var FormFieldExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.FormFieldExtendedEventIds");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
 	
 	staticFunctions._ACTIVE = "active";
 	
@@ -76,7 +76,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.form.FileInputField::_init");
+		//console.log("dbm.gui.form.FileInputField::_init");
 		
 		this.superCall();
 		
@@ -105,7 +105,7 @@
 	};
 	
 	objectFunctions._change = function() {
-		console.log("com.developedbyme.gui.form.FileInputField::_change");
+		console.log("dbm.gui.form.FileInputField::_change");
 		console.log(this);
 		
 		var files = this.getElement().files;
@@ -124,7 +124,7 @@
 	};
 	
 	objectFunctions.triggerDialog = function() {
-		console.log("com.developedbyme.gui.form.FileInputField::triggerDialog");
+		console.log("dbm.gui.form.FileInputField::triggerDialog");
 		this.getElement().click();
 	};
 	
@@ -222,7 +222,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.form.FileInputField::_init");
+		//console.log("dbm.gui.form.FileInputField::_init");
 		
 		this.superCall();
 		
@@ -314,7 +314,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._change = function() {
-		console.log("com.developedbyme.gui.form.FileInputField::_change");
+		console.log("dbm.gui.form.FileInputField::_change");
 		console.log(this);
 		
 		var files = this.getElement().files;
@@ -354,7 +354,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.triggerDialog = function() {
-		console.log("com.developedbyme.gui.form.FileInputField::triggerDialog");
+		console.log("dbm.gui.form.FileInputField::triggerDialog");
 		this.getElement().click();
 	}</div>
 							</div>

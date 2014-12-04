@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>WindowForElementNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.browser.WindowForElementNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.browser.WindowForElementNode</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,44 +38,44 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.utils.htmldom.DomReferenceFunctions" href="../../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.constants.JavascriptEventIds" href="../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="com.developedbyme.core.extendedevent.commands.debug.LogCommand" href="../../../core/extendedevent/commands/debug/LogCommand.html">LogCommand</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand" href="../../../core/extendedevent/commands/basic/SetPropertyAsDirtyCommand.html">SetPropertyAsDirtyCommand</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.utils.htmldom.DomReferenceFunctions" href="../../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.constants.JavascriptEventIds" href="../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="dbm.core.extendedevent.commands.debug.LogCommand" href="../../../core/extendedevent/commands/debug/LogCommand.html">LogCommand</a>, <a title="dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand" href="../../../core/extendedevent/commands/basic/SetPropertyAsDirtyCommand.html">SetPropertyAsDirtyCommand</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var WindowForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowForElementNode");</div>
+									<div class="code">var WindowForElementNode = dbm.importClass("dbm.flow.nodes.browser.WindowForElementNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.browser.WindowForElementNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.browser.WindowForElementNode", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.browser.WindowForElementNode");
 	
 	//Self reference
-	var WindowForElementNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowForElementNode");
+	var WindowForElementNode = dbm.importClass("dbm.flow.nodes.browser.WindowForElementNode");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var LogCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.debug.LogCommand");
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	var SetPropertyAsDirtyCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
-	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
+	var LogCommand = dbm.importClass("dbm.core.extendedevent.commands.debug.LogCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var SetPropertyAsDirtyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyAsDirtyCommand");
+	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
 	
 	//Constants
-	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
 	
 	
 	/**
 	 * Constuctor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_init");
+		//console.log("dbm.flow.nodes.browser.WindowForElementNode::_init");
 		
 		this.superCall();
 		
@@ -95,7 +95,7 @@
 	};
 	
 	objectFunctions.start = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::start");
+		//console.log("dbm.flow.nodes.browser.WindowForElementNode::start");
 		this.getExtendedEvent().linkJavascriptEvent(this._element.getValue(), JavascriptEventIds.DOM_NODE_INSERTED_INTO_DOCUMENT, "windowChanged", "windowChanged", true, true).activate();
 	};
 	
@@ -104,7 +104,7 @@
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_update");
+		//console.log("dbm.flow.nodes.browser.WindowForElementNode::_update");
 		
 		var element = this._element.getValueWithoutFlow();
 		if(element !== null) {
@@ -162,7 +162,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_init");
+		//console.log("dbm.flow.nodes.browser.WindowForElementNode::_init");
 		
 		this.superCall();
 		
@@ -203,7 +203,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.start = function() {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::start");
+		//console.log("dbm.flow.nodes.browser.WindowForElementNode::start");
 		this.getExtendedEvent().linkJavascriptEvent(this._element.getValue(), JavascriptEventIds.DOM_NODE_INSERTED_INTO_DOCUMENT, "windowChanged", "windowChanged", true, true).activate();
 	}</div>
 							</div>
@@ -254,7 +254,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.browser.WindowForElementNode::_update");
+		//console.log("dbm.flow.nodes.browser.WindowForElementNode::_update");
 		
 		var element = this._element.getValueWithoutFlow();
 		if(element !== null) {

@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>InverseKinematicsNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.math.trigonometry.InverseKinematicsNode</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,27 +38,27 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.math.QuadricEquationSolver" href="../../../../utils/math/QuadricEquationSolver.html">QuadricEquationSolver</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.math.QuadricEquationSolver" href="../../../../utils/math/QuadricEquationSolver.html">QuadricEquationSolver</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var InverseKinematicsNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode");</div>
+									<div class="code">var InverseKinematicsNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.InverseKinematicsNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.math.trigonometry.InverseKinematicsNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.math.trigonometry.InverseKinematicsNode");
 	
-	var InverseKinematicsNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode");
+	var InverseKinematicsNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.InverseKinematicsNode");
 	
-	var QuadricEquationSolver = dbm.importClass("com.developedbyme.utils.math.QuadricEquationSolver");
+	var QuadricEquationSolver = dbm.importClass("dbm.utils.math.QuadricEquationSolver");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode::_init");
+		//console.log("dbm.flow.nodes.math.trigonometry.InverseKinematicsNode::_init");
 		
 		this.superCall();
 		
@@ -82,7 +82,7 @@
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode::_update");
+		//console.log("dbm.flow.nodes.math.trigonometry.InverseKinematicsNode::_update");
 		var armLength1 = this._armLength1.getValueWithoutFlow();
 		var armLength2 = this._armLength2.getValueWithoutFlow();
 		var targetLength = this._targetLength.getValueWithoutFlow();
@@ -181,7 +181,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode::_init");
+		//console.log("dbm.flow.nodes.math.trigonometry.InverseKinematicsNode::_init");
 		
 		this.superCall();
 		
@@ -226,7 +226,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode::_update");
+		//console.log("dbm.flow.nodes.math.trigonometry.InverseKinematicsNode::_update");
 		var armLength1 = this._armLength1.getValueWithoutFlow();
 		var armLength2 = this._armLength2.getValueWithoutFlow();
 		var targetLength = this._targetLength.getValueWithoutFlow();

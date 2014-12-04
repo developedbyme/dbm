@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>PrintInConsoleHandler</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Error handler that prints reports in the console.</div>
 						<div class="spacedContent">
@@ -38,25 +38,25 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var PrintInConsoleHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");</div>
+									<div class="code">var PrintInConsoleHandler = dbm.importClass("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
 	//"use strict";
 	
-	var PrintInConsoleHandler = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
+	var PrintInConsoleHandler = dbm.importClass("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
 	
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
 	
 	/**
 	 * Initializes the object.
@@ -64,7 +64,7 @@
 	 * @return self
 	 */
 	objectFunctions._init = function _init() {
-		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::_init");
+		//console.log("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::_init");
 		
 		this.superCall();
 		
@@ -109,7 +109,7 @@
 	 * @param	aError			{Error}		The error that occured.
 	 */
 	objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
-		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
+		//console.log("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
 		var errorProperties = new Array();
 		if(aError.fileName) {
 			errorProperties.push("fileName: " + aError.fileName);
@@ -166,7 +166,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function _init() {
-		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::_init");
+		//console.log("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::_init");
 		
 		this.superCall();
 		
@@ -233,7 +233,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reportError = function reportError(aId, aTimeStamp, aObject, aFunctionName, aError) {
-		//console.log("com.developedbyme.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
+		//console.log("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler::reportError");
 		var errorProperties = new Array();
 		if(aError.fileName) {
 			errorProperties.push("fileName: " + aError.fileName);

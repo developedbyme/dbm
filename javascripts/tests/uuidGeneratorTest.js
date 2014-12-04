@@ -1,6 +1,6 @@
 dbm.runTempFunction(function() {
 	
-	var UuidGenerator = dbm.importClass("com.developedbyme.utils.id.UuidGenerator");
+	var UuidGenerator = dbm.importClass("dbm.utils.id.UuidGenerator");
 	
 	var startFunction = function() {
 		console.log("startFunction");

@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>UpdateFunctionWithArguments</h1>
-					<div class="classPath">com.developedbyme.core.objectparts.UpdateFunctionWithArguments</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.objectparts.UpdateFunctionWithArguments</div>
+					<div class="classInheritance"><a title="dbm.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a> &gt; <a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Update function that calls a function after getting arguments from input properties.
 This enables calls directly to static functions, without having to get property values within the function.</div>
@@ -39,46 +39,46 @@ This enables calls directly to static functions, without having to get property 
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="com.developedbyme.core.objectparts.GhostProperty" href="GhostProperty.html">GhostProperty</a>, <a title="com.developedbyme.core.globalobjects.GlobalVariables" href="../globalobjects/GlobalVariables.html">GlobalVariables</a>, <a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="dbm.core.objectparts.GhostProperty" href="GhostProperty.html">GhostProperty</a>, <a title="dbm.core.globalobjects.GlobalVariables" href="../globalobjects/GlobalVariables.html">GlobalVariables</a>, <a title="dbm.core.objectparts.Property" href="Property.html">Property</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var UpdateFunctionWithArguments = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunctionWithArguments");</div>
+									<div class="code">var UpdateFunctionWithArguments = dbm.importClass("dbm.core.objectparts.UpdateFunctionWithArguments");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.UpdateFunctionWithArguments", "com.developedbyme.core.objectparts.UpdateFunction", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments");
+									<div class="code">dbm.registerClass("dbm.core.objectparts.UpdateFunctionWithArguments", "dbm.core.objectparts.UpdateFunction", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.UpdateFunctionWithArguments");
 	//"use strict";
 	
 	//Self reference
-	var UpdateFunctionWithArguments = dbm.importClass("com.developedbyme.core.objectparts.UpdateFunctionWithArguments");
+	var UpdateFunctionWithArguments = dbm.importClass("dbm.core.objectparts.UpdateFunctionWithArguments");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
-	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
+	var Property = dbm.importClass("dbm.core.objectparts.Property");
+	var GhostProperty = dbm.importClass("dbm.core.objectparts.GhostProperty");
 	
 	//Utils
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	//Constants
-	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
-	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_init");
+		//console.log("dbm.core.objectparts.UpdateFunctionWithArguments::_init");
 		
 		this.superCall();
 		
@@ -133,7 +133,7 @@ This enables calls directly to static functions, without having to get property 
 	 * @return	Number	The highest flow update number of the properties.
 	 */
 	objectFunctions._getInputFlowUpdateParameters = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_getInputFlowUpdateParameters");
+		//console.log("dbm.core.objectparts.UpdateFunctionWithArguments::_getInputFlowUpdateParameters");
 		var returnNumber = 0;
 		var currentArray = this._inputConnections;
 		var currentArrayLength = currentArray.length;
@@ -206,7 +206,7 @@ This enables calls directly to static functions, without having to get property 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_init");
+		//console.log("dbm.core.objectparts.UpdateFunctionWithArguments::_init");
 		
 		this.superCall();
 		
@@ -309,7 +309,7 @@ This enables calls directly to static functions, without having to get property 
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._getInputFlowUpdateParameters = function(aReturnArray) {
-		//console.log("com.developedbyme.core.objectparts.UpdateFunctionWithArguments::_getInputFlowUpdateParameters");
+		//console.log("dbm.core.objectparts.UpdateFunctionWithArguments::_getInputFlowUpdateParameters");
 		var returnNumber = 0;
 		var currentArray = this._inputConnections;
 		var currentArrayLength = currentArray.length;
@@ -366,17 +366,17 @@ This enables calls directly to static functions, without having to get property 
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aOwnerObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a>, aUpdateFunction:<span class="nativeType">Function</span>, aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span>, aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.UpdateFunctionWithArguments" href="UpdateFunctionWithArguments.html">UpdateFunctionWithArguments</a></span>
+					<span class="functionName">create</span>(<span class="arguments">aOwnerObject:<a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a>, aUpdateFunction:<span class="nativeType">Function</span>, aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span>, aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span></span>)<span class="returnValue">:<a title="dbm.core.objectparts.UpdateFunctionWithArguments" href="UpdateFunctionWithArguments.html">UpdateFunctionWithArguments</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aOwnerObject:<a title="com.developedbyme.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner of this function.</div><div class="argumentDescription">aUpdateFunction:<span class="nativeType">Function</span> - The function that is performing transformation the input to the output.</div><div class="argumentDescription">aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that is used when performing the update.</div><div class="argumentDescription">aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that are being updated with this function.</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aOwnerObject:<a title="dbm.core.FlowBaseObject" href="../FlowBaseObject.html">FlowBaseObject</a> - The owner of this function.</div><div class="argumentDescription">aUpdateFunction:<span class="nativeType">Function</span> - The function that is performing transformation the input to the output.</div><div class="argumentDescription">aInputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that is used when performing the update.</div><div class="argumentDescription">aOutputsArray:<span class="unknownType">Array&lt;Property&gt;</span> - The properties that are being updated with this function.</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.UpdateFunctionWithArguments" href="UpdateFunctionWithArguments.html">UpdateFunctionWithArguments</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.UpdateFunctionWithArguments" href="UpdateFunctionWithArguments.html">UpdateFunctionWithArguments</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">

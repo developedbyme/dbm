@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>MovablePointsController</h1>
-					<div class="classPath">com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.gui.abstract.touch.movablepoints.MovablePointsController</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,35 +38,35 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.constants.extendedevents.GenericExtendedEventIds" href="../../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint" href="MovablePoint.html">MovablePoint</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.constants.extendedevents.TouchExtendedEventIds" href="../../../../constants/extendedevents/TouchExtendedEventIds.html">TouchExtendedEventIds</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.constants.extendedevents.GenericExtendedEventIds" href="../../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.gui.abstract.touch.movablepoints.MovablePoint" href="MovablePoint.html">MovablePoint</a>, <a title="dbm.utils.data.NamedArray" href="../../../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.constants.extendedevents.TouchExtendedEventIds" href="../../../../constants/extendedevents/TouchExtendedEventIds.html">TouchExtendedEventIds</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var MovablePointsController = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController");</div>
+									<div class="code">var MovablePointsController = dbm.importClass("dbm.gui.abstract.touch.movablepoints.MovablePointsController");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController");
+									<div class="code">dbm.registerClass("dbm.gui.abstract.touch.movablepoints.MovablePointsController", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.gui.abstract.touch.movablepoints.MovablePointsController");
 	
-	var MovablePointsController = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController");
+	var MovablePointsController = dbm.importClass("dbm.gui.abstract.touch.movablepoints.MovablePointsController");
 	
-	var MovablePoint = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePoint");
+	var MovablePoint = dbm.importClass("dbm.gui.abstract.touch.movablepoints.MovablePoint");
 	
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
-	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	var TouchExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.TouchExtendedEventIds");
+	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController::_init");
+		//console.log("dbm.gui.abstract.touch.movablepoints.MovablePointsController::_init");
 		
 		this.superCall();
 		
@@ -93,7 +93,7 @@
 	};
 	
 	objectFunctions._newTouch = function(aTouchData) {
-		console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController::_newTouch");
+		console.log("dbm.gui.abstract.touch.movablepoints.MovablePointsController::_newTouch");
 		var x = aTouchData.getProperty("startX").getValue();
 		var y = aTouchData.getProperty("startY").getValue();
 		
@@ -156,7 +156,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController::_init");
+		//console.log("dbm.gui.abstract.touch.movablepoints.MovablePointsController::_init");
 		
 		this.superCall();
 		
@@ -246,7 +246,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._newTouch = function(aTouchData) {
-		console.log("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController::_newTouch");
+		console.log("dbm.gui.abstract.touch.movablepoints.MovablePointsController::_newTouch");
 		var x = aTouchData.getProperty("startX").getValue();
 		var y = aTouchData.getProperty("startY").getValue();
 		

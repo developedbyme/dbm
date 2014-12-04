@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>MousePositionNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.userinput.MousePositionNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.userinput.MousePositionNode</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,32 +38,32 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.constants.JavascriptEventIds" href="../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.constants.JavascriptEventIds" href="../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");</div>
+									<div class="code">var MousePositionNode = dbm.importClass("dbm.flow.nodes.userinput.MousePositionNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.userinput.MousePositionNode", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.userinput.MousePositionNode", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.userinput.MousePositionNode");
 	
-	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
+	var MousePositionNode = dbm.importClass("dbm.flow.nodes.userinput.MousePositionNode");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::_init");
+		//console.log("dbm.flow.nodes.userinput.MousePositionNode::_init");
 		
 		this.superCall();
 		
@@ -78,14 +78,14 @@
 	};
 	
 	objectFunctions.start = function() {
-		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::start");
+		//console.log("dbm.flow.nodes.userinput.MousePositionNode::start");
 		this.getExtendedEvent().linkJavascriptEvent(this._document.getValue(), JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, true).activate();
 		
 		return this;
 	};
 	
 	objectFunctions.stop = function() {
-		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::stop");
+		//console.log("dbm.flow.nodes.userinput.MousePositionNode::stop");
 		this.getExtendedEvent().deactivateJavascriptLink(JavascriptEventIds.MOUSE_MOVE);
 		
 		return this;
@@ -93,7 +93,7 @@
 	
 	//MENOTE: switch this to take x and y as parameters
 	objectFunctions._updatePosition = function(aEvent) {
-		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::_updatePosition");
+		//console.log("dbm.flow.nodes.userinput.MousePositionNode::_updatePosition");
 		//console.log(aEvent);
 		
 		this._x.setValue(aEvent.pageX);
@@ -154,7 +154,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::_init");
+		//console.log("dbm.flow.nodes.userinput.MousePositionNode::_init");
 		
 		this.superCall();
 		
@@ -190,7 +190,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.start = function() {
-		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::start");
+		//console.log("dbm.flow.nodes.userinput.MousePositionNode::start");
 		this.getExtendedEvent().linkJavascriptEvent(this._document.getValue(), JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, JavascriptEventIds.MOUSE_MOVE, true).activate();
 		
 		return this;
@@ -218,7 +218,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.stop = function() {
-		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::stop");
+		//console.log("dbm.flow.nodes.userinput.MousePositionNode::stop");
 		this.getExtendedEvent().deactivateJavascriptLink(JavascriptEventIds.MOUSE_MOVE);
 		
 		return this;
@@ -246,7 +246,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updatePosition = function(aEvent) {
-		//console.log("com.developedbyme.flow.nodes.userinput.MousePositionNode::_updatePosition");
+		//console.log("dbm.flow.nodes.userinput.MousePositionNode::_updatePosition");
 		//console.log(aEvent);
 		
 		this._x.setValue(aEvent.pageX);

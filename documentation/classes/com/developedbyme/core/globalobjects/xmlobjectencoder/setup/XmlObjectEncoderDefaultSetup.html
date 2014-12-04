@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>XmlObjectEncoderDefaultSetup</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup</div>
+					<div class="classPath">dbm.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description">Default setup for the global xml object encoder.</div>
@@ -38,40 +38,40 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject" href="../encoders/EncodingBaseObject.html">EncodingBaseObject</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder" href="../encoders/data/ExportMetaDataEncoder.html">ExportMetaDataEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder" href="../encoders/graphics/gradient/GradientEncoder.html">GradientEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.timeline.InterpolationTimelinePartEncoder" href="../encoders/timeline/InterpolationTimelinePartEncoder.html">InterpolationTimelinePartEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder" href="../encoders/data/NamedArrayEncoder.html">NamedArrayEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder" href="../encoders/data/points/PointsArrayEncoder.html">PointsArrayEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.timeline.TimelineEncoder" href="../encoders/timeline/TimelineEncoder.html">TimelineEncoder</a>, <a title="com.developedbyme.constants.XmlEncoderCustomTypes" href="../../../../constants/XmlEncoderCustomTypes.html">XmlEncoderCustomTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject" href="../encoders/EncodingBaseObject.html">EncodingBaseObject</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder" href="../encoders/data/ExportMetaDataEncoder.html">ExportMetaDataEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder" href="../encoders/graphics/gradient/GradientEncoder.html">GradientEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.timeline.InterpolationTimelinePartEncoder" href="../encoders/timeline/InterpolationTimelinePartEncoder.html">InterpolationTimelinePartEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder" href="../encoders/data/NamedArrayEncoder.html">NamedArrayEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder" href="../encoders/data/points/PointsArrayEncoder.html">PointsArrayEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.timeline.TimelineEncoder" href="../encoders/timeline/TimelineEncoder.html">TimelineEncoder</a>, <a title="dbm.constants.XmlEncoderCustomTypes" href="../../../../constants/XmlEncoderCustomTypes.html">XmlEncoderCustomTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var XmlObjectEncoderDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");</div>
+									<div class="code">var XmlObjectEncoderDefaultSetup = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");
 	//"use strict";
 	
 	//Self reference
-	var XmlObjectEncoderDefaultSetup = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");
+	var XmlObjectEncoderDefaultSetup = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncoderDefaultSetup");
 	
 	//Error report
 	
 	//Dependencies
-	var TimelineEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.timeline.TimelineEncoder");
-	var InterpolationTimelinePartEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.timeline.InterpolationTimelinePartEncoder");
-	var EncodingBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject");
-	var PointsArrayEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder");
-	var NamedArrayEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder");
-	var ExportMetaDataEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder");
-	var GradientEncoder = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder");
+	var TimelineEncoder = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encoders.timeline.TimelineEncoder");
+	var InterpolationTimelinePartEncoder = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encoders.timeline.InterpolationTimelinePartEncoder");
+	var EncodingBaseObject = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject");
+	var PointsArrayEncoder = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder");
+	var NamedArrayEncoder = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder");
+	var ExportMetaDataEncoder = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder");
+	var GradientEncoder = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder");
 	
 	//Utils
 	
 	//Constants
-	var XmlEncoderCustomTypes = dbm.importClass("com.developedbyme.constants.XmlEncoderCustomTypes");
+	var XmlEncoderCustomTypes = dbm.importClass("dbm.constants.XmlEncoderCustomTypes");
 	
 	/**
 	 * Sets up the default encoders.
@@ -90,38 +90,38 @@
 		
 		//Class encoders
 		var namedArrayEncoder = NamedArrayEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.utils.data.NamedArray", namedArrayEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.utils.data.NamedArray", namedArrayEncoder);
 		
 		var timelineEncoder = TimelineEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline", timelineEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.core.globalobjects.animationmanager.timeline.Timeline", timelineEncoder);
 		
 		var interpolationTimelinePartEncoder = InterpolationTimelinePartEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart", interpolationTimelinePartEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart", interpolationTimelinePartEncoder);
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "value"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "value"]);
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "preInfinityMethod", "postInfinityMethod", "exactness", "startParameter", "endParameter"]);
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "pointProperty", "startParameter", "endParameter"]);
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart", ["parts"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "preInfinityMethod", "postInfinityMethod", "exactness", "startParameter", "endParameter"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "pointProperty", "startParameter", "endParameter"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart", ["parts"]);
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.curves.BezierCurve", ["pointsArray", "setType", "_curveDegree", "_isCompact"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY); //METODO: shouldn't access private variables
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.points.PointSet", ["pointsArray", "setType"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY);
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.points.Point", ["x", "y", "z", "w"]);
+		ClassReference._createEncodingBaseObject("dbm.core.data.curves.BezierCurve", ["pointsArray", "setType", "_curveDegree", "_isCompact"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY); //METODO: shouldn't access private variables
+		ClassReference._createEncodingBaseObject("dbm.core.data.points.PointSet", ["pointsArray", "setType"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY);
+		ClassReference._createEncodingBaseObject("dbm.core.data.points.Point", ["x", "y", "z", "w"]);
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject", ["metaData", "data"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject", ["metaData", "data"]);
 		
 		var exportMetaDataEncoder = ExportMetaDataEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject", exportMetaDataEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject", exportMetaDataEncoder);
 		
 		var gradientEncoder = GradientEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.utils.graphics.gradient.Gradient", gradientEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.utils.graphics.gradient.Gradient", gradientEncoder);
 		
-		var colorStopEncoder = ClassReference._createEncodingBaseObject("com.developedbyme.utils.graphics.gradient.ColorStop", []);
+		var colorStopEncoder = ClassReference._createEncodingBaseObject("dbm.utils.graphics.gradient.ColorStop", []);
 		colorStopEncoder.addPropertyToEncode("position");
 		colorStopEncoder.addPropertyToEncode("value");
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.RgbaColor", ["r", "g", "b", "a"]);
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.HslaColor", ["h", "s", "l", "a"]);
+		ClassReference._createEncodingBaseObject("dbm.core.data.color.RgbaColor", ["r", "g", "b", "a"]);
+		ClassReference._createEncodingBaseObject("dbm.core.data.color.HslaColor", ["h", "s", "l", "a"]);
 	};
 	
 	staticFunctions._createEncodingBaseObject = function(aClassPath, aVariables) {
@@ -216,38 +216,38 @@
 		
 		//Class encoders
 		var namedArrayEncoder = NamedArrayEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.utils.data.NamedArray", namedArrayEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.utils.data.NamedArray", namedArrayEncoder);
 		
 		var timelineEncoder = TimelineEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline", timelineEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.core.globalobjects.animationmanager.timeline.Timeline", timelineEncoder);
 		
 		var interpolationTimelinePartEncoder = InterpolationTimelinePartEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart", interpolationTimelinePartEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart", interpolationTimelinePartEncoder);
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "value"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "value"]);
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "preInfinityMethod", "postInfinityMethod", "exactness", "startParameter", "endParameter"]);
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "pointProperty", "startParameter", "endParameter"]);
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart", ["parts"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.animationmanager.timeline.parts.AnimationCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "preInfinityMethod", "postInfinityMethod", "exactness", "startParameter", "endParameter"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.animationmanager.timeline.parts.SpatialCurveTimelinePart", ["startTime", "endTime", "startApplyTime", "endApplyTime", "curve", "pointProperty", "startParameter", "endParameter"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.animationmanager.timeline.parts.MultiplePartsTimelinePart", ["parts"]);
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.curves.BezierCurve", ["pointsArray", "setType", "_curveDegree", "_isCompact"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY); //METODO: shouldn't access private variables
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.points.PointSet", ["pointsArray", "setType"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY);
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.points.Point", ["x", "y", "z", "w"]);
+		ClassReference._createEncodingBaseObject("dbm.core.data.curves.BezierCurve", ["pointsArray", "setType", "_curveDegree", "_isCompact"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY); //METODO: shouldn't access private variables
+		ClassReference._createEncodingBaseObject("dbm.core.data.points.PointSet", ["pointsArray", "setType"]).addCustomTypeForVariable("pointsArray", XmlEncoderCustomTypes.POINTS_ARRAY);
+		ClassReference._createEncodingBaseObject("dbm.core.data.points.Point", ["x", "y", "z", "w"]);
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject", ["metaData", "data"]);
+		ClassReference._createEncodingBaseObject("dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject", ["metaData", "data"]);
 		
 		var exportMetaDataEncoder = ExportMetaDataEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject", exportMetaDataEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject", exportMetaDataEncoder);
 		
 		var gradientEncoder = GradientEncoder.create();
-		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("com.developedbyme.utils.graphics.gradient.Gradient", gradientEncoder);
+		dbm.singletons.dbmXmlObjectEncoder.addClassEncoder("dbm.utils.graphics.gradient.Gradient", gradientEncoder);
 		
-		var colorStopEncoder = ClassReference._createEncodingBaseObject("com.developedbyme.utils.graphics.gradient.ColorStop", []);
+		var colorStopEncoder = ClassReference._createEncodingBaseObject("dbm.utils.graphics.gradient.ColorStop", []);
 		colorStopEncoder.addPropertyToEncode("position");
 		colorStopEncoder.addPropertyToEncode("value");
 		
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.RgbaColor", ["r", "g", "b", "a"]);
-		ClassReference._createEncodingBaseObject("com.developedbyme.core.data.color.HslaColor", ["h", "s", "l", "a"]);
+		ClassReference._createEncodingBaseObject("dbm.core.data.color.RgbaColor", ["r", "g", "b", "a"]);
+		ClassReference._createEncodingBaseObject("dbm.core.data.color.HslaColor", ["h", "s", "l", "a"]);
 	}</div>
 							</div>
 						</div>

@@ -1,12 +1,12 @@
 dbm.runTempFunction(function() {
 	
-	var IndexedDatabase = dbm.importClass("com.developedbyme.utils.data.storage.database.IndexedDatabase");
-	var IndexedDatabaseStructure = dbm.importClass("com.developedbyme.utils.data.storage.database.IndexedDatabaseStructure");
+	var IndexedDatabase = dbm.importClass("dbm.utils.data.storage.database.IndexedDatabase");
+	var IndexedDatabaseStructure = dbm.importClass("dbm.utils.data.storage.database.IndexedDatabaseStructure");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	var IndexedDatabaseEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.IndexedDatabaseEventIds");
+	var IndexedDatabaseEventIds = dbm.importClass("dbm.constants.htmlevents.IndexedDatabaseEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

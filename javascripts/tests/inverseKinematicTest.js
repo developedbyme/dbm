@@ -1,35 +1,35 @@
 dbm.runTempFunction(function() {
 	
-	var DisplayBaseObject = dbm.importClass("com.developedbyme.gui.DisplayBaseObject");
+	var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");
 	
-	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
-	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
-	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
-	var FlowGroup = dbm.importClass("com.developedbyme.flow.FlowGroup");
-	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
-	var RangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RangeNode");
-	var RoundNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundNode");
-	var SquareRootNode = dbm.importClass("com.developedbyme.flow.nodes.math.SquareRootNode");
-	var PowerNode = dbm.importClass("com.developedbyme.flow.nodes.math.PowerNode");
-	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
-	var Atan2Node = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.Atan2Node");
-	var SinNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.SinNode");
-	var CosNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode");
+	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
+	var MultiplicationNode = dbm.importClass("dbm.flow.nodes.math.MultiplicationNode");
+	var SubtractionNode = dbm.importClass("dbm.flow.nodes.math.SubtractionNode");
+	var FlowGroup = dbm.importClass("dbm.flow.FlowGroup");
+	var MousePositionNode = dbm.importClass("dbm.flow.nodes.userinput.MousePositionNode");
+	var RangeNode = dbm.importClass("dbm.flow.nodes.math.range.RangeNode");
+	var RoundNode = dbm.importClass("dbm.flow.nodes.math.round.RoundNode");
+	var SquareRootNode = dbm.importClass("dbm.flow.nodes.math.SquareRootNode");
+	var PowerNode = dbm.importClass("dbm.flow.nodes.math.PowerNode");
+	var AdditionNode = dbm.importClass("dbm.flow.nodes.math.AdditionNode");
+	var Atan2Node = dbm.importClass("dbm.flow.nodes.math.trigonometry.Atan2Node");
+	var SinNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.SinNode");
+	var CosNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.CosNode");
 	
-	var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");
-	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
-	var CreateMultiSegmentBezierCurveNode = dbm.importClass("com.developedbyme.flow.nodes.curves.CreateMultiSegmentBezierCurveNode");
-	var PointFromValuesNode = dbm.importClass("com.developedbyme.flow.nodes.points.PointFromValuesNode");
-	var AdjustPointsInPointSetNode = dbm.importClass("com.developedbyme.flow.nodes.points.AdjustPointsInPointSetNode");
+	var PointSet = dbm.importClass("dbm.core.data.points.PointSet");
+	var BezierCurve = dbm.importClass("dbm.core.data.curves.BezierCurve");
+	var CreateMultiSegmentBezierCurveNode = dbm.importClass("dbm.flow.nodes.curves.CreateMultiSegmentBezierCurveNode");
+	var PointFromValuesNode = dbm.importClass("dbm.flow.nodes.points.PointFromValuesNode");
+	var AdjustPointsInPointSetNode = dbm.importClass("dbm.flow.nodes.points.AdjustPointsInPointSetNode");
 	
-	var InverseKinematicsNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.InverseKinematicsNode");
+	var InverseKinematicsNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.InverseKinematicsNode");
 	
-	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
-	var TouchOrMouseDetector = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchOrMouseDetector");
-	var MovablePointsController = dbm.importClass("com.developedbyme.gui.abstract.touch.movablepoints.MovablePointsController");
+	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
+	var TouchOrMouseDetector = dbm.importClass("dbm.gui.abstract.touch.TouchOrMouseDetector");
+	var MovablePointsController = dbm.importClass("dbm.gui.abstract.touch.movablepoints.MovablePointsController");
 	
-	var LineCapTypes = dbm.importClass("com.developedbyme.constants.LineCapTypes");
-	var LineJoinTypes = dbm.importClass("com.developedbyme.constants.LineJoinTypes");
+	var LineCapTypes = dbm.importClass("dbm.constants.LineCapTypes");
+	var LineJoinTypes = dbm.importClass("dbm.constants.LineJoinTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>WindowManager</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.windowmanager.WindowManager</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.windowmanager.WindowManager</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,41 +38,41 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.core.globalobjects.windowmanager.data.Margins" href="data/Margins.html">Margins</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.flow.nodes.browser.ScreenSizeNode" href="../../../flow/nodes/browser/ScreenSizeNode.html">ScreenSizeNode</a>, <a title="com.developedbyme.core.globalobjects.windowmanager.objects.Window" href="objects/Window.html">Window</a>, <a title="com.developedbyme.constants.extendedevents.WindowExtendedEventIds" href="../../../constants/extendedevents/WindowExtendedEventIds.html">WindowExtendedEventIds</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.core.globalobjects.windowmanager.data.Margins" href="data/Margins.html">Margins</a>, <a title="dbm.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.flow.nodes.browser.ScreenSizeNode" href="../../../flow/nodes/browser/ScreenSizeNode.html">ScreenSizeNode</a>, <a title="dbm.core.globalobjects.windowmanager.objects.Window" href="objects/Window.html">Window</a>, <a title="dbm.constants.extendedevents.WindowExtendedEventIds" href="../../../constants/extendedevents/WindowExtendedEventIds.html">WindowExtendedEventIds</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var WindowManager = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.WindowManager");</div>
+									<div class="code">var WindowManager = dbm.importClass("dbm.core.globalobjects.windowmanager.WindowManager");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.windowmanager.WindowManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.windowmanager.WindowManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.windowmanager.WindowManager");
 	
-	var WindowManager = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.WindowManager");
+	var WindowManager = dbm.importClass("dbm.core.globalobjects.windowmanager.WindowManager");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var Window = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.objects.Window");
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	var ScreenSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.ScreenSizeNode");
-	var Margins = dbm.importClass("com.developedbyme.core.globalobjects.windowmanager.data.Margins");
+	var Window = dbm.importClass("dbm.core.globalobjects.windowmanager.objects.Window");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var ScreenSizeNode = dbm.importClass("dbm.flow.nodes.browser.ScreenSizeNode");
+	var Margins = dbm.importClass("dbm.core.globalobjects.windowmanager.data.Margins");
 	
-	var WindowExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.WindowExtendedEventIds");
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var WindowExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.WindowExtendedEventIds");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	dbm.setClassAsSingleton("dbmWindowManager");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_init");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_init");
 		
 		this.superCall();
 		
@@ -96,7 +96,7 @@
 	};
 	
 	objectFunctions.addToSharedRandomValues = function(aValuesArray) {
-		console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::addToSharedRandomValues");
+		console.log("dbm.core.globalobjects.windowmanager.WindowManager::addToSharedRandomValues");
 		
 		var browserWindow = this._masterWindow.getBrowserWindow();
 		aValuesArray.push(browserWindow.screenX);
@@ -113,7 +113,7 @@
 	};
 	
 	objectFunctions.setMasterWindow = function(aWindow) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::setMasterWindow");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::setMasterWindow");
 		
 		var newWindow = (new Window()).init();
 		newWindow.setupFromExistingWindow(aWindow);
@@ -135,7 +135,7 @@
 	};
 	
 	objectFunctions.getWindow = function(aName) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::getWindow");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getWindow");
 		
 		return this._windows.getObject(aName);
 	};
@@ -158,7 +158,7 @@
 	};
 	
 	objectFunctions.getScreenSizeNode = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::getScreenSizeNode");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getScreenSizeNode");
 		
 		if(this._screenSizeNode === null) {
 			this._screenSizeNode = ScreenSizeNode.create();
@@ -168,7 +168,7 @@
 	};
 	
 	objectFunctions.setDefaultMargins = function(aWidth, aHeight, aLeft, aTop, aRight, aBottom) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::setDefaultMargins");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::setDefaultMargins");
 		//console.log(aWidth, aHeight, aLeft, aTop, aRight, aBottom);
 		
 		this._defaultMargins = Margins.create(aWidth, aHeight, aLeft, aTop, aRight, aBottom);
@@ -176,21 +176,21 @@
 	};
 	
 	objectFunctions.getDefaultMargins = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::getDefaultMargins");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getDefaultMargins");
 		
 		return this._defaultMargins;
 		
 	};
 	
 	objectFunctions.hasDefaultMargins = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::hasDefaultMargins");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::hasDefaultMargins");
 		
 		return (this._defaultMargins !== null);
 		
 	};
 	
 	objectFunctions.createWindow = function(aName, aUrl, aWidth, aHeight) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::createWindow");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::createWindow");
 		
 		var newWindow = Window.create(aName, aUrl, aWidth, aHeight);
 		newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.OPEN, CallFunctionCommand.createCommand(this, this._setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
@@ -204,7 +204,7 @@
 	};
 	
 	objectFunctions.createWindowFromExisiting = function(aName, aWindow) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::createWindowFromExisiting");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::createWindowFromExisiting");
 		
 		var newWindow = (new Window()).init();
 		newWindow.setupFromExistingWindow(aWindow);
@@ -225,7 +225,7 @@
 	};
 	
 	objectFunctions._setWindowAsHighestDepth = function(aWindow) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_setWindowAsHighestDepth");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_setWindowAsHighestDepth");
 		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
 		if(position !== -1) {
 			if(position !== this._windowsOrder.length-1 &amp;&amp; !this._isUpdatingDepths) {
@@ -247,7 +247,7 @@
 	};
 	
 	objectFunctions._windowClosed = function(aWindow) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_windowClosed");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_windowClosed");
 		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
 		if(position !== -1) {
 			this._windowsOrder.splice(position, 1);
@@ -286,7 +286,7 @@
 	};
 	
 	objectFunctions._updateFlowDepth = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
 		this._isUpdatingDepths = true;
 		var currentArray = this._getWindowsInDepthOrder();
 		var currentArrayLength = currentArray.length;
@@ -299,11 +299,11 @@
 		
 		this._depth.setValueWithFlow(null, aFlowUpdateNumber);
 		this._isUpdatingDepths = false;
-		//console.log("//com.developedbyme.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
+		//console.log("//dbm.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
 	};
 	
 	objectFunctions.updateDepths = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::updateDepths");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::updateDepths");
 		if(this._isUpdatingDepths) return;
 		this._currentDepthOrder.setAsDirty();
 		dbm.singletons.dbmFlowManager.updateProperty(this._depth);
@@ -343,7 +343,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_init");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_init");
 		
 		this.superCall();
 		
@@ -388,7 +388,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addToSharedRandomValues = function(aValuesArray) {
-		console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::addToSharedRandomValues");
+		console.log("dbm.core.globalobjects.windowmanager.WindowManager::addToSharedRandomValues");
 		
 		var browserWindow = this._masterWindow.getBrowserWindow();
 		aValuesArray.push(browserWindow.screenX);
@@ -426,7 +426,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setMasterWindow = function(aWindow) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::setMasterWindow");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::setMasterWindow");
 		
 		var newWindow = (new Window()).init();
 		newWindow.setupFromExistingWindow(aWindow);
@@ -490,7 +490,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getWindow = function(aName) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::getWindow");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getWindow");
 		
 		return this._windows.getObject(aName);
 	}</div>
@@ -555,7 +555,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getScreenSizeNode = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::getScreenSizeNode");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getScreenSizeNode");
 		
 		if(this._screenSizeNode === null) {
 			this._screenSizeNode = ScreenSizeNode.create();
@@ -586,7 +586,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setDefaultMargins = function(aWidth, aHeight, aLeft, aTop, aRight, aBottom) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::setDefaultMargins");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::setDefaultMargins");
 		//console.log(aWidth, aHeight, aLeft, aTop, aRight, aBottom);
 		
 		this._defaultMargins = Margins.create(aWidth, aHeight, aLeft, aTop, aRight, aBottom);
@@ -615,7 +615,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getDefaultMargins = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::getDefaultMargins");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getDefaultMargins");
 		
 		return this._defaultMargins;
 		
@@ -643,7 +643,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.hasDefaultMargins = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::hasDefaultMargins");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::hasDefaultMargins");
 		
 		return (this._defaultMargins !== null);
 		
@@ -671,7 +671,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createWindow = function(aName, aUrl, aWidth, aHeight) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::createWindow");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::createWindow");
 		
 		var newWindow = Window.create(aName, aUrl, aWidth, aHeight);
 		newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.OPEN, CallFunctionCommand.createCommand(this, this._setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
@@ -706,7 +706,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createWindowFromExisiting = function(aName, aWindow) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::createWindowFromExisiting");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::createWindowFromExisiting");
 		
 		var newWindow = (new Window()).init();
 		newWindow.setupFromExistingWindow(aWindow);
@@ -769,7 +769,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._setWindowAsHighestDepth = function(aWindow) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_setWindowAsHighestDepth");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_setWindowAsHighestDepth");
 		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
 		if(position !== -1) {
 			if(position !== this._windowsOrder.length-1 &amp;&amp; !this._isUpdatingDepths) {
@@ -812,7 +812,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._windowClosed = function(aWindow) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_windowClosed");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_windowClosed");
 		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
 		if(position !== -1) {
 			this._windowsOrder.splice(position, 1);
@@ -893,7 +893,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateFlowDepth = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
 		this._isUpdatingDepths = true;
 		var currentArray = this._getWindowsInDepthOrder();
 		var currentArrayLength = currentArray.length;
@@ -906,7 +906,7 @@
 		
 		this._depth.setValueWithFlow(null, aFlowUpdateNumber);
 		this._isUpdatingDepths = false;
-		//console.log("//com.developedbyme.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
+		//console.log("//dbm.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
 	}</div>
 							</div>
 						</div>
@@ -931,7 +931,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.updateDepths = function() {
-		//console.log("com.developedbyme.core.globalobjects.windowmanager.WindowManager::updateDepths");
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::updateDepths");
 		if(this._isUpdatingDepths) return;
 		this._currentDepthOrder.setAsDirty();
 		dbm.singletons.dbmFlowManager.updateProperty(this._depth);

@@ -1,13 +1,13 @@
 dbm.runTempFunction(function() {
 	
-	var ImageSequencePlayer = dbm.importClass("com.developedbyme.projects.experiments.imagesequenceplayer.ImageSequencePlayer");
+	var ImageSequencePlayer = dbm.importClass("dbm.projects.experiments.imagesequenceplayer.ImageSequencePlayer");
 	
-	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
-	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
-	var FlowGroup = dbm.importClass("com.developedbyme.flow.FlowGroup");
-	var MousePositionNode = dbm.importClass("com.developedbyme.flow.nodes.userinput.MousePositionNode");
-	var RangeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RangeNode");
-	var RoundNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundNode");
+	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
+	var MultiplicationNode = dbm.importClass("dbm.flow.nodes.math.MultiplicationNode");
+	var FlowGroup = dbm.importClass("dbm.flow.FlowGroup");
+	var MousePositionNode = dbm.importClass("dbm.flow.nodes.userinput.MousePositionNode");
+	var RangeNode = dbm.importClass("dbm.flow.nodes.math.range.RangeNode");
+	var RoundNode = dbm.importClass("dbm.flow.nodes.math.round.RoundNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

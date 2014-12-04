@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>BezierCurve</h1>
-					<div class="classPath">com.developedbyme.core.data.curves.BezierCurve</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.data.curves.Curve" href="Curve.html">Curve</a> &gt; <a title="com.developedbyme.core.data.points.PointSet" href="../points/PointSet.html">PointSet</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.data.curves.BezierCurve</div>
+					<div class="classInheritance"><a title="dbm.core.data.curves.Curve" href="Curve.html">Curve</a> &gt; <a title="dbm.core.data.points.PointSet" href="../points/PointSet.html">PointSet</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,34 +38,34 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");</div>
+									<div class="code">var BezierCurve = dbm.importClass("dbm.core.data.curves.BezierCurve");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.data.curves.BezierCurve", "com.developedbyme.core.data.curves.Curve", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.data.curves.BezierCurve");
+									<div class="code">dbm.registerClass("dbm.core.data.curves.BezierCurve", "dbm.core.data.curves.Curve", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.data.curves.BezierCurve");
 	//"use strict";
 	
 	//Self reference
-	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
+	var BezierCurve = dbm.importClass("dbm.core.data.curves.BezierCurve");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -74,7 +74,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve");
+		//console.log("dbm.core.data.curves.BezierCurve");
 		
 		this.superCall();
 		
@@ -105,7 +105,7 @@
 	};
 	
 	objectFunctions.getMaxParameter = function() {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::getMaxParameter");
+		//console.log("dbm.core.data.curves.BezierCurve::getMaxParameter");
 		var compactMoveLength = this._isCompact ? 0 : 1;
 		if(this._curveDegree === 1) {
 			return this.pointsArray.length-1;
@@ -123,7 +123,7 @@
 	};
 	
 	objectFunctions.setAsCompact = function(aIsCompact) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::setAsCompact");
+		//console.log("dbm.core.data.curves.BezierCurve::setAsCompact");
 		this._isCompact = !VariableAliases.isFalse(aIsCompact);
 	};
 	
@@ -132,7 +132,7 @@
 	};
 	
 	objectFunctions.setupFromArray = function(aArray, aNumberOfDimensions) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::setupFromArray");
+		//console.log("dbm.core.data.curves.BezierCurve::setupFromArray");
 		var currentArray = aArray;
 		var theLength = currentArray.length;
 		var compactMoveLength = this._isCompact ? 0 : 1;
@@ -144,7 +144,7 @@
 	};
 	
 	objectFunctions._getSegmentArray = function(aSegementStartParameter, aReturnArray) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve._getSegmentArray");
+		//console.log("dbm.core.data.curves.BezierCurve._getSegmentArray");
 		//console.log(this._curveDegree);
 		
 		var compactMoveLength = this._isCompact ? 0 : 1;
@@ -176,7 +176,7 @@
 	};
 	
 	objectFunctions.getPointOnCurve = function(aParameter, aOutputPoint) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::getPointOnCurve");
+		//console.log("dbm.core.data.curves.BezierCurve::getPointOnCurve");
 		//console.log(aParameter, aOutputPoint);
 		
 		var segmentStart = Math.floor(aParameter);
@@ -198,11 +198,11 @@
 		
 		//console.log(segmentPointsArray, maxParameter, segmentStart);
 		dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(segmentPointsArray, localParameter, aOutputPoint);
-		//console.log("//com.developedbyme.core.data.curves.BezierCurve::getPointOnCurve");
+		//console.log("//dbm.core.data.curves.BezierCurve::getPointOnCurve");
 	};
 	
 	objectFunctions.getTangentOnCurve = function(aParameter, aOutputPoint) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve.getTangentOnCurve");
+		//console.log("dbm.core.data.curves.BezierCurve.getTangentOnCurve");
 		var segmentStart = Math.floor(aParameter);
 		var localParameter = aParameter-segmentStart;
 		var maxParameter = this.getMaxParameter();
@@ -246,7 +246,7 @@
 	};
 	
 	staticFunctions.create = function(aDegree, aIsCompact) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::create");
+		//console.log("dbm.core.data.curves.BezierCurve::create");
 		//console.log(aDegree, aIsCompact);
 		var newSet = (new ClassReference()).init();
 		newSet.setCurveDegree(aDegree);
@@ -255,7 +255,7 @@
 	};
 	
 	staticFunctions.createWithLength = function(aDegree, aIsCompact, aLength) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::createWithLength");
+		//console.log("dbm.core.data.curves.BezierCurve::createWithLength");
 		//console.log(aDegree, aIsCompact, aLength);
 		var newSet = (new ClassReference()).init();
 		newSet.setCurveDegree(aDegree);
@@ -265,7 +265,7 @@
 	};
 	
 	staticFunctions.createWithValues = function(aDegree, aIsCompact, aValues, aNumberOfDimensions) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::createWithValues");
+		//console.log("dbm.core.data.curves.BezierCurve::createWithValues");
 		var newSet = (new ClassReference()).init();
 		newSet.setCurveDegree(aDegree);
 		newSet.setAsCompact(aIsCompact);
@@ -316,7 +316,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve");
+		//console.log("dbm.core.data.curves.BezierCurve");
 		
 		this.superCall();
 		
@@ -431,7 +431,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getMaxParameter = function() {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::getMaxParameter");
+		//console.log("dbm.core.data.curves.BezierCurve::getMaxParameter");
 		var compactMoveLength = this._isCompact ? 0 : 1;
 		if(this._curveDegree === 1) {
 			return this.pointsArray.length-1;
@@ -491,7 +491,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setAsCompact = function(aIsCompact) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::setAsCompact");
+		//console.log("dbm.core.data.curves.BezierCurve::setAsCompact");
 		this._isCompact = !VariableAliases.isFalse(aIsCompact);
 	}</div>
 							</div>
@@ -542,7 +542,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setupFromArray = function(aArray, aNumberOfDimensions) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::setupFromArray");
+		//console.log("dbm.core.data.curves.BezierCurve::setupFromArray");
 		var currentArray = aArray;
 		var theLength = currentArray.length;
 		var compactMoveLength = this._isCompact ? 0 : 1;
@@ -575,7 +575,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._getSegmentArray = function(aSegementStartParameter, aReturnArray) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve._getSegmentArray");
+		//console.log("dbm.core.data.curves.BezierCurve._getSegmentArray");
 		//console.log(this._curveDegree);
 		
 		var compactMoveLength = this._isCompact ? 0 : 1;
@@ -670,7 +670,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getPointOnCurve = function(aParameter, aOutputPoint) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::getPointOnCurve");
+		//console.log("dbm.core.data.curves.BezierCurve::getPointOnCurve");
 		//console.log(aParameter, aOutputPoint);
 		
 		var segmentStart = Math.floor(aParameter);
@@ -692,7 +692,7 @@
 		
 		//console.log(segmentPointsArray, maxParameter, segmentStart);
 		dbm.singletons.dbmCurveEvaluator.getPointOnBezierSegment3d(segmentPointsArray, localParameter, aOutputPoint);
-		//console.log("//com.developedbyme.core.data.curves.BezierCurve::getPointOnCurve");
+		//console.log("//dbm.core.data.curves.BezierCurve::getPointOnCurve");
 	}</div>
 							</div>
 						</div>
@@ -717,7 +717,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getTangentOnCurve = function(aParameter, aOutputPoint) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve.getTangentOnCurve");
+		//console.log("dbm.core.data.curves.BezierCurve.getTangentOnCurve");
 		var segmentStart = Math.floor(aParameter);
 		var localParameter = aParameter-segmentStart;
 		var maxParameter = this.getMaxParameter();
@@ -857,7 +857,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function(aDegree, aIsCompact) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::create");
+		//console.log("dbm.core.data.curves.BezierCurve::create");
 		//console.log(aDegree, aIsCompact);
 		var newSet = (new ClassReference()).init();
 		newSet.setCurveDegree(aDegree);
@@ -887,7 +887,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createWithLength = function(aDegree, aIsCompact, aLength) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::createWithLength");
+		//console.log("dbm.core.data.curves.BezierCurve::createWithLength");
 		//console.log(aDegree, aIsCompact, aLength);
 		var newSet = (new ClassReference()).init();
 		newSet.setCurveDegree(aDegree);
@@ -918,7 +918,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createWithValues = function(aDegree, aIsCompact, aValues, aNumberOfDimensions) {
-		//console.log("com.developedbyme.core.data.curves.BezierCurve::createWithValues");
+		//console.log("dbm.core.data.curves.BezierCurve::createWithValues");
 		var newSet = (new ClassReference()).init();
 		newSet.setCurveDegree(aDegree);
 		newSet.setAsCompact(aIsCompact);

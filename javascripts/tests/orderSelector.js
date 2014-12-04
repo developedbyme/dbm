@@ -1,17 +1,17 @@
 dbm.runTempFunction(function() {
 	
-	var ArrayGenerator = dbm.importClass("com.developedbyme.utils.native.array.ArrayGenerator");
+	var ArrayGenerator = dbm.importClass("dbm.utils.native.array.ArrayGenerator");
 	
-	var SequencedMultipleOrderSelector = dbm.importClass("com.developedbyme.utils.data.orderselector.SequencedMultipleOrderSelector");
-	var OrderedOrderSelector = dbm.importClass("com.developedbyme.utils.data.orderselector.OrderedOrderSelector");
-	var ModifiedSteppedOrderSelector = dbm.importClass("com.developedbyme.utils.data.orderselector.ModifiedSteppedOrderSelector");
-	var ReservedData = dbm.importClass("com.developedbyme.utils.data.orderselector.ReservedData");
+	var SequencedMultipleOrderSelector = dbm.importClass("dbm.utils.data.orderselector.SequencedMultipleOrderSelector");
+	var OrderedOrderSelector = dbm.importClass("dbm.utils.data.orderselector.OrderedOrderSelector");
+	var ModifiedSteppedOrderSelector = dbm.importClass("dbm.utils.data.orderselector.ModifiedSteppedOrderSelector");
+	var ReservedData = dbm.importClass("dbm.utils.data.orderselector.ReservedData");
 	
-	var RepeatedRangeInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.RepeatedRangeInterpolation");
-	var OffsettedInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.OffsettedInterpolation");
-	var LinearInterpolation = dbm.importClass("com.developedbyme.utils.math.interpolation.LinearInterpolation");
+	var RepeatedRangeInterpolation = dbm.importClass("dbm.utils.math.interpolation.RepeatedRangeInterpolation");
+	var OffsettedInterpolation = dbm.importClass("dbm.utils.math.interpolation.OffsettedInterpolation");
+	var LinearInterpolation = dbm.importClass("dbm.utils.math.interpolation.LinearInterpolation");
 	
-	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
+	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
 	
 	var startFunction = function() {
 		console.log("startFunction");

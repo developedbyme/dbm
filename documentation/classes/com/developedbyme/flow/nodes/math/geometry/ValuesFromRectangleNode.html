@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ValuesFromRectangleNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.math.geometry.ValuesFromRectangleNode</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,28 +38,28 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.data.geometry.Rectangle" href="../../../../core/data/geometry/Rectangle.html">Rectangle</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.data.geometry.Rectangle" href="../../../../core/data/geometry/Rectangle.html">Rectangle</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ValuesFromRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode");</div>
+									<div class="code">var ValuesFromRectangleNode = dbm.importClass("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode");
 	//"use strict";
 	
-	var ValuesFromRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode");
+	var ValuesFromRectangleNode = dbm.importClass("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode");
 	
-	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
+	var Rectangle = dbm.importClass("dbm.core.data.geometry.Rectangle");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode::_init");
+		//console.log("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode::_init");
 		
 		this.superCall();
 		
@@ -75,7 +75,7 @@
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode::_update");
+		//console.log("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode::_update");
 		
 		var inputRectangle = this._inputRectangle.getValueWithoutFlow();
 		
@@ -137,7 +137,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode::_init");
+		//console.log("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode::_init");
 		
 		this.superCall();
 		
@@ -174,7 +174,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode::_update");
+		//console.log("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode::_update");
 		
 		var inputRectangle = this._inputRectangle.getValueWithoutFlow();
 		

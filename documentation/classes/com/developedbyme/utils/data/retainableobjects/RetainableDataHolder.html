@@ -28,13 +28,13 @@
 			<article>
 				<div class="mainInfo">
 					<h1>RetainableDataHolder</h1>
-					<div class="classPath">com.developedbyme.utils.data.retainableobjects.RetainableDataHolder</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.data.retainableobjects.RetainableDataHolder</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Data holder that can be retained.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="../treestructure/TreeStructureItem.html">TreeStructureItem</a></div>
+							<div class="subClasses linkList"><a title="dbm.utils.data.treestructure.TreeStructureItem" href="../treestructure/TreeStructureItem.html">TreeStructureItem</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
@@ -44,17 +44,17 @@
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var RetainableDataHolder = dbm.importClass("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder");</div>
+									<div class="code">var RetainableDataHolder = dbm.importClass("dbm.utils.data.retainableobjects.RetainableDataHolder");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder");
+									<div class="code">dbm.registerClass("dbm.utils.data.retainableobjects.RetainableDataHolder", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.retainableobjects.RetainableDataHolder");
 	
 	//Self reference
-	var RetainableDataHolder = dbm.importClass("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder");
+	var RetainableDataHolder = dbm.importClass("dbm.utils.data.retainableobjects.RetainableDataHolder");
 	
 	//Error report
 	
@@ -69,7 +69,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::_init");
+		//console.log("dbm.utils.data.retainableobjects.RetainableDataHolder::_init");
 		
 		this.superCall();
 		
@@ -132,7 +132,7 @@
 	 * Destroys all the data of the object.
 	 */
 	objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
+		//console.log("dbm.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
 		//console.log(this.ownsData, this.data !== null, this.data.destroy);
 		if(this.ownsData &amp;&amp; this.data !== null &amp;&amp; this.data.destroy) {
 			this.data.destroy();
@@ -192,7 +192,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::_init");
+		//console.log("dbm.utils.data.retainableobjects.RetainableDataHolder::_init");
 		
 		this.superCall();
 		
@@ -363,7 +363,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
+		//console.log("dbm.utils.data.retainableobjects.RetainableDataHolder::performDestroy");
 		//console.log(this.ownsData, this.data !== null, this.data.destroy);
 		if(this.ownsData &amp;&amp; this.data !== null &amp;&amp; this.data.destroy) {
 			this.data.destroy();

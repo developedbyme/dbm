@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>InterpolationTimelinePart</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject" href="TimelinePartBaseObject.html">TimelinePartBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject" href="TimelinePartBaseObject.html">TimelinePartBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -44,19 +44,19 @@
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var InterpolationTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");</div>
+									<div class="code">var InterpolationTimelinePart = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart", "com.developedbyme.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart", "dbm.core.globalobjects.animationmanager.timeline.parts.TimelinePartBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
 	
-	var InterpolationTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
+	var InterpolationTimelinePart = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::_init");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::_init");
 		
 		this.superCall();
 		
@@ -80,7 +80,7 @@
 	};
 	
 	objectFunctions.getValueByParameter = function(aParameter) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::getValueByParameter");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::getValueByParameter");
 		
 		var interpolatedParameter = this.interpolationObject.interpolate(aParameter);
 		//console.log(aParameter, interpolatedParameter, this.startValue, this.endValue);
@@ -148,7 +148,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::_init");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::_init");
 		
 		this.superCall();
 		
@@ -235,7 +235,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getValueByParameter = function(aParameter) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::getValueByParameter");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart::getValueByParameter");
 		
 		var interpolatedParameter = this.interpolationObject.interpolate(aParameter);
 		//console.log(aParameter, interpolatedParameter, this.startValue, this.endValue);

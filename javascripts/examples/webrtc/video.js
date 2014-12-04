@@ -1,12 +1,12 @@
 dbm.runTempFunction(function() {
 	
-	var PeerConnection = dbm.importClass("com.developedbyme.utils.webrtc.PeerConnection");
+	var PeerConnection = dbm.importClass("dbm.utils.webrtc.PeerConnection");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	var WebRtcConnectionEventIds = dbm.importClass("com.developedbyme.constants.htmlevents.WebRtcConnectionEventIds");
-	var WebRtcExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.WebRtcExtendedEventIds");
+	var WebRtcConnectionEventIds = dbm.importClass("dbm.constants.htmlevents.WebRtcConnectionEventIds");
+	var WebRtcExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.WebRtcExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

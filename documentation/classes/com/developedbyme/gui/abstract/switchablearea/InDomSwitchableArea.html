@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>InDomSwitchableArea</h1>
-					<div class="classPath">com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea</div>
-					<div class="classInheritance"><a title="com.developedbyme.gui.abstract.switchablearea.SwitchableAreaBaseObject" href="SwitchableAreaBaseObject.html">SwitchableAreaBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.gui.abstract.switchablearea.InDomSwitchableArea</div>
+					<div class="classInheritance"><a title="dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject" href="SwitchableAreaBaseObject.html">SwitchableAreaBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,30 +38,30 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="com.developedbyme.flow.nodes.logic.ConditionNode" href="../../../flow/nodes/logic/ConditionNode.html">ConditionNode</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.flow.nodes.logic.ConditionNode" href="../../../flow/nodes/logic/ConditionNode.html">ConditionNode</a>, <a title="dbm.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var InDomSwitchableArea = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea");</div>
+									<div class="code">var InDomSwitchableArea = dbm.importClass("dbm.gui.abstract.switchablearea.InDomSwitchableArea");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea", "com.developedbyme.gui.abstract.switchablearea.SwitchableAreaBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.BaseObject");
+									<div class="code">dbm.registerClass("dbm.gui.abstract.switchablearea.InDomSwitchableArea", "dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.BaseObject");
 	
-	var InDomSwitchableArea = dbm.importClass("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea");
+	var InDomSwitchableArea = dbm.importClass("dbm.gui.abstract.switchablearea.InDomSwitchableArea");
 	
-	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
-	var ConditionNode = dbm.importClass("com.developedbyme.flow.nodes.logic.ConditionNode");
+	var ConditionNode = dbm.importClass("dbm.flow.nodes.logic.ConditionNode");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea::_init");
+		//console.log("dbm.gui.abstract.switchablearea.InDomSwitchableArea::_init");
 		
 		this.superCall();
 		
@@ -69,7 +69,7 @@
 	};
 	
 	objectFunctions._setupAreaFlow = function(aName, aDisplayObject, aAreaData) {
-		//console.log("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea::_setupAreaFlow");
+		//console.log("dbm.gui.abstract.switchablearea.InDomSwitchableArea::_setupAreaFlow");
 		var conditionNode = ConditionNode.create("===", this._visibleArea, aName);
 		aDisplayObject.setPropertyInput("inDom", conditionNode.getProperty("outputValue"));
 		
@@ -119,7 +119,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea::_init");
+		//console.log("dbm.gui.abstract.switchablearea.InDomSwitchableArea::_init");
 		
 		this.superCall();
 		
@@ -148,7 +148,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._setupAreaFlow = function(aName, aDisplayObject, aAreaData) {
-		//console.log("com.developedbyme.gui.abstract.switchablearea.InDomSwitchableArea::_setupAreaFlow");
+		//console.log("dbm.gui.abstract.switchablearea.InDomSwitchableArea::_setupAreaFlow");
 		var conditionNode = ConditionNode.create("===", this._visibleArea, aName);
 		aDisplayObject.setPropertyInput("inDom", conditionNode.getProperty("outputValue"));
 		

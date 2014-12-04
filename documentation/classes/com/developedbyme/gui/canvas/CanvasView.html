@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CanvasView</h1>
-					<div class="classPath">com.developedbyme.gui.canvas.CanvasView</div>
-					<div class="classInheritance"><a title="com.developedbyme.gui.DisplayBaseObject" href="../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.gui.canvas.CanvasView</div>
+					<div class="classInheritance"><a title="dbm.gui.DisplayBaseObject" href="../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,41 +38,41 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.canvas.CanvasController2d" href="../../utils/canvas/CanvasController2d.html">CanvasController2d</a>, <a title="com.developedbyme.utils.canvas.3d.CanvasController3d" href="../../utils/canvas/3d/CanvasController3d.html">CanvasController3d</a>, <a title="com.developedbyme.flow.nodes.display.SizeOfElementNode" href="../../flow/nodes/display/SizeOfElementNode.html">SizeOfElementNode</a>, <a title="com.developedbyme.constants.XmlNodeTypes" href="../../constants/XmlNodeTypes.html">XmlNodeTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.canvas.CanvasController2d" href="../../utils/canvas/CanvasController2d.html">CanvasController2d</a>, <a title="dbm.utils.canvas.3d.CanvasController3d" href="../../utils/canvas/3d/CanvasController3d.html">CanvasController3d</a>, <a title="dbm.flow.nodes.display.SizeOfElementNode" href="../../flow/nodes/display/SizeOfElementNode.html">SizeOfElementNode</a>, <a title="dbm.constants.XmlNodeTypes" href="../../constants/XmlNodeTypes.html">XmlNodeTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");</div>
+									<div class="code">var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.gui.canvas.CanvasView", "com.developedbyme.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.gui.canvas.CanvasView");
+									<div class="code">dbm.registerClass("dbm.gui.canvas.CanvasView", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.gui.canvas.CanvasView");
 	
 	//Self reference
-	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
+	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
 	
 	//Error report
 	
 	//Dependencies
-	var CanvasController2d = dbm.importClass("com.developedbyme.utils.canvas.CanvasController2d");
-	var CanvasController3d = dbm.importClass("com.developedbyme.utils.canvas.3d.CanvasController3d");
-	var SizeOfElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.SizeOfElementNode");
+	var CanvasController2d = dbm.importClass("dbm.utils.canvas.CanvasController2d");
+	var CanvasController3d = dbm.importClass("dbm.utils.canvas.3d.CanvasController3d");
+	var SizeOfElementNode = dbm.importClass("dbm.flow.nodes.display.SizeOfElementNode");
 	
 	//Utils
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("com.developedbyme.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::_init");
+		//console.log("dbm.gui.canvas.CanvasView::_init");
 		
 		this.superCall();
 		
@@ -107,7 +107,7 @@
 	};
 	
 	objectFunctions.setController = function(aController) {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::setController");
+		//console.log("dbm.gui.canvas.CanvasView::setController");
 		
 		this._controller = aController;
 		this._controller.setPropertyInput("canvas", this._element);
@@ -117,7 +117,7 @@
 	};
 	
 	objectFunctions.getController = function() {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::getController");
+		//console.log("dbm.gui.canvas.CanvasView::getController");
 		
 		return this._controller;
 	};
@@ -130,7 +130,7 @@
 	};
 	
 	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::_updateDisplayFlow");
+		//console.log("dbm.gui.canvas.CanvasView::_updateDisplayFlow");
 		
 		this.superCall(aFlowUpdateNumber);
 		
@@ -149,7 +149,7 @@
 	};
 	
 	objectFunctions.update = function() {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::update");
+		//console.log("dbm.gui.canvas.CanvasView::update");
 		this._display.update();
 		this._controller.getProperty("display").update();
 	};
@@ -254,7 +254,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::_init");
+		//console.log("dbm.gui.canvas.CanvasView::_init");
 		
 		this.superCall();
 		
@@ -352,7 +352,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setController = function(aController) {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::setController");
+		//console.log("dbm.gui.canvas.CanvasView::setController");
 		
 		this._controller = aController;
 		this._controller.setPropertyInput("canvas", this._element);
@@ -383,7 +383,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getController = function() {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::getController");
+		//console.log("dbm.gui.canvas.CanvasView::getController");
 		
 		return this._controller;
 	}</div>
@@ -438,7 +438,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::_updateDisplayFlow");
+		//console.log("dbm.gui.canvas.CanvasView::_updateDisplayFlow");
 		
 		this.superCall(aFlowUpdateNumber);
 		
@@ -478,7 +478,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.update = function() {
-		//console.log("com.developedbyme.gui.canvas.CanvasView::update");
+		//console.log("dbm.gui.canvas.CanvasView::update");
 		this._display.update();
 		this._controller.getProperty("display").update();
 	}</div>

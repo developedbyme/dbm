@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>VectorFunctions</h1>
-					<div class="classPath">com.developedbyme.utils.math.VectorFunctions</div>
+					<div class="classPath">dbm.utils.math.VectorFunctions</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
@@ -44,17 +44,17 @@
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");</div>
+									<div class="code">var VectorFunctions = dbm.importClass("dbm.utils.math.VectorFunctions");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.math.VectorFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.math.VectorFunctions");
+									<div class="code">dbm.registerClass("dbm.utils.math.VectorFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.math.VectorFunctions");
 	
 	//Self reference
-	var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");
+	var VectorFunctions = dbm.importClass("dbm.utils.math.VectorFunctions");
 	
 	//Error report
 	
@@ -114,7 +114,7 @@
 	};
 	
 	staticFunctions.normalize3d = function(aInputPoint, aOutputPoint) {
-		console.log("com.developedbyme.utils.math.VectorFunctions::normalize3d");
+		console.log("dbm.utils.math.VectorFunctions::normalize3d");
 		console.log(aInputPoint, aOutputPoint);
 		var invertedLength = 1/Math.sqrt(Math.pow(aInputPoint.x, 2)+Math.pow(aInputPoint.y, 2)+Math.pow(aInputPoint.z, 2));
 		aOutputPoint.x = invertedLength*aInputPoint.x;
@@ -123,7 +123,7 @@
 	};
 	
 	staticFunctions.normalizeSelf3d = function(aPoint) {
-		console.log("com.developedbyme.utils.math.VectorFunctions::normalizeSelf3d");
+		console.log("dbm.utils.math.VectorFunctions::normalizeSelf3d");
 		ClassReference.normalize3d(aPoint, aPoint);
 	};
 	
@@ -154,7 +154,7 @@
 	};
 	
 	staticFunctions.lengthFromVector = function(aVector) {
-		//console.log("com.developedbyme.utils.math.VectorFunctions::lengthFromVector (static)");
+		//console.log("dbm.utils.math.VectorFunctions::lengthFromVector (static)");
 		//console.log(aVector.x, aVector.y, aVector.z);
 		return ClassReference.lengthFromVectorValues3d(aVector.x, aVector.y, aVector.z);
 	};
@@ -164,7 +164,7 @@
 	};
 	
 	staticFunctions.lengthFromVectorValues3d = function(aX, aY, aZ) {
-		//console.log("com.developedbyme.utils.math.VectorFunctions::lengthFromVectorValues3d (static)");
+		//console.log("dbm.utils.math.VectorFunctions::lengthFromVectorValues3d (static)");
 		//console.log(aX, aY, aZ);
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(Math.sqrt(Math.pow(aY, 2)+Math.pow(aY, 2)), 2));
 	};
@@ -431,7 +431,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.normalize3d = function(aInputPoint, aOutputPoint) {
-		console.log("com.developedbyme.utils.math.VectorFunctions::normalize3d");
+		console.log("dbm.utils.math.VectorFunctions::normalize3d");
 		console.log(aInputPoint, aOutputPoint);
 		var invertedLength = 1/Math.sqrt(Math.pow(aInputPoint.x, 2)+Math.pow(aInputPoint.y, 2)+Math.pow(aInputPoint.z, 2));
 		aOutputPoint.x = invertedLength*aInputPoint.x;
@@ -461,7 +461,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.normalizeSelf3d = function(aPoint) {
-		console.log("com.developedbyme.utils.math.VectorFunctions::normalizeSelf3d");
+		console.log("dbm.utils.math.VectorFunctions::normalizeSelf3d");
 		ClassReference.normalize3d(aPoint, aPoint);
 	}</div>
 							</div>
@@ -597,7 +597,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.lengthFromVector = function(aVector) {
-		//console.log("com.developedbyme.utils.math.VectorFunctions::lengthFromVector (static)");
+		//console.log("dbm.utils.math.VectorFunctions::lengthFromVector (static)");
 		//console.log(aVector.x, aVector.y, aVector.z);
 		return ClassReference.lengthFromVectorValues3d(aVector.x, aVector.y, aVector.z);
 	}</div>
@@ -649,7 +649,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.lengthFromVectorValues3d = function(aX, aY, aZ) {
-		//console.log("com.developedbyme.utils.math.VectorFunctions::lengthFromVectorValues3d (static)");
+		//console.log("dbm.utils.math.VectorFunctions::lengthFromVectorValues3d (static)");
 		//console.log(aX, aY, aZ);
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(Math.sqrt(Math.pow(aY, 2)+Math.pow(aY, 2)), 2));
 	}</div>

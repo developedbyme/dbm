@@ -28,44 +28,44 @@
 			<article>
 				<div class="mainInfo">
 					<h1>NamedArray</h1>
-					<div class="classPath">com.developedbyme.utils.data.NamedArray</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.data.NamedArray</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">An array where all entries also have an identifier.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.utils.data.PartiallyOwnedNamedArray" href="PartiallyOwnedNamedArray.html">PartiallyOwnedNamedArray</a></div>
+							<div class="subClasses linkList"><a title="dbm.utils.data.PartiallyOwnedNamedArray" href="PartiallyOwnedNamedArray.html">PartiallyOwnedNamedArray</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");</div>
+									<div class="code">var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.data.NamedArray", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.data.NamedArray");
+									<div class="code">dbm.registerClass("dbm.utils.data.NamedArray", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.NamedArray");
 	//"use strict";
 	
 	//Self reference
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -74,7 +74,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.NamedArray::_init");
+		//console.log("dbm.utils.data.NamedArray::_init");
 		
 		this.superCall();
 		
@@ -229,7 +229,7 @@
 	 * @return	*	The object that corresponds to the given name. Null if no object has that name.
 	 */
 	objectFunctions.getObject = function(aName) {
-		//console.log("com.developedbyme.utils.data.NamedArray::getObject");
+		//console.log("dbm.utils.data.NamedArray::getObject");
 		if(this._objectsObject[aName] === undefined) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MINOR, this, "getObject", "Object " + aName + " doesn't exist.");
 			return null;
@@ -429,7 +429,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.NamedArray::_init");
+		//console.log("dbm.utils.data.NamedArray::_init");
 		
 		this.superCall();
 		
@@ -733,7 +733,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getObject = function(aName) {
-		//console.log("com.developedbyme.utils.data.NamedArray::getObject");
+		//console.log("dbm.utils.data.NamedArray::getObject");
 		if(this._objectsObject[aName] === undefined) {
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MINOR, this, "getObject", "Object " + aName + " doesn't exist.");
 			return null;
@@ -792,7 +792,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">copy</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.NamedArray" href="NamedArray.html">NamedArray</a></span>
+					<span class="functionName">copy</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.utils.data.NamedArray" href="NamedArray.html">NamedArray</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Makes a copy of this array.</div>
@@ -802,7 +802,7 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.NamedArray" href="NamedArray.html">NamedArray</a> - The copy of this array.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.data.NamedArray" href="NamedArray.html">NamedArray</a> - The copy of this array.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">

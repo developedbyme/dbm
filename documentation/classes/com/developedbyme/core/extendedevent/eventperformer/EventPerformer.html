@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>EventPerformer</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.eventperformer.EventPerformer</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.extendedevent.eventperformer.EventPerformer</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,40 +38,40 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.CommandsArrayIterator" href="../commands/CommandsArrayIterator.html">CommandsArrayIterator</a>, <a title="com.developedbyme.constants.CommandStatusTypes" href="../../../constants/CommandStatusTypes.html">CommandStatusTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.CommandsArrayIterator" href="../commands/CommandsArrayIterator.html">CommandsArrayIterator</a>, <a title="dbm.constants.CommandStatusTypes" href="../../../constants/CommandStatusTypes.html">CommandStatusTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var EventPerformer = dbm.importClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");</div>
+									<div class="code">var EventPerformer = dbm.importClass("dbm.core.extendedevent.eventperformer.EventPerformer");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.eventperformer.EventPerformer", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.eventperformer.EventPerformer");
 	
 	//Self reference
-	var EventPerformer = dbm.importClass("com.developedbyme.core.extendedevent.eventperformer.EventPerformer");
+	var EventPerformer = dbm.importClass("dbm.core.extendedevent.eventperformer.EventPerformer");
 	
 	//Error report
 	
 	//Dependencies
-	var CommandsArrayIterator = dbm.importClass("com.developedbyme.core.extendedevent.commands.CommandsArrayIterator");
+	var CommandsArrayIterator = dbm.importClass("dbm.core.extendedevent.commands.CommandsArrayIterator");
 	
 	//Utils
 	
 	//Constants
-	var CommandStatusTypes = dbm.importClass("com.developedbyme.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
 	
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::_init");
+		//console.log("dbm.core.extendedevent.eventperformer.EventPerformer::_init");
 		
 		this.superCall();
 		
@@ -87,7 +87,7 @@
 	};
 	
 	objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::perform");
+		//console.log("dbm.core.extendedevent.eventperformer.EventPerformer::perform");
 		var currentCommand;
 		var theResult;
 		
@@ -116,7 +116,7 @@
 	};
 	
 	objectFunctions.removeCommand = function(aCommand) {
-		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::removeCommand");
+		//console.log("dbm.core.extendedevent.eventperformer.EventPerformer::removeCommand");
 		
 		this._commandsArray.removeItem(aCommand);
 	};
@@ -179,7 +179,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::_init");
+		//console.log("dbm.core.extendedevent.eventperformer.EventPerformer::_init");
 		
 		this.superCall();
 		
@@ -216,7 +216,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.perform = function(aEventDataObject) {
-		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::perform");
+		//console.log("dbm.core.extendedevent.eventperformer.EventPerformer::perform");
 		var currentCommand;
 		var theResult;
 		
@@ -287,7 +287,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.removeCommand = function(aCommand) {
-		//console.log("com.developedbyme.core.extendedevent.eventperformer.EventPerformer::removeCommand");
+		//console.log("dbm.core.extendedevent.eventperformer.EventPerformer::removeCommand");
 		
 		this._commandsArray.removeItem(aCommand);
 	}</div>

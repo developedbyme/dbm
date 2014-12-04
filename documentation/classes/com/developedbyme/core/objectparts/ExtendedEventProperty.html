@@ -28,40 +28,40 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ExtendedEventProperty</h1>
-					<div class="classPath">com.developedbyme.core.objectparts.ExtendedEventProperty</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.objectparts.ExtendedEventProperty</div>
+					<div class="classInheritance"><a title="dbm.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A property that sends out an extended when changed.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.core.objectparts.ExtendedEventValueProperty" href="ExtendedEventValueProperty.html">ExtendedEventValueProperty</a></div>
+							<div class="subClasses linkList"><a title="dbm.core.objectparts.ExtendedEventValueProperty" href="ExtendedEventValueProperty.html">ExtendedEventValueProperty</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../extendedevent/ExtendedEventController.html">ExtendedEventController</a>, <a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.ExtendedEventController" href="../extendedevent/ExtendedEventController.html">ExtendedEventController</a>, <a title="dbm.core.objectparts.Property" href="Property.html">Property</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ExtendedEventProperty = dbm.importClass("com.developedbyme.core.objectparts.ExtendedEventProperty");</div>
+									<div class="code">var ExtendedEventProperty = dbm.importClass("dbm.core.objectparts.ExtendedEventProperty");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.ExtendedEventProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty");
+									<div class="code">dbm.registerClass("dbm.core.objectparts.ExtendedEventProperty", "dbm.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.ExtendedEventProperty");
 	//"use strict";
 	
 	//Self reference
-	var ExtendedEventProperty = dbm.importClass("com.developedbyme.core.objectparts.ExtendedEventProperty");
+	var ExtendedEventProperty = dbm.importClass("dbm.core.objectparts.ExtendedEventProperty");
 	
 	//Error report
 	
 	//Dependencies
-	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
-	var Property = dbm.importClass("com.developedbyme.core.objectparts.Property");
+	var ExtendedEventController = dbm.importClass("dbm.core.extendedevent.ExtendedEventController");
+	var Property = dbm.importClass("dbm.core.objectparts.Property");
 	
 	//Utils
 	
@@ -71,7 +71,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_init");
+		//console.log("dbm.core.objectparts.ExtendedEventProperty::_init");
 		
 		this.superCall();
 		
@@ -82,7 +82,7 @@
 	};
 	
 	objectFunctions.changeToExternalEventController = function(aExtendedEventController) {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::changeToExternalEventController");
+		//console.log("dbm.core.objectparts.ExtendedEventProperty::changeToExternalEventController");
 		
 		//METODO: Fix so this function can be called a second time
 		this._extendedEvent.destroy();
@@ -94,7 +94,7 @@
 	};
 	
 	objectFunctions._performValueChangeExtendedEvent = function(aValue) {
-		console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performValueChangeExtendedEvent");
+		console.log("dbm.core.objectparts.ExtendedEventProperty::_performValueChangeExtendedEvent");
 		if(aValue !== null) {
 			if(this._extendedEvent.hasEvent(aValue)) {
 				this._extendedEvent.perform(aValue, null);
@@ -103,7 +103,7 @@
 	};
 	
 	objectFunctions._performSetValue = function(aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
+		//console.log("dbm.core.objectparts.ExtendedEventProperty::_performSetValue");
 		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
 		this.superCall(aValue);
 		this._performValueChangeExtendedEvent(aValue);
@@ -163,7 +163,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_init");
+		//console.log("dbm.core.objectparts.ExtendedEventProperty::_init");
 		
 		this.superCall();
 		
@@ -195,7 +195,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.changeToExternalEventController = function(aExtendedEventController) {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::changeToExternalEventController");
+		//console.log("dbm.core.objectparts.ExtendedEventProperty::changeToExternalEventController");
 		
 		//METODO: Fix so this function can be called a second time
 		this._extendedEvent.destroy();
@@ -228,7 +228,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._performValueChangeExtendedEvent = function(aValue) {
-		console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performValueChangeExtendedEvent");
+		console.log("dbm.core.objectparts.ExtendedEventProperty::_performValueChangeExtendedEvent");
 		if(aValue !== null) {
 			if(this._extendedEvent.hasEvent(aValue)) {
 				this._extendedEvent.perform(aValue, null);
@@ -258,7 +258,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._performSetValue = function(aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExtendedEventProperty::_performSetValue");
+		//console.log("dbm.core.objectparts.ExtendedEventProperty::_performSetValue");
 		//console.log(aValue, this._extendedEvent.hasEvent(aValue));
 		this.superCall(aValue);
 		this._performValueChangeExtendedEvent(aValue);

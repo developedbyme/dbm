@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>Point</h1>
-					<div class="classPath">com.developedbyme.core.data.points.Point</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.data.points.Point</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A point.</div>
 						<div class="spacedContent">
@@ -38,31 +38,31 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var Point = dbm.importClass("com.developedbyme.core.data.points.Point");</div>
+									<div class="code">var Point = dbm.importClass("dbm.core.data.points.Point");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.data.points.Point", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.data.points.Point");
+									<div class="code">dbm.registerClass("dbm.core.data.points.Point", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.data.points.Point");
 	//"use strict";
 	
 	//Self reference
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -71,7 +71,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.points.Point");
+		//console.log("dbm.core.data.points.Point");
 		
 		this.superCall();
 		
@@ -118,7 +118,7 @@
 	};
 	
 	objectFunctions.setValues = function(aX, aY, aZ, aW) {
-		//console.log("com.developedbyme.core.data.points.Point::setValues");
+		//console.log("dbm.core.data.points.Point::setValues");
 		//console.log(aX, aY, aZ, aW);
 		this.x = VariableAliases.valueWithDefault(aX, 0);
 		this.y = VariableAliases.valueWithDefault(aY, 0);
@@ -138,7 +138,7 @@
 	};
 	
 	staticFunctions.create = function(aX, aY, aZ, aW) {
-		//console.log("com.developedbyme.core.data.points.Point::create (static)");
+		//console.log("dbm.core.data.points.Point::create (static)");
 		//console.log(aX, aY, aZ, aW);
 		var newPoint = (new Point()).init();
 		newPoint.x = VariableAliases.valueWithDefault(aX, 0);
@@ -150,17 +150,17 @@
 	};
 	
 	staticFunctions.getLengthOfVectorValues2d = function(aX, aY) {
-		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues2d (static)");
+		//console.log("dbm.core.data.points.Point::getLengthOfVectorValues2d (static)");
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2));
 	};
 	
 	staticFunctions.getLengthOfVectorValues3d = function(aX, aY, aZ) {
-		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues3d (static)");
+		//console.log("dbm.core.data.points.Point::getLengthOfVectorValues3d (static)");
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aY, 3));
 	};
 	
 	staticFunctions.copyPointValues3d = function(aInputPoint, aOutputPoint) {
-		//console.log("com.developedbyme.core.data.points.Point::copyPointValues3d (static)");
+		//console.log("dbm.core.data.points.Point::copyPointValues3d (static)");
 		aOutputPoint.x = aInputPoint.x;
 		aOutputPoint.y = aInputPoint.y;
 		aOutputPoint.z = aInputPoint.z;
@@ -215,7 +215,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.points.Point");
+		//console.log("dbm.core.data.points.Point");
 		
 		this.superCall();
 		
@@ -315,7 +315,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setValues = function(aX, aY, aZ, aW) {
-		//console.log("com.developedbyme.core.data.points.Point::setValues");
+		//console.log("dbm.core.data.points.Point::setValues");
 		//console.log(aX, aY, aZ, aW);
 		this.x = VariableAliases.valueWithDefault(aX, 0);
 		this.y = VariableAliases.valueWithDefault(aY, 0);
@@ -389,7 +389,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function(aX, aY, aZ, aW) {
-		//console.log("com.developedbyme.core.data.points.Point::create (static)");
+		//console.log("dbm.core.data.points.Point::create (static)");
 		//console.log(aX, aY, aZ, aW);
 		var newPoint = (new Point()).init();
 		newPoint.x = VariableAliases.valueWithDefault(aX, 0);
@@ -422,7 +422,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getLengthOfVectorValues2d = function(aX, aY) {
-		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues2d (static)");
+		//console.log("dbm.core.data.points.Point::getLengthOfVectorValues2d (static)");
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2));
 	}</div>
 							</div>
@@ -448,7 +448,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getLengthOfVectorValues3d = function(aX, aY, aZ) {
-		//console.log("com.developedbyme.core.data.points.Point::getLengthOfVectorValues3d (static)");
+		//console.log("dbm.core.data.points.Point::getLengthOfVectorValues3d (static)");
 		return Math.sqrt(Math.pow(aX, 2)+Math.pow(aY, 2)+Math.pow(aY, 3));
 	}</div>
 							</div>
@@ -474,7 +474,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.copyPointValues3d = function(aInputPoint, aOutputPoint) {
-		//console.log("com.developedbyme.core.data.points.Point::copyPointValues3d (static)");
+		//console.log("dbm.core.data.points.Point::copyPointValues3d (static)");
 		aOutputPoint.x = aInputPoint.x;
 		aOutputPoint.y = aInputPoint.y;
 		aOutputPoint.z = aInputPoint.z;

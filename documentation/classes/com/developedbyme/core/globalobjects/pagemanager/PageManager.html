@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>PageManager</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.pagemanager.PageManager</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.pagemanager.PageManager</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,39 +38,39 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.utils.file.PathFunctions" href="../../../utils/file/PathFunctions.html">PathFunctions</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.native.string.StringFunctions" href="../../../utils/native/string/StringFunctions.html">StringFunctions</a>, <a title="com.developedbyme.utils.native.string.UrlFunctions" href="../../../utils/native/string/UrlFunctions.html">UrlFunctions</a>, <a title="com.developedbyme.utils.file.UrlResolver" href="../../../utils/file/UrlResolver.html">UrlResolver</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.utils.file.PathFunctions" href="../../../utils/file/PathFunctions.html">PathFunctions</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.native.string.StringFunctions" href="../../../utils/native/string/StringFunctions.html">StringFunctions</a>, <a title="dbm.utils.native.string.UrlFunctions" href="../../../utils/native/string/UrlFunctions.html">UrlFunctions</a>, <a title="dbm.utils.file.UrlResolver" href="../../../utils/file/UrlResolver.html">UrlResolver</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var PageManager = dbm.importClass("com.developedbyme.core.globalobjects.pagemanager.PageManager");</div>
+									<div class="code">var PageManager = dbm.importClass("dbm.core.globalobjects.pagemanager.PageManager");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.pagemanager.PageManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.pagemanager.PageManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.pagemanager.PageManager");
 	
 	//Self reference
-	var PageManager = dbm.importClass("com.developedbyme.core.globalobjects.pagemanager.PageManager");
+	var PageManager = dbm.importClass("dbm.core.globalobjects.pagemanager.PageManager");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	var UrlResolver = dbm.importClass("com.developedbyme.utils.file.UrlResolver");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
+	var UrlResolver = dbm.importClass("dbm.utils.file.UrlResolver");
 	
 	//Utils
-	var UrlFunctions = dbm.importClass("com.developedbyme.utils.native.string.UrlFunctions");
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
-	var PathFunctions = dbm.importClass("com.developedbyme.utils.file.PathFunctions");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	var UrlFunctions = dbm.importClass("dbm.utils.native.string.UrlFunctions");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
+	var PathFunctions = dbm.importClass("dbm.utils.file.PathFunctions");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
 	
 	//Constants
 	
@@ -80,7 +80,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager::_init");
+		//console.log("dbm.core.globalobjects.pagemanager.PageManager::_init");
 		
 		this.superCall();
 		
@@ -94,7 +94,7 @@
 	};
 	
 	objectFunctions.addToSharedRandomValues = function(aValuesArray) {
-		console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager::addToSharedRandomValues");
+		console.log("dbm.core.globalobjects.pagemanager.PageManager::addToSharedRandomValues");
 		
 		StringFunctions.getCharCodes(this._documentLocation.toString(), aValuesArray);
 		
@@ -241,7 +241,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager::_init");
+		//console.log("dbm.core.globalobjects.pagemanager.PageManager::_init");
 		
 		this.superCall();
 		
@@ -276,7 +276,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addToSharedRandomValues = function(aValuesArray) {
-		console.log("com.developedbyme.core.globalobjects.pagemanager.PageManager::addToSharedRandomValues");
+		console.log("dbm.core.globalobjects.pagemanager.PageManager::addToSharedRandomValues");
 		
 		StringFunctions.getCharCodes(this._documentLocation.toString(), aValuesArray);
 		

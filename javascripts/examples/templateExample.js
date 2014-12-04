@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	
-	var VideoView = dbm.importClass("com.developedbyme.gui.media.video.VideoView");
-	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
+	var VideoView = dbm.importClass("dbm.gui.media.video.VideoView");
+	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

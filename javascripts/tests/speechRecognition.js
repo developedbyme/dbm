@@ -1,6 +1,6 @@
 dbm.runTempFunction(function() {
 	
-	var SpeechRecognitionProcessor = dbm.importClass("com.developedbyme.utils.speech.SpeechRecognitionProcessor");
+	var SpeechRecognitionProcessor = dbm.importClass("dbm.utils.speech.SpeechRecognitionProcessor");
 	
 	var startFunction = function() {
 		console.log("startFunction");

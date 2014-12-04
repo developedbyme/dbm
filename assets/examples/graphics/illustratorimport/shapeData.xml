@@ -1,12 +1,12 @@
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject" xmlns:data="http://developedbyme.com/schemas/xml/data/">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject" xmlns:data="http://developedbyme.com/schemas/xml/data/">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="exportDate" data:parentApplyType="namedArray/addObject"><![CDATA[2014-11-20T09:31:37]]></data:item>
 <data:item data:type="string" data:name="exportType" data:parentApplyType="namedArray/addObject"><![CDATA[illustratorDocument]]></data:item>
 <data:item data:type="string" data:name="environment" data:parentApplyType="namedArray/addObject"><![CDATA[extendScript]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[1920]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[816]]></data:item>
@@ -17,17 +17,17 @@
 <data:item data:type="treeStructureItem" data:parentApplyType="treeStructure/root">
 <data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
 <data:item data:type="treeStructureItem" data:name="layer_0" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[Layer 1]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[392.000000000002]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[546.274898564034]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
 <data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[780]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[197.83375852608]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -37,18 +37,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_1" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[25.0000000000018]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[49.2311385459543]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -62,7 +62,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,4.44101508916356,0,1;0,4.44101508916356,0,1;9.5,4.44101508916356,0,1;9.5,4.44101508916356,0,1;9.5,4.44101508916356,0,1;9.5,0.94101508916356,0,1;9.5,0.94101508916356,0,1;9.5,0.94101508916356,0,1;15.5,-2.55898491083644,0,1;23,3.94101508916356,0,1;23,3.94101508916356,0,1;27.5,21.9410150891636,0,1;23,42.4410150891636,0,1;23,52.4410150891636,0,1;9.5,48.4410150891636,0,1;9.5,48.4410150891636,0,1;9.5,48.4410150891636,0,1;9.5,43.4410150891636,0,1;9.5,43.4410150891636,0,1;9.5,43.4410150891636,0,1;0.5,43.4410150891636,0,1;0.5,43.4410150891636,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -70,7 +70,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[367]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[248.225226384757]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -81,18 +81,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_2" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[176.40792178103]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[67.5394734072515]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -106,7 +106,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[10.6261460108617,2.77565701999447,0,1;10.6261460108617,2.77565701999447,0,1;117.959146010862,-3.89234281155768,0,1;164.626146010862,3.44165700316989,0,1;170.959146010862,4.44165697790777,0,1;172.626146010862,14.1076567337241,0,1;172.626146010862,14.1076567337241,0,1;172.626146010862,14.1076567337241,0,1;177.959146010862,65.4406554369434,0,1;175.959146010862,67.4406553864192,0,1;173.959146010862,69.4406553358949,0,1;87.9591460108622,40.1076560769088,0,1;2.6261460108617,67.4416553863939,0,1;0.6251460108615,66.441655411656,0,1;0.84002385060012,65.8849554257195,0,1;0.6251460108615,63.4416554874424,0,1;-1.11797609993664,43.5568559897747,0,1;0.96602384741709,19.8224565893561,0,1;4.6251460108615,9.10765686003469,0,1;6.80092370001512,2.73855702093169,0,1;10.6261460108617,2.77565701999447,0,1;10.6261460108617,2.77565701999447,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -114,7 +114,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[96.3728539891381]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -125,18 +125,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_3" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[54.6669999999995]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[103.333997389564]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -150,7 +150,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0,0,0,1;25.3330000000005,7.33299981475284,0,1;25.3330000000005,7.33299981475284,0,1;25.3330000000005,7.33299981475284,0,1;50.6669999999995,71.999998181127,0,1;54.6669999999995,103.333997389564,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -158,7 +158,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[272.999]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[51.4416557905879]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -169,18 +169,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_4" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[52.6670000000004]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[103.999997372739]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -194,7 +194,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[52.6670000000004,0,0,1;52.6670000000004,0,0,1;26.6670000000004,9.99999974737875,0,1;26.6670000000004,9.99999974737875,0,1;26.6670000000004,9.99999974737875,0,1;5.33300000000054,71.999998181127,0,1;0,103.999997372739,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -202,7 +202,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[42.9989999999998]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[50.7756558074125]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -213,18 +213,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_5" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[176.408452254285]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[67.5404718238879]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -238,7 +238,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[165.782262972887,64.764814733775,0,1;165.782262972887,64.764814733775,0,1;58.4492629728875,71.4328147337746,0,1;11.782262972888,64.0988147337739,0,1;5.44974068326883,63.0978147337737,0,1;3.78226297288802,53.4318147337744,0,1;3.78226297288802,53.4318147337744,0,1;3.78226297288802,53.4318147337744,0,1;-1.55125913987104,2.09881473377391,0,1;0.44874080960471,0.09881473377391,0,1;2.44874075908047,-1.90118526622609,0,1;88.4492629728884,27.4328147337746,0,1;173.782262972887,0.09881473377391,0,1;175.783262972887,1.0978147337737,0,1;175.568362972888,1.6545182143218,0,1;175.783262972887,4.0978147337737,0,1;177.526462972888,23.9836176502413,0,1;175.442462972887,47.7179147337738,0,1;171.783262972887,58.4318147337744,0,1;169.607462972888,64.8019147337745,0,1;165.782262972887,64.764814733775,0,1;165.782262972887,64.764814733775,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -246,7 +246,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[96.8837370271121]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[478.734426740146]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -257,18 +257,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_6" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[54.6670000000004]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[103.333999999999]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -282,7 +282,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[54.6670000000004,103.333999999999,0,1;54.6670000000004,103.333999999999,0,1;29.3334784935323,96,0,1;29.3334784935323,96,0,1;29.3334784935323,96,0,1;4,31.3329999999987,0,1;0,0,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -290,7 +290,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[41.9989999999998]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[391.499241473921]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -301,18 +301,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_7" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[52.6669999999995]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[104]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -326,7 +326,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,104,0,1;0,104,0,1;26,94,0,1;26,94,0,1;26,94,0,1;47.3340000000007,32,0,1;52.6669999999995,0,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -334,7 +334,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[273.999]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[391.499241473921]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -345,17 +345,17 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_8" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[368]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[406]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
 <data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[70.1662414739203]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -365,18 +365,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_9" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[368]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[368]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -390,7 +390,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[368,184,0,1;368,82.3794112825854,0,1;285.6201,0,0,1;184,0,0,1;82.3793782144639,0,0,1;0,82.3794112825854,0,1;0,184,0,1;0,285.620106148293,0,1;82.3793782144639,368,0,1;184,368,0,1;285.6201,368,0,1;368,285.620106148293,0,1;368,184,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -398,7 +398,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[19]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -409,18 +409,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_10" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[255.715821159818]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[30.0166130853613]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -434,7 +434,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[255.715821159818,30.0166130853613,0,1;218.100521159819,10.9805135662536,0,1;173.805621159818,0,0,1;126.389621159818,0,0,1;80.2020979739245,0,0,1;36.9754990659203,10.4189135804409,0,1;0,28.5527131223425,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -442,7 +442,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[57.6103788401815]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -453,18 +453,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_11" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[257.9873211125]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[30.2187956493872]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -478,7 +478,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0.73739998137171,0,1;37.3852990555679,19.4433995088184,0,1;81.2929979463661,30.2187956493872,0,1;128.2627211125,30.2187956493872,0,1;175.845721112501,30.2187956493872,0,1;220.2861211125,19.1601995159726,0,1;257.9873211125,0,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -486,7 +486,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[55.7372788875]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[375.781204350613]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -498,18 +498,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_12" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[368]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[368]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -523,7 +523,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[368,184,0,1;368,82.3794112825854,0,1;285.6201,0,0,1;184,0,0,1;82.3793782144639,0,0,1;0,82.3794112825854,0,1;0,184,0,1;0,285.620106148293,0,1;82.3793782144639,368,0,1;184,368,0,1;285.6201,368,0,1;368,285.620106148293,0,1;368,184,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -531,7 +531,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[89.1662414739203]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -542,18 +542,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_13" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[352]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[352]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -567,7 +567,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[352,176,0,1;352,78.7979111709647,0,1;273.2021,0,0,1;176,0,0,1;78.7978781028432,0,0,1;0,78.7979111709647,0,1;0,176,0,1;0,273.202106259901,0,1;78.7978781028432,352,0,1;176,352,0,1;273.2021,352,0,1;352,273.202106259901,0,1;352,176,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -575,7 +575,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[8]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[97.1662414739203]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
@@ -586,18 +586,18 @@
 </data:item>
 </data:item>
 <data:item data:type="treeStructureItem" data:name="layer_14" data:parentApplyType="treeStructure/addChild">
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="dbm.utils.data.NamedArray">
 <data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
 <data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
 <data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[282]]></data:item>
 <data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[282]]></data:item>
 <data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="dbmObject" data:name="data" data:class="dbm.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="dbm.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="dbm.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="dbm.core.data.color.RgbaColor">
 <data:item data:type="number" data:name="r"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="g"><![CDATA[1]]></data:item>
 <data:item data:type="number" data:name="b"><![CDATA[1]]></data:item>
@@ -611,7 +611,7 @@
 <data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
 <data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
 <data:item data:type="array" data:name="curves">
-<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="dbmObject" data:class="dbm.core.data.curves.BezierCurve">
 <data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[282,141,0,1;282,63.1279106826478,0,1;218.872100000001,0,0,1;141,0,0,1;63.1278776145264,0,0,1;0,63.1279106826478,0,1;0,141,0,1;0,218.872106748218,0,1;63.1278776145264,282,0,1;141,282,0,1;218.872100000001,282,0,1;282,218.872106748218,0,1;282,141,0,1;]]></data:item>
 <data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
 <data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
@@ -619,7 +619,7 @@
 </data:item>
 </data:item>
 </data:item>
-<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="dbmObject" data:name="transformation" data:class="dbm.core.data.graphics.TransformationData">
 <data:item data:type="number" data:name="x"><![CDATA[43]]></data:item>
 <data:item data:type="number" data:name="y"><![CDATA[132.16624147392]]></data:item>
 <data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>

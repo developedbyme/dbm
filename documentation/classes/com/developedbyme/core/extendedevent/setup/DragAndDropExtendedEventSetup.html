@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>DragAndDropExtendedEventSetup</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup</div>
+					<div class="classPath">dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
@@ -38,41 +38,41 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand" href="../commands/events/ActivateEventLinkCommand.html">ActivateEventLinkCommand</a>, <a title="com.developedbyme.utils.htmldom.DomReferenceFunctions" href="../../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="com.developedbyme.constants.extendedevents.DragAndDropExtendedEventIds" href="../../../constants/extendedevents/DragAndDropExtendedEventIds.html">DragAndDropExtendedEventIds</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.JavascriptEventIds" href="../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand" href="../commands/native/PreventDefaultCommand.html">PreventDefaultCommand</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand" href="../commands/native/StopPropagationCommand.html">StopPropagationCommand</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.events.ActivateEventLinkCommand" href="../commands/events/ActivateEventLinkCommand.html">ActivateEventLinkCommand</a>, <a title="dbm.utils.htmldom.DomReferenceFunctions" href="../../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="dbm.constants.extendedevents.DragAndDropExtendedEventIds" href="../../../constants/extendedevents/DragAndDropExtendedEventIds.html">DragAndDropExtendedEventIds</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.JavascriptEventIds" href="../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="dbm.core.extendedevent.commands.native.PreventDefaultCommand" href="../commands/native/PreventDefaultCommand.html">PreventDefaultCommand</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.extendedevent.commands.native.StopPropagationCommand" href="../commands/native/StopPropagationCommand.html">StopPropagationCommand</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var DragAndDropExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup");</div>
+									<div class="code">var DragAndDropExtendedEventSetup = dbm.importClass("dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup");
 	
 	//Self reference
-	var DragAndDropExtendedEventSetup = dbm.importClass("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup");
+	var DragAndDropExtendedEventSetup = dbm.importClass("dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
 	//Utils
-	var ActivateEventLinkCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.events.ActivateEventLinkCommand");
-	var PreventDefaultCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.native.PreventDefaultCommand");
-	var StopPropagationCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.native.StopPropagationCommand");
-	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ActivateEventLinkCommand = dbm.importClass("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand");
+	var PreventDefaultCommand = dbm.importClass("dbm.core.extendedevent.commands.native.PreventDefaultCommand");
+	var StopPropagationCommand = dbm.importClass("dbm.core.extendedevent.commands.native.StopPropagationCommand");
+	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var JavascriptEventIds = dbm.importClass("com.developedbyme.constants.JavascriptEventIds");
-	var DragAndDropExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.DragAndDropExtendedEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var DragAndDropExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.DragAndDropExtendedEventIds");
 	
 	staticFunctions.addDropEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
 		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
@@ -91,7 +91,7 @@
 	};
 	
 	staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
-		//(console.log("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup::preventDefaultForEvent");
+		//(console.log("dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup::preventDefaultForEvent");
 		
 		aExtendedEventController.addCommandToEvent(aEventName, StopPropagationCommand.createCommandWithDataAsEvent());
 		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());
@@ -180,7 +180,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
-		//(console.log("com.developedbyme.core.extendedevent.setup.DragAndDropExtendedEventSetup::preventDefaultForEvent");
+		//(console.log("dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup::preventDefaultForEvent");
 		
 		aExtendedEventController.addCommandToEvent(aEventName, StopPropagationCommand.createCommandWithDataAsEvent());
 		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());

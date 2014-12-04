@@ -1,15 +1,15 @@
 dbm.runTempFunction(function() {
 	
-	var MediaQueryFunctions = dbm.importClass("com.developedbyme.utils.css.MediaQueryFunctions");
+	var MediaQueryFunctions = dbm.importClass("dbm.utils.css.MediaQueryFunctions");
 	
-	var MediaQueryIsActiveNode = dbm.importClass("com.developedbyme.flow.nodes.css.MediaQueryIsActiveNode");
-	var ReportNode = dbm.importClass("com.developedbyme.flow.nodes.debug.ReportNode");
-	var ValueSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.ValueSwitchedNode");
-	var SetMediaQuerySelectionNode = dbm.importClass("com.developedbyme.flow.nodes.css.SetMediaQuerySelectionNode");
+	var MediaQueryIsActiveNode = dbm.importClass("dbm.flow.nodes.css.MediaQueryIsActiveNode");
+	var ReportNode = dbm.importClass("dbm.flow.nodes.debug.ReportNode");
+	var ValueSwitchedNode = dbm.importClass("dbm.flow.nodes.logic.ValueSwitchedNode");
+	var SetMediaQuerySelectionNode = dbm.importClass("dbm.flow.nodes.css.SetMediaQuerySelectionNode");
 	
-	var ProgrammingLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.ProgrammingLanguageFunctions");
+	var ProgrammingLanguageFunctions = dbm.importClass("dbm.utils.native.string.ProgrammingLanguageFunctions");
 	
-	var EnabledStatusTypes = dbm.importClass("com.developedbyme.constants.generic.EnabledStatusTypes");
+	var EnabledStatusTypes = dbm.importClass("dbm.constants.generic.EnabledStatusTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

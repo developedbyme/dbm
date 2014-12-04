@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>FeatureCheck</h1>
-					<div class="classPath">com.developedbyme.utils.browser.FeatureCheck</div>
+					<div class="classPath">dbm.utils.browser.FeatureCheck</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
@@ -38,35 +38,35 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var FeatureCheck = dbm.importClass("com.developedbyme.utils.browser.FeatureCheck");</div>
+									<div class="code">var FeatureCheck = dbm.importClass("dbm.utils.browser.FeatureCheck");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.browser.FeatureCheck", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.browser.FeatureCheck");
+									<div class="code">dbm.registerClass("dbm.utils.browser.FeatureCheck", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.browser.FeatureCheck");
 	
-	var FeatureCheck = dbm.importClass("com.developedbyme.utils.browser.FeatureCheck");
+	var FeatureCheck = dbm.importClass("dbm.utils.browser.FeatureCheck");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	
 	staticFunctions.DEFAULT_VIDEO_TYPES = ["video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"", "video/mp4", "video/ogg; codecs=\"theora, vorbis\"", "video/ogg", "video/webm; codecs=\"vp8, vorbis\"", "video/webm"];
 	staticFunctions.DEFAULT_AUDIO_TYPES = ["audio/mpeg", "audio/ogg; codecs=\"vorbis\"", "audio/ogg"];
 	
 	staticFunctions.getSupportedVideoFormat = (function(aTestArray) {
-		//console.log("com.developedbyme.utils.browser.FeatureCheck::getSupportedVideoFormat (static)");
+		//console.log("dbm.utils.browser.FeatureCheck::getSupportedVideoFormat (static)");
 		aTestArray = VariableAliases.valueWithDefault(aTestArray, ClassReference.DEFAULT_VIDEO_TYPES);
 		//console.log(aTestArray);
 		
@@ -97,7 +97,7 @@
 	});
 	
 	staticFunctions.getSupportedAudioFormat = (function(aTestArray) {
-		//console.log("com.developedbyme.utils.browser.FeatureCheck::getSupportedAudioFormat (static)");
+		//console.log("dbm.utils.browser.FeatureCheck::getSupportedAudioFormat (static)");
 		aTestArray = VariableAliases.valueWithDefault(aTestArray, ClassReference.DEFAULT_AUDIO_TYPES);
 		//console.log(aTestArray);
 		
@@ -165,7 +165,7 @@
 			</div><div id="variable" class="variable">
 				<div class="definition">
 					<span class="variableName">getSupportedVideoFormat</span><span class="type"></span> = <span class="value">(function(aTestArray) {
-		//console.log("com.developedbyme.utils.browser.FeatureCheck::getSupportedVideoFormat (static)");
+		//console.log("dbm.utils.browser.FeatureCheck::getSupportedVideoFormat (static)");
 		aTestArray = VariableAliases.valueWithDefault(aTestArray, ClassReference.DEFAULT_VIDEO_TYPES);
 		//console.log(aTestArray);
 		
@@ -201,7 +201,7 @@
 			</div><div id="variable" class="variable">
 				<div class="definition">
 					<span class="variableName">getSupportedAudioFormat</span><span class="type"></span> = <span class="value">(function(aTestArray) {
-		//console.log("com.developedbyme.utils.browser.FeatureCheck::getSupportedAudioFormat (static)");
+		//console.log("dbm.utils.browser.FeatureCheck::getSupportedAudioFormat (static)");
 		aTestArray = VariableAliases.valueWithDefault(aTestArray, ClassReference.DEFAULT_AUDIO_TYPES);
 		//console.log(aTestArray);
 		

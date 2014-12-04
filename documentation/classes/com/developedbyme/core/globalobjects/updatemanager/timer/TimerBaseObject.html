@@ -28,43 +28,43 @@
 			<article>
 				<div class="mainInfo">
 					<h1>TimerBaseObject</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.updatemanager.timer.TimerBaseObject</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.core.globalobjects.updatemanager.timer.IntervalTimer" href="IntervalTimer.html">IntervalTimer</a>, <a title="com.developedbyme.core.globalobjects.updatemanager.timer.RequestAnimationFrameTimer" href="RequestAnimationFrameTimer.html">RequestAnimationFrameTimer</a></div>
+							<div class="subClasses linkList"><a title="dbm.core.globalobjects.updatemanager.timer.IntervalTimer" href="IntervalTimer.html">IntervalTimer</a>, <a title="dbm.core.globalobjects.updatemanager.timer.RequestAnimationFrameTimer" href="RequestAnimationFrameTimer.html">RequestAnimationFrameTimer</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.native.function.FunctionFunctions" href="../../../../utils/native/function/FunctionFunctions.html">FunctionFunctions</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.native.function.FunctionFunctions" href="../../../../utils/native/function/FunctionFunctions.html">FunctionFunctions</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var TimerBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject");</div>
+									<div class="code">var TimerBaseObject = dbm.importClass("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject");
 	
 	//Self reference
-	var TimerBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject");
+	var TimerBaseObject = dbm.importClass("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
 	//Utils
-	var FunctionFunctions = dbm.importClass("com.developedbyme.utils.native.function.FunctionFunctions");
+	var FunctionFunctions = dbm.importClass("dbm.utils.native.function.FunctionFunctions");
 	
 	//Constants
 	
@@ -72,7 +72,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::_init");
+		//console.log("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject::_init");
 		
 		this.superCall();
 		
@@ -84,7 +84,7 @@
 	};
 	
 	objectFunctions.setUpdateObject = function(aObject) {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::setUpdateObject");
+		//console.log("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject::setUpdateObject");
 		
 		this._updateObject = aObject;
 		
@@ -96,7 +96,7 @@
 	};
 	
 	objectFunctions.start = function() {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::start");
+		//console.log("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject::start");
 		if(!this._isStarted) {
 			this._isStarted = true;
 			this._performStart();
@@ -133,7 +133,7 @@
 	};
 	
 	objectFunctions.update = function() {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::update");
+		//console.log("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject::update");
 		
 		this._preUpdate();
 		this._updateObject.update();
@@ -214,7 +214,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::_init");
+		//console.log("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject::_init");
 		
 		this.superCall();
 		
@@ -247,7 +247,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setUpdateObject = function(aObject) {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::setUpdateObject");
+		//console.log("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject::setUpdateObject");
 		
 		this._updateObject = aObject;
 		
@@ -301,7 +301,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.start = function() {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::start");
+		//console.log("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject::start");
 		if(!this._isStarted) {
 			this._isStarted = true;
 			this._performStart();
@@ -443,7 +443,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.update = function() {
-		//console.log("com.developedbyme.core.globalobjects.updatemanager.timer.TimerBaseObject::update");
+		//console.log("dbm.core.globalobjects.updatemanager.timer.TimerBaseObject::update");
 		
 		this._preUpdate();
 		this._updateObject.update();

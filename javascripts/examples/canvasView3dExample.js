@@ -1,10 +1,10 @@
 dbm.runTempFunction(function() {
 	
-	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
+	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
 	
-	var PlaneCreator = dbm.importClass("com.developedbyme.utils.geometry.creators.PlaneCreator");
-	var Mesh = dbm.importClass("com.developedbyme.core.data.geometry.mesh.Mesh");
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var PlaneCreator = dbm.importClass("dbm.utils.geometry.creators.PlaneCreator");
+	var Mesh = dbm.importClass("dbm.core.data.geometry.mesh.Mesh");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

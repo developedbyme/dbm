@@ -1,6 +1,6 @@
 dbm.runTempFunction(function() {
 	
-	var MersenneTwister = dbm.importClass("com.developedbyme.utils.random.MersenneTwister");
+	var MersenneTwister = dbm.importClass("dbm.utils.random.MersenneTwister");
 	
 	var startFunction = function() {
 		console.log("startFunction");

@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>TemplateManager</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.templatemanager.TemplateManager</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.templatemanager.TemplateManager</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,38 +38,38 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.utils.htmldom.DomManipulationFunctions" href="../../../utils/htmldom/DomManipulationFunctions.html">DomManipulationFunctions</a>, <a title="com.developedbyme.utils.htmldom.DomReferenceFunctions" href="../../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.extendedevent.EventDataObject" href="../../extendedevent/EventDataObject.html">EventDataObject</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.native.string.StringFunctions" href="../../../utils/native/string/StringFunctions.html">StringFunctions</a>, <a title="com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult" href="objects/TemplateResult.html">TemplateResult</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a>, <a title="com.developedbyme.utils.xml.XmlChildRetreiver" href="../../../utils/xml/XmlChildRetreiver.html">XmlChildRetreiver</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.utils.htmldom.DomManipulationFunctions" href="../../../utils/htmldom/DomManipulationFunctions.html">DomManipulationFunctions</a>, <a title="dbm.utils.htmldom.DomReferenceFunctions" href="../../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.extendedevent.EventDataObject" href="../../extendedevent/EventDataObject.html">EventDataObject</a>, <a title="dbm.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.native.string.StringFunctions" href="../../../utils/native/string/StringFunctions.html">StringFunctions</a>, <a title="dbm.core.globalobjects.templatemanager.objects.TemplateResult" href="objects/TemplateResult.html">TemplateResult</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a>, <a title="dbm.utils.xml.XmlChildRetreiver" href="../../../utils/xml/XmlChildRetreiver.html">XmlChildRetreiver</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var TemplateManager = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.TemplateManager");</div>
+									<div class="code">var TemplateManager = dbm.importClass("dbm.core.globalobjects.templatemanager.TemplateManager");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.templatemanager.TemplateManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.templatemanager.TemplateManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.templatemanager.TemplateManager");
 	
-	var TemplateManager = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.TemplateManager");
+	var TemplateManager = dbm.importClass("dbm.core.globalobjects.templatemanager.TemplateManager");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var TemplateResult = dbm.importClass("com.developedbyme.core.globalobjects.templatemanager.objects.TemplateResult");
+	var TemplateResult = dbm.importClass("dbm.core.globalobjects.templatemanager.objects.TemplateResult");
 	
-	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");
+	var EventDataObject = dbm.importClass("dbm.core.extendedevent.EventDataObject");
 	
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
-	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
-	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
-	var DomReferenceFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomReferenceFunctions");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
+	var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
+	var DomManipulationFunctions = dbm.importClass("dbm.utils.htmldom.DomManipulationFunctions");
+	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
+	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
 	
 	dbm.setClassAsSingleton("dbmTemplateManager");
 	
@@ -82,7 +82,7 @@
 	staticFunctions.TEXT_COMMANDS_ATTRIBUTE = "data-dbm-text-commands";
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::_init");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::_init");
 		
 		this.superCall();
 		
@@ -98,13 +98,13 @@
 	};
 	
 	objectFunctions.registerTextCreator = function(aName, aCreator) {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::registerTextCreator");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::registerTextCreator");
 		//console.log(aName, aCreator);
 		this._textCreators.addObject(aName, aCreator);
 	};
 	
 	objectFunctions.addCommand = function(aName, aCommand) {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::addCommand");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::addCommand");
 		//console.log(aName, aCommand);
 		
 		aCommand.retain();
@@ -112,7 +112,7 @@
 	};
 	
 	objectFunctions.createControllersForTemplate = function(aTemplate, aDynamicData) {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
 		//console.log(aTemplate);
 		
 		var templateResult = TemplateResult.create();
@@ -128,7 +128,7 @@
 	};
 	
 	objectFunctions.createControllersForAsset = function(aPath, aDynamicData, aRemoveId, aDocumentOrParent, aAddToParent) {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForAsset");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::createControllersForAsset");
 		//console.log(aPath, aRemoveId, aDocument);
 		
 		aRemoveId = VariableAliases.valueWithDefault(aRemoveId, true);
@@ -297,7 +297,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::_init");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::_init");
 		
 		this.superCall();
 		
@@ -355,7 +355,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.registerTextCreator = function(aName, aCreator) {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::registerTextCreator");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::registerTextCreator");
 		//console.log(aName, aCreator);
 		this._textCreators.addObject(aName, aCreator);
 	}</div>
@@ -382,7 +382,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addCommand = function(aName, aCommand) {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::addCommand");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::addCommand");
 		//console.log(aName, aCommand);
 		
 		aCommand.retain();
@@ -411,7 +411,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createControllersForTemplate = function(aTemplate, aDynamicData) {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::createControllersForTemplate");
 		//console.log(aTemplate);
 		
 		var templateResult = TemplateResult.create();
@@ -448,7 +448,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createControllersForAsset = function(aPath, aDynamicData, aRemoveId, aDocumentOrParent, aAddToParent) {
-		//console.log("com.developedbyme.core.globalobjects.templatemanager.TemplateManager::createControllersForAsset");
+		//console.log("dbm.core.globalobjects.templatemanager.TemplateManager::createControllersForAsset");
 		//console.log(aPath, aRemoveId, aDocument);
 		
 		aRemoveId = VariableAliases.valueWithDefault(aRemoveId, true);

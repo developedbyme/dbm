@@ -28,55 +28,55 @@
 			<article>
 				<div class="mainInfo">
 					<h1>TreeStructureItem</h1>
-					<div class="classPath">com.developedbyme.utils.data.treestructure.TreeStructureItem</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.data.retainableobjects.RetainableDataHolder" href="../retainableobjects/RetainableDataHolder.html">RetainableDataHolder</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.data.treestructure.TreeStructureItem</div>
+					<div class="classInheritance"><a title="dbm.utils.data.retainableobjects.RetainableDataHolder" href="../retainableobjects/RetainableDataHolder.html">RetainableDataHolder</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A tree structure item.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.utils.data.treestructure.TreeStructureItemLink" href="TreeStructureItemLink.html">TreeStructureItemLink</a></div>
+							<div class="subClasses linkList"><a title="dbm.utils.data.treestructure.TreeStructureItemLink" href="TreeStructureItemLink.html">TreeStructureItemLink</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a>, <a title="com.developedbyme.constants.extendedevents.GenericExtendedEventIds" href="../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../NamedArray.html">NamedArray</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItemTypes" href="TreeStructureItemTypes.html">TreeStructureItemTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a>, <a title="dbm.constants.extendedevents.GenericExtendedEventIds" href="../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="dbm.utils.data.NamedArray" href="../NamedArray.html">NamedArray</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.treestructure.TreeStructureItemTypes" href="TreeStructureItemTypes.html">TreeStructureItemTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");</div>
+									<div class="code">var TreeStructureItem = dbm.importClass("dbm.utils.data.treestructure.TreeStructureItem");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructureItem", "com.developedbyme.utils.data.retainableobjects.RetainableDataHolder", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+									<div class="code">dbm.registerClass("dbm.utils.data.treestructure.TreeStructureItem", "dbm.utils.data.retainableobjects.RetainableDataHolder", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.treestructure.TreeStructureItem");
 	//"use strict";
 	
 	//Self reference
-	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	var TreeStructureItem = dbm.importClass("dbm.utils.data.treestructure.TreeStructureItem");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var ExtendedEventController = dbm.importClass("com.developedbyme.core.extendedevent.ExtendedEventController");
+	var ExtendedEventController = dbm.importClass("dbm.core.extendedevent.ExtendedEventController");
 	
 	//Utils
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
 	//Constants
-	var TreeStructureItemTypes = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItemTypes");
-	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	var TreeStructureItemTypes = dbm.importClass("dbm.utils.data.treestructure.TreeStructureItemTypes");
+	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::_init");
+		//console.log("dbm.utils.data.treestructure.TreeStructureItem::_init");
 		
 		this.superCall();
 		
@@ -139,7 +139,7 @@
 	 * @return	*	The value of the attribute. Null if attribute doesn't exist.
 	 */
 	objectFunctions.getAttribute = function(aName) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::getAttribute");
+		//console.log("dbm.utils.data.treestructure.TreeStructureItem::getAttribute");
 		//console.log(aName);
 		
 		if(this._attributes === null) {
@@ -334,7 +334,7 @@
 	 * Adds a child.
 	 */
 	objectFunctions.addChild = function(aItem) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::addChild");
+		//console.log("dbm.utils.data.treestructure.TreeStructureItem::addChild");
 		//console.log(aItem);
 		aItem.retain();
 		aItem._linkRegistration_setParent(this);
@@ -492,7 +492,7 @@
 	 * @return	Property	The newly created object.
 	 */
 	staticFunctions.create = function(aName) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::create");
+		//console.log("dbm.utils.data.treestructure.TreeStructureItem::create");
 		var newItem = (new TreeStructureItem()).init();
 		newItem.setName(aName);
 		return newItem;
@@ -532,7 +532,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::_init");
+		//console.log("dbm.utils.data.treestructure.TreeStructureItem::_init");
 		
 		this.superCall();
 		
@@ -553,7 +553,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a></span>
+					<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Interface to use extended event whithout inheriting from ExtendedEventBaseObject.</div>
@@ -563,7 +563,7 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a> - The extended event controller for this object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.extendedevent.ExtendedEventController" href="../../../core/extendedevent/ExtendedEventController.html">ExtendedEventController</a> - The extended event controller for this object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -657,7 +657,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getAttribute = function(aName) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::getAttribute");
+		//console.log("dbm.utils.data.treestructure.TreeStructureItem::getAttribute");
 		//console.log(aName);
 		
 		if(this._attributes === null) {
@@ -1156,7 +1156,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addChild = function(aItem) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::addChild");
+		//console.log("dbm.utils.data.treestructure.TreeStructureItem::addChild");
 		//console.log(aItem);
 		aItem.retain();
 		aItem._linkRegistration_setParent(this);
@@ -1527,7 +1527,7 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a></span>
+					<span class="functionName">create</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="dbm.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class.</div>
@@ -1537,14 +1537,14 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.Property" href="../../../core/objectparts/Property.html">Property</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function(aName) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructureItem::create");
+		//console.log("dbm.utils.data.treestructure.TreeStructureItem::create");
 		var newItem = (new TreeStructureItem()).init();
 		newItem.setName(aName);
 		return newItem;

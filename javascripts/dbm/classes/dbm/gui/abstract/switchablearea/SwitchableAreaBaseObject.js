@@ -1,0 +1,102 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.BaseObject");
+	
+	//Self reference
+	var SwitchableAreaBaseObject = dbm.importClass("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject");
+	
+	//Error report
+	
+	//Dependencies
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
+	var PartiallyOwnedNamedArray = dbm.importClass("dbm.utils.data.PartiallyOwnedNamedArray");
+	var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject::_init");
+		
+		this.superCall();
+		
+		this._visibleArea = this.createProperty("visibleArea", null);
+		this._areas = NamedArray.create(true);
+		this.addDestroyableObject(this._areas);
+		
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
+		
+		return this;
+	};
+	
+	objectFunctions._setupAreaFlow = function(aName, aDisplayObject, aAreaData) {
+		//MENOTE: should be overridden
+		//METODO: error message
+	};
+	
+	objectFunctions.addArea = function(aName, aDisplayObject, aOwnsObject) {
+		//console.log("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject::addArea");
+		//console.log(aName, aDisplayObject, aOwnsObject);
+		
+		var areaData = PartiallyOwnedNamedArray.create(true);
+		areaData.addOwnedOverride("displayObject", VariableAliases.isTrue(aOwnsObject));
+		areaData.addObject("displayObject", aDisplayObject);
+		
+		this._setupAreaFlow(aName, aDisplayObject, areaData);
+		this._display.connectInput(aDisplayObject.getProperty("display"));
+		
+		this._areas.addObject(aName, areaData);
+		
+		return this;
+	};
+	
+	objectFunctions.addHtmlArea = function(aName, aElement) {
+		//console.log("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject::addHtmlArea");
+		//console.log(aName, aElement);
+		
+		var controller = dbm.singletons.dbmHtmlDomManager.getControllerForHtmlElementIfExists(aElement);
+		
+		if(controller === null) {
+			
+			controller = DisplayBaseObject.create(aElement);
+			this.addDestroyableObject(controller);
+		}
+		
+		this.addArea(aName, controller);
+		
+		return this;
+	};
+	
+	objectFunctions.removeAreaByName = function(aName) {
+		
+		//METODO
+		
+		return this;
+	};
+	
+	objectFunctions.showArea = function(aName) {
+		
+		this._visibleArea.setValue(aName);
+		this._display.update();
+		
+		return this;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._visibleArea = null;
+		this._areas = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		return (new SwitchableAreaBaseObject()).init();
+	};
+});

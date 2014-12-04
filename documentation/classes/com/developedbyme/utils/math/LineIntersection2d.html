@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>LineIntersection2d</h1>
-					<div class="classPath">com.developedbyme.utils.math.LineIntersection2d</div>
+					<div class="classPath">dbm.utils.math.LineIntersection2d</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description">Class for determin where two lines collide.</div>
@@ -38,26 +38,26 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.math.AngleFunctions" href="AngleFunctions.html">AngleFunctions</a>, <a title="com.developedbyme.core.data.points.Point" href="../../core/data/points/Point.html">Point</a>, <a title="com.developedbyme.utils.math.VectorFunctions" href="VectorFunctions.html">VectorFunctions</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.math.AngleFunctions" href="AngleFunctions.html">AngleFunctions</a>, <a title="dbm.core.data.points.Point" href="../../core/data/points/Point.html">Point</a>, <a title="dbm.utils.math.VectorFunctions" href="VectorFunctions.html">VectorFunctions</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var LineIntersection2d = dbm.importClass("com.developedbyme.utils.math.LineIntersection2d");</div>
+									<div class="code">var LineIntersection2d = dbm.importClass("dbm.utils.math.LineIntersection2d");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.math.LineIntersection2d", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.math.LineIntersection2d");
+									<div class="code">dbm.registerClass("dbm.utils.math.LineIntersection2d", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.math.LineIntersection2d");
 	
-	var LineIntersection2d = dbm.importClass("com.developedbyme.utils.math.LineIntersection2d");
+	var LineIntersection2d = dbm.importClass("dbm.utils.math.LineIntersection2d");
 	
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
-	var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");
-	var AngleFunctions = dbm.importClass("com.developedbyme.utils.math.AngleFunctions");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
+	var VectorFunctions = dbm.importClass("dbm.utils.math.VectorFunctions");
+	var AngleFunctions = dbm.importClass("dbm.utils.math.AngleFunctions");
 	
 	staticFunctions.QUALIFY_TYPE_ALL = "all";
 	staticFunctions.QUALIFY_TYPE_ALL_AND_NULL_RESULTS = "allAndNullResults";
@@ -73,7 +73,7 @@
 	 * Constructor.
 	 */
 	objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.math.LineIntersection2d::_init");
+		//console.log("dbm.utils.math.LineIntersection2d::_init");
 		
 		this._setAsNullResult();
 		
@@ -101,7 +101,7 @@
 	 * @return	If the operation was successful.
 	 */
 	objectFunctions.findLineIntersection = function(aPoint1, aVector1, aPoint2, aVector2) {
-		//console.log("com.developedbyme.utils.math.LineIntersection::findLineIntersection");
+		//console.log("dbm.utils.math.LineIntersection::findLineIntersection");
 		//console.log(aPoint1, aVector1, aPoint2, aVector2);
 		
 		if(aVector1.x === 0) {
@@ -246,7 +246,7 @@
 	 * Finds the parameter where a line is closest to a point in a range.
 	 */
 	staticFunctions.findClosestParameterToPointInRange = function(aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle) {
-		//console.log("com.developedbyme.utils.math.LineIntersection2d::findClosestParameterToPointInRange");
+		//console.log("dbm.utils.math.LineIntersection2d::findClosestParameterToPointInRange");
 		
 		var tempLineIntersection = ClassReference.getTempLineIntersection();
 		var tempVector = ClassReference.getTempVector();
@@ -341,7 +341,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.init = function() {
-		//console.log("com.developedbyme.utils.math.LineIntersection2d::_init");
+		//console.log("dbm.utils.math.LineIntersection2d::_init");
 		
 		this._setAsNullResult();
 		
@@ -399,7 +399,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.findLineIntersection = function(aPoint1, aVector1, aPoint2, aVector2) {
-		//console.log("com.developedbyme.utils.math.LineIntersection::findLineIntersection");
+		//console.log("dbm.utils.math.LineIntersection::findLineIntersection");
 		//console.log(aPoint1, aVector1, aPoint2, aVector2);
 		
 		if(aVector1.x === 0) {
@@ -651,7 +651,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.findClosestParameterToPointInRange = function(aLinePoint, aLineVector, aPoint, aMinAngle, aMaxAngle) {
-		//console.log("com.developedbyme.utils.math.LineIntersection2d::findClosestParameterToPointInRange");
+		//console.log("dbm.utils.math.LineIntersection2d::findClosestParameterToPointInRange");
 		
 		var tempLineIntersection = ClassReference.getTempLineIntersection();
 		var tempVector = ClassReference.getTempVector();

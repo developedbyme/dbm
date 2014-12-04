@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	
-	var CssLanguageFunctions = dbm.importClass("com.developedbyme.utils.native.string.CssLanguageFunctions");
-	var CssReferenceFunctions = dbm.importClass("com.developedbyme.utils.css.CssReferenceFunctions");
+	var CssLanguageFunctions = dbm.importClass("dbm.utils.native.string.CssLanguageFunctions");
+	var CssReferenceFunctions = dbm.importClass("dbm.utils.css.CssReferenceFunctions");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

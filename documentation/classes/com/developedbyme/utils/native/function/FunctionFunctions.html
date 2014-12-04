@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>FunctionFunctions</h1>
-					<div class="classPath">com.developedbyme.utils.native.function.FunctionFunctions</div>
+					<div class="classPath">dbm.utils.native.function.FunctionFunctions</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
@@ -38,28 +38,28 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.JavascriptObjectTypes" href="../../../constants/JavascriptObjectTypes.html">JavascriptObjectTypes</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.JavascriptObjectTypes" href="../../../constants/JavascriptObjectTypes.html">JavascriptObjectTypes</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var FunctionFunctions = dbm.importClass("com.developedbyme.utils.native.function.FunctionFunctions");</div>
+									<div class="code">var FunctionFunctions = dbm.importClass("dbm.utils.native.function.FunctionFunctions");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.native.function.FunctionFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.native.function.FunctionFunctions");
+									<div class="code">dbm.registerClass("dbm.utils.native.function.FunctionFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.native.function.FunctionFunctions");
 	
-	var FunctionFunctions = dbm.importClass("com.developedbyme.utils.native.function.FunctionFunctions");
+	var FunctionFunctions = dbm.importClass("dbm.utils.native.function.FunctionFunctions");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
 	
 	staticFunctions.getCallbackFunction = function(aObject, aFunction) {
 		//METODO: do a try catch for silent error catch
@@ -73,10 +73,10 @@
 	staticFunctions.getCallbackFunction1Argument = function(aObject, aFunction) {
 		//METODO: do a try catch for silent error catch
 		var returnFunction = function(aArgument1) {
-			//console.log("com.developedbyme.utils.native.function.FunctionFunctions::getCallbackFunction1Argument (callback)");
+			//console.log("dbm.utils.native.function.FunctionFunctions::getCallbackFunction1Argument (callback)");
 			//console.log(aObject, aFunction, aArgument1);
 			aFunction.call(aObject, aArgument1);
-			//console.log("com.developedbyme.utils.native.function.FunctionFunctions::getCallbackFunction1Argument (callback done)");
+			//console.log("dbm.utils.native.function.FunctionFunctions::getCallbackFunction1Argument (callback done)");
 		};
 		
 		return returnFunction;
@@ -186,10 +186,10 @@
 								<div class="code">staticFunctions.getCallbackFunction1Argument = function(aObject, aFunction) {
 		//METODO: do a try catch for silent error catch
 		var returnFunction = function(aArgument1) {
-			//console.log("com.developedbyme.utils.native.function.FunctionFunctions::getCallbackFunction1Argument (callback)");
+			//console.log("dbm.utils.native.function.FunctionFunctions::getCallbackFunction1Argument (callback)");
 			//console.log(aObject, aFunction, aArgument1);
 			aFunction.call(aObject, aArgument1);
-			//console.log("com.developedbyme.utils.native.function.FunctionFunctions::getCallbackFunction1Argument (callback done)");
+			//console.log("dbm.utils.native.function.FunctionFunctions::getCallbackFunction1Argument (callback done)");
 		};
 		
 		return returnFunction;

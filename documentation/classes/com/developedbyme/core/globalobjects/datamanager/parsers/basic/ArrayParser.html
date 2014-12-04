@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ArrayParser</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject" href="../ParserBaseObject.html">ParserBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.datamanager.parsers.basic.ArrayParser</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.datamanager.parsers.ParserBaseObject" href="../ParserBaseObject.html">ParserBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,31 +38,31 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject" href="../../objects/ParserResultDataObject.html">ParserResultDataObject</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.datamanager.objects.ParserResultDataObject" href="../../objects/ParserResultDataObject.html">ParserResultDataObject</a>, <a title="dbm.utils.data.VariableAliases" href="../../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ArrayParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser");</div>
+									<div class="code">var ArrayParser = dbm.importClass("dbm.core.globalobjects.datamanager.parsers.basic.ArrayParser");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser", "com.developedbyme.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.datamanager.parsers.basic.ArrayParser", "dbm.core.globalobjects.datamanager.parsers.ParserBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.datamanager.parsers.basic.ArrayParser");
 	
 	//Self reference
-	var ArrayParser = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser");
+	var ArrayParser = dbm.importClass("dbm.core.globalobjects.datamanager.parsers.basic.ArrayParser");
 	
 	//Error report
 	
 	//Dependencies
-	var ParserResultDataObject = dbm.importClass("com.developedbyme.core.globalobjects.datamanager.objects.ParserResultDataObject");
+	var ParserResultDataObject = dbm.importClass("dbm.core.globalobjects.datamanager.objects.ParserResultDataObject");
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -71,7 +71,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser::_init");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.basic.ArrayParser::_init");
 		
 		this.superCall();
 		
@@ -88,7 +88,7 @@
 	};
 	
 	objectFunctions._createResult = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser::_createResult");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.basic.ArrayParser::_createResult");
 		
 		var result = ParserResultDataObject.create(new Array());
 		result.childrenIsProperties = 2;
@@ -135,7 +135,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser::_init");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.basic.ArrayParser::_init");
 		
 		this.superCall();
 		
@@ -215,7 +215,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._createResult = function() {
-		//console.log("com.developedbyme.core.globalobjects.datamanager.parsers.basic.ArrayParser::_createResult");
+		//console.log("dbm.core.globalobjects.datamanager.parsers.basic.ArrayParser::_createResult");
 		
 		var result = ParserResultDataObject.create(new Array());
 		result.childrenIsProperties = 2;

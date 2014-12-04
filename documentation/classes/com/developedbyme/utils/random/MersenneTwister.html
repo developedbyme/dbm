@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>MersenneTwister</h1>
-					<div class="classPath">com.developedbyme.utils.random.MersenneTwister</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.random.MersenneTwister</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A mersenne twister random generator.</div>
 						<div class="spacedContent">
@@ -44,16 +44,16 @@
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var MersenneTwister = dbm.importClass("com.developedbyme.utils.random.MersenneTwister");</div>
+									<div class="code">var MersenneTwister = dbm.importClass("dbm.utils.random.MersenneTwister");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.random.MersenneTwister", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.random.MersenneTwister");
+									<div class="code">dbm.registerClass("dbm.utils.random.MersenneTwister", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.random.MersenneTwister");
 	
-	var MersenneTwister = dbm.importClass("com.developedbyme.utils.random.MersenneTwister");
+	var MersenneTwister = dbm.importClass("dbm.utils.random.MersenneTwister");
 	
 	staticFunctions.N = 624;
 	staticFunctions.M = 397;
@@ -68,7 +68,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_init");
+		//console.log("dbm.utils.random.MersenneTwister::_init");
 		
 		this.mt = new Array(ClassReference.N); /* the array for the state vector  */
 		this.mti = ClassReference.N+1; /* mti==N+1 means mt[N] is not initialized */
@@ -77,7 +77,7 @@
 	}; //End function MersenneTwister
 	
 	objectFunctions._multiplyUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_multiplyUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_multiplyUint32");
 		//console.log(aNumber1, aNumber2);
 		var rotateTimes = Math.ceil(0xFFFFFFFF/aNumber2);
 		//console.log("rotateTimes", rotateTimes);
@@ -105,7 +105,7 @@
 	
 	/*
 	objectFunctions._multiplyUint32For = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_multiplyUint32For");
+		//console.log("dbm.utils.random.MersenneTwister::_multiplyUint32For");
 		var returnValue = 0;
 		for(var i = 0; i &lt; aNumber2; i++) {
 			returnValue = this._addUint32(returnValue, aNumber1);
@@ -115,7 +115,7 @@
 	*/
 	
 	objectFunctions._addUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_addUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_addUint32");
 		var left = 0xFFFFFFFF-aNumber2;
 		if(left &gt;= aNumber1) {
 			return aNumber1+aNumber2;
@@ -124,7 +124,7 @@
 	};
 	
 	objectFunctions._subtractUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_subtractUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_subtractUint32");
 		if(aNumber1 &gt;= aNumber2) {
 			return aNumber1-aNumber2;
 		}
@@ -132,7 +132,7 @@
 	};
 	
 	objectFunctions._andUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_andUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_andUint32");
 		var returnValue = 0;
 		for(var i = 0; i &lt; 32; i++) {
 			var shiftValue = 1 &lt;&lt; i;
@@ -144,7 +144,7 @@
 	};
 	
 	objectFunctions._orUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_orUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_orUint32");
 		var returnValue = 0;
 		for(var i = 0; i &lt; 32; i++) {
 			var shiftValue = 1 &lt;&lt; i;
@@ -156,7 +156,7 @@
 	};
 	
 	objectFunctions._xorUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_xorUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_xorUint32");
 		var returnValue = 0;
 		for(var i = 0; i &lt; 32; i++) {
 			var shiftValue = 1 &lt;&lt; i;
@@ -247,7 +247,7 @@
 	 * Generates a random number on [0,0xffffffff]-interval
 	 */
 	objectFunctions.generateInt32 = function() {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::generateInt32");
+		//console.log("dbm.utils.random.MersenneTwister::generateInt32");
 		var yValue;
 		ClassReference.mag01[0] = 0;
 		ClassReference.mag01[1] = ClassReference.MATRIX_A;
@@ -386,7 +386,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_init");
+		//console.log("dbm.utils.random.MersenneTwister::_init");
 		
 		this.mt = new Array(ClassReference.N); /* the array for the state vector  */
 		this.mti = ClassReference.N+1; /* mti==N+1 means mt[N] is not initialized */
@@ -416,7 +416,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._multiplyUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_multiplyUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_multiplyUint32");
 		//console.log(aNumber1, aNumber2);
 		var rotateTimes = Math.ceil(0xFFFFFFFF/aNumber2);
 		//console.log("rotateTimes", rotateTimes);
@@ -464,7 +464,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._addUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_addUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_addUint32");
 		var left = 0xFFFFFFFF-aNumber2;
 		if(left &gt;= aNumber1) {
 			return aNumber1+aNumber2;
@@ -494,7 +494,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._subtractUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_subtractUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_subtractUint32");
 		if(aNumber1 &gt;= aNumber2) {
 			return aNumber1-aNumber2;
 		}
@@ -523,7 +523,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._andUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_andUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_andUint32");
 		var returnValue = 0;
 		for(var i = 0; i &lt; 32; i++) {
 			var shiftValue = 1 &lt;&lt; i;
@@ -556,7 +556,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._orUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_orUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_orUint32");
 		var returnValue = 0;
 		for(var i = 0; i &lt; 32; i++) {
 			var shiftValue = 1 &lt;&lt; i;
@@ -589,7 +589,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._xorUint32 = function(aNumber1, aNumber2) {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::_xorUint32");
+		//console.log("dbm.utils.random.MersenneTwister::_xorUint32");
 		var returnValue = 0;
 		for(var i = 0; i &lt; 32; i++) {
 			var shiftValue = 1 &lt;&lt; i;
@@ -726,7 +726,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.generateInt32 = function() {
-		//console.log("com.developedbyme.utils.random.MersenneTwister::generateInt32");
+		//console.log("dbm.utils.random.MersenneTwister::generateInt32");
 		var yValue;
 		ClassReference.mag01[0] = 0;
 		ClassReference.mag01[1] = ClassReference.MATRIX_A;

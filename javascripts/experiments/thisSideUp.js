@@ -1,22 +1,22 @@
 dbm.runTempFunction(function() {
 	
-	var PlaceElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
+	var PlaceElementNode = dbm.importClass("dbm.flow.nodes.display.PlaceElementNode");
 	
-	var DeviceOrientation = dbm.importClass("com.developedbyme.utils.device.DeviceOrientation");
-	var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");
-	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
-	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
-	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
-	var SubtractionNode = dbm.importClass("com.developedbyme.flow.nodes.math.SubtractionNode");
-	var MultiplicationNode = dbm.importClass("com.developedbyme.flow.nodes.math.MultiplicationNode");
-	var DivisionNode = dbm.importClass("com.developedbyme.flow.nodes.math.DivisionNode");
-	var PrintTextNode = dbm.importClass("com.developedbyme.flow.nodes.display.PrintTextNode");
-	var FlowGroup = dbm.importClass("com.developedbyme.flow.FlowGroup");
-	var IterativeFlowGroup = dbm.importClass("com.developedbyme.flow.IterativeFlowGroup");
-	var HypotenuseNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.HypotenuseNode");
-	var MaxNode = dbm.importClass("com.developedbyme.flow.nodes.math.MaxNode");
-	var CosNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode");
-	var SinNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.SinNode");
+	var DeviceOrientation = dbm.importClass("dbm.utils.device.DeviceOrientation");
+	var GlobalTimeNode = dbm.importClass("dbm.flow.nodes.time.GlobalTimeNode");
+	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
+	var PropertiesHolder = dbm.importClass("dbm.flow.PropertiesHolder");
+	var AdditionNode = dbm.importClass("dbm.flow.nodes.math.AdditionNode");
+	var SubtractionNode = dbm.importClass("dbm.flow.nodes.math.SubtractionNode");
+	var MultiplicationNode = dbm.importClass("dbm.flow.nodes.math.MultiplicationNode");
+	var DivisionNode = dbm.importClass("dbm.flow.nodes.math.DivisionNode");
+	var PrintTextNode = dbm.importClass("dbm.flow.nodes.display.PrintTextNode");
+	var FlowGroup = dbm.importClass("dbm.flow.FlowGroup");
+	var IterativeFlowGroup = dbm.importClass("dbm.flow.IterativeFlowGroup");
+	var HypotenuseNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.HypotenuseNode");
+	var MaxNode = dbm.importClass("dbm.flow.nodes.math.MaxNode");
+	var CosNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.CosNode");
+	var SinNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.SinNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

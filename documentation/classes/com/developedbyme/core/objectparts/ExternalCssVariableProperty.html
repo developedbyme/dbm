@@ -28,53 +28,53 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ExternalCssVariableProperty</h1>
-					<div class="classPath">com.developedbyme.core.objectparts.ExternalCssVariableProperty</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.objectparts.ExternalCssVariableProperty</div>
+					<div class="classInheritance"><a title="dbm.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.core.objectparts.ExternalPrefixedCssVariableProperty" href="ExternalPrefixedCssVariableProperty.html">ExternalPrefixedCssVariableProperty</a></div>
+							<div class="subClasses linkList"><a title="dbm.core.objectparts.ExternalPrefixedCssVariableProperty" href="ExternalPrefixedCssVariableProperty.html">ExternalPrefixedCssVariableProperty</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.css.CssFunctions" href="../../utils/css/CssFunctions.html">CssFunctions</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.css.CssFunctions" href="../../utils/css/CssFunctions.html">CssFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");</div>
+									<div class="code">var ExternalCssVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalCssVariableProperty");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
+									<div class="code">dbm.registerClass("dbm.core.objectparts.ExternalCssVariableProperty", "dbm.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.ExternalCssVariableProperty");
 	//"use strict";
 	
 	//Self reference
-	var ExternalCssVariableProperty = dbm.importClass("com.developedbyme.core.objectparts.ExternalCssVariableProperty");
+	var ExternalCssVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalCssVariableProperty");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
 	
 	//Utils
-	var CssFunctions = dbm.importClass("com.developedbyme.utils.css.CssFunctions");
+	var CssFunctions = dbm.importClass("dbm.utils.css.CssFunctions");
 	
 	//Constants
-	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::_init");
+		//console.log("dbm.core.objectparts.ExternalCssVariableProperty::_init");
 		
 		this.superCall();
 		
@@ -87,7 +87,7 @@
 	};
 	
 	objectFunctions._performSetValue = function(aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::_performSetValue");
+		//console.log("dbm.core.objectparts.ExternalCssVariableProperty::_performSetValue");
 		//console.log(aValue);
 		
 		if(this._externalObject === null) {
@@ -120,7 +120,7 @@
 	};
 	
 	objectFunctions.setup = function(aVariableName, aUnit, aDefaultValue) {
-		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::setup");
+		//console.log("dbm.core.objectparts.ExternalCssVariableProperty::setup");
 		//console.log(aVariableName, aUnit, aDefaultValue);
 		
 		this._externalVariableName = aVariableName;
@@ -142,7 +142,7 @@
 	};
 	
 	objectFunctions.setExternalObject = function(aObject) {
-		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::setExternalObject");
+		//console.log("dbm.core.objectparts.ExternalCssVariableProperty::setExternalObject");
 		//console.log(aObject);
 		
 		if(this._externalObject !== null) {
@@ -250,7 +250,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::_init");
+		//console.log("dbm.core.objectparts.ExternalCssVariableProperty::_init");
 		
 		this.superCall();
 		
@@ -284,7 +284,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._performSetValue = function(aValue) {
-		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::_performSetValue");
+		//console.log("dbm.core.objectparts.ExternalCssVariableProperty::_performSetValue");
 		//console.log(aValue);
 		
 		if(this._externalObject === null) {
@@ -359,7 +359,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setup = function(aVariableName, aUnit, aDefaultValue) {
-		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::setup");
+		//console.log("dbm.core.objectparts.ExternalCssVariableProperty::setup");
 		//console.log(aVariableName, aUnit, aDefaultValue);
 		
 		this._externalVariableName = aVariableName;
@@ -402,7 +402,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setExternalObject = function(aObject) {
-		//console.log("com.developedbyme.core.objectparts.ExternalCssVariableProperty::setExternalObject");
+		//console.log("dbm.core.objectparts.ExternalCssVariableProperty::setExternalObject");
 		//console.log(aObject);
 		
 		if(this._externalObject !== null) {

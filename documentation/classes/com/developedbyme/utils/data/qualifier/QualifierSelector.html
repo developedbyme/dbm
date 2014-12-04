@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>QualifierSelector</h1>
-					<div class="classPath">com.developedbyme.utils.data.qualifier.QualifierSelector</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.data.ArrayHolder" href="../ArrayHolder.html">ArrayHolder</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.data.qualifier.QualifierSelector</div>
+					<div class="classInheritance"><a title="dbm.utils.data.ArrayHolder" href="../ArrayHolder.html">ArrayHolder</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Selector for data that has to be qualified.</div>
 						<div class="spacedContent">
@@ -38,28 +38,28 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.qualifier.QualifierDataHolder" href="QualifierDataHolder.html">QualifierDataHolder</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.data.qualifier.QualifierDataHolder" href="QualifierDataHolder.html">QualifierDataHolder</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var QualifierSelector = dbm.importClass("com.developedbyme.utils.data.qualifier.QualifierSelector");</div>
+									<div class="code">var QualifierSelector = dbm.importClass("dbm.utils.data.qualifier.QualifierSelector");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.data.qualifier.QualifierSelector", "com.developedbyme.utils.data.ArrayHolder", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.data.qualifier.QualifierSelector");
+									<div class="code">dbm.registerClass("dbm.utils.data.qualifier.QualifierSelector", "dbm.utils.data.ArrayHolder", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.qualifier.QualifierSelector");
 	
 	//Self reference
-	var QualifierSelector = dbm.importClass("com.developedbyme.utils.data.qualifier.QualifierSelector");
+	var QualifierSelector = dbm.importClass("dbm.utils.data.qualifier.QualifierSelector");
 	
 	//Error report
 	
 	//Dependencies
-	var QualifierDataHolder = dbm.importClass("com.developedbyme.utils.data.qualifier.QualifierDataHolder");
+	var QualifierDataHolder = dbm.importClass("dbm.utils.data.qualifier.QualifierDataHolder");
 	
 	//Utils
 	
@@ -70,7 +70,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.qualifier.QualifierSelector::_init");
+		//console.log("dbm.utils.data.qualifier.QualifierSelector::_init");
 		
 		this.superCall();
 		
@@ -80,7 +80,7 @@
 	}; //End function QualifierSelector
 	
 	objectFunctions.addQualifiedData = function(aQualificationReevaluator, aData, aOwnsData) {
-		//console.log("com.developedbyme.utils.data.qualifier.QualifierSelector::addQualifiedData");
+		//console.log("dbm.utils.data.qualifier.QualifierSelector::addQualifiedData");
 		//console.log(aQualificationReevaluator, aData, aOwnsData);
 		
 		this.array.push(QualifierDataHolder.create(aQualificationReevaluator, aData, aOwnsData));
@@ -96,7 +96,7 @@
 	 * @return	Any	The first data that is qualified. Null if no data is qualified.
 	 */
 	objectFunctions.selectQualifiedData = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.data.qualifier.QualifierSelector::selectQualifiedData");
+		//console.log("dbm.utils.data.qualifier.QualifierSelector::selectQualifiedData");
 		//console.log(this);
 		
 		var currentArray = this.array;
@@ -154,7 +154,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.qualifier.QualifierSelector::_init");
+		//console.log("dbm.utils.data.qualifier.QualifierSelector::_init");
 		
 		this.superCall();
 		
@@ -185,7 +185,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addQualifiedData = function(aQualificationReevaluator, aData, aOwnsData) {
-		//console.log("com.developedbyme.utils.data.qualifier.QualifierSelector::addQualifiedData");
+		//console.log("dbm.utils.data.qualifier.QualifierSelector::addQualifiedData");
 		//console.log(aQualificationReevaluator, aData, aOwnsData);
 		
 		this.array.push(QualifierDataHolder.create(aQualificationReevaluator, aData, aOwnsData));
@@ -215,7 +215,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.selectQualifiedData = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.data.qualifier.QualifierSelector::selectQualifiedData");
+		//console.log("dbm.utils.data.qualifier.QualifierSelector::selectQualifiedData");
 		//console.log(this);
 		
 		var currentArray = this.array;

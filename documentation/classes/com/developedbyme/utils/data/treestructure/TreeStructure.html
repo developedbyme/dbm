@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>TreeStructure</h1>
-					<div class="classPath">com.developedbyme.utils.data.treestructure.TreeStructure</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.data.treestructure.TreeStructure</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A tree structure.</div>
 						<div class="spacedContent">
@@ -38,41 +38,41 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.extendedevents.GenericExtendedEventIds" href="../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="TreeStructureItem.html">TreeStructureItem</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.extendedevents.GenericExtendedEventIds" href="../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="dbm.utils.data.treestructure.TreeStructureItem" href="TreeStructureItem.html">TreeStructureItem</a>, <a title="dbm.utils.data.VariableAliases" href="../VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");</div>
+									<div class="code">var TreeStructure = dbm.importClass("dbm.utils.data.treestructure.TreeStructure");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.data.treestructure.TreeStructure", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.data.treestructure.TreeStructure");
+									<div class="code">dbm.registerClass("dbm.utils.data.treestructure.TreeStructure", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.treestructure.TreeStructure");
 	//"use strict";
 	
 	//Self reference
-	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
+	var TreeStructure = dbm.importClass("dbm.utils.data.treestructure.TreeStructure");
 	
 	//Error report
 	
 	//Dependencies
-	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
+	var TreeStructureItem = dbm.importClass("dbm.utils.data.treestructure.TreeStructureItem");
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::_init");
+		//console.log("dbm.utils.data.treestructure.TreeStructure::_init");
 		
 		this.superCall();
 		
@@ -100,7 +100,7 @@
 	 * Adds an item.
 	 */
 	objectFunctions.addItem = function(aItem, aPath, aBaseItem) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::addItem");
+		//console.log("dbm.utils.data.treestructure.TreeStructure::addItem");
 		//sconsole.log(aItem, aPath, aBaseItem);
 		
 		var lastSlashIndex = aPath.lastIndexOf("/");
@@ -143,7 +143,7 @@
 	 * Gets an item by path.
 	 */
 	objectFunctions.getItemByPath = function(aPath, aBaseItem) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::getItemByPath");
+		//console.log("dbm.utils.data.treestructure.TreeStructure::getItemByPath");
 		//console.log(aPath, aBaseItem);
 		
 		var currentItem = VariableAliases.valueWithDefault(aBaseItem, this._root);
@@ -235,7 +235,7 @@
 	 * @return	TreeStructure	The newly created object.
 	 */
 	staticFunctions.create = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::create");
+		//console.log("dbm.utils.data.treestructure.TreeStructure::create");
 		var newTreeStructure = (new ClassReference()).init();
 		
 		return newTreeStructure;
@@ -275,7 +275,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::_init");
+		//console.log("dbm.utils.data.treestructure.TreeStructure::_init");
 		
 		this.superCall();
 		
@@ -295,7 +295,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">getRoot</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="TreeStructureItem.html">TreeStructureItem</a></span>
+					<span class="functionName">getRoot</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.utils.data.treestructure.TreeStructureItem" href="TreeStructureItem.html">TreeStructureItem</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Gets the root of the tree structure.</div>
@@ -305,7 +305,7 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="TreeStructureItem.html">TreeStructureItem</a> - The root item of this tree structure.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.data.treestructure.TreeStructureItem" href="TreeStructureItem.html">TreeStructureItem</a> - The root item of this tree structure.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -337,7 +337,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addItem = function(aItem, aPath, aBaseItem) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::addItem");
+		//console.log("dbm.utils.data.treestructure.TreeStructure::addItem");
 		//sconsole.log(aItem, aPath, aBaseItem);
 		
 		var lastSlashIndex = aPath.lastIndexOf("/");
@@ -416,7 +416,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getItemByPath = function(aPath, aBaseItem) {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::getItemByPath");
+		//console.log("dbm.utils.data.treestructure.TreeStructure::getItemByPath");
 		//console.log(aPath, aBaseItem);
 		
 		var currentItem = VariableAliases.valueWithDefault(aBaseItem, this._root);
@@ -594,7 +594,7 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.treestructure.TreeStructure" href="TreeStructure.html">TreeStructure</a></span>
+					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.utils.data.treestructure.TreeStructure" href="TreeStructure.html">TreeStructure</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class.</div>
@@ -604,14 +604,14 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.treestructure.TreeStructure" href="TreeStructure.html">TreeStructure</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.data.treestructure.TreeStructure" href="TreeStructure.html">TreeStructure</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function() {
-		//console.log("com.developedbyme.utils.data.treestructure.TreeStructure::create");
+		//console.log("dbm.utils.data.treestructure.TreeStructure::create");
 		var newTreeStructure = (new ClassReference()).init();
 		
 		return newTreeStructure;

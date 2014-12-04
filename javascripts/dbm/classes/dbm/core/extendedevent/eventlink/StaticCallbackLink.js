@@ -1,0 +1,128 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("dbm.core.extendedevent.eventlink.StaticCallbackLink", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.eventlink.StaticCallbackLink");
+	
+	//Self reference
+	var StaticCallbackLink = dbm.importClass("dbm.core.extendedevent.eventlink.StaticCallbackLink");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	var EventListenerFunctions = dbm.importClass("dbm.utils.native.function.EventListenerFunctions");
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.core.extendedevent.eventlink.StaticCallbackLink::_init");
+		
+		this.superCall();
+		
+		this._isActive = false;
+		
+		this._performerObject = null;
+		this._extendedEventName = null;
+		
+		this._eventCallback = EventListenerFunctions.createCallbackFunction(this);
+		
+		return this;
+	};
+	
+	objectFunctions.getCallbackFunction = function() {
+		return this._eventCallback;
+	};
+	
+	objectFunctions.setupLink = function(aEventPerformer, aExtendedEventName) {
+		
+		this._performerObject = aEventPerformer;
+		this._extendedEventName = aExtendedEventName;
+		
+		return this;
+	};
+	
+	objectFunctions.activate = function() {
+		//console.log("dbm.core.extendedevent.eventlink.StaticCallbackLink::activate");
+		//console.log(this._javascriptEventName, this._extendedEventName, this._useCapture);
+		if(this._isActive) return this;
+		
+		this._isActive = true;
+		
+		//MENOTE: do nothing
+		
+		return this;
+	};
+	
+	objectFunctions.deactivate = function() {
+		//console.log("dbm.core.extendedevent.eventlink.StaticCallbackLink::deactivate");
+		if(!this._isActive) return this;
+		
+		this._isActive = false;
+		
+		//MENOTE: do nothing
+		
+		return this;
+	};
+	
+	objectFunctions.reactivate = function() {
+		//console.log("dbm.core.extendedevent.eventlink.StaticCallbackLink::reactivate");
+		
+		//MENOTE: do nothing
+		
+		return this;
+	};
+	
+	objectFunctions.performDestroy = function() {
+		//console.log("dbm.core.extendedevent.eventlink.StaticCallbackLink::performDestroy");
+		//console.log(this._javascriptEventName);
+		
+		if(this._isActive && this._eventDispatcher !== null) {
+			this.deactivate();
+		}
+		if(this._eventCallback !== null && this._eventCallback._deleteEventCallback !== null) {
+			this._eventCallback._deleteEventCallback();
+			this._eventCallback._deleteEventCallback = null;
+		}
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._performerObject = null;
+		this._extendedEventName = null;
+		this._eventCallback = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aEventPerformer, aExtendedEventName) {
+		
+		return (new StaticCallbackLink()).init().setupLink(aEventPerformer, aExtendedEventName);
+	};
+	
+	staticFunctions.createAndAddCallbackLink = function(aEventPerformer, aExtendedEventName) {
+		var newStaticCallbackLink = ClassReference.create(aEventPerformer, aExtendedEventName);
+		
+		aEventPerformer.addEventLink(newStaticCallbackLink, aExtendedEventName, true);
+		
+		return newStaticCallbackLink;
+	};
+	
+	staticFunctions.addSetOfCallbackLinks = function(aEventPerformer, aExtendedEventNames, aReturnNamedArray) {
+		
+		var currentArray = aExtendedEventNames;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentName = currentArray[i];
+			var newStaticCallbackLink = ClassReference.createAndAddCallbackLink(aEventPerformer, currentName);
+			aReturnNamedArray.addObject(currentName, newStaticCallbackLink);
+		}
+	};
+});

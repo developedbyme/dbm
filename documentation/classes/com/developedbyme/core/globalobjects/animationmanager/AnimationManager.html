@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>AnimationManager</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.AnimationManager</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.animationmanager.AnimationManager</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,41 +38,41 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.flow.nodes.animation.EvaluateTimelineNode" href="../../../flow/nodes/animation/EvaluateTimelineNode.html">EvaluateTimelineNode</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.flow.nodes.time.GlobalTimeNode" href="../../../flow/nodes/time/GlobalTimeNode.html">GlobalTimeNode</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.flow.nodes.time.PlaybackNode" href="../../../flow/nodes/time/PlaybackNode.html">PlaybackNode</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder" href="data/TemporaryTimelineHolder.html">TemporaryTimelineHolder</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline" href="timeline/Timeline.html">Timeline</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.flow.nodes.animation.EvaluateTimelineNode" href="../../../flow/nodes/animation/EvaluateTimelineNode.html">EvaluateTimelineNode</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.flow.nodes.time.GlobalTimeNode" href="../../../flow/nodes/time/GlobalTimeNode.html">GlobalTimeNode</a>, <a title="dbm.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.flow.nodes.time.PlaybackNode" href="../../../flow/nodes/time/PlaybackNode.html">PlaybackNode</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.globalobjects.animationmanager.data.TemporaryTimelineHolder" href="data/TemporaryTimelineHolder.html">TemporaryTimelineHolder</a>, <a title="dbm.core.globalobjects.animationmanager.timeline.Timeline" href="timeline/Timeline.html">Timeline</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var AnimationManager = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.AnimationManager");</div>
+									<div class="code">var AnimationManager = dbm.importClass("dbm.core.globalobjects.animationmanager.AnimationManager");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.AnimationManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.animationmanager.AnimationManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.animationmanager.AnimationManager");
 	
 	//Self reference
-	var AnimationManager = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.AnimationManager");
+	var AnimationManager = dbm.importClass("dbm.core.globalobjects.animationmanager.AnimationManager");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
-	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
-	var TemporaryTimelineHolder = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.data.TemporaryTimelineHolder");
-	var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");
-	var PlaybackNode = dbm.importClass("com.developedbyme.flow.nodes.time.PlaybackNode");
-	var EvaluateTimelineNode = dbm.importClass("com.developedbyme.flow.nodes.animation.EvaluateTimelineNode");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
+	var Timeline = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.Timeline");
+	var TemporaryTimelineHolder = dbm.importClass("dbm.core.globalobjects.animationmanager.data.TemporaryTimelineHolder");
+	var GlobalTimeNode = dbm.importClass("dbm.flow.nodes.time.GlobalTimeNode");
+	var PlaybackNode = dbm.importClass("dbm.flow.nodes.time.PlaybackNode");
+	var EvaluateTimelineNode = dbm.importClass("dbm.flow.nodes.animation.EvaluateTimelineNode");
 	
 	//Utils
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	//Constants
 	
@@ -83,7 +83,7 @@
 	 * Consructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::_init");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::_init");
 		
 		this.superCall();
 		
@@ -188,12 +188,12 @@
 	};
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::updateTime");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::updateTime");
 		
 	};
 	
 	objectFunctions.createTimeline = function(aStartValue, aConnectedOutput) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::createTimeline");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::createTimeline");
 		//console.log(aStartValue, aConnectedOutput);
 		
 		var newTimeline = Timeline.create(aStartValue);
@@ -237,7 +237,7 @@
 	};
 	
 	objectFunctions.setVariable = function(aObject, aVariable, aValue, aDelay) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::setVariable");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::setVariable");
 		
 		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aObject);
 		temporaryTimelineHolder.getProperty(aVariable).getAnimationController().setValue(aValue, aDelay);
@@ -245,7 +245,7 @@
 	};
 	
 	objectFunctions.animateVariable = function(aObject, aVariable, aValue, aTime, aInterpolation, aDelay) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::animateVariable");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::animateVariable");
 		
 		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aObject);
 		temporaryTimelineHolder.getProperty(aVariable).animateValue(aValue, aTime, aInterpolation, aDelay);
@@ -253,7 +253,7 @@
 	};
 	
 	objectFunctions.setCssVariable = function(aHtmlElement, aVariable, aValue, aDelay) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::setCssVariable");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::setCssVariable");
 		
 		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aHtmlElement);
 		temporaryTimelineHolder.getCssProperty(aVariable).getAnimationController().setValue(aValue, aDelay);
@@ -261,7 +261,7 @@
 	};
 	
 	objectFunctions.animateCssVariable = function(aHtmlElement, aVariable, aValue, aTime, aInterpolation, aDelay) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::animateCssVariable");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::animateCssVariable");
 		
 		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aHtmlElement);
 		temporaryTimelineHolder.getCssProperty(aVariable).animateValue(aValue, aTime, aInterpolation, aDelay);
@@ -308,7 +308,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::_init");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::_init");
 		
 		this.superCall();
 		
@@ -707,7 +707,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.updateTime = function(aTime, aFrame) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::updateTime");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::updateTime");
 		
 	}</div>
 							</div>
@@ -733,7 +733,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createTimeline = function(aStartValue, aConnectedOutput) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::createTimeline");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::createTimeline");
 		//console.log(aStartValue, aConnectedOutput);
 		
 		var newTimeline = Timeline.create(aStartValue);
@@ -861,7 +861,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setVariable = function(aObject, aVariable, aValue, aDelay) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::setVariable");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::setVariable");
 		
 		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aObject);
 		temporaryTimelineHolder.getProperty(aVariable).getAnimationController().setValue(aValue, aDelay);
@@ -890,7 +890,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.animateVariable = function(aObject, aVariable, aValue, aTime, aInterpolation, aDelay) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::animateVariable");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::animateVariable");
 		
 		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aObject);
 		temporaryTimelineHolder.getProperty(aVariable).animateValue(aValue, aTime, aInterpolation, aDelay);
@@ -919,7 +919,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setCssVariable = function(aHtmlElement, aVariable, aValue, aDelay) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::setCssVariable");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::setCssVariable");
 		
 		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aHtmlElement);
 		temporaryTimelineHolder.getCssProperty(aVariable).getAnimationController().setValue(aValue, aDelay);
@@ -948,7 +948,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.animateCssVariable = function(aHtmlElement, aVariable, aValue, aTime, aInterpolation, aDelay) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.AnimationManager::animateCssVariable");
+		//console.log("dbm.core.globalobjects.animationmanager.AnimationManager::animateCssVariable");
 		
 		var temporaryTimelineHolder = this._getTemporaryTimelineHolder(aHtmlElement);
 		temporaryTimelineHolder.getCssProperty(aVariable).animateValue(aValue, aTime, aInterpolation, aDelay);

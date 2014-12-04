@@ -28,47 +28,47 @@
 			<article>
 				<div class="mainInfo">
 					<h1>EncodingBaseObject</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder" href="data/ExportMetaDataEncoder.html">ExportMetaDataEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder" href="graphics/gradient/GradientEncoder.html">GradientEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.timeline.InterpolationTimelinePartEncoder" href="timeline/InterpolationTimelinePartEncoder.html">InterpolationTimelinePartEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder" href="data/NamedArrayEncoder.html">NamedArrayEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder" href="data/points/PointsArrayEncoder.html">PointsArrayEncoder</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.timeline.TimelineEncoder" href="timeline/TimelineEncoder.html">TimelineEncoder</a></div>
+							<div class="subClasses linkList"><a title="dbm.core.globalobjects.xmlobjectencoder.encoders.data.ExportMetaDataEncoder" href="data/ExportMetaDataEncoder.html">ExportMetaDataEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.graphics.gradient.GradientEncoder" href="graphics/gradient/GradientEncoder.html">GradientEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.timeline.InterpolationTimelinePartEncoder" href="timeline/InterpolationTimelinePartEncoder.html">InterpolationTimelinePartEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.data.NamedArrayEncoder" href="data/NamedArrayEncoder.html">NamedArrayEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.data.points.PointsArrayEncoder" href="data/points/PointsArrayEncoder.html">PointsArrayEncoder</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encoders.timeline.TimelineEncoder" href="timeline/TimelineEncoder.html">TimelineEncoder</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.native.array.ArrayFunctions" href="../../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject" href="../encodingdata/EncodingDataObject.html">EncodingDataObject</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.xml.XmlCreator" href="../../../../utils/xml/XmlCreator.html">XmlCreator</a>, <a title="com.developedbyme.utils.xml.XmlModifier" href="../../../../utils/xml/XmlModifier.html">XmlModifier</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject" href="../encodingdata/EncodingDataObject.html">EncodingDataObject</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.data.NamedArray" href="../../../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.xml.XmlCreator" href="../../../../utils/xml/XmlCreator.html">XmlCreator</a>, <a title="dbm.utils.xml.XmlModifier" href="../../../../utils/xml/XmlModifier.html">XmlModifier</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var EncodingBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject");</div>
+									<div class="code">var EncodingBaseObject = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject");
 	
 	//Self reference
-	var EncodingBaseObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject");
+	var EncodingBaseObject = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var EncodingDataObject = dbm.importClass("com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject");
+	var EncodingDataObject = dbm.importClass("dbm.core.globalobjects.xmlobjectencoder.encodingdata.EncodingDataObject");
 	
 	//Utils
-	var XmlCreator = dbm.importClass("com.developedbyme.utils.xml.XmlCreator");
-	var XmlModifier = dbm.importClass("com.developedbyme.utils.xml.XmlModifier");
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var XmlCreator = dbm.importClass("dbm.utils.xml.XmlCreator");
+	var XmlModifier = dbm.importClass("dbm.utils.xml.XmlModifier");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
 	//Constants
 	
@@ -77,7 +77,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_init");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_init");
 		
 		this.superCall();
 		
@@ -101,7 +101,7 @@
 	};
 	
 	objectFunctions.addVariablesToEncode = function(aNames) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::addVariablesToEncode");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::addVariablesToEncode");
 		//console.log(aNames);
 		ArrayFunctions.concatToArray(this._variableNamesArray, aNames);
 		
@@ -121,7 +121,7 @@
 	};
 	
 	objectFunctions._createDataNode = function(aType, aClassName, aParentNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_createDataNode");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_createDataNode");
 		
 		var newNode = EncodingDataObject.createComplexValue(aType, aParentNode);
 		EncodingDataObject.createAttribute("data:class", aClassName, newNode);
@@ -130,7 +130,7 @@
 	};
 	
 	objectFunctions._encodeVariables = function(aValue, aNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeVariables");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeVariables");
 		//console.log(aValue, this._variableNamesArray);
 		
 		var currentArray = this._variableNamesArray;
@@ -168,27 +168,27 @@
 	};
 	
 	objectFunctions._encodeValue = function(aValue, aNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeValue");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeValue");
 		
 		this._encodeVariables(aValue, aNode);
 		this._encodeProperties(aValue, aNode);
 	};
 	
 	objectFunctions.encode = function(aValue, aNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
 		this._encodeValue(aValue, aNode);
 		return aNode;
 	};
 	
 	objectFunctions.encodeClass = function(aValue, aClassName, aParentNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encodeClass");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encodeClass");
 		var returnNode = this._createDataNode("dbmObject", aClassName, aParentNode);
 		this.encode(aValue, returnNode);
 		return returnNode;
 	};
 	
 	objectFunctions._encodeProperty = function(aProperty, aParentNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
 		//console.log(aProperty, aParentNode);
 		
 		if(aProperty._inputConnection === null &amp;&amp; aProperty._inputUpdateFunction === null) {
@@ -240,7 +240,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_init");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_init");
 		
 		this.superCall();
 		
@@ -327,7 +327,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addVariablesToEncode = function(aNames) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::addVariablesToEncode");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::addVariablesToEncode");
 		//console.log(aNames);
 		ArrayFunctions.concatToArray(this._variableNamesArray, aNames);
 		
@@ -410,7 +410,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._createDataNode = function(aType, aClassName, aParentNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_createDataNode");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_createDataNode");
 		
 		var newNode = EncodingDataObject.createComplexValue(aType, aParentNode);
 		EncodingDataObject.createAttribute("data:class", aClassName, newNode);
@@ -440,7 +440,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._encodeVariables = function(aValue, aNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeVariables");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeVariables");
 		//console.log(aValue, this._variableNamesArray);
 		
 		var currentArray = this._variableNamesArray;
@@ -520,7 +520,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._encodeValue = function(aValue, aNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeValue");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::_encodeValue");
 		
 		this._encodeVariables(aValue, aNode);
 		this._encodeProperties(aValue, aNode);
@@ -548,7 +548,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.encode = function(aValue, aNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
 		this._encodeValue(aValue, aNode);
 		return aNode;
 	}</div>
@@ -575,7 +575,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.encodeClass = function(aValue, aClassName, aParentNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encodeClass");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encodeClass");
 		var returnNode = this._createDataNode("dbmObject", aClassName, aParentNode);
 		this.encode(aValue, returnNode);
 		return returnNode;
@@ -603,7 +603,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._encodeProperty = function(aProperty, aParentNode) {
-		//console.log("com.developedbyme.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
+		//console.log("dbm.core.globalobjects.xmlobjectencoder.encoders.EncodingBaseObject::encode");
 		//console.log(aProperty, aParentNode);
 		
 		if(aProperty._inputConnection === null &amp;&amp; aProperty._inputUpdateFunction === null) {

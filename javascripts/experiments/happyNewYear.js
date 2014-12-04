@@ -1,15 +1,15 @@
 dbm.runTempFunction(function() {
 	
-	var HappyNewYearController = dbm.importClass("com.developedbyme.projects.experiments.happynewyear.HappyNewYearController");
+	var HappyNewYearController = dbm.importClass("dbm.projects.experiments.happynewyear.HappyNewYearController");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
+	var LoadingSequence = dbm.importClass("dbm.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	
-	var FlowUpdateChainCreator = dbm.importClass("com.developedbyme.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
+	var FlowUpdateChainCreator = dbm.importClass("dbm.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
 	
-	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var NumberFunctions = dbm.importClass("dbm.utils.native.number.NumberFunctions");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

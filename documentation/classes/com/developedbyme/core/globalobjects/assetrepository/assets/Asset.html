@@ -28,51 +28,51 @@
 			<article>
 				<div class="mainInfo">
 					<h1>Asset</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.assetrepository.assets.Asset</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.assetrepository.assets.Asset</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Base class for every asset</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.core.globalobjects.assetrepository.assets.AudioAsset" href="AudioAsset.html">AudioAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.FileReaderAsset" href="FileReaderAsset.html">FileReaderAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.ImageAsset" href="ImageAsset.html">ImageAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.VideoAsset" href="VideoAsset.html">VideoAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.XmlAsset" href="XmlAsset.html">XmlAsset</a>, <a title="com.developedbyme.core.globalobjects.assetrepository.assets.XmlIdElementAsset" href="XmlIdElementAsset.html">XmlIdElementAsset</a></div>
+							<div class="subClasses linkList"><a title="dbm.core.globalobjects.assetrepository.assets.AudioAsset" href="AudioAsset.html">AudioAsset</a>, <a title="dbm.core.globalobjects.assetrepository.assets.FileReaderAsset" href="FileReaderAsset.html">FileReaderAsset</a>, <a title="dbm.core.globalobjects.assetrepository.assets.ImageAsset" href="ImageAsset.html">ImageAsset</a>, <a title="dbm.core.globalobjects.assetrepository.assets.VideoAsset" href="VideoAsset.html">VideoAsset</a>, <a title="dbm.core.globalobjects.assetrepository.assets.XmlAsset" href="XmlAsset.html">XmlAsset</a>, <a title="dbm.core.globalobjects.assetrepository.assets.XmlIdElementAsset" href="XmlIdElementAsset.html">XmlIdElementAsset</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.AssetStatusTypes" href="../../../../constants/AssetStatusTypes.html">AssetStatusTypes</a>, <a title="com.developedbyme.constants.extendedevents.LoadingExtendedEventIds" href="../../../../constants/extendedevents/LoadingExtendedEventIds.html">LoadingExtendedEventIds</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.AssetStatusTypes" href="../../../../constants/AssetStatusTypes.html">AssetStatusTypes</a>, <a title="dbm.constants.extendedevents.LoadingExtendedEventIds" href="../../../../constants/extendedevents/LoadingExtendedEventIds.html">LoadingExtendedEventIds</a>, <a title="dbm.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var Asset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");</div>
+									<div class="code">var Asset = dbm.importClass("dbm.core.globalobjects.assetrepository.assets.Asset");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.Asset", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.assetrepository.assets.Asset");
 	//"use strict";
 	
 	//Self reference
-	var Asset = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.assets.Asset");
+	var Asset = dbm.importClass("dbm.core.globalobjects.assetrepository.assets.Asset");
 	
 	//Error report
 	
 	//Dependencies
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var AssetStatusTypes = dbm.importClass("com.developedbyme.constants.AssetStatusTypes");
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_init");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.Asset::_init");
 		
 		this.superCall();
 		
@@ -108,7 +108,7 @@
 	};
 	
 	objectFunctions._setStatus = function(aStatus) {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_setStatus");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.Asset::_setStatus");
 		//console.log(aStatus);
 		if(aStatus === AssetStatusTypes.LOADED || aStatus === AssetStatusTypes.LOADING_ERROR) {
 			this._loadProgress = 1;
@@ -254,7 +254,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_init");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.Asset::_init");
 		
 		this.superCall();
 		
@@ -416,7 +416,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._setStatus = function(aStatus) {
-		//console.log("com.developedbyme.core.globalobjects.assetrepository.assets.Asset::_setStatus");
+		//console.log("dbm.core.globalobjects.assetrepository.assets.Asset::_setStatus");
 		//console.log(aStatus);
 		if(aStatus === AssetStatusTypes.LOADED || aStatus === AssetStatusTypes.LOADING_ERROR) {
 			this._loadProgress = 1;

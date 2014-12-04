@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>GlobalTimeNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.time.GlobalTimeNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.time.GlobalTimeNode</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -44,17 +44,17 @@
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");</div>
+									<div class="code">var GlobalTimeNode = dbm.importClass("dbm.flow.nodes.time.GlobalTimeNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.time.GlobalTimeNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.time.GlobalTimeNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.time.GlobalTimeNode");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::_init");
+		//console.log("dbm.flow.nodes.time.GlobalTimeNode::_init");
 		
 		this.superCall();
 		
@@ -77,7 +77,7 @@
 	};
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {
-		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::updateTime");
+		//console.log("dbm.flow.nodes.time.GlobalTimeNode::updateTime");
 		//console.log(aTime);
 		this._time.setValue(aTime);
 		this._frame.setValue(aFrame);
@@ -130,7 +130,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::_init");
+		//console.log("dbm.flow.nodes.time.GlobalTimeNode::_init");
 		
 		this.superCall();
 		
@@ -216,7 +216,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.updateTime = function(aTime, aFrame) {
-		//console.log("com.developedbyme.flow.nodes.time.GlobalTimeNode::updateTime");
+		//console.log("dbm.flow.nodes.time.GlobalTimeNode::updateTime");
 		//console.log(aTime);
 		this._time.setValue(aTime);
 		this._frame.setValue(aFrame);

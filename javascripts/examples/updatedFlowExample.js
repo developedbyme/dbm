@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	
-	var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");
-	var PrintTextNode = dbm.importClass("com.developedbyme.flow.nodes.display.PrintTextNode");
+	var GlobalTimeNode = dbm.importClass("dbm.flow.nodes.time.GlobalTimeNode");
+	var PrintTextNode = dbm.importClass("dbm.flow.nodes.display.PrintTextNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

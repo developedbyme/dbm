@@ -28,39 +28,39 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ReevaluateArrayObject</h1>
-					<div class="classPath">com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject</div>
+					<div class="classInheritance"><a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayWithTypesObject" href="ReevaluateArrayWithTypesObject.html">ReevaluateArrayWithTypesObject</a></div>
+							<div class="subClasses linkList"><a title="dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayWithTypesObject" href="ReevaluateArrayWithTypesObject.html">ReevaluateArrayWithTypesObject</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a>, <a title="com.developedbyme.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.reevaluation.ReevaluationBaseObject" href="../ReevaluationBaseObject.html">ReevaluationBaseObject</a>, <a title="dbm.utils.reevaluation.ReevaluationCreator" href="../ReevaluationCreator.html">ReevaluationCreator</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");</div>
+									<div class="code">var ReevaluateArrayObject = dbm.importClass("dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject", "com.developedbyme.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
+									<div class="code">dbm.registerClass("dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject", "dbm.utils.reevaluation.ReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
 	
-	var ReevaluateArrayObject = dbm.importClass("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
+	var ReevaluateArrayObject = dbm.importClass("dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject");
 	
-	var ReevaluationCreator = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationCreator");
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
 	
-	var ReevaluationBaseObject = dbm.importClass("com.developedbyme.utils.reevaluation.ReevaluationBaseObject");
+	var ReevaluationBaseObject = dbm.importClass("dbm.utils.reevaluation.ReevaluationBaseObject");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::_init");
+		//console.log("dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::_init");
 		
 		this.superCall();
 		
@@ -74,7 +74,7 @@
 	};
 	
 	objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::reevaluate");
 		//console.log(this, aBaseObject);
 		
 		var currentArray = this.originalArray.reevaluate(aBaseObject);
@@ -155,7 +155,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::_init");
+		//console.log("dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::_init");
 		
 		this.superCall();
 		
@@ -211,7 +211,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
-		//console.log("com.developedbyme.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::reevaluate");
+		//console.log("dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject::reevaluate");
 		//console.log(this, aBaseObject);
 		
 		var currentArray = this.originalArray.reevaluate(aBaseObject);

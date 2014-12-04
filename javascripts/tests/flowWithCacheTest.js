@@ -1,6 +1,6 @@
 dbm.runTempFunction(function() {
 	
-	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
+	var AdditionNode = dbm.importClass("dbm.flow.nodes.math.AdditionNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

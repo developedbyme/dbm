@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CreateMultiSegmentBezierCurveFromPoints2d</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Object for creating a multi segment bezier curve from an array of points.</div>
 						<div class="spacedContent">
@@ -38,23 +38,23 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.data.points.Point" href="../../../data/points/Point.html">Point</a>, <a title="com.developedbyme.utils.math.VectorFunctions" href="../../../../utils/math/VectorFunctions.html">VectorFunctions</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.data.points.Point" href="../../../data/points/Point.html">Point</a>, <a title="dbm.utils.math.VectorFunctions" href="../../../../utils/math/VectorFunctions.html">VectorFunctions</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CreateMultiSegmentBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");</div>
+									<div class="code">var CreateMultiSegmentBezierCurveFromPoints2d = dbm.importClass("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
 	
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
-	var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
+	var VectorFunctions = dbm.importClass("dbm.utils.math.VectorFunctions");
 	
 	staticFunctions.TYPE_FLAG_IN = 1;
 	staticFunctions.TYPE_FLAG_OUT = (1&lt;&lt;1);
@@ -64,7 +64,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
 		
 		this.superCall();
 		
@@ -94,7 +94,7 @@
 	 * @param	aTypeFlag	The type to add.
 	 */
 	objectFunctions._createFromCurrentPoint = function(aTypeFlag) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_createFromCurrentPoint");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_createFromCurrentPoint");
 		var theLength = Math.min(this._inVectorLength, this._outVectorLength);
 		var useStraight = Boolean(aTypeFlag &amp; ClassReference.SKIP_VECTORS_FLAG);
 		if(!useStraight) {
@@ -172,7 +172,7 @@
 	 * @return	The length of the vector befor normalization.
 	 */
 	objectFunctions._setupVector = function(aCurrentPoint, aVectorPointingPoint, aOutputVector) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_setupVector");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_setupVector");
 		//console.log(aCurrentPoint, aVectorPointingPoint, aOutputVector);
 		aOutputVector.x = aVectorPointingPoint.x-aCurrentPoint.x;
 		aOutputVector.y = aVectorPointingPoint.y-aCurrentPoint.y;
@@ -191,7 +191,7 @@
 	 * @param	aIsRound		If the curve is round or not.
 	 */
 	objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aIsRound) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::createCurve");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::createCurve");
 		//console.log(aPointsArray, aReturnCurve, aIsRound);
 		this._isCompact = aReturnCurve.isCompact();
 		this._outputArray = aReturnCurve.pointsArray;
@@ -272,7 +272,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
 		
 		this.superCall();
 		
@@ -318,7 +318,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._createFromCurrentPoint = function(aTypeFlag) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_createFromCurrentPoint");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_createFromCurrentPoint");
 		var theLength = Math.min(this._inVectorLength, this._outVectorLength);
 		var useStraight = Boolean(aTypeFlag &amp; ClassReference.SKIP_VECTORS_FLAG);
 		if(!useStraight) {
@@ -427,7 +427,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._setupVector = function(aCurrentPoint, aVectorPointingPoint, aOutputVector) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_setupVector");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::_setupVector");
 		//console.log(aCurrentPoint, aVectorPointingPoint, aOutputVector);
 		aOutputVector.x = aVectorPointingPoint.x-aCurrentPoint.x;
 		aOutputVector.y = aVectorPointingPoint.y-aCurrentPoint.y;
@@ -460,7 +460,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aIsRound) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::createCurve");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d::createCurve");
 		//console.log(aPointsArray, aReturnCurve, aIsRound);
 		this._isCompact = aReturnCurve.isCompact();
 		this._outputArray = aReturnCurve.pointsArray;

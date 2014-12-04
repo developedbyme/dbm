@@ -1,13 +1,13 @@
 dbm.runTempFunction(function() {
 	
-	var GlobalTimeNode = dbm.importClass("com.developedbyme.flow.nodes.time.GlobalTimeNode");
-	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
-	var DivisionNode = dbm.importClass("com.developedbyme.flow.nodes.math.DivisionNode");
-	var PrintTextNode = dbm.importClass("com.developedbyme.flow.nodes.display.PrintTextNode");
-	var IndexSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.IndexSwitchedNode");
-	var FloorNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.FloorNode");
-	var RepeatedRangeNodeNode = dbm.importClass("com.developedbyme.flow.nodes.math.range.RepeatedRangeNode");
-	var RoundToNumberOfDecimalsNode = dbm.importClass("com.developedbyme.flow.nodes.math.round.RoundToNumberOfDecimalsNode");
+	var GlobalTimeNode = dbm.importClass("dbm.flow.nodes.time.GlobalTimeNode");
+	var AdditionNode = dbm.importClass("dbm.flow.nodes.math.AdditionNode");
+	var DivisionNode = dbm.importClass("dbm.flow.nodes.math.DivisionNode");
+	var PrintTextNode = dbm.importClass("dbm.flow.nodes.display.PrintTextNode");
+	var IndexSwitchedNode = dbm.importClass("dbm.flow.nodes.logic.IndexSwitchedNode");
+	var FloorNode = dbm.importClass("dbm.flow.nodes.math.round.FloorNode");
+	var RepeatedRangeNodeNode = dbm.importClass("dbm.flow.nodes.math.range.RepeatedRangeNode");
+	var RoundToNumberOfDecimalsNode = dbm.importClass("dbm.flow.nodes.math.round.RoundToNumberOfDecimalsNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

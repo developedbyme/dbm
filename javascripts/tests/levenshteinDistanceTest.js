@@ -1,18 +1,18 @@
 dbm.runTempFunction(function() {
 	
-	var LevenshteinDistance = dbm.importClass("com.developedbyme.utils.native.string.LevenshteinDistance");
+	var LevenshteinDistance = dbm.importClass("dbm.utils.native.string.LevenshteinDistance");
 	
-	var InputField = dbm.importClass("com.developedbyme.gui.form.InputField");
-	var TextElement = dbm.importClass("com.developedbyme.gui.text.TextElement");
+	var InputField = dbm.importClass("dbm.gui.form.InputField");
+	var TextElement = dbm.importClass("dbm.gui.text.TextElement");
 	
-	var XmlChildRetreiver = dbm.importClass("com.developedbyme.utils.xml.XmlChildRetreiver");
-	var ArrayFunctions = dbm.importClass("com.developedbyme.utils.native.array.ArrayFunctions");
-	var StringAliases = dbm.importClass("com.developedbyme.utils.native.string.StringAliases");
+	var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
+	var StringAliases = dbm.importClass("dbm.utils.native.string.StringAliases");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var FormFieldExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.FormFieldExtendedEventIds");
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var FormFieldExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.FormFieldExtendedEventIds");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

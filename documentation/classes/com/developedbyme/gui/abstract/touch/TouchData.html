@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>TouchData</h1>
-					<div class="classPath">com.developedbyme.gui.abstract.touch.TouchData</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.gui.abstract.touch.TouchData</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,27 +38,27 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.extendedevents.TouchExtendedEventIds" href="../../../constants/extendedevents/TouchExtendedEventIds.html">TouchExtendedEventIds</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.extendedevents.TouchExtendedEventIds" href="../../../constants/extendedevents/TouchExtendedEventIds.html">TouchExtendedEventIds</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var TouchData = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchData");</div>
+									<div class="code">var TouchData = dbm.importClass("dbm.gui.abstract.touch.TouchData");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.gui.abstract.touch.TouchData", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.gui.abstract.touch.TouchData");
+									<div class="code">dbm.registerClass("dbm.gui.abstract.touch.TouchData", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.gui.abstract.touch.TouchData");
 	
-	var TouchData = dbm.importClass("com.developedbyme.gui.abstract.touch.TouchData");
+	var TouchData = dbm.importClass("dbm.gui.abstract.touch.TouchData");
 	
-	var TouchExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.TouchExtendedEventIds");
+	var TouchExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.TouchExtendedEventIds");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.abstract.touch.TouchData::_init");
+		//console.log("dbm.gui.abstract.touch.TouchData::_init");
 		
 		this.superCall();
 		
@@ -93,7 +93,7 @@
 	};
 	
 	objectFunctions.startTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchData::startTouch");
+		console.log("dbm.gui.abstract.touch.TouchData::startTouch");
 		
 		this._isTouching.setValue(true);
 		
@@ -110,7 +110,7 @@
 	};
 	
 	objectFunctions.updateTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchData::updateTouch");
+		console.log("dbm.gui.abstract.touch.TouchData::updateTouch");
 		console.log(aX-this._startX.getValue(), aY-this._startY.getValue());
 		
 		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
@@ -123,7 +123,7 @@
 	};
 	
 	objectFunctions.stopTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchData::stopTouch");
+		console.log("dbm.gui.abstract.touch.TouchData::stopTouch");
 		
 		this._isTouching.setValue(false);
 		
@@ -137,7 +137,7 @@
 	};
 	
 	objectFunctions.cancelTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchData::cancelTouch");
+		console.log("dbm.gui.abstract.touch.TouchData::cancelTouch");
 		
 		this._isTouching.setValue(false);
 		
@@ -214,7 +214,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.gui.abstract.touch.TouchData::_init");
+		//console.log("dbm.gui.abstract.touch.TouchData::_init");
 		
 		this.superCall();
 		
@@ -291,7 +291,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.startTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchData::startTouch");
+		console.log("dbm.gui.abstract.touch.TouchData::startTouch");
 		
 		this._isTouching.setValue(true);
 		
@@ -329,7 +329,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.updateTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchData::updateTouch");
+		console.log("dbm.gui.abstract.touch.TouchData::updateTouch");
 		console.log(aX-this._startX.getValue(), aY-this._startY.getValue());
 		
 		this._updateCurrentValues(aX, aY, aRadiusX, aRadiusY, aRotation, aForce);
@@ -363,7 +363,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.stopTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchData::stopTouch");
+		console.log("dbm.gui.abstract.touch.TouchData::stopTouch");
 		
 		this._isTouching.setValue(false);
 		
@@ -398,7 +398,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.cancelTouch = function(aX, aY, aRadiusX, aRadiusY, aRotation, aForce) {
-		console.log("com.developedbyme.gui.abstract.touch.TouchData::cancelTouch");
+		console.log("dbm.gui.abstract.touch.TouchData::cancelTouch");
 		
 		this._isTouching.setValue(false);
 		

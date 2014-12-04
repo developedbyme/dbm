@@ -28,43 +28,43 @@
 			<article>
 				<div class="mainInfo">
 					<h1>BaseWorkspacePart</h1>
-					<div class="classPath">com.developedbyme.workspace.gui.parts.BaseWorkspacePart</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.workspace.gui.parts.BaseWorkspacePart</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart" href="areas/SizedElementAreaPart.html">SizedElementAreaPart</a>, <a title="com.developedbyme.workspace.gui.parts.areas.layout.SplitLayoutAreaPart" href="areas/layout/SplitLayoutAreaPart.html">SplitLayoutAreaPart</a></div>
+							<div class="subClasses linkList"><a title="dbm.workspace.gui.parts.areas.SizedElementAreaPart" href="areas/SizedElementAreaPart.html">SizedElementAreaPart</a>, <a title="dbm.workspace.gui.parts.areas.layout.SplitLayoutAreaPart" href="areas/layout/SplitLayoutAreaPart.html">SplitLayoutAreaPart</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.flow.PropertiesHolder" href="../../../flow/PropertiesHolder.html">PropertiesHolder</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructureItem" href="../../../utils/data/treestructure/TreeStructureItem.html">TreeStructureItem</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.flow.PropertiesHolder" href="../../../flow/PropertiesHolder.html">PropertiesHolder</a>, <a title="dbm.utils.data.treestructure.TreeStructureItem" href="../../../utils/data/treestructure/TreeStructureItem.html">TreeStructureItem</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var BaseWorkspacePart = dbm.importClass("com.developedbyme.workspace.gui.parts.BaseWorkspacePart");</div>
+									<div class="code">var BaseWorkspacePart = dbm.importClass("dbm.workspace.gui.parts.BaseWorkspacePart");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.workspace.gui.parts.BaseWorkspacePart", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.workspace.gui.parts.BaseWorkspacePart");
+									<div class="code">dbm.registerClass("dbm.workspace.gui.parts.BaseWorkspacePart", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.workspace.gui.parts.BaseWorkspacePart");
 	//"use strict";
 	
 	//Self reference
-	var BaseWorkspacePart = dbm.importClass("com.developedbyme.workspace.gui.parts.BaseWorkspacePart");
+	var BaseWorkspacePart = dbm.importClass("dbm.workspace.gui.parts.BaseWorkspacePart");
 	
 	//Error report
 	
 	//Dependencies
-	var TreeStructureItem = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructureItem");
-	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
+	var TreeStructureItem = dbm.importClass("dbm.utils.data.treestructure.TreeStructureItem");
+	var PropertiesHolder = dbm.importClass("dbm.flow.PropertiesHolder");
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -72,7 +72,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.workspace.gui.parts.BaseWorkspacePart::_init");
+		//console.log("dbm.workspace.gui.parts.BaseWorkspacePart::_init");
 		
 		this.superCall();
 		
@@ -102,7 +102,7 @@
 	};
 	
 	objectFunctions.addPart = function(aPath, aPart) {
-		//console.log("com.developedbyme.workspace.gui.parts.BaseWorkspacePart::addPart");
+		//console.log("dbm.workspace.gui.parts.BaseWorkspacePart::addPart");
 		//console.log(aPath, aPart);
 		var treeStructureItem = this._treeStructureItem.getRoot().getItemByPath(aPath, this._treeStructureItem);
 		aPart.setTreeStructureItem(treeStructureItem);
@@ -156,7 +156,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.workspace.gui.parts.BaseWorkspacePart::_init");
+		//console.log("dbm.workspace.gui.parts.BaseWorkspacePart::_init");
 		
 		this.superCall();
 		
@@ -270,7 +270,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addPart = function(aPath, aPart) {
-		//console.log("com.developedbyme.workspace.gui.parts.BaseWorkspacePart::addPart");
+		//console.log("dbm.workspace.gui.parts.BaseWorkspacePart::addPart");
 		//console.log(aPath, aPart);
 		var treeStructureItem = this._treeStructureItem.getRoot().getItemByPath(aPath, this._treeStructureItem);
 		aPart.setTreeStructureItem(treeStructureItem);

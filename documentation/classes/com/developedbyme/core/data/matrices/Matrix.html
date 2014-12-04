@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>Matrix</h1>
-					<div class="classPath">com.developedbyme.core.data.matrices.Matrix</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.data.matrices.Matrix</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A 2d matrix with dynamic size.</div>
 						<div class="spacedContent">
@@ -44,22 +44,22 @@
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");</div>
+									<div class="code">var Matrix = dbm.importClass("dbm.core.data.matrices.Matrix");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.data.matrices.Matrix", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.data.matrices.Matrix");
+									<div class="code">dbm.registerClass("dbm.core.data.matrices.Matrix", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.data.matrices.Matrix");
 	
-	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
+	var Matrix = dbm.importClass("dbm.core.data.matrices.Matrix");
 
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::_init");
+		//console.log("dbm.core.data.matrices.Matrix::_init");
 		
 		this.superCall();
 		
@@ -74,7 +74,7 @@
 	 * Sets up and creates all the values in the matrix
 	 */
 	objectFunctions.setupSize = function(aSizeH, aSizeV) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::setupSize");
+		//console.log("dbm.core.data.matrices.Matrix::setupSize");
 		//console.log(aSizeH, aSizeV);
 		this.sizeH = aSizeH;
 		this.sizeV = aSizeV;
@@ -184,7 +184,7 @@
 	 * @param	aOutputMatrix	The matrix that is the result of the multiplication.
 	 */
 	staticFunctions.multiplyMatrices = function(aInputMatrix1, aInputMatrix2, aOutputMatrix) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix.(static)multiplyMatrices");
+		//console.log("dbm.core.data.matrices.Matrix.(static)multiplyMatrices");
 		
 		var inputValuesArray1 = aInputMatrix1.valuesArray;
 		var inputValuesArray2 = aInputMatrix2.valuesArray;
@@ -214,7 +214,7 @@
 	 * @return	The new matrix
 	 */
 	staticFunctions.create = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::create (static)");
+		//console.log("dbm.core.data.matrices.Matrix::create (static)");
 		//console.log(aWidth, aHeight);
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);
@@ -230,7 +230,7 @@
 	 * @return	The new matrix
 	 */
 	staticFunctions.createIdentity = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::createIdentity (static)");
+		//console.log("dbm.core.data.matrices.Matrix::createIdentity (static)");
 		//console.log(aWidth, aHeight);
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);
@@ -239,7 +239,7 @@
 	};
 	
 	staticFunctions.createWithValues = function(aWidth, aHeight, aValues) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::createWithValues (static)");
+		//console.log("dbm.core.data.matrices.Matrix::createWithValues (static)");
 		//console.log(aWidth, aHeight, aValues);
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);
@@ -285,7 +285,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::_init");
+		//console.log("dbm.core.data.matrices.Matrix::_init");
 		
 		this.superCall();
 		
@@ -318,7 +318,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setupSize = function(aSizeH, aSizeV) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::setupSize");
+		//console.log("dbm.core.data.matrices.Matrix::setupSize");
 		//console.log(aSizeH, aSizeV);
 		this.sizeH = aSizeH;
 		this.sizeV = aSizeV;
@@ -591,7 +591,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.multiplyMatrices = function(aInputMatrix1, aInputMatrix2, aOutputMatrix) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix.(static)multiplyMatrices");
+		//console.log("dbm.core.data.matrices.Matrix.(static)multiplyMatrices");
 		
 		var inputValuesArray1 = aInputMatrix1.valuesArray;
 		var inputValuesArray2 = aInputMatrix2.valuesArray;
@@ -634,7 +634,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.create = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::create (static)");
+		//console.log("dbm.core.data.matrices.Matrix::create (static)");
 		//console.log(aWidth, aHeight);
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);
@@ -663,7 +663,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createIdentity = function(aWidth, aHeight) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::createIdentity (static)");
+		//console.log("dbm.core.data.matrices.Matrix::createIdentity (static)");
 		//console.log(aWidth, aHeight);
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);
@@ -693,7 +693,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.createWithValues = function(aWidth, aHeight, aValues) {
-		//console.log("com.developedbyme.core.data.matrices.Matrix::createWithValues (static)");
+		//console.log("dbm.core.data.matrices.Matrix::createWithValues (static)");
 		//console.log(aWidth, aHeight, aValues);
 		var newMatrix = (new ClassReference()).init();
 		newMatrix.setupSize(aWidth, aHeight);

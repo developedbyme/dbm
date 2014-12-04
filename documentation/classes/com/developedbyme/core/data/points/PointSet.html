@@ -28,42 +28,42 @@
 			<article>
 				<div class="mainInfo">
 					<h1>PointSet</h1>
-					<div class="classPath">com.developedbyme.core.data.points.PointSet</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.data.points.PointSet</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Base class for a set of points.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.core.data.curves.Curve" href="../curves/Curve.html">Curve</a></div>
+							<div class="subClasses linkList"><a title="dbm.core.data.curves.Curve" href="../curves/Curve.html">Curve</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.data.points.Point" href="Point.html">Point</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.data.points.Point" href="Point.html">Point</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");</div>
+									<div class="code">var PointSet = dbm.importClass("dbm.core.data.points.PointSet");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.data.points.PointSet", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.data.points.PointSet");
+									<div class="code">dbm.registerClass("dbm.core.data.points.PointSet", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.data.points.PointSet");
 	//"use strict";
 	
 	//Self reference
-	var PointSet = dbm.importClass("com.developedbyme.core.data.points.PointSet");
+	var PointSet = dbm.importClass("dbm.core.data.points.PointSet");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
 	
 	//Utils
 	
@@ -74,7 +74,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.points.PointSet");
+		//console.log("dbm.core.data.points.PointSet");
 		
 		this.superCall();
 		
@@ -104,7 +104,7 @@
 	 * @param	aArray	The array of values to be set to the points.
 	 */
 	objectFunctions.setupFromArray = function(aArray, aNumberOfDimesions) {
-		//console.log("com.developedbyme.core.data.points.PointSet::setupFromArray");
+		//console.log("dbm.core.data.points.PointSet::setupFromArray");
 		var currentArray = aArray;
 		var theLength = currentArray.length;
 		if((theLength/aNumberOfDimesions) !== Math.floor(theLength/aNumberOfDimesions)) {
@@ -233,7 +233,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.data.points.PointSet");
+		//console.log("dbm.core.data.points.PointSet");
 		
 		this.superCall();
 		
@@ -315,7 +315,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setupFromArray = function(aArray, aNumberOfDimesions) {
-		//console.log("com.developedbyme.core.data.points.PointSet::setupFromArray");
+		//console.log("dbm.core.data.points.PointSet::setupFromArray");
 		var currentArray = aArray;
 		var theLength = currentArray.length;
 		if((theLength/aNumberOfDimesions) !== Math.floor(theLength/aNumberOfDimesions)) {

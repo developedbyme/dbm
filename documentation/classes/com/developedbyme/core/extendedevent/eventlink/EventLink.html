@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>EventLink</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.eventlink.EventLink</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.extendedevent.eventlink.EventLink</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,31 +38,31 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.native.function.EventListenerFunctions" href="../../../utils/native/function/EventListenerFunctions.html">EventListenerFunctions</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.native.function.EventListenerFunctions" href="../../../utils/native/function/EventListenerFunctions.html">EventListenerFunctions</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var EventLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.EventLink");</div>
+									<div class="code">var EventLink = dbm.importClass("dbm.core.extendedevent.eventlink.EventLink");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.EventLink", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.eventlink.EventLink", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.eventlink.EventLink");
 	
-	var EventLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.EventLink");
+	var EventLink = dbm.importClass("dbm.core.extendedevent.eventlink.EventLink");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var EventListenerFunctions = dbm.importClass("com.developedbyme.utils.native.function.EventListenerFunctions");
+	var EventListenerFunctions = dbm.importClass("dbm.utils.native.function.EventListenerFunctions");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_init");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::_init");
 		
 		this.superCall();
 		
@@ -91,7 +91,7 @@
 	};
 	
 	objectFunctions.activate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::activate");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::activate");
 		//console.log(this._javascriptEventName, this._extendedEventName, this._useCapture);
 		if(this._isActive) return this;
 		
@@ -108,7 +108,7 @@
 	};
 	
 	objectFunctions.deactivate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::deactivate");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::deactivate");
 		if(!this._isActive) return this;
 		
 		this._isActive = false;
@@ -125,7 +125,7 @@
 	};
 	
 	objectFunctions.reactivate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::reactivate");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::reactivate");
 		if(this._isActive &amp;&amp; this._eventDispatcher !== null) {
 			EventListenerFunctions.addEventListener(this._eventDispatcher, this._javascriptEventName, this._eventCallback, this._useCapture);
 		}
@@ -134,7 +134,7 @@
 	};
 	
 	objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::performDestroy");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::performDestroy");
 		//console.log(this._javascriptEventName);
 		
 		if(this._isActive &amp;&amp; this._eventDispatcher !== null) {
@@ -199,7 +199,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::_init");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::_init");
 		
 		this.superCall();
 		
@@ -270,7 +270,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.activate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::activate");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::activate");
 		//console.log(this._javascriptEventName, this._extendedEventName, this._useCapture);
 		if(this._isActive) return this;
 		
@@ -308,7 +308,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.deactivate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::deactivate");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::deactivate");
 		if(!this._isActive) return this;
 		
 		this._isActive = false;
@@ -346,7 +346,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reactivate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::reactivate");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::reactivate");
 		if(this._isActive &amp;&amp; this._eventDispatcher !== null) {
 			EventListenerFunctions.addEventListener(this._eventDispatcher, this._javascriptEventName, this._eventCallback, this._useCapture);
 		}
@@ -376,7 +376,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.performDestroy = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.EventLink::performDestroy");
+		//console.log("dbm.core.extendedevent.eventlink.EventLink::performDestroy");
 		//console.log(this._javascriptEventName);
 		
 		if(this._isActive &amp;&amp; this._eventDispatcher !== null) {

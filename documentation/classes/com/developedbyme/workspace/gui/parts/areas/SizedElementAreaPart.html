@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>SizedElementAreaPart</h1>
-					<div class="classPath">com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart</div>
-					<div class="classInheritance"><a title="com.developedbyme.workspace.gui.parts.BaseWorkspacePart" href="../BaseWorkspacePart.html">BaseWorkspacePart</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.workspace.gui.parts.areas.SizedElementAreaPart</div>
+					<div class="classInheritance"><a title="dbm.workspace.gui.parts.BaseWorkspacePart" href="../BaseWorkspacePart.html">BaseWorkspacePart</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,33 +38,33 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode" href="../../../../flow/nodes/math/geometry/PositionRectangleNode.html">PositionRectangleNode</a>, <a title="com.developedbyme.core.data.geometry.Rectangle" href="../../../../core/data/geometry/Rectangle.html">Rectangle</a>, <a title="com.developedbyme.flow.nodes.math.geometry.ScaleRectangleNode" href="../../../../flow/nodes/math/geometry/ScaleRectangleNode.html">ScaleRectangleNode</a>, <a title="com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode" href="../../../../flow/nodes/math/geometry/ValuesFromRectangleNode.html">ValuesFromRectangleNode</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.flow.nodes.math.geometry.PositionRectangleNode" href="../../../../flow/nodes/math/geometry/PositionRectangleNode.html">PositionRectangleNode</a>, <a title="dbm.core.data.geometry.Rectangle" href="../../../../core/data/geometry/Rectangle.html">Rectangle</a>, <a title="dbm.flow.nodes.math.geometry.ScaleRectangleNode" href="../../../../flow/nodes/math/geometry/ScaleRectangleNode.html">ScaleRectangleNode</a>, <a title="dbm.flow.nodes.math.geometry.ValuesFromRectangleNode" href="../../../../flow/nodes/math/geometry/ValuesFromRectangleNode.html">ValuesFromRectangleNode</a>, <a title="dbm.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var SizedElementAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart");</div>
+									<div class="code">var SizedElementAreaPart = dbm.importClass("dbm.workspace.gui.parts.areas.SizedElementAreaPart");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart", "com.developedbyme.workspace.gui.parts.BaseWorkspacePart", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart");
+									<div class="code">dbm.registerClass("dbm.workspace.gui.parts.areas.SizedElementAreaPart", "dbm.workspace.gui.parts.BaseWorkspacePart", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.workspace.gui.parts.areas.SizedElementAreaPart");
 	//"use strict";
 	
-	var SizedElementAreaPart = dbm.importClass("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart");
+	var SizedElementAreaPart = dbm.importClass("dbm.workspace.gui.parts.areas.SizedElementAreaPart");
 	
-	var PositionRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.PositionRectangleNode");
-	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
-	var ValuesFromRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ValuesFromRectangleNode");
-	var ScaleRectangleNode = dbm.importClass("com.developedbyme.flow.nodes.math.geometry.ScaleRectangleNode");
+	var PositionRectangleNode = dbm.importClass("dbm.flow.nodes.math.geometry.PositionRectangleNode");
+	var Rectangle = dbm.importClass("dbm.core.data.geometry.Rectangle");
+	var ValuesFromRectangleNode = dbm.importClass("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode");
+	var ScaleRectangleNode = dbm.importClass("dbm.flow.nodes.math.geometry.ScaleRectangleNode");
 	
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart::_init");
+		//console.log("dbm.workspace.gui.parts.areas.SizedElementAreaPart::_init");
 		
 		this.superCall();
 		
@@ -99,7 +99,7 @@
 	};
 	
 	objectFunctions._setupHierarchy = function() {
-		//console.log("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart::_setupHierarchy");
+		//console.log("dbm.workspace.gui.parts.areas.SizedElementAreaPart::_setupHierarchy");
 		
 		this.superCall();
 		
@@ -160,7 +160,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart::_init");
+		//console.log("dbm.workspace.gui.parts.areas.SizedElementAreaPart::_init");
 		
 		this.superCall();
 		
@@ -237,7 +237,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._setupHierarchy = function() {
-		//console.log("com.developedbyme.workspace.gui.parts.areas.SizedElementAreaPart::_setupHierarchy");
+		//console.log("dbm.workspace.gui.parts.areas.SizedElementAreaPart::_setupHierarchy");
 		
 		this.superCall();
 		

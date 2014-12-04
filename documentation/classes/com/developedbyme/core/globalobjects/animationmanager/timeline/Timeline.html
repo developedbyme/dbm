@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>Timeline</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.animationmanager.timeline.Timeline</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A timeline that animates a value.</div>
 						<div class="spacedContent">
@@ -38,47 +38,47 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../../objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart" href="parts/InterpolationTimelinePart.html">InterpolationTimelinePart</a>, <a title="com.developedbyme.constants.InterpolationTypes" href="../../../../constants/InterpolationTypes.html">InterpolationTypes</a>, <a title="com.developedbyme.constants.JavascriptObjectTypes" href="../../../../constants/JavascriptObjectTypes.html">JavascriptObjectTypes</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart" href="parts/SetValueTimelinePart.html">SetValueTimelinePart</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../../objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart" href="parts/InterpolationTimelinePart.html">InterpolationTimelinePart</a>, <a title="dbm.constants.InterpolationTypes" href="../../../../constants/InterpolationTypes.html">InterpolationTypes</a>, <a title="dbm.constants.JavascriptObjectTypes" href="../../../../constants/JavascriptObjectTypes.html">JavascriptObjectTypes</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart" href="parts/SetValueTimelinePart.html">SetValueTimelinePart</a>, <a title="dbm.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");</div>
+									<div class="code">var Timeline = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.Timeline");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.animationmanager.timeline.Timeline", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline");
 	//"use strict";
 	
 	//Self reference
-	var Timeline = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline");
+	var Timeline = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.Timeline");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Depenedencies
-	var SetValueTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart");
-	var InterpolationTimelinePart = dbm.importClass("com.developedbyme.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
-	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
+	var SetValueTimelinePart = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart");
+	var InterpolationTimelinePart = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var JavascriptObjectTypes = dbm.importClass("com.developedbyme.constants.JavascriptObjectTypes");
-	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::_init");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::_init");
 		
 		this.superCall();
 		
@@ -110,7 +110,7 @@
 	};
 	
 	objectFunctions.getPartsStartTime = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getPartsStartTime");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getPartsStartTime");
 		if(this._parts.length === 0) {
 			return -Infinity;
 		}
@@ -119,7 +119,7 @@
 	};
 	
 	objectFunctions.getPartsEndTime = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getPartsEndTime");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getPartsEndTime");
 		if(this._parts.length === 0) {
 			return Infinity;
 		}
@@ -128,7 +128,7 @@
 	};
 	
 	objectFunctions.getValueByParameter = function(aParameter) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getValueByParameter");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getValueByParameter");
 		if(this._parts.length === 0) {
 			return this._startValue.getValue();
 		}
@@ -160,7 +160,7 @@
 	};
 	
 	objectFunctions.getTangentByParameter = function(aParameter) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getTangentByParameter");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getTangentByParameter");
 		if(this._parts.length === 0) {
 			return 0;
 		}
@@ -400,7 +400,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::_init");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::_init");
 		
 		this.superCall();
 		
@@ -495,7 +495,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getPartsStartTime = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getPartsStartTime");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getPartsStartTime");
 		if(this._parts.length === 0) {
 			return -Infinity;
 		}
@@ -525,7 +525,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getPartsEndTime = function() {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getPartsEndTime");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getPartsEndTime");
 		if(this._parts.length === 0) {
 			return Infinity;
 		}
@@ -555,7 +555,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getValueByParameter = function(aParameter) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getValueByParameter");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getValueByParameter");
 		if(this._parts.length === 0) {
 			return this._startValue.getValue();
 		}
@@ -608,7 +608,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getTangentByParameter = function(aParameter) {
-		//console.log("com.developedbyme.core.globalobjects.animationmanager.timeline.Timeline::getTangentByParameter");
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getTangentByParameter");
 		if(this._parts.length === 0) {
 			return 0;
 		}

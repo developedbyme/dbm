@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	
-	var WindowSizeNode = dbm.importClass("com.developedbyme.flow.nodes.browser.WindowSizeNode");
-	var PlaceElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
+	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
+	var PlaceElementNode = dbm.importClass("dbm.flow.nodes.display.PlaceElementNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

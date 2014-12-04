@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>NameSwitchedNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.logic.NameSwitchedNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.logic.NameSwitchedNode</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -44,19 +44,19 @@
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var NameSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode");</div>
+									<div class="code">var NameSwitchedNode = dbm.importClass("dbm.flow.nodes.logic.NameSwitchedNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.logic.NameSwitchedNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.logic.NameSwitchedNode");
 	
-	var NameSwitchedNode = dbm.importClass("com.developedbyme.flow.nodes.logic.NameSwitchedNode");
+	var NameSwitchedNode = dbm.importClass("dbm.flow.nodes.logic.NameSwitchedNode");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::_init");
+		//console.log("dbm.flow.nodes.logic.NameSwitchedNode::_init");
 		
 		this.superCall();
 		
@@ -71,7 +71,7 @@
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::_update");
+		//console.log("dbm.flow.nodes.logic.NameSwitchedNode::_update");
 		
 		var name = this._name.getValueWithoutFlow();
 		var objects = this._objects.getValueWithoutFlow();
@@ -90,7 +90,7 @@
 	};
 	
 	objectFunctions.addItem = function(aName, aValue) {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::addItem");
+		//console.log("dbm.flow.nodes.logic.NameSwitchedNode::addItem");
 		
 		var object = this._objects.getValue();
 		object[aName] = aValue;
@@ -100,7 +100,7 @@
 	};
 	
 	objectFunctions.reset = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::reset");
+		//console.log("dbm.flow.nodes.logic.NameSwitchedNode::reset");
 		
 		var selectionArray = this._array.getValueWithoutFlow();
 		selectionArray.splice(0, selectionArray.length);
@@ -161,7 +161,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::_init");
+		//console.log("dbm.flow.nodes.logic.NameSwitchedNode::_init");
 		
 		this.superCall();
 		
@@ -197,7 +197,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::_update");
+		//console.log("dbm.flow.nodes.logic.NameSwitchedNode::_update");
 		
 		var name = this._name.getValueWithoutFlow();
 		var objects = this._objects.getValueWithoutFlow();
@@ -237,7 +237,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addItem = function(aName, aValue) {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::addItem");
+		//console.log("dbm.flow.nodes.logic.NameSwitchedNode::addItem");
 		
 		var object = this._objects.getValue();
 		object[aName] = aValue;
@@ -268,7 +268,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reset = function() {
-		//console.log("com.developedbyme.flow.nodes.logic.NameSwitchedNode::reset");
+		//console.log("dbm.flow.nodes.logic.NameSwitchedNode::reset");
 		
 		var selectionArray = this._array.getValueWithoutFlow();
 		selectionArray.splice(0, selectionArray.length);

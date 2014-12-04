@@ -1,10 +1,10 @@
 dbm.runTempFunction(function() {
 	
-	var VideoView = dbm.importClass("com.developedbyme.gui.media.video.VideoView");
-	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
-	var HorizontalScaleSlider = dbm.importClass("com.developedbyme.gui.form.sliders.HorizontalScaleSlider");
+	var VideoView = dbm.importClass("dbm.gui.media.video.VideoView");
+	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
+	var HorizontalScaleSlider = dbm.importClass("dbm.gui.form.sliders.HorizontalScaleSlider");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

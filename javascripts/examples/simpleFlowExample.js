@@ -1,7 +1,7 @@
 dbm.runTempFunction(function() {
 	
-	var AdditionNode = dbm.importClass("com.developedbyme.flow.nodes.math.AdditionNode");
-	var PrintTextNode = dbm.importClass("com.developedbyme.flow.nodes.display.PrintTextNode");
+	var AdditionNode = dbm.importClass("dbm.flow.nodes.math.AdditionNode");
+	var PrintTextNode = dbm.importClass("dbm.flow.nodes.display.PrintTextNode");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

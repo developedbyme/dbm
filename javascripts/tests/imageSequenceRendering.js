@@ -1,14 +1,14 @@
 dbm.runTempFunction(function() {
 	
-	var ImageSequenceRenderingApplication = dbm.importClass("com.developedbyme.projects.tests.imagesequencerendering.ImageSequenceRenderingApplication");
+	var ImageSequenceRenderingApplication = dbm.importClass("dbm.projects.tests.imagesequencerendering.ImageSequenceRenderingApplication");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var DomManipulationFunctions = dbm.importClass("com.developedbyme.utils.htmldom.DomManipulationFunctions");
-	var NumberFunctions = dbm.importClass("com.developedbyme.utils.native.number.NumberFunctions");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var DomManipulationFunctions = dbm.importClass("dbm.utils.htmldom.DomManipulationFunctions");
+	var NumberFunctions = dbm.importClass("dbm.utils.native.number.NumberFunctions");
 	
-	var LoadingSequence = dbm.importClass("com.developedbyme.core.globalobjects.assetrepository.loaders.LoadingSequence");
+	var LoadingSequence = dbm.importClass("dbm.core.globalobjects.assetrepository.loaders.LoadingSequence");
 	
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

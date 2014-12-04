@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>TangentRoundedTimelineCurveCreator</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject" href="TimelineCurveCreatorBaseObject.html">TimelineCurveCreatorBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject" href="TimelineCurveCreatorBaseObject.html">TimelineCurveCreatorBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Timeline curve creator that constructs the curve by evaluating the tangent an creates a curve that goes through each of those points.</div>
 						<div class="spacedContent">
@@ -38,36 +38,36 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.math.LineIntersection2d" href="../../../../utils/math/LineIntersection2d.html">LineIntersection2d</a>, <a title="com.developedbyme.core.data.points.Point" href="../../../data/points/Point.html">Point</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.math.VectorFunctions" href="../../../../utils/math/VectorFunctions.html">VectorFunctions</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.math.LineIntersection2d" href="../../../../utils/math/LineIntersection2d.html">LineIntersection2d</a>, <a title="dbm.core.data.points.Point" href="../../../data/points/Point.html">Point</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.math.VectorFunctions" href="../../../../utils/math/VectorFunctions.html">VectorFunctions</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var TangentRoundedTimelineCurveCreator = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");</div>
+									<div class="code">var TangentRoundedTimelineCurveCreator = dbm.importClass("dbm.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator", "com.developedbyme.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator", "dbm.core.globalobjects.curvecreator.timeline.TimelineCurveCreatorBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");
 	//"use strict";
 	
 	//Self reference
-	var TangentRoundedTimelineCurveCreator = dbm.importClass("com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");
+	var TangentRoundedTimelineCurveCreator = dbm.importClass("dbm.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
-	var LineIntersection2d = dbm.importClass("com.developedbyme.utils.math.LineIntersection2d");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
+	var LineIntersection2d = dbm.importClass("dbm.utils.math.LineIntersection2d");
 	
 	//Utilities
-	var VectorFunctions = dbm.importClass("com.developedbyme.utils.math.VectorFunctions");
+	var VectorFunctions = dbm.importClass("dbm.utils.math.VectorFunctions");
 	
 	//Constants
 	
@@ -76,7 +76,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");
+		//console.log("dbm.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");
 		
 		this.superCall();
 		this.numberOfSteps = 1;
@@ -93,7 +93,7 @@
 	 * Creates a curve from a timeline part.
 	 */
 	objectFunctions.createCurveFromPart = function(aTimelinePart, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset, aReturnCurve, aPositionOnCurve) {
-		console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator::createCurveFromPart");
+		console.log("dbm.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator::createCurveFromPart");
 		
 		var numberOfSteps = this.numberOfSteps;
 		
@@ -231,7 +231,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");
+		//console.log("dbm.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator");
 		
 		this.superCall();
 		this.numberOfSteps = 1;
@@ -266,7 +266,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createCurveFromPart = function(aTimelinePart, aStartTime, aEndTime, aDefaultNumberOfSteps, aXOffset, aReturnCurve, aPositionOnCurve) {
-		console.log("com.developedbyme.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator::createCurveFromPart");
+		console.log("dbm.core.globalobjects.curvecreator.timeline.TangentRoundedTimelineCurveCreator::createCurveFromPart");
 		
 		var numberOfSteps = this.numberOfSteps;
 		

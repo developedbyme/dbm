@@ -28,7 +28,7 @@
 			<article>
 				<div class="mainInfo">
 					<h1>StringFunctions</h1>
-					<div class="classPath">com.developedbyme.utils.native.string.StringFunctions</div>
+					<div class="classPath">dbm.utils.native.string.StringFunctions</div>
 					<div class="classInheritance"><span class="noData">No inheritance</span></div>
 					<div class="descriptionHolder">
 						<div class="description">Functions to manipulate strings.</div>
@@ -38,31 +38,31 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");</div>
+									<div class="code">var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.native.string.StringFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.native.string.StringFunctions");
+									<div class="code">dbm.registerClass("dbm.utils.native.string.StringFunctions", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.native.string.StringFunctions");
 	//"use strict";
 	
 	//Self reference
-	var StringFunctions = dbm.importClass("com.developedbyme.utils.native.string.StringFunctions");
+	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
 	
 	//Error report
 	
 	//Dependnecies
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -153,7 +153,7 @@
 	 * @param	aReturnArray	Array	The array that gets filled with the charcodes.
 	 */
 	staticFunctions.getCharCodes = function(aString, aReturnArray) {
-		//console.log("com.developedbyme.utils.native.string.StringFunctions::getCharCodes");
+		//console.log("dbm.utils.native.string.StringFunctions::getCharCodes");
 		//console.log(aString, aReturnArray);
 		var currentArray = aReturnArray;
 		var currentArrayLength = aString.length;
@@ -376,7 +376,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">staticFunctions.getCharCodes = function(aString, aReturnArray) {
-		//console.log("com.developedbyme.utils.native.string.StringFunctions::getCharCodes");
+		//console.log("dbm.utils.native.string.StringFunctions::getCharCodes");
 		//console.log(aString, aReturnArray);
 		var currentArray = aReturnArray;
 		var currentArrayLength = aString.length;

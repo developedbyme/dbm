@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>LayoutController</h1>
-					<div class="classPath">com.developedbyme.workspace.gui.LayoutController</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.workspace.gui.LayoutController</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,46 +38,46 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.constants.extendedevents.GenericExtendedEventIds" href="../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.flow.PropertiesHolder" href="../../flow/PropertiesHolder.html">PropertiesHolder</a>, <a title="com.developedbyme.core.data.geometry.Rectangle" href="../../core/data/geometry/Rectangle.html">Rectangle</a>, <a title="com.developedbyme.utils.data.treestructure.TreeStructure" href="../../utils/data/treestructure/TreeStructure.html">TreeStructure</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.constants.extendedevents.GenericExtendedEventIds" href="../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.flow.PropertiesHolder" href="../../flow/PropertiesHolder.html">PropertiesHolder</a>, <a title="dbm.core.data.geometry.Rectangle" href="../../core/data/geometry/Rectangle.html">Rectangle</a>, <a title="dbm.utils.data.treestructure.TreeStructure" href="../../utils/data/treestructure/TreeStructure.html">TreeStructure</a>, <a title="dbm.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var LayoutController = dbm.importClass("com.developedbyme.workspace.gui.LayoutController");</div>
+									<div class="code">var LayoutController = dbm.importClass("dbm.workspace.gui.LayoutController");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.workspace.gui.LayoutController", "com.developedbyme.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.workspace.gui.LayoutController");
+									<div class="code">dbm.registerClass("dbm.workspace.gui.LayoutController", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.workspace.gui.LayoutController");
 	//"use strict";
 	
 	//Self reference
-	var LayoutController = dbm.importClass("com.developedbyme.workspace.gui.LayoutController");
+	var LayoutController = dbm.importClass("dbm.workspace.gui.LayoutController");
 	
 	//Error report
 	
 	//Dependencies
-	var TreeStructure = dbm.importClass("com.developedbyme.utils.data.treestructure.TreeStructure");
-	var PropertiesHolder = dbm.importClass("com.developedbyme.flow.PropertiesHolder");
-	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
-	var Rectangle = dbm.importClass("com.developedbyme.core.data.geometry.Rectangle");
+	var TreeStructure = dbm.importClass("dbm.utils.data.treestructure.TreeStructure");
+	var PropertiesHolder = dbm.importClass("dbm.flow.PropertiesHolder");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	var Rectangle = dbm.importClass("dbm.core.data.geometry.Rectangle");
 	
 	//Utils
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.workspace.gui.LayoutController::_init");
+		//console.log("dbm.workspace.gui.LayoutController::_init");
 		
 		this.superCall();
 		
@@ -95,14 +95,14 @@
 	};
 	
 	objectFunctions.addPart = function(aPath, aPart) {
-		//console.log("com.developedbyme.workspace.gui.LayoutController::addPart");
+		//console.log("dbm.workspace.gui.LayoutController::addPart");
 		
 		var treeStructureItem = this._parts.getItemByPath(aPath);
 		aPart.setTreeStructureItem(treeStructureItem);
 	};
 	
 	objectFunctions._newTreeStructureAdded = function(aTreeStructureItem) {
-		//console.log("com.developedbyme.workspace.gui.LayoutController::_newTreeStructureAdded");
+		//console.log("dbm.workspace.gui.LayoutController::_newTreeStructureAdded");
 		//console.log(aTreeStructureItem);
 		
 		var propertiesHolder = PropertiesHolder.create();
@@ -168,7 +168,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.workspace.gui.LayoutController::_init");
+		//console.log("dbm.workspace.gui.LayoutController::_init");
 		
 		this.superCall();
 		
@@ -228,7 +228,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.addPart = function(aPath, aPart) {
-		//console.log("com.developedbyme.workspace.gui.LayoutController::addPart");
+		//console.log("dbm.workspace.gui.LayoutController::addPart");
 		
 		var treeStructureItem = this._parts.getItemByPath(aPath);
 		aPart.setTreeStructureItem(treeStructureItem);
@@ -256,7 +256,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._newTreeStructureAdded = function(aTreeStructureItem) {
-		//console.log("com.developedbyme.workspace.gui.LayoutController::_newTreeStructureAdded");
+		//console.log("dbm.workspace.gui.LayoutController::_newTreeStructureAdded");
 		//console.log(aTreeStructureItem);
 		
 		var propertiesHolder = PropertiesHolder.create();

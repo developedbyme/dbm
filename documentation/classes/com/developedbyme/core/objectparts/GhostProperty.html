@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>GhostProperty</h1>
-					<div class="classPath">com.developedbyme.core.objectparts.GhostProperty</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.objectparts.GhostProperty</div>
+					<div class="classInheritance"><a title="dbm.core.objectparts.Property" href="Property.html">Property</a> &gt; <a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A property that doesn't have any value. Used by update functions that have a doesn't have a specific output (eg. updating the display of an element).</div>
 						<div class="spacedContent">
@@ -38,24 +38,24 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="com.developedbyme.core.globalobjects.GlobalVariables" href="../globalobjects/GlobalVariables.html">GlobalVariables</a></div>
+							<div class="dependencies linkList"><a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="dbm.core.globalobjects.GlobalVariables" href="../globalobjects/GlobalVariables.html">GlobalVariables</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");</div>
+									<div class="code">var GhostProperty = dbm.importClass("dbm.core.objectparts.GhostProperty");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.objectparts.GhostProperty", "com.developedbyme.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.objectparts.GhostProperty");
+									<div class="code">dbm.registerClass("dbm.core.objectparts.GhostProperty", "dbm.core.objectparts.Property", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.GhostProperty");
 	//"use strict";
 	
 	//Self reference
-	var GhostProperty = dbm.importClass("com.developedbyme.core.objectparts.GhostProperty");
+	var GhostProperty = dbm.importClass("dbm.core.objectparts.GhostProperty");
 	
 	//Error report
 	
@@ -64,15 +64,15 @@
 	//Utils
 	
 	//Constants
-	var GlobalVariables = dbm.importClass("com.developedbyme.core.globalobjects.GlobalVariables");
-	var FlowStatusTypes = dbm.importClass("com.developedbyme.constants.FlowStatusTypes");
+	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
 	
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.GhostProperty::_init");
+		//console.log("dbm.core.objectparts.GhostProperty::_init");
 		
 		this.superCall();
 		
@@ -98,7 +98,7 @@
 	 * @param	aFlowUpdateNumber	Number	The interger that keeps track of when the flow was latest updated.
 	 */
 	objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.objectparts.GhostProperty::setValueWithFlow");
+		//console.log("dbm.core.objectparts.GhostProperty::setValueWithFlow");
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._status = FlowStatusTypes.UPDATED;
 	};
@@ -125,7 +125,7 @@
 	 * Interface function to update the flow. Only changes the status of this property.
 	 */
 	objectFunctions.updateFlow = function() {
-		//console.log("com.developedbyme.core.objectparts.GhostProperty::updateFlow");
+		//console.log("dbm.core.objectparts.GhostProperty::updateFlow");
 		this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 		this._status = FlowStatusTypes.UPDATED;
 	};
@@ -180,7 +180,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.objectparts.GhostProperty::_init");
+		//console.log("dbm.core.objectparts.GhostProperty::_init");
 		
 		this.superCall();
 		
@@ -237,7 +237,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setValueWithFlow = function(aValue, aFlowUpdateNumber) {
-		//console.log("com.developedbyme.core.objectparts.GhostProperty::setValueWithFlow");
+		//console.log("dbm.core.objectparts.GhostProperty::setValueWithFlow");
 		this._flowUpdateNumber = aFlowUpdateNumber;
 		this._status = FlowStatusTypes.UPDATED;
 	}</div>
@@ -314,7 +314,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.updateFlow = function() {
-		//console.log("com.developedbyme.core.objectparts.GhostProperty::updateFlow");
+		//console.log("dbm.core.objectparts.GhostProperty::updateFlow");
 		this._flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
 		this._status = FlowStatusTypes.UPDATED;
 	}</div>
@@ -336,17 +336,17 @@
 						
 					<div class="function">
 				<div class="definition">
-					<span class="functionName">create</span>(<span class="arguments">aObjectInput:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a></span>)<span class="returnValue">:<a title="com.developedbyme.core.objectparts.GhostProperty" href="GhostProperty.html">GhostProperty</a></span>
+					<span class="functionName">create</span>(<span class="arguments">aObjectInput:<a title="dbm.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a></span>)<span class="returnValue">:<a title="dbm.core.objectparts.GhostProperty" href="GhostProperty.html">GhostProperty</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new object of this class.</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Arguments</div>
-						<div class="argumentsDescription"><div class="argumentDescription">aObjectInput:<a title="com.developedbyme.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a> - The object property for this property. (Optional)</div></div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObjectInput:<a title="dbm.core.objectparts.ObjectProperty" href="ObjectProperty.html">ObjectProperty</a> - The object property for this property. (Optional)</div></div>
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.core.objectparts.GhostProperty" href="GhostProperty.html">GhostProperty</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.GhostProperty" href="GhostProperty.html">GhostProperty</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">

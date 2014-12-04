@@ -1,0 +1,38 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("dbm.utils.data.orderselector.ReservedData", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.orderselector.ReservedData");
+	//"use strict";
+	
+	var ReservedData = dbm.importClass("dbm.utils.data.orderselector.ReservedData");
+	
+	staticFunctions.END_VALUE = -1;
+	
+	objectFunctions._init = function() {
+		//console.log("dbm.utils.data.orderselector.ReservedData::_init");
+		
+		this.superCall();
+		this._array = new Array();
+		
+		return this;
+	};
+	
+	objectFunctions.setLength = function(aLength) {
+		this._array = new Array(aLength);
+		
+		return this;
+	};
+	
+	objectFunctions.isReserved = function(aIndex) {
+		return (this._array[aIndex] === 1);
+	};
+	
+	objectFunctions.reserve = function(aIndex) {
+		this._array[aIndex] = 1;
+	};
+	
+	staticFunctions.create = function(aLength) {
+		var newReservedData = (new ReservedData()).init();
+		newReservedData.setLength(aLength);
+		return newReservedData;
+	};
+});

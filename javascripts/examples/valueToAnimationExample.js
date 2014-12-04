@@ -1,16 +1,16 @@
 dbm.runTempFunction(function() {
 	
-	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
+	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
 	
-	var ValueToAnimationNode = dbm.importClass("com.developedbyme.flow.nodes.animation.ValueToAnimationNode");
-	var PlaceElementNode = dbm.importClass("com.developedbyme.flow.nodes.display.PlaceElementNode");
+	var ValueToAnimationNode = dbm.importClass("dbm.flow.nodes.animation.ValueToAnimationNode");
+	var PlaceElementNode = dbm.importClass("dbm.flow.nodes.display.PlaceElementNode");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	var InterpolationTypes = dbm.importClass("com.developedbyme.constants.InterpolationTypes");
-	var GenericExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.GenericExtendedEventIds");
+	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

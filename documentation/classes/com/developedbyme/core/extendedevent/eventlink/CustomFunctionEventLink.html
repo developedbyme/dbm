@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CustomFunctionEventLink</h1>
-					<div class="classPath">com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.extendedevent.eventlink.CustomFunctionEventLink</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,43 +38,43 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.extendedevent.EventDataObject" href="../EventDataObject.html">EventDataObject</a>, <a title="com.developedbyme.utils.native.function.EventListenerFunctions" href="../../../utils/native/function/EventListenerFunctions.html">EventListenerFunctions</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.extendedevent.EventDataObject" href="../EventDataObject.html">EventDataObject</a>, <a title="dbm.utils.native.function.EventListenerFunctions" href="../../../utils/native/function/EventListenerFunctions.html">EventListenerFunctions</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CustomFunctionEventLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink");</div>
+									<div class="code">var CustomFunctionEventLink = dbm.importClass("dbm.core.extendedevent.eventlink.CustomFunctionEventLink");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink");
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.eventlink.CustomFunctionEventLink", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.eventlink.CustomFunctionEventLink");
 	
 	//Self reference
-	var CustomFunctionEventLink = dbm.importClass("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink");
+	var CustomFunctionEventLink = dbm.importClass("dbm.core.extendedevent.eventlink.CustomFunctionEventLink");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var EventDataObject = dbm.importClass("com.developedbyme.core.extendedevent.EventDataObject");
+	var EventDataObject = dbm.importClass("dbm.core.extendedevent.EventDataObject");
 	
 	//Utils
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var EventListenerFunctions = dbm.importClass("com.developedbyme.utils.native.function.EventListenerFunctions");
+	var EventListenerFunctions = dbm.importClass("dbm.utils.native.function.EventListenerFunctions");
 	
 	/**
 	 * Constants
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink::_init");
+		//console.log("dbm.core.extendedevent.eventlink.CustomFunctionEventLink::_init");
 		
 		this.superCall();
 		
@@ -119,7 +119,7 @@
 	};
 	
 	objectFunctions.activate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink::activate");
+		//console.log("dbm.core.extendedevent.eventlink.CustomFunctionEventLink::activate");
 		//console.log(this._javascriptEventName, this._extendedEventName, this._useCapture);
 		if(this._isActive) return this;
 		
@@ -133,7 +133,7 @@
 	};
 	
 	objectFunctions.deactivate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink::deactivate");
+		//console.log("dbm.core.extendedevent.eventlink.CustomFunctionEventLink::deactivate");
 		if(!this._isActive) return this;
 		
 		this._isActive = false;
@@ -146,7 +146,7 @@
 	};
 	
 	objectFunctions.reactivate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink::reactivate");
+		//console.log("dbm.core.extendedevent.eventlink.CustomFunctionEventLink::reactivate");
 		if(this._isActive &amp;&amp; this._eventDispatcher !== null) {
 			var eventDataObject = EventDataObject.create(this._eventCallback, null, null);
 			this._activateCommand.perform(eventDataObject);
@@ -209,7 +209,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink::_init");
+		//console.log("dbm.core.extendedevent.eventlink.CustomFunctionEventLink::_init");
 		
 		this.superCall();
 		
@@ -296,7 +296,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.activate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink::activate");
+		//console.log("dbm.core.extendedevent.eventlink.CustomFunctionEventLink::activate");
 		//console.log(this._javascriptEventName, this._extendedEventName, this._useCapture);
 		if(this._isActive) return this;
 		
@@ -331,7 +331,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.deactivate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink::deactivate");
+		//console.log("dbm.core.extendedevent.eventlink.CustomFunctionEventLink::deactivate");
 		if(!this._isActive) return this;
 		
 		this._isActive = false;
@@ -365,7 +365,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.reactivate = function() {
-		//console.log("com.developedbyme.core.extendedevent.eventlink.CustomFunctionEventLink::reactivate");
+		//console.log("dbm.core.extendedevent.eventlink.CustomFunctionEventLink::reactivate");
 		if(this._isActive &amp;&amp; this._eventDispatcher !== null) {
 			var eventDataObject = EventDataObject.create(this._eventCallback, null, null);
 			this._activateCommand.perform(eventDataObject);

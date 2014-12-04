@@ -1,11 +1,11 @@
 dbm.runTempFunction(function() {
 	
-	var DbmCompiler = dbm.importClass("com.developedbyme.compiler.DbmCompiler");
+	var DbmCompiler = dbm.importClass("dbm.compiler.DbmCompiler");
 	
-	var CompileData = dbm.importClass("com.developedbyme.compiler.compiledata.CompileData");
+	var CompileData = dbm.importClass("dbm.compiler.compiledata.CompileData");
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

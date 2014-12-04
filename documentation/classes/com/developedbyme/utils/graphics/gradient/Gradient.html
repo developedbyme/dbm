@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>Gradient</h1>
-					<div class="classPath">com.developedbyme.utils.graphics.gradient.Gradient</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.graphics.gradient.Gradient</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,37 +38,37 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="com.developedbyme.utils.data.ArrayHolder" href="../../data/ArrayHolder.html">ArrayHolder</a>, <a title="com.developedbyme.utils.graphics.color.ColorFunctions" href="../color/ColorFunctions.html">ColorFunctions</a>, <a title="com.developedbyme.utils.graphics.gradient.ColorStop" href="ColorStop.html">ColorStop</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.utils.data.ArrayHolder" href="../../data/ArrayHolder.html">ArrayHolder</a>, <a title="dbm.utils.graphics.color.ColorFunctions" href="../color/ColorFunctions.html">ColorFunctions</a>, <a title="dbm.utils.graphics.gradient.ColorStop" href="ColorStop.html">ColorStop</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");</div>
+									<div class="code">var Gradient = dbm.importClass("dbm.utils.graphics.gradient.Gradient");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.graphics.gradient.Gradient", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.graphics.gradient.Gradient");
+									<div class="code">dbm.registerClass("dbm.utils.graphics.gradient.Gradient", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.graphics.gradient.Gradient");
 	
 	//Self reference
-	var Gradient = dbm.importClass("com.developedbyme.utils.graphics.gradient.Gradient");
+	var Gradient = dbm.importClass("dbm.utils.graphics.gradient.Gradient");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependnecies
-	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
-	var ColorStop = dbm.importClass("com.developedbyme.utils.graphics.gradient.ColorStop");
-	var ArrayHolder = dbm.importClass("com.developedbyme.utils.data.ArrayHolder");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	var ColorStop = dbm.importClass("dbm.utils.graphics.gradient.ColorStop");
+	var ArrayHolder = dbm.importClass("dbm.utils.data.ArrayHolder");
 	
 	//Utils
-	var ColorFunctions = dbm.importClass("com.developedbyme.utils.graphics.color.ColorFunctions");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var ColorFunctions = dbm.importClass("dbm.utils.graphics.color.ColorFunctions");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
 	
@@ -77,7 +77,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_init");
+		//console.log("dbm.utils.graphics.gradient.Gradient::_init");
 		
 		this.superCall();
 		
@@ -139,7 +139,7 @@
 	};
 	
 	objectFunctions._updateOrderFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_updateOrderFlow");
+		//console.log("dbm.utils.graphics.gradient.Gradient::_updateOrderFlow");
 		this.sortColorStops();
 	};
 	
@@ -230,7 +230,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_init");
+		//console.log("dbm.utils.graphics.gradient.Gradient::_init");
 		
 		this.superCall();
 		
@@ -250,7 +250,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createColorStopFromCssString</span>(<span class="arguments">aPosition, aCssString:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="com.developedbyme.utils.graphics.gradient.ColorStop" href="ColorStop.html">ColorStop</a></span>
+					<span class="functionName">createColorStopFromCssString</span>(<span class="arguments">aPosition, aCssString:<span class="nativeType">String</span></span>)<span class="returnValue">:<a title="dbm.utils.graphics.gradient.ColorStop" href="ColorStop.html">ColorStop</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a colo stop for a css string.</div>
@@ -260,7 +260,7 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.graphics.gradient.ColorStop" href="ColorStop.html">ColorStop</a> - The newly created color stop.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.graphics.gradient.ColorStop" href="ColorStop.html">ColorStop</a> - The newly created color stop.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
@@ -426,7 +426,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._updateOrderFlow = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.utils.graphics.gradient.Gradient::_updateOrderFlow");
+		//console.log("dbm.utils.graphics.gradient.Gradient::_updateOrderFlow");
 		this.sortColorStops();
 	}</div>
 							</div>

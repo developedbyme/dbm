@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>DebugManager</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.debugmanager.DebugManager</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="com.developedbyme.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="com.developedbyme.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.debugmanager.DebugManager</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -38,32 +38,32 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.BaseObject" href="../../BaseObject.html">BaseObject</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var DebugManager = dbm.importClass("com.developedbyme.core.globalobjects.debugmanager.DebugManager");</div>
+									<div class="code">var DebugManager = dbm.importClass("dbm.core.globalobjects.debugmanager.DebugManager");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.debugmanager.DebugManager", "com.developedbyme.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.debugmanager.DebugManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.debugmanager.DebugManager");
 	
 	//Self reference
-	var DebugManager = dbm.importClass("com.developedbyme.core.globalobjects.debugmanager.DebugManager");
+	var DebugManager = dbm.importClass("dbm.core.globalobjects.debugmanager.DebugManager");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
-	var NamedArray = dbm.importClass("com.developedbyme.utils.data.NamedArray");
+	var BaseObject = dbm.importClass("dbm.core.BaseObject");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
 	//Utils
 	
@@ -75,7 +75,7 @@
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::_init");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::_init");
 		
 		this.superCall();
 		
@@ -87,7 +87,7 @@
 	};
 	
 	objectFunctions.objectCreated = function(aType) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::objectCreated");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::objectCreated");
 		if(!this._objectCount.hasObject(aType)) {
 			this._objectCount.addObject(aType, 0);
 		}
@@ -95,7 +95,7 @@
 	};
 	
 	objectFunctions.objectDestroyed = function(aType) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::objectDestroyed");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::objectDestroyed");
 		if(!this._objectCount.hasObject(aType)) {
 			this._objectCount.addObject(aType, 0);
 		}
@@ -103,7 +103,7 @@
 	};
 	
 	objectFunctions.printNumberOfCreatedObjects = function() {
-		console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::printNumberOfCreatedObjects");
+		console.log("dbm.core.globalobjects.debugmanager.DebugManager::printNumberOfCreatedObjects");
 		
 		var totalNumberOfItems = 0;
 		var itemsString = "";
@@ -120,13 +120,13 @@
 	};
 	
 	objectFunctions.setCheckForDeletion = function(aCheck) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::setCheckForDeletion");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::setCheckForDeletion");
 		
 		this._isCheckingForDeletion = aCheck;
 	};
 	
 	objectFunctions.checkThatObjectIsDestroyed = function(aObject) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::checkThatObjectIsDestroyed");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::checkThatObjectIsDestroyed");
 		//console.log(aObject)
 		
 		if(this._isCheckingForDeletion) {
@@ -155,7 +155,7 @@
 	};
 	
 	objectFunctions.checkThatObjectHasNoReferences = function(aObject) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::checkThatObjectHasNoReferences");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::checkThatObjectHasNoReferences");
 		
 		if(this._isCheckingForDeletion) {
 			for(var objectName in aObject) {
@@ -207,7 +207,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::_init");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::_init");
 		
 		this.superCall();
 		
@@ -240,7 +240,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.objectCreated = function(aType) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::objectCreated");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::objectCreated");
 		if(!this._objectCount.hasObject(aType)) {
 			this._objectCount.addObject(aType, 0);
 		}
@@ -269,7 +269,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.objectDestroyed = function(aType) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::objectDestroyed");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::objectDestroyed");
 		if(!this._objectCount.hasObject(aType)) {
 			this._objectCount.addObject(aType, 0);
 		}
@@ -298,7 +298,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.printNumberOfCreatedObjects = function() {
-		console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::printNumberOfCreatedObjects");
+		console.log("dbm.core.globalobjects.debugmanager.DebugManager::printNumberOfCreatedObjects");
 		
 		var totalNumberOfItems = 0;
 		var itemsString = "";
@@ -336,7 +336,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.setCheckForDeletion = function(aCheck) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::setCheckForDeletion");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::setCheckForDeletion");
 		
 		this._isCheckingForDeletion = aCheck;
 	}</div>
@@ -363,7 +363,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.checkThatObjectIsDestroyed = function(aObject) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::checkThatObjectIsDestroyed");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::checkThatObjectIsDestroyed");
 		//console.log(aObject)
 		
 		if(this._isCheckingForDeletion) {
@@ -413,7 +413,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.checkThatObjectHasNoReferences = function(aObject) {
-		//console.log("com.developedbyme.core.globalobjects.debugmanager.DebugManager::checkThatObjectHasNoReferences");
+		//console.log("dbm.core.globalobjects.debugmanager.DebugManager::checkThatObjectHasNoReferences");
 		
 		if(this._isCheckingForDeletion) {
 			for(var objectName in aObject) {

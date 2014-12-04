@@ -28,56 +28,56 @@
 			<article>
 				<div class="mainInfo">
 					<h1>ActiveArrayIterator</h1>
-					<div class="classPath">com.developedbyme.utils.data.iterator.ActiveArrayIterator</div>
-					<div class="classInheritance"><a title="com.developedbyme.utils.data.iterator.ArrayIterator" href="ArrayIterator.html">ArrayIterator</a> &gt; <a title="com.developedbyme.utils.data.ArrayHolder" href="../ArrayHolder.html">ArrayHolder</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.data.iterator.ActiveArrayIterator</div>
+					<div class="classInheritance"><a title="dbm.utils.data.iterator.ArrayIterator" href="ArrayIterator.html">ArrayIterator</a> &gt; <a title="dbm.utils.data.ArrayHolder" href="../ArrayHolder.html">ArrayHolder</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">An array that can securly be iterated over, and additions or subtractions to the array can be delayed until the iteration is over.</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Subclasses</div>
-							<div class="subClasses linkList"><a title="com.developedbyme.utils.data.iterator.ActiveRetainArrayIterator" href="ActiveRetainArrayIterator.html">ActiveRetainArrayIterator</a>, <a title="com.developedbyme.core.globalobjects.updatemanager.objects.UpdateChain" href="../../../core/globalobjects/updatemanager/objects/UpdateChain.html">UpdateChain</a></div>
+							<div class="subClasses linkList"><a title="dbm.utils.data.iterator.ActiveRetainArrayIterator" href="ActiveRetainArrayIterator.html">ActiveRetainArrayIterator</a>, <a title="dbm.core.globalobjects.updatemanager.objects.UpdateChain" href="../../../core/globalobjects/updatemanager/objects/UpdateChain.html">UpdateChain</a></div>
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="com.developedbyme.utils.data.CommandQueue" href="../CommandQueue.html">CommandQueue</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="com.developedbyme.constants.extendedevents.LockExtendedEventIds" href="../../../constants/extendedevents/LockExtendedEventIds.html">LockExtendedEventIds</a>, <a title="com.developedbyme.utils.logic.MultipleLock" href="../../logic/MultipleLock.html">MultipleLock</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.utils.data.CommandQueue" href="../CommandQueue.html">CommandQueue</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.constants.extendedevents.LockExtendedEventIds" href="../../../constants/extendedevents/LockExtendedEventIds.html">LockExtendedEventIds</a>, <a title="dbm.utils.logic.MultipleLock" href="../../logic/MultipleLock.html">MultipleLock</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var ActiveArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator");</div>
+									<div class="code">var ActiveArrayIterator = dbm.importClass("dbm.utils.data.iterator.ActiveArrayIterator");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator", "com.developedbyme.utils.data.iterator.ArrayIterator", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator");
+									<div class="code">dbm.registerClass("dbm.utils.data.iterator.ActiveArrayIterator", "dbm.utils.data.iterator.ArrayIterator", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.data.iterator.ActiveArrayIterator");
 	//"use strict";
 	
 	//Self reference
-	var ActiveArrayIterator = dbm.importClass("com.developedbyme.utils.data.iterator.ActiveArrayIterator");
+	var ActiveArrayIterator = dbm.importClass("dbm.utils.data.iterator.ActiveArrayIterator");
 	
 	//Error report
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	//Dependencies
-	var CommandQueue = dbm.importClass("com.developedbyme.utils.data.CommandQueue");
-	var MultipleLock = dbm.importClass("com.developedbyme.utils.logic.MultipleLock");
+	var CommandQueue = dbm.importClass("dbm.utils.data.CommandQueue");
+	var MultipleLock = dbm.importClass("dbm.utils.logic.MultipleLock");
 	
 	//Utils
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("com.developedbyme.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	//Constants
-	var LockExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LockExtendedEventIds");
+	var LockExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LockExtendedEventIds");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::_init");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::_init");
 		
 		this.superCall();
 		
@@ -133,7 +133,7 @@
 	 * @return	IterationData	The newly created object.
 	 */
 	objectFunctions.createIterationData = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::createIterationData");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::createIterationData");
 		
 		var newIterationData = this.superCall();
 		this._lock.lock(newIterationData);
@@ -148,7 +148,7 @@
 	 * @return	self
 	 */
 	objectFunctions.stopUsingIterationData = function(aIterationData) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
 		
 		this._lock.unlock(aIterationData);
 		this.superCall(aIterationData);
@@ -199,7 +199,7 @@
 	 * Pushes an object to the list.
 	 */
 	objectFunctions.push = function(aObject) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::push");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::push");
 		if(!this._verifyItem(aObject)) return;
 		if(!this._commandQueueIsRunning()) {
 			this._itemPreAdded(aObject);
@@ -256,7 +256,7 @@
 	 * Removes an item from the list.
 	 */
 	objectFunctions.removeItem = function(aObject) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::removeItem");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::removeItem");
 		//console.log(aObject);
 		if(!this._lock.isLocked() || this._canRemoveItemsWhileActive) {
 			this.superCall(aObject);
@@ -339,7 +339,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::_init");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::_init");
 		
 		this.superCall();
 		
@@ -478,7 +478,7 @@
 				</div>
 			</div><div class="function">
 				<div class="definition">
-					<span class="functionName">createIterationData</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="com.developedbyme.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a></span>
+					<span class="functionName">createIterationData</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a></span>
 				</div>
 				<div class="descriptionHolder">
 					<div class="description">Creates a new iteration data for this array.</div>
@@ -488,14 +488,14 @@
 					</div>
 					<div class="spacedContent">
 						<div class="smallTitle">Return value</div>
-						<div class="returnValueDescription"><a title="com.developedbyme.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a> - The newly created object.</div>
+						<div class="returnValueDescription"><a title="dbm.utils.data.iterator.IterationData" href="IterationData.html">IterationData</a> - The newly created object.</div>
 					</div>
 					<div class="foldableCode spacedContent">
 						<div class="boxWithTitle foldable">
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createIterationData = function() {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::createIterationData");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::createIterationData");
 		
 		var newIterationData = this.superCall();
 		this._lock.lock(newIterationData);
@@ -524,7 +524,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.stopUsingIterationData = function(aIterationData) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::stopUsingIterationData");
 		
 		this._lock.unlock(aIterationData);
 		this.superCall(aIterationData);
@@ -677,7 +677,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.push = function(aObject) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::push");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::push");
 		if(!this._verifyItem(aObject)) return;
 		if(!this._commandQueueIsRunning()) {
 			this._itemPreAdded(aObject);
@@ -806,7 +806,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.removeItem = function(aObject) {
-		//console.log("com.developedbyme.utils.data.iterator.ActiveArrayIterator::removeItem");
+		//console.log("dbm.utils.data.iterator.ActiveArrayIterator::removeItem");
 		//console.log(aObject);
 		if(!this._lock.isLocked() || this._canRemoveItemsWhileActive) {
 			this.superCall(aObject);

@@ -1,0 +1,50 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("dbm.constants.TemplateCommandNames", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.TemplateCommandNames");
+	
+	var TemplateCommandNames = dbm.importClass("dbm.constants.TemplateCommandNames");
+	
+	staticFunctions.IGNORE = "ignore";
+	
+	staticFunctions.POSITIONED = "positioned";
+	staticFunctions.SIZED = "sized";
+	staticFunctions.TRANSFORMED = "transformed";
+	
+	staticFunctions.ALPHA_ENABLED = "alphaEnabled";
+	staticFunctions.Z_INDEX_ENABLED = "zIndexEnabled";
+	staticFunctions.UPDATE_DISPLAY = "updateDisplay";
+	staticFunctions.ACTIVATE = "activate";
+	
+	staticFunctions.CALL_FUNCTION = "callFunction";
+	
+	//Dynamic data
+	staticFunctions.ADD_DYNAMIC_OBJECT = "dynamic:add";
+	staticFunctions.ADD_DYNAMIC_PROPERTY = "dynamic:addProperty";
+	
+	//Flow
+	staticFunctions.CONNECT_INPUT = "flow:connectInput";
+	staticFunctions.CONNECT_OUTPUT = "flow:connectOutput";
+	staticFunctions.UPDATE_FLOW = "flow:update";
+	staticFunctions.START_UPDATING_FLOW = "flow:startUpdating";
+	
+	//Workspace
+	staticFunctions.ELEMENT_SIZE_AS_AREA = "workspace:elementSizeAsArea";
+	
+	//Layout
+	staticFunctions.ADD_LAYOUT_CONTROLLER = "layout:addController";
+	staticFunctions.LAYOUT_SPLIT = "layout:split";
+	staticFunctions.SIZED_ELEMENT_AREA = "layout:sizedElementArea";
+	staticFunctions.INPUT_AREA_FROM_ELEMENT_SIZE = "layout:inputAreaFromElementSize";
+	
+	//Slider
+	staticFunctions.SCALE_FIRST_CHILD = "slider:scaleFirstChild";
+	staticFunctions.SET_FIRST_CHILD_AS_PLAYHEAD = "slider:setFirstChildAsPlayhead";
+	
+	//State
+	staticFunctions.ADD_STATE_IMAGE = "state:addImage";
+	
+	//Switchable area
+	staticFunctions.CREATE_IN_DOM_SWITCHABLE_AREA = "switchable:createInDomSwitch";
+	staticFunctions.ADD_SWITCHABLE_AREA = "switchable:addArea";
+	staticFunctions.SWITCHABLE_VISIBLE_AREA_FROM_BOOLEAN_PROPERTY = "switchable:visibleAreaFromBooleanProperty";
+});

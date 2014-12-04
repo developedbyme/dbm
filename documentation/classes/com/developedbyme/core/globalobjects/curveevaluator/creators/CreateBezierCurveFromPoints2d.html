@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CreateBezierCurveFromPoints2d</h1>
-					<div class="classPath">com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">Creates curve that passes through a set of points.</div>
 						<div class="spacedContent">
@@ -38,28 +38,28 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.utils.math.EquationSolver" href="../../../../utils/math/EquationSolver.html">EquationSolver</a></div>
+							<div class="dependencies linkList"><a title="dbm.utils.math.EquationSolver" href="../../../../utils/math/EquationSolver.html">EquationSolver</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CreateBezierCurveFromPoints2d = dbm.importClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");</div>
+									<div class="code">var CreateBezierCurveFromPoints2d = dbm.importClass("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d", "com.developedbyme.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
 	
-	var EquationSolver = dbm.importClass("com.developedbyme.utils.math.EquationSolver");
+	var EquationSolver = dbm.importClass("dbm.utils.math.EquationSolver");
 	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::_init");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::_init");
 		
 		this.superCall();
 		
@@ -74,7 +74,7 @@
 	 * @param	aParameters		The array with parameters for the different points.
 	 */
 	objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aParameters) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::createCurve");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::createCurve");
 		//console.log(aPointsArray, aReturnCurve, aParameters);
 		var curveDegree = aPointsArray.length-1;
 		var multipliersArray = dbm.singletons.dbmCurveEvaluator.getBezierMultipliersArray(curveDegree);
@@ -143,7 +143,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::_init");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::_init");
 		
 		this.superCall();
 		
@@ -172,7 +172,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.createCurve = function(aPointsArray, aReturnCurve, aParameters) {
-		//console.log("com.developedbyme.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::createCurve");
+		//console.log("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d::createCurve");
 		//console.log(aPointsArray, aReturnCurve, aParameters);
 		var curveDegree = aPointsArray.length-1;
 		var multipliersArray = dbm.singletons.dbmCurveEvaluator.getBezierMultipliersArray(curveDegree);

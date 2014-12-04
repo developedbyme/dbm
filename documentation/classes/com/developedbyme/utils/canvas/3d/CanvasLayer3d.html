@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CanvasLayer3d</h1>
-					<div class="classPath">com.developedbyme.utils.canvas.3d.CanvasLayer3d</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.utils.canvas.3d.CanvasLayer3d</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description">A layer in a 2d canvas.</div>
 						<div class="spacedContent">
@@ -38,40 +38,40 @@
 						</div>
 						<div class="spacedContent">
 							<div class="smallTitle">Dependencies</div>
-							<div class="dependencies linkList"><a title="com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty" href="../../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="com.developedbyme.core.data.curves.BezierCurve" href="../../../core/data/curves/BezierCurve.html">BezierCurve</a>, <a title="com.developedbyme.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="com.developedbyme.core.data.matrices.Matrix" href="../../../core/data/matrices/Matrix.html">Matrix</a>, <a title="com.developedbyme.core.data.points.Point" href="../../../core/data/points/Point.html">Point</a>, <a title="com.developedbyme.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="com.developedbyme.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode" href="../../../flow/nodes/math/transformation/TransformationTo3dMatrixNode.html">TransformationTo3dMatrixNode</a>, <a title="com.developedbyme.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.core.data.curves.BezierCurve" href="../../../core/data/curves/BezierCurve.html">BezierCurve</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.data.matrices.Matrix" href="../../../core/data/matrices/Matrix.html">Matrix</a>, <a title="dbm.core.data.points.Point" href="../../../core/data/points/Point.html">Point</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.flow.nodes.math.transformation.TransformationTo3dMatrixNode" href="../../../flow/nodes/math/transformation/TransformationTo3dMatrixNode.html">TransformationTo3dMatrixNode</a>, <a title="dbm.utils.data.VariableAliases" href="../../data/VariableAliases.html">VariableAliases</a></div>
 						</div>
 						<div class="foldableCode spacedContent">
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CanvasLayer3d = dbm.importClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d");</div>
+									<div class="code">var CanvasLayer3d = dbm.importClass("dbm.utils.canvas.3d.CanvasLayer3d");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d");
+									<div class="code">dbm.registerClass("dbm.utils.canvas.3d.CanvasLayer3d", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.canvas.3d.CanvasLayer3d");
 	
-	var CanvasLayer3d = dbm.importClass("com.developedbyme.utils.canvas.3d.CanvasLayer3d");
+	var CanvasLayer3d = dbm.importClass("dbm.utils.canvas.3d.CanvasLayer3d");
 	
-	var ErrorManager = dbm.importClass("com.developedbyme.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("com.developedbyme.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("com.developedbyme.constants.ReportLevelTypes");
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var Matrix = dbm.importClass("com.developedbyme.core.data.matrices.Matrix");
-	var BezierCurve = dbm.importClass("com.developedbyme.core.data.curves.BezierCurve");
-	var Point = dbm.importClass("com.developedbyme.core.data.points.Point");
-	var AnyChangeMultipleInputProperty = dbm.importClass("com.developedbyme.core.objectparts.AnyChangeMultipleInputProperty");
-	var VariableAliases = dbm.importClass("com.developedbyme.utils.data.VariableAliases");
+	var Matrix = dbm.importClass("dbm.core.data.matrices.Matrix");
+	var BezierCurve = dbm.importClass("dbm.core.data.curves.BezierCurve");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var TransformationTo3dMatrixNode = dbm.importClass("com.developedbyme.flow.nodes.math.transformation.TransformationTo3dMatrixNode");
+	var TransformationTo3dMatrixNode = dbm.importClass("dbm.flow.nodes.math.transformation.TransformationTo3dMatrixNode");
 	
 	/**
 	 * Constructor.
 	 */
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_init");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::_init");
 		
 		this.superCall();
 		
@@ -96,7 +96,7 @@
 	};
 	
 	objectFunctions._linkRegistration_setTransformationNode = function(aTransformationNode) {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_linkRegistration_setTransformationNode");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::_linkRegistration_setTransformationNode");
 		//console.log(aTransformationNode);
 		this._transformationNode = aTransformationNode;
 		this._transformationMatrix.connectInput(this._transformationNode.getProperty("outputMatrix"));
@@ -114,7 +114,7 @@
 	};
 	
 	objectFunctions.draw = function(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::draw");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::draw");
 		//console.log(aNumberOfLinksToResolve);
 		
 		var currentMatrix = this._transformationMatrix.getValue();
@@ -137,7 +137,7 @@
 	};
 	
 	objectFunctions._drawGraphics = function(aContext, aCurrentMatrix, aPerspectiveMatrix) {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_drawGraphics");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::_drawGraphics");
 		//console.log(this._graphics);
 		
 		var currentArray = this._graphics;
@@ -149,7 +149,7 @@
 	};
 	
 	objectFunctions._drawChildren = function(aContext, aChildren, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_drawChildren");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::_drawChildren");
 		//console.log(aNumberOfLinksToResolve);
 		
 		var currentArray = aChildren;
@@ -176,7 +176,7 @@
 	};
 	
 	objectFunctions.getProperty = function(aName) {
-		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
+		//console.log("dbm.core.FlowBaseObject::getProperty");
 		
 		switch(aName) {
 			case "x":
@@ -266,7 +266,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_init");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::_init");
 		
 		this.superCall();
 		
@@ -312,7 +312,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._linkRegistration_setTransformationNode = function(aTransformationNode) {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_linkRegistration_setTransformationNode");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::_linkRegistration_setTransformationNode");
 		//console.log(aTransformationNode);
 		this._transformationNode = aTransformationNode;
 		this._transformationMatrix.connectInput(this._transformationNode.getProperty("outputMatrix"));
@@ -393,7 +393,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.draw = function(aContext, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::draw");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::draw");
 		//console.log(aNumberOfLinksToResolve);
 		
 		var currentMatrix = this._transformationMatrix.getValue();
@@ -458,7 +458,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._drawGraphics = function(aContext, aCurrentMatrix, aPerspectiveMatrix) {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_drawGraphics");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::_drawGraphics");
 		//console.log(this._graphics);
 		
 		var currentArray = this._graphics;
@@ -491,7 +491,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._drawChildren = function(aContext, aChildren, aCurrentMatrix, aPerspectiveMatrix, aNumberOfLinksToResolve) {
-		//console.log("com.developedbyme.utils.canvas.3d.CanvasLayer3d::_drawChildren");
+		//console.log("dbm.utils.canvas.3d.CanvasLayer3d::_drawChildren");
 		//console.log(aNumberOfLinksToResolve);
 		
 		var currentArray = aChildren;
@@ -539,7 +539,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions.getProperty = function(aName) {
-		//console.log("com.developedbyme.core.FlowBaseObject::getProperty");
+		//console.log("dbm.core.FlowBaseObject::getProperty");
 		
 		switch(aName) {
 			case "x":

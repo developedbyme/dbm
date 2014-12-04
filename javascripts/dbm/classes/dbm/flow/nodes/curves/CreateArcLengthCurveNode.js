@@ -1,0 +1,114 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("dbm.flow.nodes.curves.CreateArcLengthCurveNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode");
+	
+	//Self reference
+	var CreateArcLengthCurveNode = dbm.importClass("dbm.flow.nodes.curves.CreateArcLengthCurveNode");
+	
+	//Error report
+	
+	//Dependencies
+	var BezierCurve = dbm.importClass("dbm.core.data.curves.BezierCurve");
+	var Point = dbm.importClass("dbm.core.data.points.Point");
+	
+	//Utils
+	var VectorFunctions = dbm.importClass("dbm.utils.math.VectorFunctions");
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode::_init");
+		
+		this.superCall();
+		
+		this._inputCurve = this.createProperty("inputCurve", null).setAlwaysUpdateFlow(true);
+		this._startParameter = this.createProperty("startParameter", 0);
+		this._endParameter = this.createProperty("endParameter", 1);
+		this._stepLength = this.createProperty("stepLength", 0.01);
+		this._outputCurve = this.createProperty("outputCurve", BezierCurve.create(1, false));
+		
+		this._tempPoint1 = this.addDestroyableObject(Point.create());
+		this._tempPoint2 = this.addDestroyableObject(Point.create());
+		
+		this.createUpdateFunction("default", this._update, [this._inputCurve, this._startParameter, this._endParameter, this._stepLength], [this._outputCurve]);
+		
+		return this;
+	};
+	
+	objectFunctions._update = function(aFlowUpdateNumber) {
+		//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode::_update");
+		
+		var inputCurve = this._inputCurve.getValueWithoutFlow();
+		var startParameter = this._startParameter.getValueWithoutFlow();
+		var endParameter = this._endParameter.getValueWithoutFlow();
+		var stepLength = this._stepLength.getValueWithoutFlow();
+		var outputCurve = this._outputCurve.getValueWithoutFlow();
+		
+		var outputPointsArray = outputCurve.pointsArray;
+		
+		var parameterRange = (endParameter-startParameter);
+		var numberOfSteps = Math.ceil(parameterRange/stepLength)+1;
+		var currentLength = outputPointsArray.length;
+		var adjustment = numberOfSteps-currentLength;
+		
+		Point.adjustPointsArrayLength(outputPointsArray, adjustment);
+		
+		var tempPoint;
+		var lastPoint = this._tempPoint1;
+		var currentPoint = this._tempPoint2;
+		inputCurve.getPointOnCurve(startParameter, lastPoint);
+		var startPoint = outputPointsArray[0];
+		startPoint.x = startParameter;
+		startPoint.y = 0;
+		
+		var currentPointIndex = 1;
+		var currentLength = 0;
+		for(var i = 1; i < numberOfSteps; i++) {
+			var parameter = startParameter+(i/(numberOfSteps-1))*parameterRange;
+			
+			inputCurve.getPointOnCurve(parameter, currentPoint);
+			
+			var sectionLength = VectorFunctions.lengthFromVectorValues3d(currentPoint.x-lastPoint.x, currentPoint.y-lastPoint.y, currentPoint.z-lastPoint.z);
+			currentLength += sectionLength;
+			
+			var currentOutputPoint = outputPointsArray[i];
+			currentOutputPoint.x = parameter;
+			currentOutputPoint.y = currentLength;
+			
+			tempPoint = lastPoint;
+			lastPoint = currentPoint;
+			currentPoint = tempPoint;
+		}
+		
+		this._outputCurve.setFlowAsUpdated(aFlowUpdateNumber);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputCurve = null;
+		this._startParameter = null;
+		this._endParameter = null;
+		this._stepLength = null;
+		this._outputCurve = null;
+		
+		this._tempPoint1 = null;
+		this._tempPoint2 = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aInputCurve, aStartParameter, aEndParameter, aStepLength) {
+		//console.log("dbm.flow.nodes.curves.CreateArcLengthCurveNode::create");
+		//console.log(aInputPoints, aIsRound);
+		var newNode = (new ClassReference()).init();
+		newNode.setPropertyInputWithoutNull("inputCurve", aInputCurve);
+		newNode.setPropertyInputWithoutNull("startParameter", aStartParameter);
+		newNode.setPropertyInputWithoutNull("endParameter", aEndParameter);
+		newNode.setPropertyInputWithoutNull("stepLength", aStepLength);
+		return newNode;
+	};
+});

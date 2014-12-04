@@ -1,6 +1,6 @@
 dbm.runTempFunction(function() {
 	
-	var CanvasView = dbm.importClass("com.developedbyme.gui.canvas.CanvasView");
+	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

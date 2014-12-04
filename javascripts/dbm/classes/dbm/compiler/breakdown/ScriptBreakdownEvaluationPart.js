@@ -1,0 +1,287 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Breakdown for a code evaluation.
+ */
+dbm.registerClass("dbm.compiler.breakdown.ScriptBreakdownEvaluationPart", "dbm.compiler.breakdown.ScriptBreakdownPart", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.compiler.breakdown.ScriptBreakdownEvaluationPart");
+	
+	//Self reference
+	var ScriptBreakdownEvaluationPart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownEvaluationPart");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var ScriptBreakdownLinePart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownLinePart");
+	var ScriptBreakdownCodePart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownCodePart");
+	var ScriptBreakdownVariableReferencePart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownVariableReferencePart");
+	var ScriptBreakdownGetVariableOnObjectPart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownGetVariableOnObjectPart");
+	var ScriptBreakdownCallFunctionPart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownCallFunctionPart");
+	var ScriptBreakdownCommentPart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownCommentPart");
+	var ScriptBreakdownGetAssociativeVariableOnObjectPart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownGetAssociativeVariableOnObjectPart");
+	var ScriptBreakdownNewPart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownNewPart");
+	var ScriptBreakdownNumberPart = dbm.importClass("dbm.compiler.breakdown.ScriptBreakdownNumberPart");
+	var ScriptBreakdownDbmRegisterClassPart = dbm.importClass("dbm.compiler.breakdown.dbm.ScriptBreakdownDbmRegisterClassPart");
+	var ScriptBreakdownNamedFunctionDeclarationPart = dbm.importClass("dbm.compiler.breakdown.complex.ScriptBreakdownNamedFunctionDeclarationPart");
+	var ScriptBreakdownAssignValuePart = dbm.importClass("dbm.compiler.breakdown.complex.ScriptBreakdownAssignValuePart");
+	
+	//Utils
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
+	var ScopeFunctions = dbm.importClass("dbm.utils.native.string.ScopeFunctions");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	var JavascriptLanguageFunctions = dbm.importClass("dbm.utils.native.string.JavascriptLanguageFunctions");
+	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
+	
+	//Constants
+	var BreakdownTypes = dbm.importClass("dbm.constants.compiler.BreakdownTypes");
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.compiler.breakdown.ScriptBreakdownEvaluationPart::_init");
+		
+		this.superCall();
+		
+		this._type = BreakdownTypes.EVALUATION;
+		this._operation = null;
+		
+		return this;
+	};
+	
+	objectFunctions.getDeeperBreakdownIfEmpty = function() {
+		if(this._operation === null && this._childBreakdowns.length === 1) {
+			return this._childBreakdowns[0];
+		}
+		return this.superCall();
+	};
+	
+	objectFunctions._breakdown = function() {
+		//console.log("dbm.compiler.breakdown.ScriptBreakdownEvaluationPart::_breakdown");
+		//console.log(this._script.substring(0, 60));
+		//console.log(this._script.substring(this._script.length-60, this._script.length));
+		
+		if(!VariableAliases.isEmptyText(this._script)) {
+			
+			var operators = new Array();
+			var scopes = ScopeFunctions.splitEvaluation(this._script, operators);
+			
+			if(scopes.length === 0) {
+				if(JavascriptLanguageFunctions.startsWithSpecifiedKeyword(this._script, "new")) {
+					this._childBreakdowns.push(ScriptBreakdownNewPart.create(this, StringFunctions.trim(this._script.substring(3, this._script.length))));
+				}
+				else {
+					if(!isNaN(this._script)) {
+						this._childBreakdowns.push(ScriptBreakdownNumberPart.create(this, this._script));
+					}
+					else {
+						this._childBreakdowns.push(ScriptBreakdownVariableReferencePart.create(this, this._script));
+					}
+				}
+			}
+			else {
+				
+				var lowestPresedenceIndex = this._getLowestPrecedenceIndex(operators);
+				var splitPosition = scopes[lowestPresedenceIndex];
+				
+				switch(operators[lowestPresedenceIndex]) {
+					case null:
+						this._operation = "";
+						var currentScopeType = ScopeFunctions.getTypeOfScopeStart(this._script, splitPosition);
+						switch(currentScopeType) {
+							case "(":
+								var beforePart = StringFunctions.trim(this._script.substring(0, splitPosition));
+								if(beforePart === "new") {
+									this._childBreakdowns.push(ScriptBreakdownNewPart.create(this, StringFunctions.trim(this._script.substring(splitPosition, this._script.length))));
+								}
+								else {
+									this._childBreakdowns.push(ScriptBreakdownLinePart.create(this, beforePart));
+									this._childBreakdowns.push(ScriptBreakdownCallFunctionPart.create(this, StringFunctions.trim(this._script.substring(splitPosition+1, this._script.length-1))));
+								}
+								break;
+							case "[":
+								this._childBreakdowns.push(
+									ScriptBreakdownGetAssociativeVariableOnObjectPart.create(
+										this,
+										StringFunctions.trim(this._script.substring(0, splitPosition)),
+										StringFunctions.trim(this._script.substring(splitPosition+1, this._script.length-1))
+									)
+								);
+								break;
+							case "//":
+							case "/*":
+								this._childBreakdowns.push(ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(0, splitPosition))));
+								this._childBreakdowns.push(ScriptBreakdownCommentPart.create(this, StringFunctions.trim(this._script.substring(splitPosition, this._script.length))));
+								break;
+						}
+						break;
+					case ".":
+						var firstPart = StringFunctions.trim(this._script.substring(0, splitPosition));
+						var lastPart = StringFunctions.trim(this._script.substring(splitPosition+operators[lowestPresedenceIndex].length));
+						if(!isNaN(firstPart) && !isNaN(lastPart)) {
+							this._childBreakdowns.push(ScriptBreakdownNumberPart.create(this, this._script));
+						}
+						else {
+							this._childBreakdowns.push(ScriptBreakdownGetVariableOnObjectPart.create(this, firstPart, lastPart));
+						}
+						break;
+					default:
+						this._operation = operators[lowestPresedenceIndex];
+						this._childBreakdowns.push(ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(0, splitPosition))));
+						this._childBreakdowns.push(ScriptBreakdownLinePart.create(this, StringFunctions.trim(this._script.substring(splitPosition+this._operation.length))));
+						break;
+				}
+			}
+		}
+	};
+	
+	objectFunctions._childsBrokenDown = function() {
+		//console.log("dbm.compiler.breakdown.ScriptBreakdownEvaluationPart::_childsBrokenDown");
+		
+		var childBreakdowns = this._childBreakdowns;
+		if(childBreakdowns.length === 2 && this._operation === "") {
+			var functionCallBreakdown = childBreakdowns[1];
+			if(functionCallBreakdown.getType() === BreakdownTypes.CALL_FUNCTION) {
+				var functionNameBreakdown = childBreakdowns[0];
+				if(functionNameBreakdown.getType() === BreakdownTypes.VARIABLE_ON_OBJECT_REFERENCE && functionNameBreakdown.getVariableName() === "registerClass" && functionNameBreakdown.getObject().getVariableName() === "dbm") {
+					
+					var registationBreakdown = functionCallBreakdown.getChildBreakdowns();
+					this._replaceablePart = ScriptBreakdownDbmRegisterClassPart.create(this._parent, this._script, registationBreakdown[0], registationBreakdown[1], registationBreakdown[2]);
+				}
+			}
+		}
+		else if(childBreakdowns.length === 2 && this._operation === "=") {
+			//METODO: check for function declaration
+			var evaluationBreakdown = childBreakdowns[1];
+			if(evaluationBreakdown.getType() === BreakdownTypes.FUNCTION_DECLARATION) {
+				this._replaceablePart = ScriptBreakdownNamedFunctionDeclarationPart.create(this._parent, this._script, childBreakdowns[0], childBreakdowns[1]);
+			}
+			else {
+				this._replaceablePart = ScriptBreakdownAssignValuePart.create(this._parent, this._script, childBreakdowns[0], childBreakdowns[1]);
+			}
+		}
+	};
+	
+	objectFunctions._getLowestPrecedenceIndex = function(aOperatorsArray) {
+		var returnIndex = -1;
+		var lowestPrecedence = -1;
+		var currentArray = aOperatorsArray;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentIndex = currentArrayLength-i-1;
+			var currentPresedence = this._getPrecedence(currentArray[currentIndex]);
+			if(lowestPrecedence === -1 || currentPresedence < lowestPrecedence) {
+				lowestPrecedence = currentPresedence;
+				returnIndex = currentIndex;
+			}
+		}
+		return returnIndex;
+	};
+	
+	objectFunctions._getPrecedence = function(aOperator) {
+		switch(aOperator) {
+			case null:
+			case ".":
+				return 13;
+			case "!":
+			case "~":
+			case "*":
+			case "&":
+			case "++":
+			case "--":
+				return 12;
+			case "*":
+			case "/":
+			case "%":
+				return 11;
+			case "+":
+			case "-":
+				return 10;
+			case "<<":
+			case ">>":
+			case "<<<":
+			case ">>>":
+				return 9;
+			case "<":
+			case "<=":
+			case ">":
+			case ">=":
+				return 8;
+			case "==":
+			case "!=":
+			case "===":
+			case "!==":
+			case " instanceof ":
+				return 7;
+			case "&":
+				return 6;
+			case "^":
+				return 5;
+			case "|":
+				return 4;
+			case "&&":
+				return 3;
+			case "||":
+				return 2;
+			case "?":
+			case ":":
+				return 1;
+			case "=":
+			case "+=":
+			case " -=":
+			case "*=":
+			case "/=":
+			case "%=":
+			case "&=":
+			case "|=":
+			case "^=":
+			case "<<=":
+			case ">>=":
+			case "<<<=":
+			case ">>>=":
+				return 0;
+		}
+		
+		//METODO: error message
+		return 14;
+	};
+	
+	objectFunctions.compile = function(aCompileData) {
+		//console.log("dbm.compiler.breakdown.ScriptBreakdownEvaluationPart::compile");
+		//console.log(this, this._childBreakdowns);
+		//console.log(aCompileData);
+		
+		//MEDEBUG
+		if(this._childBreakdowns.length === 0) {
+			return "";
+		}
+		
+		
+		var returnString = this._childBreakdowns[0].compile(aCompileData);
+		if(this._childBreakdowns.length > 1) {
+			returnString += this._operation;
+			returnString += this._childBreakdowns[1].compile(aCompileData);
+		}
+		
+		
+		return returnString;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._evaluation = null;
+		this._result = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aParent, aScript) {
+		var newScriptBreakDown = (new ClassReference()).init();
+		newScriptBreakDown.setParent(aParent);
+		newScriptBreakDown.setScript(aScript);
+		return newScriptBreakDown;
+	};
+});

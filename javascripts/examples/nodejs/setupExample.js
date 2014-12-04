@@ -1,12 +1,12 @@
 require("../../dbmForNodejs/dbmForNodejs.js");
 require("../../dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js");
 dbm.setup(null, null, "../../javascripts", "classes"); //MENOTE: javascript folder is based from "../../dbmForNodejs/dbmForNodejs.js"
-dbm.addSpecificClassesFolder("com.developedbyme.nodejs", "dbmForNodejs/classes");
+dbm.addSpecificClassesFolder("dbm.nodejs", "dbmForNodejs/classes");
 require("../../dbmForNodejs/setup/defaultSetup.js");
 
 dbm.runTempFunction(function() {
 	
-	var BaseObject = dbm.importClass("com.developedbyme.core.BaseObject");
+	var BaseObject = dbm.importClass("dbm.core.BaseObject");
 	
 	var startFunction = function() {
 		console.log("startFunction");

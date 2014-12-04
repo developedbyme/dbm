@@ -28,8 +28,8 @@
 			<article>
 				<div class="mainInfo">
 					<h1>CosNode</h1>
-					<div class="classPath">com.developedbyme.flow.nodes.math.trigonometry.CosNode</div>
-					<div class="classInheritance"><a title="com.developedbyme.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="com.developedbyme.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="classPath">dbm.flow.nodes.math.trigonometry.CosNode</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../../core/BaseObject.html">BaseObject</a></div>
 					<div class="descriptionHolder">
 						<div class="description"></div>
 						<div class="spacedContent">
@@ -44,19 +44,19 @@
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Import code</div>
 								<div class="codeBox snippet">
-									<div class="code">var CosNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode");</div>
+									<div class="code">var CosNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.CosNode");</div>
 								</div>
 							</div>
 							<div class="boxWithTitle foldable">
 								<div class="smallTitle">Full code</div>
 								<div class="codeBox fullCode">
-									<div class="code">dbm.registerClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode", "com.developedbyme.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("com.developedbyme.flow.nodes.math.trigonometry.CosNode");
+									<div class="code">dbm.registerClass("dbm.flow.nodes.math.trigonometry.CosNode", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.nodes.math.trigonometry.CosNode");
 	
-	var CosNode = dbm.importClass("com.developedbyme.flow.nodes.math.trigonometry.CosNode");
+	var CosNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.CosNode");
 	
 	objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.CosNode::_init");
+		//console.log("dbm.flow.nodes.math.trigonometry.CosNode::_init");
 		
 		this.superCall();
 		
@@ -69,7 +69,7 @@
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.CosNode::_update");
+		//console.log("dbm.flow.nodes.math.trigonometry.CosNode::_update");
 		this._outputValue.setValueWithFlow(Math.cos(this._inputValue.getValueWithoutFlow()), aFlowUpdateNumber);
 	};
 	
@@ -122,7 +122,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._init = function() {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.CosNode::_init");
+		//console.log("dbm.flow.nodes.math.trigonometry.CosNode::_init");
 		
 		this.superCall();
 		
@@ -156,7 +156,7 @@
 							<div class="smallTitle">Full code</div>
 							<div class="codeBox fullCode">
 								<div class="code">objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("com.developedbyme.flow.nodes.math.trigonometry.CosNode::_update");
+		//console.log("dbm.flow.nodes.math.trigonometry.CosNode::_update");
 		this._outputValue.setValueWithFlow(Math.cos(this._inputValue.getValueWithoutFlow()), aFlowUpdateNumber);
 	}</div>
 							</div>

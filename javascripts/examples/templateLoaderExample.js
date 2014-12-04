@@ -1,11 +1,11 @@
 dbm.runTempFunction(function() {
 	
-	var CallFunctionCommand = dbm.importClass("com.developedbyme.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var LoadingExtendedEventIds = dbm.importClass("com.developedbyme.constants.extendedevents.LoadingExtendedEventIds");
+	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
-	var VideoView = dbm.importClass("com.developedbyme.gui.media.video.VideoView");
-	var BaseButton = dbm.importClass("com.developedbyme.gui.buttons.BaseButton");
+	var VideoView = dbm.importClass("dbm.gui.media.video.VideoView");
+	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");
