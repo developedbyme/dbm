@@ -1,953 +1,953 @@
 <data:item data:type="dbmObject" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.ExportMetaDataObject" xmlns:data="http://developedbyme.com/schemas/xml/data/">
-	<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-		<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-		<data:item data:type="string" data:name="exportDate" data:parentApplyType="namedArray/addObject"><![CDATA[2014-11-22T11:00:09]]></data:item>
-		<data:item data:type="string" data:name="exportType" data:parentApplyType="namedArray/addObject"><![CDATA[illustratorDocument]]></data:item>
-		<data:item data:type="string" data:name="environment" data:parentApplyType="namedArray/addObject"><![CDATA[extendScript]]></data:item>
-	</data:item>
-	<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-		<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-			<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-			<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[1190.55]]></data:item>
-			<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[841.889999999999]]></data:item>
-		</data:item>
-		<data:item data:type="treeStructure" data:name="data">
-			<data:item data:type="boolean" data:name="createMissingItems"><![CDATA[true]]></data:item>
-			<data:item data:type="boolean" data:name="ownsData"><![CDATA[false]]></data:item>
-			<data:item data:type="treeStructureItem" data:parentApplyType="treeStructure/root">
-				<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
-				<data:item data:type="treeStructureItem" data:name="layer_0" data:parentApplyType="treeStructure/addChild">
-					<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-						<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-							<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-							<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[HEAD]]></data:item>
-							<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[105.523874591853]]></data:item>
-							<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[158.125046875]]></data:item>
-							<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
-						</data:item>
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-							<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
-							<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-								<data:item data:type="number" data:name="x"><![CDATA[491.142792074813]]></data:item>
-								<data:item data:type="number" data:name="y"><![CDATA[99.5]]></data:item>
-								<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-								<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-								<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_1" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[12.5093412457218]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[14.5490796795511]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.89642173051834]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.77590596675873]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.61919581890106]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.96279847621918]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[12.5093412457218,0,0,1;5.32166836647775,0.17969194215129,0,1;-0.85734800698992,7.422892036333,0,1;0.0978379888893,14.5490796795511,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[13.9186665434581]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_2" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[8.36489022006754]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[18.2947937443005]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.89642173051834]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.77590596675873]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.61919581890106]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.96279847621918]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[8.36489022006754,0,0,1;4.79412311356009,1.12867617471238,0,1;1.83075804536384,4.02646087670473,0,1;0.62246786451487,7.57107968204127,0,1;-0.58582231633318,11.1156984873787,0,1;-0.00937538809194,15.2201348244944,0,1;2.12855823181599,18.2947937443005,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[11.4585104876714]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[15.0597115428391]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_3" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[7.76745315157586]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[8.98375188326099]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.89642173051834]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.77590596675873]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.61919581890106]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.96279847621918]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[7.76745315157586,0,0,1;3.65879847714041,0.98820081106624,0,1;0.38430896488899,4.77543978738868,0,1;0,8.98375188326099,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[41.6836668234491]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[18.1975072341847]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_4" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[9.3079150558242]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[16.9008073349041]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.89642173051834]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.77590596675873]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.61919581890106]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.96279847621918]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[9.3079150558242,0,0,1;3.17358334762321,3.02005267361073,0,1;-0.68781050663983,10.1091395052881,0,1;0.10212097759722,16.9008073349041,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[20.7666897372974]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[16.2645098239354]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_5" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[6.68032998201852]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[16.6192611846436]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.89642173051834]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.77590596675873]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.61919581890106]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.96279847621918]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[6.68032998201852,0,0,1;1.56378357249741,3.6444880124418,0,1;-1.03328688406145,10.4993806041275,0,1;0.38389401964923,16.6192611846436,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[32.2478362586344]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[17.9329526798592]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_6" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[59.702353555891]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[21.8543808389422]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.89642173051834]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.77590596675873]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.61919581890106]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.96279847621918]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[8]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[59.702353555891,0.31042616912328,0,1;55.0356868892241,-0.35624049754279,0,1;10.369020222558,0.25835455454035,0,1;10.369020222558,0.25835455454035,0,1;10.369020222558,0.25835455454035,0,1;0.36902022255799,-0.74164544545965,0,1;0.00948246214102,11.9770928357902,0,1;-0.33904230391272,24.3062436844511,0,1;9.03568688922405,21.6032307602527,0,1;9.03568688922405,21.6032307602527,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[1.15485436929612]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[49.5229071642098]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_7" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[29.6089618021542]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[31.6897524114247]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
-									<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.89642173051834]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.77590596675873]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.61919581890106]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.96279847621918]]></data:item>
-										</data:item>
-									</data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[29.6089618021542,14.3448762057124,0,1;29.6089618021542,23.9241868212966,0,1;22.9807699314479,31.6897524114247,0,1;14.8044809010771,31.6897524114247,0,1;6.62819187070636,31.6897524114247,0,1;0,23.9241868212966,0,1;0,14.3448762057124,0,1;0,4.76556559012806,0,1;6.62819187070636,0,0,1;14.8044809010771,0,0,1;22.9807699314479,0,0,1;29.6089618021542,4.76556559012806,0,1;29.6089618021542,14.3448762057124,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[75.914912789699]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[39.4363855130377]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_8" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[37.6089618021542]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[39.0625234375002]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
-									<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.89642173051834]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.77590596675873]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.61919581890106]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.96279847621918]]></data:item>
-										</data:item>
-									</data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[37.6089618021542,17.0312617187501,0,1;37.6089618021542,29.1987915848695,0,1;29.189908930648,39.0625234375002,0,1;18.8044809010771,39.0625234375002,0,1;8.41905287150621,39.0625234375002,0,1;0,29.1987915848695,0,1;0,17.0312617187501,0,1;0,4.86373185263164,0,1;8.41905287150621,0,0,1;18.8044809010771,0,0,1;29.189908930648,0,0,1;37.6089618021542,4.86373185263164,0,1;37.6089618021542,17.0312617187501,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[48.2322079251871]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[40]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_9" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[93.75]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[158.125046875]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
-									<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.12304875254631]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.29193559288979]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.41153579950333]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.01876859553158]]></data:item>
-										</data:item>
-									</data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,158.125046875,0,1;0,158.125046875,0,1;0,46.8749531249996,0,1;0,46.8749531249996,0,1;0,21.0937289062504,0,1;21.0937289062504,0,0,1;46.8749531249996,0,0,1;46.8749531249996,0,0,1;46.8750468750004,0,0,1;46.8750468750004,0,0,1;72.6562710937496,0,0,1;93.75,21.0937289062504,0,1;93.75,46.8749531249996,0,1;93.75,46.8749531249996,0,1;93.75,158.125046875,0,1;93.75,158.125046875,0,1;93.75,158.125046875,0,1;0,158.125046875,0,1;0,158.125046875,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[1.35720792518714]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-				</data:item>
-				<data:item data:type="treeStructureItem" data:name="layer_10" data:parentApplyType="treeStructure/addChild">
-					<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-						<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-							<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-							<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[A+L Front]]></data:item>
-							<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[143.827787917624]]></data:item>
-							<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[366.5189211595]]></data:item>
-							<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
-						</data:item>
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-							<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
-							<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-								<data:item data:type="number" data:name="x"><![CDATA[341.172212082376]]></data:item>
-								<data:item data:type="number" data:name="y"><![CDATA[327.481078840502]]></data:item>
-								<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-								<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-								<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_11" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[0]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[234]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.91619741916657]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.72130918502808]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[40]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0,0,0,1;0,234,0,1;0,234,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[143.827787917624]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[132.5189211595]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_12" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[112.573393386374]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[221.852254492832]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.12304875254631]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.29193559288979]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.41153579950333]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.01876859553158]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[30]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[112.573393386374,2.61061359196901e-7,0,1;112.573393386374,2.61061359196901e-7,0,1;-49.8388787490439,-0.14774550716811,0,1;15.49445458429,221.852254492832,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-				</data:item>
-				<data:item data:type="treeStructureItem" data:name="layer_13" data:parentApplyType="treeStructure/addChild">
-					<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-						<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-							<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-							<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[TORSO]]></data:item>
-							<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[327.5]]></data:item>
-							<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[327.5]]></data:item>
-							<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
-						</data:item>
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-							<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
-							<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-								<data:item data:type="number" data:name="x"><![CDATA[383.75]]></data:item>
-								<data:item data:type="number" data:name="y"><![CDATA[238.25]]></data:item>
-								<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-								<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-								<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_14" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[327.5]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[327.5]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-						<data:item data:type="treeStructureItem" data:name="layer_15" data:parentApplyType="treeStructure/addChild">
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-								<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-									<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-									<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-									<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[138.773559570312]]></data:item>
-									<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[62.5]]></data:item>
-									<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-									<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-										<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
-										<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
-											<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-												<data:item data:type="number" data:name="c"><![CDATA[0.12304875254631]]></data:item>
-												<data:item data:type="number" data:name="m"><![CDATA[0.29193559288979]]></data:item>
-												<data:item data:type="number" data:name="y"><![CDATA[0.41153579950333]]></data:item>
-												<data:item data:type="number" data:name="k"><![CDATA[0.01876859553158]]></data:item>
-											</data:item>
-										</data:item>
-										<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-										<data:item data:type="array" data:name="curves">
-											<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-												<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[70.94287109375,62.5,0,1;100.909729003906,62.5,0,1;126.761596679688,44.9193725585938,0,1;138.773559570312,19.5145263671884,0,1;115.682373046875,7.068115234375,0,1;89.2639770507812,0,0,1;61.19287109375,0,0,1;39.55712890625,0,0,1;18.90625,4.20538330078125,0,1;0,11.8280029296884,0,1;10.1064453125,41.303466796875,0,1;38.040283203125,62.5,0,1;70.94287109375,62.5,0,1;]]></data:item>
-												<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-												<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-												<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-											</data:item>
-										</data:item>
-									</data:item>
-									<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-										<data:item data:type="number" data:name="x"><![CDATA[102.55712890625]]></data:item>
-										<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-										<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-										<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-										<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-									</data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-						<data:item data:type="treeStructureItem" data:name="layer_16" data:parentApplyType="treeStructure/addChild">
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-								<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-									<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-									<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-									<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[62.5087890625]]></data:item>
-									<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[62.5087890625]]></data:item>
-									<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-									<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-										<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
-										<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
-											<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-												<data:item data:type="number" data:name="c"><![CDATA[0.12304875254631]]></data:item>
-												<data:item data:type="number" data:name="m"><![CDATA[0.29193559288979]]></data:item>
-												<data:item data:type="number" data:name="y"><![CDATA[0.41153579950333]]></data:item>
-												<data:item data:type="number" data:name="k"><![CDATA[0.01876859553158]]></data:item>
-											</data:item>
-										</data:item>
-										<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-										<data:item data:type="array" data:name="curves">
-											<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-												<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[31.25439453125,0,0,1;13.9930419921884,0,0,1;0,13.9930419921866,0,1;0,31.25439453125,0,1;0,48.5157470703116,0,1;13.9930419921884,62.5087890625,0,1;31.25439453125,62.5087890625,0,1;48.5157470703134,62.5087890625,0,1;62.5087890625,48.5157470703116,0,1;62.5087890625,31.25439453125,0,1;62.5087890625,13.9930419921866,0,1;48.5157470703134,0,0,1;31.25439453125,0,0,1;]]></data:item>
-												<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-												<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-												<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-											</data:item>
-										</data:item>
-									</data:item>
-									<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-										<data:item data:type="number" data:name="x"><![CDATA[38.7412109375]]></data:item>
-										<data:item data:type="number" data:name="y"><![CDATA[57.9766845703134]]></data:item>
-										<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-										<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-										<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-									</data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-						<data:item data:type="treeStructureItem" data:name="layer_17" data:parentApplyType="treeStructure/addChild">
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-								<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-									<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-									<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-									<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[327.230041503906]]></data:item>
-									<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[253.816467285156]]></data:item>
-									<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-									<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-										<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
-										<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
-											<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-												<data:item data:type="number" data:name="c"><![CDATA[0.91619741916657]]></data:item>
-												<data:item data:type="number" data:name="m"><![CDATA[0.72130918502808]]></data:item>
-												<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-												<data:item data:type="number" data:name="k"><![CDATA[0]]></data:item>
-											</data:item>
-										</data:item>
-										<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-										<data:item data:type="array" data:name="curves">
-											<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-												<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,99.390869140625,0,1;4.83441162109466,185.487976074219,0,1;76.1736450195312,253.816467285156,0,1;163.480041503906,253.816467285156,0,1;253.916687011719,253.816467285156,0,1;327.230041503906,180.503051757812,0,1;327.230041503906,90.0664672851562,0,1;327.230041503906,56.7908325195312,0,1;317.295104980469,25.8402099609375,0,1;300.243347167969,0,0,1;300.243347167969,0,0,1;0,99.390869140625,0,1;0,99.390869140625,0,1;]]></data:item>
-												<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-												<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-												<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-											</data:item>
-										</data:item>
-									</data:item>
-									<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-										<data:item data:type="number" data:name="x"><![CDATA[0.26995849609375]]></data:item>
-										<data:item data:type="number" data:name="y"><![CDATA[73.6835327148438]]></data:item>
-										<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-										<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-										<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-									</data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-						<data:item data:type="treeStructureItem" data:name="layer_18" data:parentApplyType="treeStructure/addChild">
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-								<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-									<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-									<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-									<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[300.513305664062]]></data:item>
-									<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[161.24639892578]]></data:item>
-									<data:item data:type="boolean" data:name="isClipping" data:parentApplyType="namedArray/addObject"><![CDATA[false]]></data:item>
-									<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[compoundPath]]></data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-									<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
-									<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-										<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
-										<data:item data:type="number" data:name="y"><![CDATA[11.8280029296884]]></data:item>
-										<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-										<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-										<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-									</data:item>
-								</data:item>
-							</data:item>
-							<data:item data:type="treeStructureItem" data:name="layer_19" data:parentApplyType="treeStructure/addChild">
-								<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-									<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-										<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-										<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-										<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[62.5087890625]]></data:item>
-										<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[62.5087890625]]></data:item>
-										<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-									</data:item>
-									<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-										<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-											<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
-											<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
-												<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-													<data:item data:type="number" data:name="c"><![CDATA[0.31161972880363]]></data:item>
-													<data:item data:type="number" data:name="m"><![CDATA[0.18381017446518]]></data:item>
-													<data:item data:type="number" data:name="y"><![CDATA[0.09475852549076]]></data:item>
-													<data:item data:type="number" data:name="k"><![CDATA[0.00094605935738]]></data:item>
-												</data:item>
-											</data:item>
-											<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-											<data:item data:type="array" data:name="curves">
-												<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-													<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[31.25439453125,62.5087890625,0,1;13.9930419921884,62.5087890625,0,1;0,48.5157470703116,0,1;0,31.25439453125,0,1;0,13.9930419921866,0,1;13.9930419921884,0,0,1;31.25439453125,0,0,1;48.5157470703134,0,0,1;62.5087890625,13.9930419921866,0,1;62.5087890625,31.25439453125,0,1;62.5087890625,48.5157470703116,0,1;48.5157470703134,62.5087890625,0,1;31.25439453125,62.5087890625,0,1;]]></data:item>
-													<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-													<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-													<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-												</data:item>
-											</data:item>
-										</data:item>
-										<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-											<data:item data:type="number" data:name="x"><![CDATA[38.7412109375]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[46.148681640625]]></data:item>
-											<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-											<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-											<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-							</data:item>
-							<data:item data:type="treeStructureItem" data:name="layer_20" data:parentApplyType="treeStructure/addChild">
-								<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-									<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-										<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-										<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-										<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[300.513305664062]]></data:item>
-										<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[161.24639892578]]></data:item>
-										<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-									</data:item>
-									<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-										<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-											<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
-											<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
-												<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-													<data:item data:type="number" data:name="c"><![CDATA[0.31161972880363]]></data:item>
-													<data:item data:type="number" data:name="m"><![CDATA[0.18381017446518]]></data:item>
-													<data:item data:type="number" data:name="y"><![CDATA[0.09475852549076]]></data:item>
-													<data:item data:type="number" data:name="k"><![CDATA[0.00094605935738]]></data:item>
-												</data:item>
-											</data:item>
-											<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-											<data:item data:type="array" data:name="curves">
-												<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-													<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[241.330688476562,7.6865234375,0,1;229.318725585938,33.0913696289053,0,1;203.466857910156,50.6719970703116,0,1;173.5,50.6719970703116,0,1;140.597412109375,50.6719970703116,0,1;112.66357421875,29.4754638671866,0,1;102.55712890625,0,0,1;42.435791015625,24.2398071289053,0,1;0,83.12109375,0,1;0,151.921997070312,0,1;0,155.052185058593,0,1;0.09661865234375,158.159545898437,0,1;0.26995849609375,161.24639892578,0,1;0.26995849609375,161.24639892578,0,1;300.513305664062,61.8555297851553,0,1;300.513305664062,61.8555297851553,0,1;285.6064453125,39.2656860351553,0,1;265.260009765625,20.5846557617178,0,1;241.330688476562,7.6865234375,0,1;]]></data:item>
-													<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-													<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-													<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-												</data:item>
-											</data:item>
-										</data:item>
-										<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-											<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-											<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-											<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-											<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-				</data:item>
-				<data:item data:type="treeStructureItem" data:name="layer_21" data:parentApplyType="treeStructure/addChild">
-					<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-						<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-							<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-							<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[A+L Back]]></data:item>
-							<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[188.156982421109]]></data:item>
-							<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[383.98112704887]]></data:item>
-							<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
-						</data:item>
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-							<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
-							<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-								<data:item data:type="number" data:name="x"><![CDATA[570]]></data:item>
-								<data:item data:type="number" data:name="y"><![CDATA[310.018872951132]]></data:item>
-								<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-								<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-								<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_22" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[112.573393380628]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[221.852254497193]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.12304875254631]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.29193559288979]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0.41153579950333]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.01876859553158]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[30]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,2.61062268691603e-7,0,1;0,2.61062268691603e-7,0,1;162.412272135423,-0.14774549987396,0,1;97.0789387921232,221.852254497193,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[75.5835890404815]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_23" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[0]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[234]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.91619741916657]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.72130918502808]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0.29]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[40]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0,0,0,1;0,234,0,1;0,234,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[68.9811270488699]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-					<data:item data:type="treeStructureItem" data:name="layer_24" data:parentApplyType="treeStructure/addChild">
-						<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
-							<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
-								<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
-								<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
-								<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[0]]></data:item>
-								<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[234]]></data:item>
-								<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
-							</data:item>
-							<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
-								<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
-									<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
-										<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.CmykColor">
-											<data:item data:type="number" data:name="c"><![CDATA[0.91619741916657]]></data:item>
-											<data:item data:type="number" data:name="m"><![CDATA[0.72130918502808]]></data:item>
-											<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
-											<data:item data:type="number" data:name="k"><![CDATA[0]]></data:item>
-										</data:item>
-										<data:item data:type="number" data:name="lineWidth"><![CDATA[40]]></data:item>
-										<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
-										<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
-										<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
-									</data:item>
-									<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
-									<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
-									<data:item data:type="array" data:name="curves">
-										<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
-											<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0,0,0,1;0,234,0,1;0,234,0,1;]]></data:item>
-											<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
-											<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
-											<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
-										</data:item>
-									</data:item>
-								</data:item>
-								<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
-									<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="y"><![CDATA[149.98112704887]]></data:item>
-									<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
-									<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
-									<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
-								</data:item>
-							</data:item>
-						</data:item>
-					</data:item>
-				</data:item>
-			</data:item>
-		</data:item>
-	</data:item>
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="exportDate" data:parentApplyType="namedArray/addObject"><![CDATA[2014-11-26T12:06:51]]></data:item>
+<data:item data:type="string" data:name="exportType" data:parentApplyType="namedArray/addObject"><![CDATA[illustratorDocument]]></data:item>
+<data:item data:type="string" data:name="environment" data:parentApplyType="namedArray/addObject"><![CDATA[extendScript]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[1190.55]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[841.889999999999]]></data:item>
+</data:item>
+<data:item data:type="treeStructure" data:name="data">
+<data:item data:type="boolean" data:name="createMissingItems"><![CDATA[true]]></data:item>
+<data:item data:type="boolean" data:name="ownsData"><![CDATA[false]]></data:item>
+<data:item data:type="treeStructureItem" data:parentApplyType="treeStructure/root">
+<data:item data:type="null" data:name="data"><![CDATA[null]]></data:item>
+<data:item data:type="treeStructureItem" data:name="layer_0" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[HEAD]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[105.523874591853]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[158.125046875]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[491.142792074813]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[99.5]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_1" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[12.5093412457218]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[14.5490796795511]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.00392156862745]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[12.5093412457218,0,0,1;5.32166836647775,0.17969194215129,0,1;-0.85734800698992,7.422892036333,0,1;0.0978379888893,14.5490796795511,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[13.9186665434581]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_2" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[8.36489022006754]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[18.2947937443005]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.00392156862745]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[8.36489022006754,0,0,1;4.79412311356009,1.12867617471238,0,1;1.83075804536384,4.02646087670473,0,1;0.62246786451487,7.57107968204127,0,1;-0.58582231633318,11.1156984873787,0,1;-0.00937538809194,15.2201348244944,0,1;2.12855823181599,18.2947937443005,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[11.4585104876714]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[15.0597115428391]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_3" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[7.76745315157586]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[8.98375188326099]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.00392156862745]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[7.76745315157586,0,0,1;3.65879847714041,0.98820081106624,0,1;0.38430896488899,4.77543978738868,0,1;0,8.98375188326099,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[41.6836668234491]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[18.1975072341847]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_4" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[9.3079150558242]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[16.9008073349041]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.00392156862745]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[9.3079150558242,0,0,1;3.17358334762321,3.02005267361073,0,1;-0.68781050663983,10.1091395052881,0,1;0.10212097759722,16.9008073349041,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[20.7666897372974]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[16.2645098239354]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_5" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[6.68032998201761]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[16.6192611846436]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.00392156862745]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[1]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[6.68032998201761,0,0,1;1.5637835724965,3.6444880124418,0,1;-1.03328688406236,10.4993806041275,0,1;0.38389401964923,16.6192611846436,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[32.2478362586353]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[17.9329526798592]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_6" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[59.702353555891]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[21.8543808389422]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.00392156862745]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[8]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[59.702353555891,0.31042616912328,0,1;55.0356868892241,-0.35624049754279,0,1;10.369020222558,0.25835455454035,0,1;10.369020222558,0.25835455454035,0,1;10.369020222558,0.25835455454035,0,1;0.36902022255799,-0.74164544545965,0,1;0.00948246214102,11.9770928357902,0,1;-0.33904230391272,24.3062436844511,0,1;9.03568688922405,21.6032307602527,0,1;9.03568688922405,21.6032307602527,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[1.15485436929612]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[49.5229071642098]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_7" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[29.6089618021542]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[31.6897524114247]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.00392156862745]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[29.6089618021542,14.3448762057124,0,1;29.6089618021542,23.9241868212966,0,1;22.9807699314479,31.6897524114247,0,1;14.8044809010771,31.6897524114247,0,1;6.62819187070636,31.6897524114247,0,1;0,23.9241868212966,0,1;0,14.3448762057124,0,1;0,4.76556559012806,0,1;6.62819187070636,0,0,1;14.8044809010771,0,0,1;22.9807699314479,0,0,1;29.6089618021542,4.76556559012806,0,1;29.6089618021542,14.3448762057124,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[75.914912789699]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[39.4363855130377]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_8" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[37.6089618021542]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[39.0625234375002]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.00392156862745]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.0078431372549]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[37.6089618021542,17.0312617187501,0,1;37.6089618021542,29.1987915848695,0,1;29.189908930648,39.0625234375002,0,1;18.8044809010771,39.0625234375002,0,1;8.41905287150621,39.0625234375002,0,1;0,29.1987915848695,0,1;0,17.0312617187501,0,1;0,4.86373185263164,0,1;8.41905287150621,0,0,1;18.8044809010771,0,0,1;29.189908930648,0,0,1;37.6089618021542,4.86373185263164,0,1;37.6089618021542,17.0312617187501,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[48.2322079251871]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[40]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_9" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[93.75]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[158.125046875]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.85490196078431]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.49019607843137]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,158.125046875,0,1;0,158.125046875,0,1;0,46.8749531249996,0,1;0,46.8749531249996,0,1;0,21.0937289062504,0,1;21.0937289062504,0,0,1;46.8749531249996,0,0,1;46.8749531249996,0,0,1;46.8750468750004,0,0,1;46.8750468750004,0,0,1;72.6562710937496,0,0,1;93.75,21.0937289062504,0,1;93.75,46.8749531249996,0,1;93.75,46.8749531249996,0,1;93.75,158.125046875,0,1;93.75,158.125046875,0,1;93.75,158.125046875,0,1;0,158.125046875,0,1;0,158.125046875,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[1.35720792518714]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_10" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[A+L Front]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[143.827787917624]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[366.5189211595]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[341.172212082376]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[327.481078840502]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_11" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[234]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.13333333333333]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.18823529411765]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.57647058823529]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[40]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0,0,0,1;0,234,0,1;0,234,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[143.827787917624]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[132.5189211595]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_12" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[112.573393386374]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[221.852254492832]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.85490196078431]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.49019607843137]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[30]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[112.573393386374,2.61061359196901e-7,0,1;112.573393386374,2.61061359196901e-7,0,1;-49.8388787490439,-0.14774550716811,0,1;15.49445458429,221.852254492832,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_13" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[TORSO]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[327.5]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[327.5]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[383.75]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[238.25]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_14" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[327.5]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[327.5]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_15" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[138.773559570312]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[62.5]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.85490196078431]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.49019607843137]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[70.94287109375,62.5,0,1;100.909729003906,62.5,0,1;126.761596679688,44.9193725585938,0,1;138.773559570312,19.5145263671884,0,1;115.682373046875,7.068115234375,0,1;89.2639770507812,0,0,1;61.19287109375,0,0,1;39.55712890625,0,0,1;18.90625,4.20538330078125,0,1;0,11.8280029296884,0,1;10.1064453125,41.303466796875,0,1;38.040283203125,62.5,0,1;70.94287109375,62.5,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[102.55712890625]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_16" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[62.5087890625]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[62.5087890625]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.85490196078431]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.49019607843137]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[31.25439453125,0,0,1;13.9930419921884,0,0,1;0,13.9930419921866,0,1;0,31.25439453125,0,1;0,48.5157470703116,0,1;13.9930419921884,62.5087890625,0,1;31.25439453125,62.5087890625,0,1;48.5157470703134,62.5087890625,0,1;62.5087890625,48.5157470703116,0,1;62.5087890625,31.25439453125,0,1;62.5087890625,13.9930419921866,0,1;48.5157470703134,0,0,1;31.25439453125,0,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[38.7412109375]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[57.9766845703134]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_17" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[327.230041503906]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[253.816467285156]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.13333333333333]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.18823529411765]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.57647058823529]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,99.390869140625,0,1;4.83441162109466,185.487976074219,0,1;76.1736450195312,253.816467285156,0,1;163.480041503906,253.816467285156,0,1;253.916687011719,253.816467285156,0,1;327.230041503906,180.503051757812,0,1;327.230041503906,90.0664672851562,0,1;327.230041503906,56.7908325195312,0,1;317.295104980469,25.8402099609375,0,1;300.243347167969,0,0,1;300.243347167969,0,0,1;0,99.390869140625,0,1;0,99.390869140625,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[0.26995849609375]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[73.6835327148438]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_18" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[300.513305664062]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[161.24639892578]]></data:item>
+<data:item data:type="boolean" data:name="isClipping" data:parentApplyType="namedArray/addObject"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[compoundPath]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[11.8280029296884]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_19" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[62.5087890625]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[62.5087890625]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.72941176470588]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.77254901960784]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.84705882352941]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[31.25439453125,62.5087890625,0,1;13.9930419921884,62.5087890625,0,1;0,48.5157470703116,0,1;0,31.25439453125,0,1;0,13.9930419921866,0,1;13.9930419921884,0,0,1;31.25439453125,0,0,1;48.5157470703134,0,0,1;62.5087890625,13.9930419921866,0,1;62.5087890625,31.25439453125,0,1;62.5087890625,48.5157470703116,0,1;48.5157470703134,62.5087890625,0,1;31.25439453125,62.5087890625,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[38.7412109375]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[46.148681640625]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_20" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[300.513305664062]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[161.24639892578]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="null" data:name="stroke"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="fill" data:class="com.developedbyme.core.data.graphics.FillData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.72941176470588]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.77254901960784]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.84705882352941]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[241.330688476562,7.6865234375,0,1;229.318725585938,33.0913696289053,0,1;203.466857910156,50.6719970703116,0,1;173.5,50.6719970703116,0,1;140.597412109375,50.6719970703116,0,1;112.66357421875,29.4754638671866,0,1;102.55712890625,0,0,1;42.435791015625,24.2398071289053,0,1;0,83.12109375,0,1;0,151.921997070312,0,1;0,155.052185058593,0,1;0.09661865234375,158.159545898437,0,1;0.26995849609375,161.24639892578,0,1;0.26995849609375,161.24639892578,0,1;300.513305664062,61.8555297851553,0,1;300.513305664062,61.8555297851553,0,1;285.6064453125,39.2656860351553,0,1;265.260009765625,20.5846557617178,0,1;241.330688476562,7.6865234375,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_21" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[A+L Back]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[188.156982421109]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[383.98112704887]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[layer]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="null" data:name="object"><![CDATA[null]]></data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[570]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[310.018872951132]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_22" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[112.573393380628]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[221.852254497193]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.85490196078431]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.66666666666667]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.49019607843137]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[30]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,2.61062268691603e-7,0,1;0,2.61062268691603e-7,0,1;162.412272135423,-0.14774549987396,0,1;97.0789387921232,221.852254497193,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[75.5835890404815]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_23" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[234]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.06274509803922]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.09803921568627]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.34117647058824]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[40]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0,0,0,1;0,234,0,1;0,234,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[68.9811270488699]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="treeStructureItem" data:name="layer_24" data:parentApplyType="treeStructure/addChild">
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.globalobjects.xmlobjectencoder.encodingdata.MetaDataObject">
+<data:item data:type="dbmObject" data:name="metaData" data:class="com.developedbyme.utils.data.NamedArray">
+<data:item data:type="boolean" data:name="ownsObjects"><![CDATA[false]]></data:item>
+<data:item data:type="string" data:name="name" data:parentApplyType="namedArray/addObject"><![CDATA[]]></data:item>
+<data:item data:type="number" data:name="width" data:parentApplyType="namedArray/addObject"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="height" data:parentApplyType="namedArray/addObject"><![CDATA[234]]></data:item>
+<data:item data:type="string" data:name="type" data:parentApplyType="namedArray/addObject"><![CDATA[path]]></data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="data" data:class="com.developedbyme.core.data.graphics.TransformedObjectData">
+<data:item data:type="dbmObject" data:name="object" data:class="com.developedbyme.core.data.graphics.ShapeData">
+<data:item data:type="dbmObject" data:name="stroke" data:class="com.developedbyme.core.data.graphics.StrokeData">
+<data:item data:type="dbmObject" data:name="definition" data:class="com.developedbyme.core.data.color.RgbaColor">
+<data:item data:type="number" data:name="r"><![CDATA[0.13333333333333]]></data:item>
+<data:item data:type="number" data:name="g"><![CDATA[0.18823529411765]]></data:item>
+<data:item data:type="number" data:name="b"><![CDATA[0.57647058823529]]></data:item>
+<data:item data:type="number" data:name="a"><![CDATA[1]]></data:item>
+</data:item>
+<data:item data:type="number" data:name="lineWidth"><![CDATA[40]]></data:item>
+<data:item data:type="string" data:name="lineCap"><![CDATA[butt]]></data:item>
+<data:item data:type="string" data:name="lineJoin"><![CDATA[miter]]></data:item>
+<data:item data:type="number" data:name="miterLimit"><![CDATA[10]]></data:item>
+</data:item>
+<data:item data:type="null" data:name="fill"><![CDATA[null]]></data:item>
+<data:item data:type="boolean" data:name="strokeOverFill"><![CDATA[true]]></data:item>
+<data:item data:type="array" data:name="curves">
+<data:item data:type="dbmObject" data:class="com.developedbyme.core.data.curves.BezierCurve">
+<data:item data:type="pointsArray" data:name="pointsArray"><![CDATA[0,0,0,1;0,0,0,1;0,234,0,1;0,234,0,1;]]></data:item>
+<data:item data:type="string" data:name="setType"><![CDATA[bezierCurve]]></data:item>
+<data:item data:type="number" data:name="_curveDegree"><![CDATA[3]]></data:item>
+<data:item data:type="boolean" data:name="_isCompact"><![CDATA[true]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+<data:item data:type="dbmObject" data:name="transformation" data:class="com.developedbyme.core.data.graphics.TransformationData">
+<data:item data:type="number" data:name="x"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="y"><![CDATA[149.98112704887]]></data:item>
+<data:item data:type="number" data:name="rotation"><![CDATA[0]]></data:item>
+<data:item data:type="number" data:name="scaleX"><![CDATA[1]]></data:item>
+<data:item data:type="number" data:name="scaleY"><![CDATA[1]]></data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
+</data:item>
 </data:item>
