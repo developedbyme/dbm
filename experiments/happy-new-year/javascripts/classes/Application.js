@@ -1,28 +1,22 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearController", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.projects.experiments.happynewyear.HappyNewYearController");
+dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("Application");
 	//"use strict";
 	
-	var HappyNewYearController = dbm.importClass("dbm.projects.experiments.happynewyear.HappyNewYearController");
+	//Self reference
+	var Application = dbm.importClass("Application");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	var HappyNewYearTimeZone = dbm.importClass("dbm.projects.experiments.happynewyear.HappyNewYearTimeZone");
-	
+	//Dependencies
+	var TimeZone = dbm.importClass("TimeZone");
 	var ArrayHolder = dbm.importClass("dbm.utils.data.ArrayHolder");
 	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
-	var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");
 	var OneTouchOrMouseDetector = dbm.importClass("dbm.gui.abstract.touch.OneTouchOrMouseDetector");
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
-	var FlowAnalyzeFunctions = dbm.importClass("dbm.flow.analyze.FlowAnalyzeFunctions");
-	
-	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
-	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
 	var PlaceElementNode = dbm.importClass("dbm.flow.nodes.display.PlaceElementNode");
-	
 	var GlobalTimeNode = dbm.importClass("dbm.flow.nodes.time.GlobalTimeNode");
 	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
 	var PropertiesHolder = dbm.importClass("dbm.flow.PropertiesHolder");
@@ -34,35 +28,57 @@ dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearController"
 	var RangeNode = dbm.importClass("dbm.flow.nodes.math.range.RangeNode");
 	var MousePositionNode = dbm.importClass("dbm.flow.nodes.userinput.MousePositionNode");
 	var SizeOfElementNode = dbm.importClass("dbm.flow.nodes.display.SizeOfElementNode");
-	
 	var DateStringToTimeNode = dbm.importClass("dbm.flow.nodes.time.DateStringToTimeNode");
 	var CurrentTimeNode = dbm.importClass("dbm.flow.nodes.time.CurrentTimeNode");
 	var TimeBreakdownNode = dbm.importClass("dbm.flow.nodes.time.TimeBreakdownNode");
 	var PadNumberNode = dbm.importClass("dbm.flow.nodes.text.PadNumberNode");
 	var TextReplacementNode = dbm.importClass("dbm.flow.nodes.text.TextReplacementNode");
 	var ReportNode = dbm.importClass("dbm.flow.nodes.debug.ReportNode");
-	
 	var ValuesFromRectangleNode = dbm.importClass("dbm.flow.nodes.math.geometry.ValuesFromRectangleNode");
 	var PositionRectangleNode = dbm.importClass("dbm.flow.nodes.math.geometry.PositionRectangleNode");
 	var RectangleFromValuesNode = dbm.importClass("dbm.flow.nodes.math.geometry.RectangleFromValuesNode");
-	
 	var TextElement = dbm.importClass("dbm.gui.text.TextElement");
 	var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");
 	var Timeline = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.Timeline");
 	
+	//Utils
+	var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");
+	var FlowAnalyzeFunctions = dbm.importClass("dbm.flow.analyze.FlowAnalyzeFunctions");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	var FlowUpdateChainCreator = dbm.importClass("dbm.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
 	
+	//Constants
+	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
 	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
+	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
-		//console.log("dbm.projects.experiments.happynewyear.HappyNewYearController::_init");
+		console.log("Application::_init");
 		
 		this.superCall();
 		
-		//this._touchDetector = OneTouchOrMouseDetector.create(document.body);
-		//this._touchDetector.activate();
+		this._timeZonesPath = "assets/timeZones.xml#timeZones";
+		this._prePrepareSoundPath = "assets/sounds/beep-8.mp3";
+		this._prepareSoundPath = "assets/sounds/beep-6.mp3";
+		this._normalSoundPath = "assets/sounds/beep-1.mp3";
+		this._failSoundPath = "assets/sounds/beep-5.mp3";
+		this._hornSoundPath = "assets/sounds/caddy-horn.mp3";
 		
-		this.getExtendedEvent().linkJavascriptEvent(document.body, JavascriptEventIds.KEY_DOWN, JavascriptEventIds.KEY_DOWN, JavascriptEventIds.KEY_DOWN, true, true).activate();
+		//METODO: fix sound loader , this._prePrepareSoundPath, this._prepareSoundPath, this._normalSoundPath, this._failSoundPath, this._hornSoundPath
+		this._assetsLoader.addAssetsByPath(this._timeZonesPath);
+		this._addStartFunction(this._createPage, []);
+		
+		return this;
+	};
+	
+	objectFunctions._createPage = function() {
+		console.log("Application::_createPage");
+		
+		this.getExtendedEvent().linkJavascriptEvent(dbm.getDocument().body, JavascriptEventIds.KEY_DOWN, JavascriptEventIds.KEY_DOWN, JavascriptEventIds.KEY_DOWN, true, true).activate();
 		this.getExtendedEvent().addCommandToEvent(JavascriptEventIds.KEY_DOWN, CallFunctionCommand.createCommand(this, this._callback_keyPressed, [GetVariableObject.createSelectDataCommand()]))
 		
 		this._nextPlayTimes = new Array();
@@ -127,9 +143,16 @@ dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearController"
 		this.createUpdateFunction("updateCurrentIndex", this._updateCurrentIndexFlow, [this._currentDateNode.getProperty("time")], [this._currentIndex]);
 		this.createUpdateFunction("updateCurrentIndexAniamtion", this._updateCurrentIndexAnimationFlow, [this._currentIndex], [this._currentIndexAnimation]);
 		
-		this._currentIndexAnimation.startUpdating();
+		//Parse data
+		this.parseTimeZoneXml(dbm.singletons.dbmAssetRepository.getAssetData(this._timeZonesPath));
 		
-		return this;
+		this.addSound("pre-prepare", this._prePrepareSoundPath);
+		this.addSound("prepare", this._prepareSoundPath);
+		this.addSound("normal", this._normalSoundPath);
+		this.addSound("fail", this._failSoundPath);
+		this.addSound("horn", this._hornSoundPath);
+		
+		this._currentIndexAnimation.startUpdating();
 	};
 	
 	objectFunctions._updateCurrentIndexFlow = function(aFlowUpdateNumber) {
@@ -205,7 +228,7 @@ dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearController"
 	
 	objectFunctions._createTimeZone = function(aName, aTimeString, aSoundId) {
 		
-		var newTimeZone = HappyNewYearTimeZone.create(aName, aTimeString, this._currentDateNode, this._scalePoint);
+		var newTimeZone = TimeZone.create(aName, aTimeString, this._currentDateNode, this._scalePoint);
 		newTimeZone.soundId = aSoundId;
 		
 		newTimeZone.setPropertyInput("centerX", this._scalePoint.getOutputProperty("x"));
@@ -217,9 +240,9 @@ dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearController"
 		
 		newTimeZone.setPropertyInput("selectedIndex", this._currentIndexWithOverride);
 		
-		newTimeZone.setPropertyInput("positionTimeline", this._timeZonePositionTimeline.getObjectProperty());
-		newTimeZone.setPropertyInput("scaleTimeline", this._timeZoneScaleTimeline.getObjectProperty());
-		newTimeZone.setPropertyInput("inDomTimeline", this._timeZoneInDomTimeline.getObjectProperty());
+		newTimeZone.setPropertyInput("positionTimeline", this._timeZonePositionTimeline);
+		newTimeZone.setPropertyInput("scaleTimeline", this._timeZoneScaleTimeline);
+		newTimeZone.setPropertyInput("inDomTimeline", this._timeZoneInDomTimeline);
 		
 		return newTimeZone;
 		
@@ -266,19 +289,6 @@ dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearController"
 		}
 		
 		this._numberOfTimeZones.setValue(currentArrayLength);
-		
-		//var updateChain = FlowUpdateChainCreator.createAllChainsForInputConnection(this._currentDateNode.getProperty("time"));
-		//this._currentDateNode.getProperty("time").setCachedDependentNodeChains(updateChain);
-		
-		/*
-		console.log("Flow from date", FlowAnalyzeFunctions.getAllOutputFlowForProperty(this._currentDateNode.getProperty("time")));
-		console.log("Flow from animation index", FlowAnalyzeFunctions.getAllOutputFlowForProperty(this._currentAnimationIndex));
-		//console.log(FlowAnalyzeFunctions.getPropertyOutputHierarchyString(this._currentAnimationIndex, 100));
-		
-		var connectionArray = new Array();
-		FlowAnalyzeFunctions.findConnectionBetweenProperties(this._currentAnimationIndex, this._timeZones.array[0]._holder.getProperty("scaleY"), connectionArray);
-		console.log(connectionArray);
-		*/
 	};
 	
 	objectFunctions.addSound = function(aId, aPath) {
@@ -292,7 +302,7 @@ dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearController"
 	};
 	
 	objectFunctions._callback_keyPressed = function(aEvent) {
-		//console.log("dbm.projects.experiments.happynewyear.HappyNewYearController::_callback_keyPressed");
+		//console.log("Application::_callback_keyPressed");
 		//console.log(aEvent);
 		
 		if(aEvent.keyCode === 38) { //Up
@@ -314,14 +324,5 @@ dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearController"
 		this._currentIndex = null;
 		
 		this.superCall();
-	};
-	
-	staticFunctions.create = function() {
-		//console.log("dbm.projects.experiments.happynewyear.HappyNewYearController::create");
-		//console.log(aElement);
-		
-		var newNode = (new ClassReference()).init();
-		
-		return newNode;
 	};
 });

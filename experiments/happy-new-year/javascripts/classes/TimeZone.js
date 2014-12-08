@@ -1,9 +1,9 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearTimeZone", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.projects.experiments.happynewyear.HappyNewYearTimeZone");
+dbm.registerClass("TimeZone", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("TimeZone");
 	//"use strict";
 	
-	var HappyNewYearTimeZone = dbm.importClass("dbm.projects.experiments.happynewyear.HappyNewYearTimeZone");
+	var TimeZone = dbm.importClass("TimeZone");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
@@ -46,7 +46,7 @@ dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearTimeZone", 
 	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
 	objectFunctions._init = function() {
-		//console.log("dbm.projects.experiments.happynewyear.HappyNewYearTimeZone::_init");
+		//console.log("TimeZone::_init");
 		
 		this.superCall();
 		
@@ -214,7 +214,7 @@ dbm.registerClass("dbm.projects.experiments.happynewyear.HappyNewYearTimeZone", 
 	};
 	
 	staticFunctions.create = function(aName, aTimeString) {
-		//console.log("dbm.projects.experiments.happynewyear.HappyNewYearTimeZone::create");
+		//console.log("TimeZone::create");
 		//console.log(aElement);
 		
 		var newNode = (new ClassReference()).init();
