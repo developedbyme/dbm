@@ -26,7 +26,7 @@ dbm.registerClass("dbm.utils.css.CssFunctions", null, function(objectFunctions, 
 	
 	staticFunctions.setStyleProperty = function(aElement, aName, aValue, aUnit, aImportant) {
 		if(!VariableAliases.isSet(aValue)) {
-			aElement.style.setProperty(aName);
+			aElement.style.removeProperty(aName);
 			return;
 		}
 		
