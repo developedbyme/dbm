@@ -59,8 +59,6 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 		
 		this._spacing = this.createProperty("spacing", 330);
 		
-		this.addCssLink("../styles/experiments/linearOptionSelection/main.css");
-		
 		//this._assetsLoader.addAssetsByPath();
 		this._addStartFunction(this._createPage, []);
 		
