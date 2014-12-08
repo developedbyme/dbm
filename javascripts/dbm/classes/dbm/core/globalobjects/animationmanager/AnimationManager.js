@@ -44,7 +44,6 @@ dbm.registerClass("dbm.core.globalobjects.animationmanager.AnimationManager", "d
 		this._playbackNode = null;
 		
 		this.globalTimeProperty = null;
-		this._isRecording = false;
 		this.autoPlay = true;
 		
 		this._temporaryTimelines = new Array();
@@ -61,10 +60,6 @@ dbm.registerClass("dbm.core.globalobjects.animationmanager.AnimationManager", "d
 	
 	objectFunctions.getPlaybackNode = function() {
 		return this._playbackNode;
-	};
-	
-	objectFunctions.isRecording = function() {
-		return this._isRecording;
 	};
 	
 	objectFunctions.setupDefaultPlayback = function() {
@@ -130,14 +125,6 @@ dbm.registerClass("dbm.core.globalobjects.animationmanager.AnimationManager", "d
 	objectFunctions.stop = function() {
 		dbm.singletons.dbmUpdateManager.removeUpdater(this, "updateTimelines");
 		this._playbackNode.pause();
-	};
-	
-	objectFunctions.startRecording = function() {
-		this._isRecording = true;
-	};
-	
-	objectFunctions.stopRecording = function() {
-		this._isRecording = false;
 	};
 	
 	objectFunctions.updateTime = function(aTime, aFrame) {

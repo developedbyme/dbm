@@ -99,18 +99,14 @@ dbm.registerClass("dbm.core.objectparts.Property", "dbm.core.objectparts.FlowSta
 			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Can't set value when property has input.");
 			return;
 		}
-		if(this._animationController === null) {
-			if(!dbm.singletons.dbmAnimationManager.isRecording()) {
-				if(this._alwaysUpdateFlow || (aValue !== this.getValueWithoutFlow())) {
-					this._performSetValue(aValue);
-					this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
-					this.setDependentConnectionsAsDirty();
-				}
-				return;
-			}
-			this._animationController = dbm.singletons.dbmAnimationManager.createTimeline(this.getValueWithoutFlow(), this);
+		else if(this._animationController !== null) {
+			this._animationController.setValue(aValue);
 		}
-		this._animationController.setValue(aValue);
+		else if(this._alwaysUpdateFlow || (aValue !== this.getValueWithoutFlow())) {
+			this._performSetValue(aValue);
+			this.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+			this.setDependentConnectionsAsDirty();
+		}
 	};
 	
 	/**
