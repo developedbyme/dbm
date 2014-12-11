@@ -38,9 +38,7 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 		console.log("Application::_createPage");
 		
 		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(this._mainTemplate, {}, true, this._contentHolder, true);
-		var mainController = templateResult.getMainController();
-		
-		//MENOTE: implement application here
+		var mainController = templateResult.mainController;
 	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
