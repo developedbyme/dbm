@@ -10,6 +10,7 @@ dbm.runTempFunction(function() {
 		this._singletons = new Object();
 		this._libraries = new Object();
 		this._reInitLibraryFunctions = new Array();
+		this._classesWaitingSetup = new Array();
 		
 		this._classHolderClass = this._createClassFunction("ClassHolder");
 		
@@ -51,6 +52,7 @@ dbm.runTempFunction(function() {
 		newClassHolder.classFunction = this._createClassFunction(aName);
 		newClassHolder.extendedClass = null;
 		newClassHolder.isRegistered = false;
+		newClassHolder.isSetup = false;
 		newClassHolder.prototypeObject = null;
 		newClassHolder.objectMethods = new (this._objectMethodsClass)();
 		newClassHolder.staticMethods = new (this._staticMethodsClass)();
@@ -91,25 +93,11 @@ dbm.runTempFunction(function() {
 		
 		this._currentRegistrationClass = null;
 		
+		this._setupClassInheritanceForClassIfDependenciesAreReady(newClassHolder);
 		dbm.classRegistered(aName, newClassHolder.dependencies);
 		
 		return newClassHolder;
 	}; //End function registerClass
-	
-	classManager.extendClass = function(aName, aFunction) {
-		//console.log("classManager.extendClass");
-		//console.log(aName, aExtends);
-		
-		this._currentRegistrationClass = aName;
-		
-		var newClassHolder = this._getClassHolder(aName);
-		
-		aFunction(newClassHolder.objectMethods, newClassHolder.staticMethods, newClassHolder.classFunction);
-		
-		this._currentRegistrationClass = null;
-		
-		return newClassHolder;
-	}; //End function extendClass
 	
 	classManager.importClass = function(aName) {
 		//console.log("classManager.importClass");
@@ -245,13 +233,6 @@ dbm.runTempFunction(function() {
 		}
 	}; //End function setClassAsSingleton
 	
-	classManager.setupClassInheritance = function() {
-		//console.log("classManager.setupClassInheritance");
-		for(var objectName in this._classes) {
-			this._setupClassInheritanceForClass(objectName);
-		}
-	}; //End function setupClassInheritance
-	
 	classManager.setupSingletons = function() {
 		//console.log("classManager.setupSingletons");
 		for(var objectName in this._singletons) {
@@ -270,93 +251,133 @@ dbm.runTempFunction(function() {
 		}
 	}; //End function setupSingletons
 	
-	classManager._setupClassInheritanceForClass = function(aName) {
-		//console.log("classManager._setupClassInheritanceForClass");
-		//console.log(aName);
+	classManager._setupClassInheritanceForClassIfDependenciesAreReady = function(aClassHolder) {
+		//console.log("classManager._setupClassInheritanceForClassIfDependenciesAreReady");
+		//console.log(aClassHolder);
 		
-		var currentClassHolder = this._classes[aName];
-		if(currentClassHolder.prototypeObject === null) {
-			if(!currentClassHolder.isRegistered) {
-				console.error("Class " + currentClassHolder.name + " is not registered");
-			}
-			
-			//console.log(">", currentClassHolder.extendedClass);
-			
-			var extendPrototypeObject = null;
-			
-			if(currentClassHolder.extendedClass !== null) {
-				
-				var extendedClass = this._setupClassInheritanceForClass(currentClassHolder.extendedClass);
-				extendPrototypeObject = new (extendedClass.classFunction)();
-				
-				var extendedMethods = extendedClass.prototypeObject;
-				for(var extendedMethodName in extendedMethods) {
-					//currentClassHolder.prototypeObject[extendedMethodName] = extendedMethods[extendedMethodName];
-					if(currentClassHolder.objectMethods[extendedMethodName] !== undefined) {
-						currentClassHolder.objectMethods[extendedMethodName].superFunction = extendedMethods[extendedMethodName];
-					}
+		if(aClassHolder.prototypeObject === null) {
+			if(aClassHolder.extendedClass !== null) {
+				var extendedClassHolder = this._getClassHolder(aClassHolder.extendedClass);
+				if(extendedClassHolder.isSetup) {
+					this._setupFunctionsForClass(aClassHolder, extendedClassHolder);
+					this._setupDependentClasses(aClassHolder);
 				}
-				for(var staticMethodName in extendedClass.staticMethods) {
-					if(currentClassHolder.staticMethods[staticMethodName] === undefined) {
-						//console.log(staticMethodName);
-						currentClassHolder.staticMethods[staticMethodName] = extendedClass.staticMethods[staticMethodName];
-					}
+				else {
+					this._classesWaitingSetup.push(aClassHolder);
 				}
-				
 			}
 			else {
-				extendPrototypeObject = new Object();
+				this._setupFunctionsForClass(aClassHolder, null);
+				this._setupDependentClasses(aClassHolder);
 			}
-			//MENOTE: sealing the object gets much lower perfomance
-			//if(Object.freeze !== undefined) {
-			//	Object.freeze(extendPrototypeObject);
-			//}
-			
-			var prototypeClass = this._createClassFunction(aName + "Prototype");
-			prototypeClass.prototype = extendPrototypeObject;
-			currentClassHolder.prototypeObject = new prototypeClass();
-			
-			for(var objectMethodName in currentClassHolder.objectMethods) {
-				//if(currentClassHolder.prototypeObject[objectMethodName] !== undefined) {
-				//	currentClassHolder.objectMethods[objectMethodName].superFunction = currentClassHolder.prototypeObject[objectMethodName];
-				//}
-				currentClassHolder.prototypeObject[objectMethodName] = currentClassHolder.objectMethods[objectMethodName];
-				delete currentClassHolder.objectMethods[objectMethodName];
+		}
+	}; //End function _setupClassInheritanceForClassIfDependenciesAreReady
+	
+	classManager._setupDependentClasses = function(aClassHolder) {
+		//console.log("classManager._setupDependentClasses");
+		var currentName = aClassHolder.name;
+		
+		var dependentClasses = new Array();
+		var currentArray = this._classesWaitingSetup;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.extendedClass === currentName) {
+				dependentClasses.push(currentObject);
+				currentArray.splice(i, 1);
+				i--;
+				currentArrayLength--;
 			}
-			
-			//MENOTE: sealing the object gets much lower perfomance
-			//if(Object.seal !== undefined) {
-			//	Object.seal(currentClassHolder.objectMethods);
-			//}
-			
-			currentClassHolder.prototypeObject.__className = aName.substring(aName.lastIndexOf(".")+1, aName.length);
-			currentClassHolder.prototypeObject.__fullClassName = aName;
-			currentClassHolder.prototypeObject.__objectPool = null;
-			
-			//MENOTE: sealing the object gets much lower perfomance
-			//if(Object.seal !== undefined) {
-			//	Object.seal(currentClassHolder.prototypeObject); //MENOTE: this should be freeze but firefox doesn't seem to like that
-			//}
-			
-			currentClassHolder.classFunction.prototype = currentClassHolder.prototypeObject;
-			
-			for(var staticMethodName in currentClassHolder.staticMethods) {
-				currentClassHolder.classFunction[staticMethodName] = currentClassHolder.staticMethods[staticMethodName];
-				//delete currentClassHolder.staticMethods[staticMethodName]; //MENOTE: this can't be done before subclasses has been setup
-			}
-			
-			currentClassHolder.classFunction.__fullClassName = aName;
-			currentClassHolder.classFunction.__objectPool = null;
-			
-			//MENOTE: sealing the object gets much lower perfomance
-			//if(Object.seal !== undefined) {
-			//	Object.seal(currentClassHolder.staticMethods);
-			//	Object.seal(currentClassHolder.classFunction);
-			//}
 		}
 		
-		return currentClassHolder;
-	}; //End function _setupClassInheritanceForClass
+		var currentArray = dependentClasses;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			this._setupFunctionsForClass(currentArray[i], aClassHolder);
+			this._setupDependentClasses(currentArray[i]);
+		}
+	};
+	
+	classManager._setupFunctionsForClass = function(aClassHolder, aExtendsClassHolder) {
+		//console.log("classManager._setupFunctionsForClass");
+		//console.log(aClassHolder, aExtendsClassHolder);
+		
+		var currentClassHolder = aClassHolder;
+		
+		
+		var extendPrototypeObject = null;
+		
+		if(aExtendsClassHolder !== null) {
+			
+			var extendedClass = aExtendsClassHolder;
+			extendPrototypeObject = new (extendedClass.classFunction)();
+			
+			var extendedMethods = extendedClass.prototypeObject;
+			for(var extendedMethodName in extendedMethods) {
+				//currentClassHolder.prototypeObject[extendedMethodName] = extendedMethods[extendedMethodName];
+				if(currentClassHolder.objectMethods[extendedMethodName] !== undefined) {
+					currentClassHolder.objectMethods[extendedMethodName].superFunction = extendedMethods[extendedMethodName];
+				}
+			}
+			for(var staticMethodName in extendedClass.staticMethods) {
+				if(currentClassHolder.staticMethods[staticMethodName] === undefined) {
+					//console.log(staticMethodName);
+					currentClassHolder.staticMethods[staticMethodName] = extendedClass.staticMethods[staticMethodName];
+				}
+			}
+			
+		}
+		else {
+			extendPrototypeObject = new Object();
+		}
+		
+		
+		var className = currentClassHolder.name;
+		
+		var prototypeClass = this._createClassFunction(className + "Prototype");
+		prototypeClass.prototype = extendPrototypeObject;
+		currentClassHolder.prototypeObject = new prototypeClass();
+		
+		for(var objectMethodName in currentClassHolder.objectMethods) {
+			//if(currentClassHolder.prototypeObject[objectMethodName] !== undefined) {
+			//	currentClassHolder.objectMethods[objectMethodName].superFunction = currentClassHolder.prototypeObject[objectMethodName];
+			//}
+			currentClassHolder.prototypeObject[objectMethodName] = currentClassHolder.objectMethods[objectMethodName];
+			delete currentClassHolder.objectMethods[objectMethodName];
+		}
+		
+		//MENOTE: sealing the object gets much lower perfomance
+		//if(Object.seal !== undefined) {
+		//	Object.seal(currentClassHolder.objectMethods);
+		//}
+		
+		currentClassHolder.prototypeObject.__className = className.substring(className.lastIndexOf(".")+1, className.length);
+		currentClassHolder.prototypeObject.__fullClassName = className;
+		currentClassHolder.prototypeObject.__objectPool = null;
+		
+		//MENOTE: sealing the object gets much lower perfomance
+		//if(Object.seal !== undefined) {
+		//	Object.seal(currentClassHolder.prototypeObject); //MENOTE: this should be freeze but firefox doesn't seem to like that
+		//}
+		
+		currentClassHolder.classFunction.prototype = currentClassHolder.prototypeObject;
+		
+		for(var staticMethodName in currentClassHolder.staticMethods) {
+			currentClassHolder.classFunction[staticMethodName] = currentClassHolder.staticMethods[staticMethodName];
+			//delete currentClassHolder.staticMethods[staticMethodName]; //MENOTE: this can't be done before subclasses has been setup
+		}
+		
+		currentClassHolder.classFunction.__fullClassName = className;
+		currentClassHolder.classFunction.__objectPool = null;
+		
+		//MENOTE: sealing the object gets much lower perfomance
+		//if(Object.seal !== undefined) {
+		//	Object.seal(currentClassHolder.staticMethods);
+		//	Object.seal(currentClassHolder.classFunction);
+		//}
+		
+		currentClassHolder.isSetup = true;
+	};
 	
 	classManager.setObjectPoolForClass = function(aName, aObjectPool) {
 		var currentClassHolder = this._classes[aName];

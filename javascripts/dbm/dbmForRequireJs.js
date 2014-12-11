@@ -134,10 +134,6 @@
 			this._classManager.registerClass(aName, aExtends, aFunction);
 		};
 		
-		dbmObject.extendClass = function(aName, aFunction) {
-			this._classManager.extendClass(aName, aFunction);
-		};
-		
 		dbmObject.importClass = function(aClassPath) {
 			return this._classManager.importClass(aClassPath);
 		};
@@ -178,8 +174,8 @@
 		};
 		
 		dbmObject.classRegistered = function(aClassPath, aDependencies) {
-			console.log("dbm.classRegistered");
-			console.log(aClassPath, aDependencies);
+			//console.log("dbm.classRegistered");
+			//console.log(aClassPath, aDependencies);
 			
 			var fileName = this.getFileForClass(aClassPath);
 			var currentArray = this._filesToLoad;
@@ -220,8 +216,8 @@
 		};
 		
 		dbmObject._performLoadFile = function(aFilePath) {
-			console.log("dbm::_performLoadFile");
-			console.log(aFilePath);
+			//console.log("dbm::_performLoadFile");
+			//console.log(aFilePath);
 			
 			this._startupSeed.push(Date.now());
 			
@@ -269,7 +265,6 @@
 			
 			this._isStarting = true;
 			
-			this._classManager.setupClassInheritance();
 			this._classManager.setupLibraries();
 			this._classManager.setupSingletons();
 			

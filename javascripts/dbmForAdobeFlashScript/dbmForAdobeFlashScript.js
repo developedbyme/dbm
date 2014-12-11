@@ -102,10 +102,6 @@
 			this._classManager.registerClass(aName, aExtends, aFunction);
 		};
 		
-		dbmObject.extendClass = function(aName, aFunction) {
-			this._classManager.extendClass(aName, aFunction);
-		};
-		
 		dbmObject.importClass = function(aClassPath) {
 			return this._classManager.importClass(aClassPath);
 		};
@@ -230,7 +226,6 @@
 			
 			this._isStarting = true;
 			
-			this._classManager.setupClassInheritance();
 			this._classManager.setupLibraries();
 			this._classManager.setupSingletons();
 			
