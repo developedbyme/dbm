@@ -22,7 +22,7 @@ dbm.registerClass("dbm.core.globalobjects.updatemanager.UpdateManager", "dbm.cor
 	//Constants
 	var UpdaterTypes = dbm.importClass("dbm.constants.UpdaterTypes");
 	
-	dbm.setClassAsSingleton("dbmUpdateManager");
+	
 	
 	/**
 	 * Constructor

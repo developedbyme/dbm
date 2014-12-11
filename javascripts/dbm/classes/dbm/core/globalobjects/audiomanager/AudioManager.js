@@ -26,7 +26,6 @@ dbm.registerClass("dbm.core.globalobjects.audiomanager.AudioManager", "dbm.core.
 	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
-	dbm.setClassAsSingleton("dbmAudioManager");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.audiomanager.AudioManager::_init");

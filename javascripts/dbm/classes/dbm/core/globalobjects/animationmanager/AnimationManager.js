@@ -30,7 +30,6 @@ dbm.registerClass("dbm.core.globalobjects.animationmanager.AnimationManager", "d
 	//Constants
 	
 	
-	dbm.setClassAsSingleton("dbmAnimationManager");
 	
 	/**
 	 * Consructor

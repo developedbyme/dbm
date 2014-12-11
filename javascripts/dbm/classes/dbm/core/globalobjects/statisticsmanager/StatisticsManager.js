@@ -8,7 +8,7 @@ dbm.registerClass("dbm.core.globalobjects.statisticsmanager.StatisticsManager", 
 	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	dbm.setClassAsSingleton("dbmStatisticsManager");
+	
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.statisticsmanager.StatisticsManager::_init");

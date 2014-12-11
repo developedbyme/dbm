@@ -28,7 +28,7 @@ dbm.registerClass("dbm.core.globalobjects.xmlobjectencoder.XmlObjectEncoder", "d
 	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
 	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
 	
-	dbm.setClassAsSingleton("dbmXmlObjectEncoder");
+	
 	
 	/**
 	 * Constructor

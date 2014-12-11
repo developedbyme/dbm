@@ -18,7 +18,7 @@ dbm.registerClass("dbm.core.globalobjects.windowmanager.WindowManager", "dbm.cor
 	var WindowExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.WindowExtendedEventIds");
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
-	dbm.setClassAsSingleton("dbmWindowManager");
+	
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_init");

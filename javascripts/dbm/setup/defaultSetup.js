@@ -57,6 +57,30 @@ dbm.runTempFunction(function() {
 		
 		ArrayFunctions.concatToArray(GlobalVariables.RANDOM_VALUES, dbm.getStartupSeed());
 		
+		dbm.singletons.dbmClassManager.setupSingleton("dbmErrorManager", ErrorManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmUpdateManager", UpdateManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmFlowManager", FlowManager);
+		
+		dbm.singletons.dbmClassManager.setupSingleton("dbmWindowManager", WindowManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmHtmlDomManager", HtmlDomManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmBrowserDetector", BrowserDetector);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmLinkManager", LinkManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmIdManager", IdManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmAnimationManager", AnimationManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmCurveEvaluator", CurveEvaluator);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmCurveCreator", CurveCreator);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmDebugManager", DebugManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmAssetRepository", AssetRepository);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmAudioManager", AudioManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmPageManager", PageManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmStatisticsManager", StatisticsManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmTemplateManager", TemplateManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmDataManager", DataManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmPerformanceManager", PerformanceManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmEncodingManager", EncodingManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmObjectPoolManager", ObjectPoolManager);
+		dbm.singletons.dbmClassManager.setupSingleton("dbmXmlObjectEncoder", XmlObjectEncoder);
+		
 		ErrorManagerDefaultSetup.setup();
 		InterpolationDefaultSetup.setup();
 		

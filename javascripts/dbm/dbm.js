@@ -151,12 +151,6 @@
 			return this._classManager.importLibrary(aName, aReInitFunction);
 		};
 		
-		dbmObject.setClassAsSingleton = function(aName, aClassPath) {
-			//console.log("dbm.setClassAsSingleton");
-			//console.log(aName, aClassPath);
-			return this._classManager.setClassAsSingleton(aName, aClassPath);
-		};
-		
 		dbmObject.getFileForClass = function(aClassPath) {
 			//console.log("dbm.getFileForClass");
 			
@@ -280,7 +274,6 @@
 			this._isStarting = true;
 			
 			this._classManager.setupLibraries();
-			this._classManager.setupSingletons();
 			
 			var currentArray = this._startFunctions;
 			var currentArrayLength = currentArray.length;

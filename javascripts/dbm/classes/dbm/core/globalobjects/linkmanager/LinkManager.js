@@ -9,7 +9,7 @@ dbm.registerClass("dbm.core.globalobjects.linkmanager.LinkManager", "dbm.core.gl
 	var HtmlElementControllerLink = dbm.importClass("dbm.core.globalobjects.htmldommanager.data.HtmlElementControllerLink");
 	var HtmlCreator = dbm.importClass("dbm.core.globalobjects.htmldommanager.objects.HtmlCreator");
 	
-	dbm.setClassAsSingleton("dbmLinkManager");
+	
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.linkmanager.LinkManager::_init");

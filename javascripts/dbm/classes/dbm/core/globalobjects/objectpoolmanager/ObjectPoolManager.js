@@ -19,7 +19,7 @@ dbm.registerClass("dbm.core.globalobjects.objectpoolmanager.ObjectPoolManager", 
 	
 	//Constants
 	
-	dbm.setClassAsSingleton("dbmObjectPoolManager");
+	
 	
 	/**
 	 * Constructor

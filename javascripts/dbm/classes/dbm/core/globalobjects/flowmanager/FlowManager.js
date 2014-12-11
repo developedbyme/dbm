@@ -32,8 +32,6 @@ dbm.registerClass("dbm.core.globalobjects.flowmanager.FlowManager", "dbm.core.gl
 	var UpdaterTypes = dbm.importClass("dbm.constants.UpdaterTypes");
 	
 	
-	dbm.setClassAsSingleton("dbmFlowManager");
-	
 	/**
 	 * Constructor
 	 */

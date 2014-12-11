@@ -36,7 +36,7 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.AssetRepository", "dbm
 	
 	//Constants
 	
-	dbm.setClassAsSingleton("dbmAssetRepository");
+	
 	
 	/**
 	 * Constructor

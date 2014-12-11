@@ -29,7 +29,7 @@ dbm.registerClass("dbm.core.globalobjects.datamanager.DataManager", "dbm.core.gl
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	
-	dbm.setClassAsSingleton("dbmDataManager");
+	
 	
 	/**
 	 * Constructor

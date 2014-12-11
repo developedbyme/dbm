@@ -1,17 +1,14 @@
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 /**
  * Global manager for handling errors.
- *
- * @author	Mattias Ekendahl (mattias@developedbyme.com)
- * @version	0.2.01
  */
-/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
 dbm.registerClass("dbm.core.globalobjects.errormanager.ErrorManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("dbm.core.globalobjects.errormanager.ErrorManager");
 	//"use strict";
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
 	
-	dbm.setClassAsSingleton("dbmErrorManager");
+	
 	
 	/**
 	 * Initializes the object.

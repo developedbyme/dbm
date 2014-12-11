@@ -23,7 +23,7 @@ dbm.registerClass("dbm.core.globalobjects.pagemanager.PageManager", "dbm.core.gl
 	
 	//Constants
 	
-	dbm.setClassAsSingleton("dbmPageManager");
+	
 	
 	/**
 	 * Constructor

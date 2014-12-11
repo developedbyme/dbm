@@ -7,7 +7,6 @@ dbm.registerClass("dbm.core.globalobjects.browserdetector.BrowserDetector", "dbm
 	
 	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
 	
-	dbm.setClassAsSingleton("dbmBrowserDetector");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.browserdetector.BrowserDetector::_init");

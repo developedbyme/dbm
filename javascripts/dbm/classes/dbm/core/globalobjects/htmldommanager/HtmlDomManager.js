@@ -11,7 +11,7 @@ dbm.registerClass("dbm.core.globalobjects.htmldommanager.HtmlDomManager", "dbm.c
 	var HtmlCreator = dbm.importClass("dbm.core.globalobjects.htmldommanager.objects.HtmlCreator");
 	var SvgCreator = dbm.importClass("dbm.core.globalobjects.htmldommanager.objects.SvgCreator");
 	
-	dbm.setClassAsSingleton("dbmHtmlDomManager");
+	
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.htmldommanager.HtmlDomManager::_init");

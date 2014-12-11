@@ -10,7 +10,7 @@ dbm.registerClass("dbm.core.globalobjects.encodingmanager.EncodingManager", "dbm
 	
 	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
-	dbm.setClassAsSingleton("dbmEncodingManager");
+	
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.encodingmanager.EncodingManager::_init");

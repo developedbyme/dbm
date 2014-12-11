@@ -18,7 +18,7 @@ dbm.registerClass("dbm.core.globalobjects.debugmanager.DebugManager", "dbm.core.
 	
 	//Constants
 	
-	dbm.setClassAsSingleton("dbmDebugManager");
+	
 	
 	/**
 	 * Constructor

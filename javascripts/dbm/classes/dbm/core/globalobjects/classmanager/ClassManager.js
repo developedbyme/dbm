@@ -218,38 +218,16 @@ dbm.runTempFunction(function() {
 		this._reInitLibraryFunctions.push(aFunction);
 	}; //End function addReInitLibraryFunction
 	
-	classManager.setClassAsSingleton = function(aName, aClassPath) {
-		var theClassPath = (aClassPath !== null && aClassPath !== undefined) ? aClassPath : this._currentRegistrationClass;
+	classManager.setupSingleton = function(aName, aClass) {
 		
-		this._singletons[aName] = theClassPath;
-		
-		var classHolder = this._getClassHolder(theClassPath);
-		if(classHolder.prototypeObject === null) {
-			classHolder.classFunction._instance = null;
-			classHolder.classFunction.getInstance = null;
-		}
-		else {
-			console.warn("Class " + theClassPath + " is already initiated. Can't set it as singleton.");
-		}
-	}; //End function setClassAsSingleton
-	
-	classManager.setupSingletons = function() {
-		//console.log("classManager.setupSingletons");
-		for(var objectName in this._singletons) {
-			var className = this._singletons[objectName];
-			if(this._classes[className] === null) {
-				continue;
-			}
-			var theClass = this._classes[className].classFunction;
-			var newObject = (new theClass()).init();
-			dbm.singletons[objectName] = newObject;
-			theClass._instance = newObject;
-			theClass.getInstance = function() {
-				return this._instance;
-			};
-			delete this._singletons[objectName];
-		}
-	}; //End function setupSingletons
+		var theClass = aClass;
+		var newObject = (new theClass()).init();
+		dbm.singletons[aName] = newObject;
+		theClass._instance = newObject;
+		theClass.getInstance = function() {
+			return theClass._instance;
+		};
+	};
 	
 	classManager._setupClassInheritanceForClassIfDependenciesAreReady = function(aClassHolder) {
 		//console.log("classManager._setupClassInheritanceForClassIfDependenciesAreReady");

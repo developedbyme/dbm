@@ -8,7 +8,7 @@ dbm.registerClass("dbm.core.globalobjects.performancemanager.PerformanceManager"
 	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
-	dbm.setClassAsSingleton("dbmPerformanceManager");
+	
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.performancemanager.PerformanceManager::_init");

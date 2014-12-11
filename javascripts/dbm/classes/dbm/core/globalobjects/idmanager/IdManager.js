@@ -1,10 +1,7 @@
-/**
- * Global object for andeling id
- *
- * @authur Mattias Ekendahl (mattias@developedbyme.com)
- * @version 0.0.01
- */
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+/**
+ * Global object for andeling id.
+ */
 dbm.registerClass("dbm.core.globalobjects.idmanager.IdManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("dbm.core.globalobjects.idmanager.IdManager");
 	
@@ -12,7 +9,7 @@ dbm.registerClass("dbm.core.globalobjects.idmanager.IdManager", "dbm.core.global
 	
 	var NormalIdGroup = dbm.importClass("dbm.core.globalobjects.idmanager.objects.NormalIdGroup");
 	
-	dbm.setClassAsSingleton("dbmIdManager");
+	
 	
 	/**
 	 * Constructor

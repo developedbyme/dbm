@@ -20,7 +20,7 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.TemplateManager", "dbm
 	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
 	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
 	
-	dbm.setClassAsSingleton("dbmTemplateManager");
+	
 	
 	staticFunctions.CLASS_ATTRIBUTE = "data-dbm-class";
 	staticFunctions.NAME_ATTRIBUTE = "data-dbm-name";

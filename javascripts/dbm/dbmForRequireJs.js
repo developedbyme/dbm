@@ -151,12 +151,6 @@
 			return this._classManager.importLibrary(aName, aReInitFunction);
 		};
 		
-		dbmObject.setClassAsSingleton = function(aName, aClassPath) {
-			//console.log("dbm.setClassAsSingleton");
-			//console.log(aName, aClassPath);
-			return this._classManager.setClassAsSingleton(aName, aClassPath);
-		};
-		
 		dbmObject.getFileForClass = function(aClassPath) {
 			//console.log("dbm.getFileForClass");
 			
@@ -202,6 +196,8 @@
 			//console.log("dbm::loadFile");
 			//console.log(aFilePath);
 			
+			//METODO
+			/*
 			var colonPosition = aFilePath.indexOf(":");
 			var questionMarkPosition = aFilePath.indexOf("?");
 			if(colonPosition !== -1 && (questionMarkPosition === -1 || colonPosition < questionMarkPosition)) {
@@ -211,52 +207,9 @@
 				var fileName = this._javascriptsFolder + "/" + aFilePath;
 				this._filesToLoad.push(fileName);
 			}
+			*/
 			
 			return this;
-		};
-		
-		dbmObject._performLoadFile = function(aFilePath) {
-			//console.log("dbm::_performLoadFile");
-			//console.log(aFilePath);
-			
-			this._startupSeed.push(Date.now());
-			
-			require([aFilePath], function() {dbm._onFileLoaded();});
-		};
-		
-		dbmObject._onHtmlLoaded = function(aEvent) {
-			//console.log("dbm._onHtmlLoaded");
-			//console.log(aEvent);
-			if(dbm._htmlLoaded) return;
-			dbm._htmlLoaded = true;
-			
-			dbm._document.removeEventListener("DOMContentLoaded", dbm._onHtmlLoaded, false);
-			
-			dbm._loadNextFile();
-		};
-		
-		dbmObject._onFileLoaded = function(aEvent) {
-			console.log("dbm._onFileLoaded");
-			dbm._clearCurrentFileLoad();
-			dbm._loadNextFile();
-		};
-		
-		dbmObject._clearCurrentFileLoad = function() {
-			this._currentScriptTag.removeEventListener("load", dbm._onFileLoaded, false);
-			this._currentScriptTag.removeEventListener("error", dbm._onFileLoaded, false);
-			
-			this._filesToLoad[this._currentFile] = null;
-		};
-		
-		dbmObject._loadNextFile = function() {
-			this._currentFile++;
-			
-			if(this._currentFile >= this._filesToLoad.length) {
-				this._start();
-			}
-			else {
-				this._performLoadFile(this._filesToLoad[this._currentFile]);
-			}
 		};
 		
 		dbmObject._start = function() {
@@ -266,7 +219,6 @@
 			this._isStarting = true;
 			
 			this._classManager.setupLibraries();
-			this._classManager.setupSingletons();
 			
 			var currentArray = this._startFunctions;
 			var currentArrayLength = currentArray.length;

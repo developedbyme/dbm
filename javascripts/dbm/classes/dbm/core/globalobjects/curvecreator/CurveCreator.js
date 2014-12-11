@@ -30,7 +30,6 @@ dbm.registerClass("dbm.core.globalobjects.curvecreator.CurveCreator", "dbm.core.
 	var CurveMergeTypes = dbm.importClass("dbm.constants.CurveMergeTypes");
 	var ExtrapolationTypes = dbm.importClass("dbm.constants.ExtrapolationTypes");
 	
-	dbm.setClassAsSingleton("dbmCurveCreator");
 	
 	staticFunctions.DEFAULT_EXACTNESS = 0.01;
 	
