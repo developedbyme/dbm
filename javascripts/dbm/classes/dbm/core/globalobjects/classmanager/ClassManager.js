@@ -5,6 +5,7 @@ dbm.runTempFunction(function() {
 	
 	classManager.init = function() {
 		this._classes = new Object();
+		this._currentRegistrationClasses = new Array();
 		this._currentRegistrationClass = null;
 		this._singletons = new Object();
 		this._libraries = new Object();
@@ -53,6 +54,7 @@ dbm.runTempFunction(function() {
 		newClassHolder.prototypeObject = null;
 		newClassHolder.objectMethods = new (this._objectMethodsClass)();
 		newClassHolder.staticMethods = new (this._staticMethodsClass)();
+		newClassHolder.dependencies = new Array();
 		
 		//MENOTE: sealing the object gets much lower perfomance
 		//if(Object.seal !== undefined) {
@@ -89,7 +91,7 @@ dbm.runTempFunction(function() {
 		
 		this._currentRegistrationClass = null;
 		
-		dbm.classRegistered(aName);
+		dbm.classRegistered(aName, newClassHolder.dependencies);
 		
 		return newClassHolder;
 	}; //End function registerClass
@@ -110,6 +112,13 @@ dbm.runTempFunction(function() {
 	}; //End function extendClass
 	
 	classManager.importClass = function(aName) {
+		//console.log("classManager.importClass");
+		//console.log(aName);
+		
+		if(this._currentRegistrationClass !== null) {
+			var importingClassHolder = this._getClassHolder(this._currentRegistrationClass);
+			importingClassHolder.dependencies.push(aName);
+		}
 		
 		if(this._classes[aName] !== undefined) {
 			return this._classes[aName].classFunction;
