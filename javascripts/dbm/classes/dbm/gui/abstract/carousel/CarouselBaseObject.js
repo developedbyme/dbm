@@ -12,9 +12,11 @@ dbm.registerClass("dbm.gui.abstract.carousel.CarouselBaseObject", "dbm.core.Exte
 	
 	//Utils
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	var NumberFunctions = dbm.importClass("dbm.utils.native.number.NumberFunctions");
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
+	
 	
 	/**
 	 * Constructor
@@ -44,6 +46,14 @@ dbm.registerClass("dbm.gui.abstract.carousel.CarouselBaseObject", "dbm.core.Exte
 		if(this.getExtendedEvent().hasEvent(GenericExtendedEventIds.ITEM_ADDED)) {
 			this.getExtendedEvent().perform(GenericExtendedEventIds.ITEM_ADDED, newItem);
 		}
+	};
+	
+	objectFunctions.selectItemClosestToPosition = function(aPosition) {
+		
+		var closestPosition = Math.round(aPosition);
+		
+		var itemIndex = NumberFunctions.floatModulus(closestPosition, this._numberOfItems.getValue());
+		this._selectedItem.setValue(itemIndex);
 	};
 	
 	objectFunctions._extendedEvent_eventIsExpected = function(aName) {

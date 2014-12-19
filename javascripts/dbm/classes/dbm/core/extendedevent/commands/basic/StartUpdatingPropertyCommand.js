@@ -2,21 +2,28 @@
 dbm.registerClass("dbm.core.extendedevent.commands.basic.StartUpdatingPropertyCommand", "dbm.core.extendedevent.commands.CommandBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
 	//console.log("dbm.core.extendedevent.commands.basic.StartUpdatingPropertyCommand");
 	
+	//Self reference
 	var StartUpdatingPropertyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.StartUpdatingPropertyCommand");
 	
+	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
+	//Dependencies
+	
+	//Utils
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	var GetPropertyObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
+	
+	//Constants
 	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
 	
-	var StaticVariableObject = dbm.importClass("dbm.utils.reevaluation.staticreevaluation.StaticVariableObject");
-	var GetPropertyObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject");
-	var ReevaluationBaseObject = dbm.importClass("dbm.utils.reevaluation.ReevaluationBaseObject");
-	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
-	
-	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
-	
+	/**
+	 * Constructor
+	 */
 	objectFunctions._init = function() {
 		//console.log("dbm.core.extendedevent.commands.basic.StartUpdatingPropertyCommand::_init");
 		
@@ -75,21 +82,10 @@ dbm.registerClass("dbm.core.extendedevent.commands.basic.StartUpdatingPropertyCo
 		
 		aStart = VariableAliases.valueWithDefault(aStart, true);
 		
-		var newCommand = (new StartUpdatingPropertyCommand()).init();
+		var newCommand = (new StartUpdatingPropertyCommand()).init(aProperty);
 		
-		if(aProperty instanceof ReevaluationBaseObject) {
-			newCommand.propertyReevaluator = aProperty;
-		}
-		else {
-			newCommand.propertyReevaluator = StaticVariableObject.createReevaluationObject(aProperty);
-		}
-		
-		if(aStart instanceof ReevaluationBaseObject) {
-			newCommand.startReevaluator = aStart;
-		}
-		else {
-			newCommand.startReevaluator = StaticVariableObject.createReevaluationObject(aStart);
-		}
+		newCommand.propertyReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aProperty);
+		newCommand.startReevaluator = ReevaluationCreator.reevaluationOrStaticValue(aStart);
 		
 		return newCommand;
 	};

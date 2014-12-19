@@ -16,10 +16,16 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 	var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");
 	var MultiplicationNode = dbm.importClass("dbm.flow.nodes.math.MultiplicationNode");
 	var CircularDistanceNode = dbm.importClass("dbm.flow.nodes.math.CircularDistanceNode");
+	var DragInteraction = dbm.importClass("dbm.gui.abstract.touch.drag.DragInteraction");
+	var OneTouchOrMouseDetector = dbm.importClass("dbm.gui.abstract.touch.OneTouchOrMouseDetector");
+	var DivisionNode = dbm.importClass("dbm.flow.nodes.math.DivisionNode");
 	
 	//Utils
 	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var RoundReevaluation = dbm.importClass("dbm.utils.reevaluation.mathreevaluation.RoundReevaluation");
+	var GetPropertyValueObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetPropertyValueObject");
+	var AnimatePropertyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.AnimatePropertyCommand");
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
@@ -62,16 +68,25 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 			newElement.setPropertyInput("height", holder.getProperty("height"));
 			carousel.addItem(newElement);
 			newElement.getProperty("display").startUpdating();
-			console.log(newElement.getProperty("display"));
 		}
 		
-		carousel.getProperty("currentPosition").animateValue(15, 10, InterpolationTypes.LINEAR, 0);
+		var touchDetector = OneTouchOrMouseDetector.create(holder.getElement());
+		var dragInteraction = DragInteraction.create(touchDetector);
+		var speedNode = DivisionNode.create(-1, holder.getProperty("width"));
+		DragInteraction.setupHorizontal(dragInteraction, speedNode.getProperty("outputValue"), carousel.getProperty("currentPosition"));
 		
-		console.log(carousel);
+		dragInteraction.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.END, CallFunctionCommand.createCommand(carousel, carousel.selectItemClosestToPosition, [RoundReevaluation.createCommand(GetPropertyValueObject.createCommand(dragInteraction, "outputValue"))]));
+		dragInteraction.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.END, AnimatePropertyCommand.createCommand(carousel.getProperty("currentPosition"), RoundReevaluation.createCommand(GetPropertyValueObject.createCommand(dragInteraction, "outputValue")), 0.5, InterpolationTypes.INVERTED_QUADRATIC, 0));
+		
+		
+		
+		touchDetector.activate();
+		
+		//carousel.getProperty("currentPosition").animateValue(15, 10, InterpolationTypes.LINEAR, 0);
 	};
 	
 	objectFunctions._setupItem = function(aCarousel, aCarouselItem, aHolderWidth, aHolderHeight) {
-		console.log("Application::_setupItem");
+		//console.log("Application::_setupItem");
 		
 		var currentDisplayObject = aCarouselItem.item;
 		currentDisplayObject.setElementAsPositioned();
