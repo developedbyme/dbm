@@ -1,5 +1,17 @@
-dbm.runTempFunction(function() {
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("Application");
+	//"use strict";
 	
+	//Self reference
+	var Application = dbm.importClass("Application");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
 	var PlaceElementNode = dbm.importClass("dbm.flow.nodes.display.PlaceElementNode");
 	var RepeatedRangeNode = dbm.importClass("dbm.flow.nodes.math.range.RepeatedRangeNode");
 	
@@ -21,10 +33,31 @@ dbm.runTempFunction(function() {
 	var IterativeFlowGroup = dbm.importClass("dbm.flow.IterativeFlowGroup");
 	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
-	dbm.addStartFunction(function() {
-		console.log("startFunction");
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		console.log("Application::_init");
 		
-		var htmlCreator = dbm.singletons["dbmHtmlDomManager"].getHtmlCreator(document);
+		this.superCall();
+		
+		//this._mainTemplate = "assets/templates.html#main";
+		
+		//this._assetsLoader.addAssetsByPath(this._mainTemplate);
+		this._addStartFunction(this._createPage, []);
+		
+		return this;
+	};
+	
+	objectFunctions._createPage = function() {
+		console.log("Application::_createPage");
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(this._contentHolder.ownerDocument);
 		
 		var animationTime = 2;
 		
@@ -44,14 +77,13 @@ dbm.runTempFunction(function() {
 		dbm.singletons.dbmFlowManager.connectProperties(scaleXNode.getProperty("outputValue"), scalePoint.getOutputProperty("x"));
 		dbm.singletons.dbmFlowManager.connectProperties(scaleYNode.getProperty("outputValue"), scalePoint.getOutputProperty("y"));
 		
-		//Timeline
-		var newTimeline = dbm.singletons.dbmAnimationManager.createTimeline(0, null);
-		newTimeline.animateValue(Math.PI, 0.5*animationTime, InterpolationTypes.QUADRATIC, 0);
-		newTimeline.animateValue(2*Math.PI, 0.5*animationTime, InterpolationTypes.INVERTED_QUADRATIC, 0.5*animationTime);
-		
 		//Position
-		var xPosition = SinNode.create(newTimeline.getProperty("outputValue"));
-		var yPosition = CosNode.create(newTimeline.getProperty("outputValue"));
+		var xPosition = SinNode.create(0);
+		xPosition.getProperty("inputValue").animateValue(Math.PI, 0.5*animationTime, InterpolationTypes.QUADRATIC, 0);
+		xPosition.getProperty("inputValue").animateValue(2*Math.PI, 0.5*animationTime, InterpolationTypes.INVERTED_QUADRATIC, 0.5*animationTime);
+		var yPosition = CosNode.create(0);
+		yPosition.getProperty("inputValue").animateValue(Math.PI, 0.5*animationTime, InterpolationTypes.QUADRATIC, 0);
+		yPosition.getProperty("inputValue").animateValue(2*Math.PI, 0.5*animationTime, InterpolationTypes.INVERTED_QUADRATIC, 0.5*animationTime);
 		
 		var xScale = MultiplicationNode.create(xPosition.getProperty("outputValue"), 200);
 		var yScale = MultiplicationNode.create(yPosition.getProperty("outputValue"), 200);
@@ -69,9 +101,15 @@ dbm.runTempFunction(function() {
 		
 		//Node
 		var newNode = htmlCreator.createNode("div", {style: "position: absolute; background-color: #FF0000"});
-		document.body.appendChild(newNode);
+		this._contentHolder.appendChild(newNode);
 			
 		var placeElementNode = PlaceElementNode.create(newNode, boxCenterOffsetX.getProperty("outputValue"), boxCenterOffsetY.getProperty("outputValue"), 0, 50, 50);
 		placeElementNode.getProperty("display").startUpdating();
-	});
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		//console.log("Application::setAllReferencesToNull");
+		
+		this.superCall();
+	};
 });
