@@ -136,8 +136,9 @@ dbm.registerClass("dbm.core.objectparts.ExternalCssVariableProperty", "dbm.core.
 		if(startValue !== null) {
 			this._performSetValue(startValue);
 		}
-		
-		this.setAsDirty();
+		else {
+			this.setAsDirty();
+		}
 		
 		return this;
 	};

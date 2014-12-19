@@ -241,6 +241,7 @@ dbm.registerClass("dbm.core.globalobjects.flowmanager.FlowManager", "dbm.core.gl
 	};
 	
 	staticFunctions.propagateFlowUpdate = function(aConnection) {
+		//console.log("dbm.core.objectparts.Property::propagateFlowUpdate");
 		
 		var newFlowNumber = 0;
 		var currentArray = aConnection._inputConnections;
@@ -255,6 +256,7 @@ dbm.registerClass("dbm.core.globalobjects.flowmanager.FlowManager", "dbm.core.gl
 				newFlowNumber = currentFlowNumber;
 			}
 		}
+		
 		if(aConnection.status === FlowStatusTypes.NEEDS_UPDATE) {
 			if(newFlowNumber > aConnection.flowUpdateNumber) {
 				aConnection.updateFlow();
