@@ -59,6 +59,9 @@ dbm.registerClass("dbm.gui.abstract.touch.drag.DragInteraction", "dbm.core.Exten
 	};
 	
 	objectFunctions.startTouch = function(aTouchData) {
+		//console.log("dbm.gui.abstract.touch.drag.DragInteraction::startTouch");
+		//console.log(this);
+		
 		if(this._touchData !== null) {
 			//METODO: error message
 			this.endTouch();

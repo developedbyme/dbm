@@ -53,6 +53,10 @@ dbm.registerClass("dbm.utils.canvas.CurveDrawer2d", "dbm.core.FlowBaseObject", f
 		
 		var drawCurve = this._drawCurve.getValueWithoutFlow();
 		
+		if(drawCurve.pointsArray.length <= 1) {
+			return;
+		}
+		
 		switch(drawCurve.getCurveDegree()) {
 			case 1:
 				ClassReference._drawPoints1stDegree(aContext, drawCurve.pointsArray);
@@ -72,6 +76,9 @@ dbm.registerClass("dbm.utils.canvas.CurveDrawer2d", "dbm.core.FlowBaseObject", f
 	objectFunctions.getStartPoint = function(aReturnPoint) {
 		//console.log("dbm.utils.canvas.CurveDrawer2d::getStartPoint");
 		var curve = this._curve.getValueWithoutFlow();
+		if(curve.pointsArray.length <= 1) {
+			return;
+		}
 		var startParameter = this._startParameter.getValueWithoutFlow();
 		var endParameter = this._endParameter.getValueWithoutFlow();
 		curve.getPointOnCurve(Math.min(startParameter, endParameter), aReturnPoint);

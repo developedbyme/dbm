@@ -322,6 +322,8 @@ dbm.registerClass("dbm.utils.canvas.CanvasLayer2d", "dbm.core.FlowBaseObject", f
 	};
 	
 	objectFunctions.drawCurve = function(aCurve, aStartParameter, aEndParameter) {
+		//console.log("dbm.utils.canvas.CanvasLayer2d::drawCurve");
+		//console.log(aCurve, aStartParameter, aEndParameter);
 		
 		aStartParameter = VariableAliases.valueWithDefault(aStartParameter, 0);
 		aEndParameter = VariableAliases.valueWithDefault(aEndParameter, aCurve.getMaxParameter());
