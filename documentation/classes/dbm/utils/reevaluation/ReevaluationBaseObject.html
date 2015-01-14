@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>ReevaluationBaseObject</h1>
+					<div class="classPath">dbm.utils.reevaluation.ReevaluationBaseObject</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Base object for all reevaluation objects. Implements the reevaluate() interface.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="dbm.utils.reevaluation.logicreevaluation.AndObject" href="logicreevaluation/AndObject.html">AndObject</a>, <a title="dbm.utils.reevaluation.manipulationreevaluation.CombineArraysObject" href="manipulationreevaluation/CombineArraysObject.html">CombineArraysObject</a>, <a title="dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject" href="logicreevaluation/ConditionAnyOfMultipleValuesObject.html">ConditionAnyOfMultipleValuesObject</a>, <a title="dbm.utils.reevaluation.logicreevaluation.ConditionObject" href="logicreevaluation/ConditionObject.html">ConditionObject</a>, <a title="dbm.utils.reevaluation.encodingreevaluation.FormUrlEncodeReevaluationObject" href="encodingreevaluation/FormUrlEncodeReevaluationObject.html">FormUrlEncodeReevaluationObject</a>, <a title="dbm.utils.reevaluation.logicreevaluation.InstanceOfClassObject" href="logicreevaluation/InstanceOfClassObject.html">InstanceOfClassObject</a>, <a title="dbm.utils.reevaluation.staticreevaluation.NoChangeObject" href="staticreevaluation/NoChangeObject.html">NoChangeObject</a>, <a title="dbm.utils.reevaluation.verificationreevaluation.NotNullObject" href="verificationreevaluation/NotNullObject.html">NotNullObject</a>, <a title="dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject" href="objectreevaluation/ObjectReevaluationBaseObject.html">ObjectReevaluationBaseObject</a>, <a title="dbm.utils.reevaluation.complexreevaluation.ReevaluateArrayObject" href="complexreevaluation/ReevaluateArrayObject.html">ReevaluateArrayObject</a>, <a title="dbm.utils.reevaluation.manipulationreevaluation.ReplaceStringObject" href="manipulationreevaluation/ReplaceStringObject.html">ReplaceStringObject</a>, <a title="dbm.utils.reevaluation.staticreevaluation.SelectBaseObjectObject" href="staticreevaluation/SelectBaseObjectObject.html">SelectBaseObjectObject</a>, <a title="dbm.utils.reevaluation.manipulationreevaluation.SplitStringObject" href="manipulationreevaluation/SplitStringObject.html">SplitStringObject</a>, <a title="dbm.utils.reevaluation.staticreevaluation.StaticVariableObject" href="staticreevaluation/StaticVariableObject.html">StaticVariableObject</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ReevaluationBaseObject = dbm.importClass("dbm.utils.reevaluation.ReevaluationBaseObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.utils.reevaluation.ReevaluationBaseObject", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.reevaluation.ReevaluationBaseObject");
+	
+	//Self reference
+	var ReevaluationBaseObject = dbm.importClass("dbm.utils.reevaluation.ReevaluationBaseObject");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.utils.reevaluation.ArrayHolder::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	objectFunctions.getDataObject = function() {
+		//MENOTE: should be overridden
+		//METODO: error message
+		return null;
+	};
+	
+	/**
+	 * The function that reevalutes this reference. Should be overridden.
+	 *
+	 * @param	aBaseObject		*	The object to base the reevaluation from.
+	 *
+	 * @return	*	The result of the reevaluation.
+	 */
+	objectFunctions.reevaluate = function(aBaseObject) {
+		
+		//MENOTE: should be overridden
+		
+		return null;
+	}; //End function reevaluate
+	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.utils.reevaluation.ArrayHolder::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getDataObject</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getDataObject = function() {
+		//MENOTE: should be overridden
+		//METODO: error message
+		return null;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">reevaluate</span>(<span class="arguments">aBaseObject:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">The function that reevalutes this reference. Should be overridden.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aBaseObject:<span class="nativeType">*</span> - The object to base the reevaluation from.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The result of the reevaluation.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.reevaluate = function(aBaseObject) {
+		
+		//MENOTE: should be overridden
+		
+		return null;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					</div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

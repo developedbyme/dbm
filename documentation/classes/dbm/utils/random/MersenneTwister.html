@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>MersenneTwister</h1>
+					<div class="classPath">dbm.utils.random.MersenneTwister</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">A mersenne twister random generator.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var MersenneTwister = dbm.importClass("dbm.utils.random.MersenneTwister");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.utils.random.MersenneTwister", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.random.MersenneTwister");
+	
+	var MersenneTwister = dbm.importClass("dbm.utils.random.MersenneTwister");
+	
+	staticFunctions.N = 624;
+	staticFunctions.M = 397;
+	
+	staticFunctions.MATRIX_A = 0x9908b0df;   /* constant vector a */
+	staticFunctions.UPPER_MASK = 0x80000000; /* most significant w-r bits */
+	staticFunctions.LOWER_MASK = 0x7fffffff; /* least significant r bits */
+	
+	staticFunctions.mag01 = new Array(2);
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.utils.random.MersenneTwister::_init");
+		
+		this.mt = new Array(ClassReference.N); /* the array for the state vector  */
+		this.mti = ClassReference.N+1; /* mti==N+1 means mt[N] is not initialized */
+		
+		return this;
+	}; //End function MersenneTwister
+	
+	objectFunctions._multiplyUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_multiplyUint32");
+		//console.log(aNumber1, aNumber2);
+		var rotateTimes = Math.ceil(0xFFFFFFFF/aNumber2);
+		//console.log("rotateTimes", rotateTimes);
+		if(aNumber1 &lt; rotateTimes) {
+			//console.log("+1", aNumber1*aNumber2);
+			return aNumber1*aNumber2;
+		}
+		var rotateOffset = aNumber2-(0xFFFFFFFF-aNumber2*(rotateTimes-1))-1;
+		//console.log("rotateOffset", rotateOffset);
+		//if(rotateOffset == 0) {
+		//	console.log("+2", aNumber2);
+		//	return aNumber2;
+		//}
+		var times = Math.floor(aNumber1/rotateTimes);
+		var extra = this._multiplyUint32((aNumber1-(times*rotateTimes)), aNumber2);
+		
+		var newValue = 0;
+		if(rotateOffset !== 0) {
+			newValue = this._multiplyUint32(times, rotateOffset);
+		}
+		//console.log("times, extra, newValue", times, extra, newValue);
+		//console.log("+3", this._addUint32(newValue, extra));
+		return this._addUint32(newValue, extra);
+	};
+	
+	/*
+	objectFunctions._multiplyUint32For = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_multiplyUint32For");
+		var returnValue = 0;
+		for(var i = 0; i &lt; aNumber2; i++) {
+			returnValue = this._addUint32(returnValue, aNumber1);
+		}
+		return returnValue;
+	};
+	*/
+	
+	objectFunctions._addUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_addUint32");
+		var left = 0xFFFFFFFF-aNumber2;
+		if(left &gt;= aNumber1) {
+			return aNumber1+aNumber2;
+		}
+		return aNumber1-(left+1);
+	};
+	
+	objectFunctions._subtractUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_subtractUint32");
+		if(aNumber1 &gt;= aNumber2) {
+			return aNumber1-aNumber2;
+		}
+		return 0xFFFFFFFF-(aNumber2-aNumber1+1);
+	};
+	
+	objectFunctions._andUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_andUint32");
+		var returnValue = 0;
+		for(var i = 0; i &lt; 32; i++) {
+			var shiftValue = 1 &lt;&lt; i;
+			if((aNumber1 &amp; shiftValue) &amp;&amp; (aNumber2 &amp; shiftValue)) {
+				returnValue += Math.pow(2, i);
+			}
+		}
+		return returnValue;
+	};
+	
+	objectFunctions._orUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_orUint32");
+		var returnValue = 0;
+		for(var i = 0; i &lt; 32; i++) {
+			var shiftValue = 1 &lt;&lt; i;
+			if((aNumber1 &amp; shiftValue) || (aNumber2 &amp; shiftValue)) {
+				returnValue += Math.pow(2, i);
+			}
+		}
+		return returnValue;
+	};
+	
+	objectFunctions._xorUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_xorUint32");
+		var returnValue = 0;
+		for(var i = 0; i &lt; 32; i++) {
+			var shiftValue = 1 &lt;&lt; i;
+			if((aNumber1 &amp; shiftValue) !== (aNumber2 &amp; shiftValue)) {
+				returnValue += Math.pow(2, i);
+			}
+		}
+		return returnValue;
+	};
+	
+	/**
+	 * Initializes mt[N] with a seed.
+	 *
+	 * @param	aSeed	The seed to use.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.initByUint = function(aSeed) {
+		//console.log("initByUint");
+		this.mt[0] = aSeed &amp; 0xffffffff;
+		//console.log(this.mt[0]);
+		for (this.mti=1; this.mti&lt;ClassReference.N; this.mti++) {
+			this.mt[this.mti] = this._addUint32(this._multiplyUint32(1812433253, this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30))), this.mti);
+			//console.log(this.mti, this.mt[this.mti].toString(16), this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30), this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30)));
+			/* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
+			/* In the previous versions, MSBs of the seed affect   */
+			/* only MSBs of the array mt[].                        */
+			
+			//if(this.mti == 1) {
+			//	break; //MEDEBUG
+			//	console.log(this.mt[this.mti]);
+			//	console.log(this.mt[this.mti-1] &gt;&gt;&gt; 30);
+			//	console.log(this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30)));
+			//	console.log(this._multiplyUint32(1812433253, this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30))));
+			//	console.log(this._multiplyUint32For(1812433253, this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30))));
+			//}
+		}
+		//console.log(this.mt[0]);
+		return this;
+	}; //End function initByUint
+
+	/**
+	 * Initialize by an array.
+	 *
+	 * @param	aKeysArray	The keys to seed with.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.initByArray = function(aKeysArray) {
+		//console.log("initByArray");
+		var keysLength = aKeysArray.length;
+		
+		var i = 1;
+		var j = 0;
+		var k = (ClassReference.N &gt; keysLength) ? ClassReference.N : keysLength;
+		this.initByUint(19650218);
+		//console.log(this.mt[0]);
+		//console.log(this.mt);
+		for (; k; k--) {
+			this.mt[i] = this._addUint32(this._addUint32(this._xorUint32(this.mt[i], this._multiplyUint32(this._xorUint32(this.mt[i-1], (this.mt[i-1] &gt;&gt;&gt; 30)), 1664525)), aKeysArray[j]), j); /* non linear */
+			i++; j++;
+			if (i&gt;=ClassReference.N) {
+				this.mt[0] = this.mt[ClassReference.N-1];
+				i=1;
+			}
+			if (j&gt;=keysLength) {
+				j=0;
+			}
+		}
+		//console.log(this.mt);
+		for (k=ClassReference.N-1; k; k--) {
+			this.mt[i] = this._subtractUint32(this._xorUint32(this.mt[i], this._multiplyUint32(this._xorUint32(this.mt[i-1], (this.mt[i-1] &gt;&gt;&gt; 30)), 1566083941)), i); /* non linear */
+			i++;
+			if (i&gt;=ClassReference.N) {
+				this.mt[0] = this.mt[ClassReference.N-1];
+				i=1;
+			}
+		}
+		//console.log(this.mt);
+		
+		this.mt[0] = 0x80000000; /* MSB is 1; assuring non-zero initial array */
+		//console.log(this.mt);
+		
+		return this;
+	}; //End function initByArray
+	
+	/**
+	 * Generates a random number on [0,0xffffffff]-interval
+	 */
+	objectFunctions.generateInt32 = function() {
+		//console.log("dbm.utils.random.MersenneTwister::generateInt32");
+		var yValue;
+		ClassReference.mag01[0] = 0;
+		ClassReference.mag01[1] = ClassReference.MATRIX_A;
+		/* mag01[x] = x * MATRIX_A  for x=0,1 */
+		
+		if (this.mti &gt;= ClassReference.N) { /* generate N words at one time */
+			var kk;
+			
+			if (this.mti === ClassReference.N+1) {   /* if init_genrand() has not been called, */
+				this.initByUint(5489);
+			}/* a default initial seed is used */
+			
+			for (kk=0;kk&lt;ClassReference.N-ClassReference.M;kk++) {
+				yValue = this._orUint32(this._andUint32(this.mt[kk], ClassReference.UPPER_MASK), this._andUint32(this.mt[kk+1], ClassReference.LOWER_MASK));
+				//console.log("+" + kk, this.mt[kk].toString(16), this.mt[kk+1].toString(16), yValue);
+				this.mt[kk] = this._xorUint32(this._xorUint32(this.mt[kk+ClassReference.M], (yValue &gt;&gt;&gt; 1)), ClassReference.mag01[yValue &amp; 1]);
+			}
+			for (;kk&lt;ClassReference.N-1;kk++) {
+				yValue = this._orUint32(this._andUint32(this.mt[kk], ClassReference.UPPER_MASK), this._andUint32(this.mt[kk+1], ClassReference.LOWER_MASK));
+				this.mt[kk] = this._xorUint32(this._xorUint32(this.mt[kk+(ClassReference.M-ClassReference.N)], (yValue &gt;&gt;&gt; 1)), ClassReference.mag01[yValue &amp; 1]);
+				//console.log("-" + kk, this.mt[kk], yValue);
+			}
+			yValue = this._orUint32(this._andUint32(this.mt[ClassReference.N-1], ClassReference.UPPER_MASK), this._andUint32(this.mt[0], ClassReference.LOWER_MASK));
+			this.mt[ClassReference.N-1] = this._xorUint32(this._xorUint32(this.mt[ClassReference.M-1], (yValue &gt;&gt;&gt; 1)), ClassReference.mag01[yValue &amp; 1]);
+			
+			this.mti = 0;
+		}
+		
+		yValue = this.mt[this.mti++];
+		
+		/* Tempering */
+		yValue = this._xorUint32(yValue, (yValue &gt;&gt;&gt; 11));
+		yValue = this._xorUint32(yValue, this._andUint32((yValue &lt;&lt; 7), 0x9d2c5680));
+		yValue = this._xorUint32(yValue, this._andUint32((yValue &lt;&lt; 15), 0xefc60000));
+		yValue = this._xorUint32(yValue, (yValue &gt;&gt;&gt; 18));
+		
+		return yValue;
+	}; //End function generateInt32
+	
+	/**
+	 * Generates a random number on [0,0x7fffffff]-interval
+	 */
+	objectFunctions.generateInt31 = function() {
+		return (this.generateInt32()&gt;&gt;1);
+	}; //End function generateInt31
+	
+	/** 
+	 * Generates a random number on [0,1]-real-interval
+	 */
+	objectFunctions.generateRealClosedClosed = function() {
+		return this.generateInt32()*(1.0/4294967295.0);
+		/* divided by 2^32-1 */
+	}; //End function generateRealClosedClosed
+	
+	/**
+	 * Generates a random number on [0,1)-real-interval
+	 */
+	objectFunctions.generateRealClosedOpen = function() {
+		return this.generateInt32()*(1.0/4294967296.0);
+		/* divided by 2^32 */
+	}; //End function generateRealClosedOpen
+	
+	/**
+	 * Generates a random number on (0,1)-real-interval
+	 */
+	objectFunctions.generateRealOpenOpen = function() {
+		return (Number(this.generateInt32()) + 0.5)*(1.0/4294967296.0);
+		/* divided by 2^32 */
+	}; //End function generateRealOpenOpen
+	
+	/**
+	 * Generates a random number on [0,1) with 53-bit resolution
+	 */
+	objectFunctions.generateRealClosedOpenResolution53 = function() {
+		var a = this.generateInt32()&gt;&gt;5;
+		var b = this.generateInt32()&gt;&gt;6;
+		return(Number(a*67108864.0)+b)*(1.0/9007199254740992.0);
+	}; //End function generateRealClosedOpenResolution53
+	
+	/**
+	 * Tests the function.
+	 */
+	objectFunctions.test = function() {
+		var i;
+		var initSeed = [0x123, 0x234, 0x345, 0x456];
+		this.initByArray(initSeed);
+		console.log("//1000 outputs of Mersenne Twister (uint) --------");
+		for (i=0; i&lt;1000; i++) {
+			console.log(this.generateInt32());
+		}
+		console.log("//-----------------------------------------------");
+		console.log("//1000 outputs of Mersenne Twister (real) -------");
+		for (i=0; i&lt;1000; i++) {
+			console.log(this.generateRealClosedOpen());
+		}
+		console.log("//-----------------------------------------------");
+	};
+	
+	staticFunctions.create = function() {
+		var newMersenneTwister = (new MersenneTwister()).init();
+		
+		return newMersenneTwister;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.utils.random.MersenneTwister::_init");
+		
+		this.mt = new Array(ClassReference.N); /* the array for the state vector  */
+		this.mti = ClassReference.N+1; /* mti==N+1 means mt[N] is not initialized */
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_multiplyUint32</span>(<span class="arguments">aNumber1, aNumber2</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNumber1</div><div class="argumentDescription">aNumber2</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._multiplyUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_multiplyUint32");
+		//console.log(aNumber1, aNumber2);
+		var rotateTimes = Math.ceil(0xFFFFFFFF/aNumber2);
+		//console.log("rotateTimes", rotateTimes);
+		if(aNumber1 &lt; rotateTimes) {
+			//console.log("+1", aNumber1*aNumber2);
+			return aNumber1*aNumber2;
+		}
+		var rotateOffset = aNumber2-(0xFFFFFFFF-aNumber2*(rotateTimes-1))-1;
+		//console.log("rotateOffset", rotateOffset);
+		//if(rotateOffset == 0) {
+		//	console.log("+2", aNumber2);
+		//	return aNumber2;
+		//}
+		var times = Math.floor(aNumber1/rotateTimes);
+		var extra = this._multiplyUint32((aNumber1-(times*rotateTimes)), aNumber2);
+		
+		var newValue = 0;
+		if(rotateOffset !== 0) {
+			newValue = this._multiplyUint32(times, rotateOffset);
+		}
+		//console.log("times, extra, newValue", times, extra, newValue);
+		//console.log("+3", this._addUint32(newValue, extra));
+		return this._addUint32(newValue, extra);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_addUint32</span>(<span class="arguments">aNumber1, aNumber2</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNumber1</div><div class="argumentDescription">aNumber2</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._addUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_addUint32");
+		var left = 0xFFFFFFFF-aNumber2;
+		if(left &gt;= aNumber1) {
+			return aNumber1+aNumber2;
+		}
+		return aNumber1-(left+1);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_subtractUint32</span>(<span class="arguments">aNumber1, aNumber2</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNumber1</div><div class="argumentDescription">aNumber2</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._subtractUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_subtractUint32");
+		if(aNumber1 &gt;= aNumber2) {
+			return aNumber1-aNumber2;
+		}
+		return 0xFFFFFFFF-(aNumber2-aNumber1+1);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_andUint32</span>(<span class="arguments">aNumber1, aNumber2</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNumber1</div><div class="argumentDescription">aNumber2</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._andUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_andUint32");
+		var returnValue = 0;
+		for(var i = 0; i &lt; 32; i++) {
+			var shiftValue = 1 &lt;&lt; i;
+			if((aNumber1 &amp; shiftValue) &amp;&amp; (aNumber2 &amp; shiftValue)) {
+				returnValue += Math.pow(2, i);
+			}
+		}
+		return returnValue;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_orUint32</span>(<span class="arguments">aNumber1, aNumber2</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNumber1</div><div class="argumentDescription">aNumber2</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._orUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_orUint32");
+		var returnValue = 0;
+		for(var i = 0; i &lt; 32; i++) {
+			var shiftValue = 1 &lt;&lt; i;
+			if((aNumber1 &amp; shiftValue) || (aNumber2 &amp; shiftValue)) {
+				returnValue += Math.pow(2, i);
+			}
+		}
+		return returnValue;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_xorUint32</span>(<span class="arguments">aNumber1, aNumber2</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNumber1</div><div class="argumentDescription">aNumber2</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._xorUint32 = function(aNumber1, aNumber2) {
+		//console.log("dbm.utils.random.MersenneTwister::_xorUint32");
+		var returnValue = 0;
+		for(var i = 0; i &lt; 32; i++) {
+			var shiftValue = 1 &lt;&lt; i;
+			if((aNumber1 &amp; shiftValue) !== (aNumber2 &amp; shiftValue)) {
+				returnValue += Math.pow(2, i);
+			}
+		}
+		return returnValue;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">initByUint</span>(<span class="arguments">aSeed</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Initializes mt[N] with a seed.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aSeed - The seed to use.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.initByUint = function(aSeed) {
+		//console.log("initByUint");
+		this.mt[0] = aSeed &amp; 0xffffffff;
+		//console.log(this.mt[0]);
+		for (this.mti=1; this.mti&lt;ClassReference.N; this.mti++) {
+			this.mt[this.mti] = this._addUint32(this._multiplyUint32(1812433253, this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30))), this.mti);
+			//console.log(this.mti, this.mt[this.mti].toString(16), this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30), this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30)));
+			/* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
+			/* In the previous versions, MSBs of the seed affect   */
+			/* only MSBs of the array mt[].                        */
+			
+			//if(this.mti == 1) {
+			//	break; //MEDEBUG
+			//	console.log(this.mt[this.mti]);
+			//	console.log(this.mt[this.mti-1] &gt;&gt;&gt; 30);
+			//	console.log(this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30)));
+			//	console.log(this._multiplyUint32(1812433253, this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30))));
+			//	console.log(this._multiplyUint32For(1812433253, this._xorUint32(this.mt[this.mti-1], (this.mt[this.mti-1] &gt;&gt;&gt; 30))));
+			//}
+		}
+		//console.log(this.mt[0]);
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">initByArray</span>(<span class="arguments">aKeysArray</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Initialize by an array.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aKeysArray - The keys to seed with.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.initByArray = function(aKeysArray) {
+		//console.log("initByArray");
+		var keysLength = aKeysArray.length;
+		
+		var i = 1;
+		var j = 0;
+		var k = (ClassReference.N &gt; keysLength) ? ClassReference.N : keysLength;
+		this.initByUint(19650218);
+		//console.log(this.mt[0]);
+		//console.log(this.mt);
+		for (; k; k--) {
+			this.mt[i] = this._addUint32(this._addUint32(this._xorUint32(this.mt[i], this._multiplyUint32(this._xorUint32(this.mt[i-1], (this.mt[i-1] &gt;&gt;&gt; 30)), 1664525)), aKeysArray[j]), j); /* non linear */
+			i++; j++;
+			if (i&gt;=ClassReference.N) {
+				this.mt[0] = this.mt[ClassReference.N-1];
+				i=1;
+			}
+			if (j&gt;=keysLength) {
+				j=0;
+			}
+		}
+		//console.log(this.mt);
+		for (k=ClassReference.N-1; k; k--) {
+			this.mt[i] = this._subtractUint32(this._xorUint32(this.mt[i], this._multiplyUint32(this._xorUint32(this.mt[i-1], (this.mt[i-1] &gt;&gt;&gt; 30)), 1566083941)), i); /* non linear */
+			i++;
+			if (i&gt;=ClassReference.N) {
+				this.mt[0] = this.mt[ClassReference.N-1];
+				i=1;
+			}
+		}
+		//console.log(this.mt);
+		
+		this.mt[0] = 0x80000000; /* MSB is 1; assuring non-zero initial array */
+		//console.log(this.mt);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">generateInt32</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Generates a random number on [0,0xffffffff]-interval</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.generateInt32 = function() {
+		//console.log("dbm.utils.random.MersenneTwister::generateInt32");
+		var yValue;
+		ClassReference.mag01[0] = 0;
+		ClassReference.mag01[1] = ClassReference.MATRIX_A;
+		/* mag01[x] = x * MATRIX_A  for x=0,1 */
+		
+		if (this.mti &gt;= ClassReference.N) { /* generate N words at one time */
+			var kk;
+			
+			if (this.mti === ClassReference.N+1) {   /* if init_genrand() has not been called, */
+				this.initByUint(5489);
+			}/* a default initial seed is used */
+			
+			for (kk=0;kk&lt;ClassReference.N-ClassReference.M;kk++) {
+				yValue = this._orUint32(this._andUint32(this.mt[kk], ClassReference.UPPER_MASK), this._andUint32(this.mt[kk+1], ClassReference.LOWER_MASK));
+				//console.log("+" + kk, this.mt[kk].toString(16), this.mt[kk+1].toString(16), yValue);
+				this.mt[kk] = this._xorUint32(this._xorUint32(this.mt[kk+ClassReference.M], (yValue &gt;&gt;&gt; 1)), ClassReference.mag01[yValue &amp; 1]);
+			}
+			for (;kk&lt;ClassReference.N-1;kk++) {
+				yValue = this._orUint32(this._andUint32(this.mt[kk], ClassReference.UPPER_MASK), this._andUint32(this.mt[kk+1], ClassReference.LOWER_MASK));
+				this.mt[kk] = this._xorUint32(this._xorUint32(this.mt[kk+(ClassReference.M-ClassReference.N)], (yValue &gt;&gt;&gt; 1)), ClassReference.mag01[yValue &amp; 1]);
+				//console.log("-" + kk, this.mt[kk], yValue);
+			}
+			yValue = this._orUint32(this._andUint32(this.mt[ClassReference.N-1], ClassReference.UPPER_MASK), this._andUint32(this.mt[0], ClassReference.LOWER_MASK));
+			this.mt[ClassReference.N-1] = this._xorUint32(this._xorUint32(this.mt[ClassReference.M-1], (yValue &gt;&gt;&gt; 1)), ClassReference.mag01[yValue &amp; 1]);
+			
+			this.mti = 0;
+		}
+		
+		yValue = this.mt[this.mti++];
+		
+		/* Tempering */
+		yValue = this._xorUint32(yValue, (yValue &gt;&gt;&gt; 11));
+		yValue = this._xorUint32(yValue, this._andUint32((yValue &lt;&lt; 7), 0x9d2c5680));
+		yValue = this._xorUint32(yValue, this._andUint32((yValue &lt;&lt; 15), 0xefc60000));
+		yValue = this._xorUint32(yValue, (yValue &gt;&gt;&gt; 18));
+		
+		return yValue;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">generateInt31</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Generates a random number on [0,0x7fffffff]-interval</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.generateInt31 = function() {
+		return (this.generateInt32()&gt;&gt;1);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">generateRealClosedClosed</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Generates a random number on [0,1]-real-interval</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.generateRealClosedClosed = function() {
+		return this.generateInt32()*(1.0/4294967295.0);
+		/* divided by 2^32-1 */
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">generateRealClosedOpen</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Generates a random number on [0,1)-real-interval</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.generateRealClosedOpen = function() {
+		return this.generateInt32()*(1.0/4294967296.0);
+		/* divided by 2^32 */
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">generateRealOpenOpen</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Generates a random number on (0,1)-real-interval</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.generateRealOpenOpen = function() {
+		return (Number(this.generateInt32()) + 0.5)*(1.0/4294967296.0);
+		/* divided by 2^32 */
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">generateRealClosedOpenResolution53</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Generates a random number on [0,1) with 53-bit resolution</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.generateRealClosedOpenResolution53 = function() {
+		var a = this.generateInt32()&gt;&gt;5;
+		var b = this.generateInt32()&gt;&gt;6;
+		return(Number(a*67108864.0)+b)*(1.0/9007199254740992.0);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">test</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Tests the function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.test = function() {
+		var i;
+		var initSeed = [0x123, 0x234, 0x345, 0x456];
+		this.initByArray(initSeed);
+		console.log("//1000 outputs of Mersenne Twister (uint) --------");
+		for (i=0; i&lt;1000; i++) {
+			console.log(this.generateInt32());
+		}
+		console.log("//-----------------------------------------------");
+		console.log("//1000 outputs of Mersenne Twister (real) -------");
+		for (i=0; i&lt;1000; i++) {
+			console.log(this.generateRealClosedOpen());
+		}
+		console.log("//-----------------------------------------------");
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">N</span><span class="type"></span> = <span class="value">624</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">M</span><span class="type"></span> = <span class="value">397</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">MATRIX_A</span><span class="type"></span> = <span class="value">0x9908b0df</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">UPPER_MASK</span><span class="type"></span> = <span class="value">0x80000000</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">LOWER_MASK</span><span class="type"></span> = <span class="value">0x7fffffff</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">mag01</span><span class="type"></span> = <span class="value">new Array(2)</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function() {
+		var newMersenneTwister = (new MersenneTwister()).init();
+		
+		return newMersenneTwister;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

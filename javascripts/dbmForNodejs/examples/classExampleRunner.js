@@ -1,5 +1,5 @@
 require("../../dbmForNodejs/dbmForNodejs.js");
-require("../../dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js");
+require("../../dbm/classes/dbm/core/globalobjects/classmanager/ClassManager.js");
 dbm.setup(null, null, "../../javascripts", "classes"); //MENOTE: javascript folder is based from "../../dbmForNodejs/dbmForNodejs.js"
 dbm.addSpecificClassesFolder("dbm.nodejs.projects.examples", "examples/classes");
 dbm.addSpecificClassesFolder("dbm.nodejs", "dbmForNodejs/classes");

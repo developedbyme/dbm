@@ -62,7 +62,10 @@
 		};
 		
 		dbm.setClassManager = function(aObject) {
+			this._startupSeed.push(Date.now());
 			this._classManager = aObject;
+			
+			this.singletons.dbmClassManager = aObject;
 		};
 		
 		dbm.setup = function(aWindow, aDocument, aJavascriptsFolder, aClassesFolder) {

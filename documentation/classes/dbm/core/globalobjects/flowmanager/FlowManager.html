@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>FlowManager</h1>
+					<div class="classPath">dbm.core.globalobjects.flowmanager.FlowManager</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Global object for controlling flow through the application.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.FlowStatusTypes" href="../../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="dbm.core.globalobjects.flowmanager.update.FlowUpdateChainCreator" href="update/FlowUpdateChainCreator.html">FlowUpdateChainCreator</a>, <a title="dbm.core.globalobjects.flowmanager.update.FlowUpdater" href="update/FlowUpdater.html">FlowUpdater</a>, <a title="dbm.core.globalobjects.GlobalVariables" href="../GlobalVariables.html">GlobalVariables</a>, <a title="dbm.utils.data.PositionedArrayHolder" href="../../../utils/data/PositionedArrayHolder.html">PositionedArrayHolder</a>, <a title="dbm.core.objectparts.Property" href="../../objectparts/Property.html">Property</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.objectparts.UpdateFunction" href="../../objectparts/UpdateFunction.html">UpdateFunction</a>, <a title="dbm.constants.UpdaterTypes" href="../../../constants/UpdaterTypes.html">UpdaterTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var FlowManager = dbm.importClass("dbm.core.globalobjects.flowmanager.FlowManager");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.flowmanager.FlowManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.flowmanager.FlowManager");
+	//"use strict";
+	
+	//Self refernce
+	var FlowManager = dbm.importClass("dbm.core.globalobjects.flowmanager.FlowManager");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var Property = dbm.importClass("dbm.core.objectparts.Property");
+	var UpdateFunction = dbm.importClass("dbm.core.objectparts.UpdateFunction");
+	var FlowUpdater = dbm.importClass("dbm.core.globalobjects.flowmanager.update.FlowUpdater");
+	
+	var PositionedArrayHolder = dbm.importClass("dbm.utils.data.PositionedArrayHolder");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	
+	//Utils
+	var FlowUpdateChainCreator = dbm.importClass("dbm.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	
+	//Constants
+	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var UpdaterTypes = dbm.importClass("dbm.constants.UpdaterTypes");
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::_init");
+		
+		this.superCall();
+		
+		this._updateProperty = this.addProperty("update", AnyChangeMultipleInputProperty.create());
+		this._flowGates = new Array();
+		
+		this._cachedFlowUpdater = null;
+		
+		return this;
+	};
+	
+	objectFunctions.start = function() {
+		dbm.singletons.dbmUpdateManager.addUpdater(this, UpdaterTypes.UPDATE_FLOW);
+	};
+	
+	objectFunctions.stop = function() {
+		dbm.singletons.dbmUpdateManager.removeUpdater(this, UpdaterTypes.UPDATE_FLOW);
+	};
+	
+	objectFunctions.addFlowGate = function(aFlowGate) {
+		this._flowGates.push(aFlowGate);
+	};
+	
+	objectFunctions.cacheUpdatedProperties = function() {
+		console.log("dbm.core.globalobjects.flowmanager.FlowManager::cacheUpdatedProperties");
+		
+		if(this._cachedFlowUpdater === null) {
+			
+			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updateProperty._inputConnections);
+			
+			this._cachedFlowUpdater = FlowUpdater.create(updateChains);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "cacheUpdatedProperties", "Updated properties are alread cached. Re-caching.");
+			this.recacheUpdatedProperties();
+		}
+	};
+	
+	objectFunctions.recacheUpdatedProperties = function() {
+		if(this._cachedFlowUpdater !== null) {
+			
+			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updateProperty._inputConnections);
+			
+			this._cachedFlowUpdater.setChains(updateChains);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "recacheUpdatedProperties", "Updated properties are not cached. Creating initial cache.");
+			this.cacheUpdatedProperties();
+		}
+	};
+	
+	objectFunctions.setDependentConnectionsAsDirty = function(aConnection) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::setDependentConnectionsAsDirty");
+		//console.log(aConnection);
+		
+		ClassReference.propagateDirtyStatus(aConnection);
+	};
+	
+	objectFunctions.setUpdateChainsAsDirty = function(aUpdateChains) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::setUpdateChainsAsDirty");
+		//console.log(aUpdateChains);
+		var currentArray = aUpdateChains;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentChain = currentArray[i];
+			var currentArray2 = currentChain.connections;
+			var currentArray2Length = currentArray2.length;
+			for(var j = 0; j &lt; currentArray2Length; j++) {
+				var currentConnection = currentArray2[j];
+				//console.log(currentConnection);
+				currentConnection.status = FlowStatusTypes.NEEDS_UPDATE;
+			}
+		}
+	};
+	
+	objectFunctions.updateFlowGates = function() {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::updateFlowGates");
+		
+		var currentArray = this._flowGates;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			currentArray[i].updateFlow(GlobalVariables.FLOW_UPDATE_NUMBER);
+		}
+	};
+	
+	objectFunctions.updateProperty = function(aProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::updateProperty");
+		//console.log(aProperty);
+		
+		if(aProperty.isDestroyed()) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperty", "Property " + aProperty.toString() + " is destroyed and can't be updated.");
+			return;
+		}
+		
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
+		
+		ClassReference.propagateFlowUpdate(aProperty);
+		
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
+		//console.log("//dbm.core.globalobjects.flowmanager.FlowManager::updateProperty");
+	};
+	
+	objectFunctions.connectProperties = function(aOutputProperty, aInputProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::connectProperties");
+		if(!((aOutputProperty instanceof Property || aOutputProperty instanceof UpdateFunction) &amp;&amp; (aInputProperty instanceof Property || aInputProperty instanceof UpdateFunction))) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "connectProperties", "One object is not a property (" + aOutputProperty + ", " + aInputProperty + ").");
+			return;
+		}
+		aOutputProperty._linkRegistration_addConnectedOutput(aInputProperty);
+		aInputProperty._linkRegistration_setInputConnection(aOutputProperty);
+	};
+	
+	objectFunctions.disconnectProperties = function(aOutputProperty, aInputProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::disconnectProperties");
+		if(!((aOutputProperty instanceof Property || aOutputProperty instanceof UpdateFunction) &amp;&amp; (aInputProperty instanceof Property || aInputProperty instanceof UpdateFunction))) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "disconnectProperties", "One object is not a property (" + aOutputProperty + ", " + aInputProperty + ").");
+			return;
+		}
+		aOutputProperty._linkRegistration_removeConnectedOutput(aInputProperty);
+		aInputProperty._linkRegistration_removeInputConnection(aOutputProperty);
+	};
+	
+	objectFunctions.setPropertyInput = function(aProperty, aInput) {
+		if(aInput instanceof Property) {
+			this.connectProperties(aInput, aProperty);
+		}
+		//else if(aInput instanceof FlowBaseObject) {
+		//	//METODO: should this have add a node to check for any change
+		//}
+		else {
+			aProperty.setValue(aInput);
+		}
+	};
+	
+	objectFunctions.updateTime = function(aTime, aFrame) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::updateTime");
+		
+		this.updateProperties();
+	};
+	
+	objectFunctions.updateProperties = function() {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::updateProperties");
+		
+		if(this._cachedFlowUpdater !== null) {
+			GlobalVariables.FLOW_UPDATE_NUMBER++;
+			this._cachedFlowUpdater.update();
+			GlobalVariables.FLOW_UPDATE_NUMBER++;
+		}
+		else {
+			this.updateFlowGates();
+			this.updateProperty(this._updateProperty);
+		}
+		
+		//console.log("//dbm.core.globalobjects.flowmanager.FlowManager::updateProperties");
+	};
+	
+	objectFunctions.addUpdatedProperty = function(aProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::addUpdatedProperty");
+		//console.log(aProperty.toString());
+		if(aProperty.isUpdating()) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NOTICE, this, "addUpdatedProperty", "Property (" + aProperty + ") is already updating.");
+			return;
+		}
+		this._updateProperty.connectInput(aProperty);
+		//this._updatedProperties.push(aProperty);
+		aProperty._linkRegistration_setAsUpdating(true);
+	};
+	
+	objectFunctions.removeUpdatedProperty = function(aProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::removeUpdatedProperty");
+		//console.log(aProperty.toString());
+		this._updateProperty.disconnectInput(aProperty);
+		//this._updatedProperties.removeItem(aProperty);
+		aProperty._linkRegistration_setAsUpdating(false);
+	};
+	
+	objectFunctions.performDestroy = function() {
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	};
+	
+	/**
+	 * Propagates a dirty message spreading through the flow. The difference from fillWithCleanOutputConnections is that the status is updated as the connections are collected.
+	 *
+	 * @param	aConnection		Property|UpdateFunction		The connection to propagate through.
+	 */
+	staticFunctions.propagateDirtyStatus = function(aConnection) {
+		//console.log("dbm.core.objectparts.Property::propagateDirtyStatus");
+		
+		var currentArray = aConnection._outputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.status === FlowStatusTypes.UPDATED) {
+				currentObject.status = FlowStatusTypes.NEEDS_UPDATE;
+				ClassReference.propagateDirtyStatus(currentObject);
+			}
+		}
+	};
+	
+	staticFunctions.propagateFlowUpdate = function(aConnection) {
+		//console.log("dbm.core.objectparts.Property::propagateFlowUpdate");
+		
+		var newFlowNumber = 0;
+		var currentArray = aConnection._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.status === FlowStatusTypes.NEEDS_UPDATE) {
+				ClassReference.propagateFlowUpdate(currentObject);
+			}
+			var currentFlowNumber = currentObject.flowUpdateNumber;
+			if(currentFlowNumber &gt; newFlowNumber) {
+				newFlowNumber = currentFlowNumber;
+			}
+		}
+		
+		if(aConnection.status === FlowStatusTypes.NEEDS_UPDATE) {
+			if(newFlowNumber &gt; aConnection.flowUpdateNumber) {
+				aConnection.updateFlow();
+				aConnection.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+			}
+			aConnection.status = FlowStatusTypes.UPDATED;
+		}
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::_init");
+		
+		this.superCall();
+		
+		this._updateProperty = this.addProperty("update", AnyChangeMultipleInputProperty.create());
+		this._flowGates = new Array();
+		
+		this._cachedFlowUpdater = null;
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">start</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.start = function() {
+		dbm.singletons.dbmUpdateManager.addUpdater(this, UpdaterTypes.UPDATE_FLOW);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">stop</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.stop = function() {
+		dbm.singletons.dbmUpdateManager.removeUpdater(this, UpdaterTypes.UPDATE_FLOW);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addFlowGate</span>(<span class="arguments">aFlowGate</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aFlowGate</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addFlowGate = function(aFlowGate) {
+		this._flowGates.push(aFlowGate);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">cacheUpdatedProperties</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.cacheUpdatedProperties = function() {
+		console.log("dbm.core.globalobjects.flowmanager.FlowManager::cacheUpdatedProperties");
+		
+		if(this._cachedFlowUpdater === null) {
+			
+			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updateProperty._inputConnections);
+			
+			this._cachedFlowUpdater = FlowUpdater.create(updateChains);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "cacheUpdatedProperties", "Updated properties are alread cached. Re-caching.");
+			this.recacheUpdatedProperties();
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">recacheUpdatedProperties</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.recacheUpdatedProperties = function() {
+		if(this._cachedFlowUpdater !== null) {
+			
+			var updateChains = FlowUpdateChainCreator.createAllChainsForMultipleOutputConnections(this._updateProperty._inputConnections);
+			
+			this._cachedFlowUpdater.setChains(updateChains);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "recacheUpdatedProperties", "Updated properties are not cached. Creating initial cache.");
+			this.cacheUpdatedProperties();
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setDependentConnectionsAsDirty</span>(<span class="arguments">aConnection</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aConnection</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setDependentConnectionsAsDirty = function(aConnection) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::setDependentConnectionsAsDirty");
+		//console.log(aConnection);
+		
+		ClassReference.propagateDirtyStatus(aConnection);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setUpdateChainsAsDirty</span>(<span class="arguments">aUpdateChains</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aUpdateChains</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setUpdateChainsAsDirty = function(aUpdateChains) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::setUpdateChainsAsDirty");
+		//console.log(aUpdateChains);
+		var currentArray = aUpdateChains;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentChain = currentArray[i];
+			var currentArray2 = currentChain.connections;
+			var currentArray2Length = currentArray2.length;
+			for(var j = 0; j &lt; currentArray2Length; j++) {
+				var currentConnection = currentArray2[j];
+				//console.log(currentConnection);
+				currentConnection.status = FlowStatusTypes.NEEDS_UPDATE;
+			}
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">updateFlowGates</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.updateFlowGates = function() {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::updateFlowGates");
+		
+		var currentArray = this._flowGates;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			currentArray[i].updateFlow(GlobalVariables.FLOW_UPDATE_NUMBER);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">updateProperty</span>(<span class="arguments">aProperty</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.updateProperty = function(aProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::updateProperty");
+		//console.log(aProperty);
+		
+		if(aProperty.isDestroyed()) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "updateProperty", "Property " + aProperty.toString() + " is destroyed and can't be updated.");
+			return;
+		}
+		
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
+		
+		ClassReference.propagateFlowUpdate(aProperty);
+		
+		GlobalVariables.FLOW_UPDATE_NUMBER++;
+		//console.log("//dbm.core.globalobjects.flowmanager.FlowManager::updateProperty");
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">connectProperties</span>(<span class="arguments">aOutputProperty, aInputProperty</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aOutputProperty</div><div class="argumentDescription">aInputProperty</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.connectProperties = function(aOutputProperty, aInputProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::connectProperties");
+		if(!((aOutputProperty instanceof Property || aOutputProperty instanceof UpdateFunction) &amp;&amp; (aInputProperty instanceof Property || aInputProperty instanceof UpdateFunction))) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "connectProperties", "One object is not a property (" + aOutputProperty + ", " + aInputProperty + ").");
+			return;
+		}
+		aOutputProperty._linkRegistration_addConnectedOutput(aInputProperty);
+		aInputProperty._linkRegistration_setInputConnection(aOutputProperty);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">disconnectProperties</span>(<span class="arguments">aOutputProperty, aInputProperty</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aOutputProperty</div><div class="argumentDescription">aInputProperty</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.disconnectProperties = function(aOutputProperty, aInputProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::disconnectProperties");
+		if(!((aOutputProperty instanceof Property || aOutputProperty instanceof UpdateFunction) &amp;&amp; (aInputProperty instanceof Property || aInputProperty instanceof UpdateFunction))) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.MAJOR, this, "disconnectProperties", "One object is not a property (" + aOutputProperty + ", " + aInputProperty + ").");
+			return;
+		}
+		aOutputProperty._linkRegistration_removeConnectedOutput(aInputProperty);
+		aInputProperty._linkRegistration_removeInputConnection(aOutputProperty);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setPropertyInput</span>(<span class="arguments">aProperty, aInput</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty</div><div class="argumentDescription">aInput</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setPropertyInput = function(aProperty, aInput) {
+		if(aInput instanceof Property) {
+			this.connectProperties(aInput, aProperty);
+		}
+		//else if(aInput instanceof FlowBaseObject) {
+		//	//METODO: should this have add a node to check for any change
+		//}
+		else {
+			aProperty.setValue(aInput);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">updateTime</span>(<span class="arguments">aTime, aFrame</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTime</div><div class="argumentDescription">aFrame</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.updateTime = function(aTime, aFrame) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::updateTime");
+		
+		this.updateProperties();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">updateProperties</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.updateProperties = function() {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::updateProperties");
+		
+		if(this._cachedFlowUpdater !== null) {
+			GlobalVariables.FLOW_UPDATE_NUMBER++;
+			this._cachedFlowUpdater.update();
+			GlobalVariables.FLOW_UPDATE_NUMBER++;
+		}
+		else {
+			this.updateFlowGates();
+			this.updateProperty(this._updateProperty);
+		}
+		
+		//console.log("//dbm.core.globalobjects.flowmanager.FlowManager::updateProperties");
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addUpdatedProperty</span>(<span class="arguments">aProperty</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addUpdatedProperty = function(aProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::addUpdatedProperty");
+		//console.log(aProperty.toString());
+		if(aProperty.isUpdating()) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NOTICE, this, "addUpdatedProperty", "Property (" + aProperty + ") is already updating.");
+			return;
+		}
+		this._updateProperty.connectInput(aProperty);
+		//this._updatedProperties.push(aProperty);
+		aProperty._linkRegistration_setAsUpdating(true);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeUpdatedProperty</span>(<span class="arguments">aProperty</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeUpdatedProperty = function(aProperty) {
+		//console.log("dbm.core.globalobjects.flowmanager.FlowManager::removeUpdatedProperty");
+		//console.log(aProperty.toString());
+		this._updateProperty.disconnectInput(aProperty);
+		//this._updatedProperties.removeItem(aProperty);
+		aProperty._linkRegistration_setAsUpdating(false);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.performDestroy = function() {
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">propagateDirtyStatus</span>(<span class="arguments">aConnection:<a title="dbm.core.objectparts.Property" href="../../objectparts/Property.html">Property</a> | <a title="dbm.core.objectparts.UpdateFunction" href="../../objectparts/UpdateFunction.html">UpdateFunction</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Propagates a dirty message spreading through the flow. The difference from fillWithCleanOutputConnections is that the status is updated as the connections are collected.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aConnection:<a title="dbm.core.objectparts.Property" href="../../objectparts/Property.html">Property</a> | <a title="dbm.core.objectparts.UpdateFunction" href="../../objectparts/UpdateFunction.html">UpdateFunction</a> - The connection to propagate through.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.propagateDirtyStatus = function(aConnection) {
+		//console.log("dbm.core.objectparts.Property::propagateDirtyStatus");
+		
+		var currentArray = aConnection._outputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.status === FlowStatusTypes.UPDATED) {
+				currentObject.status = FlowStatusTypes.NEEDS_UPDATE;
+				ClassReference.propagateDirtyStatus(currentObject);
+			}
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">propagateFlowUpdate</span>(<span class="arguments">aConnection</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aConnection</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.propagateFlowUpdate = function(aConnection) {
+		//console.log("dbm.core.objectparts.Property::propagateFlowUpdate");
+		
+		var newFlowNumber = 0;
+		var currentArray = aConnection._inputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.status === FlowStatusTypes.NEEDS_UPDATE) {
+				ClassReference.propagateFlowUpdate(currentObject);
+			}
+			var currentFlowNumber = currentObject.flowUpdateNumber;
+			if(currentFlowNumber &gt; newFlowNumber) {
+				newFlowNumber = currentFlowNumber;
+			}
+		}
+		
+		if(aConnection.status === FlowStatusTypes.NEEDS_UPDATE) {
+			if(newFlowNumber &gt; aConnection.flowUpdateNumber) {
+				aConnection.updateFlow();
+				aConnection.flowUpdateNumber = GlobalVariables.FLOW_UPDATE_NUMBER;
+			}
+			aConnection.status = FlowStatusTypes.UPDATED;
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

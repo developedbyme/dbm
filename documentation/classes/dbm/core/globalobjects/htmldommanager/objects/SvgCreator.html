@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>SvgCreator</h1>
+					<div class="classPath">dbm.core.globalobjects.htmldommanager.objects.SvgCreator</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.constants.JavascriptObjectTypes" href="../../../../constants/JavascriptObjectTypes.html">JavascriptObjectTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var SvgCreator = dbm.importClass("dbm.core.globalobjects.htmldommanager.objects.SvgCreator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.htmldommanager.objects.SvgCreator", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.htmldommanager.objects.SvgCreator");
+	//"use strict";
+	
+	var SvgCreator = dbm.importClass("dbm.core.globalobjects.htmldommanager.objects.SvgCreator");
+	
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
+	
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	
+	objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.htmldommanager.objects.SvgCreator::_init");
+		
+		this.superCall();
+		
+		this.ownerDocument = null;
+		
+		return this;
+	};
+	
+	objectFunctions.setDocument = function(aDocument) {
+		//console.log("dbm.core.globalobjects.htmldommanager.objects.SvgCreator::setDocument");
+		
+		this.ownerDocument = aDocument;
+		
+		return this;
+		
+	};
+	
+	objectFunctions.setAttributesToNode = function(aElement, aAttributes) {
+		if(aAttributes !== null) {
+			for(var objectName in aAttributes) {
+				aElement.setAttribute(objectName, aAttributes[objectName]);
+			}
+		}
+	};
+	
+	objectFunctions.createSvg = function(aAttributes /*, ... childs */) {
+		var newElement = this.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg");
+		var defsElement = this.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "defs");
+		newElement.appendChild(defsElement);
+		var currentArray = arguments;
+		var currentArrayLength = currentArray.length;
+		for(var i = 1; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.ownerDocument &amp;&amp; currentObject.ownerDocument === newElement.ownerDocument) {
+				newElement.appendChild(currentObject);
+			}
+			else {
+				newElement.appendChild(this.ownerDocument.createTextNode(currentObject));
+			}
+		}
+		
+		return newElement;
+	};
+	
+	objectFunctions.createNode = function(aTagName, aAttributes /*, ... childs */) {
+		var newElement = this.ownerDocument.createElementNS("http://www.w3.org/2000/svg", aTagName);
+		this.setAttributesToNode(newElement, aAttributes);
+		var currentArray = arguments;
+		var currentArrayLength = currentArray.length;
+		for(var i = 2; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.ownerDocument &amp;&amp; currentObject.ownerDocument === newElement.ownerDocument) {
+				newElement.appendChild(currentObject);
+			}
+			else {
+				newElement.appendChild(this.ownerDocument.createTextNode(currentObject));
+			}
+		}
+		
+		return newElement;
+	};
+	
+	objectFunctions.createAttribute = function(aNode, aName, aValue) {
+		var newAttribute = this.ownerDocument.createAttributeNS("http://www.w3.org/2000/svg", aName);
+		newAttribute.nodeValue = aValue;
+		aNode.setAttributeNode(newAttribute);
+		return aNode;
+	};
+	
+	staticFunctions.create = function(aDocument) {
+		
+		return (new SvgCreator()).init().setDocument(aDocument);
+		
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.htmldommanager.objects.SvgCreator::_init");
+		
+		this.superCall();
+		
+		this.ownerDocument = null;
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setDocument</span>(<span class="arguments">aDocument</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aDocument</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setDocument = function(aDocument) {
+		//console.log("dbm.core.globalobjects.htmldommanager.objects.SvgCreator::setDocument");
+		
+		this.ownerDocument = aDocument;
+		
+		return this;
+		
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAttributesToNode</span>(<span class="arguments">aElement, aAttributes</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAttributesToNode = function(aElement, aAttributes) {
+		if(aAttributes !== null) {
+			for(var objectName in aAttributes) {
+				aElement.setAttribute(objectName, aAttributes[objectName]);
+			}
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createSvg</span>(<span class="arguments">aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createSvg = function(aAttributes /*, ... childs */) {
+		var newElement = this.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg");
+		var defsElement = this.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "defs");
+		newElement.appendChild(defsElement);
+		var currentArray = arguments;
+		var currentArrayLength = currentArray.length;
+		for(var i = 1; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.ownerDocument &amp;&amp; currentObject.ownerDocument === newElement.ownerDocument) {
+				newElement.appendChild(currentObject);
+			}
+			else {
+				newElement.appendChild(this.ownerDocument.createTextNode(currentObject));
+			}
+		}
+		
+		return newElement;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createNode</span>(<span class="arguments">aTagName, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTagName</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createNode = function(aTagName, aAttributes /*, ... childs */) {
+		var newElement = this.ownerDocument.createElementNS("http://www.w3.org/2000/svg", aTagName);
+		this.setAttributesToNode(newElement, aAttributes);
+		var currentArray = arguments;
+		var currentArrayLength = currentArray.length;
+		for(var i = 2; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			if(currentObject.ownerDocument &amp;&amp; currentObject.ownerDocument === newElement.ownerDocument) {
+				newElement.appendChild(currentObject);
+			}
+			else {
+				newElement.appendChild(this.ownerDocument.createTextNode(currentObject));
+			}
+		}
+		
+		return newElement;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createAttribute</span>(<span class="arguments">aNode, aName, aValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNode</div><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createAttribute = function(aNode, aName, aValue) {
+		var newAttribute = this.ownerDocument.createAttributeNS("http://www.w3.org/2000/svg", aName);
+		newAttribute.nodeValue = aValue;
+		aNode.setAttributeNode(newAttribute);
+		return aNode;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aDocument</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aDocument</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aDocument) {
+		
+		return (new SvgCreator()).init().setDocument(aDocument);
+		
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

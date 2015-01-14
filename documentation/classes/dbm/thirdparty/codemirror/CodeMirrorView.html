@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>CodeMirrorView</h1>
+					<div class="classPath">dbm.thirdparty.codemirror.CodeMirrorView</div>
+					<div class="classInheritance"><a title="dbm.gui.DisplayBaseObject" href="../../gui/DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.thirdparty.codemirror.constants.CodeMirrorOptionIds" href="constants/CodeMirrorOptionIds.html">CodeMirrorOptionIds</a>, <a title="dbm.thirdparty.codemirror.constants.CodeMirrorViewEventIds" href="constants/CodeMirrorViewEventIds.html">CodeMirrorViewEventIds</a>, <a title="dbm.core.extendedevent.eventlink.CustomFunctionEventLink" href="../../core/extendedevent/eventlink/CustomFunctionEventLink.html">CustomFunctionEventLink</a>, <a title="dbm.utils.htmldom.DomReferenceFunctions" href="../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.objectparts.ExtendedEventValueProperty" href="../../core/objectparts/ExtendedEventValueProperty.html">ExtendedEventValueProperty</a>, <a title="dbm.constants.extendedevents.FormFieldExtendedEventIds" href="../../constants/extendedevents/FormFieldExtendedEventIds.html">FormFieldExtendedEventIds</a>, <a title="dbm.constants.extendedevents.GenericExtendedEventIds" href="../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.utils.data.NamedArray" href="../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.extendedevent.commands.basic.SetPropertyCommand" href="../../core/extendedevent/commands/basic/SetPropertyCommand.html">SetPropertyCommand</a>, <a title="dbm.core.extendedevent.eventlink.StaticCallbackLink" href="../../core/extendedevent/eventlink/StaticCallbackLink.html">StaticCallbackLink</a>, <a title="dbm.utils.data.VariableAliases" href="../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CodeMirrorView = dbm.importClass("dbm.thirdparty.codemirror.CodeMirrorView");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.thirdparty.codemirror.CodeMirrorView", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.BaseObject");
+	
+	//Self reference
+	var CodeMirrorView = dbm.importClass("dbm.thirdparty.codemirror.CodeMirrorView");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
+	var ExtendedEventValueProperty = dbm.importClass("dbm.core.objectparts.ExtendedEventValueProperty");
+	var CustomFunctionEventLink = dbm.importClass("dbm.core.extendedevent.eventlink.CustomFunctionEventLink");
+	
+	//Utils
+	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
+	var StaticCallbackLink = dbm.importClass("dbm.core.extendedevent.eventlink.StaticCallbackLink");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var SetPropertyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyCommand");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	
+	//Constants
+	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
+	var FormFieldExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.FormFieldExtendedEventIds");
+	var CodeMirrorViewEventIds = dbm.importClass("dbm.thirdparty.codemirror.constants.CodeMirrorViewEventIds");
+	var CodeMirrorOptionIds = dbm.importClass("dbm.thirdparty.codemirror.constants.CodeMirrorOptionIds");
+	
+	//Libraries
+	var CodeMirror = dbm.importLibrary("CodeMirror", function() {CodeMirror = CodeMirror.realLibrary;});
+	
+	staticFunctions.EDITOR_GROUP_NAME = "editor";
+	staticFunctions.DEFAULT_MODE = "javascript";
+	staticFunctions.DEFAULT_LINE_NUMBERS = true;
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.thirdparty.codemirror.CodeMirrorView::_init");
+		
+		this.superCall();
+		
+		this._options = this.addDestroyableObject(NamedArray.create(false));
+		
+		this._editor = null;
+		
+		this._value = this.addProperty("value", ExtendedEventValueProperty.create(""));
+		this._display.connectInput(this._value);
+		this._options.addObject(CodeMirrorOptionIds.VALUE, this._value);
+		
+		this._domChange = this.createGhostProperty("domChange");
+		this._redraw = this.createGhostProperty("redraw");
+		this.createUpdateFunction("redrawUpdate", this._redrawFlowUpdate, [this._element, this._domChange], [this._redraw]);
+		this._display.connectInput(this._redraw);
+		
+		this._createOptionProperty(CodeMirrorOptionIds.MODE, ClassReference.DEFAULT_MODE);
+		this._createOptionProperty(CodeMirrorOptionIds.LINE_NUMBERS, ClassReference.DEFAULT_LINE_NUMBERS);
+		
+		this.getExtendedEvent().addCommandToEvent(FormFieldExtendedEventIds.CHANGE, CallFunctionCommand.createCommand(this, this._valueChanged, []));
+		this._updateCommand = CallFunctionCommand.createCommand(this, this._updateValue, [GetVariableObject.createSelectDataCommand()]).retain();
+		
+		this._value.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.UPDATE, this._updateCommand); //METODO: move to activate
+		
+		this._keyMaps = this.addDestroyableObject(NamedArray.create(true));
+		
+		return this;
+	};
+	
+	objectFunctions.setElement = function(aElement) {
+		
+		this.superCall(aElement);
+		
+		return this;
+	};
+	
+	
+	objectFunctions.enableOption = function(aName) {
+		if(this._options.select(aName)) {
+			return this._options.currentSelectedItem;
+		}
+		//METODO: check that the editor exists
+		return this._createOptionProperty(aName, this._editor.getOption(aName));
+	};
+	
+	objectFunctions._createOptionProperty = function(aName, aValue) {
+		var newProperty = this.addProperty(aName, ExtendedEventValueProperty.create(aValue));
+		newProperty.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.UPDATE, CallFunctionCommand.createCommand(this, this._optionChanged, [aName, GetVariableObject.createSelectDataCommand()]));
+		this._options.addObject(aName, newProperty);
+		this._display.connectInput(newProperty);
+		return newProperty;
+	};
+	
+	objectFunctions._addEditorListener = function(aCodeMirrorEvent, aExtendedEvent) {
+		
+		var activateCommand = CallFunctionCommand.createCommand(this._editor, this._editor.on, [aCodeMirrorEvent, GetVariableObject.createSelectDataCommand(), null]);
+		var deactivateCommand = CallFunctionCommand.createCommand(this._editor, this._editor.off, [aCodeMirrorEvent, GetVariableObject.createSelectDataCommand(), null]);
+		
+		this.getExtendedEvent().addEventLink(CustomFunctionEventLink.create(this.getExtendedEvent(), aExtendedEvent, activateCommand, deactivateCommand, "multiple"), ClassReference.EDITOR_GROUP_NAME, true);
+		
+	};
+	
+	objectFunctions.createEditor = function() {
+		
+		var optionsObject = new Object();
+		var currentArray = this._options.getNamesArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentName = currentArray[i];
+			optionsObject[currentName] = this._options.getObject(currentName).getValue();
+		};
+		
+		this._editor = CodeMirror(this._element.getValue(), optionsObject);
+		this._editor.setSize("100%", "100%"); //METODO: settings for this and request
+		this._addEditorListener(CodeMirrorViewEventIds.CHANGE, FormFieldExtendedEventIds.CHANGE);
+		
+		return this;
+	};
+	
+	objectFunctions.addKeyMap = function(aKeyCombination, aCommand) {
+		
+		var newLink = StaticCallbackLink.create(this.getExtendedEvent(), aKeyCombination);
+		
+		this._keyMaps.addObject(aKeyCombination, newLink);
+		
+		if(this._editor !== null) { //METODO: check that class is active
+			var callbackFunction = newLink.getCallbackFunction();
+			
+			var currentObject = this._editor.getOption("extraKeys");
+			if(currentObject === null) {
+				currentObject = new Object();
+			}
+			currentObject[aKeyCombination] = callbackFunction;
+			
+			this._editor.setOption("extraKeys", currentObject);
+		}
+		
+		if(!this.getExtendedEvent().hasEvent(aKeyCombination)) {
+			this.getExtendedEvent().createEvent(aKeyCombination);
+		}
+		
+		if(VariableAliases.isSet(aCommand)) {
+			this.getExtendedEvent().addCommandToEvent(aKeyCombination, aCommand);
+		}
+	};
+	
+	objectFunctions.getValue = function() {
+		return this._value.getValue();
+	};
+	
+	objectFunctions.setValue = function(aValue) {
+		this._value.setValue(aValue);
+		this._value.update();
+	};
+	
+	objectFunctions._updateValue = function(aValue) {
+		//console.log("dbm.thirdparty.codemirror.CodeMirrorView::_updateValue");
+		
+		if(this._editor !== null) {
+			if(this._editor.getValue() !== aValue) {
+				this._editor.setValue(aValue);
+			}
+		}
+	};
+	
+	objectFunctions._valueChanged = function(aValue) {
+		//console.log("dbm.thirdparty.codemirror.CodeMirrorView::_valueChanged");
+		this._value.setValue(this._editor.getValue());
+	};
+	
+	objectFunctions._optionChanged = function(aName, aValue) {
+		//console.log("dbm.thirdparty.codemirror.CodeMirrorView::_updateValue");
+		
+		if(this._editor !== null) {
+			this._editor.setOption(aName, aValue);
+		}
+	};
+	
+	objectFunctions._redrawFlowUpdate = function(aFlowUpdateNumber) {
+		console.log("dbm.thirdparty.codemirror.CodeMirrorView::_redrawFlowUpdate");
+		this._editor.refresh();
+	};
+	
+	objectFunctions.activate = function() {
+		
+		//METODO: extra keys
+		this.getExtendedEvent().activateJavascriptEventLink(ClassReference.EDITOR_GROUP_NAME);
+		
+		return this;
+	};
+	
+	objectFunctions.deactivate = function() {
+		
+		//METODO: extra keys
+		this.getExtendedEvent().deactivateJavascriptEventLink(ClassReference.EDITOR_GROUP_NAME);
+		
+		return this;
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case FormFieldExtendedEventIds.CHANGE:
+				return true;
+		}
+		
+		if(this._keyMaps.hasObject(aName)) {
+			return true;
+		}
+		
+		return this.superCall(aName);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._editor = null;
+		this._mode = null;
+		this._value = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aElement, aValue, aType) {
+		
+		var newCodeMirrorView = (new CodeMirrorView()).init().setElement(aElement);
+		
+		newCodeMirrorView.setPropertyInputWithoutNull("value", aValue);
+		newCodeMirrorView.setPropertyInputWithoutNull("type", aType);
+		
+		newCodeMirrorView.createEditor();
+		
+		return newCodeMirrorView;
+	};
+	
+	staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes, aValue, aType) {
+		var newCodeMirrorView = (new ClassReference()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newCodeMirrorView.setParent(theParent);
+		
+		var htmlCreator = newCodeMirrorView.getHtmlCreator();
+		
+		newCodeMirrorView.setElement(htmlCreator.createDiv(aAttributes));
+		
+		if(aAddToParent !== false) {
+			newCodeMirrorView.addToDom();
+		}
+		
+		newCodeMirrorView.setPropertyInputWithoutNull("value", aValue);
+		newCodeMirrorView.setPropertyInputWithoutNull("type", aType);
+		newCodeMirrorView.createEditor();
+		
+		return newCodeMirrorView;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.thirdparty.codemirror.CodeMirrorView::_init");
+		
+		this.superCall();
+		
+		this._options = this.addDestroyableObject(NamedArray.create(false));
+		
+		this._editor = null;
+		
+		this._value = this.addProperty("value", ExtendedEventValueProperty.create(""));
+		this._display.connectInput(this._value);
+		this._options.addObject(CodeMirrorOptionIds.VALUE, this._value);
+		
+		this._domChange = this.createGhostProperty("domChange");
+		this._redraw = this.createGhostProperty("redraw");
+		this.createUpdateFunction("redrawUpdate", this._redrawFlowUpdate, [this._element, this._domChange], [this._redraw]);
+		this._display.connectInput(this._redraw);
+		
+		this._createOptionProperty(CodeMirrorOptionIds.MODE, ClassReference.DEFAULT_MODE);
+		this._createOptionProperty(CodeMirrorOptionIds.LINE_NUMBERS, ClassReference.DEFAULT_LINE_NUMBERS);
+		
+		this.getExtendedEvent().addCommandToEvent(FormFieldExtendedEventIds.CHANGE, CallFunctionCommand.createCommand(this, this._valueChanged, []));
+		this._updateCommand = CallFunctionCommand.createCommand(this, this._updateValue, [GetVariableObject.createSelectDataCommand()]).retain();
+		
+		this._value.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.UPDATE, this._updateCommand); //METODO: move to activate
+		
+		this._keyMaps = this.addDestroyableObject(NamedArray.create(true));
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElement</span>(<span class="arguments">aElement</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElement = function(aElement) {
+		
+		this.superCall(aElement);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">enableOption</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.enableOption = function(aName) {
+		if(this._options.select(aName)) {
+			return this._options.currentSelectedItem;
+		}
+		//METODO: check that the editor exists
+		return this._createOptionProperty(aName, this._editor.getOption(aName));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_createOptionProperty</span>(<span class="arguments">aName, aValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._createOptionProperty = function(aName, aValue) {
+		var newProperty = this.addProperty(aName, ExtendedEventValueProperty.create(aValue));
+		newProperty.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.UPDATE, CallFunctionCommand.createCommand(this, this._optionChanged, [aName, GetVariableObject.createSelectDataCommand()]));
+		this._options.addObject(aName, newProperty);
+		this._display.connectInput(newProperty);
+		return newProperty;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_addEditorListener</span>(<span class="arguments">aCodeMirrorEvent, aExtendedEvent</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCodeMirrorEvent</div><div class="argumentDescription">aExtendedEvent</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._addEditorListener = function(aCodeMirrorEvent, aExtendedEvent) {
+		
+		var activateCommand = CallFunctionCommand.createCommand(this._editor, this._editor.on, [aCodeMirrorEvent, GetVariableObject.createSelectDataCommand(), null]);
+		var deactivateCommand = CallFunctionCommand.createCommand(this._editor, this._editor.off, [aCodeMirrorEvent, GetVariableObject.createSelectDataCommand(), null]);
+		
+		this.getExtendedEvent().addEventLink(CustomFunctionEventLink.create(this.getExtendedEvent(), aExtendedEvent, activateCommand, deactivateCommand, "multiple"), ClassReference.EDITOR_GROUP_NAME, true);
+		
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createEditor</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createEditor = function() {
+		
+		var optionsObject = new Object();
+		var currentArray = this._options.getNamesArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentName = currentArray[i];
+			optionsObject[currentName] = this._options.getObject(currentName).getValue();
+		};
+		
+		this._editor = CodeMirror(this._element.getValue(), optionsObject);
+		this._editor.setSize("100%", "100%"); //METODO: settings for this and request
+		this._addEditorListener(CodeMirrorViewEventIds.CHANGE, FormFieldExtendedEventIds.CHANGE);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addKeyMap</span>(<span class="arguments">aKeyCombination, aCommand</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aKeyCombination</div><div class="argumentDescription">aCommand</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addKeyMap = function(aKeyCombination, aCommand) {
+		
+		var newLink = StaticCallbackLink.create(this.getExtendedEvent(), aKeyCombination);
+		
+		this._keyMaps.addObject(aKeyCombination, newLink);
+		
+		if(this._editor !== null) { //METODO: check that class is active
+			var callbackFunction = newLink.getCallbackFunction();
+			
+			var currentObject = this._editor.getOption("extraKeys");
+			if(currentObject === null) {
+				currentObject = new Object();
+			}
+			currentObject[aKeyCombination] = callbackFunction;
+			
+			this._editor.setOption("extraKeys", currentObject);
+		}
+		
+		if(!this.getExtendedEvent().hasEvent(aKeyCombination)) {
+			this.getExtendedEvent().createEvent(aKeyCombination);
+		}
+		
+		if(VariableAliases.isSet(aCommand)) {
+			this.getExtendedEvent().addCommandToEvent(aKeyCombination, aCommand);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getValue</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getValue = function() {
+		return this._value.getValue();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setValue</span>(<span class="arguments">aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setValue = function(aValue) {
+		this._value.setValue(aValue);
+		this._value.update();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_updateValue</span>(<span class="arguments">aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._updateValue = function(aValue) {
+		//console.log("dbm.thirdparty.codemirror.CodeMirrorView::_updateValue");
+		
+		if(this._editor !== null) {
+			if(this._editor.getValue() !== aValue) {
+				this._editor.setValue(aValue);
+			}
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_valueChanged</span>(<span class="arguments">aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._valueChanged = function(aValue) {
+		//console.log("dbm.thirdparty.codemirror.CodeMirrorView::_valueChanged");
+		this._value.setValue(this._editor.getValue());
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_optionChanged</span>(<span class="arguments">aName, aValue</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._optionChanged = function(aName, aValue) {
+		//console.log("dbm.thirdparty.codemirror.CodeMirrorView::_updateValue");
+		
+		if(this._editor !== null) {
+			this._editor.setOption(aName, aValue);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_redrawFlowUpdate</span>(<span class="arguments">aFlowUpdateNumber</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aFlowUpdateNumber</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._redrawFlowUpdate = function(aFlowUpdateNumber) {
+		console.log("dbm.thirdparty.codemirror.CodeMirrorView::_redrawFlowUpdate");
+		this._editor.refresh();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">activate</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.activate = function() {
+		
+		//METODO: extra keys
+		this.getExtendedEvent().activateJavascriptEventLink(ClassReference.EDITOR_GROUP_NAME);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">deactivate</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.deactivate = function() {
+		
+		//METODO: extra keys
+		this.getExtendedEvent().deactivateJavascriptEventLink(ClassReference.EDITOR_GROUP_NAME);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case FormFieldExtendedEventIds.CHANGE:
+				return true;
+		}
+		
+		if(this._keyMaps.hasObject(aName)) {
+			return true;
+		}
+		
+		return this.superCall(aName);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._editor = null;
+		this._mode = null;
+		this._value = null;
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">EDITOR_GROUP_NAME</span><span class="type"></span> = <span class="value">editor</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DEFAULT_MODE</span><span class="type"></span> = <span class="value">javascript</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DEFAULT_LINE_NUMBERS</span><span class="type"></span> = <span class="value">true</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aElement, aValue, aType</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement</div><div class="argumentDescription">aValue</div><div class="argumentDescription">aType</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aElement, aValue, aType) {
+		
+		var newCodeMirrorView = (new CodeMirrorView()).init().setElement(aElement);
+		
+		newCodeMirrorView.setPropertyInputWithoutNull("value", aValue);
+		newCodeMirrorView.setPropertyInputWithoutNull("type", aType);
+		
+		newCodeMirrorView.createEditor();
+		
+		return newCodeMirrorView;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createOnParent</span>(<span class="arguments">aParentOrDocument, aAddToParent, aAttributes, aValue, aType</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParentOrDocument</div><div class="argumentDescription">aAddToParent</div><div class="argumentDescription">aAttributes</div><div class="argumentDescription">aValue</div><div class="argumentDescription">aType</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createOnParent = function(aParentOrDocument, aAddToParent, aAttributes, aValue, aType) {
+		var newCodeMirrorView = (new ClassReference()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newCodeMirrorView.setParent(theParent);
+		
+		var htmlCreator = newCodeMirrorView.getHtmlCreator();
+		
+		newCodeMirrorView.setElement(htmlCreator.createDiv(aAttributes));
+		
+		if(aAddToParent !== false) {
+			newCodeMirrorView.addToDom();
+		}
+		
+		newCodeMirrorView.setPropertyInputWithoutNull("value", aValue);
+		newCodeMirrorView.setPropertyInputWithoutNull("type", aType);
+		newCodeMirrorView.createEditor();
+		
+		return newCodeMirrorView;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

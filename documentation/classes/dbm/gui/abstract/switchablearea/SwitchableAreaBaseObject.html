@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>SwitchableAreaBaseObject</h1>
+					<div class="classPath">dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="dbm.gui.abstract.switchablearea.InDomSwitchableArea" href="InDomSwitchableArea.html">InDomSwitchableArea</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.gui.DisplayBaseObject" href="../../DisplayBaseObject.html">DisplayBaseObject</a>, <a title="dbm.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.utils.data.PartiallyOwnedNamedArray" href="../../../utils/data/PartiallyOwnedNamedArray.html">PartiallyOwnedNamedArray</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var SwitchableAreaBaseObject = dbm.importClass("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.BaseObject");
+	
+	//Self reference
+	var SwitchableAreaBaseObject = dbm.importClass("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject");
+	
+	//Error report
+	
+	//Dependencies
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
+	var PartiallyOwnedNamedArray = dbm.importClass("dbm.utils.data.PartiallyOwnedNamedArray");
+	var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject::_init");
+		
+		this.superCall();
+		
+		this._visibleArea = this.createProperty("visibleArea", null);
+		this._areas = NamedArray.create(true);
+		this.addDestroyableObject(this._areas);
+		
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
+		
+		return this;
+	};
+	
+	objectFunctions._setupAreaFlow = function(aName, aDisplayObject, aAreaData) {
+		//MENOTE: should be overridden
+		//METODO: error message
+	};
+	
+	objectFunctions.addArea = function(aName, aDisplayObject, aOwnsObject) {
+		//console.log("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject::addArea");
+		//console.log(aName, aDisplayObject, aOwnsObject);
+		
+		var areaData = PartiallyOwnedNamedArray.create(true);
+		areaData.addOwnedOverride("displayObject", VariableAliases.isTrue(aOwnsObject));
+		areaData.addObject("displayObject", aDisplayObject);
+		
+		this._setupAreaFlow(aName, aDisplayObject, areaData);
+		this._display.connectInput(aDisplayObject.getProperty("display"));
+		
+		this._areas.addObject(aName, areaData);
+		
+		return this;
+	};
+	
+	objectFunctions.addHtmlArea = function(aName, aElement) {
+		//console.log("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject::addHtmlArea");
+		//console.log(aName, aElement);
+		
+		var controller = dbm.singletons.dbmHtmlDomManager.getControllerForHtmlElementIfExists(aElement);
+		
+		if(controller === null) {
+			
+			controller = DisplayBaseObject.create(aElement);
+			this.addDestroyableObject(controller);
+		}
+		
+		this.addArea(aName, controller);
+		
+		return this;
+	};
+	
+	objectFunctions.removeAreaByName = function(aName) {
+		
+		//METODO
+		
+		return this;
+	};
+	
+	objectFunctions.showArea = function(aName) {
+		
+		this._visibleArea.setValue(aName);
+		this._display.update();
+		
+		return this;
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._visibleArea = null;
+		this._areas = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function() {
+		return (new SwitchableAreaBaseObject()).init();
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject::_init");
+		
+		this.superCall();
+		
+		this._visibleArea = this.createProperty("visibleArea", null);
+		this._areas = NamedArray.create(true);
+		this.addDestroyableObject(this._areas);
+		
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_setupAreaFlow</span>(<span class="arguments">aName, aDisplayObject, aAreaData</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aDisplayObject</div><div class="argumentDescription">aAreaData</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._setupAreaFlow = function(aName, aDisplayObject, aAreaData) {
+		//MENOTE: should be overridden
+		//METODO: error message
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addArea</span>(<span class="arguments">aName, aDisplayObject, aOwnsObject</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aDisplayObject</div><div class="argumentDescription">aOwnsObject</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addArea = function(aName, aDisplayObject, aOwnsObject) {
+		//console.log("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject::addArea");
+		//console.log(aName, aDisplayObject, aOwnsObject);
+		
+		var areaData = PartiallyOwnedNamedArray.create(true);
+		areaData.addOwnedOverride("displayObject", VariableAliases.isTrue(aOwnsObject));
+		areaData.addObject("displayObject", aDisplayObject);
+		
+		this._setupAreaFlow(aName, aDisplayObject, areaData);
+		this._display.connectInput(aDisplayObject.getProperty("display"));
+		
+		this._areas.addObject(aName, areaData);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addHtmlArea</span>(<span class="arguments">aName, aElement</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aElement</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addHtmlArea = function(aName, aElement) {
+		//console.log("dbm.gui.abstract.switchablearea.SwitchableAreaBaseObject::addHtmlArea");
+		//console.log(aName, aElement);
+		
+		var controller = dbm.singletons.dbmHtmlDomManager.getControllerForHtmlElementIfExists(aElement);
+		
+		if(controller === null) {
+			
+			controller = DisplayBaseObject.create(aElement);
+			this.addDestroyableObject(controller);
+		}
+		
+		this.addArea(aName, controller);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeAreaByName</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeAreaByName = function(aName) {
+		
+		//METODO
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">showArea</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.showArea = function(aName) {
+		
+		this._visibleArea.setValue(aName);
+		this._display.update();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._visibleArea = null;
+		this._areas = null;
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function() {
+		return (new SwitchableAreaBaseObject()).init();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

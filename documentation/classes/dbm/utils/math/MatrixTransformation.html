@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>MatrixTransformation</h1>
+					<div class="classPath">dbm.utils.math.MatrixTransformation</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description">Static class for calculating gauss distributions.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var MatrixTransformation = dbm.importClass("dbm.utils.math.MatrixTransformation");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.utils.math.MatrixTransformation", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.math.MatrixTransformation");
+	
+	//Self reference
+	var MatrixTransformation = dbm.importClass("dbm.utils.math.MatrixTransformation");
+	
+	/**
+	 * Transforms a point with a matrix.
+	 *
+	 * @param	aMatrix			Matrix	The matrix to transform the point with. Should be a 3x3 matrix.
+	 * @param	aInputPoint		Point	The point to transform.
+	 * @param	aOutputPoint	Point	The point that gets the transformed values.
+	 */
+	staticFunctions.transform2dPoint = function(aMatrix, aInputPoint, aOutputPoint) {
+		var matrixValuesArray = aMatrix.valuesArray;
+		var inputXValue = aInputPoint.x;
+		var inputYValue = aInputPoint.y;
+		var invertedWeight = 1/(inputXValue*matrixValuesArray[6]+inputYValue*matrixValuesArray[7]+matrixValuesArray[8]);
+		aOutputPoint.x = invertedWeight*(inputXValue*matrixValuesArray[0]+inputYValue*matrixValuesArray[1]+matrixValuesArray[2]);
+		aOutputPoint.y = invertedWeight*(inputXValue*matrixValuesArray[3]+inputYValue*matrixValuesArray[4]+matrixValuesArray[5]);
+	};
+	
+	/**
+	 * Transform a point set with a matrix.
+	 *
+	 * @param	aMatrix		Matrix		The matrix to transform the point set with. The matrix should be a 3x3 matrix.
+	 * @param	aInputSet	PointSet	The set of points to be transform.
+	 * @param	aOutputSet	PointSet	The set that gets all the transformed points.
+	 */
+	staticFunctions.transform2dPointSet = function(aMatrix, aInputSet, aOutputSet) {
+		var valuesArray = aMatrix.valuesArray;
+		var currentArray = aInputSet.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			ClassReference.transform2dPoint(aMatrix, currentArray[i], outputArray[i]);
+		}
+	};
+	
+	/**
+	 * Blends two point sets into one.
+	 *
+	 * @param	aParameter	Number		The parameter of how the blend is performed.
+	 * @param	aInputSet1	PointSet	The first set of points to be blended from.
+	 * @param	aInputSet2	PointSet	The secon set of points to be blended from.
+	 * @param	aOutputSet	PointSet	The set that gets all the blended points.
+	 */
+	staticFunctions.blend2dPointSets = function(aParameter, aInputSet1, aInputSet2, aOutputSet) {
+		//console.log("dbm.utils.math.MatrixTransformation::blend2dPointSets");
+		//console.log(aParameter);
+		
+		var invertedParameter = (1-aParameter);
+		var input1Array = aInputSet1.pointsArray;
+		var input2Array = aInputSet2.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = input1Array.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var input1Point = input1Array[i];
+			var input2Point = input2Array[i];
+			var outputPoint = outputArray[i];
+			outputPoint.x = (invertedParameter*input1Point.x)+(aParameter*input2Point.x);
+			outputPoint.y = (invertedParameter*input1Point.y)+(aParameter*input2Point.y);
+		}
+	};
+	
+	staticFunctions.transform3dPoint = function(aMatrix, aInputPoint, aOutputPoint) {
+		var valuesArray = aMatrix.valuesArray;
+		var inputXValue = aInputPoint.x;
+		var inputYValue = aInputPoint.y;
+		var inputZValue = aInputPoint.z;
+		var invertedWeight = 1/(inputXValue*valuesArray[12]+inputYValue*valuesArray[13]+inputZValue*valuesArray[14]+valuesArray[15]);
+		aOutputPoint.x = (inputXValue*valuesArray[0]+inputYValue*valuesArray[1]+inputZValue*valuesArray[2]+valuesArray[3])*invertedWeight;
+		aOutputPoint.y = (inputXValue*valuesArray[4]+inputYValue*valuesArray[5]+inputZValue*valuesArray[6]+valuesArray[7])*invertedWeight;
+		aOutputPoint.z = (inputXValue*valuesArray[8]+inputYValue*valuesArray[9]+inputZValue*valuesArray[10]+valuesArray[11])*invertedWeight;
+	};
+	
+	staticFunctions.transform3dPointSet = function(aMatrix, aInputSet, aOutputSet) {
+		//console.log("dbm.utils.math.MatrixTransformation::transform3dPointSet");
+		var valuesArray = aMatrix.valuesArray;
+		var currentArray = aInputSet.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			ClassReference.transform3dPoint(aMatrix, currentArray[i], outputArray[i]);
+		}
+	};
+		
+	staticFunctions.blend3dPointSets = function(aParameter, aInputSet1, aInputSet2, aOutputSet) {
+		//console.log("dbm.utils.math.MatrixTransformation::blend3dPointSets");
+		//console.log(aParameter);
+		
+		var invertedParameter = (1-aParameter);
+		var input1Array = aInputSet1.pointsArray;
+		var input2Array = aInputSet2.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = input1Array.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var input1Point = input1Array[i];
+			var input2Point = input2Array[i];
+			var outputPoint = outputArray[i];
+			outputPoint.x = (invertedParameter*input1Point.x)+(aParameter*input2Point.x);
+			outputPoint.y = (invertedParameter*input1Point.y)+(aParameter*input2Point.y);
+			outputPoint.z = (invertedParameter*input1Point.z)+(aParameter*input2Point.z);
+		}
+	};
+	
+	staticFunctions.transformWeighted3dPoint = function(aMatrix, aInputPoint, aOutputPoint) {
+		var valuesArray = aMatrix.valuesArray;
+		var inputXValue = aInputPoint.x;
+		var inputYValue = aInputPoint.y;
+		var inputZValue = aInputPoint.z;
+		var weight = (inputXValue*valuesArray[12]+inputYValue*valuesArray[13]+inputZValue*valuesArray[14]+valuesArray[15]);
+		aOutputPoint.w = weight;
+		var invertedWeight = 1/weight;
+		aOutputPoint.x = (inputXValue*valuesArray[0]+inputYValue*valuesArray[1]+inputZValue*valuesArray[2]+valuesArray[3])*invertedWeight;
+		aOutputPoint.y = (inputXValue*valuesArray[4]+inputYValue*valuesArray[5]+inputZValue*valuesArray[6]+valuesArray[7])*invertedWeight;
+		aOutputPoint.z = (inputXValue*valuesArray[8]+inputYValue*valuesArray[9]+inputZValue*valuesArray[10]+valuesArray[11])*invertedWeight;
+	};
+	
+	staticFunctions.transformWeighted3dPointSet = function(aMatrix, aInputSet, aOutputSet) {
+		var valuesArray = aMatrix.valuesArray;
+		var currentArray = aInputSet.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = currentArray.length;
+		for(var i = -1; ++i &lt; theLength;) {
+			ClassReference.transformWeighted3dPoint(aMatrix, currentArray[i], outputArray[i]);
+		}
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">transform2dPoint</span>(<span class="arguments">aMatrix:<a title="dbm.core.data.matrices.Matrix" href="../../core/data/matrices/Matrix.html">Matrix</a>, aInputPoint:<a title="dbm.core.data.points.Point" href="../../core/data/points/Point.html">Point</a>, aOutputPoint:<a title="dbm.core.data.points.Point" href="../../core/data/points/Point.html">Point</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Transforms a point with a matrix.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aMatrix:<a title="dbm.core.data.matrices.Matrix" href="../../core/data/matrices/Matrix.html">Matrix</a> - The matrix to transform the point with. Should be a 3x3 matrix.</div><div class="argumentDescription">aInputPoint:<a title="dbm.core.data.points.Point" href="../../core/data/points/Point.html">Point</a> - The point to transform.</div><div class="argumentDescription">aOutputPoint:<a title="dbm.core.data.points.Point" href="../../core/data/points/Point.html">Point</a> - The point that gets the transformed values.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.transform2dPoint = function(aMatrix, aInputPoint, aOutputPoint) {
+		var matrixValuesArray = aMatrix.valuesArray;
+		var inputXValue = aInputPoint.x;
+		var inputYValue = aInputPoint.y;
+		var invertedWeight = 1/(inputXValue*matrixValuesArray[6]+inputYValue*matrixValuesArray[7]+matrixValuesArray[8]);
+		aOutputPoint.x = invertedWeight*(inputXValue*matrixValuesArray[0]+inputYValue*matrixValuesArray[1]+matrixValuesArray[2]);
+		aOutputPoint.y = invertedWeight*(inputXValue*matrixValuesArray[3]+inputYValue*matrixValuesArray[4]+matrixValuesArray[5]);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">transform2dPointSet</span>(<span class="arguments">aMatrix:<a title="dbm.core.data.matrices.Matrix" href="../../core/data/matrices/Matrix.html">Matrix</a>, aInputSet:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a>, aOutputSet:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Transform a point set with a matrix.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aMatrix:<a title="dbm.core.data.matrices.Matrix" href="../../core/data/matrices/Matrix.html">Matrix</a> - The matrix to transform the point set with. The matrix should be a 3x3 matrix.</div><div class="argumentDescription">aInputSet:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a> - The set of points to be transform.</div><div class="argumentDescription">aOutputSet:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a> - The set that gets all the transformed points.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.transform2dPointSet = function(aMatrix, aInputSet, aOutputSet) {
+		var valuesArray = aMatrix.valuesArray;
+		var currentArray = aInputSet.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			ClassReference.transform2dPoint(aMatrix, currentArray[i], outputArray[i]);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">blend2dPointSets</span>(<span class="arguments">aParameter:<span class="nativeType">Number</span>, aInputSet1:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a>, aInputSet2:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a>, aOutputSet:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Blends two point sets into one.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParameter:<span class="nativeType">Number</span> - The parameter of how the blend is performed.</div><div class="argumentDescription">aInputSet1:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a> - The first set of points to be blended from.</div><div class="argumentDescription">aInputSet2:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a> - The secon set of points to be blended from.</div><div class="argumentDescription">aOutputSet:<a title="dbm.core.data.points.PointSet" href="../../core/data/points/PointSet.html">PointSet</a> - The set that gets all the blended points.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.blend2dPointSets = function(aParameter, aInputSet1, aInputSet2, aOutputSet) {
+		//console.log("dbm.utils.math.MatrixTransformation::blend2dPointSets");
+		//console.log(aParameter);
+		
+		var invertedParameter = (1-aParameter);
+		var input1Array = aInputSet1.pointsArray;
+		var input2Array = aInputSet2.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = input1Array.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var input1Point = input1Array[i];
+			var input2Point = input2Array[i];
+			var outputPoint = outputArray[i];
+			outputPoint.x = (invertedParameter*input1Point.x)+(aParameter*input2Point.x);
+			outputPoint.y = (invertedParameter*input1Point.y)+(aParameter*input2Point.y);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">transform3dPoint</span>(<span class="arguments">aMatrix, aInputPoint, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aMatrix</div><div class="argumentDescription">aInputPoint</div><div class="argumentDescription">aOutputPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.transform3dPoint = function(aMatrix, aInputPoint, aOutputPoint) {
+		var valuesArray = aMatrix.valuesArray;
+		var inputXValue = aInputPoint.x;
+		var inputYValue = aInputPoint.y;
+		var inputZValue = aInputPoint.z;
+		var invertedWeight = 1/(inputXValue*valuesArray[12]+inputYValue*valuesArray[13]+inputZValue*valuesArray[14]+valuesArray[15]);
+		aOutputPoint.x = (inputXValue*valuesArray[0]+inputYValue*valuesArray[1]+inputZValue*valuesArray[2]+valuesArray[3])*invertedWeight;
+		aOutputPoint.y = (inputXValue*valuesArray[4]+inputYValue*valuesArray[5]+inputZValue*valuesArray[6]+valuesArray[7])*invertedWeight;
+		aOutputPoint.z = (inputXValue*valuesArray[8]+inputYValue*valuesArray[9]+inputZValue*valuesArray[10]+valuesArray[11])*invertedWeight;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">transform3dPointSet</span>(<span class="arguments">aMatrix, aInputSet, aOutputSet</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aMatrix</div><div class="argumentDescription">aInputSet</div><div class="argumentDescription">aOutputSet</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.transform3dPointSet = function(aMatrix, aInputSet, aOutputSet) {
+		//console.log("dbm.utils.math.MatrixTransformation::transform3dPointSet");
+		var valuesArray = aMatrix.valuesArray;
+		var currentArray = aInputSet.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			ClassReference.transform3dPoint(aMatrix, currentArray[i], outputArray[i]);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">blend3dPointSets</span>(<span class="arguments">aParameter, aInputSet1, aInputSet2, aOutputSet</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParameter</div><div class="argumentDescription">aInputSet1</div><div class="argumentDescription">aInputSet2</div><div class="argumentDescription">aOutputSet</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.blend3dPointSets = function(aParameter, aInputSet1, aInputSet2, aOutputSet) {
+		//console.log("dbm.utils.math.MatrixTransformation::blend3dPointSets");
+		//console.log(aParameter);
+		
+		var invertedParameter = (1-aParameter);
+		var input1Array = aInputSet1.pointsArray;
+		var input2Array = aInputSet2.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = input1Array.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var input1Point = input1Array[i];
+			var input2Point = input2Array[i];
+			var outputPoint = outputArray[i];
+			outputPoint.x = (invertedParameter*input1Point.x)+(aParameter*input2Point.x);
+			outputPoint.y = (invertedParameter*input1Point.y)+(aParameter*input2Point.y);
+			outputPoint.z = (invertedParameter*input1Point.z)+(aParameter*input2Point.z);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">transformWeighted3dPoint</span>(<span class="arguments">aMatrix, aInputPoint, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aMatrix</div><div class="argumentDescription">aInputPoint</div><div class="argumentDescription">aOutputPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.transformWeighted3dPoint = function(aMatrix, aInputPoint, aOutputPoint) {
+		var valuesArray = aMatrix.valuesArray;
+		var inputXValue = aInputPoint.x;
+		var inputYValue = aInputPoint.y;
+		var inputZValue = aInputPoint.z;
+		var weight = (inputXValue*valuesArray[12]+inputYValue*valuesArray[13]+inputZValue*valuesArray[14]+valuesArray[15]);
+		aOutputPoint.w = weight;
+		var invertedWeight = 1/weight;
+		aOutputPoint.x = (inputXValue*valuesArray[0]+inputYValue*valuesArray[1]+inputZValue*valuesArray[2]+valuesArray[3])*invertedWeight;
+		aOutputPoint.y = (inputXValue*valuesArray[4]+inputYValue*valuesArray[5]+inputZValue*valuesArray[6]+valuesArray[7])*invertedWeight;
+		aOutputPoint.z = (inputXValue*valuesArray[8]+inputYValue*valuesArray[9]+inputZValue*valuesArray[10]+valuesArray[11])*invertedWeight;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">transformWeighted3dPointSet</span>(<span class="arguments">aMatrix, aInputSet, aOutputSet</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aMatrix</div><div class="argumentDescription">aInputSet</div><div class="argumentDescription">aOutputSet</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.transformWeighted3dPointSet = function(aMatrix, aInputSet, aOutputSet) {
+		var valuesArray = aMatrix.valuesArray;
+		var currentArray = aInputSet.pointsArray;
+		var outputArray = aOutputSet.pointsArray;
+		var theLength = currentArray.length;
+		for(var i = -1; ++i &lt; theLength;) {
+			ClassReference.transformWeighted3dPoint(aMatrix, currentArray[i], outputArray[i]);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

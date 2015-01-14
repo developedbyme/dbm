@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>Timeline</h1>
+					<div class="classPath">dbm.core.globalobjects.animationmanager.timeline.Timeline</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">A timeline that animates a value.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../../objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart" href="parts/InterpolationTimelinePart.html">InterpolationTimelinePart</a>, <a title="dbm.constants.InterpolationTypes" href="../../../../constants/InterpolationTypes.html">InterpolationTypes</a>, <a title="dbm.constants.JavascriptObjectTypes" href="../../../../constants/JavascriptObjectTypes.html">JavascriptObjectTypes</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart" href="parts/SetValueTimelinePart.html">SetValueTimelinePart</a>, <a title="dbm.utils.data.VariableAliases" href="../../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var Timeline = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.Timeline");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.animationmanager.timeline.Timeline", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline");
+	//"use strict";
+	
+	//Self reference
+	var Timeline = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.Timeline");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Depenedencies
+	var SetValueTimelinePart = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart");
+	var InterpolationTimelinePart = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.parts.InterpolationTimelinePart");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	
+	//Utils
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	
+	//Constants
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::_init");
+		
+		this.superCall();
+		
+		this.startTime = 0;
+		this.endTime = 1;
+		this.startApplyTime = -Infinity;
+		this.endApplyTime = Infinity;
+		
+		this._parts = new Array();
+		this._currentPartIndex = 0;
+		
+		this._startValue = this.createProperty("startValue", null);
+		this._partChange = this.createGhostProperty("partChange");
+		this._anyChange = this.addProperty("anyChange", AnyChangeMultipleInputProperty.create());
+		this._anyChange.connectInput(this._startValue);
+		this._anyChange.connectInput(this._partChange);
+		
+		this._referenceTime = null;
+		
+		return this;
+	};
+	
+	objectFunctions._internalFunctionality_setReferenceTime = function(aReferenceTimeProperty) {
+		this._referenceTime = aReferenceTimeProperty;
+	};
+	
+	objectFunctions._internalFunctionality_getParts = function() {
+		return this._parts;
+	};
+	
+	objectFunctions.getPartsStartTime = function() {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getPartsStartTime");
+		if(this._parts.length === 0) {
+			return -Infinity;
+		}
+		
+		return this._parts[0].startApplyTime;
+	};
+	
+	objectFunctions.getPartsEndTime = function() {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getPartsEndTime");
+		if(this._parts.length === 0) {
+			return Infinity;
+		}
+		
+		return this._parts[this._parts.length-1].endApplyTime;
+	};
+	
+	objectFunctions.getValueByParameter = function(aParameter) {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getValueByParameter");
+		if(this._parts.length === 0) {
+			return this._startValue.getValue();
+		}
+		while(true) {
+			
+			var currentPart = this._parts[this._currentPartIndex];
+			if(currentPart === null || currentPart === undefined) {
+				return this._startValue.getValue();
+			}
+			//console.log(this._currentPartIndex, aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime, aParameter, currentPart.startApplyTime, currentPart.endApplyTime);
+			if(aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime) {
+				//console.log(aParameter);
+				//console.log(currentPart.getValueAt(aParameter));
+				return currentPart.getValueAt(aParameter);
+			}
+			else if(aParameter &lt; currentPart.startApplyTime) {
+				if(this._currentPartIndex === 0) {
+					return this._startValue.getValue();
+				}
+				this._currentPartIndex--;
+			}
+			else {
+				if(this._currentPartIndex === this._parts.length-1 || aParameter &lt; this._parts[this._currentPartIndex+1].startApplyTime) {
+					return currentPart.getValueAt(currentPart.endApplyTime);
+				}
+				this._currentPartIndex++;
+			}
+		}
+	};
+	
+	objectFunctions.getTangentByParameter = function(aParameter) {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getTangentByParameter");
+		if(this._parts.length === 0) {
+			return 0;
+		}
+		while(true) {
+			var currentPart = this._parts[this._currentPartIndex];
+			//console.log(this._currentPartIndex, aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime, aParameter, currentPart.startApplyTime, currentPart.endApplyTime);
+			if(aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime) {
+				//console.log(aParameter);
+				//console.log(currentPart.getValueAt(aParameter));
+				return currentPart.getTangentAt(aParameter);
+			}
+			else if(aParameter &lt; currentPart.startApplyTime) {
+				if(this._currentPartIndex === 0) {
+					return 0;
+				}
+				this._currentPartIndex--;
+			}
+			else {
+				if(this._currentPartIndex === this._parts.length-1 || aParameter &lt; this._parts[this._currentPartIndex+1].startApplyTime) {
+					return 0;
+				}
+				this._currentPartIndex++;
+			}
+		}
+	};
+	
+	objectFunctions._getParameterFromTime = function(aTime) {
+		if(aTime === this.endTime || this.startTime === this.endTime) {
+			return 1;
+		}
+		else if(aTime === this.startTime) {
+			return 0;
+		}
+		return (aTime-this.startTime)/(this.endTime-this.startTime);
+	};
+	
+	objectFunctions.getValueAt = function(aTime) {
+		return this.getValueByParameter(this._getParameterFromTime(aTime));
+	};
+	
+	objectFunctions.getTangentAt = function(aTime) {
+		return this.getTangentByParameter(this._getParameterFromTime(aTime));
+	};
+	
+	objectFunctions._internalFunctionality_getPartAtInFlow = function(aTime, aReturnPartProperty, aReturnParameterProperty, aFlowUpdateNumber) {
+		if(this._parts.length === 0) {
+			aReturnPartProperty.setValueWithFlow(null, aFlowUpdateNumber);
+		}
+		else {
+			var aParameter = this._getParameterFromTime(aTime);
+			while(true) {
+				
+				var currentPart = this._parts[this._currentPartIndex];
+				if(currentPart === null || currentPart === undefined) {
+					aReturnPartProperty.setValueWithFlow(null, aFlowUpdateNumber);
+					break;
+				}
+				if(aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime) {
+					aReturnPartProperty.setValueWithFlow(currentPart, aFlowUpdateNumber);
+					aReturnParameterProperty.setValueWithFlow(aParameter, aFlowUpdateNumber);
+					break;
+				}
+				else if(aParameter &lt; currentPart.startApplyTime) {
+					if(this._currentPartIndex === 0) {
+						aReturnPartProperty.setValueWithFlow(null, aFlowUpdateNumber);
+						break;
+					}
+					this._currentPartIndex--;
+				}
+				else {
+					if(this._currentPartIndex === this._parts.length-1 || aParameter &lt; this._parts[this._currentPartIndex+1].startApplyTime) {
+						aReturnPartProperty.setValueWithFlow(currentPart, aFlowUpdateNumber);
+						aReturnParameterProperty.setValueWithFlow(currentPart.endApplyTime, aFlowUpdateNumber);
+						break;
+					}
+					this._currentPartIndex++;
+				}
+			}
+		}
+	};
+	
+	objectFunctions.setStartValue = function(aStartValue) {
+		this._startValue.setValue(aStartValue);
+		this._partChange.setAsDirty();
+		
+		return this;
+	};
+	
+	objectFunctions._stopPartsAt = function(aTime) {
+		var currentArray = this._parts;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentPart = currentArray[i];
+			if(currentPart.endApplyTime &gt; aTime) {
+				if(currentPart.startApplyTime &lt;= aTime) {
+					currentPart.endApplyTime = aTime;
+					currentArray.splice(i+1, currentArrayLength);
+				}
+				else {
+					currentArray.splice(i, currentArrayLength);
+				}
+				break;
+			}
+		}
+		this._currentPartIndex = Math.max(0, Math.min(this._currentPartIndex, currentArray.length-1));
+	};
+	
+	objectFunctions.setValue = function(aValue, aDelay) {
+		
+		aDelay = VariableAliases.valueWithDefault(aDelay, 0);
+		
+		if(isNaN(aDelay)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Time is NaN, can't animate " + aValue + ", " + aDelay + ".");
+			return this;
+		}
+		
+		var currentTime = this._referenceTime.getValue();
+		var newPart = SetValueTimelinePart.create(aValue, currentTime+aDelay, 0);
+		this.addPart(newPart);
+		
+		return this;
+	};
+	
+	objectFunctions.setValueAt = function(aValue, aTime) {
+		
+		if(isNaN(aTime)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValueAt", "Time is NaN, can't animate " + aValue + ", " + aTime + ".");
+			return this;
+		}
+		
+		var newPart = SetValueTimelinePart.create(aValue, aTime, 0);
+		this.addPart(newPart);
+		
+		return this;
+	};
+	
+	objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
+		
+		aDelay = VariableAliases.valueWithDefault(aDelay, 0);
+		
+		if(isNaN(aTime) || isNaN(aDelay)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValue", "Time is NaN, can't animate " + aValue + ", " + aTime + ", " + aInterpolation + ", " + aDelay + ".");
+			return this;
+		}
+		
+		var currentTime = this._referenceTime.getValue();
+		var startValue = this.getValueAt(currentTime+aDelay);
+		
+		this.animateValueAt(aValue, aTime, aInterpolation, currentTime+aDelay);
+		
+		return this;
+	};
+	
+	objectFunctions.animateValueAt = function(aValue, aTime, aInterpolation, aStartTime) {
+		
+		if(isNaN(aTime) || isNaN(aStartTime)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValueAt", "Time is NaN, can't animate " + aValue + ", " + aTime + ", " + aInterpolation + ", " + aStartTime + ".");
+			return this;
+		}
+		
+		var startValue = this.getValueAt(aStartTime);
+		
+		if(typeof(aInterpolation) === JavascriptObjectTypes.TYPE_STRING) {
+			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(aInterpolation);
+		}
+		else if(aInterpolation === null) {
+			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(InterpolationTypes.LINEAR);
+		}
+		
+		var newPart = InterpolationTimelinePart.create(startValue, aValue, aInterpolation, aStartTime, aTime);
+		this.addPart(newPart);
+		
+		return this;
+	};
+	
+	objectFunctions.addPart = function(aPart) {
+		this._stopPartsAt(aPart.startApplyTime);
+		this._parts.push(aPart);
+		this._partChange.setAsDirty();
+	};
+	
+	objectFunctions.setParts = function(aParts) {
+		this.clear();
+		this._parts = aParts;
+	};
+	
+	objectFunctions.clear = function() {
+		this._parts.splice(0, this._parts.length);
+		this._partChange.setAsDirty();
+		this._currentPartIndex = 0;
+	};
+	
+	objectFunctions.clearAt = function(aTime) {
+		this._stopPartsAt(aTime);
+		this._partChange.setAsDirty();
+	};
+	
+	objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyArrayIfExists(this._parts);
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Checks if a variable is owned by this object. Part of the destroy function.
+	 *
+	 * @param	aName	The name of the variable.
+	 *
+	 * @return	Boolean	True if this object is the owner of a variable.
+	 */
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		
+		switch(aName) {
+			case "_referenceTime":
+				return false;
+		}
+		
+		return this.superCall(aName);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._parts = null;
+		this._currentPartIndex = null;
+		
+		this._startValue = null;
+		this._partChange = null;
+		this._anyChange = null;
+		this._referenceTime = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aStartValue) {
+		var newTimeline = (new ClassReference()).init();
+		newTimeline.setStartValue(aStartValue);
+		return newTimeline;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::_init");
+		
+		this.superCall();
+		
+		this.startTime = 0;
+		this.endTime = 1;
+		this.startApplyTime = -Infinity;
+		this.endApplyTime = Infinity;
+		
+		this._parts = new Array();
+		this._currentPartIndex = 0;
+		
+		this._startValue = this.createProperty("startValue", null);
+		this._partChange = this.createGhostProperty("partChange");
+		this._anyChange = this.addProperty("anyChange", AnyChangeMultipleInputProperty.create());
+		this._anyChange.connectInput(this._startValue);
+		this._anyChange.connectInput(this._partChange);
+		
+		this._referenceTime = null;
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_setReferenceTime</span>(<span class="arguments">aReferenceTimeProperty</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aReferenceTimeProperty</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_setReferenceTime = function(aReferenceTimeProperty) {
+		this._referenceTime = aReferenceTimeProperty;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_getParts</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_getParts = function() {
+		return this._parts;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPartsStartTime</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getPartsStartTime = function() {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getPartsStartTime");
+		if(this._parts.length === 0) {
+			return -Infinity;
+		}
+		
+		return this._parts[0].startApplyTime;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPartsEndTime</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getPartsEndTime = function() {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getPartsEndTime");
+		if(this._parts.length === 0) {
+			return Infinity;
+		}
+		
+		return this._parts[this._parts.length-1].endApplyTime;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getValueByParameter</span>(<span class="arguments">aParameter</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParameter</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getValueByParameter = function(aParameter) {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getValueByParameter");
+		if(this._parts.length === 0) {
+			return this._startValue.getValue();
+		}
+		while(true) {
+			
+			var currentPart = this._parts[this._currentPartIndex];
+			if(currentPart === null || currentPart === undefined) {
+				return this._startValue.getValue();
+			}
+			//console.log(this._currentPartIndex, aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime, aParameter, currentPart.startApplyTime, currentPart.endApplyTime);
+			if(aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime) {
+				//console.log(aParameter);
+				//console.log(currentPart.getValueAt(aParameter));
+				return currentPart.getValueAt(aParameter);
+			}
+			else if(aParameter &lt; currentPart.startApplyTime) {
+				if(this._currentPartIndex === 0) {
+					return this._startValue.getValue();
+				}
+				this._currentPartIndex--;
+			}
+			else {
+				if(this._currentPartIndex === this._parts.length-1 || aParameter &lt; this._parts[this._currentPartIndex+1].startApplyTime) {
+					return currentPart.getValueAt(currentPart.endApplyTime);
+				}
+				this._currentPartIndex++;
+			}
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getTangentByParameter</span>(<span class="arguments">aParameter</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParameter</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getTangentByParameter = function(aParameter) {
+		//console.log("dbm.core.globalobjects.animationmanager.timeline.Timeline::getTangentByParameter");
+		if(this._parts.length === 0) {
+			return 0;
+		}
+		while(true) {
+			var currentPart = this._parts[this._currentPartIndex];
+			//console.log(this._currentPartIndex, aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime, aParameter, currentPart.startApplyTime, currentPart.endApplyTime);
+			if(aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime) {
+				//console.log(aParameter);
+				//console.log(currentPart.getValueAt(aParameter));
+				return currentPart.getTangentAt(aParameter);
+			}
+			else if(aParameter &lt; currentPart.startApplyTime) {
+				if(this._currentPartIndex === 0) {
+					return 0;
+				}
+				this._currentPartIndex--;
+			}
+			else {
+				if(this._currentPartIndex === this._parts.length-1 || aParameter &lt; this._parts[this._currentPartIndex+1].startApplyTime) {
+					return 0;
+				}
+				this._currentPartIndex++;
+			}
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_getParameterFromTime</span>(<span class="arguments">aTime</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTime</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._getParameterFromTime = function(aTime) {
+		if(aTime === this.endTime || this.startTime === this.endTime) {
+			return 1;
+		}
+		else if(aTime === this.startTime) {
+			return 0;
+		}
+		return (aTime-this.startTime)/(this.endTime-this.startTime);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getValueAt</span>(<span class="arguments">aTime</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTime</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getValueAt = function(aTime) {
+		return this.getValueByParameter(this._getParameterFromTime(aTime));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getTangentAt</span>(<span class="arguments">aTime</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTime</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getTangentAt = function(aTime) {
+		return this.getTangentByParameter(this._getParameterFromTime(aTime));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_getPartAtInFlow</span>(<span class="arguments">aTime, aReturnPartProperty, aReturnParameterProperty, aFlowUpdateNumber</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTime</div><div class="argumentDescription">aReturnPartProperty</div><div class="argumentDescription">aReturnParameterProperty</div><div class="argumentDescription">aFlowUpdateNumber</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_getPartAtInFlow = function(aTime, aReturnPartProperty, aReturnParameterProperty, aFlowUpdateNumber) {
+		if(this._parts.length === 0) {
+			aReturnPartProperty.setValueWithFlow(null, aFlowUpdateNumber);
+		}
+		else {
+			var aParameter = this._getParameterFromTime(aTime);
+			while(true) {
+				
+				var currentPart = this._parts[this._currentPartIndex];
+				if(currentPart === null || currentPart === undefined) {
+					aReturnPartProperty.setValueWithFlow(null, aFlowUpdateNumber);
+					break;
+				}
+				if(aParameter &gt;= currentPart.startApplyTime &amp;&amp; aParameter &lt; currentPart.endApplyTime) {
+					aReturnPartProperty.setValueWithFlow(currentPart, aFlowUpdateNumber);
+					aReturnParameterProperty.setValueWithFlow(aParameter, aFlowUpdateNumber);
+					break;
+				}
+				else if(aParameter &lt; currentPart.startApplyTime) {
+					if(this._currentPartIndex === 0) {
+						aReturnPartProperty.setValueWithFlow(null, aFlowUpdateNumber);
+						break;
+					}
+					this._currentPartIndex--;
+				}
+				else {
+					if(this._currentPartIndex === this._parts.length-1 || aParameter &lt; this._parts[this._currentPartIndex+1].startApplyTime) {
+						aReturnPartProperty.setValueWithFlow(currentPart, aFlowUpdateNumber);
+						aReturnParameterProperty.setValueWithFlow(currentPart.endApplyTime, aFlowUpdateNumber);
+						break;
+					}
+					this._currentPartIndex++;
+				}
+			}
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setStartValue</span>(<span class="arguments">aStartValue</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStartValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setStartValue = function(aStartValue) {
+		this._startValue.setValue(aStartValue);
+		this._partChange.setAsDirty();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_stopPartsAt</span>(<span class="arguments">aTime</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTime</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._stopPartsAt = function(aTime) {
+		var currentArray = this._parts;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentPart = currentArray[i];
+			if(currentPart.endApplyTime &gt; aTime) {
+				if(currentPart.startApplyTime &lt;= aTime) {
+					currentPart.endApplyTime = aTime;
+					currentArray.splice(i+1, currentArrayLength);
+				}
+				else {
+					currentArray.splice(i, currentArrayLength);
+				}
+				break;
+			}
+		}
+		this._currentPartIndex = Math.max(0, Math.min(this._currentPartIndex, currentArray.length-1));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setValue</span>(<span class="arguments">aValue, aDelay</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aDelay</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setValue = function(aValue, aDelay) {
+		
+		aDelay = VariableAliases.valueWithDefault(aDelay, 0);
+		
+		if(isNaN(aDelay)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValue", "Time is NaN, can't animate " + aValue + ", " + aDelay + ".");
+			return this;
+		}
+		
+		var currentTime = this._referenceTime.getValue();
+		var newPart = SetValueTimelinePart.create(aValue, currentTime+aDelay, 0);
+		this.addPart(newPart);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setValueAt</span>(<span class="arguments">aValue, aTime</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aTime</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setValueAt = function(aValue, aTime) {
+		
+		if(isNaN(aTime)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setValueAt", "Time is NaN, can't animate " + aValue + ", " + aTime + ".");
+			return this;
+		}
+		
+		var newPart = SetValueTimelinePart.create(aValue, aTime, 0);
+		this.addPart(newPart);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">animateValue</span>(<span class="arguments">aValue, aTime, aInterpolation, aDelay</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aTime</div><div class="argumentDescription">aInterpolation</div><div class="argumentDescription">aDelay</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.animateValue = function(aValue, aTime, aInterpolation, aDelay) {
+		
+		aDelay = VariableAliases.valueWithDefault(aDelay, 0);
+		
+		if(isNaN(aTime) || isNaN(aDelay)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValue", "Time is NaN, can't animate " + aValue + ", " + aTime + ", " + aInterpolation + ", " + aDelay + ".");
+			return this;
+		}
+		
+		var currentTime = this._referenceTime.getValue();
+		var startValue = this.getValueAt(currentTime+aDelay);
+		
+		this.animateValueAt(aValue, aTime, aInterpolation, currentTime+aDelay);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">animateValueAt</span>(<span class="arguments">aValue, aTime, aInterpolation, aStartTime</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValue</div><div class="argumentDescription">aTime</div><div class="argumentDescription">aInterpolation</div><div class="argumentDescription">aStartTime</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.animateValueAt = function(aValue, aTime, aInterpolation, aStartTime) {
+		
+		if(isNaN(aTime) || isNaN(aStartTime)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "animateValueAt", "Time is NaN, can't animate " + aValue + ", " + aTime + ", " + aInterpolation + ", " + aStartTime + ".");
+			return this;
+		}
+		
+		var startValue = this.getValueAt(aStartTime);
+		
+		if(typeof(aInterpolation) === JavascriptObjectTypes.TYPE_STRING) {
+			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(aInterpolation);
+		}
+		else if(aInterpolation === null) {
+			aInterpolation = dbm.singletons.dbmAnimationManager.getInterpolationObject(InterpolationTypes.LINEAR);
+		}
+		
+		var newPart = InterpolationTimelinePart.create(startValue, aValue, aInterpolation, aStartTime, aTime);
+		this.addPart(newPart);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addPart</span>(<span class="arguments">aPart</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPart</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addPart = function(aPart) {
+		this._stopPartsAt(aPart.startApplyTime);
+		this._parts.push(aPart);
+		this._partChange.setAsDirty();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setParts</span>(<span class="arguments">aParts</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParts</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setParts = function(aParts) {
+		this.clear();
+		this._parts = aParts;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">clear</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.clear = function() {
+		this._parts.splice(0, this._parts.length);
+		this._partChange.setAsDirty();
+		this._currentPartIndex = 0;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">clearAt</span>(<span class="arguments">aTime</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTime</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.clearAt = function(aTime) {
+		this._stopPartsAt(aTime);
+		this._partChange.setAsDirty();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.performDestroy = function() {
+		
+		ClassReference.softDestroyArrayIfExists(this._parts);
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Checks if a variable is owned by this object. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName - The name of the variable.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if this object is the owner of a variable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		
+		switch(aName) {
+			case "_referenceTime":
+				return false;
+		}
+		
+		return this.superCall(aName);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._parts = null;
+		this._currentPartIndex = null;
+		
+		this._startValue = null;
+		this._partChange = null;
+		this._anyChange = null;
+		this._referenceTime = null;
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aStartValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStartValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aStartValue) {
+		var newTimeline = (new ClassReference()).init();
+		newTimeline.setStartValue(aStartValue);
+		return newTimeline;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>ErrorManager</h1>
+					<div class="classPath">dbm.core.globalobjects.errormanager.ErrorManager</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Global manager for handling errors.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.errormanager.ErrorManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.errormanager.ErrorManager");
+	//"use strict";
+	
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	
+	
+	
+	/**
+	 * Initializes the object.
+	 *
+	 * @return self
+	 */
+	objectFunctions._init = function _init() {
+		//console.log("dbm.core.globalobjects.errormanager.ErrorManager::_init");
+		
+		this.superCall();
+		
+		this._handlers = new Array();
+		this._idNumber = 0;
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Adds a handler that gets called with every message.
+	 *
+	 * @param	aHandler	{ErrorHandlerInterface}	The handler.
+	 */
+	objectFunctions.addHandler = function addHandler(aHandler) {
+		//console.log("dbm.core.globalobjects.errormanager.ErrorManager::addHandler");
+		this._handlers.push(aHandler);
+	}; //End function addHandler
+	
+	/**
+	 * Reports errors, warning and log messages.
+	 *
+	 * @param	aType			{enum: ReportTypes}			The type of report.
+	 * @param	aLevel			{enum: ReportLevelTypes}	The level of severety.
+	 * @param	aObject			{*}							The object that sends the report.
+	 * @param	aFunctionName	{String}					The name of the function that sends the report.
+	 * @param	aData			{*}							The data for the report.
+	 */
+	objectFunctions.report = function report(aType, aLevel, aObject, aFunctionName, aData) {
+		
+		var currentId = this._idNumber++;
+		var currentTimeStamp = new Date().valueOf();
+		
+		var currentArray = this._handlers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentHandler = currentArray[i];
+			currentHandler.report(currentId, currentTimeStamp, aType, aLevel, aObject, aFunctionName, aData);
+		}
+	}; //End function report
+	
+	/**
+	 * Reports an error catched from a try statement.
+	 *
+	 * @param	aObject			{*}			The object that sends the report.
+	 * @param	aFunctionName	{String}	The name of the function that sends the report.
+	 * @param	aError			{Error}		The error that occured.
+	 */
+	objectFunctions.reportError = function reportError(aObject, aFunctionName, aError) {
+		
+		var currentId = this._idNumber++;
+		var currentTimeStamp = new Date().valueOf();
+		
+		var currentArray = this._handlers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentHandler = currentArray[i];
+			
+			currentHandler.reportError(currentId, currentTimeStamp, aObject, aFunctionName, aError);
+		}
+	}; //End function reportError
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Initializes the object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function _init() {
+		//console.log("dbm.core.globalobjects.errormanager.ErrorManager::_init");
+		
+		this.superCall();
+		
+		this._handlers = new Array();
+		this._idNumber = 0;
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addHandler</span>(<span class="arguments">aHandler:<span class="unknownType">{ErrorHandlerInterface}</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Adds a handler that gets called with every message.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aHandler:<span class="unknownType">{ErrorHandlerInterface}</span> - The handler.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addHandler = function addHandler(aHandler) {
+		//console.log("dbm.core.globalobjects.errormanager.ErrorManager::addHandler");
+		this._handlers.push(aHandler);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">report</span>(<span class="arguments">aType:<span class="unknownType">{enum: ReportTypes}</span>, aLevel:<span class="unknownType">{enum: ReportLevelTypes}</span>, aObject:<span class="unknownType">{*}</span>, aFunctionName:<span class="unknownType">{String}</span>, aData:<span class="unknownType">{*}</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Reports errors, warning and log messages.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aType:<span class="unknownType">{enum: ReportTypes}</span> - The type of report.</div><div class="argumentDescription">aLevel:<span class="unknownType">{enum: ReportLevelTypes}</span> - The level of severety.</div><div class="argumentDescription">aObject:<span class="unknownType">{*}</span> - The object that sends the report.</div><div class="argumentDescription">aFunctionName:<span class="unknownType">{String}</span> - The name of the function that sends the report.</div><div class="argumentDescription">aData:<span class="unknownType">{*}</span> - The data for the report.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.report = function report(aType, aLevel, aObject, aFunctionName, aData) {
+		
+		var currentId = this._idNumber++;
+		var currentTimeStamp = new Date().valueOf();
+		
+		var currentArray = this._handlers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentHandler = currentArray[i];
+			currentHandler.report(currentId, currentTimeStamp, aType, aLevel, aObject, aFunctionName, aData);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">reportError</span>(<span class="arguments">aObject:<span class="unknownType">{*}</span>, aFunctionName:<span class="unknownType">{String}</span>, aError:<span class="unknownType">{Error}</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Reports an error catched from a try statement.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aObject:<span class="unknownType">{*}</span> - The object that sends the report.</div><div class="argumentDescription">aFunctionName:<span class="unknownType">{String}</span> - The name of the function that sends the report.</div><div class="argumentDescription">aError:<span class="unknownType">{Error}</span> - The error that occured.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.reportError = function reportError(aObject, aFunctionName, aError) {
+		
+		var currentId = this._idNumber++;
+		var currentTimeStamp = new Date().valueOf();
+		
+		var currentArray = this._handlers;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentHandler = currentArray[i];
+			
+			currentHandler.reportError(currentId, currentTimeStamp, aObject, aFunctionName, aError);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					</div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

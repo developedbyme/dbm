@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>TreeStructureItemView</h1>
+					<div class="classPath">dbm.gui.data.treestructure.TreeStructureItemView</div>
+					<div class="classInheritance"><a title="dbm.gui.DisplayBaseObject" href="../../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.flow.nodes.math.AdditionNode" href="../../../flow/nodes/math/AdditionNode.html">AdditionNode</a>, <a title="dbm.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.flow.nodes.logic.BooleanSwitchedNode" href="../../../flow/nodes/logic/BooleanSwitchedNode.html">BooleanSwitchedNode</a>, <a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../../core/extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.objectparts.ExtendedEventProperty" href="../../../core/objectparts/ExtendedEventProperty.html">ExtendedEventProperty</a>, <a title="dbm.constants.extendedevents.GenericExtendedEventIds" href="../../../constants/extendedevents/GenericExtendedEventIds.html">GenericExtendedEventIds</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.extendedevent.commands.basic.SetPropertyCommand" href="../../../core/extendedevent/commands/basic/SetPropertyCommand.html">SetPropertyCommand</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var TreeStructureItemView = dbm.importClass("dbm.gui.data.treestructure.TreeStructureItemView");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.gui.data.treestructure.TreeStructureItemView", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.gui.data.treestructure.TreeStructureItemView");
+	//"use strict";
+	
+	//Self reference
+	var TreeStructureItemView = dbm.importClass("dbm.gui.data.treestructure.TreeStructureItemView");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var ExtendedEventProperty = dbm.importClass("dbm.core.objectparts.ExtendedEventProperty");
+	var BooleanSwitchedNode = dbm.importClass("dbm.flow.nodes.logic.BooleanSwitchedNode");
+	var AdditionNode = dbm.importClass("dbm.flow.nodes.math.AdditionNode");
+	
+	//Utils
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var SetPropertyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
+	
+	//Constants
+	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
+	
+	objectFunctions._init = function() {
+		//console.log("dbm.gui.data.treestructure.TreeStructureItemView::_init");
+		
+		this.superCall();
+		
+		this.setElementAsPositioned();
+		
+		this._parentTreeStructureItemView = null;
+		this._treeStructureItem = null;
+		this._name = this.createProperty("name", "");
+		this._ownHeight = this.createProperty("ownHeight", 20);
+		var firstAdditionNode = this.addDestroyableObject(AdditionNode.create(this.getProperty("y"), this._ownHeight));
+		this._childYPosition = this.createProperty("childYPosition", firstAdditionNode.getProperty("outputValue"));
+		this._nextYPosition = this.createProperty("nextYPosition", this._childYPosition);
+		
+		this._isOpen = this.createProperty("isOpen", false);
+		var switchNode = this.addDestroyableObject(BooleanSwitchedNode.create(this._isOpen, GenericExtendedEventIds.OPEN, GenericExtendedEventIds.CLOSE));
+		this._outputState = this.createProperty("outputState", switchNode.getProperty("outputValue"));
+		this._isOpenCommands = this.addProperty("isOpenCommands", ExtendedEventProperty.create(GenericExtendedEventIds.CLOSE).changeToExternalEventController(this.getExtendedEvent()));
+		this._isOpenCommands.connectInput(this._outputState);
+		this._display.connectInput(this._isOpenCommands);
+		this._childItems = new Array();
+		
+		this._nameChangedCommand = SetPropertyCommand.createCommand(this._name, GetVariableObject.createCommand(GetVariableObject.createSelectDataCommand(), "newValue"));
+		this._nameChangedCommand.retain();
+		this.addDestroyableObject(this._nameChangedCommand);
+		
+		return this;
+	};
+	
+	objectFunctions.setTreeStructureItem = function(aTreeStructureItem) {
+		this._treeStructureItem = aTreeStructureItem;
+		
+		this._name.setValue(aTreeStructureItem.getName());
+		this._treeStructureItem.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NAME_CHANGED, this._nameChangedCommand);
+		
+		return this;
+	};
+	
+	objectFunctions.getTreeStructureItem = function() {
+		return this._treeStructureItem;
+	};
+	
+	objectFunctions.getChildItems = function() {
+		return this._childItems;
+	};
+	
+	objectFunctions.getParentTreeStructureItemView = function() {
+		return this._parentTreeStructureItemView;
+	};
+	
+	objectFunctions.open = function() {
+		this._isOpen.setValue(true);
+		this._isOpenCommands.update();
+	};
+	
+	objectFunctions.close = function() {
+		this._isOpen.setValue(false);
+		this._isOpenCommands.update();
+	};
+	
+	objectFunctions.toggleOpenClose = function() {
+		//console.log("dbm.gui.data.treestructure.TreeStructureItemView::toggleOpenClose");
+		
+		this._isOpen.setValue(!this._isOpen.getValue());
+		this._isOpenCommands.update();
+	};
+	
+	objectFunctions._linkRegistration_addChildTreeStructureItem = function(aChild) {
+		
+		if(this._childItems.length === 0) {
+			aChild.setPropertyInput("y", this._childYPosition);
+		}
+		else {
+			var lastItem = this._childItems[this._childItems.length-1];
+			aChild.setPropertyInput("y", lastItem.getProperty("nextYPosition"));
+		}
+		
+		this.getProperty("nextYPosition").disconnectInput().connectInput(aChild.getProperty("nextYPosition"));
+		
+		this._childItems.push(aChild);
+	};
+	
+	objectFunctions._linkRegistration_addParentTreeStructureItem = function(aParent) {
+		this._parentTreeStructureItemView = aParent;
+	};
+	
+	objectFunctions._linkRegistration_removeChildTreeStructureItem = function(aChild) {
+		
+		var index = ArrayFunctions.indexOfInArray(this._childItems, aChild);
+		if(index === -1) {
+			//METODO: error message
+			return;
+		}
+		
+		var newLength = this._childItems.length-1;
+		if(index === newLength) {
+			if(newLength === 0) {
+				this.getProperty("nextYPosition").disconnectInput().connectInput(this._childYPosition);
+			}
+			else {
+				this.getProperty("nextYPosition").disconnectInput().connectInput(this._childItems[newLength-1].getProperty("nextYPosition"));
+			}
+		}
+		else {
+			var nextItem = this._childItems[index+1];
+			if(index === 0) {
+				nextItem.getProperty("y").disconnectInput().connectInput(this._childYPosition);
+			}
+			else {
+				var lastItem = this._childItems[index-1];
+				nextItem.getProperty("y").disconnectInput().connectInput(lastItem.getProperty("nextYPosition"));
+			}
+		}
+		
+		this._childItems.splice(index, 1);
+	};
+	
+	objectFunctions._linkRegistration_removeParentTreeStructureItem = function(aParent) {
+		this._parentTreeStructureItemView = null;
+	};
+	
+	objectFunctions.destroyChildren = function() {
+		var currentArray = this._childItems;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentChild = currentArray[currentArrayLength-i-1];
+			this._linkRegistration_removeChildTreeStructureItem(currentChild);
+			currentChild._linkRegistration_removeParentTreeStructureItem(this);
+			currentChild.destroy();
+		}
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		switch(aName) {
+			case GenericExtendedEventIds.OPEN:
+			case GenericExtendedEventIds.CLOSE:
+				return true;
+		}
+		return this.superCall(aName);
+	};
+	
+	objectFunctions.performDestroy = function() {
+		//console.log("dbm.gui.data.treestructure.TreeStructureItemView::performDestroy");
+		
+		if(this._treeStructureItem !== null) {
+			this._treeStructureItem.getExtendedEvent().removeCommandFromEvent(GenericExtendedEventIds.NAME_CHANGED, this._nameChangedCommand);
+		}
+		
+		if(this._parentTreeStructureItemView !== null) {
+			this._parentTreeStructureItemView._linkRegistration_removeChildTreeStructureItem(this);
+			this._linkRegistration_removeParentTreeStructureItem(this._parentTreeStructureItemView);
+		}
+		
+		if(this._childItems !== null) {
+			this.destroyChildren();
+		}
+		
+		this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		//console.log("dbm.gui.data.treestructure.TreeStructureItemView::setAllReferencesToNull");
+		
+		this._name = null;
+		this._childItems = null;
+		this._treeStructureItem = null;
+		this._isOpen = null;
+		this._outputState = null;
+		this._isOpenCommands = null;
+		this._parentTreeStructureItemView = null;
+		this._ownHeight = null;
+		this._childYPosition = null;
+		this._nextYPosition = null;
+		this._nameChangedCommand = null;
+		
+		this.superCall();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_treeStructureItem":
+				return false;
+		}
+		return this.superCall(aName);
+	};
+	
+	staticFunctions.create = function(aElement) {
+		var newNode = (new ClassReference()).init();
+		
+		newNode.setElement(aElement);
+		
+		return newNode;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.gui.data.treestructure.TreeStructureItemView::_init");
+		
+		this.superCall();
+		
+		this.setElementAsPositioned();
+		
+		this._parentTreeStructureItemView = null;
+		this._treeStructureItem = null;
+		this._name = this.createProperty("name", "");
+		this._ownHeight = this.createProperty("ownHeight", 20);
+		var firstAdditionNode = this.addDestroyableObject(AdditionNode.create(this.getProperty("y"), this._ownHeight));
+		this._childYPosition = this.createProperty("childYPosition", firstAdditionNode.getProperty("outputValue"));
+		this._nextYPosition = this.createProperty("nextYPosition", this._childYPosition);
+		
+		this._isOpen = this.createProperty("isOpen", false);
+		var switchNode = this.addDestroyableObject(BooleanSwitchedNode.create(this._isOpen, GenericExtendedEventIds.OPEN, GenericExtendedEventIds.CLOSE));
+		this._outputState = this.createProperty("outputState", switchNode.getProperty("outputValue"));
+		this._isOpenCommands = this.addProperty("isOpenCommands", ExtendedEventProperty.create(GenericExtendedEventIds.CLOSE).changeToExternalEventController(this.getExtendedEvent()));
+		this._isOpenCommands.connectInput(this._outputState);
+		this._display.connectInput(this._isOpenCommands);
+		this._childItems = new Array();
+		
+		this._nameChangedCommand = SetPropertyCommand.createCommand(this._name, GetVariableObject.createCommand(GetVariableObject.createSelectDataCommand(), "newValue"));
+		this._nameChangedCommand.retain();
+		this.addDestroyableObject(this._nameChangedCommand);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setTreeStructureItem</span>(<span class="arguments">aTreeStructureItem</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aTreeStructureItem</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setTreeStructureItem = function(aTreeStructureItem) {
+		this._treeStructureItem = aTreeStructureItem;
+		
+		this._name.setValue(aTreeStructureItem.getName());
+		this._treeStructureItem.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.NAME_CHANGED, this._nameChangedCommand);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getTreeStructureItem</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getTreeStructureItem = function() {
+		return this._treeStructureItem;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getChildItems</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getChildItems = function() {
+		return this._childItems;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getParentTreeStructureItemView</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getParentTreeStructureItemView = function() {
+		return this._parentTreeStructureItemView;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">open</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.open = function() {
+		this._isOpen.setValue(true);
+		this._isOpenCommands.update();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">close</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.close = function() {
+		this._isOpen.setValue(false);
+		this._isOpenCommands.update();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">toggleOpenClose</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.toggleOpenClose = function() {
+		//console.log("dbm.gui.data.treestructure.TreeStructureItemView::toggleOpenClose");
+		
+		this._isOpen.setValue(!this._isOpen.getValue());
+		this._isOpenCommands.update();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_linkRegistration_addChildTreeStructureItem</span>(<span class="arguments">aChild</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aChild</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._linkRegistration_addChildTreeStructureItem = function(aChild) {
+		
+		if(this._childItems.length === 0) {
+			aChild.setPropertyInput("y", this._childYPosition);
+		}
+		else {
+			var lastItem = this._childItems[this._childItems.length-1];
+			aChild.setPropertyInput("y", lastItem.getProperty("nextYPosition"));
+		}
+		
+		this.getProperty("nextYPosition").disconnectInput().connectInput(aChild.getProperty("nextYPosition"));
+		
+		this._childItems.push(aChild);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_linkRegistration_addParentTreeStructureItem</span>(<span class="arguments">aParent</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParent</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._linkRegistration_addParentTreeStructureItem = function(aParent) {
+		this._parentTreeStructureItemView = aParent;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_linkRegistration_removeChildTreeStructureItem</span>(<span class="arguments">aChild</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aChild</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._linkRegistration_removeChildTreeStructureItem = function(aChild) {
+		
+		var index = ArrayFunctions.indexOfInArray(this._childItems, aChild);
+		if(index === -1) {
+			//METODO: error message
+			return;
+		}
+		
+		var newLength = this._childItems.length-1;
+		if(index === newLength) {
+			if(newLength === 0) {
+				this.getProperty("nextYPosition").disconnectInput().connectInput(this._childYPosition);
+			}
+			else {
+				this.getProperty("nextYPosition").disconnectInput().connectInput(this._childItems[newLength-1].getProperty("nextYPosition"));
+			}
+		}
+		else {
+			var nextItem = this._childItems[index+1];
+			if(index === 0) {
+				nextItem.getProperty("y").disconnectInput().connectInput(this._childYPosition);
+			}
+			else {
+				var lastItem = this._childItems[index-1];
+				nextItem.getProperty("y").disconnectInput().connectInput(lastItem.getProperty("nextYPosition"));
+			}
+		}
+		
+		this._childItems.splice(index, 1);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_linkRegistration_removeParentTreeStructureItem</span>(<span class="arguments">aParent</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParent</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._linkRegistration_removeParentTreeStructureItem = function(aParent) {
+		this._parentTreeStructureItemView = null;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">destroyChildren</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.destroyChildren = function() {
+		var currentArray = this._childItems;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentChild = currentArray[currentArrayLength-i-1];
+			this._linkRegistration_removeChildTreeStructureItem(currentChild);
+			currentChild._linkRegistration_removeParentTreeStructureItem(this);
+			currentChild.destroy();
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		switch(aName) {
+			case GenericExtendedEventIds.OPEN:
+			case GenericExtendedEventIds.CLOSE:
+				return true;
+		}
+		return this.superCall(aName);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.performDestroy = function() {
+		//console.log("dbm.gui.data.treestructure.TreeStructureItemView::performDestroy");
+		
+		if(this._treeStructureItem !== null) {
+			this._treeStructureItem.getExtendedEvent().removeCommandFromEvent(GenericExtendedEventIds.NAME_CHANGED, this._nameChangedCommand);
+		}
+		
+		if(this._parentTreeStructureItemView !== null) {
+			this._parentTreeStructureItemView._linkRegistration_removeChildTreeStructureItem(this);
+			this._linkRegistration_removeParentTreeStructureItem(this._parentTreeStructureItemView);
+		}
+		
+		if(this._childItems !== null) {
+			this.destroyChildren();
+		}
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		//console.log("dbm.gui.data.treestructure.TreeStructureItemView::setAllReferencesToNull");
+		
+		this._name = null;
+		this._childItems = null;
+		this._treeStructureItem = null;
+		this._isOpen = null;
+		this._outputState = null;
+		this._isOpenCommands = null;
+		this._parentTreeStructureItemView = null;
+		this._ownHeight = null;
+		this._childYPosition = null;
+		this._nextYPosition = null;
+		this._nameChangedCommand = null;
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_treeStructureItem":
+				return false;
+		}
+		return this.superCall(aName);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aElement</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aElement) {
+		var newNode = (new ClassReference()).init();
+		
+		newNode.setElement(aElement);
+		
+		return newNode;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

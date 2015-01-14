@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>JavascriptEventIds</h1>
+					<div class="classPath">dbm.constants.JavascriptEventIds</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.constants.JavascriptEventIds", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.JavascriptEventIds");
+	
+	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	
+	//MENOTE: DOM unspecified
+	staticFunctions.DOM_CONTENT_LOADED = "DOMContentLoaded";
+	staticFunctions.PROGRESS = "progress";
+	
+	//MENOTE: DOM level 3
+	//MENOTE: List of which element and which type they are can be found at http://www.w3.org/TR/DOM-Level-3-Events/#event-types-list
+	staticFunctions.ABORT = "abort";
+	staticFunctions.BLUR = "blur";
+	staticFunctions.CLICK = "click";
+	staticFunctions.COMPOSITION_START = "compositionstart";
+	staticFunctions.COMPOSITION_UPDATE = "compositionupdate";
+	staticFunctions.COMPOSITION_END = "compositionend";
+	staticFunctions.DOUBLE_CLICK = "dblclick";
+	staticFunctions.DOM_ACTIVATE = "DOMActivate";
+	staticFunctions.DOM_ATTRIBUTE_NAME_CHANGED = "DOMAttributeNameChanged";
+	staticFunctions.DOM_ATTRIBUTE_MODIFIED = "DOMAttrModified";
+	staticFunctions.DOM_CHARACTER_DATA_MODIFIED = "DOMCharacterDataModified";
+	staticFunctions.DOM_ELEMENT_NAME_CHANGED = "DOMElementNameChanged";
+	staticFunctions.DOM_FOCUS_IN = "DOMFocusIn";
+	staticFunctions.DOM_FOCUS_OUT = "DOMFocusOut";
+	staticFunctions.DOM_NODE_INSERTED = "DOMNodeInserted";
+	staticFunctions.DOM_NODE_INSERTED_INTO_DOCUMENT = "DOMNodeInsertedIntoDocument";
+	staticFunctions.DOM_NODE_REMOVED = "DOMNodeRemoved";
+	staticFunctions.DOM_NODE_REMOVED_FROM_DOCUMENT = "DOMNodeRemovedFromDocument";
+	staticFunctions.DOM_SUBTREE_MODIFIED = "DOMSubtreeModified";
+	staticFunctions.ERROR = "error";
+	staticFunctions.FOCUS = "focus";
+	staticFunctions.FOCUS_IN = "focusin";
+	staticFunctions.FOCUS_OUT = "focusout";
+	staticFunctions.KEY_DOWN = "keydown";
+	staticFunctions.KEY_PRESS = "keypress";
+	staticFunctions.KEY_UP = "keyup";
+	staticFunctions.LOAD = "load";
+	staticFunctions.MOUSE_DOWN = "mousedown";
+	staticFunctions.MOUSE_ENTER = "mouseenter";
+	staticFunctions.MOUSE_LEAVE = "mouseleave";
+	staticFunctions.MOUSE_MOVE = "mousemove";
+	staticFunctions.MOUSE_OUT = "mouseout";
+	staticFunctions.MOUSE_OVER = "mouseover";
+	staticFunctions.MOUSE_UP = "mouseup";
+	staticFunctions.RESIZE = "resize";
+	staticFunctions.SCROLL = "scroll";
+	staticFunctions.SELECT = "select";
+	staticFunctions.TEXT_INPUT = "textinput";
+	staticFunctions.UNLOAD = "unload";
+	staticFunctions.WHEEL = "wheel";
+
+	//MENOTE: DOM level 2
+	staticFunctions.CHANGE = "change";
+	staticFunctions.RESET = "reset";
+	staticFunctions.SUBMIT = "submit";
+	
+	//MENOTE: Orientation event
+	staticFunctions.DEVICE_ORIENTATION = "deviceorientation";
+	staticFunctions.COMPASS_NEEDS_CALIBRATION = "compassneedscalibration";
+	staticFunctions.DEVICE_MOTION = "devicemotion";
+	
+	//MENOTE: Touch event
+	staticFunctions.TOUCH_START = "touchstart";
+	staticFunctions.TOUCH_END = "touchend";
+	staticFunctions.TOUCH_MOVE = "touchmove";
+	staticFunctions.TOUCH_ENTER = "touchenter";
+	staticFunctions.TOUCH_LEAVE = "touchleave";
+	staticFunctions.TOUCH_CANCEL = "touchcancel";
+	
+	//MENOTE: Drag and drop events
+	staticFunctions.DRAG_START = "dragstart";
+	staticFunctions.DRAG_ENTER = "dragenter";
+	staticFunctions.DRAG_OVER = "dragover";
+	staticFunctions.DRAG_LEAVE = "dragleave";
+	staticFunctions.DRAG = "drag";
+	staticFunctions.DROP = "drop";
+	staticFunctions.DRAG_END = "dragend";
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_CONTENT_LOADED</span><span class="type"></span> = <span class="value">DOMContentLoaded</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">PROGRESS</span><span class="type"></span> = <span class="value">progress</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">ABORT</span><span class="type"></span> = <span class="value">abort</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">BLUR</span><span class="type"></span> = <span class="value">blur</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">CLICK</span><span class="type"></span> = <span class="value">click</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">COMPOSITION_START</span><span class="type"></span> = <span class="value">compositionstart</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">COMPOSITION_UPDATE</span><span class="type"></span> = <span class="value">compositionupdate</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">COMPOSITION_END</span><span class="type"></span> = <span class="value">compositionend</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOUBLE_CLICK</span><span class="type"></span> = <span class="value">dblclick</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_ACTIVATE</span><span class="type"></span> = <span class="value">DOMActivate</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_ATTRIBUTE_NAME_CHANGED</span><span class="type"></span> = <span class="value">DOMAttributeNameChanged</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_ATTRIBUTE_MODIFIED</span><span class="type"></span> = <span class="value">DOMAttrModified</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_CHARACTER_DATA_MODIFIED</span><span class="type"></span> = <span class="value">DOMCharacterDataModified</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_ELEMENT_NAME_CHANGED</span><span class="type"></span> = <span class="value">DOMElementNameChanged</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_FOCUS_IN</span><span class="type"></span> = <span class="value">DOMFocusIn</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_FOCUS_OUT</span><span class="type"></span> = <span class="value">DOMFocusOut</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_NODE_INSERTED</span><span class="type"></span> = <span class="value">DOMNodeInserted</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_NODE_INSERTED_INTO_DOCUMENT</span><span class="type"></span> = <span class="value">DOMNodeInsertedIntoDocument</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_NODE_REMOVED</span><span class="type"></span> = <span class="value">DOMNodeRemoved</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_NODE_REMOVED_FROM_DOCUMENT</span><span class="type"></span> = <span class="value">DOMNodeRemovedFromDocument</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DOM_SUBTREE_MODIFIED</span><span class="type"></span> = <span class="value">DOMSubtreeModified</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">ERROR</span><span class="type"></span> = <span class="value">error</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">FOCUS</span><span class="type"></span> = <span class="value">focus</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">FOCUS_IN</span><span class="type"></span> = <span class="value">focusin</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">FOCUS_OUT</span><span class="type"></span> = <span class="value">focusout</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">KEY_DOWN</span><span class="type"></span> = <span class="value">keydown</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">KEY_PRESS</span><span class="type"></span> = <span class="value">keypress</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">KEY_UP</span><span class="type"></span> = <span class="value">keyup</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">LOAD</span><span class="type"></span> = <span class="value">load</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">MOUSE_DOWN</span><span class="type"></span> = <span class="value">mousedown</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">MOUSE_ENTER</span><span class="type"></span> = <span class="value">mouseenter</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">MOUSE_LEAVE</span><span class="type"></span> = <span class="value">mouseleave</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">MOUSE_MOVE</span><span class="type"></span> = <span class="value">mousemove</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">MOUSE_OUT</span><span class="type"></span> = <span class="value">mouseout</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">MOUSE_OVER</span><span class="type"></span> = <span class="value">mouseover</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">MOUSE_UP</span><span class="type"></span> = <span class="value">mouseup</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">RESIZE</span><span class="type"></span> = <span class="value">resize</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">SCROLL</span><span class="type"></span> = <span class="value">scroll</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">SELECT</span><span class="type"></span> = <span class="value">select</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TEXT_INPUT</span><span class="type"></span> = <span class="value">textinput</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">UNLOAD</span><span class="type"></span> = <span class="value">unload</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">WHEEL</span><span class="type"></span> = <span class="value">wheel</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">CHANGE</span><span class="type"></span> = <span class="value">change</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">RESET</span><span class="type"></span> = <span class="value">reset</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">SUBMIT</span><span class="type"></span> = <span class="value">submit</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DEVICE_ORIENTATION</span><span class="type"></span> = <span class="value">deviceorientation</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">COMPASS_NEEDS_CALIBRATION</span><span class="type"></span> = <span class="value">compassneedscalibration</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DEVICE_MOTION</span><span class="type"></span> = <span class="value">devicemotion</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TOUCH_START</span><span class="type"></span> = <span class="value">touchstart</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TOUCH_END</span><span class="type"></span> = <span class="value">touchend</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TOUCH_MOVE</span><span class="type"></span> = <span class="value">touchmove</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TOUCH_ENTER</span><span class="type"></span> = <span class="value">touchenter</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TOUCH_LEAVE</span><span class="type"></span> = <span class="value">touchleave</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">TOUCH_CANCEL</span><span class="type"></span> = <span class="value">touchcancel</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DRAG_START</span><span class="type"></span> = <span class="value">dragstart</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DRAG_ENTER</span><span class="type"></span> = <span class="value">dragenter</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DRAG_OVER</span><span class="type"></span> = <span class="value">dragover</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DRAG_LEAVE</span><span class="type"></span> = <span class="value">dragleave</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DRAG</span><span class="type"></span> = <span class="value">drag</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DROP</span><span class="type"></span> = <span class="value">drop</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DRAG_END</span><span class="type"></span> = <span class="value">dragend</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					</div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>DisplayBaseObject</h1>
+					<div class="classPath">dbm.gui.DisplayBaseObject</div>
+					<div class="classInheritance"><a title="dbm.core.ExtendedEventBaseObject" href="../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Base object for all objects that has an element representation in the DOM.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="dbm.gui.form.sliders.AbstractSlider" href="form/sliders/AbstractSlider.html">AbstractSlider</a>, <a title="dbm.gui.buttons.BaseButton" href="buttons/BaseButton.html">BaseButton</a>, <a title="dbm.workspace.gui.panels.BasePanel" href="../workspace/gui/panels/BasePanel.html">BasePanel</a>, <a title="dbm.gui.canvas.CanvasView" href="canvas/CanvasView.html">CanvasView</a>, <a title="dbm.thirdparty.codemirror.CodeMirrorView" href="../thirdparty/codemirror/CodeMirrorView.html">CodeMirrorView</a>, <a title="dbm.workspace.gui.console.ConsoleLine" href="../workspace/gui/console/ConsoleLine.html">ConsoleLine</a>, <a title="dbm.gui.form.FileInputField" href="form/FileInputField.html">FileInputField</a>, <a title="dbm.gui.text.HtmlTextElement" href="text/HtmlTextElement.html">HtmlTextElement</a>, <a title="dbm.gui.form.InputField" href="form/InputField.html">InputField</a>, <a title="dbm.gui.media.MediaElementBaseObject" href="media/MediaElementBaseObject.html">MediaElementBaseObject</a>, <a title="dbm.gui.images.StaticImage" href="images/StaticImage.html">StaticImage</a>, <a title="dbm.gui.abstract.switchablearea.SwitchableAreaHolder" href="abstract/switchablearea/SwitchableAreaHolder.html">SwitchableAreaHolder</a>, <a title="dbm.gui.text.TextElement" href="text/TextElement.html">TextElement</a>, <a title="dbm.gui.data.treestructure.TreeStructureItemView" href="data/treestructure/TreeStructureItemView.html">TreeStructureItemView</a>, <a title="dbm.gui.data.treestructure.TreeStructureView" href="data/treestructure/TreeStructureView.html">TreeStructureView</a>, <a title="dbm.workspace.gui.Workspace" href="../workspace/gui/Workspace.html">Workspace</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.utils.css.CssFunctions" href="../utils/css/CssFunctions.html">CssFunctions</a>, <a title="dbm.utils.htmldom.DomManipulationFunctions" href="../utils/htmldom/DomManipulationFunctions.html">DomManipulationFunctions</a>, <a title="dbm.utils.htmldom.DomReferenceFunctions" href="../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a>, <a title="dbm.core.objectparts.ExternalPrefixedCssVariableProperty" href="../core/objectparts/ExternalPrefixedCssVariableProperty.html">ExternalPrefixedCssVariableProperty</a>, <a title="dbm.constants.ReportLevelTypes" href="../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.flow.nodes.math.round.RoundNode" href="../flow/nodes/math/round/RoundNode.html">RoundNode</a>, <a title="dbm.flow.nodes.internal.SetElementToCssPropertiesNode" href="../flow/nodes/internal/SetElementToCssPropertiesNode.html">SetElementToCssPropertiesNode</a>, <a title="dbm.flow.nodes.display.TransformElementNode" href="../flow/nodes/display/TransformElementNode.html">TransformElementNode</a>, <a title="dbm.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.gui.DisplayBaseObject", "dbm.core.ExtendedEventBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.gui.DisplayBaseObject");
+	//"use strict";
+	
+	//Self reference
+	var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var ExternalCssVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalCssVariableProperty");
+	var ExternalPrefixedCssVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalPrefixedCssVariableProperty");
+	var TransformElementNode = dbm.importClass("dbm.flow.nodes.display.TransformElementNode");
+	var SetElementToCssPropertiesNode = dbm.importClass("dbm.flow.nodes.internal.SetElementToCssPropertiesNode");
+	var RoundNode = dbm.importClass("dbm.flow.nodes.math.round.RoundNode");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	
+	//Utils
+	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
+	var CssFunctions = dbm.importClass("dbm.utils.css.CssFunctions");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	var DomManipulationFunctions = dbm.importClass("dbm.utils.htmldom.DomManipulationFunctions");
+	
+	//Constants
+	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.gui.DisplayBaseObject::_init");
+		
+		this.superCall();
+		
+		this._element = this.createProperty("element", null);
+		this._parentElement = this.createProperty("parentElement", null);
+		this._inDom = this.createProperty("inDom", false);
+		this._inDomOutput = this.createProperty("inDomOutput", false);
+		
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
+		this._display.connectInput(this._inDomOutput);
+		
+		this.createUpdateFunctionWithArguments("inDomUpdate", DomManipulationFunctions.setElementDomStatus, [this._element, this._parentElement, this._inDom], [this._inDomOutput]);
+		
+		return this;
+	};
+	
+	/**
+	 * Sets the view (Element) for this object.
+	 *
+	 * @param	aElement	Element		The view for this object.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.setElement = function(aElement) {
+		//console.log("dbm.gui.DisplayBaseObject::setElement");
+		if(aElement === null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setElement", "Trying to set element to null. Use removeElement() to remove element.");
+			this.removeElement();
+			return this;
+		}
+		else if(this._element.getValue() !== null) {
+			this.removeElement();
+		}
+		
+		this._element.setValue(aElement);
+		
+		if(aElement.parentNode !== null) { //MENOTE: should this check for having another parent set already?
+			this._parentElement.setValue(aElement.parentNode);
+			this._inDom.setValue(true);
+		}
+		this._inDomOutput.update();
+		
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
+			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, aElement);
+		}
+		
+		return this;
+	};
+	
+	/**
+	 * Removes the view for this object
+	 *
+	 * @return	self
+	 */
+	objectFunctions.removeElement = function() {
+		//console.log("dbm.gui.DisplayBaseObject::removeElement");
+		
+		var currentElement = this.getElement();
+		if(currentElement !== null &amp;&amp; currentElement.parentNode !== null) {
+			currentElement.parentNode.removeChild(currentElement);
+		}
+		
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
+			dbm.singletons.dbmHtmlDomManager.removeHtmlElement(this.getElement());
+		}
+		
+		this._element.setValue(null);
+		this._inDomOutput.update();
+		
+		return this;
+	};
+	
+	/**
+	 * Gets the view for this object.
+	 *
+	 * @return	Element		The view for this object.
+	 */
+	objectFunctions.getElement = function() {
+		return this._element.getValue();
+	};
+	
+	/**
+	 * Adds properties x and y to control the css for left and top.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.setElementAsPositioned = function() {
+		
+		this.createRoundedCssProperty("x", "roundedX", "left", UnitTypes.PX, 0);
+		this.createRoundedCssProperty("y", "roundedY", "top", UnitTypes.PX, 0);
+		
+		return this;
+	};
+	
+	/**
+	 * Adds properties to control the css transform of this object.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.setElementAsTransformed = function() {
+		
+		var x = this.createProperty("x", 0);
+		var y = this.createProperty("y", 0);
+		var scaleX = this.createProperty("scaleX", 1);
+		var scaleY = this.createProperty("scaleY", 1);
+		var rotate = this.createProperty("rotate", 0);
+		var pivotX = this.createProperty("pivotX", 0.5);
+		var pivotY = this.createProperty("pivotY", 0.5);
+		
+		var placementNode = TransformElementNode.create(this._element, x, y, scaleX, scaleY, rotate, pivotX, pivotY);
+		this._display.connectInput(placementNode.getProperty("display"));
+		this.addDestroyableObject(placementNode);
+		
+		return this;
+	};
+	
+	/**
+	 * Adds properties width and height to control the css for size.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.setElementAsSized = function() {
+		
+		this.createCssProperty("width", "width", UnitTypes.PX, null);
+		this.createCssProperty("height", "height", UnitTypes.PX, null);
+		
+		return this;
+	};
+	
+	/**
+	 * Sets the parent of this object.
+	 *
+	 * @param	aElement	Element|DisplayBaseObject	The parent of this object.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.setParent = function(aElement) {
+		
+		if(aElement instanceof DisplayBaseObject) {
+			this.setPropertyInput("parentElement", aElement.getProperty("element"));
+		}
+		else {
+			this.setPropertyInput("parentElement", aElement);
+		}
+		
+		return this;
+	};
+	
+	/**
+	 * Sets the parent of this object and adds the view to DOM.
+	 *
+	 * @param	aElement	Element|DisplayBaseObject	The parent of this object.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.addToParent = function(aElement) {
+		this.setParent(aElement);
+		this.addToDom();
+		
+		return this;
+	};
+	
+	/**
+	 * Adds the view to the DOM. This function can be called before either the lement or the parent is set.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.addToDom = function() {
+		//console.log("dbm.core.FlowBaseObject::addToDom");
+		//console.log(this._element.getValue());
+		
+		this._inDom.setValue(true);
+		this._inDomOutput.update();
+		
+		return this;
+	};
+	
+	/**
+	 * Removes the view from the DOM. This function can be called before either the lement or the parent is set.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.removeFromDom = function() {
+		
+		this._inDom.setValue(false);
+		this._inDomOutput.update();
+		
+		return this;
+	};
+	
+	/**
+	 * Sets a css style property on the element of this object.
+	 *
+	 * @param	aStyleProperty	String	The name of the property to set.
+	 * @param	aValue			*		The value to set the property to.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
+		
+		this._element.getValue().style.setProperty(aStyleProperty, aValue, "");
+		
+		return this;
+	};
+	
+	/**
+	 * Removes a css style property from the element of this object.
+	 *
+	 * @param	aStyleProperty	String	The name of the property to remove.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.removeStyleProperty = function(aStyleProperty) {
+		
+		this._element.getValue().style.removeProperty(aStyleProperty);
+		
+		return this;
+	};
+	
+	/**
+	 * Adds a property (alpha) to control the css opacity.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.enableAlpha = function() {
+		this.createCssProperty("alpha", "opacity", null, 1);
+		
+		return this;
+	};
+	
+	/**
+	 * Adds a property (z) to control the css z-index.
+	 *
+	 * @return	self
+	 */
+	objectFunctions.enableZIndex = function() {
+		this.createRoundedCssProperty("z", "roundedZ", "z-index", null, 0);
+		
+		return this;
+	};
+	
+	/**
+	 * Creates a property that controls a css style property after being rounded.
+	 *
+	 * @param	aName			String		The name of the new property.
+	 * @param	aRoundedName	String		The name of the rounded value property.
+	 * @param	aCssProperty	String		The name of the css style property to set.
+	 * @param	aUnit			UnitTypes	The unit for the css style property. (Optional, default UnitTypes.PX)
+	 * @param	aDefaultValue	*			The default value. (Optional)
+	 *
+	 * @return	ExternalCssVariableProperty		The newly created property.
+	 */
+	objectFunctions.createRoundedCssProperty = function(aName, aRoundedName, aCssProperty, aUnit, aDefaultValue) {
+		var inputProperty = this.createProperty(aName, aDefaultValue);
+		var roundedProperty = this.createCssProperty(aRoundedName, aCssProperty, aUnit, aDefaultValue);
+		
+		var roundNode = this.addDestroyableObject(RoundNode.create(inputProperty));
+		roundedProperty.connectInput(roundNode.getProperty("outputValue"));
+		
+		return inputProperty;
+	};
+	
+	/**
+	 * Creates a property that controls a css style property.
+	 *
+	 * @param	aName			String		The name of the new property.
+	 * @param	aCssProperty	String		The name of the css style property to set.
+	 * @param	aUnit			UnitTypes	The unit for the css style property. (Optional, default UnitTypes.PX)
+	 * @param	aDefaultValue	*			The default value. (Optional)
+	 *
+	 * @return	ExternalCssVariableProperty		The newly created property.
+	 */
+	objectFunctions.createCssProperty = function(aName, aCssProperty, aUnit, aDefaultValue) {
+		if(!VariableAliases.isSet(aUnit)) {
+			aUnit = CssFunctions.isLengthProperty(aCssProperty) ? UnitTypes.PX : null;
+		}
+		aDefaultValue = VariableAliases.valueWithDefault(aDefaultValue, null);
+		
+		var newProperty;
+		if(CssFunctions.isPrefixedProperty(aCssProperty)) {
+			newProperty = ExternalPrefixedCssVariableProperty.createWithoutExternalObject();
+		}
+		else {
+			newProperty = ExternalCssVariableProperty.createWithoutExternalObject();
+		}
+		
+		newProperty.setup(aCssProperty, aUnit, aDefaultValue);
+		this.addProperty(aName, newProperty);
+		this._display.connectInput(newProperty);
+		
+		var setElementNode = SetElementToCssPropertiesNode.create(this._element).addUpdateProperty(newProperty);
+		this._display.connectInput(setElementNode.getProperty("elementSet"));
+		this.addDestroyableObject(setElementNode);
+		
+		return newProperty;
+	};
+	
+	/**
+	 * Gets the HtmlCreator that can generate new elements in the same document as this object.
+	 *
+	 * @return	HtmlCreator		The HtmlCreator for the document that this object is located in. Null if this object doesn't have either element or parent.
+	 */
+	objectFunctions.getHtmlCreator = function() {
+		//console.log("dbm.core.FlowBaseObject::getHtmlCreator");
+		var element = this._element.getValue();
+		if(element !== null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(element));
+		}
+		
+		var parentElement = this._parentElement.getValue();
+		if(parentElement !== null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(parentElement));
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getHtmlCreator", "Element or parent must be set before getting the html creator.");
+		return null;
+	};
+	
+	/**
+	 * Performs the destruction of all the properties in the object. Part of the destroy function.
+	 */
+	objectFunctions.performDestroy = function() {
+		
+		if(this._inDom !== null &amp;&amp; this._inDom.getValue()) {
+			this.removeFromDom();
+		}
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Sets all the references to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._element = null;
+		this._parentElement = null;
+		this._inDom = null;
+		this._inDomOutput = null;
+		this._display = null;
+		
+		this.superCall();
+	};
+	
+	/**
+	 * Creates a new object of a class and sets an element as the view.
+	 *
+	 * @param	aClass		Function	The class constructor function.
+	 * @param	aElement	Element		The view for the new object.
+	 *
+	 * @return	*	The newly created object of the class.
+	 */
+	staticFunctions._createAndInitClassWithElement = function(aClass, aElement) {
+		return ClassReference._createAndInitClass(aClass).setElement(aElement);
+	};
+	
+	/**
+	 * Creates a new object of this class.
+	 *
+	 * @param	aElement	Element		The view for the new object.
+	 *
+	 * @return	DisplayBaseObject	The newly created object.
+	 */
+	staticFunctions.create = function(aElement) {
+		//console.log("dbm.gui.DisplayBaseObject::create");
+		//console.log(aElement);
+		
+		return ClassReference._createAndInitClassWithElement(ClassReference, aElement);
+	};
+	
+	/**
+	 * Creates a new object of this class, using the master HtmlCreator to create a new div for the view.
+	 *
+	 * @param	aAttributes		Object	The attriburtes to add to the new div.
+	 *
+	 * @return	DisplayBaseObject	The newly created object.
+	 */
+	staticFunctions.createNewDiv = function(aAttributes) {
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		
+		return ClassReference._createAndInitClassWithElement(ClassReference, htmlCreator.createDiv(aAttributes));
+	};
+	
+	/**
+	 * Creates a new object of this class, and a new div on a parent element.
+	 *
+	 * @param	aParentOrDocument	Element|Document	The parent or document to create the new di in.
+	 * @param	aAddToParent		Boolean				If the element should be added to the DOM.
+	 * @param	aAttributes			Object				The attriburtes to add to the new div.
+	 *
+	 * @return	DisplayBaseObject	The newly created object.
+	 */
+	staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
+		return ClassReference.createNode("div", aParentOrDocument, aAddToParent, aAttributes);
+	};
+	
+	/**
+	 * Creates a new object of this class, and a new node on a parent element.
+	 *
+	 * @param	aType				String				The type of node to create.
+	 * @param	aParentOrDocument	Element|Document	The parent or document to create the new di in.
+	 * @param	aAddToParent		Boolean				If the element should be added to the DOM.
+	 * @param	aAttributes			Object				The attriburtes to add to the new div.
+	 *
+	 * @return	DisplayBaseObject	The newly created object.
+	 */
+	staticFunctions.createNode = function(aType, aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = ClassReference._createAndInitClass(ClassReference);
+		
+		newNode.setParent(DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument));
+		newNode.setElement(newNode.getHtmlCreator().createNode(aType, aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.gui.DisplayBaseObject::_init");
+		
+		this.superCall();
+		
+		this._element = this.createProperty("element", null);
+		this._parentElement = this.createProperty("parentElement", null);
+		this._inDom = this.createProperty("inDom", false);
+		this._inDomOutput = this.createProperty("inDomOutput", false);
+		
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
+		this._display.connectInput(this._inDomOutput);
+		
+		this.createUpdateFunctionWithArguments("inDomUpdate", DomManipulationFunctions.setElementDomStatus, [this._element, this._parentElement, this._inDom], [this._inDomOutput]);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElement</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Sets the view (Element) for this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for this object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElement = function(aElement) {
+		//console.log("dbm.gui.DisplayBaseObject::setElement");
+		if(aElement === null) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setElement", "Trying to set element to null. Use removeElement() to remove element.");
+			this.removeElement();
+			return this;
+		}
+		else if(this._element.getValue() !== null) {
+			this.removeElement();
+		}
+		
+		this._element.setValue(aElement);
+		
+		if(aElement.parentNode !== null) { //MENOTE: should this check for having another parent set already?
+			this._parentElement.setValue(aElement.parentNode);
+			this._inDom.setValue(true);
+		}
+		this._inDomOutput.update();
+		
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
+			dbm.singletons.dbmHtmlDomManager.addDisplayObject(this, aElement);
+		}
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeElement</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Removes the view for this object</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeElement = function() {
+		//console.log("dbm.gui.DisplayBaseObject::removeElement");
+		
+		var currentElement = this.getElement();
+		if(currentElement !== null &amp;&amp; currentElement.parentNode !== null) {
+			currentElement.parentNode.removeChild(currentElement);
+		}
+		
+		if(dbm.singletons.dbmHtmlDomManager !== undefined) {
+			dbm.singletons.dbmHtmlDomManager.removeHtmlElement(this.getElement());
+		}
+		
+		this._element.setValue(null);
+		this._inDomOutput.update();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getElement</span>(<span class="arguments"></span>)<span class="returnValue">:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Gets the view for this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for this object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getElement = function() {
+		return this._element.getValue();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElementAsPositioned</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Adds properties x and y to control the css for left and top.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElementAsPositioned = function() {
+		
+		this.createRoundedCssProperty("x", "roundedX", "left", UnitTypes.PX, 0);
+		this.createRoundedCssProperty("y", "roundedY", "top", UnitTypes.PX, 0);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElementAsTransformed</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Adds properties to control the css transform of this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElementAsTransformed = function() {
+		
+		var x = this.createProperty("x", 0);
+		var y = this.createProperty("y", 0);
+		var scaleX = this.createProperty("scaleX", 1);
+		var scaleY = this.createProperty("scaleY", 1);
+		var rotate = this.createProperty("rotate", 0);
+		var pivotX = this.createProperty("pivotX", 0.5);
+		var pivotY = this.createProperty("pivotY", 0.5);
+		
+		var placementNode = TransformElementNode.create(this._element, x, y, scaleX, scaleY, rotate, pivotX, pivotY);
+		this._display.connectInput(placementNode.getProperty("display"));
+		this.addDestroyableObject(placementNode);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElementAsSized</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Adds properties width and height to control the css for size.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElementAsSized = function() {
+		
+		this.createCssProperty("width", "width", UnitTypes.PX, null);
+		this.createCssProperty("height", "height", UnitTypes.PX, null);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setParent</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Sets the parent of this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The parent of this object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setParent = function(aElement) {
+		
+		if(aElement instanceof DisplayBaseObject) {
+			this.setPropertyInput("parentElement", aElement.getProperty("element"));
+		}
+		else {
+			this.setPropertyInput("parentElement", aElement);
+		}
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addToParent</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Sets the parent of this object and adds the view to DOM.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The parent of this object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addToParent = function(aElement) {
+		this.setParent(aElement);
+		this.addToDom();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addToDom</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Adds the view to the DOM. This function can be called before either the lement or the parent is set.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addToDom = function() {
+		//console.log("dbm.core.FlowBaseObject::addToDom");
+		//console.log(this._element.getValue());
+		
+		this._inDom.setValue(true);
+		this._inDomOutput.update();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeFromDom</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Removes the view from the DOM. This function can be called before either the lement or the parent is set.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeFromDom = function() {
+		
+		this._inDom.setValue(false);
+		this._inDomOutput.update();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setStyleProperty</span>(<span class="arguments">aStyleProperty:<span class="nativeType">String</span>, aValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Sets a css style property on the element of this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStyleProperty:<span class="nativeType">String</span> - The name of the property to set.</div><div class="argumentDescription">aValue:<span class="nativeType">*</span> - The value to set the property to.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
+		
+		this._element.getValue().style.setProperty(aStyleProperty, aValue, "");
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">removeStyleProperty</span>(<span class="arguments">aStyleProperty:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Removes a css style property from the element of this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStyleProperty:<span class="nativeType">String</span> - The name of the property to remove.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.removeStyleProperty = function(aStyleProperty) {
+		
+		this._element.getValue().style.removeProperty(aStyleProperty);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">enableAlpha</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Adds a property (alpha) to control the css opacity.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.enableAlpha = function() {
+		this.createCssProperty("alpha", "opacity", null, 1);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">enableZIndex</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Adds a property (z) to control the css z-index.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.enableZIndex = function() {
+		this.createRoundedCssProperty("z", "roundedZ", "z-index", null, 0);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createRoundedCssProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aRoundedName:<span class="nativeType">String</span>, aCssProperty:<span class="nativeType">String</span>, aUnit:<a title="dbm.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a>, aDefaultValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="dbm.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a property that controls a css style property after being rounded.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the new property.</div><div class="argumentDescription">aRoundedName:<span class="nativeType">String</span> - The name of the rounded value property.</div><div class="argumentDescription">aCssProperty:<span class="nativeType">String</span> - The name of the css style property to set.</div><div class="argumentDescription">aUnit:<a title="dbm.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a> - The unit for the css style property. (Optional, default UnitTypes.PX)</div><div class="argumentDescription">aDefaultValue:<span class="nativeType">*</span> - The default value. (Optional)</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a> - The newly created property.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createRoundedCssProperty = function(aName, aRoundedName, aCssProperty, aUnit, aDefaultValue) {
+		var inputProperty = this.createProperty(aName, aDefaultValue);
+		var roundedProperty = this.createCssProperty(aRoundedName, aCssProperty, aUnit, aDefaultValue);
+		
+		var roundNode = this.addDestroyableObject(RoundNode.create(inputProperty));
+		roundedProperty.connectInput(roundNode.getProperty("outputValue"));
+		
+		return inputProperty;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createCssProperty</span>(<span class="arguments">aName:<span class="nativeType">String</span>, aCssProperty:<span class="nativeType">String</span>, aUnit:<a title="dbm.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a>, aDefaultValue:<span class="nativeType">*</span></span>)<span class="returnValue">:<a title="dbm.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a property that controls a css style property.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the new property.</div><div class="argumentDescription">aCssProperty:<span class="nativeType">String</span> - The name of the css style property to set.</div><div class="argumentDescription">aUnit:<a title="dbm.constants.UnitTypes" href="../constants/UnitTypes.html">UnitTypes</a> - The unit for the css style property. (Optional, default UnitTypes.PX)</div><div class="argumentDescription">aDefaultValue:<span class="nativeType">*</span> - The default value. (Optional)</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.core.objectparts.ExternalCssVariableProperty" href="../core/objectparts/ExternalCssVariableProperty.html">ExternalCssVariableProperty</a> - The newly created property.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createCssProperty = function(aName, aCssProperty, aUnit, aDefaultValue) {
+		if(!VariableAliases.isSet(aUnit)) {
+			aUnit = CssFunctions.isLengthProperty(aCssProperty) ? UnitTypes.PX : null;
+		}
+		aDefaultValue = VariableAliases.valueWithDefault(aDefaultValue, null);
+		
+		var newProperty;
+		if(CssFunctions.isPrefixedProperty(aCssProperty)) {
+			newProperty = ExternalPrefixedCssVariableProperty.createWithoutExternalObject();
+		}
+		else {
+			newProperty = ExternalCssVariableProperty.createWithoutExternalObject();
+		}
+		
+		newProperty.setup(aCssProperty, aUnit, aDefaultValue);
+		this.addProperty(aName, newProperty);
+		this._display.connectInput(newProperty);
+		
+		var setElementNode = SetElementToCssPropertiesNode.create(this._element).addUpdateProperty(newProperty);
+		this._display.connectInput(setElementNode.getProperty("elementSet"));
+		this.addDestroyableObject(setElementNode);
+		
+		return newProperty;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getHtmlCreator</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.core.globalobjects.htmldommanager.objects.HtmlCreator" href="../core/globalobjects/htmldommanager/objects/HtmlCreator.html">HtmlCreator</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Gets the HtmlCreator that can generate new elements in the same document as this object.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.core.globalobjects.htmldommanager.objects.HtmlCreator" href="../core/globalobjects/htmldommanager/objects/HtmlCreator.html">HtmlCreator</a> - The HtmlCreator for the document that this object is located in. Null if this object doesn't have either element or parent.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getHtmlCreator = function() {
+		//console.log("dbm.core.FlowBaseObject::getHtmlCreator");
+		var element = this._element.getValue();
+		if(element !== null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(element));
+		}
+		
+		var parentElement = this._parentElement.getValue();
+		if(parentElement !== null) {
+			return dbm.singletons.dbmHtmlDomManager.getHtmlCreator(DomReferenceFunctions.getDocument(parentElement));
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getHtmlCreator", "Element or parent must be set before getting the html creator.");
+		return null;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">performDestroy</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Performs the destruction of all the properties in the object. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.performDestroy = function() {
+		
+		if(this._inDom !== null &amp;&amp; this._inDom.getValue()) {
+			this.removeFromDom();
+		}
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Sets all the references to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._element = null;
+		this._parentElement = null;
+		this._inDom = null;
+		this._inDomOutput = null;
+		this._display = null;
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_createAndInitClassWithElement</span>(<span class="arguments">aClass:<span class="nativeType">Function</span>, aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>)<span class="returnValue">:<span class="nativeType">*</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of a class and sets an element as the view.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aClass:<span class="nativeType">Function</span> - The class constructor function.</div><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for the new object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">*</span> - The newly created object of the class.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions._createAndInitClassWithElement = function(aClass, aElement) {
+		return ClassReference._createAndInitClass(aClass).setElement(aElement);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a></span>)<span class="returnValue">:<a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of this class.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> - The view for the new object.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aElement) {
+		//console.log("dbm.gui.DisplayBaseObject::create");
+		//console.log(aElement);
+		
+		return ClassReference._createAndInitClassWithElement(ClassReference, aElement);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createNewDiv</span>(<span class="arguments">aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of this class, using the master HtmlCreator to create a new div for the view.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attriburtes to add to the new div.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createNewDiv = function(aAttributes) {
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getMasterHtmlCreator();
+		
+		return ClassReference._createAndInitClassWithElement(ClassReference, htmlCreator.createDiv(aAttributes));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createDiv</span>(<span class="arguments">aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a>, aAddToParent:<span class="nativeType">Boolean</span>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of this class, and a new div on a parent element.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a> - The parent or document to create the new di in.</div><div class="argumentDescription">aAddToParent:<span class="nativeType">Boolean</span> - If the element should be added to the DOM.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attriburtes to add to the new div.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
+		return ClassReference.createNode("div", aParentOrDocument, aAddToParent, aAttributes);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createNode</span>(<span class="arguments">aType:<span class="nativeType">String</span>, aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a>, aAddToParent:<span class="nativeType">Boolean</span>, aAttributes:<span class="nativeType">Object</span></span>)<span class="returnValue">:<a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a new object of this class, and a new node on a parent element.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aType:<span class="nativeType">String</span> - The type of node to create.</div><div class="argumentDescription">aParentOrDocument:<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element" rel="external">Element</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" rel="external">Document</a> - The parent or document to create the new di in.</div><div class="argumentDescription">aAddToParent:<span class="nativeType">Boolean</span> - If the element should be added to the DOM.</div><div class="argumentDescription">aAttributes:<span class="nativeType">Object</span> - The attriburtes to add to the new div.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.gui.DisplayBaseObject" href="DisplayBaseObject.html">DisplayBaseObject</a> - The newly created object.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createNode = function(aType, aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = ClassReference._createAndInitClass(ClassReference);
+		
+		newNode.setParent(DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument));
+		newNode.setElement(newNode.getHtmlCreator().createNode(aType, aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

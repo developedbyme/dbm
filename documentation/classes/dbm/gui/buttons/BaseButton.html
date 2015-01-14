@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>BaseButton</h1>
+					<div class="classPath">dbm.gui.buttons.BaseButton</div>
+					<div class="classInheritance"><a title="dbm.gui.DisplayBaseObject" href="../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Base object for all buttons.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="dbm.gui.buttons.FileUploadButton" href="FileUploadButton.html">FileUploadButton</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.constants.extendedevents.ButtonExtendedEventIds" href="../../constants/extendedevents/ButtonExtendedEventIds.html">ButtonExtendedEventIds</a>, <a title="dbm.constants.CssCursorTypes" href="../../constants/CssCursorTypes.html">CssCursorTypes</a>, <a title="dbm.utils.htmldom.DomReferenceFunctions" href="../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.core.extendedevent.setup.InteractionExtendedEventSetup" href="../../core/extendedevent/setup/InteractionExtendedEventSetup.html">InteractionExtendedEventSetup</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.core.extendedevent.commands.basic.SetPropertyCommand" href="../../core/extendedevent/commands/basic/SetPropertyCommand.html">SetPropertyCommand</a>, <a title="dbm.gui.text.TextElement" href="../text/TextElement.html">TextElement</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.gui.buttons.BaseButton", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.BaseObject");
+	
+	//Self reference
+	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
+	var TextElement = dbm.importClass("dbm.gui.text.TextElement");
+	
+	//Utils
+	var SetPropertyCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.SetPropertyCommand");
+	var InteractionExtendedEventSetup = dbm.importClass("dbm.core.extendedevent.setup.InteractionExtendedEventSetup");
+	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
+	
+	//Constants
+	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
+	var CssCursorTypes = dbm.importClass("dbm.constants.CssCursorTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.gui.buttons.BaseButton::_init");
+		
+		this.superCall();
+		
+		this._isActive = false;
+		this._useHandCursor = true;
+		
+		//this._isActive = this.createProperty("isActive", false);
+		//this._isActiveOutput = this.createProperty("isActiveOutput", this._isActive);
+		//this._isActiveUpdate = ; //METODO: add any change property
+		//this._isActiveUpdate.connectInput(this._isActiveOutput);
+		
+		this._rollOverState = this.createProperty("rollOverState", false);
+		
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OVER, SetPropertyCommand.createCommand(this._rollOverState, true));
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OUT, SetPropertyCommand.createCommand(this._rollOverState, false));
+		
+		return this;
+	};
+	
+	objectFunctions.setElement = function(aElement) {
+		
+		this.superCall(aElement);
+		
+		InteractionExtendedEventSetup.addClickEvents(this.getExtendedEvent(), aElement, false);
+		InteractionExtendedEventSetup.addMouseOverEvents(this.getExtendedEvent(), aElement, false);
+		
+		return this;
+	};
+	
+	objectFunctions.activate = function() {
+		this._isActive = true;
+		
+		if(this._useHandCursor) {
+			this.setStyleProperty("cursor", CssCursorTypes.POINTER);
+		}
+		
+		this.getExtendedEvent().activateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
+		this.getExtendedEvent().activateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
+		
+		return this;
+	};
+	
+	objectFunctions.deactivate = function() {
+		this._isActive = false;
+		
+		if(this._useHandCursor) {
+			this.removeStyleProperty("cursor");
+		}
+		
+		this.getExtendedEvent().deactivateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
+		this.getExtendedEvent().deactivateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
+		
+		this._rollOverState.setValue(false);
+		
+		return this;
+	};
+	
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case ButtonExtendedEventIds.CLICK:
+			case ButtonExtendedEventIds.MOUSE_OVER:
+			case ButtonExtendedEventIds.MOUSE_OUT:
+			case ButtonExtendedEventIds.PRESS:
+			case ButtonExtendedEventIds.RELEASE:
+			case ButtonExtendedEventIds.RELEASE_OUTSIDE:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._rollOverState = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aElement) {
+		return (new BaseButton()).init().setElement(aElement);
+	};
+	
+	staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = (new ClassReference()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createDiv(aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	};
+	
+	staticFunctions.createButton = function(aParentOrDocument, aAddToParent, aAttributes, aText) {
+		var newNode = (new ClassReference()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createNode("button", aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		var newText = TextElement.create(newNode.getElement(), true, aText);
+		newNode.addDestroyableObject(newText);
+		
+		return newNode;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.gui.buttons.BaseButton::_init");
+		
+		this.superCall();
+		
+		this._isActive = false;
+		this._useHandCursor = true;
+		
+		//this._isActive = this.createProperty("isActive", false);
+		//this._isActiveOutput = this.createProperty("isActiveOutput", this._isActive);
+		//this._isActiveUpdate = ; //METODO: add any change property
+		//this._isActiveUpdate.connectInput(this._isActiveOutput);
+		
+		this._rollOverState = this.createProperty("rollOverState", false);
+		
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OVER, SetPropertyCommand.createCommand(this._rollOverState, true));
+		this.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.MOUSE_OUT, SetPropertyCommand.createCommand(this._rollOverState, false));
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElement</span>(<span class="arguments">aElement</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElement = function(aElement) {
+		
+		this.superCall(aElement);
+		
+		InteractionExtendedEventSetup.addClickEvents(this.getExtendedEvent(), aElement, false);
+		InteractionExtendedEventSetup.addMouseOverEvents(this.getExtendedEvent(), aElement, false);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">activate</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.activate = function() {
+		this._isActive = true;
+		
+		if(this._useHandCursor) {
+			this.setStyleProperty("cursor", CssCursorTypes.POINTER);
+		}
+		
+		this.getExtendedEvent().activateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
+		this.getExtendedEvent().activateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">deactivate</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.deactivate = function() {
+		this._isActive = false;
+		
+		if(this._useHandCursor) {
+			this.removeStyleProperty("cursor");
+		}
+		
+		this.getExtendedEvent().deactivateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
+		this.getExtendedEvent().deactivateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
+		
+		this._rollOverState.setValue(false);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		switch(aName) {
+			case ButtonExtendedEventIds.CLICK:
+			case ButtonExtendedEventIds.MOUSE_OVER:
+			case ButtonExtendedEventIds.MOUSE_OUT:
+			case ButtonExtendedEventIds.PRESS:
+			case ButtonExtendedEventIds.RELEASE:
+			case ButtonExtendedEventIds.RELEASE_OUTSIDE:
+				return true;
+		}
+		
+		return this.superCall(aName);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._rollOverState = null;
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aElement</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aElement</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aElement) {
+		return (new BaseButton()).init().setElement(aElement);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createDiv</span>(<span class="arguments">aParentOrDocument, aAddToParent, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParentOrDocument</div><div class="argumentDescription">aAddToParent</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createDiv = function(aParentOrDocument, aAddToParent, aAttributes) {
+		var newNode = (new ClassReference()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createDiv(aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		return newNode;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createButton</span>(<span class="arguments">aParentOrDocument, aAddToParent, aAttributes, aText</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParentOrDocument</div><div class="argumentDescription">aAddToParent</div><div class="argumentDescription">aAttributes</div><div class="argumentDescription">aText</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createButton = function(aParentOrDocument, aAddToParent, aAttributes, aText) {
+		var newNode = (new ClassReference()).init();
+		
+		var theParent = DomReferenceFunctions.getDocumentVisualParent(aParentOrDocument);
+		
+		newNode.setParent(theParent);
+		
+		var htmlCreator = newNode.getHtmlCreator();
+		
+		newNode.setElement(htmlCreator.createNode("button", aAttributes));
+		
+		if(aAddToParent !== false) {
+			newNode.addToDom();
+		}
+		
+		var newText = TextElement.create(newNode.getElement(), true, aText);
+		newNode.addDestroyableObject(newText);
+		
+		return newNode;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

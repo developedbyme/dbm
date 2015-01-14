@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>FlowGroup</h1>
+					<div class="classPath">dbm.flow.FlowGroup</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.data.NamedArray" href="../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.core.objectparts.Property" href="../core/objectparts/Property.html">Property</a>, <a title="dbm.constants.ReportLevelTypes" href="../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var FlowGroup = dbm.importClass("dbm.flow.FlowGroup");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.flow.FlowGroup", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.flow.FlowGroup");
+	//"use strict";
+	
+	var FlowGroup = dbm.importClass("dbm.flow.FlowGroup");
+	
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
+	var Property = dbm.importClass("dbm.core.objectparts.Property");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.flow.FlowGroup::_init");
+		
+		this.superCall();
+		
+		this._inputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._inputProperties);
+		this._outputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._outputProperties);
+		
+		//console.log("//dbm.flow.FlowGroup::_init");
+		return this;
+	};
+	
+	objectFunctions.createInputProperty = function(aName, aValue) {
+		var newProperty = Property.create(aValue);
+		newProperty.name = "input::" + aName;
+		this._inputProperties.addObject(aName, newProperty);
+		return newProperty;
+	};
+	
+	objectFunctions.createOutputProperty = function(aName, aValue) {
+		var newProperty = Property.create(aValue);
+		newProperty.name = "output::" + aName;
+		this._outputProperties.addObject(aName, newProperty);
+		return newProperty;
+	};
+	
+	objectFunctions.getInputProperty = function(aName) {
+		if(this._inputProperties.select(aName)) {
+			return this._inputProperties.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getInputProperty", "Input property " + aName + " doesn't exist. Creating.");
+		return this.createInputProperty(aName, null);
+	};
+	
+	objectFunctions.getOutputProperty = function(aName) {
+		if(this._outputProperties.select(aName)) {
+			return this._outputProperties.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getOutputProperty", "Output property " + aName + " doesn't exist. Creating.");
+		return this.createOutputProperty(aName, null);
+	};
+	
+	objectFunctions.setInputPropertyInput = function(aName, aInput) {
+		if(!this._inputProperties.select(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setPropertyInput", "Property " + aName + " doesn't exist.");
+			return this;
+		}
+		if(aInput instanceof Property) {
+			dbm.singletons.dbmFlowManager.connectProperties(aInput, this._inputProperties.currentSelectedItem);
+		}
+		else {
+			this._inputProperties.currentSelectedItem.setValue(aInput);
+		}
+		return this;
+	};
+	
+	objectFunctions.setInputPropertyInputWithoutNull = function(aName, aInput) {
+		if(aInput !== null) {
+			this.setInputPropertyInput(aName, aInput);
+		}
+		return this;
+	};
+	
+	objectFunctions.setOutputPropertyInput = function(aName, aInput) {
+		if(!this._outputProperties.select(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setOutputPropertyInput", "Property " + aName + " doesn't exist.");
+			return this;
+		}
+		if(aInput instanceof Property) {
+			dbm.singletons.dbmFlowManager.connectProperties(aInput, this._outputProperties.currentSelectedItem);
+		}
+		else {
+			this._outputProperties.currentSelectedItem.setValue(aInput);
+		}
+		return this;
+	};
+	
+	objectFunctions.setOutputPropertyInputWithoutNull = function(aName, aInput) {
+		if(aInput !== null) {
+			this.setOutputPropertyInput(aName, aInput);
+		}
+		return this;
+	};
+	
+	objectFunctions.getInputPropertiesNamedArray = function() {
+		return this._inputProperties;
+	};
+	
+	objectFunctions.getOutputPropertiesNamedArray = function() {
+		return this._outputProperties;
+	};
+	
+	/**
+	 * Sets all the references to null.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputProperties = null;
+		this._outputProperties = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.create = function(aInputProperties, aOutputProperties) {
+		//console.log("dbm.flow.FlowGroup::create (static)");
+		var newGroup = (new ClassReference()).init();
+		for(var objectName in aInputProperties) {
+			newGroup.createInputProperty(objectName, null);
+			newGroup.setInputPropertyInputWithoutNull(objectName, aInputProperties[objectName]);
+		}
+		for(var objectName in aOutputProperties) {
+			newGroup.createOutputProperty(objectName, null);
+			newGroup.setOutputPropertyInputWithoutNull(objectName, aOutputProperties[objectName]);
+		}
+		return newGroup;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.flow.FlowGroup::_init");
+		
+		this.superCall();
+		
+		this._inputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._inputProperties);
+		this._outputProperties = NamedArray.create(true);
+		this.addDestroyableObject(this._outputProperties);
+		
+		//console.log("//dbm.flow.FlowGroup::_init");
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createInputProperty</span>(<span class="arguments">aName, aValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createInputProperty = function(aName, aValue) {
+		var newProperty = Property.create(aValue);
+		newProperty.name = "input::" + aName;
+		this._inputProperties.addObject(aName, newProperty);
+		return newProperty;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createOutputProperty</span>(<span class="arguments">aName, aValue</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aValue</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createOutputProperty = function(aName, aValue) {
+		var newProperty = Property.create(aValue);
+		newProperty.name = "output::" + aName;
+		this._outputProperties.addObject(aName, newProperty);
+		return newProperty;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getInputProperty</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getInputProperty = function(aName) {
+		if(this._inputProperties.select(aName)) {
+			return this._inputProperties.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getInputProperty", "Input property " + aName + " doesn't exist. Creating.");
+		return this.createInputProperty(aName, null);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getOutputProperty</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getOutputProperty = function(aName) {
+		if(this._outputProperties.select(aName)) {
+			return this._outputProperties.currentSelectedItem;
+		}
+		ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "getOutputProperty", "Output property " + aName + " doesn't exist. Creating.");
+		return this.createOutputProperty(aName, null);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setInputPropertyInput</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aInput</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setInputPropertyInput = function(aName, aInput) {
+		if(!this._inputProperties.select(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setPropertyInput", "Property " + aName + " doesn't exist.");
+			return this;
+		}
+		if(aInput instanceof Property) {
+			dbm.singletons.dbmFlowManager.connectProperties(aInput, this._inputProperties.currentSelectedItem);
+		}
+		else {
+			this._inputProperties.currentSelectedItem.setValue(aInput);
+		}
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setInputPropertyInputWithoutNull</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aInput</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setInputPropertyInputWithoutNull = function(aName, aInput) {
+		if(aInput !== null) {
+			this.setInputPropertyInput(aName, aInput);
+		}
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setOutputPropertyInput</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aInput</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setOutputPropertyInput = function(aName, aInput) {
+		if(!this._outputProperties.select(aName)) {
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "setOutputPropertyInput", "Property " + aName + " doesn't exist.");
+			return this;
+		}
+		if(aInput instanceof Property) {
+			dbm.singletons.dbmFlowManager.connectProperties(aInput, this._outputProperties.currentSelectedItem);
+		}
+		else {
+			this._outputProperties.currentSelectedItem.setValue(aInput);
+		}
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setOutputPropertyInputWithoutNull</span>(<span class="arguments">aName, aInput</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aInput</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setOutputPropertyInputWithoutNull = function(aName, aInput) {
+		if(aInput !== null) {
+			this.setOutputPropertyInput(aName, aInput);
+		}
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getInputPropertiesNamedArray</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getInputPropertiesNamedArray = function() {
+		return this._inputProperties;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getOutputPropertiesNamedArray</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getOutputPropertiesNamedArray = function() {
+		return this._outputProperties;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Sets all the references to null.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._inputProperties = null;
+		this._outputProperties = null;
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aInputProperties, aOutputProperties</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aInputProperties</div><div class="argumentDescription">aOutputProperties</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aInputProperties, aOutputProperties) {
+		//console.log("dbm.flow.FlowGroup::create (static)");
+		var newGroup = (new ClassReference()).init();
+		for(var objectName in aInputProperties) {
+			newGroup.createInputProperty(objectName, null);
+			newGroup.setInputPropertyInputWithoutNull(objectName, aInputProperties[objectName]);
+		}
+		for(var objectName in aOutputProperties) {
+			newGroup.createOutputProperty(objectName, null);
+			newGroup.setOutputPropertyInputWithoutNull(objectName, aOutputProperties[objectName]);
+		}
+		return newGroup;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

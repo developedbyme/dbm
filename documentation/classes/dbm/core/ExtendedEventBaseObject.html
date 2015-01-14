@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>ExtendedEventBaseObject</h1>
+					<div class="classPath">dbm.core.ExtendedEventBaseObject</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Base object for objects that emits extended events.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="dbm.core.globalobjects.assetrepository.assets.Asset" href="globalobjects/assetrepository/assets/Asset.html">Asset</a>, <a title="dbm.workspace.gui.parts.BaseWorkspacePart" href="../workspace/gui/parts/BaseWorkspacePart.html">BaseWorkspacePart</a>, <a title="dbm.core.globalobjects.datamanager.objects.DataObject" href="globalobjects/datamanager/objects/DataObject.html">DataObject</a>, <a title="dbm.gui.DisplayBaseObject" href="../gui/DisplayBaseObject.html">DisplayBaseObject</a>, <a title="dbm.flow.nodes.browser.DocumentForElementNode" href="../flow/nodes/browser/DocumentForElementNode.html">DocumentForElementNode</a>, <a title="dbm.flow.nodes.animation.EvaluateComplexTimelineNode" href="../flow/nodes/animation/EvaluateComplexTimelineNode.html">EvaluateComplexTimelineNode</a>, <a title="dbm.flow.nodes.animation.EvaluateTimelineNode" href="../flow/nodes/animation/EvaluateTimelineNode.html">EvaluateTimelineNode</a>, <a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="globalobjects/GlobalObjectBaseObject.html">GlobalObjectBaseObject</a>, <a title="dbm.flow.nodes.browser.LayoutChangeNode" href="../flow/nodes/browser/LayoutChangeNode.html">LayoutChangeNode</a>, <a title="dbm.workspace.gui.LayoutController" href="../workspace/gui/LayoutController.html">LayoutController</a>, <a title="dbm.flow.nodes.userinput.MousePositionNode" href="../flow/nodes/userinput/MousePositionNode.html">MousePositionNode</a>, <a title="dbm.gui.abstract.touch.movablepoints.MovablePointsController" href="../gui/abstract/touch/movablepoints/MovablePointsController.html">MovablePointsController</a>, <a title="dbm.utils.logic.MultipleLock" href="../utils/logic/MultipleLock.html">MultipleLock</a>, <a title="dbm.core.globalobjects.datamanager.objects.ParserResultDataObject" href="globalobjects/datamanager/objects/ParserResultDataObject.html">ParserResultDataObject</a>, <a title="dbm.core.globalobjects.assetrepository.assetcreators.PathAssetCreator" href="globalobjects/assetrepository/assetcreators/PathAssetCreator.html">PathAssetCreator</a>, <a title="dbm.core.globalobjects.audiomanager.audio.PlayingAudio" href="globalobjects/audiomanager/audio/PlayingAudio.html">PlayingAudio</a>, <a title="dbm.flow.nodes.browser.ScreenSizeNode" href="../flow/nodes/browser/ScreenSizeNode.html">ScreenSizeNode</a>, <a title="dbm.gui.abstract.touch.TouchData" href="../gui/abstract/touch/TouchData.html">TouchData</a>, <a title="dbm.gui.abstract.touch.TouchDetector" href="../gui/abstract/touch/TouchDetector.html">TouchDetector</a>, <a title="dbm.utils.data.treestructure.TreeStructure" href="../utils/data/treestructure/TreeStructure.html">TreeStructure</a>, <a title="dbm.core.globalobjects.windowmanager.objects.Window" href="globalobjects/windowmanager/objects/Window.html">Window</a>, <a title="dbm.flow.nodes.browser.WindowForElementNode" href="../flow/nodes/browser/WindowForElementNode.html">WindowForElementNode</a>, <a title="dbm.flow.nodes.browser.WindowSizeNode" href="../flow/nodes/browser/WindowSizeNode.html">WindowSizeNode</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.DelayedExtendedEventController" href="extendedevent/DelayedExtendedEventController.html">DelayedExtendedEventController</a>, <a title="dbm.core.extendedevent.ExtendedEventController" href="extendedevent/ExtendedEventController.html">ExtendedEventController</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var ExtendedEventBaseObject = dbm.importClass("dbm.core.ExtendedEventBaseObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.core.ExtendedEventBaseObject", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.ExtendedEventBaseObject");
+	//"use strict";
+	
+	//Self reference
+	var ExtendedEventBaseObject = dbm.importClass("dbm.core.ExtendedEventBaseObject");
+	
+	//Error report
+	
+	//Dependencies
+	var ExtendedEventController = dbm.importClass("dbm.core.extendedevent.ExtendedEventController");
+	var DelayedExtendedEventController = dbm.importClass("dbm.core.extendedevent.DelayedExtendedEventController");
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.core.ExtendedEventBaseObject::_init");
+		
+		this.superCall();
+		
+		this._extendedEvent = null;
+		this._delayedExtendedEvent = null;
+		
+		return this;
+	}; //End function _init
+	
+	/**
+	 * Gets the extended event controller. If it doesn't exist already it's created.
+	 *
+	 * @return	ExtendedEventController		The extended event controller.
+	 */
+	objectFunctions.getExtendedEvent = function() {
+		if(this._extendedEvent === null) {
+			this._extendedEvent = ExtendedEventController.create(this);
+			this.addDestroyableObject(this._extendedEvent);
+		}
+		
+		return this._extendedEvent;
+	}; //End function getExtendedEvent
+	
+	/**
+	 * Gets the controller for delayed events. If it doesn't exist already it's created.
+	 *
+	 * @return	DelayedExtendedEventController	The delayed exended event controller.
+	 */
+	objectFunctions.getDelayedExtendedEvent = function() {
+		if(this._delayedExtendedEvent === null) {
+			this._delayedExtendedEvent = DelayedExtendedEventController.create(this);
+			this.addDestroyableObject(this._delayedExtendedEvent);
+		}
+		
+		return this._delayedExtendedEvent;
+	}; //End function getDelayedExtendedEvent
+	
+	/**
+	 * If a node is changing document, all listeners needs to be reactivated.
+	 */
+	objectFunctions.reactivateForNewDocument = function() {
+		if(this._extendedEvent !== null) {
+			this._extendedEvent.reactivateEventListeners();
+		}
+	}; //End function reactivateForNewDocument
+	
+	/**
+	 * Checks if an event is expected for this object, so that warnings doesn't shown when new events are created.
+	 *
+	 * @param	aName	String	The name of the event.
+	 *
+	 * @return	Boolean		True if the event is expected.
+	 */
+	objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		//MENOTE: should be overridden
+		
+		return false;
+	}; //End function _extendedEvent_eventIsExpected
+	
+	/**
+	 * Set all properties of the object to null. Part of the destroy function.
+	 */
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._extendedEvent = null;
+		this._delayedExtendedEvent = null;
+		
+		this.superCall();
+	}; //End function setAllReferencesToNull
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.core.ExtendedEventBaseObject::_init");
+		
+		this.superCall();
+		
+		this._extendedEvent = null;
+		this._delayedExtendedEvent = null;
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.core.extendedevent.ExtendedEventController" href="extendedevent/ExtendedEventController.html">ExtendedEventController</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Gets the extended event controller. If it doesn't exist already it's created.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.core.extendedevent.ExtendedEventController" href="extendedevent/ExtendedEventController.html">ExtendedEventController</a> - The extended event controller.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getExtendedEvent = function() {
+		if(this._extendedEvent === null) {
+			this._extendedEvent = ExtendedEventController.create(this);
+			this.addDestroyableObject(this._extendedEvent);
+		}
+		
+		return this._extendedEvent;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getDelayedExtendedEvent</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.core.extendedevent.DelayedExtendedEventController" href="extendedevent/DelayedExtendedEventController.html">DelayedExtendedEventController</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Gets the controller for delayed events. If it doesn't exist already it's created.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.core.extendedevent.DelayedExtendedEventController" href="extendedevent/DelayedExtendedEventController.html">DelayedExtendedEventController</a> - The delayed exended event controller.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getDelayedExtendedEvent = function() {
+		if(this._delayedExtendedEvent === null) {
+			this._delayedExtendedEvent = DelayedExtendedEventController.create(this);
+			this.addDestroyableObject(this._delayedExtendedEvent);
+		}
+		
+		return this._delayedExtendedEvent;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">reactivateForNewDocument</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">If a node is changing document, all listeners needs to be reactivated.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.reactivateForNewDocument = function() {
+		if(this._extendedEvent !== null) {
+			this._extendedEvent.reactivateEventListeners();
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_extendedEvent_eventIsExpected</span>(<span class="arguments">aName:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="nativeType">Boolean</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Checks if an event is expected for this object, so that warnings doesn't shown when new events are created.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName:<span class="nativeType">String</span> - The name of the event.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Boolean</span> - True if the event is expected.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._extendedEvent_eventIsExpected = function(aName) {
+		
+		//MENOTE: should be overridden
+		
+		return false;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Set all properties of the object to null. Part of the destroy function.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._extendedEvent = null;
+		this._delayedExtendedEvent = null;
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					</div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

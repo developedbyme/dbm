@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>XmlCreator</h1>
+					<div class="classPath">dbm.utils.xml.XmlCreator</div>
+					<div class="classInheritance"><span class="noData">No inheritance</span></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../core/globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var XmlCreator = dbm.importClass("dbm.utils.xml.XmlCreator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.utils.xml.XmlCreator", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.xml.XmlCreator");
+	//"use strict";
+	
+	var XmlCreator = dbm.importClass("dbm.utils.xml.XmlCreator");
+	
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	staticFunctions.createXmlLoader = (function() {
+		var returnLoader;
+		
+		if (window.XMLHttpRequest) {
+			//console.log("standard");
+			returnLoader = new XMLHttpRequest();
+		}
+		else {// for IE 5/6
+			//console.log("ie");
+			returnLoader = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		return returnLoader;
+	});
+	
+	staticFunctions.loadXmlFile = (function(aPath) {
+		var xmlLoader = ClassReference.createXmlLoader();
+		
+		var returnDocument = null;
+		
+		try {
+			xmlLoader.open("GET", aPath, false);
+			xmlLoader.send();
+			//returnDocument = xmlLoader.responseXML; //MENOTE: ie9 doesn't like this
+			returnDocument = ClassReference.createXmlFromString(xmlLoader.responseText);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().reportError("[XmlCreator]", "loadXmlFile", theError);
+			return null;
+		}
+		
+		return returnDocument;
+	});
+	
+	staticFunctions.loadXmlFileWithPost = (function(aPath, aParameters) {
+		var xmlLoader = ClassReference.createXmlLoader();
+		
+		var returnDocument = null;
+		
+		try {
+			xmlLoader.open("POST", aPath, false);
+			xmlLoader.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlLoader.setRequestHeader("Content-length", aParameters.length);
+			xmlLoader.setRequestHeader("Connection", "close");
+			xmlLoader.send(aParameters);
+			//console.log(xmlLoader);
+			//returnDocument = xmlLoader.responseXML; //MENOTE: ie9 doesn't like this
+			returnDocument = ClassReference.createXmlFromString(xmlLoader.responseText);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().reportError("[XmlCreator]", "loadXmlFileWithPost", theError);
+			return null;
+		}
+		
+		return returnDocument;
+	});
+	
+	staticFunctions.createEmptyXml = (function() {
+		//console.log("dbm.utils.xml.XmlCreator::createEmptyXml");
+		var returnDocument;
+		if (dbm.getWindow() !== null &amp;&amp; dbm.getWindow().DOMParser) {
+			//console.log("standard");
+			var parser = new DOMParser();
+			returnDocument = parser.parseFromString("&lt;temp /&gt;", "text/xml");
+			returnDocument.removeChild(returnDocument.firstChild);
+		}
+		else {// Internet Explorer
+			//console.log("ie");
+			returnDocument = new ActiveXObject("Microsoft.XMLDOM");
+			returnDocument.async = "false";
+			returnDocument.loadXML("&lt;temp /&gt;");
+			returnDocument.removeChild(returnDocument.firstChild);
+		}
+		
+		return returnDocument;
+	});
+	
+	staticFunctions.createXmlFromString = function(aText) {
+		var returnDocument;
+		if (dbm.getWindow() !== null &amp;&amp; dbm.getWindow().DOMParser) {
+			//console.log("standard");
+			var parser = new DOMParser();
+			returnDocument = parser.parseFromString(aText, "text/xml");
+		}
+		else {// Internet Explorer
+			//console.log("ie");
+			returnDocument = new ActiveXObject("Microsoft.XMLDOM");
+			returnDocument.async = "false";
+			returnDocument.loadXML(aText);
+		}
+		
+		return returnDocument;
+	};
+	
+	staticFunctions.createStringFromXml = function(aNode){
+		if(window.XMLSerializer) {
+			//console.log("standard");
+			var serializer = new XMLSerializer();
+			return serializer.serializeToString(aNode);
+		}
+		else {
+			//console.log("ie");
+			return aNode.xml;
+		}
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">createXmlLoader</span><span class="type"></span> = <span class="value">(function() {
+		var returnLoader;
+		
+		if (window.XMLHttpRequest) {
+			//console.log("standard");
+			returnLoader = new XMLHttpRequest();
+		}
+		else {// for IE 5/6
+			//console.log("ie");
+			returnLoader = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		return returnLoader;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">loadXmlFile</span><span class="type"></span> = <span class="value">(function(aPath) {
+		var xmlLoader = ClassReference.createXmlLoader();
+		
+		var returnDocument = null;
+		
+		try {
+			xmlLoader.open("GET", aPath, false);
+			xmlLoader.send();
+			//returnDocument = xmlLoader.responseXML; //MENOTE: ie9 doesn't like this
+			returnDocument = ClassReference.createXmlFromString(xmlLoader.responseText);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().reportError("[XmlCreator]", "loadXmlFile", theError);
+			return null;
+		}
+		
+		return returnDocument;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">loadXmlFileWithPost</span><span class="type"></span> = <span class="value">(function(aPath, aParameters) {
+		var xmlLoader = ClassReference.createXmlLoader();
+		
+		var returnDocument = null;
+		
+		try {
+			xmlLoader.open("POST", aPath, false);
+			xmlLoader.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlLoader.setRequestHeader("Content-length", aParameters.length);
+			xmlLoader.setRequestHeader("Connection", "close");
+			xmlLoader.send(aParameters);
+			//console.log(xmlLoader);
+			//returnDocument = xmlLoader.responseXML; //MENOTE: ie9 doesn't like this
+			returnDocument = ClassReference.createXmlFromString(xmlLoader.responseText);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().reportError("[XmlCreator]", "loadXmlFileWithPost", theError);
+			return null;
+		}
+		
+		return returnDocument;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div><div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">createEmptyXml</span><span class="type"></span> = <span class="value">(function() {
+		//console.log("dbm.utils.xml.XmlCreator::createEmptyXml");
+		var returnDocument;
+		if (dbm.getWindow() !== null &amp;&amp; dbm.getWindow().DOMParser) {
+			//console.log("standard");
+			var parser = new DOMParser();
+			returnDocument = parser.parseFromString("&lt;temp /&gt;", "text/xml");
+			returnDocument.removeChild(returnDocument.firstChild);
+		}
+		else {// Internet Explorer
+			//console.log("ie");
+			returnDocument = new ActiveXObject("Microsoft.XMLDOM");
+			returnDocument.async = "false";
+			returnDocument.loadXML("&lt;temp /&gt;");
+			returnDocument.removeChild(returnDocument.firstChild);
+		}
+		
+		return returnDocument;
+	})</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">createXmlFromString</span>(<span class="arguments">aText</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aText</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createXmlFromString = function(aText) {
+		var returnDocument;
+		if (dbm.getWindow() !== null &amp;&amp; dbm.getWindow().DOMParser) {
+			//console.log("standard");
+			var parser = new DOMParser();
+			returnDocument = parser.parseFromString(aText, "text/xml");
+		}
+		else {// Internet Explorer
+			//console.log("ie");
+			returnDocument = new ActiveXObject("Microsoft.XMLDOM");
+			returnDocument.async = "false";
+			returnDocument.loadXML(aText);
+		}
+		
+		return returnDocument;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createStringFromXml</span>(<span class="arguments">aNode</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aNode</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createStringFromXml = function(aNode){
+		if(window.XMLSerializer) {
+			//console.log("standard");
+			var serializer = new XMLSerializer();
+			return serializer.serializeToString(aNode);
+		}
+		else {
+			//console.log("ie");
+			return aNode.xml;
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

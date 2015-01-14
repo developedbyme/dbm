@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>CanvasGraphics2d</h1>
+					<div class="classPath">dbm.utils.canvas.CanvasGraphics2d</div>
+					<div class="classInheritance"><a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">A graphics in a 2d canvas.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="dbm.utils.canvas.CanvasMask2d" href="CanvasMask2d.html">CanvasMask2d</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.objectparts.AnyChangeMultipleInputProperty" href="../../core/objectparts/AnyChangeMultipleInputProperty.html">AnyChangeMultipleInputProperty</a>, <a title="dbm.constants.LineCapTypes" href="../../constants/LineCapTypes.html">LineCapTypes</a>, <a title="dbm.constants.LineJoinTypes" href="../../constants/LineJoinTypes.html">LineJoinTypes</a>, <a title="dbm.core.data.points.Point" href="../../core/data/points/Point.html">Point</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CanvasGraphics2d = dbm.importClass("dbm.utils.canvas.CanvasGraphics2d");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.utils.canvas.CanvasGraphics2d", "dbm.core.FlowBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.canvas.CanvasGraphics2d");
+	
+	var CanvasGraphics2d = dbm.importClass("dbm.utils.canvas.CanvasGraphics2d");
+	
+	var Point = dbm.importClass("dbm.core.data.points.Point");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
+	
+	var LineCapTypes = dbm.importClass("dbm.constants.LineCapTypes");
+	var LineJoinTypes = dbm.importClass("dbm.constants.LineJoinTypes");
+	
+	/**
+	 * Constructor.
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.utils.canvas.CanvasGraphics2d::_init");
+		
+		this.superCall();
+		
+		this._curves = new Array();
+		this.moveWhenSwitchingCurves = false;
+		this.scaleStrokes = false;
+		
+		this._fillStyle = this.createProperty("fillStyle", null);
+		this._lineWidth = this.createProperty("lineWidth", 1);
+		this._lineCap = this.createProperty("lineCap", LineCapTypes.BUTT);
+		this._lineJoin = this.createProperty("lineJoin", LineJoinTypes.MITER);
+		this._miterLimit = this.createProperty("miterLimit", 10);
+		this._strokeStyle = this.createProperty("strokeStyle", null);
+		
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
+		this._graphicsUpdate.connectInput(this._fillStyle);
+		this._graphicsUpdate.connectInput(this._lineWidth);
+		this._graphicsUpdate.connectInput(this._lineCap);
+		this._graphicsUpdate.connectInput(this._lineJoin);
+		this._graphicsUpdate.connectInput(this._miterLimit);
+		this._graphicsUpdate.connectInput(this._strokeStyle);
+		
+		this.closePath = false;
+		this._canDraw = true;
+		this._strokeOverFill = true;
+		
+		this._tempPoint = Point.create();
+		
+		return this;
+	};
+	
+	objectFunctions.getStartPoint = function(aReturnPoint) {
+		if(this._curves.length &gt; 0) {
+			this._curves[0].getStartPoint(aReturnPoint);
+		}
+		//METODO: error message
+		return;
+	};
+	
+	objectFunctions.getCurves = function() {
+		return this._curves;
+	};
+	
+	objectFunctions.getLastCurve = function() {
+		if(this._curves.length &gt; 0) {
+			return this._curves[this._curves.length-1];
+		}
+		return null;
+	};
+	
+	objectFunctions.hasCurves = function() {
+		return this._curves.length &gt; 0;
+	};
+	
+	objectFunctions.canDraw = function() {
+		return this._canDraw;
+	};
+	
+	objectFunctions.addCurve = function(aCurve) {
+		this._curves.push(aCurve);
+		this._graphicsUpdate.connectInput(aCurve.getProperty("graphicsUpdate"));
+	};
+	
+	objectFunctions._fillPath = function(aContext, aStyle) {
+		if(aStyle !== null) {
+			aContext.fillStyle = aStyle;
+			aContext.fill();
+		}
+	};
+	
+	objectFunctions._strokePath = function(aContext, aStyle) {
+		//console.log("dbm.utils.canvas.CanvasGraphics2d::_strokePath");
+		
+		if(aStyle !== null) {
+			aContext.strokeStyle = aStyle;
+			if(!this.scaleStrokes) {
+				aContext.save();
+				aContext.setTransform(1, 0, 0, 1, 0, 0);
+			}
+			aContext.stroke();
+			if(!this.scaleStrokes) {
+				aContext.restore();
+			}
+		}
+	};
+	
+	objectFunctions.draw = function(aContext) {
+		//console.log("dbm.utils.canvas.CanvasGraphics2d::draw");
+		//console.log(this, this._curves, this.strokeStyle);
+		
+		var currentArray = this._curves;
+		var currentArrayLength = currentArray.length;
+		if(currentArrayLength &gt; 0) {
+			var tempPoint = this._tempPoint;
+			currentArray[0].getStartPoint(tempPoint);
+			aContext.moveTo(tempPoint.x, tempPoint.y);
+			aContext.beginPath();
+			aContext.lineWidth = this._lineWidth.getValueWithoutFlow();
+			aContext.lineCap = this._lineCap.getValueWithoutFlow();
+			aContext.lineJoin = this._lineJoin.getValueWithoutFlow();
+			aContext.miterLimit = this._miterLimit.getValueWithoutFlow();
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentCurve = currentArray[i];
+				currentCurve.getStartPoint(tempPoint);
+				if(this.moveWhenSwitchingCurves) {
+					aContext.moveTo(tempPoint.x, tempPoint.y);
+				}
+				else {
+					aContext.lineTo(tempPoint.x, tempPoint.y);
+				}
+				currentCurve.draw(aContext);
+			}
+			if(this.closePath) {
+				aContext.closePath();
+			}
+			if(this._strokeOverFill) {
+				this._fillPath(aContext, this._fillStyle.getValueWithoutFlow());
+				this._strokePath(aContext, this._strokeStyle.getValueWithoutFlow());
+			}
+			else {
+				this._strokePath(aContext, this._strokeStyle.getValueWithoutFlow());
+				this._fillPath(aContext, this._fillStyle.getValueWithoutFlow());
+			}
+		}
+		
+	};
+	
+	staticFunctions.create = function() {
+		var newCanvasGraphics2d = (new ClassReference()).init();
+		
+		return newCanvasGraphics2d;
+	};
+	
+	staticFunctions.createWithSettings = function(aLineWidth, aStrokeStyle, aFillStyle, aLineCap, aLineJoin, aMiterLimit) {
+		var newCanvasGraphics2d = (new ClassReference()).init();
+		
+		newCanvasGraphics2d.setPropertyInputWithoutNull("lineWidth", aLineWidth);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("strokeStyle", aStrokeStyle);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("fillStyle", aFillStyle);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("lineCap", aLineCap);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("lineJoin", aLineJoin);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("miterLimit", aMiterLimit);
+		
+		return newCanvasGraphics2d;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.utils.canvas.CanvasGraphics2d::_init");
+		
+		this.superCall();
+		
+		this._curves = new Array();
+		this.moveWhenSwitchingCurves = false;
+		this.scaleStrokes = false;
+		
+		this._fillStyle = this.createProperty("fillStyle", null);
+		this._lineWidth = this.createProperty("lineWidth", 1);
+		this._lineCap = this.createProperty("lineCap", LineCapTypes.BUTT);
+		this._lineJoin = this.createProperty("lineJoin", LineJoinTypes.MITER);
+		this._miterLimit = this.createProperty("miterLimit", 10);
+		this._strokeStyle = this.createProperty("strokeStyle", null);
+		
+		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
+		this._graphicsUpdate.connectInput(this._fillStyle);
+		this._graphicsUpdate.connectInput(this._lineWidth);
+		this._graphicsUpdate.connectInput(this._lineCap);
+		this._graphicsUpdate.connectInput(this._lineJoin);
+		this._graphicsUpdate.connectInput(this._miterLimit);
+		this._graphicsUpdate.connectInput(this._strokeStyle);
+		
+		this.closePath = false;
+		this._canDraw = true;
+		this._strokeOverFill = true;
+		
+		this._tempPoint = Point.create();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getStartPoint</span>(<span class="arguments">aReturnPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aReturnPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getStartPoint = function(aReturnPoint) {
+		if(this._curves.length &gt; 0) {
+			this._curves[0].getStartPoint(aReturnPoint);
+		}
+		//METODO: error message
+		return;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getCurves</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getCurves = function() {
+		return this._curves;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getLastCurve</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getLastCurve = function() {
+		if(this._curves.length &gt; 0) {
+			return this._curves[this._curves.length-1];
+		}
+		return null;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">hasCurves</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.hasCurves = function() {
+		return this._curves.length &gt; 0;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">canDraw</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.canDraw = function() {
+		return this._canDraw;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addCurve</span>(<span class="arguments">aCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCurve</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addCurve = function(aCurve) {
+		this._curves.push(aCurve);
+		this._graphicsUpdate.connectInput(aCurve.getProperty("graphicsUpdate"));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_fillPath</span>(<span class="arguments">aContext, aStyle</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aStyle</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._fillPath = function(aContext, aStyle) {
+		if(aStyle !== null) {
+			aContext.fillStyle = aStyle;
+			aContext.fill();
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_strokePath</span>(<span class="arguments">aContext, aStyle</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aContext</div><div class="argumentDescription">aStyle</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._strokePath = function(aContext, aStyle) {
+		//console.log("dbm.utils.canvas.CanvasGraphics2d::_strokePath");
+		
+		if(aStyle !== null) {
+			aContext.strokeStyle = aStyle;
+			if(!this.scaleStrokes) {
+				aContext.save();
+				aContext.setTransform(1, 0, 0, 1, 0, 0);
+			}
+			aContext.stroke();
+			if(!this.scaleStrokes) {
+				aContext.restore();
+			}
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">draw</span>(<span class="arguments">aContext</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aContext</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.draw = function(aContext) {
+		//console.log("dbm.utils.canvas.CanvasGraphics2d::draw");
+		//console.log(this, this._curves, this.strokeStyle);
+		
+		var currentArray = this._curves;
+		var currentArrayLength = currentArray.length;
+		if(currentArrayLength &gt; 0) {
+			var tempPoint = this._tempPoint;
+			currentArray[0].getStartPoint(tempPoint);
+			aContext.moveTo(tempPoint.x, tempPoint.y);
+			aContext.beginPath();
+			aContext.lineWidth = this._lineWidth.getValueWithoutFlow();
+			aContext.lineCap = this._lineCap.getValueWithoutFlow();
+			aContext.lineJoin = this._lineJoin.getValueWithoutFlow();
+			aContext.miterLimit = this._miterLimit.getValueWithoutFlow();
+			for(var i = 0; i &lt; currentArrayLength; i++) {
+				var currentCurve = currentArray[i];
+				currentCurve.getStartPoint(tempPoint);
+				if(this.moveWhenSwitchingCurves) {
+					aContext.moveTo(tempPoint.x, tempPoint.y);
+				}
+				else {
+					aContext.lineTo(tempPoint.x, tempPoint.y);
+				}
+				currentCurve.draw(aContext);
+			}
+			if(this.closePath) {
+				aContext.closePath();
+			}
+			if(this._strokeOverFill) {
+				this._fillPath(aContext, this._fillStyle.getValueWithoutFlow());
+				this._strokePath(aContext, this._strokeStyle.getValueWithoutFlow());
+			}
+			else {
+				this._strokePath(aContext, this._strokeStyle.getValueWithoutFlow());
+				this._fillPath(aContext, this._fillStyle.getValueWithoutFlow());
+			}
+		}
+		
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function() {
+		var newCanvasGraphics2d = (new ClassReference()).init();
+		
+		return newCanvasGraphics2d;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createWithSettings</span>(<span class="arguments">aLineWidth, aStrokeStyle, aFillStyle, aLineCap, aLineJoin, aMiterLimit</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aLineWidth</div><div class="argumentDescription">aStrokeStyle</div><div class="argumentDescription">aFillStyle</div><div class="argumentDescription">aLineCap</div><div class="argumentDescription">aLineJoin</div><div class="argumentDescription">aMiterLimit</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createWithSettings = function(aLineWidth, aStrokeStyle, aFillStyle, aLineCap, aLineJoin, aMiterLimit) {
+		var newCanvasGraphics2d = (new ClassReference()).init();
+		
+		newCanvasGraphics2d.setPropertyInputWithoutNull("lineWidth", aLineWidth);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("strokeStyle", aStrokeStyle);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("fillStyle", aFillStyle);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("lineCap", aLineCap);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("lineJoin", aLineJoin);
+		newCanvasGraphics2d.setPropertyInputWithoutNull("miterLimit", aMiterLimit);
+		
+		return newCanvasGraphics2d;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>UrlResolver</h1>
+					<div class="classPath">dbm.utils.file.UrlResolver</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Resolver for relative file paths.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><span class="noData">Class has no dependencies.</span></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var UrlResolver = dbm.importClass("dbm.utils.file.UrlResolver");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.utils.file.UrlResolver", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.file.UrlResolver");
+	
+	//Self reference
+	var UrlResolver = dbm.importClass("dbm.utils.file.UrlResolver");
+	
+	//Error report
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.utils.file.UrlResolver::_init");
+		
+		this.superCall();
+		
+		this._basePath = "";
+		this._folderNamesArray = new Array();
+		
+		return this;
+	};
+	
+	/**
+	 * Sets up the base url for where paths should be resolved.
+	 *
+	 * @param	aBasePath	String	The base part of the URL (eg. http://www.example.com).
+	 * @param	aFolders	String	The path to the current folder (eg. path/to/folder).
+	 */
+	objectFunctions.setupBaseUrl = function(aBasePath, aFolders) {
+		this._basePath = aBasePath;
+		if(aFolders !== null) {
+			this._folderNamesArray = aFolders.split("/");
+		}
+	};
+	
+	objectFunctions.setupBaseUrlFromPath = function(aPath) {
+		if(aPath.lastIndexOf("/") === aPath.length - 1) {
+			aPath = aPath.substring(0, aPath.length - 1);
+		}
+		var colonSlashSlashIndex = aPath.indexOf("://");
+		var basePathEndIndex;
+		if(colonSlashSlashIndex &gt; -1) {
+			basePathEndIndex = aPath.indexOf("/", colonSlashSlashIndex + 3);
+		} else {
+			basePathEndIndex = aPath.indexOf("/");
+		}
+		
+		if(basePathEndIndex === -1) {
+			this._basePath = aPath;
+			this._folderNamesArray = new Array();
+		} else {
+			this._basePath = aPath.substring(0, basePathEndIndex);
+			aPath = aPath.substring(basePathEndIndex + 1, aPath.length);
+			this._folderNamesArray = aPath.split("/");
+		}
+	};
+	
+	objectFunctions.setupBaseUrlFromFilePath = function(aPath) {
+		var questionMarkPosition = aPath.indexOf("?");
+		var anchorMarkPosition = aPath.indexOf("#");
+		var removeEndPosition = -1;
+		if(questionMarkPosition &gt; -1) {
+			removeEndPosition = questionMarkPosition;
+		}
+		if(anchorMarkPosition &gt; -1) {
+			if((removeEndPosition === -1) || (anchorMarkPosition &lt; removeEndPosition)) {
+				removeEndPosition = anchorMarkPosition;
+			}
+		}
+		
+		if(removeEndPosition !== -1) {
+			aPath = aPath.substring(0, removeEndPosition);
+		}
+		var slashPosition = aPath.lastIndexOf("/");
+		if(slashPosition !== -1) {
+			aPath = aPath.substring(0, slashPosition);
+		}
+		this.setupBaseUrlFromPath(aPath);
+	};
+	
+	objectFunctions.getAbsolutePath = function(aPath) {
+		if(aPath === null) {
+			//METODO: error message
+			return null;
+		}
+		
+		if(aPath === "") {
+			return this._basePath + "/" + this._folderNamesArray.join("/");
+		}
+		
+		if(aPath.indexOf("/") === 0) {
+			//MENOTE: aPath is relative to base of url
+			if(this._basePath.indexOf("://") &gt; -1) {
+				return this._basePath + aPath;
+			} else {
+				return aPath;
+			}
+		}
+		
+		var colonSlashSlashIndex = aPath.indexOf("://");
+		if(colonSlashSlashIndex &gt; -1) {
+			var questionMarkPosition = aPath.indexOf("?");
+			if((questionMarkPosition === -1) || (colonSlashSlashIndex &lt; questionMarkPosition)) {
+				return aPath;
+			}
+		}
+		
+		var endNr = this._folderNamesArray.length;
+		
+		var finalPath = aPath;
+		if(finalPath.indexOf("../") === 0) {
+			while(finalPath.indexOf("../") === 0) {
+				endNr--;
+				finalPath = finalPath.substring(3, finalPath.length);
+			}
+		}
+		var returnPath = this._basePath + "/";
+		if(this._folderNamesArray.length &gt; 0) {
+			var currentArray = this._folderNamesArray;
+			for(var i = 0;i &lt; endNr; i++) {
+				returnPath += currentArray[i] + "/";
+			}
+		}
+		returnPath += finalPath;
+		return returnPath;
+	};
+	
+	objectFunctions.getRelativePath = function(aPath) {
+		
+		var workPath = aPath;
+		
+		if(this._basePath !== "") {
+			if(workPath.indexOf(this._basePath) !== 0) {
+				//METODO: error message
+				return null;
+			}
+			
+			workPath = workPath.substring(this._basePath.length + 1, workPath.length);
+		}
+		
+		var questionMarkPosition = workPath.indexOf("?");
+		var queryString = ""; //MENOTE: should include ? if exists
+		if(questionMarkPosition !== -1) {
+			queryString = workPath.substring(questionMarkPosition, workPath.length);
+			workPath = workPath.substring(0, questionMarkPosition);
+		}
+		
+		var returnString = "";
+		
+		var workPathArray = workPath.split("/");
+		var currentArray = this._folderNamesArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			if(workPathArray.length === 0 || workPathArray[0] !== currentArray[i]) {
+				returnString += this._getLevelUpPath(theLength - i);
+				break;
+			} else {
+				workPathArray.shift();
+			}
+		}
+		returnString += workPathArray.join("/") + queryString;
+		return returnString;
+	};
+	
+	objectFunctions._getLevelUpPath = function(aLength) {
+		var returnString = "";
+		for(var i = 0; i &lt; aLength; i++) {
+			returnString += "../";
+		}
+		return returnString;
+	};
+	
+	staticFunctions.create = function() {
+		var newUrlResolver = (new ClassReference()).init();
+		return newUrlResolver;
+	};
+	
+	staticFunctions.createFromFilePath = function(aPath) {
+		var newUrlResolver = (new ClassReference()).init();
+		newUrlResolver.setupBaseUrlFromFilePath(aPath);
+		return newUrlResolver;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.utils.file.UrlResolver::_init");
+		
+		this.superCall();
+		
+		this._basePath = "";
+		this._folderNamesArray = new Array();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setupBaseUrl</span>(<span class="arguments">aBasePath:<span class="nativeType">String</span>, aFolders:<span class="nativeType">String</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Sets up the base url for where paths should be resolved.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aBasePath:<span class="nativeType">String</span> - The base part of the URL (eg. http://www.example.com).</div><div class="argumentDescription">aFolders:<span class="nativeType">String</span> - The path to the current folder (eg. path/to/folder).</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setupBaseUrl = function(aBasePath, aFolders) {
+		this._basePath = aBasePath;
+		if(aFolders !== null) {
+			this._folderNamesArray = aFolders.split("/");
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setupBaseUrlFromPath</span>(<span class="arguments">aPath</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setupBaseUrlFromPath = function(aPath) {
+		if(aPath.lastIndexOf("/") === aPath.length - 1) {
+			aPath = aPath.substring(0, aPath.length - 1);
+		}
+		var colonSlashSlashIndex = aPath.indexOf("://");
+		var basePathEndIndex;
+		if(colonSlashSlashIndex &gt; -1) {
+			basePathEndIndex = aPath.indexOf("/", colonSlashSlashIndex + 3);
+		} else {
+			basePathEndIndex = aPath.indexOf("/");
+		}
+		
+		if(basePathEndIndex === -1) {
+			this._basePath = aPath;
+			this._folderNamesArray = new Array();
+		} else {
+			this._basePath = aPath.substring(0, basePathEndIndex);
+			aPath = aPath.substring(basePathEndIndex + 1, aPath.length);
+			this._folderNamesArray = aPath.split("/");
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setupBaseUrlFromFilePath</span>(<span class="arguments">aPath</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setupBaseUrlFromFilePath = function(aPath) {
+		var questionMarkPosition = aPath.indexOf("?");
+		var anchorMarkPosition = aPath.indexOf("#");
+		var removeEndPosition = -1;
+		if(questionMarkPosition &gt; -1) {
+			removeEndPosition = questionMarkPosition;
+		}
+		if(anchorMarkPosition &gt; -1) {
+			if((removeEndPosition === -1) || (anchorMarkPosition &lt; removeEndPosition)) {
+				removeEndPosition = anchorMarkPosition;
+			}
+		}
+		
+		if(removeEndPosition !== -1) {
+			aPath = aPath.substring(0, removeEndPosition);
+		}
+		var slashPosition = aPath.lastIndexOf("/");
+		if(slashPosition !== -1) {
+			aPath = aPath.substring(0, slashPosition);
+		}
+		this.setupBaseUrlFromPath(aPath);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getAbsolutePath</span>(<span class="arguments">aPath</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getAbsolutePath = function(aPath) {
+		if(aPath === null) {
+			//METODO: error message
+			return null;
+		}
+		
+		if(aPath === "") {
+			return this._basePath + "/" + this._folderNamesArray.join("/");
+		}
+		
+		if(aPath.indexOf("/") === 0) {
+			//MENOTE: aPath is relative to base of url
+			if(this._basePath.indexOf("://") &gt; -1) {
+				return this._basePath + aPath;
+			} else {
+				return aPath;
+			}
+		}
+		
+		var colonSlashSlashIndex = aPath.indexOf("://");
+		if(colonSlashSlashIndex &gt; -1) {
+			var questionMarkPosition = aPath.indexOf("?");
+			if((questionMarkPosition === -1) || (colonSlashSlashIndex &lt; questionMarkPosition)) {
+				return aPath;
+			}
+		}
+		
+		var endNr = this._folderNamesArray.length;
+		
+		var finalPath = aPath;
+		if(finalPath.indexOf("../") === 0) {
+			while(finalPath.indexOf("../") === 0) {
+				endNr--;
+				finalPath = finalPath.substring(3, finalPath.length);
+			}
+		}
+		var returnPath = this._basePath + "/";
+		if(this._folderNamesArray.length &gt; 0) {
+			var currentArray = this._folderNamesArray;
+			for(var i = 0;i &lt; endNr; i++) {
+				returnPath += currentArray[i] + "/";
+			}
+		}
+		returnPath += finalPath;
+		return returnPath;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getRelativePath</span>(<span class="arguments">aPath</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getRelativePath = function(aPath) {
+		
+		var workPath = aPath;
+		
+		if(this._basePath !== "") {
+			if(workPath.indexOf(this._basePath) !== 0) {
+				//METODO: error message
+				return null;
+			}
+			
+			workPath = workPath.substring(this._basePath.length + 1, workPath.length);
+		}
+		
+		var questionMarkPosition = workPath.indexOf("?");
+		var queryString = ""; //MENOTE: should include ? if exists
+		if(questionMarkPosition !== -1) {
+			queryString = workPath.substring(questionMarkPosition, workPath.length);
+			workPath = workPath.substring(0, questionMarkPosition);
+		}
+		
+		var returnString = "";
+		
+		var workPathArray = workPath.split("/");
+		var currentArray = this._folderNamesArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			if(workPathArray.length === 0 || workPathArray[0] !== currentArray[i]) {
+				returnString += this._getLevelUpPath(theLength - i);
+				break;
+			} else {
+				workPathArray.shift();
+			}
+		}
+		returnString += workPathArray.join("/") + queryString;
+		return returnString;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_getLevelUpPath</span>(<span class="arguments">aLength</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aLength</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._getLevelUpPath = function(aLength) {
+		var returnString = "";
+		for(var i = 0; i &lt; aLength; i++) {
+			returnString += "../";
+		}
+		return returnString;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function() {
+		var newUrlResolver = (new ClassReference()).init();
+		return newUrlResolver;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createFromFilePath</span>(<span class="arguments">aPath</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPath</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.createFromFilePath = function(aPath) {
+		var newUrlResolver = (new ClassReference()).init();
+		newUrlResolver.setupBaseUrlFromFilePath(aPath);
+		return newUrlResolver;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

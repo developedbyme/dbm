@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>UuidGenerator</h1>
+					<div class="classPath">dbm.utils.id.UuidGenerator</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Generates UUID</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.utils.random.MersenneTwister" href="../random/MersenneTwister.html">MersenneTwister</a>, <a title="dbm.utils.native.number.NumberFunctions" href="../native/number/NumberFunctions.html">NumberFunctions</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var UuidGenerator = dbm.importClass("dbm.utils.id.UuidGenerator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.utils.id.UuidGenerator", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.utils.id.UuidGenerator");
+	
+	//Self reference
+	var UuidGenerator = dbm.importClass("dbm.utils.id.UuidGenerator");
+	
+	//Error report
+	
+	//Dependencies
+	var MersenneTwister = dbm.importClass("dbm.utils.random.MersenneTwister");
+	
+	//Utils
+	var NumberFunctions = dbm.importClass("dbm.utils.native.number.NumberFunctions");
+	
+	//Constants
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.utils.id.UuidGenerator");
+		
+		this.randomGenerator = (new MersenneTwister()).init();
+		
+		return this;
+	}; //End function UuidGenerator
+	
+	/**
+	 * Gets a random part (4 hexadecimal numbers)
+	 */
+	objectFunctions._getRandomPart = function(aMax) {
+		//console.log("getRandomPart");
+		return Math.floor(this.randomGenerator.generateRealClosedOpen()*(aMax+1));
+	}; //End function getRandomPart
+	
+	/**
+	 * Generates a version 4 UUID (random)
+	 *
+	 * @return	The id
+	 */
+	objectFunctions.generateV4 = function() {
+		//console.log("generateV4");
+		
+		var returnString = "";
+		
+		// 32 bits for "time_low"
+		returnString += NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4) + NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4) + "-";
+
+		// 16 bits for "time_mid"
+		returnString += NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4) + "-";
+
+		// 16 bits for "time_hi_and_version",
+		// four most significant bits holds version number 4
+		returnString += NumberFunctions.getPaddedNumber((this._getRandomPart(0x0FFF) | 0x4000).toString(16), 4) + "-";
+
+		// 16 bits, 8 bits for "clk_seq_hi_res",
+		// 8 bits for "clk_seq_low",
+		// two most significant bits holds zero and one for variant DCE1.1
+		returnString += NumberFunctions.getPaddedNumber((this._getRandomPart(0x3FFF) | 0x8000).toString(16), 4) + "-";
+
+		// 48 bits for "node"
+		returnString += NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16) , 4) + NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4) + NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4);
+		
+		return returnString;
+	}; //End function generateV4
+	
+	staticFunctions.create = function() {
+		var newUuidGenerator = (new UuidGenerator()).init();
+		return newUuidGenerator;
+	}
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.utils.id.UuidGenerator");
+		
+		this.randomGenerator = (new MersenneTwister()).init();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_getRandomPart</span>(<span class="arguments">aMax</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Gets a random part (4 hexadecimal numbers)</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aMax</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._getRandomPart = function(aMax) {
+		//console.log("getRandomPart");
+		return Math.floor(this.randomGenerator.generateRealClosedOpen()*(aMax+1));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">generateV4</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">The id</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Generates a version 4 UUID (random)</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">The id</span> - The id</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.generateV4 = function() {
+		//console.log("generateV4");
+		
+		var returnString = "";
+		
+		// 32 bits for "time_low"
+		returnString += NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4) + NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4) + "-";
+
+		// 16 bits for "time_mid"
+		returnString += NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4) + "-";
+
+		// 16 bits for "time_hi_and_version",
+		// four most significant bits holds version number 4
+		returnString += NumberFunctions.getPaddedNumber((this._getRandomPart(0x0FFF) | 0x4000).toString(16), 4) + "-";
+
+		// 16 bits, 8 bits for "clk_seq_hi_res",
+		// 8 bits for "clk_seq_low",
+		// two most significant bits holds zero and one for variant DCE1.1
+		returnString += NumberFunctions.getPaddedNumber((this._getRandomPart(0x3FFF) | 0x8000).toString(16), 4) + "-";
+
+		// 48 bits for "node"
+		returnString += NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16) , 4) + NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4) + NumberFunctions.getPaddedNumber(this._getRandomPart(0xFFFF).toString(16), 4);
+		
+		return returnString;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function() {
+		var newUuidGenerator = (new UuidGenerator()).init();
+		return newUuidGenerator;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>FlowStatusBaseObject</h1>
+					<div class="classPath">dbm.core.objectparts.FlowStatusBaseObject</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Base object for objects that can be updated by flow.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><a title="dbm.core.objectparts.Property" href="Property.html">Property</a>, <a title="dbm.core.objectparts.UpdateFunction" href="UpdateFunction.html">UpdateFunction</a></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a>, <a title="dbm.core.globalobjects.GlobalVariables" href="../globalobjects/GlobalVariables.html">GlobalVariables</a>, <a title="dbm.constants.ReportLevelTypes" href="../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../constants/ReportTypes.html">ReportTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var FlowStatusBaseObject = dbm.importClass("dbm.core.objectparts.FlowStatusBaseObject");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.core.objectparts.FlowStatusBaseObject", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.objectparts.FlowStatusBaseObject");
+	//"use strict";
+	
+	//Self reference
+	var FlowStatusBaseObject = dbm.importClass("dbm.core.objectparts.FlowStatusBaseObject");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
+	
+	//Utils
+	
+	//Constants
+	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.core.objectparts.FlowStatusBaseObject::_init");
+		
+		this.superCall();
+		
+		this.status = FlowStatusTypes.UPDATED;
+		this.flowUpdateNumber = 0;
+		
+		return this;
+	};
+	
+	/**
+	 * Sets the flow status of this property to updated.
+	 *
+	 * @param	aFlowUpdateNumber	Number	The integer for keeping track of flow updates.
+	 */
+	objectFunctions.setFlowAsUpdated = function(aFlowUpdateNumber) {
+		this.flowUpdateNumber = aFlowUpdateNumber;
+		this.status = FlowStatusTypes.UPDATED;
+	};
+	
+	/**
+	 * Sets the flow status of this property.
+	 *
+	 * @param	aStatus		FlowStatusTypes		The status for this property.
+	 */
+	objectFunctions.setStatus = function(aStatus) {
+		this.status = aStatus;
+	};
+	
+	/**
+	 * Gets the flow status of this property.
+	 *
+	 * @return	FlowStatusTypes		The status for this property.
+	 */
+	objectFunctions.getStatus = function() {
+		return this.status;
+	};
+	
+	/**
+	 * Gets the flow update number when this property was last updated.
+	 *
+	 * @return	Number	The interger that keeps track of when the flow was latest updated for this property.
+	 */
+	objectFunctions.getFlowUpdateNumber = function() {
+		//console.log("dbm.core.objectparts.FlowStatusBaseObject::getFlowUpdateNumber");
+		return this.flowUpdateNumber;
+	};
+	
+	/**
+	 * Internal functionality for changing the flow update number
+	 *
+	 * @param	aFlowUpdateNumber	Number	The interger that keeps track of when the flow was latest updated.
+	 */
+	objectFunctions._internalFunctionality_setFlowUpdateNumber = function(aFlowUpdateNumber) {
+		//console.log("dbm.core.objectparts.FlowStatusBaseObject::_internalFunctionality_setFlowUpdateNumber");
+		this.flowUpdateNumber = aFlowUpdateNumber;
+	};
+	
+	/**
+	 * Fills an array with all the output properties and update functions.
+	 *
+	 * @param	aReturnArray	Array	The array that gets filled with connections.
+	 */
+	objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
+		//console.log("dbm.core.objectparts.FlowStatusBaseObject::fillWithAllOutputConnections");
+		
+		var currentArray = this._outputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			aReturnArray.push(currentObject);
+		}
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.core.objectparts.FlowStatusBaseObject::_init");
+		
+		this.superCall();
+		
+		this.status = FlowStatusTypes.UPDATED;
+		this.flowUpdateNumber = 0;
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setFlowAsUpdated</span>(<span class="arguments">aFlowUpdateNumber:<span class="nativeType">Number</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Sets the flow status of this property to updated.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aFlowUpdateNumber:<span class="nativeType">Number</span> - The integer for keeping track of flow updates.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setFlowAsUpdated = function(aFlowUpdateNumber) {
+		this.flowUpdateNumber = aFlowUpdateNumber;
+		this.status = FlowStatusTypes.UPDATED;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setStatus</span>(<span class="arguments">aStatus:<a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Sets the flow status of this property.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aStatus:<a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a> - The status for this property.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setStatus = function(aStatus) {
+		this.status = aStatus;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getStatus</span>(<span class="arguments"></span>)<span class="returnValue">:<a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Gets the flow status of this property.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><a title="dbm.constants.FlowStatusTypes" href="../../constants/FlowStatusTypes.html">FlowStatusTypes</a> - The status for this property.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getStatus = function() {
+		return this.status;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getFlowUpdateNumber</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="nativeType">Number</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Gets the flow update number when this property was last updated.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="nativeType">Number</span> - The interger that keeps track of when the flow was latest updated for this property.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getFlowUpdateNumber = function() {
+		//console.log("dbm.core.objectparts.FlowStatusBaseObject::getFlowUpdateNumber");
+		return this.flowUpdateNumber;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_setFlowUpdateNumber</span>(<span class="arguments">aFlowUpdateNumber:<span class="nativeType">Number</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Internal functionality for changing the flow update number</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aFlowUpdateNumber:<span class="nativeType">Number</span> - The interger that keeps track of when the flow was latest updated.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_setFlowUpdateNumber = function(aFlowUpdateNumber) {
+		//console.log("dbm.core.objectparts.FlowStatusBaseObject::_internalFunctionality_setFlowUpdateNumber");
+		this.flowUpdateNumber = aFlowUpdateNumber;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">fillWithAllOutputConnections</span>(<span class="arguments">aReturnArray:<span class="nativeType">Array</span></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Fills an array with all the output properties and update functions.</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aReturnArray:<span class="nativeType">Array</span> - The array that gets filled with connections.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.fillWithAllOutputConnections = function(aReturnArray) {
+		//console.log("dbm.core.objectparts.FlowStatusBaseObject::fillWithAllOutputConnections");
+		
+		var currentArray = this._outputConnections;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentObject = currentArray[i];
+			aReturnArray.push(currentObject);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					</div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

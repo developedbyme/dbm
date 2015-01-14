@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>WindowManager</h1>
+					<div class="classPath">dbm.core.globalobjects.windowmanager.WindowManager</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.utils.native.array.ArrayFunctions" href="../../../utils/native/array/ArrayFunctions.html">ArrayFunctions</a>, <a title="dbm.core.extendedevent.commands.basic.CallFunctionCommand" href="../../extendedevent/commands/basic/CallFunctionCommand.html">CallFunctionCommand</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.utils.reevaluation.objectreevaluation.GetVariableObject" href="../../../utils/reevaluation/objectreevaluation/GetVariableObject.html">GetVariableObject</a>, <a title="dbm.core.globalobjects.windowmanager.data.Margins" href="data/Margins.html">Margins</a>, <a title="dbm.utils.data.NamedArray" href="../../../utils/data/NamedArray.html">NamedArray</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.flow.nodes.browser.ScreenSizeNode" href="../../../flow/nodes/browser/ScreenSizeNode.html">ScreenSizeNode</a>, <a title="dbm.core.globalobjects.windowmanager.objects.Window" href="objects/Window.html">Window</a>, <a title="dbm.constants.extendedevents.WindowExtendedEventIds" href="../../../constants/extendedevents/WindowExtendedEventIds.html">WindowExtendedEventIds</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var WindowManager = dbm.importClass("dbm.core.globalobjects.windowmanager.WindowManager");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.windowmanager.WindowManager", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.windowmanager.WindowManager");
+	
+	var WindowManager = dbm.importClass("dbm.core.globalobjects.windowmanager.WindowManager");
+	
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	var Window = dbm.importClass("dbm.core.globalobjects.windowmanager.objects.Window");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
+	var ScreenSizeNode = dbm.importClass("dbm.flow.nodes.browser.ScreenSizeNode");
+	var Margins = dbm.importClass("dbm.core.globalobjects.windowmanager.data.Margins");
+	
+	var WindowExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.WindowExtendedEventIds");
+	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
+	
+	
+	
+	objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_init");
+		
+		this.superCall();
+		
+		this._windows = (new NamedArray()).init();
+		this._windowsOrder = new Array();
+		this._masterWindow = null;
+		
+		this._lastMouseTime = 0;
+		this._lastMouseScreenX = 0;
+		this._lastMouseScreenY = 0;
+		
+		this._isUpdatingDepths = false;
+		this._currentDepthOrder = this.createGhostProperty("currentDepthOrder");
+		this._depth = this.createGhostProperty("depth");
+		this._updateFlowDepthFunction = this.createUpdateFunction("depth", this._updateFlowDepth, [this._currentDepthOrder], [this._depth]);
+		
+		this._defaultMargins = null;
+		this._currentFocusedWindow = null;
+		
+		return this;
+	};
+	
+	objectFunctions.addToSharedRandomValues = function(aValuesArray) {
+		console.log("dbm.core.globalobjects.windowmanager.WindowManager::addToSharedRandomValues");
+		
+		var browserWindow = this._masterWindow.getBrowserWindow();
+		aValuesArray.push(browserWindow.screenX);
+		aValuesArray.push(browserWindow.screenY);
+		aValuesArray.push(browserWindow.innerWidth);
+		aValuesArray.push(browserWindow.innerHeight);
+		aValuesArray.push(browserWindow.outerWidth);
+		aValuesArray.push(browserWindow.outerHeight);
+		aValuesArray.push(browserWindow.screen.availWidth);
+		aValuesArray.push(browserWindow.screen.availHeight);
+		aValuesArray.push(Math.floor(100*browserWindow.devicePixelRatio));
+		
+		return this;
+	};
+	
+	objectFunctions.setMasterWindow = function(aWindow) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::setMasterWindow");
+		
+		var newWindow = (new Window()).init();
+		newWindow.setupFromExistingWindow(aWindow);
+		newWindow.name = "master";
+		
+		this._masterWindow = newWindow;
+		
+		//MENOTE: master windows doesn't give focus events so it shouldn't be included in the ordering
+		//newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.OPEN, CallFunctionCommand.createCommand(this, this.setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		//newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.FOCUS, CallFunctionCommand.createCommand(this, this.setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		//this._windowsOrder.push(newWindow);
+		//this._windows.addObject("master", newWindow);
+		
+		return newWindow;
+	};
+	
+	objectFunctions.getMasterWindow = function() {
+		return this._masterWindow;
+	};
+	
+	objectFunctions.getWindow = function(aName) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getWindow");
+		
+		return this._windows.getObject(aName);
+	};
+	
+	objectFunctions.getWindowForDocument = function(aDocument) {
+		if(this._masterWindow !== null &amp;&amp; aDocument === this._masterWindow.getDocument()) {
+			return this._masterWindow;
+		}
+		
+		var currentArray = this._windows.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentWindow = currentArray[i];
+			if(currentWindow.isOpen() &amp;&amp; aDocument === currentWindow.getDocument()) {
+				return currentWindow;
+			}
+		}
+		
+		return null;
+	};
+	
+	objectFunctions.getScreenSizeNode = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getScreenSizeNode");
+		
+		if(this._screenSizeNode === null) {
+			this._screenSizeNode = ScreenSizeNode.create();
+		}
+		
+		return this._screenSizeNode;
+	};
+	
+	objectFunctions.setDefaultMargins = function(aWidth, aHeight, aLeft, aTop, aRight, aBottom) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::setDefaultMargins");
+		//console.log(aWidth, aHeight, aLeft, aTop, aRight, aBottom);
+		
+		this._defaultMargins = Margins.create(aWidth, aHeight, aLeft, aTop, aRight, aBottom);
+		
+	};
+	
+	objectFunctions.getDefaultMargins = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getDefaultMargins");
+		
+		return this._defaultMargins;
+		
+	};
+	
+	objectFunctions.hasDefaultMargins = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::hasDefaultMargins");
+		
+		return (this._defaultMargins !== null);
+		
+	};
+	
+	objectFunctions.createWindow = function(aName, aUrl, aWidth, aHeight) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::createWindow");
+		
+		var newWindow = Window.create(aName, aUrl, aWidth, aHeight);
+		newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.OPEN, CallFunctionCommand.createCommand(this, this._setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.FOCUS, CallFunctionCommand.createCommand(this, this._setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(this, this._windowClosed, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		this._windows.addObject(aName, newWindow);
+		
+		this._updateFlowDepthFunction.addInputConnection(newWindow.getProperty("z"));
+		
+		return newWindow;
+	};
+	
+	objectFunctions.createWindowFromExisiting = function(aName, aWindow) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::createWindowFromExisiting");
+		
+		var newWindow = (new Window()).init();
+		newWindow.setupFromExistingWindow(aWindow);
+		newWindow.name = aName;
+		this._windows.addObject(aName, newWindow);
+		
+		return newWindow;
+	};
+	
+	objectFunctions._linkRegistration_removeWindow = function(aWindow) {
+		var windowName = this._windows.identifyObject(aWindow);
+		if(windowName !== null) {
+			this._windows.removeObject(windowName);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "_linkRegistration_removeWindow", "Window " + aWindow + " already removed.");
+		}
+	};
+	
+	objectFunctions._setWindowAsHighestDepth = function(aWindow) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_setWindowAsHighestDepth");
+		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
+		if(position !== -1) {
+			if(position !== this._windowsOrder.length-1 &amp;&amp; !this._isUpdatingDepths) {
+				this._currentDepthOrder.setAsDirty();
+			}
+			this._windowsOrder.splice(position, 1);
+		}
+		
+		this._windowsOrder.push(aWindow);
+		if(this._currentFocusedWindow !== null) {
+			this._currentFocusedWindow.getProperty("hasFocus").setValue(false);
+			this._currentFocusedWindow.getExtendedEvent().perform(WindowExtendedEventIds.BLUR);
+			this._currentFocusedWindow._checkForLastPosition();
+		}
+		this._currentFocusedWindow = aWindow;
+		this._currentFocusedWindow.getProperty("hasFocus").setValue(true);
+		
+		//console.log(this._windowsOrder);
+	};
+	
+	objectFunctions._windowClosed = function(aWindow) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_windowClosed");
+		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
+		if(position !== -1) {
+			this._windowsOrder.splice(position, 1);
+		}
+		
+		if(aWindow === this._currentFocusedWindow) {
+			this._currentFocusedWindow = null;
+		}
+		
+		//console.log(this._windowsOrder);
+	};
+	
+	objectFunctions._getWindowsInDepthOrder = function() {
+		var returnArray = new Array();
+		var returnArrayLength = 0;
+		var currentArray = this._windows.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentWindow = currentArray[i];
+			if(currentWindow.isOpen()) {
+				var isInserted = false;
+				for(var j = 0; j &lt; returnArrayLength; j++) {
+					if(currentWindow.getProperty("z").getValueWithoutFlow() &lt; returnArray[j].getProperty("z").getValueWithoutFlow()) {
+						returnArray.splice(j, 0, currentWindow);
+						isInserted = true;
+						break;
+					}
+				}
+				if(!isInserted) {
+					returnArray.push(currentWindow);
+				}
+				returnArrayLength++;
+			}
+		}
+		return returnArray;
+	};
+	
+	objectFunctions._updateFlowDepth = function(aFlowUpdateNumber) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
+		this._isUpdatingDepths = true;
+		var currentArray = this._getWindowsInDepthOrder();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentWindow = currentArray[i];
+			if(currentWindow !== this._windowsOrder[i]) {
+				currentWindow.focus();
+			}
+		}
+		
+		this._depth.setValueWithFlow(null, aFlowUpdateNumber);
+		this._isUpdatingDepths = false;
+		//console.log("//dbm.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
+	};
+	
+	objectFunctions.updateDepths = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::updateDepths");
+		if(this._isUpdatingDepths) return;
+		this._currentDepthOrder.setAsDirty();
+		dbm.singletons.dbmFlowManager.updateProperty(this._depth);
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_init");
+		
+		this.superCall();
+		
+		this._windows = (new NamedArray()).init();
+		this._windowsOrder = new Array();
+		this._masterWindow = null;
+		
+		this._lastMouseTime = 0;
+		this._lastMouseScreenX = 0;
+		this._lastMouseScreenY = 0;
+		
+		this._isUpdatingDepths = false;
+		this._currentDepthOrder = this.createGhostProperty("currentDepthOrder");
+		this._depth = this.createGhostProperty("depth");
+		this._updateFlowDepthFunction = this.createUpdateFunction("depth", this._updateFlowDepth, [this._currentDepthOrder], [this._depth]);
+		
+		this._defaultMargins = null;
+		this._currentFocusedWindow = null;
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addToSharedRandomValues</span>(<span class="arguments">aValuesArray</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aValuesArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addToSharedRandomValues = function(aValuesArray) {
+		console.log("dbm.core.globalobjects.windowmanager.WindowManager::addToSharedRandomValues");
+		
+		var browserWindow = this._masterWindow.getBrowserWindow();
+		aValuesArray.push(browserWindow.screenX);
+		aValuesArray.push(browserWindow.screenY);
+		aValuesArray.push(browserWindow.innerWidth);
+		aValuesArray.push(browserWindow.innerHeight);
+		aValuesArray.push(browserWindow.outerWidth);
+		aValuesArray.push(browserWindow.outerHeight);
+		aValuesArray.push(browserWindow.screen.availWidth);
+		aValuesArray.push(browserWindow.screen.availHeight);
+		aValuesArray.push(Math.floor(100*browserWindow.devicePixelRatio));
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setMasterWindow</span>(<span class="arguments">aWindow</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aWindow</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setMasterWindow = function(aWindow) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::setMasterWindow");
+		
+		var newWindow = (new Window()).init();
+		newWindow.setupFromExistingWindow(aWindow);
+		newWindow.name = "master";
+		
+		this._masterWindow = newWindow;
+		
+		//MENOTE: master windows doesn't give focus events so it shouldn't be included in the ordering
+		//newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.OPEN, CallFunctionCommand.createCommand(this, this.setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		//newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.FOCUS, CallFunctionCommand.createCommand(this, this.setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		//this._windowsOrder.push(newWindow);
+		//this._windows.addObject("master", newWindow);
+		
+		return newWindow;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getMasterWindow</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getMasterWindow = function() {
+		return this._masterWindow;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getWindow</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getWindow = function(aName) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getWindow");
+		
+		return this._windows.getObject(aName);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getWindowForDocument</span>(<span class="arguments">aDocument</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aDocument</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getWindowForDocument = function(aDocument) {
+		if(this._masterWindow !== null &amp;&amp; aDocument === this._masterWindow.getDocument()) {
+			return this._masterWindow;
+		}
+		
+		var currentArray = this._windows.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentWindow = currentArray[i];
+			if(currentWindow.isOpen() &amp;&amp; aDocument === currentWindow.getDocument()) {
+				return currentWindow;
+			}
+		}
+		
+		return null;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getScreenSizeNode</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getScreenSizeNode = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getScreenSizeNode");
+		
+		if(this._screenSizeNode === null) {
+			this._screenSizeNode = ScreenSizeNode.create();
+		}
+		
+		return this._screenSizeNode;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setDefaultMargins</span>(<span class="arguments">aWidth, aHeight, aLeft, aTop, aRight, aBottom</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aWidth</div><div class="argumentDescription">aHeight</div><div class="argumentDescription">aLeft</div><div class="argumentDescription">aTop</div><div class="argumentDescription">aRight</div><div class="argumentDescription">aBottom</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setDefaultMargins = function(aWidth, aHeight, aLeft, aTop, aRight, aBottom) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::setDefaultMargins");
+		//console.log(aWidth, aHeight, aLeft, aTop, aRight, aBottom);
+		
+		this._defaultMargins = Margins.create(aWidth, aHeight, aLeft, aTop, aRight, aBottom);
+		
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getDefaultMargins</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getDefaultMargins = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::getDefaultMargins");
+		
+		return this._defaultMargins;
+		
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">hasDefaultMargins</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.hasDefaultMargins = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::hasDefaultMargins");
+		
+		return (this._defaultMargins !== null);
+		
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createWindow</span>(<span class="arguments">aName, aUrl, aWidth, aHeight</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aUrl</div><div class="argumentDescription">aWidth</div><div class="argumentDescription">aHeight</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createWindow = function(aName, aUrl, aWidth, aHeight) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::createWindow");
+		
+		var newWindow = Window.create(aName, aUrl, aWidth, aHeight);
+		newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.OPEN, CallFunctionCommand.createCommand(this, this._setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.FOCUS, CallFunctionCommand.createCommand(this, this._setWindowAsHighestDepth, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		newWindow.getExtendedEvent().addCommandToEvent(WindowExtendedEventIds.CLOSE, CallFunctionCommand.createCommand(this, this._windowClosed, [GetVariableObject.createSelectPerformingObjectCommand()]));
+		this._windows.addObject(aName, newWindow);
+		
+		this._updateFlowDepthFunction.addInputConnection(newWindow.getProperty("z"));
+		
+		return newWindow;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createWindowFromExisiting</span>(<span class="arguments">aName, aWindow</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div><div class="argumentDescription">aWindow</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createWindowFromExisiting = function(aName, aWindow) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::createWindowFromExisiting");
+		
+		var newWindow = (new Window()).init();
+		newWindow.setupFromExistingWindow(aWindow);
+		newWindow.name = aName;
+		this._windows.addObject(aName, newWindow);
+		
+		return newWindow;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_linkRegistration_removeWindow</span>(<span class="arguments">aWindow</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aWindow</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._linkRegistration_removeWindow = function(aWindow) {
+		var windowName = this._windows.identifyObject(aWindow);
+		if(windowName !== null) {
+			this._windows.removeObject(windowName);
+		}
+		else {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "_linkRegistration_removeWindow", "Window " + aWindow + " already removed.");
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_setWindowAsHighestDepth</span>(<span class="arguments">aWindow</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aWindow</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._setWindowAsHighestDepth = function(aWindow) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_setWindowAsHighestDepth");
+		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
+		if(position !== -1) {
+			if(position !== this._windowsOrder.length-1 &amp;&amp; !this._isUpdatingDepths) {
+				this._currentDepthOrder.setAsDirty();
+			}
+			this._windowsOrder.splice(position, 1);
+		}
+		
+		this._windowsOrder.push(aWindow);
+		if(this._currentFocusedWindow !== null) {
+			this._currentFocusedWindow.getProperty("hasFocus").setValue(false);
+			this._currentFocusedWindow.getExtendedEvent().perform(WindowExtendedEventIds.BLUR);
+			this._currentFocusedWindow._checkForLastPosition();
+		}
+		this._currentFocusedWindow = aWindow;
+		this._currentFocusedWindow.getProperty("hasFocus").setValue(true);
+		
+		//console.log(this._windowsOrder);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_windowClosed</span>(<span class="arguments">aWindow</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aWindow</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._windowClosed = function(aWindow) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_windowClosed");
+		var position = ArrayFunctions.indexOfInArray(this._windowsOrder, aWindow);
+		if(position !== -1) {
+			this._windowsOrder.splice(position, 1);
+		}
+		
+		if(aWindow === this._currentFocusedWindow) {
+			this._currentFocusedWindow = null;
+		}
+		
+		//console.log(this._windowsOrder);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_getWindowsInDepthOrder</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._getWindowsInDepthOrder = function() {
+		var returnArray = new Array();
+		var returnArrayLength = 0;
+		var currentArray = this._windows.getObjectsArray();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentWindow = currentArray[i];
+			if(currentWindow.isOpen()) {
+				var isInserted = false;
+				for(var j = 0; j &lt; returnArrayLength; j++) {
+					if(currentWindow.getProperty("z").getValueWithoutFlow() &lt; returnArray[j].getProperty("z").getValueWithoutFlow()) {
+						returnArray.splice(j, 0, currentWindow);
+						isInserted = true;
+						break;
+					}
+				}
+				if(!isInserted) {
+					returnArray.push(currentWindow);
+				}
+				returnArrayLength++;
+			}
+		}
+		return returnArray;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_updateFlowDepth</span>(<span class="arguments">aFlowUpdateNumber</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aFlowUpdateNumber</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._updateFlowDepth = function(aFlowUpdateNumber) {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
+		this._isUpdatingDepths = true;
+		var currentArray = this._getWindowsInDepthOrder();
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i &lt; currentArrayLength; i++) {
+			var currentWindow = currentArray[i];
+			if(currentWindow !== this._windowsOrder[i]) {
+				currentWindow.focus();
+			}
+		}
+		
+		this._depth.setValueWithFlow(null, aFlowUpdateNumber);
+		this._isUpdatingDepths = false;
+		//console.log("//dbm.core.globalobjects.windowmanager.WindowManager::_updateFlowDepth");
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">updateDepths</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.updateDepths = function() {
+		//console.log("dbm.core.globalobjects.windowmanager.WindowManager::updateDepths");
+		if(this._isUpdatingDepths) return;
+		this._currentDepthOrder.setAsDirty();
+		dbm.singletons.dbmFlowManager.updateProperty(this._depth);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					</div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

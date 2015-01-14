@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>CanvasView</h1>
+					<div class="classPath">dbm.gui.canvas.CanvasView</div>
+					<div class="classInheritance"><a title="dbm.gui.DisplayBaseObject" href="../DisplayBaseObject.html">DisplayBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../core/ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../core/FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../core/BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.utils.canvas.CanvasController2d" href="../../utils/canvas/CanvasController2d.html">CanvasController2d</a>, <a title="dbm.utils.canvas.3d.CanvasController3d" href="../../utils/canvas/3d/CanvasController3d.html">CanvasController3d</a>, <a title="dbm.flow.nodes.display.SizeOfElementNode" href="../../flow/nodes/display/SizeOfElementNode.html">SizeOfElementNode</a>, <a title="dbm.constants.XmlNodeTypes" href="../../constants/XmlNodeTypes.html">XmlNodeTypes</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.gui.canvas.CanvasView", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.gui.canvas.CanvasView");
+	
+	//Self reference
+	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
+	
+	//Error report
+	
+	//Dependencies
+	var CanvasController2d = dbm.importClass("dbm.utils.canvas.CanvasController2d");
+	var CanvasController3d = dbm.importClass("dbm.utils.canvas.3d.CanvasController3d");
+	var SizeOfElementNode = dbm.importClass("dbm.flow.nodes.display.SizeOfElementNode");
+	
+	//Utils
+	
+	//Constants
+	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		//console.log("dbm.gui.canvas.CanvasView::_init");
+		
+		this.superCall();
+		
+		this._controller = null;
+		
+		this._canvasWidth = this.createProperty("canvasWidth", 512);
+		this._canvasHeight = this.createProperty("canvasHeight", 512);
+		
+		var sizeUpdate = this.createGhostProperty("sizeUpdate");
+		this._display.connectInput(sizeUpdate);
+		
+		this.createUpdateFunction("value", this._updateSizeFlow, [this._element, this._canvasWidth, this._canvasHeight], [sizeUpdate]);
+		
+		return this;
+	};
+	
+	objectFunctions.setElementAsSized = function() {
+		
+		this.superCall();
+		
+		this._canvasWidth.connectInput(this.getProperty("width"));
+		this._canvasHeight.connectInput(this.getProperty("height"));
+		
+		return this;
+	};
+	
+	objectFunctions.setCanvasSizeToSizeOfElement = function() {
+		var sizeOfElementNode = this.addDestroyableObject(SizeOfElementNode.create());
+		
+		sizeOfElementNode.getProperty("element").connectInput(this.getProperty("element"));
+		this._canvasWidth.connectInput(sizeOfElementNode.getProperty("width"));
+		this._canvasHeight.connectInput(sizeOfElementNode.getProperty("height"));
+	};
+	
+	objectFunctions.setController = function(aController) {
+		//console.log("dbm.gui.canvas.CanvasView::setController");
+		
+		this._controller = aController;
+		this._controller.setPropertyInput("canvas", this._element);
+		this._controller.getProperty("graphicsUpdate").connectInput(this._display);
+		
+		return this;
+	};
+	
+	objectFunctions.getController = function() {
+		//console.log("dbm.gui.canvas.CanvasView::getController");
+		
+		return this._controller;
+	};
+	
+	objectFunctions.setDocumentInput = function(aProperty) {
+		
+		this._sizeOfElementNode.setDocumentInput(aProperty);
+		
+		return this;
+	};
+	
+	objectFunctions._updateSizeFlow = function(aFlowUpdateNumber) {
+		//console.log("dbm.gui.canvas.CanvasView::_updateSizeFlow");
+		
+		var element = this._element.getValueWithoutFlow();
+		
+		var newWidth = this._canvasWidth.getValueWithoutFlow();
+		var newHeight = this._canvasHeight.getValueWithoutFlow();
+		//console.log(newWidth, newHeight);
+		
+		if(newWidth &gt; 0) {
+			element.width = newWidth;
+		}
+		if(newHeight &gt; 0) {
+			element.height = newHeight;
+		}
+	};
+	
+	objectFunctions.update = function() {
+		//console.log("dbm.gui.canvas.CanvasView::update");
+		this._display.update();
+		this._controller.getProperty("display").update();
+	};
+	
+	objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_controller":
+				return false;
+		}
+		return this.superCall();
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		
+		this._controller = null;
+		this._display = null;
+		this._canvasWidth = null;
+		this._canvasHeight = null;
+		
+		this.superCall();
+	};
+	
+	staticFunctions.set2dControllerToView = function(aView) {
+		var canvasController = CanvasController2d.create();
+		aView.setController(canvasController);
+		aView.addDestroyableObject(canvasController);
+		
+		return aView;
+	};
+	
+	staticFunctions.set3dControllerToView = function(aView) {
+		var canvasController = CanvasController3d.create();
+		aView.setController(canvasController);
+		aView.addDestroyableObject(canvasController);
+		
+		return aView;
+	};
+	
+	staticFunctions.create = function(aParentOrDocument, aAddToParent, aContextType, aAttributes) {
+		var newView = (new ClassReference()).init();
+		
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
+		
+		newView.setElement(htmlCreator.createNode("canvas", aAttributes));
+		newView.setCanvasSizeToSizeOfElement(); //MENOTE: this shouldn't be here
+		newView.getProperty("display").startUpdating(); //MENOTE: this shouldn't be here
+		
+		//MENOTE: this should move out to another class so that the controllers doesn't have to be imported
+		switch(aContextType) {
+			case "2d":
+				ClassReference.set2dControllerToView(newView);
+				break;
+			case "3d":
+				ClassReference.set3dControllerToView(newView);
+				break;
+			default:
+				//METODO: error message
+				break;
+		}
+		newView.setParent(theParent);
+		if(aAddToParent !== false) {
+			newView.addToDom();
+		}
+		
+		return newView;
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Constructor</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.gui.canvas.CanvasView::_init");
+		
+		this.superCall();
+		
+		this._controller = null;
+		
+		this._canvasWidth = this.createProperty("canvasWidth", 512);
+		this._canvasHeight = this.createProperty("canvasHeight", 512);
+		
+		var sizeUpdate = this.createGhostProperty("sizeUpdate");
+		this._display.connectInput(sizeUpdate);
+		
+		this.createUpdateFunction("value", this._updateSizeFlow, [this._element, this._canvasWidth, this._canvasHeight], [sizeUpdate]);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setElementAsSized</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setElementAsSized = function() {
+		
+		this.superCall();
+		
+		this._canvasWidth.connectInput(this.getProperty("width"));
+		this._canvasHeight.connectInput(this.getProperty("height"));
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setCanvasSizeToSizeOfElement</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setCanvasSizeToSizeOfElement = function() {
+		var sizeOfElementNode = this.addDestroyableObject(SizeOfElementNode.create());
+		
+		sizeOfElementNode.getProperty("element").connectInput(this.getProperty("element"));
+		this._canvasWidth.connectInput(sizeOfElementNode.getProperty("width"));
+		this._canvasHeight.connectInput(sizeOfElementNode.getProperty("height"));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setController</span>(<span class="arguments">aController</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aController</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setController = function(aController) {
+		//console.log("dbm.gui.canvas.CanvasView::setController");
+		
+		this._controller = aController;
+		this._controller.setPropertyInput("canvas", this._element);
+		this._controller.getProperty("graphicsUpdate").connectInput(this._display);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getController</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getController = function() {
+		//console.log("dbm.gui.canvas.CanvasView::getController");
+		
+		return this._controller;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setDocumentInput</span>(<span class="arguments">aProperty</span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aProperty</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setDocumentInput = function(aProperty) {
+		
+		this._sizeOfElementNode.setDocumentInput(aProperty);
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_updateSizeFlow</span>(<span class="arguments">aFlowUpdateNumber</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aFlowUpdateNumber</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._updateSizeFlow = function(aFlowUpdateNumber) {
+		//console.log("dbm.gui.canvas.CanvasView::_updateSizeFlow");
+		
+		var element = this._element.getValueWithoutFlow();
+		
+		var newWidth = this._canvasWidth.getValueWithoutFlow();
+		var newHeight = this._canvasHeight.getValueWithoutFlow();
+		//console.log(newWidth, newHeight);
+		
+		if(newWidth &gt; 0) {
+			element.width = newWidth;
+		}
+		if(newHeight &gt; 0) {
+			element.height = newHeight;
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">update</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.update = function() {
+		//console.log("dbm.gui.canvas.CanvasView::update");
+		this._display.update();
+		this._controller.getProperty("display").update();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_internalFunctionality_ownsVariable</span>(<span class="arguments">aName</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._internalFunctionality_ownsVariable = function(aName) {
+		switch(aName) {
+			case "_controller":
+				return false;
+		}
+		return this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">setAllReferencesToNull</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.setAllReferencesToNull = function() {
+		
+		this._controller = null;
+		this._display = null;
+		this._canvasWidth = null;
+		this._canvasHeight = null;
+		
+		this.superCall();
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">set2dControllerToView</span>(<span class="arguments">aView</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aView</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.set2dControllerToView = function(aView) {
+		var canvasController = CanvasController2d.create();
+		aView.setController(canvasController);
+		aView.addDestroyableObject(canvasController);
+		
+		return aView;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">set3dControllerToView</span>(<span class="arguments">aView</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aView</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.set3dControllerToView = function(aView) {
+		var canvasController = CanvasController3d.create();
+		aView.setController(canvasController);
+		aView.addDestroyableObject(canvasController);
+		
+		return aView;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">create</span>(<span class="arguments">aParentOrDocument, aAddToParent, aContextType, aAttributes</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParentOrDocument</div><div class="argumentDescription">aAddToParent</div><div class="argumentDescription">aContextType</div><div class="argumentDescription">aAttributes</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.create = function(aParentOrDocument, aAddToParent, aContextType, aAttributes) {
+		var newView = (new ClassReference()).init();
+		
+		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
+		var theParent = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument.body : aParentOrDocument;
+		
+		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
+		
+		newView.setElement(htmlCreator.createNode("canvas", aAttributes));
+		newView.setCanvasSizeToSizeOfElement(); //MENOTE: this shouldn't be here
+		newView.getProperty("display").startUpdating(); //MENOTE: this shouldn't be here
+		
+		//MENOTE: this should move out to another class so that the controllers doesn't have to be imported
+		switch(aContextType) {
+			case "2d":
+				ClassReference.set2dControllerToView(newView);
+				break;
+			case "3d":
+				ClassReference.set3dControllerToView(newView);
+				break;
+			default:
+				//METODO: error message
+				break;
+		}
+		newView.setParent(theParent);
+		if(aAddToParent !== false) {
+			newView.addToDom();
+		}
+		
+		return newView;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>InteractionExtendedEventSetup</h1>
+					<div class="classPath">dbm.core.extendedevent.setup.InteractionExtendedEventSetup</div>
+					<div class="classInheritance"><a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description"></div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.extendedevent.commands.events.ActivateEventLinkCommand" href="../commands/events/ActivateEventLinkCommand.html">ActivateEventLinkCommand</a>, <a title="dbm.constants.extendedevents.ButtonExtendedEventIds" href="../../../constants/extendedevents/ButtonExtendedEventIds.html">ButtonExtendedEventIds</a>, <a title="dbm.utils.htmldom.DomReferenceFunctions" href="../../../utils/htmldom/DomReferenceFunctions.html">DomReferenceFunctions</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../../globalobjects/errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.JavascriptEventIds" href="../../../constants/JavascriptEventIds.html">JavascriptEventIds</a>, <a title="dbm.constants.extendedevents.MouseExtendedEventIds" href="../../../constants/extendedevents/MouseExtendedEventIds.html">MouseExtendedEventIds</a>, <a title="dbm.core.extendedevent.commands.native.PreventDefaultCommand" href="../commands/native/PreventDefaultCommand.html">PreventDefaultCommand</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.constants.extendedevents.TouchExtendedEventIds" href="../../../constants/extendedevents/TouchExtendedEventIds.html">TouchExtendedEventIds</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var InteractionExtendedEventSetup = dbm.importClass("dbm.core.extendedevent.setup.InteractionExtendedEventSetup");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.core.extendedevent.setup.InteractionExtendedEventSetup", "dbm.core.BaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup");
+	
+	var InteractionExtendedEventSetup = dbm.importClass("dbm.core.extendedevent.setup.InteractionExtendedEventSetup");
+	
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	var ActivateEventLinkCommand = dbm.importClass("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand");
+	var PreventDefaultCommand = dbm.importClass("dbm.core.extendedevent.commands.native.PreventDefaultCommand");
+	
+	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	
+	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
+	var MouseExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.MouseExtendedEventIds");
+	var TouchExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.TouchExtendedEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	
+	objectFunctions._init = function() {
+		//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::_init");
+		
+		this.superCall();
+		
+		return this;
+	};
+	
+	staticFunctions.addClickEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.CLICK, ButtonExtendedEventIds.CLICK, aUseCapture, ButtonExtendedEventIds.CLICK, true, true);
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
+		}
+	};
+	
+	staticFunctions.addMouseOverEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_OVER, ButtonExtendedEventIds.MOUSE_OVER, aUseCapture, ButtonExtendedEventIds.MOUSE_OVER, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_OUT, ButtonExtendedEventIds.MOUSE_OUT, aUseCapture, ButtonExtendedEventIds.MOUSE_OVER, true, true);
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
+		}
+	};
+	
+	staticFunctions.addPressEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::addPressEvents");
+		//console.log(aExtendedEventController, aHtmlElement, aActivate);
+		//console.log(DomReferenceFunctions.getDocument(aHtmlElement));
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_DOWN, ButtonExtendedEventIds.PRESS, aUseCapture, ButtonExtendedEventIds.PRESS, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_UP, ButtonExtendedEventIds.RELEASE, aUseCapture, ButtonExtendedEventIds.RELEASE, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(DomReferenceFunctions.getDocument(aHtmlElement).body, JavascriptEventIds.MOUSE_UP, ButtonExtendedEventIds.RELEASE_OUTSIDE, aUseCapture, ButtonExtendedEventIds.RELEASE, true, true);
+		
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.PRESS, ActivateEventLinkCommand.createCommand(aExtendedEventController, ButtonExtendedEventIds.RELEASE, true));
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE, ActivateEventLinkCommand.createCommand(aExtendedEventController, ButtonExtendedEventIds.RELEASE, false));
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController,ButtonExtendedEventIds.RELEASE, false));
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(ButtonExtendedEventIds.PRESS);
+		}
+	};
+	
+	staticFunctions.addPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		//(console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::addPressWithMoveEvents");
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		ClassReference.addPressEvents(aExtendedEventController, aHtmlElement, aActivate, aUseCapture);
+		ClassReference.addMoveEvents(aExtendedEventController, aHtmlElement, false, aUseCapture);
+		
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.PRESS, ActivateEventLinkCommand.createCommand(aExtendedEventController, MouseExtendedEventIds.MOVE, true));
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE, ActivateEventLinkCommand.createCommand(aExtendedEventController, MouseExtendedEventIds.MOVE, false));
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController, MouseExtendedEventIds.MOVE, false));
+	};
+	
+	staticFunctions.addMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		//METODO: call local function instead of duplicate code
+		aExtendedEventController.linkJavascriptEventWithCapture(DomReferenceFunctions.getDocument(aHtmlElement), JavascriptEventIds.MOUSE_MOVE, MouseExtendedEventIds.MOVE, aUseCapture, MouseExtendedEventIds.MOVE, true, true);
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(MouseExtendedEventIds.MOVE);
+		}
+	};
+	
+	staticFunctions.addLocalMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_MOVE, MouseExtendedEventIds.MOVE, aUseCapture, MouseExtendedEventIds.MOVE, true, true);
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(MouseExtendedEventIds.MOVE);
+		}
+	};
+	
+	staticFunctions.addTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		ClassReference.addLocalTouchMoveEvents(aExtendedEventController, DomReferenceFunctions.getDocument(aHtmlElement), aActivate, aUseCapture);
+		
+	};
+	
+	staticFunctions.addLocalTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.TOUCH_MOVE, TouchExtendedEventIds.MOVE, aUseCapture, TouchExtendedEventIds.MOVE, true, true);
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(TouchExtendedEventIds.MOVE);
+		}
+	};
+	
+	staticFunctions.addTouchPressEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::addTouchPressEvents");
+		//console.log(aExtendedEventController, aHtmlElement, aActivate);
+		//console.log(DomReferenceFunctions.getDocument(aHtmlElement));
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.TOUCH_START, TouchExtendedEventIds.START, aUseCapture, TouchExtendedEventIds.START, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.TOUCH_END, TouchExtendedEventIds.END, aUseCapture, TouchExtendedEventIds.END, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(DomReferenceFunctions.getDocument(aHtmlElement).body, JavascriptEventIds.TOUCH_END, TouchExtendedEventIds.END_OUTSIDE, aUseCapture, TouchExtendedEventIds.END, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(DomReferenceFunctions.getDocument(aHtmlElement).body, JavascriptEventIds.TOUCH_CANCEL, TouchExtendedEventIds.CANCEL, aUseCapture, TouchExtendedEventIds.END, true, true);
+		
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.START, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.END, true));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.END, false));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.END, false));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.CANCEL, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.END, false));
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(TouchExtendedEventIds.START);
+		}
+	};
+	
+	staticFunctions.addTouchPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::addTouchPressWithMoveEvents");
+		//console.log(aExtendedEventController, aHtmlElement, aActivate);
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		ClassReference.addTouchPressEvents(aExtendedEventController, aHtmlElement, aActivate, aUseCapture);
+		ClassReference.addTouchMoveEvents(aExtendedEventController, aHtmlElement, false, aUseCapture);
+		
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.START, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, true));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, false));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, false));
+	};
+	
+	staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
+		//(console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::preventDefaultForEvent");
+		
+		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::_init");
+		
+		this.superCall();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">addClickEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addClickEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.CLICK, ButtonExtendedEventIds.CLICK, aUseCapture, ButtonExtendedEventIds.CLICK, true, true);
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(ButtonExtendedEventIds.CLICK);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addMouseOverEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addMouseOverEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_OVER, ButtonExtendedEventIds.MOUSE_OVER, aUseCapture, ButtonExtendedEventIds.MOUSE_OVER, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_OUT, ButtonExtendedEventIds.MOUSE_OUT, aUseCapture, ButtonExtendedEventIds.MOUSE_OVER, true, true);
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(ButtonExtendedEventIds.MOUSE_OVER);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addPressEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addPressEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::addPressEvents");
+		//console.log(aExtendedEventController, aHtmlElement, aActivate);
+		//console.log(DomReferenceFunctions.getDocument(aHtmlElement));
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_DOWN, ButtonExtendedEventIds.PRESS, aUseCapture, ButtonExtendedEventIds.PRESS, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_UP, ButtonExtendedEventIds.RELEASE, aUseCapture, ButtonExtendedEventIds.RELEASE, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(DomReferenceFunctions.getDocument(aHtmlElement).body, JavascriptEventIds.MOUSE_UP, ButtonExtendedEventIds.RELEASE_OUTSIDE, aUseCapture, ButtonExtendedEventIds.RELEASE, true, true);
+		
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.PRESS, ActivateEventLinkCommand.createCommand(aExtendedEventController, ButtonExtendedEventIds.RELEASE, true));
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE, ActivateEventLinkCommand.createCommand(aExtendedEventController, ButtonExtendedEventIds.RELEASE, false));
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController,ButtonExtendedEventIds.RELEASE, false));
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(ButtonExtendedEventIds.PRESS);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addPressWithMoveEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		//(console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::addPressWithMoveEvents");
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		ClassReference.addPressEvents(aExtendedEventController, aHtmlElement, aActivate, aUseCapture);
+		ClassReference.addMoveEvents(aExtendedEventController, aHtmlElement, false, aUseCapture);
+		
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.PRESS, ActivateEventLinkCommand.createCommand(aExtendedEventController, MouseExtendedEventIds.MOVE, true));
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE, ActivateEventLinkCommand.createCommand(aExtendedEventController, MouseExtendedEventIds.MOVE, false));
+		aExtendedEventController.addCommandToEvent(ButtonExtendedEventIds.RELEASE_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController, MouseExtendedEventIds.MOVE, false));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addMoveEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		//METODO: call local function instead of duplicate code
+		aExtendedEventController.linkJavascriptEventWithCapture(DomReferenceFunctions.getDocument(aHtmlElement), JavascriptEventIds.MOUSE_MOVE, MouseExtendedEventIds.MOVE, aUseCapture, MouseExtendedEventIds.MOVE, true, true);
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(MouseExtendedEventIds.MOVE);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addLocalMoveEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addLocalMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.MOUSE_MOVE, MouseExtendedEventIds.MOVE, aUseCapture, MouseExtendedEventIds.MOVE, true, true);
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(MouseExtendedEventIds.MOVE);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addTouchMoveEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		ClassReference.addLocalTouchMoveEvents(aExtendedEventController, DomReferenceFunctions.getDocument(aHtmlElement), aActivate, aUseCapture);
+		
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addLocalTouchMoveEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addLocalTouchMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.TOUCH_MOVE, TouchExtendedEventIds.MOVE, aUseCapture, TouchExtendedEventIds.MOVE, true, true);
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(TouchExtendedEventIds.MOVE);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addTouchPressEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addTouchPressEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::addTouchPressEvents");
+		//console.log(aExtendedEventController, aHtmlElement, aActivate);
+		//console.log(DomReferenceFunctions.getDocument(aHtmlElement));
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.TOUCH_START, TouchExtendedEventIds.START, aUseCapture, TouchExtendedEventIds.START, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(aHtmlElement, JavascriptEventIds.TOUCH_END, TouchExtendedEventIds.END, aUseCapture, TouchExtendedEventIds.END, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(DomReferenceFunctions.getDocument(aHtmlElement).body, JavascriptEventIds.TOUCH_END, TouchExtendedEventIds.END_OUTSIDE, aUseCapture, TouchExtendedEventIds.END, true, true);
+		aExtendedEventController.linkJavascriptEventWithCapture(DomReferenceFunctions.getDocument(aHtmlElement).body, JavascriptEventIds.TOUCH_CANCEL, TouchExtendedEventIds.CANCEL, aUseCapture, TouchExtendedEventIds.END, true, true);
+		
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.START, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.END, true));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.END, false));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.END, false));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.CANCEL, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.END, false));
+		
+		if(aActivate) {
+			aExtendedEventController.activateJavascriptEventLink(TouchExtendedEventIds.START);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addTouchPressWithMoveEvents</span>(<span class="arguments">aExtendedEventController, aHtmlElement, aActivate, aUseCapture</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aHtmlElement</div><div class="argumentDescription">aActivate</div><div class="argumentDescription">aUseCapture</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.addTouchPressWithMoveEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {
+		//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::addTouchPressWithMoveEvents");
+		//console.log(aExtendedEventController, aHtmlElement, aActivate);
+		
+		aUseCapture = VariableAliases.valueWithDefault(aUseCapture, false);
+		
+		ClassReference.addTouchPressEvents(aExtendedEventController, aHtmlElement, aActivate, aUseCapture);
+		ClassReference.addTouchMoveEvents(aExtendedEventController, aHtmlElement, false, aUseCapture);
+		
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.START, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, true));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, false));
+		aExtendedEventController.addCommandToEvent(TouchExtendedEventIds.END_OUTSIDE, ActivateEventLinkCommand.createCommand(aExtendedEventController, TouchExtendedEventIds.MOVE, false));
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">preventDefaultForEvent</span>(<span class="arguments">aExtendedEventController, aEventName</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aExtendedEventController</div><div class="argumentDescription">aEventName</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">staticFunctions.preventDefaultForEvent = function(aExtendedEventController, aEventName) {
+		//(console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::preventDefaultForEvent");
+		
+		aExtendedEventController.addCommandToEvent(aEventName, PreventDefaultCommand.createCommandWithDataAsEvent());
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>

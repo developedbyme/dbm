@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>Documentation of {{className}}</title>
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/main.css" />
+		<link rel="stylesheet" href="../../../../../styles/dbm/documentation/class.css" />
+		<script type="application/javascript" src="../../../../../javascripts/documentation/foldableCode.js"></script>
+		<script type="application/javascript" src="../../../../../javascripts/documentation/hideEmptySections.js"></script>
+	</head>
+	<body>
+		<div class="page">
+			<header>
+				<div class="floatLeft">
+					<div class="documentationTitle"><div class="dbmLogo w14 inlineBlock"></div>Dbm documentation</div>
+				</div>
+				<div class="floatRight">
+					<div class="inlineBlock">
+						<a href="../../../../../index.html">Index</a>
+					</div>
+					<div class="searchBox inlineBlock">
+						<form action="https://www.google.co.uk/cse/publicurl" method="GET">
+							<input type="hidden" name="cx" value="006746230495882673940:ilr36kbyhjo" />
+							<input type="text" name="q" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="clearBoth"></div>
+			</header>
+			<article>
+				<div class="mainInfo">
+					<h1>CurveEvaluator</h1>
+					<div class="classPath">dbm.core.globalobjects.curveevaluator.CurveEvaluator</div>
+					<div class="classInheritance"><a title="dbm.core.globalobjects.GlobalObjectBaseObject" href="../GlobalObjectBaseObject.html">GlobalObjectBaseObject</a> &gt; <a title="dbm.core.ExtendedEventBaseObject" href="../../ExtendedEventBaseObject.html">ExtendedEventBaseObject</a> &gt; <a title="dbm.core.FlowBaseObject" href="../../FlowBaseObject.html">FlowBaseObject</a> &gt; <a title="dbm.core.BaseObject" href="../../BaseObject.html">BaseObject</a></div>
+					<div class="descriptionHolder">
+						<div class="description">Global class that evaluates curves.</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Subclasses</div>
+							<div class="subClasses linkList"><span class="noData">Class has no subclasses.</span></div>
+						</div>
+						<div class="spacedContent">
+							<div class="smallTitle">Dependencies</div>
+							<div class="dependencies linkList"><a title="dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d" href="creators/CreateBezierCurveFromPoints2d.html">CreateBezierCurveFromPoints2d</a>, <a title="dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d" href="creators/CreateMultiSegmentBezierCurveFromPoints2d.html">CreateMultiSegmentBezierCurveFromPoints2d</a>, <a title="dbm.core.globalobjects.errormanager.ErrorManager" href="../errormanager/ErrorManager.html">ErrorManager</a>, <a title="dbm.constants.ExtrapolationTypes" href="../../../constants/ExtrapolationTypes.html">ExtrapolationTypes</a>, <a title="dbm.constants.ReportLevelTypes" href="../../../constants/ReportLevelTypes.html">ReportLevelTypes</a>, <a title="dbm.constants.ReportTypes" href="../../../constants/ReportTypes.html">ReportTypes</a>, <a title="dbm.utils.data.VariableAliases" href="../../../utils/data/VariableAliases.html">VariableAliases</a></div>
+						</div>
+						<div class="foldableCode spacedContent">
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Import code</div>
+								<div class="codeBox snippet">
+									<div class="code">var CurveEvaluator = dbm.importClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator");</div>
+								</div>
+							</div>
+							<div class="boxWithTitle foldable">
+								<div class="smallTitle">Full code</div>
+								<div class="codeBox fullCode">
+									<div class="code">dbm.registerClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator", "dbm.core.globalobjects.GlobalObjectBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator");
+	
+	var CurveEvaluator = dbm.importClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator");
+	
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	var CreateBezierCurveFromPoints2d = dbm.importClass("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
+	var CreateMultiSegmentBezierCurveFromPoints2d = dbm.importClass("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");
+	
+	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
+	
+	var ExtrapolationTypes = dbm.importClass("dbm.constants.ExtrapolationTypes");
+	
+	
+	staticFunctions.DEFAULT_EXACTNESS = 0.01;
+		
+	objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::_init");
+		
+		//METODO: switch this to qualifiers instead of interface
+		this._evaluatorsArray = new Array();
+		this._bezierMultipliersArraysArray = new Array();
+		this._recyclePointsArray = new Array();
+		
+		return this;
+	};
+	
+	objectFunctions.addEvaluator = function(aEvaluator) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::addEvaluator");
+		//console.log(aEvaluator);
+		this._evaluatorsArray.push(aEvaluator);
+	};
+	
+	objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::getPartOfCurve");
+		//console.log(aPointSet, this._evaluatorsArray);
+		
+		var isForward = (aEndParameter &gt;= aStartParameter);
+		
+		var currentArray = this._evaluatorsArray;
+		var currentArrayLength = currentArray.length;
+		for (var i = 0; i &lt; currentArrayLength; i++) {
+			var currentEvaluator = currentArray[i];
+			if(currentEvaluator.canEvaluate(aPointSet)) {
+				if(isForward) {
+					currentEvaluator.getPartOfCurve(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve);
+				}
+				else {
+					currentEvaluator.getPartOfCurve(aPointSet, aEndParameter, aStartParameter, aExactness, aReturnCurve);
+					//aReturnCurve; //METODO: reverse
+				}
+				return;
+			}
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPartOfCurve", aPointSet + " can't be evaluated.");
+		return;
+	};
+	
+	objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::getPointOnBezierSegment3d");
+		//console.log(aPointsArray, aParameter, aOutputPoint);
+		var curveDegree = aPointsArray.length-1;
+		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
+		var invertedParameter = (1-aParameter);
+		var newXValue = 0;
+		var newYValue = 0;
+		var newZValue = 0;
+		var currentArray = aPointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentPoint = currentArray[i];
+			var currentMultiplicationValue = multipliersArray[i]*Math.pow(invertedParameter, curveDegree-i)*Math.pow(aParameter, i);
+			newXValue += currentMultiplicationValue*currentPoint.x;
+			newYValue += currentMultiplicationValue*currentPoint.y;
+			newZValue += currentMultiplicationValue*currentPoint.z;
+		}
+		aOutputPoint.x = newXValue;
+		aOutputPoint.y = newYValue;
+		aOutputPoint.z = newZValue;
+	};
+	
+	objectFunctions.getPointOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
+		var curveDegree = aPointsArray.length-1;
+		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
+		var invertedParameter = (1-aParameter);
+		var newXValue = 0;
+		var newYValue = 0;
+		var currentArray = aPointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentPoint = currentArray[i];
+			var currentMultiplicationValue = multipliersArray[i]*Math.pow(invertedParameter, curveDegree-i)*Math.pow(aParameter, i);
+			newXValue += currentMultiplicationValue*currentPoint.x;
+			newYValue += currentMultiplicationValue*currentPoint.y;
+		}
+		aOutputPoint.x = newXValue;
+		aOutputPoint.y = newYValue;
+	};
+	
+	objectFunctions.getTangentOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator.getTangentOnBezierSegment2d");
+		
+		var curveDegree = aPointsArray.length-1;
+		
+		var constantsX = new Array(curveDegree+1);
+		var constantsY = new Array(curveDegree+1);
+		for(var i = 0; i &lt; curveDegree+1; i++) {
+			constantsX[i] = 0;
+			constantsY[i] = 0;
+		}
+		
+		var basicMultipliersArray = this.getBezierMultipliersArray(curveDegree);
+		var currentArray = aPointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentPoint = currentArray[i];
+			var multipliersArray = this.getBezierMultipliersArray(curveDegree-i);
+			
+			var negativeMultiplier = 1;
+			for(var j = 0; j &lt; multipliersArray.length; j++) {
+				constantsX[j+i] += (currentPoint.x)*negativeMultiplier*basicMultipliersArray[i]*multipliersArray[j];
+				constantsY[j+i] += (currentPoint.y)*negativeMultiplier*basicMultipliersArray[i]*multipliersArray[j];
+				negativeMultiplier = 0-negativeMultiplier;
+			}
+		}
+		
+		//METODO: multiply all values so that they have the value that is correct after derivation
+		for(var i = -1; ++i &lt; curveDegree+1;) {
+			constantsX[i] *= i;
+			constantsY[i] *= i;
+		}
+		
+		//MENOTE: the first value is ignored since it is always 0
+		//MENOTE: the second value is set as the initial value since it is a constant after derivation
+		var newXValue = constantsX[1];
+		var newYValue = constantsY[1];
+		
+		for(var i = 1; ++i &lt; curveDegree+1;) {
+			newXValue += constantsX[i]*Math.pow(aParameter, i-1);
+			newYValue += constantsY[i]*Math.pow(aParameter, i-1);
+		}
+		
+		aOutputPoint.x = newXValue;
+		aOutputPoint.y = newYValue;
+	};
+	
+	objectFunctions.getBezierMultipliersArray = function(aCurveDegree) {
+		//MENOTE: generates constants for cv-points
+		var currentArray = this._bezierMultipliersArraysArray;
+		var previousArray = currentArray[currentArray.length-1];
+		for(var i = currentArray.length-1; ++i &lt;= aCurveDegree;) {
+			var newArray = new Array(i+1);
+			newArray[0] = 1;
+			newArray[i] = 1;
+			for(var j = 0; ++j &lt; newArray.length-1;) {
+				newArray[j] = previousArray[j-1]+previousArray[j];
+			}
+			currentArray.push(newArray);
+			previousArray = newArray;
+		}
+		return currentArray[aCurveDegree];
+	};
+	
+	/**
+	 * Calculates the berstein polynominal for a parameter
+	 *
+	 * @param	aParameter	The parameter (Valid range: 0 to 1).
+	 * @param	aPointNr	The point of the curve.
+	 * @param	aDegree		The curve degree.
+	 */
+	objectFunctions.calculateBernsteinPolynomialWithoutMultiplier = function(aParameter, aPointNr, aDegree) {
+		//console.log("calculateBernsteinPolynomialWithoutMultiplier");
+		return Math.pow((1-aParameter), (aDegree-aPointNr))*Math.pow(aParameter, aPointNr);
+	};
+	
+	objectFunctions._evaluateAnimationCurveSegment = function(aPointsArray, aSegment, aEvaluationValue, aExactness) {
+		var point1 = aPointsArray[4*aSegment];
+		var point2 = aPointsArray[4*aSegment+1];
+		var point3 = aPointsArray[4*aSegment+2];
+		var point4 = aPointsArray[4*aSegment+3];
+		if(aEvaluationValue === point1.x) {
+			return point1.y;
+		}
+		else if(aEvaluationValue === point4.x) {
+			return point4.y;
+		}
+		else {
+			var minValue = point1.x;
+			var maxValue = point4.x;
+			var minParameter = 0;
+			var maxParameter = 1;
+			var currentXValue = aEvaluationValue-point1.x;
+			var debugLoopCounter = 0;
+			var currentParameter;
+			while(true) {
+				if(debugLoopCounter++ &gt; 200) {
+					//METODO: error message
+					break;
+				}
+				currentParameter = (maxParameter-minParameter)*(aEvaluationValue-minValue)/(maxValue-minValue)+minParameter;
+				var currentXValue = (Math.pow(1-currentParameter, 3)*point1.x+3*(Math.pow(1-currentParameter, 2))*(currentParameter)*point2.x+3*(Math.pow(currentParameter, 2))*(1-currentParameter)*point3.x+Math.pow(currentParameter, 3)*point4.x);
+				if(Math.abs(currentXValue-aEvaluationValue) &lt; this.exactness) {
+					break;
+				}
+				else {
+					if(currentXValue &lt; aEvaluationValue) {
+						minValue = currentXValue;
+						minParameter = currentParameter;
+					}
+					else {
+						maxValue = currentXValue;
+						maxParameter = currentParameter;
+					}
+				}
+			}
+			return (Math.pow(1-currentParameter, 3)*point1.y+3*(Math.pow(1-currentParameter, 2))*(currentParameter)*point2.y+3*(Math.pow(currentParameter, 2))*(1-currentParameter)*point3.y+Math.pow(currentParameter, 3)*point4.y);
+		}
+	};
+	
+	objectFunctions.getValueOfAnimationCurve = function(aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness) {
+		aPreInfinityMethod = VariableAliases.valueWithDefault(aPreInfinityMethod, ExtrapolationTypes.CONSTANT);
+		aPostInfinityMethod = VariableAliases.valueWithDefault(aPostInfinityMethod, ExtrapolationTypes.CONSTANT);
+		aExactness = VariableAliases.valueWithDefault(aExactness, ClassReference.DEFAULT_EXACTNESS);
+		var currentArray = aCurve.pointsArray;
+		var curveLength = currentArray[currentArray.length-1].x-currentArray[0].x;
+		var offset = Math.floor((aParameter-currentArray[0].x)/(curveLength));
+		var evaluationParameter = (aParameter-currentArray[0].x)-(offset*curveLength);
+		if(offset &lt; 0) {
+			switch(aPreInfinityMethod) {
+				case ExtrapolationTypes.CONSTANT:
+					return currentArray[0].y;
+				case ExtrapolationTypes.OSCILLATE:
+					//METODO
+				case ExtrapolationTypes.LINEAR:
+					//METODO
+				default:
+					//METODO: error message
+					break;
+			}
+			
+		}
+		else if(offset &gt; 0) {
+			switch(aPostInfinityMethod) {
+				case ExtrapolationTypes.CONSTANT:
+					return currentArray[currentArray.length-1].y;
+				case ExtrapolationTypes.OSCILLATE:
+					//METODO
+				case ExtrapolationTypes.LINEAR:
+					//METODO
+				default:
+					//METODO: error message
+					break;
+			}
+			
+		}
+		
+		var currentSegmentNumber = 0;
+		var outputValueOffset = 0;
+		if(offset &lt; 0) {
+			switch(aPreInfinityMethod) {
+				case ExtrapolationTypes.CYCLE:
+					//MENOTE: do nothing
+					break;
+				case ExtrapolationTypes.CYCLE_WITH_OFFSET:
+					outputValueOffset = offset*(currentArray[currentArray.length-1].y-currentArray[0].y);
+					break;
+				default:
+					//METODO: error message
+					break;
+			}
+		}
+		if(offset &gt; 0) {
+			switch(aPostInfinityMethod) {
+				case ExtrapolationTypes.CYCLE:
+					//MENOTE: do nothing
+					break;
+				case ExtrapolationTypes.CYCLE_WITH_OFFSET:
+					outputValueOffset = offset*(currentArray[currentArray.length-1].y-currentArray[0].y);
+					break;
+				default:
+					//METODO: error message
+					break;
+			}
+		}
+		var currentSegmentNr = 0;
+		while(true) {
+			if((evaluationParameter &gt;= currentArray[4*currentSegmentNr].x) &amp;&amp; (evaluationParameter &lt; currentArray[4*currentSegmentNr+3].x)) {
+				return this._evaluateAnimationCurveSegment(currentArray, currentSegmentNumber, evaluationParameter, aExactness)+outputValueOffset;
+			}
+			else if(evaluationParameter &lt; currentArray[4*currentSegmentNr].x) {
+				currentSegmentNr--;
+			}
+			else if(evaluationParameter &gt;= currentArray[4*currentSegmentNr+3].x) {
+				currentSegmentNr++;
+			}
+			else {
+				//METODO: error message
+				break;
+			}
+		}
+	};
+	
+	/**
+	 * Creates a bezier curve that passes through a set of points
+	 *
+	 * @param	aPointsArray	The points that the current curve should pass through.
+	 * @param	aReturnCurve	The curve that is created.
+	 */
+	objectFunctions.createBezierCurveFromPoints3d = function(aPointsArray, aReturnCurve) {
+		//console.log("createBezierCurveFromPoints3d");
+		var curveDegree = aPointsArray.length-1;
+		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
+		
+		var arrayLength = aPointsArray.length-2;
+		
+		var startPoint = aPointsArray[0];
+		var endPoint = aPointsArray[aPointsArray.length-1];
+		
+		var eliminationArray = new Array(arrayLength);
+		var currentArray = eliminationArray;
+		var theLength = currentArray.length;
+		for(var i = -1; ++i &lt; theLength;) {
+			var currentArray2 = new Array(arrayLength+3);
+			currentArray[i] = currentArray2;
+			var parameter = (i+1)/(curveDegree);
+			for(var j = -1; ++j &lt; arrayLength;) {
+				currentArray2[j] = multipliersArray[j+1]*this.calculateBernsteinPolynomialWithoutMultiplier(parameter, j+1, curveDegree);
+			}
+			
+			var startBpValue = Math.pow((1-parameter), curveDegree);
+			var endBpValue = Math.pow(parameter, curveDegree);
+			var currentPoint = aPointsArray[i+1];
+			currentArray2[arrayLength+0] = currentPoint.x-startBpValue*startPoint.x-endBpValue*endPoint.x;
+			currentArray2[arrayLength+1] = currentPoint.y-startBpValue*startPoint.y-endBpValue*endPoint.y;
+			currentArray2[arrayLength+2] = currentPoint.z-startBpValue*startPoint.z-endBpValue*endPoint.z;
+		}
+		
+		for(var i = 0; ++i &lt; arrayLength;) {
+			//MENOTE: no elimination on first row
+			var currentEliminationArray = eliminationArray[i];
+			var currentDataArray = eliminationArray[i];
+			var currentRemoveArray;
+			for(var j = -1; ++j &lt; i;) {
+				currentRemoveArray = eliminationArray[j];
+				var multiplier = currentDataArray[j]/currentRemoveArray[j];
+				for(var k = -1; ++k &lt; currentEliminationArray.length;) {
+					currentEliminationArray[k] = currentDataArray[k] - multiplier*currentRemoveArray[k];
+				}
+				currentEliminationArray[j] = 0;
+			}
+		}
+		
+		for(var i = arrayLength; --i &gt;= 0;) {
+			for(var j = arrayLength; --j &gt; i;) {
+				var rowMultiplier = eliminationArray[i][j];
+				eliminationArray[i][arrayLength+0] = eliminationArray[i][arrayLength+0]-rowMultiplier*eliminationArray[j][arrayLength+0];
+				eliminationArray[i][arrayLength+1] = eliminationArray[i][arrayLength+1]-rowMultiplier*eliminationArray[j][arrayLength+1];
+				eliminationArray[i][arrayLength+2] = eliminationArray[i][arrayLength+2]-rowMultiplier*eliminationArray[j][arrayLength+2];
+				eliminationArray[i][j] = 0;
+			}
+			var rowMultiplier = eliminationArray[i][i];
+			eliminationArray[i][i] = 1;
+			eliminationArray[i][arrayLength+0] /= rowMultiplier;
+			eliminationArray[i][arrayLength+1] /= rowMultiplier;
+			eliminationArray[i][arrayLength+2] /= rowMultiplier;
+			var currentPoint = aReturnCurve.pointsArray[i+1];
+			currentPoint.x = eliminationArray[i][arrayLength+0];
+			currentPoint.y = eliminationArray[i][arrayLength+1];
+			currentPoint.z = eliminationArray[i][arrayLength+2];
+		}
+	};
+	
+	/**
+	 * Creates a bezier curve that passes through a set of points
+	 *
+	 * @param	aPointsArray	The points that the current curve should pass through.
+	 * @param	aReturnCurve	The curve that is created.
+	 * @param	aParameters		The array with parameters for the different points.
+	 */
+	objectFunctions.createBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aParametersArray) {
+		
+		var curveCreator = (new CreateBezierCurveFromPoints2d()).init();
+		curveCreator.createCurve(aPointsArray, aReturnCurve, aParametersArray);
+	};
+	
+	/**
+	 * Creates a multisegment bezier curve that passes through a set of points
+	 *
+	 * @param	aPointsArray	The points that the current curve should pass through.
+	 * @param	aReturnCurve	The curve that is created.
+	 */
+	objectFunctions.createMultiSegmentBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aIsRound) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator.createMultiSegmentBezierCurveFromPoints2d");
+		if(aReturnCurve.getCurveDegree() !== 3) {
+			//METODO
+			//return;
+		}
+		
+		var curveCreator = (new CreateMultiSegmentBezierCurveFromPoints2d()).init();
+		curveCreator.createCurve(aPointsArray, aReturnCurve, aIsRound);
+		
+	};
+	
+	objectFunctions.recycleCurve = function(aCurve) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::recycleCurve");
+		
+		this._recyclePointsArray.push(aCurve.pointsArray);
+	};
+})</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<section class="section listSection">
+					<h2>Local variables</h2>
+					<div class="localVariables list">
+						
+					</div>
+				</section>
+				<section class="section listSection">
+					<h2>Local functions</h2>
+					<div class="localFunctions list">
+						
+					<div class="function">
+				<div class="definition">
+					<span class="functionName">_init</span>(<span class="arguments"></span>)<span class="returnValue">:<span class="noData">self</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><span class="noData">Function has no arguments</span></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription">Self. Function is linkable.</div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._init = function() {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::_init");
+		
+		//METODO: switch this to qualifiers instead of interface
+		this._evaluatorsArray = new Array();
+		this._bezierMultipliersArraysArray = new Array();
+		this._recyclePointsArray = new Array();
+		
+		return this;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">addEvaluator</span>(<span class="arguments">aEvaluator</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aEvaluator</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.addEvaluator = function(aEvaluator) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::addEvaluator");
+		//console.log(aEvaluator);
+		this._evaluatorsArray.push(aEvaluator);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPartOfCurve</span>(<span class="arguments">aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointSet</div><div class="argumentDescription">aStartParameter</div><div class="argumentDescription">aEndParameter</div><div class="argumentDescription">aExactness</div><div class="argumentDescription">aReturnCurve</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getPartOfCurve = function(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::getPartOfCurve");
+		//console.log(aPointSet, this._evaluatorsArray);
+		
+		var isForward = (aEndParameter &gt;= aStartParameter);
+		
+		var currentArray = this._evaluatorsArray;
+		var currentArrayLength = currentArray.length;
+		for (var i = 0; i &lt; currentArrayLength; i++) {
+			var currentEvaluator = currentArray[i];
+			if(currentEvaluator.canEvaluate(aPointSet)) {
+				if(isForward) {
+					currentEvaluator.getPartOfCurve(aPointSet, aStartParameter, aEndParameter, aExactness, aReturnCurve);
+				}
+				else {
+					currentEvaluator.getPartOfCurve(aPointSet, aEndParameter, aStartParameter, aExactness, aReturnCurve);
+					//aReturnCurve; //METODO: reverse
+				}
+				return;
+			}
+		}
+		ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "getPartOfCurve", aPointSet + " can't be evaluated.");
+		return;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPointOnBezierSegment3d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getPointOnBezierSegment3d = function(aPointsArray, aParameter, aOutputPoint) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::getPointOnBezierSegment3d");
+		//console.log(aPointsArray, aParameter, aOutputPoint);
+		var curveDegree = aPointsArray.length-1;
+		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
+		var invertedParameter = (1-aParameter);
+		var newXValue = 0;
+		var newYValue = 0;
+		var newZValue = 0;
+		var currentArray = aPointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentPoint = currentArray[i];
+			var currentMultiplicationValue = multipliersArray[i]*Math.pow(invertedParameter, curveDegree-i)*Math.pow(aParameter, i);
+			newXValue += currentMultiplicationValue*currentPoint.x;
+			newYValue += currentMultiplicationValue*currentPoint.y;
+			newZValue += currentMultiplicationValue*currentPoint.z;
+		}
+		aOutputPoint.x = newXValue;
+		aOutputPoint.y = newYValue;
+		aOutputPoint.z = newZValue;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getPointOnBezierSegment2d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getPointOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
+		var curveDegree = aPointsArray.length-1;
+		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
+		var invertedParameter = (1-aParameter);
+		var newXValue = 0;
+		var newYValue = 0;
+		var currentArray = aPointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentPoint = currentArray[i];
+			var currentMultiplicationValue = multipliersArray[i]*Math.pow(invertedParameter, curveDegree-i)*Math.pow(aParameter, i);
+			newXValue += currentMultiplicationValue*currentPoint.x;
+			newYValue += currentMultiplicationValue*currentPoint.y;
+		}
+		aOutputPoint.x = newXValue;
+		aOutputPoint.y = newYValue;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getTangentOnBezierSegment2d</span>(<span class="arguments">aPointsArray, aParameter, aOutputPoint</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aOutputPoint</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getTangentOnBezierSegment2d = function(aPointsArray, aParameter, aOutputPoint) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator.getTangentOnBezierSegment2d");
+		
+		var curveDegree = aPointsArray.length-1;
+		
+		var constantsX = new Array(curveDegree+1);
+		var constantsY = new Array(curveDegree+1);
+		for(var i = 0; i &lt; curveDegree+1; i++) {
+			constantsX[i] = 0;
+			constantsY[i] = 0;
+		}
+		
+		var basicMultipliersArray = this.getBezierMultipliersArray(curveDegree);
+		var currentArray = aPointsArray;
+		var theLength = currentArray.length;
+		for(var i = 0; i &lt; theLength; i++) {
+			var currentPoint = currentArray[i];
+			var multipliersArray = this.getBezierMultipliersArray(curveDegree-i);
+			
+			var negativeMultiplier = 1;
+			for(var j = 0; j &lt; multipliersArray.length; j++) {
+				constantsX[j+i] += (currentPoint.x)*negativeMultiplier*basicMultipliersArray[i]*multipliersArray[j];
+				constantsY[j+i] += (currentPoint.y)*negativeMultiplier*basicMultipliersArray[i]*multipliersArray[j];
+				negativeMultiplier = 0-negativeMultiplier;
+			}
+		}
+		
+		//METODO: multiply all values so that they have the value that is correct after derivation
+		for(var i = -1; ++i &lt; curveDegree+1;) {
+			constantsX[i] *= i;
+			constantsY[i] *= i;
+		}
+		
+		//MENOTE: the first value is ignored since it is always 0
+		//MENOTE: the second value is set as the initial value since it is a constant after derivation
+		var newXValue = constantsX[1];
+		var newYValue = constantsY[1];
+		
+		for(var i = 1; ++i &lt; curveDegree+1;) {
+			newXValue += constantsX[i]*Math.pow(aParameter, i-1);
+			newYValue += constantsY[i]*Math.pow(aParameter, i-1);
+		}
+		
+		aOutputPoint.x = newXValue;
+		aOutputPoint.y = newYValue;
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getBezierMultipliersArray</span>(<span class="arguments">aCurveDegree</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCurveDegree</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getBezierMultipliersArray = function(aCurveDegree) {
+		//MENOTE: generates constants for cv-points
+		var currentArray = this._bezierMultipliersArraysArray;
+		var previousArray = currentArray[currentArray.length-1];
+		for(var i = currentArray.length-1; ++i &lt;= aCurveDegree;) {
+			var newArray = new Array(i+1);
+			newArray[0] = 1;
+			newArray[i] = 1;
+			for(var j = 0; ++j &lt; newArray.length-1;) {
+				newArray[j] = previousArray[j-1]+previousArray[j];
+			}
+			currentArray.push(newArray);
+			previousArray = newArray;
+		}
+		return currentArray[aCurveDegree];
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">calculateBernsteinPolynomialWithoutMultiplier</span>(<span class="arguments">aParameter, aPointNr, aDegree</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Calculates the berstein polynominal for a parameter</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aParameter - The parameter (Valid range: 0 to 1).</div><div class="argumentDescription">aPointNr - The point of the curve.</div><div class="argumentDescription">aDegree - The curve degree.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.calculateBernsteinPolynomialWithoutMultiplier = function(aParameter, aPointNr, aDegree) {
+		//console.log("calculateBernsteinPolynomialWithoutMultiplier");
+		return Math.pow((1-aParameter), (aDegree-aPointNr))*Math.pow(aParameter, aPointNr);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">_evaluateAnimationCurveSegment</span>(<span class="arguments">aPointsArray, aSegment, aEvaluationValue, aExactness</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray</div><div class="argumentDescription">aSegment</div><div class="argumentDescription">aEvaluationValue</div><div class="argumentDescription">aExactness</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions._evaluateAnimationCurveSegment = function(aPointsArray, aSegment, aEvaluationValue, aExactness) {
+		var point1 = aPointsArray[4*aSegment];
+		var point2 = aPointsArray[4*aSegment+1];
+		var point3 = aPointsArray[4*aSegment+2];
+		var point4 = aPointsArray[4*aSegment+3];
+		if(aEvaluationValue === point1.x) {
+			return point1.y;
+		}
+		else if(aEvaluationValue === point4.x) {
+			return point4.y;
+		}
+		else {
+			var minValue = point1.x;
+			var maxValue = point4.x;
+			var minParameter = 0;
+			var maxParameter = 1;
+			var currentXValue = aEvaluationValue-point1.x;
+			var debugLoopCounter = 0;
+			var currentParameter;
+			while(true) {
+				if(debugLoopCounter++ &gt; 200) {
+					//METODO: error message
+					break;
+				}
+				currentParameter = (maxParameter-minParameter)*(aEvaluationValue-minValue)/(maxValue-minValue)+minParameter;
+				var currentXValue = (Math.pow(1-currentParameter, 3)*point1.x+3*(Math.pow(1-currentParameter, 2))*(currentParameter)*point2.x+3*(Math.pow(currentParameter, 2))*(1-currentParameter)*point3.x+Math.pow(currentParameter, 3)*point4.x);
+				if(Math.abs(currentXValue-aEvaluationValue) &lt; this.exactness) {
+					break;
+				}
+				else {
+					if(currentXValue &lt; aEvaluationValue) {
+						minValue = currentXValue;
+						minParameter = currentParameter;
+					}
+					else {
+						maxValue = currentXValue;
+						maxParameter = currentParameter;
+					}
+				}
+			}
+			return (Math.pow(1-currentParameter, 3)*point1.y+3*(Math.pow(1-currentParameter, 2))*(currentParameter)*point2.y+3*(Math.pow(currentParameter, 2))*(1-currentParameter)*point3.y+Math.pow(currentParameter, 3)*point4.y);
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">getValueOfAnimationCurve</span>(<span class="arguments">aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness</span>)<span class="returnValue">:<span class="unknownType">Unknown</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCurve</div><div class="argumentDescription">aParameter</div><div class="argumentDescription">aPreInfinityMethod</div><div class="argumentDescription">aPostInfinityMethod</div><div class="argumentDescription">aExactness</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="unknownType">Unknown</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.getValueOfAnimationCurve = function(aCurve, aParameter, aPreInfinityMethod, aPostInfinityMethod, aExactness) {
+		aPreInfinityMethod = VariableAliases.valueWithDefault(aPreInfinityMethod, ExtrapolationTypes.CONSTANT);
+		aPostInfinityMethod = VariableAliases.valueWithDefault(aPostInfinityMethod, ExtrapolationTypes.CONSTANT);
+		aExactness = VariableAliases.valueWithDefault(aExactness, ClassReference.DEFAULT_EXACTNESS);
+		var currentArray = aCurve.pointsArray;
+		var curveLength = currentArray[currentArray.length-1].x-currentArray[0].x;
+		var offset = Math.floor((aParameter-currentArray[0].x)/(curveLength));
+		var evaluationParameter = (aParameter-currentArray[0].x)-(offset*curveLength);
+		if(offset &lt; 0) {
+			switch(aPreInfinityMethod) {
+				case ExtrapolationTypes.CONSTANT:
+					return currentArray[0].y;
+				case ExtrapolationTypes.OSCILLATE:
+					//METODO
+				case ExtrapolationTypes.LINEAR:
+					//METODO
+				default:
+					//METODO: error message
+					break;
+			}
+			
+		}
+		else if(offset &gt; 0) {
+			switch(aPostInfinityMethod) {
+				case ExtrapolationTypes.CONSTANT:
+					return currentArray[currentArray.length-1].y;
+				case ExtrapolationTypes.OSCILLATE:
+					//METODO
+				case ExtrapolationTypes.LINEAR:
+					//METODO
+				default:
+					//METODO: error message
+					break;
+			}
+			
+		}
+		
+		var currentSegmentNumber = 0;
+		var outputValueOffset = 0;
+		if(offset &lt; 0) {
+			switch(aPreInfinityMethod) {
+				case ExtrapolationTypes.CYCLE:
+					//MENOTE: do nothing
+					break;
+				case ExtrapolationTypes.CYCLE_WITH_OFFSET:
+					outputValueOffset = offset*(currentArray[currentArray.length-1].y-currentArray[0].y);
+					break;
+				default:
+					//METODO: error message
+					break;
+			}
+		}
+		if(offset &gt; 0) {
+			switch(aPostInfinityMethod) {
+				case ExtrapolationTypes.CYCLE:
+					//MENOTE: do nothing
+					break;
+				case ExtrapolationTypes.CYCLE_WITH_OFFSET:
+					outputValueOffset = offset*(currentArray[currentArray.length-1].y-currentArray[0].y);
+					break;
+				default:
+					//METODO: error message
+					break;
+			}
+		}
+		var currentSegmentNr = 0;
+		while(true) {
+			if((evaluationParameter &gt;= currentArray[4*currentSegmentNr].x) &amp;&amp; (evaluationParameter &lt; currentArray[4*currentSegmentNr+3].x)) {
+				return this._evaluateAnimationCurveSegment(currentArray, currentSegmentNumber, evaluationParameter, aExactness)+outputValueOffset;
+			}
+			else if(evaluationParameter &lt; currentArray[4*currentSegmentNr].x) {
+				currentSegmentNr--;
+			}
+			else if(evaluationParameter &gt;= currentArray[4*currentSegmentNr+3].x) {
+				currentSegmentNr++;
+			}
+			else {
+				//METODO: error message
+				break;
+			}
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createBezierCurveFromPoints3d</span>(<span class="arguments">aPointsArray, aReturnCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a bezier curve that passes through a set of points</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createBezierCurveFromPoints3d = function(aPointsArray, aReturnCurve) {
+		//console.log("createBezierCurveFromPoints3d");
+		var curveDegree = aPointsArray.length-1;
+		var multipliersArray = this.getBezierMultipliersArray(curveDegree);
+		
+		var arrayLength = aPointsArray.length-2;
+		
+		var startPoint = aPointsArray[0];
+		var endPoint = aPointsArray[aPointsArray.length-1];
+		
+		var eliminationArray = new Array(arrayLength);
+		var currentArray = eliminationArray;
+		var theLength = currentArray.length;
+		for(var i = -1; ++i &lt; theLength;) {
+			var currentArray2 = new Array(arrayLength+3);
+			currentArray[i] = currentArray2;
+			var parameter = (i+1)/(curveDegree);
+			for(var j = -1; ++j &lt; arrayLength;) {
+				currentArray2[j] = multipliersArray[j+1]*this.calculateBernsteinPolynomialWithoutMultiplier(parameter, j+1, curveDegree);
+			}
+			
+			var startBpValue = Math.pow((1-parameter), curveDegree);
+			var endBpValue = Math.pow(parameter, curveDegree);
+			var currentPoint = aPointsArray[i+1];
+			currentArray2[arrayLength+0] = currentPoint.x-startBpValue*startPoint.x-endBpValue*endPoint.x;
+			currentArray2[arrayLength+1] = currentPoint.y-startBpValue*startPoint.y-endBpValue*endPoint.y;
+			currentArray2[arrayLength+2] = currentPoint.z-startBpValue*startPoint.z-endBpValue*endPoint.z;
+		}
+		
+		for(var i = 0; ++i &lt; arrayLength;) {
+			//MENOTE: no elimination on first row
+			var currentEliminationArray = eliminationArray[i];
+			var currentDataArray = eliminationArray[i];
+			var currentRemoveArray;
+			for(var j = -1; ++j &lt; i;) {
+				currentRemoveArray = eliminationArray[j];
+				var multiplier = currentDataArray[j]/currentRemoveArray[j];
+				for(var k = -1; ++k &lt; currentEliminationArray.length;) {
+					currentEliminationArray[k] = currentDataArray[k] - multiplier*currentRemoveArray[k];
+				}
+				currentEliminationArray[j] = 0;
+			}
+		}
+		
+		for(var i = arrayLength; --i &gt;= 0;) {
+			for(var j = arrayLength; --j &gt; i;) {
+				var rowMultiplier = eliminationArray[i][j];
+				eliminationArray[i][arrayLength+0] = eliminationArray[i][arrayLength+0]-rowMultiplier*eliminationArray[j][arrayLength+0];
+				eliminationArray[i][arrayLength+1] = eliminationArray[i][arrayLength+1]-rowMultiplier*eliminationArray[j][arrayLength+1];
+				eliminationArray[i][arrayLength+2] = eliminationArray[i][arrayLength+2]-rowMultiplier*eliminationArray[j][arrayLength+2];
+				eliminationArray[i][j] = 0;
+			}
+			var rowMultiplier = eliminationArray[i][i];
+			eliminationArray[i][i] = 1;
+			eliminationArray[i][arrayLength+0] /= rowMultiplier;
+			eliminationArray[i][arrayLength+1] /= rowMultiplier;
+			eliminationArray[i][arrayLength+2] /= rowMultiplier;
+			var currentPoint = aReturnCurve.pointsArray[i+1];
+			currentPoint.x = eliminationArray[i][arrayLength+0];
+			currentPoint.y = eliminationArray[i][arrayLength+1];
+			currentPoint.z = eliminationArray[i][arrayLength+2];
+		}
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createBezierCurveFromPoints2d</span>(<span class="arguments">aPointsArray, aReturnCurve, aParametersArray</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a bezier curve that passes through a set of points</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div><div class="argumentDescription">aParametersArray</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aParametersArray) {
+		
+		var curveCreator = (new CreateBezierCurveFromPoints2d()).init();
+		curveCreator.createCurve(aPointsArray, aReturnCurve, aParametersArray);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">createMultiSegmentBezierCurveFromPoints2d</span>(<span class="arguments">aPointsArray, aReturnCurve, aIsRound</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description">Creates a multisegment bezier curve that passes through a set of points</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aPointsArray - The points that the current curve should pass through.</div><div class="argumentDescription">aReturnCurve - The curve that is created.</div><div class="argumentDescription">aIsRound</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.createMultiSegmentBezierCurveFromPoints2d = function(aPointsArray, aReturnCurve, aIsRound) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator.createMultiSegmentBezierCurveFromPoints2d");
+		if(aReturnCurve.getCurveDegree() !== 3) {
+			//METODO
+			//return;
+		}
+		
+		var curveCreator = (new CreateMultiSegmentBezierCurveFromPoints2d()).init();
+		curveCreator.createCurve(aPointsArray, aReturnCurve, aIsRound);
+		
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><div class="function">
+				<div class="definition">
+					<span class="functionName">recycleCurve</span>(<span class="arguments">aCurve</span>)<span class="returnValue">:<span class="noData">void</span></span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+					<div class="spacedContent">
+						<div class="smallTitle">Arguments</div>
+						<div class="argumentsDescription"><div class="argumentDescription">aCurve</div></div>
+					</div>
+					<div class="spacedContent">
+						<div class="smallTitle">Return value</div>
+						<div class="returnValueDescription"><span class="noData">Function has no return value.</span></div>
+					</div>
+					<div class="foldableCode spacedContent">
+						<div class="boxWithTitle foldable">
+							<div class="smallTitle">Full code</div>
+							<div class="codeBox fullCode">
+								<div class="code">objectFunctions.recycleCurve = function(aCurve) {
+		//console.log("dbm.core.globalobjects.curveevaluator.CurveEvaluator::recycleCurve");
+		
+		this._recyclePointsArray.push(aCurve.pointsArray);
+	}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static variables</h2>
+					<div class="staticVariables list">
+						
+					<div id="variable" class="variable">
+				<div class="definition">
+					<span class="variableName">DEFAULT_EXACTNESS</span><span class="type"></span> = <span class="value">0.01</span>
+				</div>
+				<div class="descriptionHolder">
+					<div class="description"></div>
+				</div>
+			</div></div>
+				</section>
+				<section class="section listSection">
+					<h2>Static functions</h2>
+					<div class="staticFunctions list">
+						
+					</div>
+				</section>
+			</article>
+			<footer class="footer">
+				<hr />
+				Documentation exported with dbm.
+			</footer>
+		</div>
+		
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			
+			ga('create', 'UA-4657516-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+		
+		
+	
+</body></html>
