@@ -30,9 +30,10 @@ dbm.registerClass("dbm.gui.canvas.CanvasView", "dbm.gui.DisplayBaseObject", func
 		this._canvasWidth = this.createProperty("canvasWidth", 512);
 		this._canvasHeight = this.createProperty("canvasHeight", 512);
 		
-		//METODO: switch this it's own update function
-		this._updateFunctions.getObject("display").addInputConnection(this._canvasWidth);
-		this._updateFunctions.getObject("display").addInputConnection(this._canvasHeight);
+		var sizeUpdate = this.createGhostProperty("sizeUpdate");
+		this._display.connectInput(sizeUpdate);
+		
+		this.createUpdateFunction("value", this._updateSizeFlow, [this._element, this._canvasWidth, this._canvasHeight], [sizeUpdate]);
 		
 		return this;
 	};
@@ -78,8 +79,8 @@ dbm.registerClass("dbm.gui.canvas.CanvasView", "dbm.gui.DisplayBaseObject", func
 		return this;
 	};
 	
-	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		//console.log("dbm.gui.canvas.CanvasView::_updateDisplayFlow");
+	objectFunctions._updateSizeFlow = function(aFlowUpdateNumber) {
+		//console.log("dbm.gui.canvas.CanvasView::_updateSizeFlow");
 		
 		this.superCall(aFlowUpdateNumber);
 		

@@ -20,6 +20,7 @@ dbm.registerClass("dbm.gui.DisplayBaseObject", "dbm.core.ExtendedEventBaseObject
 	var TransformElementNode = dbm.importClass("dbm.flow.nodes.display.TransformElementNode");
 	var SetElementToCssPropertiesNode = dbm.importClass("dbm.flow.nodes.internal.SetElementToCssPropertiesNode");
 	var RoundNode = dbm.importClass("dbm.flow.nodes.math.round.RoundNode");
+	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
 	
 	//Utils
 	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
@@ -43,10 +44,10 @@ dbm.registerClass("dbm.gui.DisplayBaseObject", "dbm.core.ExtendedEventBaseObject
 		this._inDom = this.createProperty("inDom", false);
 		this._inDomOutput = this.createProperty("inDomOutput", false);
 		
-		this._display = this.createGhostProperty("display");
+		this._display = this.addProperty("display", AnyChangeMultipleInputProperty.create());
+		this._display.connectInput(this._inDomOutput);
 		
 		this.createUpdateFunctionWithArguments("inDomUpdate", DomManipulationFunctions.setElementDomStatus, [this._element, this._parentElement, this._inDom], [this._inDomOutput]);
-		this.createUpdateFunction("display", this._updateDisplayFlow, [this._inDomOutput], [this._display]);
 		
 		return this;
 	};
@@ -154,7 +155,7 @@ dbm.registerClass("dbm.gui.DisplayBaseObject", "dbm.core.ExtendedEventBaseObject
 		var pivotY = this.createProperty("pivotY", 0.5);
 		
 		var placementNode = TransformElementNode.create(this._element, x, y, scaleX, scaleY, rotate, pivotX, pivotY);
-		this._updateFunctions.getObject("display").addInputConnection(placementNode.getProperty("display"));
+		this._display.connectInput(placementNode.getProperty("display"));
 		this.addDestroyableObject(placementNode);
 		
 		return this;
@@ -332,10 +333,10 @@ dbm.registerClass("dbm.gui.DisplayBaseObject", "dbm.core.ExtendedEventBaseObject
 		
 		newProperty.setup(aCssProperty, aUnit, aDefaultValue);
 		this.addProperty(aName, newProperty);
-		this._updateFunctions.getObject("display").addInputConnection(newProperty);
+		this._display.connectInput(newProperty);
 		
 		var setElementNode = SetElementToCssPropertiesNode.create(this._element).addUpdateProperty(newProperty);
-		this._updateFunctions.getObject("display").addInputConnection(setElementNode.getProperty("elementSet"));
+		this._display.connectInput(setElementNode.getProperty("elementSet"));
 		this.addDestroyableObject(setElementNode);
 		
 		return newProperty;

@@ -20,7 +20,11 @@ dbm.registerClass("dbm.gui.text.HtmlTextElement", "dbm.gui.DisplayBaseObject", f
 		
 		this._text = this.createProperty("text","");
 		this._fragment = null;
-		this._updateFunctions.getObject("display").addInputConnection(this._text);
+		
+		var textUpdate = this.createGhostProperty("textUpdate");
+		this.createUpdateFunction("text", this._updateTextFlow, [this._text], [textUpdate]);
+		
+		this._display.connectInput(textUpdate);
 		
 		return this;
 	};
@@ -29,8 +33,7 @@ dbm.registerClass("dbm.gui.text.HtmlTextElement", "dbm.gui.DisplayBaseObject", f
 		//MENOTE: do nothing
 	};
 	
-	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		this.superCall(aFlowUpdateNumber);
+	objectFunctions._updateTextFlow = function(aFlowUpdateNumber) {
 		
 		while(this.getElement().childNodes.length > 0) {
 			this.getElement().removeChild(this.getElement().firstChild);

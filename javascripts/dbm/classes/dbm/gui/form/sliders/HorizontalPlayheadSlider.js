@@ -38,7 +38,7 @@ dbm.registerClass("dbm.gui.form.sliders.HorizontalPlayheadSlider", "dbm.gui.form
 		this.addDestroyableObject(this._globalPositionPoint);
 		
 		this._playheadWidth = this.createProperty("playheadWidth", 0);
-		this._updateFunctions.getObject("display").addInputConnection(this._playheadWidth);
+		this._updateFunctions.getObject("valueUpdate").addInputConnection(this._playheadWidth);
 		
 		return this;
 	};
@@ -94,8 +94,8 @@ dbm.registerClass("dbm.gui.form.sliders.HorizontalPlayheadSlider", "dbm.gui.form
 		return this._clampCurrentScrubValue(scrubValue, minValue, maxValue);
 	};
 	
-	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		//console.log("dbm.gui.form.sliders.HorizontalPlayheadSlider::_updateDisplayFlow");
+	objectFunctions._updateValueFlow = function(aFlowUpdateNumber) {
+		//console.log("dbm.gui.form.sliders.HorizontalPlayheadSlider::_updateValueFlow");
 		
 		this.superCall(aFlowUpdateNumber);
 		

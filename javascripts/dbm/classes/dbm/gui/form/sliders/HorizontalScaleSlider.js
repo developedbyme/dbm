@@ -84,8 +84,8 @@ dbm.registerClass("dbm.gui.form.sliders.HorizontalScaleSlider", "dbm.gui.form.sl
 		return this._clampCurrentScrubValue(scrubValue, minValue, maxValue);
 	};
 	
-	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		//console.log("dbm.gui.form.sliders.HorizontalScaleSlider::_updateDisplayFlow");
+	objectFunctions._updateValueFlow = function(aFlowUpdateNumber) {
+		//console.log("dbm.gui.form.sliders.HorizontalScaleSlider::_updateValueFlow");
 		
 		this.superCall(aFlowUpdateNumber);
 		

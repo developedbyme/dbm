@@ -43,7 +43,10 @@ dbm.registerClass("dbm.gui.form.InputField", "dbm.gui.DisplayBaseObject", functi
 		this.getExtendedEvent().addCommandToEvent(FormFieldExtendedEventIds.BLUR, CallFunctionCommand.createCommand(this, this._blur, []));
 		this.getExtendedEvent().addCommandToEvent(ClassReference._INTERNAL_CHANGE, CallFunctionCommand.createCommand(this, this._change, [GetVariableObject.createSelectDataCommand()]));
 		
-		this._updateFunctions.getObject("display").addInputConnection(this._value);
+		var valueUpdate = this.createGhostProperty("valueUpdate");
+		this._display.connectInput(valueUpdate);
+		
+		this.createUpdateFunction("value", this._updateValueFlow, [this._value], [valueUpdate]);
 		
 		return this;
 	};
@@ -128,8 +131,8 @@ dbm.registerClass("dbm.gui.form.InputField", "dbm.gui.DisplayBaseObject", functi
 		}
 	};
 	
-	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		//console.log("dbm.gui.form.InputField::_updateFlowText");
+	objectFunctions._updateValueFlow = function(aFlowUpdateNumber) {
+		//console.log("dbm.gui.form.InputField::_updateValueFlow");
 		var newValue = this._value.getValueWithoutFlow();
 		this.getElement().value = newValue;
 		this._lastValue = newValue.toString();

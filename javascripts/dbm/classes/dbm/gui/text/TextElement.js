@@ -19,7 +19,7 @@ dbm.registerClass("dbm.gui.text.TextElement", "dbm.gui.DisplayBaseObject", funct
 		this.superCall();
 		
 		this._text = this.addProperty("text", ExternalVariableProperty.createWithoutExternalObject(null));
-		this._updateFunctions.getObject("display").addInputConnection(this._text);
+		this._display.connectInput(this._text);
 		
 		return this;
 	};
