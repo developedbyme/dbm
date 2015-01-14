@@ -82,8 +82,6 @@ dbm.registerClass("dbm.gui.canvas.CanvasView", "dbm.gui.DisplayBaseObject", func
 	objectFunctions._updateSizeFlow = function(aFlowUpdateNumber) {
 		//console.log("dbm.gui.canvas.CanvasView::_updateSizeFlow");
 		
-		this.superCall(aFlowUpdateNumber);
-		
 		var element = this._element.getValueWithoutFlow();
 		
 		var newWidth = this._canvasWidth.getValueWithoutFlow();
