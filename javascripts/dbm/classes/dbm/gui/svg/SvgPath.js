@@ -19,13 +19,13 @@ dbm.registerClass("dbm.gui.svg.SvgPath", "dbm.gui.svg.SvgDisplayBaseObject", fun
 		this.superCall();
 		
 		this._stroke = this.addProperty("stroke", ExternalCssVariableProperty.createWithoutExternalObject());
-		this._updateFunctions.getObject("display").addInputConnection(this._stroke);
+		this._display.connectInput(this._stroke);
 		this._fill = this.addProperty("fill", ExternalCssVariableProperty.createWithoutExternalObject());
-		this._updateFunctions.getObject("display").addInputConnection(this._fill);
+		this._display.connectInput(this._fill);
 		
 		this._curve = this.createProperty("curve");
 		this._drawUpdate = this.createGhostProperty("drawUpdate");
-		this._updateFunctions.getObject("display").addInputConnection(this._drawUpdate);
+		this._display.connectInput(this._drawUpdate);
 		this.createUpdateFunction("drawUpdate", this._updateDrawFlow, [this._element, this._curve], [this._drawUpdate]);
 		
 		return this;

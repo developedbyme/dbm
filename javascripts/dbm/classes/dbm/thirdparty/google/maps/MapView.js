@@ -43,9 +43,9 @@ dbm.registerClass("dbm.thirdparty.google.maps.MapView", "dbm.gui.DisplayBaseObje
 		this._zoomUpdate = this.createGhostProperty("zoomUpdate");
 		
 		this.createUpdateFunctionWithArguments("location", MapFunctions.setLocation, [this._map, this._latitude, this._longitude], [this._locationUpdate]);
-		this._updateFunctions.getObject("display").addInputConnection(this._locationUpdate);
+		this._display.connectInput(this._locationUpdate);
 		this.createUpdateFunctionWithArguments("zoom", MapFunctions.setZoom, [this._map, this._zoom], [this._zoomUpdate]);
-		this._updateFunctions.getObject("display").addInputConnection(this._zoomUpdate);
+		this._display.connectInput(this._zoomUpdate);
 		
 		return this;
 	};

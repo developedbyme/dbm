@@ -65,7 +65,7 @@ dbm.registerClass("dbm.gui.media.MediaElementBaseObject", "dbm.gui.DisplayBaseOb
 		this._outputTime = this.createProperty("outputTime", 0);
 		
 		this._playback = this.createGhostProperty("playback");
-		this._updateFunctions.getObject("display").addInputConnection(this._playback);
+		this._display.connectInput(this._playback);
 		
 		this._hasEnded = this.createProperty("hasEnded", false);
 		this._loop = this.createProperty("loop", false);

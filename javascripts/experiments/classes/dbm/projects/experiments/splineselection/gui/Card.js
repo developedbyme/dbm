@@ -17,7 +17,7 @@ dbm.registerClass("dbm.projects.experiments.splineselection.gui.Card", "dbm.gui.
 		this.superCall();
 		
 		this._zIndex = this.addProperty("zIndex", ExternalCssVariableProperty.createWithoutExternalObject());
-		this._updateFunctions.getObject("display").addInputConnection(this._zIndex);
+		this._display.connectInput(this._zIndex);
 		
 		return this;
 	};

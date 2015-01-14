@@ -23,12 +23,12 @@ dbm.registerClass("dbm.gui.svg.SvgLayer", "dbm.gui.svg.SvgDisplayBaseObject", fu
 		this._graphics = new Array();
 		
 		this._stroke = this.addProperty("stroke", ExternalCssVariableProperty.createWithoutExternalObject());
-		this._updateFunctions.getObject("display").addInputConnection(this._stroke);
+		this._display.connectInput(this._stroke);
 		this._fill = this.addProperty("fill", ExternalCssVariableProperty.createWithoutExternalObject());
-		this._updateFunctions.getObject("display").addInputConnection(this._fill);
+		this._display.connectInput(this._fill);
 		
 		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
-		this._updateFunctions.getObject("display").addInputConnection(this._graphicsUpdate);
+		this._display.connectInput(this._graphicsUpdate);
 		
 		return this;
 	};

@@ -29,7 +29,7 @@ dbm.registerClass("dbm.gui.svg.SvgView", "dbm.gui.DisplayBaseObject", function(o
 		this.addDestroyableObject(this._definitions);
 		
 		this._graphicsUpdate = this.addProperty("graphicsUpdate", AnyChangeMultipleInputProperty.create());
-		this._updateFunctions.getObject("display").addInputConnection(this._graphicsUpdate);
+		this._display.connectInput(this._graphicsUpdate);
 		
 		return this;
 	};

@@ -45,7 +45,7 @@ dbm.registerClass("dbm.gui.data.treestructure.TreeStructureItemView", "dbm.gui.D
 		this._outputState = this.createProperty("outputState", switchNode.getProperty("outputValue"));
 		this._isOpenCommands = this.addProperty("isOpenCommands", ExtendedEventProperty.create(GenericExtendedEventIds.CLOSE).changeToExternalEventController(this.getExtendedEvent()));
 		this._isOpenCommands.connectInput(this._outputState);
-		this._updateFunctions.getObject("display").addInputConnection(this._isOpenCommands);
+		this._display.connectInput(this._isOpenCommands);
 		this._childItems = new Array();
 		
 		this._nameChangedCommand = SetPropertyCommand.createCommand(this._name, GetVariableObject.createCommand(GetVariableObject.createSelectDataCommand(), "newValue"));

@@ -17,7 +17,7 @@ dbm.registerClass("dbm.gui.other.IframeElement", "dbm.gui.DisplayBaseObject", fu
 		this.superCall();
 		
 		this._source = this.addProperty("source", ExternalVariableProperty.createWithoutExternalObject());
-		this._updateFunctions.getObject("display").addInputConnection(this._source);
+		this._display.connectInput(this._source);
 		
 		return this;
 	};

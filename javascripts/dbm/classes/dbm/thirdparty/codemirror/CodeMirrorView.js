@@ -49,13 +49,13 @@ dbm.registerClass("dbm.thirdparty.codemirror.CodeMirrorView", "dbm.gui.DisplayBa
 		this._editor = null;
 		
 		this._value = this.addProperty("value", ExtendedEventValueProperty.create(""));
-		this._updateFunctions.getObject("display").addInputConnection(this._value);
+		this._display.connectInput(this._value);
 		this._options.addObject(CodeMirrorOptionIds.VALUE, this._value);
 		
 		this._domChange = this.createGhostProperty("domChange");
 		this._redraw = this.createGhostProperty("redraw");
 		this.createUpdateFunction("redrawUpdate", this._redrawFlowUpdate, [this._element, this._domChange], [this._redraw]);
-		this._updateFunctions.getObject("display").addInputConnection(this._redraw);
+		this._display.connectInput(this._redraw);
 		
 		this._createOptionProperty(CodeMirrorOptionIds.MODE, ClassReference.DEFAULT_MODE);
 		this._createOptionProperty(CodeMirrorOptionIds.LINE_NUMBERS, ClassReference.DEFAULT_LINE_NUMBERS);
@@ -90,7 +90,7 @@ dbm.registerClass("dbm.thirdparty.codemirror.CodeMirrorView", "dbm.gui.DisplayBa
 		var newProperty = this.addProperty(aName, ExtendedEventValueProperty.create(aValue));
 		newProperty.getExtendedEvent().addCommandToEvent(GenericExtendedEventIds.UPDATE, CallFunctionCommand.createCommand(this, this._optionChanged, [aName, GetVariableObject.createSelectDataCommand()]));
 		this._options.addObject(aName, newProperty);
-		this._updateFunctions.getObject("display").addInputConnection(newProperty);
+		this._display.connectInput(newProperty);
 		return newProperty;
 	};
 	

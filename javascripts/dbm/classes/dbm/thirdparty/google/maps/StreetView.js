@@ -45,13 +45,13 @@ dbm.registerClass("dbm.thirdparty.google.maps.StreetView", "dbm.gui.DisplayBaseO
 		this._panoIdUpdate = this.createGhostProperty("panoIdUpdate");
 		
 		this.createUpdateFunctionWithArguments("location", MapFunctions.setStreetViewLocation, [this._streetView, this._latitude, this._longitude], [this._locationUpdate]);
-		this._updateFunctions.getObject("display").addInputConnection(this._locationUpdate);
+		this._display.connectInput(this._locationUpdate);
 		this.createUpdateFunctionWithArguments("zoom", MapFunctions.setZoom, [this._streetView, this._zoom], [this._zoomUpdate]);
-		this._updateFunctions.getObject("display").addInputConnection(this._zoomUpdate);
+		this._display.connectInput(this._zoomUpdate);
 		this.createUpdateFunctionWithArguments("pov", MapFunctions.setPov, [this._streetView, this._heading, this._pitch], [this._povUpdate]);
-		this._updateFunctions.getObject("display").addInputConnection(this._povUpdate);
+		this._display.connectInput(this._povUpdate);
 		this.createUpdateFunctionWithArguments("panoId", MapFunctions.setPanoId, [this._streetView, this._panoId], [this._panoIdUpdate]);
-		this._updateFunctions.getObject("display").addInputConnection(this._panoIdUpdate);
+		this._display.connectInput(this._panoIdUpdate);
 		
 		//METODO: fix so that pano isn't updated twice
 		this.getExtendedEvent().addCommandToEvent(

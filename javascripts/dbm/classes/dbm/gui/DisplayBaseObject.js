@@ -53,15 +53,6 @@ dbm.registerClass("dbm.gui.DisplayBaseObject", "dbm.core.ExtendedEventBaseObject
 	};
 	
 	/**
-	 * Function that should be overriden when a function needs to be called to update the display of this object.
-	 *
-	 * @param	aFlowUpdateNumber	Number	The integer to keep track of flow updates.
-	 */
-	objectFunctions._updateDisplayFlow = function(aFlowUpdateNumber) {
-		//MENOTE: should be overridden
-	};
-	
-	/**
 	 * Sets the view (Element) for this object.
 	 *
 	 * @param	aElement	Element		The view for this object.

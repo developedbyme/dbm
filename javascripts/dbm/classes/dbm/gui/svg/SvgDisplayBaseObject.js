@@ -41,7 +41,7 @@ dbm.registerClass("dbm.gui.svg.SvgDisplayBaseObject", "dbm.gui.DisplayBaseObject
 		//console.log("dbm.gui.svg.SvgDisplayBaseObject::setElementAsTransformed");
 		
 		this._placementNode = TransformSvgElementNode.create(this._element);
-		this._updateFunctions.getObject("display").addInputConnection(this._placementNode.getProperty("display"));
+		this._display.connectInput(this._placementNode.getProperty("display"));
 		this.addDestroyableObject(this._placementNode);
 		
 		return this;
