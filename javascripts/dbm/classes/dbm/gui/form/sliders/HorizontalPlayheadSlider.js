@@ -38,7 +38,7 @@ dbm.registerClass("dbm.gui.form.sliders.HorizontalPlayheadSlider", "dbm.gui.form
 		this.addDestroyableObject(this._globalPositionPoint);
 		
 		this._playheadWidth = this.createProperty("playheadWidth", 0);
-		this._updateFunctions.getObject("valueUpdate").addInputConnection(this._playheadWidth);
+		this._updateFunctions.getObject("value").addInputConnection(this._playheadWidth);
 		
 		return this;
 	};
