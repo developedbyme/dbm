@@ -49,12 +49,13 @@ dbm.registerClass("dbm.utils.xml.XmlChildRetreiver", null, function(objectFuncti
 	staticFunctions.getChild = function(aXml, aChildName) {
 		//console.log("dbm.utils.xml.XmlChildRetreiver::getChild (static)");
 		//console.log(aXml, aChildName);
+		
 		if(aXml === null) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getChild", "Xml is null");
 			return null;
 		}
 		
-		var returnArray = ClassReference.getChilds();
+		var returnArray = ClassReference.getChilds(aXml, aChildName);
 		
 		if(returnArray.length === 0) {
 			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getChild", "No result in " + aXml);

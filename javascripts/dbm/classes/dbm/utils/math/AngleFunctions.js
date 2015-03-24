@@ -71,4 +71,16 @@ dbm.registerClass("dbm.utils.math.AngleFunctions", null, function(objectFunction
 	staticFunctions.degreeDifference = function(aAngle1, aAngle2) {
 		return ClassReference.radiansToDegrees(ClassReference.angleDifference(ClassReference.degreesToRadians(aAngle1), ClassReference.degreesToRadians(aAngle2)));
 	};
+	
+	staticFunctions.atanh = function(aValue) {
+		return 0.5*Math.log((1+aValue)/(1-aValue));
+	};
+	
+	staticFunctions.sinh = function(aValue) {
+		return 0.5*(Math.exp(aValue)-Math.exp(-1*aValue));
+	};
+	
+	staticFunctions.cosh = function(aValue) {
+		return 0.5*(Math.exp(aValue)+Math.exp(-1*aValue));
+	};
 });

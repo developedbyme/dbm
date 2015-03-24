@@ -33,7 +33,7 @@ dbm.registerClass("dbm.utils.native.array.ArrayComparison", "dbm.core.BaseObject
 		var length1 = this._existsOnlyInArray1.length;
 		var length2 = this._existsOnlyInArray2.length;
 		for(var position1 = 0, position2 = 0; position1 < length1 && position2 < length2;) {
-			console.log(position1, position2, this._existsOnlyInArray1[position1], this._existsOnlyInArray2[position2], this._existsOnlyInArray1[position1] === this._existsOnlyInArray2[position2]);
+			//console.log(position1, position2, this._existsOnlyInArray1[position1], this._existsOnlyInArray2[position2], this._existsOnlyInArray1[position1] === this._existsOnlyInArray2[position2]);
 			if(this._existsOnlyInArray1[position1] === this._existsOnlyInArray2[position2]) {
 				this._existsInBothsArray.push(this._existsOnlyInArray1[position1]);
 				this._existsOnlyInArray1.splice(position1, 1);
@@ -48,6 +48,10 @@ dbm.registerClass("dbm.utils.native.array.ArrayComparison", "dbm.core.BaseObject
 				position2++;
 			}
 		}
+	};
+	
+	objectFunctions.getObjectsInBothArrays = function() {
+		return this._existsInBothsArray;
 	};
 	
 	staticFunctions.create = function() {

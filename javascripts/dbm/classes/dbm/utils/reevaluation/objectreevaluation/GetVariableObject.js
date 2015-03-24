@@ -3,7 +3,7 @@
  * Reevalutor that selects a variable on an object.
  */
 dbm.registerClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject", "dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.utils.reevaluation.objectreevaluation.ObjectReevaluationBaseObject");
+	//console.log("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	//Self reference
 	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
@@ -149,5 +149,17 @@ dbm.registerClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject",
 	 */
 	staticFunctions.createSelectMultipleArgumentDataCommand = function(aIndex) {
 		return ClassReference.createCommand(ClassReference.createSelectDataCommand(), aIndex);
+	};
+	
+	staticFunctions.createCommandsForPath = function(aPath) {
+		var currentObject = (new SelectBaseObjectObject()).init();
+		
+		var currentArray = aPath.split("/");
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			currentObject = ClassReference.createCommand(currentObject, currentArray[i]);
+		}
+		
+		return currentObject;
 	};
 });

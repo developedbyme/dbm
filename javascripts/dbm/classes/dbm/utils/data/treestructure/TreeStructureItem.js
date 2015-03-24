@@ -346,6 +346,10 @@ dbm.registerClass("dbm.utils.data.treestructure.TreeStructureItem", "dbm.utils.d
 		return null;
 	}; //End function getChildByName
 	
+	objectFunctions.getByPath = function(aPath) {
+		return this._root.getItemByPath(aPath, this);
+	};
+	
 	/**
 	 * Resolves a path from this item.
 	 */

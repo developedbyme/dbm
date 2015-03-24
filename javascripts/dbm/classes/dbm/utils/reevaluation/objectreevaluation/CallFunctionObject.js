@@ -113,4 +113,15 @@ dbm.registerClass("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject"
 		
 		return ClassReference.createCommand(aObject, GetVariableObject.createCommand(aObject, aFunctionName), aArgumentsArray);
 	};
+	
+	/**
+	 * Creates a command that calls a function on the performing object.
+	 * 
+	 * @param	aFunctionName	The name of the function to call.
+	 * @param	aArgumentsArray	The arguments to pass to the function.
+	 * @return	The new command.
+	 */
+	staticFunctions.createCallFunctionOnPerformingObjectCommand = function(aFunctionName, aArgumentsArray) {
+		return ClassReference.createFunctionOnObjectCommand(GetVariableObject.createSelectPerformingObjectCommand(), aFunctionName, aArgumentsArray);
+	};
 });
