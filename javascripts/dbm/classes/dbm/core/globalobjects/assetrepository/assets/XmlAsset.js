@@ -87,7 +87,7 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.XmlAsset", "dbm
 	};
 	
 	objectFunctions.setupAsFormObjectPost = function(aData) {
-		this._requestMethod = "POST";
+		this.setRequestMethod("POST");
 		this.addHeader("Content-Type", "application/x-www-form-urlencoded");
 		
 		this.setupFormObject(aData);

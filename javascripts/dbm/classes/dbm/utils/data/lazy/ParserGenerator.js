@@ -82,6 +82,29 @@ dbm.registerClass("dbm.utils.data.lazy.ParserGenerator", "dbm.core.BaseObject", 
 		aTreeStructureItem.data = reevaluationObject;
 	};
 	
+	staticFunctions.createSeparatelyNamedAttribute = function(aTreeStructureItem, aName) {
+		var reevaluationObject = CreateAndInitObjectReevaluationObject.createCommand(LazyData, [
+			CallFunctionObject.createCallFunctionOnPerformingObjectCommand("setParsedData", [
+				GetAttributeReevaluationObject.createCommand(
+					GetVariableObject.createCommandsForPath("data/data"),
+					aName
+				)
+			])
+		]);
+		
+		aTreeStructureItem.data = reevaluationObject;
+	};
+	
+	staticFunctions.createCurrentElement = function(aTreeStructureItem) {
+		var reevaluationObject = CreateAndInitObjectReevaluationObject.createCommand(LazyData, [
+			CallFunctionObject.createCallFunctionOnPerformingObjectCommand("setParsedData", [
+				GetVariableObject.createCommandsForPath("data/data")
+			])
+		]);
+		
+		aTreeStructureItem.data = reevaluationObject;
+	};
+	
 	staticFunctions.createXmlChildObjectParser = function(aTreeStructureItem) {
 		var defaultParserName = aTreeStructureItem.getInheritedAttribute("defaultParser");
 		var defaultParser = aTreeStructureItem.getByPath(defaultParserName);
