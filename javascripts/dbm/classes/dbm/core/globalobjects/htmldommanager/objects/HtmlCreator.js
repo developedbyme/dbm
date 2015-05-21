@@ -207,6 +207,9 @@ dbm.registerClass("dbm.core.globalobjects.htmldommanager.objects.HtmlCreator", "
 	};
 	
 	objectFunctions.createFromTemplate = function(aHtmlString, aFragment) {
+		//console.log("dbm.core.globalobjects.htmldommanager.objects.HtmlCreator::createFromTemplate");
+		//console.log(aHtmlString, aFragment);
+		
 		var newElement = this.ownerDocument.createElement("div");
 		newElement.innerHTML = aHtmlString;
 		var documentFragment;

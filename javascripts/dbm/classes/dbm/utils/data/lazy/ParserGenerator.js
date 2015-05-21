@@ -95,6 +95,19 @@ dbm.registerClass("dbm.utils.data.lazy.ParserGenerator", "dbm.core.BaseObject", 
 		aTreeStructureItem.data = reevaluationObject;
 	};
 	
+	staticFunctions.createNamedJsonVariable = function(aTreeStructureItem) {
+		var reevaluationObject = CreateAndInitObjectReevaluationObject.createCommand(LazyData, [
+			CallFunctionObject.createCallFunctionOnPerformingObjectCommand("setParsedData", [
+				GetVariableObject.createCommand(
+					GetVariableObject.createCommandsForPath("data/data"),
+					GetVariableObject.createCommandsForPath("data/selection")
+				)
+			])
+		]);
+		
+		aTreeStructureItem.data = reevaluationObject;
+	};
+	
 	staticFunctions.createCurrentElement = function(aTreeStructureItem) {
 		var reevaluationObject = CreateAndInitObjectReevaluationObject.createCommand(LazyData, [
 			CallFunctionObject.createCallFunctionOnPerformingObjectCommand("setParsedData", [
@@ -126,6 +139,23 @@ dbm.registerClass("dbm.utils.data.lazy.ParserGenerator", "dbm.core.BaseObject", 
 		var defaultParserName = aTreeStructureItem.getInheritedAttribute("defaultParser");
 		var defaultParser = aTreeStructureItem.getByPath(defaultParserName);
 		ClassReference.createNamedDataNode(defaultParser);
+	};
+	
+	staticFunctions.createArrayIndexedJsonDataNodes = function(aTreeStructureItem) {
+		var reevaluationObject = CreateAndInitObjectReevaluationObject.createCommand(LazyObject, [
+			CallFunctionObject.createCallFunctionOnPerformingObjectCommand("setData", [
+				GetVariableObject.createCommand(
+					GetVariableObject.createCommandsForPath("data/data"),
+					GetVariableObject.createCommandsForPath("data/selection")
+				)
+			]),
+			CallFunctionObject.createCallFunctionOnPerformingObjectCommand("setTreeStructureItem", [GetVariableObject.createCommandsForPath("data/selectedTreeStrcutureItem")])
+		]);
+		
+		aTreeStructureItem.data = reevaluationObject;
+		var defaultParserName = aTreeStructureItem.getInheritedAttribute("defaultParser");
+		var defaultParser = aTreeStructureItem.getByPath(defaultParserName);
+		ClassReference.createNamedJsonVariable(defaultParser);
 	};
 	
 	staticFunctions.createNodeList = function(aTreeStructureItem, aNodeName) {

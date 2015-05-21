@@ -34,6 +34,14 @@ dbm.registerClass("dbm.utils.data.storage.LocalStorage", "dbm.core.BaseObject", 
 		return this;
 	};
 	
+	objectFunctions.getItem = function(aPath) {
+		return JSON.parse(this._dataHolder.getItem(this._prefix + aPath + this._suffix));
+	};
+	
+	objectFunctions.setItem = function(aPath, aData) {
+		this._dataHolder.setItem(this._prefix + aPath + this._suffix, JSON.stringify(aData));
+	};
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this._dataHolder = null;

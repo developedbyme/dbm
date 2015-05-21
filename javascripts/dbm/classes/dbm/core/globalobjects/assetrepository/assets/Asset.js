@@ -12,6 +12,7 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.Asset", "dbm.co
 	//Error report
 	
 	//Dependencies
+	var EventDataObject = dbm.importClass("dbm.core.extendedevent.EventDataObject");
 	
 	//Utils
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
@@ -70,6 +71,20 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.Asset", "dbm.co
 	
 	objectFunctions.setHierarchyItem = function(aItem) {
 		this._hierarchyItem = aItem;
+	};
+	
+	objectFunctions.runCommandWhenLoaded = function(aCommand) {
+		//console.log("dbm.core.globalobjects.assetrepository.assets.Asset::runCommandWhenLoaded");
+		
+		if(this.getStatus() === AssetStatusTypes.LOADED) {
+			aCommand.retain();
+			var eventDataObject = EventDataObject.create(null, this, this);
+			aCommand.perform(eventDataObject);
+			aCommand.releaseAndDestroy();
+		}
+		else {
+			this.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, aCommand);
+		}
 	};
 	
 	/**

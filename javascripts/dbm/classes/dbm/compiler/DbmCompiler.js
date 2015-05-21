@@ -109,7 +109,7 @@ dbm.registerClass("dbm.compiler.DbmCompiler", "dbm.core.ExtendedEventBaseObject"
 		//console.log(aPath, aPosition);
 		
 		if(ArrayFunctions.indexOfInArray(this._loadedFilePaths, aPath) !== -1) {
-			return;
+			return false;
 		}
 		if(aPosition !== -1) {
 			this._loadedFilePaths.splice(aPosition+1, 0, aPath);
@@ -126,6 +126,8 @@ dbm.registerClass("dbm.compiler.DbmCompiler", "dbm.core.ExtendedEventBaseObject"
 		var currentAsset = dbm.singletons.dbmAssetRepository.getAsset(aPath);
 		currentAsset.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, this._fileLoaded, [aPath, currentAsset]));
 		this._loader.addAsset(currentAsset);
+		
+		return true;
 	};
 	
 	objectFunctions.addScript = function(aScript, aPosition) {
@@ -159,10 +161,15 @@ dbm.registerClass("dbm.compiler.DbmCompiler", "dbm.core.ExtendedEventBaseObject"
 		
 		var newBreakdown = ScriptBreakdown.create(this, currentFile);
 		this._scriptBreakdowns.addObject(aPath, newBreakdown);
+		
+		var alreadyAddedOffset = 0;
 		var currentArray = newBreakdown.getIncludedFiles();
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
-			this.addFile(currentArray[i], insertPosition+i);
+			var isAdded = this.addFile(currentArray[i], insertPosition+i-alreadyAddedOffset);
+			if(!isAdded) {
+				alreadyAddedOffset++;
+			}
 		}
 	};
 	

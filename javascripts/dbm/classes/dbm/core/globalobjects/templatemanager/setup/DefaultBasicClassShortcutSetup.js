@@ -14,6 +14,7 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.setup.DefaultBasicClas
 	var StateImage = dbm.importClass("dbm.gui.images.StateImage");
 	var InputField = dbm.importClass("dbm.gui.form.InputField");
 	var FileUploadButton = dbm.importClass("dbm.gui.buttons.FileUploadButton");
+	var LinkElement = dbm.importClass("dbm.gui.text.LinkElement");
 	var TreeStructureView = dbm.importClass("dbm.gui.data.treestructure.TreeStructureView");
 	var TreeStructureItemView = dbm.importClass("dbm.gui.data.treestructure.TreeStructureItemView");
 	var SwitchableAreaHolder = dbm.importClass("dbm.gui.abstract.switchablearea.SwitchableAreaHolder");
@@ -39,6 +40,7 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.setup.DefaultBasicClas
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_STATE_IMAGE, StateImage);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_INPUT_FIELD, InputField);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_FILE_UPLOAD_BUTTON, FileUploadButton);
+		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_LINK_ELEMENT, LinkElement);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_HORIZONTAL_SCALE_SLIDER, HorizontalScaleSlider);
 		dbm.singletons.dbmTemplateManager.registerClassShortcut(TemplateClassShortcutNames.DBM_HORIZONTAL_PLAYHEAD_SLIDER, HorizontalPlayheadSlider);
 		

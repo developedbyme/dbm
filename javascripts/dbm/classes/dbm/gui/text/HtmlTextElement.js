@@ -10,6 +10,7 @@ dbm.registerClass("dbm.gui.text.HtmlTextElement", "dbm.gui.DisplayBaseObject", f
 	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
 	
 	var ExternalVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalVariableProperty");
+	var DomManipulationFunctions = dbm.importClass("dbm.utils.htmldom.DomManipulationFunctions");
 	
 	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
 	
@@ -34,12 +35,19 @@ dbm.registerClass("dbm.gui.text.HtmlTextElement", "dbm.gui.DisplayBaseObject", f
 	};
 	
 	objectFunctions._updateTextFlow = function(aFlowUpdateNumber) {
+		//console.log("dbm.gui.text.HtmlTextElement::_updateTextFlow");
 		
-		while(this.getElement().childNodes.length > 0) {
-			this.getElement().removeChild(this.getElement().firstChild);
+		var theElement = this.getElement();
+		
+		while(theElement.childNodes.length > 0) {
+			theElement.removeChild(theElement.firstChild);
 		}
 		
-		this.getHtmlCreator().createFromTemplate(this._text.getValueWithoutFlow(), this.getElement());
+		//console.log(this, theElement);
+		this.getHtmlCreator().createFromTemplate(this._text.getValueWithoutFlow(), theElement);
+		
+		//MENOTE: Fragments gets cleared out when added to the dom
+		DomManipulationFunctions.setElementDomStatus(theElement, this._parentElement.getValue(), this._inDom.getValue());
 	};
 	
 	objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
@@ -64,6 +72,9 @@ dbm.registerClass("dbm.gui.text.HtmlTextElement", "dbm.gui.DisplayBaseObject", f
 	};
 	
 	staticFunctions.create = function(aParentOrDocument, aAddToParent, aText) {
+		//console.log("dbm.gui.text.HtmlTextElement::create");
+		//console.log(aParentOrDocument, aAddToParent, aText);
+		
 		var newNode = (new ClassReference()).init();
 		
 		var theDocument = (aParentOrDocument.nodeType === XmlNodeTypes.DOCUMENT_NODE) ? aParentOrDocument : aParentOrDocument.ownerDocument;
@@ -71,6 +82,7 @@ dbm.registerClass("dbm.gui.text.HtmlTextElement", "dbm.gui.DisplayBaseObject", f
 		
 		var htmlCreator = dbm.singletons.dbmHtmlDomManager.getHtmlCreator(theDocument);
 		
+		newNode.setPropertyInputWithoutNull(aText);
 		newNode.setElement(htmlCreator.createFromTemplate(aText));
 		newNode.setParent(theParent);
 		if(aAddToParent !== false) {

@@ -11,6 +11,7 @@ dbm.registerClass("dbm.constants.TemplateClassShortcutNames", null, function(obj
 	staticFunctions.DBM_STATE_IMAGE = "dbm:StateImage";
 	staticFunctions.DBM_INPUT_FIELD = "dbm:InputField";
 	staticFunctions.DBM_FILE_UPLOAD_BUTTON = "dbm:FileUploadButton";
+	staticFunctions.DBM_LINK_ELEMENT = "dbm:LinkElement";
 	
 	staticFunctions.DBM_HORIZONTAL_SCALE_SLIDER = "dbm:HorizontalScaleSlider";
 	staticFunctions.DBM_HORIZONTAL_PLAYHEAD_SLIDER = "dbm:HorizontalPlayheadSlider";

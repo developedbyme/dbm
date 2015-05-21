@@ -126,8 +126,14 @@ dbm.registerClass("dbm.utils.htmldom.DomManipulationFunctions", null, function(o
 	};
 	
 	staticFunctions.setElementDomStatus = function(aElement, aParentElement, aInDom) {
+		//console.log("dbm.utils.htmldom.DomManipulationFunctions::setElementDomStatus");
+		//console.dir(aElement)
+		//console.dir(aParentElement);
+		//console.log(aInDom);
+		
 		if(aElement !== null) {
 			if(aInDom && aParentElement !== null) {
+				//console.log(">");
 				ClassReference.addToParent(aElement, aParentElement);
 				return true;
 			}

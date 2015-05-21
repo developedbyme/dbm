@@ -87,24 +87,12 @@ dbm.registerClass("dbm.utils.math.mapprojection.SwedishRt90Converter", null, fun
 		var lambda_zero = aCentralMeridian * deg_to_rad;
 		var xi = (aRt90Point.x - aFalseNorthing) / (aScale * a_roof);		
 		var eta = (aRt90Point.y - aFalseEasting) / (aScale * a_roof);
-		var xi_prim = xi - 
-						delta1*Math.sin(2.0*xi) * AngleFunctions.cosh(2.0*eta) - 
-						delta2*Math.sin(4.0*xi) * AngleFunctions.cosh(4.0*eta) - 
-						delta3*Math.sin(6.0*xi) * AngleFunctions.cosh(6.0*eta) - 
-						delta4*Math.sin(8.0*xi) * AngleFunctions.cosh(8.0*eta);
-		var eta_prim = eta - 
-						delta1*Math.cos(2.0*xi) * AngleFunctions.sinh(2.0*eta) - 
-						delta2*Math.cos(4.0*xi) * AngleFunctions.sinh(4.0*eta) - 
-						delta3*Math.cos(6.0*xi) * AngleFunctions.sinh(6.0*eta) - 
-						delta4*Math.cos(8.0*xi) * AngleFunctions.sinh(8.0*eta);
+		var xi_prim = xi - delta1*Math.sin(2.0*xi) * AngleFunctions.cosh(2.0*eta) - delta2*Math.sin(4.0*xi) * AngleFunctions.cosh(4.0*eta) - delta3*Math.sin(6.0*xi) * AngleFunctions.cosh(6.0*eta) - delta4*Math.sin(8.0*xi) * AngleFunctions.cosh(8.0*eta);
+		var eta_prim = eta - delta1*Math.cos(2.0*xi) * AngleFunctions.sinh(2.0*eta) - delta2*Math.cos(4.0*xi) * AngleFunctions.sinh(4.0*eta) - delta3*Math.cos(6.0*xi) * AngleFunctions.sinh(6.0*eta) - delta4*Math.cos(8.0*xi) * AngleFunctions.sinh(8.0*eta);
 		var phi_star = Math.asin(Math.sin(xi_prim) / AngleFunctions.cosh(eta_prim));
 		var delta_lambda = Math.atan(AngleFunctions.sinh(eta_prim) / Math.cos(xi_prim));
 		var lon_radian = lambda_zero + delta_lambda;
-		var lat_radian = phi_star + Math.sin(phi_star) * Math.cos(phi_star) * 
-						(Astar + 
-						 Bstar*Math.pow(Math.sin(phi_star), 2) + 
-						 Cstar*Math.pow(Math.sin(phi_star), 4) + 
-						 Dstar*Math.pow(Math.sin(phi_star), 6));  	
+		var lat_radian = phi_star + Math.sin(phi_star) * Math.cos(phi_star) * (Astar + Bstar*Math.pow(Math.sin(phi_star), 2) + Cstar*Math.pow(Math.sin(phi_star), 4) + Dstar*Math.pow(Math.sin(phi_star), 6));  	
 		aReturnPoint.x = lat_radian * 180.0 / Math.PI;
 		aReturnPoint.y = lon_radian * 180.0 / Math.PI;
 	};
@@ -130,25 +118,12 @@ dbm.registerClass("dbm.utils.math.mapprojection.SwedishRt90Converter", null, fun
 		var lambda = aLatLongPoint.y * deg_to_rad;
 		var lambda_zero = aCentralMeridian * deg_to_rad;
 	
-		var phi_star = phi - Math.sin(phi) * Math.cos(phi) * (A + 
-						B*Math.pow(Math.sin(phi), 2) + 
-						C*Math.pow(Math.sin(phi), 4) + 
-						D*Math.pow(Math.sin(phi), 6));
+		var phi_star = phi - Math.sin(phi) * Math.cos(phi) * (A + B*Math.pow(Math.sin(phi), 2) + C*Math.pow(Math.sin(phi), 4) + D*Math.pow(Math.sin(phi), 6));
 		var delta_lambda = lambda - lambda_zero;
 		var xi_prim = Math.atan(Math.tan(phi_star) / Math.cos(delta_lambda));
 		var eta_prim = AngleFunctions.atanh(Math.cos(phi_star) * Math.sin(delta_lambda));
-		var x = aScale * a_roof * (xi_prim +
-						beta1 * Math.sin(2.0*xi_prim) * AngleFunctions.cosh(2.0*eta_prim) +
-						beta2 * Math.sin(4.0*xi_prim) * AngleFunctions.cosh(4.0*eta_prim) +
-						beta3 * Math.sin(6.0*xi_prim) * AngleFunctions.cosh(6.0*eta_prim) +
-						beta4 * Math.sin(8.0*xi_prim) * AngleFunctions.cosh(8.0*eta_prim)) + 
-						aFalseNorthing;
-		var y = aScale * a_roof * (eta_prim +
-						beta1 * Math.cos(2.0*xi_prim) * AngleFunctions.sinh(2.0*eta_prim) +
-						beta2 * Math.cos(4.0*xi_prim) * AngleFunctions.sinh(4.0*eta_prim) +
-						beta3 * Math.cos(6.0*xi_prim) * AngleFunctions.sinh(6.0*eta_prim) +
-						beta4 * Math.cos(8.0*xi_prim) * AngleFunctions.sinh(8.0*eta_prim)) + 
-						aFalseEasting;
+		var x = aScale * a_roof * (xi_prim + beta1 * Math.sin(2.0*xi_prim) * AngleFunctions.cosh(2.0*eta_prim) + beta2 * Math.sin(4.0*xi_prim) * AngleFunctions.cosh(4.0*eta_prim) + beta3 * Math.sin(6.0*xi_prim) * AngleFunctions.cosh(6.0*eta_prim) + beta4 * Math.sin(8.0*xi_prim) * AngleFunctions.cosh(8.0*eta_prim)) +  aFalseNorthing;
+		var y = aScale * a_roof * (eta_prim + beta1 * Math.cos(2.0*xi_prim) * AngleFunctions.sinh(2.0*eta_prim) + beta2 * Math.cos(4.0*xi_prim) * AngleFunctions.sinh(4.0*eta_prim) + beta3 * Math.cos(6.0*xi_prim) * AngleFunctions.sinh(6.0*eta_prim) + beta4 * Math.cos(8.0*xi_prim) * AngleFunctions.sinh(8.0*eta_prim)) + aFalseEasting;
 		aReturnPoint.x = Math.round(x * 1000.0) / 1000.0;
 		aReturnPoint.y = Math.round(y * 1000.0) / 1000.0;
 	};

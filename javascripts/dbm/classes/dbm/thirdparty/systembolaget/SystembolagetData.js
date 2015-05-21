@@ -22,9 +22,11 @@ dbm.registerClass("dbm.thirdparty.systembolaget.SystembolagetData", "dbm.core.Ba
 	var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");
 	var VectorFunctions = dbm.importClass("dbm.utils.math.VectorFunctions");
 	var ArrayComparison = dbm.importClass("dbm.utils.native.array.ArrayComparison");
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	var CallFunctionObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.CallFunctionObject");
+	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	//Constants
-	
 	
 	/**
 	 * Constructor
@@ -68,6 +70,8 @@ dbm.registerClass("dbm.thirdparty.systembolaget.SystembolagetData", "dbm.core.Ba
 	};
 	
 	objectFunctions.getClosestStore = function(aLatitude, aLongitude) {
+		console.log("dbm.thirdparty.systembolaget.SystembolagetData::getClosestStore");
+		
 		var inputPoint = Point.create(aLatitude, aLongitude);
 		var returnPoint = Point.create();
 		
@@ -81,6 +85,7 @@ dbm.registerClass("dbm.thirdparty.systembolaget.SystembolagetData", "dbm.core.Ba
 		var storeData = this._lazyData.getLazy("stores");
 		
 		var currentArrayLength = storeData.getLength();
+		console.log(storeData, currentArrayLength);
 		for(var i = 0; i < currentArrayLength; i++) {
 			var currentDataObject = storeData.getByIndex(i);
 			
@@ -128,6 +133,23 @@ dbm.registerClass("dbm.thirdparty.systembolaget.SystembolagetData", "dbm.core.Ba
 		return null;
 	};
 	
+	objectFunctions.getStoreData = function(aId) {
+		
+		var storeData = this._lazyData.getLazy("stores");
+		
+		var currentArrayLength = storeData.getLength();
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentDataObject = storeData.getByIndex(i);
+		
+			if(currentDataObject.getData("Nr") === aId) {
+				return currentDataObject;
+			}
+		}
+		
+		//METODO: error message
+		return null;
+	}
+	
 	objectFunctions.setAllReferencesToNull = function() {
 		
 		this.superCall();
@@ -141,11 +163,59 @@ dbm.registerClass("dbm.thirdparty.systembolaget.SystembolagetData", "dbm.core.Ba
 	};
 	
 	staticFunctions.createFromAssets = function(aStoresAsset, aProductsAsset, aStoreProductsAsset) {
+		console.log("dbm.thirdparty.systembolaget.SystembolagetData::createFromAssets");
+		console.log(aStoresAsset, aProductsAsset, aStoreProductsAsset);
+		
 		var newSystembolagetData = (new ClassReference()).init();
 		
 		newSystembolagetData.setStoresData(XmlChildRetreiver.getChilds(aStoresAsset.getData().firstChild, "ButikOmbud"));
 		newSystembolagetData.setProductsData(XmlChildRetreiver.getChilds(aProductsAsset.getData().firstChild, "artikel"));
 		newSystembolagetData.setStoreProductsData(XmlChildRetreiver.getChilds(aStoreProductsAsset.getData().firstChild, "Butik"));
+		
+		return newSystembolagetData;
+	};
+	
+	staticFunctions.createFromUnloadedAssets = function(aStoresAsset, aProductsAsset, aStoreProductsAsset) {
+		//console.log("dbm.thirdparty.systembolaget.SystembolagetData::createFromUnloadedAssets");
+		//console.log(aStoresAsset, aProductsAsset, aStoreProductsAsset);
+		
+		var newSystembolagetData = (new ClassReference()).init();
+		
+		aStoresAsset.runCommandWhenLoaded(
+			CallFunctionCommand.createCommand(
+				newSystembolagetData,
+				newSystembolagetData.setStoresData,
+				[CallFunctionObject.createCommand(
+					XmlChildRetreiver,
+					XmlChildRetreiver.getChilds,
+					[GetVariableObject.createCommand(CallFunctionObject.createCommand(aStoresAsset, aStoresAsset.getData, []), "firstChild"), "ButikOmbud"]
+				)]
+			)
+		);
+		
+		aProductsAsset.runCommandWhenLoaded(
+			CallFunctionCommand.createCommand(
+				newSystembolagetData,
+				newSystembolagetData.setProductsData,
+				[CallFunctionObject.createCommand(
+					XmlChildRetreiver,
+					XmlChildRetreiver.getChilds,
+					[GetVariableObject.createCommand(CallFunctionObject.createCommand(aProductsAsset, aStoresAsset.getData, []), "firstChild"), "artikel"]
+				)]
+			)
+		);
+		
+		aStoreProductsAsset.runCommandWhenLoaded(
+			CallFunctionCommand.createCommand(
+				newSystembolagetData,
+				newSystembolagetData.setStoreProductsData,
+				[CallFunctionObject.createCommand(
+					XmlChildRetreiver,
+					XmlChildRetreiver.getChilds,
+					[GetVariableObject.createCommand(CallFunctionObject.createCommand(aStoreProductsAsset, aStoresAsset.getData, []), "firstChild"), "Butik"]
+				)]
+			)
+		);
 		
 		return newSystembolagetData;
 	};

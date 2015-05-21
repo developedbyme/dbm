@@ -23,12 +23,12 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.objects.textcreators.H
 	
 	objectFunctions.createObject = function(aDataNode) {
 		//console.log("dbm.core.globalobjects.templatemanager.objects.textcreators.HtmlTextCreator::createObject");
-		
-		var newText = (new HtmlTextElement()).init();
+		//console.log(aDataNode);
 		
 		var htmlString = aDataNode.innerHTML;
 		//METODO: remove all children
-		HtmlTextElement.create(aDataNode, true, htmlString);
+		
+		var newText = HtmlTextElement.create(aDataNode, true, htmlString);
 		
 		return newText;
 	};

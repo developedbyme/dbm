@@ -104,7 +104,7 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.XmlAsset", "dbm
 	
 	objectFunctions._updateReadyState = function() {
 		//console.log("dbm.core.globalobjects.assetrepository.assets.XmlAsset::_updateReadyState");
-		//console.log("state:", this._loader.readyState);
+		//console.log("state:", this._loader.readyState, this._url);
 		
 		switch(this._loader.readyState) {
 			case ReadyStateTypes.UNINITIALIZED:
@@ -127,11 +127,17 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.XmlAsset", "dbm
 	};
 	
 	objectFunctions._setupData = function() {
-		this._data.setValue(this._loader.responseXML);
+		console.log("dbm.core.globalobjects.assetrepository.assets.XmlAsset::_setupData");
+		//console.log(this._loader.responseXML);
+		
+		//MENOTE: safari doesn't seem to want to load documents directly
+		//this._data.setValue(this._loader.responseXML);
+		this._data.setValue(XmlCreator.createXmlFromString(this._loader.responseText));
 	};
 	
 	objectFunctions._setupResponseType = function() {
-		this._loader.responseType = XmlHttpResponseTypes.DOCUMENT;
+		//MENOTE: safari doesn't seem to want to load documents directly
+		//this._loader.responseType = XmlHttpResponseTypes.DOCUMENT;
 	};
 	
 	objectFunctions.load = function() {

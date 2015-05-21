@@ -15,13 +15,12 @@ dbm.registerClass("dbm.utils.file.AssetFunctions", null, function(objectFunction
 	};
 	
 	staticFunctions.changeAssetUrlToPost = function(aAssetPath, aPath, aData) {
-		console.log("dbm.utils.file.AssetFunctions::changeAssetUrlToPost");
-		console.log(aAssetPath, aPath, aData);
+		//console.log("dbm.utils.file.AssetFunctions::changeAssetUrlToPost");
+		//console.log(aAssetPath, aPath, aData);
 		
 		var theAsset = dbm.singletons.dbmAssetRepository.getAsset(aAssetPath);
 		theAsset.setUrl(aPath);
 		theAsset.setupAsFormObjectPost(aData);
-		console.log(theAsset);
 		
 		return theAsset;
 	};
