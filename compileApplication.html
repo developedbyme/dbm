@@ -6,14 +6,18 @@
 		<script type="application/javascript" src="javascripts/dbm/dbm.js"></script>
 		<script type="application/javascript">
 			dbm.setup(window, document, "javascripts", "classes");
+			dbm.addBaseFolder("dbm", "javascripts");
+			dbm.addBaseFolder("husets", "work/husets/javascripts");
 			
 			dbm.addSpecificClassesFolder("dbm.broadcast", "broadcast/classes");
 			dbm.addSpecificClassesFolder("dbm.projects.experiments", "experiments/classes");
 			dbm.addSpecificClassesFolder("dbm.projects.tests", "tests/classes");
 			dbm.addSpecificClassesFolder("dbm.projects.tools", "tools/classes");
-			dbm.addSpecificClassesFolder("dbm.projects.examples", "examples/classes")
+			dbm.addSpecificClassesFolder("dbm.projects.examples", "examples/classes");
+			dbm.addSpecificClassesFolder("husets", "classes", "husets");
+			
 		</script>
-		<script type="application/javascript" src="javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js"></script>
+		<script type="application/javascript" src="javascripts/dbm/classes/dbm/core/globalobjects/classmanager/ClassManager.js"></script>
 		<script type="application/javascript" src="javascripts/dbm/setup/defaultSetup.js"></script>
 		<script type="application/javascript" src="javascripts/dbm/setup/defaultStart.js"></script>
 		<script type="application/javascript" src="javascripts/examples/compileApplication.js"></script>

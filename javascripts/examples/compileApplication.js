@@ -17,6 +17,8 @@ dbm.runTempFunction(function() {
 		
 		compileData.addShortVariable("dbm", "dbm");
 		
+		compileData._scopesData[0].addVariableReference("HusetsSystembolagetApiConfiguration", "HusetsSystembolagetApiConfiguration");
+		
 		compileData.addShortVariable("i", "i");
 		compileData.addShortVariable("j", "j");
 		compileData.addShortVariable("k", "k");
@@ -32,10 +34,18 @@ dbm.runTempFunction(function() {
 		
 		compiler.setCompileData(compileData);
 		compiler.setNumberOfFilesBeforeImport(3);
-		compiler.setNotice("/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */");
-		compiler.addFiles("javascripts/dbm/dbm.js", "javascripts/dbm/setup/defaultDocumentSetup.js", "javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js", "javascripts/dbm/setup/defaultSetup.js");
-		compiler.addScript(SnippetsGenerator.createApplicationStart("dbm.projects.experiments.linearoptionselection.LinearOptionSelectionApplication"));
-		compiler.addFiles("javascripts/dbm/setup/compiledStart.js");
+		//compiler.setNotice("/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */");
+		compiler.addFiles(
+			"javascripts/dbm/dbm.js",
+			"javascripts/dbm/setup/defaultDocumentSetup.js",
+			"javascripts/dbm/classes/dbm/core/globalobjects/classmanager/ClassManager.js",
+			"javascripts/dbm/setup/defaultSetup.js"
+		);
+		
+		compiler.addFiles("work/husets/javascripts/wordPressDataConfiguration.js");
+		
+		compiler.addScript(SnippetsGenerator.createApplicationStart("husets.Application"));
+		compiler.addFiles("javascripts/dbm/setup/compiledDirectStart.js");
 		compiler._loader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(compiler, compiler.compileFiles, []));
 		compiler.load();
 	});
