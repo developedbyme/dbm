@@ -1,6 +1,6 @@
 (function() {
 	
-	var fileName = "../audio/soundwaves/AKWF/AKWF_0012/AKWF_1101.wav";
+	var fileName = "../../audio/soundwaves/AKWF/AKWF_0012/AKWF_1101.wav";
 	
 	var loader = new XMLHttpRequest();
 	
