@@ -1,6 +1,6 @@
 (function() {
 	
-	var fileName = "../../audio/soundwaves/AKWF/AKWF_bw_perfectwaves/AKWF_sin.wav";
+	var fileName = "../../../audio/soundwaves/AKWF/AKWF_bw_perfectwaves/AKWF_sin.wav";
 	
 	var loader = new XMLHttpRequest();
 	

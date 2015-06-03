@@ -1,6 +1,6 @@
 (function() {
 	
-	var fileName = "../../audio/soundwaves/AKWF/AKWF_0012/AKWF_1101.wav";
+	var fileName = "../../../audio/soundwaves/AKWF/AKWF_0012/AKWF_1101.wav";
 	
 	var loader = new XMLHttpRequest();
 	
@@ -17,11 +17,6 @@
 				sineSource.loop = true;
 				sineSource.noteOn(1);
 				sineSource.noteOff(2);
-				sineSource.connect(theContext.destination);
-				
-				var sineSource = theContext.createBufferSource();
-				sineSource.buffer = buffer;
-				sineSource.loop = true;
 				sineSource.noteOn(3);
 				sineSource.noteOff(4);
 				sineSource.connect(theContext.destination);
