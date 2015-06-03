@@ -24,4 +24,6 @@ dbm.registerClass("dbm.constants.extendedevents.GenericExtendedEventIds", null, 
 	staticFunctions.TIMEOUT = "timeout";
 	
 	staticFunctions.RAW_DATA = "rawData";
+	
+	staticFunctions.CHANGED = "changed";
 });

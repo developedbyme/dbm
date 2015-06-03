@@ -235,6 +235,7 @@ dbm.registerClass("dbm.gui.DisplayBaseObject", "dbm.core.ExtendedEventBaseObject
 	 * @return	self
 	 */
 	objectFunctions.setStyleProperty = function(aStyleProperty, aValue) {
+		//console.log("dbm.gui.DisplayBaseObject::setStyleProperty");
 		
 		this._element.getValue().style.setProperty(aStyleProperty, aValue, "");
 		

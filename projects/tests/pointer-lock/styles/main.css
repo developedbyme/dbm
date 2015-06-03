@@ -1,0 +1,12 @@
+html, body {
+	overflow: hidden;
+}
+
+.cursor {
+	width: 32px;
+	height: 32px;
+	background-image: url("../assets/copyrightMaterial/cursorIcons/1.png");
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}

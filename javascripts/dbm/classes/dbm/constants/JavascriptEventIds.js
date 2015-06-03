@@ -77,4 +77,8 @@ dbm.registerClass("dbm.constants.JavascriptEventIds", null, function(objectFunct
 	staticFunctions.DRAG = "drag";
 	staticFunctions.DROP = "drop";
 	staticFunctions.DRAG_END = "dragend";
+	
+	//MENOTE: Pointer lock
+	staticFunctions.POINTER_LOCK_CHANGE = "pointerlockchange";
+	staticFunctions.POINTER_LOCK_ERROR = "pointerlockerror";
 });

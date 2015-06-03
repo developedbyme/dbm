@@ -18,7 +18,7 @@ dbm.registerClass("dbm.flow.nodes.userinput.MousePositionNode", "dbm.core.Extend
 		
 		this._x = this.createProperty("x", 0);
 		this._y = this.createProperty("y", 0);
-		this._document = this.createProperty("document", document); //MENOTE: change this to use dbm.getDocument()
+		this._document = this.createProperty("document", dbm.getDocument());
 		
 		this.getExtendedEvent().createEvent(JavascriptEventIds.MOUSE_MOVE);
 		this.getExtendedEvent().addCommandToEvent(JavascriptEventIds.MOUSE_MOVE, CallFunctionCommand.createCommand(this, this._updatePosition, [GetVariableObject.createSelectDataCommand()]));
@@ -64,7 +64,7 @@ dbm.registerClass("dbm.flow.nodes.userinput.MousePositionNode", "dbm.core.Extend
 		
 		var newMousePositionNode = (new ClassReference()).init();
 		if(!VariableAliases.isNull(aElement)) {
-			newMousePositionNode._document.setValue(aElement);
+			newMousePositionNode.getProperty("document").setValue(aElement);
 		}
 		return newMousePositionNode;
 	};
