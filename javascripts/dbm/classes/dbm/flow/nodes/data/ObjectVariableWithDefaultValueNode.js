@@ -38,7 +38,7 @@ dbm.registerClass("dbm.flow.nodes.data.ObjectVariableWithDefaultValueNode", "dbm
 	};
 	
 	objectFunctions._update = function(aFlowUpdateNumber) {
-		//console.log("dbm.flow.nodes.math.AdditionNode::_update");
+		//console.log("dbm.flow.nodes.data.ObjectVariableWithDefaultValueNode::_update");
 		
 		var theObject = this._object.getValueWithoutFlow();
 		var variableName = this._variableName.getValueWithoutFlow();

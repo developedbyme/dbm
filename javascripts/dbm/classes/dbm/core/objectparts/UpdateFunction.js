@@ -58,6 +58,9 @@ dbm.registerClass("dbm.core.objectparts.UpdateFunction", "dbm.core.objectparts.F
 	objectFunctions.setup = function(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray) {
 		//console.log("dbm.core.objectparts.UpdateFunction::setup");
 		//console.log(aOwnerObject, aUpdateFunction, aInputsArray, aOutputsArray);
+		
+		this.setStatus(FlowStatusTypes.NEEDS_UPDATE);
+		
 		this._updateFunction = aUpdateFunction;
 		this._ownerObject = aOwnerObject;
 		

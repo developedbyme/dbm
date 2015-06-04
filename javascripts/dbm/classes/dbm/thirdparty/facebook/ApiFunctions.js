@@ -19,6 +19,7 @@ dbm.registerClass("dbm.thirdparty.facebook.ApiFunctions", "dbm.core.ExtendedEven
 	
 	
 	staticFunctions.createProfileImageUrl = function(aId, aWidth, aHeight) {
+		//console.log("dbm.thirdparty.facebook.ApiFunctions::createProfileImageUrl");
 		
 		var returnString = "https://graph.facebook.com/" + aId + "/picture";
 		if(VariableAliases.isSet(aWidth) && VariableAliases.isSet(aHeight)) {

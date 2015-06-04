@@ -48,7 +48,7 @@ dbm.registerClass("dbm.thirdparty.facebook.FacebookApi", "dbm.core.ExtendedEvent
 		this._appId = null;
 		this._status = false;
 		this._xfbml = false;
-		this._version = "v2.3";
+		this._version = "v2.3"; //METODO: Move this to default constants
 		
 		this._connected = this.createProperty("connected", false);
 		this._userId = this.createProperty("userId", null);
@@ -101,6 +101,12 @@ dbm.registerClass("dbm.thirdparty.facebook.FacebookApi", "dbm.core.ExtendedEvent
 		});
 	};
 	
+	objectFunctions.checkLogin = function() {
+		//console.log("dbm.thirdparty.facebook.FacebookApi::checkLogin");
+		
+		this._api.getLoginStatus(this._loginCallbackEventLink.getCallbackFunction());
+	};
+	
 	objectFunctions.login = function() {
 		//console.log("dbm.thirdparty.facebook.FacebookApi::login");
 		
@@ -123,8 +129,8 @@ dbm.registerClass("dbm.thirdparty.facebook.FacebookApi", "dbm.core.ExtendedEvent
 			this._userId.setValue(userId);
 			this._token.setValue(aEvent.authResponse.accessToken);
 			
-			var newGraphData = GraphData.create(this._api, userId);
-			this._graphData.addObject("me", newGraphData);
+			var newGraphData = this.getGraphData("me");
+			newGraphData.setPropertyInput("id", userId);
 			this._graphData.addObject(userId, newGraphData);
 			
 			if(this.getExtendedEvent().hasEvent(AccessExtendedEventIds.SIGNED_IN)) {

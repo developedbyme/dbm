@@ -12,6 +12,7 @@ dbm.registerClass("dbm.thirdparty.facebook.GraphData", "dbm.core.ExtendedEventBa
 	
 	//Dependencies
 	var JavascriptWithCallbackLoader = dbm.importClass("dbm.core.globalobjects.assetrepository.loaders.JavascriptWithCallbackLoader");
+	var ObjectVariablesNode = dbm.importClass("dbm.flow.nodes.data.ObjectVariablesNode");
 	
 	//Utils
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
@@ -38,6 +39,7 @@ dbm.registerClass("dbm.thirdparty.facebook.GraphData", "dbm.core.ExtendedEventBa
 		this._id = this.createProperty("id", null);
 		this._loaded = this.createProperty("loaded", false);
 		this._data = this.createProperty("data", null);
+		this.parsedData = this.addDestroyableObject(ObjectVariablesNode.create(this._data));
 		
 		this._loadingCallbackEventLink = StaticCallbackLink.create(this.getExtendedEvent(), ClassReference._LOADED_CALLBACK);
 		this.getExtendedEvent().addEventLink(this._loadingCallbackEventLink, ClassReference._LOADED_CALLBACK, true);
@@ -67,6 +69,7 @@ dbm.registerClass("dbm.thirdparty.facebook.GraphData", "dbm.core.ExtendedEventBa
 		//console.log(aEvent);
 		
 		if(!VariableAliases.isSet(aEvent.error)) {
+			this._loaded.setValue(true);
 			this._data.setValue(aEvent);
 			
 			if(this.getExtendedEvent().hasEvent(LoadingExtendedEventIds.LOADED)) {

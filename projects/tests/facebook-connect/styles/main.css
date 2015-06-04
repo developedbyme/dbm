@@ -1,0 +1,35 @@
+.facebookDetails {
+	display: inline-block;
+	height: 48px;
+	padding: 3px;
+	border: 1px solid #000000;
+}
+
+.facebookDetails .imageHolder {
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+}
+
+.facebookDetails .imageHolder .image {
+	width: 48px;
+	height: 48px;
+}
+
+.facebookDetails .textHolder {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.facebookDetails .textHolder .signedInAs {
+	font-size: 10px;
+}
+
+.facebookDetails .textHolder .name {
+	font-size: 18px;
+}
+
+.facebookDetails .textHolder .menu {
+	font-size: 10px;
+	text-align: right;
+}
