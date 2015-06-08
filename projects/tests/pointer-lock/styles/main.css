@@ -2,6 +2,12 @@ html, body {
 	overflow: hidden;
 }
 
+.startButton {
+	display: inline-block;
+	padding: 3px;
+	border: 1px solid #000000;
+}
+
 .cursor {
 	width: 32px;
 	height: 32px;

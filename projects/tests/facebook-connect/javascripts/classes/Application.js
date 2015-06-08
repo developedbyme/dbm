@@ -23,6 +23,7 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 	//Constants
 	var AccessExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.AccessExtendedEventIds");
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
+	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
 	
 	/**
 	 * Constructor
@@ -33,12 +34,13 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 		this.superCall();
 		
 		this._mainTemplate = "assets/templates.html#main";
+		this._facebookLoginButtonTemplate = "assets/templates.html#facebookLoginButton";
 		this._facebookDetailsTemplate = "assets/templates.html#facebookDetails";
 		
 		this._facebookApi = FacebookApi.create("450882664974319");
 		
 		this._assetsLoader.addLoader(this._facebookApi.getLoader());
-		this._assetsLoader.addAssetsByPath(this._mainTemplate, this._facebookDetailsTemplate);
+		this._assetsLoader.addAssetsByPath(this._mainTemplate, this._facebookLoginButtonTemplate, this._facebookDetailsTemplate);
 		this._addStartFunction(this._createPage, []);
 		
 		return this;
@@ -49,9 +51,14 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 		
 		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(this._mainTemplate, {}, true, this._contentHolder, true);
 		var mainController = templateResult.mainController;
+		var rootHolderElement = templateResult.rootElement;
 		console.log(templateResult);
 		
-		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(this._facebookDetailsTemplate, {}, false, templateResult.rootElement, true);
+		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(this._facebookLoginButtonTemplate, {}, true, rootHolderElement, true);
+		var facebookLoginButton = templateResult.mainController;
+		console.log(templateResult);
+		
+		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(this._facebookDetailsTemplate, {}, false, rootHolderElement, true);
 		var facebookDetails = templateResult.mainController;
 		console.log(templateResult);
 		
@@ -82,14 +89,21 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 			],
 			[composedUrlProperty]
 		);
-		var switchNode = profileImage.addDestroyableObject(BooleanSwitchedNode.create(this._facebookApi.getProperty("connected"), composedUrlProperty));
-		switchNode.getProperty("falseValue").setValue(null);
-		profileImage.setPropertyInput("source", switchNode.getProperty("outputValue"));
+		var defaultImageSwitchNode = profileImage.addDestroyableObject(BooleanSwitchedNode.create(this._facebookApi.getProperty("connected"), composedUrlProperty));
+		defaultImageSwitchNode.getProperty("falseValue").setValue(null);
+		profileImage.setPropertyInput("source", defaultImageSwitchNode.getProperty("outputValue"));
 		
 		profileImage.getProperty("display").startUpdating();
 		
+		var invertedConnectedNode = profileImage.addDestroyableObject(BooleanSwitchedNode.create(this._facebookApi.getProperty("connected"), false, true));
+		
+		facebookLoginButton.setPropertyInput("inDom", invertedConnectedNode.getProperty("outputValue"));
+		facebookLoginButton.getExtendedEvent().addCommandToEvent(ButtonExtendedEventIds.CLICK, CallFunctionCommand.createCommand(this._facebookApi, this._facebookApi.login, []));
+		facebookLoginButton.activate();
+		facebookLoginButton.getProperty("display").startUpdating();
+		
 		this._facebookApi.getExtendedEvent().addCommandToEvent(AccessExtendedEventIds.SIGNED_IN, CallFunctionCommand.createCommand(graphData, graphData.load, []));
-		this._facebookApi.checkLogin();
+		//this._facebookApi.checkLogin();
 	};
 	
 	objectFunctions._showUserData = function(aGraphData) {

@@ -26,7 +26,7 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 		
 		this.superCall();
 		
-		this._mainTemplate = "assets/templates.html#main";
+		this._addTemplate("main", "assets/templates.html#main");
 		
 		this._assetsLoader.addAssetsByPath(this._mainTemplate);
 		this._addStartFunction(this._createPage, []);
@@ -37,7 +37,7 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 	objectFunctions._createPage = function() {
 		console.log("Application::_createPage");
 		
-		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(this._mainTemplate, {}, true, this._contentHolder, true);
+		var templateResult = this._createControllerFromTemplate("main");
 		var mainController = templateResult.mainController;
 		
 		//MENOTE: implement application here

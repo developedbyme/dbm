@@ -14,6 +14,7 @@ dbm.registerClass("dbm.gui.abstract.startup.standalone.StandAlonePage", "dbm.cor
 	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");
+	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
@@ -32,6 +33,7 @@ dbm.registerClass("dbm.gui.abstract.startup.standalone.StandAlonePage", "dbm.cor
 			this._contentHolder = theDocument.body;
 		}
 		this._assetsLoader = LoadingSequence.create();
+		this._templatePaths = this.addDestroyableObject(NamedArray.create(true));
 		
 		return this;
 	};
@@ -50,6 +52,19 @@ dbm.registerClass("dbm.gui.abstract.startup.standalone.StandAlonePage", "dbm.cor
 		
 		this._contentHolder = templateResult.rootElement.querySelectorAll("*[name=contentHolder]")[0];
 	};
+	
+	objectFunctions._addTemplate = function(aId, aPath) {
+		this._templatePaths.addObject(aId, aPath);
+		this._assetsLoader.addAssetByPath(aPath);
+	};
+	
+	objectFunctions._createControllerFromTemplate = function(aId, aHolder, aAddToParent) {
+		
+		aHolder = VariableAliases.valueWithDefault(aHolder, this._contentHolder);
+		aAddToParent = VariableAliases.valueWithDefault(aAddToParent, true);
+		
+		return dbm.singletons.dbmTemplateManager.createControllersForAsset(this._templatePaths.getObject(aId), {}, true, aHolder, aAddToParent);
+	}
 	
 	objectFunctions._addStartFunction = function(aFunction, aArgumentsArray) {
 		this._assetsLoader.getExtendedEvent().addCommandToEvent(LoadingExtendedEventIds.LOADED, CallFunctionCommand.createCommand(this, aFunction, aArgumentsArray));
