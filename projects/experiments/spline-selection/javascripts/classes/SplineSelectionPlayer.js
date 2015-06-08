@@ -1,9 +1,9 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionPlayer", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.projects.experiments.splineselection.SplineSelectionPlayer");
+dbm.registerClass("SplineSelectionPlayer", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("SplineSelectionPlayer");
 	//"use strict";
 	
-	var SplineSelectionPlayer = dbm.importClass("dbm.projects.experiments.splineselection.SplineSelectionPlayer");
+	var SplineSelectionPlayer = dbm.importClass("SplineSelectionPlayer");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
@@ -28,7 +28,7 @@ dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionPlaye
 	var RoundNode = dbm.importClass("dbm.flow.nodes.math.round.RoundNode");
 	
 	objectFunctions._init = function() {
-		console.log("dbm.projects.experiments.splineselection.SplineSelectionPlayer::_init");
+		console.log("SplineSelectionPlayer::_init");
 		
 		//METODO: this needs to be updated to set perspective
 		
@@ -88,14 +88,14 @@ dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionPlaye
 	};
 	
 	objectFunctions._callback_startTouch = function() {
-		console.log("dbm.projects.experiments.splineselection.SplineSelectionPlayer::_callback_startTouch");
+		console.log("SplineSelectionPlayer::_callback_startTouch");
 		
 		this._startPosition = this._position.getValue();
 		this._startEnvelope = this._envelope.getValue();
 	};
 	
 	objectFunctions._callback_updateTouch = function() {
-		console.log("dbm.projects.experiments.splineselection.SplineSelectionPlayer::_callback_updateTouch");
+		console.log("SplineSelectionPlayer::_callback_updateTouch");
 		
 		var touchData = this._touchDetector.getSelectionPoint();
 		
@@ -104,13 +104,13 @@ dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionPlaye
 	};
 	
 	objectFunctions._callback_stopTouch = function() {
-		console.log("dbm.projects.experiments.splineselection.SplineSelectionPlayer::_callback_stopTouch");
+		console.log("SplineSelectionPlayer::_callback_stopTouch");
 		
 		this._callback_updateTouch()
 	};
 	
 	objectFunctions.start = function() {
-		console.log("dbm.projects.experiments.splineselection.SplineSelectionPlayer::start");
+		console.log("SplineSelectionPlayer::start");
 		
 		this._touchDetector.activate();
 		this.getProperty("display").startUpdating();
@@ -127,7 +127,7 @@ dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionPlaye
 	};
 	
 	staticFunctions.create = function() {
-		//console.log("dbm.projects.experiments.splineselection.SplineSelectionPlayer::create");
+		//console.log("SplineSelectionPlayer::create");
 		//console.log(aElement);
 		
 		var newSplineSelectionPlayer = (new ClassReference()).init();

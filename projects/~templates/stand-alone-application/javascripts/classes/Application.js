@@ -28,7 +28,6 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 		
 		this._addTemplate("main", "assets/templates.html#main");
 		
-		this._assetsLoader.addAssetsByPath(this._mainTemplate);
 		this._addStartFunction(this._createPage, []);
 		
 		return this;

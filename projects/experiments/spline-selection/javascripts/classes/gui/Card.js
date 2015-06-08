@@ -1,9 +1,9 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.projects.experiments.splineselection.gui.Card", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.projects.experiments.splineselection.gui.Card");
+dbm.registerClass("Card", "dbm.gui.DisplayBaseObject", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("Card");
 	//"use strict";
 	
-	var Card = dbm.importClass("dbm.projects.experiments.splineselection.gui.Card");
+	var Card = dbm.importClass("Card");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
 	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
@@ -12,7 +12,7 @@ dbm.registerClass("dbm.projects.experiments.splineselection.gui.Card", "dbm.gui.
 	var ExternalCssVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalCssVariableProperty");
 	
 	objectFunctions._init = function() {
-		console.log("dbm.projects.experiments.splineselection.gui.Card::_init");
+		console.log("Card::_init");
 		
 		this.superCall();
 		
@@ -43,7 +43,7 @@ dbm.registerClass("dbm.projects.experiments.splineselection.gui.Card", "dbm.gui.
 	};
 	
 	staticFunctions.create = function() {
-		//console.log("dbm.projects.experiments.splineselection.gui.Card::create");
+		//console.log("Card::create");
 		//console.log(aElement);
 		
 		var newCard = (new ClassReference()).init();

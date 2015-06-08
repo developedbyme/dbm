@@ -1,10 +1,10 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionApplication", "dbm.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.projects.experiments.splineselection.SplineSelectionApplication");
+dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("Application");
 	//"use strict";
 	
 	//Self reference
-	var SplineSelectionApplication = dbm.importClass("dbm.projects.experiments.splineselection.SplineSelectionApplication");
+	var Application = dbm.importClass("Application");
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
@@ -31,28 +31,32 @@ dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionAppli
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
+	
 	/**
 	 * Constructor
 	 */
 	objectFunctions._init = function() {
-		console.log("dbm.projects.experiments.splineselection.SplineSelectionApplication::_init");
+		console.log("Application::_init");
 		
 		this.superCall();
 		
-		dbm.singletons.dbmTemplateManager.registerClassShortcut("dbm.experiment.splineselection:SplineSelectionPlayer", SplineSelectionPlayer);
-		dbm.singletons.dbmTemplateManager.registerClassShortcut("dbm.experiment.splineselection:Card", Card);
+		this._addTemplate("player", "assets/templates.html#splineSelectionPlayer");
+		this._addTemplate("card", "assets/templates.html#card");
 		
-		this._splineSelectionPlayerTemplatePath = "../assets/experiments/splineSelection/templates.xml#splineSelectionPlayer";
-		this._cardTemplatePath = "../assets/experiments/splineSelection/templates.xml#card";
-		this._dataPath = "../assets/temp/twitter/streams/developedbyme.json";
+		dbm.singletons.dbmTemplateManager.registerClassShortcut("SplineSelectionPlayer", SplineSelectionPlayer);
+		dbm.singletons.dbmTemplateManager.registerClassShortcut("Card", Card);
 		
-		this._assetsLoader.addAssetsByPath(this._splineSelectionPlayerTemplatePath, this._cardTemplatePath, this._dataPath);
+		this._dataPath = "assets/twitter/streams/developedbyme.json";
+		
+		this._assetsLoader.addAssetsByPath(this._dataPath);
 		this._addStartFunction(this._createPage, []);
 		
 		return this;
 	};
 	
 	objectFunctions._createPage = function() {
+		console.log("Application::_createPage");
+		
 		//Center of page
 		var windowSizeNode = (new WindowSizeNode()).init();
 		windowSizeNode.start();
@@ -73,7 +77,7 @@ dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionAppli
 		//Mouse parameteric node
 		var parameterangeNode = RangeNode.create(mousePositionNode.getProperty("x"), 0, windowSizeNode.getProperty("width"), 0, 3);
 		
-		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(this._splineSelectionPlayerTemplatePath, null, true, dbm.getDocument().body, true);
+		var templateResult = this._createControllerFromTemplate("player");
 		var newSplineSelectionPlayer = templateResult.mainController;
 		
 		newSplineSelectionPlayer.setPropertyInput("x", scaleXNode.getProperty("outputValue"));
@@ -84,7 +88,7 @@ dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionAppli
 		var transformationSetup = Transform3dSetupNode.create(newSplineSelectionPlayer.getElement(), 1500);
 		transformationSetup.getProperty("display").startUpdating();
 		
-		var mainCardTemplateElement = dbm.singletons.dbmAssetRepository.getAsset(this._cardTemplatePath).getData();
+		var mainCardTemplateElement = dbm.singletons.dbmAssetRepository.getAsset(this._templatePaths.getObject("card")).getData();
 		
 		var currentArray = dbm.singletons.dbmAssetRepository.getAssetData(this._dataPath);
 		var currentArrayLength = currentArray.length;
@@ -107,9 +111,10 @@ dbm.registerClass("dbm.projects.experiments.splineselection.SplineSelectionAppli
 		
 			newSplineSelectionPlayer.addCard(templateResult.mainController, 3*i/currentArrayLength);
 		}
-	}
+	};
 	
 	objectFunctions.setAllReferencesToNull = function() {
+		//console.log("Application::setAllReferencesToNull");
 		
 		this.superCall();
 	};
