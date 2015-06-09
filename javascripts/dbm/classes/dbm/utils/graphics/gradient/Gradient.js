@@ -74,9 +74,8 @@ dbm.registerClass("dbm.utils.graphics.gradient.Gradient", "dbm.core.FlowBaseObje
 	objectFunctions.addColorStop = function(aColorStop) {
 		
 		this._colorStops.array.push(aColorStop);
-		//METODO: fix this since getObjectProperty() doesn't exist anymore
-		this._colorStopChange.connectInput(aColorStop.getObjectProperty());
-		aColorStop.getObjectProperty().setAsDirty();
+		this._colorStopChange.connectInput(aColorStop.getProperty("position"));
+		this._colorStopChange.connectInput(aColorStop.getProperty("value"));
 		
 	};
 	

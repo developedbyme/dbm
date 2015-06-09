@@ -69,12 +69,15 @@ dbm.registerClass("dbm.gui.svg.SvgView", "dbm.gui.DisplayBaseObject", function(o
 	};
 	
 	objectFunctions.createLinearGradient = function(aId, aX1, aY1, aX2, aY2, aGradientUnits, aSpreadMethod) {
+		//console.log("dbm.gui.svg.SvgView::createLinearGradient");
+		//console.log(aId, aX1, aY1, aX2, aY2, aGradientUnits, aSpreadMethod);
+		
 		var svgCreator = dbm.singletons.dbmHtmlDomManager.getSvgCreator(this.getElement().ownerDocument);
 		
 		var newNode = svgCreator.createNode("linearGradient");
 		
 		SvgLengthFunctions.setAnimatedBaseValue(newNode.gradientUnits, VariableAliases.valueWithDefault(aGradientUnits, 0));
-		SvgLengthFunctions.setAnimatedBaseValue(newNode.spreadMethod, VariableAliases.valueWithDefault(aSpreadMethod, 0));
+		SvgLengthFunctions.setAnimatedBaseValue(newNode.spreadMethod, VariableAliases.valueWithDefault(aSpreadMethod, "pad")); //MEDEBUG: //
 		
 		SvgLengthFunctions.setAnimatedBaseValueWithUnit(newNode.x1,  aX1, UnitTypes.PERCENTAGE);
 		SvgLengthFunctions.setAnimatedBaseValueWithUnit(newNode.y1,  aY1, UnitTypes.PERCENTAGE);

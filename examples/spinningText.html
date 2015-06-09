@@ -3,12 +3,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Dbm test: Spinning text</title>
-        <script type="application/javascript" src="../javascripts/dbm/dbm.js"></script>
-        <script type="application/javascript">
+		<script type="application/javascript" src="../javascripts/dbm/dbm.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/classes/dbm/core/globalobjects/classmanager/ClassManager.js"></script>
+		<script type="application/javascript">
 			dbm.setup(window, document, "../javascripts", "classes");
+			dbm.addBaseFolder("dbm", "../javascripts");
 		</script>
-        <script type="application/javascript" src="../javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js"></script>
-        <script type="application/javascript" src="../javascripts/dbm/setup/defaultSetup.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/setup/defaultPathsSetup.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/setup/defaultSetup.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/setup/defaultStart.js"></script>
         <script type="application/javascript" src="../javascripts/examples/spinningTextExample.js"></script>
     </head>
     <body>

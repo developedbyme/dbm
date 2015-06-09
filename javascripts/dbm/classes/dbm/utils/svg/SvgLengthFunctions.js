@@ -25,6 +25,8 @@ dbm.registerClass("dbm.utils.svg.SvgLengthFunctions", null, function(objectFunct
 	};
 	
 	staticFunctions.setAnimatedBaseValue = function(aAnimatableValue, aValue) {
+		//console.log("dbm.utils.svg.SvgLengthFunctions::setAnimatedBaseValue");
+		//console.log(aAnimatableValue, aValue);
 		
 		aAnimatableValue.baseVal = aValue;
 	};
