@@ -61,7 +61,7 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.sequencer.Sequencer", "dbm.cor
 	
 	objectFunctions.update = function(aContext, aCurrentTime, aContextStartTime) {
 		//console.log("dbm.utils.audio.audioapiplayer.sequencer.Sequencer::update");
-		//console.log(aCurrentTime);
+		//console.log(aCurrentTime, this._notes);
 		
 		this._currentTime = aCurrentTime-this._startTime;
 		

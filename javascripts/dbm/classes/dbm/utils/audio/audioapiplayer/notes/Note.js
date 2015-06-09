@@ -43,10 +43,10 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.notes.Note", "dbm.core.BaseObj
 	objectFunctions.playAt = function(aTime) {
 		
 		this._source.connect(this._connectedOutput);
-		this._source.noteOn(aTime);
+		this._source.start(aTime);
 		
 		if(this._source.loop) {
-			this._source.noteOff(aTime+this._duration);
+			this._source.stop(aTime+this._duration);
 		}
 		
 		this._source = this._createNewSource(); //MENOTE: sources can only be played once
@@ -54,7 +54,7 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.notes.Note", "dbm.core.BaseObj
 		return this;
 	};
 	
-	objectFunctions._createNewSource = function _createNewSource() {
+	objectFunctions._createNewSource = function() {
 		var newSource = this._context.createBufferSource();
 		newSource.buffer = this._source.buffer;
 		newSource.loop = this._source.loop;
@@ -63,7 +63,7 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.notes.Note", "dbm.core.BaseObj
 		return newSource;
 	};
 	
-	objectFunctions.duplicate = function duplicate() {
+	objectFunctions.duplicate = function() {
 		var newNote = ClassReference.create(this._context, this._createNewSource(), this._duration);
 		newNote.connectOutput(this._connectedOutput);
 		return newNote;

@@ -43,7 +43,7 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.AudioApiPlayer", "dbm.core.Ext
 	};
 	
 	objectFunctions._createAudioContext = function() {
-		return new webkitAudioContext();
+		return new AudioContext();
 	};
 	
 	objectFunctions.getContext = function() {
@@ -67,7 +67,7 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.AudioApiPlayer", "dbm.core.Ext
 	};
 	
 	objectFunctions.setupMastarGainNode = function() {
-		var newNode = this.getContext().createGainNode();
+		var newNode = this.getContext().createGain();
 		
 		newNode.connect(this._mainOutput);
 		this._mainOutput = newNode;
@@ -96,6 +96,8 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.AudioApiPlayer", "dbm.core.Ext
 	};
 	
 	objectFunctions.createNote = function(aBuffer, aLoop, aPlaybackSpeed, aDuration) {
+		//console.log("dbm.utils.audio.audioapiplayer.AudioApiPlayer::createNote");
+		//console.log(aBuffer, aLoop, aPlaybackSpeed, aDuration);
 		
 		aLoop = VariableAliases.valueWithDefault(aLoop, false);
 		aPlaybackSpeed = VariableAliases.valueWithDefault(aPlaybackSpeed, 1);

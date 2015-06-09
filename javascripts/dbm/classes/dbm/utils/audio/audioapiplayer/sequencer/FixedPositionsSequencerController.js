@@ -67,7 +67,7 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.sequencer.FixedPositionsSequen
 		var currentArray = aNotes;
 		var currentArrayLength = currentArray.length;
 		if(currentArrayLength > this._numberOfPitches) {
-			//METODO: error message
+			ErrorManager.getInstance().report(ReportTypes.ERROR, ReportLevelTypes.NORMAL, this, "addNotes", "Number of notes are greater than number of pitches.");
 			currentArrayLength = this._numberOfPitches;
 		}
 		for(var i = 0; i < currentArrayLength; i++) {
@@ -80,8 +80,8 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.sequencer.FixedPositionsSequen
 	objectFunctions.startPlayingNote = function(aTrackIndex, aPosition, aPitch) {
 		//console.log("dbm.utils.audio.audioapiplayer.sequencer.FixedPositionsSequencerController::startPlayingNote");
 		var currentSequencerNote = this._sequencerLayout.getValue(aTrackIndex, aPosition, aPitch);
-		if(currentSequencerNote !== null) {
-			//METODO: warning message
+		if(VariableAliases.isSet(currentSequencerNote)) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "startPlayingNote", "Sequencer note already playing.");
 			return;
 		}
 		var newNote = this._sequencer.createSequencerNote(this._notes.getValue(aTrackIndex, aPitch), this._noteTime*aPosition);
@@ -90,8 +90,8 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.sequencer.FixedPositionsSequen
 	
 	objectFunctions.stopPlayingNote = function(aTrackIndex, aPosition, aPitch) {
 		var currentSequencerNote = this._sequencerLayout.getValue(aTrackIndex, aPosition, aPitch);
-		if(currentSequencerNote === null) {
-			//METODO: error message
+		if(!VariableAliases.isSet(currentSequencerNote)) {
+			ErrorManager.getInstance().report(ReportTypes.WARNING, ReportLevelTypes.NORMAL, this, "stopPlayingNote", "Sequencer note is not playing.");
 			return;
 		}
 		this._sequencer.removeSequencerNote(currentSequencerNote);
