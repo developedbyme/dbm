@@ -62,12 +62,13 @@ dbm.registerClass("dbm.utils.data.treestructure.TreeStructure", "dbm.core.Extend
 	 */
 	objectFunctions.addItem = function(aItem, aPath, aBaseItem) {
 		//console.log("dbm.utils.data.treestructure.TreeStructure::addItem");
-		//sconsole.log(aItem, aPath, aBaseItem);
+		//console.log(aItem, aPath, aBaseItem);
 		
-		var lastSlashIndex = aPath.lastIndexOf("/");
-		if(lastSlashIndex !== -1) {
-			aPath = aPath.substring(0, lastSlashIndex);
-		}
+		//MENOTE: should this be here
+		//var lastSlashIndex = aPath.lastIndexOf("/");
+		//if(lastSlashIndex !== -1) {
+		//	aPath = aPath.substring(0, lastSlashIndex);
+		//}
 		
 		var currentItem = this.getItemByPath(aPath, aBaseItem);
 		

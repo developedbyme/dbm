@@ -139,6 +139,7 @@ dbm.registerClass("dbm.utils.canvas.CanvasLayer2d", "dbm.core.FlowBaseObject", f
 		}
 		
 		var transformationMatrix = this._transformationMatrix.getValueWithoutFlow();
+		//console.log(transformationMatrix.valuesArray);
 		
 		if((transformationMatrix.getValue(0, 0) === 0 && transformationMatrix.getValue(1, 0) === 0) || (transformationMatrix.getValue(0, 1) === 0 && transformationMatrix.getValue(1, 1) === 0)) {
 			aContext.restore();
@@ -174,7 +175,7 @@ dbm.registerClass("dbm.utils.canvas.CanvasLayer2d", "dbm.core.FlowBaseObject", f
 	
 	objectFunctions._drawChildren = function(aContext, aChildren, aNumberOfLinksToResolve) {
 		//console.log("dbm.utils.canvas.CanvasLayer2d::_drawChildren");
-		//console.log(aNumberOfLinksToResolve);
+		//console.log(aNumberOfLinksToResolve, this._treeStructureItem._name, aChildren);
 		
 		var currentArray = aChildren;
 		var currentArrayLength = currentArray.length;
@@ -355,8 +356,8 @@ dbm.registerClass("dbm.utils.canvas.CanvasLayer2d", "dbm.core.FlowBaseObject", f
 		
 		currentDrawingLayer.addCurve(newCurveDrawer);
 		
-		newCurveDrawer.getPropertyInput("startParameter", aStartParameter);
-		newCurveDrawer.getPropertyInput("endParameter", aEndParameter);
+		newCurveDrawer.setPropertyInput("startParameter", aStartParameter);
+		newCurveDrawer.setPropertyInput("endParameter", aEndParameter);
 		
 		newCurveDrawer.getProperty("curve").setAsDirty();
 		

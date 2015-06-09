@@ -1,15 +1,46 @@
-dbm.runTempFunction(function() {
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("Application");
+	//"use strict";
 	
+	//Self reference
+	var Application = dbm.importClass("Application");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	
+	//Dependencies
 	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
 	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
-	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
-	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	var MultiplicationNode = dbm.importClass("dbm.flow.nodes.math.MultiplicationNode");
 	var SimpleSpeedNode = dbm.importClass("dbm.flow.nodes.incrementation.SimpleSpeedNode");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
-	var startFunction = function() {
-		console.log("startFunction");
+	//Utils
+	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
+	
+	//Constants
+	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		console.log("Application::_init");
+		
+		this.superCall();
+		
+		this._addTemplate("main", "assets/templates.html#main");
+		
+		this._addStartFunction(this._createPage, []);
+		
+		return this;
+	};
+	
+	objectFunctions._createPage = function() {
+		console.log("Application::_createPage");
 		
 		var horizontalLines = new Array();
 		var verticalLines = new Array();
@@ -18,7 +49,7 @@ dbm.runTempFunction(function() {
 		
 		//console.log(newCurve);
 		
-		var rollOverButton = BaseButton.createDiv(document, true);
+		var rollOverButton = BaseButton.createDiv(this._contentHolder, true);
 		
 		var canvasView = CanvasView.create(rollOverButton.getElement(), true, "2d", {"width": 1000, "height": 580, "style": "border: 1px solid #000000"});
 		var canvasController = canvasView.getController();
@@ -112,5 +143,9 @@ dbm.runTempFunction(function() {
 		//rollOverButton.activate();
 	};
 	
-	dbm.addStartFunction(startFunction);
+	objectFunctions.setAllReferencesToNull = function() {
+		//console.log("Application::setAllReferencesToNull");
+		
+		this.superCall();
+	};
 });
