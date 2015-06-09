@@ -138,7 +138,7 @@ dbm.runTempFunction(function() {
 		return theClass;
 	}; //End function getClass
 	
-	classManager.addLibrary = function(aName, aPaths, aEvaluationName, aCssPaths) {
+	classManager.addLibrary = function(aName, aPaths, aEvaluationName, aCssPaths, aBaseFolder) {
 		
 		var newLibraryHolder = new Object();
 		newLibraryHolder.paths = aPaths;
@@ -148,6 +148,7 @@ dbm.runTempFunction(function() {
 		newLibraryHolder.isCreated = false;
 		newLibraryHolder.cssPaths = aCssPaths;
 		newLibraryHolder.realLibrary = null;
+		newLibraryHolder.baseFolder = aBaseFolder;
 		
 		this._libraries[aName] = newLibraryHolder;
 	}; //End function addLibrary
@@ -168,10 +169,19 @@ dbm.runTempFunction(function() {
 		if(!currentLibrary.isAdded) {
 			currentLibrary.isAdded = true;
 			
+			var baseFolder = dbm.getBaseFolder(currentLibrary.baseFolder);
+			
+			if(baseFolder === undefined) {
+				baseFolder = "";
+			}
+			else {
+				baseFolder += "/";
+			}
+			
 			var currentArray = currentLibrary.paths;
 			var currentArrayLength = currentArray.length;
 			for(var i = 0; i < currentArrayLength; i++) {
-				dbm.loadFile(currentArray[i]);
+				dbm.loadFile(currentArray[i], currentLibrary.baseFolder);
 			}
 			
 			var theDocument = dbm.getDocument();
@@ -179,7 +189,7 @@ dbm.runTempFunction(function() {
 			if(currentArray !== null && currentArray !== undefined) {
 				var currentArrayLength = currentArray.length;
 				for(var i = 0; i < currentArrayLength; i++) {
-					var cssPath = currentArray[i];
+					var cssPath = baseFolder + currentArray[i];
 					
 					var newElement = theDocument.createElement("link");
 					newElement.setAttribute("rel", "stylesheet");

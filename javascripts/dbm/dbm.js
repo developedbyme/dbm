@@ -94,6 +94,10 @@
 			return this;
 		};
 		
+		dbmObject.getBaseFolder = function(aName) {
+			return this._baseFolders[aName];
+		};
+		
 		dbmObject.addSpecificClassesFolder = function(aClassPathPrefix, aClassesFolder, aBaseFolder) {
 			//console.log("dbm.addSpecificClassesFolder");
 			//console.log(aClassPathPrefix, aClassesFolder, aBaseFolder);
@@ -142,8 +146,8 @@
 			return this._classManager.getClass(aClassPath);
 		};
 		
-		dbmObject.addLibrary = function(aName, aPaths, aEvaluationName, aCssPaths) {
-			this._classManager.addLibrary(aName, aPaths, aEvaluationName, aCssPaths);
+		dbmObject.addLibrary = function(aName, aPaths, aEvaluationName, aCssPaths, aBaseFolder) {
+			this._classManager.addLibrary(aName, aPaths, aEvaluationName, aCssPaths, aBaseFolder);
 		};
 		
 		dbmObject.importLibrary = function(aName, aReInitFunction) {
@@ -190,7 +194,7 @@
 			}
 		};
 		
-		dbmObject.loadFile = function(aFilePath) {
+		dbmObject.loadFile = function(aFilePath, aBaseFolderName) {
 			//console.log("dbm::loadFile");
 			//console.log(aFilePath);
 			
@@ -200,7 +204,20 @@
 				this._filesToLoad.push(aFilePath);
 			}
 			else {
-				var fileName = this._javascriptsFolder + "/" + aFilePath;
+				var fileName;
+				if(aBaseFolderName !== undefined && aBaseFolderName !== null) {
+					var baseFolder = this.getBaseFolder(aBaseFolderName);
+					if(baseFolder === undefined) {
+						fileName = aFilePath;
+					}
+					else {
+						fileName = baseFolder + "/" + aFilePath;
+					}
+				}
+				else {
+					fileName = this._javascriptsFolder + "/" + aFilePath;
+					
+				}
 				this._filesToLoad.push(fileName);
 			}
 			
