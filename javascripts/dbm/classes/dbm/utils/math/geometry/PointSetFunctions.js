@@ -10,8 +10,8 @@ dbm.registerClass("dbm.utils.math.geometry.PointSetFunctions", null, function(ob
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var Point = dbm.importClass("dbm.core.data.points.Point");

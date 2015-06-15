@@ -12,7 +12,7 @@ dbm.registerClass("dbm.flow.nodes.curves.GetPartOfCurveNode", "dbm.core.FlowBase
 	//Utils
 	
 	//Constants
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	/**
 	 * Constructor

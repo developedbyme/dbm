@@ -10,8 +10,8 @@ dbm.registerClass("dbm.gui.buttons.BaseButton", "dbm.gui.DisplayBaseObject", fun
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var TextElement = dbm.importClass("dbm.gui.text.TextElement");
@@ -23,7 +23,7 @@ dbm.registerClass("dbm.gui.buttons.BaseButton", "dbm.gui.DisplayBaseObject", fun
 	
 	//Constants
 	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
-	var CssCursorTypes = dbm.importClass("dbm.constants.CssCursorTypes");
+	var CssCursorTypes = dbm.importClass("dbm.constants.css.CssCursorTypes");
 	
 	/**
 	 * Constructor

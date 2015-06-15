@@ -17,7 +17,7 @@ dbm.registerClass("dbm.flow.nodes.display.TransformElement3dNode", "dbm.core.Flo
 	var CssTransformFunctions = dbm.importClass("dbm.utils.css.CssTransformFunctions");
 	
 	//Constants
-	var RotationOrderTypes = dbm.importClass("dbm.constants.RotationOrderTypes");
+	var RotationOrderTypes = dbm.importClass("dbm.constants.graphics.RotationOrderTypes");
 	
 	/**
 	 * Constructor

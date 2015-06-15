@@ -7,8 +7,8 @@ dbm.registerClass("dbm.core.extendedevent.commands.basic.SetPropertyCommand", "d
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var GetPropertyObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetPropertyObject");
@@ -18,7 +18,7 @@ dbm.registerClass("dbm.core.extendedevent.commands.basic.SetPropertyCommand", "d
 	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
 	
 	//Constants
-	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.status.CommandStatusTypes");
 	
 	/**
 	 * Constructor

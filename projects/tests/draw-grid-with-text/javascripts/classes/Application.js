@@ -8,8 +8,8 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
@@ -25,7 +25,7 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 	
 	//Constants
 	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
-	var LineJoinTypes = dbm.importClass("dbm.constants.LineJoinTypes");
+	var LineJoinTypes = dbm.importClass("dbm.constants.graphics.LineJoinTypes");
 	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
 	
 	/**

@@ -11,7 +11,7 @@ dbm.registerClass("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHa
 	
 	var PrintInConsoleHandler = dbm.importClass("dbm.core.globalobjects.errormanager.handlers.PrintInConsoleHandler");
 	
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
 	
 	/**
 	 * Initializes the object.

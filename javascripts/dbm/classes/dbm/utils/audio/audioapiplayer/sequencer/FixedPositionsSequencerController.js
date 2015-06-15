@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.sequencer.FixedPositionsSequen
 	var FixedPositionsSequencerController = dbm.importClass("dbm.utils.audio.audioapiplayer.sequencer.FixedPositionsSequencerController");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var Sequencer = dbm.importClass("dbm.utils.audio.audioapiplayer.sequencer.Sequencer");
 	var MultidimensionalArrayHolder = dbm.importClass("dbm.utils.data.MultidimensionalArrayHolder");

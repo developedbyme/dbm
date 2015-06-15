@@ -8,8 +8,8 @@ dbm.registerClass("dbm.utils.canvas.3d.Camera3d", "dbm.utils.canvas.3d.CanvasLay
 	var Camera3d = dbm.importClass("dbm.utils.canvas.3d.Camera3d");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var Matrix = dbm.importClass("dbm.core.data.matrices.Matrix");
 	var Point = dbm.importClass("dbm.core.data.points.Point");

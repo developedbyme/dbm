@@ -12,8 +12,8 @@ dbm.registerClass("dbm.core.objectparts.UpdateFunctionWithArguments", "dbm.core.
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var Property = dbm.importClass("dbm.core.objectparts.Property");
@@ -24,7 +24,7 @@ dbm.registerClass("dbm.core.objectparts.UpdateFunctionWithArguments", "dbm.core.
 	
 	//Constants
 	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	var FlowManager = dbm.importClass("dbm.core.globalobjects.flowmanager.FlowManager");
 	

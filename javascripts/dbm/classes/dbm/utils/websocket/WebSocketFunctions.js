@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.websocket.WebSocketFunctions", null, function(objec
 	var WebSocketFunctions = dbm.importClass("dbm.utils.websocket.WebSocketFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	staticFunctions.supportsWebSocket = function() {
 		return (window.WebSocket != undefined || window.MozWebSocket != undefined);

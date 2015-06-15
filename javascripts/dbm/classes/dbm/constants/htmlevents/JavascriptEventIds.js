@@ -1,8 +1,8 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.JavascriptEventIds", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.JavascriptEventIds");
+dbm.registerClass("dbm.constants.htmlevents.JavascriptEventIds", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.htmlevents.JavascriptEventIds");
 	
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	
 	//MENOTE: DOM unspecified
 	staticFunctions.DOM_CONTENT_LOADED = "DOMContentLoaded";

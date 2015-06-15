@@ -6,14 +6,14 @@ dbm.registerClass("dbm.core.globalobjects.flowmanager.selection.FlowSelection", 
 	var FlowSelection = dbm.importClass("dbm.core.globalobjects.flowmanager.selection.FlowSelection");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var GroupSelectionResult = dbm.importClass("dbm.core.globalobjects.flowmanager.selection.GroupSelectionResult");
 	
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.flowmanager.selection.FlowSelection::_init");

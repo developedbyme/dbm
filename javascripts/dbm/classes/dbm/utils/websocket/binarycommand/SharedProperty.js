@@ -14,7 +14,7 @@ dbm.registerClass("dbm.utils.websocket.binarycommand.SharedProperty", "dbm.core.
 	
 	//Constants
 	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	/**
 	 * Constructor

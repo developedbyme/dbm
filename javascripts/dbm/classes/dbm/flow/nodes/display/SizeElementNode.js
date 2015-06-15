@@ -5,8 +5,8 @@ dbm.registerClass("dbm.flow.nodes.display.SizeElementNode", "dbm.core.FlowBaseOb
 	var SizeElementNode = dbm.importClass("dbm.flow.nodes.display.SizeElementNode");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.flow.nodes.display.SizeElementNode::_init");

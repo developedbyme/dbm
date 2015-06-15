@@ -19,7 +19,7 @@ dbm.registerClass("dbm.utils.device.DeviceMotion", "dbm.core.ExtendedEventBaseOb
 	var AngleFunctions = dbm.importClass("dbm.utils.math.AngleFunctions");
 	
 	//Constants
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var DeviceExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.DeviceExtendedEventIds");
 	
 	/**

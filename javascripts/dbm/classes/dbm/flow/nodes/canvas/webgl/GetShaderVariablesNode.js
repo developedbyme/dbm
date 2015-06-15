@@ -5,8 +5,8 @@ dbm.registerClass("dbm.flow.nodes.canvas.webgl.GetShaderVariablesNode", "dbm.cor
 	var GetShaderVariablesNode = dbm.importClass("dbm.flow.nodes.canvas.webgl.GetShaderVariablesNode");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var KeyTypeValueObject = dbm.importClass("dbm.core.data.generic.KeyTypeValueObject");
 	var ArrayHolder = dbm.importClass("dbm.utils.data.ArrayHolder");

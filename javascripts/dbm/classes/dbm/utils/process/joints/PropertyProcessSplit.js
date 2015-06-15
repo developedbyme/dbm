@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.process.joints.PropertyProcessSplit", "dbm.utils.pr
 	var PropertyProcessSplit = dbm.importClass("dbm.utils.process.joints.PropertyProcessSplit");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
@@ -16,7 +16,7 @@ dbm.registerClass("dbm.utils.process.joints.PropertyProcessSplit", "dbm.utils.pr
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
-	var ProcessStatusTypes = dbm.importClass("dbm.constants.ProcessStatusTypes");
+	var ProcessStatusTypes = dbm.importClass("dbm.constants.status.ProcessStatusTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.utils.process.joints.PropertyProcessSplit::_init");

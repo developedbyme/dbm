@@ -9,7 +9,7 @@ dbm.registerClass("dbm.core.globalobjects.datamanager.objects.ParserResultDataOb
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var XmlChildRetreiver = dbm.importClass("dbm.utils.xml.XmlChildRetreiver");
 	
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.datamanager.objects.ParserResultDataObject::_init");

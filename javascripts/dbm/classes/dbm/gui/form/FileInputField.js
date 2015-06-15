@@ -18,7 +18,7 @@ dbm.registerClass("dbm.gui.form.FileInputField", "dbm.gui.DisplayBaseObject", fu
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 		
 	//Constants
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var FormFieldExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.FormFieldExtendedEventIds");
 	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
 	

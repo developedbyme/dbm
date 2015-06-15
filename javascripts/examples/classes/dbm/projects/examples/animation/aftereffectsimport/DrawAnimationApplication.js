@@ -7,8 +7,8 @@ dbm.registerClass("dbm.projects.examples.animation.aftereffectsimport.DrawAnimat
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var PlaybackNode = dbm.importClass("dbm.flow.nodes.time.PlaybackNode");
@@ -61,11 +61,11 @@ dbm.registerClass("dbm.projects.examples.animation.aftereffectsimport.DrawAnimat
 	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	var PlaybackMetaDataTypes = dbm.importClass("dbm.constants.metadata.PlaybackMetaDataTypes");
 	var TrackMatteTypes = dbm.importClass("dbm.constants.thirdparty.adobe.aftereffects.TrackMatteTypes");
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	var PlaybackStateTypes = dbm.importClass("dbm.constants.PlaybackStateTypes");
-	var LineCapTypes = dbm.importClass("dbm.constants.LineCapTypes");
-	var LineJoinTypes = dbm.importClass("dbm.constants.LineJoinTypes");
+	var LineCapTypes = dbm.importClass("dbm.constants.graphics.LineCapTypes");
+	var LineJoinTypes = dbm.importClass("dbm.constants.graphics.LineJoinTypes");
 	
 	/**
 	 * Constructor

@@ -14,7 +14,7 @@ dbm.registerClass("dbm.flow.nodes.math.transformation.TransformationTo3dMatrixNo
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var RotationOrderTypes = dbm.importClass("dbm.constants.RotationOrderTypes");
+	var RotationOrderTypes = dbm.importClass("dbm.constants.graphics.RotationOrderTypes");
 	
 	/**
 	 * Constructor

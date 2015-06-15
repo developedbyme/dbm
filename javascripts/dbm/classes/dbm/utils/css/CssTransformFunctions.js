@@ -15,7 +15,7 @@ dbm.registerClass("dbm.utils.css.CssTransformFunctions", null, function(objectFu
 	
 	//Constants
 	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
-	var RotationOrderTypes = dbm.importClass("dbm.constants.RotationOrderTypes");
+	var RotationOrderTypes = dbm.importClass("dbm.constants.graphics.RotationOrderTypes");
 	
 	staticFunctions._tempTransformArray = new Array(9);
 	

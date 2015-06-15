@@ -20,7 +20,7 @@ dbm.registerClass("dbm.gui.form.sliders.HorizontalPlayheadSlider", "dbm.gui.form
 	var PositionFunctions = dbm.importClass("dbm.utils.htmldom.PositionFunctions");
 	
 	//Constants
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.PlaybackExtendedEventIds");
 	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
 	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");

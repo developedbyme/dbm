@@ -1,8 +1,8 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.ProcessStatusTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.constants.ProcessStatusTypes");
+dbm.registerClass("dbm.constants.status.ProcessStatusTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.constants.status.ProcessStatusTypes");
 	
-	var ProcessStatusTypes = dbm.importClass("dbm.constants.ProcessStatusTypes");
+	var ProcessStatusTypes = dbm.importClass("dbm.constants.status.ProcessStatusTypes");
 	
 	staticFunctions.NOT_STARTED = 0;
 	staticFunctions.DONE = 1;

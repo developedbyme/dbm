@@ -5,12 +5,12 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.AudioDataDecoder", "dbm.core.E
 	var AudioDataDecoder = dbm.importClass("dbm.utils.audio.audioapiplayer.AudioDataDecoder");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var UpdateChain = dbm.importClass("dbm.core.globalobjects.updatemanager.objects.UpdateChain");
 	
-	var ProcessStatusTypes = dbm.importClass("dbm.constants.ProcessStatusTypes");
+	var ProcessStatusTypes = dbm.importClass("dbm.constants.status.ProcessStatusTypes");
 	var ProcessExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ProcessExtendedEventIds");
 	
 	objectFunctions._init = function() {

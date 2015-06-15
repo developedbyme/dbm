@@ -17,7 +17,7 @@ dbm.registerClass("dbm.flow.FlowGate", "dbm.core.FlowBaseObject", function(objec
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	
 	/**

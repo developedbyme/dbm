@@ -5,8 +5,8 @@ dbm.registerClass("dbm.core.extendedevent.setup.InteractionExtendedEventSetup", 
 	var InteractionExtendedEventSetup = dbm.importClass("dbm.core.extendedevent.setup.InteractionExtendedEventSetup");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var ActivateEventLinkCommand = dbm.importClass("dbm.core.extendedevent.commands.events.ActivateEventLinkCommand");
 	var PreventDefaultCommand = dbm.importClass("dbm.core.extendedevent.commands.native.PreventDefaultCommand");
@@ -17,7 +17,7 @@ dbm.registerClass("dbm.core.extendedevent.setup.InteractionExtendedEventSetup", 
 	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
 	var MouseExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.MouseExtendedEventIds");
 	var TouchExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.TouchExtendedEventIds");
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.extendedevent.setup.InteractionExtendedEventSetup::_init");

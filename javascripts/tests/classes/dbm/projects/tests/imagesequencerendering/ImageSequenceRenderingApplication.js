@@ -6,8 +6,8 @@ dbm.registerClass("dbm.projects.tests.imagesequencerendering.ImageSequenceRender
 	var ImageSequenceRenderingApplication = dbm.importClass("dbm.projects.tests.imagesequencerendering.ImageSequenceRenderingApplication");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");
 	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");

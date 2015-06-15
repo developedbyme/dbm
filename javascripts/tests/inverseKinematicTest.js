@@ -28,8 +28,8 @@ dbm.runTempFunction(function() {
 	var TouchOrMouseDetector = dbm.importClass("dbm.gui.abstract.touch.TouchOrMouseDetector");
 	var MovablePointsController = dbm.importClass("dbm.gui.abstract.touch.movablepoints.MovablePointsController");
 	
-	var LineCapTypes = dbm.importClass("dbm.constants.LineCapTypes");
-	var LineJoinTypes = dbm.importClass("dbm.constants.LineJoinTypes");
+	var LineCapTypes = dbm.importClass("dbm.constants.graphics.LineCapTypes");
+	var LineJoinTypes = dbm.importClass("dbm.constants.graphics.LineJoinTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

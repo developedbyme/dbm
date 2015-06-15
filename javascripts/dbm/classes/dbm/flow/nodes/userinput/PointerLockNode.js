@@ -15,7 +15,7 @@ dbm.registerClass("dbm.flow.nodes.userinput.PointerLockNode", "dbm.core.Extended
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	
 	/**

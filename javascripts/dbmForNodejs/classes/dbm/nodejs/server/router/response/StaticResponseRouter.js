@@ -6,8 +6,8 @@ dbm.registerClass("dbm.nodejs.server.router.response.StaticResponseRouter", "dbm
 	var StaticResponseRouter = dbm.importClass("dbm.nodejs.server.router.response.StaticResponseRouter");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var RoutedDataTypes = dbm.importClass("dbm.nodejs.constants.RoutedDataTypes");
 	var RoutedDataStatusTypes = dbm.importClass("dbm.nodejs.constants.RoutedDataStatusTypes");

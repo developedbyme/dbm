@@ -5,8 +5,8 @@ dbm.registerClass("dbm.flow.nodes.canvas.webgl.CreateTextureNode", "dbm.core.Flo
 	var CreateTextureNode = dbm.importClass("dbm.flow.nodes.canvas.webgl.CreateTextureNode");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var WebglFilterTypes = dbm.importClass("dbm.constants.webgl.WebglFilterTypes");
 	

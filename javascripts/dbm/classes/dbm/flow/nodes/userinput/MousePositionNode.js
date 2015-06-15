@@ -9,7 +9,7 @@ dbm.registerClass("dbm.flow.nodes.userinput.MousePositionNode", "dbm.core.Extend
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.flow.nodes.userinput.MousePositionNode::_init");

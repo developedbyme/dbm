@@ -6,13 +6,13 @@ dbm.registerClass("dbm.core.globalobjects.flowmanager.update.FlowUpdateChain", "
 	var FlowUpdateChain = dbm.importClass("dbm.core.globalobjects.flowmanager.update.FlowUpdateChain");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.flowmanager.update.FlowUpdateChain::_init");

@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.native.date.DateFunctions", null, function(objectFu
 	var DateFunctions = dbm.importClass("dbm.utils.native.date.DateFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	

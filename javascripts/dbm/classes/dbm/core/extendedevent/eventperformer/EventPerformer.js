@@ -13,7 +13,7 @@ dbm.registerClass("dbm.core.extendedevent.eventperformer.EventPerformer", "dbm.c
 	//Utils
 	
 	//Constants
-	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.status.CommandStatusTypes");
 	
 	
 	/**

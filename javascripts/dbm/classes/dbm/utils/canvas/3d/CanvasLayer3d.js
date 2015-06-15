@@ -8,8 +8,8 @@ dbm.registerClass("dbm.utils.canvas.3d.CanvasLayer3d", "dbm.core.FlowBaseObject"
 	var CanvasLayer3d = dbm.importClass("dbm.utils.canvas.3d.CanvasLayer3d");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var Matrix = dbm.importClass("dbm.core.data.matrices.Matrix");
 	var BezierCurve = dbm.importClass("dbm.core.data.curves.BezierCurve");

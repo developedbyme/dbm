@@ -6,8 +6,8 @@ dbm.registerClass("dbm.flow.FlowGroupWithCustomUpdateFunction", "dbm.core.BaseOb
 	var FlowGroupWithCustomUpdateFunction = dbm.importClass("dbm.flow.FlowGroupWithCustomUpdateFunction");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	var ObjectProperty = dbm.importClass("dbm.core.objectparts.ObjectProperty");

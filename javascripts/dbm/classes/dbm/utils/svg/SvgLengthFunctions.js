@@ -6,8 +6,8 @@ dbm.registerClass("dbm.utils.svg.SvgLengthFunctions", null, function(objectFunct
 	var SvgLengthFunctions = dbm.importClass("dbm.utils.svg.SvgLengthFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var ValueWithUnit = dbm.importClass("dbm.core.data.number.ValueWithUnit");
 	

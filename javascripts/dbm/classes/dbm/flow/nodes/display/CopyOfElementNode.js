@@ -5,8 +5,8 @@ dbm.registerClass("dbm.flow.nodes.display.CopyOfElementNode", "dbm.core.FlowBase
 	var CopyOfElementNode = dbm.importClass("dbm.flow.nodes.display.CopyOfElementNode");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.flow.nodes.display.CopyOfElementNode::_init");

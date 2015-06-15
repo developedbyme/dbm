@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.file.formats.csv.CsvParser", "dbm.core.BaseObject",
 	var CsvParser = dbm.importClass("dbm.utils.file.formats.csv.CsvParser");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var ScopeFunctions = dbm.importClass("dbm.utils.native.string.ScopeFunctions");

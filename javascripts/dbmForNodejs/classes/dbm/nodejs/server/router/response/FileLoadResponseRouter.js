@@ -9,8 +9,8 @@ dbm.registerClass("dbm.nodejs.server.router.response.FileLoadResponseRouter", "d
 	var FileLoadResponseRouter = dbm.importClass("dbm.nodejs.server.router.response.FileLoadResponseRouter");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var BinaryFileAsset = dbm.importClass("dbm.nodejs.core.globalobjects.assetrepository.assets.BinaryFileAsset");
 	

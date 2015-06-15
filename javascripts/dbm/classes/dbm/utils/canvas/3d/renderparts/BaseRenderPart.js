@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.canvas.3d.drawcommands.BaseRenderPart", "dbm.core.F
 	var BaseRenderPart = dbm.importClass("dbm.utils.canvas.3d.drawcommands.BaseRenderPart");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
 	

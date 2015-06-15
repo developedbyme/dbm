@@ -28,7 +28,7 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.setup.DefaultAssetRepo
 	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	//Constants
-	var PseudoFileExtensions = dbm.importClass("dbm.constants.PseudoFileExtensions");
+	var PseudoFileExtensions = dbm.importClass("dbm.constants.fileformats.PseudoFileExtensions");
 	
 	/**
 	 * Sets up the asset repository for browser use.

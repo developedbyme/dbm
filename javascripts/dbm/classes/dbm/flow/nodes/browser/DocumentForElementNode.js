@@ -16,7 +16,7 @@ dbm.registerClass("dbm.flow.nodes.browser.DocumentForElementNode", "dbm.core.Ext
 	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
 	
 	//Constants
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	
 	/**
 	 * Constructor

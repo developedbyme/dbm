@@ -5,8 +5,8 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.setup.DefaultTextCreat
 	var DefaultTextCreatorsSetup = dbm.importClass("dbm.core.globalobjects.templatemanager.setup.DefaultTextCreatorsSetup");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var TextCreator = dbm.importClass("dbm.core.globalobjects.templatemanager.objects.textcreators.TextCreator");
 	var HtmlTextCreator = dbm.importClass("dbm.core.globalobjects.templatemanager.objects.textcreators.HtmlTextCreator");

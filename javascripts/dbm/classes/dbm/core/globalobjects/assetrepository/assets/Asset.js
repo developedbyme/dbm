@@ -18,7 +18,7 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.Asset", "dbm.co
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	/**

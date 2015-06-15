@@ -6,8 +6,8 @@ dbm.registerClass("dbm.nodejs.server.router.api.upgrade.websocket.ConnectWebSock
 	var ConnectWebSocketRouter = dbm.importClass("dbm.nodejs.server.router.api.upgrade.websocket.ConnectWebSocketRouter");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var WebSocketServerFunctions = dbm.importClass("dbm.nodejs.utils.websocket.WebSocketServerFunctions");
 	

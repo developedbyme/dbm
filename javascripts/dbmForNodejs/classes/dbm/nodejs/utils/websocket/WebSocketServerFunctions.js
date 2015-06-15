@@ -9,8 +9,8 @@ dbm.registerClass("dbm.nodejs.utils.websocket.WebSocketServerFunctions", null, f
 	var WebSocketServerFunctions = dbm.importClass("dbm.nodejs.utils.websocket.WebSocketServerFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
 	

@@ -7,8 +7,8 @@ dbm.registerClass("dbm.flow.nodes.data.CachedValueNode", "dbm.core.FlowBaseObjec
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var CircularBuffer = dbm.importClass("dbm.utils.data.CircularBuffer");

@@ -8,8 +8,8 @@ dbm.registerClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator", "dbm.c
 	var CurveEvaluator = dbm.importClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var CreateBezierCurveFromPoints2d = dbm.importClass("dbm.core.globalobjects.curveevaluator.creators.CreateBezierCurveFromPoints2d");
 	var CreateMultiSegmentBezierCurveFromPoints2d = dbm.importClass("dbm.core.globalobjects.curveevaluator.creators.CreateMultiSegmentBezierCurveFromPoints2d");

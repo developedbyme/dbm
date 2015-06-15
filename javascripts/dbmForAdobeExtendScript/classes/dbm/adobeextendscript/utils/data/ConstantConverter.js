@@ -8,8 +8,8 @@ dbm.registerClass("dbm.adobeextendscript.utils.data.ConstantConverter", "dbm.cor
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var TrackMatteTypes = dbm.importClass("dbm.constants.thirdparty.adobe.aftereffects.TrackMatteTypes");

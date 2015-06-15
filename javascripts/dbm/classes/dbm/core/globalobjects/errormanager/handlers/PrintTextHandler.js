@@ -11,7 +11,7 @@ dbm.registerClass("dbm.core.globalobjects.errormanager.handlers.PrintTextHandler
 	
 	var PrintTextHandler = dbm.importClass("dbm.core.globalobjects.errormanager.handlers.PrintTextHandler");
 	
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
 	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
 	
 	/**

@@ -7,8 +7,8 @@ dbm.registerClass("dbm.core.extendedevent.commands.htmldom.RemoveIdCommand", "db
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var GetNamedArrayValueObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetNamedArrayValueObject");
@@ -19,7 +19,7 @@ dbm.registerClass("dbm.core.extendedevent.commands.htmldom.RemoveIdCommand", "db
 	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
 	
 	//Constants
-	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.status.CommandStatusTypes");
 	
 	
 	/**

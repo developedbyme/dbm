@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.math.physics.SwingingAcceleration", "dbm.core.BaseO
 	var SwingingAcceleration = dbm.importClass("dbm.utils.math.physics.SwingingAcceleration");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var AngleFunctions = dbm.importClass("dbm.utils.math.AngleFunctions");
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");

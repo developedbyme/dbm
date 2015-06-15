@@ -1,9 +1,9 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.CssRuleTypes", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.CssRuleTypes");
+dbm.registerClass("dbm.constants.css.CssRuleTypes", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.css.CssRuleTypes");
 	//"use strict";
 	
-	var CssRuleTypes = dbm.importClass("dbm.constants.CssRuleTypes");
+	var CssRuleTypes = dbm.importClass("dbm.constants.css.CssRuleTypes");
 	
 	CssRuleTypes.UNKNOWN_RULE = 0;
 	CssRuleTypes.STYLE_RULE = 1;

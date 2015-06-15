@@ -11,8 +11,8 @@ dbm.registerClass("dbm.core.objectparts.ExternalVariableProperty", "dbm.core.obj
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	
@@ -20,7 +20,7 @@ dbm.registerClass("dbm.core.objectparts.ExternalVariableProperty", "dbm.core.obj
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	/**
 	 * Constants

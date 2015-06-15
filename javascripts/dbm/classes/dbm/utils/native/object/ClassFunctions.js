@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.native.object.ClassFunctions", null, function(objec
 	var ClassFunctions = dbm.importClass("dbm.utils.native.object.ClassFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var StringRegularExpressions = dbm.importClass("dbm.utils.native.string.StringRegularExpressions");
 	

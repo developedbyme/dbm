@@ -10,8 +10,8 @@ dbm.registerClass("dbm.compiler.compiledata.documentation.DocumentationData", "d
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var DocumentationFlagData = dbm.importClass("dbm.compiler.compiledata.documentation.DocumentationFlagData");

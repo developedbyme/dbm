@@ -6,8 +6,8 @@ dbm.registerClass("dbm.utils.xml.XmlModifier", null, function(objectFunctions, s
 	var XmlModifier = dbm.importClass("dbm.utils.xml.XmlModifier");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	

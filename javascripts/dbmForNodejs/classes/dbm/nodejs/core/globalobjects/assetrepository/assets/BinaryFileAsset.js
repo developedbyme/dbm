@@ -20,7 +20,7 @@ dbm.registerClass("dbm.nodejs.core.globalobjects.assetrepository.assets.BinaryFi
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	
 	staticFunctions._IO_CALLBACK = "ioCallback";
 	

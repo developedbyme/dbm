@@ -11,7 +11,7 @@ dbm.registerClass("dbm.core.globalobjects.errormanager.data.ReportData", null, f
 	
 	var ReportData = dbm.importClass("dbm.core.globalobjects.errormanager.data.ReportData");
 	
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
 	
 	/**
 	 * Initializes the object

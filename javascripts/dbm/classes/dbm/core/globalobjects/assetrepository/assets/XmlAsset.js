@@ -21,8 +21,8 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.XmlAsset", "dbm
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	var ReadyStateTypes = dbm.importClass("dbm.constants.ReadyStateTypes");
 	var XmlHttpResponseTypes = dbm.importClass("dbm.constants.XmlHttpResponseTypes");
 	

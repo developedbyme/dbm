@@ -8,8 +8,8 @@ dbm.registerClass("dbm.adobeflashscript.flash.FlashDocument", "dbm.core.Extended
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var TimelineItem = dbm.importClass("dbm.adobeflashscript.flash.items.TimelineItem");

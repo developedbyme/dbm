@@ -8,8 +8,8 @@ dbm.registerClass("dbm.utils.native.array.ArrayGenerator", null, function(object
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var BinaryTreeFunctions = dbm.importClass("dbm.utils.data.BinaryTreeFunctions");

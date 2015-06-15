@@ -6,15 +6,15 @@ dbm.registerClass("dbm.utils.css.MediaQueryFunctions", null, function(objectFunc
 	var MediaQueryFunctions = dbm.importClass("dbm.utils.css.MediaQueryFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var CssReferenceFunctions = dbm.importClass("dbm.utils.css.CssReferenceFunctions");
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
 	
-	var CssRuleTypes = dbm.importClass("dbm.constants.CssRuleTypes");
+	var CssRuleTypes = dbm.importClass("dbm.constants.css.CssRuleTypes");
 	var MediaTypes = dbm.importClass("dbm.constants.css.MediaTypes");
 	
 	staticFunctions.getCombinedSelectionCriteriaForMediaRule = function(aRule) {

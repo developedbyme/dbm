@@ -13,8 +13,8 @@ dbm.registerClass("dbm.core.globalobjects.errormanager.handlers.FlowHandler", "d
 	
 	var ReportData = dbm.importClass("dbm.core.globalobjects.errormanager.data.ReportData");
 	
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	/**
 	 * Initializes the object.

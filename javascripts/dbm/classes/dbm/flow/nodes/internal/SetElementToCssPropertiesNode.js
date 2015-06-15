@@ -5,8 +5,8 @@ dbm.registerClass("dbm.flow.nodes.internal.SetElementToCssPropertiesNode", "dbm.
 	var SetElementToCssPropertiesNode = dbm.importClass("dbm.flow.nodes.internal.SetElementToCssPropertiesNode");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var ArrayHolder = dbm.importClass("dbm.utils.data.ArrayHolder");
 	

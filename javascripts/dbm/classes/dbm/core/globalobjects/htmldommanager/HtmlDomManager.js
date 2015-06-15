@@ -4,8 +4,8 @@ dbm.registerClass("dbm.core.globalobjects.htmldommanager.HtmlDomManager", "dbm.c
 	//"use strict";
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var HtmlElementControllerLink = dbm.importClass("dbm.core.globalobjects.htmldommanager.data.HtmlElementControllerLink");
 	var HtmlCreator = dbm.importClass("dbm.core.globalobjects.htmldommanager.objects.HtmlCreator");

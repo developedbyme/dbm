@@ -6,8 +6,8 @@ dbm.registerClass("dbm.utils.svg.SvgPathFunctions", null, function(objectFunctio
 	var SvgPathFunctions = dbm.importClass("dbm.utils.svg.SvgPathFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var Point = dbm.importClass("dbm.core.data.points.Point");
 	var BezierCurve = dbm.importClass("dbm.core.data.curves.BezierCurve");
@@ -17,7 +17,7 @@ dbm.registerClass("dbm.utils.svg.SvgPathFunctions", null, function(objectFunctio
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
-	var SvgPathCommandTypes = dbm.importClass("dbm.constants.SvgPathCommandTypes");
+	var SvgPathCommandTypes = dbm.importClass("dbm.constants.graphics.SvgPathCommandTypes");
 	
 	staticFunctions._TYPE_NOTHING = 0;
 	staticFunctions._TYPE_COMMAND = 1;

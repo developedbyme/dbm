@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.native.function.FunctionFunctions", null, function(
 	var FunctionFunctions = dbm.importClass("dbm.utils.native.function.FunctionFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
 	

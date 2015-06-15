@@ -17,8 +17,8 @@ dbm.registerClass("dbm.core.data.graphics.StrokeData", "dbm.core.data.graphics.C
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var LineCapTypes = dbm.importClass("dbm.constants.LineCapTypes");
-	var LineJoinTypes = dbm.importClass("dbm.constants.LineJoinTypes");
+	var LineCapTypes = dbm.importClass("dbm.constants.graphics.LineCapTypes");
+	var LineJoinTypes = dbm.importClass("dbm.constants.graphics.LineJoinTypes");
 	
 	
 	/**

@@ -5,8 +5,8 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.setup.DefaultBasicClas
 	var DefaultBasicClassShortcutSetup = dbm.importClass("dbm.core.globalobjects.templatemanager.setup.DefaultBasicClassShortcutSetup");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");
 	var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");

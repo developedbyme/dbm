@@ -11,8 +11,8 @@ dbm.registerClass("dbm.utils.math.QuadricEquationSolver", "dbm.core.BaseObject",
 	var QuadricEquationSolver = dbm.importClass("dbm.utils.math.QuadricEquationSolver");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	/**
 	 * Constructor

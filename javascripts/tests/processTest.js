@@ -6,7 +6,7 @@ dbm.runTempFunction(function() {
 	
 	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var ProcessStatusTypes = dbm.importClass("dbm.constants.ProcessStatusTypes");
+	var ProcessStatusTypes = dbm.importClass("dbm.constants.status.ProcessStatusTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

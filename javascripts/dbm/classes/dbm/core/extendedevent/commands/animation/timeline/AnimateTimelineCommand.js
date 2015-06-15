@@ -5,10 +5,10 @@ dbm.registerClass("dbm.core.extendedevent.commands.animation.timeline.AnimateTim
 	var AnimateTimelineCommand = dbm.importClass("dbm.core.extendedevent.commands.animation.timeline.AnimateTimelineCommand");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
-	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.status.CommandStatusTypes");
 	
 	var ReevaluationCreator = dbm.importClass("dbm.utils.reevaluation.ReevaluationCreator");
 	

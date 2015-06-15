@@ -5,8 +5,8 @@ dbm.registerClass("dbm.flow.nodes.canvas.webgl.CreateBufferNode", "dbm.core.Flow
 	var CreateBufferNode = dbm.importClass("dbm.flow.nodes.canvas.webgl.CreateBufferNode");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var WebglDrawTypes = dbm.importClass("dbm.constants.webgl.WebglDrawTypes");
 	var WebglBufferTypes = dbm.importClass("dbm.constants.webgl.WebglBufferTypes");

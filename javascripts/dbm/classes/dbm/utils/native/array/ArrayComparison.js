@@ -6,8 +6,8 @@ dbm.registerClass("dbm.utils.native.array.ArrayComparison", "dbm.core.BaseObject
 	var ArrayComparison = dbm.importClass("dbm.utils.native.array.ArrayComparison");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");

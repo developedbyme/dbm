@@ -5,8 +5,8 @@ dbm.registerClass("dbm.flow.data.KeyValuePropertyPair", "dbm.core.FlowBaseObject
 	var KeyValuePropertyPair = dbm.importClass("dbm.flow.data.KeyValuePropertyPair");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	/**
 	 * Constructor

@@ -6,8 +6,8 @@ dbm.registerClass("dbm.gui.svg.SvgDisplayBaseObject", "dbm.gui.DisplayBaseObject
 	var SvgDisplayBaseObject = dbm.importClass("dbm.gui.svg.SvgDisplayBaseObject");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var TransformSvgElementNode = dbm.importClass("dbm.flow.nodes.display.svg.TransformSvgElementNode");
 	

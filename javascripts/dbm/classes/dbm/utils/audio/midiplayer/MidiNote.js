@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.audio.midiplayer.MidiNote", "dbm.core.BaseObject", 
 	var MidiNote = dbm.importClass("dbm.utils.audio.midiplayer.MidiNote");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.utils.audio.midiplayer.MidiNote::_init");

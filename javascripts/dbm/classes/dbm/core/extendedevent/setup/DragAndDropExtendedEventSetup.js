@@ -7,8 +7,8 @@ dbm.registerClass("dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup", 
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	
@@ -20,7 +20,7 @@ dbm.registerClass("dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup", 
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var DragAndDropExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.DragAndDropExtendedEventIds");
 	
 	staticFunctions.addDropEvents = function(aExtendedEventController, aHtmlElement, aActivate, aUseCapture) {

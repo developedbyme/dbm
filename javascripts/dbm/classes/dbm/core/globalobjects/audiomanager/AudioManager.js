@@ -5,8 +5,8 @@ dbm.registerClass("dbm.core.globalobjects.audiomanager.AudioManager", "dbm.core.
 	var AudioManager = dbm.importClass("dbm.core.globalobjects.audiomanager.AudioManager");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
@@ -23,7 +23,7 @@ dbm.registerClass("dbm.core.globalobjects.audiomanager.AudioManager", "dbm.core.
 	var PathFunctions = dbm.importClass("dbm.utils.file.PathFunctions");
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
 	
 	

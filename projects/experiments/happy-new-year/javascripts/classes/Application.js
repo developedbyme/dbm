@@ -8,8 +8,8 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var TimeZone = dbm.importClass("TimeZone");
@@ -49,7 +49,7 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 	var FlowUpdateChainCreator = dbm.importClass("dbm.core.globalobjects.flowmanager.update.FlowUpdateChainCreator");
 	
 	//Constants
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
 	

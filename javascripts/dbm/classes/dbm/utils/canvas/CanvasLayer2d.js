@@ -8,8 +8,8 @@ dbm.registerClass("dbm.utils.canvas.CanvasLayer2d", "dbm.core.FlowBaseObject", f
 	var CanvasLayer2d = dbm.importClass("dbm.utils.canvas.CanvasLayer2d");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var CanvasGraphics2d = dbm.importClass("dbm.utils.canvas.CanvasGraphics2d");
 	var Matrix = dbm.importClass("dbm.core.data.matrices.Matrix");

@@ -5,8 +5,8 @@ dbm.registerClass("dbm.core.globalobjects.encodingmanager.EncodingManager", "dbm
 	var EncodingManager = dbm.importClass("dbm.core.globalobjects.encodingmanager.EncodingManager");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	

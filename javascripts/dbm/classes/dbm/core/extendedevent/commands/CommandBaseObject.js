@@ -3,10 +3,10 @@ dbm.registerClass("dbm.core.extendedevent.commands.CommandBaseObject", "dbm.core
 	//console.log("dbm.core.extendedevent.commands.CommandBaseObject");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
-	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.status.CommandStatusTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.extendedevent.commands.CommandBaseObject::_init");

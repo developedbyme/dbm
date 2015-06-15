@@ -6,8 +6,8 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.XmlIdElementAss
 	var XmlIdElementAsset = dbm.importClass("dbm.core.globalobjects.assetrepository.assets.XmlIdElementAsset");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
@@ -15,7 +15,7 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.XmlIdElementAss
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.assetrepository.assets.XmlIdElementAsset::_init");

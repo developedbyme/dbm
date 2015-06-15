@@ -6,8 +6,8 @@ dbm.registerClass("dbm.flow.FlowGroup", "dbm.core.BaseObject", function(objectFu
 	var FlowGroup = dbm.importClass("dbm.flow.FlowGroup");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
 	var Property = dbm.importClass("dbm.core.objectparts.Property");

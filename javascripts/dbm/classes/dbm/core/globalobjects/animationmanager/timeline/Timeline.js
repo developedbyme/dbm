@@ -11,8 +11,8 @@ dbm.registerClass("dbm.core.globalobjects.animationmanager.timeline.Timeline", "
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Depenedencies
 	var SetValueTimelinePart = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.parts.SetValueTimelinePart");

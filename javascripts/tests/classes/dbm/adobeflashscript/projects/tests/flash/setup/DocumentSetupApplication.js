@@ -10,8 +10,8 @@ dbm.registerClass("dbm.adobeflashscript.projects.tests.flash.setup.DocumentSetup
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var FlashDocument = dbm.importClass("dbm.adobeflashscript.flash.FlashDocument");

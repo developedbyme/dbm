@@ -17,7 +17,7 @@ dbm.registerClass("dbm.core.objectparts.GhostProperty", "dbm.core.objectparts.Pr
 	
 	//Constants
 	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	
 	/**

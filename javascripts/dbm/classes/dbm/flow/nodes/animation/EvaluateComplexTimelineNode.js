@@ -17,7 +17,7 @@ dbm.registerClass("dbm.flow.nodes.animation.EvaluateComplexTimelineNode", "dbm.c
 	//Utils
 	
 	//Constants
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	/**
 	 * Constructor

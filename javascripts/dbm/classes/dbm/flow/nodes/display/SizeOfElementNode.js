@@ -8,8 +8,8 @@ dbm.registerClass("dbm.flow.nodes.display.SizeOfElementNode", "dbm.core.FlowBase
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var LayoutChangeNode = dbm.importClass("dbm.flow.nodes.browser.LayoutChangeNode");

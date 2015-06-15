@@ -20,8 +20,8 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.FileReaderAsset
 	
 	//Constants
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	
 	/**
 	 * Constructor

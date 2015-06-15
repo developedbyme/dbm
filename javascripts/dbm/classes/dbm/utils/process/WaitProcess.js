@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.process.WaitProcess", "dbm.utils.process.ProcessObj
 	var WaitProcess = dbm.importClass("dbm.utils.process.WaitProcess");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
@@ -14,9 +14,9 @@ dbm.registerClass("dbm.utils.process.WaitProcess", "dbm.utils.process.ProcessObj
 	var StaticVariableObject = dbm.importClass("dbm.utils.reevaluation.staticreevaluation.StaticVariableObject");
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
-	var ProcessStatusTypes = dbm.importClass("dbm.constants.ProcessStatusTypes");
+	var ProcessStatusTypes = dbm.importClass("dbm.constants.status.ProcessStatusTypes");
 	var ProcessExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ProcessExtendedEventIds");
-	var CommandStatusTypes = dbm.importClass("dbm.constants.CommandStatusTypes");
+	var CommandStatusTypes = dbm.importClass("dbm.constants.status.CommandStatusTypes");
 	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");

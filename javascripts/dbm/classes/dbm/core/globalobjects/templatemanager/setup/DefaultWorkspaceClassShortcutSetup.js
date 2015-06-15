@@ -5,8 +5,8 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.setup.DefaultWorkspace
 	var DefaultWorkspaceClassShortcutSetup = dbm.importClass("dbm.core.globalobjects.templatemanager.setup.DefaultWorkspaceClassShortcutSetup");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var Console = dbm.importClass("dbm.workspace.gui.console.Console");
 	var ConsoleLine = dbm.importClass("dbm.workspace.gui.console.ConsoleLine");

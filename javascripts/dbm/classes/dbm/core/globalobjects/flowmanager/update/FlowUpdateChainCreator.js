@@ -8,12 +8,12 @@ dbm.registerClass("dbm.core.globalobjects.flowmanager.update.FlowUpdateChainCrea
 	var FlowUpdateChain = dbm.importClass("dbm.core.globalobjects.flowmanager.update.FlowUpdateChain");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	
 	staticFunctions.createChainForConnection = function(aConnection, aInputConnection, aOutputConnection) {
 		return FlowUpdateChain.create().setInputConnection(aInputConnection).setOutputConnection(aOutputConnection).addConnection(aConnection);

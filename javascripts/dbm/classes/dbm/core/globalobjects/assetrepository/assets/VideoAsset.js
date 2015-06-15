@@ -11,9 +11,9 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.VideoAsset", "d
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
-	var JavascriptEventIds = dbm.importClass("dbm.constants.JavascriptEventIds");
+	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var VideoEventIds = dbm.importClass("dbm.constants.htmlevents.VideoEventIds");
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.assetrepository.assets.VideoAsset::_init");

@@ -6,8 +6,8 @@ dbm.registerClass("TimeZone", "dbm.core.ExtendedEventBaseObject", function(objec
 	var TimeZone = dbm.importClass("TimeZone");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var PlaceElementNode = dbm.importClass("dbm.flow.nodes.display.PlaceElementNode");
 	

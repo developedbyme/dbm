@@ -5,8 +5,8 @@ dbm.registerClass("dbm.flow.nodes.logic.BitwiseOperatorNode", "dbm.core.FlowBase
 	var BitwiseOperatorNode = dbm.importClass("dbm.flow.nodes.logic.BitwiseOperatorNode");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.flow.nodes.logic.BitwiseOperatorNode::_init");

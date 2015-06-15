@@ -11,8 +11,8 @@ dbm.registerClass("dbm.core.objectparts.AnyChangeMultipleInputProperty", "dbm.co
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	
@@ -20,7 +20,7 @@ dbm.registerClass("dbm.core.objectparts.AnyChangeMultipleInputProperty", "dbm.co
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	//Constants
-	var FlowStatusTypes = dbm.importClass("dbm.constants.FlowStatusTypes");
+	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
 	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
 	
 	/**

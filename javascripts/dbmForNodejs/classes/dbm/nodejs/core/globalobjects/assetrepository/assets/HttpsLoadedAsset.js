@@ -18,7 +18,7 @@ dbm.registerClass("dbm.nodejs.core.globalobjects.assetrepository.assets.HttpsLoa
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	var RequestEventIds = dbm.importClass("dbm.nodejs.constants.nodejsevents.RequestEventIds");
 	var ResponseEventIds = dbm.importClass("dbm.nodejs.constants.nodejsevents.ResponseEventIds");
 	

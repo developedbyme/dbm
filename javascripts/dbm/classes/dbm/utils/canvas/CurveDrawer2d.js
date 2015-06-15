@@ -10,8 +10,8 @@ dbm.registerClass("dbm.utils.canvas.CurveDrawer2d", "dbm.core.FlowBaseObject", f
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependnecies
 	var GetPartOfCurveNode = dbm.importClass("dbm.flow.nodes.curves.GetPartOfCurveNode");

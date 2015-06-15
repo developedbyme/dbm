@@ -10,8 +10,8 @@ dbm.registerClass("dbm.utils.canvas.CanvasGraphics2d", "dbm.core.FlowBaseObject"
 	var Point = dbm.importClass("dbm.core.data.points.Point");
 	var AnyChangeMultipleInputProperty = dbm.importClass("dbm.core.objectparts.AnyChangeMultipleInputProperty");
 	
-	var LineCapTypes = dbm.importClass("dbm.constants.LineCapTypes");
-	var LineJoinTypes = dbm.importClass("dbm.constants.LineJoinTypes");
+	var LineCapTypes = dbm.importClass("dbm.constants.graphics.LineCapTypes");
+	var LineJoinTypes = dbm.importClass("dbm.constants.graphics.LineJoinTypes");
 	
 	/**
 	 * Constructor.

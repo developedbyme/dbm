@@ -8,8 +8,8 @@ dbm.registerClass("dbm.gui.media.video.VideoView", "dbm.gui.media.MediaElementBa
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var Timeline = dbm.importClass("dbm.core.globalobjects.animationmanager.timeline.Timeline");
@@ -26,7 +26,7 @@ dbm.registerClass("dbm.gui.media.video.VideoView", "dbm.gui.media.MediaElementBa
 	var PlaybackStateTypes = dbm.importClass("dbm.constants.PlaybackStateTypes");
 	var VideoEventIds = dbm.importClass("dbm.constants.htmlevents.VideoEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.PlaybackExtendedEventIds");
-	var AssetStatusTypes = dbm.importClass("dbm.constants.AssetStatusTypes");
+	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	
 	/**
 	 * Constructor

@@ -5,8 +5,8 @@ dbm.registerClass("dbm.utils.audio.audioapiplayer.notes.ScaleFunctions", null, f
 	var ScaleFunctions = dbm.importClass("dbm.utils.audio.audioapiplayer.notes.ScaleFunctions");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var Note = dbm.importClass("dbm.utils.audio.audioapiplayer.notes.Note");
 	

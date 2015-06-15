@@ -7,7 +7,7 @@ dbm.registerClass("dbm.utils.css.CssReferenceFunctions", null, function(objectFu
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
 	
-	var CssRuleTypes = dbm.importClass("dbm.constants.CssRuleTypes");
+	var CssRuleTypes = dbm.importClass("dbm.constants.css.CssRuleTypes");
 	
 	staticFunctions.getRulesByType = function(aType, aRulesArray, aReturnArray) {
 		//console.log("dbm.utils.css.CssReferenceFunctions::getRulesByType");

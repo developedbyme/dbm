@@ -7,8 +7,8 @@ dbm.registerClass("dbm.projects.tools.work.gotg.bookmarklet.ExportMapTiles", "db
 	
 	//Error report
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	//Dependencies
 	var ImageAsset = dbm.importClass("dbm.core.globalobjects.assetrepository.assets.ImageAsset");

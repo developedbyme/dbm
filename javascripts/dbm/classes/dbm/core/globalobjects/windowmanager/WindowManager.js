@@ -5,8 +5,8 @@ dbm.registerClass("dbm.core.globalobjects.windowmanager.WindowManager", "dbm.cor
 	var WindowManager = dbm.importClass("dbm.core.globalobjects.windowmanager.WindowManager");
 	
 	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
-	var ReportTypes = dbm.importClass("dbm.constants.ReportTypes");
-	var ReportLevelTypes = dbm.importClass("dbm.constants.ReportLevelTypes");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
 	var Window = dbm.importClass("dbm.core.globalobjects.windowmanager.objects.Window");
 	var NamedArray = dbm.importClass("dbm.utils.data.NamedArray");
