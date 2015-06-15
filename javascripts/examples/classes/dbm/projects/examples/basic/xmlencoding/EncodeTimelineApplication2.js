@@ -22,7 +22,7 @@ dbm.registerClass("dbm.projects.examples.basic.xmlencoding.EncodeTimelineApplica
 	
 	//Constants
 	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	/**
 	 * Constructor

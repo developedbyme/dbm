@@ -29,7 +29,7 @@ dbm.registerClass("dbm.core.globalobjects.flowmanager.FlowManager", "dbm.core.gl
 	//Constants
 	var GlobalVariables = dbm.importClass("dbm.core.globalobjects.GlobalVariables");
 	var FlowStatusTypes = dbm.importClass("dbm.constants.status.FlowStatusTypes");
-	var UpdaterTypes = dbm.importClass("dbm.constants.UpdaterTypes");
+	var UpdaterTypes = dbm.importClass("dbm.constants.generic.UpdaterTypes");
 	
 	
 	/**

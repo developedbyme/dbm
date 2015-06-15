@@ -20,7 +20,7 @@ dbm.registerClass("dbm.core.globalobjects.encodingmanager.setup.EncodingManagerD
 	//Utils
 	
 	//Constants
-	var EncodingMethodIds = dbm.importClass("dbm.constants.EncodingMethodIds");
+	var EncodingMethodIds = dbm.importClass("dbm.constants.generic.EncodingMethodIds");
 	
 	/**
 	 * Sets up the default encoders.

@@ -24,7 +24,7 @@ dbm.registerClass("dbm.adobeflashscript.flash.items.LayerItem", "dbm.core.Extend
 	var AngleFunctions = dbm.importClass("dbm.utils.math.AngleFunctions");
 	
 	//Constants
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	/**
 	 * Constructor

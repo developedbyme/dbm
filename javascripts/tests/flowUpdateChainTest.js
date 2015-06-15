@@ -22,7 +22,7 @@ dbm.runTempFunction(function() {
 	var CosNode = dbm.importClass("dbm.flow.nodes.math.trigonometry.CosNode");
 	var ScaleZNode = dbm.importClass("dbm.flow.nodes.math.transformation.ScaleZNode");
 	var IterativeFlowGroup = dbm.importClass("dbm.flow.IterativeFlowGroup");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

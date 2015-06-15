@@ -1,9 +1,9 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.ConditionOperationTypes", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.ConditionOperationTypes");
+dbm.registerClass("dbm.constants.javascriptlanguage.ConditionOperationTypes", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.javascriptlanguage.ConditionOperationTypes");
 	//"use strict";
 	
-	var ConditionOperationTypes = dbm.importClass("dbm.constants.ConditionOperationTypes");
+	var ConditionOperationTypes = dbm.importClass("dbm.constants.javascriptlanguage.ConditionOperationTypes");
 	
 	staticFunctions.EQUAL = "==";
 	staticFunctions.IDENTICALLY_EQUAL = "===";

@@ -7,7 +7,7 @@ dbm.registerClass("dbm.core.globalobjects.datamanager.setup.DefaultComplexParser
 	var KeyValueParser = dbm.importClass("dbm.core.globalobjects.datamanager.parsers.complex.KeyValueParser");
 	var DbmObjectParser = dbm.importClass("dbm.core.globalobjects.datamanager.parsers.complex.DbmObjectParser");
 	
-	var DataParserTypes = dbm.importClass("dbm.constants.DataParserTypes");
+	var DataParserTypes = dbm.importClass("dbm.constants.generic.DataParserTypes");
 	
 	staticFunctions.setup = function() {
 		

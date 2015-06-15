@@ -20,7 +20,7 @@ dbm.registerClass("dbm.projects.examples.gui.graphs.timeline.DrawTimelineApplica
 	var DragAndDropExtendedEventSetup = dbm.importClass("dbm.core.extendedevent.setup.DragAndDropExtendedEventSetup");
 	
 	//Constants
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	/**
 	 * Constructor

@@ -15,7 +15,7 @@ dbm.registerClass("dbm.projects.examples.thirdparty.google.maps.AnimateLocationA
 	//Utils
 	
 	//Constants
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	/**
 	 * Constructor

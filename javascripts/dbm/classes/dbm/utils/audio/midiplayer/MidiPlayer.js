@@ -18,7 +18,7 @@ dbm.registerClass("dbm.utils.audio.midiplayer.MidiPlayer", "dbm.core.BaseObject"
 	var MidiEventTypes = dbm.importClass("dbm.constants.fileformats.midi.MidiEventTypes");
 	var MidiChannelEventTypes = dbm.importClass("dbm.constants.fileformats.midi.MidiChannelEventTypes");
 	var MidiMetadataTypes = dbm.importClass("dbm.constants.fileformats.midi.MidiMetadataTypes");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	var LogCommand = dbm.importClass("dbm.core.extendedevent.commands.debug.LogCommand");
 	

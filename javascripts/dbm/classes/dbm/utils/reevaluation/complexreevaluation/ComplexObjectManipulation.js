@@ -13,7 +13,7 @@ dbm.registerClass("dbm.utils.reevaluation.complexreevaluation.ComplexObjectManip
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var ObjectFunctions = dbm.importClass("dbm.utils.native.object.ObjectFunctions");
 	
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	staticFunctions.createReevaluationFromTemplate = function(aObject) {
 		

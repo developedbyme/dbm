@@ -18,7 +18,7 @@ dbm.registerClass("dbm.core.globalobjects.htmldommanager.objects.HtmlCreator", "
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	//Constants
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	
 	/**

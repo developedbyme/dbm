@@ -2,12 +2,12 @@
 /**
  * Types used by the update manager to control in which order functions are called.
  */
-dbm.registerClass("dbm.constants.UpdaterTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.constants.UpdaterTypes");
+dbm.registerClass("dbm.constants.generic.UpdaterTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.constants.generic.UpdaterTypes");
 	//"use strict";
 	
 	//Self reference
-	var UpdaterTypes = dbm.importClass("dbm.constants.UpdaterTypes");
+	var UpdaterTypes = dbm.importClass("dbm.constants.generic.UpdaterTypes");
 	
 	staticFunctions.UPDATE_INPUT = "updateInput";
 	staticFunctions.UPDATE_TIMELINES = "updateTimelines";

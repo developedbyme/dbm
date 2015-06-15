@@ -25,7 +25,7 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 	
 	//Constants
 	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	
 	/**

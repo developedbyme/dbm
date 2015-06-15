@@ -17,7 +17,7 @@ dbm.registerClass("dbm.utils.websocket.binarycommand.dataencoders.TypedObjectEnc
 	var ObjectFunctions = dbm.importClass("dbm.utils.native.object.ObjectFunctions");
 	
 	//Constants
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	var SharedPropertyDataTypes = dbm.importClass("dbm.constants.websocket.SharedPropertyDataTypes");
 	
 	/**

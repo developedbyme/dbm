@@ -20,7 +20,7 @@ dbm.registerClass("dbm.core.extendedevent.commands.basic.AnimatePropertyCommand"
 	
 	//Constants
 	var CommandStatusTypes = dbm.importClass("dbm.constants.status.CommandStatusTypes");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	/**
 	 * Constructor

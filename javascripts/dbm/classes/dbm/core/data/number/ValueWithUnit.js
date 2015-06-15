@@ -14,7 +14,7 @@ dbm.registerClass("dbm.core.data.number.ValueWithUnit", "dbm.core.BaseObject", f
 	var ParseFunctions = dbm.importClass("dbm.utils.native.string.ParseFunctions");
 	
 	var UnitTypes = dbm.importClass("dbm.constants.css.UnitTypes");
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	/**
 	 * Constructor

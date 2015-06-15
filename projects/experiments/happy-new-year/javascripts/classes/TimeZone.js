@@ -43,7 +43,7 @@ dbm.registerClass("TimeZone", "dbm.core.ExtendedEventBaseObject", function(objec
 	
 	var EvaluateTimelineNode = dbm.importClass("dbm.flow.nodes.animation.EvaluateTimelineNode");
 	
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("TimeZone::_init");

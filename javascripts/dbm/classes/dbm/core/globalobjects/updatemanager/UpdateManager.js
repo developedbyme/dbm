@@ -20,7 +20,7 @@ dbm.registerClass("dbm.core.globalobjects.updatemanager.UpdateManager", "dbm.cor
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var UpdaterTypes = dbm.importClass("dbm.constants.UpdaterTypes");
+	var UpdaterTypes = dbm.importClass("dbm.constants.generic.UpdaterTypes");
 	
 	
 	

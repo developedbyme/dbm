@@ -8,7 +8,7 @@ dbm.registerClass("dbm.core.globalobjects.htmldommanager.objects.SvgCreator", "d
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.htmldommanager.objects.SvgCreator::_init");

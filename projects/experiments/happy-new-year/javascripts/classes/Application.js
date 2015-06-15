@@ -50,7 +50,7 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 	
 	//Constants
 	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	
 	/**

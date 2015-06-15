@@ -1,8 +1,8 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.DataParserTypes", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.DataParserTypes");
+dbm.registerClass("dbm.constants.generic.DataParserTypes", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.generic.DataParserTypes");
 	
-	var DataParserTypes = dbm.importClass("dbm.constants.DataParserTypes");
+	var DataParserTypes = dbm.importClass("dbm.constants.generic.DataParserTypes");
 	
 	//Basic
 	staticFunctions.STRING = "string";

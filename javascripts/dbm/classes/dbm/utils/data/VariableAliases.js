@@ -16,7 +16,7 @@ dbm.registerClass("dbm.utils.data.VariableAliases", "dbm.core.BaseObject", funct
 	//Utils
 	
 	//Constants
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	staticFunctions.TRUE_STRINGS = ["true", "yes", "y", "1"];
 	staticFunctions.FALSE_STRINGS = ["false", "no", "n","0"];

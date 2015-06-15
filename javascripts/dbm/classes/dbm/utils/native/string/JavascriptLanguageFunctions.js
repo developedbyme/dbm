@@ -16,7 +16,7 @@ dbm.registerClass("dbm.utils.native.string.JavascriptLanguageFunctions", null, f
 	var RegExpFunctions = dbm.importClass("dbm.utils.native.regexp.RegExpFunctions");
 	
 	//Constants
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	
 	staticFunctions.KEWWORD_REG_EXPS = [

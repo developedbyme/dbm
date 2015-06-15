@@ -8,7 +8,7 @@ dbm.registerClass("dbm.core.globalobjects.datamanager.setup.DefaultTextParsersSe
 	var ToLowerCaseParser = dbm.importClass("dbm.core.globalobjects.datamanager.parsers.text.ToLowerCaseParser");
 	var TextReplacementParser = dbm.importClass("dbm.core.globalobjects.datamanager.parsers.text.TextReplacementParser");
 	
-	var DataParserTypes = dbm.importClass("dbm.constants.DataParserTypes");
+	var DataParserTypes = dbm.importClass("dbm.constants.generic.DataParserTypes");
 	
 	staticFunctions.setup = function() {
 		

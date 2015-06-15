@@ -16,7 +16,7 @@ dbm.registerClass("dbm.core.globalobjects.curveevaluator.CurveEvaluator", "dbm.c
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var ExtrapolationTypes = dbm.importClass("dbm.constants.ExtrapolationTypes");
+	var ExtrapolationTypes = dbm.importClass("dbm.constants.generic.ExtrapolationTypes");
 	
 	
 	staticFunctions.DEFAULT_EXACTNESS = 0.01;

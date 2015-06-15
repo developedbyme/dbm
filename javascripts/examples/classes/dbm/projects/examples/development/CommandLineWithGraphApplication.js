@@ -126,7 +126,7 @@ dbm.registerClass("dbm.projects.examples.development.CommandLineWithGraphApplica
 		canvasController.getProperty("display").startUpdating();
 		
 		var initialScript = "";
-		initialScript += "var InterpolationTypes = dbm.importClass(\"dbm.constants.InterpolationTypes\");" + "\n";
+		initialScript += "var InterpolationTypes = dbm.importClass(\"dbm.constants.generic.InterpolationTypes\");" + "\n";
 		initialScript += "\n";
 		initialScript += "animatedObject.getProperty(\"x\").animateValue(150, 0.5, InterpolationTypes.LINEAR, 0.5);" + "\n";
 		initialScript += "animatedObject.getProperty(\"y\").animateValue(200, 0.5, InterpolationTypes.INVERTED_QUADRATIC, 0.5);" + "\n";

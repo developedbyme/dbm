@@ -30,7 +30,7 @@ dbm.registerClass("dbm.adobeextendscript.aftereffects.utils.export.TimelineGener
 	var StringFunctions = dbm.importClass("dbm.utils.native.string.StringFunctions");
 	
 	//Constants
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	
 	staticFunctions.createTimelinesForProprety = function(aProperty, aTimelineName, aReturnPropertiesHolder, aExpressions) {

@@ -17,7 +17,7 @@ dbm.registerClass("dbm.utils.process.WaitProcess", "dbm.utils.process.ProcessObj
 	var ProcessStatusTypes = dbm.importClass("dbm.constants.status.ProcessStatusTypes");
 	var ProcessExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ProcessExtendedEventIds");
 	var CommandStatusTypes = dbm.importClass("dbm.constants.status.CommandStatusTypes");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	

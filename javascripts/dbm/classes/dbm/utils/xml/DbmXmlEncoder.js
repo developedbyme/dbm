@@ -20,7 +20,7 @@ dbm.registerClass("dbm.utils.xml.DbmXmlEncoder", null, function(objectFunctions,
 	
 	//Constants
 	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	staticFunctions.DEFAULT_USE_CDATA = true;
 	

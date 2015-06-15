@@ -23,8 +23,8 @@ dbm.registerClass("dbm.core.globalobjects.animationmanager.timeline.Timeline", "
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	/**
 	 * Constructor

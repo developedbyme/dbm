@@ -10,8 +10,8 @@ dbm.registerClass("dbm.utils.animation.ShakeAnimation", null, function(objectFun
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	staticFunctions.createRandomShake2d = function(aXTimeline, aYTimeline, aNumberOfShakes, aCenterX, aCenterY, aAmplitudeX, aAmplitudeY, aStartTime, aMinStepTime, aMaxStepTime, aInterpolation, aReturnToOriginalPosition) {
 		

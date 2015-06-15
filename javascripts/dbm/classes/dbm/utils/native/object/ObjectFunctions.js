@@ -16,7 +16,7 @@ dbm.registerClass("dbm.utils.native.object.ObjectFunctions", null, function(obje
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	staticFunctions.identifyProperty = function(aPropertyValue, aObject) {
 		for(var objectName in aObject) {

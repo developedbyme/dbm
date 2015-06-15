@@ -27,7 +27,7 @@ dbm.registerClass("dbm.core.globalobjects.curvecreator.setup.CurveCreatorDefault
 	var ConditionAnyOfMultipleValuesObject = dbm.importClass("dbm.utils.reevaluation.logicreevaluation.ConditionAnyOfMultipleValuesObject");
 	
 	//Constants
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	/**
 	 * Sets up the default timeline curve creators.

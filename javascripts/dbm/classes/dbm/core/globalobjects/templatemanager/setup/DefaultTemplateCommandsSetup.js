@@ -35,7 +35,7 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.setup.DefaultTemplateC
 	
 	//Constants
 	var TemplateCommandNames = dbm.importClass("dbm.constants.template.TemplateCommandNames");
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	staticFunctions.setup = function() {
 		//console.log("dbm.core.globalobjects.templatemanager.setup.DefaultTemplateCommandsSetup::setup");

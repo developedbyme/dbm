@@ -18,7 +18,7 @@ dbm.registerClass("dbm.utils.logic.ConditionEvaluation", null, function(objectFu
 	//Utils
 	
 	//Constants
-	var ConditionOperationTypes = dbm.importClass("dbm.constants.ConditionOperationTypes");
+	var ConditionOperationTypes = dbm.importClass("dbm.constants.javascriptlanguage.ConditionOperationTypes");
 	
 	/**
 	 * Evaluates a contition

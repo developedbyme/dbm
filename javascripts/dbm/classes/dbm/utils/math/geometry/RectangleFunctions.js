@@ -19,7 +19,7 @@ dbm.registerClass("dbm.utils.math.geometry.RectangleFunctions", null, function(o
 	//Utils
 	
 	//Constants
-	var FitTypes = dbm.importClass("dbm.constants.FitTypes");
+	var FitTypes = dbm.importClass("dbm.constants.generic.FitTypes");
 	
 	staticFunctions._tempPoint = null;
 	

@@ -1,8 +1,8 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.HtmlInputTypes", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.HtmlInputTypes");
+dbm.registerClass("dbm.constants.htmldom.HtmlInputTypes", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.htmldom.HtmlInputTypes");
 	
-	var HtmlInputTypes = dbm.importClass("dbm.constants.HtmlInputTypes");
+	var HtmlInputTypes = dbm.importClass("dbm.constants.htmldom.HtmlInputTypes");
 	
 	staticFunctions.BUTTON = "button";
 	staticFunctions.CHECKBOX = "checkbox";

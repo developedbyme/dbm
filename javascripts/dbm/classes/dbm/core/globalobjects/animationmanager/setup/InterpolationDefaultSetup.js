@@ -4,7 +4,7 @@ dbm.registerClass("dbm.core.globalobjects.animationmanager.setup.InterpolationDe
 	
 	var InterpolationDefaultSetup = dbm.importClass("dbm.core.globalobjects.animationmanager.setup.InterpolationDefaultSetup");
 	
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	var StepInterpolation = dbm.importClass("dbm.utils.math.interpolation.StepInterpolation");
 	var LinearInterpolation = dbm.importClass("dbm.utils.math.interpolation.LinearInterpolation");

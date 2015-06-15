@@ -8,7 +8,7 @@ dbm.registerClass("dbm.utils.native.function.FunctionFunctions", null, function(
 	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	staticFunctions.getCallbackFunction = function(aObject, aFunction) {
 		//METODO: do a try catch for silent error catch

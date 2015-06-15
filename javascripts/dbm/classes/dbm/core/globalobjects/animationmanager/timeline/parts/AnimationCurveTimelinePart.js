@@ -13,7 +13,7 @@ dbm.registerClass("dbm.core.globalobjects.animationmanager.timeline.parts.Animat
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var ExtrapolationTypes = dbm.importClass("dbm.constants.ExtrapolationTypes");
+	var ExtrapolationTypes = dbm.importClass("dbm.constants.generic.ExtrapolationTypes");
 	
 	
 	/**

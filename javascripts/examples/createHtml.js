@@ -3,7 +3,7 @@ dbm.runTempFunction(function() {
 	//var BaseButton = dbm.importClass("dbm.gui.buttons.BaseButton");
 	//var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
-	var HtmlInputTypes = dbm.importClass("dbm.constants.HtmlInputTypes");
+	var HtmlInputTypes = dbm.importClass("dbm.constants.htmldom.HtmlInputTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

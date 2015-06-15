@@ -66,7 +66,7 @@ dbm.registerClass("dbm.projects.examples.development.CommandLineWithVisualResult
 		
 		var initialScript = "";
 		initialScript += "var DisplayBaseObject = dbm.importClass(\"dbm.gui.DisplayBaseObject\");" + "\n";
-		initialScript += "var InterpolationTypes = dbm.importClass(\"dbm.constants.InterpolationTypes\");" + "\n";
+		initialScript += "var InterpolationTypes = dbm.importClass(\"dbm.constants.generic.InterpolationTypes\");" + "\n";
 		initialScript += "\n";
 		initialScript += "var testObject = DisplayBaseObject.createDiv(holder.getElement(), true, {\"style\": \"position: absolute; width: 50px; height: 50px; background-color: #FF0000;\"});" + "\n";
 		initialScript += "testObject.setElementAsPositioned();" + "\n";

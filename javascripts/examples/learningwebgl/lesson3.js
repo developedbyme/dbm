@@ -21,7 +21,7 @@ dbm.runTempFunction(function() {
 	var WebglDrawTypes = dbm.importClass("dbm.constants.webgl.WebglDrawTypes");
 	var WebglBufferTypes = dbm.importClass("dbm.constants.webgl.WebglBufferTypes");
 	var WebglBeginModeTypes = dbm.importClass("dbm.constants.webgl.WebglBeginModeTypes");
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

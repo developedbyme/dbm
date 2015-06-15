@@ -2,7 +2,7 @@ dbm.runTempFunction(function() {
 	
 	var AdditionNode = dbm.importClass("dbm.flow.nodes.math.AdditionNode");
 	var InputField = dbm.importClass("dbm.gui.form.InputField");
-	var HtmlInputTypes = dbm.importClass("dbm.constants.HtmlInputTypes");
+	var HtmlInputTypes = dbm.importClass("dbm.constants.htmldom.HtmlInputTypes");
 	var ParseFloatNode = dbm.importClass("dbm.flow.nodes.parse.ParseFloatNode");
 	
 	dbm.addStartFunction(function() {

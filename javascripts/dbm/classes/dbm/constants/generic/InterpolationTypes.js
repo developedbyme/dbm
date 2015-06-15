@@ -1,9 +1,9 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.InterpolationTypes", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.InterpolationTypes");
+dbm.registerClass("dbm.constants.generic.InterpolationTypes", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.generic.InterpolationTypes");
 	//"use strict";
 	
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	staticFunctions.STEP = "step";
 	staticFunctions.LINEAR = "linear";

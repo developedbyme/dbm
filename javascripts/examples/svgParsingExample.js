@@ -10,7 +10,7 @@ dbm.runTempFunction(function() {
 	var SvgPathFunctions = dbm.importClass("dbm.utils.svg.SvgPathFunctions");
 	var SvgColorFunctions = dbm.importClass("dbm.utils.svg.SvgColorFunctions");
 	var CssLanguageFunctions = dbm.importClass("dbm.utils.native.string.CssLanguageFunctions");
-	var CurveMergeTypes = dbm.importClass("dbm.constants.CurveMergeTypes");
+	var CurveMergeTypes = dbm.importClass("dbm.constants.generic.CurveMergeTypes");
 	
 	var XmlCreator = dbm.importClass("dbm.utils.xml.XmlCreator");
 	

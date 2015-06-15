@@ -22,7 +22,7 @@ dbm.runTempFunction(function() {
 	var TransformElementNode = dbm.importClass("dbm.flow.nodes.display.TransformElementNode");
 	var SizeOfElementNode = dbm.importClass("dbm.flow.nodes.display.SizeOfElementNode");
 	
-	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
+	var InterpolationTypes = dbm.importClass("dbm.constants.generic.InterpolationTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

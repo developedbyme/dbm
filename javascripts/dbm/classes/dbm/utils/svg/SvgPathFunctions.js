@@ -16,7 +16,7 @@ dbm.registerClass("dbm.utils.svg.SvgPathFunctions", null, function(objectFunctio
 	var ParseFunctions = dbm.importClass("dbm.utils.native.string.ParseFunctions");
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	var SvgPathCommandTypes = dbm.importClass("dbm.constants.graphics.SvgPathCommandTypes");
 	
 	staticFunctions._TYPE_NOTHING = 0;

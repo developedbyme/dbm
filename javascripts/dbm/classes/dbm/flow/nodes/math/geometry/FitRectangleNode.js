@@ -8,7 +8,7 @@ dbm.registerClass("dbm.flow.nodes.math.geometry.FitRectangleNode", "dbm.core.Flo
 	
 	var RectangleFunctions = dbm.importClass("dbm.utils.math.geometry.RectangleFunctions");
 	
-	var FitTypes = dbm.importClass("dbm.constants.FitTypes");
+	var FitTypes = dbm.importClass("dbm.constants.generic.FitTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.flow.nodes.math.geometry.FitRectangleNode::_init");

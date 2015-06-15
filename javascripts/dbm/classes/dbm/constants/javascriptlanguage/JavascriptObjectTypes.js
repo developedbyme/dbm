@@ -2,12 +2,12 @@
 /**
  * Object types for all javascript objects.
  */
-dbm.registerClass("dbm.constants.JavascriptObjectTypes", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.JavascriptObjectTypes");
+dbm.registerClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	//"use strict";
 	
 	//Self reference
-	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
+	var JavascriptObjectTypes = dbm.importClass("dbm.constants.javascriptlanguage.JavascriptObjectTypes");
 	
 	staticFunctions.TYPE_UNDEFINED = "undefined";
 	staticFunctions.NON_REAL_TYPE_NULL = "null"; //MENOTE: null has type "object"
