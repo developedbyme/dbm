@@ -16,7 +16,7 @@ dbm.registerClass("dbm.flow.setup.display.SetupCssPropertyFunctions", null, func
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
+	var UnitTypes = dbm.importClass("dbm.constants.css.UnitTypes");
 	
 	staticFunctions.setupBackgroundImageProperty = function(aDisplayObject, aInputValue) {
 		

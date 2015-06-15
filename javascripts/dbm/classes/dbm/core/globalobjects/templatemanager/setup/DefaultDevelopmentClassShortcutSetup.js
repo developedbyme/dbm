@@ -16,7 +16,7 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.setup.DefaultDevelopme
 	//Utils
 	
 	//Constants
-	var TemplateClassShortcutNames = dbm.importClass("dbm.constants.TemplateClassShortcutNames");
+	var TemplateClassShortcutNames = dbm.importClass("dbm.constants.template.TemplateClassShortcutNames");
 	
 	staticFunctions.setup = function() {
 		

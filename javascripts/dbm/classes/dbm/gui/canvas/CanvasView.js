@@ -15,7 +15,7 @@ dbm.registerClass("dbm.gui.canvas.CanvasView", "dbm.gui.DisplayBaseObject", func
 	//Utils
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	/**
 	 * Constructor

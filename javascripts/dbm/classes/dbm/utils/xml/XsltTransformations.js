@@ -10,7 +10,7 @@ dbm.registerClass("dbm.utils.xml.XsltTransforamtions", null, function(objectFunc
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	staticFunctions.transformToFragment = function(aXmlData, aXsltDocument, aParameters, aDocument) {
 		

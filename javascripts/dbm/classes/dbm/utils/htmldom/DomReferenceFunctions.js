@@ -8,7 +8,7 @@ dbm.registerClass("dbm.utils.htmldom.DomReferenceFunctions", null, function(obje
 	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
 	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	staticFunctions.getDocument = (function(aElementOrDocument) {
 		//console.log("dbm.utils.htmldom.DomReferenceFunctions::getDocument (static)");

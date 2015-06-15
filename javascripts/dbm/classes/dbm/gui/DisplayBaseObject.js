@@ -29,7 +29,7 @@ dbm.registerClass("dbm.gui.DisplayBaseObject", "dbm.core.ExtendedEventBaseObject
 	var DomManipulationFunctions = dbm.importClass("dbm.utils.htmldom.DomManipulationFunctions");
 	
 	//Constants
-	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
+	var UnitTypes = dbm.importClass("dbm.constants.css.UnitTypes");
 	
 	/**
 	 * Constructor

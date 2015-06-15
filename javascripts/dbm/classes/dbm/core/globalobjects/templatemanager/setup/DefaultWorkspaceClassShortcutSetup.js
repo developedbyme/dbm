@@ -12,7 +12,7 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.setup.DefaultWorkspace
 	var ConsoleLine = dbm.importClass("dbm.workspace.gui.console.ConsoleLine");
 	var Workspace = dbm.importClass("dbm.workspace.gui.Workspace");
 	
-	var TemplateClassShortcutNames = dbm.importClass("dbm.constants.TemplateClassShortcutNames");
+	var TemplateClassShortcutNames = dbm.importClass("dbm.constants.template.TemplateClassShortcutNames");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.templatemanager.setup.DefaultWorkspaceClassShortcutSetup::_init");

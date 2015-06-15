@@ -11,7 +11,7 @@ dbm.registerClass("dbm.gui.svg.SvgLayer", "dbm.gui.svg.SvgDisplayBaseObject", fu
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.gui.svg.SvgLayer::_init");

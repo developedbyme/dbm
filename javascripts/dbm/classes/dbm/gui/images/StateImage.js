@@ -9,7 +9,7 @@ dbm.registerClass("dbm.gui.images.StateImage", "dbm.gui.images.StaticImage", fun
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.gui.images.StateImage::_init");

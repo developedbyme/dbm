@@ -23,8 +23,8 @@ dbm.registerClass("dbm.gui.media.MediaElementBaseObject", "dbm.gui.DisplayBaseOb
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
-	var PlaybackStateTypes = dbm.importClass("dbm.constants.PlaybackStateTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
+	var PlaybackStateTypes = dbm.importClass("dbm.constants.status.PlaybackStateTypes");
 	var AudioEventIds = dbm.importClass("dbm.constants.htmlevents.AudioEventIds");
 	var VideoEventIds = dbm.importClass("dbm.constants.htmlevents.VideoEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.PlaybackExtendedEventIds");

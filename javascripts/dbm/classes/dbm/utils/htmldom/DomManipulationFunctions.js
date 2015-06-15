@@ -18,7 +18,7 @@ dbm.registerClass("dbm.utils.htmldom.DomManipulationFunctions", null, function(o
 	//Utils
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	staticFunctions.importNode = function(aElement, aDeep, aDocument) {
 		//console.log("dbm.utils.htmldom.DomManipulationFunctions::importNode");

@@ -13,7 +13,7 @@ dbm.registerClass("dbm.core.data.number.ValueWithUnit", "dbm.core.BaseObject", f
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var ParseFunctions = dbm.importClass("dbm.utils.native.string.ParseFunctions");
 	
-	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
+	var UnitTypes = dbm.importClass("dbm.constants.css.UnitTypes");
 	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
 	
 	/**

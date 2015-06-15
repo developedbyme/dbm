@@ -1,8 +1,8 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.TemplateCommandNames", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.TemplateCommandNames");
+dbm.registerClass("dbm.constants.template.TemplateCommandNames", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.template.TemplateCommandNames");
 	
-	var TemplateCommandNames = dbm.importClass("dbm.constants.TemplateCommandNames");
+	var TemplateCommandNames = dbm.importClass("dbm.constants.template.TemplateCommandNames");
 	
 	staticFunctions.IGNORE = "ignore";
 	

@@ -26,7 +26,7 @@ dbm.registerClass("dbm.core.globalobjects.xmlobjectencoder.setup.XmlObjectEncode
 	//Utils
 	
 	//Constants
-	var XmlEncoderCustomTypes = dbm.importClass("dbm.constants.XmlEncoderCustomTypes");
+	var XmlEncoderCustomTypes = dbm.importClass("dbm.constants.xml.XmlEncoderCustomTypes");
 	
 	/**
 	 * Sets up the default encoders.

@@ -18,7 +18,7 @@ dbm.registerClass("dbm.gui.form.sliders.HorizontalScaleSlider", "dbm.gui.form.sl
 	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.PlaybackExtendedEventIds");
 	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.gui.form.sliders.HorizontalScaleSlider::_init");

@@ -15,7 +15,7 @@ dbm.registerClass("dbm.flow.nodes.time.PlaybackNode", "dbm.core.FlowBaseObject",
 	//Utils
 	
 	//Constants
-	var PlaybackStateTypes = dbm.importClass("dbm.constants.PlaybackStateTypes");
+	var PlaybackStateTypes = dbm.importClass("dbm.constants.status.PlaybackStateTypes");
 	
 	/**
 	 * Constructor

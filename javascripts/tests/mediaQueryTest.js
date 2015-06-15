@@ -9,7 +9,7 @@ dbm.runTempFunction(function() {
 	
 	var ProgrammingLanguageFunctions = dbm.importClass("dbm.utils.native.string.ProgrammingLanguageFunctions");
 	
-	var EnabledStatusTypes = dbm.importClass("dbm.constants.generic.EnabledStatusTypes");
+	var EnabledStatusTypes = dbm.importClass("dbm.constants.status.EnabledStatusTypes");
 	
 	dbm.addStartFunction(function() {
 		console.log("startFunction");

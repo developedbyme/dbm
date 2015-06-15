@@ -14,7 +14,7 @@ dbm.registerClass("dbm.gui.table.TableElement", "dbm.gui.DisplayBaseObject", fun
 	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.gui.table.TableElement::_init");

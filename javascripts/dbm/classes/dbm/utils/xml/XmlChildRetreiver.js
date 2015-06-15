@@ -16,7 +16,7 @@ dbm.registerClass("dbm.utils.xml.XmlChildRetreiver", null, function(objectFuncti
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	staticFunctions.WARN_FOR_NO_XML = false;
 	staticFunctions.WARN_FOR_NO_RESULT = false;

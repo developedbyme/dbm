@@ -2,12 +2,12 @@
 /**
  * Css unit types and conversion to svg types.
  */
-dbm.registerClass("dbm.constants.UnitTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.constants.UnitTypes");
+dbm.registerClass("dbm.constants.css.UnitTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.constants.css.UnitTypes");
 	//"use strict";
 	
 	//Self refernce
-	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
+	var UnitTypes = dbm.importClass("dbm.constants.css.UnitTypes");
 	
 	//Error report
 	

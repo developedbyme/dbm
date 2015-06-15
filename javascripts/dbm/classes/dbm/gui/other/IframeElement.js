@@ -6,7 +6,7 @@ dbm.registerClass("dbm.gui.other.IframeElement", "dbm.gui.DisplayBaseObject", fu
 	var IframeElement = dbm.importClass("dbm.gui.other.IframeElement");
 	
 	var ExternalVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalVariableProperty");
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");

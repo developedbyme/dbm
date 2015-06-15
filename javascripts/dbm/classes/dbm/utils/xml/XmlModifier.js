@@ -11,7 +11,7 @@ dbm.registerClass("dbm.utils.xml.XmlModifier", null, function(objectFunctions, s
 	
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	staticFunctions.DEFAULT_USE_CDATA = true;
 	

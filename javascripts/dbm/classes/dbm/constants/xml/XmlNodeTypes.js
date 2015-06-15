@@ -1,9 +1,9 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.XmlNodeTypes", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.XmlNodeTypes");
+dbm.registerClass("dbm.constants.xml.XmlNodeTypes", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.xml.XmlNodeTypes");
 	//"use strict";
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	staticFunctions.ELEMENT_NODE = 1;
 	staticFunctions.ATTRIBUTE_NODE = 2;

@@ -11,7 +11,7 @@ dbm.registerClass("dbm.core.globalobjects.templatemanager.setup.DefaultTextCreat
 	var TextCreator = dbm.importClass("dbm.core.globalobjects.templatemanager.objects.textcreators.TextCreator");
 	var HtmlTextCreator = dbm.importClass("dbm.core.globalobjects.templatemanager.objects.textcreators.HtmlTextCreator");
 	
-	var TemplateTextCreatorTypes = dbm.importClass("dbm.constants.TemplateTextCreatorTypes");
+	var TemplateTextCreatorTypes = dbm.importClass("dbm.constants.template.TemplateTextCreatorTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.templatemanager.setup.DefaultTextCreatorsSetup::_init");

@@ -14,7 +14,7 @@ dbm.registerClass("dbm.gui.images.StaticImage", "dbm.gui.DisplayBaseObject", fun
 	//Utils
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	
 	/**

@@ -20,7 +20,7 @@ dbm.registerClass("dbm.gui.form.FileInputField", "dbm.gui.DisplayBaseObject", fu
 	//Constants
 	var JavascriptEventIds = dbm.importClass("dbm.constants.htmlevents.JavascriptEventIds");
 	var FormFieldExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.FormFieldExtendedEventIds");
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	staticFunctions._ACTIVE = "active";
 	

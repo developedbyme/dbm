@@ -12,7 +12,7 @@ dbm.registerClass("dbm.gui.text.HtmlTextElement", "dbm.gui.DisplayBaseObject", f
 	var ExternalVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalVariableProperty");
 	var DomManipulationFunctions = dbm.importClass("dbm.utils.htmldom.DomManipulationFunctions");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.gui.text.HtmlTextElement::_init");

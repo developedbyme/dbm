@@ -8,7 +8,7 @@ dbm.registerClass("dbm.workspace.gui.panels.HtmlPanel", "dbm.workspace.gui.panel
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.workspace.gui.panels.HtmlPanel::_init");

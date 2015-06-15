@@ -25,7 +25,7 @@ dbm.registerClass("dbm.core.globalobjects.xmlobjectencoder.XmlObjectEncoder", "d
 	var IsoDate = dbm.importClass("dbm.utils.native.date.IsoDate");
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	var JavascriptObjectTypes = dbm.importClass("dbm.constants.JavascriptObjectTypes");
 	
 	

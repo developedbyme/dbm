@@ -15,8 +15,8 @@ dbm.registerClass("dbm.gui.svg.SvgView", "dbm.gui.DisplayBaseObject", function(o
 	var SvgLengthFunctions = dbm.importClass("dbm.utils.svg.SvgLengthFunctions");
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
-	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
+	var UnitTypes = dbm.importClass("dbm.constants.css.UnitTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.gui.svg.SvgView::_init");

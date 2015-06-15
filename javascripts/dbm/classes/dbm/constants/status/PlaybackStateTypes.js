@@ -1,8 +1,8 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.PlaybackStateTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.constants.PlaybackStateTypes");
+dbm.registerClass("dbm.constants.status.PlaybackStateTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.constants.status.PlaybackStateTypes");
 	
-	var PlaybackStateTypes = dbm.importClass("dbm.constants.PlaybackStateTypes");
+	var PlaybackStateTypes = dbm.importClass("dbm.constants.status.PlaybackStateTypes");
 	
 	staticFunctions.PAUSED = 0;
 	staticFunctions.PLAYING = 1;

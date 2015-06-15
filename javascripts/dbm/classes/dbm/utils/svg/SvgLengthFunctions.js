@@ -13,7 +13,7 @@ dbm.registerClass("dbm.utils.svg.SvgLengthFunctions", null, function(objectFunct
 	
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
-	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
+	var UnitTypes = dbm.importClass("dbm.constants.css.UnitTypes");
 	
 	staticFunctions._tempValueWithUnit = null;
 	

@@ -25,7 +25,7 @@ dbm.registerClass("dbm.projects.examples.gui.form.sliders.SimplePlaybackControll
 	var GetVariableObject = dbm.importClass("dbm.utils.reevaluation.objectreevaluation.GetVariableObject");
 	
 	//Constants
-	var PlaybackStateTypes = dbm.importClass("dbm.constants.PlaybackStateTypes");
+	var PlaybackStateTypes = dbm.importClass("dbm.constants.status.PlaybackStateTypes");
 	var ButtonExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.ButtonExtendedEventIds");
 	var GenericExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.GenericExtendedEventIds");
 	

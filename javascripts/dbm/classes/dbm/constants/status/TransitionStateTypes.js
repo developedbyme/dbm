@@ -2,12 +2,12 @@
 /**
  * Transition state.
  */
-dbm.registerClass("dbm.constants.TransationStateTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
-	//console.log("dbm.constants.TransationStateTypes");
+dbm.registerClass("dbm.constants.status.TransationStateTypes", null, function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("dbm.constants.status.TransationStateTypes");
 	//"use strict";
 	
 	//Self refernce
-	var TransationStateTypes = dbm.importClass("dbm.constants.TransationStateTypes");
+	var TransationStateTypes = dbm.importClass("dbm.constants.status.TransationStateTypes");
 	
 	//Error report
 	

@@ -22,8 +22,8 @@ dbm.registerClass("dbm.gui.media.video.VideoView", "dbm.gui.media.MediaElementBa
 	var PathFunctions = dbm.importClass("dbm.utils.file.PathFunctions");
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
-	var PlaybackStateTypes = dbm.importClass("dbm.constants.PlaybackStateTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
+	var PlaybackStateTypes = dbm.importClass("dbm.constants.status.PlaybackStateTypes");
 	var VideoEventIds = dbm.importClass("dbm.constants.htmlevents.VideoEventIds");
 	var PlaybackExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.PlaybackExtendedEventIds");
 	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");

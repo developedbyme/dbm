@@ -14,7 +14,7 @@ dbm.registerClass("dbm.flow.nodes.display.PlaceElementNode", "dbm.core.FlowBaseO
 	
 	var RoundNode = dbm.importClass("dbm.flow.nodes.math.round.RoundNode");
 	
-	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
+	var UnitTypes = dbm.importClass("dbm.constants.css.UnitTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.flow.nodes.display.PlaceElementNode::_init");

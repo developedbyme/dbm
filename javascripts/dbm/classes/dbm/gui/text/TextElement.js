@@ -11,7 +11,7 @@ dbm.registerClass("dbm.gui.text.TextElement", "dbm.gui.DisplayBaseObject", funct
 	
 	var ExternalVariableProperty = dbm.importClass("dbm.core.objectparts.ExternalVariableProperty");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	objectFunctions._init = function() {
 		//console.log("dbm.gui.text.TextElement::_init");

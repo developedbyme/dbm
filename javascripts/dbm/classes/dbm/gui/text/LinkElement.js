@@ -14,7 +14,7 @@ dbm.registerClass("dbm.gui.text.LinkElement", "dbm.gui.DisplayBaseObject", funct
 	//Utils
 	
 	//Constants
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	
 	
 	/**

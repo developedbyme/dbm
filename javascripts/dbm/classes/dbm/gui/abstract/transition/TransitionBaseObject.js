@@ -15,7 +15,7 @@ dbm.registerClass("dbm.gui.abstract.transition.TransitionBaseObject", "dbm.core.
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var TransationStateTypes = dbm.importClass("dbm.constants.TransationStateTypes");
+	var TransationStateTypes = dbm.importClass("dbm.constants.status.TransationStateTypes");
 	var InterpolationTypes = dbm.importClass("dbm.constants.InterpolationTypes");
 	
 	/**

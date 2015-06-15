@@ -18,7 +18,7 @@ dbm.registerClass("dbm.utils.css.CssFunctions", null, function(objectFunctions, 
 	var ArrayFunctions = dbm.importClass("dbm.utils.native.array.ArrayFunctions");
 	
 	//Constants
-	var UnitTypes = dbm.importClass("dbm.constants.UnitTypes");
+	var UnitTypes = dbm.importClass("dbm.constants.css.UnitTypes");
 	
 	staticFunctions.BROWSER_CSS_PREFIXES = ["-webkit-", "-khtml-", "-moz-", "-o-", "-ms-"];
 	staticFunctions.LENGTH_PROPERTIES = ["border-top-width", "border-right-width", "border-bottom-width", "border-left-width", "border-width", "bottom", "height", "left", "letter-spacing", "line-height", "margin-top", "margin-right", "margin-bottom", "margin-left", "margin", "max-height", "max-width", "min-height", "min-width", "outline-width", "padding-top", "padding-right", "padding-bottom", "padding-left", "padding", "right", "text-indent", "top", "width", "word-spacing"];

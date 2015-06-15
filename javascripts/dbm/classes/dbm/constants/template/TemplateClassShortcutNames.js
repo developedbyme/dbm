@@ -1,8 +1,8 @@
 /* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
-dbm.registerClass("dbm.constants.TemplateClassShortcutNames", null, function(objectFunctions, staticFunctions) {
-	//console.log("dbm.constants.TemplateClassShortcutNames");
+dbm.registerClass("dbm.constants.template.TemplateClassShortcutNames", null, function(objectFunctions, staticFunctions) {
+	//console.log("dbm.constants.template.TemplateClassShortcutNames");
 	
-	var TemplateClassShortcutNames = dbm.importClass("dbm.constants.TemplateClassShortcutNames");
+	var TemplateClassShortcutNames = dbm.importClass("dbm.constants.template.TemplateClassShortcutNames");
 	
 	//Basic
 	staticFunctions.DBM_DISPLAY_BASE_OBJECT = "dbm:DisplayBaseObject";

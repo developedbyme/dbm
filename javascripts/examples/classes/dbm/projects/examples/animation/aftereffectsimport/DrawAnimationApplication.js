@@ -63,7 +63,7 @@ dbm.registerClass("dbm.projects.examples.animation.aftereffectsimport.DrawAnimat
 	var TrackMatteTypes = dbm.importClass("dbm.constants.thirdparty.adobe.aftereffects.TrackMatteTypes");
 	var AssetStatusTypes = dbm.importClass("dbm.constants.status.AssetStatusTypes");
 	var LoadingExtendedEventIds = dbm.importClass("dbm.constants.extendedevents.LoadingExtendedEventIds");
-	var PlaybackStateTypes = dbm.importClass("dbm.constants.PlaybackStateTypes");
+	var PlaybackStateTypes = dbm.importClass("dbm.constants.status.PlaybackStateTypes");
 	var LineCapTypes = dbm.importClass("dbm.constants.graphics.LineCapTypes");
 	var LineJoinTypes = dbm.importClass("dbm.constants.graphics.LineJoinTypes");
 	

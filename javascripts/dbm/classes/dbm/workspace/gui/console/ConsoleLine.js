@@ -10,7 +10,7 @@ dbm.registerClass("dbm.workspace.gui.console.ConsoleLine", "dbm.gui.DisplayBaseO
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	var DomReferenceFunctions = dbm.importClass("dbm.utils.htmldom.DomReferenceFunctions");
 	
-	var XmlNodeTypes = dbm.importClass("dbm.constants.XmlNodeTypes");
+	var XmlNodeTypes = dbm.importClass("dbm.constants.xml.XmlNodeTypes");
 	var ConsoleExtendedEventIds = dbm.importClass("dbm.workspace.constants.extendedevents.ConsoleExtendedEventIds");
 	
 	objectFunctions._init = function() {

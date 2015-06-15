@@ -13,7 +13,7 @@ dbm.registerClass("dbm.gui.abstract.transition.SingleStateTransition", "dbm.gui.
 	var VariableAliases = dbm.importClass("dbm.utils.data.VariableAliases");
 	
 	//Constants
-	var TransationStateTypes = dbm.importClass("dbm.constants.TransationStateTypes");
+	var TransationStateTypes = dbm.importClass("dbm.constants.status.TransationStateTypes");
 	
 	/**
 	 * Constructor
