@@ -1,5 +1,17 @@
-dbm.runTempFunction(function() {
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("Application");
+	//"use strict";
 	
+	//Self reference
+	var Application = dbm.importClass("Application");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
+	
+	//Dependencies
 	var DisplayBaseObject = dbm.importClass("dbm.gui.DisplayBaseObject");
 	
 	var WindowSizeNode = dbm.importClass("dbm.flow.nodes.browser.WindowSizeNode");
@@ -28,11 +40,33 @@ dbm.runTempFunction(function() {
 	var TouchOrMouseDetector = dbm.importClass("dbm.gui.abstract.touch.TouchOrMouseDetector");
 	var MovablePointsController = dbm.importClass("dbm.gui.abstract.touch.movablepoints.MovablePointsController");
 	
+	//Utils
+	
+	//Constants
 	var LineCapTypes = dbm.importClass("dbm.constants.graphics.LineCapTypes");
 	var LineJoinTypes = dbm.importClass("dbm.constants.graphics.LineJoinTypes");
 	
-	dbm.addStartFunction(function() {
-		console.log("startFunction");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		console.log("Application::_init");
+		
+		this.superCall();
+		
+		//this._addTemplate("main", "assets/templates.html#main");
+		
+		this._addStartFunction(this._createPage, []);
+		
+		return this;
+	};
+	
+	objectFunctions._createPage = function() {
+		console.log("Application::_createPage");
+		
+		//var templateResult = this._createControllerFromTemplate("main");
+		//var mainController = templateResult.mainController;
 		
 		//Center of page
 		var windowSizeNode = (new WindowSizeNode()).init();
@@ -352,6 +386,11 @@ dbm.runTempFunction(function() {
 		createLeg("legs/left", centerPositionX-50+16, centerPositionY+50, centerPositionX-50+16, centerPositionY+50+2*legLength, legLength, legLength, 1);
 		
 		createGuitar("guitar", centerPositionX-20, centerPositionY+20, 1.33*0.25*Math.PI);
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		//console.log("Application::setAllReferencesToNull");
 		
-	});
+		this.superCall();
+	};
 });
