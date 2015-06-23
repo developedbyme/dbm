@@ -1,15 +1,48 @@
-dbm.runTempFunction(function() {
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("Application");
+	//"use strict";
 	
+	//Self reference
+	var Application = dbm.importClass("Application");
+	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
+	
+	//Dependencies
 	var ProcessGroup = dbm.importClass("dbm.utils.process.ProcessGroup");
 	var WaitProcess = dbm.importClass("dbm.utils.process.WaitProcess");
 	var ExtendedEventProcess = dbm.importClass("dbm.utils.process.ExtendedEventProcess");
 	
+	//Utils
 	var CallFunctionCommand = dbm.importClass("dbm.core.extendedevent.commands.basic.CallFunctionCommand");
 	
+	//Constants
 	var ProcessStatusTypes = dbm.importClass("dbm.constants.status.ProcessStatusTypes");
 	
-	dbm.addStartFunction(function() {
-		console.log("startFunction");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		console.log("Application::_init");
+		
+		this.superCall();
+		
+		//this._addTemplate("main", "assets/templates.html#main");
+		
+		this._addStartFunction(this._createPage, []);
+		
+		return this;
+	};
+	
+	objectFunctions._createPage = function() {
+		console.log("Application::_createPage");
+		
+		//var templateResult = this._createControllerFromTemplate("main");
+		//var mainController = templateResult.mainController;
 		
 		var processGroup = ProcessGroup.create();
 		
@@ -38,5 +71,11 @@ dbm.runTempFunction(function() {
 		
 		console.log(processGroup);
 		processGroup.startProcess();
-	});
+	};
+	
+	objectFunctions.setAllReferencesToNull = function() {
+		//console.log("Application::setAllReferencesToNull");
+		
+		this.superCall();
+	};
 });

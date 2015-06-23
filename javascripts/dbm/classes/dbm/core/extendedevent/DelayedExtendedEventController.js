@@ -60,7 +60,10 @@ dbm.registerClass("dbm.core.extendedevent.DelayedExtendedEventController", "dbm.
 	
 	objectFunctions.addCommand = function(aCommand, aUndoCommand, aDelay) {
 		//console.log("dbm.core.extendedevent.DelayedExtendedEventController::addCommand");
-		var newTime = this._currentPosition.getAnimationController().getTime()+aDelay;
+		//console.log(this._currentPosition.getAnimationController());
+		
+		//METODO: don't use private variable
+		var newTime = this._currentPosition.getAnimationController()._referenceTime.getValue()+aDelay;
 		
 		this.addCommandAt(aCommand, aUndoCommand, newTime);
 	};

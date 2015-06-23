@@ -1,20 +1,52 @@
-dbm.runTempFunction(function() {
+/* Copyright (C) 2011-2014 Mattias Ekendahl. Used under MIT license, see full details at https://github.com/developedbyme/dbm/blob/master/LICENSE.txt */
+dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlonePage", function(objectFunctions, staticFunctions, ClassReference) {
+	//console.log("Application");
+	//"use strict";
 	
-	var ArrayGenerator = dbm.importClass("dbm.utils.native.array.ArrayGenerator");
+	//Self reference
+	var Application = dbm.importClass("Application");
 	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
+	
+	//Dependencies
+	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
 	var SequencedMultipleOrderSelector = dbm.importClass("dbm.utils.data.orderselector.SequencedMultipleOrderSelector");
 	var OrderedOrderSelector = dbm.importClass("dbm.utils.data.orderselector.OrderedOrderSelector");
 	var ModifiedSteppedOrderSelector = dbm.importClass("dbm.utils.data.orderselector.ModifiedSteppedOrderSelector");
 	var ReservedData = dbm.importClass("dbm.utils.data.orderselector.ReservedData");
 	
+	//Utils
+	var ArrayGenerator = dbm.importClass("dbm.utils.native.array.ArrayGenerator");
 	var RepeatedRangeInterpolation = dbm.importClass("dbm.utils.math.interpolation.RepeatedRangeInterpolation");
 	var OffsettedInterpolation = dbm.importClass("dbm.utils.math.interpolation.OffsettedInterpolation");
 	var LinearInterpolation = dbm.importClass("dbm.utils.math.interpolation.LinearInterpolation");
 	
-	var CanvasView = dbm.importClass("dbm.gui.canvas.CanvasView");
+	//Constants
 	
-	var startFunction = function() {
-		console.log("startFunction");
+	
+	/**
+	 * Constructor
+	 */
+	objectFunctions._init = function() {
+		console.log("Application::_init");
+		
+		this.superCall();
+		
+		//this._addTemplate("main", "assets/templates.html#main");
+		
+		this._addStartFunction(this._createPage, []);
+		
+		return this;
+	};
+	
+	objectFunctions._createPage = function() {
+		console.log("Application::_createPage");
+		
+		//var templateResult = this._createControllerFromTemplate("main");
+		//var mainController = templateResult.mainController;
 		
 		var length = 150;
 		var startOffset = 0;
@@ -36,7 +68,7 @@ dbm.runTempFunction(function() {
 		
 		var drawWidth = 500;
 		
-		var canvasView = CanvasView.create(dbm.getDocument().body, true, "2d", {width: drawWidth, height: drawWidth});
+		var canvasView = CanvasView.create(this._contentHolder, true, "2d", {width: drawWidth, height: drawWidth});
 		var canvasController = canvasView.getController();
 		canvasView.getProperty("display").startUpdating();
 		canvasController.getProperty("display").startUpdating();
@@ -65,11 +97,11 @@ dbm.runTempFunction(function() {
 		}
 		
 		console.log(returnArray);
-		
-		
-		
-		
 	};
 	
-	dbm.addStartFunction(startFunction);
+	objectFunctions.setAllReferencesToNull = function() {
+		//console.log("Application::setAllReferencesToNull");
+		
+		this.superCall();
+	};
 });
