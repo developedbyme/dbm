@@ -34,16 +34,16 @@ dbm.registerClass("Application", "dbm.gui.abstract.startup.standalone.StandAlone
 		
 		this.superCall();
 		
-		//this._fileName = "../audio/soundwaves/AKWF/AKWF_bw_perfectwaves/AKWF_sin.wav";
-		//this._fileName = "../audio/soundwaves/AKWF/AKWF_dbass/AKWF_dbass_0012.wav";
-		//this._fileName = "../audio/soundwaves/AKWF/AKWF_overtone/AKWF_overtone_0005.wav";
-		//this._fileName = "../audio/soundwaves/AKWF/AKWF_hvoice/AKWF_hvoice_0005.wav";
-		//this._fileName = "../audio/soundwaves/AKWF/AKWF_0004/AKWF_0306.wav";
-		//this._fileName = "../audio/soundwaves/AKWF/AKWF_0002/AKWF_0114.wav";
-		this._fileName = "../../../audio/soundwaves/AKWF/AKWF_epiano/AKWF_epiano_0001.wav";
-		//this._fileName = "../audio/soundwaves/AKWF/AKWF_bw_sawrounded/AKWF_R_asym_saw_07.wav";
-		//this._fileName = "../audio/soundwaves/AKWF/AKWF_birds/AKWF_birds_0001.wav";
-		//this._fileName = "../audio/soundwaves/AKWF/AKWF_0012/AKWF_1101.wav";
+		//this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_bw_perfectwaves/AKWF_sin.wav";
+		//this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_dbass/AKWF_dbass_0012.wav";
+		//this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_overtone/AKWF_overtone_0005.wav";
+		//this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_hvoice/AKWF_hvoice_0005.wav";
+		//this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_0004/AKWF_0306.wav";
+		//this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_0002/AKWF_0114.wav";
+		this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_epiano/AKWF_epiano_0001.wav";
+		//this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_bw_sawrounded/AKWF_R_asym_saw_07.wav";
+		//this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_birds/AKWF_birds_0001.wav";
+		//this._fileName = "dbm-assets/audio/soundwaves/AKWF/AKWF_0012/AKWF_1101.wav";
 		
 		this._assetsLoader.addAssetByPath(this._fileName);
 		this._addStartFunction(this._createPage, []);

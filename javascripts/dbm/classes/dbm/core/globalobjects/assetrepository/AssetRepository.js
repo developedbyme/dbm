@@ -95,6 +95,15 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.AssetRepository", "dbm
 		currentItem.setAttribute("absolutePath", aServerPath);
 	};
 	
+	objectFunctions.createLink = function(aFrom, aTo) {
+		//console.log("dbm.core.globalobjects.assetrepository.AssetRepository::createLink");
+		var tempArray = aFrom.split("/");
+		
+		var newLink = TreeStructureItemLink.create(tempArray.pop(), aTo);
+		
+		this._hierarchy.addItem(newLink, tempArray.join("/"), this._rootNode);
+	};
+	
 	objectFunctions.addAssetCreatorForTypes = function(aCreator, aTypes) {
 		var currentArray = aTypes;
 		var currentArrayLength = currentArray.length;

@@ -110,6 +110,9 @@ dbm.registerClass("dbm.utils.data.treestructure.TreeStructure", "dbm.core.Extend
 		
 		var currentItem = VariableAliases.valueWithDefault(aBaseItem, this._root);
 		
+		if(aPath === "") {
+			return currentItem;
+		}
 		var currentArray;
 		if(aPath.charAt(0) === "/") {
 			currentItem = this._root;
