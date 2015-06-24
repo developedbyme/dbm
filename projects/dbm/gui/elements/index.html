@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Template</title>
+		<link rel="stylesheet" href="../../../../styles/all.css" />
+		<link rel="stylesheet" href="styles/main.css" />
+		
+		<script type="application/javascript" src="../../../../javascripts/dbm/dbm.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/dbm/classes/dbm/core/globalobjects/classmanager/ClassManager.js"></script>
+		<script type="application/javascript" src="javascripts/configuration.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/dbm/setup/defaultPathsSetup.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/dbm/setup/defaultSetup.js"></script>
+		<script type="application/javascript" src="../../../../javascripts/dbm/setup/defaultStart.js"></script>
+		<script type="application/javascript" src="javascripts/startup.js"></script>
+	</head>
+	<body class="fullWindow">
+		<div id="testButton" style="background-color: #0000FF; width: 150px;">Button</div>
+		<div id="testTemplate" data-dbm-class="dbm:DisplayBaseObject">
+			<div>
+				<div style="background-color: #0000FF" data-dbm-class="BaseButton" data-dbm-name="testButton">Test button</div>
+				<div data-dbm-name="contentArea">
+					<video data-dbm-class="VideoView" data-dbm-name="videoPlayer"></video>
+					<div data-dbm-text-class="dbm:text">Test text</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
