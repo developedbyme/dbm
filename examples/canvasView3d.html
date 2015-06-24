@@ -4,11 +4,16 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Canvas view - dbm example</title>
 		<script type="application/javascript" src="../javascripts/dbm/dbm.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/classes/dbm/core/globalobjects/classmanager/ClassManager.js"></script>
 		<script type="application/javascript">
 			dbm.setup(window, document, "../javascripts", "classes");
+			dbm.addBaseFolder("dbm", "../javascripts");
+		
+			dbm.addLibrary("CodeMirror", ["../javascripts/libraries/codemirror/lib/codemirror.js", "../javascripts/libraries/codemirror/mode/javascript/javascript.js"], "CodeMirror", ["../javascripts/libraries/codemirror/lib/codemirror.css"]);
 		</script>
-		<script type="application/javascript" src="../javascripts/dbm/classes/com/developedbyme/core/globalobjects/classmanager/ClassManager.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/setup/defaultPathsSetup.js"></script>
 		<script type="application/javascript" src="../javascripts/dbm/setup/defaultSetup.js"></script>
+		<script type="application/javascript" src="../javascripts/dbm/setup/defaultStart.js"></script>
 		<script type="application/javascript" src="../javascripts/examples/canvasView3dExample.js"></script>
 		<script type="application/javascript" src="../javascripts/libraries/glmatrix/glMatrix-0.9.5.min.js"></script>
 		

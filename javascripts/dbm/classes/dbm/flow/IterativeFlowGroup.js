@@ -74,7 +74,7 @@ dbm.registerClass("dbm.flow.IterativeFlowGroup", "dbm.flow.FlowGroup", function(
 	
 	objectFunctions.addIteration = function(aInputConnections, aOutputConnections) {
 		
-		var newIndex = this._iterator.getLength();
+		var newIndex = this._iterator.array.length;
 		
 		var newIteration = (new IterationObject()).init();
 		
@@ -88,7 +88,7 @@ dbm.registerClass("dbm.flow.IterativeFlowGroup", "dbm.flow.FlowGroup", function(
 		}
 		
 		this._iterator.push(newIteration);
-		this._length.setValue(this._iterator.getLength());
+		this._length.setValue(newIndex+1);
 		
 		return newIteration;
 	};
