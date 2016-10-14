@@ -33,6 +33,8 @@ dbm.registerClass("dbm.gui.form.sliders.HorizontalScaleSlider", "dbm.gui.form.sl
 	};
 	
 	objectFunctions.setScalingElement = function(aElement) {
+		//console.log("dbm.gui.form.sliders.HorizontalScaleSlider::setScalingElement");
+		
 		this._scalingElement = aElement;
 		
 		return this;

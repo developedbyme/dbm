@@ -50,7 +50,11 @@ dbm.registerClass("dbm.gui.abstract.startup.standalone.StandAlonePage", "dbm.cor
 		
 		var templateResult = dbm.singletons.dbmTemplateManager.createControllersForAsset(aTemplatePath, null, true, this._contentHolder, true);
 		
-		this._contentHolder = templateResult.rootElement.querySelectorAll("*[name=contentHolder]")[0];
+		var newContentHolder = templateResult.rootElement.querySelectorAll("*[name=contentHolder]")[0];
+		if(newContentHolder) {
+			this._contentHolder = newContentHolder;
+		}
+		
 	};
 	
 	objectFunctions._addTemplate = function(aId, aPath) {

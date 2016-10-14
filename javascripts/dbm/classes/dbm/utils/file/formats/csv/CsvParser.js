@@ -93,6 +93,10 @@ dbm.registerClass("dbm.utils.file.formats.csv.CsvParser", "dbm.core.BaseObject",
 		return this._rows[aIndex];
 	};
 	
+	objectFunctions.deleteRow = function(aIndex) {
+		this._rows.splice(aIndex, 1);
+	};
+	
 	objectFunctions.findColumnByValue = function(aRowIndex, aSearchValue) {
 		var currentArray = this.getRow(aRowIndex);
 		var currentArrayLength = currentArray.length;
@@ -224,6 +228,8 @@ dbm.registerClass("dbm.utils.file.formats.csv.CsvParser", "dbm.core.BaseObject",
 	objectFunctions.encode = function() {
 		var returnString = "";
 		
+		var stringRegExp = new RegExp("\"", "g");
+		
 		var currentArray = this._rows;
 		var currentArrayLength = currentArray.length;
 		for(var i = 0; i < currentArrayLength; i++) {
@@ -231,8 +237,9 @@ dbm.registerClass("dbm.utils.file.formats.csv.CsvParser", "dbm.core.BaseObject",
 			var currentArray2Length = currentArray2.length;
 			for(var j = 0; j < currentArray2Length; j++) {
 				var currentField = currentArray2[j];
-				if(currentField !== "") {
-					returnString += "\"" + currentField.replace("\"", "\"\"\"") + "\"";
+				if(VariableAliases.isSet(currentField) && currentField !== "") {
+					
+					returnString += "\"" + currentField.replace(stringRegExp, "\"\"") + "\"";
 				}
 				if(j !== currentArray2Length-1) {
 					returnString += ",";

@@ -16,6 +16,11 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.JsonAsset", "db
 	var ReadyStateTypes = dbm.importClass("dbm.constants.status.ReadyStateTypes");
 	var XmlHttpResponseTypes = dbm.importClass("dbm.constants.xml.XmlHttpResponseTypes");
 	
+	//Error report
+	var ErrorManager = dbm.importClass("dbm.core.globalobjects.errormanager.ErrorManager");
+	var ReportTypes = dbm.importClass("dbm.constants.error.ReportTypes");
+	var ReportLevelTypes = dbm.importClass("dbm.constants.error.ReportLevelTypes");
+	
 	objectFunctions._init = function() {
 		//console.log("dbm.core.globalobjects.assetrepository.assets.JsonAsset::_init");
 		
@@ -25,7 +30,17 @@ dbm.registerClass("dbm.core.globalobjects.assetrepository.assets.JsonAsset", "db
 	};
 	
 	objectFunctions._setupData = function() {
-		this._data.setValue(JSON.parse(this._loader.responseText));
+		
+		var parsed_data = null;
+		
+		try {
+			var parsed_data = JSON.parse(this._loader.responseText);
+		}
+		catch(theError) {
+			ErrorManager.getInstance().reportError(this, "_setupData", theError);
+		}
+		
+		this._data.setValue(parsed_data);
 	};
 	
 	objectFunctions._setupResponseType = function() {

@@ -124,6 +124,31 @@ dbm.registerClass("dbm.utils.xml.XmlChildRetreiver", null, function(objectFuncti
 		return returnArray;
 	};
 	
+	staticFunctions.getNamespacedChilds = function(aXml, aChildNamespace, aChildName) {
+		//console.log("dbm.utils.xml.XmlChildRetreiver::getNamespacedChilds (static)");
+		//console.log(aXml, aChildNamespace, aChildName);
+		if(aXml === null) {
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_XML, "getNamespacedChild", "Xml is null");
+			return null;
+		}
+		
+		var returnArray = new Array();
+		var currentArray = aXml.childNodes;
+		var currentArrayLength = currentArray.length;
+		for(var i = 0; i < currentArrayLength; i++) {
+			var currentChild = currentArray[i];
+			if(currentChild.namespaceURI === aChildNamespace && currentChild.localName === aChildName) {
+				returnArray.push(currentChild);
+			}
+		}
+		
+		if(returnArray.length === 0) {
+			ClassReference._reportWarning(ClassReference.WARN_FOR_NO_RESULT, "getNamespacedChild", "No result in " + aXml);
+			return returnArray;
+		}
+		return returnArray;
+	};
+	
 	staticFunctions.getChildByAttribute = function(aXml, aAttributeName, aValue, aChildName) {
 		//console.log("dbm.utils.xml.XmlChildRetreiver::getChildByAttribute (static)");
 		aChildName = VariableAliases.valueWithDefault(aChildName, "*");
