@@ -1,0 +1,113 @@
+import React from "react";
+import Dbm from "../../index.js";
+
+export default class LoginForm extends Dbm.react.BaseObject {
+    _construct() {
+        super._construct();
+
+        this.item.setValue("username", "");
+        this.item.setValue("password", "");
+
+    }
+
+    _login() {
+        console.log("_login");
+
+        let loader = new Dbm.loading.JsonLoader();
+        loader.setupJsonPost("/api/user/login", {"username": this.item.username, "password": this.item.password});
+
+        Dbm.flow.addUpdateCommand(loader.item.properties.status, Dbm.commands.callFunction(this._loaderStatusChanged.bind(this), [loader]));
+
+        loader.load();
+    }
+
+    _loaderStatusChanged(aLoader) {
+        console.log("_loaderStatusChanged");
+        console.log(aLoader, aLoader.item.status);
+
+        if(aLoader.item.status === Dbm.loading.LoadingStatus.LOADED) {
+            if(aLoader.item.data.success) {
+                
+                let item = Dbm.getInstance().repository.getItem("graphApi").controller.signIn(aLoader.item.data.data.wsToken);
+                Dbm.flow.addUpdateCommand(item.properties.status, Dbm.commands.callFunction(this._graphApiRequestStatusChanges.bind(this), [item, aLoader]));
+            }
+            else {
+                alert("Unable to log in: " + aLoader.item.data.message);
+            }
+        }
+    }
+
+    _graphApiRequestStatusChanges(aRequest, aLoader) {
+        console.log("_graphApiRequestStatusChanges");
+        console.log(aRequest, aRequest.status);
+
+        if(aRequest.status === Dbm.loading.LoadingStatus.LOADED) {
+            let completedCommands = this.getProp("completedCommands");
+            if(completedCommands) {
+                let currentArray = completedCommands;
+                let currentArrayLength = currentArray.length;
+                for(let i = 0; i < currentArrayLength; i++) {
+                    let currentCommand = currentArray[i];
+                    currentCommand.perform(this, aLoader.item.data.data);
+                }
+                return;
+            }
+
+            let site = Dbm.getInstance().repository.getItem("site");
+            let queryString = new URLSearchParams(window.location.search);
+            let skipRedirect = this.getProp("skipRedirect");
+
+            if(!skipRedirect) {
+                let redirectUrl = queryString.get('redirect');
+                if(redirectUrl) {
+                    Dbm.getInstance().repository.getItem("siteNavigation").controller.navigate(redirectUrl);
+                    return;
+                }
+            }
+            
+            let action = queryString.get('action');
+            if(action) {
+                let actionCommand = Dbm.objectPath(site, "loginActions." + action);
+                if(actionCommand) {
+                    actionCommand.perform(this, aLoader.item.data.data);
+                    return;
+                }
+                console.warn("Unknown action " + action);
+            }
+
+            let actionCommand = Dbm.objectPath(site, "loginActions.default");
+            if(actionCommand) {
+                actionCommand.perform(this, aLoader.item.data.data);
+                return;
+            }  
+
+            Dbm.getInstance().repository.getItem("siteNavigation").controller.navigate(site.loggedInUrl);
+        }
+    }
+
+    _renderMainElement() {
+
+        return this._createMainElement("div", {}, 
+            React.createElement("div", {className: "body-text"},
+                React.createElement("div", {"className": ""},
+                    React.createElement("label", {className: ""},
+                        "Email"
+                    )
+                ),
+                React.createElement(Dbm.react.form.FormField, {value: this.item.properties.username}),
+                React.createElement("div", {"className": "spacing standard"}),
+                React.createElement("div", {"className": ""},
+                    React.createElement("label", {className: ""},
+                        "Password"
+                    )
+                ),
+                React.createElement(Dbm.react.form.FormField, {type: "password", value: this.item.properties.password})
+            ),
+            React.createElement("div", {"className": "spacing standard"}),
+            React.createElement("div", {"className": "flex-row justify-center"}, 
+                React.createElement("div", {"className": "standard-button standard-button-padding", onClick: () => this._login()}, "Login")
+            )
+        );
+    }
+}
+
