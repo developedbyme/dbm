@@ -1,20 +1,9 @@
+export let range = function(aStartValue, aEndValue, aStep = 1) {
+    let returnArray = [];
 
-    let range = function(aStartValue, aEndValue, aStep = 1) {
-        let returnArray = [];
-    
-        return returnArray;
-    }
+    return returnArray;
+}
 
-    export {range};
-
-    let removeDuplicates = function(aArray) {
-        return aArray;
-    }
-
-    export {removeDuplicates};
-
-    let removeDuplicates2 = function(aArray) {
-        return aArray;
-    }
-
-    export {removeDuplicates2};
+export let removeDuplicates = function(aArray) {
+    return aArray;
+}

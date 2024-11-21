@@ -1,27 +1,27 @@
 import Dbm from "../../../index.js";
 
-export default class RangeSwitch extends Dbm.flow.FlowUpdateFunction {
+export default class Switch extends Dbm.flow.FlowUpdateFunction {
 
     _construct() {
         super._construct();
         
         this.input.register("value", 0);
         this.input.register("defaultValue", null);
-        this.input.register("ranges", []);
+        this.input.register("cases", []);
 
         this.output.register("value", null);
     }
 
-    addValueForRange(aOutputValue, aMinInputValue = null, aMaxInputValue = null) {
+    addCase(aKey, aOutputValue) {
 
-        let rangeData = {value: aOutputValue, min: aMinInputValue, max: aMaxInputValue};
-        //METODO: connect values to flow
+        let newCase = {key: aKey, value: aOutputValue};
+        //METODO: connect key and value to flow
 
-        let newRanges = [].concat(this.input.ranges);
+        let newCases = [].concat(this.input.cases);
 
-        newRanges.push(rangeData);
+        newCases.push(newCase);
 
-        this.input.ranges = newRanges;
+        this.input.cases = newCases;
 
         return this;
     }
@@ -34,9 +34,9 @@ export default class RangeSwitch extends Dbm.flow.FlowUpdateFunction {
         let currentArray = this.input.ranges;
         let currentArrayLength = currentArray.length;
         for(let i = 0; i < currentArrayLength; i++) {
-            let currentRange = currentArray[i];
+            let currentCase = currentArray[i];
 
-            if((value >= currentRange["min"] || currentRange["min"] === null) && (value < currentRange["max"] || currentRange["max"] === null)) {
+            if(value === currentCase["key"]) {
                 this.output.value = currentRange["value"];
                 return;
             }
