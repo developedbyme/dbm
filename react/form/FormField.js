@@ -5,6 +5,7 @@ export default class FormField extends Dbm.react.BaseObject {
         super._construct();
 
         this.getDynamicProp("value", "");
+        this.state["formUpdate"] = 0;
 
         this._callback_changeBound = this._callback_change.bind(this);
     }
@@ -16,6 +17,7 @@ export default class FormField extends Dbm.react.BaseObject {
         let value = aEvent.target.value;
 
         this.getDynamicProp("value").getMostUpstreamProperty().setValue(value);
+        this.setState({"formUpdate": this.state.formUpdate}); //MENOTE: trigger change direct to not lose focus on input
     }
 
     _renderMainElement() {

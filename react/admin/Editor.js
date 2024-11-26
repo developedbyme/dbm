@@ -7,21 +7,32 @@ export default class Editor extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
-        Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/image@latest");
-        Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/header@latest");
-        Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/image@latest");
+        let all = Dbm.flow.updatefunctions.logic.allAtValue(1);
+
+        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/image@latest").item.properties.status);
+        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/header@latest").item.properties.status);
+        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/image@latest").item.properties.status);
+        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/list@latest").item.properties.status);
+        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/raw@latest").item.properties.status);
+        
+        
         //METODO: select which tools should be used
 
-        let scriptLoader = Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest");
+        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest").item.properties.status);
 
         this.item.setValue("element", document.createElement("div"));
 
         let updateFunction = new Dbm.flow.updatefunctions.basic.RunCommand();
         
-        updateFunction.input.command = Dbm.commands.callFunction(this._scriptStatus.bind(this), [scriptLoader]);
+        updateFunction.input.command = Dbm.commands.callFunction(this._scriptStatus.bind(this), [all]);
 
         updateFunction.output.properties.value.startUpdating();
-        updateFunction.input.properties.value.connectInput(scriptLoader.item.properties.status);
+        updateFunction.input.properties.value.connectInput(all.output.properties.value);
+
+        this.getDynamicPropWithoutState("value", {});
+
+        this._callback_saveDataUpdatedBound = this._callback_saveDataUpdated.bind(this);
+        this._callback_editorChangeBound = this._callback_editorChange.bind(this);
     }
 
     uploadImage(aFile) {
@@ -58,16 +69,27 @@ export default class Editor extends Dbm.react.BaseObject {
         }
     }
 
+    _callback_saveDataUpdated(aData) {
+        console.log("_callback_saveDataUpdated");
+        console.log(aData);
+
+        this.getDynamicProp("value").getMostUpstreamProperty().setValue(aData);
+    }
+
+    _callback_editorChange(aApi, aEvent) {
+        this.item.editor.save().then(this._callback_saveDataUpdatedBound);
+    }
+
     _scriptStatus(aLoader) {
         //console.log("_scriptStatus");
         //console.log(aLoader);
 
-        if(aLoader.item.status === 1) {
+        if(aLoader.output.value) {
 
             let element = this.item.element;
             element.classList.add("full-size");
 
-            let content = Dbm.getInstance().repository.getItem("siteDataLoader").currentPage.page.content;
+            let content = this.getDynamicProp("value").value;
 
             let tools = {
                 image: window.ImageTool,
@@ -84,26 +106,36 @@ export default class Editor extends Dbm.react.BaseObject {
                             }
                         }
                     }
-                }
+                },
+                list: {
+                    class: window.EditorjsList,
+                    inlineToolbar: true,
+                    config: {
+                      defaultStyle: 'unordered'
+                    },
+                },
+                raw: window.RawTool
             };
 
 
             let editorConfigItem = Dbm.getInstance().repository.getItem("editorjs");
             let toolsFromConfig = editorConfigItem.tools;
 
-            tools = {...tools, ...toolsFromConfig}
+            tools = {...tools, ...toolsFromConfig};
 		
 		    const editor = new window.EditorJS({ 
                 minHeight: 0,
                 holder: element,
                 tools: tools,
-                data: content
+                data: content,
+                onChange: this._callback_editorChangeBound
             });
 
             this.item.setValue("editor", editor);
         }
     }
 
+    /*
     _save() {
         this.item.editor.save().then((aOutputData) => {
             console.log('Article data: ', aOutputData);
@@ -119,6 +151,7 @@ export default class Editor extends Dbm.react.BaseObject {
             console.log('Saving failed: ', error)
           });
     }
+    */
 
     componentDidMount() {
         //console.log("componentDidMount");
@@ -135,19 +168,8 @@ export default class Editor extends Dbm.react.BaseObject {
     _renderMainElement() {
 
         return React.createElement("div", {style: {"position": "relative", "zIndex": 0}},
-            React.createElement("div", {"ref": this.createRef("holder")}),
-            React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._save()}},
-                "Save"
-            )
+            React.createElement("div", {"ref": this.createRef("holder")})
         );
-        /*
-        return <div>
-            <div ref={this.createRef("holder")} />
-            <div className="standard-button standard-button-padding" onClick={() => {this._save()}}>
-                Save
-            </div>
-        </div>;
-        */
     }
 }
 

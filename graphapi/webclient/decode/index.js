@@ -48,6 +48,14 @@ let fullSetup = function() {
     }
 
     {
+        let name = "url";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyFields", ["url"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
+
+    {
         let name = "urlRequest";
         let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
         currentDecoder.item.setValue("copyFields", ["meta/description"]);

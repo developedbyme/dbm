@@ -6,6 +6,9 @@ export {default as RangeSwitch} from "./RangeSwitch.js";
 export {default as Subtraction} from "./Subtraction.js";
 export {default as Switch} from "./Switch.js";
 export {default as Condition} from "./Condition.js";
+export {default as All} from "./All.js";
+export {default as Any} from "./Any.js";
+export {default as AllAtValue} from "./AllAtValue.js";
 
 export let subtract = function(aInput1 = 0, aInput2 = 0) {
     let updateFunction = new Dbm.flow.updatefunctions.logic.Subtraction();
@@ -44,6 +47,44 @@ export let condition = function(aInput1 = null, aOperationFunction = null, aInpu
     updateFunction.input.properties.input1.setOrConnect(aInput1);
     updateFunction.input.properties.operation.setOrConnect(aOperationFunction);
     updateFunction.input.properties.input2.setOrConnect(aInput2);
+
+    return updateFunction;
+}
+
+export let all = function(...aValues) {
+    let updateFunction = new Dbm.flow.updatefunctions.logic.All();
+    
+    let currentArray = aValues;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        updateFunction.addCheck(currentArray[i]);
+    }
+
+    return updateFunction;
+}
+
+export let any = function(...aValues) {
+    let updateFunction = new Dbm.flow.updatefunctions.logic.Any();
+    
+    let currentArray = aValues;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        updateFunction.addCheck(currentArray[i]);
+    }
+
+    return updateFunction;
+}
+
+export let allAtValue = function(aMatchValue, ...aValues) {
+    let updateFunction = new Dbm.flow.updatefunctions.logic.AllAtValue();
+
+    updateFunction.input.matchValue = aMatchValue;
+    
+    let currentArray = aValues;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        updateFunction.addCheck(currentArray[i]);
+    }
 
     return updateFunction;
 }

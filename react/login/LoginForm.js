@@ -90,18 +90,18 @@ export default class LoginForm extends Dbm.react.BaseObject {
         return this._createMainElement("div", {}, 
             React.createElement("div", {className: "body-text"},
                 React.createElement("div", {"className": ""},
-                    React.createElement("label", {className: ""},
+                    React.createElement("label", {className: "standard-field-label"},
                         "Email"
                     )
                 ),
-                React.createElement(Dbm.react.form.FormField, {value: this.item.properties.username}),
+                React.createElement(Dbm.react.form.FormField, {value: this.item.properties.username, className: "standard-field standard-field-padding full-width"}),
                 React.createElement("div", {"className": "spacing standard"}),
                 React.createElement("div", {"className": ""},
-                    React.createElement("label", {className: ""},
+                    React.createElement("label", {className: "standard-field-label"},
                         "Password"
                     )
                 ),
-                React.createElement(Dbm.react.form.FormField, {type: "password", value: this.item.properties.password})
+                React.createElement(Dbm.react.form.FormField, {type: "password", value: this.item.properties.password, className: "standard-field standard-field-padding full-width"})
             ),
             React.createElement("div", {"className": "spacing standard"}),
             React.createElement("div", {"className": "flex-row justify-center"}, 

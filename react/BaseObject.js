@@ -60,6 +60,15 @@ export default class BaseObject extends Component {
         return this._dynamicProps[aName];
     }
 
+    getDynamicPropWithoutState(aName, aInitialValue = null) {
+        if(!this._dynamicProps[aName]) {
+            let newProperty = new Dbm.flow.FlowProperty();
+            newProperty.value = aInitialValue;
+            this._dynamicProps[aName] = newProperty;
+        }
+        return this._dynamicProps[aName];
+    }
+
     get item() {
         if(!this._item) {
             this._item = new Dbm.repository.Item();

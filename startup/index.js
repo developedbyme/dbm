@@ -3,13 +3,13 @@ import Dbm from "../index.js";
 export {default as Runner} from "./Runner.js";
 export {default as Controller} from "./Controller.js";
 
-export let runStartup = function() {
-    if(!window.dbmstartup.modules.isSetup) {
+export let runStartup = function(aGlobalScope = "dbmstartup", aModulesName = "modules") {
+    if(!window[aGlobalScope][aModulesName].isSetup) {
         let controller = new Dbm.startup.Controller();
 
-        let currentArray = globalThis.dbmstartup.modules._;
+        let currentArray = globalThis[aGlobalScope][aModulesName]._;
 
-        globalThis.dbmstartup.modules = controller;
+        globalThis[aGlobalScope][aModulesName] = controller;
 
         let currentArrayLength = currentArray.length;
         for(let i = 0; i < currentArrayLength; i++) {

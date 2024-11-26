@@ -10,6 +10,7 @@ let createToolConfiguration = function(aId, aName, aInitialData = {}, aIcon = nu
             "name": aName,
         },
         "data": aInitialData,
+        "inlineToolbar": true,
         "toolbox": {
             title: aName,
             icon: aIcon
@@ -55,6 +56,33 @@ export let registerAllBlocks = function() {
         elementItem.register("blocks/" + moduleName);
 
         tools[moduleName] = createToolConfiguration(moduleName, "Login form");
+    }
+
+    {
+        let moduleName = "test/test";
+
+        let displayNameModule = new Dbm.react.modules.ModuleCreator();
+
+    let displayNameEditor = createElement("div", {},
+        createElement("div", {contentEditable: true}, "test"),
+        createElement("input", {})
+    );
+    displayNameModule.setMainElement(displayNameEditor);
+        
+        let editorItem = new Dbm.repository.Item();
+        editorItem.setValue("controller", displayNameModule);
+        editorItem.register("moduleCreators/blocks/editor/" + moduleName);
+
+        let elementItem = new Dbm.repository.Item();
+        elementItem.setValue("element", 
+            createElement("div", {},
+                createElement("div", {contentEditable: true}, "test"),
+                createElement("input", {})
+            )
+        );
+        elementItem.register("blocks/" + moduleName);
+
+        tools[moduleName] = createToolConfiguration(moduleName, "Test");
     }
 
     editorConfigItem.setValue("tools", tools);
