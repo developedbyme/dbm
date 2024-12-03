@@ -60,7 +60,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     }
 
     requestData(aFunctionName, aData) {
-        console.log("requestData");
+        //console.log("requestData");
         let item = this._getRequestItem();
         item.setValue("requestData", {"type": "data", "functionName": aFunctionName, "data": aData, "requestId": item.id});
         this._runRequest(item);
@@ -85,6 +85,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     }
 
     requestUrl(aUrl) {
+		
         let item = this._getRequestItem();
         item.setValue("requestData", {"type": "url", "url": aUrl, "requestId": item.id});
         this._runRequest(item);
