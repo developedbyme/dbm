@@ -26,6 +26,7 @@ export default class EditPage extends Dbm.react.BaseObject {
             {"type": "setField", "data": {"value": this.item.content, "field": "content"}},
             {"type": "setField", "data": {"value": this.item.title, "field": "title"}},
             {"type": "setField", "data": {"value": this.item.description, "field": "meta/description"}},
+			{"type": "setField", "data": {"value": (new Date()).toISOString(), "field": "lastModified"}},
             {"type": "setUrl", "data": {"value": this.item.url}}
         ], ["content", "title", "url", "meta/description"]);
     }
