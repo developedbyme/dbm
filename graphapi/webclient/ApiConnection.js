@@ -5,6 +5,7 @@ export default class ApiConnection extends Dbm.core.BaseObject {
         super._construct();
 
         this._url = null;
+		this._setupItemResponseBound = this._setupItemResponse.bind(this);
     }
 
     setup(aUrl) {
@@ -75,6 +76,22 @@ export default class ApiConnection extends Dbm.core.BaseObject {
             }
 		}
 	}
+	
+	_setupItemResponse(aRequestItem, aData) {
+		this._updateObjects(aData.objects);
+		
+		let repository = Dbm.getInstance().repository;
+		
+		let id = aData.data.id;
+		if(id) {
+			aRequestItem.setValue("item", repository.getItem(id));
+		}
+		else {
+			aRequestItem.setValue("item", null);
+		}
+		
+		aRequestItem.status = 1;
+	}
 
     requestUrl(aUrl) {
 		
@@ -84,12 +101,7 @@ export default class ApiConnection extends Dbm.core.BaseObject {
 		fetch(fullUrl).then((aRequest) => {
 			return aRequest.json();
 		}).then((aData) => {
-			
-			this._updateObjects(aData.objects);
-			
-			let repository = Dbm.getInstance().repository;
-			item.setValue("item", repository.getItem(aData.data.id));
-			item.status = 1;
+			this._setupItemResponseBound(item, aData);
 		});
         
         return item;
