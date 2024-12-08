@@ -175,7 +175,7 @@ export default class BaseObject extends Component {
             }
         }
 
-        if(!children.length) {
+        if(!children || !children.length) {
             return createElement(aType, newProps);
         }
 
