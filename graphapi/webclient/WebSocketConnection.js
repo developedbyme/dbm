@@ -4,22 +4,39 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     _construct() {
         super._construct();
 
+		this._url = null;
         this._webSocket = null;
+		
+		this._intervalId = -1;
         this._callback_onOpenBound = this._callback_onOpen.bind(this);
         this._callback_onMessageBound = this._callback_onMessage.bind(this);
+		this._callback_onMessageBound = this._callback_onMessage.bind(this);
+		this._callback_onCloseBound = this._callback_onClose.bind(this);
+		this._callback_onErrorBound = this._callback_onError.bind(this);
+		this._callback_sendHeartbeatBound = this._callback_sendHeartbeat.bind(this);
 
         this.item.setValue("requests", []);
         this.item.setValue("status", 0);
     }
 
     setup(aUrl) {
-        this._webSocket = new WebSocket(aUrl);
-        this.item.setValue("status", 2);
-
-        this._webSocket.onopen = this._callback_onOpenBound;
-        this._webSocket.onmessage = this._callback_onMessageBound;
+		this._url = aUrl;
+		this._connect();
+		
         return this;
     }
+	
+	_connect() {
+		if(this.item.status === 0) {
+	        this._webSocket = new WebSocket(this._url);
+	        this.item.setValue("status", 2);
+
+	        this._webSocket.onopen = this._callback_onOpenBound;
+	        this._webSocket.onmessage = this._callback_onMessageBound;
+			this._webSocket.onclose = this._callback_onCloseBound;
+			this._webSocket.onerror = this._callback_onErrorBound;
+		}
+	}
 
     _getRequestItem() {
         let requestId = "graphApi/webSocketRequest" + Dbm.getInstance().getNextId();
@@ -94,10 +111,47 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     }
 
     _callback_onOpen(aEvent) {
-        //console.log("_callback_onOpen");
+        console.log("_callback_onOpen");
+
+		if(this._intervalId === -1) {
+			this._intervalId = setInterval(this._callback_sendHeartbeatBound, 20*1000);
+		}
+    }
+	
+    _callback_onClose(aEvent) {
+        console.log("_callback_onClose");
+		console.log(aEvent);
+		
+		if(this._intervalId !== -1) {
+			clearInterval(this._intervalId);
+			this._intervalId = -1;
+		}
+		
+		if(this._webSocket) {
+			this._webSocket.onopen = null;
+			this._webSocket.onmessage = null;
+			this._webSocket.onclose = null;
+			this._webSocket.onerror = null;
+			
+			this._webSocket = null;
+		}
+		
+		this.item.setValue("status", 0);
+		this._connect();;
+    }
+	
+    _callback_onError(aEvent) {
+        console.log("_callback_onError");
+		console.log(aEvent);
 
         //MENOTE: do nothing
     }
+	
+	_callback_sendHeartbeat() {
+		console.log("_callback_sendHeartbeat");
+		
+		this._webSocket.send(JSON.stringify({"type": "heartbeat"}));
+	}
 
     _connectionReady() {
         this.item.setValue("status", 1);
@@ -213,6 +267,9 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
                     this._connectionReady();
                 }
                 break;
+			case "heartbeat/response":
+				//MENOTE: do nothing
+				break;
             default:
                 console.warn("Unknown message type " + data.type);
                 break;
