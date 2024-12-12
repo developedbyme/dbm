@@ -37,10 +37,14 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
 			console.log(element);
             //this.output.width = element.clientWidth;
             //this.output.height = element.clientHeight;
+			
+			//METODO
         }
         else {
             //this.output.width = 0;
             //this.output.height = 0;
+			
+			//METODO
         }
     }
 

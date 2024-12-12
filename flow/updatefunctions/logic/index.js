@@ -9,6 +9,7 @@ export {default as Condition} from "./Condition.js";
 export {default as All} from "./All.js";
 export {default as Any} from "./Any.js";
 export {default as AllAtValue} from "./AllAtValue.js";
+export {default as WhenMatched} from "./WhenMatched.js";
 
 export let subtract = function(aInput1 = 0, aInput2 = 0) {
     let updateFunction = new Dbm.flow.updatefunctions.logic.Subtraction();
@@ -85,6 +86,14 @@ export let allAtValue = function(aMatchValue, ...aValues) {
     for(let i = 0; i < currentArrayLength; i++) {
         updateFunction.addCheck(currentArray[i]);
     }
+
+    return updateFunction;
+}
+
+export let whenMatched = function(aValue, aMatchValue = true) {
+    let updateFunction = new Dbm.flow.updatefunctions.logic.WhenMatched();
+    updateFunction.input.properties.value.setOrConnect(aValue);
+    updateFunction.input.properties.matchValue.setOrConnect(aMatchValue);
 
     return updateFunction;
 }

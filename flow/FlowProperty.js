@@ -17,7 +17,7 @@ export default class FlowProperty extends Dbm.flow.FlowBaseObject {
 
     setValue(aValue) {
         if(this._upstreamConnection) {
-            //METODO: add warning
+			console.warn("Property has upstream connection, can't set value", this, aValue);
             //METODO: check if upstream can be changed
         }
         else {

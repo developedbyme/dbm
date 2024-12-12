@@ -6,7 +6,7 @@ export default class ScrollActivatedArea extends Dbm.react.BaseObject {
         super._construct();
 		
 		let elementProperty = this.item.requireProperty("element", null);
-		this.item.requireProperty("activated", false);
+		let activatedProperty = this.item.requireProperty("activated", false);
 		
 		let position = new Dbm.flow.updatefunctions.dom.ElementPosition();
 		this.item.setValue("position", position);
@@ -15,17 +15,11 @@ export default class ScrollActivatedArea extends Dbm.react.BaseObject {
 		let prepareProperty = this.item.requireProperty("prepare", 100);
 		position.input.properties.prepareY.connectInput(prepareProperty);
 		
+		let whenMatched = Dbm.flow.updatefunctions.logic.whenMatched(position.output.properties.prepare, true);
+		activatedProperty.connectInput(whenMatched.output.properties.value);
+		
 		position.start();
 		
-		Dbm.flow.addUpdateCommand(position.output.properties.prepare, Dbm.commands.callFunction(this._prepareChanged.bind(this)));
-    }
-	
-	_prepareChanged() {
-		//console.log("_prepareChanged");
-		
-		if(this.item.position.output.prepare) {
-			this.item.setValue("activated", true);
-		}
 	}
 
     _renderMainElement() {

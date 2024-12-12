@@ -38,3 +38,13 @@ export let addDirectUpdateCommand = function(aProperty, aCommand) {
     
     return {"updateFunction": updateFunction, "dirtyCommands": dirtyCommands};
 }
+
+export let addUpdateCommandWhenMatched = function(aProperty, aMatchValue, aCommand) {
+	let whenMatched = Dbm.flow.updatefunctions.logic.whenMatched(aProperty, aMatchValue);
+	
+	let updateData = Dbm.flow.addUpdateCommand(whenMatched.output.properties.value, aCommand);
+	
+	updateData["whenMatched"] = whenMatched;
+	
+	return whenMatched;
+}
