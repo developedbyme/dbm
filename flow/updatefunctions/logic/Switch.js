@@ -31,13 +31,13 @@ export default class Switch extends Dbm.flow.FlowUpdateFunction {
 
         let value = this.input.value;
 
-        let currentArray = this.input.ranges;
+        let currentArray = this.input.cases;
         let currentArrayLength = currentArray.length;
         for(let i = 0; i < currentArrayLength; i++) {
             let currentCase = currentArray[i];
 
             if(value === currentCase["key"]) {
-                this.output.value = currentRange["value"];
+                this.output.value = currentCase["value"];
                 return;
             }
         }

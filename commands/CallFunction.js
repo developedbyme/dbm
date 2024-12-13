@@ -11,11 +11,27 @@ export default class CallFunction extends CommandBaseObject {
     }
 
     perform(aFromObject, aData) {
-
-        //METODO: resolve input
+		
         let callFunction = this.item.callFunction;
+		
+		let currentArray = this.item.callArguments;
+		let currentArrayLength = currentArray.length;
+		let resolvedArguments = new Array(currentArrayLength);
+		
+        for(let i = 0; i < currentArrayLength; i++){
+            let currentArgument = currentArray[i];
+			
+            if(currentArgument && currentArgument.isFlowProperty) {
+                currentArgument = currentArgument.value;
+            }
+            else if(currentArgument && currentArgument.isSource) {
+                currentArgument = currentArgument.getSource(aFromObject, aData);
+            }
+            
+            resolvedArguments[i] = currentArgument;
+        }
 
         //METODO: try catch
-        callFunction.apply(this.item.scopeObject, this.item.callArguments);
+        return callFunction.apply(this.item.scopeObject, resolvedArguments);
     }
 }

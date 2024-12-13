@@ -27,11 +27,14 @@ export default class BaseObject extends Component {
                 let currentDynamicProperty = this.getDynamicProp(objectName);
                 currentDynamicProperty.setValue(currentProp);
             }
-            
-            if(currentProp && currentProp.isFlowProperty) {
+            else if(currentProp && currentProp.isFlowProperty) {
                 let currentDynamicProperty = this.getDynamicProp(objectName);
                 currentDynamicProperty.connectInput(currentProp);
             }
+			else if(this._dynamicProps[objectName]) {
+                let currentDynamicProperty = this.getDynamicProp(objectName);
+                currentDynamicProperty.value = currentProp;
+			}
         }
 
         //METODO: remove unused connections

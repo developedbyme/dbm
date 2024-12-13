@@ -18,10 +18,9 @@ export default class RunCommand extends Dbm.flow.FlowUpdateFunction {
         let value = this.input.value;
 
         let command = this.input.command;
-        command.perform(this.input.baseObject, value);
-        
+        let outputValue = command.perform(this.input.baseObject, value);
 
-        this.output.value = value;
+        this.output.value = outputValue;
     }
 
     noFirstTriggger() {

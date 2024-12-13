@@ -149,13 +149,10 @@ export default class CookieBar extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
-        let isOpen = this.getDynamicProp("open").value;
-        if(!isOpen) {
-            return null;
-        }
-
-        return this._createMainElement("div", {className: "cookie-bar-position", ref: this.createRef("widthElement")}, 
-            React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
+        return this._createMainElement("div", {className: "cookie-bar-position", ref: this.createRef("widthElement")},
+			React.createElement(Dbm.react.area.OpenCloseExpandableArea, {open: this.getDynamicProp("open")},
+            	React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
+			)
         );
     }
 }

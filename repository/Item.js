@@ -43,19 +43,23 @@ export default class Item extends Dbm.core.LifeCycleObject {
 
         return this;
     }
+	
+	_internal_addProperty(aName, aProperty) {
+        Object.defineProperty(this, aName, {
+            get() {
+                return aProperty.value;
+            },
+            set(aValue) {
+                aProperty.value = aValue;
+            }
+        });
+        this.properties[aName] = aProperty;
+	}
 
     getProperty(aName) {
         if(!this.properties.hasOwnProperty(aName)) {
             let property = new Dbm.flow.FlowProperty();
-            Object.defineProperty(this, aName, {
-                get() {
-                    return property.value;
-                },
-                set(aValue) {
-                    property.value = aValue;
-                }
-            });
-            this.properties[aName] = property;
+			this._internal_addProperty(aName, property);
         }
 
         return this.properties[aName];

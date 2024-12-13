@@ -97,3 +97,10 @@ export let whenMatched = function(aValue, aMatchValue = true) {
 
     return updateFunction;
 }
+
+export let switchValue = function(aValue = null) {
+    let updateFunction = new Dbm.flow.updatefunctions.logic.Switch();
+    updateFunction.input.properties.value.setOrConnect(aValue);
+	
+	return updateFunction;
+}
