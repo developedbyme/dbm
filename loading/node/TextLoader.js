@@ -94,13 +94,13 @@ export default class JsonLoader extends Dbm.core.BaseObject {
 	}
 
 	_callback_request(aResponse) {
-		console.log("_callback_request");
+		//console.log("_callback_request");
 		aResponse.on("data", this._callback_dataBound);
 		aResponse.on("end", this._callback_endBound);
 	}
 
 	_callback_data(aData) {
-		console.log("_callback_data");
+		//console.log("_callback_data");
 		this.item.rawData += aData;
 	}
 
@@ -112,9 +112,10 @@ export default class JsonLoader extends Dbm.core.BaseObject {
 	}
 
 	_callback_end() {
-		console.log("_callback_end");
-		console.log(this.item.rawData);
+		//console.log("_callback_end");
+		//console.log(this.item.rawData);
 		this._setData(this.item.rawData);
+		this.item.status = Dbm.loading.LoadingStatus.LOADED;
 	}
 
 	_setData(aData) {
@@ -122,7 +123,7 @@ export default class JsonLoader extends Dbm.core.BaseObject {
 	}
 	
 	load() {
-		console.log("load");
+		//console.log("load");
 		
 		if(this.item.status !== Dbm.loading.LoadingStatus.NOT_STARTED) {
 			return this;
