@@ -3,6 +3,8 @@ export {default as ScriptLoader} from "./ScriptLoader.js";
 export {default as JsonLoader} from "./JsonLoader.js";
 export * as LoadingStatus from "./LoadingStatus.js";
 
+export * as node from "./node/index.js";
+
 export let loadScript = function(aUrl) {
 
     let loaderName = "loader-" + aUrl;
