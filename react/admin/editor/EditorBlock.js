@@ -1,4 +1,4 @@
-import Dbm from "../../index.js";
+import Dbm from "../../../index.js";
 
 export default class EditorBlock extends Dbm.core.BaseObject {
 

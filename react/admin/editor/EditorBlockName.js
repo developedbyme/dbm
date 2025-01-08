@@ -1,5 +1,5 @@
 import React from "react";
-import Dbm from "../../index.js";
+import Dbm from "../../../index.js";
 
 export default class EditorBlockName extends Dbm.react.BaseObject {
     _construct() {

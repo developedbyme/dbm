@@ -1,10 +1,10 @@
 import Dbm from "../../index.js";
 import {createElement} from "react";
 
-let createToolConfiguration = function(aId, aName, aInitialData = {}, aIcon = null) {
+export let createToolConfiguration = function(aId, aName, aInitialData = {}, aIcon = null) {
 
     let returnObject = {
-        "class": Dbm.react.admin.EditorBlock,
+        "class": Dbm.react.admin.editor.EditorBlock,
         "config": {
             "module": aId,
             "name": aName,
@@ -20,70 +20,63 @@ let createToolConfiguration = function(aId, aName, aInitialData = {}, aIcon = nu
     return returnObject;
 }
 
-export let registerAllBlocks = function() {
+export let registerEditorBlock = function(aModuleName, aName, aEditorModule = null) {
 
-    let displayNameModule = new Dbm.react.modules.ModuleCreator();
-
-    let displayNameEditor = createElement(Dbm.react.admin.EditorBlockName, {});
-    displayNameModule.setMainElement(displayNameEditor);
+    if(!aEditorModule) {
+        aEditorModule = getDefaultEditorModule();
+    }
 
     let editorConfigItem = Dbm.getInstance().repository.getItem("editorjs");
     let tools = editorConfigItem.tools ? {...editorConfigItem.tools} : {};
 
-    {
-        let moduleName = "cookie/settings";
-        
-        let editorItem = new Dbm.repository.Item();
-        editorItem.setValue("controller", displayNameModule);
-        editorItem.register("moduleCreators/blocks/editor/" + moduleName);
+    let editorItem = new Dbm.repository.Item();
+    editorItem.setValue("controller", aEditorModule);
+    editorItem.register("moduleCreators/blocks/editor/" + aModuleName);
 
-        let elementItem = new Dbm.repository.Item();
-        elementItem.setValue("element", createElement(Dbm.react.cookies.CookieSettings));
-        elementItem.register("blocks/" + moduleName);
-
-        tools[moduleName] = createToolConfiguration(moduleName, "Cookie settings");
-    }
-
-    {
-        let moduleName = "login/loginForm";
-        
-        let editorItem = new Dbm.repository.Item();
-        editorItem.setValue("controller", displayNameModule);
-        editorItem.register("moduleCreators/blocks/editor/" + moduleName);
-
-        let elementItem = new Dbm.repository.Item();
-        elementItem.setValue("element", createElement(Dbm.react.login.LoginForm));
-        elementItem.register("blocks/" + moduleName);
-
-        tools[moduleName] = createToolConfiguration(moduleName, "Login form");
-    }
-
-    {
-        let moduleName = "test/test";
-
-        let displayNameModule = new Dbm.react.modules.ModuleCreator();
-
-    let displayNameEditor = createElement("div", {},
-        createElement("div", {contentEditable: true}, "test"),
-        createElement("input", {})
-    );
-    displayNameModule.setMainElement(displayNameEditor);
-        
-        let editorItem = new Dbm.repository.Item();
-        editorItem.setValue("controller", displayNameModule);
-        editorItem.register("moduleCreators/blocks/editor/" + moduleName);
-
-        let elementItem = new Dbm.repository.Item();
-        elementItem.setValue("element", 
-            createElement("div", {},
-                createElement("div", {contentEditable: true}, "test"),
-                createElement("input", {})
-            )
-        );
-        elementItem.register("blocks/" + moduleName);
-
-        tools[moduleName] = createToolConfiguration(moduleName, "Test");
-    }
+    tools[aModuleName] = createToolConfiguration(aModuleName, aName);
 
     editorConfigItem.setValue("tools", tools);
+}
+
+export let registerFrontBlock = function(aModuleName, aElement) {
+    
+    let elementItem = new Dbm.repository.Item();
+    elementItem.setValue("element", aElement);
+    elementItem.register("blocks/" + aModuleName);
+}
+
+export let registerBlock = function(aModuleName, aName, aElement, aEditorElement = null) {
+
+    let editorModule;
+    if(!aEditorElement) {
+        editorModule = getDefaultEditorModule();
+    }
+    else {
+        editorModule = new Dbm.react.modules.ModuleCreator();
+        editorModule.setMainElement(aEditorElement);
+    }
+
+    registerEditorBlock(aModuleName, aName, editorModule);
+    registerFrontBlock(aModuleName, aElement);
+} 
+
+export let getDefaultEditorModule = function() {
+    let moduleItem = Dbm.getInstance().repository.getItem("editorjs");
+
+    let displayNameModule = moduleItem.defaultEditor;
+    if(!displayNameModule) {
+        displayNameModule = new Dbm.react.modules.ModuleCreator();
+
+        let displayNameEditor = createElement(Dbm.react.admin.editor.EditorBlockName, {});
+        displayNameModule.setMainElement(displayNameEditor);
+
+        moduleItem.setValue("defaultEditor", displayNameModule);
+    }
+
+    return displayNameModule;
+}
+
+export let registerAllBlocks = function() {
+    registerBlock("cookie/settings", "Cookie settings", createElement(Dbm.react.cookies.CookieSettings));
+    registerBlock("login/loginForm", "Login form", createElement(Dbm.react.login.LoginForm));
 }

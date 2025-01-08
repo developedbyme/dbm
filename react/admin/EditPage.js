@@ -62,7 +62,7 @@ export default class EditPage extends Dbm.react.BaseObject {
                     "Content"
                 ),
                 React.createElement("div", {},
-                    React.createElement(Dbm.react.admin.Editor, {"value": this.item.properties.content}),
+                    React.createElement(Dbm.react.admin.editor.Editor, {"value": this.item.properties.content}),
                 )
             ),
             React.createElement("div", {className: "spacing standard"}),
