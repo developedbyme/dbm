@@ -35,8 +35,8 @@ export default class EditorBlock extends Dbm.core.BaseObject {
     }
   
     save(aHolderElement){
-        console.log("save");
-        console.log(aHolderElement);
+        //console.log("save");
+        //console.log(aHolderElement);
 
         return this.item.data;
     }

@@ -15,7 +15,7 @@ export default class EditorBlockFields extends Dbm.react.BaseObject {
             React.createElement(Dbm.react.form.LabelledArea, {label: "fieldName", for: "test"},
                 React.createElement(Dbm.react.admin.editor.fields.TextField, {name: "fieldName", id: "test"})
             ),
-                React.createElement(Dbm.react.admin.editor.fields.TextField, {name: "fieldName"})
+                React.createElement(Dbm.react.admin.editor.fields.RichTextField, {name: "fieldName"})
         );
     }
 }

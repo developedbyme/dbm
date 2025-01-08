@@ -70,8 +70,8 @@ export default class Editor extends Dbm.react.BaseObject {
     }
 
     _callback_saveDataUpdated(aData) {
-        console.log("_callback_saveDataUpdated");
-        console.log(aData);
+        //console.log("_callback_saveDataUpdated");
+        //console.log(aData);
 
         this.getDynamicProp("value").getMostUpstreamProperty().setValue(aData);
     }
