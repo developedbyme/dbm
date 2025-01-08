@@ -3,6 +3,7 @@ import {createElement} from "react";
 
 export {default as Text} from "./Text.js";
 export {default as HtmlText} from "./HtmlText.js";
+export {default as Link} from "./Link.js";
 
 export let text = function(aText) {
     if(typeof(aText) === "string") {

@@ -1,3 +1,4 @@
+import React from "react";
 import Dbm from "../../index.js";
 
 export default class Checkbox extends Dbm.react.BaseObject {
