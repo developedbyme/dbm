@@ -95,7 +95,7 @@ export default class CookieSettings extends Dbm.react.BaseObject {
             return aSetting.element;
         })
 
-        return this._createMainElement("div", {}, 
+        return this._createMainElement("div", {"className": "content-narrow"}, 
             React.createElement("div", {className: "body-text"},
                 React.createElement("div", {"className": "flex-row small-item-spacing"}, 
                     React.createElement("div", {"className": "flex-row-item"},
