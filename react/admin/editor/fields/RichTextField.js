@@ -67,6 +67,6 @@ export default class RichTextField extends Dbm.react.BaseObject {
     }
 
     _renderMainElement() {
-        return this._createMainElement("div", {contentEditable: true, ref: this.createRef("contentElement")});
+        return this._createMainElement("div", {contentEditable: true, ref: this.createRef("contentElement"), className: "standard-field standard-field-padding"});
     }
 }

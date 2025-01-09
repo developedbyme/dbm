@@ -15,11 +15,29 @@ export default class ImageField extends Dbm.react.BaseObject {
 
         let initialData = editorData.data[fieldName];
         if(!initialData) {
-            initialData = "";
+            initialData = null;
         }
         Dbm.flow.addUpdateCommand(this.item.requireProperty("value", initialData), Dbm.commands.callFunction(this._valueChangedBound));
 
         Dbm.flow.addUpdateCommand(editorData.properties.data, Dbm.commands.callFunction(this._objectChangedBound));
+
+        let imageElement = React.createElement("div", {className: "flex-row small-item-spacing"},
+            React.createElement("div", {className: "flex-row-item flex-no-resize"},
+                React.createElement(Dbm.react.image.Image, {"src": Dbm.react.source.contextVariable("moduleData.editorData.data." + fieldName + ".url"), className: "editor-preview background-contain"}),
+            ),
+            React.createElement("div", {className: "flex-row-item flex-resize"},
+                Dbm.react.text.text(Dbm.react.source.contextVariable("moduleData.editorData.data." + fieldName + ".url"))
+            ),
+            React.createElement("div", {className: "flex-row-item flex-no-resize"},
+                React.createElement("div", {onClick: () => {this.removeImage()}}, "Remove")
+            )
+        );
+
+        let uploadElement = React.createElement("input", {"type": "file", onChange: this._callback_fileChangedBound, className: "full-width"});
+
+        let elementSwitch =Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.value).setDefaultValue(imageElement).addCase(null, uploadElement);
+
+        this.item.requireProperty("element", null).connectInput(elementSwitch.output.properties.value);
     }
 
     _valueChanged() {
@@ -33,6 +51,7 @@ export default class ImageField extends Dbm.react.BaseObject {
         newData[fieldName] = newValue;
 
         editorData.data = newData;
+        this.context.moduleData.editorData.editorBlock.dataUpdated();
     }
 
     _objectChanged() {
@@ -52,6 +71,12 @@ export default class ImageField extends Dbm.react.BaseObject {
         if(files.length > 0) {
             this.uploadImage(files[0]);
         }
+    }
+
+    removeImage() {
+        this.item.value = null;
+
+        return this;
     }
 
     uploadImage(aFile) {
@@ -92,7 +117,7 @@ export default class ImageField extends Dbm.react.BaseObject {
 
     _renderMainElement() {
         return this._createMainElement("div", {},
-            React.createElement("input", {"type": "file", onChange: this._callback_fileChangedBound, className: "full-width"})
+            React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
         );
     }
 }

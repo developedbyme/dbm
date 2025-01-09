@@ -10,7 +10,13 @@ export default class EditorBlock extends Dbm.core.BaseObject {
         this.item.setValue("data", aSettings.data ? aSettings.data : {});
         this.item.setValue("name", aSettings.config ? aSettings.config.name : "Unnamed block");
         this.item.setValue("module", Dbm.getInstance().repository.getItem("moduleCreators/blocks/editor/" + aSettings.config.module));
+        this.item.setValue("editorBlock", this); 
 
+    }
+
+    dataUpdated() {
+        //console.log("dataUpdated")
+        this._settings.block.dispatchChange();
     }
 
     render(){

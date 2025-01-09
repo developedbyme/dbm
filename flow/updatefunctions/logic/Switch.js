@@ -12,6 +12,12 @@ export default class Switch extends Dbm.flow.FlowUpdateFunction {
         this.output.register("value", null);
     }
 
+    setDefaultValue(aValue) {
+        this.input.properties.defaultValue.setOrConnect(aValue);
+
+        return this;
+    }
+
     addCase(aKey, aOutputValue) {
 
         let newCase = {key: aKey, value: aOutputValue};

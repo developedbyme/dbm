@@ -77,6 +77,7 @@ export default class Editor extends Dbm.react.BaseObject {
     }
 
     _callback_editorChange(aApi, aEvent) {
+        console.log("_callback_editorChange");
         this.item.editor.save().then(this._callback_saveDataUpdatedBound);
     }
 
