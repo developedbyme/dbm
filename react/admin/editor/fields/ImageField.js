@@ -13,11 +13,7 @@ export default class ImageField extends Dbm.react.BaseObject {
 
         let editorData = Dbm.objectPath(this.context, "moduleData.editorData");
 
-        let initialData = editorData.data[fieldName];
-        if(!initialData) {
-            initialData = null;
-        }
-        Dbm.flow.addUpdateCommand(this.item.requireProperty("value", initialData), Dbm.commands.callFunction(this._valueChangedBound));
+        Dbm.flow.addUpdateCommand(this.item.requireProperty("value", this._getObjectData()), Dbm.commands.callFunction(this._valueChangedBound));
 
         Dbm.flow.addUpdateCommand(editorData.properties.data, Dbm.commands.callFunction(this._objectChangedBound));
 
@@ -40,6 +36,19 @@ export default class ImageField extends Dbm.react.BaseObject {
         this.item.requireProperty("element", null).connectInput(elementSwitch.output.properties.value);
     }
 
+    _getObjectData() {
+        let fieldName = this.getPropValue("name");
+
+        let editorData = Dbm.objectPath(this.context, "moduleData.editorData");
+
+        let returnData = editorData.data[fieldName];
+        if(!returnData) {
+            returnData = null;
+        }
+
+        return returnData;
+    }
+
     _valueChanged() {
         //console.log("_valueChanged");
 
@@ -60,7 +69,7 @@ export default class ImageField extends Dbm.react.BaseObject {
         let fieldName = this.getPropValue("name");
         let editorData = Dbm.objectPath(this.context, "moduleData.editorData");
 
-        this.item.value = editorData.data[fieldName];
+        this.item.value = this._getObjectData();
     }
 
     _callback_fileChanged(aEvent) {

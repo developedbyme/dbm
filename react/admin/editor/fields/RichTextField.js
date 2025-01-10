@@ -13,17 +13,23 @@ export default class RichTextField extends Dbm.react.BaseObject {
         this.createRef("contentElement");
         Dbm.flow.addUpdateCommand(this.item.properties.contentElement, Dbm.commands.callFunction(this._elementChangedBound));
 
+        Dbm.flow.addUpdateCommand(this.item.requireProperty("value", this._getObjectData()), Dbm.commands.callFunction(this._valueChangedBound));
+
+        let editorData = Dbm.objectPath(this.context, "moduleData.editorData");
+        Dbm.flow.addUpdateCommand(editorData.properties.data, Dbm.commands.callFunction(this._objectChangedBound));
+    }
+
+    _getObjectData() {
         let fieldName = this.getPropValue("name");
 
         let editorData = Dbm.objectPath(this.context, "moduleData.editorData");
 
-        let initialData = editorData.data[fieldName];
-        if(!initialData) {
-            initialData = "";
+        let returnData = editorData.data[fieldName];
+        if(!returnData) {
+            returnData = "";
         }
-        Dbm.flow.addUpdateCommand(this.item.requireProperty("value", initialData), Dbm.commands.callFunction(this._valueChangedBound));
 
-        Dbm.flow.addUpdateCommand(editorData.properties.data, Dbm.commands.callFunction(this._objectChangedBound));
+        return returnData;
     }
 
     _valueChanged() {
@@ -46,10 +52,7 @@ export default class RichTextField extends Dbm.react.BaseObject {
     _objectChanged() {
         //console.log("_objectChanged");
 
-        let fieldName = this.getPropValue("name");
-        let editorData = Dbm.objectPath(this.context, "moduleData.editorData");
-
-        this.item.value = editorData.data[fieldName];
+        this.item.value = this._getObjectData();
     }
 
     _elementChanged() {

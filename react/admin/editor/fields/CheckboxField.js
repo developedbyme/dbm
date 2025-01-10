@@ -1,7 +1,7 @@
 import React from "react";
 import Dbm from "../../../../index.js";
 
-export default class TextField extends Dbm.react.BaseObject {
+export default class CheckboxField extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
@@ -21,7 +21,7 @@ export default class TextField extends Dbm.react.BaseObject {
 
         let returnData = editorData.data[fieldName];
         if(!returnData) {
-            returnData = "";
+            returnData = false;
         }
 
         return returnData;
@@ -39,6 +39,7 @@ export default class TextField extends Dbm.react.BaseObject {
         newData[fieldName] = newValue;
 
         editorData.data = newData;
+        this.context.moduleData.editorData.editorBlock.dataUpdated();
     }
 
     _objectChanged() {
@@ -48,6 +49,6 @@ export default class TextField extends Dbm.react.BaseObject {
     }
 
     _renderMainElement() {
-        return this._createMainElement(Dbm.react.form.FormField, {value: this.item.properties.value, className: "standard-field standard-field-padding full-width"});
+        return this._createMainElement(Dbm.react.form.Checkbox, {checked: this.item.properties.value});
     }
 }

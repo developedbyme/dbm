@@ -12,7 +12,7 @@ export default class Checkbox extends Dbm.react.BaseObject {
 
     _callback_change(aEvent) {
         //console.log("_callback_change");
-        //console.log(aEvent);
+        //console.log(aEvent, this);
 
         let checked = aEvent.target.checked;
 
