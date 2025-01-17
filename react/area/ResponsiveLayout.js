@@ -25,11 +25,9 @@ export default class ResponsiveLayout extends Dbm.core.BaseObject {
         refToProperty.property = this.item.properties.widthElement;
         this.item.setValue("ref/widthElement", refToProperty);
 
-        this.item.setValue("mainElement", <div ref={refToProperty}>
-            <Dbm.react.area.InsertElement element={this.item.properties.element} />
-        </div>);
-
-        console.log(">>>>>>>>>", this);
+        this.item.setValue("mainElement", React.createElement("div", {ref: refToProperty},
+            React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
+        ));
     }
 
     setDefaultLayout(aElement) {
