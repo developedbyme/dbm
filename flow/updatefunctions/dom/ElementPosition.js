@@ -49,7 +49,7 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
     }
 
     _callback_scroll(aEvent) {
-        console.log("_callback_scroll");
+        //console.log("_callback_scroll");
 
         let element = this.input.element;
 

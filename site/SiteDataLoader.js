@@ -16,7 +16,7 @@ export default class SiteDataLoader extends Dbm.core.BaseObject {
     }
 
 	_loadUrl() {
-		console.log("_loadUrl");
+		//console.log("_loadUrl");
 
 		let url = this.item.url;
 		if(url != null) {

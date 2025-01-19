@@ -12,7 +12,7 @@ export default class Image extends Dbm.react.BaseObject {
         let isDiv = true;
         if(isDiv) {
             let imageStyle = {
-                "background-image": "url(" + src + ")"
+                "backgroundImage": "url(" + src + ")"
             };
             let className = "image";
 

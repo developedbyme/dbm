@@ -44,7 +44,7 @@ export default class Controller extends Dbm.core.BaseObject {
 	}
 
     start() {
-        console.log("start");
+        //console.log("start");
         this.item.active = true;
 
         return this;

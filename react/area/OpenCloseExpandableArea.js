@@ -16,8 +16,8 @@ export default class OpenCloseExpandableArea extends Dbm.react.BaseObject {
 	}
 	
 	_transformToStyle(aEnvelope) {
-		console.log("_transformToStyle");
-		console.log(aEnvelope, this, this.item.element);
+		//console.log("_transformToStyle");
+		//console.log(aEnvelope, this, this.item.element);
 		
 		if(aEnvelope === 0) {
 			return {"height": "0px", "overflow": "hidden"};

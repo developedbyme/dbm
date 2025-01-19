@@ -6,7 +6,6 @@ export default class HorizontalFlip extends Dbm.flow.FlowUpdateFunction {
         super._construct();
         
         this.input.register("envelope", 0);
-        console.log(this.input.properties.envelope);
         this.input.register("perspective", "3000px");
 
         this.output.register("style1", {});
