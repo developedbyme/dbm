@@ -33,7 +33,7 @@ export default class StyleObject extends Dbm.flow.FlowUpdateFunction {
             let unit = this.input.units[objectName].value;
 
             if(unit) {
-                value += " " + unit;
+                value += "" + unit;
             }
             styleObject[objectName] = value;
         }
