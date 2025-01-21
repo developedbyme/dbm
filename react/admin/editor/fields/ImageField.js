@@ -104,23 +104,28 @@ export default class ImageField extends Dbm.react.BaseObject {
     
             if(aPreSign.status === 1) {
                 let url = aPreSign.data.url;
-                console.log(url);
+                console.log(url, aPreSign.data);
     
-                const myHeaders = new Headers({
+                let headers = {
                     'Content-Type': aFile.type,
-                    'x-amz-acl': 'public-read'
-                });
+                    'Cache-Control': 'no-cache',
+                };
+
+                let additionalHeaders = aPreSign.data.additionalHeaders;
+                for(let objectName in additionalHeaders) {
+                    headers[objectName] = additionalHeaders[objectName];
+                }
+
                 fetch(url, {
                     method: 'PUT',
-                    headers: myHeaders,
+                    headers: new Headers(headers),
                     body: aFile
                  }).then(() => {
-                    this.item.value = {url: aPreSign.data.publicUrl};
+                    this.item.value = {url: aPreSign.data.publicUrl, resizeUrl: aPreSign.data.publicResizeUrl, identifier: aPreSign.data.identifier};
                     console.log("Uploaded", this.item.value);
                     //METODO: send update to editor
                  })
     
-                
             }
         }
 
