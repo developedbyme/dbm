@@ -66,7 +66,7 @@ export default class RichTextField extends Dbm.react.BaseObject {
     _callback_input(aEvent) {
         //console.log("_callback_input");
 
-        this.item.value = this.item.contentElement.innerHTML;
+        this.item.value = "" + this.item.contentElement.innerHTML;
     }
 
     _renderMainElement() {

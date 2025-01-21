@@ -9,7 +9,7 @@ export default class HorizontalFlip extends Dbm.flow.FlowUpdateFunction {
         this.input.register("perspective", "3000px");
 
         this.output.register("style1", {});
-        this.output.register("style2", {"opacity": 0, "position": "absolute", "top": 0, "left": 0, "width": "100%", "dispaly": "none"});
+        this.output.register("style2", {"opacity": 0, "position": "absolute", "top": 0, "left": 0, "width": "100%", "display": "none"});
         this.output.register("inDom1", true);
         this.output.register("inDom2", false);
     }
@@ -27,12 +27,12 @@ export default class HorizontalFlip extends Dbm.flow.FlowUpdateFunction {
         this.output.inDom2 = inDom2;
 
         if(!inDom1) {
-            this.output.style1 = {"opacity": 0, "position": "absolute", "top": 0, "left": 0, "width": "100%", "dispaly": "none"};
+            this.output.style1 = {"opacity": 0, "position": "absolute", "top": 0, "left": 0, "width": "100%", "display": "none"};
             this.output.style2 = {};
         }
         else if(!inDom2) {
             this.output.style1 = {};
-            this.output.style2 = {"opacity": 0, "position": "absolute", "top": 0, "left": 0, "width": "100%", "dispaly": "none"};
+            this.output.style2 = {"opacity": 0, "position": "absolute", "top": 0, "left": 0, "width": "100%", "display": "none"};
         }
         else {
             let angle1 = 180*envelope;
@@ -48,7 +48,7 @@ export default class HorizontalFlip extends Dbm.flow.FlowUpdateFunction {
                 styleObject2["position"] = "absolute";
                 styleObject2["top"] = 0;
                 styleObject2["left"] = 0;
-                styleObject2["width"] = 0;
+                styleObject2["width"] = "100%";
             }
             else {
                 styleObject1["opacity"] = 0;
@@ -56,7 +56,7 @@ export default class HorizontalFlip extends Dbm.flow.FlowUpdateFunction {
                 styleObject1["position"] = "absolute";
                 styleObject1["top"] = 0;
                 styleObject1["left"] = 0;
-                styleObject1["width"] = 0;
+                styleObject1["width"] = "100%";
             }
 
             this.output.style1 = styleObject1;

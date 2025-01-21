@@ -41,10 +41,18 @@ export default class EditorBlock extends Dbm.core.BaseObject {
     }
   
     save(aHolderElement){
-        //console.log("save");
+        console.log("save");
         //console.log(aHolderElement);
 
         return this.item.data;
+    }
+
+    static get sanitize() {
+
+        //METODO: find a better way to do this
+        return {
+            text: true
+        }
     }
 
     static get toolbox() {

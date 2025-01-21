@@ -21,6 +21,8 @@ export default class EditPage extends Dbm.react.BaseObject {
         let page = this.context.page;
         let id = page.id;
         let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
+        console.log(this.item.content);
+        console.log(this.item.content.blocks[1].data.text);
 
         graphApi.editItem(id, [
             {"type": "setField", "data": {"value": this.item.content, "field": "content"}},

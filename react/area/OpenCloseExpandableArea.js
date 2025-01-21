@@ -13,6 +13,8 @@ export default class OpenCloseExpandableArea extends Dbm.react.BaseObject {
 		let transformToStyle = Dbm.flow.updatefunctions.basic.transformValue(animateValueObject.properties.output, this._transformToStyle.bind(this));
 		
 		this.item.requireProperty("animationStyle", {}).connectInput(transformToStyle.output.properties.value);
+
+		this.item.setValue("animation", Dbm.react.animation.connectedAnimation(transformToStyle.output.properties.value));
 	}
 	
 	_transformToStyle(aEnvelope) {
@@ -33,7 +35,7 @@ export default class OpenCloseExpandableArea extends Dbm.react.BaseObject {
         //console.log("OpenCloseExpandableArea::_renderMainElement");
         //console.log(this);
 		
-		return this._createMainElement(Dbm.react.BaseObject, {"className": "animation-element", "style": this.item.properties.animationStyle},
+		return this._createMainElement(Dbm.react.animation.AnimatedElement, {"className": "animation-element", "controller": this.item.animation.item},
 			React.createElement("div", {"ref": this.createRef("element")},
 				this.getPropValue("children")
 			)
