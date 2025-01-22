@@ -8,8 +8,9 @@ export default class Image extends Dbm.react.BaseObject {
     _renderMainElement() {
 
         let src = this.getPropValue("src");
+        let elementType = this.getPropValue("elementType");
         
-        let isDiv = true;
+        let isDiv = (elementType !== "img");
         if(isDiv) {
             let imageStyle = {
                 "backgroundImage": "url(" + src + ")"
@@ -18,7 +19,10 @@ export default class Image extends Dbm.react.BaseObject {
 
             return this._createMainElement("div", {style: imageStyle, className: className}, this.getPropValue("children"));
         }
-
+        else {
+            let className = "image";
+            return this._createMainElement("img", {src: src, className: className});
+        }
         
     }
 }

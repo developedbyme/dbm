@@ -1,6 +1,8 @@
 import Dbm from "../../index.js";
 import {createElement} from "react";
 
+export {default as Image} from "./Image.js";
+
 export let createToolConfiguration = function(aId, aName, aInitialData = {}, aIcon = null) {
 
     let returnObject = {
