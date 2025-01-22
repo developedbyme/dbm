@@ -129,14 +129,12 @@ export default class BaseObject extends Component {
         return this._performCreateMainElement(aType, aProps, children);
     }
 
-    _performCreateMainElement(aType, aProps, children) {
+    _removedUsedProps(aProps) {
+        
+    }
 
+    _copyProps(aProps) {
         let newProps = {...aProps};
-
-        let elementType = this.getProp("elementType");
-        if(elementType) {
-            aType = elementType;
-        }
 
         for(let objectName in this.props) {
             let currentValue = this.getPropValue(objectName);
@@ -176,6 +174,19 @@ export default class BaseObject extends Component {
                     }
                     break;
             }
+        }
+
+        this._removedUsedProps(newProps);
+        return newProps;
+    }
+
+    _performCreateMainElement(aType, aProps, children) {
+
+        let newProps = this._copyProps(aProps);
+
+        let elementType = this.getProp("elementType");
+        if(elementType) {
+            aType = elementType;
         }
 
         if(!children || !children.length) {

@@ -5,6 +5,15 @@ export default class Image extends Dbm.react.BaseObject {
         super._construct();
     }
 
+    _removedUsedProps(aProps) {
+        let elementType = this.getPropValue("elementType");
+        
+        let isDiv = (elementType !== "img");
+        if(isDiv) {
+            delete aProps["src"];
+        }
+    }
+
     _renderMainElement() {
 
         let src = this.getPropValue("src");

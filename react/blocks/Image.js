@@ -8,14 +8,7 @@ export default class Image extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
-        let url = Dbm.objectPath(this.context, "blockData.file.url");
-
-        let image = Dbm.objectPath(this.context, "blockData.file");
-
-        if(image && image.resizeUrl) {
-            let imageWidth = Math.round(window.devicePixelRatio*800);
-            url = image.resizeUrl.split("{scale}").join("width=" + imageWidth);
-        }
+        let url = Dbm.utils.UrlFunctions.createScaledImageUrl(Dbm.objectPath(this.context, "blockData.file"), 800);
 
         return this._createMainElement("div", {},
             React.createElement(Dbm.react.image.Image, {elementType: "img", className: "full-width", src: url, alt: Dbm.react.source.blockData("caption")} )
