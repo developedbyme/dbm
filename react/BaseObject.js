@@ -25,7 +25,7 @@ export default class BaseObject extends Component {
             if(currentProp && currentProp.isSource) {
                 currentProp = currentProp.getSource(this);
                 let currentDynamicProperty = this.getDynamicProp(objectName);
-                currentDynamicProperty.setValue(currentProp);
+                currentDynamicProperty.setOrConnect(currentProp);
             }
             else if(currentProp && currentProp.isFlowProperty) {
                 let currentDynamicProperty = this.getDynamicProp(objectName);
