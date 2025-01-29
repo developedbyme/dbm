@@ -50,13 +50,15 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     }
 
     _runRequest(aRequestItem) {
-        let newRequests = [].concat(this.item.requests);
-        newRequests.push(aRequestItem);
-        this.item.setValue("requests", newRequests);
-
+        
         if(this.item.status === 1) {
             aRequestItem.setValue("status", Dbm.loading.LoadingStatus.LOADING);
             this._webSocket.send(JSON.stringify(aRequestItem.requestData));
+        }
+        else {
+            let newRequests = [].concat(this.item.requests);
+            newRequests.push(aRequestItem);
+            this.item.setValue("requests", newRequests);
         }
     }
 
@@ -155,6 +157,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
 
     _connectionReady() {
         this.item.setValue("status", 1);
+        
         let currentArray = this.item.requests;
         let currentArrayLength = currentArray.length;
         for(let i = 0; i < currentArrayLength; i++) {
@@ -162,6 +165,8 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
             currentItem.setValue("status", Dbm.loading.LoadingStatus.LOADING);
             this._webSocket.send(JSON.stringify(currentItem.requestData));
         }
+
+        this.item.requests = [];
     }
 
     _callback_onMessage(aEvent) {
