@@ -5,6 +5,7 @@ export {default as HasData} from "./HasData.js";
 export {default as ScrollActivatedArea} from "./ScrollActivatedArea.js";
 export {default as OpenCloseExpandableArea} from "./OpenCloseExpandableArea.js";
 export {default as ResponsiveLayout} from "./ResponsiveLayout.js";
+export {default as List} from "./List.js";
 
 export let responsiveLayout = function(aDefaultLayout) {
     let newResponsiveLayout = new Dbm.react.area.ResponsiveLayout();
