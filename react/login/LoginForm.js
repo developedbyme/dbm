@@ -87,7 +87,7 @@ export default class LoginForm extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
-        return this._createMainElement("div", {}, 
+        return this._createMainElement("div", {className: "content-narrow"}, 
             React.createElement("div", {className: "body-text"},
                 React.createElement("div", {"className": ""},
                     React.createElement("label", {className: "standard-field-label"},

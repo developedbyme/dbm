@@ -8,6 +8,7 @@ export default class EditPage extends Dbm.react.BaseObject {
         let page = this.context.page;
 
         this.item.setValue("title", page.title);
+        this.item.setValue("navigationName", page.navigationName);
         this.item.setValue("content", page.content);
         this.item.setValue("description", page["meta/description"]);
         this.item.setValue("url", page.url);
@@ -27,6 +28,7 @@ export default class EditPage extends Dbm.react.BaseObject {
         graphApi.editItem(id, [
             {"type": "setField", "data": {"value": this.item.content, "field": "content"}},
             {"type": "setField", "data": {"value": this.item.title, "field": "title"}},
+            {"type": "setField", "data": {"value": this.item.navigationName, "field": "navigationName"}},
             {"type": "setField", "data": {"value": this.item.description, "field": "meta/description"}},
 			{"type": "setField", "data": {"value": (new Date()).toISOString(), "field": "lastModified"}},
             {"type": "setUrl", "data": {"value": this.item.url}}
@@ -42,6 +44,13 @@ export default class EditPage extends Dbm.react.BaseObject {
                         "Page title"
                     ),
                     React.createElement(Dbm.react.form.FormField, {"value": this.item.properties.title, className: "standard-field standard-field-padding full-width page-title-form-field", placeholder: "Title"}),
+                ),
+                React.createElement("div", {className: "spacing standard"}),
+                React.createElement("div", {},
+                    React.createElement("label", {className: "standard-field-label"},
+                        "Navigation name"
+                    ),
+                    React.createElement(Dbm.react.form.FormField, {"value": this.item.properties.navigationName, className: "standard-field standard-field-padding full-width", placeholder: "Name showed in menues and breadcrumbs"}),
                 ),
                 React.createElement("div", {className: "spacing standard"}),
                 React.createElement("div", {},

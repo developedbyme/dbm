@@ -1,6 +1,8 @@
 export {default as BaseObject} from "./BaseObject.js";
 export {default as RefToProperty} from "./RefToProperty.js";
 
+export * as ChildFunctions from "./ChildFunctions.js";
+
 export * as modules from "./modules/index.js";
 export * as admin from "./admin/index.js";
 export * as blocks from "./blocks/index.js";
@@ -13,3 +15,4 @@ export * as text from "./text/index.js";
 export * as login from "./login/index.js";
 export * as image from "./image/index.js";
 export * as animation from "./animation/index.js";
+

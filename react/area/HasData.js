@@ -11,6 +11,11 @@ export default class HasData extends Dbm.react.BaseObject {
         //console.log(this);
         
         let data = this.getPropValue("check");
+        let checkType = this.getPropValue("checkType");
+
+        if(checkType === "invert/default") {
+            data = !data;
+        }
 
         if(data) {
             return React.createElement(React.Fragment, {}, this.getPropValue("children"));

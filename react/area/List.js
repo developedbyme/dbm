@@ -20,16 +20,24 @@ export default class List extends Dbm.react.BaseObject {
         if(!as) {
             as = "item";
         }
+        
+        let slots = Dbm.react.ChildFunctions.splitIntoSlots(children);
+
+        let spacingElement = slots.spacing;
+        let mainChildren = slots.main;
 
         let currentArray = items;
         let currentArrayLength = currentArray.length;
-        let newChildren = new Array(currentArrayLength);
+        let newChildren = [];
         for(let i = 0; i < currentArrayLength; i++) {
+            if(spacingElement && i > 0) {
+                newChildren.push(React.createElement(React.Fragment, {key: "spacing" + (i-1)}, spacingElement));
+            }
             let currentItem = currentArray[i];
             let values = {};
             values[as] = currentItem;
             let key = Dbm.objectPath(currentItem, keyField);
-            newChildren[i] = React.createElement(Dbm.react.context.AddContextVariables, {key: key, values: values}, children);
+            newChildren.push(React.createElement(Dbm.react.context.AddContextVariables, {key: key, values: values}, mainChildren));
         }
 
         return React.createElement(React.Fragment, {}, newChildren);

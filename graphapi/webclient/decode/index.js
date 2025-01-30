@@ -62,6 +62,22 @@ let fullSetup = function() {
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }
+
+    {
+        let name = "navigationName";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyFields", ["navigationName"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
+
+    {
+        let name = "breadcrumb";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyLinks", ["breadcrumbs"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
 }
 
 export {fullSetup};
