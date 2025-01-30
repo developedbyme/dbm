@@ -113,7 +113,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     }
 
     _callback_onOpen(aEvent) {
-        console.log("_callback_onOpen");
+        //console.log("_callback_onOpen");
 
 		if(this._intervalId === -1) {
 			this._intervalId = setInterval(this._callback_sendHeartbeatBound, 20*1000);
@@ -121,8 +121,8 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     }
 	
     _callback_onClose(aEvent) {
-        console.log("_callback_onClose");
-		console.log(aEvent);
+        //console.log("_callback_onClose");
+		//console.log(aEvent);
 		
 		if(this._intervalId !== -1) {
 			clearInterval(this._intervalId);
@@ -150,14 +150,14 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     }
 	
 	_callback_sendHeartbeat() {
-		console.log("_callback_sendHeartbeat");
+		//console.log("_callback_sendHeartbeat");
 		
 		this._webSocket.send(JSON.stringify({"type": "heartbeat"}));
 	}
 
     _connectionReady() {
         this.item.setValue("status", 1);
-        
+
         let currentArray = this.item.requests;
         let currentArrayLength = currentArray.length;
         for(let i = 0; i < currentArrayLength; i++) {
