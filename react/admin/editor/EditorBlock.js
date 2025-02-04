@@ -6,9 +6,10 @@ export default class EditorBlock extends Dbm.core.BaseObject {
         super();
 
         this._settings = aSettings;
-
+        
         this.item.setValue("data", aSettings.data ? aSettings.data : {});
         this.item.setValue("name", aSettings.config ? aSettings.config.name : "Unnamed block");
+        this.item.setValue("editor", aSettings.config ? Dbm.getInstance().repository.getItem(aSettings.config.editorId) : null);
         this.item.setValue("module", Dbm.getInstance().repository.getItem("moduleCreators/blocks/editor/" + aSettings.config.module));
         this.item.setValue("editorBlock", this); 
 
@@ -41,18 +42,14 @@ export default class EditorBlock extends Dbm.core.BaseObject {
     }
   
     save(aHolderElement){
-        console.log("save");
+        //console.log("save");
         //console.log(aHolderElement);
 
         return this.item.data;
     }
 
     static get sanitize() {
-
-        //METODO: find a better way to do this
-        return {
-            text: true
-        }
+        return {};
     }
 
     static get toolbox() {

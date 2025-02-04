@@ -3,10 +3,29 @@ import {createElement} from "react";
 
 export {default as Image} from "./Image.js";
 
-export let createToolConfiguration = function(aId, aName, aInitialData = {}, aIcon = null) {
+export let createToolConfiguration = function(aId, aName, aInitialData = {}, aSanitizeSettings = {}, aIcon = null) {
+
+    class DynamicEditorBlock extends Dbm.react.admin.editor.EditorBlock {
+
+        _construct() {
+            super._construct();
+        }
+
+        static get toolbox() {
+
+            return {
+                title: aName,
+                icon: aIcon
+            };
+        }
+
+        static get sanitize() {
+            return aSanitizeSettings;
+        }
+    }
 
     let returnObject = {
-        "class": Dbm.react.admin.editor.EditorBlock,
+        "class": DynamicEditorBlock,
         "config": {
             "module": aId,
             "name": aName,
@@ -16,13 +35,13 @@ export let createToolConfiguration = function(aId, aName, aInitialData = {}, aIc
         "toolbox": {
             title: aName,
             icon: aIcon
-        }  
+        }
     }
 
     return returnObject;
 }
 
-export let registerEditorBlock = function(aModuleName, aName, aEditorModule = null) {
+export let registerEditorBlock = function(aModuleName, aName, aEditorModule = null, aInitialData = {}, aSanitizeSettings = {}) {
 
     if(!aEditorModule) {
         aEditorModule = getDefaultEditorModule();
@@ -35,7 +54,7 @@ export let registerEditorBlock = function(aModuleName, aName, aEditorModule = nu
     editorItem.setValue("controller", aEditorModule);
     editorItem.register("moduleCreators/blocks/editor/" + aModuleName);
 
-    tools[aModuleName] = createToolConfiguration(aModuleName, aName);
+    tools[aModuleName] = createToolConfiguration(aModuleName, aName, aInitialData, aSanitizeSettings);
 
     editorConfigItem.setValue("tools", tools);
 }
@@ -47,7 +66,7 @@ export let registerFrontBlock = function(aModuleName, aElement) {
     elementItem.register("blocks/" + aModuleName);
 }
 
-export let registerBlock = function(aModuleName, aName, aElement, aEditorElement = null) {
+export let registerBlock = function(aModuleName, aName, aElement, aEditorElement = null, aInitialData = {}, aSanitizeSettings = {}) {
 
     let editorModule;
     if(!aEditorElement) {
@@ -58,7 +77,7 @@ export let registerBlock = function(aModuleName, aName, aElement, aEditorElement
         editorModule.setMainElement(aEditorElement);
     }
 
-    registerEditorBlock(aModuleName, aName, editorModule);
+    registerEditorBlock(aModuleName, aName, editorModule, aInitialData, aSanitizeSettings);
     registerFrontBlock(aModuleName, aElement);
 } 
 

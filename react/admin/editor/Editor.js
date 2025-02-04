@@ -7,6 +7,9 @@ export default class Editor extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
+        let editorId = "editor/instance" + Dbm.getInstance().getNextId();
+        this.item.register(editorId);
+
         let all = Dbm.flow.updatefunctions.logic.allAtValue(1);
 
         all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/image@latest").item.properties.status);
@@ -125,7 +128,14 @@ export default class Editor extends Dbm.react.BaseObject {
 
 
             let editorConfigItem = Dbm.getInstance().repository.getItem("editorjs");
-            let toolsFromConfig = editorConfigItem.tools;
+            let toolsFromConfig = {...editorConfigItem.tools};
+
+            let editorId = this.item.id;
+            for(let objectName in toolsFromConfig) {
+                let currentTool = {...toolsFromConfig[objectName]};
+                currentTool["config"] = {...currentTool["config"], "editorId": editorId};
+                toolsFromConfig[objectName] = currentTool;
+            }
 
             tools = {...tools, ...toolsFromConfig};
 		
