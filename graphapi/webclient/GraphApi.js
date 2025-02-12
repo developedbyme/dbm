@@ -32,6 +32,10 @@ export default class GraphApi extends Dbm.core.BaseObject {
         return this._websocketConnection.requestData(aFunctionName, aData);
     }
 
+    performAction(aFunctionName, aData) {
+        return this._websocketConnection.performAction(aFunctionName, aData);
+    }
+
     createItem(aTypes, aVisibility = "draft", aChanges = [], aEncode = []) {
         return this._websocketConnection.createItem(aTypes, aVisibility, aChanges, aEncode);
     }

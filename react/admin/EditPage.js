@@ -13,6 +13,10 @@ export default class EditPage extends Dbm.react.BaseObject {
         this.item.setValue("description", page["meta/description"]);
         this.item.setValue("url", page.url);
 
+        let descriptionLength = Dbm.flow.updatefunctions.basic.length(this.item.properties.description);
+
+        this.item.requireProperty("descriptionLength", 0).connectInput(descriptionLength.output.properties.length);
+
         //METODO: add editors
     }
 
@@ -22,8 +26,8 @@ export default class EditPage extends Dbm.react.BaseObject {
         let page = this.context.page;
         let id = page.id;
         let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
-        console.log(this.item.content);
-        console.log(this.item.content.blocks[1].data.text);
+        //console.log(this.item.content);
+        //console.log(this.item.content.blocks[1].data.text);
 
         graphApi.editItem(id, [
             {"type": "setField", "data": {"value": this.item.content, "field": "content"}},
@@ -33,6 +37,20 @@ export default class EditPage extends Dbm.react.BaseObject {
 			{"type": "setField", "data": {"value": (new Date()).toISOString(), "field": "lastModified"}},
             {"type": "setUrl", "data": {"value": this.item.url}}
         ], ["content", "title", "url", "meta/description"]);
+    }
+
+    _generateSeoSummary() {
+        let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
+
+        let request = graphApi.requestData("admin/seoSummary", {"value": {"title": this.item.title, "content": this.item.content}});
+        Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._dataLoaded.bind(this), [request]));
+
+    }
+
+    _dataLoaded(aRequest) {
+        let summary = Dbm.objectPath(aRequest, "data.seoSummary");
+
+        this.item.description = summary;
     }
 
     _renderMainElement() {
@@ -66,6 +84,17 @@ export default class EditPage extends Dbm.react.BaseObject {
                     "Seo description"
                 ),
                 React.createElement(Dbm.react.form.FormField, {"value": this.item.properties.description, className: "standard-field standard-field-padding full-width", placeholder: "Description"}),
+                React.createElement("div", {className: "spacing micro"}),
+                React.createElement("div", {className: "flex-row justify-between"},
+                    React.createElement("div", {className: "flex-row-item"},
+                        React.createElement("div", {onClick: () => {this._generateSeoSummary()}}, "Generate"),
+                    ),
+                    React.createElement("div", {className: "flex-row-item"},
+                        Dbm.react.text.text(this.item.properties.descriptionLength),
+                        " / ",
+                        "155"
+                    )
+                )
             ),
             React.createElement("div", {className: "spacing standard"}),
             React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},

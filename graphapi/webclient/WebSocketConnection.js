@@ -87,6 +87,15 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
         return item;
     }
 
+    performAction(aFunctionName, aData) {
+        //console.log("performAction");
+        let item = this._getRequestItem();
+        item.setValue("requestData", {"type": "action", "functionName": aFunctionName, "data": aData, "requestId": item.id});
+        this._runRequest(item);
+        
+        return item;
+    }
+
     createItem(aTypes, aVisibility = "draft", aChanges = [], aEncode = []) {
         let item = this._getRequestItem();
         item.setValue("requestData", {"type": "admin/createObject", "types": aTypes, "visibility": aVisibility, "changes": aChanges, "encode": aEncode, "requestId": item.id});
@@ -212,6 +221,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
                 }
                 break;
             case "data/response":
+            case "action/response":
                 {
                     let item = repository.getItem(data["requestId"]);
                     item.setValue("data", data["data"]);

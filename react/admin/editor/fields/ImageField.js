@@ -19,7 +19,7 @@ export default class ImageField extends Dbm.react.BaseObject {
 
         let imageElement = React.createElement("div", {className: "flex-row small-item-spacing"},
             React.createElement("div", {className: "flex-row-item flex-no-resize"},
-                React.createElement(Dbm.react.image.Image, {"src": Dbm.react.source.contextVariable("moduleData.editorData.data." + fieldName + ".url"), className: "editor-preview background-contain"}),
+                React.createElement(Dbm.react.image.WidthScaledImage, {"image": Dbm.react.source.contextVariable("moduleData.editorData.data." + fieldName), targetWidth: 120, className: "editor-preview background-contain"}),
             ),
             React.createElement("div", {className: "flex-row-item flex-resize"},
                 Dbm.react.text.text(Dbm.react.source.contextVariable("moduleData.editorData.data." + fieldName + ".url"))

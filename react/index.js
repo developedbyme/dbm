@@ -15,4 +15,4 @@ export * as text from "./text/index.js";
 export * as login from "./login/index.js";
 export * as image from "./image/index.js";
 export * as animation from "./animation/index.js";
-
+export * as interaction from "./interaction/index.js";
