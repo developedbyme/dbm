@@ -3,6 +3,7 @@ import Dbm from "../../../index.js";
 export {default as RunCommand} from "./RunCommand.js";
 export {default as CombineString} from "./CombineString.js";
 export {default as Length} from "./Length.js";
+export {default as PropertyOf} from "./PropertyOf.js";
 
 export const runCommand = function(aValue, aCommand) {
 	let updateFunction = new Dbm.flow.updatefunctions.basic.RunCommand();
@@ -21,6 +22,14 @@ export const transformValue = function(aValue, aFunction) {
 export const length = function(aValue) {
 	let updateFunction = new Dbm.flow.updatefunctions.basic.Length();
 	updateFunction.input.properties.value.setOrConnect(aValue);
+	
+	return updateFunction;
+}
+
+export const propertyOf = function(aValue, aPropertyName) {
+	let updateFunction = new Dbm.flow.updatefunctions.basic.PropertyOf();
+	updateFunction.input.properties.value.setOrConnect(aValue);
+	updateFunction.input.properties.propertyName.setOrConnect(aPropertyName);
 	
 	return updateFunction;
 }

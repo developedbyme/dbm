@@ -15,6 +15,17 @@ export default class Condition extends Dbm.flow.FlowUpdateFunction {
     _update() {
         //console.log("_update");
 
-        this.output.result = this.input.operation.call(this, this.input.input1, this.input.input2);
+        let operation = this.input.operation;
+        if(typeof(operation) === "string") {
+            if(operation === "!==") {
+                operation = function(aA, aB) {return aA !== aB;}
+            }
+            else {
+                //METODO: add more operations
+                operation = function(aA, aB) {return aA === aB;}
+            }
+        }
+
+        this.output.result = operation.call(this, this.input.input1, this.input.input2);
     }
 }
