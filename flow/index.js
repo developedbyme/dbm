@@ -9,6 +9,7 @@ export {default as DirtyCommands} from "./DirtyCommands.js";
 export {default as FlowPropertyWithExternalInput} from "./FlowPropertyWithExternalInput.js";
 
 export * as updatefunctions from "./updatefunctions/index.js";
+export * as controllers from "./controllers/index.js";
 
 export let addUpdateCommand = function(aProperty, aCommand) {
     let updateFunction = new Dbm.flow.updatefunctions.basic.RunCommand();

@@ -61,3 +61,56 @@ export const singleOrArray = function(aData) {
     
     return [aData];
 }
+
+export const removeValues = function(aArray, aRemoveValues) {
+    let returnArray = new Array();
+    
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentValue = currentArray[i];
+        if(aRemoveValues.indexOf(currentValue) === -1) {
+            returnArray.push(currentValue);
+        }
+    }
+    
+    return returnArray;
+}
+
+export const trimArray = function(aArray, aMode = 3) {
+		
+    if(aMode > 0) {
+        //METODO: use mode
+        if(aArray) {
+            let currentArray = aArray;
+            let currentArrayLength = currentArray.length;
+            for(let i = 0; i < currentArrayLength; i++) {
+                let currentString = currentArray[i];
+                
+                if(typeof(currentString) === "string") {
+                    currentArray[i] = currentString.trim();
+                }
+            }
+        }
+    }
+    
+    return aArray;
+}
+
+export const arrayOrSeparatedString = function(aData, aSeparator = ",", aTrim = 3) {
+    if(aData === null || aData === undefined) {
+        return [];
+    }
+    else if(aData instanceof Array) {
+        return aData;
+    }
+    else if(typeof(aData) === "string") {
+        if(aData === "") {
+            return [];
+        }
+        return trimArray(aData.split(aSeparator));
+    }
+    
+    console.error(aData + " is not array or string.");
+    return [];
+}

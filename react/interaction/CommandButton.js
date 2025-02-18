@@ -79,10 +79,10 @@ export default class CommandButton extends Dbm.react.BaseObject {
             let currentChild = currentArray[i];
             if(currentChild) {
                 if(typeof(currentChild) === "string") {
-                    replacedChildren.push(React.createElement("span"), {"onClick": this._callback_clickBound}, currentChild);
+                    replacedChildren.push(React.createElement("span"), {"onClick": this._callback_clickBound, onKeyDown: function(aEvent) {if(aEvent.key === "Enter") aEvent.target.click()}}, currentChild);
                 }
                 else {
-                    replacedChildren.push(this._performClone(currentChild, {"onClick": this._callback_clickBound}));
+                    replacedChildren.push(this._performClone(currentChild, {"onClick": this._callback_clickBound, onKeyDown: function(aEvent) {if(aEvent.key === "Enter") aEvent.target.click()}}));
                 }
             }
             else {

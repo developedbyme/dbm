@@ -10,11 +10,19 @@ export {default as All} from "./All.js";
 export {default as Any} from "./Any.js";
 export {default as AllAtValue} from "./AllAtValue.js";
 export {default as WhenMatched} from "./WhenMatched.js";
+export {default as Invert} from "./Invert.js";
 
 export let subtract = function(aInput1 = 0, aInput2 = 0) {
     let updateFunction = new Dbm.flow.updatefunctions.logic.Subtraction();
     updateFunction.input.properties.input1.setOrConnect(aInput1);
     updateFunction.input.properties.input2.setOrConnect(aInput2);
+
+    return updateFunction;
+}
+
+export let invert = function(aValue = false) {
+    let updateFunction = new Dbm.flow.updatefunctions.logic.Invert();
+    updateFunction.input.properties.input.setValue(aValue);
 
     return updateFunction;
 }
