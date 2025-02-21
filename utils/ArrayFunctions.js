@@ -1,3 +1,5 @@
+import Dbm from "../index.js";
+
 export const range = function(aStartValue, aEndValue, aStepValue = 1, aIncludeEndValue = true) {
 		
     let returnArray = new Array();
@@ -113,4 +115,21 @@ export const arrayOrSeparatedString = function(aData, aSeparator = ",", aTrim = 
     
     console.error(aData + " is not array or string.");
     return [];
+}
+
+export const filterByField = function(aArray, aField, aValue) {
+    let returnArray = [];
+
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentItem = aArray[i];
+        let currentValue = Dbm.objectPath(aArray[i], aField);
+        console.log(currentValue, aValue);
+        if(currentValue === aValue) {
+            returnArray.push(currentItem);
+        }
+    }
+
+    return returnArray;
 }
