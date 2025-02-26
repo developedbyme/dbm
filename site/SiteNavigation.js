@@ -151,7 +151,6 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		aEvent.preventDefault();
 		
 		this._internalNavigation(finalUrl.href);
-		window.scrollTo(0, 0);
 		
 		return false;
     }
@@ -162,15 +161,6 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		paths.push(aUrl);
 		
 		this.item.travelPaths = paths;
-	}
-	
-	_trackPage(aUrl) {
-		//console.log("_trackPage");
-		
-		let trackingController = Dbm.getInstance().repository.getItem("trackingController").controller;
-		if(trackingController) {
-			trackingController.trackPage(aUrl);
-		}
 	}
 
     _internalNavigation(aUrl) {
@@ -185,8 +175,6 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		history.pushState({}, "Page", aUrl);
 		this.item.url = aUrl;
 		
-		this._trackPage(aUrl);
-		
 		this._addUrlToPath(aUrl);
 	}
 
@@ -195,8 +183,6 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		
 		let url = document.location.href;
 		this.item.url = url;
-		
-		this._trackPage(url);
 		
 		let paths = [].concat(this.item.travelPaths);
 		paths.pop();
@@ -209,7 +195,6 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		
 		if(this.item.active && originalUrl.hostname === finalUrl.hostname && this._shouldHandle(finalUrl.href)) {
 			this._internalNavigation(finalUrl.href);
-			window.scrollTo(0, 0);
 		}
 		else {
 			document.location.href = aUrl;

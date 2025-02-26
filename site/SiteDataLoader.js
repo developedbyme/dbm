@@ -29,12 +29,9 @@ export default class SiteDataLoader extends Dbm.core.BaseObject {
 			let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
 			let request = graphApi.requestUrl(pathName);
 
-			let urlUpdate = new Dbm.flow.updatefunctions.basic.RunCommand();
-			urlUpdate.input.properties.value.connectInput(request.properties.status);
-			urlUpdate.input.command = Dbm.commands.callFunction(this._pageDataLoaded.bind(this), [pageData, request]);
-
 			this.item.setValue("status", 2);
-			urlUpdate.output.properties.value.startUpdating();
+			Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, 1, Dbm.commands.callFunction(this._pageDataLoaded.bind(this), [pageData, request]))
+
 		}
 		else {
 			this.item.currentPage = null;
@@ -46,17 +43,16 @@ export default class SiteDataLoader extends Dbm.core.BaseObject {
 		//console.log("_pageDataLoaded");
 		//console.log(aPageData, aRequest, aRequest.status);
 
-		if(aRequest.status === 1) {
-			aPageData.setValue("page", aRequest.item);
-			aPageData.setValue("canRender", true);
+		aPageData.setValue("page", aRequest.item);
+		aPageData.setValue("canRender", true);
 
-			if(this.item.url === aPageData.url) {
-				this.item.currentPage = aPageData;
-				this.item.setValue("status", 1);
-			}
+		if(this.item.url === aPageData.url) {
+			this.item.currentPage = aPageData;
+			this.item.setValue("status", 1);
 
-			//METODO: remove updaters
 		}
+
+		//METODO: remove updaters
 		
 	}
 }
