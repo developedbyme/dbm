@@ -26,7 +26,19 @@ export default class BrowserUpdater extends Dbm.core.BaseObject {
 	}
 
 	_pageDataUpdated() {
-		document.title = Dbm.objectPath(this.item.pageData, "page.title") + this.item.titleSuffix;
+
+		let title = Dbm.objectPath(this.item.pageData, "page.title") + this.item.titleSuffix;
+		document.title = title;
+		document.querySelector('meta[property="og:title"]').setAttribute("content", title);
+
+		let description = Dbm.objectPath(this.item.pageData, "page.meta/description");
+		document.querySelector('meta[name="description"]').setAttribute("content", description);
+		document.querySelector('meta[property="og:description"]').setAttribute("content", description);
+
+		//METODO: set canonical
+
+		//METODO: set structured data
+
 		window.scrollTo(0, 0);
 
 		this._trackPage(document.location.href);
