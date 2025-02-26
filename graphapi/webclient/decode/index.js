@@ -78,6 +78,13 @@ let fullSetup = function() {
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }
+
+    {
+        let name = "type";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
 }
 
 export {fullSetup};

@@ -12,9 +12,9 @@ export let text = function(aText) {
     return createElement(Dbm.react.text.Text, {text: aText});
 }
 
-export let htmlText = function(aText, aElementType = "span") {
+export let htmlText = function(aText, aElementType = "span", aAdditionalProps = {}) {
     if(typeof(aText) === "string") {
         //return createElement(aElementType, {"dangerouslySetInnerHTML": {__html: aText}});
     }
-    return createElement(Dbm.react.text.HtmlText, {text: aText, elementType: aElementType});
+    return createElement(Dbm.react.text.HtmlText, {text: aText, elementType: aElementType, ...aAdditionalProps});
 }

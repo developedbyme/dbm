@@ -49,6 +49,20 @@ export let createCoverScaledImageUrl = function(aImageData, aWantedWidth, aWante
     return url;
 }
 
+export const getContainScaledImageUrl = function(aUrl, aWantedWidth, aWantedHeight) {
+    let scaleToWidth = Math.min(
+        Math.round(window.devicePixelRatio*aWantedWidth),
+        Math.max(
+            100,
+            100*Math.round(window.devicePixelRatio*window.innerWidth/100)
+        )
+    );
+
+    let scaleToHeight = Math.round(aWantedHeight*scaleToWidth/aWantedWidth);
+
+    return aUrl.split("{scale}").join("width=" + scaleToWidth + ",height=" + scaleToHeight + ",fit=contain");
+}
+
 export let createContainScaledImageUrl = function(aImageData, aWantedWidth, aWantedHeight) {
     if(!aImageData || !aImageData["url"]) {
         return null;
@@ -60,17 +74,7 @@ export let createContainScaledImageUrl = function(aImageData, aWantedWidth, aWan
     }
 
     if(aImageData["resizeUrl"]) {
-        let scaleToWidth = Math.min(
-            Math.round(window.devicePixelRatio*aWantedWidth),
-            Math.max(
-                100,
-                100*Math.round(window.devicePixelRatio*window.innerWidth/100)
-            )
-        );
-
-        let scaleToHeight = Math.round(aWantedHeight*scaleToWidth/aWantedWidth);
-
-        url = aImageData["resizeUrl"].split("{scale}").join("width=" + scaleToWidth + ",height=" + scaleToHeight + ",fit=contain");
+        url = getContainScaledImageUrl(aImageData["resizeUrl"], aWantedWidth, aWantedHeight);
     }
 
     return url;

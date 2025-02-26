@@ -125,7 +125,6 @@ export const filterByField = function(aArray, aField, aValue) {
     for(let i = 0; i < currentArrayLength; i++) {
         let currentItem = aArray[i];
         let currentValue = Dbm.objectPath(aArray[i], aField);
-        console.log(currentValue, aValue);
         if(currentValue === aValue) {
             returnArray.push(currentItem);
         }
