@@ -7,17 +7,42 @@ export default class EditPage extends Dbm.react.BaseObject {
 
         let page = this.context.page;
 
-        this.item.setValue("title", page.title);
-        this.item.setValue("navigationName", page.navigationName);
-        this.item.setValue("content", page.content);
-        this.item.setValue("description", page["meta/description"]);
-        this.item.setValue("url", page.url);
+        let editor = new Dbm.flow.controllers.edit.EditMultipleValues();
+        this.item.setValue("editor", editor);
 
-        let descriptionLength = Dbm.flow.updatefunctions.basic.length(this.item.properties.description);
+        {
+            let valueEditor = editor.getEditor("title").setInitialValue(page.title);
+            valueEditor.item.setValue("updateEncodings", "title");
+            valueEditor.item.setValue("generateEditData", "title");
+        }
+        
+        editor.getEditor("navigationName").setInitialValue(page.navigationName);
+        editor.getEditor("content").setInitialValue(page.content);
+        editor.getEditor("description").setInitialValue(page["meta/description"]);
+        editor.getEditor("url").setInitialValue(page.url);
+
+        this.item.requireProperty("changed", false).connectInput(editor.item.properties.changed);
+
+        let descriptionLength = Dbm.flow.updatefunctions.basic.length(editor.getEditor("description").value);
 
         this.item.requireProperty("descriptionLength", 0).connectInput(descriptionLength.output.properties.length);
 
-        //METODO: add editors
+        let editorGroup = new Dbm.graphapi.webclient.admin.EditorGroup();
+        this.item.setValue("editorGroup", editorGroup);
+
+        let id = page.id;
+        let itemEditor = editorGroup.getItemEditor(id);
+
+        itemEditor.addFieldEditor("navigationName", page.navigationName); //METODO: add update encoding
+        itemEditor.addFieldEditor("content", page.content, "content");
+        itemEditor.addFieldEditor("description", page["meta/description"], "meta/description");
+        itemEditor.addFieldEditor("url", "url");
+
+        let fieldEditor = itemEditor.addFieldEditor("title", page.title, "title");
+
+        //fieldEditor.item.editValue.item.value = "TEst";
+
+        editorGroup.save();
     }
 
     _save() {
@@ -29,20 +54,35 @@ export default class EditPage extends Dbm.react.BaseObject {
         //console.log(this.item.content);
         //console.log(this.item.content.blocks[1].data.text);
 
-        graphApi.editItem(id, [
-            {"type": "setField", "data": {"value": this.item.content, "field": "content"}},
-            {"type": "setField", "data": {"value": this.item.title, "field": "title"}},
-            {"type": "setField", "data": {"value": this.item.navigationName, "field": "navigationName"}},
-            {"type": "setField", "data": {"value": this.item.description, "field": "meta/description"}},
+        let editor = this.item.editor;
+
+        let saveData = createSaveData();
+        getValueEdit(saveData, valueEditor)
+        saveData.addChange(id, {"type": "setField", "data": {"value": editor.getEditor("title").getValue(), "field": "title"}});
+        saveData.addUpdateEncoding(id, "title");
+        saveData.addSavedCommand(valueEditor.getStoreCommand());
+
+        saveData.getChanges();
+        saveData.getUpdateEncodings();
+        saveData.getSavedCommands();
+
+        let request = graphApi.editItem(id, [
+            {"type": "setField", "data": {"value": editor.getEditor("content").getValue(), "field": "content"}},
+            {"type": "setField", "data": {"value": editor.getEditor("title").getValue(), "field": "title"}},
+            {"type": "setField", "data": {"value": editor.getEditor("navigationName").getValue(), "field": "navigationName"}},
+            {"type": "setField", "data": {"value": editor.getEditor("description").getValue(), "field": "meta/description"}},
 			{"type": "setField", "data": {"value": (new Date()).toISOString(), "field": "lastModified"}},
-            {"type": "setUrl", "data": {"value": this.item.url}}
+            {"type": "setUrl", "data": {"value": editor.getEditor("url").getValue()}}
         ], ["content", "title", "url", "meta/description"]);
     }
 
     _generateSeoSummary() {
+
+        let editor = this.item.editor;
+
         let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
 
-        let request = graphApi.requestData("admin/seoSummary", {"value": {"title": this.item.title, "content": this.item.content}});
+        let request = graphApi.requestData("admin/seoSummary", {"value": {"title": editor.getEditor("title").getValue(), "content": editor.getEditor("content").getValue()}});
         Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._dataLoaded.bind(this), [request]));
 
     }
@@ -50,10 +90,14 @@ export default class EditPage extends Dbm.react.BaseObject {
     _dataLoaded(aRequest) {
         let summary = Dbm.objectPath(aRequest, "data.seoSummary");
 
-        this.item.description = summary;
+        let editor = this.item.editor;
+        editor.getEditor("description").item.value = summary;
     }
 
     _renderMainElement() {
+
+        let editor = this.item.editor;
+        console.log(editor);
 
         return React.createElement("div", {},
             React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
@@ -61,21 +105,21 @@ export default class EditPage extends Dbm.react.BaseObject {
                     React.createElement("label", {className: "standard-field-label"},
                         "Page title"
                     ),
-                    React.createElement(Dbm.react.form.FormField, {"value": this.item.properties.title, className: "standard-field standard-field-padding full-width page-title-form-field", placeholder: "Title"}),
+                    React.createElement(Dbm.react.form.FormField, {"value": editor.getEditor("title").value, className: "standard-field standard-field-padding full-width page-title-form-field", placeholder: "Title"}),
                 ),
                 React.createElement("div", {className: "spacing standard"}),
                 React.createElement("div", {},
                     React.createElement("label", {className: "standard-field-label"},
                         "Navigation name"
                     ),
-                    React.createElement(Dbm.react.form.FormField, {"value": this.item.properties.navigationName, className: "standard-field standard-field-padding full-width", placeholder: "Name showed in menues and breadcrumbs"}),
+                    React.createElement(Dbm.react.form.FormField, {"value": editor.getEditor("navigationName").value, className: "standard-field standard-field-padding full-width", placeholder: "Name showed in menues and breadcrumbs"}),
                 ),
                 React.createElement("div", {className: "spacing standard"}),
                 React.createElement("div", {},
                     React.createElement("label", {className: "standard-field-label"},
                         "Url"
                     ),
-                    React.createElement(Dbm.react.form.FormField, {"value": this.item.properties.url, className: "standard-field standard-field-padding full-width", placeholder: "Url"}),
+                    React.createElement(Dbm.react.form.FormField, {"value": editor.getEditor("url").value, className: "standard-field standard-field-padding full-width", placeholder: "Url"}),
                 ),
             ),
             React.createElement("div", {className: "spacing standard"}),
@@ -83,7 +127,7 @@ export default class EditPage extends Dbm.react.BaseObject {
                 React.createElement("label", {className: "standard-field-label"},
                     "Seo description"
                 ),
-                React.createElement(Dbm.react.form.FormField, {"value": this.item.properties.description, className: "standard-field standard-field-padding full-width", placeholder: "Description"}),
+                React.createElement(Dbm.react.form.FormField, {"value": editor.getEditor("description").value, className: "standard-field standard-field-padding full-width", placeholder: "Description"}),
                 React.createElement("div", {className: "spacing micro"}),
                 React.createElement("div", {className: "flex-row justify-between"},
                     React.createElement("div", {className: "flex-row-item"},
@@ -102,14 +146,14 @@ export default class EditPage extends Dbm.react.BaseObject {
                     "Content"
                 ),
                 React.createElement("div", {},
-                    React.createElement(Dbm.react.admin.editor.Editor, {"value": this.item.properties.content}),
+                    React.createElement(Dbm.react.admin.editor.Editor, {"value": editor.getEditor("content").value}),
                 )
             ),
             React.createElement("div", {className: "spacing standard"}),
-            React.createElement("div", {className: "flex-row justify-center"},
-                React.createElement("div", {className: "flex-row-item"},
+            React.createElement("div", {className: "save-all-position"},
+                React.createElement(Dbm.react.area.OpenCloseExpandableArea, {open: editor.item.properties.changed},
                     React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._save()}},
-                        "Save"
+                        "Save all changes"
                     )
                 )
             )

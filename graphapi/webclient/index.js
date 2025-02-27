@@ -7,6 +7,7 @@ export {default as ApiConnection} from "./ApiConnection.js";
 export {default as ApiRequest} from "./ApiRequest.js";
 
 export * as decode from "./decode/index.js";
+export * as admin from "./admin/index.js";
 
 export const setup = function(aWsPath, aApiPath) {
     let webSocketConnection = new Dbm.graphapi.webclient.WebSocketConnection();
