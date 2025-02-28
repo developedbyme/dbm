@@ -37,3 +37,12 @@ export const setProperty = function(aProperty, aValue) {
 
     return newCommand;
 }
+
+export const performCommands = function(aCommands, aFromObject = null, aEventData = null) {
+    let currentArray = aCommands;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentCommand = currentArray[i];
+        currentCommand.perform(aFromObject, aEventData);
+    }
+}

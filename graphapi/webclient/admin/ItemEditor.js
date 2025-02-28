@@ -14,31 +14,32 @@ export default class ItemEditor extends Dbm.core.BaseObject {
         this.item.requireProperty("changed", false).connectInput(anyChange.output.properties.value);
     }
 
-    addFieldEditor(aField, aInitialValue, aUpdateEncoding = null) {
-        let valueEditor = this.item["editor_" + aField];
+    getEditor(aField) {
+        return this.item["editor_" + aField];
+    }
+
+    addEditor(aName, aInitialValue, aSaveFunction, aUpdateEncoding = null) {
+        let valueEditor = this.item["editor_" + aName];
         if(!valueEditor) {
             valueEditor = new Dbm.graphapi.webclient.admin.ValueEditor();
             valueEditor.item.editValue.setInitialValue(aInitialValue);
 
             valueEditor.item.setValue("itemEditor", this.item);
-            valueEditor.item.setValue("fieldName", aField);
+            valueEditor.item.setValue("name", aName);
             valueEditor.item.setValue("updateEncoding", aUpdateEncoding);
 
             this.item.anyChange.addCheck(valueEditor.item.properties.changed);
-            this.item.setValue("editor_" + aField, valueEditor); 
+            this.item.setValue("editor_" + aName, valueEditor); 
             this.item.editors = [].concat(this.item.editors, valueEditor);
-
-            let saveFunction = function(aEditor, aItemSaveData) {
-                console.log("saveFunction");
-                console.log(aEditor, aItemSaveData);
-
-                aItemSaveData.setField(aEditor.item.fieldName, aEditor.item.editValue.getValue());
-            }
-            //METODO: add save function
-            valueEditor.addSaveFunction(saveFunction);
+            
+            valueEditor.addSaveFunction(aSaveFunction);
         }
 
         return valueEditor;
+    }
+
+    addFieldEditor(aField, aInitialValue, aUpdateEncoding = null) {
+        return this.addEditor(aField, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.setField, aUpdateEncoding);
     }
 
     addCommandsToSaveData(aSaveData) {
@@ -68,6 +69,6 @@ export default class ItemEditor extends Dbm.core.BaseObject {
 
     save() {
         let saveData = this.getSaveData();
-        //METODO:
+        saveData.save();
     }
 }

@@ -48,6 +48,16 @@ export default class ItemSaveData extends Dbm.core.BaseObject {
     }
 
     save() {
-        //METODO
+        let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
+
+        let request = graphApi.editItem(this.itemId, this._changes, this._updateEncodings);
+        Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, 1, Dbm.commands.callFunction(this._saved.bind(this)));
+
+        return request;
+    }
+
+    _saved() {
+        console.log("_saved");
+        Dbm.commands.performCommands(this._savedCommands, this);
     }
 }

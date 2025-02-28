@@ -21,6 +21,7 @@ export default class EditorGroup extends Dbm.core.BaseObject {
             itemEditor.item.setValue("editedItem", Dbm.getInstance().repository.getItem(aId));
             this.item.setValue("editor_" + aId, itemEditor); 
             this.item.editors = [].concat(this.item.editors, itemEditor);
+            this.item.anyChange.addCheck(itemEditor.item.properties.changed);
         }
 
         return itemEditor;
@@ -53,6 +54,6 @@ export default class EditorGroup extends Dbm.core.BaseObject {
     save() {
         let saveData = this.getSaveData();
         console.log(saveData);
-        //METODO:
+        saveData.save();
     }
 }

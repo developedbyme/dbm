@@ -56,6 +56,6 @@ export default class ValueEditor extends Dbm.core.BaseObject {
 
     save() {
         let saveData = this.getSaveData();
-        //METODO:
+        saveData.save();
     }
 }
