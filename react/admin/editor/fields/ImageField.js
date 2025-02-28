@@ -29,11 +29,43 @@ export default class ImageField extends Dbm.react.BaseObject {
             )
         );
 
-        let uploadElement = React.createElement("input", {"type": "file", onChange: this._callback_fileChangedBound, className: "full-width"});
+        this.item.requireProperty("selectMode", "overview");
 
-        let elementSwitch =Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.value).setDefaultValue(imageElement).addCase(null, uploadElement);
+        let uploadElement = React.createElement("div", {className: "flex-row small-item-spacing halfs"},
+            React.createElement("div", {className: "flex-row-item"},
+                React.createElement("input", {"type": "file", onChange: this._callback_fileChangedBound, className: "full-width"})
+            ),
+            React.createElement("div", {className: "flex-row-item"},
+                React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.setProperty(this.item.properties.selectMode, "library")}, 
+                    React.createElement("div", {className: "flex-row-item"}, "Select from library")
+                )
+            ),
+        );
+
+        let libraryElement = React.createElement("div", {}, 
+            React.createElement(Dbm.react.admin.SelectImageFromLibrary, {selectedCommands: [
+                Dbm.commands.callFunction(this._imageSelected.bind(this), [Dbm.core.source.event()]),
+                Dbm.commands.setProperty(this.item.properties.selectMode, "overview")
+            ]})
+        );
+
+        let selectSwitch = Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.selectMode).setDefaultValue(uploadElement).addCase("library", libraryElement);
+
+        let selectElement = React.createElement("div", {},
+            React.createElement(Dbm.react.area.InsertElement, {element: selectSwitch.output.properties.value})
+        );
+
+        let elementSwitch = Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.value).setDefaultValue(imageElement).addCase(null, selectElement);
 
         this.item.requireProperty("element", null).connectInput(elementSwitch.output.properties.value);
+    }
+
+    _imageSelected(aImage) {
+        console.log("_imageSelected");
+        console.log(aImage);
+
+        let imageData = {id: aImage.id, url: aImage.url, resizeUrl: aImage.resizeUrl, identifier: aImage.identifier, altText: aImage.altText};
+        this.item.value = imageData;
     }
 
     _getObjectData() {
@@ -121,7 +153,7 @@ export default class ImageField extends Dbm.react.BaseObject {
                     headers: new Headers(headers),
                     body: aFile
                  }).then(() => {
-                    this.item.value = {url: aPreSign.data.publicUrl, resizeUrl: aPreSign.data.publicResizeUrl, identifier: aPreSign.data.identifier};
+                    this.item.value = {id: aPreSign.data.id, url: aPreSign.data.publicUrl, resizeUrl: aPreSign.data.publicResizeUrl, identifier: aPreSign.data.identifier};
                     console.log("Uploaded", this.item.value);
                     //METODO: send update to editor
                  })

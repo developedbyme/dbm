@@ -2,7 +2,7 @@ import Dbm from "../../../index.js";
 
 export {default as DecodeBaseObject} from "./DecodeBaseObject.js";
 
-let fullSetup = function() {
+export const fullSetup = function() {
     let decodePrefix = "graphApi/decode/";
 
     if(process.env.NODE_ENV === "development") {
@@ -85,6 +85,12 @@ let fullSetup = function() {
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }
-}
 
-export {fullSetup};
+    {
+        let name = "image";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyFields", ["originalFileName", "path", "url", "resizeUrl", "altText"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
+}
