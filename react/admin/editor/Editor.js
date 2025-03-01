@@ -138,6 +138,8 @@ export default class Editor extends Dbm.react.BaseObject {
             }
 
             tools = {...tools, ...toolsFromConfig};
+
+            console.log(">>>>>>>", content);
 		
 		    const editor = new window.EditorJS({ 
                 minHeight: 0,

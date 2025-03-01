@@ -42,10 +42,10 @@ export default class SelectImageFromLibrary extends Dbm.react.BaseObject {
 
         return React.createElement("div", {},
             React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
-                React.createElement("div", {className: "flex-row"},
+                React.createElement("div", {className: "flex-row flex-wrap"},
                     React.createElement(Dbm.react.area.List, {items: this.item.properties.rows},
                         React.createElement(Dbm.react.interaction.CommandButton, {command: this._selectCommand},
-                            React.createElement(Dbm.react.image.WidthScaledImage, {image: Dbm.react.source.contextVariable("item"), className: "background-contain image-library-preview"})
+                            React.createElement(Dbm.react.image.WidthScaledImage, {image: Dbm.react.source.contextVariable("item"), targetWidth: 120, className: "background-contain image-library-preview image-library-margins"})
                         )
                     )
                 )
