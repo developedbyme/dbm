@@ -107,7 +107,7 @@ export default class EditPage extends Dbm.react.BaseObject {
                     React.createElement("div", {className: "spacing micro"}),
                     React.createElement("div", {className: "flex-row justify-between"},
                         React.createElement("div", {className: "flex-row-item"},
-                            React.createElement("div", {onClick: () => {this._generateSeoSummary()}}, "Generate"),
+                            React.createElement("div", {onClick: () => {this._generateSeoSummary()}, className: "action-button action-button-padding"}, "Generate"),
                         ),
                         React.createElement("div", {className: "flex-row-item"},
                             Dbm.react.text.text(this.item.properties.descriptionLength),

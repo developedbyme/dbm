@@ -16,7 +16,15 @@ export let createScaledImageUrl = function(aImageData, aWantedWidth) {
                 100*Math.round(window.devicePixelRatio*window.innerWidth/100)
             )
         );
-        url = aImageData["resizeUrl"].split("{scale}").join("width=" + scaleToWidth);
+
+        let scaleString =  "width=" + scaleToWidth;
+
+        let format = "webp";
+        if(format) {
+            scaleString += ",format=" + format;
+        }
+
+        url = aImageData["resizeUrl"].split("{scale}").join(scaleString);
     }
 
     return url;
@@ -43,7 +51,14 @@ export let createCoverScaledImageUrl = function(aImageData, aWantedWidth, aWante
 
         let scaleToHeight = Math.round(aWantedHeight*scaleToWidth/aWantedWidth);
 
-        url = aImageData["resizeUrl"].split("{scale}").join("width=" + scaleToWidth + ",height=" + scaleToHeight + ",fit=cover");
+        let scaleString = "width=" + scaleToWidth + ",height=" + scaleToHeight + ",fit=cover";
+
+        let format = "webp";
+        if(format) {
+            scaleString += ",format=" + format;
+        }
+
+        url = aImageData["resizeUrl"].split("{scale}").join(scaleString);
     }
 
     return url;
@@ -60,7 +75,14 @@ export const getContainScaledImageUrl = function(aUrl, aWantedWidth, aWantedHeig
 
     let scaleToHeight = Math.round(aWantedHeight*scaleToWidth/aWantedWidth);
 
-    return aUrl.split("{scale}").join("width=" + scaleToWidth + ",height=" + scaleToHeight + ",fit=contain");
+    let scaleString = "width=" + scaleToWidth + ",height=" + scaleToHeight + ",fit=contain";
+
+    let format = "webp";
+    if(format) {
+        scaleString += ",format=" + format;
+    }
+
+    return aUrl.split("{scale}").join(scaleString);
 }
 
 export let createContainScaledImageUrl = function(aImageData, aWantedWidth, aWantedHeight) {

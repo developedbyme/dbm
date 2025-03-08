@@ -11,6 +11,7 @@ export default class Image extends Dbm.react.BaseObject {
         let isDiv = (elementType !== "img");
         if(isDiv) {
             delete aProps["src"];
+            delete aProps["alt"];
         }
     }
 
@@ -26,7 +27,15 @@ export default class Image extends Dbm.react.BaseObject {
             };
             let className = "image";
 
-            return this._createMainElement("div", {style: imageStyle, className: className}, this.getPropValue("children"));
+            let props = {style: imageStyle, className: className};
+
+            let altText = this.getPropValue("alt");
+            if(altText) {
+                props["role"] = "img";
+                props["aria-label"] = altText;
+            }
+
+            return this._createMainElement("div", props, this.getPropValue("children"));
         }
         else {
             let className = "image";

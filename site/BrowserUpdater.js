@@ -29,11 +29,29 @@ export default class BrowserUpdater extends Dbm.core.BaseObject {
 
 		let title = Dbm.objectPath(this.item.pageData, "page.title") + this.item.titleSuffix;
 		document.title = title;
-		document.querySelector('meta[property="og:title"]').setAttribute("content", title);
+		{
+			let element = document.querySelector('meta[property="og:title"]');
+			if(element) {
+				element.setAttribute("content", title);
+			}
+		}
+		
 
 		let description = Dbm.objectPath(this.item.pageData, "page.meta/description");
-		document.querySelector('meta[name="description"]').setAttribute("content", description);
-		document.querySelector('meta[property="og:description"]').setAttribute("content", description);
+		{
+			let element = document.querySelector('meta[name="description"]');
+			if(element) {
+				element.setAttribute("content", description);
+			}
+		}
+		
+		{
+			let element = document.querySelector('meta[property="og:description"]');
+			if(element) {
+				element.setAttribute("content", description);
+			}
+		}
+		
 
 		//METODO: set canonical
 

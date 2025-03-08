@@ -19,6 +19,11 @@ export default class WidthScaledImage extends Dbm.react.BaseObject {
 
         let newProps = this._copyProps({src: url});
 
+        let altText = Dbm.objectPath(image, "altText");
+        if(altText) {
+            newProps["alt"] = altText;
+        }
+
         let elementType = this.getPropValue("elementType");
         if(elementType) {
             newProps["elementType"] = elementType;

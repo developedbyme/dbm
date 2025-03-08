@@ -35,7 +35,7 @@ export default class ImageField extends Dbm.react.BaseObject {
                 React.createElement("div", {},
                     React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("moduleData.editorData.data." + fieldName + ".id"), checkType: "invert/default"},
                         React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callFunction(this._addToLibrary.bind(this))},
-                            React.createElement("div", {},
+                            React.createElement("div", {className: "action-button action-button-padding"},
                                 "Add to library"
                             )
                         )
@@ -43,17 +43,18 @@ export default class ImageField extends Dbm.react.BaseObject {
                     ),
                     React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("moduleData.editorData.data." + fieldName + ".id")},
                         React.createElement(Dbm.react.form.FormField, {value: this.item.properties.altText, className: "standard-field standard-field-padding full-width"}),
+                        React.createElement("div", {className: "spacing micro"}),
                         React.createElement("div", {className: "flex-row small-item-spacing"},
                             React.createElement("div", {className: "flex-row-item"},
                                 React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callFunction(this._generateAltText.bind(this))},
-                                    React.createElement("div", {},
+                                    React.createElement("div", {className: "action-button action-button-padding"},
                                         "Generate"
                                     )
                                 )
                             ),
                             React.createElement("div", {className: "flex-row-item"},
                                 React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callFunction(this._saveAltTextToLibrary.bind(this))},
-                                    React.createElement("div", {},
+                                    React.createElement("div", {className: "action-button action-button-padding"},
                                         "Save to library"
                                     )
                                 )
