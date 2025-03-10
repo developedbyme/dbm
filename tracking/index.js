@@ -2,8 +2,9 @@ import Dbm from "../index.js";
 
 export {default as Controller} from "./Controller.js";
 export {default as DataLayerTracker} from "./DataLayerTracker.js";
+export {default as MetaPixelTracker} from "./MetaPixelTracker.js";
 
-export let setup = function() {
+export const setup = function() {
     
     let controller = new Dbm.tracking.Controller();
     controller.item.register("trackingController");
@@ -13,4 +14,10 @@ export let setup = function() {
 
     let dataLayerTracker = new Dbm.tracking.DataLayerTracker();
     controller.addTracker(dataLayerTracker.item);
+}
+
+export const addMetaPixel = function(aPixelId) {
+    let tracker = new Dbm.tracking.MetaPixelTracker();
+    tracker.item.pixelId = aPixelId;
+    Dbm.getInstance().repository.getItem("trackingController").controller.addTracker();
 }

@@ -1,7 +1,6 @@
 import Dbm from "../index.js";
-import Cookies from "js-cookie";
 
-export default class Controller extends Dbm.core.BaseObject {
+export default class DataLayerTracker extends Dbm.core.BaseObject {
     _construct() {
         super._construct();
     }
@@ -68,6 +67,7 @@ export default class Controller extends Dbm.core.BaseObject {
         console.log(aEventName, aData);
 
         this.addToDataLayer({"event": "trackEvent", "value": {"name": aEventName, "data": aData}});
+		this._gtag("event", aEventName, aData);
     }
 
     trackCurrentPage() {

@@ -6,6 +6,7 @@ export default class Controller extends Dbm.core.BaseObject {
         super._construct();
 
         this.item.setValue("trackers", []);
+        this.item.setValue("currency", "EUR");
 
         Dbm.flow.addDirectUpdateCommand(this.item.requireProperty("active", false), Dbm.commands.callFunction(this._updateActiveStatus.bind(this)));
 
@@ -153,5 +154,85 @@ export default class Controller extends Dbm.core.BaseObject {
                 currentTracker.controller.trackCurrentPage();
             }
         }
+    }
+
+    _getValueFromItems(aItems) {
+        let value = 0;
+
+        let currentArray = aItems;
+        let currentArrayLength = currentArray.length;
+        for(let i = 0; i < currentArrayLength; i++) {
+            let currentItem = currentArray[i];
+
+            let quantity = currentItem.quantity ? currentItem.quantity : 1;
+            value += quantity*currentItem.price;
+        }
+
+        return value; 
+    }
+
+    trackProductView(aProduct) {
+
+        let items = [aProduct];
+
+        let data = {
+            currency: this.item.currency,
+            value: this._getValueFromItems(items),
+            items: items
+        }
+
+        this.trackEvent("Product view", data);
+    }
+
+    trackAddedToCart(aProductOrProducts) {
+        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
+
+        let data = {
+            currency: this.item.currency,
+            value: this._getValueFromItems(items),
+            items: items
+        }
+
+        this.trackEvent("Added to cart", data);
+
+    }
+
+    trackCheckoutStrated(aProductOrProducts) {
+        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
+
+        let data = {
+            currency: this.item.currency,
+            value: this._getValueFromItems(items),
+            items: items
+        }
+
+        this.trackEvent("Checkout started", data);
+    }
+
+    trackPurchase(aTransactionId, aProductOrProducts) {
+        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
+
+        let data = {
+            transaction_id: aTransactionId,
+            currency: this.item.currency,
+            value: this._getValueFromItems(items),
+            items: items
+        }
+
+        this.trackEvent("Purchase", data);
+    }
+
+    createProductItemData(aId, aName, aPrice, aQuantity = 1, aAddtionalData = {}) {
+
+        let returnObject = {
+            ...aAddtionalData,
+            id: aId,
+            item_id: aId,
+            item_name: aName,
+            price: aPrice,
+            quantity: aQuantity
+        }
+
+        return returnObject;
     }
 }

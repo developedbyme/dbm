@@ -132,3 +132,16 @@ export const filterByField = function(aArray, aField, aValue) {
 
     return returnArray;
 }
+
+export const mapField = function(aArray, aField) {
+   
+
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    let returnArray = new Array(acurrentArrayLength);
+    for(let i = 0; i < currentArrayLength; i++) {
+        returnArray[i] = Dbm.objectPath(aArray[i], aField);
+    }
+
+    return returnArray;
+}
