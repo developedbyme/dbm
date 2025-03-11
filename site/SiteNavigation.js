@@ -172,7 +172,7 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 			}
 		}
 		
-		history.pushState({}, "Page", aUrl);
+		history.pushState({}, "", aUrl);
 		this.item.url = aUrl;
 		
 		this._addUrlToPath(aUrl);
@@ -201,9 +201,13 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		}
     }
 
+	updateQueryString(aUrl) {
+		history.replaceState({}, "", aUrl);
+	}
+
     setUrlFromLocation() {
 		let url = document.location.href;
-		this.item.url = url
+		this.item.url = url;
 		
 		this._addUrlToPath(url);
 		
