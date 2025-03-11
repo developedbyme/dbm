@@ -138,7 +138,7 @@ export const mapField = function(aArray, aField) {
 
     let currentArray = aArray;
     let currentArrayLength = currentArray.length;
-    let returnArray = new Array(acurrentArrayLength);
+    let returnArray = new Array(currentArrayLength);
     for(let i = 0; i < currentArrayLength; i++) {
         returnArray[i] = Dbm.objectPath(aArray[i], aField);
     }

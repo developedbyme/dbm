@@ -197,7 +197,7 @@ export default class Controller extends Dbm.core.BaseObject {
 
     }
 
-    trackCheckoutStrated(aProductOrProducts) {
+    trackCheckoutStarted(aProductOrProducts) {
         let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
 
         let data = {

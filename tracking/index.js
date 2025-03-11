@@ -19,5 +19,9 @@ export const setup = function() {
 export const addMetaPixel = function(aPixelId) {
     let tracker = new Dbm.tracking.MetaPixelTracker();
     tracker.item.pixelId = aPixelId;
-    Dbm.getInstance().repository.getItem("trackingController").controller.addTracker();
+    Dbm.getInstance().repository.getItem("trackingController").controller.addTracker(tracker.item);
+}
+
+export const setCurrency = function(aCurrency) {
+    Dbm.getInstance().repository.getItem("trackingController").currency = aCurrency;
 }
