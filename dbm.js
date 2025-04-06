@@ -57,6 +57,31 @@ export let objectPath = function(aObject, aPath) {
     return currentObject;
 }
 
+export let setAtObjectPath = function(aObject, aPath, aValue) {
+    aPath += "";
+    if(aPath.length === 0) {
+        return 0;
+    }
+
+    let baseObject = aObject;
+    let propertyName = aPath;
+
+    let paths = aPath.split(".");
+    if(paths.length > 1) {
+        propertyName = paths.pop();
+
+        baseObject = objectPath(baseObject, paths.join("."));
+    }
+
+    if(baseObject) {
+        let partAsInt = parseInt(propertyName, 10);
+        if(partAsInt.toString() === propertyName) {
+            propertyName = partAsInt;
+        }
+        baseObject[propertyName] = aValue;
+    }
+}
+
 export * as utils from "./utils/index.js";
 export * as core from "./core/index.js";
 export * as loading from "./loading/index.js";
