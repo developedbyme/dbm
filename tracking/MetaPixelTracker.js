@@ -4,7 +4,8 @@ export default class MetaPixelTracker extends Dbm.core.BaseObject {
     _construct() {
         super._construct();
 
-		this.item.requireProperty("pixelId")
+		this._isStarted = false;
+		this.item.requireProperty("pixelId");
     }
 
     _setupFunction() {
@@ -45,6 +46,7 @@ export default class MetaPixelTracker extends Dbm.core.BaseObject {
 	
 	startMarketingTracking() {
 
+		this._isStarted = true;
 		this._setupFunction();
 		Dbm.loading.loadScript("https://connect.facebook.net/en_US/fbevents.js");
 
@@ -85,6 +87,8 @@ export default class MetaPixelTracker extends Dbm.core.BaseObject {
         console.log("trackEvent");
         console.log(aEventName, aData);
 
+		if(!this._isStarted) return;
+
 		if(aEventName === "Purchase") {
 			window.fbq('track', 'Purchase', this._convertGooogleAnalyctisData(aData), {eventID: aData.transaction_id});
 		}
@@ -103,10 +107,12 @@ export default class MetaPixelTracker extends Dbm.core.BaseObject {
     }
 
     trackCurrentPage() {
+		if(!this._isStarted) return;
         window.fbq("track", "PageView");
     }
 
     trackPage(aUrl) {
+		if(!this._isStarted) return;
         window.fbq("track", "PageView");
     }
 }

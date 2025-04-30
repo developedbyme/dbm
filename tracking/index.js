@@ -3,6 +3,7 @@ import Dbm from "../index.js";
 export {default as Controller} from "./Controller.js";
 export {default as DataLayerTracker} from "./DataLayerTracker.js";
 export {default as MetaPixelTracker} from "./MetaPixelTracker.js";
+export {default as TagManagerTracker} from "./TagManagerTracker.js";
 
 export const setup = function() {
     
@@ -24,4 +25,11 @@ export const addMetaPixel = function(aPixelId) {
 
 export const setCurrency = function(aCurrency) {
     Dbm.getInstance().repository.getItem("trackingController").currency = aCurrency;
+}
+
+export const addTagManagerTracking = function(aId) {
+    console.log("addTagManagerTracking");
+    let tracker = new Dbm.tracking.TagManagerTracker();
+    tracker.item.tagManagerId = aId;
+    Dbm.getInstance().repository.getItem("trackingController").controller.addTracker(tracker.item);
 }
