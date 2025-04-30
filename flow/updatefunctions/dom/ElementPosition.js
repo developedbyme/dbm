@@ -11,7 +11,7 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
 		
 		this.output.register("screenX", NaN);
 		this.output.register("screenY", NaN);
-		
+
 		this.output.register("parameterX", NaN);
 		this.output.register("parameterY", NaN);
 		

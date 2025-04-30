@@ -112,6 +112,10 @@ export default class BaseObject extends Component {
         return refToProperty;
     }
 
+    componentWillUnmount() {
+        
+    }
+
     render() {
         return this._renderMainElement();
     }

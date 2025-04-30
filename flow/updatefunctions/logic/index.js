@@ -11,6 +11,7 @@ export {default as Any} from "./Any.js";
 export {default as AllAtValue} from "./AllAtValue.js";
 export {default as WhenMatched} from "./WhenMatched.js";
 export {default as Invert} from "./Invert.js";
+export {default as PositionedItems} from "./PositionedItems.js";
 
 export let subtract = function(aInput1 = 0, aInput2 = 0) {
     let updateFunction = new Dbm.flow.updatefunctions.logic.Subtraction();
