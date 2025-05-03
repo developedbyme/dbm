@@ -118,11 +118,8 @@ export default class MoveElement extends Dbm.core.BaseObject {
 		let minY = this.item.minY;
 		let maxY = this.item.maxY;
 		
-		this.item.xParameter = Math.max(minX, Math.min(x, maxX));
-        this.item.yParameter = Math.max(minY, Math.min(y, maxY));
-		
-        console.log(this.item.xParameter);
-        console.log(this.item.yParameter);
+		this.item.properties.xParameter.getMostUpstreamProperty().value = Math.max(minX, Math.min(x, maxX));
+        this.item.properties.yParameter.getMostUpstreamProperty().value = Math.max(minY, Math.min(y, maxY));
 	}
 	
 	_callback_mouseUp(aEvent) {
@@ -146,7 +143,7 @@ export default class MoveElement extends Dbm.core.BaseObject {
 	}
 	
 	_callback_mouseMove(aEvent) {
-		console.log("_callback_mouseMove");
+		//console.log("_callback_mouseMove");
 		//console.log(aEvent);
 		
 		if(aEvent.type === "touchmove") {
@@ -158,7 +155,7 @@ export default class MoveElement extends Dbm.core.BaseObject {
 	}
 	
 	_callback_startDrag(aEvent) {
-		console.log("_callback_startDrag");
+		//console.log("_callback_startDrag");
 		//console.log(aEvent, aEvent.type);
 		
 		if(aEvent.type === "touchstart") {

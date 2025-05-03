@@ -145,3 +145,56 @@ export const mapField = function(aArray, aField) {
 
     return returnArray;
 }
+
+export const group = function(aArray, aField) {
+   
+    let groups = new Map();
+
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentObject = aArray[i];
+        let groupValue = Dbm.objectPath(aArray[i], aField);
+
+        if(!groups.has(groupValue)) {
+            groups.set(groupValue, []);
+        }
+
+        groups.get(groupValue).push(currentObject);
+    }
+
+    let returnArray = [];
+
+    for (const value of groups.entries()) {
+        returnArray.push({"key": value[0], "value": value[1]});
+    }
+
+    return returnArray;
+}
+
+export const makeFlat = function(aArray) {
+    let returnArray = [];
+
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        returnArray = returnArray.concat(currentArray[i]);
+    }
+
+    return returnArray;
+}
+
+export const getUnselectedItems = function(aSelectedItems, aAllItems) {
+    let returnItems = new Array();
+    
+    let currentArray = aAllItems;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentItem = currentArray[i];
+        if(aSelectedItems.indexOf(currentItem) === -1) {
+            returnItems.push(currentItem);
+        }
+    }
+    
+    return returnItems;
+}
