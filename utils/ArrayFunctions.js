@@ -218,3 +218,23 @@ export const sortOnField = function(aArray, aField) {
     
     return aArray;
 }
+
+export const sortOnNumericField = function(aArray, aField) {
+    let sortFunction = function(aA, aB) {
+        let aValue = 1*Dbm.objectPath(aA, aField);
+        let bValue = 1*Dbm.objectPath(aB, aField);
+
+        if(aValue < bValue) {
+            return -1;
+        }
+        else if(aValue > bValue) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    aArray.sort(sortFunction);
+    
+    return aArray;
+}
