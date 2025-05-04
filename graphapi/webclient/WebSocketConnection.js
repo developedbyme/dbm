@@ -65,6 +65,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     requestRange(aSelect, aEncode) {
         let item = this._getRequestItem();
         item.setValue("requestData", {"type": "range", "select": aSelect, "encode": aEncode, "requestId": item.id});
+        item.requireProperty("items", []);
         this._runRequest(item);
         
         return item;

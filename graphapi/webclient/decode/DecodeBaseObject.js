@@ -41,7 +41,12 @@ export default class DecodeBaseObject extends Dbm.core.BaseObject {
             for(let i = 0; i < currentArrayLength; i++) {
                 let currentField = currentArray[i];
                 let currentIds = aData[currentField];
-                aItem.setValue(currentField, Dbm.getInstance().repository.getItems(currentIds));
+                if(currentIds) {
+                    aItem.setValue(currentField, Dbm.getInstance().repository.getItems(currentIds));
+                }
+                else {
+                    aItem.setValue(currentField, []);
+                }
             }
         }
     }

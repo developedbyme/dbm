@@ -198,3 +198,23 @@ export const getUnselectedItems = function(aSelectedItems, aAllItems) {
     
     return returnItems;
 }
+
+export const sortOnField = function(aArray, aField) {
+    let sortFunction = function(aA, aB) {
+        let aValue = Dbm.objectPath(aA, aField);
+        let bValue = Dbm.objectPath(aB, aField);
+
+        if(aValue < bValue) {
+            return -1;
+        }
+        else if(aValue > bValue) {
+            return 1;
+        }
+
+        return 0;
+    }
+
+    aArray.sort(sortFunction);
+    
+    return aArray;
+}

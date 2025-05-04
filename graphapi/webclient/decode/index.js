@@ -64,6 +64,14 @@ export const fullSetup = function() {
     }
 
     {
+        let name = "pageRepresentation";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyLink", ["representing"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
+
+    {
         let name = "navigationName";
         let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
         currentDecoder.item.setValue("copyFields", ["navigationName"]);
@@ -98,6 +106,14 @@ export const fullSetup = function() {
         let name = "visibility";
         let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
         currentDecoder.item.setValue("copyFields", ["visibility"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
+
+    {
+        let name = "representingPage";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyLink", ["representingPage"]);
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }
