@@ -153,6 +153,14 @@ export default class Editor extends Dbm.react.BaseObject {
         }
     }
 
+    contentUpdatedExternally() {
+
+        let data = this.getDynamicProp("value").value;
+        this.item.editor.render(data);
+
+        return this;
+    }
+
     /*
     _save() {
         this.item.editor.save().then((aOutputData) => {

@@ -27,6 +27,10 @@ export default class List extends Dbm.react.BaseObject {
         let mainChildren = slots.main;
 
         let currentArray = items;
+        if(!currentArray || isNaN(currentArray.length)) {
+            console.error("Items is not an array", this);
+            return null;
+        }
         let currentArrayLength = currentArray.length;
         let newChildren = [];
         for(let i = 0; i < currentArrayLength; i++) {

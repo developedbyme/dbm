@@ -22,6 +22,8 @@ export default class EditPage extends Dbm.react.BaseObject {
         let descriptionEditor = itemEditor.addFieldEditor("meta/description", page["meta/description"], "meta/description");
         let descriptionLength = Dbm.flow.updatefunctions.basic.length(descriptionEditor.item.editValue.value);
         this.item.requireProperty("descriptionLength", 0).connectInput(descriptionLength.output.properties.length);
+
+        this.item.requireProperty("importText", "");
     }
 
     _save() {
@@ -37,9 +39,62 @@ export default class EditPage extends Dbm.react.BaseObject {
         itemSaveData.setField("lastModified", (new Date()).toISOString());
         itemSaveData.createChange("clearCache", {});
 
-        console.log(editorGroup, saveData);
-
         saveData.save();
+    }
+
+    _export() {
+        let editorGroup = this.item.editorGroup;
+
+        let page = this.context.page;
+        let id = page.id;
+        let itemEditor = editorGroup.getItemEditor(id);
+        let url = itemEditor.addFieldEditor("url").item.editValue.value.value;   
+        let content = itemEditor.addFieldEditor("content").item.editValue.value.value;
+
+        let blob = new Blob([JSON.stringify(content, null, 2)], { type: 'application/json' });
+        let downloadUrl = URL.createObjectURL(blob);
+
+        let fileName = id  + Dbm.utils.StringFunctions.createNiceFilePath(url) + ".json";
+        let a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
+    }
+
+    _import() {
+
+        let editorGroup = this.item.editorGroup;
+
+        let page = this.context.page;
+        let id = page.id;
+        let itemEditor = editorGroup.getItemEditor(id); 
+        
+
+        let data = JSON.parse(this.item.importText);
+        console.log(data);
+
+        let newContent = {...itemEditor.addFieldEditor("content").item.editValue.value.value};
+        if(!newContent) {
+            newContent = {};
+        }
+        if(!newContent.blocks) {
+            newContent.blocks = [];
+        }
+
+        let currentArray = data.blocks;
+        let currentArrayLength = currentArray.length;
+        for(let i = 0; i < currentArrayLength; i++) {
+            let currentBlock = currentArray[i];
+            delete currentBlock["id"];
+            newContent.blocks.push(currentBlock);
+        }
+        
+        itemEditor.addFieldEditor("content").item.editValue.value.value = newContent;
+        this.item.editor.contentUpdatedExternally();
     }
 
     _generateSeoSummary() {
@@ -122,7 +177,15 @@ export default class EditPage extends Dbm.react.BaseObject {
                         "Content"
                     ),
                     React.createElement("div", {},
-                        React.createElement(Dbm.react.admin.editor.Editor, {"value": itemEditor.getEditor("content").item.editValue.value}),
+                        React.createElement(Dbm.react.admin.editor.Editor, {"value": itemEditor.getEditor("content").item.editValue.value, "ref": this.createRef("editor")}),
+                    ),
+                    React.createElement("div", {className: "spacing small"}),
+                    React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._export()}},
+                        "Export"
+                    ),
+                    React.createElement(Dbm.react.form.FormField, {value: this.item.properties.importText}),
+                    React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._import()}},
+                        "Import"
                     )
                 ),
                 React.createElement("div", {className: "spacing standard"}),

@@ -117,6 +117,17 @@ export const arrayOrSeparatedString = function(aData, aSeparator = ",", aTrim = 
     return [];
 }
 
+export const numericArrayOrSeparatedString = function(aData, aSeparator = ",", aTrim = 3) {
+    let returnArray = new Array();
+    let currentArray = arrayOrSeparatedString(aData, aSeparator, aTrim);
+    let currentarrayLength = currentArray.length;
+    for(let i = 0; i < currentarrayLength; i++) {
+        returnArray.push(parseFloat(currentArray[i]));
+    }
+    
+    return returnArray;
+}
+
 export const filterByField = function(aArray, aField, aValue) {
     let returnArray = [];
 
@@ -237,4 +248,24 @@ export const sortOnNumericField = function(aArray, aField) {
     aArray.sort(sortFunction);
     
     return aArray;
+}
+
+export const getItemIndexByIfExists = function(aArray, aField, aIdentifier) {
+		
+    if(!Array.isArray(aArray)) {
+        console.warn("No array provided", aArray);
+        return -1;
+    }
+    
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentItem = currentArray[i];
+        let currentValue = Dbm.objectPath(currentItem, aField);
+        if(currentValue == aIdentifier) {
+            return i;
+        }
+    }
+    
+    return -1;
 }
