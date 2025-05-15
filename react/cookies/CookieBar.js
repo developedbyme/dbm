@@ -6,7 +6,24 @@ export default class CookieBar extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
-        this.getDynamicProp("open", false);
+        let openProperty = this.getDynamicProp("open", false);
+        this.item.requireProperty("envelope", 0);
+
+        let stateToEnvelope = Dbm.flow.updatefunctions.logic.switchValue(openProperty).setDefaultValue(100).addCase(true, 0);
+        let inDomCase = Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.envelope).setDefaultValue(true).addCase(100, false);
+
+        this.item.requireProperty("inDom", false).connectInput(inDomCase.output.properties.value);
+
+        let animation = new Dbm.flow.animateValue(stateToEnvelope.output.properties.value);
+        
+        this.item.properties.envelope.connectInput(animation.properties.output);
+
+        let transform = new Dbm.flow.updatefunctions.dom.TransformStyle();
+        transform.translateY(animation.properties.output, "%");
+
+        let style = new Dbm.flow.updatefunctions.dom.StyleObject();
+        style.addProperty("transform", transform.output.properties.value);
+        this.item.requireProperty("style", null).connectInput(style.output.properties.style);
 
         let shouldShow = Cookies.get("cookie/hideCookieBar") !== "1";
 
@@ -149,10 +166,16 @@ export default class CookieBar extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
-        return this._createMainElement("div", {className: "cookie-bar-position", ref: this.createRef("widthElement")},
-			React.createElement(Dbm.react.area.OpenCloseExpandableArea, {open: this.getDynamicProp("open")},
-            	React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
-			)
+        return this._createMainElement("div", {className: "cookie-bar-position no-pointer-events", ref: this.createRef("widthElement")},
+            React.createElement(Dbm.react.area.HasData, {"check": this.item.properties.inDom},
+                React.createElement("div", {className: "overflow-hidden"},	
+                    React.createElement(Dbm.react.BaseObject, {style: this.item.properties.style},
+                        React.createElement("div", {className: "all-pointer-events"},
+                            React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
+                        )
+                    )
+                )
+            )
         );
     }
 }

@@ -98,6 +98,16 @@ export default class BaseObject extends Component {
         return currentProp;
     }
 
+    getPropValueWithDefault(aName, aDefaultValue) {
+        let value = this.getPropValue(aName);
+
+        if(!value) {
+            value = aDefaultValue;
+        }
+
+        return value;
+    }
+
     createRef(aName) {
         let refToProperty = this.item["ref/" + aName];
 

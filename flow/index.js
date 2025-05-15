@@ -67,8 +67,6 @@ export const animateValue = function(aValue, aTime = 0.5, aEasing = null) {
 	returnObject._internal_addProperty("output", outputProperty);
 	
 	let updateCommand = Dbm.flow.addUpdateCommand(inputProperty, Dbm.commands.callFunction(function(aItem) {
-		console.log("animate value");
-		
 		aItem.properties.output.animateValue(aItem.input, aItem.time, aItem.easing);
 	}, [returnObject]));
 	
