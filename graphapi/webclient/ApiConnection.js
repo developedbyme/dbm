@@ -6,6 +6,8 @@ export default class ApiConnection extends Dbm.core.BaseObject {
 
         this._url = null;
 		this._setupItemResponseBound = this._setupItemResponse.bind(this);
+        this._setupItemsResponseBound = this._setupItemsResponse.bind(this);
+        this._setupDataResponseBound = this._setupDataResponse.bind(this);
     }
 
     setup(aUrl) {
@@ -26,7 +28,32 @@ export default class ApiConnection extends Dbm.core.BaseObject {
 
     requestRange(aSelect, aEncode) {
         let item = this._getRequestItem();
+
+        let selectArray = [];
+        let encodeString = aEncode.join(",");
+        let parametersArray = [];
+
+        {
+            let currentArray = aSelect;
+            let currentArrayLength = currentArray.length;
+            for(let i = 0; i < currentArrayLength; i++) {
+                let currentSelect = currentArray[i];
+                selectArray.push(currentSelect.type);
+
+                for(let objectName in currentSelect) {
+                    if(objectName !== "type") {
+                        parametersArray.push(objectName + "=" + encodeURIComponent(currentSelect[objectName]));
+                    }
+                }
+            }
+        }
         
+        let fullUrl = this._url + "range/" + selectArray.join(",") + "/" + encodeString + "?" + parametersArray.join("&");
+		fetch(fullUrl).then((aRequest) => {
+			return aRequest.json();
+		}).then((aData) => {
+			this._setupItemsResponseBound(item, aData);
+		});
         
         return item;
     }
@@ -34,16 +61,40 @@ export default class ApiConnection extends Dbm.core.BaseObject {
     requestItem(aId, aEncode) {
         let item = this._getRequestItem();
         
+        let encodeString = aEncode.join(",");
+
+        let fullUrl = this._url + "item/" + aId + "/" + encodeString;
+		fetch(fullUrl).then((aRequest) => {
+			return aRequest.json();
+		}).then((aData) => {
+			this._setupItemResponseBound(item, aData);
+		});
         
         return item;
     }
 
     requestData(aFunctionName, aData) {
         let item = this._getRequestItem();
+
+        let parametersArray = [];
+
+        for(let objectName in aData) {
+            if(objectName !== "type") {
+                parametersArray.push(objectName + "=" + encodeURIComponent(aData[objectName]));
+            }
+        }
         
+        let fullUrl = this._url + "data/" + aFunctionName + "?" + parametersArray.join("&");
+		fetch(fullUrl).then((aRequest) => {
+			return aRequest.json();
+		}).then((aData) => {
+			this._setupDataResponseBound(item, aData);
+		});
         
         return item;
     }
+
+    //METODO: action
 
     createItem(aTypes, aVisibility = "draft", aChanges = [], aEncode = []) {
         let item = this._getRequestItem();
@@ -76,6 +127,22 @@ export default class ApiConnection extends Dbm.core.BaseObject {
             }
 		}
 	}
+
+    _setupItemsResponse(aRequestItem, aData) {
+		this._updateObjects(aData.objects);
+		
+		let repository = Dbm.getInstance().repository;
+		
+		let ids = aData.data.ids;
+		if(ids) {
+			aRequestItem.setValue("items", repository.getItems(ids));
+		}
+		else {
+			aRequestItem.setValue("items", []);
+		}
+		
+		aRequestItem.status = 1;
+	}
 	
 	_setupItemResponse(aRequestItem, aData) {
 		this._updateObjects(aData.objects);
@@ -88,6 +155,20 @@ export default class ApiConnection extends Dbm.core.BaseObject {
 		}
 		else {
 			aRequestItem.setValue("item", null);
+		}
+		
+		aRequestItem.status = 1;
+	}
+
+    _setupDataResponse(aRequestItem, aData) {
+		this._updateObjects(aData.objects);
+		
+		let data = aData.data;
+		if(data) {
+			aRequestItem.setValue("data", data);
+		}
+		else {
+			aRequestItem.setValue("data", null);
 		}
 		
 		aRequestItem.status = 1;

@@ -6,6 +6,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
 
 		this._url = null;
         this._webSocket = null;
+        this._reconnectIfDisconnected = false;
 		
 		this._intervalId = -1;
         this._callback_onOpenBound = this._callback_onOpen.bind(this);
@@ -28,8 +29,16 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
 	
 	_connect() {
 		if(this.item.status === 0) {
-	        this._webSocket = new WebSocket(this._url);
-	        this.item.setValue("status", 2);
+            this.item.setValue("status", 2);
+            try{
+                this._webSocket = new WebSocket(this._url);
+            }
+	        catch(theError) {
+                this._webSocket = null;;
+                this.item.setValue("status", 0);
+                return;
+            }
+	        
 
 	        this._webSocket.onopen = this._callback_onOpenBound;
 	        this._webSocket.onmessage = this._callback_onMessageBound;
@@ -128,6 +137,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
 		if(this._intervalId === -1) {
 			this._intervalId = setInterval(this._callback_sendHeartbeatBound, 20*1000);
 		}
+        this._reconnectIfDisconnected = true;
     }
 	
     _callback_onClose(aEvent) {
@@ -149,13 +159,19 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
 		}
 		
 		this.item.setValue("status", 0);
-		this._connect();;
+
+        if(this._reconnectIfDisconnected) {
+            this._connect();
+        }
     }
 	
     _callback_onError(aEvent) {
-        console.log("_callback_onError");
-		console.log(aEvent);
+        //console.log("_callback_onError");
+		//console.log(aEvent);
 
+        if(this._reconnectIfDisconnected) {
+            console.log(aEvent);;
+        }
         //MENOTE: do nothing
     }
 	

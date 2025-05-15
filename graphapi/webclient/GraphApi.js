@@ -21,15 +21,31 @@ export default class GraphApi extends Dbm.core.BaseObject {
 	}
 	
     requestRange(aSelect, aEncode) {
-        return this._websocketConnection.requestRange(aSelect, aEncode);
+        console.log("requestRange");
+
+        if(this._websocketConnection && this._websocketConnection.item.status === 1) {
+			return this._websocketConnection.requestRange(aSelect, aEncode);
+		}
+
+        return this._apiConnection.requestRange(aSelect, aEncode);
     }
 
     requestItem(aId, aEncode) {
-        return this._websocketConnection.requestItem(aId, aEncode);
+        console.log("requestItem");
+
+        if(this._websocketConnection && this._websocketConnection.item.status === 1) {
+            return this._websocketConnection.requestItem(aId, aEncode);
+        }
+
+        return this._apiConnection.requestItem(aId, aEncode);
     }
 
     requestData(aFunctionName, aData) {
-        return this._websocketConnection.requestData(aFunctionName, aData);
+        if(this._websocketConnection && this._websocketConnection.item.status === 1) {
+            return this._websocketConnection.requestData(aFunctionName, aData);
+        }
+
+        return this._apiConnection.requestData(aFunctionName, aData);
     }
 
     performAction(aFunctionName, aData) {
