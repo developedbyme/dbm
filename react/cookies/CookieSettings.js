@@ -59,11 +59,26 @@ export default class CookieSettings extends Dbm.react.BaseObject {
         return currentItem;
     }
 
+    _getDomain() {
+
+        let parts = document.location.hostname.split('.');
+
+        let length = parts.length;
+        if (length === 1) {
+            return parts[0];
+        }
+        else if(parts[length-2] === "co" && parts[length-1] === "uk") {
+            return '.' + parts.slice(-3).join('.');
+        }
+        
+        return '.' + parts.slice(-2).join('.');
+    }
+
     _save() {
         console.log("_save");
 
         let settings = this.item.settings;
-        let options = {"expires": 365};
+        let options = {"expires": 365, "domain": this._getDomain()};
 
         let currentArray = settings;
         let currentArrayLength = currentArray.length;
@@ -85,8 +100,8 @@ export default class CookieSettings extends Dbm.react.BaseObject {
         
         let consentTime = (new Date()).toISOString();
 
-        Cookies.set("cookie/consentTime", consentTime)
-        this.item.setValue("consentTime", consentTime, options);
+        Cookies.set("cookie/consentTime", consentTime, options);
+        this.item.setValue("consentTime", consentTime);
     }
 
     _renderMainElement() {

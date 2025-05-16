@@ -125,10 +125,25 @@ export default class CookieBar extends Dbm.react.BaseObject {
         this.item.properties.element.connectInput(layoutSwitch.output.properties.value);
     }
 
+    _getDomain() {
+
+        let parts = document.location.hostname.split('.');
+
+        let length = parts.length;
+        if (length === 1) {
+            return parts[0];
+        }
+        else if(parts[length-2] === "co" && parts[length-1] === "uk") {
+            return '.' + parts.slice(-3).join('.');
+        }
+        
+        return '.' + parts.slice(-2).join('.');
+    }
+
     _acceptAll() {
         console.log("_acceptAll");
 
-        let options = {"expires": 365};
+        let options = {"expires": 365, "domain": this._getDomain()};
 
         Cookies.set("cookie/allowPreferences", "1", options);
         Cookies.set("cookie/allowStatistics", "1", options);
@@ -137,7 +152,7 @@ export default class CookieBar extends Dbm.react.BaseObject {
 
         let consentTime = (new Date()).toISOString();
 
-        Cookies.set("cookie/consentTime", consentTime);
+        Cookies.set("cookie/consentTime", consentTime, options);
 
         Dbm.getInstance().repository.getItem("trackingController").allowStatistics = true;
         Dbm.getInstance().repository.getItem("trackingController").allowMarketing = true;
@@ -147,7 +162,7 @@ export default class CookieBar extends Dbm.react.BaseObject {
 
     _rejectAll() {
 
-        let options = {"expires": 365};
+        let options = {"expires": 365, "domain": this._getDomain()};
 
         Cookies.set("cookie/allowPreferences", "0", options);
         Cookies.set("cookie/allowStatistics", "0", options);
@@ -156,7 +171,7 @@ export default class CookieBar extends Dbm.react.BaseObject {
 
         let consentTime = (new Date()).toISOString();
 
-        Cookies.set("cookie/consentTime", consentTime);
+        Cookies.set("cookie/consentTime", consentTime, options);
 
         Dbm.getInstance().repository.getItem("trackingController").allowStatistics = false;
         Dbm.getInstance().repository.getItem("trackingController").allowMarketing = false;
