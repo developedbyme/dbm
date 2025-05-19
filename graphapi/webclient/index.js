@@ -5,6 +5,7 @@ export {default as WebSocketRequest} from "./WebSocketRequest.js";
 export {default as GraphApi} from "./GraphApi.js";
 export {default as ApiConnection} from "./ApiConnection.js";
 export {default as ApiRequest} from "./ApiRequest.js";
+export {default as CachedRequests} from "./CachedRequests.js";
 
 export * as decode from "./decode/index.js";
 export * as admin from "./admin/index.js";
@@ -20,4 +21,7 @@ export const setup = function(aWsPath, aApiPath) {
     graphApi.setWebsocketConnection(webSocketConnection);
     graphApi.setApiConnection(apiConnection);
     graphApi.item.register("graphApi");
+
+    let cachedRequests = new Dbm.graphapi.webclient.CachedRequests();
+    cachedRequests.item.register("cachedGraphApi");
 }
