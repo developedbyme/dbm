@@ -8,7 +8,11 @@ export default class GraphApiObjectSelection extends Dbm.react.form.Selection {
         this.getDynamicProp("value", "");
         this.item.requireProperty("items", []);
 
-        let objectType = this.getPropValue("objectType")
+        let objectType = this.getPropValue("objectType");
+        let encoding = this.getPropValue("encoding");
+        if(!encoding) {
+            encoding = "name";
+        }
 
         let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
         {
@@ -18,7 +22,7 @@ export default class GraphApiObjectSelection extends Dbm.react.form.Selection {
                     {"type": "includeDraft"},
                     {"type": "includePrivate"}
                 ],
-                ["name"]
+                [encoding]
             );
 
     
@@ -31,13 +35,18 @@ export default class GraphApiObjectSelection extends Dbm.react.form.Selection {
 
         options.push(React.createElement("option", {key: 0, value: 0}, "None"));
 
+        let nameField = this.getPropValue("nameField");
+        if(!nameField) {
+            nameField = "name";
+        }
+
         let currentArray = [].concat(aRequest.items);
-        Dbm.utils.ArrayFunctions.sortOnField(currentArray, "name");
+        Dbm.utils.ArrayFunctions.sortOnField(currentArray, nameField);
 
         let currentArrayLength = currentArray.length;
         for(let i = 0; i < currentArrayLength; i++) {
             let currentItem = currentArray[i];
-            options.push(React.createElement("option", {key: currentItem["id"], value: currentItem["id"]}, currentItem["name"] + " (id: " + currentItem["id"] + ")"));
+            options.push(React.createElement("option", {key: currentItem["id"], value: currentItem["id"]}, currentItem[nameField] + " (id: " + currentItem["id"] + ")"));
         }
 
         this.item.items = options;
