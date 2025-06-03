@@ -51,14 +51,13 @@ export default class CookieBar extends Dbm.react.BaseObject {
                 )
             ),
             React.createElement("div", {"className": "spacing small"}),
-            React.createElement("a", {"href": "/cookie-settings/", className:"custom-styled-link"},
-                React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center"}, "Settings")
-            ),
-        
+            React.createElement("div", {"className": "standard-button standard-button-padding text-align-center",  onClick: () => this._acceptAll()}, "Allow all"),
             React.createElement("div", {"className": "spacing small"}),
             React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center", onClick: () => this._rejectAll()}, "Only necessary"),
             React.createElement("div", {"className": "spacing small"}),
-            React.createElement("div", {"className": "standard-button standard-button-padding text-align-center",  onClick: () => this._acceptAll()}, "Allow all")
+            React.createElement("a", {"href": "/cookie-settings/", className:"custom-styled-link"},
+                React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center"}, "Settings")
+            )
         
         );
 

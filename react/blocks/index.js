@@ -1,6 +1,8 @@
 import Dbm from "../../index.js";
 import {createElement} from "react";
 
+export * as gallery from "./gallery/index.js";
+export * as content from "./content/index.js";
 export {default as Image} from "./Image.js";
 
 export let createToolConfiguration = function(aId, aName, aInitialData = {}, aSanitizeSettings = {}, aIcon = null) {
@@ -101,4 +103,65 @@ export let registerAllBlocks = function() {
     registerBlock("cookie/settings", "Cookie settings", createElement(Dbm.react.cookies.CookieSettings));
     registerBlock("login/loginForm", "Login form", createElement(Dbm.react.login.LoginForm));
     registerBlock("admin/pageList", "Admin / Page list", createElement(Dbm.react.admin.pages.PageList), createElement(Dbm.react.admin.pages.PageList));
+
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Image 1"},
+                createElement(Dbm.react.admin.editor.fields.ImageField, {name: "image1"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Image 2"},
+                createElement(Dbm.react.admin.editor.fields.ImageField, {name: "image2"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Image 3"},
+                createElement(Dbm.react.admin.editor.fields.ImageField, {name: "image3"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Image 4"},
+                createElement(Dbm.react.admin.editor.fields.ImageField, {name: "image4"})
+            ),
+            createElement("div", {className: "spacing medium"})
+        );
+        registerBlock("gallery/imageGallery", "Image gallery", createElement(Dbm.react.blocks.gallery.ImageGallery, {}), editor);
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Image 1"},
+                createElement(Dbm.react.admin.editor.fields.ImageField, {name: "image1"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Image 2"},
+                createElement(Dbm.react.admin.editor.fields.ImageField, {name: "image2"})
+            )
+        );
+        registerBlock("gallery/doubleImage", "Double image", createElement(Dbm.react.blocks.gallery.DoubleImage, {}), editor);
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Image"},
+                createElement(Dbm.react.admin.editor.fields.ImageField, {name: "image"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Title"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "title"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Content"},
+                createElement(Dbm.react.admin.editor.fields.RichTextField, {name: "text"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Url"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "url"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Button"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "buttonText"})
+            )
+        );
+        registerBlock("content/card", "Card", createElement(Dbm.react.blocks.content.Card, {}), editor, {}, {"title": true, "text": true, "button": true});
+    }
 }

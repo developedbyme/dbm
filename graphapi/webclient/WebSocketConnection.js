@@ -4,6 +4,8 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     _construct() {
         super._construct();
 
+        this._connectBound = this._connect.bind(this);
+
 		this._url = null;
         this._webSocket = null;
         this._reconnectIfDisconnected = false;
@@ -161,7 +163,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
 		this.item.setValue("status", 0);
 
         if(this._reconnectIfDisconnected) {
-            this._connect();
+            setTimeout(this._connectBound, 2*1000);
         }
     }
 	

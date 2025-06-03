@@ -53,8 +53,7 @@ export default class BaseObject extends Component {
 
     getDynamicProp(aName, aInitialValue = null) {
         if(!this._dynamicProps[aName]) {
-            let newProperty = new Dbm.flow.FlowProperty();
-            newProperty.value = aInitialValue;
+            let newProperty = this.item.requireProperty("props/" + aName, aInitialValue);
             this._dynamicProps[aName] = newProperty;
             let updateState = this._getStateUpdate();
             let stateProperty = updateState.input.register(aName, aInitialValue);
@@ -65,8 +64,7 @@ export default class BaseObject extends Component {
 
     getDynamicPropWithoutState(aName, aInitialValue = null) {
         if(!this._dynamicProps[aName]) {
-            let newProperty = new Dbm.flow.FlowProperty();
-            newProperty.value = aInitialValue;
+            let newProperty = this.item.requireProperty("props/" + aName, aInitialValue);
             this._dynamicProps[aName] = newProperty;
         }
         return this._dynamicProps[aName];
