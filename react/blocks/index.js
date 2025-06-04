@@ -103,6 +103,7 @@ export let registerAllBlocks = function() {
     registerBlock("cookie/settings", "Cookie settings", createElement(Dbm.react.cookies.CookieSettings));
     registerBlock("login/loginForm", "Login form", createElement(Dbm.react.login.LoginForm));
     registerBlock("admin/pageList", "Admin / Page list", createElement(Dbm.react.admin.pages.PageList), createElement(Dbm.react.admin.pages.PageList));
+    registerBlock("admin/website", "Admin / Edit website", createElement(Dbm.react.admin.website.EditWebsite));
 
 
     {

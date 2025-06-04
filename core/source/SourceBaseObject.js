@@ -4,6 +4,7 @@ export default class SourceBaseObject extends Dbm.core.BaseObject {
     _construct() {
         super._construct();
 
+        this._log = false;
         this.item.setValue("path", null);
     }
 
@@ -20,10 +21,20 @@ export default class SourceBaseObject extends Dbm.core.BaseObject {
 		
 		let path = this.item.path;
 		let baseObject = this.getBaseObject(aFromObject, aEventData);
+
+        if(this._log) {
+            console.log("Source>>>>>", baseObject, path);
+        }
+
 		if(!path) {
 			return baseObject;
 		}
         
         return Dbm.objectPath(baseObject, path);
+    }
+
+    addLogs() {
+        this._log = true;
+        return this;
     }
 }

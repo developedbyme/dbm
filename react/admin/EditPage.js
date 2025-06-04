@@ -23,6 +23,9 @@ export default class EditPage extends Dbm.react.BaseObject {
         let descriptionLength = Dbm.flow.updatefunctions.basic.length(descriptionEditor.item.editValue.value);
         this.item.requireProperty("descriptionLength", 0).connectInput(descriptionLength.output.properties.length);
 
+        itemEditor.addFieldEditor("seo/noIndex", page["seo/noIndex"], "seo/noIndex");
+        itemEditor.addFieldEditor("seo/noFollow", page["seo/noFollow"], "seo/noFollow");
+
         this.item.requireProperty("importText", "");
     }
 
@@ -169,6 +172,17 @@ export default class EditPage extends Dbm.react.BaseObject {
                             " / ",
                             "155"
                         )
+                    ),
+
+                    React.createElement("div", {className: "flex-row small-item-spacing"},
+                        React.createElement("div", {className: "flex-row-item"},
+                            React.createElement(Dbm.react.form.Checkbox, {checked: itemEditor.getEditor("seo/noIndex").item.editValue.value}),
+                            "Noindex"
+                        ),
+                        React.createElement("div", {className: "flex-row-item"},
+                            React.createElement(Dbm.react.form.Checkbox, {checked: itemEditor.getEditor("seo/noFollow").item.editValue.value}),
+                            "Nofollow"
+                        ),
                     )
                 ),
                 React.createElement("div", {className: "spacing standard"}),

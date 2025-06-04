@@ -58,7 +58,7 @@ export const fullSetup = function() {
     {
         let name = "urlRequest";
         let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
-        currentDecoder.item.setValue("copyFields", ["meta/description"]);
+        currentDecoder.item.setValue("copyFields", ["meta/description", "seo/noIndex", "seo/noFollow"]);
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }
@@ -114,6 +114,14 @@ export const fullSetup = function() {
         let name = "representingPage";
         let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
         currentDecoder.item.setValue("copyLink", ["representingPage"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
+
+    {
+        let name = "admin_fields";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyFields", ["fields"]);
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }
