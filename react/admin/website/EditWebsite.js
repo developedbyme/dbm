@@ -132,20 +132,21 @@ export default class EditWebsite extends Dbm.react.BaseObject {
         
         let editorGroup = this.item.editorGroup;
 
-        return React.createElement("div", {},
+        return React.createElement("div", {"className": "content-narrow"},
             React.createElement(Dbm.react.area.HasData, {"check": this.item.properties.loaded}, 
                 React.createElement(Dbm.react.context.AddContextVariables, {values: {"editorGroup": editorGroup}},
                     React.createElement(Dbm.react.context.AddContextVariables, {values: {"itemEditor": this.item.properties.websiteEditor}},
-                        React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Website name"},
+                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                        )
                     ),
                     React.createElement("div", {className: "spacing standard"}),
                     React.createElement(Dbm.react.context.AddContextVariables, {values: {"itemEditor": this.item.properties.organizationEditor}},
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Website "},
-                            React.createElement(Dbm.react.form.LabelledArea, {"label": "Organization name"},
-                                React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                            )
+                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Organization name"},
+                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
                         )
                     ),
+                    React.createElement("h2", {}, "Local business"),
                     React.createElement(Dbm.react.area.List, {items: this.item.properties.localBusinesses},
                         React.createElement(Dbm.react.admin.website.EditLocalBusiness, {})
                     ),

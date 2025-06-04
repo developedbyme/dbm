@@ -5,6 +5,8 @@ export default class PropertyUpdater extends Dbm.core.BaseObject {
     _construct() {
         super._construct();
 
+        this._currentTweens = new WeakMap();
+
         this.item.setValue("tweens", []);
         this.item.setValue("updatedProperties", []);
         this.item.setValue("singleUpdateProperties", []);
@@ -96,6 +98,12 @@ export default class PropertyUpdater extends Dbm.core.BaseObject {
     }
 
     animateProperty(aProperty, aToValue, aTime, aDelay = 0, aEasing = null) {
+
+        if(this._currentTweens.has(aProperty)) {
+            this._currentTweens.get(aProperty).stop();
+        }
+
+
         let tweenObject = {"envelope": aProperty.value};
         if(!aEasing) {
             aEasing = Easing.Quadratic.Out;
@@ -105,6 +113,8 @@ export default class PropertyUpdater extends Dbm.core.BaseObject {
         let tweens = [].concat(this.item.tweens);
         tweens.push(tween);
         this.item.tweens = tweens;
+
+        this._currentTweens.set(aProperty, tween);
 
         return this;
     }
