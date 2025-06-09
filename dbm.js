@@ -94,3 +94,4 @@ export * as updater from "./updater/index.js";
 export * as startup from "./startup/index.js";
 export * as site from "./site/index.js";
 export * as tracking from "./tracking/index.js";
+export * as ecommerce from "./ecommerce/index.js";

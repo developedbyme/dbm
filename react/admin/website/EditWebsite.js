@@ -110,7 +110,7 @@ export default class EditWebsite extends Dbm.react.BaseObject {
         console.log("_localBusinessesLoaded");
         console.log(aRequest);
 
-        this.item.localBusinesses = aRequest.items;
+        this.item.localBusinesses = [].concat(aRequest.items);
     }
 
     _allLoaded() {

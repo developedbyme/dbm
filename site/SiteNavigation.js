@@ -16,7 +16,7 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		
 		this.item.setValue("ignoredPaths", [
 			new RegExp("/assets/.*$"),
-			new RegExp("/api/.*$")
+			new RegExp("/api/.*$"),
 		]);
 
         this._callback_beforeUnloadBound = this._callback_beforeUnload.bind(this);
@@ -65,7 +65,7 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
     }
 
     _shouldHandle(aLink) {
-		let shouldHandle = false
+		let shouldHandle = false;
 		{
 			let currentArray = this.item.allowedPaths;
 			let currentArrayLength = currentArray.length;
@@ -134,6 +134,9 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		if(!link) {
 			return true;
 		}
+		if(link.indexOf("#") === 0) {
+			return true;
+		}
 		
 		let originalUrl = new URL(document.location.href);
 		let finalUrl = new URL(link, document.location.href);
@@ -143,10 +146,8 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		}
 		
 		if(!this._shouldHandle(finalUrl.href)) {
-			return false;
+			return true;
 		}
-		
-		//console.log(finalUrl);
 		
 		aEvent.preventDefault();
 		

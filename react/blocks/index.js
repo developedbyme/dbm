@@ -3,6 +3,9 @@ import {createElement} from "react";
 
 export * as gallery from "./gallery/index.js";
 export * as content from "./content/index.js";
+export * as admin from "./admin/index.js";
+export * as faq from "./faq/index.js";
+
 export {default as Image} from "./Image.js";
 
 export let createToolConfiguration = function(aId, aName, aInitialData = {}, aSanitizeSettings = {}, aIcon = null) {
@@ -105,6 +108,26 @@ export let registerAllBlocks = function() {
     registerBlock("admin/pageList", "Admin / Page list", createElement(Dbm.react.admin.pages.PageList), createElement(Dbm.react.admin.pages.PageList));
     registerBlock("admin/website", "Admin / Edit website", createElement(Dbm.react.admin.website.EditWebsite));
 
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Object type"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "objectType"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Encodings"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "encodings"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Name field"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "nameField"})
+            ),
+        );
+
+        registerBlock("admin/objects/list", "Admin / Object list", createElement(Dbm.react.blocks.admin.objects.List), editor);
+        
+    }
+    
+    registerBlock("admin/objects/edit", "Admin / Edit object", createElement(Dbm.react.blocks.admin.objects.Edit));
 
     {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
@@ -164,5 +187,97 @@ export let registerAllBlocks = function() {
             )
         );
         registerBlock("content/card", "Card", createElement(Dbm.react.blocks.content.Card, {}), editor, {}, {"title": true, "text": true, "button": true});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Content block"},
+                createElement(Dbm.react.admin.editor.fields.SelectObjectField, {name: "contentBlock", "objectType": "contentBlock"})
+            )
+        );
+        registerBlock("content/contentBlock", "Content block", createElement(Dbm.react.blocks.content.ContentBlock, {}), editor, {}, {});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Text 1"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "text1"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Url 1"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "url1"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Text 2"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "text2"})
+            ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Url 2"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "url2"})
+            ),
+        );
+        registerBlock("faq/askAQuestion", "FAQ / Ask a question", createElement(Dbm.react.blocks.faq.AskAQuestion, {}), editor, {}, {"text1": true, "text2": true});
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/title");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Title, {}));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/content");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Content, {}));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/name");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Name, {}));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/link");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Link, {}));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/visibility");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Visibility, {}));
+    }
+    
+    {
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/page");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
+
+        let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/title"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/content"));
+        objectTypeEditor.editors = newArray;
+    }
+
+    {
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/contentBlock");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
+
+        let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/content"));
+        objectTypeEditor.editors = newArray;
+    }
+
+    {
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/helpSection");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
+
+        let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/title"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/link"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/visibility"));
+        objectTypeEditor.editors = newArray;
     }
 }

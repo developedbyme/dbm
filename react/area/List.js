@@ -28,7 +28,7 @@ export default class List extends Dbm.react.BaseObject {
 
         let currentArray = items;
         if(!currentArray || isNaN(currentArray.length)) {
-            console.error("Items is not an array", this);
+            console.error("Items is not an array", currentArray, this);
             return null;
         }
         let currentArrayLength = currentArray.length;
@@ -37,10 +37,15 @@ export default class List extends Dbm.react.BaseObject {
             if(spacingElement && i > 0) {
                 newChildren.push(React.createElement(React.Fragment, {key: "spacing" + (i-1)}, spacingElement));
             }
+
             let currentItem = currentArray[i];
+            let key = currentItem;
+            if(keyField !== "(root)") {
+                key = Dbm.objectPath(currentItem, keyField);
+            }
+
             let values = {};
             values[as] = currentItem;
-            let key = Dbm.objectPath(currentItem, keyField);
             newChildren.push(React.createElement(Dbm.react.context.AddContextVariables, {key: key, values: values}, mainChildren));
         }
 
