@@ -78,10 +78,15 @@ export default class ObjectList extends Dbm.react.BaseObject {
             React.createElement(Dbm.react.area.List, {items: this.item.properties.items},
                 React.createElement(Dbm.react.admin.objects.ObjectListRow, {"id": id, "text": text})
             ),
-            React.createElement("div", {"className": "spacing small"}),
-            React.createElement(Dbm.react.interaction.CommandButton, {"command": Dbm.commands.callFunction(this._create.bind(this))},
-                React.createElement("div", {"className": "standard-button standard-button-padding"}, "Create")
+            React.createElement("div", {"className": "spacing standard"}),
+            React.createElement("div", {"className": "flex-row"},
+                React.createElement("div", {"className": "flex-row-item"},
+                    React.createElement(Dbm.react.interaction.CommandButton, {"command": Dbm.commands.callFunction(this._create.bind(this))},
+                        React.createElement("div", {"className": "standard-button standard-button-padding"}, "Create")
+                    )
+                )
             )
+            
         )
     }
 }

@@ -6,9 +6,7 @@ export default class ContentBlock extends Dbm.react.BaseObject {
         super._construct();
 
         let contentBlockId = this.context.blockData.contentBlock;
-        console.log(contentBlockId);
-        //Load block
-        //Parse block
+        
         this.item.requireProperty("item", null);
 
         let graphApi = Dbm.getInstance().repository.getItem("cachedGraphApi").controller;
@@ -16,7 +14,6 @@ export default class ContentBlock extends Dbm.react.BaseObject {
             let request = graphApi.requestRange(
                 [
                   {type: "includeDraft"},
-                  {type: "includePrivate"},
                     {type: "idSelection", "ids": [contentBlockId]}
                 ],
                 ["content"]

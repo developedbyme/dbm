@@ -14,18 +14,20 @@ export default class ObjectListRow extends Dbm.react.BaseObject {
         let baseUrl = "/admin/items/item/edit/?id={id}";
         let url = baseUrl.split("{id}").join(id);
 
-        return React.createElement(Dbm.react.text.Link, {"href": url, "className": "custom-styled-link"},
-            React.createElement("div", {"className": "standard-row standard-row-padding"},
-                React.createElement("div", {"className": "flex-row small-item-spacing"},
-                    React.createElement("div", {"className": "flex-row-item flex-no-resize"},
-                        Dbm.react.text.text(id),
-                    ),
-                    React.createElement("div", {"className": "flex-row-item flex-resize"},
-                        Dbm.react.text.text(text)
-                    ),
-                    React.createElement("div", {"className": "flex-row-item flex-no-resize"},
-                        ">"
-                    ),
+        return React.createElement("div", {"className": "standard-row"},
+            React.createElement(Dbm.react.text.Link, {"href": url, "className": "custom-styled-link hover-row"},
+                React.createElement("div", {"className": "standard-row-padding"},
+                    React.createElement("div", {"className": "flex-row small-item-spacing"},
+                        React.createElement("div", {"className": "flex-row-item flex-no-resize"},
+                            Dbm.react.text.text(id),
+                        ),
+                        React.createElement("div", {"className": "flex-row-item flex-resize"},
+                            Dbm.react.text.text(text)
+                        ),
+                        React.createElement("div", {"className": "flex-row-item flex-no-resize"},
+                            ">"
+                        ),
+                    )
                 )
             )
         );

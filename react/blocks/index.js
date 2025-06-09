@@ -121,6 +121,15 @@ export let registerAllBlocks = function() {
             createElement(Dbm.react.form.LabelledArea, {label: "Name field"},
                 createElement(Dbm.react.admin.editor.fields.TextField, {name: "nameField"})
             ),
+            createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Visibility"},
+                createElement(Dbm.react.admin.editor.fields.SelectionField, {name: "visibility"},
+                    createElement("option", {value: null}, "Default"),
+                    createElement("option", {value: "draft"}, "Draft"),
+                    createElement("option", {value: "public"}, "Public"),
+                    createElement("option", {value: "private"}, "Private"),
+                )
+            ),
         );
 
         registerBlock("admin/objects/list", "Admin / Object list", createElement(Dbm.react.blocks.admin.objects.List), editor);

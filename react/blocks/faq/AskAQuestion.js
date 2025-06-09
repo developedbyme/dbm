@@ -15,7 +15,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
         let switchValue = Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.state);
 
         switchValue.addCase("start", React.createElement("div", null, React.createElement(Dbm.react.text.Link, {
-            href: "",
+            href: Dbm.react.source.blockData("url1"),
             className: "custom-styled-link"
           }, React.createElement("div", {
             className: "standard-row hover-row faq-row-padding"
@@ -23,7 +23,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
             className: "flex-row small-item-spacing"
           }, React.createElement("div", {
             className: "flex-row-item flex-resize"
-          }, "First item"), React.createElement("div", {
+          }, Dbm.react.text.text(Dbm.react.source.blockData("text1"))), React.createElement("div", {
             className: "flex-row-item flex-no-resize"
           }, React.createElement("div", {
             className: "spacing micro"
@@ -31,15 +31,15 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
             src: "/assets/img/right-arrow.svg",
             className: "right-arrow-link-icon background-contain"
           }))))), React.createElement(Dbm.react.text.Link, {
-            href: "",
+            href: Dbm.react.source.blockData("url2"),
             className: "custom-styled-link"
           }, React.createElement("div", {
-            className: "standard-row hover-row faq-row-padding"
+            className: "standard-row hover-row faq-row-padding cursor-pointer"
           }, React.createElement("div", {
             className: "flex-row small-item-spacing"
           }, React.createElement("div", {
             className: "flex-row-item flex-resize"
-          }, "Second item"), React.createElement("div", {
+          }, Dbm.react.text.text(Dbm.react.source.blockData("text2"))), React.createElement("div", {
             className: "flex-row-item flex-no-resize"
           }, React.createElement("div", {
             className: "spacing micro"
@@ -56,7 +56,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
             href: Dbm.react.source.contextVariable("item.link"),
             className: "custom-styled-link"
           }, React.createElement("div", {
-            className: "standard-row hover-row faq-row-padding"
+            className: "standard-row hover-row faq-row-padding cursor-pointer"
           }, React.createElement("div", {
             className: "flex-row small-item-spacing"
           }, React.createElement("div", {
@@ -117,7 +117,8 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
               this._search();
               return false;
             }
-          }, React.createElement(Dbm.react.form.LabelledArea, {
+          },
+          React.createElement(Dbm.react.form.LabelledArea, {
             label: "How can we help?"
           }, React.createElement("div", {
             className: "standard-field"
