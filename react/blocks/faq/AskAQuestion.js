@@ -118,38 +118,27 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
               return false;
             }
           },
-          React.createElement(Dbm.react.form.LabelledArea, {
-            label: "How can we help?"
-          }, React.createElement("div", {
-            className: "standard-field"
-          }, React.createElement("div", {
-            className: "flex-row small-item-spacing"
-          }, React.createElement("div", {
-            className: "flex-row-item flex-resize"
-          }, React.createElement(Dbm.react.form.FormField, {
-            className: "standard-field-padding-left-side full-width integrated-field",
-            value: this.item.properties.searchText,
-            placeholder: "Ask us anything"
-          })), React.createElement("div", {
-            className: "flex-row-item flex-no-resize"
-          }, React.createElement("div", {
-            className: "submit-button-field-padding-right-side border-box-sizing full-height"
-          }, React.createElement("button", {
-            className: "skip-default full-height"
-          }, React.createElement("div", {
-            className: "field-submit-button field-submit-button-padding full-height",
-            onClick: () => {
-              this._search();
-            }
-          }, React.createElement("div", {
-            className: "centered-cell-holder full-size"
-          }, React.createElement(Dbm.react.image.Image, {
-            src: "/assets/img/right-arrow.svg",
-            className: "right-arrow-link-icon background-contain"
-          })))))))))), React.createElement("div", {
-            className: "spacing small"
-          }), React.createElement(Dbm.react.area.InsertElement, {
-            element: this.item.properties.resultElement
-          }));
+          React.createElement("div", {className: "standard-field overflow-hidden"},
+            React.createElement("div", {className: "flex-row small-item-spacing"},
+              React.createElement("div", {className: "flex-row-item flex-resize"},
+                React.createElement(Dbm.react.form.FormField, {className: "standard-field-padding-left-side full-width integrated-field", value: this.item.properties.searchText, placeholder: "Ask us anything"})
+              ),
+              React.createElement("div", {className: "flex-row-item flex-no-resize"},
+                React.createElement("div", {className: "submit-button-field-padding-right-side border-box-sizing full-height"},
+                  React.createElement("button", {className: "skip-default full-height"},
+                    React.createElement("div", {className: "field-submit-button field-submit-button-padding full-height", onClick: () => {this._search();}},
+                      React.createElement("div", {className: "centered-cell-holder full-size"},
+                        React.createElement(Dbm.react.image.Image, {src: "/assets/img/right-arrow.svg", className: "right-arrow-link-icon background-contain"})
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        ),
+        React.createElement("div", {className: "spacing small"}),
+        React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.resultElement})
+      );
     }
 }
