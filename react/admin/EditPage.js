@@ -114,6 +114,20 @@ export default class EditPage extends Dbm.react.BaseObject {
 
     }
 
+    _generateHelpSectionSuggestions() {
+
+        let page = this.context.page;
+
+        let editorGroup = this.item.editorGroup;
+        let itemEditor = editorGroup.getItemEditor(page.id);
+
+        let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
+
+        let request = graphApi.requestData("admin/helpSectionSuggestions", {"value": {"title": itemEditor.getEditor("title").item.editValue.getValue(), "content": itemEditor.getEditor("content").item.editValue.getValue()}});
+        Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._helpSectionSuggestionsLoaded.bind(this), [request]));
+
+    }
+
     _dataLoaded(aRequest) {
         let summary = Dbm.objectPath(aRequest, "data.seoSummary");
 
@@ -123,6 +137,13 @@ export default class EditPage extends Dbm.react.BaseObject {
         let itemEditor = editorGroup.getItemEditor(page.id);
 
         itemEditor.getEditor("meta/description").item.editValue.item.value = summary;
+    }
+
+    _helpSectionSuggestionsLoaded(aRequest) {
+        console.log("_helpSectionSuggestionsLoaded");
+        let titles = Dbm.objectPath(aRequest, "data.titles");
+
+        console.log(aRequest, titles);
     }
 
     _renderMainElement() {
@@ -200,7 +221,10 @@ export default class EditPage extends Dbm.react.BaseObject {
                     React.createElement(Dbm.react.form.FormField, {value: this.item.properties.importText}),
                     React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._import()}},
                         "Import"
-                    )
+                    ),
+                    React.createElement("div", {className: "flex-row-item"},
+                        React.createElement("div", {onClick: () => {this._generateHelpSectionSuggestions()}, className: "action-button action-button-padding"}, "Dev: Help sections"),
+                    ),
                 ),
                 React.createElement("div", {className: "spacing standard"}),
                 React.createElement("div", {className: "save-all-position"},

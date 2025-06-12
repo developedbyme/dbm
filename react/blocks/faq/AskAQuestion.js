@@ -18,7 +18,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
             href: Dbm.react.source.blockData("url1"),
             className: "custom-styled-link"
           }, React.createElement("div", {
-            className: "standard-row hover-row faq-row-padding"
+            className: "standard-row faq-row hover-row faq-row-padding"
           }, React.createElement("div", {
             className: "flex-row small-item-spacing"
           }, React.createElement("div", {
@@ -34,7 +34,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
             href: Dbm.react.source.blockData("url2"),
             className: "custom-styled-link"
           }, React.createElement("div", {
-            className: "standard-row hover-row faq-row-padding cursor-pointer"
+            className: "standard-row faq-row hover-row faq-row-padding cursor-pointer"
           }, React.createElement("div", {
             className: "flex-row small-item-spacing"
           }, React.createElement("div", {
@@ -56,7 +56,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
             href: Dbm.react.source.contextVariable("item.link"),
             className: "custom-styled-link"
           }, React.createElement("div", {
-            className: "standard-row hover-row faq-row-padding cursor-pointer"
+            className: "standard-row faq-row hover-row faq-row-padding cursor-pointer"
           }, React.createElement("div", {
             className: "flex-row small-item-spacing"
           }, React.createElement("div", {
