@@ -42,6 +42,37 @@ export default class ItemEditor extends Dbm.core.BaseObject {
         return this.addEditor(aField, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.setField, aUpdateEncoding);
     }
 
+    _addRelationEditor(aName, aType, aObjectType, aInitialValue, aSaveFunction, aUpdateEncoding = null) {
+        let valueEditor = this.item["editor_relation_" + aName];
+        if(!valueEditor) {
+            valueEditor = new Dbm.graphapi.webclient.admin.ValueEditor();
+            valueEditor.item.editValue.setInitialValue(aInitialValue);
+
+            valueEditor.item.setValue("itemEditor", this.item);
+            valueEditor.item.setValue("type", aType);
+            valueEditor.item.setValue("objectType", aObjectType);
+            valueEditor.item.setValue("updateEncoding", aUpdateEncoding);
+
+            this.item.anyChange.addCheck(valueEditor.item.properties.changed);
+            this.item.setValue("editor_relation_" + aName, valueEditor); 
+            this.item.editors = [].concat(this.item.editors, valueEditor);
+            
+            valueEditor.addSaveFunction(aSaveFunction);
+        }
+
+        return valueEditor;
+    }
+
+    addIncomingRelationEditor(aType, aObjectType, aInitialValue, aUpdateEncoding = null) {
+        let name = "in_" + aType + "_" + aObjectType;
+        return this._addRelationEditor(name, aType, aObjectType, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.incomingRelation, aUpdateEncoding);
+    }
+
+    addOutgoingRelationEditor(aType, aObjectType, aInitialValue, aUpdateEncoding = null) {
+        let name = "out_" + aType + "_" + aObjectType;
+        return this._addRelationEditor(name, aType, aObjectType, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.outgoingRelation, aUpdateEncoding);
+    }
+
     addCommandsToSaveData(aSaveData) {
 
         let editedItemId = Dbm.objectPath(this.item, "editedItem.id");

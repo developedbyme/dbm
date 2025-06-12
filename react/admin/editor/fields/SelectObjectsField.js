@@ -73,7 +73,7 @@ export default class SelectObjectsField extends Dbm.react.BaseObject {
                 )
             ),
             React.createElement(Dbm.react.interaction.CommandButton, {"data-slot": "after", command: Dbm.commands.callFunction(this._add, [Dbm.react.source.contextVariable("arrayEditor")])},
-                React.createElement("div", {}, "Add")
+                React.createElement("div", {className: "action-button action-button-padding"}, "Add")
             )
          );
     }

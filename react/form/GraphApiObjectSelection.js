@@ -1,7 +1,7 @@
 import React from "react";
 import Dbm from "../../index.js";
 
-export default class GraphApiObjectSelection extends Dbm.react.form.Selection {
+export default class GraphApiObjectSelection extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 

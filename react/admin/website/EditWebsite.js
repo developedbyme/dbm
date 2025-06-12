@@ -102,6 +102,7 @@ export default class EditWebsite extends Dbm.react.BaseObject {
         let itemEditor = editorGroup.getItemEditor(id);
 
         itemEditor.addFieldEditor("name", Dbm.objectPath(item, "fields.name"), "name");
+        itemEditor.addIncomingRelationEditor("logoFor", "image", Dbm.objectPath(item, "fields.logo"), "admin_fields");
 
         this.item.setValue("organizationEditor", itemEditor);
     }
@@ -144,6 +145,9 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                     React.createElement(Dbm.react.context.AddContextVariables, {values: {"itemEditor": this.item.properties.organizationEditor}},
                         React.createElement(Dbm.react.form.LabelledArea, {"label": "Organization name"},
                             React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                        ),
+                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Logo"},
+                            React.createElement(Dbm.react.form.GraphApiImage, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_in_logoFor_image.item.editValue.item.properties.value").addLogs()}),
                         )
                     ),
                     React.createElement("h2", {}, "Local business"),
