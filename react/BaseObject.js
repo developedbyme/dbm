@@ -32,8 +32,10 @@ export default class BaseObject extends Component {
                 currentDynamicProperty.connectInput(currentProp);
             }
 			else if(this._dynamicProps[objectName]) {
-                let currentDynamicProperty = this.getDynamicProp(objectName);
+                console.log(objectName, this._dynamicProps[objectName]);
+                let currentDynamicProperty = this._dynamicProps[objectName];
                 currentDynamicProperty.value = currentProp;
+                console.log(currentDynamicProperty, currentDynamicProperty.value);
 			}
         }
 
