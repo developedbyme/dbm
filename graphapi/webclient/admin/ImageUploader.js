@@ -18,8 +18,9 @@ export default class ImageUploader extends Dbm.core.BaseObject {
     }
 
     uploadImage() {
+        console.log("uploadImage");
         if(this.item.status !== 0) {
-            console.warn("Image is alreadu uploading", this);
+            console.warn("Image is already uploading", this);
             return this;
         }
 
@@ -45,6 +46,10 @@ export default class ImageUploader extends Dbm.core.BaseObject {
         console.log(aPreSign, aFile);
 
         let item = Dbm.getInstance().repository.getItem(aPreSign.data.id);
+        item.setValue("name", aPreSign.data.name);
+        item.setValue("url", aPreSign.data.publicUrl);
+        item.setValue("resizeUrl", aPreSign.data.publicResizeUrl);
+        item.setValue("identifier", aPreSign.data.identifier);
         this.item.item = item;
 
         if(aPreSign.status === 1) {
@@ -69,12 +74,6 @@ export default class ImageUploader extends Dbm.core.BaseObject {
     _fileUploaded() {
         console.log("_fileUploaded");
 
-        let item = this.item.item;
-        item.setValue("url", aPreSign.data.publicUrl);
-        item.setValue("resizeUrl", aPreSign.data.publicResizeUrl);
-        item.setValue("identifier", aPreSign.data.identifier);
-        
-        this.item.item = item;
         this.item.status = 1;
 
         console.log("Uploaded", this.item.item);

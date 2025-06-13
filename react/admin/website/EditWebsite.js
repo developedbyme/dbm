@@ -54,7 +54,7 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                     {"type": "includeDraft"},
                     {"type": "globalObjectRelationQuery", "identifer": "website", "path": "out:by:organization"},
                 ],
-                ["admin_fields"]
+                ["admin_fields", "relations"]
             );
             Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._organizationLoaded.bind(this), [request]));
             allLoaded.addCheck(request.properties.status);
@@ -102,7 +102,9 @@ export default class EditWebsite extends Dbm.react.BaseObject {
         let itemEditor = editorGroup.getItemEditor(id);
 
         itemEditor.addFieldEditor("name", Dbm.objectPath(item, "fields.name"), "name");
-        itemEditor.addIncomingRelationEditor("logoFor", "image", Dbm.objectPath(item, "fields.logo"), "admin_fields");
+        let logoRelations = Dbm.objectPath(item, "relations/in.logoFor.objects");
+        let logo = logoRelations.length ? logoRelations[0].id : null;
+        itemEditor.addIncomingRelationEditor("logoFor", "image", logo, ["admin_fields", "relations"]);
 
         this.item.setValue("organizationEditor", itemEditor);
     }

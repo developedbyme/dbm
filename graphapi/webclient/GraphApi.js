@@ -21,7 +21,7 @@ export default class GraphApi extends Dbm.core.BaseObject {
 	}
 	
     requestRange(aSelect, aEncode) {
-        console.log("requestRange");
+        //console.log("requestRange");
 
         if(this._websocketConnection && this._websocketConnection.item.status === 1) {
 			return this._websocketConnection.requestRange(aSelect, aEncode);
@@ -31,7 +31,7 @@ export default class GraphApi extends Dbm.core.BaseObject {
     }
 
     requestItem(aId, aEncode) {
-        console.log("requestItem");
+        //console.log("requestItem");
 
         if(this._websocketConnection && this._websocketConnection.item.status === 1) {
             return this._websocketConnection.requestItem(aId, aEncode);

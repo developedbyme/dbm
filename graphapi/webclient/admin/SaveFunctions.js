@@ -1,3 +1,5 @@
+import Dbm from "../../../index.js";
+
 export const setField = function(aEditor, aItemSaveData) {
     aItemSaveData.setField(aEditor.item.name, aEditor.item.editValue.getValue());
 }
@@ -15,17 +17,25 @@ export const setVisibility = function(aEditor, aItemSaveData) {
 }
 
 export const incomingRelation = function(aEditor, aItemSaveData) {
-    aItemSaveData.createChange("replaceIncomingRelation", {"value": aEditor.item.editValue.getValue(), "type": aEditor.item.type, "objectType": aEditor.item.objectType});
+    let id = aEditor.item.editValue.getValue();
+
+    aItemSaveData.createChange("replaceIncomingRelation", {"value": id, "type": aEditor.item.type, "objectType": aEditor.item.objectType});
 }
 
 export const outgoingRelation = function(aEditor, aItemSaveData) {
-    aItemSaveData.createChange("replaceOutgoingRelation", {"value": aEditor.item.editValue.getValue(), "type": aEditor.item.type, "objectType": aEditor.item.objectType});
+    let id = aEditor.item.editValue.getValue();
+
+    aItemSaveData.createChange("replaceOutgoingRelation", {"value": id, "type": aEditor.item.type, "objectType": aEditor.item.objectType});
 }
 
 export const multipleIncomingRelations = function(aEditor, aItemSaveData) {
-    aItemSaveData.createChange("replaceMultipleIncomingRelations", {"value": aEditor.item.editValue.getValue(), "type": aEditor.item.type, "objectType": aEditor.item.objectType});
+    let ids = Dbm.utils.ArrayFunctions.removeValues(aEditor.item.editValue.getValue(), [0, null, undefined]);
+
+    aItemSaveData.createChange("replaceMultipleIncomingRelations", {"value": ids, "type": aEditor.item.type, "objectType": aEditor.item.objectType});
 }
 
 export const multipleOutgoingRelations = function(aEditor, aItemSaveData) {
-    aItemSaveData.createChange("replaceMultipleOutgoingRelations", {"value": aEditor.item.editValue.getValue(), "type": aEditor.item.type, "objectType": aEditor.item.objectType});
+    let ids = Dbm.utils.ArrayFunctions.removeValues(aEditor.item.editValue.getValue(), [0, null, undefined]);
+
+    aItemSaveData.createChange("replaceMultipleOutgoingRelations", {"value": ids, "type": aEditor.item.type, "objectType": aEditor.item.objectType});
 }

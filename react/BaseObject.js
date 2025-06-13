@@ -34,7 +34,6 @@ export default class BaseObject extends Component {
 			else if(this._dynamicProps[objectName]) {
                 let currentDynamicProperty = this._dynamicProps[objectName];
                 currentDynamicProperty.value = currentProp;
-                console.log(currentDynamicProperty, currentDynamicProperty.value);
 			}
         }
 

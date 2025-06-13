@@ -1,6 +1,7 @@
 import Dbm from "../../../index.js";
 
 export {default as DecodeBaseObject} from "./DecodeBaseObject.js";
+export {default as Relations} from "./Relations.js";
 
 export const fullSetup = function() {
     let decodePrefix = "graphApi/decode/";
@@ -135,10 +136,17 @@ export const fullSetup = function() {
     }
 
     {
-            let name = "helpSection";
-            let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
-            currentDecoder.item.setValue("copyFields", ["title", "link"]);
-            currentDecoder.item.setValue("encodingType", name);
-            currentDecoder.item.register(decodePrefix + name);
-        }
+        let name = "helpSection";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyFields", ["title", "link"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
+
+    {
+        let name = "relations";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.Relations();
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
 }

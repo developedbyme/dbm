@@ -10,8 +10,8 @@ export default class GraphApiImage extends Dbm.react.BaseObject {
 
 
         let imageElement = React.createElement("div", {className: "flex-row small-item-spacing"},
-            React.createElement("div", {className: "flex-row-item flex-no-resize"},
-                "Image selected"
+            React.createElement("div", {className: "flex-row-item flex-resize"},
+                React.createElement(Dbm.react.admin.SelectedImage, {id: value})
             ),
             React.createElement("div", {className: "flex-row-item flex-no-resize"},
                 React.createElement("div", {onClick: () => {this.removeImage()}}, "Remove")
@@ -55,8 +55,18 @@ export default class GraphApiImage extends Dbm.react.BaseObject {
 
         let files = aEvent.target.files;
         if(files.length > 0) {
-            //METODO: upload image
+            let fileUploader = new Dbm.graphapi.webclient.admin.ImageUploader();
+            fileUploader.setFile(files[0]);
+            Dbm.flow.addUpdateCommandWhenMatched(fileUploader.item.properties.status, 1, Dbm.commands.callFunction(this._imageUploaded.bind(this), [fileUploader]));
+            fileUploader.uploadImage();
         }
+    }
+
+    _imageUploaded(aUploader) {
+        console.log("_imageUploaded");
+        console.log(aUploader);
+
+        this.getDynamicProp("value").getMostUpstreamProperty().value = aUploader.item.item.id;
     }
 
     _imageSelected(aEvent) {
