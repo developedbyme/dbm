@@ -128,7 +128,29 @@ export const numericArrayOrSeparatedString = function(aData, aSeparator = ",", a
     return returnArray;
 }
 
-export const filterByField = function(aArray, aField, aValue) {
+export const filterByField = function(aArray, aField, aValue, aCompareFunction = "==") {
+
+    if(!aArray) {
+        return [];
+    }
+
+    let compareFunction;
+    if(typeof(aCompareFunction) === "string") {
+        compareFunction = Dbm.getInstance().repository.getItem("compareFunctions/" + aCompareFunction).compare;
+        if(!compareFunction) {
+            console.warn("No copmare function registered for: " + aCompareFunction + ". Using ==", aArray, aField, aValue);
+            compareFunction = Dbm.utils.CompareFunctions.equals;
+        }
+    }
+    else if(typeof(aCompareFunction) === "function") {
+        compareFunction = aCompareFunction;
+    }
+    else {
+        console.warn("Unkonown copmare function. Using ==", aCompareFunction, aArray, aField, aValue);
+        compareFunction = Dbm.utils.CompareFunctions.equals;
+    }
+    
+
     let returnArray = [];
 
     let currentArray = aArray;
@@ -136,7 +158,7 @@ export const filterByField = function(aArray, aField, aValue) {
     for(let i = 0; i < currentArrayLength; i++) {
         let currentItem = aArray[i];
         let currentValue = Dbm.objectPath(aArray[i], aField);
-        if(currentValue === aValue) {
+        if(compareFunction(currentValue, aValue)) {
             returnArray.push(currentItem);
         }
     }

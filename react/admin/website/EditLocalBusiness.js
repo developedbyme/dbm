@@ -23,7 +23,7 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                     {"type": "includeDraft"},
                     {"type": "idSelection", "ids": [id]},
                 ],
-                ["admin_fields"]
+                ["admin_fields", "relations"]
             );
             Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._dataLoaded.bind(this), [request]));
             allLoaded.addCheck(request.properties.status);
@@ -55,15 +55,20 @@ export default class EditWebsite extends Dbm.react.BaseObject {
         let editorGroup = this.context.editorGroup;
         let itemEditor = editorGroup.getItemEditor(id);
 
-        itemEditor.addFieldEditor("name", Dbm.objectPath(item, "fields.name"), "name");
-        itemEditor.addFieldEditor("phoneNumber", Dbm.objectPath(item, "fields.phoneNumber"), "phoneNumber");
-        itemEditor.addFieldEditor("email", Dbm.objectPath(item, "fields.email"), "email");
-        itemEditor.addFieldEditor("priceRangeDescription", Dbm.objectPath(item, "fields.priceRangeDescription"), "priceRangeDescription");
+        itemEditor.addFieldEditor("name", Dbm.objectPath(item, "fields.name"), "admin_fields");
 
-        itemEditor.addFieldEditor("rating/value", Dbm.objectPath(item, "fields.rating/value"), "rating/value");
-        itemEditor.addFieldEditor("rating/count", Dbm.objectPath(item, "fields.rating/count"), "rating/count");
-        itemEditor.addFieldEditor("rating/min", Dbm.objectPath(item, "fields.rating/min"), "rating/min");
-        itemEditor.addFieldEditor("rating/max", Dbm.objectPath(item, "fields.rating/max"), "rating/max");
+        let isMainImageForRelations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/in.isMainImageFor.objects"), "objectTypes", "image", "arrayContains");
+        let mainImage = (isMainImageForRelations && isMainImageForRelations.length) ? isMainImageForRelations[0].id : null;
+        itemEditor.addIncomingRelationEditor("isMainImageFor", "image", mainImage, ["relations"]);
+
+        itemEditor.addFieldEditor("phoneNumber", Dbm.objectPath(item, "fields.phoneNumber"), "admin_fields");
+        itemEditor.addFieldEditor("email", Dbm.objectPath(item, "fields.email"), "admin_fields");
+        itemEditor.addFieldEditor("priceRangeDescription", Dbm.objectPath(item, "fields.priceRangeDescription"), "admin_fields");
+
+        itemEditor.addFieldEditor("rating/value", Dbm.objectPath(item, "fields.rating/value"), "admin_fields");
+        itemEditor.addFieldEditor("rating/count", Dbm.objectPath(item, "fields.rating/count"), "admin_fields");
+        itemEditor.addFieldEditor("rating/min", Dbm.objectPath(item, "fields.rating/min"), "admin_fields");
+        itemEditor.addFieldEditor("rating/max", Dbm.objectPath(item, "fields.rating/max"), "admin_fields");
 
         this.item.setValue("itemEditor", itemEditor);
     }
@@ -101,6 +106,9 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                     React.createElement(Dbm.react.context.AddContextVariables, {values: {"itemEditor": this.item.properties.itemEditor}},
                         React.createElement(Dbm.react.form.LabelledArea, {"label": "Name"},
                             React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"})
+                        ),
+                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Image"},
+                            React.createElement(Dbm.react.form.GraphApiImage, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_in_isMainImageFor_image.item.editValue.item.properties.value").addLogs()}),
                         ),
                         React.createElement(Dbm.react.form.LabelledArea, {"label": "Phone number"},
                             React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_phoneNumber.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
