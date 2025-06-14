@@ -24,6 +24,14 @@ export default class SourceBaseObject extends Dbm.core.BaseObject {
 
         if(this._log) {
             console.log("Source>>>>>", baseObject, path);
+            let currentPath = "";
+            let currentArray = path.split(".");
+            let currentArrayLength = currentArray.length;
+            for(let i = 0; i < currentArrayLength; i++) {
+                currentPath += currentArray[i];
+                console.log(currentPath, Dbm.objectPath(baseObject, currentPath));
+                currentPath += ".";
+            }
         }
 
 		if(!path) {

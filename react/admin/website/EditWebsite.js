@@ -41,7 +41,7 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                     {"type": "includeDraft"},
                     {"type": "globalObjectRelationQuery", "identifer": "website", "path": "(root)"},
                 ],
-                ["admin_fields"]
+                ["admin_fields", "relations"]
             );
             Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._websiteLoaded.bind(this), [request]));
             allLoaded.addCheck(request.properties.status);
@@ -88,6 +88,16 @@ export default class EditWebsite extends Dbm.react.BaseObject {
 
         itemEditor.addFieldEditor("name", Dbm.objectPath(item, "fields.name"), "admin_fields");
 
+        {
+            let relationType = "by";
+            let objectType = "organization";
+            console.log(">>>>>>x", item, Dbm.objectPath(item, "relations/out"), Dbm.objectPath(item, "relations/out." + relationType + ".objects"));
+            let relations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/out." + relationType + ".objects"), "objectTypes", objectType, "arrayContains");
+            let relation = (relations && relations.length) ? relations[0].id : null;
+            itemEditor.addOutgoingRelationEditor(relationType, objectType, relation, ["relations"]);
+        }
+        
+
         this.item.setValue("websiteEditor", itemEditor);
     }
 
@@ -102,7 +112,8 @@ export default class EditWebsite extends Dbm.react.BaseObject {
         let itemEditor = editorGroup.getItemEditor(id);
 
         itemEditor.addFieldEditor("name", Dbm.objectPath(item, "fields.name"), "admin_fields");
-        let logoRelations = Dbm.objectPath(item, "relations/in.isLogoFor.objects");
+
+        let logoRelations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/in.isLogoFor.objects"), "objectTypes", "image", "arrayContains");
         let logo = (logoRelations && logoRelations.length) ? logoRelations[0].id : null;
         itemEditor.addIncomingRelationEditor("isLogoFor", "image", logo, ["relations"]);
 
@@ -141,6 +152,9 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                     React.createElement(Dbm.react.context.AddContextVariables, {values: {"itemEditor": this.item.properties.websiteEditor}},
                         React.createElement(Dbm.react.form.LabelledArea, {"label": "Website name"},
                             React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                        ),
+                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Organization"},
+                            React.createElement(Dbm.react.form.GraphApiSelectOrCreateObject, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_out_by_organization.item.editValue.item.properties.value"), objectType: "organization"}),
                         )
                     ),
                     React.createElement("div", {className: "spacing standard"}),

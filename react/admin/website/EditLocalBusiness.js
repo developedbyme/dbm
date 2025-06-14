@@ -108,7 +108,7 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                             React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"})
                         ),
                         React.createElement(Dbm.react.form.LabelledArea, {"label": "Image"},
-                            React.createElement(Dbm.react.form.GraphApiImage, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_in_isMainImageFor_image.item.editValue.item.properties.value").addLogs()}),
+                            React.createElement(Dbm.react.form.GraphApiImage, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_in_isMainImageFor_image.item.editValue.item.properties.value")}),
                         ),
                         React.createElement(Dbm.react.form.LabelledArea, {"label": "Phone number"},
                             React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_phoneNumber.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
