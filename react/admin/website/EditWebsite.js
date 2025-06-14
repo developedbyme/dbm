@@ -113,9 +113,19 @@ export default class EditWebsite extends Dbm.react.BaseObject {
 
         itemEditor.addFieldEditor("name", Dbm.objectPath(item, "fields.name"), "admin_fields");
 
-        let logoRelations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/in.isLogoFor.objects"), "objectTypes", "image", "arrayContains");
-        let logo = (logoRelations && logoRelations.length) ? logoRelations[0].id : null;
-        itemEditor.addIncomingRelationEditor("isLogoFor", "image", logo, ["relations"]);
+        {
+            let logoRelations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/in.isLogoFor.objects"), "objectTypes", "image", "arrayContains");
+            let logo = (logoRelations && logoRelations.length) ? logoRelations[0].id : null;
+            itemEditor.addIncomingRelationEditor("isLogoFor", "image", logo, ["relations"]);
+        }
+        
+        {
+            let relationType = "in";
+            let objectType = "localBusiness";
+            let relations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/in." + relationType + ".objects"), "objectTypes", objectType, "arrayContains");
+            let editor = itemEditor.addMultipleIncomingRelationsEditor(relationType, objectType, Dbm.utils.ArrayFunctions.mapField(relations, "id"), ["relations"]);
+            console.log(relations, editor);
+        }
 
         this.item.setValue("organizationEditor", itemEditor);
     }
@@ -141,6 +151,14 @@ export default class EditWebsite extends Dbm.react.BaseObject {
         saveData.save();
     }
 
+    _addArrayRow(aArrayEditor) {
+        aArrayEditor.push(null);
+    }
+
+    _removeArrayRow(aArrayEditor, aItem) {
+        aArrayEditor.removeItem(aItem);
+    }
+
     _renderMainElement() {
 
         
@@ -164,7 +182,23 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                         ),
                         React.createElement(Dbm.react.form.LabelledArea, {"label": "Logo"},
                             React.createElement(Dbm.react.form.GraphApiImage, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_in_isLogoFor_image.item.editValue.item.properties.value")}),
-                        )
+                        ),
+
+                        React.createElement(Dbm.react.form.LabelledArea, {"label": "LocalBusiness"},
+                            React.createElement(Dbm.react.form.EditArray, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_multipleRelations_in_in_localBusiness.item.editValue.item.properties.value")},
+                                React.createElement("div", {},
+                                    "Test",
+                                    Dbm.react.text.text(Dbm.react.source.contextVariable("item.properties.value")),
+                                    React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callFunction(this._removeArrayRow, [Dbm.react.source.contextVariable("arrayEditor"), Dbm.react.source.contextVariable("item")])},
+                                        React.createElement("div", {}, "Remove"),
+                                    ),
+                                    React.createElement(Dbm.react.form.GraphApiSelectOrCreateObject, {"value": Dbm.react.source.contextVariable("item.properties.value"), objectType: "localBusiness"})
+                                ),
+                                React.createElement(Dbm.react.interaction.CommandButton, {"data-slot": "after", command: Dbm.commands.callFunction(this._addArrayRow, [Dbm.react.source.contextVariable("arrayEditor")])},
+                                    React.createElement("div", {}, "Add"),
+                                )
+                            ),
+                        ),
                     ),
                     React.createElement("h2", {}, "Local business"),
                     React.createElement(Dbm.react.area.List, {items: this.item.properties.localBusinesses},
