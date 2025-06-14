@@ -137,6 +137,7 @@ export let registerAllBlocks = function() {
     }
     
     registerBlock("admin/objects/edit", "Admin / Edit object", createElement(Dbm.react.blocks.admin.objects.Edit));
+    registerBlock("admin/objects/apiCommands", "Admin / Object API commands", createElement(Dbm.react.blocks.admin.objects.RunObjectCommands));
 
     {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},

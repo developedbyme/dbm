@@ -7,3 +7,4 @@ export {default as GraphApiObjectSelection} from "./GraphApiObjectSelection.js";
 export {default as GraphApiSelectOrCreateObject} from "./GraphApiSelectOrCreateObject.js";
 export {default as GraphApiImage} from "./GraphApiImage.js";
 export {default as EditArray} from "./EditArray.js";
+export {default as TextArea} from "./TextArea.js";
