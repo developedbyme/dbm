@@ -35,7 +35,7 @@ export default class Title extends Dbm.react.BaseObject {
             
             React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
                 React.createElement(Dbm.react.form.LabelledArea, {label: "Title"}, 
-                    React.createElement(Dbm.react.admin.editorsgroup.EditField, {"fieldName": "title"},
+                    React.createElement(Dbm.react.admin.editorsgroup.EditField, {"fieldName": "title", "initialDataPath": "title"},
                         React.createElement(Dbm.react.form.FormField, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
                     )
                 )

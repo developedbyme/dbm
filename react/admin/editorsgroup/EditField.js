@@ -8,7 +8,7 @@ export default class EditField extends Dbm.react.BaseObject {
         let item = this.context.item;
         let itemEditor = this.context.itemEditor;
         let fieldName = this.getPropValue("fieldName");
-        let initialDataPath = this.getPropValueWithDefault("initialDataPath", fieldName);
+        let initialDataPath = this.getPropValueWithDefault("initialDataPath", "fields." + fieldName);
         let initialData = Dbm.objectPath(item, initialDataPath);
 
         let editor = itemEditor.addFieldEditor(fieldName, initialData);

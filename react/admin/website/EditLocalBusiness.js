@@ -28,19 +28,6 @@ export default class EditWebsite extends Dbm.react.BaseObject {
             Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._dataLoaded.bind(this), [request]));
             allLoaded.addCheck(request.properties.status);
         }
-
-        {
-            let request = graphApi.requestRange(
-                [
-                    {"type": "includePrivate"},
-                    {"type": "includeDraft"},
-                    {"type": "objectRelationQuery", "fromIds": [id], "path": "out:at:location"},
-                ],
-                ["admin_fields"]
-            );
-            Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._locationLoaded.bind(this), [request]));
-            allLoaded.addCheck(request.properties.status);
-        }
         
         this.item.properties.loaded.connectInput(allLoaded.output.properties.value);
     }
@@ -70,28 +57,15 @@ export default class EditWebsite extends Dbm.react.BaseObject {
         itemEditor.addFieldEditor("rating/min", Dbm.objectPath(item, "fields.rating/min"), "admin_fields");
         itemEditor.addFieldEditor("rating/max", Dbm.objectPath(item, "fields.rating/max"), "admin_fields");
 
+        {
+            let relationType = "at";
+            let objectType = "location";
+            let relations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/out." + relationType + ".objects"), "objectTypes", objectType, "arrayContains");
+            let relation = (relations && relations.length) ? relations[0].id : null;
+            itemEditor.addOutgoingRelationEditor(relationType, objectType, relation, ["relations"]);
+        }
+
         this.item.setValue("itemEditor", itemEditor);
-    }
-
-    _locationLoaded(aRequest) {
-        console.log("_locationLoaded");
-        console.log(aRequest);
-
-        let item = aRequest.items[0];
-        let id = item.id;
-
-        let editorGroup = this.context.editorGroup;
-        let itemEditor = editorGroup.getItemEditor(id);
-
-        itemEditor.addFieldEditor("street", Dbm.objectPath(item, "fields.street"), "street");
-        itemEditor.addFieldEditor("city", Dbm.objectPath(item, "fields.city"), "city");
-        itemEditor.addFieldEditor("postCode", Dbm.objectPath(item, "fields.postCode"), "postCode");
-        itemEditor.addFieldEditor("country", Dbm.objectPath(item, "fields.country"), "country");
-
-        itemEditor.addFieldEditor("latitude", Dbm.objectPath(item, "fields.latitude"), "latitude");
-        itemEditor.addFieldEditor("longitude", Dbm.objectPath(item, "fields.longitude"), "longitude");
-
-        this.item.setValue("locationEditor", itemEditor);
     }
 
     _allLoaded() {
@@ -100,61 +74,80 @@ export default class EditWebsite extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
+        let locationId = Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_out_at_location.item.editValue.item.properties.value");
+
 
         return React.createElement("div", {},
             React.createElement(Dbm.react.area.HasData, {"check": this.item.properties.loaded}, 
-                    React.createElement(Dbm.react.context.AddContextVariables, {values: {"itemEditor": this.item.properties.itemEditor}},
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Name"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"})
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Image"},
-                            React.createElement(Dbm.react.form.GraphApiImage, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_in_isMainImageFor_image.item.editValue.item.properties.value")}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Phone number"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_phoneNumber.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Email"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_email.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Price range description"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_priceRangeDescription.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Rating"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_rating/value.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Rating (count)"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_rating/count.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Min"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_rating/min.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Max"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_rating/max.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
+                React.createElement(Dbm.react.context.AddContextVariables, {values: {"itemEditor": this.item.properties.itemEditor}},
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Name"},
+                        React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"})
                     ),
-                    React.createElement(Dbm.react.context.AddContextVariables, {values: {"itemEditor": this.item.properties.locationEditor}},
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Street"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_street.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"})
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Image"},
+                        React.createElement(Dbm.react.form.GraphApiImage, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_in_isMainImageFor_image.item.editValue.item.properties.value")}),
+                    ),
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Phone number"},
+                        React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_phoneNumber.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                    ),
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Email"},
+                        React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_email.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                    ),
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Price range description"},
+                        React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_priceRangeDescription.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                    ),
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Rating"},
+                        React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_rating/value.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                    ),
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Rating (count)"},
+                        React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_rating/count.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                    ),
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Min"},
+                        React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_rating/min.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                    ),
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Max"},
+                        React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_rating/max.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
+                    ),
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Location"},
+                        React.createElement(Dbm.react.form.GraphApiSelectOrCreateObject, {"value": locationId, objectType: "location"}),
+                        React.createElement(Dbm.react.area.HasData, {check: locationId},
+                            React.createElement(Dbm.react.context.AddItemByIdToContext, {id: locationId},
+                                React.createElement(Dbm.react.admin.editorsgroup.EditItem, {},
+                                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Street"},
+                                        React.createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "street"},
+                                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
+                                        )
+                                    ),
+                                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Post code"},
+                                        React.createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "postCode"},
+                                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
+                                        )
+                                    ),
+                                    React.createElement(Dbm.react.form.LabelledArea, {"label": "City"},
+                                        React.createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "city"},
+                                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
+                                        )
+                                    ),
+                                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Country code"},
+                                        React.createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "country"},
+                                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
+                                        )
+                                    ),
+                                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Latitude"},
+                                        React.createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "latitude"},
+                                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
+                                        )
+                                    ),
+                                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Longitude"},
+                                        React.createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "longitude"},
+                                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
+                                        )
+                                    )
+                                )
+                            ),
                         ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Post code"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_postCode.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "City"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_city.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Country code"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_country.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Latitude"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_latitude.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement(Dbm.react.form.LabelledArea, {"label": "Longitude"},
-                            React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_longitude.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"}),
-                        )
                     )
-
+                )
             )
-            
         );
     }
 }
