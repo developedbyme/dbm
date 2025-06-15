@@ -42,10 +42,9 @@ export default class CachedRequests extends Dbm.core.BaseObject {
     }
 	
 	requestRange(aSelect, aEncode) {
-        console.log("requestRange");
+        //console.log("requestRange");
 
         let id = this._getRangeIdentifier(aSelect, aEncode);
-        console.log(id);
 
         if(this._ranges[id]) {
             return this._ranges[id];
@@ -59,10 +58,9 @@ export default class CachedRequests extends Dbm.core.BaseObject {
     }
 
     requestItem(aId, aEncode) {
-        console.log("requestItem");
+        //console.log("requestItem");
 
         let id = aId + "/" + this._getEncodeIdentifier(aEncode);
-        console.log(id);
 
         if(this._items[id]) {
             return this._items[id];

@@ -189,7 +189,7 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                                 React.createElement("div", {},
                                     React.createElement("h3", {}, "Local business"),
                                     React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callFunction(this._removeArrayRow, [Dbm.react.source.contextVariable("arrayEditor"), Dbm.react.source.contextVariable("item")])},
-                                        React.createElement("div", {}, "Remove2"),
+                                        React.createElement("div", {}, "Remove"),
                                     ),
                                     React.createElement(Dbm.react.form.GraphApiSelectOrCreateObject, {"value": Dbm.react.source.contextVariable("item.properties.value"), objectType: "localBusiness"}),
                                     React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("item.properties.value")},

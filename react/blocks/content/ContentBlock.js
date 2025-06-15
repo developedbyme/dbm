@@ -25,9 +25,9 @@ export default class ContentBlock extends Dbm.react.BaseObject {
     }
 
     _loaded(aRequest) {
-      console.log("_loaded");
+      //console.log("_loaded");
       this.item.item = aRequest.items[0];
-      console.log(aRequest);
+      
     }
 
     _renderMainElement() {

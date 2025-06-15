@@ -149,4 +149,28 @@ export const fullSetup = function() {
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }
+
+    {
+        let name = "atLocation";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyLink", ["location"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
+
+    {
+        let name = "mainImage";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyLink", ["image"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
+
+    {
+        let name = "location";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyFields", ["street", "postCode", "city", "country", "coordinates"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
 }
