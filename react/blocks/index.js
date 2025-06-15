@@ -253,6 +253,16 @@ export let registerAllBlocks = function() {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/visibility");
         itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Visibility, {}));
     }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/linkedPage");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.LinkedPage, {}));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/question");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Question, {}));
+    }
     
     {
         let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/page");
@@ -285,7 +295,10 @@ export let registerAllBlocks = function() {
         }
 
         let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/question"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/title"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/content"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/linkedPage"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/link"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/visibility"));
         objectTypeEditor.editors = newArray;
