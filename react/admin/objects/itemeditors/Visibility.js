@@ -35,7 +35,9 @@ export default class Visibility extends Dbm.react.BaseObject {
             
             React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
                 React.createElement(Dbm.react.form.LabelledArea, {label: "Visibility"}, 
-                    Dbm.react.text.text(Dbm.react.source.contextVariable("item.visibility"))
+                    React.createElement(Dbm.react.admin.editorsgroup.EditVisibility, {},
+                        React.createElement(Dbm.react.form.FormField, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
+                    )
                 )
             )
             

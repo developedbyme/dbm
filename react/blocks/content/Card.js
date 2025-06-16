@@ -13,11 +13,20 @@ export default class Card extends Dbm.react.BaseObject {
               React.createElement("h3", {"className": "no-margins"},
                 Dbm.react.text.text(Dbm.react.source.blockData("title"))
               ),
-              Dbm.react.text.htmlText(Dbm.react.source.blockData("text")),
+              React.createElement("div", {"className": "body-text"},
+                Dbm.react.text.htmlText(Dbm.react.source.blockData("text")),
+              ),
               React.createElement("div", {"className": "flex-row justify-between"},
                 React.createElement("div", {"className": "flex-row-item"}),
-                React.createElement("div", {"className": "flex-row-item"},
-                  Dbm.react.text.text(Dbm.react.source.blockData("buttonText")),
+                React.createElement("div", {"className": "flex-row-item standard-card-read-more-link"},
+                  React.createElement("div", {className: "flex-row micro-item-spacing vertically-center-items"},
+                      React.createElement("div", {className: "flex-row-item flex-resize"},
+                        Dbm.react.text.text(Dbm.react.source.blockData("buttonText"))
+                      ),
+                      React.createElement("div", {className: "flex-row-item flex-no-resize"},
+                          React.createElement(Dbm.react.image.Image, {src: "/assets/img/read-more-right-arrow.svg", className: "right-arrow-read-more-link-icon background-contain"})
+                      )
+                  )
                 )
               )
             )
@@ -34,11 +43,23 @@ export default class Card extends Dbm.react.BaseObject {
               React.createElement("h3", {"className": "no-margins"},
                 Dbm.react.text.text(Dbm.react.source.blockData("title"))
               ),
-              Dbm.react.text.htmlText(Dbm.react.source.blockData("text")),
+              React.createElement("div", {"className": "spacing small"}),
+              React.createElement("div", {"className": "body-text"},
+                Dbm.react.text.htmlText(Dbm.react.source.blockData("text")),
+              ),
+              
+              React.createElement("div", {"className": "spacing small"}),
               React.createElement("div", {"className": "flex-row justify-between"},
                 React.createElement("div", {"className": "flex-row-item"}),
-                React.createElement("div", {"className": "flex-row-item"},
-                  Dbm.react.text.text(Dbm.react.source.blockData("buttonText")),
+                React.createElement("div", {"className": "flex-row-item standard-card-read-more-link"},
+                  React.createElement("div", {className: "flex-row micro-item-spacing vertically-center-items"},
+                    React.createElement("div", {className: "flex-row-item flex-resize"},
+                      Dbm.react.text.text(Dbm.react.source.blockData("buttonText"))
+                    ),
+                    React.createElement("div", {className: "flex-row-item flex-no-resize"},
+                        React.createElement(Dbm.react.image.Image, {src: "/assets/img/read-more-right-arrow.svg", className: "right-arrow-read-more-link-icon background-contain"})
+                    )
+                )
                 )
               )
             )

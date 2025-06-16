@@ -214,16 +214,8 @@ export let registerAllBlocks = function() {
                 createElement(Dbm.react.admin.editor.fields.TextField, {name: "text1"})
             ),
             createElement("div", {className: "spacing medium"}),
-            createElement(Dbm.react.form.LabelledArea, {label: "Url 1"},
-                createElement(Dbm.react.admin.editor.fields.TextField, {name: "url1"})
-            ),
-            createElement("div", {className: "spacing medium"}),
-            createElement(Dbm.react.form.LabelledArea, {label: "Text 2"},
-                createElement(Dbm.react.admin.editor.fields.TextField, {name: "text2"})
-            ),
-            createElement("div", {className: "spacing medium"}),
-            createElement(Dbm.react.form.LabelledArea, {label: "Url 2"},
-                createElement(Dbm.react.admin.editor.fields.TextField, {name: "url2"})
+            createElement(Dbm.react.form.LabelledArea, {label: "Intial sections"}, 
+                createElement(Dbm.react.admin.editor.fields.SelectObjectsField, {objectType: "helpSection", name:"initialSections"})
             ),
         );
         registerBlock("faq/askAQuestion", "FAQ / Ask a question", createElement(Dbm.react.blocks.faq.AskAQuestion, {}), editor, {}, {"text1": true, "text2": true});
@@ -237,6 +229,11 @@ export let registerAllBlocks = function() {
     {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/content");
         itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Content, {}));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/richDescription");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.RichDescription, {}));
     }
 
     {
@@ -297,7 +294,7 @@ export let registerAllBlocks = function() {
         let newArray = [].concat(objectTypeEditor.editors);
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/question"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/title"));
-        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/content"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/richDescription"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/linkedPage"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/link"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/visibility"));

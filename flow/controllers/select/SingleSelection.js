@@ -28,8 +28,8 @@ export default class SingleSelection extends Dbm.core.BaseObject {
     }
 
     _selectionChanged(aSelected, aValue) {
-        //console.log("_selectionChanged");
-        //console.log(aSelected, aValue);
+        console.log("_selectionChanged");
+        console.log(aSelected, aValue);
 
         if(aSelected) {
             this.item.properties.value.getMostUpstreamProperty().setValue(aValue);

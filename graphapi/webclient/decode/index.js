@@ -138,7 +138,8 @@ export const fullSetup = function() {
     {
         let name = "helpSection";
         let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
-        currentDecoder.item.setValue("copyFields", ["title", "link"]);
+        currentDecoder.item.setValue("copyFields", ["question", "title", "link", "description", "linkText"]);
+        currentDecoder.item.setValue("copyLink", ["page"]);
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }

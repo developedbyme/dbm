@@ -104,6 +104,26 @@ export default class ItemEditor extends Dbm.core.BaseObject {
         return this._addMultipleRelationsEditor(name, aType, aObjectType, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.multipleOutgoingRelations, aUpdateEncoding);
     }
 
+    getVisibilityEditor(aInitialValue) {
+        let name = "visibility"
+        let valueEditor = this.item["visibility"];
+        if(!valueEditor) {
+            valueEditor = new Dbm.graphapi.webclient.admin.ValueEditor();
+            valueEditor.item.editValue.setInitialValue(aInitialValue);
+
+            valueEditor.item.setValue("itemEditor", this.item);
+            valueEditor.item.setValue("updateEncoding", "visibility");
+
+            this.item.anyChange.addCheck(valueEditor.item.properties.changed);
+            this.item.setValue(name, valueEditor); 
+            this.item.editors = [].concat(this.item.editors, valueEditor);
+            
+            valueEditor.addSaveFunction(Dbm.graphapi.webclient.admin.SaveFunctions.setVisibility);
+        }
+
+        return valueEditor;
+    }
+
     addCommandsToSaveData(aSaveData) {
 
         let editedItemId = Dbm.objectPath(this.item, "editedItem.id");

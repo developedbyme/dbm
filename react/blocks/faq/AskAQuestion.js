@@ -9,71 +9,78 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
         this.item.requireProperty("currentQuery", "");
 
         this.item.requireProperty("state", "start");
+        this.item.requireProperty("openSection", 0);
+
+        this._singelSelection = new Dbm.flow.controllers.select.SingleSelection();
+        this._singelSelection.item.properties.value.connectInput(this.item.properties.openSection);
+        this._rowProperties = [];
 
         this.item.requireProperty("results", []);
 
         let switchValue = Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.state);
 
-        switchValue.addCase("start", React.createElement("div", null, React.createElement(Dbm.react.text.Link, {
-            href: Dbm.react.source.blockData("url1"),
-            className: "custom-styled-link"
-          }, React.createElement("div", {
-            className: "standard-row faq-row hover-row faq-row-padding"
-          }, React.createElement("div", {
-            className: "flex-row small-item-spacing"
-          }, React.createElement("div", {
-            className: "flex-row-item flex-resize"
-          }, Dbm.react.text.text(Dbm.react.source.blockData("text1"))), React.createElement("div", {
-            className: "flex-row-item flex-no-resize"
-          }, React.createElement("div", {
-            className: "spacing micro"
-          }), React.createElement(Dbm.react.image.Image, {
-            src: "/assets/img/right-arrow.svg",
-            className: "right-arrow-link-icon background-contain"
-          }))))), React.createElement(Dbm.react.text.Link, {
-            href: Dbm.react.source.blockData("url2"),
-            className: "custom-styled-link"
-          }, React.createElement("div", {
-            className: "standard-row faq-row hover-row faq-row-padding cursor-pointer"
-          }, React.createElement("div", {
-            className: "flex-row small-item-spacing"
-          }, React.createElement("div", {
-            className: "flex-row-item flex-resize"
-          }, Dbm.react.text.text(Dbm.react.source.blockData("text2"))), React.createElement("div", {
-            className: "flex-row-item flex-no-resize"
-          }, React.createElement("div", {
-            className: "spacing micro"
-          }), React.createElement(Dbm.react.image.Image, {
-            src: "/assets/img/right-arrow.svg",
-            className: "right-arrow-link-icon background-contain"
-          })))))));
-        switchValue.addCase("loading", React.createElement("div", null, React.createElement("div", {
-            className: "spacing small"
-          }), "Loading..."));
-        switchValue.addCase("results", React.createElement("div", null, React.createElement(Dbm.react.area.List, {
-            items: this.item.properties.results
-          }, React.createElement(Dbm.react.text.Link, {
-            href: Dbm.react.source.contextVariable("item.link"),
-            className: "custom-styled-link"
-          }, React.createElement("div", {
-            className: "standard-row faq-row hover-row faq-row-padding cursor-pointer"
-          }, React.createElement("div", {
-            className: "flex-row small-item-spacing"
-          }, React.createElement("div", {
-            className: "flex-row-item flex-resize"
-          }, Dbm.react.text.text(Dbm.react.source.contextVariable("item.title"))), React.createElement("div", {
-            className: "flex-row-item flex-no-resize"
-          }, React.createElement("div", {
-            className: "spacing micro"
-          }), React.createElement(Dbm.react.image.Image, {
-            src: "/assets/img/right-arrow.svg",
-            className: "right-arrow-link-icon background-contain"
-          }))))))));
-        switchValue.addCase("noResults", React.createElement("div", {
-            className: "faq-row-padding"
-          }, "We could not find what you were looking for. Please contact us by phone or email instead."));
+        switchValue.addCase("start", React.createElement("div", null));
+        switchValue.addCase("loading", React.createElement("div", null, React.createElement("div", {className: "spacing small"}), "Loading..."));
+        switchValue.addCase("results", React.createElement("div", null,
+          React.createElement(Dbm.react.area.List, {items: this.item.properties.results, as: "row"},
+            React.createElement(Dbm.react.context.AddItemToContext, {item: Dbm.react.source.contextVariable("row.item")},
+              React.createElement(Dbm.react.area.InsertElement, {element: Dbm.react.source.contextVariable("row.element")})
+            ),
+            React.createElement("div", {"data-slot": "spacing", "className": "spacing small help-section-row-spacing"})
+          )
+        ));
+        switchValue.addCase("noResults", React.createElement("div", {className: "faq-row-padding"}, "We could not find what you were looking for. Please contact us by phone or email instead."));
 
         this.item.requireProperty("resultElement", null).connectInput(switchValue.output.properties.value);
+
+        let ids = this.context.blockData.initialSections;
+        let graphApi = Dbm.getInstance().repository.getItem("cachedGraphApi").controller;
+        {
+            let request = graphApi.requestRange(
+                [
+                    {type: "idSelection", "ids": ids}
+                ],
+                ["helpSection"]
+            );
+            
+            this.item.requireProperty("initialLoadStatus", 0);
+            Dbm.flow.addUpdateCommandWhenMatched(this.item.properties.initialLoadStatus, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._initalDataLoaded.bind(this), [request]));
+            this.item.properties.initialLoadStatus.connectInput(request.properties.status);
+        }
+    }
+
+    _getOpenProperty(aIndex) {
+      for(let i = this._rowProperties.length; i <= aIndex; i++) {
+        this._rowProperties.push(this._singelSelection.addSelectionValue(i));
+      }
+      
+      return this._rowProperties[aIndex];
+    }
+
+    _createRows(aItems) {
+      let rows = new Array();
+      let currentArray = aItems;
+      let currentArrayLength = currentArray.length;
+      for(let i = 0; i < currentArrayLength; i++) {
+        let currentItem = currentArray[i];
+        let currentRow = new Dbm.repository.Item();
+        currentRow.setId("_dbmInternal/row" + Dbm.getInstance().getNextId());
+        currentRow.setValue("item", currentItem);
+        currentRow.setValue("element", React.createElement(Dbm.react.blocks.faq.HelpSectionRowItem, {"open": this._getOpenProperty(i)}));
+        rows.push(currentRow);
+      }
+      this.item.results = rows;
+    }
+
+    _initalDataLoaded(aRequest) {
+      console.log("_initalDataLoaded")
+      console.log(aRequest);
+
+      if(aRequest.items.length) {
+        this._createRows(aRequest.items);
+        this.item.state = "results";
+      }
+      
     }
 
     _dataLoaded(aQuery, aRequest) {
@@ -84,8 +91,9 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
             let ids = Dbm.objectPath(aRequest, "data.answers");
             if(ids.length > 0) {
                 let items = Dbm.getInstance().repository.getItems(ids);
-                this.item.results = items;
+                this._createRows(items);
                 this.item.state = "results";
+                this.item.openSection = 0;
             }
             else {
                 this.item.state = "noResults";
