@@ -214,8 +214,8 @@ export let registerAllBlocks = function() {
                 createElement(Dbm.react.admin.editor.fields.TextField, {name: "text1"})
             ),
             createElement("div", {className: "spacing medium"}),
-            createElement(Dbm.react.form.LabelledArea, {label: "Intial sections"}, 
-                createElement(Dbm.react.admin.editor.fields.SelectObjectsField, {objectType: "helpSection", name:"initialSections"})
+            createElement(Dbm.react.form.LabelledArea, {label: "Initial sections"}, 
+                createElement(Dbm.react.admin.editor.fields.SelectObjectsField, {objectType: "helpSection", name:"initialSections", "encoding": "title", "nameField": "title"})
             ),
         );
         registerBlock("faq/askAQuestion", "FAQ / Ask a question", createElement(Dbm.react.blocks.faq.AskAQuestion, {}), editor, {}, {"text1": true, "text2": true});

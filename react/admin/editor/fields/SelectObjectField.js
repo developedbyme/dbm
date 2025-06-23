@@ -52,6 +52,6 @@ export default class SelectObjectField extends Dbm.react.BaseObject {
     }
 
     _renderMainElement() {
-        return this._createMainElement(Dbm.react.form.GraphApiObjectSelection, {value: this.item.properties.value, objectType: this.getPropValue("objectType"), className: "standard-field standard-field-padding full-width"});
+        return this._createMainElement(Dbm.react.form.GraphApiObjectSelection, {value: this.item.properties.value, objectType: this.getPropValue("objectType"), encoding: this.getPropValue("encoding"), nameField: this.getPropValue("nameField"), className: "standard-field standard-field-padding full-width"});
     }
 }
