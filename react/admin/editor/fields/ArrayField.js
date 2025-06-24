@@ -53,7 +53,9 @@ export default class SelectObjectsField extends Dbm.react.BaseObject {
         console.log("_add");
         console.log(aArrayEditor);
 
-        aArrayEditor.push(0);
+        let newItemData = this.getPropValueWithDefault("newItemData", {});
+
+        aArrayEditor.push(newItemData);
     }
 
     _removeItem(aArrayEditor, aItem) {
@@ -65,12 +67,12 @@ export default class SelectObjectsField extends Dbm.react.BaseObject {
 
         return this._createMainElement(Dbm.react.form.EditArray, {value: this.item.properties.value},
             React.createElement("div", {}, 
-                this._createMainElement(Dbm.react.form.GraphApiObjectSelection, {value: Dbm.react.source.contextVariable("item.properties.value"), objectType: this.getPropValue("objectType"), className: "standard-field standard-field-padding full-width"}),
+                this.getPropValue("children"),
                 React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callFunction(this._removeItem, [Dbm.react.source.contextVariable("arrayEditor"), Dbm.react.source.contextVariable("item")])},
                     React.createElement("div", {}, "Remove")
                 )
             ),
-            React.createElement(Dbm.react.interaction.CommandButton, {"data-slot": "after", command: Dbm.commands.callFunction(this._add, [Dbm.react.source.contextVariable("arrayEditor")])},
+            React.createElement(Dbm.react.interaction.CommandButton, {"data-slot": "after", command: Dbm.commands.callFunction(this._add.bind(this), [Dbm.react.source.contextVariable("arrayEditor")])},
                 React.createElement("div", {className: "action-button action-button-padding"}, "Add")
             )
          );
