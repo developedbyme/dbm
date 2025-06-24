@@ -156,6 +156,8 @@ export default class CookieBar extends Dbm.react.BaseObject {
         Dbm.getInstance().repository.getItem("trackingController").allowStatistics = true;
         Dbm.getInstance().repository.getItem("trackingController").allowMarketing = true;
 
+        Dbm.getInstance().repository.getItem("userSettings").setValue("hideCookieBar", true);
+
         this.getDynamicProp("open").getMostUpstreamProperty().setValue(false);
     }
 
@@ -174,6 +176,8 @@ export default class CookieBar extends Dbm.react.BaseObject {
 
         Dbm.getInstance().repository.getItem("trackingController").allowStatistics = false;
         Dbm.getInstance().repository.getItem("trackingController").allowMarketing = false;
+
+        Dbm.getInstance().repository.getItem("userSettings").setValue("hideCookieBar", true);
 
         this.getDynamicProp("open").getMostUpstreamProperty().setValue(false);
     }

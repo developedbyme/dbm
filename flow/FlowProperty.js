@@ -48,6 +48,12 @@ export default class FlowProperty extends Dbm.flow.FlowBaseObject {
         return this;
     }
 
+    delayValue(aToValue, aDelay = 0) {
+        Dbm.getInstance().repository.getItem("propertyUpdater").controller.delayUpdateProperty(this, aToValue, aDelay);
+
+        return this;
+    }
+
     getMostUpstreamProperty() {
 
         let debugCounter = 0;

@@ -40,6 +40,9 @@ export default class Controller extends Dbm.core.BaseObject {
     setupPermissionsFromCookies() {
 		this.item.allowStatistics = Cookies.get("cookie/allowStatistics") === "1";
 		this.item.allowMarketing = Cookies.get("cookie/allowMarketing") === "1";
+
+        let cookieBarHiddenInitialSetting = Cookies.get("cookie/hideCookieBar") === "1";
+        let showingCookieBar = Dbm.getInstance().repository.getItem("userSettings").setValue("hideCookieBar", cookieBarHiddenInitialSetting);
 		
 		return this;
 	}
