@@ -122,6 +122,26 @@ export default class PropertyUpdater extends Dbm.core.BaseObject {
         return this;
     }
 
+    addPropertyAnimation(aProperty, aFromValue, aToValue, aTime, aDelay = 0, aEasing = null) {
+
+        let tweenObject = {"envelope": aFromValue};
+        if(!aEasing) {
+            aEasing = Easing.Quadratic.Out;
+        }
+
+        let tween = new Tween(tweenObject).to({"envelope": aToValue}, 1000*aTime).delay(1000*aDelay).easing(aEasing).onUpdate(function(aData) {
+            aProperty.value = aData.envelope;
+        }).onComplete(() => {this.removeTween(tween)}).start();
+
+        let tweens = [].concat(this.item.tweens);
+        tweens.push(tween);
+        this.item.tweens = tweens;
+
+        this._currentTweens.set(aProperty, tween);
+
+        return this;
+    }
+
     delayUpdateProperty(aProperty, aToValue, aDelay = 0) {
         if(this._currentTweens.has(aProperty)) {
             this._currentTweens.get(aProperty).stop();

@@ -48,6 +48,12 @@ export default class FlowProperty extends Dbm.flow.FlowBaseObject {
         return this;
     }
 
+    addAddionalAnimation(aFromValue, aToValue, aTime = 0.5, aDelay = 0, aEasing = null) {
+        Dbm.getInstance().repository.getItem("propertyUpdater").controller.addPropertyAnimation(this, aFromValue, aToValue, aTime, aDelay, aEasing);
+
+        return this;
+    }
+
     delayValue(aToValue, aDelay = 0) {
         Dbm.getInstance().repository.getItem("propertyUpdater").controller.delayUpdateProperty(this, aToValue, aDelay);
 
