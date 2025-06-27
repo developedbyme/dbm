@@ -24,21 +24,57 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
     start() {
 		window.addEventListener("resize", this._callback_scrollBound, false);
 		window.addEventListener("scroll", this._callback_scrollBound, false);
+		this.output.properties.prepare.startUpdating();
 
         return this;
     }
 
     _update() {
-        //console.log("_update");
+        console.log("_update");
 
         let element = this.input.element;
 
+		console.log(element, this.input.prepareX, this.input.prepareY);
+
         if(element) {
-			console.log(element);
+			
             //this.output.width = element.clientWidth;
             //this.output.height = element.clientHeight;
 			
-			//METODO
+			//let thePageXOffset = window.pageXOffset;
+			let theInnerWidth = window.innerWidth;
+			//let thePageYOffset = window.pageYOffset;
+			let theInnerHeight = window.innerHeight;
+			
+			//console.log(theInnerWidth, theInnerHeight);
+			
+			let rect = element.getBoundingClientRect();
+			//console.log(rect);
+			
+			let prepareX = this.input.prepareX;
+			let prepareY = this.input.prepareY;
+			
+			let screenX = rect.x;
+			let screenY = rect.y;
+			
+			let elementWidth = rect.width;
+			let elementHeight = rect.height;
+			
+			let visible = ((screenX < theInnerWidth) && (screenX+elementWidth > 0)) && ((screenY < theInnerHeight) && (screenY+elementHeight > 0));
+			let prepare = ((screenX-prepareX < theInnerWidth) && (screenX+elementWidth+prepareX > 0)) && ((screenY-prepareY < theInnerHeight) && (screenY+elementHeight+prepareY > 0));
+			
+			let parameterX = (screenX+elementWidth)/(theInnerWidth+elementWidth);
+			let parameterY = (screenY+elementHeight)/(theInnerHeight+elementHeight);
+			
+			this.output.screenX = screenX;
+			this.output.screenY = screenY;
+			
+			this.output.parameterX = parameterX;
+			this.output.parameterY = parameterY;
+			
+			this.output.visible = visible;
+			this.output.prepare = prepare;
+
         }
         else {
             //this.output.width = 0;
@@ -49,7 +85,7 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
     }
 
     _callback_scroll(aEvent) {
-        //console.log("_callback_scroll");
+        console.log("_callback_scroll");
 
         let element = this.input.element;
 

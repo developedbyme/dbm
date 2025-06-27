@@ -105,8 +105,10 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
         if(aEvent.defaultPrevented) {
 			return true;
 		}
+		let shouldSkip = false;
+
 		if(this._hasSpecialKey(aEvent)) {
-			return true;
+			shouldSkip = true;
 		}
 		
 		let link = null;
@@ -123,7 +125,7 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 					link = hrefAttribute.toString();
 					let hardNavigation = currentNode.getAttribute("data-not-spa-link");
 					if(hardNavigation) {
-						return true;
+						shouldSkip = true;
 					}
 					break;
 				}
@@ -134,6 +136,21 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 		if(!link) {
 			return true;
 		}
+
+		let trackingController = Dbm.getInstance().repository.getItem("trackingController").controller;
+		if(trackingController) {
+			if(link.indexOf("mailto:") === 0) {
+				trackingController.trackEvent("link / email", {});
+			}
+			else if(link.indexOf("tel:") === 0) {
+				trackingController.trackEvent("link / phone", {});
+			}
+		}
+
+		if(shouldSkip) {
+			return true;
+		}
+
 		if(link.indexOf("#") === 0) {
 			return true;
 		}
