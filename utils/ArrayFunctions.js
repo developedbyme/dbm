@@ -291,3 +291,23 @@ export const getItemIndexByIfExists = function(aArray, aField, aIdentifier) {
     
     return -1;
 }
+
+export const sum = function(aArray) {
+		
+    if(!Array.isArray(aArray)) {
+        console.warn("No array provided", aArray);
+        return 0;
+    }
+    
+    let sum = 0;
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentValue = 1*currentArray[i];
+        if(!isNaN(currentValue)) {
+            sum += currentValue;
+        }
+    }
+    
+    return sum;
+}
