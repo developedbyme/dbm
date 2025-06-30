@@ -58,6 +58,14 @@ export default class ImageField extends Dbm.react.BaseObject {
                                         "Save to library"
                                     )
                                 )
+                            ),
+                            React.createElement("div", {className: "flex-row-item flex-resize"}),
+                            React.createElement("div", {className: "flex-row-item"},
+                                React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callFunction(this._updateFromLibrary.bind(this))},
+                                    React.createElement("div", {className: "action-button action-button-padding"},
+                                        "Update from library"
+                                    )
+                                )
                             )
                         )
                     )
@@ -151,6 +159,29 @@ export default class ImageField extends Dbm.react.BaseObject {
         ];
 
         let request = Dbm.getInstance().repository.getItem("graphApi").controller.editItem(this.item.value.id, changes);
+    }
+
+    _updateFromLibrary() {
+        let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
+
+        let request = graphApi.requestItem(this.item.value.id, ["image"]);
+        Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._libraryImageLoaded.bind(this), [request]));
+        
+    }
+
+    _libraryImageLoaded(aRequest) {
+        console.log("_libraryImageLoaded");
+        console.log(aRequest);
+
+        let item = aRequest.item;
+
+        let imageData = {id: item.id, url: item.url, resizeUrl: item.resizeUrl, identifier: item.identifier, altText: item.altText};
+        this.item.value = null;
+
+        setTimeout(() => {
+            this.item.value = imageData;
+        }, 100);
+        
     }
 
     _imageSelected(aImage) {

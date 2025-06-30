@@ -6,3 +6,5 @@ export {default as Visibility} from "./Visibility.js";
 export {default as LinkedPage} from "./LinkedPage.js";
 export {default as Question} from "./Question.js";
 export {default as RichDescription} from "./RichDescription.js";
+export {default as PageRepresentation} from "./PageRepresentation.js";
+export {default as MainImage} from "./MainImage.js";

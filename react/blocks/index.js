@@ -210,15 +210,11 @@ export let registerAllBlocks = function() {
 
     {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
-            createElement(Dbm.react.form.LabelledArea, {label: "Text 1"},
-                createElement(Dbm.react.admin.editor.fields.TextField, {name: "text1"})
-            ),
-            createElement("div", {className: "spacing medium"}),
             createElement(Dbm.react.form.LabelledArea, {label: "Initial sections"}, 
                 createElement(Dbm.react.admin.editor.fields.SelectObjectsField, {objectType: "helpSection", name:"initialSections", "encoding": "title", "nameField": "title"})
             ),
         );
-        registerBlock("faq/askAQuestion", "FAQ / Ask a question", createElement(Dbm.react.blocks.faq.AskAQuestion, {}), editor, {}, {"text1": true, "text2": true});
+        registerBlock("faq/askAQuestion", "FAQ / Ask a question", createElement(Dbm.react.blocks.faq.AskAQuestion, {}), editor, {}, {});
     }
 
     {
@@ -259,6 +255,16 @@ export let registerAllBlocks = function() {
     {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/question");
         itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Question, {}));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/pageRepresentation");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.PageRepresentation, {}));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/mainImage");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.MainImage, {}));
     }
     
     {

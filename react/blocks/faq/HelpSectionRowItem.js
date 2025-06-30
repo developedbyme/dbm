@@ -71,7 +71,7 @@ export default class HelpSectionRowItem extends Dbm.react.BaseObject {
                     )
                 )
             ),
-            React.createElement(Dbm.react.area.OpenCloseExpandableArea, {open: open}, 
+            React.createElement(Dbm.react.area.OpenCloseExpandableArea, {open: open, startState: this.getPropValue("startState")}, 
                 answerElement
             )
         );

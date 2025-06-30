@@ -66,7 +66,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
         let currentRow = new Dbm.repository.Item();
         currentRow.setId("_dbmInternal/row" + Dbm.getInstance().getNextId());
         currentRow.setValue("item", currentItem);
-        currentRow.setValue("element", React.createElement(Dbm.react.blocks.faq.HelpSectionRowItem, {"open": this._getOpenProperty(i)}));
+        currentRow.setValue("element", React.createElement(Dbm.react.blocks.faq.HelpSectionRowItem, {"open": this._getOpenProperty(i), "startState": (i === 0 ? "open" : "close")}));
         rows.push(currentRow);
       }
       this.item.results = rows;
@@ -133,7 +133,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
               ),
               React.createElement("div", {className: "flex-row-item flex-no-resize"},
                 React.createElement("div", {className: "submit-button-field-padding-right-side border-box-sizing full-height"},
-                  React.createElement("button", {className: "skip-default full-height"},
+                  React.createElement("button", {className: "skip-default full-height", "aria-label": "Search"},
                     React.createElement("div", {className: "field-submit-button field-submit-button-padding full-height", onClick: () => {this._search();}},
                       React.createElement("div", {className: "centered-cell-holder full-size"},
                         React.createElement(Dbm.react.image.Image, {src: "/assets/img/right-arrow.svg", className: "right-arrow-link-icon background-contain"})
