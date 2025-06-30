@@ -60,6 +60,7 @@ export default class ApiConnection extends Dbm.core.BaseObject {
 
     requestItem(aId, aEncode) {
         let item = this._getRequestItem();
+        item.requireProperty("item", null);
         
         let encodeString = aEncode.join(",");
 
