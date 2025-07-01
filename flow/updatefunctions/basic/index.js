@@ -33,3 +33,17 @@ export const propertyOf = function(aValue, aPropertyName) {
 	
 	return updateFunction;
 }
+
+export const combine = function(...aValues) {
+	let updateFunction = new Dbm.flow.updatefunctions.basic.CombineString();
+	
+	let currentArray = aValues;
+	let currentArrayLength = currentArray.length;
+	for(let i = 0; i < currentArrayLength; i++) {
+		let currentData = currentArray[i];
+		updateFunction.addPart(currentData);
+	}
+	
+	
+	return updateFunction;
+}

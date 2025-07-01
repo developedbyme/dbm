@@ -114,6 +114,10 @@ export let registerAllBlocks = function() {
                 createElement(Dbm.react.admin.editor.fields.TextField, {name: "objectType"})
             ),
             createElement("div", {className: "spacing medium"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Additional types (optional)"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "additionalTypes"})
+            ),
+            createElement("div", {className: "spacing medium"}),
             createElement(Dbm.react.form.LabelledArea, {label: "Encodings"},
                 createElement(Dbm.react.admin.editor.fields.TextField, {name: "encodings"})
             ),
@@ -248,6 +252,11 @@ export let registerAllBlocks = function() {
     }
 
     {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/identifier");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Identifier, {}));
+    }
+
+    {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/linkedPage");
         itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.LinkedPage, {}));
     }
@@ -304,6 +313,21 @@ export let registerAllBlocks = function() {
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/linkedPage"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/link"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/visibility"));
+        objectTypeEditor.editors = newArray;
+    }
+
+    {
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/type");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
+
+        let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/identifier"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/pageRepresentation"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/mainImage"));
+        
         objectTypeEditor.editors = newArray;
     }
 }

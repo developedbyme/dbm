@@ -44,6 +44,7 @@ export default class ObjectList extends Dbm.react.BaseObject {
 
     _create() {
         console.log("_create");
+
         let objectType = this.getPropValue("objectType");
         let encodings = this.getPropValueWithDefault("encodings", ["name"]);
         let visibility = this.getPropValueWithDefault("visibility", "private");
@@ -52,7 +53,13 @@ export default class ObjectList extends Dbm.react.BaseObject {
             {"type": "setField", "data": {"value": "Unnamed " + objectType, "field": "name"}}
         ];
 
-        let request = Dbm.getInstance().repository.getItem("graphApi").controller.createItem([objectType], visibility, changes, encodings);
+        let types = [objectType];
+        let additionalTypes = this.getPropValue("additionalTypes");
+        if(additionalTypes) {
+            types = types.concat(additionalTypes);
+        }
+
+        let request = Dbm.getInstance().repository.getItem("graphApi").controller.createItem(types, visibility, changes, encodings);
 
         Dbm.flow.addUpdateCommand(request.properties.status, Dbm.commands.callFunction(this._created.bind(this), [request]));
     }

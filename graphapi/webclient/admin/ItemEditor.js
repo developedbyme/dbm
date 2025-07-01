@@ -105,7 +105,7 @@ export default class ItemEditor extends Dbm.core.BaseObject {
     }
 
     getVisibilityEditor(aInitialValue) {
-        let name = "visibility"
+        let name = "visibility";
         let valueEditor = this.item["visibility"];
         if(!valueEditor) {
             valueEditor = new Dbm.graphapi.webclient.admin.ValueEditor();
@@ -119,6 +119,26 @@ export default class ItemEditor extends Dbm.core.BaseObject {
             this.item.editors = [].concat(this.item.editors, valueEditor);
             
             valueEditor.addSaveFunction(Dbm.graphapi.webclient.admin.SaveFunctions.setVisibility);
+        }
+
+        return valueEditor;
+    }
+
+    getIdentiferEditor(aInitialValue) {
+        let name = "identifer";
+        let valueEditor = this.item["identifer"];
+        if(!valueEditor) {
+            valueEditor = new Dbm.graphapi.webclient.admin.ValueEditor();
+            valueEditor.item.editValue.setInitialValue(aInitialValue);
+
+            valueEditor.item.setValue("itemEditor", this.item);
+            valueEditor.item.setValue("updateEncoding", "identifer");
+
+            this.item.anyChange.addCheck(valueEditor.item.properties.changed);
+            this.item.setValue(name, valueEditor); 
+            this.item.editors = [].concat(this.item.editors, valueEditor);
+            
+            valueEditor.addSaveFunction(Dbm.graphapi.webclient.admin.SaveFunctions.setIdentifier);
         }
 
         return valueEditor;

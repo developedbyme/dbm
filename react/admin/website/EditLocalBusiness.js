@@ -48,6 +48,12 @@ export default class EditWebsite extends Dbm.react.BaseObject {
         let mainImage = (isMainImageForRelations && isMainImageForRelations.length) ? isMainImageForRelations[0].id : null;
         itemEditor.addIncomingRelationEditor("isMainImageFor", "image", mainImage, ["relations"]);
 
+        {
+            let relatedItems = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/in.for.objects"), "objectTypes", "schema/type", "arrayContains");
+            let relatedItem = (relatedItems && relatedItems.length) ? relatedItems[0].id : null;
+            itemEditor.addIncomingRelationEditor("for", "schema/type", relatedItem, ["relations"]);
+        }
+
         itemEditor.addFieldEditor("phoneNumber", Dbm.objectPath(item, "fields.phoneNumber"), "admin_fields");
         itemEditor.addFieldEditor("email", Dbm.objectPath(item, "fields.email"), "admin_fields");
         itemEditor.addFieldEditor("priceRangeDescription", Dbm.objectPath(item, "fields.priceRangeDescription"), "admin_fields");
@@ -82,6 +88,9 @@ export default class EditWebsite extends Dbm.react.BaseObject {
                 React.createElement(Dbm.react.context.AddContextVariables, {values: {"itemEditor": this.item.properties.itemEditor}},
                     React.createElement(Dbm.react.form.LabelledArea, {"label": "Name"},
                         React.createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_name.item.editValue.item.properties.value"), className: "standard-field standard-field-padding full-width"})
+                    ),
+                    React.createElement(Dbm.react.form.LabelledArea, {"label": "Schema type"},
+                        React.createElement(Dbm.react.form.GraphApiObjectSelection, {"objectType": "schema/type", "value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_in_for_schema/type.item.editValue.item.properties.value")}),
                     ),
                     React.createElement(Dbm.react.form.LabelledArea, {"label": "Image"},
                         React.createElement(Dbm.react.form.GraphApiImage, {"value": Dbm.react.source.contextVariable("itemEditor.value.item.editor_relation_in_isMainImageFor_image.item.editValue.item.properties.value")}),

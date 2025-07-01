@@ -194,7 +194,13 @@ export default class EditPage extends Dbm.react.BaseObject {
                             "155"
                         )
                     ),
-
+                    React.createElement("div", {className: "spacing standard"}),
+                    React.createElement(Dbm.react.form.LabelledArea, {label: "Main image"}, 
+                        React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {"direction": "in", "relationType": "isMainImageFor", "objectType": "image"},
+                            React.createElement(Dbm.react.form.GraphApiImage, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), "objectType": "page", "encoding": "title", nameField: "title", className: "standard-field standard-field-padding full-width"})
+                        )
+                    ),
+                    React.createElement("div", {className: "spacing standard"}),
                     React.createElement("div", {className: "flex-row small-item-spacing"},
                         React.createElement("div", {className: "flex-row-item"},
                             React.createElement(Dbm.react.form.Checkbox, {checked: itemEditor.getEditor("seo/noIndex").item.editValue.value}),
