@@ -174,4 +174,13 @@ export const fullSetup = function() {
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }
+
+    {
+        let name = "admin_user";
+        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+        currentDecoder.item.setValue("copyFields", ["name", "username"]);
+        currentDecoder.item.setValue("copyLinks", ["roles"]);
+        currentDecoder.item.setValue("encodingType", name);
+        currentDecoder.item.register(decodePrefix + name);
+    }
 }

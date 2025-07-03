@@ -9,3 +9,4 @@ export {default as RichDescription} from "./RichDescription.js";
 export {default as PageRepresentation} from "./PageRepresentation.js";
 export {default as MainImage} from "./MainImage.js";
 export {default as Identifier} from "./Identifier.js";
+export {default as SingleRelation} from "./SingleRelation.js";

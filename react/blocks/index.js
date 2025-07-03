@@ -142,6 +142,8 @@ export let registerAllBlocks = function() {
     
     registerBlock("admin/objects/edit", "Admin / Edit object", createElement(Dbm.react.blocks.admin.objects.Edit));
     registerBlock("admin/objects/apiCommands", "Admin / Object API commands", createElement(Dbm.react.blocks.admin.objects.RunObjectCommands));
+    registerBlock("admin/users", "Admin / Users", createElement(Dbm.react.blocks.admin.objects.Users));
+    registerBlock("admin/users/user", "Admin / User", createElement(Dbm.react.blocks.admin.objects.User));
 
     {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
@@ -275,6 +277,18 @@ export let registerAllBlocks = function() {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/mainImage");
         itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.MainImage, {}));
     }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/user/role");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.SingleRelation, {
+            "label": "Role",
+            "direction": "in",
+            "relationType": "for",
+            "objectType": "type/userRole",
+            encoding: "identifier",
+            nameField: "identifier"
+        }));
+    }
     
     {
         let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/page");
@@ -325,6 +339,21 @@ export let registerAllBlocks = function() {
         let newArray = [].concat(objectTypeEditor.editors);
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/identifier"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/pageRepresentation"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/mainImage"));
+        
+        objectTypeEditor.editors = newArray;
+    }
+
+    {
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/user");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
+
+        let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/user/role"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/pageRepresentation"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/mainImage"));
         

@@ -1,7 +1,7 @@
 import React from "react";
 import Dbm from "../../../../index.js";
 
-export default class MainImage extends Dbm.react.BaseObject {
+export default class SingleRelation extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
@@ -31,13 +31,19 @@ export default class MainImage extends Dbm.react.BaseObject {
 
         let id = this.context.item.id;
 
+        let label = this.getPropValue("label");
+        let direction = this.getPropValue("direction");
+        let relationType = this.getPropValue("relationType");
+        let objectType = this.getPropValue("objectType");
+        let encoding = this.getPropValueWithDefault("encoding", "name");
+        let nameField = this.getPropValueWithDefault("nameField", "name");
+
         return React.createElement("div", {},
             
             React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
-                React.createElement(Dbm.react.form.LabelledArea, {label: "Main image"}, 
-                    React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {"direction": "in", "relationType": "isMainImageFor", "objectType": "image"},
-                        React.createElement(Dbm.react.form.GraphApiImage, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), "encoding": "title", nameField: "title", className: "standard-field standard-field-padding full-width"})
-                    )
+                React.createElement(Dbm.react.form.LabelledArea, {label: label}), 
+                React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {"direction": direction, "relationType": relationType, "objectType": objectType},
+                    React.createElement(Dbm.react.form.GraphApiObjectSelection, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), "objectType": objectType, "encoding": encoding, nameField: nameField, className: "standard-field standard-field-padding full-width"})
                 )
             )
             
