@@ -45,11 +45,19 @@ export default class RunObjectCommands extends Dbm.react.BaseObject {
         let id = this.getPropValue("id");
 
         return React.createElement("div", {},
-            React.createElement(Dbm.react.form.FormField, {value: this.getDynamicProp("id")}),
-            React.createElement(Dbm.react.form.TextArea, {value: this.item.properties.changes}),
-            React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._runCommand()}},
-                                        "Run"
-                                    )
+            React.createElement(Dbm.react.form.LabelledArea, {"label": "Item id"}),
+            React.createElement(Dbm.react.form.FormField, {value: this.getDynamicProp("id"), "className": "standard-field standard-field-padding full-width"}),
+            React.createElement("div", {className: "spacing small"}),
+            React.createElement(Dbm.react.form.LabelledArea, {"label": "Command"}),
+            React.createElement(Dbm.react.form.TextArea, {value: this.item.properties.changes, "className": "standard-field standard-field-padding full-width"}),
+            React.createElement("div", {className: "spacing small"}),
+            React.createElement("div", {className: "flex-row"},
+                React.createElement("div", {className: "flex-row-item"},
+                    React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._runCommand()}},
+                        "Run"
+                    )
+                )
+            )
         )
     }
 }
