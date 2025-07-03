@@ -6,6 +6,9 @@ export default class CreatePage extends Dbm.react.BaseObject {
         super._construct();
 
         this.item.requireProperty("title", "");
+        this.item.requireProperty("parent", 0);
+        Dbm.flow.addUpdateCommand(this.item.properties.parent, Dbm.commands.callFunction(this._parentSelected.bind(this)));
+        this.item.requireProperty("parentUrl", "");
         this.item.requireProperty("url", "");
         this.item.requireProperty("freeUrl", "");
         this.item.requireProperty("updateSlugFromTitle", true);
@@ -22,7 +25,7 @@ export default class CreatePage extends Dbm.react.BaseObject {
         console.log(this.item.updateSlugFromTitle);
 
         if(this.item.updateSlugFromTitle) {
-            this.item.url = Dbm.utils.StringFunctions.createNiceFilePath(this.item.title);
+            this.item.url = this.item.parentUrl + Dbm.utils.StringFunctions.createNiceFilePath(this.item.title);
         }
         
     }
@@ -49,10 +52,12 @@ export default class CreatePage extends Dbm.react.BaseObject {
 
     _freeUrlStatusChanged(aUrl, aRequest) {
         console.log("_freeUrlStatusChanged");
+        console.log(aUrl, aRequest);
+
         if(aRequest.status === 1) {
             let currentUrl = this.item.url;
             if(!currentUrl) {
-                currentUrl = Dbm.utils.StringFunctions.createNiceFilePath(this.item.title);
+                currentUrl = this.item.parentUrl + Dbm.utils.StringFunctions.createNiceFilePath(this.item.title);
                 this.item.url = currentUrl;
             }
             if(currentUrl === aUrl) {
@@ -63,6 +68,24 @@ export default class CreatePage extends Dbm.react.BaseObject {
 
     _callback_urlUpdatedManually(aEvent) {
         this.item.updateSlugFromTitle = false;
+    }
+
+    _parentSelected() {
+        console.log("_parentSelected");
+        let id = this.item.parent;
+        console.log(id);
+
+        let parentUrl = "";
+
+        if(id) {
+            let item = Dbm.getInstance().repository.getItem(id);
+
+            parentUrl = item.url.substring(1);
+        }
+
+        this.item.parentUrl = parentUrl;
+
+        this._titleChanged();
     }
 
     _create() {
@@ -97,6 +120,15 @@ export default class CreatePage extends Dbm.react.BaseObject {
                     "Page title"
                 ),
                 React.createElement(Dbm.react.form.FormField, {"value": this.item.properties.title, "id": this._titleFieldId, className: "standard-field standard-field-padding full-width"}),
+            ),
+            React.createElement("div", {className: "spacing standard"}),
+            React.createElement("div", {},
+                React.createElement("label", {className: "standard-field-label"},
+                    "Parent page"
+                ),
+                React.createElement("div", {},
+                    React.createElement(Dbm.react.form.GraphApiObjectSelection, {"value": this.item.properties.parent, objectType: "page", encoding: "urlRequest", nameField: "url", className: "standard-field standard-field-padding full-width"}),
+                )
             ),
             React.createElement("div", {className: "spacing standard"}),
             React.createElement("div", {},
