@@ -70,8 +70,11 @@ export default class CreatePage extends Dbm.react.BaseObject {
 
         let fullUrl = this.item.freeUrl + "/";
 
+        let currentDate = (new Date()).toISOString().split("T")[0];
+
         let changes = [
             {"type": "setField", "data": {"value": this.item.title, "field": "title"}},
+            {"type": "setField", "data": {"value": currentDate, "field": "publishDate"}},
             {"type": "setUrl", "data": {"value": fullUrl}}
         ]
 

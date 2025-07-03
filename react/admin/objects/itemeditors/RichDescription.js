@@ -19,7 +19,7 @@ export default class RichDescription extends Dbm.react.BaseObject {
                     {"type": "includeDraft"},
                     {"type": "idSelection", "ids": [id]},
                 ],
-                ["adbmi_fields"]
+                ["admin_fields"]
             );
             allLoaded.addCheck(request.properties.status);
         }

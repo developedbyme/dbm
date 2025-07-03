@@ -27,7 +27,8 @@ export default class User extends Dbm.react.BaseObject {
 
         return React.createElement("div", {className: "content-narrow"},
             React.createElement(Dbm.react.context.AddContextVariables, {values: {"editorGroup": this.item.editorGroup}},
-                "Fields",
+                React.createElement("h2", {className: "no-margins"}, "Edit details"),
+                React.createElement("div", {className: "spacing small"}),
                 React.createElement(Dbm.react.admin.objects.EditObject, {id: id}),
                 React.createElement("div", {className: "spacing standard"}),
                 React.createElement("div", {className: "save-all-position"},
@@ -36,7 +37,10 @@ export default class User extends Dbm.react.BaseObject {
                             "Save all changes"
                         )
                     )
-                )
+                ),
+                React.createElement("h2", {className: "no-margins"}, "New password"),
+                React.createElement("div", {className: "spacing small"}),
+                "[Insert password field]"
             )
         );
     }

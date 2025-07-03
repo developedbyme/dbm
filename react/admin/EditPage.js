@@ -17,6 +17,8 @@ export default class EditPage extends Dbm.react.BaseObject {
         itemEditor.addFieldEditor("title", page.title, "title");
         itemEditor.addFieldEditor("navigationName", page.navigationName); //METODO: add update encoding
         itemEditor.addFieldEditor("content", page.content, "content");
+        itemEditor.addFieldEditor("publishDate", page.publishDate, "urlRequest");
+        itemEditor.addOutgoingRelationEditor("in", "group/pageCategory", page.category ? page.category.id : 0, "urlRequest");
         itemEditor.addEditor("url", page.url, Dbm.graphapi.webclient.admin.SaveFunctions.setUrl, "url");
 
         let descriptionEditor = itemEditor.addFieldEditor("meta/description", page["meta/description"], "meta/description");
@@ -175,6 +177,20 @@ export default class EditPage extends Dbm.react.BaseObject {
                             "Url"
                         ),
                         React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("url").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "Url"}),
+                    ),
+                    React.createElement("div", {className: "spacing standard"}),
+                    React.createElement("div", {},
+                        React.createElement("label", {className: "standard-field-label"},
+                            "Publish date"
+                        ),
+                        React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("publishDate").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "YYYY-MM-DD", "type": "date"}),
+                    ),
+                    React.createElement("div", {className: "spacing standard"}),
+                    React.createElement("div", {},
+                        React.createElement("label", {className: "standard-field-label"},
+                            "Category"
+                        ),
+                        React.createElement(Dbm.react.form.GraphApiObjectSelection, {"value": itemEditor.getEditor("relation_out_in_group/pageCategory").item.editValue.value, objectType: "group/pageCategory", className: "standard-field standard-field-padding full-width"}),
                     ),
                 ),
                 React.createElement("div", {className: "spacing standard"}),
