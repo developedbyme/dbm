@@ -42,6 +42,18 @@ export default class EditPage extends Dbm.react.BaseObject {
         let saveData = editorGroup.getSaveData();
         let itemSaveData = saveData.getItemSaveData(page.id);
 
+        let itemEditor = editorGroup.getItemEditor(page.id);
+        let content = itemEditor.getEditor("content").item.editValue.getValue();
+
+        let preloadImages = [];
+
+        let pageEditorItem = Dbm.getInstance().repository.getItem("admin/editor/pageEditor");
+        if(pageEditorItem.generateContentPreload) {
+            preloadImages = pageEditorItem.generateContentPreload(content);
+        }
+        debugger;
+
+        itemSaveData.setField("contentPreloadTags", preloadImages);
         itemSaveData.setField("lastModified", (new Date()).toISOString());
         itemSaveData.createChange("clearCache", {});
 
@@ -162,125 +174,139 @@ export default class EditPage extends Dbm.react.BaseObject {
         let editorGroup = this.item.editorGroup;
         let itemEditor = editorGroup.getItemEditor(page.id);
 
+        let admin = Dbm.getInstance().repository.getItem("admin");
+        let pageEditors = admin.requireProperty("pageEditors", []);
+
         return React.createElement("div", {},
             React.createElement(Dbm.react.context.AddContextVariables, {values: {"editorGroup": editorGroup, "itemEditor": itemEditor}},
-                React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
-                    React.createElement("div", {},
-                        React.createElement("label", {className: "standard-field-label"},
-                            "Page title"
-                        ),
-                        React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("title").item.editValue.value, className: "standard-field standard-field-padding full-width page-title-form-field", placeholder: "Title"}),
-                    ),
-                    React.createElement("div", {className: "spacing standard"}),
-                    React.createElement("div", {},
-                        React.createElement("label", {className: "standard-field-label"},
-                            "Navigation name"
-                        ),
-                        React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("navigationName").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "Name showed in menues and breadcrumbs"}),
-                    ),
-                    React.createElement("div", {className: "spacing standard"}),
-                    React.createElement("div", {},
-                        React.createElement("label", {className: "standard-field-label"},
-                            "Url"
-                        ),
-                        React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("url").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "Url"}),
-                    ),
-                    React.createElement("div", {className: "spacing standard"}),
-                    React.createElement("div", {},
-                        React.createElement("label", {className: "standard-field-label"},
-                            "Publish date"
-                        ),
-                        React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("publishDate").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "YYYY-MM-DD", "type": "date"}),
-                    ),
-                    React.createElement("div", {className: "spacing standard"}),
-                    React.createElement("div", {},
-                        React.createElement("label", {className: "standard-field-label"},
-                            "Category"
-                        ),
-                        React.createElement(Dbm.react.form.GraphApiObjectSelection, {"value": itemEditor.getEditor("relation_out_in_group/pageCategory").item.editValue.value, objectType: "group/pageCategory", className: "standard-field standard-field-padding full-width"}),
-                    ),
-                ),
-                React.createElement("div", {className: "spacing standard"}),
-                React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
-                    React.createElement("label", {className: "standard-field-label"},
-                        "Seo description"
-                    ),
-                    React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("meta/description").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "Description"}),
-                    React.createElement("div", {className: "spacing micro"}),
-                    React.createElement("div", {className: "flex-row justify-between"},
-                        React.createElement("div", {className: "flex-row-item"},
-                            React.createElement("div", {onClick: () => {this._generateSeoSummary()}, className: "action-button action-button-padding"}, "Generate"),
-                        ),
-                        React.createElement("div", {className: "flex-row-item"},
-                            Dbm.react.text.text(this.item.properties.descriptionLength),
-                            " / ",
-                            "155"
-                        )
-                    ),
-                    React.createElement("div", {className: "spacing standard"}),
-                    React.createElement(Dbm.react.form.LabelledArea, {label: "Main image"}, 
-                        React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {"direction": "in", "relationType": "isMainImageFor", "objectType": "image"},
-                            React.createElement(Dbm.react.form.GraphApiImage, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), "objectType": "page", "encoding": "title", nameField: "title", className: "standard-field standard-field-padding full-width"})
-                        )
-                    ),
-                    React.createElement("div", {className: "spacing standard"}),
-                    React.createElement("div", {className: "flex-row small-item-spacing"},
-                        React.createElement("div", {className: "flex-row-item"},
-                            React.createElement(Dbm.react.form.Checkbox, {checked: itemEditor.getEditor("seo/noIndex").item.editValue.value}),
-                            "Noindex"
-                        ),
-                        React.createElement("div", {className: "flex-row-item"},
-                            React.createElement(Dbm.react.form.Checkbox, {checked: itemEditor.getEditor("seo/noFollow").item.editValue.value}),
-                            "Nofollow"
-                        ),
-                    )
-                ),
-                React.createElement("div", {className: "spacing standard"}),
-                React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
-                    React.createElement("label", {className: "standard-field-label"},
-                        "Content"
-                    ),
-                    React.createElement("div", {},
-                        React.createElement(Dbm.react.admin.editor.Editor, {"value": itemEditor.getEditor("content").item.editValue.value, "ref": this.createRef("editor")}),
-                    )
-                ),
-                React.createElement("div", {className: "spacing standard"}),
-                React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
-                    React.createElement("label", {className: "standard-field-label", "onClick": () => {this._toggleImportExport()}},
-                        "Import/export"
-                    ),
-                    React.createElement(Dbm.react.area.OpenCloseExpandableArea, {open: this.item.properties.importExportOpen}, 
+                React.createElement(Dbm.react.admin.EditObjectById, {id: page.id},
+                    React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
                         React.createElement("div", {},
-                            React.createElement("div", {className: "flex-row small-item-spacing"},
-                                React.createElement("div", {className: "flex-row-item"},
-                                    React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._export()}},
-                                        "Export"
-                                    )
-                                )
+                            React.createElement("label", {className: "standard-field-label"},
+                                "Page title"
                             ),
-                            React.createElement("div", {className: "spacing standard"}),
-                            React.createElement(Dbm.react.form.TextArea, {value: this.item.properties.importText, className: "standard-field standard-field-padding full-width"}),
-                            React.createElement("div", {className: "flex-row small-item-spacing"},
-                                React.createElement("div", {className: "flex-row-item"},
-                                    React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._import()}},
-                                        "Import"
-                                    )
-                                )
-                            )
-                            /*
+                            React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("title").item.editValue.value, className: "standard-field standard-field-padding full-width page-title-form-field", placeholder: "Title"}),
+                        ),
+                        React.createElement("div", {className: "spacing standard"}),
+                        React.createElement("div", {},
+                            React.createElement("label", {className: "standard-field-label"},
+                                "Navigation name"
+                            ),
+                            React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("navigationName").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "Name showed in menues and breadcrumbs"}),
+                        ),
+                        React.createElement("div", {className: "spacing standard"}),
+                        React.createElement("div", {},
+                            React.createElement("label", {className: "standard-field-label"},
+                                "Url"
+                            ),
+                            React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("url").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "Url"}),
+                        ),
+                        React.createElement("div", {className: "spacing standard"}),
+                        React.createElement("div", {},
+                            React.createElement("label", {className: "standard-field-label"},
+                                "Publish date"
+                            ),
+                            React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("publishDate").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "YYYY-MM-DD", "type": "date"}),
+                        ),
+                        React.createElement("div", {className: "spacing standard"}),
+                        React.createElement("div", {},
+                            React.createElement("label", {className: "standard-field-label"},
+                                "Category"
+                            ),
+                            React.createElement(Dbm.react.form.GraphApiObjectSelection, {"value": itemEditor.getEditor("relation_out_in_group/pageCategory").item.editValue.value, objectType: "group/pageCategory", className: "standard-field standard-field-padding full-width"}),
+                        ),
+                    ),
+                    React.createElement("div", {className: "spacing standard"}),
+                    React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
+                        React.createElement("label", {className: "standard-field-label"},
+                            "Seo description"
+                        ),
+                        React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("meta/description").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "Description"}),
+                        React.createElement("div", {className: "spacing micro"}),
+                        React.createElement("div", {className: "flex-row justify-between"},
                             React.createElement("div", {className: "flex-row-item"},
-                                React.createElement("div", {onClick: () => {this._generateHelpSectionSuggestions()}, className: "action-button action-button-padding"}, "Dev: Help sections"),
+                                React.createElement("div", {onClick: () => {this._generateSeoSummary()}, className: "action-button action-button-padding"}, "Generate"),
                             ),
-                            */
+                            React.createElement("div", {className: "flex-row-item"},
+                                Dbm.react.text.text(this.item.properties.descriptionLength),
+                                " / ",
+                                "155"
+                            )
+                        ),
+                        React.createElement("div", {className: "spacing standard"}),
+                        React.createElement(Dbm.react.form.LabelledArea, {label: "Main image"}, 
+                            React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {"direction": "in", "relationType": "isMainImageFor", "objectType": "image"},
+                                React.createElement(Dbm.react.form.GraphApiImage, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), "objectType": "page", "encoding": "title", nameField: "title", className: "standard-field standard-field-padding full-width"})
+                            )
+                        ),
+                        React.createElement("div", {className: "spacing standard"}),
+                        React.createElement("div", {className: "flex-row small-item-spacing"},
+                            React.createElement("div", {className: "flex-row-item"},
+                                React.createElement(Dbm.react.form.Checkbox, {checked: itemEditor.getEditor("seo/noIndex").item.editValue.value}),
+                                "Noindex"
+                            ),
+                            React.createElement("div", {className: "flex-row-item"},
+                                React.createElement(Dbm.react.form.Checkbox, {checked: itemEditor.getEditor("seo/noFollow").item.editValue.value}),
+                                "Nofollow"
+                            ),
                         )
-                    )
-                    
-                ),
-                React.createElement("div", {className: "spacing standard"}),
-                React.createElement("div", {className: "save-all-position"},
-                    React.createElement(Dbm.react.area.OpenCloseExpandableArea, {open: this.item.properties.changed},
-                        React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._save()}},
-                            "Save all changes"
+                    ),
+                    React.createElement("div", {className: "spacing standard"}),
+                    React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
+                        React.createElement("label", {className: "standard-field-label"},
+                            "Content"
+                        ),
+                        React.createElement("div", {},
+                            React.createElement(Dbm.react.admin.editor.Editor, {"value": itemEditor.getEditor("content").item.editValue.value, "ref": this.createRef("editor")}),
+                        )
+                    ),
+                    React.createElement(Dbm.react.area.HasData, {check: pageEditors},
+                        React.createElement("div", {className: "spacing standard"}),
+                        React.createElement(Dbm.react.area.List, {items: pageEditors, as: "editor"},
+                            React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
+                                React.createElement(Dbm.react.area.InsertElement, {element: Dbm.react.source.contextVariable("editor.element")})
+                            ),
+                            React.createElement("div", {className: "spacing standard", "data-slot": "spacing"}),
+                        ),
+                    ),
+                    React.createElement("div", {className: "spacing standard"}),
+                    React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
+                        React.createElement("label", {className: "standard-field-label", "onClick": () => {this._toggleImportExport()}},
+                            "Import/export"
+                        ),
+                        React.createElement(Dbm.react.area.OpenCloseExpandableArea, {open: this.item.properties.importExportOpen}, 
+                            React.createElement("div", {},
+                                React.createElement("div", {className: "flex-row small-item-spacing"},
+                                    React.createElement("div", {className: "flex-row-item"},
+                                        React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._export()}},
+                                            "Export"
+                                        )
+                                    )
+                                ),
+                                React.createElement("div", {className: "spacing standard"}),
+                                React.createElement(Dbm.react.form.TextArea, {value: this.item.properties.importText, className: "standard-field standard-field-padding full-width"}),
+                                React.createElement("div", {className: "flex-row small-item-spacing"},
+                                    React.createElement("div", {className: "flex-row-item"},
+                                        React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._import()}},
+                                            "Import"
+                                        )
+                                    )
+                                )
+                                /*
+                                React.createElement("div", {className: "flex-row-item"},
+                                    React.createElement("div", {onClick: () => {this._generateHelpSectionSuggestions()}, className: "action-button action-button-padding"}, "Dev: Help sections"),
+                                ),
+                                */
+                            )
+                        )
+                        
+                    ),
+                    React.createElement("div", {className: "spacing standard"}),
+                    React.createElement("div", {className: "save-all-position"},
+                        React.createElement(Dbm.react.area.OpenCloseExpandableArea, {open: this.item.properties.changed},
+                            React.createElement("div", {"className": "standard-button standard-button-padding", "onClick": () => {this._save()}},
+                                "Save all changes"
+                            )
                         )
                     )
                 )

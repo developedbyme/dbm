@@ -1,3 +1,4 @@
+import React from "react";
 import Dbm from "../../index.js";
 import {createElement} from "react";
 
@@ -219,6 +220,10 @@ export let registerAllBlocks = function() {
             createElement(Dbm.react.form.LabelledArea, {label: "Initial sections"}, 
                 createElement(Dbm.react.admin.editor.fields.SelectObjectsField, {objectType: "helpSection", name:"initialSections", "encoding": "title", "nameField": "title"})
             ),
+            createElement(Dbm.react.form.LabelledArea, {label: "Hide ask a question"}, 
+                createElement(Dbm.react.admin.editor.fields.CheckboxField, {"name": "skipSearch"}),
+                "Hide"
+            ),
         );
         registerBlock("faq/askAQuestion", "FAQ / Ask a question", createElement(Dbm.react.blocks.faq.AskAQuestion, {}), editor, {}, {});
     }
@@ -359,4 +364,18 @@ export let registerAllBlocks = function() {
         
         objectTypeEditor.editors = newArray;
     }
+
+
+    let admin = Dbm.getInstance().repository.getItem("admin");
+    admin.requireProperty("pageEditors", []);
+
+    let pageEditors = [].concat(admin.pageEditors);
+
+    {
+        let newEditor = Dbm.getInstance().repository.getItem("admin/pageEditors/helpSections");
+        newEditor.setValue("element", React.createElement(Dbm.react.admin.pageeditors.HelpSections));
+        pageEditors.push(newEditor);
+    }
+
+    admin.pageEditors = pageEditors;
 }

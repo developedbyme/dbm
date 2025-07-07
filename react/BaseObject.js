@@ -10,9 +10,14 @@ export default class BaseObject extends Component {
         this._construct();
 
         this._prepareProps();
+        this._constructAfterProps();
     }
 
     _construct() {
+
+    }
+
+    _constructAfterProps() {
 
     }
 

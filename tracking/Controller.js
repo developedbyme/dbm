@@ -212,6 +212,30 @@ export default class Controller extends Dbm.core.BaseObject {
         this.trackEvent("Checkout started", data);
     }
 
+    trackAddShipping(aProductOrProducts) {
+        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
+
+        let data = {
+            currency: this.item.currency,
+            value: this._getValueFromItems(items),
+            items: items
+        }
+
+        this.trackEvent("Add shipping", data);
+    }
+
+    trackAddPayment(aProductOrProducts) {
+        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
+
+        let data = {
+            currency: this.item.currency,
+            value: this._getValueFromItems(items),
+            items: items
+        }
+
+        this.trackEvent("Add payment", data);
+    }
+
     trackPurchase(aTransactionId, aProductOrProducts) {
         let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
 

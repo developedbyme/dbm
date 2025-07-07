@@ -1,4 +1,4 @@
-export let createScaledImageUrl = function(aImageData, aWantedWidth) {
+export let createScaledImageUrlWithPixelDensity = function(aImageData, aWantedWidth, aPixelDensity, aMaxSize) {
     if(!aImageData || !aImageData["url"]) {
         return null;
     }
@@ -10,10 +10,10 @@ export let createScaledImageUrl = function(aImageData, aWantedWidth) {
 
     if(aImageData["resizeUrl"]) {
         let scaleToWidth = Math.min(
-            Math.round(window.devicePixelRatio*aWantedWidth),
+            Math.round(aPixelDensity*aWantedWidth),
             Math.max(
                 100,
-                100*Math.round(window.devicePixelRatio*window.innerWidth/100)
+                100*Math.round(aPixelDensity*aMaxSize/100)
             )
         );
 
@@ -30,7 +30,36 @@ export let createScaledImageUrl = function(aImageData, aWantedWidth) {
     return url;
 }
 
-export let createCoverScaledImageUrl = function(aImageData, aWantedWidth, aWantedHeight) {
+export let createScaledImageUrl = function(aImageData, aWantedWidth) {
+    return createScaledImageUrlWithPixelDensity(aImageData, aWantedWidth, window.devicePixelRatio, window.innerWidth);
+}
+
+export let getCoverScaledImageUrlWithPixelDensity = function(aUrl, aWantedWidth, aWantedHeight, aPixelDensity, aMaxSize) {
+    let scaleToWidth = Math.min(
+        Math.round(aPixelDensity*aWantedWidth),
+        Math.max(
+            100,
+            100*Math.round(aPixelDensity*aMaxSize/100)
+        )
+    );
+
+    let scaleToHeight = Math.round(aWantedHeight*scaleToWidth/aWantedWidth);
+
+    let scaleString = "width=" + scaleToWidth + ",height=" + scaleToHeight + ",fit=cover";
+
+    let format = "webp";
+    if(format) {
+        scaleString += ",format=" + format;
+    }
+
+    return aUrl.split("{scale}").join(scaleString);
+}
+
+export const getCoverScaledImageUrl = function(aUrl, aWantedWidth, aWantedHeight) {
+    return getCoverScaledImageUrlWithPixelDensity(aUrl, aWantedWidth, aWantedHeight, window.devicePixelRatio, window.innerWidth);
+}
+
+export let createCoverScaledImageUrlWithPixelDensity = function(aImageData, aWantedWidth, aWantedHeight, aPixelDensity, aMaxSize) {
     if(!aImageData || !aImageData["url"]) {
         return null;
     }
@@ -41,35 +70,22 @@ export let createCoverScaledImageUrl = function(aImageData, aWantedWidth, aWante
     }
 
     if(aImageData["resizeUrl"]) {
-        let scaleToWidth = Math.min(
-            Math.round(window.devicePixelRatio*aWantedWidth),
-            Math.max(
-                100,
-                100*Math.round(window.devicePixelRatio*window.innerWidth/100)
-            )
-        );
-
-        let scaleToHeight = Math.round(aWantedHeight*scaleToWidth/aWantedWidth);
-
-        let scaleString = "width=" + scaleToWidth + ",height=" + scaleToHeight + ",fit=cover";
-
-        let format = "webp";
-        if(format) {
-            scaleString += ",format=" + format;
-        }
-
-        url = aImageData["resizeUrl"].split("{scale}").join(scaleString);
+        url = getCoverScaledImageUrl(aImageData["resizeUrl"], aWantedWidth, aWantedHeight);
     }
 
     return url;
 }
 
-export const getContainScaledImageUrl = function(aUrl, aWantedWidth, aWantedHeight) {
+export let createCoverScaledImageUrl = function(aImageData, aWantedWidth, aWantedHeight) {
+    return createCoverScaledImageUrlWithPixelDensity(aImageData, aWantedWidth, aWantedHeight, window.devicePixelRatio, window.innerWidth);
+}
+
+export const getContainScaledImageUrlWithPixelDensity = function(aUrl, aWantedWidth, aWantedHeight, aPixelDensity, aMaxSize) {
     let scaleToWidth = Math.min(
-        Math.round(window.devicePixelRatio*aWantedWidth),
+        Math.round(aPixelDensity*aWantedWidth),
         Math.max(
             100,
-            100*Math.round(window.devicePixelRatio*window.innerWidth/100)
+            100*Math.round(aPixelDensity*aMaxSize/100)
         )
     );
 
@@ -83,6 +99,10 @@ export const getContainScaledImageUrl = function(aUrl, aWantedWidth, aWantedHeig
     }
 
     return aUrl.split("{scale}").join(scaleString);
+}
+
+export const getContainScaledImageUrl = function(aUrl, aWantedWidth, aWantedHeight) {
+    return getContainScaledImageUrlWithPixelDensity(aUrl, aWantedWidth, aWantedHeight, window.devicePixelRatio, window.innerWidth);
 }
 
 export let createContainScaledImageUrl = function(aImageData, aWantedWidth, aWantedHeight) {

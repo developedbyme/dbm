@@ -117,9 +117,11 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
     }
 
     _renderMainElement() {
-        return React.createElement("div", {
-            className: "content-narrow"
-          }, React.createElement("form", {
+
+      let askElement = null;
+      if(!this.context.blockData.skipSearch) {
+        askElement = React.createElement("div", {},
+          React.createElement("form", {
             onSubmit: aEvent => {
               aEvent.preventDefault();
               this._search();
@@ -146,6 +148,11 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
           )
         ),
         React.createElement("div", {className: "spacing small"}),
+        );
+      }
+
+      return React.createElement("div", {className: "content-narrow"},
+        askElement,
         React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.resultElement})
       );
     }
