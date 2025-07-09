@@ -51,7 +51,6 @@ export default class EditPage extends Dbm.react.BaseObject {
         if(pageEditorItem.generateContentPreload) {
             preloadImages = pageEditorItem.generateContentPreload(content);
         }
-        debugger;
 
         itemSaveData.setField("contentPreloadTags", preloadImages);
         itemSaveData.setField("lastModified", (new Date()).toISOString());
