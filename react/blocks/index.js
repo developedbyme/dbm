@@ -217,6 +217,15 @@ export let registerAllBlocks = function() {
 
     {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Link name"},
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "linkName"})
+            )
+        );
+        registerBlock("content/anchorPosition", "Anchor position", createElement(Dbm.react.blocks.content.AnchorPosition, {}), editor, {}, {});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
             createElement(Dbm.react.form.LabelledArea, {label: "Initial sections"}, 
                 createElement(Dbm.react.admin.editor.fields.SelectObjectsField, {objectType: "helpSection", name:"initialSections", "encoding": "title", "nameField": "title"})
             ),

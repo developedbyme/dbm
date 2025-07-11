@@ -127,6 +127,11 @@ export default class SiteNavigation extends Dbm.core.BaseObject {
 					if(hardNavigation) {
 						shouldSkip = true;
 					}
+
+					let target = currentNode.getAttribute("target");
+					if(target === "_blank") {
+						shouldSkip = true;
+					}
 					break;
 				}
 			}
