@@ -1,16 +1,19 @@
 import {GlobalObject} from "./core/index.js";
 
-if(!globalThis.dbm) {
-    globalThis.dbm = new GlobalObject();
+export const setupGlobalInstance = function(aObject, aPath) {
+    if(!globalThis.dbm) {
+        globalThis.dbm = new GlobalObject();
+    }
 }
 
-export let getInstance = function() {
+
+export const getInstance = function() {
     return globalThis.dbm;
 }
 
 //export {getInstance};
 
-export let objectPath = function(aObject, aPath) {
+export const objectPath = function(aObject, aPath) {
     //console.log("objectPath");
     
     let currentObject = aObject;
@@ -57,7 +60,7 @@ export let objectPath = function(aObject, aPath) {
     return currentObject;
 }
 
-export let setAtObjectPath = function(aObject, aPath, aValue) {
+export const setAtObjectPath = function(aObject, aPath, aValue) {
     aPath += "";
     if(aPath.length === 0) {
         return 0;

@@ -31,7 +31,7 @@ export let createScaledImageUrlWithPixelDensity = function(aImageData, aWantedWi
 }
 
 export let createScaledImageUrl = function(aImageData, aWantedWidth) {
-    return createScaledImageUrlWithPixelDensity(aImageData, aWantedWidth, window.devicePixelRatio, window.innerWidth);
+    return createScaledImageUrlWithPixelDensity(aImageData, aWantedWidth, Math.floor(window.devicePixelRatio), window.innerWidth);
 }
 
 export let getCoverScaledImageUrlWithPixelDensity = function(aUrl, aWantedWidth, aWantedHeight, aPixelDensity, aMaxSize) {
@@ -56,7 +56,24 @@ export let getCoverScaledImageUrlWithPixelDensity = function(aUrl, aWantedWidth,
 }
 
 export const getCoverScaledImageUrl = function(aUrl, aWantedWidth, aWantedHeight) {
-    return getCoverScaledImageUrlWithPixelDensity(aUrl, aWantedWidth, aWantedHeight, window.devicePixelRatio, window.innerWidth);
+    return getCoverScaledImageUrlWithPixelDensity(aUrl, aWantedWidth, aWantedHeight, Math.floor(window.devicePixelRatio), window.innerWidth);
+}
+
+export const imageShouldScale = function(aImageData) {
+    if(!aImageData || !aImageData["url"]) {
+        return false;
+    }
+
+    let url = aImageData["url"];
+    if(url.substring(url.length-4).toLowerCase() === ".svg") {
+        return false;
+    }
+
+    if(!aImageData["resizeUrl"]) {
+        return false;
+    }
+
+    return true;
 }
 
 export let createCoverScaledImageUrlWithPixelDensity = function(aImageData, aWantedWidth, aWantedHeight, aPixelDensity, aMaxSize) {
@@ -70,14 +87,14 @@ export let createCoverScaledImageUrlWithPixelDensity = function(aImageData, aWan
     }
 
     if(aImageData["resizeUrl"]) {
-        url = getCoverScaledImageUrl(aImageData["resizeUrl"], aWantedWidth, aWantedHeight);
+        url = getCoverScaledImageUrlWithPixelDensity(aImageData["resizeUrl"], aWantedWidth, aWantedHeight, aPixelDensity, aMaxSize);
     }
 
     return url;
 }
 
 export let createCoverScaledImageUrl = function(aImageData, aWantedWidth, aWantedHeight) {
-    return createCoverScaledImageUrlWithPixelDensity(aImageData, aWantedWidth, aWantedHeight, window.devicePixelRatio, window.innerWidth);
+    return createCoverScaledImageUrlWithPixelDensity(aImageData, aWantedWidth, aWantedHeight, Math.floor(window.devicePixelRatio), window.innerWidth);
 }
 
 export const getContainScaledImageUrlWithPixelDensity = function(aUrl, aWantedWidth, aWantedHeight, aPixelDensity, aMaxSize) {
@@ -102,7 +119,7 @@ export const getContainScaledImageUrlWithPixelDensity = function(aUrl, aWantedWi
 }
 
 export const getContainScaledImageUrl = function(aUrl, aWantedWidth, aWantedHeight) {
-    return getContainScaledImageUrlWithPixelDensity(aUrl, aWantedWidth, aWantedHeight, window.devicePixelRatio, window.innerWidth);
+    return getContainScaledImageUrlWithPixelDensity(aUrl, aWantedWidth, aWantedHeight, Math.floor(window.devicePixelRatio), window.innerWidth);
 }
 
 export let createContainScaledImageUrl = function(aImageData, aWantedWidth, aWantedHeight) {

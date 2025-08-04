@@ -12,10 +12,23 @@ export default class CommandButton extends Dbm.react.BaseObject {
         //console.log("_callback_click");
         //console.log(aEvent);
 
-        let command = this.getPropValue("command");
+        let commands = this.getPropValue("commands");
+        if(!commands) {
+            commands = this.getPropValue("command");
+        }
+        if(commands) {
+            commands = Dbm.utils.ArrayFunctions.singleOrArray(commands);
 
-        command.perform(this, aEvent);
-
+            let currentArray = commands;
+            let currentArrayLength = currentArray.length;
+            for(let i = 0; i < currentArrayLength; i++) {
+                let command = currentArray[i];
+                command.perform(this, aEvent);
+            }
+        }
+        else{
+            console.warn("Button doesn't have any commands", this);
+        }
     }
 
     _performClone(aChild, aProps) {
