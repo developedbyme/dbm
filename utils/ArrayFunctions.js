@@ -292,6 +292,22 @@ export const getItemIndexByIfExists = function(aArray, aField, aIdentifier) {
     return -1;
 }
 
+export const getItemByIfExists = function(aArray, aField, aIdentifier) {
+    let index = getItemIndexByIfExists(aArray, aField, aIdentifier);
+
+    return (index !== -1) ? aArray[index] : null;
+}
+
+export const getItemBy = function(aArray, aField, aIdentifier) {
+    let index = getItemIndexByIfExists(aArray, aField, aIdentifier);
+
+    if(index === -1) {
+        console.warn("No item found", aArray, aField, aIdentifier);
+    }
+
+    return (index !== -1) ? aArray[index] : null;
+}
+
 export const sum = function(aArray) {
 		
     if(!Array.isArray(aArray)) {
