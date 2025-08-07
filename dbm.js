@@ -85,6 +85,14 @@ export const setAtObjectPath = function(aObject, aPath, aValue) {
     }
 }
 
+export const getRepositoryItem = function(aName) {
+    return getInstance().repository.getItem(aName);
+}
+
+export const getGraphApi = function() {
+    return getRepositoryItem("graphApi").controller;
+}
+
 export * as utils from "./utils/index.js";
 export * as core from "./core/index.js";
 export * as loading from "./loading/index.js";

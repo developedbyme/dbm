@@ -15,6 +15,14 @@ export const strictEquals = function(aA, aB) {
 	return aA === aB;
 }
 
+export const notEquals = function(aA, aB) {
+	return aA != aB;
+}
+
+export const strictNotEquals = function(aA, aB) {
+	return aA !== aB;
+}
+
 export const arrayContains = function(aA, aB) {
     if(aA && aA.indexOf && aA.indexOf(aB) >= 0) {
         return true
@@ -39,6 +47,12 @@ export const fullSetup = function() {
 
     Dbm.getInstance().repository.getItem("compareFunctions/===").setValue("compare", strictEquals);
     Dbm.getInstance().repository.getItem("compareFunctions/strictEquals").setValue("compare", strictEquals);
+
+    Dbm.getInstance().repository.getItem("compareFunctions/!=").setValue("compare", notEquals);
+    Dbm.getInstance().repository.getItem("compareFunctions/notEquals").setValue("compare", notEquals);
+
+    Dbm.getInstance().repository.getItem("compareFunctions/!==").setValue("compare", strictNotEquals);
+    Dbm.getInstance().repository.getItem("compareFunctions/strictNotEquals").setValue("compare", strictNotEquals);
 
     Dbm.getInstance().repository.getItem("compareFunctions/arrayContains").setValue("compare", arrayContains);
     Dbm.getInstance().repository.getItem("compareFunctions/inArray").setValue("compare", inArray);
