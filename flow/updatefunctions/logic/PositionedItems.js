@@ -1,6 +1,6 @@
 import Dbm from "../../../index.js";
 
-export default class PoisitonedItems extends Dbm.flow.FlowUpdateFunction {
+export default class PositionedItems extends Dbm.flow.FlowUpdateFunction {
 
     _construct() {
         super._construct();

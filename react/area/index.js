@@ -7,6 +7,7 @@ export {default as ScrollActivatedArea} from "./ScrollActivatedArea.js";
 export {default as OpenCloseExpandableArea} from "./OpenCloseExpandableArea.js";
 export {default as ResponsiveLayout} from "./ResponsiveLayout.js";
 export {default as List} from "./List.js";
+export {default as FixedWidthInfiniteSlideshow} from "./FixedWidthInfiniteSlideshow.js";
 
 export const responsiveLayout = function(aDefaultLayout) {
     let newResponsiveLayout = new Dbm.react.area.ResponsiveLayout();

@@ -12,6 +12,7 @@ export {default as AllAtValue} from "./AllAtValue.js";
 export {default as WhenMatched} from "./WhenMatched.js";
 export {default as Invert} from "./Invert.js";
 export {default as PositionedItems} from "./PositionedItems.js";
+export {default as FloatMod} from "./FloatMod.js";
 
 export let subtract = function(aInput1 = 0, aInput2 = 0) {
     let updateFunction = new Dbm.flow.updatefunctions.logic.Subtraction();
@@ -110,6 +111,23 @@ export let whenMatched = function(aValue, aMatchValue = true) {
 export let switchValue = function(aValue = null) {
     let updateFunction = new Dbm.flow.updatefunctions.logic.Switch();
     updateFunction.input.properties.value.setOrConnect(aValue);
+	
+	return updateFunction;
+}
+
+export let floatMod = function(aValue = null, aMax = 1) {
+    let updateFunction = new Dbm.flow.updatefunctions.logic.FloatMod();
+    updateFunction.input.properties.input.setOrConnect(aValue);
+    updateFunction.input.properties.max.setOrConnect(aMax);
+	
+	return updateFunction;
+}
+
+export let floatModRange = function(aValue = null, aMin = 0, aMax = 1) {
+    let updateFunction = new Dbm.flow.updatefunctions.logic.FloatMod();
+    updateFunction.input.properties.input.setOrConnect(aValue);
+    updateFunction.input.properties.min.setOrConnect(aMin);
+    updateFunction.input.properties.max.setOrConnect(aMax);
 	
 	return updateFunction;
 }
