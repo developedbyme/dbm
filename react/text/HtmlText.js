@@ -7,7 +7,12 @@ export default class HtmlText extends Dbm.react.BaseObject {
 
     _renderMainElement() {
         
-        let text = "" + this.getPropValue("text");
+        let rawText = this.getPropValue("text");;
+        let text = "";
+
+        if(rawText !== undefined && rawText !== null) {
+            text += rawText;
+        }
 
         return this._createMainElement("span", {"dangerouslySetInnerHTML": {__html: text}});;
     }

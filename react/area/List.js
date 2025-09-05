@@ -43,9 +43,13 @@ export default class List extends Dbm.react.BaseObject {
             if(keyField !== "(root)") {
                 key = Dbm.objectPath(currentItem, keyField);
             }
+            else if(keyField !== "(index)") {
+                key = i;
+            }
 
             let values = {};
             values[as] = currentItem;
+            values[as + "/index"] = i;
             newChildren.push(React.createElement(Dbm.react.context.AddContextVariables, {key: key, values: values}, mainChildren));
         }
 

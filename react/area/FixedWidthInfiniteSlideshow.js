@@ -37,6 +37,7 @@ export default class FixedWidthInfiniteSlideshow extends Dbm.react.BaseObject {
             let currentPosition = i*stepLength-movedLength;
             let elementIndex = Dbm.utils.NumberFunctions.floatMod(i, numberOfElements);
 
+            //METODO: send in styles instead of forcing full size
             let style = {"transform": "translateX(" + currentPosition + "px)", position: "absolute", left: 0, top: 0};
             let child = React.createElement("div", {"key": i, "className": "full-size", "style": style}, elements[elementIndex])
             children.push(child);

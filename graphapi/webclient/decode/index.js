@@ -3,6 +3,19 @@ import Dbm from "../../../index.js";
 export {default as DecodeBaseObject} from "./DecodeBaseObject.js";
 export {default as Relations} from "./Relations.js";
 
+export const setupDefaultDecoder = function(aName, aFields = [], aSingleLinks = [], aMultipleLinks = []) {
+    let decodePrefix = "graphApi/decode/";
+
+    let decoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
+    decoder.item.setValue("copyFields", aFields);
+    decoder.item.setValue("copyLink", aSingleLinks);
+    decoder.item.setValue("copyLinks", aMultipleLinks);
+    decoder.item.setValue("encodingType", aName);
+    decoder.item.register(decodePrefix + aName);
+
+    return decoder;
+}
+
 export const fullSetup = function() {
     let decodePrefix = "graphApi/decode/";
 
@@ -185,4 +198,7 @@ export const fullSetup = function() {
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
     }
+
+    setupDefaultDecoder("linkPreview", ["title", "description", "link", "linkText"], ["page"]);
+    setupDefaultDecoder("publishDate", ["publishDate"], []);
 }

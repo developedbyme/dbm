@@ -217,6 +217,15 @@ export let registerAllBlocks = function() {
 
     {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Link list"},
+                createElement(Dbm.react.admin.editor.fields.SelectObjectField, {name: "list", "objectType": "linkList"})
+            )
+        );
+        registerBlock("content/linkList", "Link list", createElement(Dbm.react.blocks.content.LinkList, {}), editor, {}, {});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
             createElement(Dbm.react.form.LabelledArea, {label: "Link name"},
                 createElement(Dbm.react.admin.editor.fields.TextField, {name: "linkName"})
             )
@@ -381,10 +390,23 @@ export let registerAllBlocks = function() {
     let pageEditors = [].concat(admin.pageEditors);
 
     {
+        let newEditor = Dbm.getInstance().repository.getItem("admin/pageEditors/linkPreviews");
+        newEditor.setValue("element", React.createElement(Dbm.react.admin.pageeditors.LinkPreviews));
+        pageEditors.push(newEditor);
+    }
+
+    {
         let newEditor = Dbm.getInstance().repository.getItem("admin/pageEditors/helpSections");
         newEditor.setValue("element", React.createElement(Dbm.react.admin.pageeditors.HelpSections));
         pageEditors.push(newEditor);
     }
 
+
+
     admin.pageEditors = pageEditors;
+
+    {
+        let elementItem = Dbm.getRepositoryItem("linkListCard");
+        elementItem.setValue("element", React.createElement(Dbm.react.blocks.content.LinkListCard));
+    }
 }

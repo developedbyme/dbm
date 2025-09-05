@@ -55,6 +55,8 @@ export default class EditPage extends Dbm.react.BaseObject {
         itemSaveData.setField("contentPreloadTags", preloadImages);
         itemSaveData.setField("lastModified", (new Date()).toISOString());
         itemSaveData.createChange("clearCache", {});
+        itemSaveData.createChange("addAction", {"type": "pageUpdates/updateCategoryListing"});
+        
 
         saveData.save();
     }

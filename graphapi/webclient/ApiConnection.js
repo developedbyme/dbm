@@ -28,6 +28,7 @@ export default class ApiConnection extends Dbm.core.BaseObject {
 
     requestRange(aSelect, aEncode) {
         let item = this._getRequestItem();
+        item.requireProperty("items", []);
 
         let selectArray = [];
         let encodeString = aEncode.join(",");
