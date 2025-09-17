@@ -8,6 +8,8 @@ export default class User extends Dbm.react.BaseObject {
         let editorGroup = new Dbm.graphapi.webclient.admin.EditorGroup();
         this.item.setValue("editorGroup", editorGroup);
         this.item.requireProperty("changed", false).connectInput(editorGroup.item.properties.changed);
+
+        this.item.requireProperty("newPassword", "");
     }
 
      _save() {
@@ -18,6 +20,21 @@ export default class User extends Dbm.react.BaseObject {
         let saveData = editorGroup.getSaveData();
 
         saveData.save();
+    }
+
+    _updatePassword() {
+        let url = new URL(document.location.href);
+        let id = url.searchParams.get("id");
+        let password = this.item.newPassword;
+
+        if(password) {
+            Dbm.graphapi.webclient.performAction("admin/user/setPassword", {"id": id, "password": password}, this._passwordSet.bind(this));
+        }
+    }
+
+    _passwordSet(aData) {
+        console.log("_passwordSet");
+        console.log(aData);
     }
 
     _renderMainElement() {
@@ -40,7 +57,18 @@ export default class User extends Dbm.react.BaseObject {
                 ),
                 React.createElement("h2", {className: "no-margins"}, "New password"),
                 React.createElement("div", {className: "spacing small"}),
-                "[Insert password field]"
+                React.createElement("div", {className: "flex-row small-item-spacing"},
+                    React.createElement("div", {className: "flex-row-item flex-resize"},
+                        React.createElement(Dbm.react.form.FormField, {"className": "standard-field standard-field-padding full-width", "type": "password", "autoComplete": "new-password", value: this.item.properties.newPassword})
+                    ),
+                    React.createElement("div", {className: "flex-row-item no-flex-resize"},
+                        React.createElement(Dbm.react.interaction.CommandButton, {"command": Dbm.commands.callFunction(this._updatePassword.bind(this))},
+                            React.createElement("div", {className: "standard-button standard-button-padding"},
+                                "Set password"
+                            )
+                        )
+                    )
+                ),
             )
         );
     }

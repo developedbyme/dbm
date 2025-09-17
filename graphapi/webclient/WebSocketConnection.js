@@ -94,6 +94,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
     requestData(aFunctionName, aData) {
         //console.log("requestData");
         let item = this._getRequestItem();
+        item.requireProperty("data", null);
         item.setValue("requestData", {"type": "data", "functionName": aFunctionName, "data": aData, "requestId": item.id});
         this._runRequest(item);
         

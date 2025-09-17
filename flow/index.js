@@ -11,7 +11,7 @@ export {default as FlowPropertyWithExternalInput} from "./FlowPropertyWithExtern
 export * as updatefunctions from "./updatefunctions/index.js";
 export * as controllers from "./controllers/index.js";
 
-export let addUpdateCommand = function(aProperty, aCommand) {
+export const addUpdateCommand = function(aProperty, aCommand) {
     let updateFunction = new Dbm.flow.updatefunctions.basic.RunCommand();
     updateFunction.input.properties.value.connectInput(aProperty);
     updateFunction.input.command = aCommand;
@@ -26,7 +26,7 @@ export let addUpdateCommand = function(aProperty, aCommand) {
     return {"updateFunction": updateFunction, "dirtyCommands": dirtyCommands};
 }
 
-export let addDirectUpdateCommand = function(aProperty, aCommand) {
+export const addDirectUpdateCommand = function(aProperty, aCommand) {
     let updateFunction = new Dbm.flow.updatefunctions.basic.RunCommand();
     updateFunction.input.properties.value.connectInput(aProperty);
     updateFunction.input.command = aCommand;
@@ -41,7 +41,7 @@ export let addDirectUpdateCommand = function(aProperty, aCommand) {
     return {"updateFunction": updateFunction, "dirtyCommands": dirtyCommands};
 }
 
-export let addUpdateCommandWhenMatched = function(aProperty, aMatchValue, aCommand) {
+export const addUpdateCommandWhenMatched = function(aProperty, aMatchValue, aCommand) {
 	let whenMatched = Dbm.flow.updatefunctions.logic.whenMatched(aProperty, aMatchValue);
 	
 	let updateData = Dbm.flow.addUpdateCommand(whenMatched.output.properties.value, aCommand);
@@ -49,6 +49,16 @@ export let addUpdateCommandWhenMatched = function(aProperty, aMatchValue, aComma
 	updateData["whenMatched"] = whenMatched;
 	
 	return whenMatched;
+}
+
+export const runWhenMatched = function(aProperty, aMatchValue, aCommand) {
+    if(aProperty.value === aMatchValue) {
+        aCommand.perform(null, null);
+
+        return null;
+    }
+    
+    return addUpdateCommandWhenMatched(aProperty, aMatchValue, aCommand);
 }
 
 export const animateValue = function(aValue, aTime = 0.5, aEasing = null) {

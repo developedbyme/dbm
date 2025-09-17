@@ -77,6 +77,7 @@ export default class ApiConnection extends Dbm.core.BaseObject {
 
     requestData(aFunctionName, aData) {
         let item = this._getRequestItem();
+        item.requireProperty("data", null);
 
         let parametersArray = [];
 
