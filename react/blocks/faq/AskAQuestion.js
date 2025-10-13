@@ -131,7 +131,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
           React.createElement("div", {className: "standard-field overflow-hidden"},
             React.createElement("div", {className: "flex-row small-item-spacing"},
               React.createElement("div", {className: "flex-row-item flex-resize"},
-                React.createElement(Dbm.react.form.FormField, {className: "standard-field-padding-left-side full-width integrated-field", value: this.item.properties.searchText, placeholder: "Ask us anything"})
+                React.createElement(Dbm.react.form.FormField, {className: "standard-field-padding-left-side full-width integrated-field", value: this.item.properties.searchText, placeholder: "Type your question here"})
               ),
               React.createElement("div", {className: "flex-row-item flex-no-resize"},
                 React.createElement("div", {className: "submit-button-field-padding-right-side border-box-sizing full-height"},

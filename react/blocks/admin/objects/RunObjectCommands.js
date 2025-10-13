@@ -5,21 +5,7 @@ export default class Edit extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
-        let editorGroup = new Dbm.graphapi.webclient.admin.EditorGroup();
-        this.item.setValue("editorGroup", editorGroup);
-        this.item.requireProperty("changed", false).connectInput(editorGroup.item.properties.changed);
-
         this.item.requireProperty("open", false);
-    }
-
-     _save() {
-        console.log("_save");
-
-        let editorGroup = this.item.editorGroup;
-
-        let saveData = editorGroup.getSaveData();
-
-        saveData.save();
     }
 
     _toggleOpen() {

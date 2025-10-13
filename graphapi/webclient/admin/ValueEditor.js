@@ -14,6 +14,21 @@ export default class ValueEditor extends Dbm.core.BaseObject {
         this.item.requireProperty("changed", false).connectInput(editValue.item.properties.changed);
     }
 
+    get value() {
+        return this.valueProperty.value;
+    }
+
+    set value(aValue) {
+        
+        this.valueProperty.value = aValue;
+
+        return aValue;
+    }
+
+    get valueProperty() {
+        return this.item.editValue.value;
+    }
+
     addSaveCommand(aCommand) {
 
         this.item.saveCommands = [].concat(this.item.saveCommands, aCommand);

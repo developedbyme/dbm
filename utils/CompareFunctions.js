@@ -39,6 +39,14 @@ export const inArray = function(aA, aB) {
 	return false;
 }
 
+export const notEmpty = function(aA, aB) {
+    if(aA && aA.length > 0) {
+        return true
+    }
+
+	return false;
+}
+
 export const fullSetup = function() {
     Dbm.getInstance().repository.getItem("compareFunctions/objectExists").setValue("compare", objectExists);
 
@@ -56,4 +64,6 @@ export const fullSetup = function() {
 
     Dbm.getInstance().repository.getItem("compareFunctions/arrayContains").setValue("compare", arrayContains);
     Dbm.getInstance().repository.getItem("compareFunctions/inArray").setValue("compare", inArray);
+
+     Dbm.getInstance().repository.getItem("compareFunctions/notEmpty").setValue("compare", notEmpty);
 }

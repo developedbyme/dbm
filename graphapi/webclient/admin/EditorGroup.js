@@ -18,7 +18,7 @@ export default class EditorGroup extends Dbm.core.BaseObject {
         let itemEditor = this.item["editor_" + aId];
         if(!itemEditor) {
             itemEditor = new Dbm.graphapi.webclient.admin.ItemEditor();
-            itemEditor.item.setValue("editedItem", Dbm.getInstance().repository.getItem(aId));
+            itemEditor.item.setValue("editedItem", Dbm.getRepositoryItem(aId));
             this.item.setValue("editor_" + aId, itemEditor); 
             this.item.editors = [].concat(this.item.editors, itemEditor);
             this.item.anyChange.addCheck(itemEditor.item.properties.changed);

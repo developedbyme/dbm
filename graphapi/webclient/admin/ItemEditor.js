@@ -104,6 +104,33 @@ export default class ItemEditor extends Dbm.core.BaseObject {
         return this._addMultipleRelationsEditor(name, aType, aObjectType, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.multipleOutgoingRelations, aUpdateEncoding);
     }
 
+    getAdminMultipleIncomingRelationsEditor(aType, aObjectType) {
+        let name = "in_" + aType + "_" + aObjectType;
+        let valueEditor = this.item["editor_relation_" + name];
+        if(!valueEditor) {
+            let relations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(this.item.editedItem, "relations/in." + aType + ".objects"), "objectTypes", aObjectType, "arrayContains");
+            let ids = Dbm.utils.ArrayFunctions.mapField(relations, "id");
+
+            valueEditor = this.addMultipleIncomingRelationsEditor(aType, aObjectType, ids, "relations");
+        }
+
+        return valueEditor;
+    }
+
+    getAdminMultipleOutgoingRelationsEditor(aType, aObjectType) {
+        let name = "out_" + aType + "_" + aObjectType;
+        let valueEditor = this.item["editor_relation_" + name];
+        if(!valueEditor) {
+            let relations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(this.item.editedItem, "relations/in." + aType + ".objects"), "objectTypes", aObjectType, "arrayContains");
+            let ids = Dbm.utils.ArrayFunctions.mapField(relations, "id");
+
+            valueEditor = this.addMultipleOutgoingRelationsEditor(aType, aObjectType, ids, "relations");
+        }
+
+        return valueEditor;
+    }
+    
+
     getVisibilityEditor(aInitialValue) {
         let name = "visibility";
         let valueEditor = this.item["visibility"];

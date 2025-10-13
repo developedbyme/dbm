@@ -30,14 +30,18 @@ export const requireObjectEncoding = function(aObject, aEncoding, aCommand) {
     console.log("requireObjectEncoding");
     if(aObject["has/encoding/" + aEncoding]) {
         console.log(aObject, aEncoding);
-        aCommand.perform(null, null);
+        if(aCommand) {
+            aCommand.perform(null, null);
+        }
     }
     else {
         let graphApi = Dbm.getRepositoryItem("cachedGraphApi").controller;
         
         let request = graphApi.requestItem(aObject.id, [aEncoding]);
         
-        Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, aCommand);
+        if(aCommand) {
+            Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, aCommand);
+        }
     }
 }
 
