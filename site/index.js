@@ -1,5 +1,7 @@
 import Dbm from "../index.js";
 
+export * as translation from "./translation/index.js";
+
 export {default as SiteNavigation} from "./SiteNavigation.js";
 export {default as SiteDataLoader} from "./SiteDataLoader.js";
 export {default as BrowserUpdater} from "./BrowserUpdater.js";

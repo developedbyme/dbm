@@ -22,7 +22,7 @@ export default class EditItem extends Dbm.react.BaseObject {
                     {"type": "includeDraft"},
                     {"type": "idSelection", "ids": [item.id]},
                 ],
-                ["admin_fields", "relations", "visibility"]
+                ["admin_fields", "admin_fieldTranslations", "relations", "visibility"]
             );
             allLoaded.addCheck(request.properties.status);
         }

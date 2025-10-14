@@ -1,9 +1,9 @@
 import React from "react";
 import Dbm from "../../../index.js";
 
-export default class EditVisibility extends Dbm.react.BaseObject {
-    _construct() {
-        super._construct();
+export default class EditIdentifier extends Dbm.react.BaseObject {
+    _constructAfterProps() {
+        super._constructAfterProps();
 
         let item = this.context.item;
         let itemEditor = this.context.itemEditor;

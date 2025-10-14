@@ -201,4 +201,6 @@ export const fullSetup = function() {
 
     setupDefaultDecoder("linkPreview", ["title", "description", "link", "linkText"], ["page"]);
     setupDefaultDecoder("publishDate", ["publishDate"], []);
+    setupDefaultDecoder("language", [], ["language"]);
+    setupDefaultDecoder("admin_fieldTranslations", ["fields/translations"], []);
 }

@@ -1,6 +1,6 @@
 import Dbm from "../../../index.js";
 
-export default class Length extends Dbm.flow.FlowUpdateFunction {
+export default class PropertyOf extends Dbm.flow.FlowUpdateFunction {
 
     _construct() {
         super._construct();

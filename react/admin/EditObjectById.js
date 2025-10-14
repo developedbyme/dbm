@@ -26,7 +26,7 @@ export default class EditObjectById extends Dbm.react.BaseObject {
                     {"type": "includeDraft"},
                     {"type": "idSelection", "ids": [id]},
                 ],
-                ["admin_fields", "relations"]
+                ["admin_fields", "admin_fieldTranslations", "relations"]
             );
             allLoaded.addCheck(request.properties.status);
         }

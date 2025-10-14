@@ -33,18 +33,20 @@ export default class EditObject extends Dbm.react.BaseObject {
 
         let id = this.getPropValue("id");
         let item = Dbm.getInstance().repository.getItem(id);
-        let itemEditor = this.context.editorGroup.getItemEditor(id);
 
         return React.createElement("div", {},
             
             React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
-                React.createElement(Dbm.react.context.AddContextVariables, {"values": {"item": item, "itemEditor": itemEditor}},
-                    React.createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("item.objectTypes"), "as": "objectType", "keyField": "(root)"},
-                        Dbm.react.text.text(Dbm.react.source.contextVariable("objectType"))
-                    ),
-                    React.createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("item.objectTypes"), "as": "objectType", "keyField": "(root)"},
-                        React.createElement(Dbm.react.admin.objects.InjectObjectTypeEditor, {type: Dbm.react.source.contextVariable("objectType")})
+                React.createElement(Dbm.react.context.AddContextVariables, {"values": {"item": item}},
+                    React.createElement(Dbm.react.admin.editorsgroup.EditItem, {}, 
+                        React.createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("item.objectTypes"), "as": "objectType", "keyField": "(root)"},
+                            Dbm.react.text.text(Dbm.react.source.contextVariable("objectType"))
+                        ),
+                        React.createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("item.objectTypes"), "as": "objectType", "keyField": "(root)"},
+                            React.createElement(Dbm.react.admin.objects.InjectObjectTypeEditor, {type: Dbm.react.source.contextVariable("objectType")})
+                        )
                     )
+                    
                 )
             )
             

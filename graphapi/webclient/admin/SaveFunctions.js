@@ -4,6 +4,10 @@ export const setField = function(aEditor, aItemSaveData) {
     aItemSaveData.setField(aEditor.item.name, aEditor.item.editValue.getValue());
 }
 
+export const setFieldTranslation = function(aEditor, aItemSaveData) {
+    aItemSaveData.setFieldTranslation(aEditor.item.name, aEditor.item.language, aEditor.item.editValue.getValue());
+}
+
 export const setUrl = function(aEditor, aItemSaveData) {
     aItemSaveData.createChange("setUrl", {"value": aEditor.item.editValue.getValue()});
 }

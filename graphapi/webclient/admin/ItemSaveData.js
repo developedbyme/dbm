@@ -28,6 +28,12 @@ export default class ItemSaveData extends Dbm.core.BaseObject {
 
         return this;
     }
+
+    setFieldTranslation(aField, aLanguage, aValue) {
+        this.createChange("setFieldTranslation", {"value": aValue, "language": aLanguage, "field": aField});
+
+        return this;
+    }
     
     addUpdateEncoding(aEncoding) {
         this._updateEncodings.push(aEncoding);

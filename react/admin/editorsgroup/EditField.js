@@ -2,8 +2,8 @@ import React from "react";
 import Dbm from "../../../index.js";
 
 export default class EditField extends Dbm.react.BaseObject {
-    _construct() {
-        super._construct();
+    _constructAfterProps() {
+        super._constructAfterProps();
 
         let item = this.context.item;
         let itemEditor = this.context.itemEditor;

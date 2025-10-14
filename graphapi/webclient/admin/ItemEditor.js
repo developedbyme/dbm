@@ -42,6 +42,18 @@ export default class ItemEditor extends Dbm.core.BaseObject {
         return this.addEditor(aField, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.setField, aUpdateEncoding);
     }
 
+    addFieldTranslationEditor(aField, aLanguage, aInitialValue, aUpdateEncoding = null) {
+        let name = "translation_" + aField + "_" + aLanguage;
+        let valueEditor = this.item["editor_" + name];
+        if(!valueEditor) {
+            valueEditor = this.addEditor(name, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.setFieldTranslation, aUpdateEncoding);
+            valueEditor.item.setValue("name", aField);
+            valueEditor.item.setValue("language", aLanguage);
+        }
+        
+        return valueEditor;
+    }
+
     _addRelationEditor(aName, aType, aObjectType, aInitialValue, aSaveFunction, aUpdateEncoding = null) {
         let valueEditor = this.item["editor_relation_" + aName];
         if(!valueEditor) {

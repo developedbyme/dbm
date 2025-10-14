@@ -4,43 +4,36 @@ import Dbm from "../../../../index.js";
 export default class Name extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
-
-        let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
-
-        let id = this.context.item.id;
-
-        let allLoaded = Dbm.flow.updatefunctions.logic.allAtValue(Dbm.loading.LoadingStatus.LOADED);
-        this.item.requireProperty("loaded", false);
-
-        {
-            let request = graphApi.requestRange(
-                [
-                    {"type": "includePrivate"},
-                    {"type": "includeDraft"},
-                    {"type": "idSelection", "ids": [id]},
-                ],
-                ["name"]
-            );
-            allLoaded.addCheck(request.properties.status);
-        }
-
-        this.item.properties.loaded.connectInput(allLoaded.output.properties.value);
     }
 
     _renderMainElement() {
 
-        let id = this.context.item.id;
+        /*
+                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "sv"},
+                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
+                    ),
+                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "en"},
+                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
+                    ),
+                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "fi"},
+                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
+                    )
+                    
+        */
+
+        let label = "Name";
+        let fieldName = "name";
+
+        let fieldNameSource = Dbm.react.source.contextVariable("fieldName");
+        let editorValueSource = Dbm.react.source.contextVariable("valueEditor.editValue.value");
 
         return React.createElement("div", {},
-            
-            React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
-                React.createElement(Dbm.react.form.LabelledArea, {label: "Name"}, 
-                    React.createElement(Dbm.react.admin.editorsgroup.EditField, {"fieldName": "name", "initialDataPath": "name"},
-                        React.createElement(Dbm.react.form.FormField, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
-                    )
+            React.createElement("label", {className: "standard-field-label"}, label),
+            React.createElement(Dbm.react.context.AddContextVariables, {values: {"fieldName": fieldName}},
+                React.createElement(Dbm.react.admin.editorsgroup.EditField, {"fieldName": fieldNameSource},
+                    React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
                 )
             )
-            
         )
     }
 }

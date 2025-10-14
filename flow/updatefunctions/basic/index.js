@@ -5,6 +5,7 @@ export {default as CombineString} from "./CombineString.js";
 export {default as Length} from "./Length.js";
 export {default as PropertyOf} from "./PropertyOf.js";
 export {default as MappedList} from "./MappedList.js";
+export {default as Translation} from "./Translation.js";
 
 export const runCommand = function(aValue, aCommand) {
 	let updateFunction = new Dbm.flow.updatefunctions.basic.RunCommand();
@@ -90,4 +91,26 @@ export const activeMappedList = function(aItems, aActiveFromStart = false) {
 	item.setValue("inArray", activeItems);
 
 	return item;
+}
+
+export const translation = function(aId, aDefaultValue = null, aPath = null, aAdditionalPath = null, aTranslations = null) {
+	let updateFunction = new Dbm.flow.updatefunctions.basic.Translation();
+
+	updateFunction.input.properties.id.setOrConnect(aId);
+	updateFunction.input.properties.defaultValue.setOrConnect(aDefaultValue);
+	updateFunction.input.properties.path.setOrConnect(aPath);
+	updateFunction.input.properties.additionalPath.setOrConnect(aAdditionalPath);
+
+	if(!aTranslations) {
+		aTranslations = Dbm.getRepositoryItem("site/translations").requireProperty("data");
+	}
+	updateFunction.input.properties.translations.setOrConnect(aTranslations);
+
+	return updateFunction;
+}
+
+export const translationProperty = function(aId, aDefaultValue = null, aPath = null, aAdditionalPath = null, aTranslations = null) {
+	let updateFunction = translation(aId, aDefaultValue, aPath, aAdditionalPath, aTranslations);
+
+	return updateFunction.output.properties.value;
 }
