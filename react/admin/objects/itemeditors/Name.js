@@ -32,7 +32,16 @@ export default class Name extends Dbm.react.BaseObject {
             React.createElement(Dbm.react.context.AddContextVariables, {values: {"fieldName": fieldName}},
                 React.createElement(Dbm.react.admin.editorsgroup.EditField, {"fieldName": fieldNameSource},
                     React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
-                )
+                ),
+                React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "sv"},
+                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
+                    ),
+                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "en"},
+                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
+                    ),
+                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "fi"},
+                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
+                    )
             )
         )
     }

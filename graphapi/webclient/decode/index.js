@@ -3,13 +3,14 @@ import Dbm from "../../../index.js";
 export {default as DecodeBaseObject} from "./DecodeBaseObject.js";
 export {default as Relations} from "./Relations.js";
 
-export const setupDefaultDecoder = function(aName, aFields = [], aSingleLinks = [], aMultipleLinks = []) {
+export const setupDefaultDecoder = function(aName, aFields = [], aSingleLinks = [], aMultipleLinks = [], aSetupCommands = []) {
     let decodePrefix = "graphApi/decode/";
 
     let decoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
     decoder.item.setValue("copyFields", aFields);
     decoder.item.setValue("copyLink", aSingleLinks);
     decoder.item.setValue("copyLinks", aMultipleLinks);
+    decoder.item.setValue("setupCommands", aSetupCommands);
     decoder.item.setValue("encodingType", aName);
     decoder.item.register(decodePrefix + aName);
 
@@ -203,4 +204,15 @@ export const fullSetup = function() {
     setupDefaultDecoder("publishDate", ["publishDate"], []);
     setupDefaultDecoder("language", [], ["language"]);
     setupDefaultDecoder("admin_fieldTranslations", ["fields/translations"], []);
+
+    let connectTranslations = function(aItem, aTranslationsName, aOutputName, aDefaultFieldName) {
+
+        let updateFunction = Dbm.flow.updatefunctions.basic.propertyOfWithDefault(aItem.getProperty(aTranslationsName), Dbm.getRepositoryItem("site").properties.currentLanguageCode, aItem.getProperty(aDefaultFieldName));
+        aItem.requireProperty(aOutputName, null).connectInput(updateFunction.output.properties.value);
+
+        aItem.requireProperty(aOutputName + "/update", updateFunction);
+    }
+
+    setupDefaultDecoder("name_translations", ["name/translations"], [], [], [Dbm.commands.callFunction(connectTranslations, [Dbm.core.source.event("item"), "name/translations", "name/translated", "name"])]);
+    setupDefaultDecoder("title_translations", ["title/translations"], [], [], [Dbm.commands.callFunction(connectTranslations, [Dbm.core.source.event("item"), "title/translations", "title/translated", "title"])]);
 }

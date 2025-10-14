@@ -4,6 +4,7 @@ export {default as RunCommand} from "./RunCommand.js";
 export {default as CombineString} from "./CombineString.js";
 export {default as Length} from "./Length.js";
 export {default as PropertyOf} from "./PropertyOf.js";
+export {default as PropertyOfWithDefault} from "./PropertyOfWithDefault.js";
 export {default as MappedList} from "./MappedList.js";
 export {default as Translation} from "./Translation.js";
 
@@ -32,6 +33,15 @@ export const propertyOf = function(aValue, aPropertyName) {
 	let updateFunction = new Dbm.flow.updatefunctions.basic.PropertyOf();
 	updateFunction.input.properties.value.setOrConnect(aValue);
 	updateFunction.input.properties.propertyName.setOrConnect(aPropertyName);
+	
+	return updateFunction;
+}
+
+export const propertyOfWithDefault = function(aValue, aPropertyName, aDefaultValue) {
+	let updateFunction = new Dbm.flow.updatefunctions.basic.PropertyOfWithDefault();
+	updateFunction.input.properties.value.setOrConnect(aValue);
+	updateFunction.input.properties.propertyName.setOrConnect(aPropertyName);
+	updateFunction.input.properties.defaultValue.setOrConnect(aDefaultValue);
 	
 	return updateFunction;
 }
