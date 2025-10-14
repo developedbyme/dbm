@@ -74,7 +74,7 @@ export const fullSetup = function() {
         let name = "urlRequest";
         let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
         currentDecoder.item.setValue("copyFields", ["meta/description", "seo/noIndex", "seo/noFollow", "publishDate"]);
-        currentDecoder.item.setValue("copyLink", ["category"]);
+        currentDecoder.item.setValue("copyLink", ["category", "translations"]);
         currentDecoder.item.setValue("copyLinks", ["categories"]);
         currentDecoder.item.setValue("encodingType", name);
         currentDecoder.item.register(decodePrefix + name);
@@ -204,6 +204,7 @@ export const fullSetup = function() {
     setupDefaultDecoder("publishDate", ["publishDate"], []);
     setupDefaultDecoder("language", [], ["language"]);
     setupDefaultDecoder("admin_fieldTranslations", ["fields/translations"], []);
+    setupDefaultDecoder("translationGroup", [], [], ["pages"]);
 
     let connectTranslations = function(aItem, aTranslationsName, aOutputName, aDefaultFieldName) {
 

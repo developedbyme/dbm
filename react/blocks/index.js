@@ -383,6 +383,18 @@ export let registerAllBlocks = function() {
         objectTypeEditor.editors = newArray;
     }
 
+    {
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/group/translationGroup");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
+
+        let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
+        
+        objectTypeEditor.editors = newArray;
+    }
+
 
     let admin = Dbm.getInstance().repository.getItem("admin");
     admin.requireProperty("pageEditors", []);
