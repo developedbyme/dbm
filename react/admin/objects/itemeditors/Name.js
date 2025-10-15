@@ -8,19 +8,6 @@ export default class Name extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
-        /*
-                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "sv"},
-                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
-                    ),
-                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "en"},
-                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
-                    ),
-                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "fi"},
-                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
-                    )
-                    
-        */
-
         let label = "Name";
         let fieldName = "name";
 
@@ -33,15 +20,18 @@ export default class Name extends Dbm.react.BaseObject {
                 React.createElement(Dbm.react.admin.editorsgroup.EditField, {"fieldName": fieldNameSource},
                     React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
                 ),
-                React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "sv"},
-                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
-                    ),
-                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "en"},
-                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
-                    ),
-                    React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": "fi"},
-                        React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
+                React.createElement(Dbm.react.area.List, {items: Dbm.getRepositoryItem("site").properties.availableLanguages, as: "language"},
+                    React.createElement("div", {className: "flex-row small-item-spacing vertically-center-items"},
+                        React.createElement("div", {className: "flex-row-item flex-no-resize"},
+                            Dbm.react.text.text(Dbm.react.source.contextVariable("language.code"))
+                        ),
+                        React.createElement("div", {className: "flex-row-item flex-resize"},
+                            React.createElement(Dbm.react.admin.editorsgroup.EditFieldTranslation, {"fieldName": fieldNameSource, "language": Dbm.react.source.contextVariable("language.code")},
+                                React.createElement(Dbm.react.form.FormField, {value: editorValueSource, className: "standard-field standard-field-padding full-width"})
+                            ),
+                        )
                     )
+                )
             )
         )
     }

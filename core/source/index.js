@@ -5,6 +5,7 @@ export {default as EventSource} from "./EventSource.js";
 export {default as FromObject} from "./FromObject.js";
 export {default as StaticSource} from "./StaticSource.js";
 export {default as FirstSource} from "./FirstSource.js";
+export {default as SourceCommand} from "./SourceCommand.js";
 
 export const event = function(aPath = null) {
 	let newSource = new Dbm.core.source.EventSource();
@@ -49,4 +50,18 @@ export const firstWithDefault = function(...aSourcesAndDefault) {
 	newSource.item.properties.defaultValue.setOrConnect(defaultValue);
 	
 	return newSource;
+}
+
+export const command = function(aCommand) {
+	let newSource = new Dbm.core.source.SourceCommand();
+
+	newSource.item.object = aCommand;
+	
+	return newSource;
+}
+
+export const callFunction = function(aFunction, aArguments = []) {
+	let functionCommand = Dbm.commands.callFunction(aFunction, aArguments);
+
+	return command(functionCommand);
 }
