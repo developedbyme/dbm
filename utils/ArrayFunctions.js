@@ -327,3 +327,15 @@ export const sum = function(aArray) {
     
     return sum;
 }
+
+export const stepFromCenter = function(aStep, aLength) {
+    let halfPoint = (aLength-1)/2;
+    let startIndex = Math.ceil(halfPoint);
+    let direction = (startIndex > halfPoint) ? -1 : 1;
+
+    let step = Math.ceil(aStep/2);
+    let swing = (aStep%2)*2-1;
+    let index = startIndex + step * (swing * direction);
+
+    return index;
+}

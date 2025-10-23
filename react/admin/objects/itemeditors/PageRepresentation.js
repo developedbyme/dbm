@@ -34,7 +34,7 @@ export default class PageRepresentation extends Dbm.react.BaseObject {
         return React.createElement("div", {},
             
             React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
-                React.createElement(Dbm.react.form.LabelledArea, {label: "Represening page"}, 
+                React.createElement(Dbm.react.form.LabelledArea, {label: "Representing page"}, 
                     React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {"direction": "in", "relationType": "pageRepresentationFor", "objectType": "page"},
                         React.createElement(Dbm.react.form.GraphApiObjectSelection, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), "objectType": "page", "encoding": "title", nameField: "title", className: "standard-field standard-field-padding full-width"})
                     )

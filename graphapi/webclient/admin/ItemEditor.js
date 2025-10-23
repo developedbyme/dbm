@@ -118,7 +118,7 @@ export default class ItemEditor extends Dbm.core.BaseObject {
 
     getAdminMultipleIncomingRelationsEditor(aType, aObjectType) {
         let name = "in_" + aType + "_" + aObjectType;
-        let valueEditor = this.item["editor_relation_" + name];
+        let valueEditor = this.item["editor_multipleRelations_" + name];
         if(!valueEditor) {
             let relations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(this.item.editedItem, "relations/in." + aType + ".objects"), "objectTypes", aObjectType, "arrayContains");
             let ids = Dbm.utils.ArrayFunctions.mapField(relations, "id");
@@ -131,7 +131,7 @@ export default class ItemEditor extends Dbm.core.BaseObject {
 
     getAdminMultipleOutgoingRelationsEditor(aType, aObjectType) {
         let name = "out_" + aType + "_" + aObjectType;
-        let valueEditor = this.item["editor_relation_" + name];
+        let valueEditor = this.item["editor_multipleRelations_" + name];
         if(!valueEditor) {
             let relations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(this.item.editedItem, "relations/in." + aType + ".objects"), "objectTypes", aObjectType, "arrayContains");
             let ids = Dbm.utils.ArrayFunctions.mapField(relations, "id");

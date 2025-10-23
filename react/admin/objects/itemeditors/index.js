@@ -10,3 +10,4 @@ export {default as PageRepresentation} from "./PageRepresentation.js";
 export {default as MainImage} from "./MainImage.js";
 export {default as Identifier} from "./Identifier.js";
 export {default as SingleRelation} from "./SingleRelation.js";
+export {default as Field} from "./Field.js";

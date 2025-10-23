@@ -23,7 +23,13 @@ export default class CommandButton extends Dbm.react.BaseObject {
             let currentArrayLength = currentArray.length;
             for(let i = 0; i < currentArrayLength; i++) {
                 let command = currentArray[i];
-                command.perform(this, aEvent);
+                try {
+                    command.perform(this, aEvent);
+                }
+                catch(theError) {
+                    console.error("Error while running command", theError, command);
+                }
+                
             }
         }
         else{
