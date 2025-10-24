@@ -130,7 +130,18 @@ export default class BaseObject extends Component {
     }
 
     render() {
-        return this._renderMainElement();
+        let returnObject;
+
+        //METODO: add switch for if it should be safe
+        try {
+            returnObject = this._renderMainElement();
+        }
+        catch(theError) {
+            console.error("Error while rendering", theError);
+            returnObject = React.createElement("div", {}, "Error");
+        }
+
+        return returnObject;
     }
 
     _renderMainElement() {

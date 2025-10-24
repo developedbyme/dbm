@@ -33,7 +33,7 @@ export default class SwitchableArea extends Dbm.react.BaseObject {
     _renderMainElement() {
         let areaProperty = this.getDynamicPropWithoutState("area", null);
         
-        return React.createElement(Dbm.react.context.AddContextVariables, {values: {area: areaProperty}}, React.createElement(Dbm.react.area.InsertElement, {"element": this.item.propterties.element}));
+        return React.createElement(Dbm.react.context.AddContextVariables, {values: {area: areaProperty}}, React.createElement(Dbm.react.area.InsertElement, {"element": this.item.properties.element}));
     }
 }
 

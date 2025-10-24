@@ -9,7 +9,7 @@ export default class CommandBaseObject extends Dbm.core.BaseObject {
         //MENOTE: should be overridden
     }
 
-    _resolveSource(aValueOrSource) {
+    _resolveSource(aValueOrSource, aFromObject = null, aData = null) {
         if(aValueOrSource) {
             if(aValueOrSource.isFlowProperty) {
                 return aValueOrSource.value;
@@ -22,7 +22,7 @@ export default class CommandBaseObject extends Dbm.core.BaseObject {
         return aValueOrSource;
     }
 
-    _resolveSourceWithoutFlow(aValueOrSource) {
+    _resolveSourceWithoutFlow(aValueOrSource, aFromObject = null, aData = null) {
         if(aValueOrSource && aValueOrSource.isSource) {
             return aValueOrSource.getSource(aFromObject, aData);
         }

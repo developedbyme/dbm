@@ -2,3 +2,4 @@ import Dbm from "../../../../../index.js";
 
 export {default as AutoComplete} from "./AutoComplete.js";
 export {default as PlaceDetails} from "./PlaceDetails.js";
+export {default as PlaceDetailsFromQuery} from "./PlaceDetailsFromQuery.js";
