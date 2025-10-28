@@ -20,13 +20,7 @@ export default class AutoComplete extends Dbm.flow.FlowUpdateFunction {
     loadScript() {
         let key = Dbm.getRepositoryItem("googleMapsApi").apiKey;
         let scriptLoader = Dbm.loading.loadScript("https://maps.googleapis.com/maps/api/js?key=" + key + "&libraries=places");
-
-        if(scriptLoader.item.properties.status === 1) {
-            this._scriptLoaded();
-        }
-        else {
-            Dbm.flow.addUpdateCommandWhenMatched(scriptLoader.item.properties.status, 1, Dbm.commands.callFunction(this._scriptLoaded.bind(this)));
-        }
+        Dbm.flow.runWhenMatched(scriptLoader.item.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._scriptLoaded.bind(this)));
 
         return this;
     }
@@ -54,7 +48,6 @@ export default class AutoComplete extends Dbm.flow.FlowUpdateFunction {
     _update() {
         console.log("_update");
 
-        
         let text = this.input.text;
         this._currentText = text;
         this.output.updated = false;

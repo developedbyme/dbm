@@ -21,14 +21,7 @@ export default class PlaceDetails extends Dbm.flow.FlowUpdateFunction {
         console.log("loadScript");
         let key = Dbm.getRepositoryItem("googleMapsApi").apiKey;
         let scriptLoader = Dbm.loading.loadScript("https://maps.googleapis.com/maps/api/js?key=" + key + "&libraries=places");
-
-        console.log(scriptLoader.item.properties.status, scriptLoader);
-        if(scriptLoader.item.status === 1) {
-            this._scriptLoaded();
-        }
-        else {
-            Dbm.flow.addUpdateCommandWhenMatched(scriptLoader.item.properties.status, 1, Dbm.commands.callFunction(this._scriptLoaded.bind(this)));
-        }
+        Dbm.flow.runWhenMatched(scriptLoader.item.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._scriptLoaded.bind(this)));
 
         return this;
     }
