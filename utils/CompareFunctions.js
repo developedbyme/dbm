@@ -47,6 +47,22 @@ export const notEmpty = function(aA, aB) {
 	return false;
 }
 
+export const greaterThan = function(aA, aB) {
+    if(aA > aB) {
+        return true
+    }
+
+	return false;
+}
+
+export const lesserThan = function(aA, aB) {
+    if(aA < aB) {
+        return true
+    }
+
+	return false;
+}
+
 export const fullSetup = function() {
     Dbm.getInstance().repository.getItem("compareFunctions/objectExists").setValue("compare", objectExists);
 
@@ -65,5 +81,11 @@ export const fullSetup = function() {
     Dbm.getInstance().repository.getItem("compareFunctions/arrayContains").setValue("compare", arrayContains);
     Dbm.getInstance().repository.getItem("compareFunctions/inArray").setValue("compare", inArray);
 
-     Dbm.getInstance().repository.getItem("compareFunctions/notEmpty").setValue("compare", notEmpty);
+    Dbm.getInstance().repository.getItem("compareFunctions/notEmpty").setValue("compare", notEmpty);
+
+    Dbm.getInstance().repository.getItem("compareFunctions/>").setValue("compare", greaterThan);
+    Dbm.getInstance().repository.getItem("compareFunctions/greaterThan").setValue("compare", greaterThan);
+
+    Dbm.getInstance().repository.getItem("compareFunctions/<").setValue("compare", lesserThan);
+    Dbm.getInstance().repository.getItem("compareFunctions/lesserThan").setValue("compare", lesserThan);
 }

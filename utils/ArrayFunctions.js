@@ -187,7 +187,41 @@ export const group = function(aArray, aField) {
     let currentArrayLength = currentArray.length;
     for(let i = 0; i < currentArrayLength; i++) {
         let currentObject = aArray[i];
-        let groupValue = Dbm.objectPath(aArray[i], aField);
+        let groupValue = Dbm.objectPath(currentObject, aField);
+
+        if(!groups.has(groupValue)) {
+            groups.set(groupValue, []);
+        }
+
+        groups.get(groupValue).push(currentObject);
+    }
+
+    let returnArray = [];
+
+    for (const value of groups.entries()) {
+        returnArray.push({"key": value[0], "value": value[1]});
+    }
+
+    return returnArray;
+}
+
+export const groupOnMultipleFields = function(aArray, aFields, aSeparator = "-") {
+   
+    let groups = new Map();
+
+    let currentArray2 = aFields;
+    let currentArray2Length = currentArray2.length;
+
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentObject = aArray[i];
+        let groupValues = [];
+        
+        for(let j = 0; j < currentArray2Length; j++) {
+            groupValues.push(Dbm.objectPath(currentObject, currentArray2[j]));
+        }
+        let groupValue = groupValues.join(aSeparator);
 
         if(!groups.has(groupValue)) {
             groups.set(groupValue, []);
