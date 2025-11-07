@@ -24,6 +24,13 @@ export default class Runner extends Dbm.core.BaseObject {
         //console.log("Runner::start");
         //console.log(this);
 
+        let preRenderContent = this._element.querySelector("#preRenderContent");
+
+        if(preRenderContent) {
+            preRenderContent.style["display"] = "none";
+            preRenderContent.parentElement.removeChild(preRenderContent);
+        }
+
         let root = document.createElement("div");
         this._element.appendChild(root);
 

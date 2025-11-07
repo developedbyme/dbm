@@ -184,7 +184,7 @@ export default class CookieBar extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
-        return this._createMainElement("div", {className: "cookie-bar-position no-pointer-events", ref: this.createRef("widthElement")},
+        return this._createMainElement("div", {className: "cookie-bar-position no-pointer-events", "data-non-static": 1, ref: this.createRef("widthElement")},
             React.createElement(Dbm.react.area.HasData, {"check": this.item.properties.inDom},
                 React.createElement("div", {className: "overflow-hidden"},	
                     React.createElement(Dbm.react.BaseObject, {style: this.item.properties.style},
