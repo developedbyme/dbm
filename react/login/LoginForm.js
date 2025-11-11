@@ -28,7 +28,7 @@ export default class LoginForm extends Dbm.react.BaseObject {
         if(aLoader.item.status === Dbm.loading.LoadingStatus.LOADED) {
             if(aLoader.item.data.success) {
                 
-                let item = Dbm.getInstance().repository.getItem("graphApi").controller.signIn(aLoader.item.data.data.wsToken);
+                let item = Dbm.getRepositoryItem("graphApi").controller.signIn(aLoader.item.data.data.wsToken);
                 Dbm.flow.addUpdateCommand(item.properties.status, Dbm.commands.callFunction(this._graphApiRequestStatusChanges.bind(this), [item, aLoader]));
             }
             else {
@@ -53,14 +53,14 @@ export default class LoginForm extends Dbm.react.BaseObject {
                 return;
             }
 
-            let site = Dbm.getInstance().repository.getItem("site");
+            let site = Dbm.getRepositoryItem("site");
             let queryString = new URLSearchParams(window.location.search);
             let skipRedirect = this.getProp("skipRedirect");
 
             if(!skipRedirect) {
                 let redirectUrl = queryString.get('redirect');
                 if(redirectUrl) {
-                    Dbm.getInstance().repository.getItem("siteNavigation").controller.navigate(redirectUrl);
+                    Dbm.getRepositoryItem("siteNavigation").controller.navigate(redirectUrl);
                     return;
                 }
             }
@@ -81,7 +81,7 @@ export default class LoginForm extends Dbm.react.BaseObject {
                 return;
             }  
 
-            Dbm.getInstance().repository.getItem("siteNavigation").controller.navigate(site.loggedInUrl);
+            Dbm.getRepositoryItem("siteNavigation").controller.navigate(site.loggedInUrl);
         }
     }
 

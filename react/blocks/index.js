@@ -6,6 +6,7 @@ export * as gallery from "./gallery/index.js";
 export * as content from "./content/index.js";
 export * as admin from "./admin/index.js";
 export * as faq from "./faq/index.js";
+export * as redirect from "./redirect/index.js";
 
 export {default as Image} from "./Image.js";
 
@@ -231,6 +232,16 @@ export let registerAllBlocks = function() {
             )
         );
         registerBlock("content/anchorPosition", "Anchor position", createElement(Dbm.react.blocks.content.AnchorPosition, {}), editor, {}, {});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Redirect when signed in (optional)"}),
+            createElement(Dbm.react.admin.editor.fields.TextField, {name: "signedInUrl"}),
+            createElement(Dbm.react.form.LabelledArea, {label: "Redirect when signed out (optional)"}),
+            createElement(Dbm.react.admin.editor.fields.TextField, {name: "signedOutUrl"})
+        );
+        registerBlock("redirect/signedInRedirect", "Redirect / Signed in?", createElement(Dbm.react.blocks.redirect.SignedInRedirect, {}), editor, {}, {});
     }
 
     {

@@ -300,6 +300,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
                         item.setValue("user", null);
                     }
                     repository.getItem("site").currentUser = item.user;
+                    repository.getItem("site").checkedUser = true;
                     item.setValue("status", Dbm.loading.LoadingStatus.LOADED);
                 }
                 break;
@@ -311,6 +312,7 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
                     else {
                         repository.getItem("site").currentUser = null;
                     }
+                    repository.getItem("site").checkedUser = true;
                     this._connectionReady();
                 }
                 break;

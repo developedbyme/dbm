@@ -12,6 +12,9 @@ export const setupAndStart = function(aTitleSuffix) {
     siteNavigation.start();
     siteNavigation.setUrlFromLocation();
 
+    Dbm.getRepositoryItem("site").requireProperty("currentUser", null);
+    Dbm.getRepositoryItem("site").requireProperty("checkedUser", false);
+
     let siteDataLoader = new Dbm.site.SiteDataLoader();
     siteDataLoader.item.register("siteDataLoader");
     siteDataLoader.item.properties.url.connectInput(siteNavigation.item.properties.url);
