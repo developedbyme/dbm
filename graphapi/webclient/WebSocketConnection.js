@@ -223,6 +223,9 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
                     let item = repository.getItem(data["requestId"]);
                     item.setValue("items", repository.getItems(data["ids"]));
                     item.setValue("status", Dbm.loading.LoadingStatus.LOADED);
+                    if(data["logs"] && data["logs"].length) {
+                        console.warn("Request returned logs:", item, data["logs"], data)
+                    }
                 }
                 break;
             case "item/response":
@@ -238,6 +241,10 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
                             let currentCommand = currentArray[i];
                             currentCommand.perform(item, data["id"]);
                         }
+                    }
+
+                    if(data["logs"] && data["logs"].length) {
+                        console.warn("Request returned logs:", item, data["logs"], data)
                     }
                 }
                 break;
@@ -255,6 +262,10 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
                             let currentCommand = currentArray[i];
                             currentCommand.perform(item, data["data"]);
                         }
+                    }
+
+                    if(data["logs"] && data["logs"].length) {
+                        console.warn("Request returned logs:", item, data["logs"], data)
                     }
                 }
                 break;
