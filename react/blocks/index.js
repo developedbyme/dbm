@@ -7,6 +7,7 @@ export * as content from "./content/index.js";
 export * as admin from "./admin/index.js";
 export * as faq from "./faq/index.js";
 export * as redirect from "./redirect/index.js";
+export * as signin from "./signin/index.js";
 
 export {default as Image} from "./Image.js";
 
@@ -242,6 +243,13 @@ export let registerAllBlocks = function() {
             createElement(Dbm.react.admin.editor.fields.TextField, {name: "signedOutUrl"})
         );
         registerBlock("redirect/signedInRedirect", "Redirect / Signed in?", createElement(Dbm.react.blocks.redirect.SignedInRedirect, {}), editor, {}, {});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            
+        );
+        registerBlock("signIn/signIn", "Sign in / Sign in form", createElement(Dbm.react.blocks.signin.SignIn, {}), editor, {}, {});
     }
 
     {
