@@ -12,6 +12,9 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
 		this.output.register("screenX", NaN);
 		this.output.register("screenY", NaN);
 
+		this.output.register("pageX", NaN);
+		this.output.register("pageY", NaN);
+
 		this.output.register("parameterX", NaN);
 		this.output.register("parameterY", NaN);
 		
@@ -22,6 +25,7 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
     }
 
     start() {
+		//console.log("start");
 		window.addEventListener("resize", this._callback_scrollBound, false);
 		window.addEventListener("scroll", this._callback_scrollBound, false);
 		this.output.properties.prepare.startUpdating();
@@ -47,7 +51,6 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
 			//console.log(theInnerWidth, theInnerHeight);
 			
 			let rect = element.getBoundingClientRect();
-			//console.log(rect);
 			
 			let prepareX = this.input.prepareX;
 			let prepareY = this.input.prepareY;
@@ -66,6 +69,9 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
 			
 			this.output.screenX = screenX;
 			this.output.screenY = screenY;
+
+			this.output.pageX = screenX-window.scrollX;
+			this.output.pageY = screenY-window.scrollY;
 			
 			this.output.parameterX = parameterX;
 			this.output.parameterY = parameterY;
@@ -116,6 +122,9 @@ export default class ElementPosition extends Dbm.flow.FlowUpdateFunction {
 			
 			this.output.properties.screenX._internal_setValueInFlowOutsideOfUpdate(screenX);
 			this.output.properties.screenY._internal_setValueInFlowOutsideOfUpdate(screenY);
+
+			this.output.properties.pageX._internal_setValueInFlowOutsideOfUpdate(screenX+window.scrollX);
+			this.output.properties.pageY._internal_setValueInFlowOutsideOfUpdate(screenY+window.scrollY);
 			
 			this.output.properties.parameterX._internal_setValueInFlowOutsideOfUpdate(parameterX);
 			this.output.properties.parameterY._internal_setValueInFlowOutsideOfUpdate(parameterY);

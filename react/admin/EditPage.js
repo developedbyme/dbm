@@ -19,8 +19,8 @@ export default class EditPage extends Dbm.react.BaseObject {
         itemEditor.addFieldEditor("content", page.content, "content");
         itemEditor.addFieldEditor("publishDate", page.publishDate, "urlRequest");
         itemEditor.addOutgoingRelationEditor("in", "group/pageCategory", page.category ? page.category.id : 0, "urlRequest");
-        itemEditor.addIncomingRelationEditor("for", "language", page.language ? page.language.id : 0, "urlRequest");
-        itemEditor.addOutgoingRelationEditor("in", "group/translationGroup", page.translations ? page.translations.id : 0, "urlRequest");
+        //itemEditor.addIncomingRelationEditor("for", "language", page.language ? page.language.id : 0, "urlRequest");
+        //itemEditor.addOutgoingRelationEditor("in", "group/translationGroup", page.translations ? page.translations.id : 0, "urlRequest");
         itemEditor.addEditor("url", page.url, Dbm.graphapi.webclient.admin.SaveFunctions.setUrl, "url");
 
         let descriptionEditor = itemEditor.addFieldEditor("meta/description", page["meta/description"], "meta/description");
@@ -223,14 +223,7 @@ export default class EditPage extends Dbm.react.BaseObject {
                             React.createElement("label", {className: "standard-field-label"},
                                 "Language"
                             ),
-                            React.createElement(Dbm.react.form.GraphApiObjectSelection, {"value": itemEditor.getEditor("relation_in_for_language").item.editValue.value, objectType: "language", className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement("div", {className: "spacing standard"}),
-                        React.createElement("div", {},
-                            React.createElement("label", {className: "standard-field-label"},
-                                "Translations"
-                            ),
-                            React.createElement(Dbm.react.form.GraphApiObjectSelection, {"value": itemEditor.getEditor("relation_out_in_group/translationGroup").item.editValue.value, objectType: "group/translationGroup", className: "standard-field standard-field-padding full-width"}),
+                            React.createElement(Dbm.react.admin.PageTranslations, {}),
                         ),
                     ),
                     React.createElement("div", {className: "spacing standard"}),

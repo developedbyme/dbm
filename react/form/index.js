@@ -11,3 +11,4 @@ export {default as TextArea} from "./TextArea.js";
 export {default as EditObjectProperty} from "./EditObjectProperty.js";
 export {default as Form} from "./Form.js";
 export {default as Option} from "./Option.js";
+export {default as Dropdown} from "./Dropdown.js";

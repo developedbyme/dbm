@@ -14,6 +14,9 @@ export default class OpenCloseExpandableArea extends Dbm.react.BaseObject {
 		let switchValue = Dbm.flow.updatefunctions.logic.switchValue(openProperty).addCase(false, 0).addCase(true, 1);
 		let animateValueObject = Dbm.flow.animateValue(switchValue.output.properties.value);
 		let transformToStyle = Dbm.flow.updatefunctions.basic.transformValue(animateValueObject.properties.output, this._transformToStyle.bind(this));
+
+		let visibleCondition = Dbm.flow.updatefunctions.logic.condition(animateValueObject.properties.output, ">", 0);
+		this.item.requireProperty("isVisible", false).connectInput(visibleCondition.output.properties.result);
 		
 		this.item.requireProperty("animationStyle", {}).connectInput(transformToStyle.output.properties.value);
 
@@ -41,7 +44,7 @@ export default class OpenCloseExpandableArea extends Dbm.react.BaseObject {
 		let openProperty = this.getDynamicProp("open");
 		
 		return this._createMainElement(Dbm.react.animation.AnimatedElement, {"className": "animation-element", "controller": this.item.animation.item, "aria-hidden": this.item.properties.ariaHidden},
-			React.createElement(Dbm.react.context.AddContextVariables, {"values": {"open": openProperty}},
+			React.createElement(Dbm.react.context.AddContextVariables, {"values": {"open": openProperty, "isVisible": this.item.properties.isVisible}},
 				React.createElement("div", {"ref": this.createRef("element")},
 					this.getPropValue("children")
 				)

@@ -9,6 +9,7 @@ export {default as ResponsiveLayout} from "./ResponsiveLayout.js";
 export {default as List} from "./List.js";
 export {default as FixedWidthInfiniteSlideshow} from "./FixedWidthInfiniteSlideshow.js";
 export {default as SwitchableArea} from "./SwitchableArea.js";
+export {default as PopoverLayer} from "./PopoverLayer.js";
 
 export const responsiveLayout = function(aDefaultLayout) {
     let newResponsiveLayout = new Dbm.react.area.ResponsiveLayout();

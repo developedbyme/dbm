@@ -13,6 +13,6 @@ export default class SetProperty extends CommandBaseObject {
 		
         let value = this.getInput("value");
         
-        this._resolveSourceWithoutFlow(this.item.property, aFromObject, aData).value = value;
+        this._resolveSourceWithoutFlow(this.item.property, aFromObject, aData).getMostUpstreamProperty().value = value;
     }
 }

@@ -9,8 +9,11 @@ export default class AddItemByIdToContext extends Dbm.react.BaseObject {
     render() {
         
         let id = this.getPropValue("id");
-        let item = Dbm.getInstance().repository.getItem(id);
-
+        let item = null;
+        if(id != 0) {
+            item = Dbm.getInstance().repository.getItem(id);
+        }
+        
         let as = this.getPropValue("as");
         if(!as) {
             as = "item";

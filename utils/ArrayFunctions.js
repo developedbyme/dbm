@@ -266,30 +266,37 @@ export const getUnselectedItems = function(aSelectedItems, aAllItems) {
     return returnItems;
 }
 
-export const sortOnField = function(aArray, aField) {
+export const sortOnField = function(aArray, aField, aCompareFunction = null) {
+    let compareFunction = aCompareFunction;
+    if(!compareFunction) {
+        compareFunction = function(aA, aB) {
+            if(aA < aB) {
+                return -1;
+            }
+            else if(aA > aB) {
+                return 1;
+            }
+
+            return 0;
+        }
+    }
+
     let sortFunction = function(aA, aB) {
         let aValue = Dbm.objectPath(aA, aField);
         let bValue = Dbm.objectPath(aB, aField);
 
-        if(aValue < bValue) {
-            return -1;
-        }
-        else if(aValue > bValue) {
-            return 1;
-        }
-
-        return 0;
+        return compareFunction(aValue, bValue);
     }
-
+    
     aArray.sort(sortFunction);
     
     return aArray;
 }
 
 export const sortOnNumericField = function(aArray, aField) {
-    let sortFunction = function(aA, aB) {
-        let aValue = 1*Dbm.objectPath(aA, aField);
-        let bValue = 1*Dbm.objectPath(aB, aField);
+    let compareFunction = function(aA, aB) {
+        let aValue = 1*aA;
+        let bValue = 1*aB;
 
         if(aValue < bValue) {
             return -1;
@@ -300,10 +307,8 @@ export const sortOnNumericField = function(aArray, aField) {
 
         return 0;
     }
-
-    aArray.sort(sortFunction);
     
-    return aArray;
+    return sortOnField(aArray, aField, compareFunction);
 }
 
 export const getItemIndexByIfExists = function(aArray, aField, aIdentifier) {

@@ -12,7 +12,7 @@ export default class Option extends Dbm.react.BaseObject {
 
         let value = this.getDynamicProp("value").value;
 
-        return this._createMainElement("option", {"value": value,}, this.getPropValue("children"));
+        return this._createMainElement("option", {"value": value}, this.getPropValue("children"));
     }
 }
 

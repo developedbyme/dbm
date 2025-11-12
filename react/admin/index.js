@@ -6,6 +6,7 @@ export {default as EditObjectById} from "./EditObjectById.js";
 export {default as EditorGroup} from "./EditorGroup.js";
 export {default as SaveAllButton} from "./SaveAllButton.js";
 export {default as EditObject} from "./EditObject.js";
+export {default as PageTranslations} from "./PageTranslations.js";
 
 export * as editor from "./editor/index.js";
 export * as pages from "./pages/index.js";

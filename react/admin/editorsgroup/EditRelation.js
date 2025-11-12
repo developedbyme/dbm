@@ -5,10 +5,9 @@ export default class EditRelation extends Dbm.react.BaseObject {
     _constructAfterProps() {
         super._constructAfterProps();
 
-        let item = this.context.item;
         let itemEditor = this.context.itemEditor;
+        let item = Dbm.objectPath(itemEditor, "item.editedItem");
         let editor;
-
 
         let direction = this.getPropValue("direction");
         let relationType = this.getPropValue("relationType");

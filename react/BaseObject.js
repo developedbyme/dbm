@@ -145,7 +145,7 @@ export default class BaseObject extends Component {
     }
 
     _renderMainElement() {
-        return this._createMainElement("div", {}, this.props.children);
+        return this._createMainElement("div", {ref: this.createRef("mainElement")}, this.props.children);
     }
 
     _mainElement(aReactElement) {
