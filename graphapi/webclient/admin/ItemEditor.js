@@ -80,9 +80,27 @@ export default class ItemEditor extends Dbm.core.BaseObject {
         return this._addRelationEditor(name, aType, aObjectType, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.incomingRelation, aUpdateEncoding);
     }
 
+    getDefaultIncomingRelationEditor(aType, aObjectType) {
+        let item = this.item.editedItem;
+        
+        let relations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/in." + aType + ".objects"), "objectTypes", aObjectType, "arrayContains");
+        let relation = (relations && relations.length) ? relations[0].id : null;
+        
+        return this.addIncomingRelationEditor(aType, aObjectType, relation, ["relations"]);     
+    }
+
     addOutgoingRelationEditor(aType, aObjectType, aInitialValue, aUpdateEncoding = null) {
         let name = "out_" + aType + "_" + aObjectType;
         return this._addRelationEditor(name, aType, aObjectType, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.outgoingRelation, aUpdateEncoding);
+    }
+
+    getDefaultOutgoingRelationEditor(aType, aObjectType) {
+        let item = this.item.editedItem;
+        
+        let relations = Dbm.utils.ArrayFunctions.filterByField(Dbm.objectPath(item, "relations/out." + aType + ".objects"), "objectTypes", aObjectType, "arrayContains");
+        let relation = (relations && relations.length) ? relations[0].id : null;
+        
+        return this.addOutgoingRelationEditor(aType, aObjectType, relation, ["relations"]);     
     }
 
     _addMultipleRelationsEditor(aName, aType, aObjectType, aInitialValue, aSaveFunction, aUpdateEncoding = null) {

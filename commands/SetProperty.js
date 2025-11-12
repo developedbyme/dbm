@@ -11,7 +11,7 @@ export default class SetProperty extends CommandBaseObject {
 
     perform(aFromObject, aData) {
 		
-        let value = this.getInput("value");
+        let value = this.getInputFrom("value", aFromObject, aData);
         
         this._resolveSourceWithoutFlow(this.item.property, aFromObject, aData).getMostUpstreamProperty().value = value;
     }

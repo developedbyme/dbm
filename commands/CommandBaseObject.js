@@ -33,4 +33,8 @@ export default class CommandBaseObject extends Dbm.core.BaseObject {
     getInput(aName) {
         return this._resolveSource(this.item[aName]);
     }
+
+    getInputFrom(aName, aFromObject = null, aData = null) {
+        return this._resolveSource(this.item[aName], aFromObject, aData);
+    }
 }
