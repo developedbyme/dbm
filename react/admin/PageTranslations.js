@@ -88,25 +88,7 @@ export default class PageTranslations extends Dbm.react.BaseObject {
         return React.createElement("div", {},
             React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {direction: "in", relationType: "for", objectType: "language"},
                 React.createElement(Dbm.react.context.AddItemByIdToContext, {"id": Dbm.react.source.contextVariable("valueEditor.editValue.value"), "as": "language"},
-                    React.createElement("div", {"className": "flex-row small-item-spacing"},
-                        React.createElement("div", {"className": "flex-row-item"},
-                            React.createElement(Dbm.react.form.Dropdown, {},
-                                React.createElement("div", {"data-slot": "button", "className": "language-circle centered-cell-holder"}, Dbm.react.text.text(Dbm.react.source.contextVariable("language.identifier"))),
-                                React.createElement("div", {"className": "dropdown-menu-max-height standard-dropdown"},
-                                    React.createElement(Dbm.react.area.List, {items: this.item.properties.availableLanguages, "as": "availableLanguage"},
-                                        React.createElement(Dbm.react.interaction.CommandButton, {"commands": [
-                                            Dbm.commands.setProperty(Dbm.react.source.contextVariable("valueEditor.editValue.value"), Dbm.react.source.contextVariable("availableLanguage.id")),
-                                            Dbm.commands.setProperty(Dbm.react.source.contextVariable("open"), false)
-                                        ]},
-                                            React.createElement("div", {className: "standard-dropdown-row standard-dropdown-row-padding hover-row cursor-pointer"},
-                                                Dbm.react.text.text(Dbm.react.source.contextVariable("availableLanguage.name"))
-                                            )
-                                        ),
-                                    )
-                                )
-                            )
-                        ),
-                        React.createElement("div", {"className": "flex-row-item"},
+                    
                         
                             React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {direction: "out", relationType: "in", objectType: "group/translationGroup"},
                                 React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("valueEditor.editValue.value"), checkType: ">", compareValue: 0},
@@ -122,11 +104,7 @@ export default class PageTranslations extends Dbm.react.BaseObject {
                                         )
                                     )
                                 )
-                            ),
-
-                            
-                        )
-                    )
+                            )
                 )
             ),
         );

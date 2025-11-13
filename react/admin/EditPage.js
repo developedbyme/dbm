@@ -184,11 +184,32 @@ export default class EditPage extends Dbm.react.BaseObject {
             React.createElement(Dbm.react.context.AddContextVariables, {values: {"editorGroup": editorGroup, "itemEditor": itemEditor}},
                 React.createElement(Dbm.react.admin.EditObjectById, {id: page.id},
                     React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
-                        React.createElement("div", {},
-                            React.createElement("label", {className: "standard-field-label"},
-                                "Page title"
+                        React.createElement("div", {"className": "flex-row small-item-spacing"},
+                            React.createElement("div", {"className": "flex-row-item flex-resize"},
+                                React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("title").item.editValue.value, className: "standard-field standard-field-padding full-width page-title-form-field", placeholder: "Title"})
                             ),
-                            React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("title").item.editValue.value, className: "standard-field standard-field-padding full-width page-title-form-field", placeholder: "Title"}),
+                            React.createElement("div", {"className": "flex-row-item flex-no-resize"},
+                                React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("publishDate").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "YYYY-MM-DD", "type": "date"})
+                            ),
+                            React.createElement(Dbm.react.area.HasData, {check: Dbm.getRepositoryItem("site").properties.availableLanguages, checkType:"notEmpty"},
+                                React.createElement("div", {"className": "flex-row-item flex-no-resize"},
+                                    React.createElement(Dbm.react.admin.EditLanguage, {})
+                                )
+                            )
+                        ),
+                        React.createElement("div", {className: "spacing small"}),
+                        React.createElement("div", {"className": "flex-row small-item-spacing vertically-center-items"},
+                            React.createElement("div", {"className": "flex-row-item flex-resize"},
+                                React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("url").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "Url"})
+                            ),
+                            React.createElement(Dbm.react.area.HasData, {check: Dbm.getRepositoryItem("site").properties.availableLanguages, checkType:"notEmpty"},
+                                React.createElement("div", {"className": "flex-row-item flex-no-resize"},
+                                    "Translations:"
+                                ),
+                                React.createElement("div", {"className": "flex-row-item flex-no-resize"},
+                                    React.createElement(Dbm.react.admin.PageTranslations, {})
+                                )
+                            )
                         ),
                         React.createElement("div", {className: "spacing standard"}),
                         React.createElement("div", {},
@@ -200,31 +221,10 @@ export default class EditPage extends Dbm.react.BaseObject {
                         React.createElement("div", {className: "spacing standard"}),
                         React.createElement("div", {},
                             React.createElement("label", {className: "standard-field-label"},
-                                "Url"
-                            ),
-                            React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("url").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "Url"}),
-                        ),
-                        React.createElement("div", {className: "spacing standard"}),
-                        React.createElement("div", {},
-                            React.createElement("label", {className: "standard-field-label"},
-                                "Publish date"
-                            ),
-                            React.createElement(Dbm.react.form.FormField, {"value": itemEditor.getEditor("publishDate").item.editValue.value, className: "standard-field standard-field-padding full-width", placeholder: "YYYY-MM-DD", "type": "date"}),
-                        ),
-                        React.createElement("div", {className: "spacing standard"}),
-                        React.createElement("div", {},
-                            React.createElement("label", {className: "standard-field-label"},
                                 "Category"
                             ),
                             React.createElement(Dbm.react.form.GraphApiObjectSelection, {"value": itemEditor.getEditor("relation_out_in_group/pageCategory").item.editValue.value, objectType: "group/pageCategory", className: "standard-field standard-field-padding full-width"}),
-                        ),
-                        React.createElement("div", {className: "spacing standard"}),
-                        React.createElement("div", {},
-                            React.createElement("label", {className: "standard-field-label"},
-                                "Language"
-                            ),
-                            React.createElement(Dbm.react.admin.PageTranslations, {}),
-                        ),
+                        )
                     ),
                     React.createElement("div", {className: "spacing standard"}),
                     React.createElement("div", {"className": "dbm-admin-box dbm-admin-box-padding"},
