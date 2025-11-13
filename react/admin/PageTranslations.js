@@ -70,7 +70,7 @@ export default class PageTranslations extends Dbm.react.BaseObject {
     _renderMainElement() {
 
         let selectTranslationElement = React.createElement(Dbm.react.form.Dropdown, {},
-            React.createElement("div", {"data-slot": "button"}, Dbm.react.text.text(Dbm.react.source.contextVariable("translatedLanguage.identifier"))),
+            React.createElement("div", {"data-slot": "button", "className": "language-circle centered-cell-holder"}, Dbm.react.text.text(Dbm.react.source.contextVariable("translatedLanguage.identifier"))),
             React.createElement("div", {"className": "dropdown-menu-max-height standard-dropdown"},
                 React.createElement(Dbm.react.interaction.CommandButton, {"commands": [
                     Dbm.commands.callFunction(this._createTranslation.bind(this), [Dbm.react.source.contextVariable("translatedLanguage")]),
@@ -91,7 +91,7 @@ export default class PageTranslations extends Dbm.react.BaseObject {
                     React.createElement("div", {"className": "flex-row small-item-spacing"},
                         React.createElement("div", {"className": "flex-row-item"},
                             React.createElement(Dbm.react.form.Dropdown, {},
-                                React.createElement("div", {"data-slot": "button"}, Dbm.react.text.text(Dbm.react.source.contextVariable("language.identifier"))),
+                                React.createElement("div", {"data-slot": "button", "className": "language-circle centered-cell-holder"}, Dbm.react.text.text(Dbm.react.source.contextVariable("language.identifier"))),
                                 React.createElement("div", {"className": "dropdown-menu-max-height standard-dropdown"},
                                     React.createElement(Dbm.react.area.List, {items: this.item.properties.availableLanguages, "as": "availableLanguage"},
                                         React.createElement(Dbm.react.interaction.CommandButton, {"commands": [
@@ -116,7 +116,7 @@ export default class PageTranslations extends Dbm.react.BaseObject {
                                     React.createElement(Dbm.react.form.GraphApiObjectSelection, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), objectType: "group/translationGroup", className: "standard-field standard-field-padding full-width"})
                                 ),
                                 React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("valueEditor.editValue.value"), checkType: "invert/>", compareValue: 0},
-                                    React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("language")},
+                                    React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("language.id")},
                                         React.createElement(Dbm.react.area.List, {items: this.item.properties.availableTranslations, "as": "translatedLanguage"},
                                             selectTranslationElement
                                         )
