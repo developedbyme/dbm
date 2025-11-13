@@ -204,9 +204,6 @@ export default class EditPage extends Dbm.react.BaseObject {
                             ),
                             React.createElement(Dbm.react.area.HasData, {check: Dbm.getRepositoryItem("site").properties.availableLanguages, checkType:"notEmpty"},
                                 React.createElement("div", {"className": "flex-row-item flex-no-resize"},
-                                    "Translations:"
-                                ),
-                                React.createElement("div", {"className": "flex-row-item flex-no-resize"},
                                     React.createElement(Dbm.react.admin.PageTranslations, {})
                                 )
                             )

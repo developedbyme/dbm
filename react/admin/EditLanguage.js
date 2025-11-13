@@ -34,12 +34,25 @@ export default class EditLanguage extends Dbm.react.BaseObject {
                                 React.createElement("div", {"data-slot": "button", "className": "standard-field standard-field-padding"},
                                     React.createElement("div", {className: "flex-row micro-item-spacing vertically-center-items"},
                                         React.createElement("div", {className: "flex-row-item flex-no-resize"},
-                                            React.createElement("div", {className: "language-circle centered-cell-holder"},
+                                            React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("language.id")},
+                                                React.createElement("div", {className: "language-circle centered-cell-holder"},
 
+                                                )
+                                            ),
+                                            React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("language.id"), checkType: "invert/default"},
+                                                React.createElement("div", {className: "language-circle centered-cell-holder"},
+
+                                                )
                                             )
+                                            
                                         ),
                                         React.createElement("div", {className: "flex-row-item flex-resize"},
-                                            Dbm.react.text.text(Dbm.react.source.contextVariable("language.name"))
+                                            React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("language.id")},
+                                                Dbm.react.text.text(Dbm.react.source.contextVariable("language.name"))
+                                            ),
+                                            React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("language.id"), checkType: "invert/default"},
+                                                "Language"
+                                            )
                                         ),
                                         React.createElement("div", {className: "flex-row-item flex-no-resize"},
                                             "v"
