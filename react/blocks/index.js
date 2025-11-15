@@ -8,6 +8,7 @@ export * as admin from "./admin/index.js";
 export * as faq from "./faq/index.js";
 export * as redirect from "./redirect/index.js";
 export * as signin from "./signin/index.js";
+export * as section from "./section/index.js";
 
 export {default as Image} from "./Image.js";
 
@@ -65,6 +66,8 @@ export let registerEditorBlock = function(aModuleName, aName, aEditorModule = nu
     tools[aModuleName] = createToolConfiguration(aModuleName, aName, aInitialData, aSanitizeSettings);
 
     editorConfigItem.setValue("tools", tools);
+
+    return editorItem;
 }
 
 export let registerFrontBlock = function(aModuleName, aElement) {
@@ -72,6 +75,8 @@ export let registerFrontBlock = function(aModuleName, aElement) {
     let elementItem = new Dbm.repository.Item();
     elementItem.setValue("element", aElement);
     elementItem.register("blocks/" + aModuleName);
+
+    return elementItem;
 }
 
 export let registerBlock = function(aModuleName, aName, aElement, aEditorElement = null, aInitialData = {}, aSanitizeSettings = {}) {
@@ -85,8 +90,10 @@ export let registerBlock = function(aModuleName, aName, aElement, aEditorElement
         editorModule.setMainElement(aEditorElement);
     }
 
-    registerEditorBlock(aModuleName, aName, editorModule, aInitialData, aSanitizeSettings);
-    registerFrontBlock(aModuleName, aElement);
+    let editorBlock = registerEditorBlock(aModuleName, aName, editorModule, aInitialData, aSanitizeSettings);
+    let displayBlock = registerFrontBlock(aModuleName, aElement);
+
+    return {"editorBlock": editorBlock, "displayBlock": displayBlock};
 } 
 
 export let getDefaultEditorModule = function() {
@@ -263,6 +270,16 @@ export let registerAllBlocks = function() {
             ),
         );
         registerBlock("faq/askAQuestion", "FAQ / Ask a question", createElement(Dbm.react.blocks.faq.AskAQuestion, {}), editor, {}, {});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Color"}, 
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "color"})
+            )
+        );
+        let block = registerBlock("section/coloredBackgroundSection", "Section / Colored background", createElement(Dbm.react.blocks.section.ColoredBackgroundSection, {}), editor, {}, {});
+        block.displayBlock.setValue("isSection", true);
     }
 
     {
