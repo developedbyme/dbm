@@ -276,11 +276,47 @@ export let registerAllBlocks = function() {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
             createElement(Dbm.react.form.LabelledArea, {label: "Color"}, 
                 createElement(Dbm.react.admin.editor.fields.TextField, {name: "color"})
-            )
+            ),
+            createElement(Dbm.react.form.LabelledArea, {label: "Vertical spacing"}, 
+                createElement(Dbm.react.admin.editor.fields.CheckboxField, {"name": "skipSpacing"}),
+                "Skip"
+            ),
         );
         let block = registerBlock("section/coloredBackgroundSection", "Section / Colored background", createElement(Dbm.react.blocks.section.ColoredBackgroundSection, {}), editor, {}, {});
         block.displayBlock.setValue("isSection", true);
     }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Color"}, 
+                createElement(Dbm.react.admin.editor.fields.TextField, {name: "color"})
+            ),
+            createElement(Dbm.react.form.LabelledArea, {label: "Dark background"}, 
+                createElement(Dbm.react.admin.editor.fields.CheckboxField, {"name": "invertText"}),
+                "Invert text"
+            ),
+        );
+        let block = registerBlock("section/coloredBoxSection", "Section / Colored box", createElement(Dbm.react.blocks.section.ColoredBoxSection, {}), editor, {}, {});
+        block.displayBlock.setValue("isSection", true);
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            
+        );
+        let block = registerBlock("section/endSection", "Section / End", createElement("div", {"data-section-end": "1"}), editor, {}, {});
+        block.displayBlock.setValue("isSection", true);
+        block.displayBlock.setValue("endSection", true);
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            
+        );
+        let block = registerBlock("content/skipSpacing", "Skip spacing", createElement("div", {"data-skip-spacing": "1"}), editor, {}, {});
+    }
+
+
 
     {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/title");
