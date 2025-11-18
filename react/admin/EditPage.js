@@ -50,7 +50,7 @@ export default class EditPage extends Dbm.react.BaseObject {
         let preloadImages = [];
 
         let pageEditorItem = Dbm.getInstance().repository.getItem("admin/editor/pageEditor");
-        if(pageEditorItem.generateContentPreload) {
+        if(pageEditorItem.generateContentPreload && content) {
             preloadImages = pageEditorItem.generateContentPreload(content);
         }
 

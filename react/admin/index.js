@@ -8,6 +8,8 @@ export {default as SaveAllButton} from "./SaveAllButton.js";
 export {default as EditObject} from "./EditObject.js";
 export {default as PageTranslations} from "./PageTranslations.js";
 export {default as EditLanguage} from "./EditLanguage.js";
+export {default as EditTranslationGroup} from "./EditTranslationGroup.js";
+export {default as SelectTranslation} from "./SelectTranslation.js";
 
 export * as editor from "./editor/index.js";
 export * as pages from "./pages/index.js";

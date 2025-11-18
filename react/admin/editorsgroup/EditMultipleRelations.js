@@ -1,7 +1,7 @@
 import React from "react";
 import Dbm from "../../../index.js";
 
-export default class EditRelation extends Dbm.react.BaseObject {
+export default class EditMultipleRelations extends Dbm.react.BaseObject {
     _constructAfterProps() {
         super._constructAfterProps();
 
@@ -13,10 +13,10 @@ export default class EditRelation extends Dbm.react.BaseObject {
         let objectType = this.getPropValue("objectType");
 
         if(direction == "in") {
-            editor = itemEditor.getDefaultIncomingRelationEditor(relationType, objectType);
+            editor = itemEditor.getAdminMultipleIncomingRelationsEditor(relationType, objectType);
         }
         else if(direction == "out") {
-            editor = itemEditor.getDefaultOutgoingRelationEditor(relationType, objectType);
+            editor = itemEditor.getAdminMultipleOutgoingRelationsEditor(relationType, objectType);
         }
         else  {
             console.error("Unknown direction", direction, this);

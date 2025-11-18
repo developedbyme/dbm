@@ -93,7 +93,7 @@ export default class PageTranslations extends Dbm.react.BaseObject {
                             React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {direction: "out", relationType: "in", objectType: "group/translationGroup"},
                                 React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("valueEditor.editValue.value"), checkType: ">", compareValue: 0},
                                     React.createElement(Dbm.react.admin.EditObjectById, {"id": Dbm.react.source.contextVariable("valueEditor.editValue.value")},
-                                        "Translation added"
+                                        React.createElement(Dbm.react.admin.EditTranslationGroup, {})
                                     ),
                                     React.createElement(Dbm.react.form.GraphApiObjectSelection, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), objectType: "group/translationGroup", className: "standard-field standard-field-padding full-width"})
                                 ),
