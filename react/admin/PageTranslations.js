@@ -99,7 +99,7 @@ export default class PageTranslations extends Dbm.react.BaseObject {
         let request = this._createTranslationGroup();
         Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._addPageToGroup.bind(this), [Dbm.core.source.staticObject(request, "item"), aPage]));
         Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._addPageToGroup.bind(this), [Dbm.core.source.staticObject(request, "item"), currentPage]));
-        Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._groupCreated.bind(this), [request, Dbm.core.source.staticObject(request, "item")]));
+        Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._groupCreated.bind(this), [Dbm.core.source.staticObject(request, "item")]));
     }
 
     _addToTranslation(aPage) {
@@ -114,10 +114,12 @@ export default class PageTranslations extends Dbm.react.BaseObject {
             let request = this._createTranslationGroup();
             Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._addPageToGroup.bind(this), [Dbm.core.source.staticObject(request, "item"), aPage]));
             Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._addPageToGroup.bind(this), [Dbm.core.source.staticObject(request, "item"), currentPage]));
-            Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._groupCreated.bind(this), [request, Dbm.core.source.staticObject(request, "item")]));
+            Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._groupCreated.bind(this), [Dbm.core.source.staticObject(request, "item")]));
         }
         else {
-            this._loadTranslationGroup();
+            let request = this._loadTranslationGroup(exisitingTranslationGroup);
+            Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._addPageToGroup.bind(this), [Dbm.core.source.staticObject(request, "item"), currentPage]));
+            Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._groupCreated.bind(this), [Dbm.core.source.staticObject(request, "item")]));
         }
     }
 
@@ -147,14 +149,14 @@ export default class PageTranslations extends Dbm.react.BaseObject {
         editor.value = newValues;
     }
 
-    _groupCreated(aRequest, aGroup) {
+    _groupCreated(aGroup) {
         console.log("_groupCreated");
-        console.log(aRequest, aGroup);
+        console.log(aGroup);
 
         let editorGroup = this.context.editorGroup;
 
         let groupItemEditor = editorGroup.getItemEditor(aGroup.id);
-        groupItemEditor.getVisibilityEditor("draft").value = "public";
+        groupItemEditor.getVisibilityEditor(aGroup.visibility).value = "public";
 
         let itemEditor = this.context.itemEditor;
         let currentPage = itemEditor.item.editedItem;
@@ -163,14 +165,20 @@ export default class PageTranslations extends Dbm.react.BaseObject {
         relationEditor.value = aGroup.id;
     }
 
-    _loadTranslationGroup() {
+    _loadTranslationGroup(aGroup) {
+        console.log("_loadTranslationGroup");
+        let request = Dbm.getGraphApi().requestItem(aGroup.id, ["admin_fields", "admin_fieldTranslations", "relations", "visibility"]);
 
+        return request;
     }
 
     _renderMainElement() {
 
         let selectTranslationElement = React.createElement(Dbm.react.form.Dropdown, {},
-            React.createElement("div", {"data-slot": "button", "className": "language-circle centered-cell-holder"}, Dbm.react.text.text(Dbm.react.source.contextVariable("translationLanguage.identifier"))),
+            React.createElement("div", {"data-slot": "button", "className": "language-circle centered-cell-holder"},
+                Dbm.react.text.text(Dbm.react.source.contextVariable("translationLanguage.identifier")),
+                "+"
+            ),
             React.createElement("div", {"className": "dropdown-menu-max-height standard-dropdown"},
                 React.createElement(Dbm.react.interaction.CommandButton, {"commands": [
                     Dbm.commands.callFunction(this._createTranslation.bind(this), [Dbm.react.source.contextVariable("translationLanguage")]),
