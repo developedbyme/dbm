@@ -18,6 +18,11 @@ export default class EditTranslationGroup extends Dbm.react.BaseObject {
 
         Dbm.flow.addUpdateCommand(editor.valueProperty, updateTranslationsCommand);
         Dbm.flow.addUpdateCommand(this.item.requireProperty("availableLanguages", []), updateTranslationsCommand);
+
+        {
+            let request = Dbm.getGraphApi().requestRange([{"type": "byObjectType", "objectType": "page"}], ["urlRequest"]);
+            this.item.propertyInput("pages", request.properties.items);
+        }
         
         {
             let request = Dbm.getGraphApi().requestRange([{"type": "byObjectType", "objectType": "language"}], ["type"]);
@@ -60,7 +65,44 @@ export default class EditTranslationGroup extends Dbm.react.BaseObject {
         console.log("_createTranslation");
         console.log(aLanguage);
 
-        //METODO:
+        let currentPage = this.context.page;
+        console.log(currentPage, this.item.pages);
+
+        let currentUrl = currentPage.url;
+        let newUrl = "/" + aLanguage.identifier + currentUrl;
+        if(currentUrl !== "/") {
+            let tempArray = currentUrl.split("/");
+            console.log(currentUrl, tempArray);
+            tempArray.pop(); //MENOTE: remove trailing slash
+            let currentSlug = tempArray.pop();
+            let parentUrl = tempArray.join("/") + "/";
+            console.log(parentUrl);
+            let parentPage = Dbm.utils.ArrayFunctions.getItemByIfExists(this.item.pages, "url", parentUrl);
+            let translations = Dbm.objectPath(parentPage, "translations.pages");
+            console.log(parentPage, translations);
+            if(translations) {
+                let translationInLanguage = Dbm.utils.ArrayFunctions.getItemByIfExists(translations, "language", aLanguage);
+                console.log(translationInLanguage);
+                if(translationInLanguage) {
+                    newUrl = translationInLanguage.url + currentSlug + "/";
+                }
+            }
+        }
+
+        console.log(newUrl);
+
+        let currentDate = (new Date()).toISOString().split("T")[0];
+
+        let changes = [
+            {"type": "setField", "data": {"value": currentPage.title, "field": "title"}},
+            {"type": "setField", "data": {"value": currentDate, "field": "publishDate"}},
+            {"type": "setUrl", "data": {"value": newUrl}},
+            {"type": "addIncomingRelation", "data": {"value": aLanguage.id, "type": "for"}}
+        ]
+
+        let request = Dbm.getGraphApi().createItem(["page"], "public", changes, ["urlRequest"]);
+
+        Dbm.flow.addUpdateCommand(request.properties.status, Dbm.commands.callFunction(this._addTranslation.bind(this), [Dbm.core.source.staticObject(request, "item")]));
     }
 
     _addTranslation(aPage) {
@@ -89,7 +131,7 @@ export default class EditTranslationGroup extends Dbm.react.BaseObject {
                     ),
                     React.createElement("div", {"className": "dropdown-menu-max-height standard-dropdown"},
                         React.createElement(Dbm.react.interaction.CommandButton, {"commands": [
-                            Dbm.commands.callFunction(this._createTranslation.bind(this), [Dbm.react.source.contextVariable("translatedLanguage")]),
+                            Dbm.commands.callFunction(this._createTranslation.bind(this), [Dbm.react.source.contextVariable("translationLanguage")]),
                             Dbm.commands.setProperty(Dbm.react.source.contextVariable("open"), false)
                         ]},
                             React.createElement("div", {className: "standard-dropdown-row standard-dropdown-row-padding hover-row cursor-pointer"}, "Create page")
