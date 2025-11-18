@@ -43,6 +43,8 @@ export default class EditTranslationGroup extends Dbm.react.BaseObject {
 
         let availableTranslatedLanguages = Dbm.utils.ArrayFunctions.filterByField(this.item.availableLanguages, "id", language.id, "!==");
 
+        console.log(itemEditor, itemEditor.item.editedItem.id, availableTranslatedLanguages, language);
+
         let editor = itemEditor.getAdminMultipleIncomingRelationsEditor("in", "page");
 
         let allTranslations = Dbm.getInstance().repository.getItems(editor.value);
@@ -62,8 +64,8 @@ export default class EditTranslationGroup extends Dbm.react.BaseObject {
     }
 
     _addTranslation(aPage) {
-        console.log("_addTranslation");
-        console.log(aPage);
+        //console.log("_addTranslation");
+        //console.log(aPage);
 
         let itemEditor = this.context.itemEditor;
         let editor = itemEditor.getAdminMultipleIncomingRelationsEditor("in", "page");
@@ -71,8 +73,6 @@ export default class EditTranslationGroup extends Dbm.react.BaseObject {
         let newValues = [].concat(editor.value);
         newValues.push(aPage.id);
         editor.value = newValues;
-
-        console.log(editor.value);
     }
 
     _renderMainElement() {
@@ -96,7 +96,10 @@ export default class EditTranslationGroup extends Dbm.react.BaseObject {
                         ),
 
                         React.createElement("div", {}, "Link translation"),
-                        React.createElement(Dbm.react.admin.SelectTranslation, {"commands": [Dbm.commands.callFunction(this._addTranslation.bind(this), [Dbm.core.source.event("page")])]},
+                        React.createElement(Dbm.react.admin.SelectTranslation, {"commands": [
+                            Dbm.commands.callFunction(this._addTranslation.bind(this), [Dbm.core.source.event("page")]),
+                            Dbm.commands.setProperty(Dbm.react.source.contextVariable("open"), false)
+                        ]},
                             React.createElement("div", {"className": "standard-dropdown-row standard-dropdown-row-padding hover-row cursor-pointer"},
                                 Dbm.react.text.text(Dbm.react.source.contextVariable("translatedPage.url")),
                                 " - ",

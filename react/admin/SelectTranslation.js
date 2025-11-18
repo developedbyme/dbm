@@ -60,7 +60,7 @@ export default class SelectTranslation extends Dbm.react.BaseObject {
             )
         }
 
-        return React.createElement("div", {},
+        return React.createElement(React.Fragment, {},
             React.createElement(Dbm.react.area.List, {items: this.item.properties.availablePages, "as": "translatedPage"},
                 React.createElement(Dbm.react.interaction.CommandButton, {"command": Dbm.commands.callFunction(this._pageSelected.bind(this), [Dbm.react.source.contextVariable("translatedPage")])},
                     children
