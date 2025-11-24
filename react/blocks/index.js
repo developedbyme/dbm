@@ -349,6 +349,11 @@ export let registerAllBlocks = function() {
     }
 
     {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/url");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Url, {}));
+    }
+
+    {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/identifier");
         itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Identifier, {}));
     }
@@ -393,6 +398,7 @@ export let registerAllBlocks = function() {
 
         let newArray = [].concat(objectTypeEditor.editors);
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/title"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/url"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/content"));
         objectTypeEditor.editors = newArray;
     }

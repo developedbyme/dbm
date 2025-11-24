@@ -28,7 +28,7 @@ export default class LoginForm extends Dbm.react.BaseObject {
         if(aLoader.item.status === Dbm.loading.LoadingStatus.LOADED) {
             if(aLoader.item.data.success) {
                 
-                let item = Dbm.getRepositoryItem("graphApi").controller.signIn(aLoader.item.data.data.wsToken);
+                let item = Dbm.getGraphApi().signIn(aLoader.item.data.data.wsToken);
                 Dbm.flow.addUpdateCommand(item.properties.status, Dbm.commands.callFunction(this._graphApiRequestStatusChanges.bind(this), [item, aLoader]));
             }
             else {

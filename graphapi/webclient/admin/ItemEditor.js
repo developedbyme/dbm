@@ -201,6 +201,35 @@ export default class ItemEditor extends Dbm.core.BaseObject {
         return valueEditor;
     }
 
+    getUrlEditor(aInitialValue) {
+        let name = "url";
+        let valueEditor = this.item["url"];
+        if(!valueEditor) {
+            valueEditor = new Dbm.graphapi.webclient.admin.ValueEditor();
+            valueEditor.item.editValue.setInitialValue(aInitialValue);
+
+            valueEditor.item.setValue("itemEditor", this.item);
+            valueEditor.item.setValue("updateEncoding", "url");
+
+            this.item.anyChange.addCheck(valueEditor.item.properties.changed);
+            this.item.setValue(name, valueEditor); 
+            this.item.editors = [].concat(this.item.editors, valueEditor);
+            
+            valueEditor.addSaveFunction(Dbm.graphapi.webclient.admin.SaveFunctions.setUrl);
+        }
+
+        return valueEditor;
+    }
+
+    getAdminUrlEditor() {
+        let item = this.item.editedItem;
+        let value = Dbm.objectPath(item, "url");
+
+        debugger;
+        
+        return this.getUrlEditor(value);     
+    }
+
     addCommandsToSaveData(aSaveData) {
 
         let editedItemId = Dbm.objectPath(this.item, "editedItem.id");

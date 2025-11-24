@@ -24,6 +24,16 @@ export default class EditLanguage extends Dbm.react.BaseObject {
         this.item.availableLanguages = filteredLanguages;
     }
 
+    getFlagUrl(aLanguageCode) {
+
+        let countryCode = aLanguageCode;
+        if(aLanguageCode === "en") {
+            countryCode = "gb";
+        }
+
+        return "https://flagcdn.com/" + countryCode + ".svg";
+    }
+
     _renderMainElement() {
 
         return React.createElement("div", {},
@@ -35,8 +45,8 @@ export default class EditLanguage extends Dbm.react.BaseObject {
                                     React.createElement("div", {className: "flex-row micro-item-spacing vertically-center-items"},
                                         React.createElement("div", {className: "flex-row-item flex-no-resize"},
                                             React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("language.id")},
-                                                React.createElement("div", {className: "language-circle centered-cell-holder"},
-
+                                                React.createElement("div", {className: "language-circle centered-cell-holder overflow-hidden"},
+                                                    React.createElement(Dbm.react.image.Image, {"src": Dbm.core.source.command(Dbm.commands.callFunction(this.getFlagUrl, [Dbm.react.source.contextVariable("language.identifier")])), "className": "background-cover full-size"})
                                                 )
                                             ),
                                             React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("language.id"), checkType: "invert/default"},

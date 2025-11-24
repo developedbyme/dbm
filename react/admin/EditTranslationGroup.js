@@ -117,11 +117,28 @@ export default class EditTranslationGroup extends Dbm.react.BaseObject {
         editor.value = newValues;
     }
 
+    getFlagUrl(aLanguageCode) {
+
+        let countryCode = aLanguageCode;
+        if(aLanguageCode === "en") {
+            countryCode = "gb";
+        }
+
+        return "https://flagcdn.com/" + countryCode + ".svg";
+    }
+
     _renderMainElement() {
 
         return React.createElement("div", {},
             React.createElement(Dbm.react.area.List, {items: this.item.properties.translations, "as": "translation"},
-                React.createElement("div", {"className": "language-circle centered-cell-holder"}, Dbm.react.text.text(Dbm.react.source.contextVariable("translation.language.identifier")))
+                React.createElement(Dbm.react.form.Dropdown, {},
+                    React.createElement("div", {"data-slot": "button", "className": "language-circle centered-cell-holder"}, Dbm.react.text.text(Dbm.react.source.contextVariable("translation.language.identifier"))),
+                    React.createElement("div", {"className": "dropdown-menu-max-height standard-dropdown"},
+                        React.createElement(Dbm.react.text.Link, {"href": Dbm.react.source.contextVariable("translation.url"), "target": "_blank", "className": "custom-styled-link"},
+                            React.createElement("div", {className: "standard-dropdown-row standard-dropdown-row-padding hover-row cursor-pointer"}, "View")
+                        )
+                    ),
+                )
             ),
             React.createElement(Dbm.react.area.List, {items: this.item.properties.missingLanguages, "as": "translationLanguage"},
                 React.createElement(Dbm.react.form.Dropdown, {},
