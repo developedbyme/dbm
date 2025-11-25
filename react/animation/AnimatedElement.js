@@ -10,6 +10,10 @@ export default class AnimatedElement extends Dbm.react.BaseObject {
         controller.propertyInput("element", this.item.requireProperty("animationElement", null));
     }
 
+    _removedUsedProps(aProps) {
+        delete aProps["controller"];
+    }
+
     _renderMainElement() {
         //console.log("AnimatedElement::_renderMainElement");
         //console.log(this);

@@ -6,6 +6,10 @@ export default class InsertElement extends Dbm.react.BaseObject {
         super._construct();
     }
 
+    _removedUsedProps(aProps) {
+        delete aProps["element"];
+    }
+
     render() {
         //console.log("InsertElement::render");
         //console.log(this);
@@ -16,7 +20,9 @@ export default class InsertElement extends Dbm.react.BaseObject {
             return React.createElement("div", {}, "No element set");
         }
 
-        return element;
+        let props = this._copyProps(this.props);
+
+        return Dbm.react.ChildFunctions.clone(element, props);
     }
 }
 

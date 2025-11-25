@@ -18,19 +18,7 @@ export default class CommandButton extends Dbm.react.BaseObject {
         }
         if(commands) {
             commands = Dbm.utils.ArrayFunctions.singleOrArray(commands);
-
-            let currentArray = commands;
-            let currentArrayLength = currentArray.length;
-            for(let i = 0; i < currentArrayLength; i++) {
-                let command = currentArray[i];
-                try {
-                    command.perform(this, aEvent);
-                }
-                catch(theError) {
-                    console.error("Error while running command", theError, command);
-                }
-                
-            }
+            Dbm.commands.performCommands(commands, this, aEvent);
         }
         else{
             console.warn("Button doesn't have any commands", this);
@@ -98,10 +86,10 @@ export default class CommandButton extends Dbm.react.BaseObject {
             let currentChild = currentArray[i];
             if(currentChild) {
                 if(typeof(currentChild) === "string") {
-                    replacedChildren.push(React.createElement("span"), {"onClick": this._callback_clickBound, onKeyDown: function(aEvent) {if(aEvent.key === "Enter") aEvent.target.click()}}, currentChild);
+                    replacedChildren.push(React.createElement("span", {"onClick": this._callback_clickBound, onKeyDown: CommandButton.callback_keyDown}, currentChild));
                 }
                 else {
-                    replacedChildren.push(this._performClone(currentChild, {"onClick": this._callback_clickBound, onKeyDown: function(aEvent) {if(aEvent.key === "Enter") aEvent.target.click()}}));
+                    replacedChildren.push(this._performClone(currentChild, {"onClick": this._callback_clickBound, onKeyDown: CommandButton.callback_keyDown}));
                 }
             }
             else {
@@ -111,6 +99,12 @@ export default class CommandButton extends Dbm.react.BaseObject {
         
 
         return React.createElement(React.Fragment, {}, replacedChildren);
+    }
+
+    static callback_keyDown(aEvent) {
+        if(aEvent.key === "Enter") {
+            aEvent.target.click();
+        }
     }
 }
 

@@ -52,6 +52,11 @@ export const performCommands = function(aCommands, aFromObject = null, aEventDat
     let currentArrayLength = currentArray.length;
     for(let i = 0; i < currentArrayLength; i++) {
         let currentCommand = currentArray[i];
-        currentCommand.perform(aFromObject, aEventData);
+        try {
+            currentCommand.perform(aFromObject, aEventData);
+        }
+        catch(theError) {
+            console.error("Error while running command", theError, currentCommand);
+        }
     }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import Dbm from "../../index.js";
 
-export default class Dropdown extends Dbm.react.BaseObject {
+export default class HoverDropdown extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
@@ -20,22 +20,16 @@ export default class Dropdown extends Dbm.react.BaseObject {
 
         let openProperty = this.getDynamicProp("open");
 
-        let position = this.getPropValue("position");
-        let dropClassName = "dropdown-menu-min-width position-absolute";
-        if(position !== "right") {
-            dropClassName += " " + "top-right";
-        }
+        let dropClassName = "position-absolute full-width";
 
         return this._createMainElement("div", {className: "absolute-container"},
-            React.createElement(Dbm.react.interaction.CommandButton, {"command": Dbm.commands.setProperty(openProperty, true)},
-                React.createElement("div", {"className": "cursor-pointer"},
+            React.createElement(Dbm.react.interaction.HoverArea, {"over": openProperty},
+                React.createElement("div", {"className": ""},
                     React.createElement(Dbm.react.area.InsertElement, {"element": buttonElement})
-                )
-            ),
-            React.createElement(Dbm.react.area.PopoverLayer, {className: "position-absolute bottom-left full-width", "open": openProperty},
-                React.createElement("div", {className: dropClassName},
-                    React.createElement(Dbm.react.area.OpenCloseExpandableArea, {"open": openProperty},
-                        React.createElement(Dbm.react.interaction.ClickOutsideTrigger, {"command": Dbm.commands.setProperty(openProperty, false)},
+                ),
+                React.createElement(Dbm.react.area.PopoverLayer, {className: "position-absolute bottom-left full-width", "open": openProperty},
+                    React.createElement("div", {className: dropClassName},
+                        React.createElement(Dbm.react.area.OpenCloseExpandableArea, {"open": openProperty},
                             React.createElement(Dbm.react.area.InsertElement, {"element": mainChildren})
                         )
                     )

@@ -22,6 +22,10 @@ export default class OpenCloseExpandableArea extends Dbm.react.BaseObject {
 
 		this.item.setValue("animation", Dbm.react.animation.connectedAnimation(transformToStyle.output.properties.value));
 	}
+
+	_removedUsedProps(aProps) {
+        delete aProps["open"];
+    }
 	
 	_transformToStyle(aEnvelope) {
 		//console.log("_transformToStyle");

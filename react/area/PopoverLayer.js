@@ -31,9 +31,8 @@ export default class PopoverLayer extends Dbm.react.BaseObject {
     }
 
     _updateOpen() {
-        console.log("_updateOpen");
+        //console.log("_updateOpen");
         let open = this.getPropValue("open");
-        console.log(open, this.item.popoverElement);
 
         this.item.position._callback_scroll(null);
         this.item.size._callback_sizeChanged(null);
