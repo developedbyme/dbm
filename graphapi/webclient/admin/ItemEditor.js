@@ -42,6 +42,15 @@ export default class ItemEditor extends Dbm.core.BaseObject {
         return this.addEditor(aField, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.setField, aUpdateEncoding);
     }
 
+    getAdminFieldEditor(aField) {
+        let item = this.item.editedItem;
+        
+        let initialDataPath = "fields." + aField;
+        let initialData = Dbm.objectPath(item, initialDataPath);
+
+        return this.addFieldEditor(aField, initialData);
+    }
+
     addFieldTranslationEditor(aField, aLanguage, aInitialValue, aUpdateEncoding = null) {
         let name = "translation_" + aField + "_" + aLanguage;
         let valueEditor = this.item["editor_" + name];
@@ -224,8 +233,6 @@ export default class ItemEditor extends Dbm.core.BaseObject {
     getAdminUrlEditor() {
         let item = this.item.editedItem;
         let value = Dbm.objectPath(item, "url");
-
-        debugger;
         
         return this.getUrlEditor(value);     
     }
