@@ -25,7 +25,7 @@ export default class Edit extends Dbm.react.BaseObject {
         let url = new URL(document.location.href);
         let id = url.searchParams.get("id");
 
-        return React.createElement("div", {className: "content-narrow"},
+        return React.createElement("div", {className: "content-narrow admin-font-settings"},
             React.createElement(Dbm.react.context.AddContextVariables, {values: {"editorGroup": this.item.editorGroup}},
                 React.createElement(Dbm.react.admin.objects.EditObject, {id: id}),
                 React.createElement("div", {className: "spacing standard"}),

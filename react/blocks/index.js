@@ -417,16 +417,23 @@ export let registerAllBlocks = function() {
         },
         createElement("div", {"className": "standard-row standard-row-padding"}, 
             createElement(Dbm.react.admin.EditObjectById, {"id": Dbm.react.source.item()},
-                createElement(Dbm.react.form.LabelledArea, {label: "Label"}), 
-                createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "label"},
-                    createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
-                ),
-                createElement(Dbm.react.form.LabelledArea, {label: "Url"}), 
-                createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "link"},
-                    createElement(Dbm.react.admin.editorsgroup.EditPartOfObject, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), path: "url"},
-                        createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("value"), className: "standard-field standard-field-padding full-width"})
+                createElement("div", {"className": "flex-row small-item-spacing halfs"},
+                    createElement("div", {"className": "flex-row-item"}, 
+                        createElement(Dbm.react.form.LabelledArea, {label: "Label"}), 
+                        createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "label"},
+                            createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
+                        )
+                    ),
+                    createElement("div", {"className": "flex-row-item"}, 
+                        createElement(Dbm.react.form.LabelledArea, {label: "Url"}), 
+                        createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "link"},
+                            createElement(Dbm.react.admin.editorsgroup.EditPartOfObject, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), path: "url"},
+                                createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("value"), className: "standard-field standard-field-padding full-width"})
+                            )
+                        )
                     )
                 )
+                
             )
         )
         ));
