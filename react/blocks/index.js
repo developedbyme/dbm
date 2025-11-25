@@ -334,8 +334,13 @@ export let registerAllBlocks = function() {
     }
 
     {
-        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/name");
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/nameWithTranslations");
         itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Name, {}));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/name");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Field, {"label": "Name", "fieldName": "name"}));
     }
 
     {
@@ -388,6 +393,43 @@ export let registerAllBlocks = function() {
             encoding: "identifier",
             nameField: "identifier"
         }));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/language");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.SingleRelation, {
+            "label": "Language",
+            "direction": "in",
+            "relationType": "for",
+            "objectType": "language",
+            encoding: "name",
+            nameField: "name"
+        }));
+    }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/menuItems");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.RelationsList, {
+            "label": "Menu items",
+            "direction": "in",
+            "relationType": "in",
+            "objectType": "menuItem"
+        },
+        createElement("div", {"className": "standard-row standard-row-padding"}, 
+            createElement(Dbm.react.admin.EditObjectById, {"id": Dbm.react.source.item()},
+                createElement(Dbm.react.form.LabelledArea, {label: "Label"}), 
+                createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "label"},
+                    createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), className: "standard-field standard-field-padding full-width"})
+                ),
+                createElement(Dbm.react.form.LabelledArea, {label: "Url"}), 
+                createElement(Dbm.react.admin.editorsgroup.EditField, {fieldName: "link"},
+                    createElement(Dbm.react.admin.editorsgroup.EditPartOfObject, {"value": Dbm.react.source.contextVariable("valueEditor.editValue.value"), path: "url"},
+                        createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("value"), className: "standard-field standard-field-padding full-width"})
+                    )
+                )
+            )
+        )
+        ));
     }
     
     {
@@ -481,6 +523,20 @@ export let registerAllBlocks = function() {
 
         let newArray = [].concat(objectTypeEditor.editors);
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
+        
+        objectTypeEditor.editors = newArray;
+    }
+
+    {
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/menu");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
+
+        let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/language"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/menuItems"));
         
         objectTypeEditor.editors = newArray;
     }

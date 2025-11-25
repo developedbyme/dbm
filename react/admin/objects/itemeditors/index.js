@@ -12,3 +12,4 @@ export {default as Identifier} from "./Identifier.js";
 export {default as SingleRelation} from "./SingleRelation.js";
 export {default as Field} from "./Field.js";
 export {default as Url} from "./Url.js";
+export {default as RelationsList} from "./RelationsList.js";
