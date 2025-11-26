@@ -65,7 +65,11 @@ export default class HoverArea extends Dbm.react.BaseObject {
                 replacedChildren.push(currentChild);
             }
         }
-        
+
+
+        if(currentArrayLength === 1) {
+            return replacedChildren[0];
+        }
 
         return React.createElement(React.Fragment, {}, replacedChildren);
     }

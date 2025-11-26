@@ -38,6 +38,10 @@ export const clone = function(aChild, aProps) {
                 let currentChild = currentArray[i];
                 returnArray.push(clone(currentChild, aProps));
             }
+
+            if(currentArrayLength === 1) {
+                return returnArray[0];
+            }
             
             return returnArray;
         }

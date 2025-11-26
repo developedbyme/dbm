@@ -8,6 +8,13 @@ export default class FixedWidthInfiniteSlideshow extends Dbm.react.BaseObject {
 		
 	}
 
+    _removedUsedProps(aProps) {
+        delete aProps["viewWidth"];
+        delete aProps["prepareLength"];
+        delete aProps["elementWidth"];
+        delete aProps["spacing"];
+    }
+
     _renderMainElement() {
         //console.log("FixedWidthInfiniteSlideshow::render");
         //console.log(this);
@@ -19,7 +26,7 @@ export default class FixedWidthInfiniteSlideshow extends Dbm.react.BaseObject {
 
         let index = this.getPropValue("index");
 
-        let elements = this.getPropValue("children");;
+        let elements = this.getPropValue("children");
 
 		let numberOfElements = elements.length;
 

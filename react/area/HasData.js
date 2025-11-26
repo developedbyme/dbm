@@ -26,7 +26,7 @@ export default class HasData extends Dbm.react.BaseObject {
 
         let compareFunction = Dbm.getInstance().repository.getItem("compareFunctions/" + checkType).compare;
         if(!compareFunction) {
-            console.warn("No copmare function registered for: " + checkType + ". Using default", this, data, checkType, compareValue);
+            console.warn("No compare function registered for: " + checkType + ". Using default", this, data, checkType, compareValue);
             compareFunction = Dbm.utils.CompareFunctions.objectExists;
         }
 

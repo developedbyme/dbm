@@ -10,7 +10,7 @@ export default class InsertElement extends Dbm.react.BaseObject {
         delete aProps["element"];
     }
 
-    render() {
+    _renderMainElement() {
         //console.log("InsertElement::render");
         //console.log(this);
         
@@ -22,7 +22,8 @@ export default class InsertElement extends Dbm.react.BaseObject {
 
         let props = this._copyProps(this.props);
 
-        return Dbm.react.ChildFunctions.clone(element, props);
+        let returnElement = Dbm.react.ChildFunctions.clone(element, props);
+        return returnElement;
     }
 }
 

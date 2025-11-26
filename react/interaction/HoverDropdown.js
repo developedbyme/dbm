@@ -22,11 +22,9 @@ export default class HoverDropdown extends Dbm.react.BaseObject {
 
         let dropClassName = "position-absolute full-width";
 
-        return this._createMainElement("div", {className: "absolute-container"},
-            React.createElement(Dbm.react.interaction.HoverArea, {"over": openProperty},
-                React.createElement("div", {"className": ""},
-                    React.createElement(Dbm.react.area.InsertElement, {"element": buttonElement})
-                ),
+        return React.createElement(Dbm.react.interaction.HoverArea, {"over": openProperty},
+            this._createMainElement("div", {className: "absolute-container"},
+                React.createElement(Dbm.react.area.InsertElement, {"element": buttonElement}),
                 React.createElement(Dbm.react.area.PopoverLayer, {className: "position-absolute bottom-left full-width", "open": openProperty},
                     React.createElement("div", {className: dropClassName},
                         React.createElement(Dbm.react.area.OpenCloseExpandableArea, {"open": openProperty},

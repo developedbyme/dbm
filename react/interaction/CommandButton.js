@@ -48,6 +48,9 @@ export default class CommandButton extends Dbm.react.BaseObject {
             }
         }
         
+        if(currentArrayLength === 1) {
+            return replacedChildren[0];
+        }
 
         return React.createElement(React.Fragment, {}, replacedChildren);
     }

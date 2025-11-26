@@ -12,7 +12,7 @@ export default class TranslationLoader extends Dbm.core.BaseObject {
     }
 
     _loadTranslation() {
-        console.log("_loadTranslation");
+        //console.log("_loadTranslation");
 
         let language = this.item.language;
 
@@ -39,8 +39,8 @@ export default class TranslationLoader extends Dbm.core.BaseObject {
     }
 
     _translationLoaded(aLanguage, aLoader) {
-        console.log("_translationLoaded");
-        console.log(aLanguage, aLoader);
+        //console.log("_translationLoaded");
+        //console.log(aLanguage, aLoader);
 
         let data = aLoader.item.data;
         aLanguage.setValue("translations", data);
