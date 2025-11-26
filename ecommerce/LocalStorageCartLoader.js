@@ -28,13 +28,11 @@ export default class LocalStorageCartLoader extends Dbm.core.BaseObject {
             let cartDataString = localStorage.getItem(this.item.storageKey);
             if(cartDataString) {
                 let cartData = JSON.parse(cartDataString);
-                console.log(cartData);
                 let currentArray = cartData.lineItems;
                 let currentArrayLength = currentArray.length;
                 for(let i = 0; i < currentArrayLength; i++) {
                     let currentData = currentArray[i];
 
-                    console.log(">>>>>>>>", currentData["quantity"]);
                     this.item.cart.controller.addProduct(repository.getItem(currentData["product"]), currentData["quantity"]);
                 }
             }

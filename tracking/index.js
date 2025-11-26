@@ -28,7 +28,7 @@ export const setCurrency = function(aCurrency) {
 }
 
 export const addTagManagerTracking = function(aId) {
-    console.log("addTagManagerTracking");
+    //console.log("addTagManagerTracking");
     let tracker = new Dbm.tracking.TagManagerTracker();
     tracker.item.tagManagerId = aId;
     Dbm.getInstance().repository.getItem("trackingController").controller.addTracker(tracker.item);

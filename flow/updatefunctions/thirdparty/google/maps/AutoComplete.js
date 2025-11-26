@@ -26,7 +26,7 @@ export default class AutoComplete extends Dbm.flow.FlowUpdateFunction {
     }
 
     _scriptLoaded() {
-        console.log("_scriptLoaded");
+        //console.log("_scriptLoaded");
         if(!this._loadedScript) {
             this._loadedScript = true;
             this._update();
@@ -46,7 +46,7 @@ export default class AutoComplete extends Dbm.flow.FlowUpdateFunction {
     }
 
     _update() {
-        console.log("_update");
+        //console.log("_update");
 
         let text = this.input.text;
         this._currentText = text;

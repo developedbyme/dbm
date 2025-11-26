@@ -22,8 +22,8 @@ export default class CartLineItem extends Dbm.core.BaseObject {
     }
 
     setQuantity(aQuantity) {
-        console.log("setQuantity");
-        console.log(aQuantity);
+        //console.log("setQuantity");
+        //console.log(aQuantity);
 
         this.item.quantity = aQuantity;
 
