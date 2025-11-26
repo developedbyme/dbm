@@ -32,13 +32,13 @@ export default class OpenCloseExpandableArea extends Dbm.react.BaseObject {
 		//console.log(aEnvelope, this, this.item.element);
 		
 		if(aEnvelope === 0) {
-			return {"height": "0px", "overflow": "hidden", "display": "none", "visibility": "hidden"};
+			return {"height": "0px", "overflow-x": "visible", "overflow-y": "clip", "display": "none", "visibility": "hidden"};
 		}
 		else if(aEnvelope === 1 || !this.item.element) {
 			return {};
 		}
 		
-		return {"height": (this.item.element.clientHeight*aEnvelope) + "px", "overflow": "hidden"};
+		return {"height": (this.item.element.clientHeight*aEnvelope) + "px", "overflow-x": "visible","overflow-y": "clip"};
 	}
 	
 	_renderMainElement() {
