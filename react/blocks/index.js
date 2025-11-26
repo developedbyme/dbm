@@ -437,6 +437,18 @@ export let registerAllBlocks = function() {
         )
         ));
     }
+
+    {
+        let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/menuLocation/menu");
+        itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.SingleRelation, {
+            "label": "Menu",
+            "direction": "in",
+            "relationType": "at",
+            "objectType": "menu",
+            encoding: "name",
+            nameField: "name"
+        }));
+    }
     
     {
         let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/page");
@@ -543,6 +555,20 @@ export let registerAllBlocks = function() {
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/language"));
         newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/menuItems"));
+        
+        objectTypeEditor.editors = newArray;
+    }
+
+    {
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/menuLocation");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
+
+        let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/identifier"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/menuLocation/menu"));
         
         objectTypeEditor.editors = newArray;
     }

@@ -216,4 +216,13 @@ export const fullSetup = function() {
 
     setupDefaultDecoder("name_translations", ["name/translations"], [], [], [Dbm.commands.callFunction(connectTranslations, [Dbm.core.source.event("item"), "name/translations", "name/translated", "name"])]);
     setupDefaultDecoder("title_translations", ["title/translations"], [], [], [Dbm.commands.callFunction(connectTranslations, [Dbm.core.source.event("item"), "title/translations", "title/translated", "title"])]);
+
+    let linkUpMenu = function(aItem) {
+        console.log("linkUpMenu");
+        console.log(aItem);
+    }
+
+    setupDefaultDecoder("menuLocation", ["identifier"], ["menu"], []);
+    setupDefaultDecoder("menu", ["order"], [], ["menuItems"], [Dbm.commands.callFunction(linkUpMenu, [Dbm.core.source.event("item")])]);
+    setupDefaultDecoder("menuItem", ["label", "link"], [], []);
 }
