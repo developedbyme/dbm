@@ -378,3 +378,18 @@ export const stepFromCenter = function(aStep, aLength) {
 
     return index;
 }
+
+export const scoreItems = function(aArray, aScoreFunction) {
+    let returnArray = [];
+
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let item = currentArray[i];
+        returnArray.push({"key": item, "value": aScoreFunction(item)});
+    }
+
+    sortOnField(returnArray, "value");
+
+    return returnArray;
+}
