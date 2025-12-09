@@ -7,5 +7,6 @@ export * as TranslationFunctions from "./TranslationFunctions.js";
 export * as LevenshteinDistance from "./LevenshteinDistance.js";
 
 export {default as MultidimensionalArrayHolder} from "./MultidimensionalArrayHolder.js";
+export {default as ArrayOperationResult} from "./ArrayOperationResult.js";
 
 export * as thirdparty from "./thirdparty/index.js";
