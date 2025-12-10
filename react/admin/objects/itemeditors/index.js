@@ -17,4 +17,6 @@ export {default as HierarchyOrderedRelationsList} from "./HierarchyOrderedRelati
 export {default as DraggableHierarchyDisplay} from "./DraggableHierarchyDisplay.js";
 export {default as MultipleRelations} from "./MultipleRelations.js";
 export {default as RichTextField} from "./RichTextField.js";
+export {default as RichTextFieldWithTranslations} from "./RichTextFieldWithTranslations.js";
 export {default as FormattedField} from "./FormattedField.js";
+export {default as FormattedFieldWithTranslations} from "./FormattedFieldWithTranslations.js";
