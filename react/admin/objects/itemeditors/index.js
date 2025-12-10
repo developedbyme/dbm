@@ -15,3 +15,6 @@ export {default as Url} from "./Url.js";
 export {default as RelationsList} from "./RelationsList.js";
 export {default as HierarchyOrderedRelationsList} from "./HierarchyOrderedRelationsList.js";
 export {default as DraggableHierarchyDisplay} from "./DraggableHierarchyDisplay.js";
+export {default as MultipleRelations} from "./MultipleRelations.js";
+export {default as RichTextField} from "./RichTextField.js";
+export {default as FormattedField} from "./FormattedField.js";
