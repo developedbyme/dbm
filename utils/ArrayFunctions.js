@@ -393,3 +393,72 @@ export const scoreItems = function(aArray, aScoreFunction) {
 
     return returnArray;
 }
+
+export const splitArray = function(aArray, aGroupSize) {
+    let returnArray = [];
+    let currentGroup = null;
+    
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        if(i % aGroupSize === 0) {
+            currentGroup = [];
+            returnArray.push(currentGroup);
+        }
+        currentGroup.push(currentArray[i]);
+    }
+    
+    return returnArray;
+}
+
+export const mapArrayToObject = function(aArray, aKeyField, aDataField = null, aKeyPrefix = "") {
+		
+    let returnObject = {};
+    
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentArrayEntry = currentArray[i];
+        let key = aKeyPrefix + Dbm.objectPath(currentArrayEntry, aKeyField);
+        let data = aDataField ? Dbm.objectPath(currentArrayEntry, aDataField) : currentArrayEntry;
+        
+        returnObject[key] = data;
+    }
+    
+    return returnObject;
+}
+	
+export const mapObjectToArray = function(aObject, aKeyField, aDataField = null, aKeyPrefix = "") {
+    let returnArray = [];
+    
+    for(let objectName in aObject) {
+        let currentEntry = aObject[objectName];
+        let newObject = {};
+        
+        if(aDataField !== null) {
+            newObject[aDataField] = currentEntry;
+        }
+        else {
+            for(let objectName2 in currentEntry) {
+                newObject[objectName2] = currentEntry[objectName2];
+            }
+        }
+        if(aKeyField) {
+            newObject[aKeyField] = objectName.substring(aKeyPrefix.length, objectName.length);
+        }
+        
+        returnArray.push(newObject);
+    }
+    
+    return returnArray;
+}
+	
+export const mapObjectToArrayWithoutKey = function(aObject) {
+    let returnArray = [];
+    
+    for(let objectName in aObject) {
+        returnArray.push(aObject[objectName]);
+    }
+    
+    return returnArray;
+}

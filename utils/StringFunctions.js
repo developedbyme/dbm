@@ -38,3 +38,14 @@ export const convertToCamelCase = function(aText) {
     
     return returnText;
 };
+
+export const getMatchingPrefix = function(aString1, aString2) {
+    let maxLength = Math.min(aString1.length, aString2.length);
+    let i = 0;
+
+    while(i < maxLength && aString1[i] === aString2[i]) {
+        i++;
+    }
+
+    return aString1.slice(0, i);
+}
