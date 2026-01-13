@@ -1,0 +1,27 @@
+.popover-holder {
+    border: none;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    background-color: transparent;
+    color: inherit;
+}
+
+.dropdown-menu-min-width {
+    min-width: 300px;
+}
+
+.dropdown-menu-max-height {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.standard-dropdown {
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+}
+
+.standard-dropdown-row-padding {
+    padding: 8px 15px;
+}

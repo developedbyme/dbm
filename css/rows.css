@@ -1,0 +1,28 @@
+.standard-alternating-rows > .standard-row:nth-of-type(2n+1),
+.standard-alternating-rows > *:nth-of-type(2n+1) .standard-row {
+    background-color: var(--alternating-rows-background, #F8F8F8);
+}
+
+.standard-row-padding {
+    padding: var(--standard-row-vertical-padding, 4px) var(--standard-row-horizonal-padding, 10px);
+}
+
+.standard-row-padding-horizontal-padding {
+    padding-left: var(--standard-row-horizonal-padding, 10px);
+    padding-right: var(--standard-row-horizonal-padding, 10px);
+}
+
+.standard-row-padding-vertival-padding {
+    padding-top: var(--standard-row-vertical-padding, 4px);
+    padding-bottom: var(--standard-row-vertical-padding, 4px);
+}
+
+.hierarchy-indent {
+    margin-left: var(--hierarchy-indent-margin-left, 40px);
+}
+
+.append-drop-position {
+    height: 12px;
+    border: 1px dashed rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}

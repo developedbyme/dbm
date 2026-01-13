@@ -1,0 +1,99 @@
+.dbm-admin {
+    background-color: #f6f7f9;
+}
+
+.dbm-admin-box {
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.dbm-admin-box-padding {
+    padding: 20px;
+}
+
+.dbm-admin-hero {
+    background: rgb(41,56,97);
+    background: linear-gradient(117deg, #4b4795 0%, #608be1 100%);
+}
+
+.dbm-admin-hero .on-hero-text {
+    color: #FFFFFF;
+}
+
+.dbm-admin-hero-overlap {
+    position: relative;
+    top: -40px;
+}
+
+.page-title-form-field {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.dbm-admin-logo {
+    height: 24px;
+    width: auto;
+}
+
+.ce-block__content,
+.ce-toolbar__content {
+    max-width: none;
+}
+
+.editor-block-box {
+    border: 1px solid #1A1A1A;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.editor-block-box-padding {
+    padding: 20px;
+}
+
+.image.editor-preview {
+    width: 120px;
+    height: 120px;
+}
+
+.dbm-admin .save-all-position {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.image-library-preview {
+    width: 120px;
+    height: 120px;
+}
+
+.image-library-margins {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.action-button {
+    border: 1px solid #ADADAD;
+    color: #ADADAD;
+    font-size: 10px;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background-color: #ADADAD;
+    color: #FFFFFF;
+}
+
+.action-button-padding {
+    padding: 3px 10px;
+}
+
+.language-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    background-color: #ADADAD;
+    font-size: 10px;
+    font-weight: bold;
+}

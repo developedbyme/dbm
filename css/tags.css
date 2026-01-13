@@ -1,0 +1,114 @@
+.standard-tag {
+    border-radius: var(--standard-tag-border-radius, 9999px);
+
+    border-style: solid;
+    border-width: var(--standard-tag-border-width, 1px);
+}
+
+.standard-tag,
+.complex-standard-tag {
+    font-size: var(--standard-tag-font-size, 14px);
+    line-height: 1;
+}
+
+.complex-standard-tag.info-tag .standard-tag-part,
+.standard-tag.info-tag {
+    background-color: #f1f4f9;
+    border-color: #d2dcec;
+}
+
+.complex-standard-tag.add-tag .standard-tag-part,
+.standard-tag.add-tag {
+    background-color: #FFFFFF;
+    border-color: #ADADAD;
+    border-style: dashed;
+}
+
+.standard-tag-part {
+    border-top-style: solid;
+    border-top-width: var(--standard-tag-border-width, 1px);
+    border-bottom-style: solid;
+    border-bottom-width: var(--standard-tag-border-width, 1px);
+}
+
+.standard-tag-part.start {
+    border-top-left-radius: var(--standard-tag-border-radius, 9999px);
+    border-bottom-left-radius: var(--standard-tag-border-radius, 9999px);
+
+    border-left-style: solid;
+    border-left-width: var(--standard-tag-border-width, 1px);
+}
+
+.standard-tag-part.end {
+    border-top-right-radius: var(--standard-tag-border-radius, 9999px);
+    border-bottom-right-radius: var(--standard-tag-border-radius, 9999px);
+
+    border-right-style: solid;
+    border-right-width: var(--standard-tag-border-width, 1px);
+}
+
+.standard-tag-padding {
+    padding: var(--standard-tag-vertical-padding, 5px) var(--standard-tag-horizontal-padding, 12px);
+}
+
+.standard-tag-start-padding {
+    padding-left: var(--standard-tag-horizontal-padding, 12px);
+    padding-top: var(--standard-tag-vertical-padding, 5px);
+    padding-bottom: var(--standard-tag-vertical-padding, 5px);
+}
+
+.standard-tag-end-padding {
+    padding-right: var(--standard-tag-horizontal-padding, 12px);
+    padding-top: var(--standard-tag-vertical-padding, 5px);
+    padding-bottom: var(--standard-tag-vertical-padding, 5px);
+}
+
+.standard-tag-horizontal-padding {
+    padding-left: var(--standard-tag-horizontal-padding, 12px);
+    padding-right: var(--standard-tag-horizontal-padding, 12px);
+}
+
+.standard-tag-vertical-padding {
+    padding-top: var(--standard-tag-vertical-padding, 5px);
+    padding-bottom: var(--standard-tag-vertical-padding, 5px);
+}
+
+.standard-tag-part-padding {
+    padding-left: var(--standard-tag-part-horizontal-padding, 6px);
+    padding-right: var(--standard-tag-part-horizontal-padding, 6px);
+}
+
+.standard-tag-part-padding-left {
+    padding-left: var(--standard-tag-part-horizontal-padding, 6px);
+}
+
+.standard-tag-part-padding-right {
+    padding-right: var(--standard-tag-part-horizontal-padding, 6px);
+}
+
+.standard-tag-part-separator {
+    width: 1px;
+    height: 100%;
+    background-color: rgba(255,255,255,0.6);
+}
+
+.standard-tag-icon {
+    width: 12px;
+    aspect-ratio: 1;
+}
+
+.standard-tag-list {
+
+}
+
+.standard-tag-list-expand {
+    margin-right: calc(-1 * var(--standard-tag-list-horizontal-margin, 10px));
+    margin-bottom: calc(-1 * var(--standard-tag-list-vertical-margin, 5px));
+    overflow: hidden;
+}
+
+.standard-tag-list .standard-tag-list-item{
+    float: left;
+    margin-right: var(--standard-tag-list-horizontal-margin, 10px);
+    margin-bottom: var(--standard-tag-list-vertical-margin, 5px);
+}

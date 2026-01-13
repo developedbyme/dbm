@@ -1,0 +1,35 @@
+.standard-icon {
+    width: var(--standard-icon-size, 24px);
+    height: var(--standard-icon-size, 24px);
+}
+
+.text-row-icon {
+    width: var(--standard-icon-size, 24px);
+    height: var(--standard-icon-size, 24px);
+}
+
+.standard-icon-color {
+    filter: url("#standard-icon-color");
+}
+
+.action-icon-color {
+    filter: url("#action-icon-color");
+}
+
+.text-icon-color {
+    filter: url("#text-icon-color");
+}
+
+.white-icon-color {
+    filter: url("#white-icon-color");
+}
+
+.hover-item:hover .remove-action-icon-color,
+.hover-icon.remove-action-icon-color:hover {
+    filter: url("#remove-action-icon-hover-color");
+}
+
+.drag-handle-icon {
+    width: 8px;
+    height: 12px;
+}
