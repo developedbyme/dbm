@@ -17,3 +17,4 @@ export * as image from "./image/index.js";
 export * as animation from "./animation/index.js";
 export * as interaction from "./interaction/index.js";
 export * as thirdparty from "./thirdparty/index.js";
+export * as svg from "./svg/index.js";

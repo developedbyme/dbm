@@ -10,3 +10,4 @@ export {default as MultidimensionalArrayHolder} from "./MultidimensionalArrayHol
 export {default as ArrayOperationResult} from "./ArrayOperationResult.js";
 
 export * as thirdparty from "./thirdparty/index.js";
+export * as svg from "./svg/index.js";

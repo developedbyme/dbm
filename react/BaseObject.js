@@ -164,7 +164,10 @@ export default class BaseObject extends Component {
     _copyProps(aProps) {
         let newProps = {...aProps};
 
-        for(let objectName in this.props) {
+        let incomingProps = {...this.props};
+        this._removedUsedProps(incomingProps);
+
+        for(let objectName in incomingProps) {
             let currentValue = this.getPropValue(objectName);
             switch(objectName) {
                 case "className":
@@ -203,8 +206,7 @@ export default class BaseObject extends Component {
                     break;
             }
         }
-
-        this._removedUsedProps(newProps);
+        
         return newProps;
     }
 
