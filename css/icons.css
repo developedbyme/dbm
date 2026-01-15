@@ -8,6 +8,11 @@
     height: var(--standard-icon-size, 24px);
 }
 
+.field-icon {
+    width: var(--field-icon-size, 16px);
+    height: var(--field-icon-size, 16px);
+}
+
 .standard-icon-color {
     filter: url("#standard-icon-color");
 }

@@ -71,4 +71,32 @@ export default class Item extends Dbm.core.LifeCycleObject {
         }
         return this.properties[aName];
     }
+
+    addToArray(aName, aValue) {
+        let currentArray = this[aName];
+        if(!currentArray) {
+            this.setValue(aName, [aValue]);
+        }
+        else {
+            currentArray = [].concat(currentArray);
+            currentArray.push(aValue);
+            this[aName] = currentArray;
+        }
+
+        return this;
+    }
+
+    removeFromArray(aName, aValue) {
+        let currentArray = this[aName];
+        if(currentArray) {
+            let index = currentArray.indexOf(aValue);
+            if(index !== -1) {
+                currentArray = [].concat(currentArray);
+                currentArray.splice(index, 1);
+                this[aName] = currentArray;
+            }
+        }
+
+        return this;
+    }
 }

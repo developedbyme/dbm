@@ -32,16 +32,19 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
                 if(!typeItem) {
                     typeItem = new Dbm.repository.Item();
                     typeItem.setValue("objects", []);
+                    typeItem.setValue("relations", []);
                     currentRelationsItem.setValue(currentType, typeItem);
                 }
 
-                if(this._isRelationValid(currentRelationData["startAt"], currentRelationData["endAt"])) {
-                    let newArray = [].concat(typeItem["objects"]);
-                    newArray.push(Dbm.getInstance().repository.getItem(currentRelationData["id"]));
-                    typeItem["objects"] = newArray;
-                    //METODO: set up relations
+                let relation = Dbm.getRepositoryItem(currentRelationData["relationId"]);
+                if(typeItem.relations.indexOf(relation) === -1) {
+                    let linkedItem = Dbm.getRepositoryItem(currentRelationData["id"]);
+                    //METODO: add data to relation
+                    if(this._isRelationValid(currentRelationData["startAt"], currentRelationData["endAt"])) {
+                        typeItem.addToArray("objects", linkedItem);
+                        typeItem.addToArray("relations", relation);
+                    }
                 }
-                
             }
         }
 
@@ -62,14 +65,18 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
                 if(!typeItem) {
                     typeItem = new Dbm.repository.Item();
                     typeItem.setValue("objects", []);
+                    typeItem.setValue("relations", []);
                     currentRelationsItem.setValue(currentType, typeItem);
                 }
 
-                if(this._isRelationValid(currentRelationData["startAt"], currentRelationData["endAt"])) {
-                    let newArray = [].concat(typeItem["objects"]);
-                    newArray.push(Dbm.getInstance().repository.getItem(currentRelationData["id"]));
-                    typeItem["objects"] = newArray;
-                    //METODO: set up relations
+                let relation = Dbm.getRepositoryItem(currentRelationData["relationId"]);
+                if(typeItem.relations.indexOf(relation) === -1) {
+                    let linkedItem = Dbm.getRepositoryItem(currentRelationData["id"]);
+                    //METODO: add data to relation
+                    if(this._isRelationValid(currentRelationData["startAt"], currentRelationData["endAt"])) {
+                        typeItem.addToArray("objects", linkedItem);
+                        typeItem.addToArray("relations", relation);
+                    }
                 }
             }
         }

@@ -10,10 +10,10 @@ export default class MultipleRelations extends Dbm.react.BaseObject {
         let visibility = this.getPropValueWithDefault("visibility", "private");
 
         this.item.requireProperty("items", []);
+        this.item.requireProperty("loaded", false);
 
-        let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
         {
-            let request = graphApi.requestRange(
+            let request = Dbm.getGraphApi().requestRange(
                 [
                     {"type": "byObjectType", "objectType": objectType},
                     {"type": "includeDraft"},
@@ -25,33 +25,31 @@ export default class MultipleRelations extends Dbm.react.BaseObject {
     
            Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._itemsLoaded.bind(this), [request]));
         }
+
+        //console.log(this._getEditor());
     }
 
     _itemsLoaded(aRequest) {
-        let options = [];
+        console.log("_itemsLoaded");
+        console.log(aRequest);
 
-        let nameField = this.getPropValue("nameField");
-        if(!nameField) {
-            nameField = "name";
-        }
+        let nameField = this.getPropValueWithDefault("nameField", "name");
 
         let currentArray = [].concat(aRequest.items);
         Dbm.utils.ArrayFunctions.sortOnField(currentArray, nameField);
 
         this.item.items = currentArray;
+        this.item.loaded = true;
     }
 
-    _add(aItem) {
-        console.log("_add");
-        console.log(aItem);
-
+    _getEditor() {
         let itemEditor = this.context.itemEditor;
 
         let direction = this.getPropValue("direction");
         let relationType = this.getPropValue("relationType");
         let objectType = this.getPropValue("objectType");
 
-        let editor;
+        let editor = null;
         if(direction === "in") {
             editor = itemEditor.getAdminMultipleIncomingRelationsEditor(relationType, objectType);
         }
@@ -61,6 +59,15 @@ export default class MultipleRelations extends Dbm.react.BaseObject {
         else {
             console.error("Unknown direction", direction, this);
         }
+
+        return editor;
+    }
+
+    _add(aItem) {
+        console.log("_add");
+        console.log(aItem);
+
+        let editor = this._getEditor();
 
         let newValues = [].concat(editor.value);
         newValues.push(aItem.id);
@@ -71,22 +78,7 @@ export default class MultipleRelations extends Dbm.react.BaseObject {
         console.log("_remove");
         console.log(aId);
 
-        let itemEditor = this.context.itemEditor;
-
-        let direction = this.getPropValue("direction");
-        let relationType = this.getPropValue("relationType");
-        let objectType = this.getPropValue("objectType");
-
-        let editor;
-        if(direction === "in") {
-            editor = itemEditor.getAdminMultipleIncomingRelationsEditor(relationType, objectType);
-        }
-        else if(direction === "out") {
-            editor = itemEditor.getAdminMultipleOutgoingRelationsEditor(relationType, objectType);
-        }
-        else {
-            console.error("Unknown direction", direction, this);
-        }
+        let editor = this._getEditor();
 
         let newValues = [].concat(editor.value);
 
@@ -100,61 +92,56 @@ export default class MultipleRelations extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
-        let id = this.context.item.id;
-
         let label = this.getPropValue("label");
         let direction = this.getPropValue("direction");
         let relationType = this.getPropValue("relationType");
         let objectType = this.getPropValue("objectType");
-        let children = this.getPropValue("children");
 
         return React.createElement("div", {},
             React.createElement(Dbm.react.form.LabelledArea, {label: label}), 
-            React.createElement(Dbm.react.area.HasData, {check: this.item.properties.items, checkType: "notEmpty"},
-                React.createElement("div")
-            ),
-            React.createElement("div", {"className": "standard-alternating-rows"},
-                React.createElement(Dbm.react.admin.editorsgroup.EditMultipleRelations, {"direction": direction, "relationType": relationType, "objectType": objectType},
-                    React.createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("valueEditor.editValue.value")},
-                        React.createElement("div", {"className": "flex-row small-item-spacing justify-between"},
-                            React.createElement("div", {"className": "flex-row"},
-                                React.createElement(Dbm.react.context.AddItemByIdToContext, {id: Dbm.react.source.contextVariable("item")},
-                                    Dbm.react.text.text(Dbm.react.source.item("name"))
-                                )
-                            ),
-                            React.createElement("div", {"className": "flex-row"},  
-                                React.createElement(Dbm.react.interaction.CommandButton, {"commands": [Dbm.commands.callFunction(this._remove.bind(this), [Dbm.react.source.contextVariable("item")])]},
-                                    React.createElement("div", {},
-                                        
-                                        "Remove"
+            React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
+                React.createElement("div", {},
+                    React.createElement("div", {"className": "standard-alternating-rows"},
+                        React.createElement(Dbm.react.admin.editorsgroup.EditMultipleRelations, {"direction": direction, "relationType": relationType, "objectType": objectType},
+                            React.createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("valueEditor.editValue.value")},
+                                React.createElement("div", {"className": "flex-row small-item-spacing justify-between"},
+                                    React.createElement("div", {"className": "flex-row"},
+                                        React.createElement(Dbm.react.context.AddItemByIdToContext, {id: Dbm.react.source.item()},
+                                            Dbm.react.text.text(Dbm.react.source.item("name"))
+                                        )
+                                    ),
+                                    React.createElement("div", {"className": "flex-row"},  
+                                        React.createElement(Dbm.react.interaction.CommandButton, {"commands": [Dbm.commands.callFunction(this._remove.bind(this), [Dbm.react.source.item()])]},
+                                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/remove.svg", "className": "background-contain cursor-pointer action-icon-color field-icon"})
+                                        )
                                     )
+                                )
+                            )
+                        )
+                    ),
+                    React.createElement("div", {"className": "spacing small"}),
+                    React.createElement("div", {"className": "flex-row"},
+                        React.createElement(Dbm.react.form.Dropdown, {"position": "right"},
+                            React.createElement("div", {"data-slot": "button", "className": "action-button action-button-padding"},
+                                "Add"
+                            ),
+                            React.createElement("div", {"className": "dropdown-menu-max-height standard-dropdown"},
+                                React.createElement(Dbm.react.area.List, {items: this.item.properties.items, "as": "relatedItem"},
+                                    React.createElement(Dbm.react.interaction.CommandButton, {"commands": [
+                                        Dbm.commands.callFunction(this._add.bind(this), [Dbm.react.source.contextVariable("relatedItem")]),
+                                        Dbm.commands.setProperty(Dbm.react.source.contextVariable("open"), false)
+                                    ]},
+                                        React.createElement("div", {className: "standard-dropdown-row standard-dropdown-row-padding hover-row cursor-pointer"},
+                                            Dbm.react.text.text(Dbm.react.source.contextVariable("relatedItem.name"))
+                                        )
+                                    ),
                                 )
                             )
                         )
                     )
                 )
             ),
-            React.createElement("div", {"className": "spacing small"}),
-            React.createElement("div", {"className": "flex-row"},
-                React.createElement(Dbm.react.form.Dropdown, {"position": "right"},
-                    React.createElement("div", {"data-slot": "button", "className": "action-button action-button-padding"},
-                        "Add"
-                    ),
-                    React.createElement("div", {"className": "dropdown-menu-max-height standard-dropdown"},
-                        React.createElement(Dbm.react.area.List, {items: this.item.properties.items, "as": "relatedItem"},
-                            React.createElement(Dbm.react.interaction.CommandButton, {"commands": [
-                                Dbm.commands.callFunction(this._add.bind(this), [Dbm.react.source.contextVariable("relatedItem")]),
-                                Dbm.commands.setProperty(Dbm.react.source.contextVariable("open"), false)
-                            ]},
-                                React.createElement("div", {className: "standard-dropdown-row standard-dropdown-row-padding hover-row cursor-pointer"},
-                                    Dbm.react.text.text(Dbm.react.source.contextVariable("relatedItem.name"))
-                                )
-                            ),
-                        )
-                    )
-                )
-                
-            )
+            
         )
     }
 }
