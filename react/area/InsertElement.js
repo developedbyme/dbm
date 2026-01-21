@@ -7,6 +7,7 @@ export default class InsertElement extends Dbm.react.BaseObject {
     }
 
     _removedUsedProps(aProps) {
+        //console.log("_removedUsedProps");
         delete aProps["element"];
     }
 
@@ -20,7 +21,7 @@ export default class InsertElement extends Dbm.react.BaseObject {
             return React.createElement("div", {}, "No element set");
         }
 
-        let props = this._copyProps(this.props);
+        let props = this._copyProps(element.props);
 
         let returnElement = Dbm.react.ChildFunctions.clone(element, props);
         return returnElement;
