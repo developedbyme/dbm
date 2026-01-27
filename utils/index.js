@@ -5,6 +5,7 @@ export * as UrlFunctions from "./UrlFunctions.js";
 export * as CompareFunctions from "./CompareFunctions.js";
 export * as TranslationFunctions from "./TranslationFunctions.js";
 export * as LevenshteinDistance from "./LevenshteinDistance.js";
+export * as ObjectFunctions from "./ObjectFunctions.js";
 
 export {default as MultidimensionalArrayHolder} from "./MultidimensionalArrayHolder.js";
 export {default as ArrayOperationResult} from "./ArrayOperationResult.js";
