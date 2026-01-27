@@ -66,6 +66,7 @@ export default class AskAQuestion extends Dbm.react.BaseObject {
         let currentRow = new Dbm.repository.Item();
         currentRow.setId("_dbmInternal/row" + Dbm.getInstance().getNextId());
         currentRow.setValue("item", currentItem);
+        console.log(">>>>>>>", this._getOpenProperty(i));
         currentRow.setValue("element", React.createElement(Dbm.react.blocks.faq.HelpSectionRowItem, {"open": this._getOpenProperty(i), "startState": (i === 0 ? "open" : "close")}));
         rows.push(currentRow);
       }

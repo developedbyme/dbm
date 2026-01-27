@@ -101,13 +101,13 @@ export default class CreatePage extends Dbm.react.BaseObject {
             {"type": "setUrl", "data": {"value": fullUrl}}
         ]
 
-        let request = Dbm.getInstance().repository.getItem("graphApi").controller.createItem(["page"], "public", changes);
+        let request = Dbm.getGraphApi().createItem(["page"], "public", changes);
 
         Dbm.flow.addUpdateCommand(request.properties.status, Dbm.commands.callFunction(this._pageCreated.bind(this), [fullUrl]));
     }
 
     _pageCreated(aUrl) {
-        Dbm.getInstance().repository.getItem("siteNavigation").controller.navigate(aUrl);
+        Dbm.getRepositoryItem("siteNavigation").controller.navigate(aUrl);
     }
 
     _renderMainElement() {
