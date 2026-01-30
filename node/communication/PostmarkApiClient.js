@@ -5,6 +5,7 @@ export default class PostmarkApiClient extends Dbm.core.BaseObject {
 	_construct() {
 		super._construct();
 
+		this.item.setValue("serviceName", "postmark");
 		this.item.setValue("defaultFrom", "website@webnotification.services");
 		this.item.setValue("token", null);
 	}
@@ -17,9 +18,7 @@ export default class PostmarkApiClient extends Dbm.core.BaseObject {
     }
 
 	async performSendMessage(aMessageItem) {
-		console.log("performSendMessage");
-		//METODO
-		console.log(aMessageItem, this);
+		//console.log("performSendMessage");
 
 		let from = aMessageItem.from;
 		if(!from) {
@@ -34,8 +33,6 @@ export default class PostmarkApiClient extends Dbm.core.BaseObject {
 			TextBody: aMessageItem.textContent,
         };
 
-		console.log(emailData, this.item.token);
-
         let response = await fetch('https://api.postmarkapp.com/email', {
             method: 'POST',
             headers: {
@@ -47,8 +44,16 @@ export default class PostmarkApiClient extends Dbm.core.BaseObject {
         });
 
         let repsonseText = await response.text();
-		console.log(repsonseText);
 
-		return repsonseText;
+		let id = null;
+		try {
+			let responseData = JSON.parse(repsonseText);
+			id = responseData["MessageID"];
+		}
+		catch(theError) {
+
+		}
+
+		return {"response": repsonseText, "from": from, "id": id};
 	}
 }
