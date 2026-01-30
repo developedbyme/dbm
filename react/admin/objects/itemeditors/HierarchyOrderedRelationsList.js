@@ -46,6 +46,7 @@ export default class HierarchyOrderedRelationsList extends Dbm.react.BaseObject 
     _removeMissingPartsOfHierarchy(aHierarchy, aMustBeInArray) {
         //console.log("_removeMissingPartsOfHierarchy");
         //console.log(aHierarchy, aMustBeInArray);
+
         let currentArray = aHierarchy;
         let currentArrayLength = currentArray.length;
 
@@ -53,6 +54,11 @@ export default class HierarchyOrderedRelationsList extends Dbm.react.BaseObject 
             let currentItem = currentArray[i];
             if(aMustBeInArray.indexOf(currentItem.id) !== -1) {
                 this._removeMissingPartsOfHierarchy(currentItem.children, aMustBeInArray);
+            }
+            else {
+                currentArray.splice(i, 1);
+                i--;
+                currentArrayLength--;
             }
         }
     }
@@ -65,6 +71,17 @@ export default class HierarchyOrderedRelationsList extends Dbm.react.BaseObject 
 
             aReturnArray.push(currentItem.id);
             this._getAllIdsFromHierarchy(currentItem.children, aReturnArray);
+        }
+    }
+
+    _getAllLinkedIdsFromHierarchy(aItems, aReturnArray) {
+        let currentArray = aItems;
+        let currentArrayLength = currentArray.length;
+        for(let i = 0; i < currentArrayLength; i++) {
+            let currentItem = currentArray[i];
+
+            aReturnArray.push(currentItem.linkedItem.id);
+            this._getAllLinkedIdsFromHierarchy(currentItem.children, aReturnArray);
         }
     }
 
@@ -257,6 +274,28 @@ export default class HierarchyOrderedRelationsList extends Dbm.react.BaseObject 
         this._orderEditor.value = hierarchyValue;
     }
 
+    removeHierarchyItem(aHierarchyItem) {
+        console.log("removeHierarchyItem");
+        let position = this._findPosition(aHierarchyItem, this.item.hierarchy.children);
+
+        let idsToRemove = [];
+        this._getAllLinkedIdsFromHierarchy([aHierarchyItem], idsToRemove);
+
+        console.log(position, idsToRemove);
+
+        let editor = this._getEditor();
+        let newValues = [].concat(editor.value);
+        
+        console.log(JSON.stringify(newValues), idsToRemove);
+        newValues = Dbm.utils.ArrayFunctions.removeValues(newValues, idsToRemove);
+        console.log(JSON.stringify(newValues), idsToRemove);
+
+        editor.value = newValues;
+
+        let hierarchyValue = this._getFullHierarchy();
+        this._orderEditor.value = hierarchyValue;
+    }
+
     _create() {
         console.log("_create");
         let objectType = this.getPropValue("objectType");
@@ -270,10 +309,7 @@ export default class HierarchyOrderedRelationsList extends Dbm.react.BaseObject 
         Dbm.flow.addUpdateCommand(request.properties.status, Dbm.commands.callFunction(this._created.bind(this), [Dbm.core.source.staticObject(request, "item")]));
     }
 
-    _created(aItem) {
-        console.log("_created");
-        console.log(aItem);
-
+    _getEditor() {
         let itemEditor = this.context.itemEditor;
 
         let direction = this.getPropValue("direction");
@@ -291,9 +327,21 @@ export default class HierarchyOrderedRelationsList extends Dbm.react.BaseObject 
             console.error("Unknown direction", direction, this);
         }
 
+        return editor;
+    }
+
+    _created(aItem) {
+        console.log("_created");
+        console.log(aItem);
+
+        let editor = this._getEditor();
+
         let newValues = [].concat(editor.value);
         newValues.push(aItem.id);
         editor.value = newValues;
+
+        let hierarchyValue = this._getFullHierarchy();
+        this._orderEditor.value = hierarchyValue;
     }
 
     _renderMainElement() {
@@ -302,7 +350,7 @@ export default class HierarchyOrderedRelationsList extends Dbm.react.BaseObject 
         let children = this.getPropValue("children");
 
         return React.createElement("div", {},
-            React.createElement(Dbm.react.context.AddContextVariables, {"values": {"dragController": this}},
+            React.createElement(Dbm.react.context.AddContextVariables, {"values": {"dragController": this, "hierarchyController": this}},
                 React.createElement(Dbm.react.form.LabelledArea, {label: label}), 
                 React.createElement("div", {"className": ""},
                     React.createElement(Dbm.react.area.List, {items: this.item.hierarchy.properties.children, as: "hierarchyItem"},

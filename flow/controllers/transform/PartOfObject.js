@@ -25,7 +25,7 @@ export default class PartOfObject extends Dbm.core.BaseObject {
             
             if(stringValue !== this._lastUpdatedValue) {
                 this._lastUpdatedValue = stringValue;
-                let newValue = JSON.parse(stringValue);
+                let newValue = stringValue ? JSON.parse(stringValue) : null;
                 this.item.value = newValue;
             }
         }

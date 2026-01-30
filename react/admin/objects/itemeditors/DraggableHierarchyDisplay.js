@@ -6,6 +6,15 @@ export default class DraggableHierarchyDisplay extends Dbm.react.BaseObject {
         super._construct();
     }
 
+    _remove() {
+        console.log("_remove");
+        let hierarchyItem = this.context.hierarchyItem;
+
+        console.log(hierarchyItem);
+
+        this.context.hierarchyController.removeHierarchyItem(hierarchyItem);
+    }
+
     _renderMainElement() {
 
         let children = this.getPropValue("children");
@@ -20,7 +29,19 @@ export default class DraggableHierarchyDisplay extends Dbm.react.BaseObject {
                         ),
                         React.createElement("div", {className: "flex-row-item flex-resize"},
                             children
-                        )
+                        ),
+                        React.createElement("div", {className: "flex-row-item flex-no-resize"},
+                            React.createElement("div", {className: "spacing small"}),
+                            React.createElement(Dbm.react.interaction.ConfirmButton, {"command": Dbm.commands.callFunction(this._remove.bind(this))},
+                                React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon action-icon-color cursor-pointer"}),
+                                React.createElement("div", {"data-slot": "confirm", className: "absolute-container cursor-pointer", title: "Click to remove"},
+                                    React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon hover-icon remove-action-icon-color cursor-pointer"}),
+                                    React.createElement("div", {className:"centered-tip-text no-pointer-events"},
+                                        "Remove?"
+                                    )
+                                )
+                            )
+                        ),
                     )
                     
                 )      
