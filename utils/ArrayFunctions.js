@@ -311,6 +311,27 @@ export const sortOnNumericField = function(aArray, aField) {
     return sortOnField(aArray, aField, compareFunction);
 }
 
+export const naturalSortOnField = function(aArray, aField, aLanguageCode = null) {
+
+    if(!aLanguageCode) {
+        aLanguageCode = Dbm.getRepositoryItem("site").currentLanguageCode;
+    }
+
+    let compareObject = new Intl.Collator(aLanguageCode, { numeric: true, sensitivity: 'base' });
+
+    let compareFunction = function(aA, aB) {
+        if(!aA && !aB) return 0;
+        if(!aA) return 1;
+        if(!aB) return -1;
+
+        let result = compareObject.compare(aA, aB);
+
+        return result;
+    }
+
+    return sortOnField(aArray, aField, compareFunction)
+}
+
 export const getItemIndexByIfExists = function(aArray, aField, aIdentifier) {
 		
     if(!Array.isArray(aArray)) {

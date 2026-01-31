@@ -1,7 +1,7 @@
 import React from "react";
 import Dbm from "../../../../index.js";
 
-export default class ObjectList extends Dbm.react.BaseObject {
+export default class List extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
     }

@@ -32,12 +32,13 @@ export default class ObjectList extends Dbm.react.BaseObject {
     }
 
     _loaded(aRequest) {
-        console.log("_loaded");
+        //console.log("_loaded");
 
         let currentArray = [].concat(aRequest.items);
 
         let nameField = this.getPropValueWithDefault("nameField", "name");
-        Dbm.utils.ArrayFunctions.sortOnField(currentArray, nameField);
+
+        Dbm.utils.ArrayFunctions.naturalSortOnField(currentArray, nameField);
         
         this.item.items = currentArray;
     }
