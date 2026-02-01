@@ -16,7 +16,7 @@ export default class LoginForm extends Dbm.react.BaseObject {
         let loader = new Dbm.loading.JsonLoader();
         loader.setupJsonPost("/api/user/login", {"username": this.item.username, "password": this.item.password});
 
-        Dbm.flow.addUpdateCommand(loader.item.properties.status, Dbm.commands.callFunction(this._loaderStatusChanged.bind(this), [loader]));
+        Dbm.flow.runWhenMatched(loader.item.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._loaderStatusChanged.bind(this), [loader]));
 
         loader.load();
     }
@@ -25,15 +25,13 @@ export default class LoginForm extends Dbm.react.BaseObject {
         console.log("_loaderStatusChanged");
         console.log(aLoader, aLoader.item.status);
 
-        if(aLoader.item.status === Dbm.loading.LoadingStatus.LOADED) {
-            if(aLoader.item.data.success) {
-                
-                let item = Dbm.getGraphApi().signIn(aLoader.item.data.data.wsToken);
-                Dbm.flow.addUpdateCommand(item.properties.status, Dbm.commands.callFunction(this._graphApiRequestStatusChanges.bind(this), [item, aLoader]));
-            }
-            else {
-                alert("Unable to log in: " + aLoader.item.data.message);
-            }
+        if(aLoader.item.data.success) {
+            
+            let item = Dbm.getGraphApi().signIn(aLoader.item.data.data.wsToken);
+            Dbm.flow.runWhenMatched(item.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._graphApiRequestStatusChanges.bind(this), [item, aLoader]));
+        }
+        else {
+            alert("Unable to log in: " + aLoader.item.data.message);
         }
     }
 

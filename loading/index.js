@@ -1,10 +1,14 @@
 import Dbm from "../index.js";
+
 export {default as ScriptLoader} from "./ScriptLoader.js";
 export {default as JsonLoader} from "./JsonLoader.js";
 export {default as ImageLoader} from "./ImageLoader.js";
+export {default as LoadingSequence} from "./LoadingSequence.js";
+
 export * as LoadingStatus from "./LoadingStatus.js";
 
 export * as node from "./node/index.js";
+export * as graphapi from "./graphapi/index.js";
 
 export const loadScript = function(aUrl) {
 

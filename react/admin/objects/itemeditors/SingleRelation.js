@@ -13,12 +13,23 @@ export default class SingleRelation extends Dbm.react.BaseObject {
         this.item.requireProperty("loaded", false);
 
         {
-            let request = graphApi.requestRange(
-                [
+            let selects = [
                     {"type": "includePrivate"},
                     {"type": "includeDraft"},
                     {"type": "idSelection", "ids": [id]},
-                ],
+            ];
+
+            if(this.getPropValue("anyStatus")) {
+                selects = [
+                    {"type": "includeAnyStatus"},
+                    {"type": "idSelection", "ids": [id]},
+                ];
+            }
+
+            console.log(selects);
+
+            let request = graphApi.requestRange(
+                selects,
                 ["admin_fields", "relations"]
             );
             allLoaded.addCheck(request.properties.status);
@@ -44,7 +55,7 @@ export default class SingleRelation extends Dbm.react.BaseObject {
             React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
                 labelElement, 
                 React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {"direction": direction, "relationType": relationType, "objectType": objectType},
-                    React.createElement(Dbm.react.form.GraphApiObjectSelection, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), "objectType": objectType, "encoding": encoding, nameField: nameField, className: "standard-field standard-field-padding full-width"})
+                    React.createElement(Dbm.react.form.GraphApiObjectSelection, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), "objectType": objectType, "encoding": encoding, nameField: nameField, anyStatus: this.getPropValue("anyStatus"), className: "standard-field standard-field-padding full-width"})
                 )
             )
             

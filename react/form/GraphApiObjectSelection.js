@@ -12,12 +12,20 @@ export default class GraphApiObjectSelection extends Dbm.react.BaseObject {
         let encodings = Dbm.utils.ArrayFunctions.arrayOrSeparatedString(this.getPropValueWithDefault("encoding", "name"), ",", true);
 
         {
-            let request = Dbm.getCachedGraphApi().requestRange(
-                [
+            let selects = [
                     {"type": "byObjectType", "objectType": objectType},
                     {"type": "includeDraft"},
                     {"type": "includePrivate"}
-                ],
+                ];
+            if(this.getPropValue("anyStatus")) {
+                selects = [
+                    {"type": "byObjectType", "objectType": objectType},
+                    {"type": "includeAnyStatus"}
+                ];
+            }
+
+            let request = Dbm.getCachedGraphApi().requestRange(
+                selects,
                 encodings
             );
 
