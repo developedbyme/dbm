@@ -9,24 +9,19 @@ export default class GraphApiObjectSelection extends Dbm.react.BaseObject {
         this.item.requireProperty("items", []);
 
         let objectType = this.getPropValue("objectType");
-        let encoding = this.getPropValue("encoding");
-        if(!encoding) {
-            encoding = "name";
-        }
+        let encodings = Dbm.utils.ArrayFunctions.arrayOrSeparatedString(this.getPropValueWithDefault("encoding", "name"), ",", true);
 
-        let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
         {
-            let request = graphApi.requestRange(
+            let request = Dbm.getGraphApi().requestRange(
                 [
                     {"type": "byObjectType", "objectType": objectType},
                     {"type": "includeDraft"},
                     {"type": "includePrivate"}
                 ],
-                [encoding]
+                encodings
             );
-
-    
-           Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._itemsLoaded.bind(this), [request]));
+            
+            Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._itemsLoaded.bind(this), [request]));
         }
     }
 
@@ -41,7 +36,7 @@ export default class GraphApiObjectSelection extends Dbm.react.BaseObject {
         }
 
         let currentArray = [].concat(aRequest.items);
-        Dbm.utils.ArrayFunctions.sortOnField(currentArray, nameField);
+        Dbm.utils.ArrayFunctions.naturalSortOnField(currentArray, nameField);
 
         let currentArrayLength = currentArray.length;
         for(let i = 0; i < currentArrayLength; i++) {

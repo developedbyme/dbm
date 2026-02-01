@@ -1,5 +1,6 @@
 export {default as BaseObject} from "./BaseObject.js";
 export {default as RefToProperty} from "./RefToProperty.js";
+export {default as AddProps} from "./AddProps.js";
 
 export * as ChildFunctions from "./ChildFunctions.js";
 

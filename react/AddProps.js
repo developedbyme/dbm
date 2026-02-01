@@ -10,7 +10,6 @@ export default class AddProps extends Dbm.react.BaseObject {
 	}
 	
 	_getMainElementProps() {
-		//console.log("wprr/manipulation/ManipulationBaseObject::_getMainElementProps");
 		let returnObject = {};
 
 		for(let objectName in this.props) {
@@ -33,6 +32,7 @@ export default class AddProps extends Dbm.react.BaseObject {
 	}
 	
 	_performClone(aChild, aProps) {
+		//console.log("_cloneChildrenAndAddProps");
 		
 		if(aChild instanceof Array) {
 			let returnArray = [];
@@ -46,20 +46,8 @@ export default class AddProps extends Dbm.react.BaseObject {
 			
 			return returnArray;
 		}
-		
-		let newProps = aProps;
-		if(aChild && aChild.props && aChild.props.className) {
-			newProps = {};
-			for(let objectName in aProps) {
-				newProps[objectName] = aProps[objectName];
-			}
-			if(aProps.className) {
-				newProps.className = aProps.className + " " + aChild.props.className;
-			} 
-			else {
-				newProps.className = aChild.props.className;
-			}
-		}
+
+		let newProps = this._copyProps(aChild.props);
 		
 		let callArray = [aChild, newProps];
 		
@@ -80,21 +68,21 @@ export default class AddProps extends Dbm.react.BaseObject {
 	}
 	
 	_cloneChildrenAndAddProps(aChildren) {
-		//console.log("wprr/manipulation/ManipulationBaseObject::_cloneChildrenAndAddProps");
+		//console.log("_cloneChildrenAndAddProps");
 		
 		let children = aChildren;
 		
 		if(children.length === 0) {
 			return null;
 		}
-		else if(children.length === 1) {
-			return this._performClone(children[0], this.props);
-		}
-		
-		let returnArray = new Array();
 		
 		let mainElementProps = this.props;
 		
+		if(children.length === 1) {
+			return this._performClone(children[0], mainElementProps);
+		}
+		
+		let returnArray = new Array();
 		let currentArray = children;
 		let currentArrayLength = currentArray.length;
 		for(let i = 0; i < currentArrayLength; i++) {
@@ -106,16 +94,16 @@ export default class AddProps extends Dbm.react.BaseObject {
 			}
 		}
 		
-		let callArray = [Fragment, {}].concat(returnArray);
+		let callArray = [React.Fragment, {}].concat(returnArray);
 		return React.createElement.apply(React, callArray);
 	}
 	
 	_renderClonedElement() {
-		return this._cloneChildrenAndAddProps(this.getPropValue("children"));
+		let children = Dbm.utils.ArrayFunctions.singleOrArray(this.getPropValue("children"));
+		return this._cloneChildrenAndAddProps(children);
 	}
 	
 	_createClonedElement() {
-		//console.log("wprr/manipulation/ManipulationBaseObject::_createClonedElement");
 		
 		this._clonedElement = this._renderClonedElement();
 	}

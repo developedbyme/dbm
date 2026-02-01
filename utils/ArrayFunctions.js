@@ -266,19 +266,21 @@ export const getUnselectedItems = function(aSelectedItems, aAllItems) {
     return returnItems;
 }
 
+const defaultCompareFunction = function (aA, aB) {
+    if(aA < aB) {
+        return -1;
+    }
+    else if(aA > aB) {
+        return 1;
+    }
+
+    return 0;
+}
+
 export const sortOnField = function(aArray, aField, aCompareFunction = null) {
     let compareFunction = aCompareFunction;
     if(!compareFunction) {
-        compareFunction = function(aA, aB) {
-            if(aA < aB) {
-                return -1;
-            }
-            else if(aA > aB) {
-                return 1;
-            }
-
-            return 0;
-        }
+        compareFunction = defaultCompareFunction;
     }
 
     let sortFunction = function(aA, aB) {

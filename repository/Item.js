@@ -86,6 +86,20 @@ export default class Item extends Dbm.core.LifeCycleObject {
         return this;
     }
 
+    addUniqueToArray(aName, aValue) {
+        let currentArray = this[aName];
+        if(currentArray) {
+            let index = currentArray.indexOf(aValue);
+            if(index !== -1) {
+                return this;
+            }
+        }
+
+        this.addToArray(aName, aValue);
+
+        return this;
+    }
+
     removeFromArray(aName, aValue) {
         let currentArray = this[aName];
         if(currentArray) {

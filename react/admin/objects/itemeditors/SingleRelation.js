@@ -5,7 +5,7 @@ export default class SingleRelation extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
-        let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
+        let graphApi = Dbm.getGraphApi();
 
         let id = this.context.item.id;
 
@@ -32,6 +32,7 @@ export default class SingleRelation extends Dbm.react.BaseObject {
         let id = this.context.item.id;
 
         let label = this.getPropValue("label");
+        let labelElement = label ? React.createElement(Dbm.react.form.LabelledArea, {label: label}) : null;
         let direction = this.getPropValue("direction");
         let relationType = this.getPropValue("relationType");
         let objectType = this.getPropValue("objectType");
@@ -41,7 +42,7 @@ export default class SingleRelation extends Dbm.react.BaseObject {
         return React.createElement("div", {},
             
             React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
-                React.createElement(Dbm.react.form.LabelledArea, {label: label}), 
+                labelElement, 
                 React.createElement(Dbm.react.admin.editorsgroup.EditRelation, {"direction": direction, "relationType": relationType, "objectType": objectType},
                     React.createElement(Dbm.react.form.GraphApiObjectSelection, {value: Dbm.react.source.contextVariable("valueEditor.editValue.value"), "objectType": objectType, "encoding": encoding, nameField: nameField, className: "standard-field standard-field-padding full-width"})
                 )

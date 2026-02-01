@@ -4,6 +4,8 @@ export default class SingleSelection extends Dbm.core.BaseObject {
     _construct() {
         super._construct();
 
+        this._valueMap = new Map();
+
         let valueUpdatedCommand = Dbm.commands.callFunction(this._valueUpdated.bind(this));
 
         this._selectionChangedBound = this._selectionChanged.bind(this);
@@ -15,13 +17,22 @@ export default class SingleSelection extends Dbm.core.BaseObject {
     }
 
     addSelectionValue(aValue) {
+        //console.log("addSelectionValue");
+        //console.log(aValue);
+
+        if(this._valueMap.has(aValue)) {
+            return this._valueMap.get(aValue);
+        }
+
         let selections = [].concat(this.item.selections);
 
         let property = new Dbm.flow.FlowProperty();
         property.setValue(false);
         Dbm.flow.addUpdateCommand(property, Dbm.commands.callFunction(this._selectionChangedBound, [property, aValue]));
+        this._valueMap.set(aValue, property);
 
         selections.push({"value": aValue, "property": property});
+        
         this.item.selections = selections;
 
         return property;

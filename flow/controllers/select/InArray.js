@@ -15,7 +15,7 @@ export default class InArray extends Dbm.core.BaseObject {
 
     getSelectionForValue(aValue) {
         let selections = this.item.selections;
-        let currentSelection = Dbm.utils.ArrayFunctions.getItemBy(selections, "value", aValue);
+        let currentSelection = Dbm.utils.ArrayFunctions.getItemByIfExists(selections, "value", aValue);
 
         if(!currentSelection) {
             let selections = [].concat(this.item.selections);
