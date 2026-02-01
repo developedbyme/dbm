@@ -56,6 +56,7 @@
     height: 120px;
 }
 
+.admin-save-all-position,
 .dbm-admin .save-all-position {
     position: fixed;
     bottom: 10px;

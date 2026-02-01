@@ -16,7 +16,7 @@ export default class GraphApiObjectOptions extends Dbm.react.BaseObject {
         let encodings = Dbm.utils.ArrayFunctions.arrayOrSeparatedString(this.getPropValueWithDefault("encoding", "name,identifier"), ",", true);
 
         {
-            let request = Dbm.getGraphApi().requestRange(
+            let request = Dbm.getCachedGraphApi().requestRange(
                 [
                     {"type": "byObjectType", "objectType": objectType},
                     {"type": "includeDraft"},
@@ -25,7 +25,7 @@ export default class GraphApiObjectOptions extends Dbm.react.BaseObject {
                 encodings
             );
             
-            Dbm.flow.addUpdateCommandWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._itemsLoaded.bind(this), [request]));
+            Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, Dbm.commands.callFunction(this._itemsLoaded.bind(this), [request]));
         }
     }
 

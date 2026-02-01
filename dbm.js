@@ -93,6 +93,10 @@ export const getGraphApi = function() {
     return getRepositoryItem("graphApi").controller;
 }
 
+export const getCachedGraphApi = function() {
+    return getRepositoryItem("cachedGraphApi").controller;
+}
+
 export * as utils from "./utils/index.js";
 export * as core from "./core/index.js";
 export * as loading from "./loading/index.js";
