@@ -16,7 +16,7 @@ export default class Cart extends Dbm.core.BaseObject {
         //METODO: integrate local storage
     }
 
-    addProduct(aProduct, aQuantity = 1) {
+    addProduct(aProduct, aQuantity = 1, aMeta = null) {
         //console.log("addProduct");
         //console.log(aQuantity);
 
@@ -25,8 +25,14 @@ export default class Cart extends Dbm.core.BaseObject {
         let index = Dbm.utils.ArrayFunctions.getItemIndexByIfExists(lineItems, "product", aProduct);
         
         if(index !== -1) {
-            lineItem = lineItems[index];
-            lineItem.controller.increaseQuantity(aQuantity);
+            lineItem = lineItems[index].controller;
+            lineItem.increaseQuantity(aQuantity);
+            //METODO: support items with different meta
+            if(aMeta) {
+                for(let objectName in aMeta) {
+                    lineItem.setMeta(objectName, aMeta[objectName]);
+                }
+            }
         }
         else {
             let id = "lineItem" + Dbm.getInstance().getNextId();
@@ -35,6 +41,12 @@ export default class Cart extends Dbm.core.BaseObject {
             lineItem.setProduct(aProduct);
             lineItem.setQuantity(aQuantity);
             lineItem.setCart(this.item);
+
+            if(aMeta) {
+                for(let objectName in aMeta) {
+                    lineItem.setMeta(objectName, aMeta[objectName]);
+                }
+            }
 
             Dbm.flow.addUpdateCommand(lineItem.item.properties.quantity, this._changeCommand);
 

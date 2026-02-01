@@ -33,7 +33,7 @@ export default class LocalStorageCartLoader extends Dbm.core.BaseObject {
                 for(let i = 0; i < currentArrayLength; i++) {
                     let currentData = currentArray[i];
 
-                    this.item.cart.controller.addProduct(repository.getItem(currentData["product"]), currentData["quantity"]);
+                    this.item.cart.controller.addProduct(repository.getItem(currentData["product"]), currentData["quantity"], currentData["meta"]);
                 }
             }
         }
@@ -58,7 +58,7 @@ export default class LocalStorageCartLoader extends Dbm.core.BaseObject {
         for(let i = 0; i < currentArrayLength; i++) {
             let currentData = currentArray[i];
 
-            let encodedData = {"product": currentData.product.id, "quantity": currentData.quantity};
+            let encodedData = {"product": currentData.product.id, "quantity": currentData.quantity, "meta": currentData.meta};
             encodedLineItems.push(encodedData);
         }
 

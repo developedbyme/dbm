@@ -7,6 +7,7 @@ export default class CartLineItem extends Dbm.core.BaseObject {
         this.item.setValue("cart", null);
         this.item.setValue("product", null);
         this.item.setValue("quantity", 0);
+        this.item.setValue("meta", {});
     }
 
     setCart(aItem) {
@@ -26,6 +27,12 @@ export default class CartLineItem extends Dbm.core.BaseObject {
         //console.log(aQuantity);
 
         this.item.quantity = aQuantity;
+
+        return this;
+    }
+
+    setMeta(aKey, aValue) {
+        this.item.meta[aKey] = aValue;
 
         return this;
     }
