@@ -89,6 +89,10 @@ export const getRepositoryItem = function(aName) {
     return getInstance().repository.getItem(aName);
 }
 
+export const getRepositoryItemIfExists = function(aName) {
+    return getInstance().repository.getItemIfExists(aName);
+}
+
 export const getGraphApi = function() {
     return getRepositoryItem("graphApi").controller;
 }
