@@ -6,7 +6,6 @@ export const setupGlobalInstance = function(aObject, aPath) {
     }
 }
 
-
 export const getInstance = function() {
     return globalThis.dbm;
 }

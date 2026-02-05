@@ -20,4 +20,40 @@ export default class BaseObject extends Dbm.core.LifeCycleObject {
 
         return this;
     }
+
+    _getScopedCallFunctionCommand(aFunction, aArguments = []) {
+        let CallFunction = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/commands/CallFunction");
+        let command = new CallFunction();
+        command.item.scopeObject = this;
+        command.item.callFunction = aFunction;
+        command.item.callArguments = aArguments;
+
+        return command;
+    }
+
+    _propertyOrName(aPropertyOrName) {
+        if(typeof(aPropertyOrName) === "string") {
+            return this.item[aPropertyOrName];
+        }
+
+        return aPropertyOrName;
+    }
+
+    addUpdateCall(aPropertyOrName, aFunction, aArguments = []) {
+        let addUpdateCommand = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/flow/addUpdateCommand");
+        addUpdateCommand(this._propertyOrName(aPropertyOrName), aMatchValue, this._getScopedCallFunctionCommand(aFunction, aArguments));
+    }
+
+    addUpdateCallWhenMatched(aPropertyOrName, aMatchValue, aFunction, aArguments = []) {
+        let addUpdateCommandWhenMatched = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/flow/addUpdateCommandWhenMatched");
+        addUpdateCommandWhenMatched(this._propertyOrName(aPropertyOrName), aMatchValue, this._getScopedCallFunctionCommand(aFunction, aArguments));
+    }
+
+    destroy() {
+        if(this._item) {
+            //METODO: destroy item
+        }
+        this._item = null;
+        super.destroy();
+    }
 }

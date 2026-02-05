@@ -7,6 +7,7 @@ export {default as UpdateFunctionInputs} from "./UpdateFunctionInputs.js";
 export {default as UpdateFunctionOutputs} from "./UpdateFunctionOutputs.js";
 export {default as DirtyCommands} from "./DirtyCommands.js";
 export {default as FlowPropertyWithExternalInput} from "./FlowPropertyWithExternalInput.js";
+export {default as ExternalObjectUpdater} from "./ExternalObjectUpdater.js";
 
 export * as updatefunctions from "./updatefunctions/index.js";
 export * as controllers from "./controllers/index.js";
@@ -48,7 +49,7 @@ export const addUpdateCommandWhenMatched = function(aProperty, aMatchValue, aCom
 	
 	updateData["whenMatched"] = whenMatched;
 	
-	return whenMatched;
+	return updateData;
 }
 
 export const runWhenMatched = function(aProperty, aMatchValue, aCommand) {
@@ -83,4 +84,12 @@ export const animateValue = function(aValue, aTime = 0.5, aEasing = null) {
 	returnObject.setValue("updateCommand", updateCommand);
 	
 	return returnObject;
+}
+
+export const externalObject = function(aObject) {
+    let returnObject = new Dbm.flow.ExternalObjectUpdater();
+
+    returnObject.item.properties.object.setOrConnect(aObject);
+
+    return returnObject;
 }

@@ -3,7 +3,7 @@ import Dbm from "../index.js";
 export {default as Runner} from "./Runner.js";
 export {default as Controller} from "./Controller.js";
 
-export let runStartup = function(aGlobalScope = "dbmstartup", aModulesName = "modules") {
+export const runStartup = function(aGlobalScope = "dbmstartup", aModulesName = "modules") {
     if(!window[aGlobalScope][aModulesName].isSetup) {
         let controller = new Dbm.startup.Controller();
 
@@ -25,4 +25,11 @@ export let runStartup = function(aGlobalScope = "dbmstartup", aModulesName = "mo
 
         currentArray.splice(0, currentArrayLength);
     }
+}
+
+export const setupLibrary = function() {
+    let library = Dbm.getRepositoryItem("library");
+    library.setValue("Dbm/commands/CallFunction", Dbm.commands.CallFunction);
+    library.setValue("Dbm/flow/addUpdateCommand", Dbm.flow.addUpdateCommand);
+    library.setValue("Dbm/flow/addUpdateCommandWhenMatched", Dbm.flow.addUpdateCommandWhenMatched);
 }

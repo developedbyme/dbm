@@ -137,12 +137,12 @@ export default class FlowProperty extends Dbm.flow.FlowBaseObject {
     }
 
     startUpdating() {
-        Dbm.getInstance().repository.getItem("propertyUpdater").controller.addProperty(this);
+        Dbm.getRepositoryItem("propertyUpdater").controller.addProperty(this);
         return this;
     }
 
     stopUpdating() {
-        Dbm.getInstance().repository.getItem("propertyUpdater").controller.removeProperty(this);
+        Dbm.getRepositoryItem("propertyUpdater").controller.removeProperty(this);
         return this;
     }
 
