@@ -9,6 +9,7 @@ export * as ObjectFunctions from "./ObjectFunctions.js";
 
 export {default as MultidimensionalArrayHolder} from "./MultidimensionalArrayHolder.js";
 export {default as ArrayOperationResult} from "./ArrayOperationResult.js";
+export {default as KeywordReplace} from "./KeywordReplace.js";
 
 export * as thirdparty from "./thirdparty/index.js";
 export * as svg from "./svg/index.js";

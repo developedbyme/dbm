@@ -16,14 +16,14 @@ export default class KeywordReplace extends Dbm.core.BaseObject {
 	}
 	
 	addKeyword(aKeyword, aValue) {
-        this.item["keywordProvider/default"][aKeyword] = aValue;
+        this.item["keywordProvider/default"][aKeyword.toLowerCase()] = aValue;
 
         return this;
     }
 
     addKeywordProvider(aName, aKeywordProvider) {
         this.item.addToArray("keywordProviders", aKeywordProvider);
-        this.item.setValue("keywordProvider/" + aName, aKeywordProvider);
+        this.item.setValue("keywordProvider/" + aName.toLowerCase(), aKeywordProvider);
 
         return this;
     }
@@ -42,7 +42,7 @@ export default class KeywordReplace extends Dbm.core.BaseObject {
     }
 
     _trimRegexKey(aRegexResult) {
-        let normalizedKey = aRegexResult[1].replace(/\s+/g, "");
+        let normalizedKey = aRegexResult[1].replace(/\s+/g, "").toLowerCase();
         return normalizedKey;
     }
 
@@ -73,7 +73,7 @@ export default class KeywordReplace extends Dbm.core.BaseObject {
             let group = aKeyword.substring(0, index);
             let keyword = aKeyword.substring(index+1);
 
-            let value = Dbm.objectPath(this.item["keywordProvider/" + group], keyword);
+            let value = Dbm.objectPath(this.item["keywordProvider/" + group.toLowerCase()], keyword.toLowerCase());
             if(value !== undefined) {
                 return value;
             }
