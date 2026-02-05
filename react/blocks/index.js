@@ -591,7 +591,25 @@ export let registerAllBlocks = function() {
         pageEditors.push(newEditor);
     }
 
+{
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/emailTemplate");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
 
+        let newArray = [].concat(objectTypeEditor.editors);
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/name"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/identifier"));
+        newArray.push(Dbm.getInstance().repository.getItem("admin/itemEditors/title"));
+
+        {
+            let itemEditor = new Dbm.repository.Item();
+            itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.RichTextFieldWithTranslations, {"label": "Content", "fieldName": "content"}));
+            newArray.push(itemEditor);
+        }
+        
+        objectTypeEditor.editors = newArray;
+    }
 
     admin.pageEditors = pageEditors;
 
