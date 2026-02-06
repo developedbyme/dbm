@@ -33,6 +33,11 @@ export default class PostmarkApiClient extends Dbm.core.BaseObject {
 			TextBody: aMessageItem.textContent,
         };
 
+		let replyTo = Dbm.objectPath(aMessageItem, "additionalData.replyTo");
+		if(replyTo) {
+			emailData["ReplyTo"] = replyTo;
+		}
+
         let response = await fetch('https://api.postmarkapp.com/email', {
             method: 'POST',
             headers: {
