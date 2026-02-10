@@ -61,6 +61,10 @@ export default class Form extends Dbm.core.BaseObject {
             let currentName = currentArray[i];
 
             let result = this.item.fields[currentName].controller.validate();
+
+            if(!result) {
+                console.log("Field " + currentName + " is not valid.", this.item.fields[currentName]);
+            }
             //METODO: return the result in some format
         }
 

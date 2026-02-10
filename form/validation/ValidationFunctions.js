@@ -12,3 +12,12 @@ export const notEmpty = function(aValidation) {
     }
     return false;
 }
+
+export const checked = function(aValidation) {
+    //console.log("notEmpty");
+
+    if(aValidation.field.value) {
+        return true;
+    }
+    return false;
+}

@@ -32,6 +32,8 @@ export default class Field extends Dbm.core.BaseObject {
             this.item.valid = true;
             this.item.validationState = "notValidated";
         }
+
+        return this.item.valid;
     }
 
     getValue() {

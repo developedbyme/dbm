@@ -17,9 +17,15 @@ export {default as Option} from "./Option.js";
 export {default as Dropdown} from "./Dropdown.js";
 export {default as GraphApiObjectOptions} from "./GraphApiObjectOptions.js";
 
+export const validationStateClassName = function(aChildren) {
+    return React.createElement(Dbm.react.AddProps, {className: Dbm.react.source.contextVariable("field.properties.validationState")},
+        aChildren
+    )
+}
+
 export const fieldWithValidation = function(aFieldName, aPlaceHolderText = null, aClasses = "standard-field standard-field-padding full-width") {
     let returnElement = React.createElement(Dbm.react.context.AddItemToContext, {item: Dbm.react.source.contextVariable("form.fields." + aFieldName), as: "field"},
-        React.createElement(Dbm.react.AddProps, {className: Dbm.react.source.contextVariable("field.properties.validationState")},
+        validationStateClassName(
             React.createElement(Dbm.react.form.FormField, {
                 value: Dbm.react.source.contextVariable("field.properties.value"),
                 editing: Dbm.react.source.contextVariable("field.properties.editing"),
@@ -31,3 +37,4 @@ export const fieldWithValidation = function(aFieldName, aPlaceHolderText = null,
 
     return returnElement;
 }
+
