@@ -21,7 +21,7 @@ export default class Form extends Dbm.core.BaseObject {
         return this;
     }
 
-    createField(aName, aValue = null, aValidationFunction = null) {
+    createField(aName, aValue = null, aValidationFunction = null, aValidationActive = null) {
 
         if(this.item.fields[aName]) {
             console.error("Field " + aName + " already exists");
@@ -33,6 +33,9 @@ export default class Form extends Dbm.core.BaseObject {
         newField.item.validationMode = this.item.defaultValidationMode;
         if(aValidationFunction) {
             newField.item.validation.validationFunction = aValidationFunction;
+        }
+        if(aValidationActive) {
+            newField.item.validation.properties.active.setOrConnect(aValidationActive);
         }
 
         this.addExistingField(aName, newField);

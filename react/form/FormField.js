@@ -25,19 +25,17 @@ export default class FormField extends Dbm.react.BaseObject {
     }
 
     _callback_focus(aEvent) {
-        console.log("_callback_focus");
+        //console.log("_callback_focus");
         //console.log(aEvent);
 
         this.getDynamicProp("editing").getMostUpstreamProperty().setValue(true);
-        console.log(this.getDynamicProp("editing"), this.getDynamicProp("editing").getMostUpstreamProperty());
     }
 
     _callback_blur(aEvent) {
-        console.log("_callback_blur");
+        //console.log("_callback_blur");
         //console.log(aEvent);
 
         this.getDynamicProp("editing").getMostUpstreamProperty().setValue(false);
-        console.log(this.getDynamicProp("editing"), this.getDynamicProp("editing").getMostUpstreamProperty());
     }
 
     _renderMainElement() {

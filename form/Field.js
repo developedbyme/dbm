@@ -24,8 +24,14 @@ export default class Field extends Dbm.core.BaseObject {
     }
 
     validate() {
-        let newState = this.item.valid ? "valid" : "invalid";
-        this.item.validationState = newState;
+        if(this.item.validation.active) {
+            let newState = this.item.valid ? "valid" : "invalid";
+            this.item.validationState = newState;
+        }
+        else {
+            this.item.valid = true;
+            this.item.validationState = "notValidated";
+        }
     }
 
     getValue() {
@@ -33,17 +39,18 @@ export default class Field extends Dbm.core.BaseObject {
     }
 
     _validationActiveChange() {
-        console.log("_validationActiveChange");
+        //console.log("_validationActiveChange");
         if(this.item.validation.active) {
             this._changed();
         }
         else {
             this.item.valid = true;
+            this.item.validationState = "notValidated";
         }
     }
 
     _changed() {
-        console.log("_changed");
+        //console.log("_changed");
         this.item.valid = this.item.validation.controller.validate();
 
         if(this.item.validationMode === "onChange") {
@@ -52,7 +59,7 @@ export default class Field extends Dbm.core.BaseObject {
     }
 
     _focusChanged() {
-        console.log("_focus");
+        //console.log("_focus");
         if(this.item.editing) {
             if(this.item.focusMode === "reset") {
                 this.item.validationState = "notValidated";
