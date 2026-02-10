@@ -19,7 +19,19 @@ export default class LifeCycleObject {
 
     }
 
-    destroy() {
+    retain() {
         //METODO
+
+        return this;
+    }
+
+    release() {
+        //METODO
+    }
+
+    destroy() {
+        if(process.env.NODE_ENV === "development") {
+            this._debugId = null;
+        }
     }
 }

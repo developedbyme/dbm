@@ -155,4 +155,42 @@ export default class FlowProperty extends Dbm.flow.FlowBaseObject {
             this._upstreamConnection = null;
         }
     }
+
+    addUpdate(aCommand) {
+        let addUpdateCommand = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/flow/addUpdateCommand");
+        addUpdateCommand(this, aCommand);
+
+        return this;
+    }
+
+    addUpdateWhenMatched(aMatchValue, aCommand) {
+        let addUpdateCommandWhenMatched = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/flow/addUpdateCommandWhenMatched");
+        addUpdateCommandWhenMatched(this, aMatchValue, aCommand);
+
+        return this;
+    }
+
+    createCondition(aMatchValue, aCompareType = "===") {
+        let UpdateFunctionClass = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/flow/updatefunctions/logic/Condition");
+        let updateFunction = new UpdateFunctionClass();
+        updateFunction.input.properties.input1.connectInput(this);
+        updateFunction.input.input2 = aMatchValue;
+        updateFunction.input.operation = aCompareType;
+
+        return updateFunction.output.properties.result;
+    }
+
+    createSwitch(aDefaultValue, aValues) {
+        let UpdateFunctionClass = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/flow/updatefunctions/logic/Switch");
+        let updateFunction = new UpdateFunctionClass();
+        updateFunction.input.properties.value.connectInput(this);
+        updateFunction.setDefaultValue(aDefaultValue);
+
+        //METODO: do better normalization
+        for(let objectName in aValues) {
+            updateFunction.addCase(objectName, aValues[objectName]);
+        }
+
+        return updateFunction.output.properties.value;
+    }
 }

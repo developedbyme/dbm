@@ -30,3 +30,14 @@ export const centeredFlexDiv = function(aChildren) {
         React.createElement("div", {className: "flex-row-item"}, aChildren)
     );
 }
+
+export const processStateElement = function(aState, aIdleElement, aProcessingElement, aCompletedElement) {
+    let updateFunction = Dbm.flow.updatefunctions.logic.switchValue(aState);
+    updateFunction.setDefaultValue(aIdleElement);
+    updateFunction.addCase(Dbm.loading.LoadingStatus.LOADING, aProcessingElement);
+    updateFunction.addCase(Dbm.loading.LoadingStatus.LOADED, aCompletedElement);
+
+    let element = React.createElement(Dbm.react.area.InsertElement, {"element": updateFunction.output.properties.value});
+
+    return updateFunction;
+}

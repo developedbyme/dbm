@@ -227,6 +227,32 @@ export default class BaseObject extends Component {
 
         return createElement.apply(null, callArray);
     }
+
+    _getScopedCallFunctionCommand(aFunction, aArguments = []) {
+        let CallFunction = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/commands/CallFunction");
+        let command = new CallFunction();
+        command.item.scopeObject = this;
+        command.item.callFunction = aFunction;
+        command.item.callArguments = aArguments;
+
+        return command;
+    }
+
+    _propertyOrName(aPropertyOrName) {
+        if(typeof(aPropertyOrName) === "string") {
+            return this.item[aPropertyOrName];
+        }
+
+        return aPropertyOrName;
+    }
+
+    addUpdateCall(aPropertyOrName, aFunction, aArguments = []) {
+        this._propertyOrName(aPropertyOrName).addUpdate(this._getScopedCallFunctionCommand(aFunction, aArguments));
+    }
+
+    addUpdateCallWhenMatched(aPropertyOrName, aMatchValue, aFunction, aArguments = []) {
+        this._propertyOrName(aPropertyOrName).addUpdateWhenMatched(aMatchValue, this._getScopedCallFunctionCommand(aFunction, aArguments));
+    }
 }
 
 BaseObject.contextType = Context;

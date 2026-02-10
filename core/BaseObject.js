@@ -40,13 +40,11 @@ export default class BaseObject extends Dbm.core.LifeCycleObject {
     }
 
     addUpdateCall(aPropertyOrName, aFunction, aArguments = []) {
-        let addUpdateCommand = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/flow/addUpdateCommand");
-        addUpdateCommand(this._propertyOrName(aPropertyOrName), aMatchValue, this._getScopedCallFunctionCommand(aFunction, aArguments));
+        this._propertyOrName(aPropertyOrName).addUpdate(this._getScopedCallFunctionCommand(aFunction, aArguments));
     }
 
     addUpdateCallWhenMatched(aPropertyOrName, aMatchValue, aFunction, aArguments = []) {
-        let addUpdateCommandWhenMatched = Dbm.objectPath(Dbm.getRepositoryItem("library"), "Dbm/flow/addUpdateCommandWhenMatched");
-        addUpdateCommandWhenMatched(this._propertyOrName(aPropertyOrName), aMatchValue, this._getScopedCallFunctionCommand(aFunction, aArguments));
+        this._propertyOrName(aPropertyOrName).addUpdateWhenMatched(aMatchValue, this._getScopedCallFunctionCommand(aFunction, aArguments));
     }
 
     destroy() {

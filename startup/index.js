@@ -32,4 +32,7 @@ export const setupLibrary = function() {
     library.setValue("Dbm/commands/CallFunction", Dbm.commands.CallFunction);
     library.setValue("Dbm/flow/addUpdateCommand", Dbm.flow.addUpdateCommand);
     library.setValue("Dbm/flow/addUpdateCommandWhenMatched", Dbm.flow.addUpdateCommandWhenMatched);
+    library.setValue("Dbm/flow/updatefunctions/logic/Condition", Dbm.flow.updatefunctions.logic.Condition);
+    library.setValue("Dbm/flow/updatefunctions/logic/Switch", Dbm.flow.updatefunctions.logic.Switch);
+    
 }

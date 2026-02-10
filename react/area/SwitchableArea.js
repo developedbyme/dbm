@@ -27,7 +27,7 @@ export default class SwitchableArea extends Dbm.react.BaseObject {
             slotElement = mainChildren;
         }
 
-        this.item.element = React.createElement(React.Fragment, {key: slotElement}, slotElement);
+        this.item.element = React.createElement(React.Fragment, {key: area}, slotElement);
     }
 
     _renderMainElement() {

@@ -18,7 +18,7 @@ export const addUpdateCommand = function(aProperty, aCommand) {
     updateFunction.input.command = aCommand;
     updateFunction.noFirstTriggger();
     
-    let updatePropertyCommand = Dbm.commands.callFunction(Dbm.getInstance().repository.getItem("propertyUpdater").controller.addSinglePropertyUpdateBound, [Dbm.core.source.staticObject(updateFunction.output.properties.value)]);
+    let updatePropertyCommand = Dbm.commands.callFunction(Dbm.repository.getControllerIfExists("propertyUpdater").addSinglePropertyUpdateBound, [Dbm.core.source.staticObject(updateFunction.output.properties.value)]);
 
     let dirtyCommands = new Dbm.flow.DirtyCommands();
     updateFunction.output.properties.value.connectOutput(dirtyCommands);
@@ -43,11 +43,11 @@ export const addDirectUpdateCommand = function(aProperty, aCommand) {
 }
 
 export const addUpdateCommandWhenMatched = function(aProperty, aMatchValue, aCommand) {
-	let whenMatched = Dbm.flow.updatefunctions.logic.whenMatched(aProperty, aMatchValue);
+	let matchUpdateFunction = Dbm.flow.updatefunctions.logic.whenMatched(aProperty, aMatchValue);
 	
-	let updateData = Dbm.flow.addUpdateCommand(whenMatched.output.properties.value, aCommand);
+	let updateData = Dbm.flow.addUpdateCommand(matchUpdateFunction.output.properties.value, aCommand);
 	
-	updateData["whenMatched"] = whenMatched;
+	updateData["matchUpdateFunction"] = matchUpdateFunction;
 	
 	return updateData;
 }
