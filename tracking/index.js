@@ -14,22 +14,24 @@ export const setup = function() {
     controller.start();
 
     let dataLayerTracker = new Dbm.tracking.DataLayerTracker();
+    dataLayerTracker.item.register("tracking/dataLayerTracker");
     controller.addTracker(dataLayerTracker.item);
 }
 
 export const addMetaPixel = function(aPixelId) {
     let tracker = new Dbm.tracking.MetaPixelTracker();
     tracker.item.pixelId = aPixelId;
-    Dbm.getInstance().repository.getItem("trackingController").controller.addTracker(tracker.item);
+    tracker.item.register("tracking/metaPixelTracker");
+    Dbm.getRepositoryItem("trackingController").controller.addTracker(tracker.item);
 }
 
 export const setCurrency = function(aCurrency) {
-    Dbm.getInstance().repository.getItem("trackingController").currency = aCurrency;
+    Dbm.getRepositoryItem("trackingController").currency = aCurrency;
 }
 
 export const addTagManagerTracking = function(aId) {
     //console.log("addTagManagerTracking");
     let tracker = new Dbm.tracking.TagManagerTracker();
     tracker.item.tagManagerId = aId;
-    Dbm.getInstance().repository.getItem("trackingController").controller.addTracker(tracker.item);
+    Dbm.getRepositoryItem("trackingController").controller.addTracker(tracker.item);
 }

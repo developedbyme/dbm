@@ -33,7 +33,7 @@ export default class BaseObject extends Dbm.core.LifeCycleObject {
 
     _propertyOrName(aPropertyOrName) {
         if(typeof(aPropertyOrName) === "string") {
-            return this.item[aPropertyOrName];
+            return this.item.properties[aPropertyOrName];
         }
 
         return aPropertyOrName;
@@ -44,6 +44,7 @@ export default class BaseObject extends Dbm.core.LifeCycleObject {
     }
 
     addUpdateCallWhenMatched(aPropertyOrName, aMatchValue, aFunction, aArguments = []) {
+        console.log(this._propertyOrName(aPropertyOrName), aPropertyOrName, this);
         this._propertyOrName(aPropertyOrName).addUpdateWhenMatched(aMatchValue, this._getScopedCallFunctionCommand(aFunction, aArguments));
     }
 

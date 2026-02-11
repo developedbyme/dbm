@@ -120,7 +120,7 @@ export default class Controller extends Dbm.core.BaseObject {
         }
     }
 
-    trackEvent(aEventName, aData) {
+    trackEvent(aEventName, aData, aDataStructure = null) {
         console.log("trackEvent");
         console.log(aEventName, aData);
 
@@ -128,7 +128,7 @@ export default class Controller extends Dbm.core.BaseObject {
             let currentArray = this.item.trackers;
             let currentArrayLength = currentArray.length;
             for(let i = 0; i < currentArrayLength; i++) {
-                currentArray[i].controller.trackEvent(aEventName, aData);
+                currentArray[i].controller.trackEvent(aEventName, aData, aDataStructure);
             }
         }
 
@@ -184,7 +184,7 @@ export default class Controller extends Dbm.core.BaseObject {
             items: items
         }
 
-        this.trackEvent("Product view", data);
+        this.trackEvent("Product view", data, "ecommerce");
     }
 
     trackAddedToCart(aProductOrProducts) {
@@ -196,7 +196,7 @@ export default class Controller extends Dbm.core.BaseObject {
             items: items
         }
 
-        this.trackEvent("Added to cart", data);
+        this.trackEvent("Added to cart", data, "ecommerce");
 
     }
 
@@ -209,7 +209,7 @@ export default class Controller extends Dbm.core.BaseObject {
             items: items
         }
 
-        this.trackEvent("Checkout started", data);
+        this.trackEvent("Checkout started", data, "ecommerce");
     }
 
     trackAddShipping(aProductOrProducts) {
@@ -221,7 +221,7 @@ export default class Controller extends Dbm.core.BaseObject {
             items: items
         }
 
-        this.trackEvent("Add shipping", data);
+        this.trackEvent("Add shipping", data, "ecommerce");
     }
 
     trackAddPayment(aProductOrProducts) {
@@ -233,7 +233,7 @@ export default class Controller extends Dbm.core.BaseObject {
             items: items
         }
 
-        this.trackEvent("Add payment", data);
+        this.trackEvent("Add payment", data, "ecommerce");
     }
 
     trackPurchase(aTransactionId, aProductOrProducts) {
@@ -246,7 +246,7 @@ export default class Controller extends Dbm.core.BaseObject {
             items: items
         }
 
-        this.trackEvent("Purchase", data);
+        this.trackEvent("Purchase", data, "ecommerce");
     }
 
     createProductItemData(aId, aName, aPrice, aQuantity = 1, aAddtionalData = {}) {

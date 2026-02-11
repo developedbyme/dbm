@@ -4,6 +4,7 @@ export {default as ScriptLoader} from "./ScriptLoader.js";
 export {default as JsonLoader} from "./JsonLoader.js";
 export {default as ImageLoader} from "./ImageLoader.js";
 export {default as LoadingSequence} from "./LoadingSequence.js";
+export {default as FontLoader} from "./FontLoader.js";
 
 export * as LoadingStatus from "./LoadingStatus.js";
 
@@ -50,6 +51,26 @@ export const getImageLoader = function(aUrl) {
 export const loadImage = function(aUrl) {
     
     let loader = getImageLoader(aUrl);
+    loader.load();
+
+    return loader;
+}
+
+export const loadFont = function(aUrl, aFontName) {
+    let loaderName = "loader-" + aUrl;
+    let loaderItem = Dbm.getInstance().repository.getItemIfExists(loaderName);
+    
+    let loader;
+    if(!loaderItem) {
+        loader = new Dbm.loading.FontLoader();
+        loader.item.register(loaderName);
+        loader.setUrl(aUrl);
+        loader.setFontName(aFontName);
+    }
+    else {
+        loader = loaderItem.controller;
+    }
+
     loader.load();
 
     return loader;

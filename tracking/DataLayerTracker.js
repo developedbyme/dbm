@@ -6,6 +6,9 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
 
 		this._statisticsTracking = false;
 		this._marketingTracking = false;
+
+		this.item.setValue("ecommerceDataWrapper", null);
+		this.item.setValue("eventNameMap", new Dbm.repository.Item());
     }
 
     addToDataLayer(aData) {
@@ -67,18 +70,34 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
 		return this;
 	}
 
-    trackEvent(aEventName, aData) {
+    trackEvent(aEventName, aData, aDataStructure = null) {
         console.log("trackEvent");
-        console.log(aEventName, aData);
+        console.log(aEventName, aData, aDataStructure);
+
+		let translatedEventName = this.item.eventNameMap[aEventName];
+		if(translatedEventName) {
+			aEventName = translatedEventName;
+		}
 
 		if(this._statisticsTracking) {
 			this.addToDataLayer({"event": "trackEvent", "value": {"name": aEventName, "data": aData}});
-			this._gtag("event", aEventName, aData);
+			if(aDataStructure === "ecommerce" && this.item.ecommerceDataWrapper) {
+				this.addToDataLayer({"event": aEventName, [this.item.ecommerceDataWrapper]: aData});
+			}
+			else {
+				this._gtag("event", aEventName, aData);
+			}
+			
 		}
 
         if(this._marketingTracking) {
 			this.addToDataLayer({"event": "trackMarketingEvent", "value": {"name": aEventName, "data": aData}});
-			this._gtag("event", "Marketing / " + aEventName, aData);
+			if(aDataStructure === "ecommerce" && this.item.ecommerceDataWrapper) {
+				this.addToDataLayer({"event": "Marketing / " + aEventName, [this.item.ecommerceDataWrapper]: aData});
+			}
+			else {
+				this._gtag("event", "Marketing / " + aEventName, aData);
+			}
 		}
     }
 

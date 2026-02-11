@@ -294,7 +294,9 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
                 {
                     let item = repository.getItem(data["requestId"]);
                     if(data["id"]) {
-                        item.setValue("user", repository.getItem(data["id"]));
+                        let userItem = repository.getItem(data["user"]);
+                        userItem.setValue("roles", data["roles"]);
+                        item.setValue("user", userItem);
                     }
                     else {
                         item.setValue("user", null);
@@ -307,7 +309,9 @@ export default class WebSocketConnection extends Dbm.core.BaseObject {
             case "connectionReady": 
                 {
                     if(data["user"]) {
-                        repository.getItem("site").currentUser = repository.getItem(data["user"]);
+                        let userItem = repository.getItem(data["user"]);
+                        userItem.setValue("roles", data["roles"]);
+                        repository.getItem("site").currentUser = userItem;
                     }
                     else {
                         repository.getItem("site").currentUser = null;
