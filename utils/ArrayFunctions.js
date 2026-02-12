@@ -485,3 +485,15 @@ export const mapObjectToArrayWithoutKey = function(aObject) {
     
     return returnArray;
 }
+
+export const anyOverlap = function(aArray1, aArray2) {
+    let currentArray = aArray1;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        if(aArray2.indexOf(currentArray[i]) !== -1) {
+            return true;
+        }
+    }
+
+    return false;
+}

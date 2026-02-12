@@ -7,6 +7,10 @@ export const getItem = function(aName) {
     return Dbm.getInstance().repository.getItem(aName);
 }
 
+export const getItems = function(aNames) {
+    return Dbm.getInstance().repository.getItems(aNames);
+}
+
 export const getItemIfExists = function(aName) {
     return Dbm.getInstance().repository.getItemIfExists(aName);
 }
