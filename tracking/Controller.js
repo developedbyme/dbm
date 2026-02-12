@@ -176,87 +176,47 @@ export default class Controller extends Dbm.core.BaseObject {
 
     trackProductView(aProduct) {
 
-        let items = [aProduct];
-
-        let data = {
-            currency: this.item.currency,
-            value: this._getValueFromItems(items),
-            items: items
-        }
+        let data = this.createProductItemsSummary(aProduct);
 
         this.trackEvent("Product view", data, "ecommerce");
     }
 
     trackAddedToCart(aProductOrProducts) {
-        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
-
-        let data = {
-            currency: this.item.currency,
-            value: this._getValueFromItems(items),
-            items: items
-        }
+        let data = this.createProductItemsSummary(aProductOrProducts);
 
         this.trackEvent("Added to cart", data, "ecommerce");
 
     }
 
     trackCheckoutStarted(aProductOrProducts) {
-        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
-
-        let data = {
-            currency: this.item.currency,
-            value: this._getValueFromItems(items),
-            items: items
-        }
+        
+        let data = this.createProductItemsSummary(aProductOrProducts);
 
         this.trackEvent("Checkout started", data, "ecommerce");
     }
 
     trackAddShipping(aProductOrProducts) {
-        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
-
-        let data = {
-            currency: this.item.currency,
-            value: this._getValueFromItems(items),
-            items: items
-        }
+        
+        let data = this.createProductItemsSummary(aProductOrProducts);
 
         this.trackEvent("Add shipping", data, "ecommerce");
     }
 
     trackAddPayment(aProductOrProducts) {
-        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
-
-        let data = {
-            currency: this.item.currency,
-            value: this._getValueFromItems(items),
-            items: items
-        }
+        let data = this.createProductItemsSummary(aProductOrProducts);
 
         this.trackEvent("Add payment", data, "ecommerce");
     }
 
     trackPurchase(aTransactionId, aProductOrProducts) {
-        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
 
-        let data = {
-            transaction_id: aTransactionId,
-            currency: this.item.currency,
-            value: this._getValueFromItems(items),
-            items: items
-        }
+        let data = this.createProductItemsSummary(aProductOrProducts, {"transaction_id": aTransactionId});
 
         this.trackEvent("Purchase", data, "ecommerce");
     }
 
-    trackEcommerce(aEventName, aProductOrProducts) {
-        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
-
-        let data = {
-            currency: this.item.currency,
-            value: this._getValueFromItems(items),
-            items: items
-        }
+    trackEcommerce(aEventName, aProductOrProducts, aAddtionalData = {}) {
+        let data = this.createProductItemsSummary(aProductOrProducts, aAddtionalData = {});
 
         this.trackEvent(aEventName, data, "ecommerce");
     }
@@ -273,5 +233,18 @@ export default class Controller extends Dbm.core.BaseObject {
         }
 
         return returnObject;
+    }
+
+    createProductItemsSummary(aProductOrProducts, aAddtionalData = {}) {
+        let items = Dbm.utils.ArrayFunctions.singleOrArray(aProductOrProducts);
+
+        let data = {
+            ...aAddtionalData,
+            currency: this.item.currency,
+            value: this._getValueFromItems(items),
+            items: items
+        }
+
+        return data;
     }
 }

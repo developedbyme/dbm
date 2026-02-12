@@ -81,7 +81,15 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
 
 		if(this._statisticsTracking) {
 			this.addToDataLayer({"event": "trackEvent", "value": {"name": aEventName, "data": aData}});
-			if(aDataStructure === "ecommerce" && this.item.ecommerceDataWrapper) {
+			if(aDataStructure === "raw") {
+				let adjustedData = {
+					...aData,
+					"event": aEventName
+				}
+
+				this.addToDataLayer(adjustedData);
+			}
+			else if(aDataStructure === "ecommerce" && this.item.ecommerceDataWrapper) {
 				this.addToDataLayer({"event": aEventName, [this.item.ecommerceDataWrapper]: aData});
 			}
 			else {
@@ -92,7 +100,15 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
 
         if(this._marketingTracking) {
 			this.addToDataLayer({"event": "trackMarketingEvent", "value": {"name": aEventName, "data": aData}});
-			if(aDataStructure === "ecommerce" && this.item.ecommerceDataWrapper) {
+			if(aDataStructure === "raw") {
+				let adjustedData = {
+					...aData,
+					"event": "Marketing / " + aEventName
+				}
+
+				this.addToDataLayer(adjustedData);
+			}
+			else if(aDataStructure === "ecommerce" && this.item.ecommerceDataWrapper) {
 				this.addToDataLayer({"event": "Marketing / " + aEventName, [this.item.ecommerceDataWrapper]: aData});
 			}
 			else {
