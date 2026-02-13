@@ -14,7 +14,7 @@ export default class Cart extends Dbm.core.BaseObject {
         this.item.setValue("changeCount", 0);
     }
 
-    createLineItem(aType, aQuantity = 0, aMeta) {
+    createLineItem(aType, aQuantity = 0, aMeta = null) {
         
         let id = "lineItem" + Dbm.getInstance().getNextId();
         let lineItem = new Dbm.ecommerce.CartLineItem();
@@ -40,39 +40,26 @@ export default class Cart extends Dbm.core.BaseObject {
         //console.log("addProduct");
         //console.log(aQuantity);
 
-        let lineItems = this.item.lineItems;
-        let lineItem;
-        let index = Dbm.utils.ArrayFunctions.getItemIndexByIfExists(lineItems, "product", aProduct);
+        let lineItem = Dbm.utils.ArrayFunctions.getItemBy(this.item.lineItems, "product", aProduct);
         
-        if(index !== -1) {
-            lineItem = lineItems[index].controller;
+        if(lineItem) {
             lineItem.increaseQuantity(aQuantity);
-            //METODO: support items with different meta
-            if(aMeta) {
-                for(let objectName in aMeta) {
-                    lineItem.setMeta(objectName, aMeta[objectName]);
-                }
-            }
-        }
-        else {
-            let id = "lineItem" + Dbm.getInstance().getNextId();
-            lineItem = new Dbm.ecommerce.CartLineItem();
-            lineItem.item.setId(id);
-            lineItem.item.type = "product";
-            lineItem.setProduct(aProduct);
-            lineItem.setQuantity(aQuantity);
-            lineItem.setCart(this.item);
-
+            
             if(aMeta) {
                 for(let objectName in aMeta) {
                     lineItem.setMeta(objectName, aMeta[objectName]);
                 }
             }
 
-            Dbm.flow.addUpdateCommand(lineItem.item.properties.quantity, this._changeCommand);
-
-            this.item.addToArray("lineItems", lineItem.item);
+            return lineItem;
         }
+
+        return this.addProductAsSeparateLineItem(aProduct, aQuantity, aMeta);
+    }
+
+    addProductAsSeparateLineItem(aProduct, aQuantity = 1, aMeta = null) {
+        let lineItem = this.createLineItem("product", aQuantity, aMeta);
+        lineItem.setProduct(aProduct);
 
         return lineItem;
     }
