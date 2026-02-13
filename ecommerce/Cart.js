@@ -12,8 +12,28 @@ export default class Cart extends Dbm.core.BaseObject {
         this.item.setValue("numberOfLines", 0);
 
         this.item.setValue("changeCount", 0);
+    }
 
-        //METODO: integrate local storage
+    createLineItem(aType, aQuantity = 0, aMeta) {
+        
+        let id = "lineItem" + Dbm.getInstance().getNextId();
+        let lineItem = new Dbm.ecommerce.CartLineItem();
+        lineItem.item.setId(id);
+        lineItem.item.type = aType;
+        lineItem.setQuantity(aQuantity);
+        lineItem.setCart(this.item);
+
+        if(aMeta) {
+            for(let objectName in aMeta) {
+                lineItem.setMeta(objectName, aMeta[objectName]);
+            }
+        }
+
+        Dbm.flow.addUpdateCommand(lineItem.item.properties.quantity, this._changeCommand);
+
+        this.item.addToArray("lineItems", lineItem.item);
+
+        return lineItem;
     }
 
     addProduct(aProduct, aQuantity = 1, aMeta = null) {
@@ -51,9 +71,7 @@ export default class Cart extends Dbm.core.BaseObject {
 
             Dbm.flow.addUpdateCommand(lineItem.item.properties.quantity, this._changeCommand);
 
-            let newLineItems = [].concat(lineItems);
-            newLineItems.push(lineItem.item);
-            this.item.lineItems = newLineItems;
+            this.item.addToArray("lineItems", lineItem.item);
         }
 
         return lineItem;

@@ -36,11 +36,9 @@ export default class CartLineItem extends Dbm.core.BaseObject {
     }
 
     setMeta(aKey, aValue) {
-        console.log("setMeta");
-        console.log(aKey, aValue);
+        //console.log("setMeta");
+        //console.log(aKey, aValue);
         this.item.meta.controller.setValue(aKey, aValue);
-
-        console.log(this.item.meta.controller, this.item.meta);
 
         return this;
     }
@@ -55,5 +53,19 @@ export default class CartLineItem extends Dbm.core.BaseObject {
         this.item.cart.controller.removeLineItem(this.item);
 
         return this;
+    }
+
+    getAsObject() {
+        let returnObject = {
+            "type": this.item.type,
+            "quantity": this.item.quantity,
+            "meta": this.item.meta.controller.getAsObject()
+        }
+
+        if(this.item.product) {
+            returnObject["product"] = this.item.product.id;
+        }
+
+        return returnObject;
     }
 }
