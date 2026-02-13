@@ -95,8 +95,7 @@ export default class KeywordReplace extends Dbm.core.BaseObject {
 
     replaceKeywords(aText) {
         let newText = aText.replace(this._getRegex(), this._regexReplaceKeyword.bind(this));
-
-        console.log(newText);
+        
         return newText;
     }
 }
