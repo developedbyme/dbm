@@ -33,7 +33,13 @@ export default class LocalStorageCartLoader extends Dbm.core.BaseObject {
                 for(let i = 0; i < currentArrayLength; i++) {
                     let currentData = currentArray[i];
 
-                    this.item.cart.controller.addProduct(repository.getItem(currentData["product"]), currentData["quantity"], currentData["meta"]);
+                    let product = null;
+                    if(currentData["product"]) {
+                        product = repository.getItem(currentData["product"]);
+                    }
+
+                    //METODO: encode links in meta
+                    this.item.cart.controller.addProduct(product, currentData["quantity"], currentData["meta"]);
                 }
             }
         }
@@ -58,9 +64,16 @@ export default class LocalStorageCartLoader extends Dbm.core.BaseObject {
         for(let i = 0; i < currentArrayLength; i++) {
             let currentData = currentArray[i];
 
-            let encodedData = {"product": currentData.product.id, "quantity": currentData.quantity, "meta": currentData.meta};
+            let meta = currentData.meta.controller.getAsObject();
+            //METODO: links in meta
+            let encodedData = {"quantity": currentData.quantity, "meta": meta};
+            if(currentData.product) {
+                encodedData["product"] = currentData.product.id;
+            }
             encodedLineItems.push(encodedData);
         }
+
+        console.log(encodedLineItems);
 
         try {
             let cartDataString = localStorage.setItem(this.item.storageKey, JSON.stringify({"lineItems": encodedLineItems}));

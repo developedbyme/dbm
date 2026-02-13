@@ -38,6 +38,7 @@ export default class Cart extends Dbm.core.BaseObject {
             let id = "lineItem" + Dbm.getInstance().getNextId();
             lineItem = new Dbm.ecommerce.CartLineItem();
             lineItem.item.setId(id);
+            lineItem.item.type = "product";
             lineItem.setProduct(aProduct);
             lineItem.setQuantity(aQuantity);
             lineItem.setCart(this.item);

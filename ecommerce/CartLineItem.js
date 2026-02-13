@@ -5,9 +5,13 @@ export default class CartLineItem extends Dbm.core.BaseObject {
         super._construct();
 
         this.item.setValue("cart", null);
+
+        this.item.setValue("type", null);
         this.item.setValue("product", null);
         this.item.setValue("quantity", 0);
-        this.item.setValue("meta", {});
+
+        let meta = new Dbm.utils.NamedArray();
+        this.item.setValue("meta", meta.item);
     }
 
     setCart(aItem) {
@@ -32,7 +36,11 @@ export default class CartLineItem extends Dbm.core.BaseObject {
     }
 
     setMeta(aKey, aValue) {
-        this.item.meta[aKey] = aValue;
+        console.log("setMeta");
+        console.log(aKey, aValue);
+        this.item.meta.controller.setValue(aKey, aValue);
+
+        console.log(this.item.meta.controller, this.item.meta);
 
         return this;
     }
