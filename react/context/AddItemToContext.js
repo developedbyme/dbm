@@ -19,6 +19,6 @@ export default class AddItemToContext extends Dbm.react.BaseObject {
         let values = {};
         values[as] = item;
 
-        return React.createElement(Dbm.react.context.AddContextVariables, {"values": values, "key": id}, this.props.children);
+        return React.createElement(Dbm.react.context.AddContextVariables, {"values": values, "key": id}, this.getPropValue("children"));
     }
 }

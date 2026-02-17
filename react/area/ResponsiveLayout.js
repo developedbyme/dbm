@@ -16,7 +16,7 @@ export default class ResponsiveLayout extends Dbm.core.BaseObject {
         let layoutSwitch = new Dbm.flow.updatefunctions.logic.RangeSwitch();
         layoutSwitch.input.properties.value.connectInput(elementSize.output.properties.width);
 
-        this.item.setValue("layoutSwitch", layoutSwitch)
+        this.item.setValue("layoutSwitch", layoutSwitch);
 
         this.item.setValue("element", null);
         this.item.properties.element.connectInput(layoutSwitch.output.properties.value);

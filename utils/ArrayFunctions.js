@@ -497,3 +497,19 @@ export const anyOverlap = function(aArray1, aArray2) {
 
     return false;
 }
+
+export const overlap = function(aArray1, aArray2) {
+
+    let returnArray = [];
+
+    let currentArray = aArray1;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentItem = currentArray[i];
+        if(aArray2.indexOf(currentItem) !== -1) {
+            returnArray.push(currentItem);
+        }
+    }
+
+    return returnArray;
+}
