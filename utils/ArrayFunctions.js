@@ -313,6 +313,19 @@ export const sortOnNumericField = function(aArray, aField) {
     return sortOnField(aArray, aField, compareFunction);
 }
 
+export const getInOrder = function(aArray, aOrderIndexes) {
+
+    let currentArray = aOrderIndexes;
+    let currentArrayLength = currentArray.length;
+    let returnArray = new Array(currentArrayLength);
+
+    for(let i = 0; i < currentArrayLength; i++) {
+        returnArray[i] = aArray[currentArray[i]];
+    }
+
+    return returnArray;
+}
+
 export const naturalSortOnField = function(aArray, aField, aLanguageCode = null) {
 
     if(!aLanguageCode) {
