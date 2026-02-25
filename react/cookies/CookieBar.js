@@ -44,19 +44,25 @@ export default class CookieBar extends Dbm.react.BaseObject {
             
             React.createElement("div", {},
                 React.createElement("div", {"className": "cookie-bar-title"},
-                    "Your privacy is important to us"
+                    Dbm.react.text.translatedText("Your privacy is important to us", "text/title")
                 ),
                 React.createElement("div", {"className": "cookie-bar-description"},
-                    "We use cookies to improve your experience on our site."
+                    Dbm.react.text.translatedText("We use cookies to improve your experience on our site.", "text/description")
                 )
             ),
             React.createElement("div", {"className": "spacing small"}),
-            React.createElement("div", {"className": "standard-button standard-button-padding text-align-center",  onClick: () => this._acceptAll()}, "Allow all"),
+            React.createElement("div", {"className": "standard-button standard-button-padding text-align-center",  onClick: () => this._acceptAll()},
+                Dbm.react.text.translatedText("Allow all", "allowAll")
+            ),
             React.createElement("div", {"className": "spacing small"}),
-            React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center", onClick: () => this._rejectAll()}, "Only necessary"),
+            React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center", onClick: () => this._rejectAll()},
+                Dbm.react.text.translatedText("Only necessary", "onlyNecessary")
+            ),
             React.createElement("div", {"className": "spacing small"}),
-            React.createElement("a", {"href": "/cookie-settings/", className:"custom-styled-link"},
-                React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center"}, "Settings")
+            React.createElement(Dbm.react.text.Link, {"href": "/cookie-settings/", className:"custom-styled-link"},
+                React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center"},
+                    Dbm.react.text.translatedText("Settings", "settings")
+                )
             )
         
         );
@@ -65,25 +71,31 @@ export default class CookieBar extends Dbm.react.BaseObject {
             
             React.createElement("div", {},
                 React.createElement("div", {"className": "cookie-bar-title"},
-                    "Your privacy is important to us"
+                    Dbm.react.text.translatedText("Your privacy is important to us", "text/title")
                 ),
                 React.createElement("div", {"className": "cookie-bar-description"},
-                    "We use cookies to improve your experience on our site."
+                    Dbm.react.text.translatedText("We use cookies to improve your experience on our site.", "text/description")
                 )
             ),
             React.createElement("div", {"className": "spacing small"}),
             
             React.createElement("div", {"className": "flex-row small-item-spacing"}, 
                 React.createElement("div", {"className": "flex-row-item"},
-                    React.createElement("a", {"href": "/cookie-settings/", className:"custom-styled-link"},
-                        React.createElement("div", {"className": "secondary-button standard-button-padding"}, "Settings")
+                    React.createElement(Dbm.react.text.Link, {"href": "/cookie-settings/", className:"custom-styled-link"},
+                        React.createElement("div", {"className": "secondary-button standard-button-padding"},
+                            Dbm.react.text.translatedText("Settings", "settings")
+                        )
                     )
                 ),
                 React.createElement("div", {"className": "flex-row-item"},
-                    React.createElement("div", {"className": "secondary-button standard-button-padding", onClick: () => this._rejectAll()}, "Only necessary")
+                    React.createElement("div", {"className": "secondary-button standard-button-padding", onClick: () => this._rejectAll()},
+                        Dbm.react.text.translatedText("Only necessary", "onlyNecessary")
+                    )
                 ),
                 React.createElement("div", {"className": "flex-row-item"},
-                    React.createElement("div", {"className": "standard-button standard-button-padding",  onClick: () => this._acceptAll()}, "Allow all")
+                    React.createElement("div", {"className": "standard-button standard-button-padding",  onClick: () => this._acceptAll()},
+                        Dbm.react.text.translatedText("Allow all", "allowAll")
+                    )
                 )
             )
         );
@@ -94,24 +106,30 @@ export default class CookieBar extends Dbm.react.BaseObject {
             React.createElement("div", {"className": "flex-row small-item-spacing justify-between"}, 
                 React.createElement("div", {"className": "flex-row-item"},
                     React.createElement("div", {"className": "cookie-bar-title"},
-                        "Your privacy is important to us"
+                        Dbm.react.text.translatedText("Your privacy is important to us", "text/title")
                     ),
                     React.createElement("div", {"className": "cookie-bar-description"},
-                        "We use cookies to improve your experience on our site."
+                        Dbm.react.text.translatedText("We use cookies to improve your experience on our site.", "text/description")
                     )
                 ),
                 React.createElement("div", {"className": "flex-row-item"}, 
                     React.createElement("div", {"className": "flex-row small-item-spacing"}, 
                         React.createElement("div", {"className": "flex-row-item"},
-                            React.createElement("a", {"href": "/cookie-settings/", className:"custom-styled-link"},
-                                React.createElement("div", {"className": "secondary-button standard-button-padding"}, "Settings")
+                            React.createElement(Dbm.react.text.Link, {"href": "/cookie-settings/", className:"custom-styled-link"},
+                                React.createElement("div", {"className": "secondary-button standard-button-padding"}, 
+                                    Dbm.react.text.translatedText("Settings", "settings")
+                                )
                             )
                         ),
                         React.createElement("div", {"className": "flex-row-item"},
-                            React.createElement("div", {"className": "secondary-button standard-button-padding", onClick: () => this._rejectAll()}, "Only necessary")
+                            React.createElement("div", {"className": "secondary-button standard-button-padding", onClick: () => this._rejectAll()}, 
+                                Dbm.react.text.translatedText("Only necessary", "onlyNecessary")
+                            )
                         ),
                         React.createElement("div", {"className": "flex-row-item"},
-                            React.createElement("div", {"className": "standard-button standard-button-padding",  onClick: () => this._acceptAll()}, "Allow all")
+                            React.createElement("div", {"className": "standard-button standard-button-padding",  onClick: () => this._acceptAll()},
+                                Dbm.react.text.translatedText("Allow all", "allowAll")
+                            )
                         )
                     )
                 )
@@ -186,10 +204,12 @@ export default class CookieBar extends Dbm.react.BaseObject {
 
         return this._createMainElement("div", {className: "cookie-bar-position no-pointer-events", "data-non-static": 1, ref: this.createRef("widthElement")},
             React.createElement(Dbm.react.area.HasData, {"check": this.item.properties.inDom},
-                React.createElement("div", {className: "overflow-hidden"},	
-                    React.createElement(Dbm.react.BaseObject, {style: this.item.properties.style},
-                        React.createElement("div", {className: "all-pointer-events"},
-                            React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
+                React.createElement(Dbm.react.text.TranslationGroup, {"path": "cookies/notice/bar"},
+                    React.createElement("div", {className: "overflow-hidden"},	
+                        React.createElement(Dbm.react.BaseObject, {style: this.item.properties.style},
+                            React.createElement("div", {className: "all-pointer-events"},
+                                React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
+                            )
                         )
                     )
                 )

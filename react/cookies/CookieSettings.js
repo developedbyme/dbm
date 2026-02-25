@@ -9,22 +9,22 @@ export default class CookieSettings extends Dbm.react.BaseObject {
         let settings = [];
 
         {
-            let currentItem = this._createSetting("cookie/allowPreferences", "Preferences cookies", "These cookies allow a website to remember choices you have made in the past.");
+            let currentItem = this._createSetting("allowPreferences", "Preferences cookies", "These cookies allow a website to remember choices you have made in the past.");
             settings.push(currentItem);
         }
 
         {
-            let currentItem = this._createSetting("cookie/allowStatistics", "Statistics cookies", "These cookies collect information about how you use a website, like which pages you visited and which links you clicked on. None of this information can be used to identify you. It is all aggregated and, therefore, anonymized. Their sole purpose is to improve website functions.");
+            let currentItem = this._createSetting("allowStatistics", "Statistics cookies", "These cookies collect information about how you use a website, like which pages you visited and which links you clicked on. None of this information can be used to identify you. It is all aggregated and, therefore, anonymized. Their sole purpose is to improve website functions.");
             settings.push(currentItem);
         }
 
         {
-            let currentItem = this._createSetting("cookie/allowMarketing", "Marketing cookies", "These cookies track your online activity to help advertisers deliver more relevant advertising or to limit how many times you see an ad. These cookies can share that information with other organizations or advertisers.");
+            let currentItem = this._createSetting("allowMarketing", "Marketing cookies", "These cookies track your online activity to help advertisers deliver more relevant advertising or to limit how many times you see an ad. These cookies can share that information with other organizations or advertisers.");
             settings.push(currentItem);
         }
 
         {
-            let currentItem = this._createSetting("cookie/hideCookieBar", "Hide cookie information when websites load", "Hides the cookie information and links that is displayed every time the website is loaded.");
+            let currentItem = this._createSetting("hideCookieBar", "Hide cookie information when websites load", "Hides the cookie information and links that is displayed every time the website is loaded.");
             settings.push(currentItem);
         }
 
@@ -38,9 +38,9 @@ export default class CookieSettings extends Dbm.react.BaseObject {
 
         let fieldName = "field" + Dbm.getInstance().getNextId();
             
-        currentItem.setValue("name", aName);
+        currentItem.setValue("name", "cookie/" + aName);
 
-        let currentValue = Cookies.get(aName) === "1";
+        let currentValue = Cookies.get("cookie/" + aName) === "1";
         currentItem.setValue("value", currentValue);
         
         let element = React.createElement("div", {"className": "flex-row small-item-spacing", "key": aName}, 
@@ -48,9 +48,15 @@ export default class CookieSettings extends Dbm.react.BaseObject {
                 React.createElement(Dbm.react.form.Checkbox, {"type": "checkbox", "checked": currentItem.properties.value, "id": fieldName})
             ),
             React.createElement("div", {"className": "flex-row-item"},
-                React.createElement("label", {"htmlFor": fieldName}, 
-                    React.createElement("div", {"className": "cookie-settings-title"}, aTitle),
-                    React.createElement("div", {"className": "small-description cookie-description"}, aDescription)
+                React.createElement(Dbm.react.text.TranslationGroup, {"path": aName},
+                    React.createElement("label", {"htmlFor": fieldName}, 
+                        React.createElement("div", {"className": "cookie-settings-title"}, 
+                            Dbm.react.text.translatedText(aTitle, "text/title")
+                        ),
+                        React.createElement("div", {"className": "small-description cookie-description"}, 
+                            Dbm.react.text.translatedText(aDescription, "text/description")
+                        )
+                    )
                 ),
             )
         );
@@ -110,22 +116,32 @@ export default class CookieSettings extends Dbm.react.BaseObject {
             return aSetting.element;
         })
 
-        return this._createMainElement("div", {"className": "content-narrow"}, 
-            React.createElement("div", {className: "body-text"},
-                React.createElement("div", {"className": "flex-row small-item-spacing"}, 
-                    React.createElement("div", {"className": "flex-row-item"},
-                        React.createElement("input", {"type": "checkbox", "checked": true, "disabled": true})
+        return this._createMainElement("div", {"className": "content-narrow"},
+            React.createElement(Dbm.react.text.TranslationGroup, {"path": "cookies/settings"},
+                React.createElement("div", {className: "body-text"},
+                    React.createElement("div", {"className": "flex-row small-item-spacing"}, 
+                        React.createElement("div", {"className": "flex-row-item"},
+                            React.createElement("input", {"type": "checkbox", "checked": true, "disabled": true})
+                        ),
+                        React.createElement("div", {"className": "flex-row-item"},
+                            React.createElement(Dbm.react.text.TranslationGroup, {"path": "strictlyNecessary"},
+                                React.createElement("div", {"className": "cookie-settings-title"}, 
+                                    Dbm.react.text.translatedText("Strictly necessary cookies", "text/title")
+                                ),
+                                React.createElement("div", {"className": "small-description cookie-description"},
+                                    Dbm.react.text.translatedText("These cookies are essential for you to browse the website and use its features, such as accessing secure areas of the site.", "text/description")
+                                )
+                            )
+                        )
                     ),
-                    React.createElement("div", {"className": "flex-row-item"}, 
-                        React.createElement("div", {"className": "cookie-settings-title"}, "Strictly necessary cookies"),
-                        React.createElement("div", {"className": "small-description cookie-description"}, "These cookies are essential for you to browse the website and use its features, such as accessing secure areas of the site.")
-                    )
+                    elements
                 ),
-                elements
-            ),
-            React.createElement("div", {"className": "spacing standard"}),
-            React.createElement("div", {"className": "flex-row justify-center"}, 
-                React.createElement("div", {"className": "standard-button standard-button-padding", onClick: () => this._save()}, "Save")
+                React.createElement("div", {"className": "spacing standard"}),
+                React.createElement("div", {"className": "flex-row justify-center"}, 
+                    React.createElement("div", {"className": "standard-button standard-button-padding", onClick: () => this._save()}, 
+                        Dbm.react.text.translatedText("Save", "save")
+                    )
+                )
             )
         );
     }

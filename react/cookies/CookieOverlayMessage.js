@@ -45,25 +45,31 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
                 
                 React.createElement("div", {},
                     React.createElement("div", {"className": "cookie-bar-title"},
-                        "Your privacy is important to us"
+                        Dbm.react.text.translatedText("Your privacy is important to us", "text/title")
                     ),
                     React.createElement("div", {"className": "cookie-bar-description"},
-                        "We use cookies to make our site work properly and to improve your experience. You can choose to accept all cookies, allow only those that are necessary, or manage your preferences in the settings."
+                        Dbm.react.text.translatedText("We use cookies to make our site work properly and to improve your experience. You can choose to accept all cookies, allow only those that are necessary, or manage your preferences in the settings.", "text/description")
                     )
                 ),
                 React.createElement("div", {"className": "spacing small"}),
-                React.createElement("div", {"className": "standard-button standard-button-padding big text-align-center",  onClick: () => this._acceptAll()}, "Allow all"),
+                React.createElement("div", {"className": "standard-button standard-button-padding big text-align-center",  onClick: () => this._acceptAll()},
+                    Dbm.react.text.translatedText("Allow all", "allowAll")
+                ),
                 React.createElement("div", {"className": "spacing small"}),
-                React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center", onClick: () => this._rejectAll()}, "Only necessary"),
+                React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center", onClick: () => this._rejectAll()},
+                    Dbm.react.text.translatedText("Only necessary", "onlyNecessary")
+                ),
                 React.createElement("div", {"className": "spacing small"}),
                 React.createElement("div", {"className": "cookie-overlay-message-divider"}),
                 React.createElement("div", {"className": "spacing small"}),
                 React.createElement("div", {"className": "text-align-center"},
-                    "Take full control over how we use cookies:"
+                    Dbm.react.text.translatedText("Take full control over how we use cookies:", "text/settingsLinkDescription")
                 ),
                 React.createElement("div", {"className": "spacing small"}),
                 React.createElement("a", {"href": "/cookie-settings/", className:"custom-styled-link"},
-                    React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center"}, "Settings")
+                    React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center"},
+                        Dbm.react.text.translatedText("Settings", "settings")
+                    )
                 )
             
             )
@@ -74,17 +80,21 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
                 React.createElement("div", {"className": "flex-row small-item-spacing"}, 
                     React.createElement("div", {"className": "flex-row-item half"},
                         React.createElement("div", {"className": "cookie-bar-title"},
-                            "Your privacy is important to us"
+                            Dbm.react.text.translatedText("Your privacy is important to us", "text/title")
                         ),
                         React.createElement("div", {"className": "cookie-bar-description"},
-                            "We use cookies to make our site work properly and to improve your experience. You can choose to accept all cookies, allow only those that are necessary, or manage your preferences in the settings."
+                            Dbm.react.text.translatedText("We use cookies to make our site work properly and to improve your experience. You can choose to accept all cookies, allow only those that are necessary, or manage your preferences in the settings.", "text/description")
                         )
                     ),
                     React.createElement("div", {"className": "flex-row-item quarter"}),
                     React.createElement("div", {"className": "flex-row-item quarter"}, 
-                        React.createElement("div", {"className": "standard-button standard-button-padding big full-width text-align-center",  onClick: () => this._acceptAll()}, "Allow all"),
+                        React.createElement("div", {"className": "standard-button standard-button-padding big full-width text-align-center",  onClick: () => this._acceptAll()},
+                            Dbm.react.text.translatedText("Allow all", "allowAll")
+                        ),
                         React.createElement("div", {"className": "spacing medium"}),
-                        React.createElement("div", {"className": "secondary-button standard-button-padding full-width text-align-center", onClick: () => this._rejectAll()}, "Only necessary")
+                        React.createElement("div", {"className": "secondary-button standard-button-padding full-width text-align-center", onClick: () => this._rejectAll()},
+                            Dbm.react.text.translatedText("Only necessary", "onlyNecessary")
+                        )
                         
                     )
                 ),
@@ -93,11 +103,13 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
                 React.createElement("div", {"className": "spacing standard"}),
                 React.createElement("div", {"className": "flex-row small-item-spacing justify-between"},
                     React.createElement("div", {"className": "flex-row-item"},
-                        "Take full control over how we use cookies:"
+                        Dbm.react.text.translatedText("Take full control over how we use cookies:", "text/settingsLinkDescription")
                     ),
                     React.createElement("div", {"className": "flex-row-item"},
                         React.createElement("a", {"href": "/cookie-settings/", className:"custom-styled-link"},
-                            React.createElement("div", {"className": "cookie-settings-link"}, "Settings >")
+                            React.createElement("div", {"className": "cookie-settings-link"}, 
+                                Dbm.react.text.translatedText("Settings", "settings")
+                            )
                         )
                     ),
                 )
@@ -174,10 +186,12 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
 
         return this._createMainElement("div", {className: "cookie-bar-position no-pointer-events cookie-overlay-message-layer", ref: this.createRef("widthElement")},
             React.createElement(Dbm.react.area.HasData, {"check": this.item.properties.inDom},
-                React.createElement("div", {className: "overflow-hidden"},	
-                    React.createElement(Dbm.react.BaseObject, {style: this.item.properties.style},
-                        React.createElement("div", {},
-                            React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
+                React.createElement(Dbm.react.text.TranslationGroup, {"path": "cookies/notice/overlay"},
+                    React.createElement("div", {className: "overflow-hidden"},	
+                        React.createElement(Dbm.react.BaseObject, {style: this.item.properties.style},
+                            React.createElement("div", {},
+                                React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
+                            )
                         )
                     )
                 )
