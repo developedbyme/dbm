@@ -15,6 +15,8 @@ export const setupAndStart = function(aTitleSuffix) {
     Dbm.getRepositoryItem("site").requireProperty("currentUser", null);
     Dbm.getRepositoryItem("site").requireProperty("checkedUser", false);
 
+    Dbm.getRepositoryItem("site/translations").requireProperty("data", {});
+
     let siteDataLoader = new Dbm.site.SiteDataLoader();
     siteDataLoader.item.register("siteDataLoader");
     siteDataLoader.item.properties.url.connectInput(siteNavigation.item.properties.url);
