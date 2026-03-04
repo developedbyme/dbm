@@ -70,11 +70,13 @@ export const sendEmailTemplate = async function(aTemplateIdentifer, aTo, aKeywor
             content = designKeywordReplace.replaceKeywords(mailContent);
         }
         
-        await sendEmail(aTo, subject, content, aFrom, aAdditionalData);
+        return await sendEmail(aTo, subject, content, aFrom, aAdditionalData);
     }
     else {
         console.warn("No email template " + aTemplateIdentifer);
     }
+
+    return null;
 }
 
 export const createPostmarkClient = function(aToken, aDefaultFromEmail = null) {
