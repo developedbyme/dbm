@@ -251,7 +251,7 @@ export default class BaseObject extends Component {
     }
 
     addUpdateCallWhenMatched(aPropertyOrName, aMatchValue, aFunction, aArguments = []) {
-        console.log(this._propertyOrName(aPropertyOrName), aPropertyOrName);
+        //console.log(this._propertyOrName(aPropertyOrName), aPropertyOrName);
         this._propertyOrName(aPropertyOrName).addUpdateWhenMatched(aMatchValue, this._getScopedCallFunctionCommand(aFunction, aArguments));
     }
 }
