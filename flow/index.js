@@ -93,3 +93,31 @@ export const externalObject = function(aObject) {
 
     return returnObject;
 }
+
+export const dynamicUpdateFunction = function(aFunction, aInputs = {}, aOutputs = {}) {
+
+    let inputs = {...aInputs};
+    let outputs = {...aOutputs};
+
+    let TheClass = class DynamicUpdateFunction extends Dbm.flow.FlowUpdateFunction {
+        _construct() {
+            super._construct();
+
+            for(let objectName in inputs) {
+                this.input.register(objectName, inputs[objectName]);
+            }
+
+            for(let objectName in outputs) {
+                this.output.register(objectName, outputs[objectName]);
+            }
+        }
+
+        _update() {
+            //MENOTE: dynamically replaced
+        }
+    }
+
+    TheClass.prototype._update = aFunction;
+
+    return new TheClass();
+}

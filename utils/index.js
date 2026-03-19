@@ -7,6 +7,7 @@ export * as TranslationFunctions from "./TranslationFunctions.js";
 export * as LevenshteinDistance from "./LevenshteinDistance.js";
 export * as ObjectFunctions from "./ObjectFunctions.js";
 export * as LocalCache from "./LocalCache.js";
+export * as MathFunctions from "./MathFunctions.js";
 
 export {default as MultidimensionalArrayHolder} from "./MultidimensionalArrayHolder.js";
 export {default as ArrayOperationResult} from "./ArrayOperationResult.js";

@@ -147,6 +147,10 @@ export default class PropertyUpdater extends Dbm.core.BaseObject {
             this._currentTweens.get(aProperty).stop();
         }
         
+        return this.addDelayUpdateProperty(aProperty, aToValue, aDelay);
+    }
+
+    addDelayUpdateProperty(aProperty, aToValue, aDelay = 0) {
         let tweenObject = {"envelope": aProperty.value};
 
         let tween = new Tween(tweenObject).to({"envelope": aToValue}, 0).delay(1000*aDelay).onUpdate(function(aData) {

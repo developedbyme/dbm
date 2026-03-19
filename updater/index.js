@@ -1,10 +1,11 @@
+import { Easing } from "@tweenjs/tween.js";
 import Dbm from "../index.js";
 
 export {default as PropertyUpdater} from "./PropertyUpdater.js";
 export {default as RequestAnimationFrameTimer} from "./RequestAnimationFrameTimer.js";
 export {default as IntervalTimer} from "./IntervalTimer.js";
 
-let webSetup = function() {
+export const webSetup = function() {
     let updater = new Dbm.updater.PropertyUpdater();
     updater.item.register("propertyUpdater");
 
@@ -14,9 +15,14 @@ let webSetup = function() {
     updater.start();
 }
 
-export {webSetup};
+export const setupEasingFunctions = function() {
+    let item = Dbm.getRepositoryItem("easingFunctions");
 
-let nodeSetup = function() {
+    item.setValue("easeOut", Easing.Quadratic.Out);
+    item.setValue("easeIn", Easing.Quadratic.In);
+}
+
+export const nodeSetup = function() {
     let updater = new Dbm.updater.PropertyUpdater();
     updater.item.register("propertyUpdater");
 
@@ -25,5 +31,3 @@ let nodeSetup = function() {
 
     updater.start();
 }
-
-export {nodeSetup};
