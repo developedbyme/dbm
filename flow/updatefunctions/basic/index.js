@@ -8,6 +8,7 @@ export {default as PropertyOfWithDefault} from "./PropertyOfWithDefault.js";
 export {default as MappedList} from "./MappedList.js";
 export {default as Translation} from "./Translation.js";
 export {default as SetProperty} from "./SetProperty.js";
+export {default as GetItemBy} from "./GetItemBy.js";
 
 export const runCommand = function(aValue, aCommand) {
 	let updateFunction = new Dbm.flow.updatefunctions.basic.RunCommand();
@@ -133,6 +134,17 @@ export const setProperty = function(aObject, aPropertyName, aValue = null) {
 	properties.value.setOrConnect(aValue);
 	properties.object.setOrConnect(aObject);
 	properties.propertyName.setOrConnect(aPropertyName);
+
+	return updateFunction;
+}
+
+export const getItemBy = function(aItems, aValue, aPath = "id") {
+	let updateFunction = new Dbm.flow.updatefunctions.basic.GetItemBy();
+
+	let properties = updateFunction.input.properties;
+	properties.value.setOrConnect(aValue);
+	properties.items.setOrConnect(aItems);
+	properties.path.setOrConnect(aPath);
 
 	return updateFunction;
 }

@@ -17,13 +17,13 @@ export default class Condition extends Dbm.flow.FlowUpdateFunction {
 
         let operation = this.input.operation;
         if(typeof(operation) === "string") {
-            if(operation === "!==") {
-                operation = function(aA, aB) {return aA !== aB;}
+            let compareFunction = Dbm.getInstance().repository.getItem("compareFunctions/" + operation).compare;
+            if(!compareFunction) {
+                console.warn("No copmare function registered for: " + operation + ". Using ==", this);
+                compareFunction = Dbm.utils.CompareFunctions.equals;
             }
-            else {
-                //METODO: add more operations
-                operation = function(aA, aB) {return aA === aB;}
-            }
+
+            operation = compareFunction
         }
 
         this.output.result = operation.call(this, this.input.input1, this.input.input2);

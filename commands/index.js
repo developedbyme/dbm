@@ -61,6 +61,12 @@ export const performCommands = function(aCommands, aFromObject = null, aEventDat
     let currentArrayLength = currentArray.length;
     for(let i = 0; i < currentArrayLength; i++) {
         let currentCommand = currentArray[i];
+
+        if(currentCommand && currentCommand.isSource) {
+            currentCommand = currentCommand.getSource(aFromObject);
+        }
+        //METODO: add flow property
+
         try {
             currentCommand.perform(aFromObject, aEventData);
         }
