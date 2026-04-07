@@ -66,3 +66,15 @@ export const performAction = function(aType, aData, aCallback = null) {
     
     return request.properties.data;
 }
+
+export const loadRange = function(aSelects, aEncodings, aCommand) {
+    let graphApi = Dbm.getRepositoryItem("cachedGraphApi").controller;
+        
+    let request = graphApi.requestRange(aSelects, aEncodings);
+    
+    if(aCommand) {
+        Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, aCommand);
+    }
+
+    return request.properties.items;
+}
