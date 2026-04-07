@@ -19,7 +19,7 @@ export default class EditObject extends Dbm.react.BaseObject {
                     {"type": "includeDraft"},
                     {"type": "idSelection", "ids": [id]},
                 ],
-                ["objectTypes"]
+                ["objectTypes", "name", "identifier"]
             );
             allLoaded.addCheck(request.properties.status);
         }
@@ -38,11 +38,23 @@ export default class EditObject extends Dbm.react.BaseObject {
             
             React.createElement(Dbm.react.area.HasData, {check: this.item.properties.loaded},
                 React.createElement(Dbm.react.context.AddContextVariables, {"values": {"item": item}},
-                    React.createElement(Dbm.react.admin.editorsgroup.EditItem, {}, 
-                        React.createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("item.objectTypes"), "as": "objectType", "keyField": "(root)"},
-                            Dbm.react.text.text(Dbm.react.source.contextVariable("objectType"))
+                    React.createElement(Dbm.react.admin.editorsgroup.EditItem, {},
+                        React.createElement("h2", {"className": "no-margins"},
+                            Dbm.react.text.text(Dbm.react.source.item("id")),
+                            " - ",
+                            Dbm.react.text.text(Dbm.react.source.item("name")),
                         ),
-                        React.createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("item.objectTypes"), "as": "objectType", "keyField": "(root)"},
+                        React.createElement("div", {"className": "small-description"},
+                            Dbm.react.text.text(Dbm.react.source.item("identifier"))
+                        ),
+                        React.createElement("div", {"className": "spacing small"}),
+                        React.createElement(Dbm.react.area.List, {items: Dbm.react.source.item("objectTypes"), className: "inline-list standard-tag-list standard-tag-list-expand", "as": "objectType", "keyField": "(root)"},
+                            React.createElement("div", {"className": "standard-tag standard-tag-padding standard-tag-list-item inline-list-item display-inline-block"},
+                                Dbm.react.text.text(Dbm.react.source.contextVariable("objectType"))
+                            )
+                        ),
+                        React.createElement("div", {"className": "spacing small"}),
+                        React.createElement(Dbm.react.area.List, {items: Dbm.react.source.item("objectTypes"), "as": "objectType", "keyField": "(root)"},
                             React.createElement(Dbm.react.admin.objects.InjectObjectTypeEditor, {type: Dbm.react.source.contextVariable("objectType")})
                         )
                     )

@@ -107,8 +107,17 @@
     overflow: hidden;
 }
 
-.standard-tag-list .standard-tag-list-item{
+.standard-tag-list .standard-tag-list-item {
     float: left;
     margin-right: var(--standard-tag-list-horizontal-margin, 10px);
     margin-bottom: var(--standard-tag-list-vertical-margin, 5px);
+}
+
+.option {
+    cursor: pointer;
+}
+
+.option.selected {
+    background-color: var(--standard-tag-option-selected-background-color, #555555);
+    color: var(--standard-tag-option-selected-text-color, #ffffff);
 }
