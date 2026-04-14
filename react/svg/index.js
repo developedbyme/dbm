@@ -3,6 +3,7 @@ import React from "react";
 
 export {default as GlobalFilters} from "./GlobalFilters.js";
 export {default as MatrixFilter} from "./MatrixFilter.js";
+export {default as AddGlobalFilterClasses} from "./AddGlobalFilterClasses.js";
 
 export const addGlobalRgbColorFilter = function(aName, aR, aG, aB) {
 
@@ -11,6 +12,7 @@ export const addGlobalRgbColorFilter = function(aName, aR, aG, aB) {
 
     let item = Dbm.getRepositoryItem("globalSvg/filters/" + aName);
     item.setValue("element", React.createElement(Dbm.react.svg.MatrixFilter, {"id": aName, "matrix": Dbm.utils.svg.ColorMatrixFunctions.floodColor(aR, aG, aB)}));
+    item.setValue("classDeclaration", "." + aName + "{filter:url(\"#" + aName + "\")}");
 
     let filters = [].concat(colorFilters.filters);
     filters.push(item);
