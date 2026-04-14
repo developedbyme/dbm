@@ -134,6 +134,7 @@ export default class ItemEditor extends Dbm.core.BaseObject {
     }
 
     addMultipleIncomingRelationsEditor(aType, aObjectType, aInitialValue, aUpdateEncoding = null) {
+        //console.log("addMultipleIncomingRelationsEditor");
         let name = "in_" + aType + "_" + aObjectType;
         return this._addMultipleRelationsEditor(name, aType, aObjectType, aInitialValue, Dbm.graphapi.webclient.admin.SaveFunctions.multipleIncomingRelations, aUpdateEncoding);
     }
@@ -144,6 +145,7 @@ export default class ItemEditor extends Dbm.core.BaseObject {
     }
 
     getAdminMultipleIncomingRelationsEditor(aType, aObjectType) {
+        //console.log("getAdminMultipleIncomingRelationsEditor");
         let name = "in_" + aType + "_" + aObjectType;
         let valueEditor = this.item["editor_multipleRelations_" + name];
         if(!valueEditor) {

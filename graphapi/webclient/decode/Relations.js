@@ -39,7 +39,12 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
                 let relation = Dbm.getRepositoryItem(currentRelationData["relationId"]);
                 if(typeItem.relations.indexOf(relation) === -1) {
                     let linkedItem = Dbm.getRepositoryItem(currentRelationData["id"]);
-                    //METODO: add data to relation
+
+                    relation.setValue("from", linkedItem);
+                    relation.setValue("to", aItem);
+                    relation.setValue("startAt", currentRelationData["startAt"]);
+                    relation.setValue("endAt", currentRelationData["endAt"]);
+
                     if(this._isRelationValid(currentRelationData["startAt"], currentRelationData["endAt"])) {
                         typeItem.addToArray("objects", linkedItem);
                         typeItem.addToArray("relations", relation);
@@ -72,7 +77,12 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
                 let relation = Dbm.getRepositoryItem(currentRelationData["relationId"]);
                 if(typeItem.relations.indexOf(relation) === -1) {
                     let linkedItem = Dbm.getRepositoryItem(currentRelationData["id"]);
-                    //METODO: add data to relation
+                    
+                    relation.setValue("from", aItem);
+                    relation.setValue("to", linkedItem);
+                    relation.setValue("startAt", currentRelationData["startAt"]);
+                    relation.setValue("endAt", currentRelationData["endAt"]);
+
                     if(this._isRelationValid(currentRelationData["startAt"], currentRelationData["endAt"])) {
                         typeItem.addToArray("objects", linkedItem);
                         typeItem.addToArray("relations", relation);
