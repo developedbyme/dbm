@@ -225,4 +225,7 @@ export const fullSetup = function() {
     setupDefaultDecoder("menuLocation", ["identifier"], ["menu"], []);
     setupDefaultDecoder("menu", ["order"], [], ["menuItems"], [Dbm.commands.callFunction(linkUpMenu, [Dbm.core.source.event("item")])]);
     setupDefaultDecoder("menuItem", ["label", "link"], [], []);
+
+    setupDefaultDecoder("review", ["rating", "from", "description", "date"], ["source"], []);
+    setupDefaultDecoder("reviewSource", ["imageUrl", "link"], ["type"], []);
 }
