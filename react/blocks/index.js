@@ -591,7 +591,7 @@ export let registerAllBlocks = function() {
         pageEditors.push(newEditor);
     }
 
-{
+    {
         let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/emailTemplate");
         if(!objectTypeEditor.editors) {
             objectTypeEditor.setValue("editors", []);
@@ -605,6 +605,47 @@ export let registerAllBlocks = function() {
         {
             let itemEditor = new Dbm.repository.Item();
             itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.RichTextFieldWithTranslations, {"label": "Content", "fieldName": "content"}));
+            newArray.push(itemEditor);
+        }
+        
+        objectTypeEditor.editors = newArray;
+    }
+
+    {
+        let objectTypeEditor = Dbm.getInstance().repository.getItem("admin/objectTypeEditors/group/reviewGroup");
+        if(!objectTypeEditor.editors) {
+            objectTypeEditor.setValue("editors", []);
+        }
+
+        let newArray = [].concat(objectTypeEditor.editors);
+
+        {
+            let itemEditor = new Dbm.repository.Item();
+            itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.HierarchyOrderedRelationsList, {
+            "label": "Reviews",
+            "direction": "in",
+            "relationType": "in",
+            "objectType": "groupItem",
+            "orderFieldName": "order",
+            "depthLimit": 0
+        },
+        createElement("div", {"className": ""}, 
+            createElement(Dbm.react.admin.EditObject, {"item": Dbm.react.source.item()},
+                createElement("div", {"className": "flex-row small-item-spacing"},
+                    createElement("div", {"className": "flex-row-item flex-resize"},
+                        createElement(Dbm.react.admin.objects.itemeditors.SingleRelation, {
+                            "direction": "out",
+                            "relationType": "for",
+                            "objectType": "review",
+                            encoding: "name",
+                            nameField: "name"
+                        })
+                    )
+                )
+                
+            )
+        )
+        ));
             newArray.push(itemEditor);
         }
         

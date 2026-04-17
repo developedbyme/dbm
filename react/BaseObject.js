@@ -111,6 +111,16 @@ export default class BaseObject extends Component {
         return value;
     }
 
+    getPropValueWithoutNull(aName, aDefaultValue) {
+        let value = this.getPropValue(aName);
+
+        if(value === null || value === undefined) {
+            value = aDefaultValue;
+        }
+
+        return value;
+    }
+
     createRef(aName) {
         let refToProperty = this.item["ref/" + aName];
 

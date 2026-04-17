@@ -348,6 +348,7 @@ export default class HierarchyOrderedRelationsList extends Dbm.react.BaseObject 
 
         let label = this.getPropValue("label");
         let children = this.getPropValue("children");
+        let depthLimit = this.getPropValueWithoutNull("depthLimit", -1);
 
         return React.createElement("div", {},
             React.createElement(Dbm.react.context.AddContextVariables, {"values": {"dragController": this, "hierarchyController": this}},
@@ -355,7 +356,7 @@ export default class HierarchyOrderedRelationsList extends Dbm.react.BaseObject 
                 React.createElement("div", {"className": ""},
                     React.createElement(Dbm.react.area.List, {items: this.item.hierarchy.properties.children, as: "hierarchyItem"},
                         React.createElement(Dbm.react.context.AddItemToContext, {"item": Dbm.react.source.contextVariable("hierarchyItem.linkedItem")},
-                            React.createElement(Dbm.react.admin.objects.itemeditors.DraggableHierarchyDisplay, {},
+                            React.createElement(Dbm.react.admin.objects.itemeditors.DraggableHierarchyDisplay, {depthLimit: depthLimit},
                                 children
                             )
                         ),

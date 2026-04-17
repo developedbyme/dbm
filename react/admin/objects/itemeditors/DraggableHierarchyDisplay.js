@@ -18,6 +18,12 @@ export default class DraggableHierarchyDisplay extends Dbm.react.BaseObject {
     _renderMainElement() {
 
         let children = this.getPropValue("children");
+        let depthLimit = this.getPropValueWithoutNull("depthLimit", -1);
+        let newDepthLimit = depthLimit;
+        if(depthLimit > 0) {
+            newDepthLimit = depthLimit-1;
+        }
+        let canAddChilds = (depthLimit !== 0);
 
         return React.createElement("div", {},
             React.createElement(Dbm.react.context.AddItemToContext, {"item": Dbm.react.source.contextVariable("hierarchyItem.linkedItem")},
@@ -50,14 +56,16 @@ export default class DraggableHierarchyDisplay extends Dbm.react.BaseObject {
                 React.createElement("div", {className: "spacing small"}),
                 React.createElement(Dbm.react.area.HasData, {check: Dbm.react.source.contextVariable("hierarchyItem.properties.children"), checkType: "notEmpty"},
                     React.createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("hierarchyItem.properties.children"), as: "hierarchyItem"},
-                        React.createElement(Dbm.react.admin.objects.itemeditors.DraggableHierarchyDisplay, {}, children),
+                        React.createElement(Dbm.react.admin.objects.itemeditors.DraggableHierarchyDisplay, {depthLimit: newDepthLimit}, children),
                         React.createElement("div", {"data-slot": "spacing", className: "spacing small"}),
                     ),
                     React.createElement("div", {className: "spacing small"})
                 ),
-                React.createElement(Dbm.react.interaction.drag.DraggableItem, {skipDraggable: true, moveMode: "appendChild"},
-                    React.createElement("div", {className: "append-drop-position centered-cell-holder"},
-                        React.createElement("div", {})
+                React.createElement(Dbm.react.area.HasData, {check: canAddChilds},
+                    React.createElement(Dbm.react.interaction.drag.DraggableItem, {skipDraggable: true, moveMode: "appendChild"},
+                        React.createElement("div", {className: "append-drop-position centered-cell-holder"},
+                            React.createElement("div", {})
+                        )
                     )
                 )
             )
