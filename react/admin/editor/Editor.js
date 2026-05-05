@@ -12,16 +12,15 @@ export default class Editor extends Dbm.react.BaseObject {
 
         let all = Dbm.flow.updatefunctions.logic.allAtValue(1);
 
-        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/image@latest").item.properties.status);
-        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/header@latest").item.properties.status);
-        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/image@latest").item.properties.status);
-        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/list@latest").item.properties.status);
-        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/raw@latest").item.properties.status);
+        all.addCheck(Dbm.loading.loadScript("/assets/js/admin/image.js").item.properties.status);
+        all.addCheck(Dbm.loading.loadScript("/assets/js/admin/header.js").item.properties.status);
+        all.addCheck(Dbm.loading.loadScript("/assets/js/admin/list.js").item.properties.status);
+        all.addCheck(Dbm.loading.loadScript("/assets/js/admin/raw.js").item.properties.status);
         
         
         //METODO: select which tools should be used
 
-        all.addCheck(Dbm.loading.loadScript("https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest").item.properties.status);
+        all.addCheck(Dbm.loading.loadScript("/assets/js/admin/editor.js").item.properties.status);
 
         this.item.setValue("element", document.createElement("div"));
 

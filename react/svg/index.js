@@ -3,6 +3,7 @@ import React from "react";
 
 export {default as GlobalFilters} from "./GlobalFilters.js";
 export {default as MatrixFilter} from "./MatrixFilter.js";
+export {default as BlendColorFilter} from "./BlendColorFilter.js";
 export {default as AddGlobalFilterClasses} from "./AddGlobalFilterClasses.js";
 
 export const addGlobalRgbColorFilter = function(aName, aR, aG, aB) {
@@ -42,4 +43,23 @@ export const addGlobalHexColorFilter = function(aName, aColor) {
     let b = value & 255;
 
     return addGlobalRgbColorFilter(aName, r, g, b)
+}
+
+export const createGlobalHexBlendFilter = function(aName, aColor, aBlendMode = "multiply", aSaturation = 0, aMin = 0, aMax = 1) {
+    let colorFilters = Dbm.getRepositoryItem("globalSvg");
+    colorFilters.requireProperty("filters", []);
+
+    let item = Dbm.getRepositoryItem("globalSvg/filters/" + aName);
+    item.setValue("element", React.createElement(Dbm.react.svg.BlendColorFilter, {"id": aName, "color": aColor, "blendMode": aBlendMode, "saturation": aSaturation, "min": aMin, "max": aMax}));
+    item.setValue("classDeclaration", "." + aName + "{filter:url(\"#" + aName + "\")}");
+
+    let filters = [].concat(colorFilters.filters);
+    filters.push(item);
+    colorFilters.filters = filters;
+    
+    return item;
+}
+
+export const createGlobalRgbBlendFilter = function(aName, aR, aG, aB, aBlendMode = "multiply", aSaturation = 0, aMin = 0, aMax = 1) {
+    return createGlobalHexBlendFilter(aName, "rgb(" + aR + ", " + aG +", " + aB + ")", aBlendMode, aSaturation, aMin, aMax);
 }

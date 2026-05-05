@@ -1,0 +1,40 @@
+.cookie-bar-position {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.cookie-bar {
+    box-sizing: border-box;
+    border-top: 1px solid #1A1A1A;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.cookie-bar-padding {
+    padding: 10px;
+}
+
+.cookie-bar-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cookie-overlay-message-box {
+    box-sizing: border-box;
+    border: 1px solid #1A1A1A;
+    border-radius: 20px;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.cookie-overlay-message-box-padding {
+    padding: 20px;
+}
+
+.cookie-bar-description {
+    line-height: 1.3;
+}

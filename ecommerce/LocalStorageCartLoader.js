@@ -49,6 +49,10 @@ export default class LocalStorageCartLoader extends Dbm.core.BaseObject {
                         lineItem.setProduct(product);
                     }
                 }
+
+                if(cartData.meta) {
+                    this.item.cart.meta = cartData.meta;
+                }
             }
         }
         catch(theError) {
@@ -81,10 +85,10 @@ export default class LocalStorageCartLoader extends Dbm.core.BaseObject {
             encodedLineItems.push(encodedData);
         }
 
-        console.log(encodedLineItems);
-
         try {
-            let cartDataString = localStorage.setItem(this.item.storageKey, JSON.stringify({"lineItems": encodedLineItems}));
+            let saveData = {"lineItems": encodedLineItems, "meta": this.item.cart.meta};
+            console.log(saveData);
+            let cartDataString = localStorage.setItem(this.item.storageKey, JSON.stringify(saveData));
         }
         catch(theError) {
             console.error(theError);

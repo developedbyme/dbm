@@ -13,6 +13,8 @@ export {default as SwitchableArea} from "./SwitchableArea.js";
 export {default as PopoverLayer} from "./PopoverLayer.js";
 export {default as RowOrStacked} from "./RowOrStacked.js";
 export {default as SelectResponsiveLayout} from "./SelectResponsiveLayout.js";
+export {default as NativeElement} from "./NativeElement.js";
+export {default as SingleItemSlideshow} from "./SingleItemSlideshow.js";
 
 export const responsiveLayout = function(aDefaultLayout) {
     let newResponsiveLayout = new Dbm.react.area.ResponsiveLayout();
@@ -41,5 +43,5 @@ export const processStateElement = function(aState, aIdleElement, aProcessingEle
 
     let element = React.createElement(Dbm.react.area.InsertElement, {"element": updateFunction.output.properties.value});
 
-    return updateFunction;
+    return element;
 }

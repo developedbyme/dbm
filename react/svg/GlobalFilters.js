@@ -11,7 +11,7 @@ export default class GlobalFilters extends Dbm.react.BaseObject {
         let colorFilters = Dbm.getRepositoryItem("globalSvg");
         colorFilters.requireProperty("filters", []);
 
-        return this._createMainElement("svg", {xmlns: "http://www.w3.org/2000/svg", style: {display: "none"}},
+        return this._createMainElement("svg", {xmlns: "http://www.w3.org/2000/svg", style: {width: 0, height: 0, display: "block"}, "aria-hidden": 'true'},
             React.createElement("defs", null, 
                 React.createElement(Dbm.react.area.List, {items: colorFilters.properties.filters},
                     React.createElement(Dbm.react.area.InsertElement, {element: Dbm.react.source.item("element")})

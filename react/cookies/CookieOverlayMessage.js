@@ -78,15 +78,15 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
         let desktopLayout = React.createElement("div", {className: "centered-site"},
             React.createElement("div", {className: "cookie-overlay-message-box cookie-overlay-message-box-padding all-pointer-events"},
                 React.createElement("div", {"className": "flex-row small-item-spacing"}, 
-                    React.createElement("div", {"className": "flex-row-item half"},
+                    React.createElement("div", {"className": "flex-row-item half flex-resize"},
                         React.createElement("div", {"className": "cookie-bar-title"},
                             Dbm.react.text.translatedText("Your privacy is important to us", "text/title")
                         ),
+                        React.createElement("div", {"className": "spacing small"}),
                         React.createElement("div", {"className": "cookie-bar-description"},
                             Dbm.react.text.translatedText("We use cookies to make our site work properly and to improve your experience. You can choose to accept all cookies, allow only those that are necessary, or manage your preferences in the settings.", "text/description")
                         )
                     ),
-                    React.createElement("div", {"className": "flex-row-item quarter"}),
                     React.createElement("div", {"className": "flex-row-item quarter"}, 
                         React.createElement("div", {"className": "standard-button standard-button-padding big full-width text-align-center",  onClick: () => this._acceptAll()},
                             Dbm.react.text.translatedText("Allow all", "allowAll")

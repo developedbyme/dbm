@@ -5,6 +5,9 @@ export default class SingleSelection extends Dbm.core.BaseObject {
         super._construct();
 
         this._valueMap = new Map();
+        let proxy = new Proxy({}, {get: this._proxy_get_selectionProperty.bind(this)});
+
+        this.item.setValue("selectionProperties", proxy);
 
         let valueUpdatedCommand = Dbm.commands.callFunction(this._valueUpdated.bind(this));
 
@@ -14,6 +17,10 @@ export default class SingleSelection extends Dbm.core.BaseObject {
         Dbm.flow.addUpdateCommand(this.item.requireProperty("selections", []), valueUpdatedCommand);
 
         this.item.requireProperty("matched", false);
+    }
+
+    _proxy_get_selectionProperty(aTarget, aPropertyName, aReceiver) {
+        return this.addSelectionValue(aPropertyName);
     }
 
     addSelectionValue(aValue) {

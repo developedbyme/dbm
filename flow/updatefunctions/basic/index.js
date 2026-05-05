@@ -114,7 +114,7 @@ export const translation = function(aId, aDefaultValue = null, aPath = null, aAd
 	updateFunction.input.properties.additionalPath.setOrConnect(aAdditionalPath);
 
 	if(!aTranslations) {
-		aTranslations = Dbm.getRepositoryItem("site/translations").requireProperty("data");
+		aTranslations = Dbm.getRepositoryItem("site/translations").requireProperty("data", {});
 	}
 	updateFunction.input.properties.translations.setOrConnect(aTranslations);
 

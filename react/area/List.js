@@ -53,6 +53,10 @@ export default class List extends Dbm.react.BaseObject {
             newChildren.push(React.createElement(Dbm.react.context.AddContextVariables, {key: key, values: values}, mainChildren));
         }
 
+        if(slots.wrapper) {
+            newChildren = React.cloneElement(slots.wrapper[0], slots.wrapper[0].props, newChildren);
+        }
+
         return React.createElement(React.Fragment, {}, newChildren);
     }
 }

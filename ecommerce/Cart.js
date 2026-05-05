@@ -4,10 +4,11 @@ export default class Cart extends Dbm.core.BaseObject {
     _construct() {
         super._construct();
 
-        this._changeCommand = Dbm.commands.callFunction(this._changed.bind(this));
+        this._changeCommand = this._getScopedCallFunctionCommand(this._changed);
 
-        this.item.setValue("lineItems", []);
-        Dbm.flow.addUpdateCommand(this.item.properties.lineItems, this._changeCommand);
+        this.item.requireProperty("lineItems", []).addUpdate(this._changeCommand);
+        this.item.requireProperty("meta", {}).addUpdate(this._changeCommand);
+
         this.item.setValue("numberOfItems", 0);
         this.item.setValue("numberOfLines", 0);
 
@@ -29,7 +30,9 @@ export default class Cart extends Dbm.core.BaseObject {
             }
         }
 
+        Dbm.flow.addUpdateCommand(lineItem.item.properties.product, this._changeCommand);
         Dbm.flow.addUpdateCommand(lineItem.item.properties.quantity, this._changeCommand);
+        //METODO: save change for meta
 
         this.item.addToArray("lineItems", lineItem.item);
 
@@ -65,13 +68,45 @@ export default class Cart extends Dbm.core.BaseObject {
     }
 
     removeLineItem(aItem) {
-        let lineItems = [].concat(this.item.lineItems);
-        
-        let index = lineItems.indexOf(aItem);
-        if(index >= 0) {
-            lineItems.splice(index, 1);
-            this.item.lineItems = lineItems;
+        this.item.removeFromArray("lineItems", aItem);
+    }
+
+    emptyCart() {
+        this.item.lineItems = [];
+
+        return this;
+    }
+
+    setMeta(aKey, aValue) {
+        let newMeta = {...this.item.meta};
+        newMeta[aKey] = aValue;
+        this.item.meta = newMeta;
+
+        return this;
+    }
+
+    getAsObject() {
+        let returnObject = {};
+
+        let encodedLineItems = [];
+
+        let currentArray = this.item.lineItems;
+        let currentArrayLength = currentArray.length;
+        for(let i = 0; i < currentArrayLength; i++) {
+            let currentData = currentArray[i];
+
+            let meta = currentData.meta.controller.getAsObject();
+            //METODO: links in meta
+            let encodedData = {"type": currentData.type, "quantity": currentData.quantity, "meta": meta};
+            if(currentData.product) {
+                encodedData["product"] = currentData.product.id;
+            }
+            encodedLineItems.push(encodedData);
         }
+
+        returnObject = {"lineItems": encodedLineItems, "meta": {...this.item.meta}};
+
+        return returnObject;
     }
 
     _changed() {

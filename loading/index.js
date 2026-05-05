@@ -75,3 +75,37 @@ export const loadFont = function(aUrl, aFontName) {
 
     return loader;
 }
+
+export const getJson = function(aUrl, aCallback = null, aHeaders = null) {
+    let request = new Dbm.loading.JsonLoader();
+    request.setUrl(aUrl);
+    if(aHeaders) {
+        request.item.headers = aHeaders;
+    }
+
+    if(aCallback) {
+        let callbackCommand = Dbm.commands.callFunction(aCallback, [Dbm.core.source.staticObject(request, "item.data")]);
+        Dbm.flow.runWhenMatched(request.item.properties.status, Dbm.loading.LoadingStatus.LOADED, callbackCommand);
+    }
+
+    request.load();
+    
+    return request.item.properties.data;
+}
+
+export const postJson = function(aUrl, aBody, aCallback = null, aHeaders = null) {
+    let request = new Dbm.loading.JsonLoader();
+    request.setupJsonPost(aUrl, aBody);
+    if(aHeaders) {
+        request.item.headers = aHeaders;
+    }
+
+    if(aCallback) {
+        let callbackCommand = Dbm.commands.callFunction(aCallback, [Dbm.core.source.staticObject(request, "item.data")]);
+        Dbm.flow.runWhenMatched(request.item.properties.status, Dbm.loading.LoadingStatus.LOADED, callbackCommand);
+    }
+
+    request.load();
+    
+    return request.item.properties.data;
+}

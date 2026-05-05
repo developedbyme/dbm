@@ -13,6 +13,14 @@ export default class Item extends Dbm.core.LifeCycleObject {
         return this._id;
     }
 
+    set id(aValue) {
+        console.warn("Use setId instead");
+        debugger;
+        this.setId(aValue);
+
+        return this._id;
+    }
+
     register(aId) {
         this.setId(aId);
         Dbm.getInstance().repository.addItem(this);

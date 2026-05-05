@@ -1,5 +1,4 @@
 import Dbm from "../../index.js";
-import React from "react";
 
 export default class GlobalFilters extends Dbm.core.BaseObject {
     _construct() {
@@ -18,9 +17,9 @@ export default class GlobalFilters extends Dbm.core.BaseObject {
         console.log("_updateStyles");
 
         let colorFilters = Dbm.getRepositoryItem("globalSvg");
-        console.log(colorFilters.filters.length);
 
         if(colorFilters.filters.length) {
+
             if(!this._styleTag) {
                 this._styleTag = document.createElement("style");
                 document.head.appendChild(this._styleTag);
@@ -28,7 +27,8 @@ export default class GlobalFilters extends Dbm.core.BaseObject {
 
             let declarations = Dbm.utils.ArrayFunctions.mapField(colorFilters.filters, "classDeclaration");
             this._styleTag.innerHTML = declarations.join("\n");
-            console.log(declarations);
+            
+            
         }
     }
 }

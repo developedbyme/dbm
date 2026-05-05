@@ -7,3 +7,4 @@ export {default as ConfirmButton} from "./ConfirmButton.js";
 export {default as ClickOutsideTrigger} from "./ClickOutsideTrigger.js";
 export {default as HoverArea} from "./HoverArea.js";
 export {default as HoverDropdown} from "./HoverDropdown.js";
+export {default as Checked} from "./Checked.js";

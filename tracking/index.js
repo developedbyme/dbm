@@ -18,6 +18,20 @@ export const setup = function() {
     controller.addTracker(dataLayerTracker.item);
 }
 
+export const setupExternalTagManager = function() {
+    let controller = new Dbm.tracking.Controller();
+    controller.item.register("trackingController");
+
+    controller.item.allowStatistics = true;
+    controller.item.allowMarketing = true;
+    controller.start();
+
+    let dataLayerTracker = new Dbm.tracking.DataLayerTracker();
+    dataLayerTracker.item.setConsent = false;
+    dataLayerTracker.item.register("tracking/dataLayerTracker");
+    controller.addTracker(dataLayerTracker.item);
+}
+
 export const addMetaPixel = function(aPixelId) {
     let tracker = new Dbm.tracking.MetaPixelTracker();
     tracker.item.pixelId = aPixelId;

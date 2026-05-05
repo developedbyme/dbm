@@ -7,6 +7,8 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
 		this._statisticsTracking = false;
 		this._marketingTracking = false;
 
+		this.item.setValue("setConsent", true);
+		this.item.setValue("sendMarketingEvents", true);
 		this.item.setValue("ecommerceDataWrapper", null);
 		this.item.setValue("eventNameMap", new Dbm.repository.Item());
     }
@@ -29,12 +31,15 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
 			window.dataLayer = [];
 		}
 		
-		this._gtag("consent", "default", {
-			"ad_storage": "denied",
-			"ad_user_data": "denied",
-			"ad_personalization": "denied",
-			"analytics_storage": "denied"
-		});
+		if(this.item.setConsent) {
+			this._gtag("consent", "default", {
+				"ad_storage": "denied",
+				"ad_user_data": "denied",
+				"ad_personalization": "denied",
+				"analytics_storage": "denied"
+			});
+		}
+		
 		
 		return this;
 	}
@@ -42,9 +47,11 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
     startStatisticsTracking() {
 		
 		this._statisticsTracking = true;
-		this._gtag("consent", "update", {
-			"analytics_storage": "granted"
-		});
+		if(this.item.setConsent) {
+			this._gtag("consent", "update", {
+				"analytics_storage": "granted"
+			});
+		}
         this.addToDataLayer({"event": "enableStatistics"});
 		this.addToDataLayer({"event": "trackCurrentPage"});
 		
@@ -54,11 +61,13 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
 	startMarketingTracking() {
 		
 		this._marketingTracking = true;
-		this._gtag("consent", "update", {
-			"ad_storage": "granted",
-			"ad_user_data": "granted",
-			"ad_personalization": "granted"
-		});
+		if(this.item.setConsent) {
+			this._gtag("consent", "update", {
+				"ad_storage": "granted",
+				"ad_user_data": "granted",
+				"ad_personalization": "granted"
+			});
+		}
         this.addToDataLayer({"event": "enableMarketing"});
 		
 		return this;
@@ -98,7 +107,7 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
 			
 		}
 
-        if(this._marketingTracking) {
+        if(this._marketingTracking && this.item.sendMarketingEvents) {
 			this.addToDataLayer({"event": "trackMarketingEvent", "value": {"name": aEventName, "data": aData}});
 			if(aDataStructure === "raw") {
 				let adjustedData = {

@@ -95,6 +95,12 @@
     top: 0;
 }
 
+.middle-left {
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .top-right {
     right: 0;
     top: 0;
@@ -103,6 +109,12 @@
 .bottom-left {
     left: 0;
     bottom: 0;
+}
+
+.middle-right {
+    right: 0;
+    top: 50%;
+    transform: translate(50%, -50%);
 }
 
 .bottom-right {

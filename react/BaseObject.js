@@ -6,12 +6,29 @@ export default class BaseObject extends Component {
     constructor(aProps, aContext) {
         super(aProps, aContext);
         this.state = {"dynamicUpdate": 0};
-        this._dynamicProps = {}
-        this._construct();
-
-        this._prepareProps();
-        this._constructAfterProps();
+        this._dynamicProps = {};
+        this._safeConstruct();
     }
+
+    _safeConstruct() {
+		if(Dbm.getRepositoryItem("development").catchRenderErrors) {
+			try {
+				this._construct();
+
+                this._prepareProps();
+                this._constructAfterProps();
+			}
+			catch(theError) {
+				console.error("Error while constructing", this, theError);
+			}
+		}
+		else {
+			this._construct();
+
+            this._prepareProps();
+            this._constructAfterProps();
+		}
+	}
 
     _construct() {
 
