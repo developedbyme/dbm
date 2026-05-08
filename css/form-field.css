@@ -1,0 +1,31 @@
+.standard-field {
+    border: 1px solid var(--standard-field-border-color, #797979);
+    border-radius: var(--standard-field-border-radius, 5px);
+    font-size: var(--standard-field-size, 18px);
+    font-family: var(--standard-body-font, sans-serif);
+    box-sizing: border-box;
+    
+}
+
+.standard-field-padding {
+    padding: var(--standard-field-vertical-padding, 10px) var(--standard-field-horizontal-padding, 10px);
+}
+
+.standard-field-padding-left-side {
+    padding-left: var(--standard-field-horizontal-padding, 10px);
+    padding-top: var(--standard-field-vertical-padding, 10px);
+    padding-bottom: var(--standard-field-vertical-padding, 10px);
+}
+
+.standard-field-padding-right-side {
+    padding-right: var(--standard-field-horizontal-padding, 10px);
+    padding-top: var(--standard-field-vertical-padding, 10px);
+    padding-bottom: var(--standard-field-vertical-padding, 10px);
+}
+
+.integrated-field {
+    box-sizing: border-box;
+    border: none;
+    display: block;
+    font-size: var(--standard-body-font, sans-serif);
+}

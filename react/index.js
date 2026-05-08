@@ -1,8 +1,11 @@
+import Dbm from "../index.js";
+
 export {default as BaseObject} from "./BaseObject.js";
 export {default as RefToProperty} from "./RefToProperty.js";
 export {default as AddProps} from "./AddProps.js";
 
 export * as ChildFunctions from "./ChildFunctions.js";
+export * as dynamic from "./dynamic/index.js";
 
 export * as modules from "./modules/index.js";
 export * as admin from "./admin/index.js";
@@ -19,3 +22,12 @@ export * as animation from "./animation/index.js";
 export * as interaction from "./interaction/index.js";
 export * as thirdparty from "./thirdparty/index.js";
 export * as svg from "./svg/index.js";
+
+
+export let design = null;
+
+export const setupDesign = function() {
+    let repositoryProxy = new Dbm.react.dynamic.DesignRepositoryProxy();
+
+    design = repositoryProxy.proxy;
+}

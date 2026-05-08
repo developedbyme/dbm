@@ -25,3 +25,44 @@
 .standard-dropdown-row-padding {
     padding: 8px 15px;
 }
+
+.help-section-row {
+    border: 1px solid var(--help-section-row-border-color, #3b3b3b);
+    border-radius: var(--help-section-row-border-radius, 5px);
+    overflow: hidden;
+}
+
+.help-section-row-question {
+    color: #FFFFFF;
+    background-color: var(--help-section-row-question-background-color, #3b3b3b);
+    font-weight: bold;
+}
+
+.help-section-row-question-padding {
+    padding: 5px 11px;
+}
+
+.help-section-row-answer-padding {
+    padding: 5px 11px;
+}
+
+.help-section-row-answer-title {
+    font-weight: bold;
+}
+
+.help-section-row-read-more-link {
+    color: var(--standard-link-color, #0000FF);
+    font-weight: bold;
+}
+
+@media (min-width: 600px) {
+    .help-section-row-read-more-link {
+        font-size: 14px;
+    }
+    
+}
+
+.help-section-row-question-icon {
+    width: 15px;
+    height: 15px;
+}

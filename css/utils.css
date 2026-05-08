@@ -221,12 +221,6 @@
 	pointer-events: all;
 }
 
-.integrated-field {
-    box-sizing: border-box;
-    border: none;
-    display: block;
-}
-
 .centered-cell-holder {
 	display: flex;
 	justify-content: center;

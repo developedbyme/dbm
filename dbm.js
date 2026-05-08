@@ -103,8 +103,8 @@ export const getCachedGraphApi = function() {
 export * as utils from "./utils/index.js";
 export * as core from "./core/index.js";
 export * as loading from "./loading/index.js";
-export * as react from "./react/index.js";
 export * as repository from "./repository/index.js";
+export * as react from "./react/index.js";
 export * as graphapi from "./graphapi/index.js";
 export * as commands from "./commands/index.js";
 export * as flow from "./flow/index.js";

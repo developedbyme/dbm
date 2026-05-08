@@ -3,6 +3,8 @@ import Dbm from "../index.js";
 export {default as Item} from "./Item.js";
 export {default as Repository} from "./Repository.js";
 
+export * as proxy from "./proxy/index.js";
+
 export const getItem = function(aName) {
     return Dbm.getInstance().repository.getItem(aName);
 }

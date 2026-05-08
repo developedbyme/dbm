@@ -20,6 +20,9 @@ export default class InsertElement extends Dbm.react.BaseObject {
         if(!element) {
             return React.createElement("div", {}, "No element set");
         }
+        else if(typeof(element) === "string") {
+            return element;
+        }
 
         let props = this._copyProps(element.props);
 

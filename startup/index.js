@@ -1,4 +1,5 @@
 import Dbm from "../index.js";
+import React from "react";
 
 export {default as Runner} from "./Runner.js";
 export {default as Controller} from "./Controller.js";
@@ -34,5 +35,4 @@ export const setupLibrary = function() {
     library.setValue("Dbm/flow/addUpdateCommandWhenMatched", Dbm.flow.addUpdateCommandWhenMatched);
     library.setValue("Dbm/flow/updatefunctions/logic/Condition", Dbm.flow.updatefunctions.logic.Condition);
     library.setValue("Dbm/flow/updatefunctions/logic/Switch", Dbm.flow.updatefunctions.logic.Switch);
-    
 }

@@ -313,6 +313,20 @@ export let registerAllBlocks = function() {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
             
         );
+        let block = registerBlock("content/spacing", "Spacing", createElement(Dbm.react.blocks.content.Spacing), editor, {}, {});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            
+        );
+        let block = registerBlock("content/spacingLine", "Spacing line", createElement(Dbm.react.blocks.content.SpacingLine), editor, {}, {});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            
+        );
         let block = registerBlock("content/skipSpacing", "Skip spacing", createElement("div", {"data-skip-spacing": "1"}), editor, {}, {});
     }
 
