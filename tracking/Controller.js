@@ -18,11 +18,7 @@ export default class Controller extends Dbm.core.BaseObject {
         //aItem.propertyInput("allowMarketing", this.item.getProperty("allowMarketing"));
         //aItem.propertyInput("allowStatistics", this.item.getProperty("allowStatistics"));
 
-        let trackers = [].concat(this.item.trackers);
-
-        trackers.push(aItem);
-
-        this.item.trackers = trackers;
+        this.item.addToArray("trackers", aItem);
 
         if(this.item.active) {
             aItem.controller.startTracking();
@@ -32,6 +28,16 @@ export default class Controller extends Dbm.core.BaseObject {
             if(this.item.allowMarketing) {
                 aItem.controller.startMarketingTracking();
             }
+        }
+
+        return this;
+    }
+
+    removeTracker(aItem) {
+        this.item.removeFromArray("trackers", aItem);
+
+        if(this.item.active) {
+            aItem.controller.stopTracking();
         }
 
         return this;
@@ -135,14 +141,14 @@ export default class Controller extends Dbm.core.BaseObject {
         return this;
     }
 
-    trackPage(aUrl) {
+    trackPage(aUrl, aTitle = null) {
         if(this.item.active && this.item.allowStatistics) {
             let currentArray = this.item.trackers;
             let currentArrayLength = currentArray.length;
             
             for(let i = 0; i < currentArrayLength; i++) {
                 let currentTracker = currentArray[i];
-                currentTracker.controller.trackPage(aUrl);
+                currentTracker.controller.trackPage(aUrl, aTitle);
             }
         }
     }

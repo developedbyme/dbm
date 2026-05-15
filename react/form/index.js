@@ -18,6 +18,8 @@ export {default as Option} from "./Option.js";
 export {default as Dropdown} from "./Dropdown.js";
 export {default as GraphApiObjectOptions} from "./GraphApiObjectOptions.js";
 export {default as CustomSelection} from "./CustomSelection.js";
+export {default as Url} from "./Url.js";
+export {default as Link} from "./Link.js";
 
 export const validationStateClassName = function(aChildren) {
     return React.createElement(Dbm.react.AddProps, {className: Dbm.react.source.contextVariable("field.properties.validationState")},

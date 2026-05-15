@@ -4,7 +4,6 @@
     font-size: var(--standard-field-size, 18px);
     font-family: var(--standard-body-font, sans-serif);
     box-sizing: border-box;
-    
 }
 
 .standard-field-padding {
@@ -21,6 +20,22 @@
     padding-right: var(--standard-field-horizontal-padding, 10px);
     padding-top: var(--standard-field-vertical-padding, 10px);
     padding-bottom: var(--standard-field-vertical-padding, 10px);
+}
+
+.standard-field-padding-vertical {
+    padding-top: var(--standard-field-vertical-padding, 10px);
+    padding-bottom: var(--standard-field-vertical-padding, 10px);
+}
+
+.with-left-field-icon {
+    padding-left: calc(2 * var(--standard-field-horizontal-padding, 10px) + var(--field-icon-size, 16px));
+}
+
+.left-field-icon-position {
+    position: absolute;
+    top: 50%;
+    left: calc(var(--standard-field-horizontal-padding, 10px) + 0.5 * var(--field-icon-size, 16px));
+    transform: translate(-50%, -50%);
 }
 
 .integrated-field {

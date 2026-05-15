@@ -1,7 +1,7 @@
 import React from "react";
 import Dbm from "../../../../index.js";
 
-export default class SelectObjectsField extends Dbm.react.BaseObject {
+export default class ArrayField extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
@@ -66,14 +66,31 @@ export default class SelectObjectsField extends Dbm.react.BaseObject {
 
 
         return this._createMainElement(Dbm.react.form.EditArray, {value: this.item.properties.value},
-            React.createElement("div", {}, 
-                this.getPropValue("children"),
-                React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callFunction(this._removeItem, [Dbm.react.source.contextVariable("arrayEditor"), Dbm.react.source.contextVariable("item")])},
-                    React.createElement("div", {}, "Remove")
+            React.createElement("div", {"className": "flex-row small-item-spacing"}, 
+                React.createElement("div", {"className": "flex-row-item flex-resize"},
+                    this.getPropValue("children")
+                ),
+                React.createElement("div", {"className": "flex-row-item flex-no-resize"},
+                    React.createElement("div", {className: "spacing small"}),
+                    React.createElement(Dbm.react.interaction.ConfirmButton, {"command": this._getScopedCallFunctionCommand(this._removeItem, [Dbm.react.source.contextVariable("arrayEditor"), Dbm.react.source.contextVariable("item")])},
+                        React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon action-icon-color cursor-pointer"}),
+                        React.createElement("div", {"data-slot": "confirm", className: "absolute-container cursor-pointer", title: "Click to remove"},
+                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon hover-icon remove-action-icon-color cursor-pointer"}),
+                            React.createElement("div", {className:"centered-tip-text no-pointer-events"},
+                                "Remove?"
+                            )
+                        )
+                    )
                 )
             ),
-            React.createElement(Dbm.react.interaction.CommandButton, {"data-slot": "after", command: Dbm.commands.callFunction(this._add.bind(this), [Dbm.react.source.contextVariable("arrayEditor")])},
-                React.createElement("div", {className: "action-button action-button-padding"}, "Add")
+            React.createElement("div", {"data-slot": "spacing", className: "spacing small"}),
+            React.createElement("div", {"data-slot": "after", "className": "flex-row"},
+                React.createElement("div", {className: "spacing small"}),
+                React.createElement("div", {"className": "flex-row-item"},
+                    React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callFunction(this._add.bind(this), [Dbm.react.source.contextVariable("arrayEditor")])},
+                        React.createElement("div", {className: "action-button action-button-padding"}, "Add")
+                    )
+                )
             )
          );
     }

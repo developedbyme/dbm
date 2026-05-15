@@ -1,6 +1,6 @@
 import Dbm from "../index.js";
 
-export default class MetaPixelTracker extends Dbm.core.BaseObject {
+export default class SingleAccountMetaPixelTracker extends Dbm.core.BaseObject {
     _construct() {
         super._construct();
 
@@ -54,7 +54,7 @@ export default class MetaPixelTracker extends Dbm.core.BaseObject {
 		
 		if(this.item.pixelId) {
 			window.fbq("init", this.item.pixelId);
-			window.fbq("track", "PageView");
+			window.fbq("trackSingle", this.item.pixelId, "PageView");
 		}
 		
 		return this;
@@ -90,29 +90,29 @@ export default class MetaPixelTracker extends Dbm.core.BaseObject {
 		if(!this._isStarted) return;
 
 		if(aEventName === "Purchase") {
-			window.fbq('track', 'Purchase', this._convertGooogleAnalyctisData(aData), {eventID: aData.transaction_id});
+			window.fbq('trackSingle', this.item.pixelId, 'Purchase', this._convertGooogleAnalyctisData(aData), {eventID: aData.transaction_id});
 		}
 		else if(aEventName === "Product view") {
-			window.fbq('track', 'ViewContent', this._convertGooogleAnalyctisData(aData));
+			window.fbq('trackSingle', this.item.pixelId, 'ViewContent', this._convertGooogleAnalyctisData(aData));
 		}
 		else if(aEventName === "Added to cart") {
-			window.fbq('track', 'AddToCart', this._convertGooogleAnalyctisData(aData));
+			window.fbq('trackSingle', this.item.pixelId, 'AddToCart', this._convertGooogleAnalyctisData(aData));
 		}
 		else if(aEventName === "Checkout started") {
-			window.fbq('track', 'InitiateCheckout', this._convertGooogleAnalyctisData(aData));
+			window.fbq('trackSingle', this.item.pixelId, 'InitiateCheckout', this._convertGooogleAnalyctisData(aData));
 		}
 		else {
-			window.fbq("trackCustom", aEventName, aData);
+			window.fbq("trackSingleCustom", this.item.pixelId, aEventName, aData);
 		}
     }
 
     trackCurrentPage() {
 		if(!this._isStarted) return;
-        window.fbq("track", "PageView");
+        window.fbq("trackSingle", this.item.pixelId, "PageView");
     }
 
     trackPage(aUrl, aTitle = null) {
 		if(!this._isStarted) return;
-        window.fbq("track", "PageView");
+        window.fbq("trackSingle", this.item.pixelId, "PageView");
     }
 }

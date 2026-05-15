@@ -27,7 +27,7 @@ export default class TagManagerTracker extends Dbm.core.BaseObject {
 	}
 
     startStatisticsTracking() {
-		console.log("TagManagerTracker::startStatisticsTracking");
+		//console.log("TagManagerTracker::startStatisticsTracking");
 		this.loadTagManager();
 		
 		return this;
@@ -52,7 +52,7 @@ export default class TagManagerTracker extends Dbm.core.BaseObject {
         
     }
 
-    trackPage(aUrl) {
+    trackPage(aUrl, aTitle = null) {
         
     }
 }

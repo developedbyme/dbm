@@ -330,7 +330,55 @@ export let registerAllBlocks = function() {
         let block = registerBlock("content/skipSpacing", "Skip spacing", createElement("div", {"data-skip-spacing": "1"}), editor, {}, {});
     }
 
+    {
+        let buttonTypes = [];
+        {
+            let button = new Dbm.repository.Item();
+            button.setValue("type", "primary");
+            button.setValue("name", "Primary");
+            buttonTypes.push(button);
+        }
+        {
+            let button = new Dbm.repository.Item();
+            button.setValue("type", "secondary");
+            button.setValue("name", "Secondary");
+            buttonTypes.push(button);
+        }
 
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Buttons"}, 
+                createElement(Dbm.react.admin.editor.fields.ArrayField, {name: "buttons"},
+                    createElement("div", {"className": "standard-field flex-row vertically-center-items"},
+                        createElement("div", {"className": "flex-row-item flex-no-resize"},
+                            createElement(Dbm.react.form.EditObjectProperty, {"value": Dbm.react.source.item("properties.value"), "path": "type"},
+                                createElement(Dbm.react.form.CustomSelection, {"value": Dbm.react.source.contextVariable("value"), "items": buttonTypes, "path": "type"},
+                                    createElement("div", {"data-slot": "button", "className": "standard-field-padding"}, "Select type"),
+                                    createElement("div", {},
+                                        createElement(Dbm.react.area.List, {items: Dbm.react.source.contextVariable("rows"), as: "row"},
+                                            createElement(Dbm.react.context.AddItemToContext, {
+                                            item: Dbm.react.source.contextVariable("row.forItem"),
+                                            children: createElement(Dbm.react.interaction.CommandButton, {
+                                                commands: [Dbm.commands.setProperty(Dbm.react.source.contextVariable("row.properties.selected"), true), Dbm.react.source.contextVariable("closeCommand")],
+                                                children: createElement("div", {
+                                                children: Dbm.react.text.text(Dbm.react.source.item("name"))
+                                                })
+                                            })
+                                            })
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        createElement("div", {"className": "flex-row-item flex-resize"},
+                            createElement(Dbm.react.form.Link, {"value": Dbm.react.source.item("properties.value")})
+                        )
+                    )
+                    
+                )
+            ),
+        );
+        let block = registerBlock("content/buttons", "Buttons", createElement(Dbm.react.blocks.content.Buttons), editor, {}, {});
+    }
 
     {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/title");

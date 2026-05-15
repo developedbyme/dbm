@@ -127,10 +127,10 @@ export default class DataLayerTracker extends Dbm.core.BaseObject {
     }
 
     trackCurrentPage() {
-        this.trackPage(document.location.href);
+        this.trackPage(document.location.href, document.title);
     }
 
-    trackPage(aUrl) {
-        this.addToDataLayer({"event": "trackPage", "value": {"url": aUrl}});
+    trackPage(aUrl, aTitle = null) {
+        this.addToDataLayer({"event": "trackPage", "value": {"url": aUrl, "title": aTitle}});
     }
 }

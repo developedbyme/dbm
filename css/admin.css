@@ -1,5 +1,10 @@
 .dbm-admin {
     background-color: #f6f7f9;
+    color: #313131;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #313131;
+    }
 }
 
 .dbm-admin-box {
@@ -15,7 +20,7 @@
 
 .dbm-admin-hero {
     background: rgb(41,56,97);
-    background: linear-gradient(117deg, #4b4795 0%, #608be1 100%);
+    background: linear-gradient(to bottom right, #4b4795 0%, #608be1 100%);
 }
 
 .dbm-admin-hero .on-hero-text {

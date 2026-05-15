@@ -16,12 +16,12 @@ export default class BrowserUpdater extends Dbm.core.BaseObject {
 		return this;
 	}
 
-	_trackPage(aUrl) {
+	_trackPage(aUrl, aTitle) {
 		//console.log("_trackPage");
 		
 		let trackingController = Dbm.getInstance().repository.getItem("trackingController").controller;
 		if(trackingController) {
-			trackingController.trackPage(aUrl);
+			trackingController.trackPage(aUrl, aTitle);
 		}
 	}
 
@@ -59,6 +59,6 @@ export default class BrowserUpdater extends Dbm.core.BaseObject {
 
 		window.scrollTo(0, 0);
 
-		this._trackPage(document.location.href);
+		this._trackPage(document.location.href, document.title);
 	}
 }
