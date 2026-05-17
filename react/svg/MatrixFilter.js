@@ -17,7 +17,7 @@ export default class MatrixFilter extends Dbm.react.BaseObject {
         let matrix = this.getPropValue("matrix");
 
         return this._createMainElement("filter", {id: id},
-            React.createElement("feColorMatrix", {type: "matrix", values: matrix})
+            React.createElement("feColorMatrix", {type: "matrix", values: matrix, "colorInterpolationFilters": "sRGB"})
         );
     }
 }

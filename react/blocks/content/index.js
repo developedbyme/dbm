@@ -6,3 +6,4 @@ export {default as LinkListCard} from "./LinkListCard.js";
 export {default as Spacing} from "./Spacing.js";
 export {default as SpacingLine} from "./SpacingLine.js";
 export {default as Buttons} from "./Buttons.js";
+export {default as SectionsGrid} from "./SectionsGrid.js";

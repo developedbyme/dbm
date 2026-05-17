@@ -8,7 +8,6 @@ export default class Spacing extends Dbm.react.BaseObject {
     }
 
     _renderMainElement() {
-        console.log(this._createMainElement("div", {className: "spacing standard"}));
         return this._createMainElement("div", {className: "spacing standard"});
     }
 }

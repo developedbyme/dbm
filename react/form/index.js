@@ -20,6 +20,8 @@ export {default as GraphApiObjectOptions} from "./GraphApiObjectOptions.js";
 export {default as CustomSelection} from "./CustomSelection.js";
 export {default as Url} from "./Url.js";
 export {default as Link} from "./Link.js";
+export {default as EditableContent} from "./EditableContent.js";
+export {default as GraphApiImageWithAltText} from "./GraphApiImageWithAltText.js";
 
 export const validationStateClassName = function(aChildren) {
     return React.createElement(Dbm.react.AddProps, {className: Dbm.react.source.contextVariable("field.properties.validationState")},

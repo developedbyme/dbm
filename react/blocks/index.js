@@ -235,6 +235,32 @@ export let registerAllBlocks = function() {
 
     {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
+            createElement(Dbm.react.form.LabelledArea, {label: "Sections"},
+                createElement(Dbm.react.admin.editor.fields.ArrayField, {name: "sections"},
+                    createElement("div", {},
+                        createElement(Dbm.react.form.EditObjectProperty, {"value": Dbm.react.source.item("properties.value"), "path": "image"},
+                            createElement(Dbm.react.form.GraphApiImageWithAltText, {"value": Dbm.react.source.contextVariable("value"), "className": "standard-field standard-field-padding full-width"})
+                        ),
+                        createElement(Dbm.react.form.EditObjectProperty, {"value": Dbm.react.source.item("properties.value"), "path": "title"},
+                            createElement(Dbm.react.form.FormField, {"value": Dbm.react.source.contextVariable("value"), "className": "standard-field standard-field-padding full-width"})
+                        ),
+                        createElement(Dbm.react.form.EditObjectProperty, {"value": Dbm.react.source.item("properties.value"), "path": "link", initialValue: {}},
+                            createElement("div", {"className": "standard-field"}, 
+                                createElement(Dbm.react.form.Link, {"value": Dbm.react.source.contextVariable("value")})
+                            )
+                        ),
+                        createElement(Dbm.react.form.EditObjectProperty, {"value": Dbm.react.source.item("properties.value"), "path": "content"},
+                            createElement(Dbm.react.form.EditableContent, {"value": Dbm.react.source.contextVariable("value"), "className": "standard-field standard-field-padding full-width"})
+                        )
+                    )
+                )
+            )
+        );
+        registerBlock("content/sectionsGrid", "Sections grid", createElement(Dbm.react.blocks.content.SectionsGrid, {}), editor, {}, {"sections": true, "content": true});
+    }
+
+    {
+        let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
             createElement(Dbm.react.form.LabelledArea, {label: "Link name"},
                 createElement(Dbm.react.admin.editor.fields.TextField, {name: "linkName"})
             )

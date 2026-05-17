@@ -36,4 +36,25 @@ export const setupDefaultDesignElements = function() {
     addDesign("buttons/SecondaryButton", React.createElement("div", {"className": "secondary-button standard-button-padding"},
         React.createElement(Dbm.react.area.InsertElement, {"element": Dbm.react.source.contextVariable("children")})
     ));
+
+    addDesign("content/GridSectionCard", React.createElement("div", {"className": "grid-section-card"},
+        React.createElement(Dbm.react.text.OptionalLink, {"href": Dbm.react.source.item("link.url"), "className": "custom-styled-link"},
+            React.createElement("div", {"className": ""},
+                React.createElement("div", {"className": "flex-row"},
+                    React.createElement("div", {"className": "flex-row-item flex-no-ressize"},
+                        "Icon"
+                    ),
+                    React.createElement("div", {"className": "flex-row-item flex-resize"},
+                        React.createElement("div", {"className": "grid-section-card-title"},
+                            Dbm.react.text.text(Dbm.react.source.item("title"))
+                        )
+                    )
+                ),
+                React.createElement("div", {"className": "spacing small"}),
+                React.createElement("div", {"className": "grid-section-card-content"},
+                    Dbm.react.text.htmlText(Dbm.react.source.item("content"), "div", {"className": "no-margins-around"})
+                )
+            )
+        )
+    ));
 }
