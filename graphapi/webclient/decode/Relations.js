@@ -20,6 +20,8 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
             let currentRelationsItem = aItem["relations/in"];
             if(!currentRelationsItem) {
                 currentRelationsItem = new Dbm.repository.Item();
+                currentRelationsItem.setValue("direction", "in");
+                currentRelationsItem.setValue("all", []);
                 aItem.setValue("relations/in", currentRelationsItem);
             }
 
@@ -31,9 +33,12 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
                 let typeItem = currentRelationsItem[currentType];
                 if(!typeItem) {
                     typeItem = new Dbm.repository.Item();
+                    typeItem.setValue("type", currentType);
                     typeItem.setValue("objects", []);
                     typeItem.setValue("relations", []);
+                    typeItem.setValue("allRelations", []);
                     currentRelationsItem.setValue(currentType, typeItem);
+                    currentRelationsItem.addToArray("all", typeItem);
                 }
 
                 let relation = Dbm.getRepositoryItem(currentRelationData["relationId"]);
@@ -44,6 +49,7 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
                     relation.setValue("to", aItem);
                     relation.setValue("startAt", currentRelationData["startAt"]);
                     relation.setValue("endAt", currentRelationData["endAt"]);
+                    typeItem.addToArray("allRelations", relation);
 
                     if(this._isRelationValid(currentRelationData["startAt"], currentRelationData["endAt"])) {
                         typeItem.addToArray("objects", linkedItem);
@@ -58,6 +64,8 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
             let currentRelationsItem = aItem["relations/out"];
             if(!currentRelationsItem) {
                 currentRelationsItem = new Dbm.repository.Item();
+                currentRelationsItem.setValue("direction", "out");
+                currentRelationsItem.setValue("all", []);
                 aItem.setValue("relations/out", currentRelationsItem);
             }
 
@@ -69,9 +77,12 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
                 let typeItem = currentRelationsItem[currentType];
                 if(!typeItem) {
                     typeItem = new Dbm.repository.Item();
+                    typeItem.setValue("type", currentType);
                     typeItem.setValue("objects", []);
                     typeItem.setValue("relations", []);
+                    typeItem.setValue("allRelations", []);
                     currentRelationsItem.setValue(currentType, typeItem);
+                    currentRelationsItem.addToArray("all", typeItem);
                 }
 
                 let relation = Dbm.getRepositoryItem(currentRelationData["relationId"]);
@@ -82,6 +93,7 @@ export default class Relations extends Dbm.graphapi.webclient.decode.DecodeBaseO
                     relation.setValue("to", linkedItem);
                     relation.setValue("startAt", currentRelationData["startAt"]);
                     relation.setValue("endAt", currentRelationData["endAt"]);
+                    typeItem.addToArray("allRelations", relation);
 
                     if(this._isRelationValid(currentRelationData["startAt"], currentRelationData["endAt"])) {
                         typeItem.addToArray("objects", linkedItem);

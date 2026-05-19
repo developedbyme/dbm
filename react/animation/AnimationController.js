@@ -19,10 +19,8 @@ export default class AnimationController extends Dbm.core.BaseObject {
         //console.log("_updateStyle");
         let element = this.item.element;
 
-        
-
         if(element) {
-            
+
             let styleArray = [];
             
             let styleObject = this.item.style;

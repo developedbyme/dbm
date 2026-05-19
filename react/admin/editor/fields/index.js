@@ -7,3 +7,4 @@ export {default as SelectObjectsField} from "./SelectObjectsField.js";
 export {default as SelectionField} from "./SelectionField.js";
 export {default as ArrayField} from "./ArrayField.js";
 export {default as EditorBlocks} from "./EditorBlocks.js";
+export {default as Link} from "./Link.js";

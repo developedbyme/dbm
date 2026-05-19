@@ -17,6 +17,7 @@ export {default as NativeElement} from "./NativeElement.js";
 export {default as SingleItemSlideshow} from "./SingleItemSlideshow.js";
 export {default as SlideshowSteps} from "./SlideshowSteps.js";
 export {default as RepeatedSlider} from "./RepeatedSlider.js";
+export {default as Layout} from "./Layout.js";
 
 export const responsiveLayout = function(aDefaultLayout) {
     let newResponsiveLayout = new Dbm.react.area.ResponsiveLayout();

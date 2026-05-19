@@ -20,3 +20,4 @@ export {default as RichTextField} from "./RichTextField.js";
 export {default as RichTextFieldWithTranslations} from "./RichTextFieldWithTranslations.js";
 export {default as FormattedField} from "./FormattedField.js";
 export {default as FormattedFieldWithTranslations} from "./FormattedFieldWithTranslations.js";
+export {default as TextAreaField} from "./TextAreaField.js";

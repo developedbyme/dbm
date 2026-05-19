@@ -26,3 +26,7 @@ export const htmlText = function(aText, aElementType = "span", aAdditionalProps 
 export const translatedText = function(aText, aTextId) {
     return createElement(Dbm.react.text.TranslatedText, {text: aText, textId: aTextId});
 }
+
+export const blockDataText = function(aFieldName) {
+    return createElement(Dbm.react.text.Text, {text: Dbm.react.source.blockData(aFieldName)});
+}

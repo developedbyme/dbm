@@ -15,7 +15,7 @@ export default class ClickOutsideTrigger extends Dbm.react.BaseObject {
         if(!commands) {
             commands = this.getPropValue("command");
         }
-        if(commands) {
+        if(commands && this.getPropValueWithoutNull("active")) {
             let currentElement = this.item["mainElement"];
             if(!currentElement.contains(aEvent.srcElement)) {
                 commands = Dbm.utils.ArrayFunctions.singleOrArray(commands);

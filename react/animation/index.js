@@ -20,3 +20,18 @@ export const connectedAnimation = function(aStyleProperty) {
 
     return newAnimationController;
 }
+
+export const freeStyleTransformAnimation = function() {
+    let transform = new Dbm.flow.updatefunctions.dom.TransformStyle();
+
+    let newAnimationController = new Dbm.react.animation.AnimationController();
+
+    let styleObject = new Dbm.flow.updatefunctions.dom.StyleObject();
+    styleObject.addProperty("transform", transform.output.properties.value);
+
+    newAnimationController.item.propertyInput("style", styleObject.output.properties.style);
+    newAnimationController.item.setValue("styleProperties", styleObject);
+    newAnimationController.item.setValue("transformProperties", transform);
+
+    return newAnimationController;
+}
