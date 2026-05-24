@@ -6,6 +6,7 @@ export {default as MetaPixelTracker} from "./MetaPixelTracker.js";
 export {default as TagManagerTracker} from "./TagManagerTracker.js";
 export {default as GtagTracker} from "./GtagTracker.js";
 export {default as SingleAccountMetaPixelTracker} from "./SingleAccountMetaPixelTracker.js";
+export {default as PageListTracker} from "./PageListTracker.js";
 
 export const addStartTagManagerMarker = function() {
     window.dataLayer=window.dataLayer || [];

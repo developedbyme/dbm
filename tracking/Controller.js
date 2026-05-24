@@ -187,6 +187,18 @@ export default class Controller extends Dbm.core.BaseObject {
         this.trackEvent("Product view", data, "ecommerce");
     }
 
+    trackProductListView(aProducts, aListId = null) {
+
+        let additionalData = {};
+        if(aListId) {
+            additionalData["item_list_id"] = aListId;
+        }
+
+        let data = this.createProductItemsSummary(aProducts, additionalData);
+
+        this.trackEvent("Product list view", data, "ecommerce");
+    }
+
     trackAddedToCart(aProductOrProducts) {
         let data = this.createProductItemsSummary(aProductOrProducts);
 
