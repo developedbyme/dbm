@@ -57,7 +57,7 @@ export const trackEvent = function(aEventName, aAdditionalData = {}) {
 }
 
 export const performCommands = function(aCommands, aFromObject = null, aEventData = null) {
-    let currentArray = aCommands;
+    let currentArray = Dbm.utils.ArrayFunctions.singleOrArray(aCommands);
     let currentArrayLength = currentArray.length;
     for(let i = 0; i < currentArrayLength; i++) {
         let currentCommand = currentArray[i];

@@ -5,9 +5,14 @@ export default class ContentBlock extends Dbm.react.BaseObject {
     _construct() {
         super._construct();
 
-        let contentBlockId = this.context.blockData.contentBlock;
-
         this.item.requireProperty("item", null);
+    }
+
+    _constructAfterProps() {
+      super._constructAfterProps();
+
+        let contentBlockId = this.getPropValueWithDefault("id", this.context.blockData.contentBlock);
+        console.log(contentBlockId);
 
         let graphApi = Dbm.getInstance().repository.getItem("cachedGraphApi").controller;
         {

@@ -5,6 +5,8 @@ export default class PageListTracker extends Dbm.core.BaseObject {
         super._construct();
 
 		this.item.requireProperty("items", []);
+        this.item.requireProperty("listId", null);
+
         let allLoaded = Dbm.flow.updatefunctions.logic.allAtValue(true);
         this.item.requireProperty("allLoaded", allLoaded);
 
@@ -36,7 +38,9 @@ export default class PageListTracker extends Dbm.core.BaseObject {
 
         let products = Dbm.utils.ArrayFunctions.removeValues(Dbm.utils.ArrayFunctions.mapField(this.item.items, "item"), [null, undefined]);
 
-        let trackingController = Dbm.repository.getControllerIfExists("trackingController");
-        trackingController.trackProductListView(products);
+        if(products.length) {
+            let trackingController = Dbm.repository.getControllerIfExists("trackingController");
+            trackingController.trackProductListView(products, this.item.listId);
+        }
     }
 }
