@@ -37,6 +37,8 @@ export default class CookieBar extends Dbm.react.BaseObject {
         elementSize.input.properties.element.connectInput(this.item.properties.widthElement);
         elementSize.start();
 
+        let settingsUrl = this.getDynamicPropWithoutState("settingsUrl", "/cookie-settings/");
+
         let layoutSwitch = new Dbm.flow.updatefunctions.logic.RangeSwitch();
         layoutSwitch.input.properties.value.connectInput(elementSize.output.properties.width);
 
@@ -59,7 +61,7 @@ export default class CookieBar extends Dbm.react.BaseObject {
                 Dbm.react.text.translatedText("Only necessary", "onlyNecessary")
             ),
             React.createElement("div", {"className": "spacing small"}),
-            React.createElement(Dbm.react.text.Link, {"href": "/cookie-settings/", className:"custom-styled-link"},
+            React.createElement(Dbm.react.text.Link, {"href": settingsUrl, className:"custom-styled-link"},
                 React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center"},
                     Dbm.react.text.translatedText("Settings", "settings")
                 )
@@ -81,7 +83,7 @@ export default class CookieBar extends Dbm.react.BaseObject {
             
             React.createElement("div", {"className": "flex-row small-item-spacing"}, 
                 React.createElement("div", {"className": "flex-row-item"},
-                    React.createElement(Dbm.react.text.Link, {"href": "/cookie-settings/", className:"custom-styled-link"},
+                    React.createElement(Dbm.react.text.Link, {"href": settingsUrl, className:"custom-styled-link"},
                         React.createElement("div", {"className": "secondary-button standard-button-padding"},
                             Dbm.react.text.translatedText("Settings", "settings")
                         )
@@ -115,7 +117,7 @@ export default class CookieBar extends Dbm.react.BaseObject {
                 React.createElement("div", {"className": "flex-row-item"}, 
                     React.createElement("div", {"className": "flex-row small-item-spacing"}, 
                         React.createElement("div", {"className": "flex-row-item"},
-                            React.createElement(Dbm.react.text.Link, {"href": "/cookie-settings/", className:"custom-styled-link"},
+                            React.createElement(Dbm.react.text.Link, {"href": settingsUrl, className:"custom-styled-link"},
                                 React.createElement("div", {"className": "secondary-button standard-button-padding"}, 
                                     Dbm.react.text.translatedText("Settings", "settings")
                                 )

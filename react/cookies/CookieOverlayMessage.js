@@ -37,6 +37,8 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
         elementSize.input.properties.element.connectInput(this.item.properties.widthElement);
         elementSize.start();
 
+        let settingsUrl = this.getDynamicPropWithoutState("settingsUrl", "/cookie-settings/");
+
         let layoutSwitch = new Dbm.flow.updatefunctions.logic.RangeSwitch();
         layoutSwitch.input.properties.value.connectInput(elementSize.output.properties.width);
 
@@ -66,7 +68,7 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
                     Dbm.react.text.translatedText("Take full control over how we use cookies:", "text/settingsLinkDescription")
                 ),
                 React.createElement("div", {"className": "spacing small"}),
-                React.createElement("a", {"href": "/cookie-settings/", className:"custom-styled-link"},
+                React.createElement("a", {"href": settingsUrl, className:"custom-styled-link"},
                     React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center"},
                         Dbm.react.text.translatedText("Settings", "settings")
                     )
@@ -106,7 +108,7 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
                         Dbm.react.text.translatedText("Take full control over how we use cookies:", "text/settingsLinkDescription")
                     ),
                     React.createElement("div", {"className": "flex-row-item"},
-                        React.createElement("a", {"href": "/cookie-settings/", className:"custom-styled-link"},
+                        React.createElement("a", {"href": settingsUrl, className:"custom-styled-link"},
                             React.createElement("div", {"className": "cookie-settings-link"}, 
                                 Dbm.react.text.translatedText("Settings", "settings")
                             )
