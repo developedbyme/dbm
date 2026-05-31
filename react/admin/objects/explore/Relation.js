@@ -60,7 +60,15 @@ export default class Relation extends Dbm.react.BaseObject {
                             Dbm.react.text.text(Dbm.react.source.item("identifier"))
                         )
                     )
-                )
+                ),
+                React.createElement("div", {"className": "flex-row small-item-spacing small-description"},
+                    React.createElement("div", {"className": "flex-row-item"},
+                        Dbm.react.text.text(relation.startAt)
+                    ),
+                    React.createElement("div", {"className": "flex-row-item"},
+                       Dbm.react.text.text(relation.endAt)
+                    )
+                ),
             )
         )
     }
