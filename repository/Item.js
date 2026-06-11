@@ -14,8 +14,7 @@ export default class Item extends Dbm.core.LifeCycleObject {
     }
 
     set id(aValue) {
-        console.warn("Use setId instead");
-        debugger;
+        console.warn("Use setId instead", this);
         this.setId(aValue);
 
         return this._id;

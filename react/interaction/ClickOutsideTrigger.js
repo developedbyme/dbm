@@ -15,24 +15,26 @@ export default class ClickOutsideTrigger extends Dbm.react.BaseObject {
         if(!commands) {
             commands = this.getPropValue("command");
         }
-        if(commands && this.getPropValueWithoutNull("active")) {
-            let currentElement = this.item["mainElement"];
-            if(!currentElement.contains(aEvent.srcElement)) {
-                commands = Dbm.utils.ArrayFunctions.singleOrArray(commands);
-                let currentArray = commands;
-                let currentArrayLength = currentArray.length;
-                for(let i = 0; i < currentArrayLength; i++) {
-                    let command = currentArray[i];
-                    try {
-                        command.perform(this, aEvent);
+
+        if(commands) {
+            if(this.getPropValueWithoutNull("active", true)) {
+                let currentElement = this.item["mainElement"];
+                if(!(currentElement.contains(aEvent.srcElement) || currentElement === aEvent.srcElement)) {
+                    commands = Dbm.utils.ArrayFunctions.singleOrArray(commands);
+                    let currentArray = commands;
+                    let currentArrayLength = currentArray.length;
+                    for(let i = 0; i < currentArrayLength; i++) {
+                        let command = currentArray[i];
+                        try {
+                            command.perform(this, aEvent);
+                        }
+                        catch(theError) {
+                            console.error("Error while running command", theError, command);
+                        }
+                        
                     }
-                    catch(theError) {
-                        console.error("Error while running command", theError, command);
-                    }
-                    
                 }
             }
-            
         }
         else{
             console.warn("Click outside doesn't have any commands", this);
