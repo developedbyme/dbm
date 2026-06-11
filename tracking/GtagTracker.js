@@ -45,7 +45,7 @@ export default class GtagTracker extends Dbm.core.BaseObject {
 		}
 
 		this._gtag("config", this.item.tagId, {
-			"send_page_view": false
+			"send_page_view": true
 		});
 		
 		return this;
