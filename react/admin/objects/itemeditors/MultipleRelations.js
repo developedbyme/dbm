@@ -112,7 +112,7 @@ export default class MultipleRelations extends Dbm.react.BaseObject {
                                     ),
                                     React.createElement("div", {"className": "flex-row"},  
                                         React.createElement(Dbm.react.interaction.CommandButton, {"commands": [Dbm.commands.callFunction(this._remove.bind(this), [Dbm.react.source.item()])]},
-                                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/remove.svg", "className": "background-contain cursor-pointer action-icon-color field-icon"})
+                                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/remove.svg", "className": "background-contain cursor-pointer icon-color:action field-icon"})
                                         )
                                     )
                                 )

@@ -67,13 +67,14 @@ export const performAction = function(aType, aData, aCallback = null) {
     return request.properties.data;
 }
 
-export const loadRange = function(aSelects, aEncodings, aCommand) {
+export const loadRange = function(aSelects, aEncodings, aCallback = null) {
     let graphApi = Dbm.getRepositoryItem("cachedGraphApi").controller;
         
     let request = graphApi.requestRange(aSelects, aEncodings);
     
-    if(aCommand) {
-        Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, aCommand);
+    if(aCallback) {
+        let callbackCommand = Dbm.commands.callFunction(aCallback, [Dbm.core.source.staticObject(request, "items")]);
+        Dbm.flow.runWhenMatched(request.properties.status, Dbm.loading.LoadingStatus.LOADED, callbackCommand);
     }
 
     return request.properties.items;

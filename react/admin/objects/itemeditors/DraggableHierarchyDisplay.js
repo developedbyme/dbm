@@ -31,7 +31,7 @@ export default class DraggableHierarchyDisplay extends Dbm.react.BaseObject {
                     React.createElement("div", {className: "flex-row micro-item-spacing"},
                         React.createElement("div", {className: "flex-row-item flex-no-resize cursor-grab", draggable: true},
                             React.createElement("div", {className: "spacing small"}),
-                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/drag-handle.svg", "className": "background-contain drag-handle-icon action-icon-color"})
+                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/drag-handle.svg", "className": "background-contain drag-handle-icon icon-color:action"})
                         ),
                         React.createElement("div", {className: "flex-row-item flex-resize"},
                             children
@@ -39,9 +39,9 @@ export default class DraggableHierarchyDisplay extends Dbm.react.BaseObject {
                         React.createElement("div", {className: "flex-row-item flex-no-resize"},
                             React.createElement("div", {className: "spacing small"}),
                             React.createElement(Dbm.react.interaction.ConfirmButton, {"command": this._getScopedCallFunctionCommand(this._remove)},
-                                React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon action-icon-color cursor-pointer"}),
+                                React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon icon-color:action cursor-pointer"}),
                                 React.createElement("div", {"data-slot": "confirm", className: "absolute-container cursor-pointer", title: "Click to remove"},
-                                    React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon hover-icon remove-action-icon-color cursor-pointer"}),
+                                    React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon hover-icon icon-color:remove-action cursor-pointer"}),
                                     React.createElement("div", {className:"centered-tip-text no-pointer-events"},
                                         "Remove?"
                                     )

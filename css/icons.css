@@ -13,30 +13,12 @@
     height: var(--field-icon-size, 16px);
 }
 
-/*
-.standard-icon-color {
-    filter: url("#standard-icon-color");
-}
-
-.action-icon-color {
-    filter: url("#action-icon-color");
-}
-
-.text-icon-color {
-    filter: url("#text-icon-color");
-}
-
-.white-icon-color {
-    filter: url("#white-icon-color");
-}
-
-.hover-item:hover .remove-action-icon-color,
-.hover-icon.remove-action-icon-color:hover {
-    filter: url("#remove-action-icon-hover-color");
-}
-*/
-
 .drag-handle-icon {
     width: 8px;
     height: 12px;
+}
+
+.big-status-icon {
+    width: var(--big-status-icon-size, 64px);
+    height: var(--big-status-icon-size, 64px);
 }

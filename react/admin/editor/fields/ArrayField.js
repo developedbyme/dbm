@@ -73,9 +73,9 @@ export default class ArrayField extends Dbm.react.BaseObject {
                 React.createElement("div", {"className": "flex-row-item flex-no-resize"},
                     React.createElement("div", {className: "spacing small"}),
                     React.createElement(Dbm.react.interaction.ConfirmButton, {"command": this._getScopedCallFunctionCommand(this._removeItem, [Dbm.react.source.contextVariable("arrayEditor"), Dbm.react.source.contextVariable("item")])},
-                        React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon action-icon-color cursor-pointer"}),
+                        React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon icon-color:action cursor-pointer"}),
                         React.createElement("div", {"data-slot": "confirm", className: "absolute-container cursor-pointer", title: "Click to remove"},
-                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon hover-icon remove-action-icon-color cursor-pointer"}),
+                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/delete.svg", "className": "background-contain text-row-icon hover-icon icon-color:remove-action cursor-pointer"}),
                             React.createElement("div", {className:"centered-tip-text no-pointer-events"},
                                 "Remove?"
                             )

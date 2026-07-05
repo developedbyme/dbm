@@ -1,34 +1,16 @@
 import Dbm from "../../index.js";
 
-export default class GlobalFilters extends Dbm.core.BaseObject {
+export default class AddGlobalFilterClasses extends Dbm.utils.css.AddStyles {
+
     _construct() {
+        //METODO: this does not need to be it's own class
         super._construct();
 
-        this._styleTag = null;
+        this.createHeadElement();
 
         let colorFilters = Dbm.getRepositoryItem("globalSvg");
         let filtersProperty = colorFilters.requireProperty("filters", []);
 
-        filtersProperty.addUpdate(this._getScopedCallFunctionCommand(this._updateStyles));
-        this._updateStyles();
-    }
-
-    _updateStyles() {
-        console.log("_updateStyles");
-
-        let colorFilters = Dbm.getRepositoryItem("globalSvg");
-
-        if(colorFilters.filters.length) {
-
-            if(!this._styleTag) {
-                this._styleTag = document.createElement("style");
-                document.head.appendChild(this._styleTag);
-            }
-
-            let declarations = Dbm.utils.ArrayFunctions.mapField(colorFilters.filters, "classDeclaration");
-            this._styleTag.innerHTML = declarations.join("\n");
-            
-            
-        }
+        this.item.properties.styles.connectInput(filtersProperty);
     }
 }

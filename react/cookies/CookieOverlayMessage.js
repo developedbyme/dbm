@@ -68,7 +68,7 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
                     Dbm.react.text.translatedText("Take full control over how we use cookies:", "text/settingsLinkDescription")
                 ),
                 React.createElement("div", {"className": "spacing small"}),
-                React.createElement("a", {"href": settingsUrl, className:"custom-styled-link"},
+                React.createElement(Dbm.react.text.Link, {"href": settingsUrl, className:"custom-styled-link"},
                     React.createElement("div", {"className": "secondary-button standard-button-padding text-align-center"},
                         Dbm.react.text.translatedText("Settings", "settings")
                     )
@@ -108,7 +108,7 @@ export default class CookieOverlayMessage extends Dbm.react.BaseObject {
                         Dbm.react.text.translatedText("Take full control over how we use cookies:", "text/settingsLinkDescription")
                     ),
                     React.createElement("div", {"className": "flex-row-item"},
-                        React.createElement("a", {"href": settingsUrl, className:"custom-styled-link"},
+                        React.createElement(Dbm.react.text.Link, {"href": settingsUrl, className:"custom-styled-link"},
                             React.createElement("div", {"className": "cookie-settings-link"}, 
                                 Dbm.react.text.translatedText("Settings", "settings")
                             )

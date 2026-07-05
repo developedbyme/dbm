@@ -44,3 +44,8 @@
     display: block;
     font-size: var(--standard-body-font, sans-serif);
 }
+
+.number-text-field {
+    text-align: right;
+    width: 80px;
+}

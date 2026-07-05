@@ -12,8 +12,14 @@ export const addGlobalRgbColorFilter = function(aName, aR, aG, aB) {
     colorFilters.requireProperty("filters", []);
 
     let item = Dbm.getRepositoryItem("globalSvg/filters/" + aName);
-    item.setValue("element", React.createElement(Dbm.react.svg.MatrixFilter, {"id": aName, "matrix": Dbm.utils.svg.ColorMatrixFunctions.floodColor(aR, aG, aB)}));
-    item.setValue("classDeclaration", "." + aName + "{filter:url(\"#" + aName + "\")}");
+    let filterId = aName + "-color-filter";
+    item.setValue("element", React.createElement(Dbm.react.svg.MatrixFilter, {"id": filterId, "matrix": Dbm.utils.svg.ColorMatrixFunctions.floodColor(aR, aG, aB)}));
+    let selectors = [
+        "." + CSS.escape("icon-color:" + aName),
+        "." + CSS.escape("group(icon-color:" + aName + ")") + " " + "." + CSS.escape("use(icon-color)"),
+    ];
+
+    item.setValue("cssDeclaration", selectors.join(", ") + "{filter:url(\"#" + filterId + "\")}");
 
     let filters = [].concat(colorFilters.filters);
     filters.push(item);
@@ -51,7 +57,7 @@ export const createGlobalHexBlendFilter = function(aName, aColor, aBlendMode = "
 
     let item = Dbm.getRepositoryItem("globalSvg/filters/" + aName);
     item.setValue("element", React.createElement(Dbm.react.svg.BlendColorFilter, {"id": aName, "color": aColor, "blendMode": aBlendMode, "saturation": aSaturation, "min": aMin, "max": aMax}));
-    item.setValue("classDeclaration", "." + aName + "{filter:url(\"#" + aName + "\")}");
+    item.setValue("cssDeclaration", "." + aName + "{filter:url(\"#" + aName + "\")}");
 
     let filters = [].concat(colorFilters.filters);
     filters.push(item);
