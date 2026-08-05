@@ -295,6 +295,37 @@ export const sortOnField = function(aArray, aField, aCompareFunction = null) {
     return aArray;
 }
 
+export const sortOnFieldInOrder = function(aArray, aField, aOrder) {
+    let compareFunction = aCompareFunction;
+    if(!compareFunction) {
+        compareFunction = defaultCompareFunction;
+    }
+
+    let sortFunction = function(aA, aB) {
+        let aValue = Dbm.objectPath(aA, aField);
+        let bValue = Dbm.objectPath(aB, aField);
+
+        let aIndex = aOrder.indexOf(aValue);
+        let bIndex = aOrder.indexOf(bValue);
+
+        if(aIndex === -1 && bIndex === -1) {
+            return 0;
+        }
+        else if(aIndex === -1 || bIndex < aIndex) {
+            return 1;
+        }
+        else if(bIndex === -1 || aIndex < bIndex) {
+            return -1;
+        }
+
+        return 0;
+    }
+    
+    aArray.sort(sortFunction);
+    
+    return aArray;
+}
+
 export const sortOnNumericField = function(aArray, aField) {
     let compareFunction = function(aA, aB) {
         let aValue = 1*aA;
