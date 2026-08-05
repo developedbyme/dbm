@@ -76,6 +76,15 @@ export const loadFont = function(aUrl, aFontName) {
     return loader;
 }
 
+export const loadStyle = function(aUrl) {
+    //METODO: change this to a loader
+    let element = document.createElement("link");
+    element.href = aUrl;
+    element.rel = "stylesheet";
+
+    document.head.appendChild(element);
+}
+
 export const getJson = function(aUrl, aCallback = null, aHeaders = null) {
     let request = new Dbm.loading.JsonLoader();
     request.setUrl(aUrl);
