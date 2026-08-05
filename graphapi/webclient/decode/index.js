@@ -47,11 +47,7 @@ export const fullSetup = function() {
     }
 
     {
-        let name = "content";
-        let currentDecoder = new Dbm.graphapi.webclient.decode.DecodeBaseObject();
-        currentDecoder.item.setValue("copyFields", ["content"]);
-        currentDecoder.item.setValue("encodingType", name);
-        currentDecoder.item.register(decodePrefix + name);
+        setupDefaultDecoder("content", ["content"]);
     }
 
     {

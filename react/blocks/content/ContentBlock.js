@@ -11,7 +11,7 @@ export default class ContentBlock extends Dbm.react.BaseObject {
     _constructAfterProps() {
       super._constructAfterProps();
 
-        let contentBlockId = this.getPropValueWithDefault("id", this.context.blockData.contentBlock);
+        let contentBlockId = this.getPropValueWithDefault("id", Dbm.objectPath(this.context, "blockData.contentBlock"));
         console.log(contentBlockId);
 
         let graphApi = Dbm.getInstance().repository.getItem("cachedGraphApi").controller;
@@ -30,7 +30,9 @@ export default class ContentBlock extends Dbm.react.BaseObject {
     }
 
     _loaded(aRequest) {
-      //console.log("_loaded");
+      console.log("_loaded");
+      console.log(aRequest.items);
+
       this.item.item = aRequest.items[0];
     }
 
@@ -38,7 +40,7 @@ export default class ContentBlock extends Dbm.react.BaseObject {
 
       let element = Dbm.getInstance().repository.getItem("contentBlock").element;
 
-        return React.createElement("div", {}, 
+        return React.createElement("div", {},
           React.createElement(Dbm.react.area.HasData, {check: this.item.properties.item},
             React.createElement(Dbm.react.context.AddItemToContext, {item: this.item.properties.item, "as": "page"},
               element

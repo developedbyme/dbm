@@ -1,6 +1,7 @@
 import Dbm from "../../index.js";
 
 export {default as ModuleCreator} from "./ModuleCreator.js";
+export {default as SiteContent} from "./SiteContent.js";
 
 export const addModuleCreator = function(aName, aElement) {
     let module = new Dbm.react.modules.ModuleCreator();
