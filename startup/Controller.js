@@ -21,15 +21,17 @@ export default class Controller extends Dbm.core.BaseObject {
     }
 
     create(aElement, aModuleName, aData) {
-        console.log("Controller::create");
-        console.log(aElement, aData);
+        //console.log("Controller::create");
+        //console.log(aElement, aData);
+
+        let id = this._getNextId();
 
         let newRunner = new Runner();
-        newRunner.setup(aElement, aModuleName, aData, this._getNextId());
+        newRunner.setup(aElement, aModuleName, aData, id);
         this.add(newRunner);
         newRunner.start();
 
-        return newRunner;
+        return id;
     }
 
     add(aWidget) {

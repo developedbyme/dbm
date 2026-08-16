@@ -18,6 +18,7 @@ export const runStartup = function(aGlobalScope = "dbmstartup", aModulesName = "
             if(currentData) {
                 let newRunner = new Dbm.startup.Runner();
                 newRunner.setup(currentData["element"], currentData["moduleName"], currentData["data"], i);
+                controller.add(newRunner);
                 newRunner.start();
             }
         }
@@ -26,6 +27,9 @@ export const runStartup = function(aGlobalScope = "dbmstartup", aModulesName = "
 
         currentArray.splice(0, currentArrayLength);
     }
+
+    //METODO: copy css loaders
+    //METODO: copy js loaders
 }
 
 export const setupLibrary = function() {

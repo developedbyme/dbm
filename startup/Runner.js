@@ -11,6 +11,10 @@ export default class Runner extends Dbm.core.BaseObject {
         this._reactRoot = null;
     }
 
+    get id() {
+        return this._id;
+    }
+
     setup(aElement, aModuleName, aData, aId) {
         this._element = aElement;
         this._moduleName = aModuleName;
