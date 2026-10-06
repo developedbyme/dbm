@@ -8,3 +8,12 @@ export const getObjectTypeEditor = function(aTypeName) {
 
     return objectTypeEditor;
 }
+
+export const addElementToObjectTypeEditor = function(aObjectTypeEditor, aElement) {
+    let itemEditor = new Dbm.repository.Item();
+    itemEditor.setValue("element", aElement);
+
+    aObjectTypeEditor.addToArray("editors", itemEditor);
+
+    return itemEditor;
+}

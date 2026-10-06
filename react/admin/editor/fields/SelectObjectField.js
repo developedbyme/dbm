@@ -19,8 +19,6 @@ export default class SelectObjectField extends Dbm.react.BaseObject {
 
         let editorData = Dbm.objectPath(this.context, "moduleData.editorData");
 
-        console.log(">>>>>", editorData);
-
         let returnData = editorData.data[fieldName];
         if(!returnData) {
             returnData = 0;

@@ -239,6 +239,32 @@ export const groupOnMultipleFields = function(aArray, aFields, aSeparator = "-")
     return returnArray;
 }
 
+export const groupByFunction = function(aArray, aFunction) {
+   
+    let groups = new Map();
+
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentObject = aArray[i];
+        let groupValue = aFunction(currentObject);
+
+        if(!groups.has(groupValue)) {
+            groups.set(groupValue, []);
+        }
+
+        groups.get(groupValue).push(currentObject);
+    }
+
+    let returnArray = [];
+
+    for (const value of groups.entries()) {
+        returnArray.push({"key": value[0], "value": value[1]});
+    }
+
+    return returnArray;
+}
+
 export const makeFlat = function(aArray) {
     let returnArray = [];
 

@@ -50,7 +50,7 @@ export let createToolConfiguration = function(aId, aName, aInitialData = {}, aSa
     return returnObject;
 }
 
-export let registerEditorBlock = function(aModuleName, aName, aEditorModule = null, aInitialData = {}, aSanitizeSettings = {}) {
+export const registerEditorModule = function(aModuleName, aName, aEditorModule = null, aInitialData = {}, aSanitizeSettings = {}) {
 
     if(!aEditorModule) {
         aEditorModule = getDefaultEditorModule();
@@ -70,17 +70,7 @@ export let registerEditorBlock = function(aModuleName, aName, aEditorModule = nu
     return editorItem;
 }
 
-export let registerFrontBlock = function(aModuleName, aElement) {
-    
-    let elementItem = new Dbm.repository.Item();
-    elementItem.setValue("element", aElement);
-    elementItem.register("blocks/" + aModuleName);
-
-    return elementItem;
-}
-
-export let registerBlock = function(aModuleName, aName, aElement, aEditorElement = null, aInitialData = {}, aSanitizeSettings = {}) {
-
+export const registerBlockEditor = function(aModuleName, aName, aEditorElement = null, aInitialData = {}, aSanitizeSettings = {}) {
     let editorModule;
     if(!aEditorElement) {
         editorModule = getDefaultEditorModule();
@@ -90,13 +80,29 @@ export let registerBlock = function(aModuleName, aName, aElement, aEditorElement
         editorModule.setMainElement(aEditorElement);
     }
 
-    let editorBlock = registerEditorBlock(aModuleName, aName, editorModule, aInitialData, aSanitizeSettings);
+    let editorBlock = registerEditorModule(aModuleName, aName, editorModule, aInitialData, aSanitizeSettings);
+
+    return editorBlock;
+}
+
+export const registerFrontBlock = function(aModuleName, aElement) {
+    
+    let elementItem = new Dbm.repository.Item();
+    elementItem.setValue("element", aElement);
+    elementItem.register("blocks/" + aModuleName);
+
+    return elementItem;
+}
+
+export const registerBlock = function(aModuleName, aName, aElement, aEditorElement = null, aInitialData = {}, aSanitizeSettings = {}) {
+
+    let editorBlock = registerBlockEditor(aModuleName, aName, aEditorElement, aInitialData, aSanitizeSettings);
     let displayBlock = registerFrontBlock(aModuleName, aElement);
 
     return {"editorBlock": editorBlock, "displayBlock": displayBlock};
 } 
 
-export let getDefaultEditorModule = function() {
+export const getDefaultEditorModule = function() {
     let moduleItem = Dbm.getInstance().repository.getItem("editorjs");
 
     let displayNameModule = moduleItem.defaultEditor;
@@ -112,7 +118,7 @@ export let getDefaultEditorModule = function() {
     return displayNameModule;
 }
 
-export let registerAllBlocks = function() {
+export const registerAllBlocks = function() {
     registerBlock("cookie/settings", "Cookie settings", createElement(Dbm.react.cookies.CookieSettings));
     registerBlock("login/loginForm", "Login form", createElement(Dbm.react.login.LoginForm));
     registerBlock("admin/pageList", "Admin / Page list", createElement(Dbm.react.admin.pages.PageList), createElement(Dbm.react.admin.pages.PageList));
@@ -729,31 +735,32 @@ export let registerAllBlocks = function() {
 
         {
             let itemEditor = new Dbm.repository.Item();
-            itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.HierarchyOrderedRelationsList, {
-            "label": "Reviews",
-            "direction": "in",
-            "relationType": "in",
-            "objectType": "groupItem",
-            "orderFieldName": "order",
-            "depthLimit": 0
-        },
-        createElement("div", {"className": ""}, 
-            createElement(Dbm.react.admin.EditObject, {"item": Dbm.react.source.item()},
-                createElement("div", {"className": "flex-row small-item-spacing"},
-                    createElement("div", {"className": "flex-row-item flex-resize"},
-                        createElement(Dbm.react.admin.objects.itemeditors.SingleRelation, {
-                            "direction": "out",
-                            "relationType": "for",
-                            "objectType": "review",
-                            encoding: "name",
-                            nameField: "name"
-                        })
+            itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.HierarchyOrderedRelationsList,
+                {
+                    "label": "Reviews",
+                    "direction": "in",
+                    "relationType": "in",
+                    "objectType": "groupItem",
+                    "orderFieldName": "order",
+                    "depthLimit": 0
+                },
+                createElement("div", {"className": ""}, 
+                    createElement(Dbm.react.admin.EditObject, {"item": Dbm.react.source.item()},
+                        createElement("div", {"className": "flex-row small-item-spacing"},
+                            createElement("div", {"className": "flex-row-item flex-resize"},
+                                createElement(Dbm.react.admin.objects.itemeditors.SingleRelation, {
+                                    "direction": "out",
+                                    "relationType": "for",
+                                    "objectType": "review",
+                                    encoding: "name",
+                                    nameField: "name"
+                                })
+                            )
+                        )
+                        
                     )
                 )
-                
-            )
-        )
-        ));
+            ));
             newArray.push(itemEditor);
         }
         
@@ -765,5 +772,45 @@ export let registerAllBlocks = function() {
     {
         let elementItem = Dbm.getRepositoryItem("linkListCard");
         elementItem.setValue("element", React.createElement(Dbm.react.blocks.content.LinkListCard));
+    }
+}
+
+export const registerEcommerceEditors = function() {
+    {
+        let objectTypeEditor = Dbm.repository.admin.getObjectTypeEditor("product");
+        objectTypeEditor.addToArray("editors", Dbm.getRepositoryItem("admin/itemEditors/name"));
+        objectTypeEditor.addToArray("editors", Dbm.getRepositoryItem("admin/itemEditors/title"));
+
+        Dbm.repository.admin.addElementToObjectTypeEditor(objectTypeEditor, Dbm.react.admin.objects.itemeditors.singleRelationElement("Price group", "out:in:priceGroup"));
+    }
+
+    {
+        let objectTypeEditor = Dbm.repository.admin.getObjectTypeEditor("priceGroup");
+        objectTypeEditor.addToArray("editors", Dbm.getRepositoryItem("admin/itemEditors/name"));
+
+        Dbm.repository.admin.addElementToObjectTypeEditor(objectTypeEditor, Dbm.react.admin.objects.itemeditors.singleRelationElement("Regular price", "in:for/regularPrice:price"));
+        Dbm.repository.admin.addElementToObjectTypeEditor(objectTypeEditor, Dbm.react.admin.objects.itemeditors.singleRelationElement("Offer", "in:for/offer:price"));
+
+        Dbm.repository.admin.addElementToObjectTypeEditor(objectTypeEditor, Dbm.react.admin.objects.itemeditors.singleRelationElement("Tax", "out:in:group/tax"));
+        Dbm.repository.admin.addElementToObjectTypeEditor(objectTypeEditor, Dbm.react.admin.objects.itemeditors.singleRelationElement("Recurring", "in:for:interval"));
+        Dbm.repository.admin.addElementToObjectTypeEditor(objectTypeEditor, Dbm.react.admin.objects.itemeditors.singleRelationElement("Recurring offers", "in:for:group/recurringOffer"));
+    }
+
+    {
+        let objectTypeEditor = Dbm.repository.admin.getObjectTypeEditor("price");
+
+        {
+            let itemEditor = new Dbm.repository.Item();
+            itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Field, {"label": "Total", "fieldName": "total"}));
+            objectTypeEditor.addToArray("editors", itemEditor);
+        }
+
+        Dbm.repository.admin.addElementToObjectTypeEditor(objectTypeEditor, Dbm.react.admin.objects.itemeditors.singleRelationElement("Offer", "in:for:priceOffer"));
+    }
+
+    {
+        let objectTypeEditor = Dbm.repository.admin.getObjectTypeEditor("priceOffer");
+        objectTypeEditor.addToArray("editors", Dbm.getRepositoryItem("admin/itemEditors/name"));
+        objectTypeEditor.addToArray("editors", Dbm.getRepositoryItem("admin/itemEditors/title"));
     }
 }

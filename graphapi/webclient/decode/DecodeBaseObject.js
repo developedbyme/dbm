@@ -51,7 +51,7 @@ export default class DecodeBaseObject extends Dbm.core.BaseObject {
         }
 
         if(this.item.setupCommands) {
-            Dbm.commands.performCommands(this.item.setupCommands, this, {"item": aItem});
+            Dbm.commands.performCommands(this.item.setupCommands, this, {"item": aItem, "data": aData});
         }
     }
 }

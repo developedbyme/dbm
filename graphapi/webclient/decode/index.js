@@ -224,4 +224,8 @@ export const fullSetup = function() {
 
     setupDefaultDecoder("review", ["rating", "from", "description", "date"], ["source"], []);
     setupDefaultDecoder("reviewSource", ["imageUrl", "link"], ["type"], []);
+
+    setupDefaultDecoder("product_priceGroup", [], ["priceGroup"], []);
+    setupDefaultDecoder("price", ["total"], ["offer"], []);
+    setupDefaultDecoder("priceGroup", [], ["regularPrice", "offer", "tax", "interval", "recurringOffer"], []);
 }

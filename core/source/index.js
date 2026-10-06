@@ -6,6 +6,7 @@ export {default as FromObject} from "./FromObject.js";
 export {default as StaticSource} from "./StaticSource.js";
 export {default as FirstSource} from "./FirstSource.js";
 export {default as SourceCommand} from "./SourceCommand.js";
+export * as logic from "./logic.js";
 
 export const event = function(aPath = null) {
 	let newSource = new Dbm.core.source.EventSource();

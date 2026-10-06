@@ -44,3 +44,19 @@ export const fieldWithValidation = function(aFieldName, aPlaceHolderText = null,
     return returnElement;
 }
 
+export const dateFieldWithValidation = function(aFieldName, aPlaceHolderText = null, aClasses = "standard-field standard-field-padding full-width") {
+    let returnElement = React.createElement(Dbm.react.context.AddItemToContext, {item: Dbm.react.source.contextVariable("form.fields." + aFieldName), as: "field"},
+        validationStateClassName(
+            React.createElement(Dbm.react.form.FormField, {
+                type: "date",
+                value: Dbm.react.source.contextVariable("field.properties.value"),
+                editing: Dbm.react.source.contextVariable("field.properties.editing"),
+                className: aClasses,
+                placeholder: aPlaceHolderText
+            })
+        )
+    )
+
+    return returnElement;
+}
+

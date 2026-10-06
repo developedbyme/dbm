@@ -6,12 +6,12 @@ export default class CartLineItem extends Dbm.core.BaseObject {
 
         this.item.setValue("cart", null);
 
-        this.item.setValue("type", null);
-        this.item.setValue("product", null);
-        this.item.setValue("quantity", 0);
+        this.item.requireProperty("type", null);
+        this.item.requireProperty("product", null);
+        this.item.requireProperty("quantity", 0).addUpdate(this._getScopedCallFunctionCommand(this._quantityUpdated));
 
         let meta = new Dbm.utils.NamedArray();
-        this.item.setValue("meta", meta.item);
+        this.item.requireProperty("meta", meta.item);
     }
 
     setCart(aItem) {
@@ -33,6 +33,16 @@ export default class CartLineItem extends Dbm.core.BaseObject {
         this.item.quantity = aQuantity;
 
         return this;
+    }
+
+    _quantityUpdated() {
+        if(this.item.quantity > 0) {
+            //MENOTE: do nothing
+        }
+        else {
+            //METODO: would be good to have a setting for this
+            this.remove();
+        }
     }
 
     setMeta(aKey, aValue) {

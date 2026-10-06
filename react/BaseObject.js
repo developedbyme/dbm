@@ -38,6 +38,21 @@ export default class BaseObject extends Component {
 
     }
 
+    updateSources() {
+        let props = this.props;
+        for(let objectName in props) {
+            let currentProp = props[objectName];
+
+            if(currentProp && currentProp.isSource) {
+                currentProp = currentProp.getSource(this);
+                let currentDynamicProperty = this.getDynamicProp(objectName);
+                currentDynamicProperty.setOrConnect(currentProp);
+            }
+        }
+
+        return this;
+    }
+
     _prepareProps() {
         //console.log("_prepareProps");
         let props = this.props;
@@ -59,7 +74,41 @@ export default class BaseObject extends Component {
 			}
         }
 
+        let flowUpdatesPropValue = this.getPropValue("flowUpdates");
+        if(flowUpdatesPropValue) {
+            let flowUpdates = this._getFlowUpdates();
+            let currentArray = Dbm.utils.ArrayFunctions.singleOrArray(flowUpdatesPropValue);
+            let currentArrayLength = currentArray.length;
+            for(let i = 0; i < currentArrayLength; i++) {
+                let currentProperty = currentArray[i];
+                if(currentProperty && currentProperty.isSource) {
+                    currentProperty = currentProperty.getSource(this);
+                }
+
+                let stateProperty = flowUpdates.input.register("flowUpdates/index"+i, currentProperty.value);
+                
+                stateProperty.connectInput(currentProperty);
+            }
+        }
+
         //METODO: remove unused connections
+    }
+
+    _getFlowUpdates() {
+        let flowUpdates = this.item["flowUpdates/controller"];
+        if(!flowUpdates) {
+            flowUpdates = new Dbm.flow.updatefunctions.react.FlowUpdates();
+            this.item.setValue("flowUpdates", flowUpdates);
+            flowUpdates.input.owner = this;
+
+            let updateState = this._getStateUpdate();
+            let stateProperty = updateState.input.register("flowUpdates/controller", flowUpdates.output.dynamicUpdate);
+
+            stateProperty.connectInput(flowUpdates.output.properties.dynamicUpdate);
+
+        }
+
+        return flowUpdates;
     }
 
     _getStateUpdate() {
@@ -224,6 +273,9 @@ export default class BaseObject extends Component {
                 case "children":
                 case "elementType":
                 case "key":
+                    //MENOTE: do nothing
+                    break;
+                case "flowUpdates":
                     //MENOTE: do nothing
                     break;
                 default:

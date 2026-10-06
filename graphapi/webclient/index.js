@@ -27,9 +27,8 @@ export const setup = function(aWsPath, aApiPath) {
 }
 
 export const requireObjectEncoding = function(aObject, aEncoding, aCommand) {
-    console.log("requireObjectEncoding");
+    //console.log("requireObjectEncoding");
     if(aObject["has/encoding/" + aEncoding]) {
-        console.log(aObject, aEncoding);
         if(aCommand) {
             aCommand.perform(null, null);
         }

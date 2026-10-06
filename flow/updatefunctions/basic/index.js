@@ -9,6 +9,7 @@ export {default as MappedList} from "./MappedList.js";
 export {default as Translation} from "./Translation.js";
 export {default as SetProperty} from "./SetProperty.js";
 export {default as GetItemBy} from "./GetItemBy.js";
+export {default as PartOfArray} from "./PartOfArray.js";
 
 export const runCommand = function(aValue, aCommand) {
 	let updateFunction = new Dbm.flow.updatefunctions.basic.RunCommand();
@@ -145,6 +146,17 @@ export const getItemBy = function(aItems, aValue, aPath = "id") {
 	properties.value.setOrConnect(aValue);
 	properties.items.setOrConnect(aItems);
 	properties.path.setOrConnect(aPath);
+
+	return updateFunction;
+}
+
+export const partOfArray = function(aItems, aStartAt = 0, aNumberOfItems = -1) {
+	let updateFunction = new Dbm.flow.updatefunctions.basic.PartOfArray();
+
+	let properties = updateFunction.input.properties;
+	properties.startAt.setOrConnect(aStartAt);
+	properties.items.setOrConnect(aItems);
+	properties.numberOfItems.setOrConnect(aNumberOfItems);
 
 	return updateFunction;
 }

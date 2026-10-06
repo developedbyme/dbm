@@ -47,3 +47,57 @@ export const getMissingTranslations = function(aTranslatedPages, aAvailableLangu
 
     return returnArray;
 }
+
+export const getLocalePrice = function(aPrice, aLocale) {
+    let formatter = new Intl.NumberFormat(aLocale, {
+        style: "currency",
+        currency: "XXX",
+    });
+
+    return formatter.formatToParts(aPrice).filter(part => part.type !== "currency" && part.type !== "literal").map(part => part.value).join("");
+}
+
+export const getLocaleDate = function(aDate, aFormat, aLocale) {
+    let formatter = new Intl.DateTimeFormat(aLocale, aFormat);
+
+    return formatter.format(aDate);
+}
+
+export const getLocalePriceWithCurrency = function(aPrice, aCurrency, aLocale) {
+    let formatter = new Intl.NumberFormat(aLocale, {
+        style: "currency",
+        currency: aCurrency,
+    });
+
+    return formatter.format(aPrice);
+}
+
+export const getDateAsTemporal = function(aValue) {
+    if(aValue instanceof Date) {
+        return Temporal.Instant.fromEpochMilliseconds(aValue.getTime());
+    }
+    else if(typeof aValue === "number") {
+        return Temporal.Instant.fromEpochMilliseconds(aValue);
+    }
+    else if(typeof aValue === "string") {
+        switch (aValue.length) {
+            case 4:
+                return Temporal.PlainYearMonth.from(aValue + "-01");
+            case 7:
+                return Temporal.PlainYearMonth.from(aValue);
+            case 10:
+                return Temporal.PlainDate.from(aValue);
+        }
+
+        if (aValue.includes("[")) {
+            return Temporal.ZonedDateTime.from(aValue);
+        }
+        else if(/Z$|[+-]\d{2}:\d{2}$/.test(aValue)) {
+            return Temporal.Instant.from(aValue);
+        }
+
+        return Temporal.PlainDateTime.from(value);
+    }
+
+    return value;
+}

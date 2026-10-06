@@ -83,7 +83,7 @@ export default class SingleArrayValues extends Dbm.core.BaseObject {
     }
 
     _arrayUpdated() {
-        console.log("_arrayUpdated");
+        //console.log("_arrayUpdated");
 
         let dataArray = this.item.array;
         let itemsArray = this.item.items;
@@ -116,10 +116,9 @@ export default class SingleArrayValues extends Dbm.core.BaseObject {
     }
 
     _valueUpdated() {
-        console.log("_valueUpdated");
+        //console.log("_valueUpdated");
 
         let values = Dbm.utils.ArrayFunctions.mapField(this.item.items, "value");
-        console.log(values); 
         this.item.properties.array.getMostUpstreamProperty().value = values;
     }
 }

@@ -18,7 +18,7 @@ export default class PartOfObject extends Dbm.core.BaseObject {
     }
 
     _objectUpdated() {
-        console.log("_objectUpdated");
+        //console.log("_objectUpdated");
 
         if(this.item.path !== null) {
             let stringValue = JSON.stringify(Dbm.objectPath(this.item.object, this.item.path));
@@ -32,7 +32,7 @@ export default class PartOfObject extends Dbm.core.BaseObject {
     }
 
     _valueUpdated() {
-        console.log("_valueUpdated");
+        //console.log("_valueUpdated");
 
         if(this.item.path !== null) {
             let stringValue = JSON.stringify(this.item.value);

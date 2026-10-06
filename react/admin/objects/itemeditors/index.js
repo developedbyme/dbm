@@ -21,3 +21,21 @@ export {default as RichTextFieldWithTranslations} from "./RichTextFieldWithTrans
 export {default as FormattedField} from "./FormattedField.js";
 export {default as FormattedFieldWithTranslations} from "./FormattedFieldWithTranslations.js";
 export {default as TextAreaField} from "./TextAreaField.js";
+
+import Dbm from "../../../../index.js";
+import React from "react";
+
+export const singleRelationElement = function(aLabel, aPath, aEncoding = "name", aNameField = "name") {
+
+    let pathArray = aPath.split(":");
+    //METODO: validate path
+
+    return React.createElement(Dbm.react.admin.objects.itemeditors.SingleRelation, {
+        "label": aLabel,
+        "direction": pathArray[0],
+        "relationType": pathArray[1],
+        "objectType": pathArray[2],
+        encoding: aEncoding,
+        nameField: aNameField
+    });
+}

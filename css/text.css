@@ -2,3 +2,11 @@
     font-size: 12px;
     color: #828282;
 }
+
+.capitalized-text {
+  text-transform: capitalize;
+}
+
+.capitalized-first-letter::first-letter {
+  text-transform: uppercase;
+}

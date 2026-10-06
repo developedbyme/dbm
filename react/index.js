@@ -22,6 +22,8 @@ export * as animation from "./animation/index.js";
 export * as interaction from "./interaction/index.js";
 export * as thirdparty from "./thirdparty/index.js";
 export * as svg from "./svg/index.js";
+export * as ecommerce from "./ecommerce/index.js";
+export * as loading from "./loading/index.js";
 
 
 export let design = null;
