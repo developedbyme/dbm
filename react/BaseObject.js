@@ -154,6 +154,11 @@ export default class BaseObject extends Component {
             return this._dynamicProps[aName];
         }
 
+        if(!this.props) {
+            console.error("Wrong arguments in constructor, can't get props.", this);
+            return null;
+        }
+
         return this.props[aName];
     }
 
