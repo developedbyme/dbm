@@ -225,7 +225,17 @@ export const fullSetup = function() {
     setupDefaultDecoder("review", ["rating", "from", "description", "date"], ["source"], []);
     setupDefaultDecoder("reviewSource", ["imageUrl", "link"], ["type"], []);
 
+    setupDefaultDecoder("product", [], [], []);
     setupDefaultDecoder("product_priceGroup", [], ["priceGroup"], []);
     setupDefaultDecoder("price", ["total"], ["offer"], []);
     setupDefaultDecoder("priceGroup", [], ["regularPrice", "offer", "tax", "interval", "recurringOffer"], []);
+
+    setupDefaultDecoder("order", [], [], []);
+    setupDefaultDecoder("order_lineItems", [], [], ["lineItems"]);
+    setupDefaultDecoder("order_contactDetails", [], ["contactDetails"], []);
+
+    setupDefaultDecoder("lineItem", ["quantity", "unitPrice"], ["type"], []);
+    setupDefaultDecoder("lineItem_product", [], ["product"], []);
+
+    setupDefaultDecoder("contactDetails", ["name", "email", "phoneNumber", "address"], [], []);
 }

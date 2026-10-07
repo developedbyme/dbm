@@ -126,7 +126,5 @@ export default class Cart extends Dbm.core.BaseObject {
 
         this.item.numberOfItems = itemsCount;
         this.item.changeCount++;
-
-        //METODO: calculate totals
     }
 }
