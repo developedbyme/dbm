@@ -11,12 +11,14 @@ export default class BaseObject extends Dbm.core.LifeCycleObject {
         if(!this._item) {
             this._item = new Dbm.repository.Item();
             this._item.setValue("controller", this);
+            this._item.retain();
         }
         return this._item;
     }
 
     setItem(aItem) {
         this._item = aItem;
+        this._item.retain();
 
         return this;
     }
@@ -50,7 +52,7 @@ export default class BaseObject extends Dbm.core.LifeCycleObject {
 
     destroy() {
         if(this._item) {
-            //METODO: destroy item
+            this._item.releaseAndDestroy();
         }
         this._item = null;
         super.destroy();

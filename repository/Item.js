@@ -53,6 +53,7 @@ export default class Item extends Dbm.core.LifeCycleObject {
 	
 	_internal_addProperty(aName, aProperty) {
         Object.defineProperty(this, aName, {
+            configurable: true,
             get() {
                 return aProperty.value;
             },
@@ -61,6 +62,7 @@ export default class Item extends Dbm.core.LifeCycleObject {
             }
         });
         this.properties[aName] = aProperty;
+        aProperty.retain();
 	}
 
     getProperty(aName) {
@@ -119,5 +121,16 @@ export default class Item extends Dbm.core.LifeCycleObject {
         }
 
         return this;
+    }
+
+    destroy() {
+        for(let objectName in this.properties) {
+            this.properties[objectName].releaseAndDestroy();
+            delete this[objectName];
+        }
+
+        this.properties = {};
+
+        super.destroy();
     }
 }

@@ -31,9 +31,20 @@ export default class LifeCycleObject {
         //METODO
     }
 
+    releaseAndDestroy() {
+        //METODO
+    }
+
     destroy() {
+        /*
         if(process.env.NODE_ENV === "development") {
             this._debugId = null;
         }
+        */
+    }
+
+    retainObject(aObject) {
+        aObject.retain();
+        //METODO: own object
     }
 }
