@@ -11,6 +11,8 @@ export {default as TranslationGroup} from "./TranslationGroup.js";
 export {default as Price} from "./Price.js";
 export {default as FormattedDate} from "./FormattedDate.js";
 
+export * as sourced from "./sourced.js";
+
 export const text = function(aText) {
     if(typeof(aText) === "string") {
         return aText;

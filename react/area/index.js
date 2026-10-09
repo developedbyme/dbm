@@ -19,6 +19,7 @@ export {default as SlideshowSteps} from "./SlideshowSteps.js";
 export {default as RepeatedSlider} from "./RepeatedSlider.js";
 export {default as Layout} from "./Layout.js";
 export {default as ModalDialog} from "./ModalDialog.js";
+export {default as LoadingArea} from "./LoadingArea.js";
 
 export const responsiveLayout = function(aDefaultLayout) {
     let newResponsiveLayout = new Dbm.react.area.ResponsiveLayout();

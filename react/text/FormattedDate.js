@@ -28,7 +28,7 @@ export default class FormattedDate extends Dbm.react.BaseObject {
             return React.createElement("span", {"data-no-text-value": date});
         }
 
-        let text = Dbm.utils.TranslationFunctions.getLocaleDate(temporalDate, this.getPropValueWithDefault("format", {calendar: "iso8601"}), locale);
+        let text = Dbm.utils.TranslationFunctions.getLocaleDate(temporalDate, this.getPropValueWithDefault("format", {year: "numeric", month: "2-digit", day: "2-digit", calendar: "iso8601"}), locale);
 
         return text;
     }

@@ -73,6 +73,7 @@ export default class Cart extends Dbm.core.BaseObject {
 
     emptyCart() {
         this.item.lineItems = [];
+        this.item.meta = {};
 
         return this;
     }

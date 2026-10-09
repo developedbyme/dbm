@@ -41,7 +41,7 @@ export default class Switch extends Dbm.flow.FlowUpdateFunction {
         let currentArrayLength = currentArray.length;
         for(let i = 0; i < currentArrayLength; i++) {
             let currentCase = currentArray[i];
-
+            
             if(value === currentCase["key"]) {
                 this.output.value = currentCase["value"];
                 return;

@@ -92,7 +92,7 @@ export const getDateAsTemporal = function(aValue) {
         if (aValue.includes("[")) {
             return Temporal.ZonedDateTime.from(aValue);
         }
-        else if(/Z$|[+-]\d{2}:\d{2}$/.test(aValue)) {
+        else if(/Z$|[+-]\d{2}(?::?\d{2})?$/.test(aValue)) {
             return Temporal.Instant.from(aValue);
         }
 

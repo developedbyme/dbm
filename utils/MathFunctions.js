@@ -13,3 +13,15 @@ export const clampedParametricValue = function(aValue, aStartValue, aEndValue) {
 export const linearInerpolation = function(aParameter, aStartValue, aEndValue) {
     return (1-aParameter)*aStartValue+aParameter*aEndValue;
 }
+
+export const mutltiply = function(...aValues) {
+    let returnValue = 1;
+
+    let currentArray = aValues;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        returnValue *= currentArray[i];
+    }
+
+    return returnValue;
+}

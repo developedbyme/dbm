@@ -460,6 +460,46 @@ export const sum = function(aArray) {
     return sum;
 }
 
+export const sumField = function(aArray, aField) {
+		
+    if(!Array.isArray(aArray)) {
+        console.warn("No array provided", aArray);
+        return 0;
+    }
+    
+    let sum = 0;
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentValue = 1*Dbm.objectPath(currentArray[i], aField);
+        if(!isNaN(currentValue)) {
+            sum += currentValue;
+        }
+    }
+    
+    return sum;
+}
+
+export const sumWithQuantity = function(aArray, aQuantityField, aAmountField) {
+		
+    if(!Array.isArray(aArray)) {
+        console.warn("No array provided", aArray);
+        return 0;
+    }
+    
+    let sum = 0;
+    let currentArray = aArray;
+    let currentArrayLength = currentArray.length;
+    for(let i = 0; i < currentArrayLength; i++) {
+        let currentValue = (1*Dbm.objectPath(currentArray[i], aQuantityField))*(1*Dbm.objectPath(currentArray[i], aAmountField));
+        if(!isNaN(currentValue)) {
+            sum += currentValue;
+        }
+    }
+    
+    return sum;
+}
+
 export const stepFromCenter = function(aStep, aLength) {
     let halfPoint = (aLength-1)/2;
     let startIndex = Math.ceil(halfPoint);
