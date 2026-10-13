@@ -238,4 +238,7 @@ export const fullSetup = function() {
     setupDefaultDecoder("lineItem_product", [], ["product"], []);
 
     setupDefaultDecoder("contactDetails", ["name", "email", "phoneNumber", "address"], [], []);
+
+    setupDefaultDecoder("action", ["data"], ["from", "type", "status"], []);
+    setupDefaultDecoder("creationDate", ["creationDate"], [], []);
 }

@@ -1,4 +1,5 @@
 import Dbm from "../index.js";
+import React from "react";
 
 export {default as BaseObject} from "./BaseObject.js";
 export {default as RefToProperty} from "./RefToProperty.js";
@@ -32,4 +33,12 @@ export const setupDesign = function() {
     let repositoryProxy = new Dbm.react.dynamic.DesignRepositoryProxy();
 
     design = repositoryProxy.proxy;
+}
+
+export const div = function(aClassNames, ...aChildren) {
+    return React.createElement("div", {"className": aClassNames}, ...aChildren);
+}
+
+export const spacing = function(aSize) {
+    return React.createElement("div", {"className": "spacing " + aSize});
 }

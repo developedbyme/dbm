@@ -162,6 +162,9 @@ export const registerAllBlocks = function() {
     registerBlock("admin/users", "Admin / Users", createElement(Dbm.react.blocks.admin.objects.Users));
     registerBlock("admin/users/user", "Admin / User", createElement(Dbm.react.blocks.admin.objects.User));
 
+    registerBlock("admin/actions", "Admin / Actions", createElement(Dbm.react.blocks.admin.actions.Actions));
+    registerBlock("admin/actions/performAction", "Admin / Perform action", createElement(Dbm.react.blocks.admin.actions.PerformAction));
+
     {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
             createElement(Dbm.react.form.LabelledArea, {label: "Image 1"},

@@ -23,6 +23,8 @@ export {default as Link} from "./Link.js";
 export {default as EditableContent} from "./EditableContent.js";
 export {default as GraphApiImageWithAltText} from "./GraphApiImageWithAltText.js";
 
+export * as dateselector from "./dateselector/index.js";
+
 export const validationStateClassName = function(aChildren) {
     return React.createElement(Dbm.react.AddProps, {className: Dbm.react.source.contextVariable("field.properties.validationState")},
         aChildren
@@ -60,3 +62,13 @@ export const dateFieldWithValidation = function(aFieldName, aPlaceHolderText = n
     return returnElement;
 }
 
+export const connectFieldWithValidation = function(aFieldName, aField) {
+
+    let injectedField = React.cloneElement(aField, {value: Dbm.react.source.contextVariable("field.properties.value"), editing: Dbm.react.source.contextVariable("field.properties.editing")});
+
+    let returnElement = React.createElement(Dbm.react.context.AddItemToContext, {item: Dbm.react.source.contextVariable("form.fields." + aFieldName), as: "field"},
+        validationStateClassName(injectedField)
+    )
+
+    return returnElement;
+}

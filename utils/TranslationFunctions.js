@@ -58,7 +58,10 @@ export const getLocalePrice = function(aPrice, aLocale) {
 }
 
 export const getLocaleDate = function(aDate, aFormat, aLocale) {
-    let formatter = new Intl.DateTimeFormat(aLocale, aFormat);
+
+    let formatWithCalendar = {...aFormat};
+
+    let formatter = new Intl.DateTimeFormat(aLocale, formatWithCalendar);
 
     return formatter.format(aDate);
 }
@@ -100,4 +103,24 @@ export const getDateAsTemporal = function(aValue) {
     }
 
     return value;
+}
+
+export const getLocaleWeekdays = function(aFieldFormat = "long", aLocale = "en") {
+    let formatter = new Intl.DateTimeFormat(aLocale, {
+        weekday: aFieldFormat,
+    });
+
+    let today = new Date();
+    let firstDay = new Intl.Locale(aLocale).getWeekInfo().firstDay % 7;
+    let returnArray = [];
+
+    for (let i = 0; i < 7; i++) {
+        let date = new Date(today);
+
+        date.setDate(today.getDate() + ((firstDay + i - today.getDay() + 7) % 7));
+
+        returnArray.push(formatter.format(date));
+    }
+
+    return returnArray;
 }
