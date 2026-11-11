@@ -13,7 +13,7 @@ export default class MappedList extends Dbm.flow.FlowUpdateFunction {
     }
 
     _update() {
-        console.log("MappedList::_update");
+        //console.log("MappedList::_update");
 
         let currentArray = this.input.items;
         let currentArrayLength = currentArray.length;

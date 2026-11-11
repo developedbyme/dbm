@@ -21,7 +21,7 @@ export default class FormattedDate extends Dbm.react.BaseObject {
             temporalDate = Dbm.utils.TranslationFunctions.getDateAsTemporal(date);
         }
         catch(theError) {
-            console.error("Can't parse date");
+            console.error("Can't parse date", theError);
         }
         
         if(temporalDate === null || temporalDate === undefined) {

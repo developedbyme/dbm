@@ -47,6 +47,14 @@
     max-width: none;
 }
 
+.ce-toolbar {
+    z-index: 100;
+}
+
+.codex-editor .ce-popover--open-top .ce-popover__container {
+    --popover-top: calc(100% + var(--offset-from-target));
+}
+
 .editor-block-box {
     border: 1px solid #1A1A1A;
     border-radius: 5px;

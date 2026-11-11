@@ -7,10 +7,9 @@ export default class Price extends Dbm.react.BaseObject {
     }
 
     render() {
-        console.log("Price::render");
+        //console.log("Price::render");
 
         let price = this.getPropValue("price");
-        console.log(price);
 
         let locale = this.getPropValue("language");
         if(!locale) {

@@ -8,6 +8,9 @@ export default class EditorBlocks extends Dbm.react.BaseObject {
         this._valueChangedBound = this._valueChanged.bind(this);
         this._objectChangedBound = this._objectChanged.bind(this);
 
+
+        this._callback_stopPropagationBound = this._callback_stopPropagation.bind(this);
+
         Dbm.flow.addUpdateCommand(this.item.requireProperty("value", this._getObjectData()), Dbm.commands.callFunction(this._valueChangedBound));
 
         let editorData = Dbm.objectPath(this.context, "moduleData.editorData");
@@ -41,6 +44,8 @@ export default class EditorBlocks extends Dbm.react.BaseObject {
         newData[fieldName] = newValue;
 
         editorData.data = newData;
+
+        this.context.moduleData.editorData.editorBlock.dataUpdated();
     }
 
     _objectChanged() {
@@ -50,12 +55,25 @@ export default class EditorBlocks extends Dbm.react.BaseObject {
         if(JSON.stringify(newValue) !== JSON.stringify(this.item.value)) {
             this.item.value = newValue;
         }
+    }
 
-        
+    _callback_stopPropagation(aEvent) {
+        //console.log("_callback_stopPropagation");
+        aEvent.stopPropagation();
     }
 
     _renderMainElement() {
-        return this._createMainElement("div", {},
+
+        let props = {};
+
+        let blockedEvents = ["onKeyDown", "onKeyUp", "onKeyPress", "onBeforeInput", "onInput", "onPaste", "onCopy", "onCut", "onDrop", "onDragSart"];
+        let currentArray = blockedEvents;
+        let currentArrayLength = currentArray.length;
+        for(let i = 0; i < currentArrayLength; i++) {
+            props[currentArray[i]] = this._callback_stopPropagationBound;
+        }
+
+        return this._createMainElement("div", props,
             React.createElement(Dbm.react.admin.editor.Editor, {value: this.item.properties.value})
         );
     }

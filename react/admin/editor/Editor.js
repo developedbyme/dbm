@@ -192,7 +192,7 @@ export default class Editor extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
-        return React.createElement("div", {style: {"position": "relative", "zIndex": 0}},
+        return React.createElement("div", {},
             React.createElement("div", {"ref": this.createRef("holder")})
         );
     }

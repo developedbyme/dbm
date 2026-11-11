@@ -33,8 +33,8 @@ export const setupRangeData = function(aData) {
 }
 
 let rangeLoaded = function(aRequestItem) {
-    console.log("rangeLoaded");
-    console.log(aRequestItem);
+    //console.log("rangeLoaded");
+    //console.log(aRequestItem);
     let items = setupRangeData(aRequestItem.data["data"]);
     aRequestItem.items = items;
     aRequestItem.parsed = true;
@@ -116,6 +116,18 @@ let setupOrderItems = function(aItem, aData) {
     }
 }
 
+let setupPostTerms = function(aItem, aData) {
+
+    let terms = aData.terms;
+    for(let objectName in terms) {
+        let currentArray = Dbm.repository.getItems(terms[objectName]);
+        let currentArrayLength = currentArray.length;
+        for(let i = 0; i < currentArrayLength; i++) {
+            aItem.addUniqueToArray("postTerms", currentArray[i]);
+        }
+    }
+}
+
 export const setupDecoders = function() {
 
 
@@ -144,6 +156,8 @@ export const setupDecoders = function() {
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/pageTemplate", ["pageTemplate"], [], []);
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/postType", ["postType"], [], []);
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/publishDate", ["date"], [], []);
+
+    Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/postTerms", [], [], [], [Dbm.commands.callFunction(setupPostTerms, [Dbm.core.source.event("item"), Dbm.core.source.event("data")])]);
     
     
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/product", ["price", "productType"], [], []);
@@ -172,4 +186,10 @@ export const setupDecoders = function() {
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/pageDataSources", [], [], ["dataSources"]);
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/dataSource", ["dataName", "data"], [], ["objectTypes"]);
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/pageSettings", [], ["pageSettings"], []);
+
+    Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/menuItem", ["order", "type", "text"], ["parent"], []);
+    Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/menuItem/post_type", [], ["post"], []);
+
+    Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/postTranslation/translations", [], ["translations"], []);
+    
 }
