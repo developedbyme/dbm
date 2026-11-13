@@ -1,8 +1,8 @@
 import Dbm from "../index.js";
-import {Component, createElement} from "react";
+import React from "react";
 import Context from "./context/Context.js";
 
-export default class BaseObject extends Component {
+export default class BaseObject extends React.Component {
     constructor(aProps, aContext) {
         super(aProps, aContext);
         this.state = {"dynamicUpdate": 0};
@@ -304,12 +304,12 @@ export default class BaseObject extends Component {
         }
 
         if(!children || !children.length) {
-            return createElement(aType, newProps);
+            return React.createElement(aType, newProps);
         }
 
         let callArray = [aType, newProps].concat(children);
 
-        return createElement.apply(null, callArray);
+        return React.createElement.apply(null, callArray);
     }
 
     _getScopedCallFunctionCommand(aFunction, aArguments = []) {
@@ -337,6 +337,10 @@ export default class BaseObject extends Component {
     addUpdateCallWhenMatched(aPropertyOrName, aMatchValue, aFunction, aArguments = []) {
         //console.log(this._propertyOrName(aPropertyOrName), aPropertyOrName);
         this._propertyOrName(aPropertyOrName).addUpdateWhenMatched(aMatchValue, this._getScopedCallFunctionCommand(aFunction, aArguments));
+    }
+
+    static el(aProps = null, ...aChildren) {
+        return React.createElement(this, aProps, ...aChildren);
     }
 }
 

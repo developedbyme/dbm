@@ -109,7 +109,7 @@ export const getDefaultEditorModule = function() {
     if(!displayNameModule) {
         displayNameModule = new Dbm.react.modules.ModuleCreator();
 
-        let displayNameEditor = createElement(Dbm.react.admin.editor.EditorBlockName, {});
+        let displayNameEditor = Dbm.react.admin.editor.EditorBlockName.el();
         displayNameModule.setMainElement(displayNameEditor);
 
         moduleItem.setValue("defaultEditor", displayNameModule);
