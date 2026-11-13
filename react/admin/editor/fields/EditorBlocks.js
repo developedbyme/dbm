@@ -64,9 +64,11 @@ export default class EditorBlocks extends Dbm.react.BaseObject {
 
     _renderMainElement() {
 
-        let props = {};
+        let props = {
+            "className": "skip-editor-drop"
+        };
 
-        let blockedEvents = ["onKeyDown", "onKeyUp", "onKeyPress", "onBeforeInput", "onInput", "onPaste", "onCopy", "onCut", "onDrop", "onDragSart"];
+        let blockedEvents = ["onKeyDown", "onKeyUp", "onKeyPress", "onBeforeInput", "onInput", "onPaste", "onCopy", "onCut"];
         let currentArray = blockedEvents;
         let currentArrayLength = currentArray.length;
         for(let i = 0; i < currentArrayLength; i++) {

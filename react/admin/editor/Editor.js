@@ -38,6 +38,8 @@ export default class Editor extends Dbm.react.BaseObject {
     }
 
     uploadImage(aFile) {
+        debugger;
+
         return new Promise((resolve, reject) => {
             let graphApi = Dbm.getInstance().repository.getItem("graphApi").controller;
 

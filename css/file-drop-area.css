@@ -1,0 +1,20 @@
+.file-drop-area {
+    border: 1px solid var(--file-drop-area-border-color, #dddddd);
+    border-radius: var(--file-drop-area-border-radius, 5px);
+    background-color: var(--file-drop-area-background-color, #fdfdfd);
+    box-sizing: border-box;
+}
+
+.file-drop-area.drop-file-highlight {
+    border: 1px solid var(--file-drop-area-highlight-border-color, #58f09f);
+    background-color: var(--file-drop-area-highligh-background-color, #9dffcb);
+}
+
+.file-drop-area-padding {
+    padding: var(--file-drop-area-vertical-padding, 10px) var(--file-drop-area-horizontal-padding, 10px);
+}
+
+.file-drop-area-icon {
+    height: 24px;
+    width: 100%;
+}

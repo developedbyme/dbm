@@ -1,0 +1,89 @@
+.spacing.micro {
+    height: 5px;
+}
+.spacing.small {
+    height: 10px;
+}
+.spacing.medium {
+    height: 15px;
+}
+.spacing.standard {
+    height: 20px;
+}
+.spacing.double {
+    height: 40px;
+}
+
+.flex-row.micro-item-spacing > *:not(:first-child) {
+    margin-left: 2px;
+}
+.flex-row.micro-item-spacing > *:not(:last-child) {
+    margin-right: 2px;
+}
+
+.flex-row.small-item-spacing > *:not(:first-child) {
+    margin-left: 5px;
+}
+.flex-row.small-item-spacing > *:not(:last-child) {
+    margin-right: 5px;
+}
+
+.flex-row.medium-item-spacing > *:not(:first-child) {
+    margin-left: 7.5px;
+}
+.flex-row.medium-item-spacing > *:not(:last-child) {
+    margin-right: 7.5px;
+}
+
+.flex-row.standard-item-spacing > *:not(:first-child) {
+    margin-left: 10px;
+}
+.flex-row.standard-item-spacing > *:not(:last-child) {
+    margin-right: 10px;
+}
+
+.flex-row.big-item-spacing > *:not(:first-child) {
+    margin-left: 20px;
+}
+.flex-row.big-item-spacing > *:not(:last-child) {
+    margin-right: 20px;
+}
+
+.flex-column.small-item-spacing > *:not(:first-child) {
+    margin-top: 5px;
+}
+.flex-column.small-item-spacing > *:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.flex-row.menu-item-spacing > *:not(:first-child) {
+    margin-left: 20px;
+}
+.flex-row.menu-item-spacing > *:not(:last-child) {
+    margin-right: 20px;
+}
+
+.flex-row.singles > * {
+	width: 100%;
+}
+
+.flex-row.halfs > * {
+	width: 50%;
+}
+
+.flex-row > .half {
+	width: 50%;
+}
+
+.flex-row.thirds > *,
+.flex-row > .third {
+	width: 33.33%;
+}
+
+.flex-row.quarters > * {
+	width: 25%;
+}
+
+.flex-row > .quarter {
+	width: 25%;
+}

@@ -12,9 +12,9 @@ export default class CallFunction extends CommandBaseObject {
 
     perform(aFromObject, aData) {
 		
-        let callFunction = this.item.callFunction;
+        let callFunction = this.getInputFrom("callFunction", aFromObject, aData);
 		
-		let currentArray = this.item.callArguments;
+		let currentArray = this.getInputFrom("callArguments", aFromObject, aData);
 		let currentArrayLength = currentArray.length;
 		let resolvedArguments = new Array(currentArrayLength);
 		
@@ -31,7 +31,12 @@ export default class CallFunction extends CommandBaseObject {
             resolvedArguments[i] = currentArgument;
         }
 
+        let scopeObject = this.getInputFrom("scopeObject", aFromObject, aData);
+
+        if(typeof(callFunction) === "string") {
+            callFunction = scopeObject[callFunction];
+        }
         //METODO: try catch
-        return callFunction.apply(this.item.scopeObject, resolvedArguments);
+        return callFunction.apply(scopeObject, resolvedArguments);
     }
 }

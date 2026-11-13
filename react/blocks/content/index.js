@@ -7,3 +7,8 @@ export {default as Spacing} from "./Spacing.js";
 export {default as SpacingLine} from "./SpacingLine.js";
 export {default as Buttons} from "./Buttons.js";
 export {default as SectionsGrid} from "./SectionsGrid.js";
+
+export {default as PageTitleHeader} from "./PageTitleHeader.js";
+export * as PageTitleHeader_static from "./PageTitleHeader.js";
+
+import * as PageTitleHeader_static from "./PageTitleHeader.js";

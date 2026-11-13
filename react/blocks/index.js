@@ -416,6 +416,9 @@ export const registerAllBlocks = function() {
         let block = registerBlock("content/buttons", "Buttons", createElement(Dbm.react.blocks.content.Buttons), editor, {}, {});
     }
 
+    Dbm.react.blocks.content.PageTitleHeader_static.registerBlock();
+    Dbm.react.blocks.content.PageTitleHeader_static.registerBlockEditor();
+
     {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/title");
         itemEditor.setValue("element", createElement(Dbm.react.admin.objects.itemeditors.Title, {}));

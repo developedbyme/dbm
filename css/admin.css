@@ -1,6 +1,7 @@
 .dbm-admin {
     background-color: #f6f7f9;
     color: #313131;
+    font-family: system-ui, sans-serif;
 
     h1, h2, h3, h4, h5, h6 {
         color: #313131;
@@ -56,12 +57,64 @@
 }
 
 .editor-block-box {
-    border: 1px solid #1A1A1A;
-    border-radius: 5px;
     box-sizing: border-box;
 }
+
 .editor-block-box-padding {
-    padding: 20px;
+    padding: 4px 0px;
+}
+
+.editor-block-header {
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    font-size: 12px;
+}
+
+.editor-block-header-label {
+    border-radius: 10px;
+    background-color: #4b4795;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.editor-block-header.has-fields,
+.editor-block-header-label.has-fields {
+    border-bottom-left-radius: 0px;
+}
+
+.editor-block-header-description {
+    color: #ADADAD;
+}
+
+.editor-block-header-padding {
+    padding: 10px 15px;
+}
+
+.editor-block-fields-group-line {
+    width: 5px;
+    height: 100%;
+    background-color: #4b4795;
+    border-bottom-left-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+}
+
+.editor-block-fields-group-line-binder {
+  width: 5px;
+  height: 5px;
+  background-color: #4b4795;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(5px);
+
+  clip-path: shape(
+    from -1px -1px,
+    line to 100% -1px,
+    line to 100% 0,
+    arc to 0 100% of 100% ccw,
+    line to -1px 100%,
+    close
+  );
 }
 
 .image.editor-preview {
@@ -110,4 +163,30 @@
     background-color: #ADADAD;
     font-size: 10px;
     font-weight: bold;
+}
+
+.flex-row.admin-item-spacing > *:not(:first-child) {
+    margin-left: 5px;
+}
+
+.flex-row.admin-item-spacing > *:not(:last-child) {
+    margin-right: 5px;
+}
+
+.dbm-admin .standard-field-label {
+    color: #6f6f6f;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.image-library-modal-dialog {
+    width: 1200px;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.image-library-modal-dialog::backdrop {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.2);
 }

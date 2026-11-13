@@ -9,7 +9,9 @@ export default class FileDropArea extends Dbm.react.BaseObject {
 
 		this._id = "dropField" + Dbm.getInstance().getNextId();
 		this.item.requireProperty("dropHighlightClass", "");
-		let classNameAdd = Dbm.flow.updatefunctions.logic.add("file-drop-area display-block cursor-pointer", this.item.properties.dropHighlightClass)
+
+		//METODO: move the cursor poitner to check if it is button
+		let classNameAdd = Dbm.flow.updatefunctions.logic.add("file-drop-area display-block cursor-pointer ", this.item.properties.dropHighlightClass)
 
 		this.item.setValue("classNameAdd", classNameAdd);
 		this.item.requireProperty("fullClass", "").connectInput(classNameAdd.output.properties.result);
@@ -58,7 +60,7 @@ export default class FileDropArea extends Dbm.react.BaseObject {
 		this._handleFiles(aEvent.target.files);
 	}
 
-	_selectFiles() {
+	selectFiles() {
 		var input = document.createElement('input');
 		input.type = 'file';
 
@@ -73,18 +75,26 @@ export default class FileDropArea extends Dbm.react.BaseObject {
 	
 	_renderMainElement() {
 
-		return this._createMainElement(Dbm.react.BaseObject, {
-			role: "button",
-			tabIndex: 0,
+		let props = {
 			className: this.item.properties.fullClass,
 			onDragEnter: (aEvent) => {this._highlight(aEvent);},
 			onDragOver: (aEvent) => {this._highlight(aEvent);},
 			onDragLeave: (aEvent) => {this._unhighlight(aEvent);}, 
 			onDrop: (aEvent) => {this._handleDrop(aEvent);},
-			onKeyDown: function(aEvent) {console.log(aEvent); if(aEvent.key === "Enter") aEvent.target.click()},
-			onClick: (aEvent) => {this._selectFiles();}
-		},
-			this.getPropValue("children")
+		}
+
+		let skipClick = this.getPropValueWithDefault("skipClick", false);
+		if(!skipClick) {
+			props["role"] = "button";
+			props["tabIndex"] = 0;
+			props["onKeyDown"] = function(aEvent) {if(aEvent.key === "Enter") aEvent.target.click()};
+			props["onClick"] = (aEvent) => {this.selectFiles();};
+		}
+
+		return this._createMainElement(Dbm.react.BaseObject, props,
+			React.createElement(Dbm.react.context.AddContextVariables, {"values": {"fileSelection": this}},
+				this.getPropValue("children")
+			)
 		);
 	}
 }

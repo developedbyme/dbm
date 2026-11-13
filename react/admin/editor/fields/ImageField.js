@@ -8,12 +8,11 @@ export default class ImageField extends Dbm.react.BaseObject {
 
         this._valueChangedBound = this._valueChanged.bind(this);
         this._objectChangedBound = this._objectChanged.bind(this);
-        this._callback_fileChangedBound = this._callback_fileChanged.bind(this);
         this._altTextChangedBound = this._altTextChanged.bind(this);
 
-        let fieldName = this.getPropValue("name");
+        this.item.requireProperty("libraryOpen", false);
 
-        
+        let fieldName = this.getPropValue("name");
 
         let editorData = Dbm.objectPath(this.context, "moduleData.editorData");
 
@@ -76,33 +75,35 @@ export default class ImageField extends Dbm.react.BaseObject {
             )
         );
 
-        this.item.requireProperty("selectMode", "overview");
-
-        let uploadElement = React.createElement("div", {className: "flex-row small-item-spacing halfs"},
-            React.createElement("div", {className: "flex-row-item"},
-                React.createElement("input", {"type": "file", onChange: this._callback_fileChangedBound, className: "full-width"})
-            ),
-            React.createElement("div", {className: "flex-row-item"},
-                React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.setProperty(this.item.properties.selectMode, "library")}, 
-                    React.createElement("div", {className: "flex-row-item"}, "Select from library")
-                )
-            ),
+        let uploadElement = React.createElement(Dbm.react.form.FileDropArea, {"skipClick": true, changeCommands: this._getScopedCallFunctionCommand(this.uploadImage, [Dbm.core.source.event("0")])},
+            React.createElement("div", {className: "flex-row"},
+                React.createElement("div", {className: "flex-resize half"},
+                    React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.callScopedFunction(Dbm.react.source.contextVariable("fileSelection").addLogs(), "selectFiles")}, 
+                        React.createElement("div", {className: "file-drop-area-padding"},
+                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/upload.svg", "className": "file-drop-area-icon background-contain"}),
+                            Dbm.react.spacing("micro"),
+                            React.createElement("div", {className: "text-align-center"}, "Upload image")
+                        )
+                    )
+                ),
+                React.createElement("div", {className: "flex-no-resize flex-column"},
+                    React.createElement("div", {className: "flex-resize"}),
+                    React.createElement("div", {className: "flex-no-resize"}, "or"),
+                    React.createElement("div", {className: "flex-resize"}),
+                ),
+                React.createElement("div", {className: "flex-resize half"},
+                    React.createElement(Dbm.react.interaction.CommandButton, {command: Dbm.commands.setProperty(this.item.properties.libraryOpen, true)}, 
+                        React.createElement("div", {className: "file-drop-area-padding"}, 
+                            React.createElement(Dbm.react.image.Image, {"src": "/assets/img/icons/image-library.svg", "className": "file-drop-area-icon background-contain"}),
+                            Dbm.react.spacing("micro"),
+                            React.createElement("div", {className: "text-align-center"}, "Select from library")
+                        )
+                    )
+                ),
+            )
         );
 
-        let libraryElement = React.createElement("div", {}, 
-            React.createElement(Dbm.react.admin.SelectImageFromLibrary, {selectedCommands: [
-                Dbm.commands.callFunction(this._imageSelected.bind(this), [Dbm.core.source.event()]),
-                Dbm.commands.setProperty(this.item.properties.selectMode, "overview")
-            ]})
-        );
-
-        let selectSwitch = Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.selectMode).setDefaultValue(uploadElement).addCase("library", libraryElement);
-
-        let selectElement = React.createElement("div", {},
-            React.createElement(Dbm.react.area.InsertElement, {element: selectSwitch.output.properties.value})
-        );
-
-        let elementSwitch = Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.value).setDefaultValue(imageElement).addCase(null, selectElement);
+        let elementSwitch = Dbm.flow.updatefunctions.logic.switchValue(this.item.properties.value).setDefaultValue(imageElement).addCase(null, uploadElement);
 
         this.item.requireProperty("element", null).connectInput(elementSwitch.output.properties.value);
     }
@@ -185,8 +186,8 @@ export default class ImageField extends Dbm.react.BaseObject {
     }
 
     _imageSelected(aImage) {
-        //console.log("_imageSelected");
-        //console.log(aImage);
+        console.log("_imageSelected");
+        console.log(aImage);
 
         let imageData = {id: aImage.id, url: aImage.url, resizeUrl: aImage.resizeUrl, identifier: aImage.identifier, altText: aImage.altText};
         this.item.value = imageData;
@@ -242,6 +243,7 @@ export default class ImageField extends Dbm.react.BaseObject {
         this.item.value = this._getObjectData();
     }
 
+    /*
     _callback_fileChanged(aEvent) {
         console.log("_callback_fileChanged");
         console.log(aEvent, aEvent.target.files);
@@ -251,6 +253,7 @@ export default class ImageField extends Dbm.react.BaseObject {
             this.uploadImage(files[0]);
         }
     }
+    */
 
     removeImage() {
         this.item.value = null;
@@ -300,8 +303,16 @@ export default class ImageField extends Dbm.react.BaseObject {
         }
 
     _renderMainElement() {
-        return this._createMainElement("div", {},
-            React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element})
+        return this._createMainElement("div", {"className": "skip-editor-drop"},
+            React.createElement(Dbm.react.area.InsertElement, {element: this.item.properties.element}),
+            React.createElement(Dbm.react.area.ModalDialog, {"open": this.item.properties.libraryOpen, "className": "image-library-modal-dialog"},
+                React.createElement(Dbm.react.interaction.ClickOutsideTrigger, {"commands": Dbm.commands.setProperty(this.item.properties.libraryOpen, false)},
+                    React.createElement(Dbm.react.admin.SelectImageFromLibrary, {selectedCommands: [
+                        Dbm.commands.callFunction(this._imageSelected.bind(this), [Dbm.core.source.event()]),
+                        Dbm.commands.setProperty(this.item.properties.libraryOpen, false)
+                    ]})
+                )
+            )
         );
     }
 }
