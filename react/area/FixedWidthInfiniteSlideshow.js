@@ -38,8 +38,8 @@ export default class FixedWidthInfiniteSlideshow extends Dbm.react.BaseObject {
         let viewWidth = this.getPropValueWithDefault("viewWidth", 1000);
         let prepLength = this.getPropValueWithDefault("prepareLength", 20);
         let elementWidth = this.getPropValueWithDefault("elementWidth", 200);
-        let spacing = this.getPropValueWithDefault("spacing", 0);
-        let startPositionOffset = this.getPropValueWithDefault("startPositionOffset", 0);
+        let spacing = this.getPropValueWithoutNull("spacing", 0);
+        let startPositionOffset = this.getPropValueWithoutNull("startPositionOffset", 0);
         let itemClasses = this.getPropValueWithDefault("itemClasses", "full-size");
 
         let index = this.getPropValue("index");
