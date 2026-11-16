@@ -2,6 +2,8 @@ import React from "react";
 import Dbm from "../../index.js";
 import {createElement} from "react";
 
+export {default as BaseObject} from "./BaseObject.js";
+
 export * as gallery from "./gallery/index.js";
 export * as content from "./content/index.js";
 export * as admin from "./admin/index.js";
@@ -418,6 +420,14 @@ export const registerAllBlocks = function() {
 
     Dbm.react.blocks.content.PageTitleHeader_static.registerBlock();
     Dbm.react.blocks.content.PageTitleHeader_static.registerBlockEditor();
+
+    {
+        let editor = createElement("div", {"className": "preamble-text"},
+            Dbm.react.admin.editor.fields.RichTextField.el({"name": "text"})
+        );
+        let block = registerBlock("text/preamble", "Preamble", createElement("p", {"className": "preamble"}, Dbm.react.text.htmlText(Dbm.react.source.blockData("text"))), editor, {}, {"text": false});
+        block.displayBlock.setValue("isText", true);
+    }
 
     {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/title");
