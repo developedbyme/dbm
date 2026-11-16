@@ -151,7 +151,7 @@ export const setupDecoders = function() {
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/postContent", ["content"], [], []);
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/postExcerpt", ["excerpt"], [], []);
 
-    Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/featuredImage", ["image"], [], []);
+    Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/featuredImage", [], ["image"], []);
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/identifier", ["identifier"], [], []);
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/pageTemplate", ["pageTemplate"], [], []);
     Dbm.graphapi.webclient.decode.setupDefaultDecoder("wprr/postType", ["postType"], [], []);
