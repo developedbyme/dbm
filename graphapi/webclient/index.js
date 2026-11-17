@@ -69,7 +69,7 @@ export const performAction = function(aType, aData, aCallback = null) {
 export const loadRange = function(aSelects, aEncodings, aCallback = null) {
     let graphApi = Dbm.getRepositoryItem("cachedGraphApi").controller;
         
-    let request = graphApi.requestRange(aSelects, aEncodings);
+    let request = graphApi.requestRange(aSelects, Dbm.utils.ArrayFunctions.arrayOrSeparatedString(aEncodings));
     
     if(aCallback) {
         let callbackCommand = Dbm.commands.callFunction(aCallback, [Dbm.core.source.staticObject(request, "items")]);

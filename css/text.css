@@ -3,6 +3,10 @@
     color: #828282;
 }
 
+.small-text {
+    font-size: 12px;
+}
+
 .capitalized-text {
   text-transform: capitalize;
 }

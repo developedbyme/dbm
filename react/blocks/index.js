@@ -320,8 +320,25 @@ export const registerAllBlocks = function() {
                 "Skip"
             ),
         );
-        let block = registerBlock("section/coloredBackgroundSection", "Section / Colored background", createElement(Dbm.react.blocks.section.ColoredBackgroundSection, {}), editor, {}, {});
+        let block = registerBlock("section/coloredBackgroundSection", "(legacy) Section / Colored background", createElement(Dbm.react.blocks.section.ColoredBackgroundSectionLegacy, {}), editor, {}, {});
         block.displayBlock.setValue("isSection", true);
+    }
+
+    {
+        Dbm.react.blocks.section.ColoredBackgroundSection.registerBlock();
+
+        let editor = Dbm.react.admin.editor.EditorBlockName.el({},
+            Dbm.react.form.LabelledArea.el({label: "Color"}),
+            Dbm.react.admin.editor.fields.TextField.el({name: "color"}),
+            Dbm.react.form.LabelledArea.el({label: "Vertical spacing"}, 
+                Dbm.react.admin.editor.fields.CheckboxField.el({"name": "skipSpacing"}),
+                "Skip"
+            ),
+            Dbm.react.form.LabelledArea.el({label: "Content"}), 
+            Dbm.react.admin.editor.fields.EditorBlocks.el({"name": "content"}),
+        );
+
+        registerBlockEditor(Dbm.react.blocks.section.ColoredBackgroundSection.BLOCK_IDENTIFIER, "Section / Colored background", editor, {}, {});
     }
 
     {
@@ -334,7 +351,7 @@ export const registerAllBlocks = function() {
                 "Invert text"
             ),
         );
-        let block = registerBlock("section/coloredBoxSection", "Section / Colored box", createElement(Dbm.react.blocks.section.ColoredBoxSection, {}), editor, {}, {});
+        let block = registerBlock("section/coloredBoxSection", "(legacy) Section / Colored box", createElement(Dbm.react.blocks.section.ColoredBoxSection, {}), editor, {}, {});
         block.displayBlock.setValue("isSection", true);
     }
 
@@ -342,7 +359,7 @@ export const registerAllBlocks = function() {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
             
         );
-        let block = registerBlock("section/endSection", "Section / End", createElement("div", {"data-section-end": "1"}), editor, {}, {});
+        let block = registerBlock("section/endSection", "(legacy) Section / End", createElement("div", {"data-section-end": "1"}), editor, {}, {});
         block.displayBlock.setValue("isSection", true);
         block.displayBlock.setValue("endSection", true);
     }

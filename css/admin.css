@@ -56,6 +56,10 @@
     --popover-top: calc(100% + var(--offset-from-target));
 }
 
+.codex-editor .ce-popover {
+    --width: 360px;
+}
+
 .editor-block-box {
     box-sizing: border-box;
 }

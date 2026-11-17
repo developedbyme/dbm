@@ -21,7 +21,7 @@ export default class Dropdown extends Dbm.react.BaseObject {
         let openProperty = this.getDynamicProp("open");
 
         let position = this.getPropValue("position");
-        let dropClassName = "dropdown-menu-min-width position-absolute";
+        let dropClassName = "dropdown-menu-position dropdown-menu-min-width position-absolute";
         if(position !== "right") {
             dropClassName += " " + "top-right";
         }

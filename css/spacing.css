@@ -1,3 +1,6 @@
+.spacing.pixel {
+    height: 1px;
+}
 .spacing.micro {
     height: 5px;
 }
