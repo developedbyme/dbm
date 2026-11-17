@@ -120,6 +120,20 @@ export const getDefaultEditorModule = function() {
     return displayNameModule;
 }
 
+export const registerRichText = function(aType, aName, aClassName = null) {
+
+    if(!aClassName) {
+        aClassName = aType;
+    }
+    
+    let editor = Dbm.react.div(aClassName + "-text-field",
+        Dbm.react.admin.editor.fields.RichTextField.el({"name": "text"})
+    );
+    let block = registerBlock("text/" + aType, aName, createElement("p", {"className": aClassName}, Dbm.react.text.htmlText(Dbm.react.source.blockData("text"))), editor, {}, {"text": false});
+    block.displayBlock.setValue("isText", true);
+    
+}
+
 export const registerAllBlocks = function() {
     registerBlock("cookie/settings", "Cookie settings", createElement(Dbm.react.cookies.CookieSettings));
     registerBlock("login/loginForm", "Login form", createElement(Dbm.react.login.LoginForm));
@@ -342,6 +356,19 @@ export const registerAllBlocks = function() {
     }
 
     {
+        Dbm.react.blocks.section.ImageAndContent.registerBlock();
+
+        let editor = Dbm.react.admin.editor.EditorBlockName.el({},
+            Dbm.react.form.LabelledArea.el({label: "Image"}),
+            Dbm.react.admin.editor.fields.ImageField.el({name: "image"}),
+            Dbm.react.form.LabelledArea.el({label: "Content"}), 
+            Dbm.react.admin.editor.fields.EditorBlocks.el({"name": "content"}),
+        );
+
+        registerBlockEditor(Dbm.react.blocks.section.ImageAndContent.BLOCK_IDENTIFIER, "Section / Image and content", editor, {}, {});
+    }
+
+    {
         let editor = createElement(Dbm.react.admin.editor.EditorBlockName, {},
             createElement(Dbm.react.form.LabelledArea, {label: "Color"}, 
                 createElement(Dbm.react.admin.editor.fields.TextField, {name: "color"})
@@ -438,13 +465,7 @@ export const registerAllBlocks = function() {
     Dbm.react.blocks.content.PageTitleHeader_static.registerBlock();
     Dbm.react.blocks.content.PageTitleHeader_static.registerBlockEditor();
 
-    {
-        let editor = createElement("div", {"className": "preamble-text"},
-            Dbm.react.admin.editor.fields.RichTextField.el({"name": "text"})
-        );
-        let block = registerBlock("text/preamble", "Preamble", createElement("p", {"className": "preamble"}, Dbm.react.text.htmlText(Dbm.react.source.blockData("text"))), editor, {}, {"text": false});
-        block.displayBlock.setValue("isText", true);
-    }
+    registerRichText("preamble", "Preamble");
 
     {
         let itemEditor = Dbm.getInstance().repository.getItem("admin/itemEditors/title");
